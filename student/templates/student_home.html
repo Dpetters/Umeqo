@@ -1,0 +1,106 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "logged_in.html" %}
+
+{% block title %}
+| {{user}}
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+<!-- JQuery MultiSelect Widget -->
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<link rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+
+<!-- JQuery MultiSelect Widget Filtering Plugin -->
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+<link rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect_filter.css" />
+
+<!-- Custom -->
+  <link rel="stylesheet" href="/site_media/css/student/student_home.css"/>
+  <script type="text/javascript" src="/site_media/javascript/student/student_home.js"></script>
+{% endblock %}
+
+{% block content_area %}
+	
+	<div class="right_side_container">
+	    <div id="my_account_block" class="side_block no_top_margin">
+	        <div class="side_block_header">
+	            <img class="side_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" title="to be replaced" />
+	            <span class="side_block_header_title">My Account</span>
+	        </div>
+	        <div class="side_block_content">
+	            <p>
+	                <a href="/student/edit/">Edit Profile</a>
+	            </p>
+	            <p>
+	                <a href="javascript:void(0)" id="preview_profile_link">Preview Result Listing</a>
+	            </p>
+	            <p>
+	                <a href="/password/change/">Change Password</a>
+	            </p>
+	            <p>
+	                <a href="javascript:void(0)" id="open_preferences_dialog_link">Preferences</a>
+	            </p>
+	        </div>
+	    </div>
+	    
+	    <div id="quick_resume_updater_block" class="side_block">
+	        <div class="side_block_header">
+	            <img class="side_block_header_icon" src="/site_media/images/icons/green_arrow_down_png/32x32/green_arrow_down.png" />
+	            <span class="side_block_header_title">Resume Updater</span>
+	        </div>
+	        <div class="side_block_content">
+	          <div id="drop-area">
+	            Drop PDF File Here
+	          </div>
+	        </div>
+	        <div class="side_block_footer">
+	            <div class="side_block_footer_link">
+	                <a id="view_resume_link" target="_blank" href="/site_media/{{student.resume}}">View Current Resume</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+    <div id="notifications_block" class="main_block no_top_margin">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="/site_media/images/icons/megaphone_png/32x32/megaphone.png" />
+            <span class="main_block_header_title">Notifications (0)</span>
+        </div>
+    </div>
+    <div id="events_and_deadlines_block" class="main_block">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="/site_media/images/icons/calendar_date_png/32x32/calendar_date.png" />
+            <span class="main_block_header_title">Events and Deadlines</span>
+        </div>
+        <div class="main_block_content">
+            <div class="message_block">
+                <p>Browse events in full using the links below, or subscribe to employers to get automatic notifications of any new events.<p>
+                <br>
+                <p><a href="javascript:void(0)" id="setup_employer_subscriptions_link"><strong>Setup Employer Subscriptions</strong></a></p>
+            </div>
+        </div>
+        <div class="main_block_footer">
+            <div class="main_block_footer_links">
+                <a id="events_by_company_link" href="javascript:void(0)">Browse Events by Employer</a>&nbsp&nbsp
+                <a href="/student/events">Browse All Events</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="my_statistics_block" class="main_block">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="/site_media/images/icons/chart_png/32x32/chart.png"/>
+            <span class="main_block_header_title">My Statistics</span>
+        </div>
+        <div class="main_block_content">
+          <p>Result Appearances: {{student.results_count}}</p>
+          <p>Total Resume Views: {{student.resume_view_count}}</p>
+          <p>Times Added to Cart: {{student.add_to_cart_count}}</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "anonymous.html" %}
+
+{% block title %}
+| Invalid Activation Link
+{% endblock %}
+
+{% block content_area %}
+<div id="activation_failed_block" class="message_block">
+	<h1 id="activation_failed_block_title" class="message_block_title">Already User/Invalid Activation Link</h1>
+	<p class="message_block">
+		If you are using a link from more than a day ago, it has expired. Request a new one by
+		<a class="open_contact_us_dialog_link" href="javascript:void(0)">contacting us</a>.
+		<br/>
+		<br/>
+		If you're a
+		<strong>student</strong> and haven't registered, you can do so
+		<a href="/student/register">here</a>.
+		<br/>
+		<br/>
+		If you're an
+		<strong>employer</strong> and haven't registered, you can do so
+		<a href="/employer/register">here</a>.
+	</p>
+</div>
+{% endblock %}

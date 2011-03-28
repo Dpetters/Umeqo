@@ -1,0 +1,75 @@
+/*
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+ */
+
+.event_list .description {
+	padding: 0px;
+}
+.event_list .event_description {
+	padding:15px;
+	background-color: #F9F9F9;
+}
+.event_list {
+	width: 100%;
+	border: 1px solid #DDDDB2;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.event_list tr {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #CCC;
+}
+.event_list tr.odd {
+	background: #FFF;
+}
+.event_list tr.even {
+	background: #E8F2FE;
+}
+.event_list td {
+	margin: 0;
+	padding: 5px;
+	vertical-align: top;
+}
+.event_list td.right {
+	text-align: right;
+}
+/* New Event Dialog */
+
+.new_event_form_dialog #AnyTime--id_datetime {
+	z-index: 1003;
+}
+.new_event_form_dialog #new_event_form input {
+	width:200px;
+}
+.new_event_form_dialog #new_event_form select {
+	width:202px;
+}
+.new_event_form_dialog #new_event_form label[for=id_description] {
+	border-right: none;
+}
+.new_event_form_dialog #id_description {
+	width: 100%;
+	margin-top: 3px;
+}
+.new_event_form_dialog #new_event_form #new_event_form_submit_button {
+	margin-top:20px;
+	width:80px;
+}
+.ui-state-default .ui-icon {
+	background-image:url("/site_media/css/jquery/images/ui-icons_303030_256x240.png");
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: white;
+	border: 1px solid #808080;
+	color: #303030;
+	font-weight: normal;
+	padding: 0;
+	width: 200px;
+}
+.new_event_form_dialog #new_event_form_submit_loader {
+	position:absolute;
+	margin-top:22px;
+	margin-left: 7px;
+}

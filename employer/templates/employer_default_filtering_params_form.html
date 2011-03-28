@@ -1,0 +1,117 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+<div class="dialog_info_section">
+	<h3>How It Works</h3>
+	<p>
+		Suppose you are only interested in students who are juniors and seniors with a GPA over 4.2.
+	</p>
+	<p>
+		Instead of starting filtering from scratch each time, set those parameters here, and they will be pre-set for you.
+	</p>
+	<p>
+		Additionally, you will get notified each time new students match your default filtering parameters.
+	</p>
+	<p>
+		To customize how you will be notified,
+		<a href="javascript:void(0)">change your preferences</a>.
+	</p>
+</div>
+<form id="default_filtering_parameters_form" method='POST' action="/employer/setup-default-filtering-parameters/">
+	{% csrf_token %}
+	<div id="default_filtering_parameters_form_left_half_first_section">
+		<h3>Students I'm looking for must...</h3>
+		<div class="abovepad">
+			<label for="id_majors">be majoring in:</label>
+			{{form.majors}}
+		</div>
+		<div class="abovepad">
+			<label for="id_industries_of_interest">be interested in:</label>
+			{{form.industries_of_interest}}
+		</div>
+		<div class="abovepad">
+			<label for="id_previous_employers">have worked for:</label>
+			{{form.previous_employers}}
+		</div>
+		<div class="abovepad">
+			<label for="id_languages">know the languages:</label>
+			{{form.languages}}
+		</div>
+		<div class="abovepad">
+			<label for="id_campus_orgs">be involved in:</label>
+			{{form.campus_orgs}}
+		</div>
+	</div>
+	<div id="default_filtering_parameters_form_left_half_second_section">
+		<div class="abovepad">
+			<label for="id_graduation_years">be graduating in:</label>
+			{{form.graduation_years}}
+		</div>
+		<div class="abovepad">
+			<label for="id_school_years">be a:</label>
+			{{form.school_years}}
+		</div>
+		<div class="abovepad">
+			<label for="id_looking_for_internship">be looking for an internship:</label>
+			{{form.looking_for_internship}}
+		</div>
+		<div class="abovepad">
+			<label for="id_looking_for_fulltime">be looking for fulltime:</label>
+			{{form.looking_for_fulltime}}
+		</div>
+		<div class="abovepad">
+			<label for="id_older_than_18">be older than 18:</label>
+			{{form.older_than_18}}
+		</div>
+		<div class="abovepad">
+			<label for="id_citizen">be a citizen:</label>
+			{{form.citizen}}
+		</div>
+	</div>
+	<div id="default_filtering_parameters_form_right_half">
+		<h3>..and have the following minimums.</h3>
+		<div class="errorspace">
+		</div>
+		<div>
+			<label for="id_gpa">GPA:</label>
+			{{form.gpa}}
+		</div>
+		<div class="errorspace">
+		</div>
+		<div>
+			<label for="id_sat_t">SAT Total:</label>
+			{{form.sat_t}}
+		</div>
+		<div class="errorspace">
+		</div>
+		<div>
+			<label for="id_sat_m">SAT Math:</label>
+			{{form.sat_m}}
+		</div>
+		<div class="errorspace">
+		</div>
+		<div>
+			<label for="id_sat_v">SAT Verbal:</label>
+			{{form.sat_v}}
+		</div>
+		<div class="errorspace">
+		</div>
+		<div>
+			<label for="id_sat_w">SAT Writing:</label>
+			{{form.sat_w}}
+		</div>
+		<div class="errorspace">
+		</div>
+		<div>
+			<label for="id_act">ACT:</label>
+			{{form.act}}
+		</div>
+	</div>
+	<div class="button_wrapper_no_margins anchor">
+		<input id="default_filtering_parameters_form_submit_button" class="button" type='submit' value='Submit'>
+		<img id='ajax_form_submit_loader' style="display:none" src='/site_media/images/page_elements/loaders/small_ajax_loader.gif'>
+	</div>
+</form>

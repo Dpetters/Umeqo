@@ -1,0 +1,14 @@
+.git
+*.class
+*.exe
+*.pyc
+*.pyo
+*.db
+.tmp*
+.project
+.pydevproject
+.settings
+submitted_resumes
+submitted_images
+local_settings.py
+xapian_index

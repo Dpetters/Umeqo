@@ -1,0 +1,15 @@
+/*
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+ */
+
+#student_registration_block {
+	width:500px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+}
+#student_registration_form_error_section {
+	margin-top: 10px;
+}

@@ -1,0 +1,37 @@
+<!--
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+-->
+<div class="dialog_info_section">
+    <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
+</div>
+
+<form id="contact_form" method='POST' action="/contact_us_dialog/">
+	{% csrf_token %}
+	
+	<div class ="errorspace"></div>
+	<div>
+		<label for="id_name" class="required">Your Name:</label>
+		{{contact_form.name}}
+	</div>
+
+	<div class ="errorspace"></div>
+	<div>
+		<label for="id_email" class="required">Your Email:</label>
+		{{contact_form.email}}
+	</div>
+
+	<div class ="errorspace"></div>
+	<div id="id_body_wrapper">
+		<label for="id_body" class="required">Message:</label>
+		{{contact_form.body}}
+	</div>
+
+	<div id="dialog_form_error_section"></div>
+
+	<div class="button_wrapper_with_margins">
+		<input id="contact_form_submit_button" class="button" type='submit' value='Submit'>
+		<img id='ajax_form_submit_loader' style="display:none" src='/site_media/images/page_elements/loaders/small_ajax_loader.gif'>
+	</div>
+</form>

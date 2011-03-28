@@ -1,0 +1,86 @@
+/*
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+ */
+
+/* Profile Form Fields */
+input[type=text] {
+	width:180px;
+}
+select {
+	width:310px;
+}
+#id_older_than_18, #id_citizen, #id_requires_sponsorship, #id_looking_for_internship, #id_looking_for_fulltime {
+	width:185px;
+}
+.button {
+	width:100px;
+}
+.main_block_header {
+	border-bottom:1px solid #CCCCCC;
+}
+.main_block_header_links {
+	font-size: 17px;
+	margin-right:28px;
+}
+#profile_form_title {
+	padding-bottom:15px;
+}
+#required_info_page, #basic_info_page, #academic_info_page {
+	float:left;
+	padding:15px 0 0 5px;
+	width:465px;
+}
+#id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
+	height: 1px;
+}
+li#profile_form_required_first {
+	padding-top:12px;
+}
+li#profile_form_required_second {
+	padding-top:5px;
+}
+li#profile_form_required_third {
+	padding-top:165px;
+}
+/* Student Profile Form Info */
+li#create_campus_organization_link {
+	padding-top:52px;
+}
+li#create_language_link {
+	padding-top:13px;
+}
+/* Create Campus Organization Dialog */
+.create_campus_organization_dialog .ui-dialog-content {
+	padding:20px 20px 25px 20px;
+}
+.create_campus_organization_dialog #id_type {
+	width:307px;
+}
+.create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website {
+	width:300px;
+}
+/* Create Language Dialog */
+.create_language_dialog .ui-dialog-content {
+	padding:20px 20px 25px 20px;
+}
+.create_language_dialog #id_name {
+	width:265px;
+}
+/* Accordion Modifications */
+.ui-accordion .ui-accordion-header {
+	display:none;
+}
+.ui-accordion .ui-accordion-content {
+	overflow:hidden;
+	border-top: 1px solid #CCCCCC;
+	padding:0 0 20px 0;
+}
+/* Multiselect Widget Modifications */
+.ui-multiselect-all {
+	display: none;
+}
+.profile_form_info_dialog .ui-dialog-content {
+	padding:25px;
+}

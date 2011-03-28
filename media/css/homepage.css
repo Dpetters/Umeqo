@@ -1,0 +1,69 @@
+/*
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+ */
+
+#welcome_block {
+	padding:10px;
+	height:280px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+/*
+#login_form {
+	margin-top:20px;
+}
+#login_form h2 {
+	text-shadow:0 1px #FFF;
+}
+#username label[for=id_username], #password label[for=id_password] {
+	font-weight:bold;
+}
+#id_username, #id_password {
+	width:180px;
+}
+#login_form_error_section {
+	margin-top: 7px;
+	min-height:1px;
+	margin-bottom:7px;
+}
+#reset_password_link {
+	margin-top:31px;
+}
+*/
+/* EVENTS_BLOCK */
+#events_block {
+	height:66px;
+	padding:10px;
+}
+#events_list {
+	width:703px;
+	float:right;
+	text-shadow:0 0 1px #CCCCCC;
+}
+#events_title {
+	font-size:18px;
+	position:relative;
+	left:10px;
+	top:22px;
+}
+.event_info_cell {
+	width:40%;
+}
+.event_name_cell {
+	width:45%;
+}
+#firms_block {
+	behavior: url(/site_media/lib/pie/PIE.htc);
+	background-image: -moz-linear-gradient(#EEE, #DDD);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
+	-pie-background: linear-gradient(#EEE, #DDD);
+	height: 82px;
+}
+#bottom_info_block {
+	padding-top:20px;
+	text-align:center;
+}

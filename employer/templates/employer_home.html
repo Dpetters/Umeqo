@@ -1,0 +1,155 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "logged_in.html" %}
+
+{% block title %}
+| {{user.company_name}}
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+<!-- JQuery MultiSelect Widget -->
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<link rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+
+<!-- JQuery MultiSelect Widget Filtering Plugin -->
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+<link rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect_filter.css" />
+
+<!-- Custom -->
+<link rel="stylesheet" href="/site_media/css/employer/employer_home.css" />
+<script type="text/javascript" src="/site_media/javascript/employer/employer_home.js"></script>
+
+<!--[if lt IE 9]>
+  <link rel="stylesheet" type="text/css" href="/site_media/css/employer/employer_home_ie.css" />
+<![endif]-->
+
+{% endblock %}
+
+{% block content_area %}
+
+<div class="right_side_container">
+    <div id="my_account_block" class="side_block no_top_margin">
+        <div class="side_block_header">
+            <img class="side_block_header_icon" src="/site_media/images/icons/business_user_png/32x32/business_user.png">
+            <span class="side_block_header_title">My Account</span>
+        </div>
+        <div class="side_block_content">
+            <p>
+                <a href="/password/change/">Change Password</a>
+            </p>
+            <p>
+                <a href="javascript:void(0)" id="open_preferences_dialog_link">Preferences</a>
+            </p>
+        </div>
+    </div>
+    <div id="statistics_block" class="side_block">
+        <div class="side_block_header">
+            <img class="side_block_header_icon" src="/site_media/images/icons/chart_png/32x32/chart.png"/>
+            <span class="side_block_header_title">My Statistics</span>
+        </div>
+        <div class="side_block_content">
+            <p>
+                Student Subscribers: {{user.event_subscribers}}
+            </p>
+            <p>
+                Total Event Views: {{user.event_views}}
+            </p>
+            <p>
+                Total Events Posted: {{user.events_posted}}
+            </p>
+            <p>
+                Total Resumes Viewed: {{user.resumes_viewed}}
+            </p>
+            <p>
+                Resume Books Created: {{user.resumes_downloaded}}
+            </p>
+        </div>
+        <div class="side_block_footer">
+            <div class="side_block_footer_link">
+                <a id="view_statistics_link" href="javascript:void(0)">See Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="notifications_block" class="main_block no_top_margin">
+    <div class="main_block_header">
+        <img class="main_block_header_icon" src="/site_media/images/icons/megaphone_png/32x32/megaphone.png"/>
+        <span class="main_block_header_title">Notifications ({{unseen_notice_num}})</span>
+    </div>
+    <div class="main_block_header_content">
+        {% for notice in notices %}
+            {% if notice.is_unseen %}
+                <tr class="unseen_notice">
+            {% else %}
+                <tr class="notice">
+            {% endif %}
+                <td class="notice_type">[{{ notice.notice_type.display }}]</td>
+                <td class="notice_message">{{ notice.message|safe }}</td>
+                <td class="notice_time">{{ notice.added|timesince }} ago</td>
+            </tr>
+        {% endfor %}
+    </div>
+</div>
+<div id="browse_students_block" class="main_block">
+    <div class="main_block_header">
+        <img class="main_block_header_icon" src="/site_media/images/icons/users_search_png/32x32/users_search.png" />
+        <span class="main_block_header_title">Browse Students</span>
+        <div class="main_block_header_links">
+            <a class="nounderline" href="/employer/filtering/"><b class="underline">Skip to Filtering</strong></a>
+        </div>
+        <div class="main_block_header_content">
+            <form id="search_form" method="post" action="/employer/filtering/">
+                {% csrf_token %}
+                <div class="errorspace">
+                </div>
+                <div id="query_field_wrapper">
+                    {{form.query}}
+                </div>
+                <input id="search_form_submit_button" class="button" type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+    <div class="main_block_content">
+        <div class="message_block">
+            <p>
+                Search for students above, or let us find them for you by providing your company's default filtering parameters.
+            </p>
+            <br>
+            <p>
+                <a href="javascript:void(0)" id="open_default_parameters_form_link"><strong>Setup Automatic Filtering</strong></a>
+            </p>
+        </div>
+    </div>
+</div>
+<div id="events_and_deadlines_block" class="main_block">
+    <div class="main_block_header">
+        <img class="main_block_header_icon" src="/site_media/images/icons/calendar_date_png/32x32/calendar_date.png"/>
+        <span class="main_block_header_title">Events and Deadlines</span>
+        <div class="main_block_header_links">
+            <a class="nounderline" href="/employer/events/new"><b class="underline">Add New Event</strong></a>
+        </div>
+    </div>
+    <div class="main_block_content">
+        <div class="message_block">
+            <p>
+                You can post your company's events and deadlines for students to view and add to their calendars.
+            </p>
+            <br>
+            <p>
+                You currently don't have any upcoming events/deadlines. You can
+                <a href="/employer/events/new/"><strong>create one now</strong></a>.
+            </p>
+        </div>
+    </div>
+    <div class="main_block_footer">
+        <div class="main_block_footer_links">
+            <a id="view_all_events_link" href="/employer/events/"><strong>View All Events</strong></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% if suggested_employers %}
+{% for employer in suggested_employers %}
+<li>
+	{{employer}}
+</li>
+{% endfor %}
+<a id="get_more_employer_suggestions_link" href="javascript:void(0)">Get more suggestions</a>
+{% else %}
+To get suggestions, fill out your industries of interest, or previous employers by
+<a href="/student/edit/?page=2">editing your profile</a>.
+{% endif %}

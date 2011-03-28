@@ -1,0 +1,68 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "anonymous.html" %}
+
+{% block title %}
+| Registration Successful
+{% endblock %}
+
+{% block metadata %}
+<!-- Mac-like Dock -->
+<script type="text/javascript" src="/site_media/lib/dock/dock.js">
+</script>
+<link rel="stylesheet" type="text/css" href="/site_media/lib/dock/dock.css" />
+
+<!-- Custom -->
+<link rel="stylesheet" type="text/css" href="/site_media/css/registration/student_registration_complete.css" />
+<script type="text/javascript" src="/site_media/javascript/registration/student_registration_complete.js">
+</script>
+{% endblock %}
+
+{% block content_area %}
+<div id="registration_complete_block" class="message_block">
+	<h1 id="registration_complete_block_title" class="message_block_title">Registration Successful</h1>
+	<p class="message_section">
+		A confirmation email has been sent to your email address.
+		Please confirm your identity by following the activation link in the email.
+	</p>
+	<div id="email_icon_section" class="dock">
+		<div class="dock_container">
+			<a class="dock-item" href="http://gmail.com">
+			<span>
+				<strong>Gmail</strong>
+			</span>
+			<img src="/site_media/images/dock/gmail.png" alt="Gmail" />
+			</a>
+			<a class="dock-item" href="http://hotmail.com/">
+			<span>
+				<strong>Hotmail</strong>
+			</span>
+			<img src="/site_media/images/dock/hotmail.png" alt="Hotmail" />
+			</a>
+			<a class="dock-item" href="http://mail.yahoo.com">
+			<span>
+				<strong>Yahoo</strong>
+			</span>
+			<img src="/site_media/images/dock/yahoo.png" alt="Yahoo" />
+			</a>
+			<a class="dock-item" href="http://webmail.aol.com">
+			<span>
+				<strong>AOL</strong>
+			</span>
+			<img src="/site_media/images/dock/aol.png" alt="AOL" />
+			</a>
+			<a class="dock-item" href="https://webmail.mit.edu/">
+			<span>
+				<strong>Webmail</strong>
+			</span>
+			<img src="/site_media/images/dock/mit_webmail.png" alt="Webmail" />
+			</a>
+		</div>
+	</div>
+	<a id="back_to_login_link" href="/">Back to Login</a>
+</div>
+{% endblock %}

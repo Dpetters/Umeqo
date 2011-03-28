@@ -1,0 +1,14 @@
+/* Login Dialog */
+.login_dialog .ui-dialog-content {
+	padding: 15px 25px 20px 15px
+}
+
+#login_form{
+	width:305px;
+	text-align:center;
+}
+
+.right_side_container{
+	width:235px;
+}
+

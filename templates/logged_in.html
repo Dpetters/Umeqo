@@ -1,0 +1,37 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "base.html" %}
+
+{% block metadata %}
+{{block.super}}
+<link rel="stylesheet" href="/site_media/css/logged_in.css" />
+<script type="text/javascript" src="/site_media/javascript/logged_in.js">
+</script>
+{% endblock %}
+
+{% block above_header_area %}
+{{block.super}}
+<div id="idletimeout_block">
+	You will be logged off in
+	<span>
+		<!-- countdown placeholder -->
+	</span>&nbsp;seconds due to inactivity.
+	<a id="idletimeout-resume" href="#">Click here to continue using SBConnect</a>.
+</div>
+{% endblock %}
+
+{% block below_header_area %}
+{{block.super}}
+	<div class="width_container">
+		<div id="login_info_block">
+			{% if user.company_name %}{{user.company_name}}{% else %}{{user}} {% endif %} |
+			<a href="/logout/?next=/?action=logged-out">
+			<strong>Log Out</strong>
+			</a>
+		</div>
+	</div>
+{% endblock %}

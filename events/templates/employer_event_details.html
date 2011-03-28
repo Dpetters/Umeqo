@@ -1,0 +1,88 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "login_info.html" %}
+
+{% block title %}
+| New Event
+{% endblock %}
+
+{% block metadata %}
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js">
+</script>
+<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+
+<!-- DateTime Picker -->
+<script src="/site_media/lib/jquery_ui_datepicker/timepicker_plug/timepicker.js" type="text/javascript">
+</script>
+<link rel="stylesheet" type="text/css" href="/site_media/lib/jquery_ui_datepicker/timepicker_plug/css/style.css">
+
+<!-- Custom -->
+<link rel="stylesheet" href="/site_media/css/employer/employer_new_event.css" />
+<script type="text/javascript" src="/site_media/javascript/employer/employer_new_event.js">
+</script>
+{% endblock %}
+
+{% block content_area %}
+<div id="new_event_form_block" class="main_block no_top_margin">
+	<div class="main_block_header">
+		<img class="main_block_header_icon" src="/site_media/images/icons/calendar_add_png/32x32/calendar_add.png"/>
+		<span class="main_block_header_title">Create New Event</span>
+	</div>
+	<div class="main_block_content">
+		<ul id="new event_form_info" class="main_block_content_form_info">
+		</ul>
+		<form id="new_event_form" method='POST' action="/new_event/" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="errorspace">
+			</div>
+			<div>
+				<label for="id_event_type" class="required">Event Type:</label>
+				{{form.type}}
+			</div>
+			<div class="errorspace">
+			</div>
+			<div>
+				<label for="id_title" class="required">Event Name:</label>
+				{{form.name}}
+			</div>
+			<div class="errorspace">
+			</div>
+			<div>
+				<label for="id_datetime" class="required">Date and Time:</label>
+				{{form.datetime}}
+			</div>
+			<div class="errorspace event_only_field">
+			</div>
+			<div class="event_only_field">
+				<label for="id_duration" class="required">Duration (min):</label>
+				{{form.duration}}
+			</div>
+			<div class="errorspace event_only_field">
+			</div>
+			<div class="event_only_field">
+				<label for="id_location" class="required">Location:</label>
+				{{form.location}}
+			</div>
+			<div class="errorspace">
+			</div>
+			<div>
+				<label for="id_location">Intended Audience:</label>
+				{{form.audience}}
+			</div>
+			<div class="errorspace">
+			</div>
+			<div>
+				<label for="id_description">Event Description:</label>
+				{{form.description}}
+			</div>
+			<div class="button_wrapper_with_margins">
+				<input id="new_event_form_submit_button" class="button" type='submit' value='Submit'>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+<div class="dialog_info_section">
+	<h3>Create the language by filling out the fields below.</h3>
+	<p>
+		<strong>Note:</strong> Its authenticity will be checked by site administrators.
+	</p>
+</div>
+<form id="create_language_form" method='POST' action="/student/create-language/">
+	{% csrf_token %}
+	<div class="errorspace">
+	</div>
+	<div>
+		<label class="required" for="id_name">Name:</label>
+		{{create_language_form.name}}
+	</div>
+	<div class="button_wrapper_with_margins anchor">
+		<input id="create_language_form_submit_button" class="button" type='submit' value='Create'>
+		<img id='ajax_form_submit_loader' style="display:none" src='/site_media/images/page_elements/loaders/small_ajax_loader.gif'>
+	</div>
+</form>

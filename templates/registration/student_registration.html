@@ -1,0 +1,66 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "anonymous.html" %}
+
+{% block title %}
+| Student Registration
+{% endblock %}
+
+{% block metadata %}
+<link rel="stylesheet" href="/site_media/css/registration/student_registration.css" />
+<script type="text/javascript" src="/site_media/javascript/registration/student_registration.js">
+</script>
+{% endblock %}
+
+{% block content_area %}
+<div id="student_registration_block" class="main_block">
+	<div class="main_block_header">
+		<img class="main_block_header_icon" src="/site_media/images/icons/user_add_png/32x32/user_add.png" />
+		<span class="main_block_header_title">New Student Registration</span>
+	</div>
+	<div class="main_block_content">
+		<ul id="student_registration_form_info" class="main_block_content_form_info">
+			<li>
+				Once registered, a confirmation email will be sent to your mit.edu email address.
+			</li>
+		</ul>
+		<form id="student_registration_form" method='POST' action="">
+			{% csrf_token %}
+
+			<div class="errorspace">
+			</div>
+			<div>
+				<label class="required" for="id_email">Your MIT Email:</label>
+				{{form.email}}
+			</div>
+			<div class="errorspace">
+			</div>
+			<div>
+				<label class="required" for="id_password1">Choose a password:</label>
+				{{form.password1}}
+			</div>
+			<div class="errorspace">
+			</div>
+			<div>
+				<label class="required" for="id_password2">Re-enter password:</label>
+				{{form.password2}}
+			</div>
+			<div id="student_registration_form_error_section">
+			</div>
+			<div class="button_wrapper_with_margins">
+				<input id="student_registration_button" class="button" type='submit' value='Submit'>
+				<img id='ajax_form_submit_loader' style="display:none" src='/site_media/images/page_elements/loaders/small_ajax_loader.gif'>
+			</div>
+		</form>
+	</div>
+	<div class="main_block_footer">
+		<div class="main_block_footer_links">
+			<a id="back_to_login_link" href="/">Back to Login</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

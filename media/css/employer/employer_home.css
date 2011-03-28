@@ -1,0 +1,66 @@
+/*
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+ */
+
+.main_block {
+	width:760px;
+}
+.side_block {
+	width:200px;
+}
+#search_form {
+	margin-bottom:14px;
+}
+#search_form label[for="query_field"] {
+	margin-bottom:1px;
+}
+#query_field_wrapper {
+	display:inline;
+}
+#query_field {
+	height:30px;
+	vertical-align:middle;
+	width:300px;
+	padding-left:6px;
+	#303030;
+	behavior: url(/site_media/lib/pie/PIE.htc);
+	box-shadow: inset 2px 2px 2px #DDDDDD;
+	-moz-box-shadow: inset 2px 2px 2px #DDDDDD;
+	-webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
+}
+#search_form_submit_button {
+	height: 31px;
+}
+#events_and_deadlines_block .main_block_header_icon {
+	position:relative;
+	bottom:2px;
+}
+#events_and_deadlines_block .main_block_header_links {
+	margin-right:20px;
+}
+#events_and_deadlines_block .main_block_header_links img {
+	height:18px;
+}
+.setup_default_filtering_parameters_dialog .ui-dialog-content {
+	padding:15px 0px 20px 20px;
+}
+#default_filtering_parameters_form_left_half_first_section, #default_filtering_parameters_form_left_half_second_section {
+	float:left;
+}
+#default_filtering_parameters_form_left_half_second_section {
+	margin-bottom:20px;
+}
+#default_filtering_parameters_form_right_half {
+	margin-left:468px;
+}
+.setup_default_filtering_parameters_dialog input[type=text] {
+	width:225px;
+}
+.setup_default_filtering_parameters_dialog select {
+	width:275px;
+}
+#id_languages, #id_campus_orgs, #id_industries_of_interest, #id_previous_employers, #id_majors {
+	width:315px;
+}

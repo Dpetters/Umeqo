@@ -1,0 +1,185 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "anonymous.html" %}
+
+{% block title %}
+| Welcome
+{% endblock %}
+
+{% block metadata %}
+{{ block.super }}
+<!-- JQuery Firm Scroller -->
+<link rel="stylesheet" href="/site_media/lib/firm_scroller/firm_scroller.css" />
+<script type="text/javascript" src="/site_media/lib/firm_scroller/firm_scroller.js">
+</script>
+<!-- Custom -->
+<link rel="stylesheet" href="/site_media/css/homepage.css" />
+<script type="text/javascript" src="/site_media/javascript/homepage.js">
+</script>
+{% endblock %}
+
+{% block below_header_area %}
+{% ifequal action "timed-out" %}
+<div class="below_header_message">
+	<div class="width_container">
+		<p>
+			You timed out and were logged out for the safety of your account.
+		</p>
+	</div>
+</div>
+{% endifequal %}
+
+{% ifequal action "logged-out"  %}
+<div class="below_header_message">
+	<div class="width_container">
+		<p>
+			You were successfully logged out.
+		</p>
+	</div>
+</div>
+{% endifequal %}
+</div>
+{% endblock %}
+
+{% block content_area %}
+{% load google_calendarize %}
+
+<div id="welcome_block" class="no_top_margin main_block">
+	<a class="login_link" href="javascript:void(0)">Login</a><br />
+	<a href="/student/info/">Students Learn More</a><br />
+	<a href="/student/register/">Students Register</a><br />
+	<a href="/employer/info/">Employers Learn More</a><br />
+	<a href="/employer/register">Employers Register</a>
+</div>
+<div id="events_block">
+	<span id="events_title">Latest Events and Deadlines</span>
+	<div id="events_list">
+		<table>
+			{% for event in events %}
+			<tr>
+				<td class="event_name_cell">
+				•
+				<strong>{{event.name}}</strong>
+				</td>
+				<td class="event_info_cell">{{event.datetime|date:"l, M j"}} at {{event.datetime|date:"f A"}}{% if event.location %} in {{event.location}} {% endif %}</td>
+				<td class="gc_button_cell">
+				<a href="{{ event|google_calendarize }}" target="_blank">
+				<img class="gc_button" src="/site_media/images/icons/gc_button.gif" alt="+ Add to Google Calendar" title="Add to Google Calendar">
+				</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+<div id="firms_block" class="no_top_margin main_block">
+	<p id="firm_name">
+		Firms using SBConnect
+	</p>
+	<div id="firm_scroller_container">
+		<div id="firm_thumb_scroller_left">
+		</div>
+		<div id="firm_thumb_scroller">
+			<div id="firm_thumb_container">
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<div class="firm_thumb_content">
+					<div>
+						<a href="#">
+						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+						</a>
+					</div>
+				</div>
+				<br/>
+			</div>
+		</div>
+		<div id="firm_thumb_scroller_right">
+		</div>
+	</div>
+</div>
+<div id="bottom_info_block">
+	<p>
+		SBConnect was released with cooperation from
+		<a href="http://web.mit.edu/suma/">MIT SBC (Sloan Business Club)</a>
+	</p>
+</div>
+{% endblock %}

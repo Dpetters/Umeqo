@@ -1,0 +1,180 @@
+<!--
+Developers : Dmitrij Petters,
+All code is property of original developers.
+Copyright 2011. All Rights Reserved.
+-->
+
+{% extends "logged_in.html" %}
+
+{% block title %}
+| {{employer.company_name}} Filtering
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+<!-- JQuery Multiselect Widget -->
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js">
+</script>
+<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+
+<!-- Filtering plugin for Multiselect Widget -->
+<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_filter_min.js">
+</script>
+<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect_filter.css" />
+
+<!-- Custom -->
+<script type="text/javascript" src="/site_media/javascript/employer/employer_filtering.js">
+</script>
+<link rel="stylesheet" href="/site_media/css/employer/employer_filtering.css" />
+
+<script type="text/javascript">
+	var query = null;
+	{% if query %}
+		query = "{{query}}";
+	{% endif %}
+</script>
+{% endblock %}
+
+{% block content_area %}
+<div id="info_block" class="left_side_container">
+	<div id="resume_book_block" class="side_block">
+		<div class="side_block_header">
+			<img class="side_block_header_icon" src="/site_media/images/icons/resume_png.png" />
+			<span class="side_block_header_title">Resume Book (0)</span>
+		</div>
+		<div class="side_block_content">
+			{% if cart %}
+			<p>
+				{{cart|length}} students in cart
+			</p>
+			{% else %}
+			<p>
+				Drag student's name here!
+			</p>
+			{% endif %}
+		</div>
+	</div>
+	<div id="filtering_block" class="side_block">
+		<div class="side_block_header">
+			<img class="side_block_header_icon" src="/site_media/images/icons/search_magnifier_png/32x32/search_magnifier.png" />
+			<span class="side_block_header_title">Search & Filtering Parameters</span>
+		</div>
+		<div class="side_block_content">
+			<div id="search_section">
+				{{search_form.query}}
+				<input id="search_form_submit_button" type="submit" value="Search" class="button" />
+			</div>
+			<div id="filtering_accordion">
+				<h3>
+				<a href="#">Academic Info</a>
+				</h3>
+				<div>
+					<div id="gpa_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="gpa_value">Minimum GPA:</label>
+						<input type="text" autocomplete="off" id="gpa_value" style="border:0; color:black; font-weight:bold;" />
+					</div>
+					<div>
+						{{filtering_form.majors}}
+					</div>
+					<div>
+						{{filtering_form.campus_orgs}}
+					</div>
+					<div>
+						{{filtering_form.school_years}}
+					</div>
+					<div>
+						{{filtering_form.grad_years}}
+					</div>
+				</div>
+				<h3>
+				<a href="#">Work Info</a>
+				</h3>
+				<div>
+					<div>
+						{{filtering_form.languages}}
+					</div>
+					<div>
+						{{filtering_form.previous_employers}}
+					</div>
+					<div>
+						{{filtering_form.industries_of_interest}}
+					</div>
+					<div class="select_wrapper ">
+						<label for="older_than_18">Must be older than 18:</label>
+						{{filtering_form.older_than_18}}
+					</div>
+					<div class="select_wrapper ">
+						<label for="citizen">Must be a citizen:</label>
+						{{filtering_form.citizen}}
+					</div>
+					<div class="select_wrapper ">
+						<label for="looking_for_internship">Looking for internship:</label>
+						{{filtering_form.looking_for_internship}}
+					</div>
+					<div class="select_wrapper ">
+						<label for="looking_for_fulltime">Looking for fulltime:</label>
+						{{filtering_form.looking_for_fulltime}}
+					</div>
+				</div>
+				<h3>
+				<a href="#">Test Scores</a>
+				</h3>
+				<div>
+					<div id="sat_t_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="sat_t_value">Minimum SAT:</label>
+						<input type="text" id="sat_t_value" />
+					</div>
+					<div id="sat_m_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="sat_m_value">Minimum SAT Math:</label>
+						<input type="text" id="sat_m_value" />
+					</div>
+					<div id="sat_v_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="sat_v_value">Minimum SAT Verbal:</label>
+						<input type="text" id="sat_v_value" />
+					</div>
+					<div id="sat_w_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="sat_w_value">Minimum SAT Writing:</label>
+						<input type="text" id="sat_w_value" />
+					</div>
+					<div id="act_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="act_value">Minimum ACT:</label>
+						<input type="text" id="act_value" />
+					</div>
+				</div>
+				<h3>
+				<a href="#">Search Options</a>
+				</h3>
+				<div>
+					<div>
+						<label for="id_ordering">Order Results By:</label>
+						{{filtering_form.ordering}}
+					</div>
+					<div class="top_pad bottom_pad_5">
+						<label for="id_results_per_page">Results Per Page:</label>
+						{{filtering_form.results_per_page}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="results_block" class="big_block">
+	<div id="results_block_loader_section">
+		<img src='/site_media/images/page_elements/loaders/results_loader.gif'>
+	</div>
+	<div id="results_section">
+	</div>
+</div>
+{% endblock %}
