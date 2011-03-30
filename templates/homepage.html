@@ -11,6 +11,7 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 {% block metadata %}
+
 {{ block.super }}
 <!-- JQuery Firm Scroller -->
 <link rel="stylesheet" href="/site_media/lib/firm_scroller/firm_scroller.css" />
@@ -20,166 +21,213 @@ Copyright 2011. All Rights Reserved.
 <link rel="stylesheet" href="/site_media/css/homepage.css" />
 <script type="text/javascript" src="/site_media/javascript/homepage.js">
 </script>
+<!-- PT Serif font -->
+<link  href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" >
+<link  href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" >
+{% endblock %}
+
+{% block loginbutton %}
+<li id="login_button">
+    <a href="javascript:void(0)">Login</a>
+</li>
 {% endblock %}
 
 {% block below_header_area %}
+<div id="loginWrapper">
+    <form id="login_form" method='POST'>
+        {% csrf_token %}
+        <div class="errorspace"></div>
+        <div id="username" class="input_div">
+            <label for="id_username">Username</label>
+            {{login_form.username}}
+        </div>
+        <div class="errorspace"></div>
+        <div id="password" class="input_div">
+            <label for="id_password">Password</label>
+            {{login_form.password}}
+        </div>
+        <div id="login_form_error_section">
+        </div>
+        <!-- Extra div to allow the proper positioning of the ajax loader-->
+        <div id="button_wrapper_no_margins">
+            <button id="login_form_submit_button" class="button" type='submit'>
+                Login
+            </button>
+            <img id='ajax_form_submit_loader' style="display:none" src='/site_media/images/page_elements/loaders/small_ajax_loader.gif'>
+            <a href="/student/password/reset">Forgot password?</a>
+        </div>
+    </form>
+</div>
 {% ifequal action "timed-out" %}
 <div class="below_header_message">
-	<div class="width_container">
-		<p>
-			You timed out and were logged out for the safety of your account.
-		</p>
-	</div>
+    <div class="width_container">
+        <p>
+            You timed out and were logged out for the safety of your account.
+        </p>
+    </div>
 </div>
 {% endifequal %}
 
 {% ifequal action "logged-out"  %}
 <div class="below_header_message">
-	<div class="width_container">
-		<p>
-			You were successfully logged out.
-		</p>
-	</div>
+    <div class="width_container">
+        <p>
+            You were successfully logged out.
+        </p>
+    </div>
 </div>
 {% endifequal %}
-</div>
 {% endblock %}
 
 {% block content_area %}
-{% load google_calendarize %}
-
-<div id="welcome_block" class="no_top_margin main_block">
-	<a class="login_link" href="javascript:void(0)">Login</a><br />
-	<a href="/student/info/">Students Learn More</a><br />
-	<a href="/student/register/">Students Register</a><br />
-	<a href="/employer/info/">Employers Learn More</a><br />
-	<a href="/employer/register">Employers Register</a>
-</div>
-<div id="events_block">
-	<span id="events_title">Latest Events and Deadlines</span>
-	<div id="events_list">
-		<table>
-			{% for event in events %}
-			<tr>
-				<td class="event_name_cell">
-				•
-				<strong>{{event.name}}</strong>
-				</td>
-				<td class="event_info_cell">{{event.datetime|date:"l, M j"}} at {{event.datetime|date:"f A"}}{% if event.location %} in {{event.location}} {% endif %}</td>
-				<td class="gc_button_cell">
-				<a href="{{ event|google_calendarize }}" target="_blank">
-				<img class="gc_button" src="/site_media/images/icons/gc_button.gif" alt="+ Add to Google Calendar" title="Add to Google Calendar">
-				</a>
-				</td>
-			</tr>
-			{% endfor %}
-		</table>
-	</div>
-</div>
-<div id="firms_block" class="no_top_margin main_block">
-	<p id="firm_name">
-		Firms using SBConnect
-	</p>
-	<div id="firm_scroller_container">
-		<div id="firm_thumb_scroller_left">
-		</div>
-		<div id="firm_thumb_scroller">
-			<div id="firm_thumb_container">
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<div class="firm_thumb_content">
-					<div>
-						<a href="#">
-						<img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
-						</a>
-					</div>
-				</div>
-				<br/>
-			</div>
-		</div>
-		<div id="firm_thumb_scroller_right">
-		</div>
-	</div>
-</div>
-<div id="bottom_info_block">
-	<p>
-		SBConnect was released with cooperation from
-		<a href="http://web.mit.edu/suma/">MIT SBC (Sloan Business Club)</a>
-	</p>
+<div id="homePage">
+    <h1 id="homepageTitle">Employers <span>&amp;</span> Students.</h1>
+    <div id="tagline">United once again.</div>
+    <div id="ss"><img src="/site_media/images/home/ss.png"/></div>
+    <div id="employerInfo" class="homeInfo">
+        <h2>Employers,</h2>
+        <div class="subtitle">Connect with MIT students</div>
+        <ul>
+            <li>Browse, filter, and cherrypick resumes</li>
+            <li>Plan and publicize events</li>
+            <li>Invite students to private events</li>
+        </ul>
+        <p><a href="#" class="large button">Get Started</a></p>
+    </div>
+    <div id="studentInfo" class="homeInfo">
+        <h2>Students,</h2>
+        <div class="subtitle">Find the perfect internship</div>
+        <ul>
+            <li>Submit your resume for employers</li>
+            <li>Find events and infosessions</li>
+            <li>Connect with companies and recruiters</li>
+        </ul>
+        <p><a href="#" class="large button">Join Now</a></p>
+    </div>
+    <div style="clear:both"></div>
+    
+    {% load google_calendarize %}
+    <div id="events_block" class="longInfo">
+        <h2>Latest Events and Deadlines</h2>
+        <table>
+            {% for event in events %}
+            <tr>
+                <td class="main">
+                    <div class="name">{{event.name}}</div>
+                    <div class="details">{{event.datetime|date:"l, M j"}} at {{event.datetime|date:"f A"}}{% if event.location %} in {{event.location}} {% endif %}</div>
+                </td>
+                <td>
+                <a href="{{ event|google_calendarize }}" target="_blank" class="gcal">
+                <img class="gc_button" src="/site_media/images/icons/gc_button.gif" alt="+ Add to Google Calendar" title="Add to Google Calendar">
+                </a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>...and more! <a href="#">Sign up</a> to browse through all the events and companies available.</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div id="firms_block" class="longInfo">
+        <h2>Firms using SBConnect</h2>
+        <div id="firm_scroller_container">
+            <div id="firm_thumb_scroller_left">
+            </div>
+            <div id="firm_thumb_scroller">
+                <div id="firm_thumb_container">
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="firm_thumb_content">
+                        <div>
+                            <a href="#">
+                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            </a>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <div id="firm_thumb_scroller_right"></div>
+        </div>
+    </div>
+    
+    <div style="clear:both"></div>
+    
 </div>
 {% endblock %}

@@ -30,7 +30,7 @@ from employer.models import Employer
 
 # Change the following email to yours. All emails sent 
 #to the fake accounts will then go there.
-YOUR_EMAIL = "dpetters@mit.edu"
+YOUR_EMAIL = "joshma@mit.edu"
 
 PASSWORD_TO_FAKE_ACCOUNTS = "Jamb4Juic3"
 
