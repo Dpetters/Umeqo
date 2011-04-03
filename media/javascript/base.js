@@ -11,6 +11,7 @@ $(document).ready( function () {
      * vertically. To do so, I first fix the height manually, and then 
      * allow it to be modified as the icons are loaded.
      */
+     /*
     fix_header_line_height = function() {
         $(".main_block_header, .side_block_header, .main_area_header").each( function(inx, element) {
             $(element).css("line-height", $(element).css("height"));
@@ -21,6 +22,7 @@ $(document).ready( function () {
         var header = $(this).parents(".main_block_header, .side_block_header, .main_area_header");
         $(header).css("line-height", $(header).css("height"));
     });
+    */
     
     /* Contact Dialog */
     var create_contact_dialog = function () {
@@ -282,4 +284,5 @@ $(document).ready( function () {
             return true;
         }
     }, "Please specify a valid duration");
+    
 });

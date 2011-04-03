@@ -42,232 +42,231 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 <form id="profile_form" method='POST' action="" enctype="multipart/form-data">
-	{% csrf_token %}
-	<ul id="stepForm">
-		<li id="pg1">
-			<a href='#' class="ui-accordion-link"></a>
-			<div class="main_block">
-				<div class="main_block_header">
-					<img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
-					<span class="main_block_header_title">{% usemacro title %}</span>
-					<div class="main_block_header_links">
-						<span>
-							<strong>Required Info</strong>
-						</span>
-						>>
-						<a href="javascript:void(0)" class="navigation" id="1">Academic Info</a>
-						>>
-						<a href="javascript:void(0)" class="navigation" id="2">Work-Related Info</a>
-					</div>
-				</div>
-				<div id="required_info_page">
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_first_name" class="required">First Name:</label>
-						{{form.first_name}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_last_name" class="required">Last Name:</label>
-						{{form.last_name}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_school_year" class="required">School Year:</label>
-						{{form.school_year}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_graduation_year" class="required">Graduation Year:</label>
-						{{form.graduation_year}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_first_major" class="required">First Major:</label>
-						{{form.first_major}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_gpa" class="required">GPA:</label>
-						{{form.gpa}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_resume">Resume:</label>
-						{{form.resume}}
-					</div>
-					<div class="button_wrapper_with_margins">
-						<input id="submit_button" class="button" type='submit' alt="Submit" value='Submit'>
-						<input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
-					</div>
-				</div>
-				<div class="side_form_info">
-					<h3>SBconnect makes it easy for employers to discover you!</h3>
-					<ul>
-						<li id="profile_form_required_first">
-							Employers filter students by the attributes listed and search by keywords and skills that we automatically parse from your resume.
-						</li>
-						<li id="profile_form_required_second">
-							The more you fill out, the the more likely you are to show up in the results and the more attractive your listing will appear. &nbsp;
-							<a href="javascript:void(0)" id="profile_form_info_link">Learn more</a>
-						</li>
-						<li id="profile_form_required_third">
-							Submit this page, or click
-							<strong>Next</strong> to provide us with more info.
-						</li>
-					</ul>
-				</div>
-			</div>
-		</li>
-		<li id="pg2">
-			<a href='#' class="ui-accordion-link"></a>
-			<div class="main_block">
-				<div class="main_block_header">
-					<img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
-					<span class="main_block_header_title">{% usemacro title %}</span>
-					<div class="main_block_header_links">
-						<a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
-						>>
-						<span>
-							<strong>Academic Info</strong>
-						</span>
-						>>
-						<a href="javascript:void(0)" class="navigation" id="2">Work-Related Info</a>
-					</div>
-				</div>
-				<div id="basic_info_page">
-					<div class="errorspace">
-					</div>
-					<div  class="field_wrapper">
-						<label for="id_second_major">Second Major:</label>
-						{{form.second_major}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_campus_org">Campus Involvement:</label>
-						{{form.campus_orgs}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_languages">Languages:</label>
-						{{form.languages}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_sat_m">SAT Math:</label>
-						{{form.sat_m}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_sat_v">SAT Verbal:</label>
-						{{form.sat_v}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_sat_w">SAT Writing:</label>
-						{{form.sat_w}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_act">ACT:</label>
-						{{form.act}}
-					</div>
-					<div class="button_wrapper_with_margins">
-						<input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-						<input id="submit_button" class="button" type='submit' value='Submit' alt="Submit">
-						<input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
-					</div>
-				</div>
-				<div class="side_form_info">
-					<ul>
-						<li id="create_campus_organization_link">
-							Don't see your campus organization?
-							<a href="javascript:void(0)" id="create_campus_organization_link">Create It Now</a>
-						</li>
-						<li id="create_language_link">
-							Don't see your language?
-							<a href="javascript:void(0)" id="create_language_link">Create It Now</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</li>
-		<li id="pg3">
-			<a href='#' class="ui-accordion-link"></a>
-			<div class="main_block">
-				<div class="main_block_header">
-					<img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
-					<span class="main_block_header_title">{% usemacro title %}</span>
-					<div class="main_block_header_links">
-						<a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
-						>>
-						<a href="javascript:void(0)" class="navigation" id="1">Academic Info</a>
-						>>
-						<span>
-							<strong>Work-Related Info</strong>
-						</span>
-					</div>
-				</div>
-				<div id="academic_info_page">
+    {% csrf_token %}
+    <ul id="stepForm">
+        <li id="pg1">
+            <a href='#' class="ui-accordion-link"></a>
+            <div class="main_block">
+                <div class="main_block_header">
+                    <img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
+                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <div class="main_block_header_links">
+                        <span>
+                            <strong>Required Info</strong>
+                        </span>
+                        &raquo;
+                        <a href="javascript:void(0)" class="navigation" id="1">Academic Info</a>
+                        &raquo;
+                        <a href="javascript:void(0)" class="navigation" id="2">Work-Related Info</a>
+                    </div>
+                </div>
+                <div id="required_info_page">
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_first_name" class="required">First Name:</label>
+                        {{form.first_name}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_last_name" class="required">Last Name:</label>
+                        {{form.last_name}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_school_year" class="required">School Year:</label>
+                        {{form.school_year}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_graduation_year" class="required">Graduation Year:</label>
+                        {{form.graduation_year}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_first_major" class="required">First Major:</label>
+                        {{form.first_major}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_gpa" class="required">GPA:</label>
+                        {{form.gpa}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_resume">Resume:</label>
+                        {{form.resume}}
+                    </div>
+                    <div class="button_wrapper_with_margins">
+                        <input id="submit_button" class="button" type='submit' alt="Submit" value='Submit'>
+                        <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
+                    </div>
+                </div>
+                <div class="side_form_info">
+                    <h3>SBconnect makes it easy for employers to discover you!</h3>
+                    <ul>
+                        <li id="profile_form_required_first">
+                            Employers filter students by the attributes listed and search by keywords and skills that we automatically parse from your resume.
+                        </li>
+                        <li id="profile_form_required_second">
+                            The more you fill out, the the more likely you are to show up in the results and the more attractive your listing will appear. <a href="javascript:void(0)" id="profile_form_info_link">Learn more.</a>
+                        </li>
+                        <li id="profile_form_required_third">
+                            Submit this page, or click
+                            <strong>Next</strong> to provide us with more info.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="pg2">
+            <a href='#' class="ui-accordion-link"></a>
+            <div class="main_block">
+                <div class="main_block_header">
+                    <img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
+                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <div class="main_block_header_links">
+                        <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
+                        &raquo;
+                        <span>
+                            <strong>Academic Info</strong>
+                        </span>
+                        &raquo;
+                        <a href="javascript:void(0)" class="navigation" id="2">Work-Related Info</a>
+                    </div>
+                </div>
+                <div id="basic_info_page">
+                    <div class="errorspace">
+                    </div>
+                    <div  class="field_wrapper">
+                        <label for="id_second_major">Second Major:</label>
+                        {{form.second_major}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_campus_org">Campus Involvement:</label>
+                        {{form.campus_orgs}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_languages">Languages:</label>
+                        {{form.languages}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_sat_m">SAT Math:</label>
+                        {{form.sat_m}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_sat_v">SAT Verbal:</label>
+                        {{form.sat_v}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_sat_w">SAT Writing:</label>
+                        {{form.sat_w}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_act">ACT:</label>
+                        {{form.act}}
+                    </div>
+                    <div class="button_wrapper_with_margins">
+                        <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
+                        <input id="submit_button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
+                    </div>
+                </div>
+                <div class="side_form_info">
+                    <ul>
+                        <li id="create_campus_organization_link">
+                            Don't see your campus organization?
+                            <a href="javascript:void(0)" id="create_campus_organization_link">Create It Now</a>
+                        </li>
+                        <li id="create_language_link">
+                            Don't see your language?
+                            <a href="javascript:void(0)" id="create_language_link">Create It Now</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="pg3">
+            <a href='#' class="ui-accordion-link"></a>
+            <div class="main_block">
+                <div class="main_block_header">
+                    <img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
+                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <div class="main_block_header_links">
+                        <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
+                        &raquo;
+                        <a href="javascript:void(0)" class="navigation" id="1">Academic Info</a>
+                        &raquo;
+                        <span>
+                            <strong>Work-Related Info</strong>
+                        </span>
+                    </div>
+                </div>
+                <div id="academic_info_page">
 
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_industries_of_interest">Interesting in:</label>
-						{{form.industries_of_interest}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper">
-						<label for="id_previous_employers">Previous Employers:</label>
-						{{form.previous_employers}}
-					</div>
-					<div class="abovepad">
-						<label for="id_looking_for_internship">Looking for Internship:</label>
-						{{form.looking_for_internship}}
-					</div>
-					<div class="abovepad">
-						<label for="id_looking_for_fulltime">Looking for full-time:</label>
-						{{form.looking_for_fulltime}}
-					</div>
-					<div class="errorspace">
-					</div>
-					<div class="field_wrapper" id="website">
-						<label for="id_website">Personal Website:</label>
-						{{form.website}}
-					</div>
-					<div class="abovepad">
-					</div>
-					<div>
-						<label for="id_older_than_18">Over 18:</label>
-						{{form.older_than_18}}
-					</div>
-					<div class="abovepad">
-						<label for="id_citizen">Citizen:</label>
-						{{form.citizen}}
-					</div>
-					<div class="button_wrapper_with_margins">
-						<input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
-						<input id="submit_button" class="button" type='submit' value='Submit' alt="Submit">
-					</div>
-				</div>
-				<div class="side_form_info">
-				</div>
-			</div>
-		</li>
-	</ul>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_industries_of_interest">Interesting in:</label>
+                        {{form.industries_of_interest}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper">
+                        <label for="id_previous_employers">Previous Employers:</label>
+                        {{form.previous_employers}}
+                    </div>
+                    <div class="abovepad">
+                        <label for="id_looking_for_internship">Looking for Internship:</label>
+                        {{form.looking_for_internship}}
+                    </div>
+                    <div class="abovepad">
+                        <label for="id_looking_for_fulltime">Looking for full-time:</label>
+                        {{form.looking_for_fulltime}}
+                    </div>
+                    <div class="errorspace">
+                    </div>
+                    <div class="field_wrapper" id="website">
+                        <label for="id_website">Personal Website:</label>
+                        {{form.website}}
+                    </div>
+                    <div class="abovepad">
+                    </div>
+                    <div>
+                        <label for="id_older_than_18">Over 18:</label>
+                        {{form.older_than_18}}
+                    </div>
+                    <div class="abovepad">
+                        <label for="id_citizen">Citizen:</label>
+                        {{form.citizen}}
+                    </div>
+                    <div class="button_wrapper_with_margins">
+                        <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
+                        <input id="submit_button" class="button" type='submit' value='Submit' alt="Submit">
+                    </div>
+                </div>
+                <div class="side_form_info">
+                </div>
+            </div>
+        </li>
+    </ul>
 </form>
 {% endblock %}

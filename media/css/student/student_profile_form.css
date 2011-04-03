@@ -84,3 +84,12 @@ li#create_language_link {
 .profile_form_info_dialog .ui-dialog-content {
 	padding:25px;
 }
+
+input.sat {
+    width: 2em;
+    text-align: center;
+}
+input.act {
+    width: 1.4em;
+    text-align: center;
+}

@@ -44,10 +44,10 @@ class create_profile_form(forms.ModelForm):
     website = forms.URLField(required = False)
 
     second_major = forms.ModelChoiceField(queryset = Course.objects.all(), required = False, empty_label = "select course")
-    sat_m = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    sat_v = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    sat_w = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    act = forms.IntegerField(max_value = 36, required = False)
+    sat_m = forms.IntegerField(max_value = 800, min_value = 200, required = False, widget=forms.TextInput(attrs={'class': 'sat'}))
+    sat_v = forms.IntegerField(max_value = 800, min_value = 200, required = False, widget=forms.TextInput(attrs={'class': 'sat'}))
+    sat_w = forms.IntegerField(max_value = 800, min_value = 200, required = False, widget=forms.TextInput(attrs={'class': 'sat'}))
+    act = forms.IntegerField(max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
     
     # Campus Orgs
     
