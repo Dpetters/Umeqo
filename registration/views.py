@@ -112,8 +112,29 @@ def register(request,
     
 @never_cache
 def home(request, 
-          template_name='homepage.html'):
+          template_name='homepage.html',
+          form_class=AuthenticationForm,
+          redirect_field_name=REDIRECT_FIELD_NAME):
     
+    redirect_to = request.REQUEST.get(redirect_field_name, '')
+
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        if username and password:
+            user_cache = authenticate(username = username, password=password)
+            if user_cache is None:
+                return HttpResponse(simplejson.dumps("invalid"), mimetype="application/json")
+            elif not user_cache.is_active:
+                return HttpResponse(simplejson.dumps("inactive"), mimetype="application/json")
+            else:
+                if not request.session.test_cookie_worked():
+                    return HttpResponse(simplejson.dumps("cookies_disabled"), mimetype="application/json")
+                auth_login(request, user_cache)
+                return HttpResponse(simplejson.dumps(modify_redirect(request, redirect_to)), mimetype="application/json")
+    else:
+        login_form = form_class(request)
+                
     request.session.set_test_cookie()
 
     if not request.user.is_anonymous():
@@ -127,6 +148,7 @@ def home(request,
     action = request.REQUEST.get('action', '')
 
     data ={
+        'login_form':login_form,
         'action':action
     }
     

@@ -8,102 +8,102 @@ Copyright 2011. All Rights Reserved.
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
-	<head>
+    <head>
 
-		<noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"/>
-		</noscript>
-		<title>SBConnect {% block title %}{% endblock %}</title>
-		<!-- JQuery -->
-		<script src="/site_media/lib/jquery/jquery_1.4.4_min.js" type="text/javascript" charset="utf-8">
-		</script>
-		<!-- JQuery UI -->
-		<script type="text/javascript" src="/site_media/lib/jquery_ui_custom/jquery_ui_1.8.9_custom_min.js">
-		</script>
-		<link rel="stylesheet" href="/site_media/lib/jquery_ui_custom/css/jquery-ui-1.8.9.custom.css" />
+        <noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"/>
+        </noscript>
+        <title>SBConnect {% block title %}{% endblock %}</title>
+        <!-- JQuery -->
+        <script src="/site_media/lib/jquery/jquery_1.4.4_min.js" type="text/javascript" charset="utf-8">
+        </script>
+        <!-- JQuery UI -->
+        <script type="text/javascript" src="/site_media/lib/jquery_ui_custom/jquery_ui_1.8.9_custom_min.js">
+        </script>
+        <link rel="stylesheet" href="/site_media/lib/jquery_ui_custom/css/jquery-ui-1.8.9.custom.css" />
 
-		<!-- JQuery Form Validation -->
-		<script type="text/javascript" src="/site_media/lib/jquery_validation/jquery_validation_1.7.js">
-		</script>
-		<!-- JQuery Form Submission -->
-		<script type="text/javascript" src="/site_media/lib/jquery_form/jquery_form_2.52.js">
-		</script>
-		<!-- JQuery Idle Timeout -->
-		<script src="/site_media/lib/jquery_idletimer/jquery_idletimer_0.9.100511.js" type="text/javascript">
-		</script>
-		<script src="/site_media/lib/jquery_idletimer/jquery_idletimeout.js" type="text/javascript">
-		</script>
-		<!-- Custom -->
-		<script type="text/javascript" src="/site_media/javascript/base.js">
-		</script>
-		<link rel="stylesheet" href="/site_media/css/base.css" />
+        <!-- JQuery Form Validation -->
+        <script type="text/javascript" src="/site_media/lib/jquery_validation/jquery_validation_1.7.js">
+        </script>
+        <!-- JQuery Form Submission -->
+        <script type="text/javascript" src="/site_media/lib/jquery_form/jquery_form_2.52.js">
+        </script>
+        <!-- JQuery Idle Timeout -->
+        <script src="/site_media/lib/jquery_idletimer/jquery_idletimer_0.9.100511.js" type="text/javascript">
+        </script>
+        <script src="/site_media/lib/jquery_idletimer/jquery_idletimeout.js" type="text/javascript">
+        </script>
+        <!-- Custom -->
+        <script type="text/javascript" src="/site_media/javascript/base.js">
+        </script>
+        <link rel="stylesheet" href="/site_media/css/base.css" />
 
-		<!--[if lte IE 7]>
-		<script src="/site_media/javascript/browser_not_supported.js" type="text/javascript"></script>
-		<![endif]-->
+        <!--[if lte IE 7]>
+        <script src="/site_media/javascript/browser_not_supported.js" type="text/javascript"></script>
+        <![endif]-->
 
-		{% block metadata %}
+        {% block metadata %}
 
-		{% endblock %}
-	</head>
-	<body>
-		<div id="above_header_area">
-			{% block above_header_area %}
-			{% endblock %}
-		</div>
-		<div id="header_area">
-			<div class="width_container">
-				<a id="logo_block" href="/">
-				<img id="logo_image" src="/site_media/images/SBConnectBanner.png">
-				</a>
-				<ul id="navigation_block">
-					<li>
-						<a id="home" href="{% url home %}">Home</a>
-					</li>
-					<li>
-						<a id="about" href="{% url about %}">About</a>
-					</li>
-					<li>
-						<a id="faq" href="{% url faq %}">FAQ</a>
-					</li>
-					<li>
-						<a id="blog" href="{% url blog %}">Blog</a>
-					</li>
-					<li>
-						<a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div id="below_header_area">
-			{% block below_header_area %}
-			{% endblock %}
-		</div>
-		<div class="width_container">
-			<div id="content_area">
-				{% block content_area %}
-				{% endblock %}
-			</div>
-			<div id="footer_area">
-				<div id="footer_reference_block">
-					<a href="http://akismet.com/">
-					<img class="reference_button" src="/site_media/images/page_elements/technology_buttons/akismet.png">
-					</a>
-				</div>
-				<div id="footer_navigation_block">
-					<a id="home" href="{% url home %}" title="home">Home</a>
-					|
-					<a id="about" href="{% url about %}" title="about">About</a>
-					|
-					<a id="faq" href="{% url faq %}" title="faq">Faq</a>
-					|
-					<a id="blog" href="{% url blog %}" title="blog">Blog</a>
-					|
-					<a class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact">Contact Us</a>
-				</div>
-				<p id="footer_info_block">
-					&copy; 2010 SBConnect. All Rights Reserved | Privacy
-				</p>
-			</div>
-		</div>
-	</body>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="above_header_area">
+            {% block above_header_area %}
+            {% endblock %}
+        </div>
+        <div id="header_area">
+            <div class="width_container">
+                <a id="logo_block" href="/">
+                <img id="logo_image" src="/site_media/images/SBConnectBanner.png">
+                </a>
+                <ul id="navigation_block">
+                    {% block loginbutton %}{% endblock %}
+                    <li>
+                        <a id="home" href="{% url home %}">Home</a>
+                    </li>
+                    <li>
+                        <a id="about" href="{% url about %}">About</a>
+                    </li>
+                    <li>
+                        <a id="faq" href="{% url faq %}">FAQ</a>
+                    </li>
+                    <li>
+                        <a id="blog" href="{% url blog %}">Blog</a>
+                    </li>
+                    <li>
+                        <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="below_header_area">
+            {% block below_header_area %}
+            {% endblock %}
+        </div>
+        <div class="width_container">
+            <div id="content_area">
+                {% block content_area %}
+                {% endblock %}
+            </div>
+            <div id="footer_area">
+                <div id="footer_reference_block">
+                    <a href="http://akismet.com/">
+                    <img class="reference_button" src="/site_media/images/page_elements/technology_buttons/akismet.png">
+                    </a>
+                </div>
+                <div id="footer_navigation_block">
+                    <a id="home" href="{% url home %}" title="home">Home</a>
+                    <a id="about" href="{% url about %}" title="about">About</a>
+                    <a id="faq" href="{% url faq %}" title="faq">FAQ</a>
+                    <a id="blog" href="{% url blog %}" title="blog">Blog</a>
+                    <a id="advertise" href="{% url advertise %}" title="advertise">Advertise</a>
+                    <a id="contact" href="javascript:void(0)" title="contact">Contact Us</a>
+                    <a id="privacy" href="#" title="contact">Privacy</a>
+                    <a id="customer" href="#" title="contact">Customer Service</a>
+                </div>
+                <p id="footer_info_block">
+                    &copy; 2010 SBConnect. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </body>
 </html>
