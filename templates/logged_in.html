@@ -16,22 +16,20 @@ Copyright 2011. All Rights Reserved.
 {% block above_header_area %}
 {{block.super}}
 <div id="idletimeout_block">
-	You will be logged off in
-	<span>
-		<!-- countdown placeholder -->
-	</span>&nbsp;seconds due to inactivity.
-	<a id="idletimeout-resume" href="#">Click here to continue using SBConnect</a>.
+    You will be logged off in
+    <span>
+        <!-- countdown placeholder -->
+    </span>&nbsp;seconds due to inactivity.
+    <a id="idletimeout-resume" href="#">Click here to continue using SBConnect</a>.
 </div>
 {% endblock %}
 
 {% block below_header_area %}
 {{block.super}}
-	<div class="width_container">
-		<div id="login_info_block">
-			{% if user.company_name %}{{user.company_name}}{% else %}{{user}} {% endif %} |
-			<a href="/logout/?next=/?action=logged-out">
-			<strong>Log Out</strong>
-			</a>
-		</div>
-	</div>
+    <div class="width_container">
+        <div id="login_info_block">
+            Logged in as <strong>{% if user.company_name %}{{user.company_name}}{% else %}{{user}}{% endif %}</strong>.
+            <a href="/logout/?next=/?action=logged-out">Log out</a>
+        </div>
+    </div>
 {% endblock %}
