@@ -166,7 +166,7 @@ p {
 .main_block_header_title, .side_block_header_title {
     text-shadow: 0px 1px white;
     vertical-align:middle;
-    font-weight: normal;
+    font-weight: bold;
 }
 .main_block_header_content, .side_block_header_content {
     float:right;
@@ -219,9 +219,8 @@ p {
     bottom:1px;
 }
 .main_block_header_title {
-    font-size: 24px;
+    font-size: 22px;
     margin-left: 6px;
-    font-weight: bold;
     text-shadow: #FFF 0 1px 0;
 }
 .main_block_header_content {
@@ -336,7 +335,7 @@ p {
     margin-right: 5px;
 }
 /* Buttons */
-.button {
+.button, .ui-multiselect-menu .ui-multiselect-none {
     behavior: url(/site_media/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#F0F0F0, #DDD);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#DDD));
@@ -354,6 +353,22 @@ p {
     display: inline-block;
     padding: 0 8px;
 }
+.ui-multiselect-menu .ui-multiselect-none {
+    height: 19px;
+    line-height: 19px;
+    position: relative;
+    top: -2px;
+}
+.ui-multiselect-menu .ui-multiselect-none span.ui-icon {
+    position: relative;
+    left: -3px;
+    top: 1px;
+    background-image: url('/site_media/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
+}
+#content_area .ui-multiselect-menu .ui-multiselect-none a:hover, #content_area .ui-multiselect-menu .ui-multiselect-none span:hover {
+    text-decoration: none;
+}
+
 .button.large {
     line-height: 34px;
     height: 34px;
@@ -364,10 +379,10 @@ p {
 .button::-moz-focus-inner {
     border: 0;
 }
-.button:hover {
+.button:hover, .ui-multiselect-menu .ui-multiselect-none:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
 }
-.button:active {
+.button:active, .ui-multiselect-menu .ui-multiselect-none:active {
     behavior: url(/site_media/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#DDD, #F0F0F0);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDD), to(#F0F0F0));
@@ -484,6 +499,7 @@ input[type=text], input[type=password] {
     position:relative;
     left: 5px;
     font-size:18px;
+    text-shadow:#FFF 0 1px 0;
 }
 .side_form_info ul {
     border-left: 5px solid #DDDDDD;
@@ -491,8 +507,7 @@ input[type=text], input[type=password] {
 .side_form_info li {
     left: 15px;
     list-style: disc outside none;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin: 10px 15px 0 10px;
     position: relative;
 }
 #content_area a, a {
@@ -563,7 +578,7 @@ a:focus {
 .ui-dialog .ui-dialog-title{
     font-size:17px;
     font-weight:normal;
-    text-shadow: 0 2px 0 black;
+    text-shadow: #FFF 0 1px 0;
 }
 .ui-dialog {
     behavior: url(/site_media/lib/pie/PIE.htc);
@@ -646,6 +661,36 @@ button.ui-multiselect[type=button]:hover {
     color: #333;
     text-shadow: #FFF 0 1px 0;
     font-size: 22px;
+}
+.ui-multiselect-none {
+    line-height: auto;
+}
+.ui-multiselect-none span {
+    font-size: 11px;
+}
+.ui-multiselect-menu li {
+    font-size: 14px;
+}
+.ui-multiselect-menu label {
+    font-weight: normal;
+}
+.ui-multiselect-header {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.ui-multiselect-filter input {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+#content_area .ui-multiselect-optgroup-label a:hover {
+    cursor: default;
+    color: #0281CC;
+}
+.ui-widget-header .ui-icon {
+    background-image: url('/site_media/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
+}
+.ui-widget-header .ui-icon:hover {
+    background-image: url('/site_media/lib/jquery_ui_custom/css/images/ui-icons_FFFFFF_256x240.png');
 }
 
 .clearfix::after {

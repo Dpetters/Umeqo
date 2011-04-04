@@ -177,11 +177,11 @@ $(document).ready( function () {
     };
     unhighlight = function (element, errorClass) {
         if ($(element).next(":button.ui-multiselect")) {
-            $(element).next().css('border', '1px solid #808080');
+            $(element).next().css('border', '1px solid #AAA');
         }
-        $(element).filter("input[type=password]").css('border', '1px solid #808080');
-        $(element).filter("input[type=text]").css('border', '1px solid #808080');
-        $(element).filter("select").css('border', '1px solid #808080');
+        $(element).filter("input[type=password]").css('border', '1px solid #AAA');
+        $(element).filter("input[type=text]").css('border', '1px solid #AAA');
+        $(element).filter("select").css('border', '1px solid #AAA');
     };
     place_errors = function(error, element) {
         

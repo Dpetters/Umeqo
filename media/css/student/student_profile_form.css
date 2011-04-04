@@ -35,22 +35,6 @@ select {
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
 	height: 1px;
 }
-li#profile_form_required_first {
-	padding-top:12px;
-}
-li#profile_form_required_second {
-	padding-top:5px;
-}
-li#profile_form_required_third {
-	padding-top:165px;
-}
-/* Student Profile Form Info */
-li#create_campus_organization_link {
-	padding-top:52px;
-}
-li#create_language_link {
-	padding-top:13px;
-}
 /* Create Campus Organization Dialog */
 .create_campus_organization_dialog .ui-dialog-content {
 	padding:20px 20px 25px 20px;
@@ -82,7 +66,7 @@ li#create_language_link {
 	display: none;
 }
 .profile_form_info_dialog .ui-dialog-content {
-	padding:25px;
+	padding:10px 15px;
 }
 
 input.sat {
@@ -92,4 +76,8 @@ input.sat {
 input.act {
     width: 1.4em;
     text-align: center;
+}
+
+.side_form_info ul {
+    padding: 1px 0 10px;
 }
