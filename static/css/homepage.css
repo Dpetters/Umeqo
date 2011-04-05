@@ -6,7 +6,7 @@
 
  .below_header_message
  {
-     behavior: url(/site_media/lib/pie/PIE.htc);
+     behavior: url(/static/lib/pie/PIE.htc);
      background-image: -moz-linear-gradient(#FFF, #F2F2F2);
      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#F2F2F2));
      -pie-background: linear-gradient(#FFF, #F2F2F2);
@@ -28,7 +28,7 @@
 
  /* NEW HOMEPAGE STYLES */
  #homePage {
-     background: url('/site_media/images/home/bg.png') repeat-x;
+     background: url('/static/images/home/bg.png') repeat-x;
      padding-top: 50px;
      width: 100%;
  }
@@ -103,7 +103,7 @@
      margin-left: -493px;
  }
  #login_button a {
-     behavior: url(/site_media/lib/pie/PIE.htc);
+     behavior: url(/static/lib/pie/PIE.htc);
      background-image: -moz-linear-gradient(#555, #333);
      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#333));
      -pie-background: linear-gradient(#555, #333);
@@ -115,7 +115,7 @@
      box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
  }
  #login_button a:hover {
-     behavior: url(/site_media/lib/pie/PIE.htc);
+     behavior: url(/static/lib/pie/PIE.htc);
      background-image: -moz-linear-gradient(#707070, #333);
      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#707070), to(#333));
      -pie-background: linear-gradient(#707070, #333);

@@ -19,18 +19,18 @@ Copyright 2011. All Rights Reserved.
 
 {% block content_area %}
 
-<script type="text/javascript" src="/site_media/javascript/timeout.js">
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/timeout.js">
 </script>
-<link rel="stylesheet" href="/site_media/css/employer/employer_events.css" />
-<script type="text/javascript" src="/site_media/javascript/employer/employer_events.js">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_events.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_events.js">
 </script>
-<script type="text/javascript" src="/site_media/jquery/jquery.multiselect.ui.js">
+<script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.multiselect.ui.js">
 </script>
-<link rel="stylesheet" href="/site_media/css/jquery/ui-multiselect.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery/ui-multiselect.css" />
 
-<script type="text/javascript" src="/site_media/anytime/anytime.js">
+<script type="text/javascript" src="{{ STATIC_URL }}anytime/anytime.js">
 </script>
-<link rel="stylesheet" href="/site_media/anytime/anytime.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}anytime/anytime.css" />
 
 <h1>Planned Events</h1>
 <table id="new_event_list" class="event_list">

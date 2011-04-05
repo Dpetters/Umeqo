@@ -72,9 +72,17 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
+
+STATICFILES_DIRS = (
+    ROOT + '/static',
+)
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '=myl84m2+qr&d1&w^$(!ks0=6$6zlj4o438$c$_snv_45bpwow'
@@ -91,6 +99,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
+    "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
     'notification.context_processors.notification'
 )
@@ -124,6 +133,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.flatpages',
+    'django.contrib.staticfiles',
     'core',
     'registration',
     'student',
@@ -156,11 +166,17 @@ except ImportError:
     }
     
     # URL that handles the media served from MEDIA_ROOT. Make sure to use a
-    # trailing slash if there is a path component (optional in other cases).
-    # Examples: "http://media.lawrence.com", "http://example.com/media/"
+    # trailing slash.
+    # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
     MEDIA_URL = ''
     
-    # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-    # trailing slash.
-    # Examples: "http://foo.com/media/", "/media/".
+    # Absolute path to the directory static files should be collected to.
+    # Don't put anything in this directory yourself; store your static files
+    # in apps' "static/" subdirectories and in STATICFILES_DIRS.
+    # Example: "/home/media/media.lawrence.com/static/"
+    STATIC_ROOT = ''
+    
+    # URL prefix for admin static files -- CSS, JavaScript and images.
+    # Make sure to use a trailing slash.
+    # Examples: "http://foo.com/static/admin/", "/static/admin/".
     ADMIN_MEDIA_PREFIX = ''

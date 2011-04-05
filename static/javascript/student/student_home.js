@@ -65,7 +65,7 @@ $(document).ready( function() {
 
 							if ($(e).children().size() == 0) {
 								$(e).css("background-color", "#A1E285");
-								$(e).append("<img src='/site_media/images/icons/check.gif'>");
+								$(e).append("<img src='/static/images/icons/check.gif'>");
 							} else {
 								$(this).css("background-color", "#d9d9d9");
 								$(this).children().remove();
@@ -73,7 +73,7 @@ $(document).ready( function() {
 							/*
  							if (!$(ui).attr("checked")) {
  							$(e).css("background-color", "#A1E285");
- 							$(e).append("<img class='fright icon' src='/site_media/images/icons/check.gif'>");
+ 							$(e).append("<img class='fright icon' src='/static/images/icons/check.gif'>");
  							}
  							else {
  							$(this).css("background-color", "#d9d9d9");
@@ -283,7 +283,7 @@ $(document).ready( function() {
 				up.uploading = false;
 				currentRequest = $.getJSON("/resume_info/", function(data) {
 					$('#drop-area').html('<p>Resume Updated</p><p>'+ data["num_of_extracted_keywords"]+ ' keywords extracted.').removeClass('uploading').addClass('success');
-					$("#view_resume_link").attr("href", "/site_media/" + data["path_to_new_resume"]);
+					$("#view_resume_link").attr("href", "/static/" + data["path_to_new_resume"]);
 				});
 			},
 			cancel : function(e) {

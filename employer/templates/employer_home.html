@@ -13,19 +13,19 @@ Copyright 2011. All Rights Reserved.
 {% block metadata %}
 {{block.super}}
 <!-- JQuery MultiSelect Widget -->
-<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<link rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 
 <!-- JQuery MultiSelect Widget Filtering Plugin -->
-<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<link rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 
 <!-- Custom -->
-<link rel="stylesheet" href="/site_media/css/employer/employer_home.css" />
-<script type="text/javascript" src="/site_media/javascript/employer/employer_home.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_home.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_home.js"></script>
 
 <!--[if lt IE 9]>
-  <link rel="stylesheet" type="text/css" href="/site_media/css/employer/employer_home_ie.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/employer/employer_home_ie.css" />
 <![endif]-->
 
 {% endblock %}
@@ -35,7 +35,7 @@ Copyright 2011. All Rights Reserved.
 <div class="right_side_container">
     <div id="my_account_block" class="side_block no_top_margin">
         <div class="side_block_header">
-            <img class="side_block_header_icon" src="/site_media/images/icons/business_user_png/32x32/business_user.png">
+            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/business_user_png/32x32/business_user.png">
             <span class="side_block_header_title">My Account</span>
         </div>
         <div class="side_block_content">
@@ -49,7 +49,7 @@ Copyright 2011. All Rights Reserved.
     </div>
     <div id="statistics_block" class="side_block">
         <div class="side_block_header">
-            <img class="side_block_header_icon" src="/site_media/images/icons/chart_png/32x32/chart.png"/>
+            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/chart_png/32x32/chart.png"/>
             <span class="side_block_header_title">My Statistics</span>
         </div>
         <div class="side_block_content">
@@ -78,7 +78,7 @@ Copyright 2011. All Rights Reserved.
 </div>
 <div id="notifications_block" class="main_block no_top_margin">
     <div class="main_block_header">
-        <img class="main_block_header_icon" src="/site_media/images/icons/megaphone_png/32x32/megaphone.png"/>
+        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/megaphone_png/32x32/megaphone.png"/>
         <span class="main_block_header_title">Notifications ({{unseen_notice_num}})</span>
     </div>
     <div class="main_block_header_content">
@@ -97,7 +97,7 @@ Copyright 2011. All Rights Reserved.
 </div>
 <div id="browse_students_block" class="main_block">
     <div class="main_block_header">
-        <img class="main_block_header_icon" src="/site_media/images/icons/users_search_png/32x32/users_search.png" />
+        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/users_search_png/32x32/users_search.png" />
         <span class="main_block_header_title">Browse Students</span>
         <div class="main_block_header_links">
             <a class="nounderline" href="/employer/filtering/"><b class="underline">Skip to Filtering</strong></a>
@@ -128,7 +128,7 @@ Copyright 2011. All Rights Reserved.
 </div>
 <div id="events_and_deadlines_block" class="main_block">
     <div class="main_block_header">
-        <img class="main_block_header_icon" src="/site_media/images/icons/calendar_date_png/32x32/calendar_date.png"/>
+        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar_date_png/32x32/calendar_date.png"/>
         <span class="main_block_header_title">Events and Deadlines</span>
         <div class="main_block_header_links">
             <a class="nounderline" href="/employer/events/new"><b class="underline">Add New Event</strong></a>

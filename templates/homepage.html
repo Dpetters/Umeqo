@@ -14,12 +14,12 @@ Copyright 2011. All Rights Reserved.
 
 {{ block.super }}
 <!-- JQuery Firm Scroller -->
-<link rel="stylesheet" href="/site_media/lib/firm_scroller/firm_scroller.css" />
-<script type="text/javascript" src="/site_media/lib/firm_scroller/firm_scroller.js">
+<link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.js">
 </script>
 <!-- Custom -->
-<link rel="stylesheet" href="/site_media/css/homepage.css" />
-<script type="text/javascript" src="/site_media/javascript/homepage.js">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/homepage.js">
 </script>
 <!-- PT Serif font -->
 <link  href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" >
@@ -53,7 +53,7 @@ Copyright 2011. All Rights Reserved.
             <button id="login_form_submit_button" class="button" type='submit'>
                 Login
             </button>
-            <img id='ajax_form_submit_loader' style="display:none" src='/site_media/images/page_elements/loaders/small_ajax_loader.gif'>
+            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
             <a href="/student/password/reset">Forgot password?</a>
         </div>
     </form>
@@ -83,7 +83,7 @@ Copyright 2011. All Rights Reserved.
 <div id="homePage">
     <h1 id="homepageTitle">Employers <span>&amp;</span> Students.</h1>
     <div id="tagline">United once again.</div>
-    <div id="ss"><img src="/site_media/images/home/ss.png"/></div>
+    <div id="ss"><img src="{{ STATIC_URL }}images/home/ss.png"/></div>
     <div id="employerInfo" class="homeInfo">
         <h2>Employers,</h2>
         <div class="subtitle">Connect with MIT students</div>
@@ -118,7 +118,7 @@ Copyright 2011. All Rights Reserved.
                 </td>
                 <td>
                 <a href="{{ event|google_calendarize }}" target="_blank" class="gcal">
-                <img class="gc_button" src="/site_media/images/icons/gc_button.gif" alt="+ Add to Google Calendar" title="Add to Google Calendar">
+                <img class="gc_button" src="{{ STATIC_URL }}images/icons/gc_button.gif" alt="+ Add to Google Calendar" title="Add to Google Calendar">
                 </a>
                 </td>
             </tr>
@@ -139,84 +139,84 @@ Copyright 2011. All Rights Reserved.
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>
                     <div class="firm_thumb_content">
                         <div>
                             <a href="#">
-                            <img src="/site_media/images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
+                            <img src="{{ STATIC_URL }}images/temp/template.png" title"Click for Career Site" alt="" class="firm_thumb" />
                             </a>
                         </div>
                     </div>

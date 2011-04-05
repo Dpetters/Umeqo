@@ -1,8 +1,8 @@
 #firm_name { position: relative; top: 28px; margin-left: 8px; color: #202020; font-size: 18px; width: 250px; height:1px; text-align:center; }
 #firm_scroller_container { float:right; display:inline; width:720px; }
-#firm_scroller_container #firm_thumb_scroller_left { z-index:9999; float:left; width:12px; height:80px; background:url(/site_media/lib/firm_scroller/images/thumbScroller_left.png); }
-#firm_scroller_container #firm_thumb_scroller_right { z-index:9999; float:right; width:12px; height:80px; background:url(/site_media/lib/firm_scroller/images/thumbScroller_right.png); }
-#firm_thumb_scroller { position:relative; margin:auto; float:left; background:url(/site_media/lib/firm_scroller/images/thumbScroller_bg.png) repeat-x; }
+#firm_scroller_container #firm_thumb_scroller_left { z-index:9999; float:left; width:12px; height:80px; background:url(/static/lib/firm_scroller/images/thumbScroller_left.png); }
+#firm_scroller_container #firm_thumb_scroller_right { z-index:9999; float:right; width:12px; height:80px; background:url(/static/lib/firm_scroller/images/thumbScroller_right.png); }
+#firm_thumb_scroller { position:relative; margin:auto; float:left; background:url(/static/lib/firm_scroller/images/thumbScroller_bg.png) repeat-x; }
 #firm_thumb_scroller { width:694px; }
 #firm_thumb_scroller, #firm_thumb_scroller #firm_thumb_container, #firm_thumb_scroller .firm_thumb_content { height:80px; }
 #firm_thumb_scroller { overflow:hidden; }

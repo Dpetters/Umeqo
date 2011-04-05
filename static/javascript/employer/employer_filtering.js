@@ -198,7 +198,7 @@ $(document).ready( function() {
 	// Opens Dialog
 	function open_dialog() {
 		var dialog = $('<div></div>')
-		.html('<img class="spinner" title="Loading" src="/site_media/images/page_elements/loaders/loader.gif" alt="Loading...">')
+		.html('<img class="spinner" title="Loading" src="/static/images/page_elements/loaders/loader.gif" alt="Loading...">')
 		.dialog({
 			autoOpen: false,
 			title: this.id,
@@ -214,7 +214,7 @@ $(document).ready( function() {
 	function course_click() {
 		var dialog = open_dialog();
 		$.get("/get_course_info/", {'course_name': this.id}, function(data) {
-			var content = "<img align='left' class='image' src='/site_media/"+data['image'] + "' title=" + data['name'] + " alt=" + data['name'] + ">" +
+			var content = "<img align='left' class='image' src='/static/"+data['image'] + "' title=" + data['name'] + " alt=" + data['name'] + ">" +
 			"<p class='content_info'><strong>Course Number: </strong>" + data['num'] + "</p>" +
 			"<p class='content_info'><strong>Department Head: </strong>" + data['admin'] + "</p>" +
 			"<p class='content_info'><strong>Contact Email: </strong>" + data['email'] + "</p>" +

@@ -13,19 +13,19 @@ Copyright 2011. All Rights Reserved.
 {% block metadata %}
 {{block.super}}
 <!-- Datatables -->
-<link rel="stylesheet" href="/site_media/lib/jquery_datatables/demo_table_jui.css" />
-<script type="text/javascript" language="javascript" src="/site_media/lib/jquery_datatables/jquery.dataTables.min.js">
+<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_datatables/demo_table_jui.css" />
+<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}lib/jquery_datatables/jquery.dataTables.min.js">
 </script>
 <!-- Custom -->
-<link rel="stylesheet" href="/site_media/css/student/student_events.css" />
-<script type="text/javascript" src="/site_media/javascript/student/student_events.js">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_events.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_events.js">
 </script>
 {% endblock %}
 
 {% block content_area %}
 <div id="new_event_form_block" class="main_block no_top_margin">
 	<div class="main_block_header">
-		<img class="main_block_header_icon" src="/site_media/images/icons/calendar_add_png/32x32/calendar_add.png"/>
+		<img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar_add_png/32x32/calendar_add.png"/>
 		<span class="main_block_header_title">All Events</span>
 	</div>
 	<div class="main_block_content">

@@ -52,7 +52,7 @@
 /* JQuery UI override */
 button.ui-multiselect[type="button"] {
 	margin-bottom:5px;
-	behavior: url(/site_media/lib/pie/PIE.htc);
+	behavior: url(/static/lib/pie/PIE.htc);
 	-moz-border-radius: 3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -61,7 +61,7 @@ button.ui-multiselect[type="button"] {
 	padding-left:5px;
 	height:26px;
 	width:227px;
-	behavior: url(/site_media/lib/pie/PIE.htc);
+	behavior: url(/static/lib/pie/PIE.htc);
 	box-shadow: inset 1px 1px 2px #DDDDDD;
 	-moz-box-shadow: inset 1px 1px 2px #DDDDDD;
 	-webkit-box-shadow: inset 1px 1px 2px #DDDDDD;
@@ -248,7 +248,7 @@ label[for="id_results_per_page"], #id_results_per_page {
 	padding:3px 5px 3px 5px;
 	font-weight:bold;
 	border:1px solid #CCC;
-	behavior: url(/site_media/lib/pie/PIE.htc);
+	behavior: url(/static/lib/pie/PIE.htc);
 	box-shadow:0 1px 2px #888888;
 	-moz-box-shadow:0 1px 2px #888888;
 	-moz-box-shadow: 0px 1px 2px #888888;

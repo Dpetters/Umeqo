@@ -263,7 +263,7 @@ $(document).ready( function () {
 
     /* Objects */
     dialog_class = "dialog";
-    ajax_loader = "<div class='message_section'></div><div id='dialog_loader'><img src='/site_media/images/page_elements/loaders/dialog_loader.gif'></div>";
+    ajax_loader = "<div class='message_section'></div><div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
     error_message_template = "<div class='message_section'><p>Oops, something went wrong! We'be been notified and will fix it ASAP.</p><p>Meanwhile take a look at the details below and/or try again.</p></div>";
     refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
     close_dialog_link = "<br><div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";

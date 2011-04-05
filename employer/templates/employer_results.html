@@ -37,7 +37,7 @@ Copyright 2011. All Rights Reserved.
 <div class="big_block_content">
 	<div id="results_menu">
 		<div id="results_menu_checkbox_section" class="menu_button">
-			<img id="results_menu_checkbox_section_dropdown" src="/site_media/images/icons/dropdown_png.png"/>
+			<img id="results_menu_checkbox_section_dropdown" src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
 			<input id="results_menu_checkbox" type="checkbox"/>
 		</div>
 		<div id="results_menu_add_to_resume_book" class="menu_button">
@@ -63,7 +63,7 @@ Copyright 2011. All Rights Reserved.
 			<table class="student_main_info_table">
 				<tr>
 					<td class="student_checkbox_cell">
-					<img class="student_drag_anchor" src="/site_media/images/icons/draggable_png.png"/>
+					<img class="student_drag_anchor" src="{{ STATIC_URL }}images/icons/draggable_png.png"/>
 					<input class="student_checkbox" id="student_checkbox_{{forloop.counter0}}" type="checkbox"/>
 					</td>
 					<td class="student_name_cell">
@@ -82,7 +82,7 @@ Copyright 2011. All Rights Reserved.
 					{% endif %}
 					</td>
 					<td class="student_resume_cell">
-					<a class="view_resume_link" target="_blank" href="/site_media/{{student.resume}}">View Resume</a>
+					<a class="view_resume_link" target="_blank" href="{{ STATIC_URL }}{{student.resume}}">View Resume</a>
 					</td>
 				</tr>
 				<tr>

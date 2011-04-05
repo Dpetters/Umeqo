@@ -14,22 +14,22 @@ Copyright 2011. All Rights Reserved.
 {% block metadata %}
 {{block.super}}
 <!-- JQuery Masker Input -->
-<script type="text/javascript" src="/site_media/lib/jquery_masked_input/jquery_masked_input_1.2.2.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input_1.2.2.js">
 </script>
 <!-- JQuery Multiselect Widget -->
-<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js">
 </script>
-<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 
 <!-- Filtering plugin for Multiselect Widget -->
-<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_filter_min.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js">
 </script>
-<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 
 <!-- Custom -->
-<script type="text/javascript" src="/site_media/javascript/student/student_profile_form.js">
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_form.js">
 </script>
-<link type="text/css" rel="stylesheet" href="/site_media/css/student/student_profile_form.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_form.css"/>
 {% endblock %}
 
 {% macro title %}
@@ -48,7 +48,7 @@ Copyright 2011. All Rights Reserved.
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
-                    <img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
+                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
                     <span class="main_block_header_title">{% usemacro title %}</span>
                     <div class="main_block_header_links">
                         <span>
@@ -128,7 +128,7 @@ Copyright 2011. All Rights Reserved.
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
-                    <img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
+                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
                     <span class="main_block_header_title">{% usemacro title %}</span>
                     <div class="main_block_header_links">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
@@ -208,7 +208,7 @@ Copyright 2011. All Rights Reserved.
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
-                    <img class="main_block_header_icon" src="/site_media/images/icons/male_user_png/32x32/male_user.png" />
+                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
                     <span class="main_block_header_title">{% usemacro title %}</span>
                     <div class="main_block_header_links">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>

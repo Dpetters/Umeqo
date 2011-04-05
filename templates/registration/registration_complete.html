@@ -12,13 +12,13 @@ Copyright 2011. All Rights Reserved.
 
 {% block metadata %}
 <!-- Mac-like Dock -->
-<script type="text/javascript" src="/site_media/lib/dock/dock.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/dock/dock.js">
 </script>
-<link rel="stylesheet" type="text/css" href="/site_media/lib/dock/dock.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lib/dock/dock.css" />
 
 <!-- Custom -->
-<link rel="stylesheet" type="text/css" href="/site_media/css/registration/student_registration_complete.css" />
-<script type="text/javascript" src="/site_media/javascript/registration/student_registration_complete.js">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/registration/student_registration_complete.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/registration/student_registration_complete.js">
 </script>
 {% endblock %}
 
@@ -35,31 +35,31 @@ Copyright 2011. All Rights Reserved.
 			<span>
 				<strong>Gmail</strong>
 			</span>
-			<img src="/site_media/images/dock/gmail.png" alt="Gmail" />
+			<img src="{{ STATIC_URL }}images/dock/gmail.png" alt="Gmail" />
 			</a>
 			<a class="dock-item" href="http://hotmail.com/">
 			<span>
 				<strong>Hotmail</strong>
 			</span>
-			<img src="/site_media/images/dock/hotmail.png" alt="Hotmail" />
+			<img src="{{ STATIC_URL }}images/dock/hotmail.png" alt="Hotmail" />
 			</a>
 			<a class="dock-item" href="http://mail.yahoo.com">
 			<span>
 				<strong>Yahoo</strong>
 			</span>
-			<img src="/site_media/images/dock/yahoo.png" alt="Yahoo" />
+			<img src="{{ STATIC_URL }}images/dock/yahoo.png" alt="Yahoo" />
 			</a>
 			<a class="dock-item" href="http://webmail.aol.com">
 			<span>
 				<strong>AOL</strong>
 			</span>
-			<img src="/site_media/images/dock/aol.png" alt="AOL" />
+			<img src="{{ STATIC_URL }}images/dock/aol.png" alt="AOL" />
 			</a>
 			<a class="dock-item" href="https://webmail.mit.edu/">
 			<span>
 				<strong>Webmail</strong>
 			</span>
-			<img src="/site_media/images/dock/mit_webmail.png" alt="Webmail" />
+			<img src="{{ STATIC_URL }}images/dock/mit_webmail.png" alt="Webmail" />
 			</a>
 		</div>
 	</div>

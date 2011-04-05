@@ -326,7 +326,7 @@ def process_resume(profile):
     p.wait()
     
     # Words that we want to parse out of the resume keywords
-    stopWords = set(open(settings.MEDIA_ROOT + "/stop_words/common.txt").read().split(os.linesep))
+    stopWords = set(open(settings.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
     
     # Read in the resume text
     f = open(str(settings.MEDIA_ROOT + "/resumedata/" + profile.resume.name[:-4] + ".txt"))

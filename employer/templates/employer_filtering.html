@@ -13,19 +13,19 @@ Copyright 2011. All Rights Reserved.
 {% block metadata %}
 {{block.super}}
 <!-- JQuery Multiselect Widget -->
-<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_min.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js">
 </script>
-<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 
 <!-- Filtering plugin for Multiselect Widget -->
-<script type="text/javascript" src="/site_media/lib/jquery_multiselect/jquery_multiselect_filter_min.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js">
 </script>
-<link type="text/css" rel="stylesheet" href="/site_media/lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 
 <!-- Custom -->
-<script type="text/javascript" src="/site_media/javascript/employer/employer_filtering.js">
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_filtering.js">
 </script>
-<link rel="stylesheet" href="/site_media/css/employer/employer_filtering.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_filtering.css" />
 
 <script type="text/javascript">
 	var query = null;
@@ -39,7 +39,7 @@ Copyright 2011. All Rights Reserved.
 <div id="info_block" class="left_side_container">
 	<div id="resume_book_block" class="side_block">
 		<div class="side_block_header">
-			<img class="side_block_header_icon" src="/site_media/images/icons/resume_png.png" />
+			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume_png.png" />
 			<span class="side_block_header_title">Resume Book (0)</span>
 		</div>
 		<div class="side_block_content">
@@ -56,7 +56,7 @@ Copyright 2011. All Rights Reserved.
 	</div>
 	<div id="filtering_block" class="side_block">
 		<div class="side_block_header">
-			<img class="side_block_header_icon" src="/site_media/images/icons/search_magnifier_png/32x32/search_magnifier.png" />
+			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/search_magnifier_png/32x32/search_magnifier.png" />
 			<span class="side_block_header_title">Search & Filtering Parameters</span>
 		</div>
 		<div class="side_block_content">
@@ -172,7 +172,7 @@ Copyright 2011. All Rights Reserved.
 </div>
 <div id="results_block" class="big_block">
 	<div id="results_block_loader_section">
-		<img src='/site_media/images/page_elements/loaders/results_loader.gif'>
+		<img src='{{ STATIC_URL }}images/page_elements/loaders/results_loader.gif'>
 	</div>
 	<div id="results_section">
 	</div>

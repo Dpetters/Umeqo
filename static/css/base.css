@@ -41,7 +41,7 @@ p {
     min-width: 986px;
 }
 .below_header_message {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#E6E6E6, #EEEEEE);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E6E6E6), to(#EEEEEE));
     -pie-background: linear-gradient(#E6E6E6, #EEE);
@@ -58,7 +58,7 @@ p {
     margin:0 auto;
 }
 #header_area {
-    background: url('/site_media/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
+    background: url('/static/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
     min-width: 986px;
     height: 60px;
 }
@@ -93,7 +93,7 @@ p {
     border-radius: 3px;
     -moz-border-radius: 2px;
     text-shadow: #FFF 0 1px 0;
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(rgba(255,255,255,0.8), rgba(210,210,210,0.8));
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.8)), to(rgba(210,210,210,0.8)));
     -pie-background: linear-gradient(rgba(255,255,255,0.8), rgba(210,210,210,0.8));
@@ -102,7 +102,7 @@ p {
     box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
 }
 #navigation_block a:hover {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(rgba(255,255,255,1.0), rgba(210,210,210,0.8));
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,1.0)), to(rgba(210,210,210,0.8)));
     -pie-background: linear-gradient(rgba(255,255,255,1.0), rgba(210,210,210,0.8));
@@ -146,13 +146,13 @@ p {
     border-right: 1px solid #CCCCCC;
     border-left: 1px solid #CCCCCC;
     border-bottom: 2px solid #CCCCCC;
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius: 3px;
     -webkit-border-radius:3px;
     border-radius:3px;
 }
 .main_block_header, .side_block_header {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image:-moz-linear-gradient(#F0F0F0, #E6E6E6);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#E6E6E6));
     -pie-background: linear-gradient(#F0F0F0, #E6E6E6);
@@ -336,7 +336,7 @@ p {
 }
 /* Buttons */
 .button, .ui-multiselect-menu .ui-multiselect-none {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#F0F0F0, #DDD);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#DDD));
     -pie-background: linear-gradient(#F0F0F0, #DDD);
@@ -363,7 +363,7 @@ p {
     position: relative;
     left: -3px;
     top: 1px;
-    background-image: url('/site_media/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
+    background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
 }
 #content_area .ui-multiselect-menu .ui-multiselect-none a:hover, #content_area .ui-multiselect-menu .ui-multiselect-none span:hover {
     text-decoration: none;
@@ -383,13 +383,13 @@ p {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
 }
 .button:active, .ui-multiselect-menu .ui-multiselect-none:active {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#DDD, #F0F0F0);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDD), to(#F0F0F0));
     -pie-background: linear-gradient(#F0F0F0, #DDD);
 }
 .menu_button {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image:-moz-linear-gradient(center top , #F9F9F9, #E3E3E3);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F9F9F9), to(#E3E3E3));
     -pie-background: linear-gradient(#898989, #737373);
@@ -443,7 +443,7 @@ label {
     font-weight: bold;
 }
 input[type=text], input[type=password], select, textarea {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -460,7 +460,7 @@ select {
     height:20px;
 }
 .ui-multiselect {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     border-radius:3px;
@@ -581,7 +581,7 @@ a:focus {
     text-shadow: #FFF 0 1px 0;
 }
 .ui-dialog {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     box-shadow:0px 0px 20px #606060;
     -moz-box-shadow:0px 0px 20px #606060;
     -webkit-box-shadow:0px 0px 20px #606060;
@@ -598,7 +598,7 @@ a:focus {
     color: #555;
 }
 .ui-tabs-nav .ui-state-default {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image:-moz-linear-gradient(#F0F0F0, #E6E6E6);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#E6E6E6));
     -pie-background: linear-gradient(#F0F0F0, #E6E6E6);
@@ -654,7 +654,7 @@ button.ui-multiselect[type=button]:hover {
     top:2px;
 }
 .ui-widget-header {
-    behavior: url(/site_media/lib/pie/PIE.htc);
+    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#E6E6E6, #DADADA);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E6E6E6), to(#DADADA));
     -pie-background: linear-gradient(#E6E6E6, #DADADA);
@@ -687,10 +687,10 @@ button.ui-multiselect[type=button]:hover {
     color: #0281CC;
 }
 .ui-widget-header .ui-icon {
-    background-image: url('/site_media/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
+    background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
 }
 .ui-widget-header .ui-icon:hover {
-    background-image: url('/site_media/lib/jquery_ui_custom/css/images/ui-icons_FFFFFF_256x240.png');
+    background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_FFFFFF_256x240.png');
 }
 
 .clearfix::after {

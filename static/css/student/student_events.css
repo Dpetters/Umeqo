@@ -22,7 +22,7 @@
 	background-color:transparent;
 }
 .paging_full_numbers span.paginate_button, .paging_full_numbers span.paginate_active {
-	behavior: url(/site_media/lib/pie/PIE.htc);
+	behavior: url(/static/lib/pie/PIE.htc);
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	-moz-border-radius: 3px;

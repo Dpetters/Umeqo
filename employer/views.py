@@ -440,5 +440,5 @@ def employer_filtering(request, template_name='employer_filtering.html'):
         pdfName = str(request.session['employer']).replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         p = subprocess.Popen("pdftk.exe" + resumeNames + " cat output media/resumes/"+ pdfName +".pdf", shell=True)
         p.wait()
-        return HttpResponseRedirect('/site_media/resumes/' + pdfName + '.pdf')
+        return HttpResponseRedirect('/media/resumes/' + pdfName + '.pdf')
 """
