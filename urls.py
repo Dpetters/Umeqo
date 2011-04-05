@@ -77,7 +77,3 @@ urlpatterns += patterns('core.ajax_views',
     (r'^check-language-uniqueness/$', 'check_language_uniqueness'),
     (r'^check-website/$', 'check_website')
 )
-
-urlpatterns += patterns('',
-    (r'', include('django.contrib.flatpages.urls')),                        
-)
