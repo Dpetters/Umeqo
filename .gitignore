@@ -9,5 +9,4 @@
 .pydevproject
 .settings
 media
-local_settings.py
 xapian_index
