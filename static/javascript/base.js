@@ -188,10 +188,10 @@ $(document).ready( function () {
         $(error).appendTo(element.parent().prev());
         if ($(element).position().left == 0) {
             if ($(element).next(":button.ui-multiselect").length!=0) {
-                var offset = element.next().position().left-element.parent().position().left+5;
+                var offset = element.next().position().left-element.parent().position().left;
             }
         } else {
-            var offset = element.position().left-element.parent().position().left+5;
+            var offset = element.position().left-element.parent().position().left;
         }
         $(error).css({
             "padding-left": offset,

@@ -14,7 +14,7 @@ $(document).ready( function() {
 		rules: {
 			old_password: {
 				required: true,
-				remote: "/check_password",
+				remote: "/check_password/",
 			},
 			new_password1: {
 				required: true,

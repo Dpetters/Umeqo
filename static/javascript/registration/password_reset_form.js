@@ -31,5 +31,4 @@ $(document).ready( function() {
 
 	format_required_labels("#password_reset_form");
 	align_form("#password_reset_form");
-
-})
+});
