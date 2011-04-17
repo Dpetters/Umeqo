@@ -86,10 +86,9 @@ def student_profile_form_info(request): #@UnusedVariable
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_get_suggested_employers_list(request):
-    student = Student.objects.get(user__exact = request.user)
+def student_suggested_employers_list(request):
     data={
-          'suggested_employers':compute_suggested_employers_list(student, request.POST.getlist('already_selected[]'))
+          'suggested_employers':compute_suggested_employers_list(request.student, request.POST.getlist('already_selected[]'))
           }
     return render_to_response("student_suggested_employers_list.html", data, context_instance=RequestContext(request))
 
@@ -179,25 +178,22 @@ def create_profile(request, form_class=None,
                    template_name='student_create_profile.html',
                    extra_context=None):
 
-    try:
-        profile_obj = request.user.get_profile()
+    if request.student.profile_created:
         return HttpResponseRedirect(reverse('student_edit_profile'))
-    except ObjectDoesNotExist:
-        pass
+
     if form_class is None:
         form_class = utils.get_profile_form()
+        
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
-            profile_obj = form.save(commit=False)
-            profile_obj.user = request.user
-            if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
-                profile_obj.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
-            profile_obj.last_updated = datetime.datetime.now()
-            profile_obj.save()
+            student = form.save(commit=False)
+            student.last_updated = datetime.datetime.now()
+            student.profile_created = True
+            student.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            return process_resume(profile_obj)
+            return process_resume(student)
     else:
         form = form_class()
     
@@ -292,7 +288,7 @@ def student_home(request, username, public_profile_field=None,
         return HttpResponseRedirect("/student/" + str(request.user) + "/")
     
 
-def resume_update(request):
+def student_update_resume(request):
     if request.method == 'POST':
         try:
             profile_obj = request.user.get_profile()
@@ -352,3 +348,9 @@ def process_resume(profile):
     profile.save()
     
     return HttpResponseRedirect('/student/%s' % profile.user + "/")
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_invitations(request,
+                        template_name="student_invitations.html"):
+    return render_to_response(template_name, context_instance=RequestContext(request))

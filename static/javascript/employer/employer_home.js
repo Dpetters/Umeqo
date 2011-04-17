@@ -6,8 +6,6 @@
 
 $(document).ready( function () {
 
-	add_default_text_to_input("#query_field", null, query_field_default_text);
-
 	var open_default_filtering_parameters_dialog = function () {
 		var $dialog = $('<div></div>')
 		.dialog({
@@ -180,7 +178,6 @@ $(document).ready( function () {
 		rules: {
 			query: {
 				required: true,
-				notEqualToString: query_field_default_text
 			}
 		},
 		messages: {

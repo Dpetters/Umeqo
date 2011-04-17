@@ -29,26 +29,36 @@ urlpatterns += patterns('registration.views',
     (r'^password/change/done/$', 'password_change_done', {}, 'password_change_done'),
 )
 urlpatterns += patterns('student.views',
-    (r'^student/get-suggested-employers-list/$', 'student_get_suggested_employers_list'),
+    # Student Registration
+    (r'^student/', include('registration.backends.default.urls')),
+    # Student Profile Management
+    (r'^student/edit', 'edit_profile', {'form_class': edit_profile_form }, "student_edit_profile"),
+    (r'^student/create', 'create_profile', {'form_class': create_profile_form }, "student_create_profile"),
     (r'^student/profile-form-info/$', 'student_profile_form_info'),
     (r'^student/create-campus-organization/$', 'student_create_campus_organization'),
     (r'^student/create-language/$', 'student_create_language'),
-    (r'^student/employer-subscriptions-dialog/$', 'student_employer_subscriptions'),
+    (r'^student/update_resume', 'student_update_resume', {}, 'student_update_resume'),
+    # Student Home
+    (r'^student/(?P<username>\w+)/$', 'student_home', {}, "student_home"),    
+    # Student Employer Subscriptions
+    (r'^student/employer-subscriptions/$', 'student_employer_subscriptions', {}, 'student_employer_subscriptions'),
+    (r'^student/suggested-employers-list/$', 'student_suggested_employers_list', {}, 'student_suggested_employers_list'),
+    # Student Events
     (r'^student/events/$', 'student_events', {}, 'student_events'),
-    (r'^student/events/(?P<employer>\w+)/$', 'student_events', {}, 'student_events'),
-    (r'^student/edit', 'edit_profile', {'form_class': edit_profile_form }, "student_edit_profile"),
-    (r'^student/create', 'create_profile', {'form_class': create_profile_form }, "student_create_profile"),
-    (r'^student/', include('registration.backends.default.urls')),
-    (r'^student/(?P<username>\w+)/$', 'student_home', {}, "student_home"),
-    (r'^resume_update', 'resume_update'),
+    # Student Invitations
+    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),    
+
+
 )
 urlpatterns += patterns('core.views',
     (r'^enable-javascript/$', 'enable_javascript', {}, 'enable_javascript'),
     (r'^browser-not-supported/$', 'browser_not_supported', {}, 'browser_not_supported'),
     (r'^about/$', 'about', {}, 'about'),
-    (r'^faq/$', 'faq', {}, 'faq'),
     (r'^blog/$', 'blog', {}, 'blog'),
-    (r'^advertise/$', 'advertise', {}, 'advertise'),
+)
+
+urlpatterns += patterns('help.views',
+    (r'^help/$', 'help', {}, 'help'),
 )
 
 urlpatterns += patterns('employer.views',

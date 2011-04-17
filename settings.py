@@ -18,10 +18,6 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-EMPLOYER_GROUP_NAME = "Employers"
-STUDENT_GROUP_NAME = "Students"
-
-
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
@@ -112,6 +108,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'core.middleware.UserTypeMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -143,7 +140,7 @@ INSTALLED_APPS = (
     'contact_form',
     'notification',
     'messages',
-    'faq',
+    'help',
     'haystack',
     'digg_paginator'
 )

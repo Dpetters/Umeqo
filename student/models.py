@@ -16,19 +16,19 @@ from events.models import Event
 class Student(UserProfile):
 
     # Required Info
-    first_name = models.CharField(max_length = 20)
-    last_name = models.CharField(max_length = 30)
-    school_year = models.ForeignKey(SchoolYear)
-    graduation_year = models.ForeignKey(GraduationYear)
-    first_major = models.ForeignKey(Course, related_name = "first_major")
-    gpa = models.DecimalField(max_digits = 5, decimal_places = 3)
-    resume = models.FileField(upload_to = get_resume_filename)
+    first_name = models.CharField(max_length = 20, blank = True, null=True)
+    last_name = models.CharField(max_length = 30, blank = True, null=True)
+    school_year = models.ForeignKey(SchoolYear, blank = True, null=True)
+    graduation_year = models.ForeignKey(GraduationYear, blank = True, null=True)
+    first_major = models.ForeignKey(Course, related_name = "first_major", blank = True, null=True)
+    gpa = models.DecimalField(max_digits = 5, decimal_places = 3, blank = True, null=True)
+    resume = models.FileField(upload_to = get_resume_filename, blank = True, null=True)
     
     # Basic Info
     older_than_18 = models.BooleanField()
     citizen = models.BooleanField()
     languages = models.ManyToManyField(Language, blank = True, null = True)
-    website = models.URLField(blank = True)
+    website = models.URLField(blank = True, null=True)
     
     # Academic Info
     second_major = models.ForeignKey(Course, related_name = "second_major", blank = True, null=True)
@@ -58,23 +58,26 @@ class Student(UserProfile):
     email_on_invite_to_private_event = models.BooleanField()
     email_on_new_event = models.BooleanField()
     
-    # Meta Data
-    popularity = models.PositiveIntegerField(default = 0)
-    invite_count = models.PositiveIntegerField(default = 0)
-    add_to_cart_count = models.PositiveIntegerField(default = 0)
-    resume_view_count = models.PositiveIntegerField(default = 0)
-    results_count = models.PositiveIntegerField(default = 0)
-    last_updated = models.DateTimeField(blank = True, null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
+    # Statistics
+    event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
+    add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
+    resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
+    shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)
+    
+    # Metadata
+    profile_created = models.BooleanField(default=False)
+    last_updated = models.DateTimeField(editable=False, blank = True, null=True)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
     keywords = models.TextField()
 
     class Meta:
         verbose_name_plural = "Students"
-
+    """
     def rank(self):
         aggregate = Student.objects.extra({'popularity':'invite_count*10+add_to_cart_count*5+resume_view_count*3 + results_count*1'}).aggregate(rank=Count('popularity'))
         return aggregate['rank']
-    
+    """
+    """
     def __json__(self):
         json = { 'first_name' : self.first_name,
                  'last_name' : self.last_name,
@@ -124,7 +127,7 @@ class Student(UserProfile):
                                    'num' : self.second_major.num,
                                    'name' : self.second_major.name}
         return json
-
+    """
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
   

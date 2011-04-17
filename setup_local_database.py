@@ -23,10 +23,14 @@ ROOT = os.path.dirname(os.path.realpath("__file__"))
 # Must remain third
 from django.conf import settings
 from django.utils import simplejson
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
+
+from help.models import Topic, Question
+from help import enums
 from events.models import Event, EventType, RSVPType
 from core.models import Industry, GraduationYear, SchoolYear, Language, Course, CampusOrg, CampusOrgType
 from employer.models import Employer
+from student.models import Student
 
 # Change the following email to yours. All emails sent 
 #to the fake accounts will then go there.
@@ -43,9 +47,6 @@ SAMPLE_EMPLOYER_EMAIL_1 = "sample@employer1.com"
 SAMPLE_EMPLOYER_USERNAME_2 = "SampleEmployer2"
 SAMPLE_EMPLOYER_COMPANY_NAME_2 = "Sample Employer 2"
 SAMPLE_EMPLOYER_EMAIL_2 = "sample@employer2.com"
-
-EMPLOYER_GROUP_NAME = "Employers"
-STUDENT_GROUP_NAME = "Students"
 
 # Helper Function
 def delete_contents(directory):
@@ -81,38 +82,47 @@ p.wait()
 
 
 
-# Create the groups
-student_group = Group.objects.create(name=STUDENT_GROUP_NAME)
-employer_group = Group.objects.create(name=EMPLOYER_GROUP_NAME)
-print "Created Groups"
-
-
-
 #Give password to superuser
 #Add superuser to the student group
 admin_user = User.objects.get(username__exact=ADMIN_USERNAME)
 admin_user.set_password(PASSWORD_TO_FAKE_ACCOUNTS)
-admin_user.groups.add(student_group)
 admin_user.save()
 print "Created Super User"
 
+# Create Student
+sample_student = Student.objects.create(user = admin_user)
 
 
 #Create sample employer users
 sample_employer_user1 = User.objects.create(username = SAMPLE_EMPLOYER_USERNAME_1,
                                       email = SAMPLE_EMPLOYER_EMAIL_1)
 sample_employer_user1.set_password(PASSWORD_TO_FAKE_ACCOUNTS)
-sample_employer_user1.groups.add(employer_group)
 sample_employer_user1.save()
 
 sample_employer_user2 = User.objects.create(username = SAMPLE_EMPLOYER_USERNAME_2,
                                       email = SAMPLE_EMPLOYER_EMAIL_2)
 sample_employer_user2.set_password(PASSWORD_TO_FAKE_ACCOUNTS)
-sample_employer_user2.groups.add(employer_group)
 sample_employer_user2.save()
 print "Created Employer User Accounts"
 
+# Create FAQ Topics
+basics_topic = Topic.objects.create(name="Basics", slug="basics", sort_order=0, audience=enums.ALL)
 
+employer_registration = Topic.objects.create(name="Registration", slug="registration", sort_order=0, audience=enums.EMPLOYER)
+employer_account_management = Topic.objects.create(name="Account Management", slug="account-management", sort_order=1, audience=enums.EMPLOYER)
+employer_student_filtering = Topic.objects.create(name="Student Filtering", slug="student-filtering", sort_order=2, audience=enums.EMPLOYER)
+employer_resumebooks = Topic.objects.create(name="Resumebooks", slug="resumebooks", sort_order=3, audience=enums.EMPLOYER)
+employer_events = Topic.objects.create(name="Events", slug="events", sort_order=4, audience=enums.EMPLOYER)
+employer_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=5, audience=enums.EMPLOYER)
+
+student_registration = Topic.objects.create(name="Registration", slug="registration", sort_order=0, audience=enums.STUDENT)
+student_account_management = Topic.objects.create(name="Account Management", slug="account-management", sort_order=1, audience=enums.STUDENT)
+student_employer_subscriptions = Topic.objects.create(name="Employer Subscriptions", slug="employer_subscriptions", sort_order=2, audience=enums.STUDENT)
+student_events = Topic.objects.create(name="Events", slug="events", sort_order=3, audience=enums.STUDENT)
+student_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=4, audience=enums.STUDENT)
+
+# Create FAQ Questions
+Question.objects.create(topic=basics_topic, question="What is Umeqo?", slug="what-is-umeqo", answer="Umeqo is a new platform for helping students and employers connect during recruiting season.", status=enums.ACTIVE, audience=enums.ALL, sort_order=0)
 
 # Create Industries
 new_contents_path = ROOT + "/initial_content/Industries/"

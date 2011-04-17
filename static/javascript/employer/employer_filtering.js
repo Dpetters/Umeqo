@@ -153,7 +153,6 @@ $(document).ready( function() {
 			$(selector).text("Hide Details");
 		$('#student_detailed_info_'+ this.id).slideToggle('slow');
 	});
-	add_default_text_to_input("#query_field", query, query_field_default_text);
 
 	$("#search_form_submit_button").live('click', initiate_search);
 

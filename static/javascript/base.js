@@ -71,8 +71,7 @@ $(document).ready( function () {
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
                                 var error_message_details = '<div class="message_section"><strong><br />Error Details</strong><br />"' + textStatus + '"</strong></div>';
-                                error_message_details += close_dialog_link;
-                                $contact_us_dialog.html(error_message_template + error_message_details);
+                                $contact_us_dialog.html(error_message_template + error_message_details + close_dialog_link);
                             },
                             success: function (data) {
 
@@ -208,6 +207,7 @@ $(document).ready( function () {
         $(error).css("padding-left", $(element).prev().outerWidth()+3).css("float", "left").css('position', 'absolute').css('bottom','0');
     };
     // Default text for input fields
+    /*
     add_default_text_to_input = function(input, old_query, default_text) {
         var active_color = '#000';
         var inactive_color = '#aaa';
@@ -229,6 +229,7 @@ $(document).ready( function () {
             }
         });
     };
+    */
     // Pick out url GET parameters by name
     get_parameter_by_name = function(name) {
         name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -264,9 +265,11 @@ $(document).ready( function () {
     /* Objects */
     dialog_class = "dialog";
     ajax_loader = "<div class='message_section'></div><div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
-    error_message_template = "<div class='message_section'><p>Oops, something went wrong! We'be been notified and will fix it ASAP.</p><p>Meanwhile take a look at the details below and/or try again.</p></div>";
     refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
     close_dialog_link = "<br><div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
+    status_500_message = "<div class='message_section'><p>Oops, something went wrong! We'be been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by refreshing the page.</p></div>" + refresh_page_link;
+    check_connection_message = "<p class='error'>Unable to reach Umeqo. Please check your connection and try again.</p>";
+    
 
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {

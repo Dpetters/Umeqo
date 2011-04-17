@@ -1,19 +1,20 @@
-"""
- OpenSource
-"""
-
 from django.contrib import admin
 from models import Question, Topic
             
 class TopicAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug':('name',)}
-
+    list_display = ('name', 'sort_order', 'audience')
+    list_filter = ['audience']
+    search_fields = ['name']
     
 class QuestionAdmin(admin.ModelAdmin):
-  
-    list_display = ['text', 'sort_order', 'created_by', 'created_on', 'updated_by', 'updated_on', 'status']
-
+    fields= ['audience', 'status', 'sort_order', 'question', 'answer', 'slug']
+    prepopulated_fields = {'slug':('question',)}
+    list_display = ['question', 'topic', 'audience', 'sort_order', 'created_by', 'created_on', 'updated_by', 'updated_on', 'status']
+    list_filter = ['topic', 'audience', 'status']
+    search_fields = ['question', 'answer']
+    
     def save_model(self, request, obj, form, change): #@UnusedVariable
         '''
         Overrided because I want to also set who created this instance.

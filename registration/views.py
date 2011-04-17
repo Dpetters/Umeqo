@@ -14,7 +14,6 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
@@ -24,6 +23,7 @@ from registration.view_helpers import modify_redirect
 from registration.forms import RegistrationForm
 from events.models import Event
 from employer.models import Employer
+from student.models import Student
 from registration.backends import get_backend
 from core.decorators import is_student
 
@@ -72,7 +72,7 @@ def register(request,
         if form.is_valid():
             email = form.cleaned_data['email']
             username = email.split("@")[0]
-            
+            """
             ending = email.split("@")[1]
             if ending != "mit.edu":
                 return HttpResponse(simplejson.dumps("notmit"), mimetype="application/json")
@@ -84,17 +84,12 @@ def register(request,
             result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
             if result == []:
                 return HttpResponse(simplejson.dumps("notstudent"), mimetype="application/json") 
-            
+            """
             form.cleaned_data['username']= username
             new_user = backend.register(request, **form.cleaned_data)
             
-            # A safety just in case - if for whatever reason the student group has not been created at this point,
-            # it should not prevent the user form registering. Therefore we create the group for them.
-            try:
-                student_group = Group.objects.get(name=settings.STUDENT_GROUP_NAME)
-            except Group.DoesNotExist:
-                Group.objects.create(name=settings.STUDENT_GROUP_NAME)
-            new_user.groups.add(student_group)
+            Student.objects.create(user=new_user)
+            
             return HttpResponse(simplejson.dumps(success_url), mimetype="application/json")
     else:
         form = form_class()
@@ -139,10 +134,15 @@ def home(request,
 
     if not request.user.is_anonymous():
         try:
-            Employer.objects.get(user=request.user)
+            request.user.employer
             url = "/employer/"
         except Employer.DoesNotExist:
-            url = "/student/"
+            try:
+                request.user.student
+                url = "/student/"
+            except:
+                pass
+            
         return  HttpResponseRedirect(url + str(request.user) + "/")
     
     action = request.REQUEST.get('action', '')
