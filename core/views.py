@@ -17,8 +17,8 @@ def about(request):
     pass
 
 
-def faq(request):
-    pass
+def help(request):
+    return render_to_response("flatpages/help.html", context_instance=RequestContext(request))
 
 
 def blog(request):

@@ -13,6 +13,23 @@ Copyright 2011. All Rights Reserved.
 </script>
 {% endblock %}
 
+{% block navigation %}
+<li>
+    <a id="home" href="{% url home %}">Home</a>
+</li>
+<li>
+    <a id="faq" href="{% url help %}">FAQ</a>
+</li>
+<li>
+    <a id="account" href="#">Account</a>
+    <ul id="account_dropdown">
+        <li><a href="#">Account Settings</a></li>
+        <li><a href="{% url password_change %}">Change Password</a></li>
+        <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
+    </ul>
+</li>
+{% endblock %}
+
 {% block above_header_area %}
 {{block.super}}
 <div id="idletimeout_block">

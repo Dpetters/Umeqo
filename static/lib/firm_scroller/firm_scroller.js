@@ -33,6 +33,7 @@
                 function(){ //mouse over
                         $(this).stop().css('border', '1px solid #606060');
                         var theText=$(this).attr('title');
+                        console.log($(this));
                         $('#firm_name').html(theText);
                 },
                 function(){ //mouse out

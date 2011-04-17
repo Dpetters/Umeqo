@@ -12,7 +12,7 @@ admin.autodiscover()
 import haystack
 haystack.autodiscover()
 from student.forms import create_profile_form, edit_profile_form
-
+ 
 urlpatterns = patterns('',
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     (r'^admin/', include(admin.site.urls)),
@@ -46,7 +46,7 @@ urlpatterns += patterns('core.views',
     (r'^enable-javascript/$', 'enable_javascript', {}, 'enable_javascript'),
     (r'^browser-not-supported/$', 'browser_not_supported', {}, 'browser_not_supported'),
     (r'^about/$', 'about', {}, 'about'),
-    (r'^faq/$', 'faq', {}, 'faq'),
+    (r'^help/$', 'help', {}, 'help'),
     (r'^blog/$', 'blog', {}, 'blog'),
     (r'^advertise/$', 'advertise', {}, 'advertise'),
 )
