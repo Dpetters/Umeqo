@@ -58,7 +58,7 @@ class Employer(UserProfile):
     results_per_page = models.PositiveSmallIntegerField(choices=results_per_page, default=10)
     default_student_ordering = models.CharField(max_length = 42, choices=ORDERING_CHOICES, default=ORDERING_CHOICES[0][0])
     # Meta
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     def __unicode__(self):
         return self.company_name

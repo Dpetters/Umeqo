@@ -4,13 +4,14 @@ All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
 
-{% extends "anonymous.html" %}
+{% extends "base.html" %}
 
 {% block title %}
 | Student Registration
 {% endblock %}
 
 {% block metadata %}
+{{ block.super }}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/registration/student_registration.css" />
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/registration/student_registration.js">
 </script>
@@ -49,7 +50,7 @@ Copyright 2011. All Rights Reserved.
 				<label class="required" for="id_password2">Re-enter password:</label>
 				{{form.password2}}
 			</div>
-			<div id="student_registration_form_error_section">
+			<div id="student_registration_form_error_section" class="error">
 			</div>
 			<div class="button_wrapper_with_margins">
 				<input id="student_registration_button" class="button" type='submit' value='Submit'>

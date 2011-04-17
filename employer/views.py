@@ -36,7 +36,7 @@ def employer_home(request, username, template_name="employer_home.html"):
             check_for_new_student_matches(employer)
         
         data = {}
-        data['user'] = employer
+        
         data['form'] = SearchForm()
         data['notices'] = Notice.objects.notices_for(request.user)
         data['unseen_notice_num'] = Notice.objects.unseen_count_for(request.user)

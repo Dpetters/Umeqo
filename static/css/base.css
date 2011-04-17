@@ -139,8 +139,9 @@ p {
     text-shadow:0px 1px #FFF;
 }
 .message_section {
-    margin-top:30px;
+    margin-top:20px;
     margin-bottom: 20px;
+    text-align:center;
 }
 /* Main Block and Side Block are the ones you see on the homepages */
 .main_block, .side_block {
@@ -487,7 +488,7 @@ input[type=text], input[type=password] {
     text-align:center;
 }
 .button_wrapper_with_margins {
-    margin-top: 25px;
+    margin-top: 20px;
     text-align:center;
 }
 /* Form Info */
@@ -562,9 +563,6 @@ a:focus {
 /* Dialogs */
 #dialog_loader {
     margin-top: 25px;
-    text-align:center;
-}
-.message_section {
     text-align:center;
 }
 .dialog_info_section {

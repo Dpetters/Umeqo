@@ -4,10 +4,10 @@ All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
 
-{% extends "logged_in.html" %}
+{% extends "base.html" %}
 
 {% block title %}
-| {{user.company_name}}
+| {{user.employer.company_name}}
 {% endblock %}
 
 {% block metadata %}
