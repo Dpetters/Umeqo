@@ -260,7 +260,7 @@ p {
     float:left;
 }
 .side_block {
-    margin-top:25px;
+    margin-bottom:25px;
 }
 .side_block p {
     margin-top:3px;
@@ -740,7 +740,7 @@ button.ui-multiselect[type=button]:hover {
     float: none;
     height: auto;
     line-height: normal;
-    text-align: right;
+    text-align: left;
     font-family: Arial;
     letter-spacing: normal;
     font-weight: bold;
@@ -748,12 +748,12 @@ button.ui-multiselect[type=button]:hover {
 #account_dropdown li a {
     border: none;
     background: none;
-    padding: 0 10px 0 0;
+    padding: 0 0 0 10px;
     display: block;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    color: #FFF;
+    color: #DDD;
     text-shadow: #000 0 -1px 0;
     -webkit-transition: none;
     -moz-transition: none;
@@ -764,4 +764,13 @@ button.ui-multiselect[type=button]:hover {
     background: #404040;
     border-radius: 0;
     -moz-border-radius: 0;
+    color: #FFF;
+}
+#account_dropdown .info {
+    color: #FFF;
+    padding: 10px;
+    text-shadow: #FFF 0 0 2px;
+    background-color: #333;
+    font-size: 14px;
+    overflow-x: hidden;
 }

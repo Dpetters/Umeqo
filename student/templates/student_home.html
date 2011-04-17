@@ -26,46 +26,25 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 {% block content_area %}
-	
-	<div class="right_side_container">
-	    <div id="my_account_block" class="side_block no_top_margin">
-	        <div class="side_block_header">
-	            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" title="to be replaced" />
-	            <span class="side_block_header_title">My Account</span>
-	        </div>
-	        <div class="side_block_content">
-	            <p>
-	                <a href="/student/edit/">Edit Profile</a>
-	            </p>
-	            <p>
-	                <a href="javascript:void(0)" id="preview_profile_link">Preview Result Listing</a>
-	            </p>
-	            <p>
-	                <a href="/password/change/">Change Password</a>
-	            </p>
-	            <p>
-	                <a href="javascript:void(0)" id="open_preferences_dialog_link">Preferences</a>
-	            </p>
-	        </div>
-	    </div>
-	    
-	    <div id="quick_resume_updater_block" class="side_block">
-	        <div class="side_block_header">
-	            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/green_arrow_down_png/32x32/green_arrow_down.png" />
-	            <span class="side_block_header_title">Resume Updater</span>
-	        </div>
-	        <div class="side_block_content">
-	          <div id="drop-area">
-	            Drop PDF File Here
-	          </div>
-	        </div>
-	        <div class="side_block_footer">
-	            <div class="side_block_footer_link">
-	                <a id="view_resume_link" target="_blank" href="{{ STATIC_URL }}{{student.resume}}">View Current Resume</a>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+    
+    <div class="right_side_container">
+        <div id="quick_resume_updater_block" class="side_block">
+            <div class="side_block_header">
+                <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/green_arrow_down_png/32x32/green_arrow_down.png" />
+                <span class="side_block_header_title">Resume Updater</span>
+            </div>
+            <div class="side_block_content">
+              <div id="drop-area">
+                Drop PDF File Here
+              </div>
+            </div>
+            <div class="side_block_footer">
+                <div class="side_block_footer_link">
+                    <a id="view_resume_link" target="_blank" href="{{ STATIC_URL }}{{student.resume}}">View Current Resume</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="notifications_block" class="main_block no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/megaphone_png/32x32/megaphone.png" />

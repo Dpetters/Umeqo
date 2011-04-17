@@ -87,6 +87,17 @@ Copyright 2011. All Rights Reserved.
                     </li>
                     <li>
                         <a id="account" href="javascript:void(0)">Account</a>
+                        <ul id="account_dropdown">
+                        {% if user.student %}
+                            <li class="info">{% if user.company_name %}{{user.company_name}}{% else %}{{user}}{% endif %}</li>
+                            <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
+                            <li><a href="#">Change Password</a></li>
+                            <li><a href="#">Preferences</a></li>
+                            <li><a href="{% url logout %}">Logout</a></li>
+                        {% else %}{% if user.employer %}
+                            <li>test</li>
+                        {% endif %}{% endif %}
+                        </ul>
                     </li>
                     {% else %}
                     <li>
@@ -109,15 +120,6 @@ Copyright 2011. All Rights Reserved.
             </div>
         </div>
         <div id="below_header_area">
-            {% if user.is_authenticated %}
-                <div class="width_container">
-                    <div id="login_info_block">
-                        Logged in as <strong>{% if user.company_name %}{{user.company_name}}{% else %}{{user}}{% endif %}</strong>.
-                        <a href="/logout/?next=/?action=logged-out">Log out</a>
-                    </div>
-                </div>
-            {% endif %}
-
             {% block below_header_area %}
             {% endblock %}
         </div>

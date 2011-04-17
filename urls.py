@@ -24,7 +24,7 @@ urlpatterns += patterns('registration.views',
     (r'^$', 'home', {}, 'home'),
     (r'^login_dialog', 'login_dialog', {}, 'login_dialog'),
     (r'^login_redirect', 'login_redirect', {}, 'login_redirect'),
-    (r'^logout/$', auth_views.logout),
+    (r'^logout/$', auth_views.logout, {}, 'logout'),
     (r'^password/change/$', 'password_change', {}, 'password_change'),
     (r'^password/change/done/$', 'password_change_done', {}, 'password_change_done'),
 )

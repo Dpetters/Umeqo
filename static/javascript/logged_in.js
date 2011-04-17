@@ -32,7 +32,7 @@ $(document).ready( function() {
        else $(this).addClass('pressed');
     });
     $('body').click(function(event) {
-        if (!$(event.target).closest('#account').length) {
+        if (!$(event.target).closest('#account').length && !$(event.target).closest('#account_dropdown').length) {
             $('#account_dropdown').hide();
             $('#account').removeClass('pressed');
         };
