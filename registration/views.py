@@ -131,7 +131,8 @@ def home(request,
         login_form = form_class(request)
                 
     request.session.set_test_cookie()
-
+    
+    url =""
     if not request.user.is_anonymous():
         try:
             request.user.employer

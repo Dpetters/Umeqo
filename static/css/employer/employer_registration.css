@@ -4,8 +4,32 @@
  Copyright 2011. All Rights Reserved.
 */
 
-#employer_registration_block{ text-align:center; margin-top:0px; width:540px; margin-left: auto; margin-right: auto; }
-#employer_registration_instructions{ line-height: 20px; margin-bottom: 20px; }
-#employer_registration_instructions h1{ margin-bottom: 10px; }
-#necessary_information_list{ width: 151px; margin-right:auto; margin-left: auto; list-style: inside; }
-#contact_choices{ width: 270px; margin-right:auto; margin-left: auto; list-style: inside; }
+#employer_registration_block {
+    text-align:center;
+    margin-top:0px;
+    width:540px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#employer_registration_instructions {
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+#employer_registration_instructions h1 {
+    margin-bottom: 10px;
+}
+#necessary_information_list {
+    width: 151px;
+    margin-right:auto;
+    margin-left: auto;
+    list-style: inside;
+}
+#contact_choices {
+    margin-right:auto;
+    margin-left: auto;
+    list-style: inside;
+}
+#employer_registration_instructions ul {
+    text-align: left;
+    width: 270px;
+}
