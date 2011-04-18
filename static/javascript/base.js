@@ -288,4 +288,18 @@ $(document).ready( function () {
         }
     }, "Please specify a valid duration");
     
+    $('.fade_input_label input').focus(function(){
+        $(this).prev().animate({'opacity':0},200);
+    });
+    $('.fade_input_label input').each(function(){
+        if ($(this).val()!="") {
+            $(this).prev().css('opacity',0);
+        }
+    });
+    $('.fade_input_label input').blur(function(){
+       if ($(this).val()=="") {
+           $(this).prev().animate({'opacity':1},200);
+       } 
+    });
+    
 });

@@ -33,20 +33,6 @@ Copyright 2011. All Rights Reserved.
 {% block content_area %}
 
 <div class="right_side_container">
-    <div id="my_account_block" class="side_block no_top_margin">
-        <div class="side_block_header">
-            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/business_user_png/32x32/business_user.png">
-            <span class="side_block_header_title">My Account</span>
-        </div>
-        <div class="side_block_content">
-            <p>
-                <a href="/password/change/">Change Password</a>
-            </p>
-            <p>
-                <a href="javascript:void(0)" id="open_preferences_dialog_link">Preferences</a>
-            </p>
-        </div>
-    </div>
     <div id="statistics_block" class="side_block">
         <div class="side_block_header">
             <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/chart_png/32x32/chart.png"/>
@@ -99,18 +85,15 @@ Copyright 2011. All Rights Reserved.
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/users_search_png/32x32/users_search.png" />
         <span class="main_block_header_title">Browse Students</span>
-        <div class="main_block_header_links">
-            <a class="nounderline" href="/employer/filtering/"><b class="underline">Skip to Filtering</strong></a>
-        </div>
         <div class="main_block_header_content">
             <form id="search_form" method="post" action="/employer/filtering/">
                 {% csrf_token %}
-                <div class="errorspace">
-                </div>
-                <div id="query_field_wrapper">
+                <div id="query_field_wrapper" class="fade_input_label">
+                    <label for="search_form_submit_button">Enter search terms</label>
                     {{form.query}}
                 </div>
-                <input id="search_form_submit_button" class="button" type="submit" value="Search">
+                <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
+                <a href="/employer/filtering/" class="button">Skip to Filtering</a>
             </form>
         </div>
     </div>
@@ -131,7 +114,7 @@ Copyright 2011. All Rights Reserved.
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar_date_png/32x32/calendar_date.png"/>
         <span class="main_block_header_title">Events and Deadlines</span>
         <div class="main_block_header_links">
-            <a class="nounderline" href="/employer/events/new"><b class="underline">Add New Event</strong></a>
+            <a href="/employer/events/new">Add New Event</a>
         </div>
     </div>
     <div class="main_block_content">

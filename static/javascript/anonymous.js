@@ -56,20 +56,6 @@ $(document).ready( function () {
         }
     });
     
-    $('.input_div input').focus(function(){
-        $(this).prev().animate({'opacity':0},200);
-    });
-    $('.input_div input').each(function(){
-        if ($(this).val()!="") {
-            $(this).prev().css('opacity',0);
-        }
-    });
-    $('.input_div input').blur(function(){
-       if ($(this).val()=="") {
-           $(this).prev().animate({'opacity':1},200);
-       } 
-    });
-    
     var login_form_validator = $("#login_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({

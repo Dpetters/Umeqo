@@ -15,7 +15,7 @@ from employer.choices import results_per_page, ORDERING_CHOICES
 
 
 class SearchForm(forms.Form):
-    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':"query_field"}))
+    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field'}))
 
 class DefaultFilteringParamsForm(forms.ModelForm):
     older_than_18 = forms.ChoiceField(choices = YES_NO_CHOICES, required = False, widget=forms.Select(attrs={'class':"older_than_18"}))

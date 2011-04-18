@@ -10,30 +10,37 @@
 .side_block {
     width:200px;
 }
-#search_form {
-    margin-bottom:14px;
-}
-#search_form label[for="query_field"] {
-    margin-bottom:1px;
+#search_form label[for="search_form_submit_button"] {
+    margin-top: 2px;
 }
 #query_field_wrapper {
     display:inline-block;
+    position: relative;
 }
 #query_field {
-    height:30px;
+    height:22px;
     vertical-align:middle;
     width:300px;
     padding-left:6px;
     color: #303030;
-    font-size:18px;
+    font-size:15px;
     behavior: url(/static/lib/pie/PIE.htc);
     box-shadow: inset 2px 2px 2px #DDDDDD;
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
+label[for=search_form_submit_button] {
+    position: absolute;
+    left: 9px;
+    line-height: 28px;
+    font-size: 15px;
+    color: #CCC;
+    font-weight: normal;
+}
 #search_form_submit_button {
     vertical-align:middle;
-    height: 38px;
+    height: 32px;
+    line-height: 32px;
 }
 #events_and_deadlines_block .main_block_header_icon {
     position:relative;
@@ -65,4 +72,10 @@
 }
 #id_languages, #id_campus_orgs, #id_industries_of_interest, #id_previous_employers, #id_majors {
     width:315px;
+}
+
+#search_form a {
+    vertical-align:middle;
+    margin-right: 0;
+    line-height:32px;
 }

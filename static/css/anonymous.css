@@ -68,17 +68,17 @@
     border-radius: 3px;
     -moz-border-radius: 3px;
 }
-.input_div {
+.fade_input_label {
     position: relative;
 }
-.input_div label {
+.fade_input_label label {
     position: absolute;
     left: 5px;
     top: 10px;
     font-weight: normal;
     color: #AAA;
 }
-.input_div input {
+.fade_input_label input {
     position: relative;
     background: transparent;
 }

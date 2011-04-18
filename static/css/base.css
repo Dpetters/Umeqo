@@ -10,7 +10,7 @@
 }
 html, body {
     font-size: 13px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
     color: #000;
     background-color: #fcfff5;
 }
@@ -40,7 +40,7 @@ p {
     min-width: 986px;
 }
 #below_header_area {
-    height: 40px;
+    min-height: 10px;
     min-width: 986px;
 }
 .below_header_message {
@@ -176,7 +176,8 @@ p {
 .main_block_header_content, .side_block_header_content {
     float:right;
     line-height:100%;
-    margin-right:20px;
+    margin-right:5px;
+    text-align:right;
 }
 .main_block_header_links, .side_block_header_links {
     float:right;
@@ -357,6 +358,8 @@ p {
     text-shadow: #FFF 0 1px 0;
     display: inline-block;
     padding: 0 8px;
+    line-height: 30px;
+    text-decoration: none;
 }
 .ui-multiselect-menu .ui-multiselect-none {
     height: 19px;
@@ -386,6 +389,7 @@ p {
 }
 .button:hover, .ui-multiselect-menu .ui-multiselect-none:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
+    color: #0281CC !important;
 }
 .button:active, .ui-multiselect-menu .ui-multiselect-none:active {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -460,6 +464,9 @@ input[type=text], input[type=password], select, textarea {
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
     border: 1px solid #666;
     color: #000;
+}
+input[type=submit] {
+    font-family: Arial;
 }
 select {
     height:20px;
@@ -719,7 +726,6 @@ button.ui-multiselect[type=button]:hover {
     display: block;
     position: absolute;
     right: 2px;
-    left: -40px;
     text-shadow: none;
     background: #333;
     top: 50px;
@@ -773,4 +779,8 @@ button.ui-multiselect[type=button]:hover {
     background-color: #333;
     font-size: 14px;
     overflow-x: hidden;
+}
+
+.main_block_header_links a {
+    font-weight: bold;
 }

@@ -37,12 +37,12 @@ Copyright 2011. All Rights Reserved.
     <form id="login_form" method='POST'>
         {% csrf_token %}
         <div class="errorspace"></div>
-        <div id="username" class="input_div">
+        <div id="username" class="fade_input_label">
             <label for="id_username">Username</label>
             {{login_form.username}}
         </div>
         <div class="errorspace"></div>
-        <div id="password" class="input_div">
+        <div id="password" class="fade_input_label">
             <label for="id_password">Password</label>
             {{login_form.password}}
         </div>
