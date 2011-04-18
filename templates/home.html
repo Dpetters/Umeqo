@@ -26,38 +26,8 @@ Copyright 2011. All Rights Reserved.
 <link  href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" >
 {% endblock %}
 
-{% block loginbutton %}
-<li id="login_button">
-    <a href="javascript:void(0)">Login</a>
-</li>
-{% endblock %}
-
 {% block below_header_area %}
-<div id="loginWrapper">
-    <form id="login_form" method='POST'>
-        {% csrf_token %}
-        <div class="errorspace"></div>
-        <div id="username" class="input_div">
-            <label for="id_username">Username</label>
-            {{login_form.username}}
-        </div>
-        <div class="errorspace"></div>
-        <div id="password" class="input_div">
-            <label for="id_password">Password</label>
-            {{login_form.password}}
-        </div>
-        <div id="login_form_error_section">
-        </div>
-        <!-- Extra div to allow the proper positioning of the ajax loader-->
-        <div id="button_wrapper_no_margins">
-            <button id="login_form_submit_button" class="button" type='submit'>
-                Login
-            </button>
-            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-            <a href="/student/password/reset">Forgot password?</a>
-        </div>
-    </form>
-</div>
+{{ block.super }}
 {% ifequal action "timed-out" %}
 <div class="below_header_message">
     <div class="width_container">

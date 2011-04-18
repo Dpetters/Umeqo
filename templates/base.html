@@ -103,6 +103,32 @@ Copyright 2011. All Rights Reserved.
 			            <a href="/logout/?next=/?action=logged-out">Log out</a>
 			        </div>
 			    </div>
+			{% else %}
+				<div id="loginWrapper">
+				    <form id="login_form" action="/login/" method='POST'>
+				        {% csrf_token %}
+				        <div class="errorspace"></div>
+				        <div id="username" class="input_div">
+				            <label for="id_username">Username</label>
+				            {{login_form.username}}
+				        </div>
+				        <div class="errorspace"></div>
+				        <div id="password" class="input_div">
+				            <label for="id_password">Password</label>
+				            {{login_form.password}}
+				        </div>
+				        <div id="login_form_error_section">
+				        </div>
+				        <!-- Extra div to allow the proper positioning of the ajax loader-->
+				        <div id="button_wrapper_no_margins">
+				            <button id="login_form_submit_button" class="button" type='submit'>
+				                Login
+				            </button>
+				            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+				            <a href="/student/password/reset">Forgot password?</a>
+				        </div>
+				    </form>
+				</div>
 			{% endif %}
 			
             {% block below_header_area %}
