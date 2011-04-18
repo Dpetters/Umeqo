@@ -4,7 +4,6 @@
  Copyright 2011. All Rights Reserved.
 """
 
-#@PydevCodeAnalysisIgnore
 from django.contrib import admin
 from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
@@ -39,7 +38,7 @@ class RegistrationAdmin(admin.ModelAdmin):
         activated.
         
         """
-        if Site._meta.installed:
+        if Site._meta.installed: #@UndefinedVariable
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)

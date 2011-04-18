@@ -9,11 +9,11 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 
 from registration import signals
-from registration.forms import RegistrationForm
 from registration.models import RegistrationProfile
+from registration.forms import RegistrationForm
 
 
-class DefaultBackend(object):
+class RegistrationBackend(object):
     """
     A registration backend which follows a simple workflow:
 

@@ -11,14 +11,14 @@ from core.forms_helper import campus_org_types_as_choices
 from core.models import SchoolYear, GraduationYear, Course
 from core.fields import PdfField
 from core.choices import YES_NO_CHOICES
-
-class EmployerSubscriptionsForm(forms.ModelForm):
+    
+class StudentEmployerSubscriptionsForm(forms.ModelForm):
     
     class Meta:
         fields = ('subscribed_employers',)
         model = Student
 
-class ResumeUpdateForm(forms.ModelForm):
+class StudentUpdateResumeForm(forms.ModelForm):
 
     resume = PdfField()
 
@@ -26,7 +26,7 @@ class ResumeUpdateForm(forms.ModelForm):
         fields = ('resume',)
         model = Student
 
-class create_profile_form(forms.ModelForm):
+class StudentCreateProfileForm(forms.ModelForm):
             
     # First Name
     # Last Name
@@ -85,8 +85,8 @@ class create_profile_form(forms.ModelForm):
         model = Student
         
     def __init__(self, *args, **kwargs):
-        super(create_profile_form, self).__init__(*args, **kwargs)
+        super(StudentCreateProfileForm, self).__init__(*args, **kwargs)
         self.fields['campus_orgs'].choices = campus_org_types_as_choices()
 
-class edit_profile_form(create_profile_form):
+class edit_profile_form(StudentCreateProfileForm):
     resume = PdfField(required=False)

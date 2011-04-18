@@ -19,17 +19,63 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
+from django.shortcuts import redirect
 
 from events.models import Event
 from student import utils
-from student.forms import ResumeUpdateForm, EmployerSubscriptionsForm
+from student.forms import StudentUpdateResumeForm, StudentEmployerSubscriptionsForm
 from student.models import Student
+from registration.backend import RegistrationBackend
+from registration.forms import RegistrationForm
 from core.decorators import is_student
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
 
 
+def student_registration(request,
+             backend = RegistrationBackend(), 
+             success_url="/student/registeration/complete/", 
+             form_class=RegistrationForm,
+             disallowed_url='student_registration_disallowed',
+             template_name='student_registration.html'):
+    
+    if not backend.registration_allowed(request):
+        return redirect(disallowed_url)
+    
 
+    if request.method == 'POST':
+        form = form_class(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            username = email.split("@")[0]
+            """
+            ending = email.split("@")[1]
+            if ending != "mit.edu":
+                return HttpResponse(simplejson.dumps("notmit"), mimetype="application/json")
+
+            con = ldap.open('ldap.mit.edu')
+            con.simple_bind_s("", "")
+            dn = "dc=mit,dc=edu"
+            fields = ['cn', 'sn', 'givenName', 'mail', ]
+            result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
+            if result == []:
+                return HttpResponse(simplejson.dumps("notstudent"), mimetype="application/json") 
+            """
+            form.cleaned_data['username']= username
+            new_user = backend.register(request, **form.cleaned_data)
+            
+            Student.objects.create(user=new_user)
+            
+            return HttpResponse(simplejson.dumps(success_url), mimetype="application/json")
+    else:
+        form = form_class()
+
+    data = {
+            'form':form,
+            }
+    return render_to_response(template_name,
+                              data,
+                              context_instance=RequestContext(request))
 
 # Allows students to create campus organizations that are not listed yet.
 @login_required
@@ -136,7 +182,7 @@ def compute_suggested_employers_list(student, exclude = None):
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_employer_subscriptions(  request,
                                     template_name = "student_employer_subscriptions_dialog.html",
-                                    form_class=EmployerSubscriptionsForm,
+                                    form_class=StudentEmployerSubscriptionsForm,
                                     ):
     student = Student.objects.get(user__exact = request.user)
     
@@ -174,12 +220,12 @@ def student_events(request, template_name="student_events.html"):
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def create_profile(request, form_class=None,
+def student_create_profile(request, form_class=None,
                    template_name='student_create_profile.html',
                    extra_context=None):
 
     if request.student.profile_created:
-        return HttpResponseRedirect(reverse('student_edit_profile'))
+        return redirect('student_edit_profile')
 
     if form_class is None:
         form_class = utils.get_profile_form()
@@ -211,14 +257,14 @@ def create_profile(request, form_class=None,
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def edit_profile(request, form_class=None, success_url=None,
+def student_edit_profile(request, form_class=None, success_url=None,
                  template_name='student_edit_profile.html',
                  extra_context=None):
 
     try:
         profile_obj = request.user.get_profile()
     except ObjectDoesNotExist:
-        return HttpResponseRedirect(reverse('student_create_profile'))
+        return redirect('student_create_profile')
     
     
     if success_url is None:
@@ -266,7 +312,7 @@ def student_home(request, username, public_profile_field=None,
         try:
             profile_obj = user.get_profile()
         except ObjectDoesNotExist:
-            return HttpResponseRedirect('/student/create/')
+            return redirect('student_create_profile')
         if public_profile_field is not None and not getattr(profile_obj, public_profile_field):
             profile_obj = None
         
@@ -288,21 +334,18 @@ def student_home(request, username, public_profile_field=None,
         return HttpResponseRedirect("/student/" + str(request.user) + "/")
     
 
-def student_update_resume(request):
+def student_update_resume(request,
+                          form_class=StudentUpdateResumeForm):
     if request.method == 'POST':
-        try:
-            profile_obj = request.user.get_profile()
-        except ObjectDoesNotExist:
-            return HttpResponseRedirect(reverse('student_create_profile'))
         if request.GET.has_key('base64'):
             pass # NEED TO SUPPORT CHROME LATER
         else:
-            form = ResumeUpdateForm(data=request.POST, files=request.FILES, instance=profile_obj)
-            prev_resume =str(profile_obj.resume)
+            form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+            prev_resume =str(request.user.student.resume)
             if form.is_valid():
                 subprocess.Popen("rm "+ settings.MEDIA_ROOT + prev_resume, shell=True)
                 form.save()
-                return process_resume(profile_obj)
+                return process_resume(request.user.student)
     return HttpResponseRedirect('/')
 
 def process_resume(profile):
