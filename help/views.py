@@ -12,9 +12,10 @@ from models import Topic
 from help import enums
 
 def help(request,
-         template_name='help.html'):
+         template_name='help.html',
+         extra_context = None):
     
-    data = {'topics':[]}
+    context = {'topics':[]}
     if hasattr(request.user, "employer"):
         topics = Topic.objects.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.ALL))
     elif hasattr(request.user, "student"):
@@ -31,8 +32,9 @@ def help(request,
         else:
             questions = topic.question_set.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
         
-        data['topics'].append({'name': topic, 'questions':questions})
-    
+        context['topics'].append({'name': topic, 'questions':questions})
+
+    context.update(extra_context or {})  
     return render_to_response(template_name,
-                              data,
+                              context,
                               context_instance=RequestContext(request))

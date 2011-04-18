@@ -15,7 +15,8 @@ from events.models import Event
 
 @never_cache
 def home(request,
-         template_name="home.html"):
+         template_name="home.html",
+         extra_context=None):
     
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
@@ -24,15 +25,16 @@ def home(request,
             url = "/employer/"
         return HttpResponseRedirect(url + str(request.user) + "/")
     
-    data = {}
+    context = {}
     
-    data['action'] = request.REQUEST.get('action', '')
+    context['action'] = request.REQUEST.get('action', '')
     
     event_kwargs = {}
     event_kwargs['datetime__gt'] = datetime.datetime.now()
     events = Event.objects.filter(**event_kwargs).order_by("-datetime_created")
-    data['events'] = list(events)[:3]
+    context['events'] = list(events)[:3]
     
+    context.update(extra_context or {})
     return render_to_response(template_name,
-                              data,
+                              context,
                               context_instance=RequestContext(request))

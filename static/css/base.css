@@ -723,6 +723,7 @@ button.ui-multiselect[type=button]:hover {
     text-shadow: #000 0 -1px 0;
 }
 #account_dropdown {
+	min-width:120px;
     display: block;
     position: absolute;
     right: 2px;

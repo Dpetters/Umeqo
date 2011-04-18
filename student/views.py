@@ -42,7 +42,6 @@ def student_registration(request,
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
     
-
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -70,11 +69,11 @@ def student_registration(request,
     else:
         form = form_class()
 
-    data = {
+    context = {
             'form':form,
             }
     return render_to_response(template_name,
-                              data,
+                              context,
                               context_instance=RequestContext(request))
 
 # Allows students to create campus organizations that are not listed yet.
@@ -303,39 +302,22 @@ def student_edit_profile(request, form_class=None, success_url=None,
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_home(request, username, public_profile_field=None,
-                   template_name='student_home.html',
-                   extra_context=None):
+def student_home(request, 
+                 username,
+                 template_name='student_home.html',
+                 extra_context=None):
 
     if username == str(request.user):
-        user = get_object_or_404(User, username=username)
-        try:
-            profile_obj = user.get_profile()
-        except ObjectDoesNotExist:
-            return redirect('student_create_profile')
-        if public_profile_field is not None and not getattr(profile_obj, public_profile_field):
-            profile_obj = None
-        
-        if extra_context is None:
-            extra_context = {}
-        context = RequestContext(request)
-        for key, value in extra_context.items():
-            context[key] = callable(value) and value() or value
-        
-        data = {  
-                'student' : profile_obj,
-                'num_of_students':len(Student.objects.all())
-                }
-            
-        return render_to_response(template_name,
-                                  data,
-                                  context_instance=context)
+        context = {}
+        context.update(extra_context or {}) 
+        return render_to_response(template_name, context, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect("/student/" + str(request.user) + "/")
     
 
 def student_update_resume(request,
                           form_class=StudentUpdateResumeForm):
+    print request.is_ajax()
     if request.method == 'POST':
         if request.GET.has_key('base64'):
             pass # NEED TO SUPPORT CHROME LATER
