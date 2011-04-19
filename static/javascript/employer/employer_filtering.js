@@ -363,7 +363,7 @@ $(document).ready( function() {
                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'))
             },
             type: 'POST',
-            url: '/employer/results/',
+            url: '/employer/filtering/',
             data: {'results_per_page':1,
                 'query': query,
                 'gpa' : gpa,

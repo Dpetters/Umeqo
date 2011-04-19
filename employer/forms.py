@@ -11,7 +11,7 @@ from core.choices import YES_NO_CHOICES
 from core.forms_helper import campus_org_types_as_choices
 
 from employer.models import Employer
-from employer.choices import results_per_page, ORDERING_CHOICES
+from employer import enums
 
 
 class SearchForm(forms.Form):
@@ -67,8 +67,8 @@ class FilteringForm(forms.Form):
     looking_for_internship = forms.ChoiceField(choices = YES_NO_CHOICES)
     looking_for_fulltime = forms.ChoiceField(choices = YES_NO_CHOICES)
         
-    ordering = forms.ChoiceField(choices = ORDERING_CHOICES)
-    results_per_page = forms.ChoiceField(choices = results_per_page)
+    ordering = forms.ChoiceField(choices = enums.ORDERING_CHOICES)
+    results_per_page = forms.ChoiceField(choices = enums.RESULTS_PER_PAGE_CHOICES)
     def __init__(self, *args, **kwargs):
         super(FilteringForm, self).__init__(*args, **kwargs)
         self.fields['campus_orgs'].choices = campus_org_types_as_choices()

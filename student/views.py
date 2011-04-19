@@ -128,6 +128,12 @@ def student_create_language(request, form_class=CreateLanguageForm):
 def student_profile_form_info(request): #@UnusedVariable
     return render_to_response("student_profile_form_info.html")
 
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_account_settings(request, template_name="student_account_settings.html", extra_context=None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -220,8 +226,8 @@ def student_events(request, template_name="student_events.html"):
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_create_profile(request, form_class=None,
-                   template_name='student_create_profile.html',
-                   extra_context=None):
+                           template_name='student_create_profile.html',
+                           extra_context=None):
 
     if request.student.profile_created:
         return redirect('student_edit_profile')

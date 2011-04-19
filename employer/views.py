@@ -25,23 +25,25 @@ from events.models import Event
 from notification import models as notification
 from haystack.query import SearchQuerySet
 from notification.models import Notice
+from employer import enums
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_home(request, username, template_name="employer_home.html"):
+def employer_home(request, username, template_name="employer_home.html", extra_context = None):
     if username == str(request.user):
         employer = Employer.objects.get(user = request.user)
         
         if employer.automatic_filtering_setup_completed:
             check_for_new_student_matches(employer)
         
-        data = {}
+        context = {}
         
-        data['form'] = SearchForm()
-        data['notices'] = Notice.objects.notices_for(request.user)
-        data['unseen_notice_num'] = Notice.objects.unseen_count_for(request.user)
+        context['search_form'] = SearchForm()
+        context['notices'] = Notice.objects.notices_for(request.user)
+        context['unseen_notice_num'] = Notice.objects.unseen_count_for(request.user)
         
-        return render_to_response(template_name, data, context_instance=RequestContext(request))
+        context.update(extra_context or {})
+        return render_to_response(template_name, context, context_instance=RequestContext(request))
     else:
         try:
             Employer.objects.get(user__username=username)
@@ -66,41 +68,17 @@ def check_for_new_student_matches(employer):
     
     notification.send([employer.user], 'new_student_matches', {'students':new_student_matches})
                                                  
-def employer_register(request, template_name="employer_registration.html"):
-    return render_to_response(template_name, context_instance=RequestContext(request))
+def employer_register(request, template_name="employer_registration.html", extra_context = None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_add_to_resume_book(request, student_id):
     employer = Employer.objects.get(user__exact = request.user)
     employer.cart.add(Student.objects.get(id=student_id))
-    return HttpResponse(simplejson.dumps({"valid":True}))
-    
-def filter_students(gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, courses=None):
-    kwargs = {}    
-    
-    all_students = Student.objects.all()
-    
-    if gpa:
-        kwargs['gpa__gte'] = gpa
-    if act:
-        kwargs['act__gte'] = act
-    if sat_t:
-        kwargs['sat_t__gte'] = sat_t
-    if sat_m:
-        kwargs['sat_m__gte'] = sat_m
-    if sat_v:
-        kwargs['sat_v__gte'] = sat_v
-    if sat_w:
-        kwargs['sat_w__gte'] = sat_w
-        
-    filtering_results = all_students.filter(**kwargs)
-    
-    if courses:
-        filtering_results = filtering_results.filter(Q(first_major__name__in=courses) | Q(second_major__name__in=courses))
-    
-    return filtering_results
-    
+    return HttpResponse(simplejson.dumps({"valid":True}))    
     
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
@@ -131,25 +109,34 @@ def employer_setup_default_filtering_parameters(request,
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_event(request, template_name="employer/employer_event.html"):
-    employer = Employer.objects.get(user__exact = request.user)
-    
-    data = {
-    'employer':employer,
-    }
-    return render_to_response(template_name, data, context_instance=RequestContext(request))
+def employer_event(request, template_name="employer/employer_event.html", extra_context=None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_events(request, template_name="employer/employer_events.html"):
+def employer_event_summary(request, template_name="employer/employer_event_summary.html", extra_context=None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
-    employer = Employer.objects.get(user__exact = request.user)
 
-    data = {
-            'upcoming_events':employer.events.filter(datetime__gt=datetime.datetime.now()),
-            'user': employer.company_name,
-            }   
-    return render_to_response(template_name, data, context_instance=RequestContext(request))
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def employer_account_settings(request, template_name="employer/employer_account_settings.html", extra_context=None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def employer_events(request, template_name="employer/employer_events.html", extra_context=None):
+    context = {}
+    context['upcoming_events'] = request.user.employer.events.filter(datetime__gt=datetime.datetime.now())
+    context.update(extra_context or {})
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
@@ -179,11 +166,66 @@ def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVari
                 return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     return HttpResponseRedirect('/')
 
+def filter_students(gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, courses=None):
+    kwargs = {}    
+    
+    all_students = Student.objects.all()
+    
+    if gpa:
+        kwargs['gpa__gte'] = gpa
+    if act:
+        kwargs['act__gte'] = act
+    if sat_t:
+        kwargs['sat_t__gte'] = sat_t
+    if sat_m:
+        kwargs['sat_m__gte'] = sat_m
+    if sat_v:
+        kwargs['sat_v__gte'] = sat_v
+    if sat_w:
+        kwargs['sat_w__gte'] = sat_w
+        
+    filtering_results = all_students.filter(**kwargs)
+    
+    if courses:
+        filtering_results = filtering_results.filter(Q(first_major__name__in=courses) | Q(second_major__name__in=courses))
+    
+    return filtering_results
+
+def search_students(query):
+    print "in search students"
+    search_query_set = SearchQuerySet().filter(content=query)
+    return [result.object for result in search_query_set]
+    
+
+def order_results(filtering_results, search_results, ordering):
+    ordered_results = []
+    if search_results:
+        if ordering == enums.ORDERING_CHOICES[0][0]:
+            for student in search_results:
+                if student in filtering_results:
+                    ordered_results.append(student)
+        else:
+            filtering_results.order(ordering)
+            for student in filtering_results:
+                if student in search_results:
+                    ordered_results.append(student)
+        return ordered_results
+    else:
+        if ordering == enums.ORDERING_CHOICES[0][0]:
+            return filtering_results.order_by('last_updated')
+        else:
+            return filtering_results.order_by(ordering)        
+        
+        
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_filtering_results(request, template_name='employer_results.html'):
-
-    if request.method == "POST":
+def employer_filtering(request,
+                       result_template_name='employer_results.html',
+                       filtering_page_template_name='employer_filtering.html',
+                       extra_context=None):
+    context = {}
+    
+    if request.is_ajax():
         
         gpa=None
         if request.POST['gpa'] != "0":
@@ -210,59 +252,48 @@ def employer_filtering_results(request, template_name='employer_results.html'):
             sat_w = request.POST['sat_w']
 
         filtering_results = filter_students(gpa, act, sat_t, sat_m, sat_v, sat_w)
-
-        """
-        if request.GET.has_key('courses[]'):
-            filtering_results = filtering_results.filter(Q(first_major__name__in=request.GET.getlist('courses[]')) | Q(second_major__name__in=request.GET.getlist('courses[]'))).order_by("-last_updated")
-        """
         
+        search_results = []
+        if request.POST['query'] != None:
+            search_results = search_students(request.POST['query'])
         
-        # We have a search query too, so do that and then only keep the ones
-        # that were also in the filtering results.
-        if request.POST['query'] != 'null':
-            sqs= SearchQuerySet().filter(content=request.POST['query'])
-            results = []
-            if request.POST['ordering'] == "relevancy":
-                for student in sqs:
-                    if student.object in filtering_results:
-                        results.append(student.object)
-            else:
-                array_of_ids = [student.objectid for student in sqs]
-                results = filtering_results.filter(id__in=array_of_ids)
-        else:
-            if request.POST['ordering'] == "relevancy":
-                results = list(filtering_results.order_by('last_updated'))*100
-            else:
-                results = filtering_results.order_by(request.POST['ordering'])
+        ordered_results = order_results(filtering_results, search_results, request.POST['ordering'])
         
-        """
-        for student in results:
-            student.results_count += 1
+        for student in ordered_results:
+            student.shown_in_results_count += 1
             student.save()
-        """
-        paginator = DiggPaginator(results, int(request.POST['results_per_page']), body=5, padding=1, margin=2) 
+        
+        paginator = DiggPaginator(ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2) 
 
-        data = {} 
-        data['page'] = paginator.page(request.POST['page'])
+        context['page'] = paginator.page(request.POST['page'])
+        
+        context.update(extra_context or {})        
+        return render_to_response(result_template_name, context, context_instance=RequestContext(request))
 
-        return render_to_response(template_name, data, context_instance=RequestContext(request))
+    else:
+        if request.method == "POST" and request.POST.has_key('query'):
+            form = SearchForm(data=request.POST)
+            if form.is_valid():
+                form.clean()
+                context['query'] = form.cleaned_data['query']
+        context['filtering_form'] = FilteringForm(initial={'ordering': request.user.employer.default_student_ordering, 'results_per_page' : request.user.employer.results_per_page})
+        context['search_form'] = SearchForm()
+        
+    context.update(extra_context or {})
+    return render_to_response(filtering_page_template_name, context, context_instance=RequestContext(request))
+
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_filtering(request, template_name='employer_filtering.html'):
-    
-    data = {}
-    data['user'] = Employer.objects.get(user = request.user)
-    data['filtering_form'] = FilteringForm(initial={'ordering': data['user'].default_student_ordering, 'results_per_page' : data['user'].results_per_page})
-    data['search_form'] = SearchForm()
-    data['cart'] = request.session.get('cart', {})
-    
-    form = SearchForm(data=request.POST)
-    if request.method == "POST" and request.POST.has_key('query') and form.is_valid():
-        form.clean()
-        data['query'] = form.cleaned_data['query']
-    return render_to_response(template_name, data, context_instance=RequestContext(request))
-    
+def employer_invitations(request, template_name='employer_invitations.html', extra_context=None):
+    context = {}
+    context.update(extra_context or {})  
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+    """
+    if request.GET.has_key('courses[]'):
+        filtering_results = filtering_results.filter(Q(first_major__name__in=request.GET.getlist('courses[]')) | Q(second_major__name__in=request.GET.getlist('courses[]'))).order_by("-last_updated")
+    """
     """
     if request.is_ajax():
         if cache.get('page') and (int(cache.get('page')) == int(request.GET['page'])+1 or int(cache.get('page')) == int(request.GET['page'])-1):

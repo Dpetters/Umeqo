@@ -5,7 +5,6 @@
 """
 
 from django.db import models
-from django.db.models import Count
 
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, UserProfile, Language, Industry
 from core.models_helper import get_resume_filename
@@ -15,6 +14,8 @@ from events.models import Event
 
 class Student(UserProfile):
 
+    active = models.BooleanField(default=True)
+    
     # Required Info
     first_name = models.CharField(max_length = 20, blank = True, null=True)
     last_name = models.CharField(max_length = 30, blank = True, null=True)

@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^messages/', include('messages.urls')),
     (r'^notifications/', include('notification.urls')),
-    url(r'^logout/$', auth_views.logout, name='auth_logout'),
+    url(r'^logout/$', auth_views.logout_then_login, {'login_url':'/?action=logged-out'}, name='logout'),
     url(r'^password/change/$', auth_views.password_change, {'template_name' : 'password_change_form.html'}, name='auth_password_change'),
     url(r'^password/change/done/$', auth_views.password_change_done, {'template_name' : 'password_change_done.html'}, name='auth_password_change_done'),
     url(r'^password/reset/$', auth_views.password_reset, {'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset'),
@@ -65,26 +65,37 @@ urlpatterns += patterns('student.views',
     (r'^student/create-campus-organization/$', 'student_create_campus_organization', {}, 'student_create_campus_organization'),
     (r'^student/create-language/$', 'student_create_language', {}, 'student_create_language'),
     (r'^student/update-resume/$', 'student_update_resume', {}, 'student_update_resume'),
-    # Student Home
-    (r'^student/(?P<username>\w+)/$', 'student_home', {}, "student_home"),    
+    # Student Account Settings
+    (r'^student/account-settings/$', 'student_account_settings', {}, "student_account_settings"),   
     # Student Employer Subscriptions
     (r'^student/employer-subscriptions/$', 'student_employer_subscriptions', {}, 'student_employer_subscriptions'),
     (r'^student/suggested-employers-list/$', 'student_suggested_employers_list', {}, 'student_suggested_employers_list'),
     # Student Events
     (r'^student/events/$', 'student_events', {}, 'student_events'),
     # Student Invitations
-    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),    
+    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),
+    # Student Home
+    (r'^student/(?P<username>\w+)/$', 'student_home', {}, "student_home"),    
 )
 
 urlpatterns += patterns('employer.views',
+    # Employer Registration
+    (r'^employer/register/$', 'employer_register', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_register'),
+    # Employer Account Settings
+    (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'), 
+    # Employer Student Default Filtering Parameters
+    (r'^employer/setup-default-filtering-parameters', 'employer_setup_default_filtering_parameters', {}, 'employer_setup_default_filtering_parameters'),
+    # Employer Student Filtering
     (r'^employer/add-to-resume-book/(?P<student_id>\d+)/$', 'employer_add_to_resume_book', {}, 'employer_add_to_resume_book'),
     (r'^employer/filtering/$', 'employer_filtering', {}, 'employer_filtering'),
-    (r'^employer/results/$', 'employer_filtering_results', {}, 'employer_filtering_results'),
-    (r'^employer/setup-default-filtering-parameters', 'employer_setup_default_filtering_parameters', {}, 'employer_setup_default_filtering_parameters'),
-    (r'^employer/register/$', 'employer_register', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_register'),
+    # Employer Events
     (r'^employer/events/$', 'employer_events', {}, 'employer_events'),
+    (r'^employer/events/summary/(?P<id>\d+)/$', 'employer_event_summary', {}, 'employer_event_summary'),
     (r'^employer/events/(?P<id>\d+)/$', 'employer_event', {}, 'employer_event'),
     (r'^employer/events/new/$', 'employer_new_event', {}, 'employer_new_event'),
+    # Employer Invitations
+    (r'^employer/invitations/$', 'employer_invitations', {}, 'employer_invitations'),
+    # Employer Home
     (r'^employer/(?P<username>\w+)/$', 'employer_home', {}, 'employer_home'),
 )
 

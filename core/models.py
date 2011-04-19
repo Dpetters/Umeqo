@@ -27,7 +27,7 @@ class CommonInfo(models.Model):
  
  
 class SchoolYear(models.Model):
-    name = models.CharField("School Year", max_length=43, unique=True, help_text="Maximum 43 characters.")
+    name = models.CharField("School Year", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
@@ -57,7 +57,7 @@ class GraduationYear(models.Model):
 
 
 class Language(models.Model):
-    name = models.CharField(max_length=43, unique=True, help_text="Maximum 43 characters")
+    name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters")
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
         
@@ -70,7 +70,7 @@ class Language(models.Model):
     
     
 class Course(CommonInfo):
-    name = models.CharField("Course Name", max_length=43, unique=True, help_text="Maximum 41 characters.")
+    name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
     admin = models.CharField("Course Administrator", max_length=41, blank=True, null=True, help_text="Maximum 43 characters.")
     
@@ -85,7 +85,7 @@ class Course(CommonInfo):
         super(Course, self).save(*args, **kwargs)
         
 class CampusOrgType(models.Model):
-    name = models.CharField("On-Campus Organization Type", max_length=43, unique=True, help_text="Maximum 43 characters.")
+    name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
         
@@ -102,7 +102,7 @@ class CampusOrgType(models.Model):
     
     
 class CampusOrg(CommonInfo):
-    name = models.CharField("On-Campus Organization Name", max_length=43, unique=True, help_text="Maximum 43 characters.")
+    name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     type = models.ForeignKey(CampusOrgType)
 
     def save(self, *args, **kwargs):
@@ -115,7 +115,7 @@ class CampusOrg(CommonInfo):
 
         
 class Industry(models.Model):
-    name = models.CharField("Industry Name", max_length=43, unique=True, help_text="Maximum 43 characters.")
+    name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
     

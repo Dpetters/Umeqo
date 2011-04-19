@@ -25,6 +25,8 @@ def home(request,
             url = "/employer/"
         return HttpResponseRedirect(url + str(request.user) + "/")
     
+    request.session.set_test_cookie()
+    
     context = {}
     
     context['action'] = request.REQUEST.get('action', '')
