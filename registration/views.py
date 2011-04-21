@@ -1,3 +1,9 @@
+"""
+ Developers : Dmitrij Petters,
+ All code is property of original developers.
+ Copyright 2011. All Rights Reserved.
+"""
+
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate
@@ -8,9 +14,10 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
 from registration.backend import RegistrationBackend
 from registration.view_helpers import modify_redirect
 
+
 def login(request,
-        redirect_field_name = REDIRECT_FIELD_NAME,
-        template_name='homepage.html'):
+          redirect_field_name = REDIRECT_FIELD_NAME,
+          template_name='homepage.html'):
 
     if request.is_ajax():
         redirect_to = request.REQUEST.get(redirect_field_name, '')
@@ -30,10 +37,11 @@ def login(request,
                     auth_login(request, user_cache)
                     return HttpResponse(simplejson.dumps(modify_redirect(request, redirect_to)), mimetype="application/json")
     return redirect("home")
-            
+
+
 def activate_user(request, 
                   backend = RegistrationBackend(),
-                  template_name='registration/invalid_activation_link.html',
+                  template_name='invalid_activation_link.html',
                   success_url=None, 
                   extra_context=None, 
                   **kwargs):
@@ -46,13 +54,8 @@ def activate_user(request,
             return redirect(to, *args, **kwargs)
         else:
             return redirect(success_url)
-
-    if extra_context is None:
-        extra_context = {}
-    context = RequestContext(request)
-    for key, value in extra_context.items():
-        context[key] = callable(value) and value() or value
-
+        
+    kwargs.update(extra_context or {})
     return render_to_response(template_name,
                               kwargs,
-                              context_instance=context)
+                              context_instance=RequestContext(request))

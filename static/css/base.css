@@ -547,6 +547,7 @@ a:focus {
     width:99%;
     margin-top:3px;
     height:200px;
+    resize: none;
 }
 /* General Styles */
 .nounderline {

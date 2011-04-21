@@ -10,6 +10,17 @@ from core.models import CampusOrg, SchoolYear, GraduationYear, Course, UserProfi
 from core.models_helper import get_resume_filename
 from employer.models import Employer
 from events.models import Event
+from student import enums as student_enums
+
+
+class StudentList(models.Model):
+    name = models.CharField("Student List Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    students = models.ManyToManyField("student.Student", blank = True, null = True)
+    employers = models.ManyToManyField("employer.Employer", blank = True, null = True)
+    type = models.IntegerField(choices=student_enums.STUDENT_GROUP_TYPE_CHOICES)
+
+    # Meta
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
 
 
 class Student(UserProfile):
@@ -73,62 +84,7 @@ class Student(UserProfile):
 
     class Meta:
         verbose_name_plural = "Students"
-    """
-    def rank(self):
-        aggregate = Student.objects.extra({'popularity':'invite_count*10+add_to_cart_count*5+resume_view_count*3 + results_count*1'}).aggregate(rank=Count('popularity'))
-        return aggregate['rank']
-    """
-    """
-    def __json__(self):
-        json = { 'first_name' : self.first_name,
-                 'last_name' : self.last_name,
-                 'school_year' : self.school_year,
-                 'graduation_year' : self.graduation_year,
-                 'first_major' : {'display' : self.first_major.display,
-                                  'num' : self.first_major.num,
-                                  'name' : self.first_major.name},
-                 'gpa' : str(self.gpa),
-                 'resume' : str(self.resume),
-                 'older_than_18' : self.older_than_18,
-                 'citizen' : self.citizen,
-                 'phone' : self.phone,
-                 'languages' : self.languages,
-                 'website' : self.website,
-                 'sat_t' : str(self.sat_t),
-                 'sat_m' : str(self.sat_m),
-                 'sat_v' : str(self.sat_v),
-                 'sat_w' : str(self.sat_w),
-                 'act' : str(self.act),
-                 'requires_sponsorship' : self.requires_sponsorship,
-                 'looking_for_internship' : self.looking_for_internship,
-                 'looking_for_fulltime' : self.looking_for_fulltime}
-        
-        campus_orgs = []
-        for org in self.campus_org.all():
-            campus_orgs.append({'display' : org.display,
-                                 'name' : org.name,
-                                 'type' : org.type})
-        if campus_orgs:
-            json['campus_orgs'] = campus_orgs
-        
-        employers = []
-        for employer in self.previous_employers.all():
-            employers.append({'name' : employer.company_name})
-        if employers:
-            json['employers'] = employers
-
-        industries = []
-        for industry in self.industries_of_interest.all():
-            industries.append({'name' : industry.name})
-        if industries:
-            json['industries'] = industries
-                    
-        if self.second_major:
-            json['second_major'] = {'display' : self.second_major.display,
-                                   'num' : self.second_major.num,
-                                   'name' : self.second_major.name}
-        return json
-    """
+    
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
   

@@ -8,9 +8,7 @@ $(document).ready( function() {
 
 	// Password Reset Confirm Form Validation
 	password_reset_form_validator = $("#password_reset_confirm_form").validate({
-		highlight: function(element, errorClass) {
-			highlight(element, errorClass);
-		},
+		highlight: highlight,
 		unhighlight: unhighlight,
 		errorPlacement: place_errors,
 		rules: {

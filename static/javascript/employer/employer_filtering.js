@@ -194,37 +194,6 @@ $(document).ready( function() {
         ordering = $("#id_ordering option:selected").val();
         initiate_ajax_call();
     });
-    // Opens Dialog
-    function open_dialog() {
-        var dialog = $('<div></div>')
-        .html('<img class="spinner" title="Loading" src="/static/images/page_elements/loaders/loader.gif" alt="Loading...">')
-        .dialog({
-            autoOpen: false,
-            title: this.id,
-            resizable: false,
-            width: 650,
-            height: 300,
-            maxWidth: 500
-        });
-        dialog.dialog('open');
-        return dialog;
-    };
-
-    function course_click() {
-        var dialog = open_dialog();
-        $.get("/get_course_info/", {'course_name': this.id}, function(data) {
-            var content = "<img align='left' class='image' src='/static/"+data['image'] + "' title=" + data['name'] + " alt=" + data['name'] + ">" +
-            "<p class='content_info'><strong>Course Number: </strong>" + data['num'] + "</p>" +
-            "<p class='content_info'><strong>Department Head: </strong>" + data['admin'] + "</p>" +
-            "<p class='content_info'><strong>Contact Email: </strong>" + data['email'] + "</p>" +
-            "<p class='content_info'><strong>Website: </strong>" + data['email'] + "</p>" +
-            "<p class='content_info'><strong>Course Description: </strong>" + data['description'] + "</p>";
-            dialog.html(content);
-        }, "json");
-        return false;
-    };
-
-    $(".course_link").live('click', course_click);
 
     $(".page_link").live('click', function() {
         page = $(this).attr("id").substring(5);

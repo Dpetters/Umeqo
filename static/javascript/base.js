@@ -49,7 +49,7 @@ $(document).ready( function () {
         var contact_us_dialog_timeout = setTimeout(show_loading_failed_message, 10000);
         $.ajax({
             dataType: "html",
-            url: '/contact_us_dialog/',
+            url: '/contact-us-dialog/',
             success: function (data) {
                 clearTimeout(contact_us_dialog_timeout);
 

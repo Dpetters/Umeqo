@@ -51,7 +51,7 @@ $(document).ready( function() {
                 required: true,
                 email:true,
                 remote: {
-                	url:"/check_email_availability/",
+                	url:"/check-email-availability/",
                 	error: function(jqXHR, textStatus, errorThrown) {
 	            		switch(jqXHR.status){
 	            			case 500:

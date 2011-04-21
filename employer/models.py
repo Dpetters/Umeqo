@@ -8,20 +8,12 @@ from django.db import models
 from django.contrib.localflavor.us.models import PhoneNumberField
 
 from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, UserProfile
-from employer import enums
-
-class StudentList(models.Model):
-    name = models.CharField("Student List Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    students = models.ManyToManyField("student.Student", blank = True, null = True)
-    employers = models.ManyToManyField("employer.Employer", blank = True, null = True)
-    type = models.IntegerField( choices=enums.STUDENT_GROUP_TYPE_CHOICES)
-
-    # Meta
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+from employer import enums as employer_enums
     
 class Employer(UserProfile):
     
     active = models.BooleanField(default=True)
+    subscriber = models.BooleanField(default=True)
     
     # Required Info
     company_name = models.CharField("Company Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
@@ -64,8 +56,8 @@ class Employer(UserProfile):
     
     # Preferences
     email_on_rsvp = models.BooleanField()
-    results_per_page = models.PositiveSmallIntegerField(choices=enums.RESULTS_PER_PAGE_CHOICES, default=10)
-    default_student_ordering = models.CharField(max_length = 42, choices=enums.ORDERING_CHOICES, default=enums.ORDERING_CHOICES[0][0])
+    results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
+    default_student_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
     # Meta
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
     

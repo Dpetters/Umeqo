@@ -5,10 +5,7 @@
 """
 
 import os
-#import inspect
-#ROOT = inspect.currentframe().f_code.co_filename
-
-ROOT = os.path.dirname(os.path.realpath(__file__))#.replace('\\','/')
+ROOT = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

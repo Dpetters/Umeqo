@@ -26,10 +26,11 @@ from django.utils import simplejson
 from django.contrib.auth.models import User
 
 from help.models import Topic, Question
-from help import enums
+from help import enums as help_enums
+from employer import enums as employer_enums
 from events.models import Event, EventType, RSVPType
 from core.models import Industry, GraduationYear, SchoolYear, Language, Course, CampusOrg, CampusOrgType
-from employer.models import Employer
+from employer.models import StudentList, Employer
 from student.models import Student
 
 # Change the following email to yours. All emails sent 
@@ -106,23 +107,23 @@ sample_employer_user2.save()
 print "Created Employer User Accounts"
 
 # Create FAQ Topics
-basics_topic = Topic.objects.create(name="Basics", slug="basics", sort_order=0, audience=enums.ALL)
+basics_topic = Topic.objects.create(name="Basics", slug="basics", sort_order=0, audience=help_enums.ALL)
 
-employer_registration = Topic.objects.create(name="Registration", slug="registration", sort_order=0, audience=enums.EMPLOYER)
-employer_account_management = Topic.objects.create(name="Account Management", slug="account-management", sort_order=1, audience=enums.EMPLOYER)
-employer_student_filtering = Topic.objects.create(name="Student Filtering", slug="student-filtering", sort_order=2, audience=enums.EMPLOYER)
-employer_resumebooks = Topic.objects.create(name="Resumebooks", slug="resumebooks", sort_order=3, audience=enums.EMPLOYER)
-employer_events = Topic.objects.create(name="Events", slug="events", sort_order=4, audience=enums.EMPLOYER)
-employer_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=5, audience=enums.EMPLOYER)
+employer_registration = Topic.objects.create(name="Registration", slug="registration", sort_order=0, audience=help_enums.EMPLOYER)
+employer_account_management = Topic.objects.create(name="Account Management", slug="account-management", sort_order=1, audience=help_enums.EMPLOYER)
+employer_student_filtering = Topic.objects.create(name="Student Filtering", slug="student-filtering", sort_order=2, audience=help_enums.EMPLOYER)
+employer_resumebooks = Topic.objects.create(name="Resumebooks", slug="resumebooks", sort_order=3, audience=help_enums.EMPLOYER)
+employer_events = Topic.objects.create(name="Events", slug="events", sort_order=4, audience=help_enums.EMPLOYER)
+employer_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=5, audience=help_enums.EMPLOYER)
 
-student_registration = Topic.objects.create(name="Registration", slug="registration", sort_order=0, audience=enums.STUDENT)
-student_account_management = Topic.objects.create(name="Account Management", slug="account-management", sort_order=1, audience=enums.STUDENT)
-student_employer_subscriptions = Topic.objects.create(name="Employer Subscriptions", slug="employer_subscriptions", sort_order=2, audience=enums.STUDENT)
-student_events = Topic.objects.create(name="Events", slug="events", sort_order=3, audience=enums.STUDENT)
-student_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=4, audience=enums.STUDENT)
+student_registration = Topic.objects.create(name="Registration", slug="registration", sort_order=0, audience=help_enums.STUDENT)
+student_account_management = Topic.objects.create(name="Account Management", slug="account-management", sort_order=1, audience=help_enums.STUDENT)
+student_employer_subscriptions = Topic.objects.create(name="Employer Subscriptions", slug="employer_subscriptions", sort_order=2, audience=help_enums.STUDENT)
+student_events = Topic.objects.create(name="Events", slug="events", sort_order=3, audience=help_enums.STUDENT)
+student_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=4, audience=help_enums.STUDENT)
 
 # Create FAQ Questions
-Question.objects.create(topic=basics_topic, question="What is Umeqo?", slug="what-is-umeqo", answer="Umeqo is a new platform for helping students and employers connect during recruiting season.", status=enums.ACTIVE, audience=enums.ALL, sort_order=0)
+Question.objects.create(topic=basics_topic, question="What is Umeqo?", slug="what-is-umeqo", answer="Umeqo is a new platform for helping students and employers connect during recruiting season.", status=help_enums.ACTIVE, audience=help_enums.ALL, sort_order=0)
 
 # Create Industries
 new_contents_path = ROOT + "/initial_content/Industries/"
@@ -148,7 +149,11 @@ sample_employer2.industries.add(Industry.objects.get(name__exact="Trucking & Tru
 sample_employer2.industries.add(Industry.objects.get(name__exact="Waste Management"))
 print "Created Employers"
 
-
+# Create Student Lists 
+all_students = StudentList.objects.create(name="All Students", type=employer_enums.GENERAL)
+all_students.students.add(*list(Student.objects.filter(active=True)))
+all_students.employers.add(*list(Employer.objects.filter(subscriber=True)))
+print "Created Student Lists"
 
 # Create Graduation Years
 new_contents_path = ROOT + "/initial_content/GraduationYears/"

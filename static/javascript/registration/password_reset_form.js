@@ -15,7 +15,7 @@ $(document).ready( function() {
 				required: true,
 				email: true,
 				remote: {
-					url: "/check_email_existence/",
+					url: "/check-email-existence/",
 					beforeSend: function() {
 						$("#password_reset_form label.error").css("display", "none");
 					}

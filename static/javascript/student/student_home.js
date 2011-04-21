@@ -174,7 +174,7 @@ $(document).ready( function() {
 			},
 			onload : function (e) {
 				up.uploading = false;
-				currentRequest = $.getJSON("/resume_info/", function(data) {
+				currentRequest = $.getJSON("/student/resume-info/", function(data) {
 					$('#drop-area').html('<p>Resume Updated</p><p>'+ data["num_of_extracted_keywords"]+ ' keywords extracted.').removeClass('uploading').addClass('success');
 					$("#view_resume_link").attr("href", "/static/" + data["path_to_new_resume"]);
 				});
