@@ -36,7 +36,7 @@ class Question(models.Model):
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
     sort_order = models.IntegerField(_('sort order'), default=0, help_text='This in which you would like the question to be displayed.')
     
-    question = models.TextField(_('question'), unique=True)
+    question = models.TextField(_('question'))
     answer = models.TextField( _('answer')) 
     
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
