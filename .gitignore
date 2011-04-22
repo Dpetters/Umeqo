@@ -10,3 +10,4 @@
 .settings
 media
 xapian_index
+settings_local.py
