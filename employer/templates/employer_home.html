@@ -86,14 +86,14 @@ Copyright 2011. All Rights Reserved.
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/users_search_png/32x32/users_search.png" />
         <span class="main_block_header_title">Browse Students</span>
         <div class="main_block_header_content">
-            <form id="search_form" method="post" action="/employer/filtering/">
+            <form id="search_form" method="post" action="/employer/student-filtering/">
                 {% csrf_token %}
                 <div id="query_field_wrapper" class="fade_input_label">
                     <label for="search_form_submit_button">Enter search terms</label>
-                    {{form.query}}
+                    {{search_form.query}}
                 </div>
                 <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
-                <a href="/employer/filtering/" class="button">Skip to Filtering</a>
+                <a href="/employer/student-filtering/" class="button">Skip to Filtering</a>
             </form>
         </div>
     </div>

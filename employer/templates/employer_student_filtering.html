@@ -7,7 +7,7 @@ Copyright 2011. All Rights Reserved.
 {% extends "base.html" %}
 
 {% block title %}
-| {{employer.company_name}} Filtering
+| Student Filtering
 {% endblock %}
 
 {% block metadata %}
@@ -60,8 +60,11 @@ Copyright 2011. All Rights Reserved.
 			<span class="side_block_header_title">Search & Filtering Parameters</span>
 		</div>
 		<div class="side_block_content">
+			<div id="student_list_section">
+				{{student_filtering_form.student_list}}
+			</div>
 			<div id="search_section">
-				{{search_form.query}}
+				{{student_search_form.query}}
 				<input id="search_form_submit_button" type="submit" value="Search" class="button" />
 			</div>
 			<div id="filtering_accordion">
@@ -69,23 +72,32 @@ Copyright 2011. All Rights Reserved.
 				<a href="#">Academic Info</a>
 				</h3>
 				<div>
+					<div>
+						{{student_filtering_form.majors}}
+					</div>
+					<div>
+						{{student_filtering_form.school_years}}
+					</div>
+					<div>
+						{{student_filtering_form.grad_years}}
+					</div>
 					<div id="gpa_filter" class="slider_section">
 						<div>
 						</div>
 						<label for="gpa_value">Minimum GPA:</label>
 						<input type="text" autocomplete="off" id="gpa_value" style="border:0; color:black; font-weight:bold;" />
 					</div>
-					<div>
-						{{filtering_form.majors}}
+					<div id="sat_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="sat_value">Minimum SAT:</label>
+						{{student_filtering_form.sat}}
 					</div>
-					<div>
-						{{filtering_form.campus_orgs}}
-					</div>
-					<div>
-						{{filtering_form.school_years}}
-					</div>
-					<div>
-						{{filtering_form.grad_years}}
+					<div id="act_filter" class="slider_section">
+						<div>
+						</div>
+						<label for="act_value">Minimum ACT:</label>
+						{{student_filtering_form.act}}
 					</div>
 				</div>
 				<h3>
@@ -93,64 +105,37 @@ Copyright 2011. All Rights Reserved.
 				</h3>
 				<div>
 					<div>
-						{{filtering_form.languages}}
+						{{student_filtering_form.previous_employers}}
 					</div>
 					<div>
-						{{filtering_form.previous_employers}}
-					</div>
-					<div>
-						{{filtering_form.industries_of_interest}}
-					</div>
-					<div class="select_wrapper ">
-						<label for="older_than_18">Must be older than 18:</label>
-						{{filtering_form.older_than_18}}
-					</div>
-					<div class="select_wrapper ">
-						<label for="citizen">Must be a citizen:</label>
-						{{filtering_form.citizen}}
+						{{student_filtering_form.industries_of_interest}}
 					</div>
 					<div class="select_wrapper ">
 						<label for="looking_for_internship">Looking for internship:</label>
-						{{filtering_form.looking_for_internship}}
+						{{student_filtering_form.looking_for_internship}}
 					</div>
 					<div class="select_wrapper ">
 						<label for="looking_for_fulltime">Looking for fulltime:</label>
-						{{filtering_form.looking_for_fulltime}}
+						{{student_filtering_form.looking_for_fulltime}}
 					</div>
 				</div>
 				<h3>
-				<a href="#">Test Scores</a>
+				<a href="#">Other Info</a>
 				</h3>
 				<div>
-					<div id="sat_t_filter" class="slider_section">
-						<div>
-						</div>
-						<label for="sat_t_value">Minimum SAT:</label>
-						<input type="text" id="sat_t_value" />
+					<div>
+						{{student_filtering_form.languages}}
 					</div>
-					<div id="sat_m_filter" class="slider_section">
-						<div>
-						</div>
-						<label for="sat_m_value">Minimum SAT Math:</label>
-						<input type="text" id="sat_m_value" />
+					<div>
+						{{student_filtering_form.campus_orgs}}
 					</div>
-					<div id="sat_v_filter" class="slider_section">
-						<div>
-						</div>
-						<label for="sat_v_value">Minimum SAT Verbal:</label>
-						<input type="text" id="sat_v_value" />
+					<div class="select_wrapper ">
+						<label for="older_than_18">Must be older than 18:</label>
+						{{student_filtering_form.older_than_18}}
 					</div>
-					<div id="sat_w_filter" class="slider_section">
-						<div>
-						</div>
-						<label for="sat_w_value">Minimum SAT Writing:</label>
-						<input type="text" id="sat_w_value" />
-					</div>
-					<div id="act_filter" class="slider_section">
-						<div>
-						</div>
-						<label for="act_value">Minimum ACT:</label>
-						<input type="text" id="act_value" />
+					<div class="select_wrapper ">
+						<label for="citizen">Must be a citizen:</label>
+						{{student_filtering_form.citizen}}
 					</div>
 				</div>
 				<h3>
@@ -159,11 +144,11 @@ Copyright 2011. All Rights Reserved.
 				<div>
 					<div>
 						<label for="id_ordering">Order Results By:</label>
-						{{filtering_form.ordering}}
+						{{student_filtering_form.ordering}}
 					</div>
 					<div class="top_pad bottom_pad_5">
 						<label for="id_results_per_page">Results Per Page:</label>
-						{{filtering_form.results_per_page}}
+						{{student_filtering_form.results_per_page}}
 					</div>
 				</div>
 			</div>

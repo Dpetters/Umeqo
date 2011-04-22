@@ -20,9 +20,10 @@ def login(request,
           template_name='homepage.html'):
 
     if request.is_ajax():
-        redirect_to = request.REQUEST.get(redirect_field_name, '')
-            
+        print request.POST
+        print request.GET
         if request.method == "POST":
+            redirect_to = request.POST.get(redirect_field_name, '')
             username = request.POST['username']
             password = request.POST['password']
             if username and password:

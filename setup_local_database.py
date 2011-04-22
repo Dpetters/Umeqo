@@ -30,8 +30,10 @@ from help import enums as help_enums
 from employer import enums as employer_enums
 from events.models import Event, EventType, RSVPType
 from core.models import Industry, GraduationYear, SchoolYear, Language, Course, CampusOrg, CampusOrgType
-from employer.models import StudentList, Employer
-from student.models import Student
+from employer.models import Employer
+from student.models import Student, StudentList
+from student import enums as student_enums
+from student import constants as student_constants
 
 # Change the following email to yours. All emails sent 
 #to the fake accounts will then go there.
@@ -150,7 +152,7 @@ sample_employer2.industries.add(Industry.objects.get(name__exact="Waste Manageme
 print "Created Employers"
 
 # Create Student Lists 
-all_students = StudentList.objects.create(name="All Students", type=employer_enums.GENERAL)
+all_students = StudentList.objects.create(name=student_constants.ALL_STUDENT_GROUP_NAME, type=student_enums.GENERAL)
 all_students.students.add(*list(Student.objects.filter(active=True)))
 all_students.employers.add(*list(Employer.objects.filter(subscriber=True)))
 print "Created Student Lists"
@@ -225,7 +227,10 @@ for f in os.listdir(new_contents_path):
         if contents.has_key("description"):
             description = contents["description"]
 
-        Course.objects.create(name = name, num = num, email = email, website = website, description = description)
+        if contents.has_key("sort_order"):
+            sort_order = contents["sort_order"]
+            
+        Course.objects.create(name = name, num = num, email = email, website = website, description = description, sort_order=sort_order)
 print "Created Courses"
 
 

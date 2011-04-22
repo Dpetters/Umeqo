@@ -19,6 +19,7 @@ $(document).ready( function () {
         submitHandler: function(form) {
             $(form).ajaxSubmit({
                 dataType: 'json',
+                data: {next: get_parameter_by_name('next')},
                 beforeSubmit: function (arr, $form, options) {
                      show_form_submit_loader("#login_form");
                 },

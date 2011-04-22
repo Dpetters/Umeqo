@@ -6,9 +6,9 @@
 
 from django import forms
 
-from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry
 from core.choices import YES_NO_CHOICES
 from core.forms_helper import campus_org_types_as_choices
+from student.form_helpers import student_lists_as_choices
 
 from employer.models import Employer
 from employer import enums
@@ -17,16 +17,13 @@ from employer import enums
 class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field'}))
 
-class DefaultFilteringParamsForm(forms.ModelForm):
+class FilteringForm(forms.ModelForm):
     older_than_18 = forms.ChoiceField(choices = YES_NO_CHOICES, required = False, widget=forms.Select(attrs={'class':"older_than_18"}))
     citizen = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
     looking_for_internship = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
     looking_for_fulltime = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
 
-    sat_t = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
-    sat_m = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    sat_v = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    sat_w = forms.IntegerField(max_value = 800, min_value = 200, required = False)
+    sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
     act = forms.IntegerField(max_value = 36, required = False)
     
     class Meta:
@@ -42,33 +39,18 @@ class DefaultFilteringParamsForm(forms.ModelForm):
                    'industries_of_interest',
                    'previous_employers',
                    'gpa',
-                   'sat_t',
-                   'sat_m',
-                   'sat_v',
-                   'sat_w',
+                   'sat',
                    'act')
         model = Employer
         
     def __init__(self, *args, **kwargs):
-        super(DefaultFilteringParamsForm, self).__init__(*args, **kwargs)
-        self.fields['campus_orgs'].choices = campus_org_types_as_choices()
-
-class FilteringForm(forms.Form):
-    campus_orgs = forms.ModelMultipleChoiceField(queryset = CampusOrg.objects.all())
-    school_years = forms.ModelMultipleChoiceField(queryset = SchoolYear.objects.all())
-    grad_years = forms.ModelMultipleChoiceField(queryset = GraduationYear.objects.all())
-    majors = forms.ModelMultipleChoiceField(queryset = Course.objects.all())
-    
-    languages = forms.ModelMultipleChoiceField(queryset = Language.objects.all())
-    previous_employers = forms.ModelMultipleChoiceField(queryset = Employer.objects.all())
-    industries_of_interest = forms.ModelMultipleChoiceField(queryset = Industry.objects.all())
-    older_than_18 = forms.ChoiceField(choices = YES_NO_CHOICES)
-    citizen = forms.ChoiceField(choices = YES_NO_CHOICES)
-    looking_for_internship = forms.ChoiceField(choices = YES_NO_CHOICES)
-    looking_for_fulltime = forms.ChoiceField(choices = YES_NO_CHOICES)
-        
-    ordering = forms.ChoiceField(choices = enums.ORDERING_CHOICES)
-    results_per_page = forms.ChoiceField(choices = enums.RESULTS_PER_PAGE_CHOICES)
-    def __init__(self, *args, **kwargs):
         super(FilteringForm, self).__init__(*args, **kwargs)
         self.fields['campus_orgs'].choices = campus_org_types_as_choices()
+    
+class StudentFilteringForm(FilteringForm):
+    ordering = forms.ChoiceField(choices = enums.ORDERING_CHOICES)
+    results_per_page = forms.ChoiceField(choices = enums.RESULTS_PER_PAGE_CHOICES)
+    
+    def __init__(self, *args, **kwargs):
+        super(StudentFilteringForm, self).__init__(*args, **kwargs)
+        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(args[0].get('employer', '')))

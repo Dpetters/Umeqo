@@ -14,7 +14,7 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
 
-from employer.forms import SearchForm, DefaultFilteringParamsForm, FilteringForm
+from employer.forms import SearchForm, FilteringForm, StudentFilteringForm
 from student.models import Student
 from employer.models import Employer
 from employer.view_helpers import check_for_new_student_matches, filter_students, search_students, order_results
@@ -31,7 +31,7 @@ from student import constants as student_constants
 def employer_home(request, username, template_name="employer_home.html", extra_context = None):
     if username == str(request.user):
         
-        if request.useremployer.automatic_filtering_setup_completed:
+        if request.user.employer.automatic_filtering_setup_completed:
             check_for_new_student_matches(request.user.employer)
         
         context = {
@@ -72,7 +72,7 @@ def employer_add_to_resume_book(request, student_id):
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_setup_default_filtering_parameters(request,
                                                 template_name = "employer_default_filtering_params_form.html",
-                                                form_class=DefaultFilteringParamsForm,
+                                                form_class=FilteringForm,
                                                 extra_context = None):
     
     if request.method == 'POST':
@@ -182,9 +182,9 @@ def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVari
         
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_filtering(request,
-                       result_template_name='employer_results.html',
-                       filtering_page_template_name='employer_filtering.html',
+def employer_student_filtering(request,
+                       result_template_name='employer_student_filtering_results.html',
+                       filtering_page_template_name='employer_student_filtering.html',
                        extra_context=None):
     context = {}
     
@@ -198,23 +198,11 @@ def employer_filtering(request,
         if request.POST['act'] != "0":
             act = request.POST['act']
         
-        sat_t=None
-        if request.POST['sat_t'] != "600":
-            sat_t = request.POST['sat_t']
-        
-        sat_m=None
-        if request.POST['sat_m'] != "200":
-            sat_m = request.POST['sat_m']
-        
-        sat_v=None
-        if request.POST['sat_v'] != "200":
-            sat_v = request.POST['sat_v']
-        
-        sat_w=None
-        if request.POST['sat_w'] != "200":
-            sat_w = request.POST['sat_w']
+        sat=None
+        if request.POST['sat'] != "600":
+            sat = request.POST['sat']
 
-        filtering_results = filter_students(gpa, act, sat_t, sat_m, sat_v, sat_w)
+        filtering_results = filter_students(gpa, act, sat)
         
         search_results = []
         if request.POST['query'] != None:
@@ -235,12 +223,12 @@ def employer_filtering(request,
 
     else:
         if request.method == "POST" and request.POST.has_key('query'):
-            form = SearchForm(data=request.POST)
-            if form.is_valid():
-                form.clean()
-                context['query'] = form.cleaned_data['query']
-        context['filtering_form'] = FilteringForm(initial={'ordering': request.user.employer.default_student_ordering, 'results_per_page' : request.user.employer.results_per_page})
-        context['search_form'] = SearchForm()
+                context['query'] = request.POST.get('query', '')
+
+        context['student_filtering_form'] = StudentFilteringForm({'employer': request.user.employer},
+                                                                 initial={'ordering': request.user.employer.default_student_ordering,                           
+                                                                          'results_per_page' : request.user.employer.results_per_page})
+        context['student_search_form'] = SearchForm()
         
     context.update(extra_context or {})
     return render_to_response(filtering_page_template_name, context, context_instance=RequestContext(request))

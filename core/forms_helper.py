@@ -9,7 +9,6 @@ from core.models import CampusOrgType, CampusOrg
 def campus_org_types_as_choices():
     campus_org_types= []
     for campus_org_type in CampusOrgType.objects.all():
-        new_campus_org_type = []
         campus_orgs = []
         for campus_org in CampusOrg.objects.filter(type = campus_org_type):
             campus_orgs.append([campus_org.id, campus_org.name])

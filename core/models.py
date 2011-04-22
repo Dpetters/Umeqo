@@ -20,7 +20,6 @@ class CommonInfo(models.Model):
     
     class Meta:
         abstract = True
-        ordering = ['name']
         
     def __unicode__(self):
         return self.name
@@ -72,13 +71,14 @@ class Language(models.Model):
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
+    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the majors to be displayed.')
     admin = models.CharField("Course Administrator", max_length=41, blank=True, null=True, help_text="Maximum 43 characters.")
     
     def __unicode__(self):
         return self.name + " (" + self.num + ")"
     
     class Meta:
-        ordering = ['num']
+        ordering = ['sort_order']
 
     def save(self, *args, **kwargs):
         self.full_clean()

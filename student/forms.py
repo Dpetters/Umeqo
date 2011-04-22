@@ -34,7 +34,7 @@ class StudentCreateProfileForm(forms.ModelForm):
     # First Major
     school_year = forms.ModelChoiceField(queryset = SchoolYear.objects.all(), empty_label="select school year")
     graduation_year = forms.ModelChoiceField(queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
-    first_major = forms.ModelChoiceField(queryset = Course.objects.all().order_by("name"), empty_label="select course")
+    first_major = forms.ModelChoiceField(queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
     gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
     resume = PdfField()
     
@@ -88,5 +88,5 @@ class StudentCreateProfileForm(forms.ModelForm):
         super(StudentCreateProfileForm, self).__init__(*args, **kwargs)
         self.fields['campus_orgs'].choices = campus_org_types_as_choices()
 
-class edit_profile_form(StudentCreateProfileForm):
+class StudentEditProfileForm(StudentCreateProfileForm):
     resume = PdfField(required=False)

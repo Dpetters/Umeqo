@@ -20,6 +20,14 @@ $(document).ready( function() {
 
     var prev_multiselect_height = 0;
 
+    $("#id_student_list").multiselect({
+        height:47,
+        header:false,
+        minWidth:305,
+        selectedList: 1,
+        multiple: false
+    });
+    
     $("#id_campus_orgs").multiselect({
         noneSelectedText: 'Filter By Campus Organizations',
         selectedText: 'Filtering by # Campus Organizations',
@@ -134,7 +142,7 @@ $(document).ready( function() {
         selectedList: 1,
         multiple: false
     });
-
+    
     $("#id_results_per_page").multiselect({
         height:47,
         header:false,
@@ -332,7 +340,7 @@ $(document).ready( function() {
                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'))
             },
             type: 'POST',
-            url: '/employer/filtering/',
+            url: '/employer/student-filtering/',
             data: {'results_per_page':1,
                 'query': query,
                 'gpa' : gpa,

@@ -44,10 +44,7 @@ class Student(UserProfile):
     
     # Academic Info
     second_major = models.ForeignKey(Course, related_name = "second_major", blank = True, null=True)
-    sat_t = models.PositiveSmallIntegerField(blank = True, null=True)
-    sat_m = models.PositiveSmallIntegerField(blank = True, null=True)
-    sat_v = models.PositiveSmallIntegerField(blank = True, null=True)
-    sat_w = models.PositiveSmallIntegerField(blank = True, null=True)
+    sat = models.PositiveSmallIntegerField(blank = True, null=True)
     act = models.PositiveSmallIntegerField(blank = True, null=True)
     
     #On-campus Involvement

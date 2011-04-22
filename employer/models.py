@@ -32,14 +32,11 @@ class Employer(UserProfile):
     gpa = models.DecimalField(max_digits = 5, decimal_places = 3, blank = True, null = True)
     looking_for_internship = models.BooleanField()
     looking_for_fulltime = models.BooleanField()
-    sat_t = models.PositiveSmallIntegerField(blank = True, null = True)
-    sat_m = models.PositiveSmallIntegerField(blank = True, null = True)
-    sat_v = models.PositiveSmallIntegerField(blank = True, null = True)
-    sat_w = models.PositiveSmallIntegerField(blank = True, null = True)
+    sat = models.PositiveSmallIntegerField(blank = True, null = True)
     act = models.PositiveSmallIntegerField(blank = True, null = True)
     campus_orgs = models.ManyToManyField(CampusOrg, blank = True, null = True)
     previous_employers = models.ManyToManyField('self', blank = True, null=True, symmetrical=False)
-    industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="default_industries_of_interest")
+    industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="default_filtering_employers")
     
     # Events and deadlines
     event_subscribers = models.PositiveIntegerField(default = 0)

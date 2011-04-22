@@ -29,7 +29,7 @@ select {
 }
 #required_info_page, #basic_info_page, #academic_info_page {
 	float:left;
-	padding:15px 0 0 5px;
+	padding-top:15px;
 	width:465px;
 }
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {

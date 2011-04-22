@@ -18,8 +18,7 @@ from django.template import RequestContext
 from django.utils import simplejson
 
 from events.models import Event
-from student import utils
-from student.forms import StudentUpdateResumeForm, StudentEmployerSubscriptionsForm
+from student.forms import StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
 from student.models import Student
 from registration.backend import RegistrationBackend
 from registration.forms import RegistrationForm
@@ -35,6 +34,9 @@ def student_home(request,
                  template_name='student_home.html', 
                  extra_context=None):
 
+    if request.user.student.profile_created:
+        return redirect('student_edit_profile')
+    
     if username == str(request.user):
         context = {}
         context.update(extra_context or {}) 
@@ -50,7 +52,7 @@ def student_home(request,
 def student_account_settings(request, 
                              template_name="student_account_settings.html", 
                              extra_context=None):
-    
+
     context = {}
     context.update(extra_context or {})
     return render_to_response(template_name, context, context_instance=RequestContext(request))
@@ -106,15 +108,12 @@ def student_registration(request,
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_create_profile(request,
-                           form_class=None,
+                           form_class=StudentCreateProfileForm,
                            template_name='student_create_profile.html',
                            extra_context=None):
 
-    if request.student.profile_created:
+    if request.user.student.profile_created:
         return redirect('student_edit_profile')
-
-    if form_class is None:
-        form_class = utils.get_profile_form()
         
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES)
@@ -141,25 +140,20 @@ def student_create_profile(request,
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_edit_profile(request,
-                         form_class=None,
+                         form_class=StudentEditProfileForm,
                          template_name='student_edit_profile.html',
                          extra_context=None):
 
     if not request.user.student.profile_created:
         return redirect('student_create_profile')
-    
-    if form_class is None:
-        form_class = utils.get_profile_form()
         
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         old_resume_name = str(request.user.resume)
         if form.is_valid():
             profile = form.save()
-            if profile.sat_m != None and profile.sat_v != None and profile.sat_w != None:
-                profile.sat_t = profile.sat_m + profile.sat_v + profile.sat_w
-                profile.last_updated = datetime.datetime.now()
-                profile.save()
+            profile.last_updated = datetime.datetime.now()
+            profile.save()
             if request.FILES.has_key('resume'):
                 os.remove(settings.MEDIA_ROOT + old_resume_name)
                 return process_resume(request.user.student)
@@ -295,6 +289,9 @@ def student_events(request,
                    template_name = "student_events.html",
                    extra_context = None):
 
+    if request.user.student.profile_created:
+        return redirect('student_edit_profile')
+    
     context = {
             'upcoming_events': Event.objects.filter(datetime__gt=datetime.datetime.now()),
             'past_events': Event.objects.filter(datetime__lte=datetime.datetime.now()),
@@ -310,6 +307,10 @@ def student_events(request,
 def student_event(request,
                         template_name="student_event.html",
                         extra_context=None):
+
+    if request.user.student.profile_created:
+        return redirect('student_edit_profile')
+    
     context = {}
     context.update(extra_context or {})  
     return render_to_response(template_name,
@@ -322,6 +323,10 @@ def student_event(request,
 def student_invitations(request,
                         template_name="student_invitations.html",
                         extra_context=None):
+
+    if request.user.student.profile_created:
+        return redirect('student_edit_profile')
+    
     context = {}
     context.update(extra_context or {})  
     return render_to_response(template_name,

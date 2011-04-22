@@ -15,10 +15,7 @@ from employer import enums
 def check_for_new_student_matches(employer):
     all_student_matches = filter_students(gpa=employer.gpa,
                                           act=employer.act,
-                                          sat_t = employer.sat_t,
-                                          sat_v = employer.sat_v,
-                                          sat_m = employer.sat_m,
-                                          sat_w = employer.sat_w)
+                                          sat = employer.sat)
     latest_student_matches = []
     for student in all_student_matches:
         if student not in employer.last_seen_students.all():
@@ -27,10 +24,10 @@ def check_for_new_student_matches(employer):
     employer.latest_student_matches = latest_student_matches
     employer.save()
     
-    notification.send([employer.user], 'new_student_matches', {'students':new_student_matches})
+    notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
     
     
-def filter_students(gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, courses=None):
+def filter_students(gpa=None, act=None, sat=None, courses=None):
     kwargs = {}    
     
     all_students = Student.objects.all()
@@ -39,14 +36,8 @@ def filter_students(gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_
         kwargs['gpa__gte'] = gpa
     if act:
         kwargs['act__gte'] = act
-    if sat_t:
-        kwargs['sat_t__gte'] = sat_t
-    if sat_m:
-        kwargs['sat_m__gte'] = sat_m
-    if sat_v:
-        kwargs['sat_v__gte'] = sat_v
-    if sat_w:
-        kwargs['sat_w__gte'] = sat_w
+    if sat:
+        kwargs['sat__gte'] = sat
         
     filtering_results = all_students.filter(**kwargs)
     

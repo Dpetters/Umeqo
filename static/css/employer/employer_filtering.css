@@ -75,7 +75,7 @@ button.ui-multiselect[type="button"] {
 #filtering_block .side_block_content {
 	padding:0;
 }
-#filtering_block #search_section {
+#filtering_block #search_section, #student_list_section {
 	background: #EEEEEE;
 	border-top:1px solid white;
 	border-bottom: 1px solid #CCCCCC;

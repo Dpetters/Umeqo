@@ -1,8 +1,9 @@
 {
-	"name": "Mathematics",
-	"num": "18",
-	"admin": "Michael Sipser",
-	"email": "math@mit.edu",
-	"website": "http://math.mit.edu",
-	"description": "MIT's Mathematics Department is one of the strongest in the world, representing a broad spectrum of fields ranging from the traditional areas of pure mathematics such as analysis, algebra, geometry, and topology, to applied mathematics areas such as combinatorics, computational biology, fluid dynamics, theoretical computer science, and theoretical physics."
+"name": "Mathematics",
+"num": "18",
+"admin": "Michael Sipser",
+"email": "math@mit.edu",
+"website": "http://math.mit.edu",
+"description": "MIT's Mathematics Department is one of the strongest in the world, representing a broad spectrum of fields ranging from the traditional areas of pure mathematics such as analysis, algebra, geometry, and topology, to applied mathematics areas such as combinatorics, computational biology, fluid dynamics, theoretical computer science, and theoretical physics.",
+"sort_order":20
 }
