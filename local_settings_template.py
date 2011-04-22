@@ -5,6 +5,9 @@
 """
 import os
 
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/'

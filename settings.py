@@ -7,9 +7,6 @@
 import os
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     ("Dmitrij", "dpetters@mit.edu"),
     # Customer Support People
@@ -145,9 +142,10 @@ INSTALLED_APPS = (
 )
 
 try:
-    from local_settings import * #@UnusedWildImport
+    from local_settings import *
+    DEBUG = True
 except ImportError:
-    
+    DEBUG = False
     CACHE_BACKEND = 'memcached://unix:' + ROOT + 'memcached.sock'
     
     DATABASES = {
@@ -176,3 +174,6 @@ except ImportError:
     # Make sure to use a trailing slash.
     # Examples: "http://foo.com/static/admin/", "/static/admin/".
     ADMIN_MEDIA_PREFIX = ''
+
+
+TEMPLATE_DEBUG = DEBUG

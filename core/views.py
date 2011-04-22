@@ -24,6 +24,8 @@ def home(request,
          template_name="home.html",
          extra_context=None):
     
+    url = ""
+    
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             url = "/student/"
