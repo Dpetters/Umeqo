@@ -11,3 +11,5 @@
 media
 xapian_index
 settings_local.py
+*.DS_Store
+*.psd
