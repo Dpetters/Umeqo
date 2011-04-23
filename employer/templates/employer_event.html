@@ -31,79 +31,79 @@ Copyright 2011. All Rights Reserved.
 
 {% block content_area %}
 <div id="new_event_form_block" class="main_block no_top_margin">
-	<div class="main_block_header">
-		<img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar_add_png/32x32/calendar_add.png"/>
-		<span class="main_block_header_title">Create New Event</span>
-	</div>
-	<div class="main_block_content">
-		<ul id="new event_form_info" class="main_block_content_form_info">
-		</ul>
-		<form id="new_event_form" method='POST' action="." enctype="multipart/form-data">
-			{% csrf_token %}
-			<div class="errorspace">
-			</div>
-			<div>
-				<label for="id_event_type" class="required">Event Type:</label>
-				{{form.type}}
-			</div>
-			<div class="errorspace">
-			</div>
-			<div>
-				<label for="id_title" class="required">Event Name:</label>
-				{{form.name}}
-			</div>
-			<div class="errorspace">
-			</div>
-			<div>
-				<label for="id_datetime" class="required">Date and Time:</label>
-				{{form.datetime}}
-			</div>
-			<div class="errorspace event_only_field">
-			</div>
-			<div class="event_only_field">
-				<label for="id_duration" class="required">Duration:</label>
-				{{form.days}}{{form.hours}}{{form.minutes}}
-			</div>
-			<div class="errorspace event_only_field">
-			</div>
-			<div class="event_only_field">
-				<label for="id_location" class="required">Location:</label>
-				{{form.location}}
-			</div>
-			<div class="errorspace event_only_field">
-			</div>
-			<div class="event_only_field">
-				<label for="id_rsvp_type">RSVP:</label>
-				{{form.rsvp_type}}
-			</div>
-			<div class="errorspace event_only_field email_rsvp_only_field">
-			</div>
-			<div class="event_only_field email_rsvp_only_field">
-				<label for="id_email" class="required">RSVP Email:</label>
-				{{form.email}}
-			</div>
-			<div class="errorspace event_only_field external_rsvp_only_field">
-			</div>
-			<div class="event_only_field external_rsvp_only_field">
-				<label for="id_external_site" class="required">RSVP Website:</label>
-				{{form.external_site}}
-			</div>
-			<div class="errorspace">
-			</div>
-			<div>
-				<label for="id_location">Intended Audience:</label>
-				{{form.audience}}
-			</div>
-			<div class="errorspace">
-			</div>
-			<div>
-				<label for="id_description">Event Description:</label>
-				{{form.description}}
-			</div>
-			<div class="button_wrapper_with_margins">
-				<input id="new_event_form_submit_button" class="button" type='submit' value='Submit'>
-			</div>
-		</form>
-	</div>
+    <div class="main_block_header">
+        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar_add_png/32x32/calendar_add.png"/>
+        <span class="main_block_header_title">Create New Event</span>
+    </div>
+    <div class="main_block_content">
+        <ul id="new event_form_info" class="main_block_content_form_info">
+        </ul>
+        <form id="new_event_form" method='POST' action="." enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="errorspace">
+            </div>
+            <div>
+                <label for="id_event_type" class="required">Event Type:</label>
+                {{form.type}}
+            </div>
+            <div class="errorspace">
+            </div>
+            <div>
+                <label for="id_title" class="required">Event Name:</label>
+                {{form.name}}
+            </div>
+            <div class="errorspace">
+            </div>
+            <div>
+                <label for="id_datetime" class="required">Date and Time:</label>
+                {{form.datetime}}
+            </div>
+            <div class="errorspace event_only_field">
+            </div>
+            <div class="event_only_field">
+                <label for="id_duration" class="required">Duration:</label>
+                {{form.days}}{{form.hours}}{{form.minutes}}
+            </div>
+            <div class="errorspace event_only_field">
+            </div>
+            <div class="event_only_field">
+                <label for="id_location" class="required">Location:</label>
+                {{form.location}}
+            </div>
+            <div class="errorspace event_only_field">
+            </div>
+            <div class="event_only_field">
+                <label for="id_rsvp_type">RSVP:</label>
+                {{form.rsvp_type}}
+            </div>
+            <div class="errorspace event_only_field email_rsvp_only_field">
+            </div>
+            <div class="event_only_field email_rsvp_only_field">
+                <label for="id_email" class="required">RSVP Email:</label>
+                {{form.email}}
+            </div>
+            <div class="errorspace event_only_field external_rsvp_only_field">
+            </div>
+            <div class="event_only_field external_rsvp_only_field">
+                <label for="id_external_site" class="required">RSVP Website:</label>
+                {{form.external_site}}
+            </div>
+            <div class="errorspace">
+            </div>
+            <div>
+                <label for="id_location">Intended Audience:</label>
+                {{form.audience}}
+            </div>
+            <div class="errorspace">
+            </div>
+            <div>
+                <label for="id_description">Event Description:</label>
+                {{form.description}}
+            </div>
+            <div class="button_wrapper_with_margins">
+                <input id="new_event_form_submit_button" class="button" type='submit' value='Submit'>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

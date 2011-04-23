@@ -14,8 +14,8 @@
 }
 #new_event_form_block .main_block_content {
     padding-bottom:16px;
-    padding-left:25px;
-    padding-right:25px;
+    padding-left:10px;
+    padding-right:10px;
 }
 #new_event_form select {
     width:204px;
@@ -30,23 +30,12 @@
 .duration_field_label {
     border:none;
 }
-.day_label {
-    margin-left:40px;
-}
-.hour_label {
-    margin-left:36px;
-}
-.minute_label {
-    margin-left:35px;
-}
 #new_event_form label {
-    width: 110px;
-    display: inline-block;
-    text-align: right;
 }
 #new_event_form label[for=id_description] {
     border-right:none;
     padding-left:0px !important;
+    text-align: left;
 }
 #new_event_form .error[for=id_description] {
     top:18px;
@@ -74,4 +63,13 @@
     border-right:1px solid #808080;
     border-bottom:1px solid #808080;
     border-top:1px solid #808080;
+}
+.new_event_form_col {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+div.description {
+    clear: both;
+    padding-top: 20px;
 }

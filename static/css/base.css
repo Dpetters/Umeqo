@@ -239,7 +239,7 @@ p {
     line-height: 30px;
 }
 .main_block_content {
-    padding: 8px;
+    padding: 5px;
 }
 .main_block_footer {
 }
@@ -418,6 +418,10 @@ p {
     bottom:2px;
     font-weight:bold;
 }
+#content_area .ui-multiselect-all, #content_area .ui-multiselect-none {
+    padding: 2px 6px 2px 4px;
+    margin-top: 2px;
+}
 /* Forms */
 .errorspace {
     position: relative;
@@ -468,6 +472,9 @@ input[type=submit] {
 select {
     height:20px;
 }
+select[multiple=multiple] {
+    height:auto;
+}
 .ui-multiselect {
     behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius:3px;
@@ -484,7 +491,6 @@ input[type=text], input[type=password] {
     margin:5px 0;
 }
 #ajax_form_submit_loader {
-    position:absolute;
     margin-left:5px;
     margin-top:5px;
 }
@@ -676,8 +682,9 @@ button.ui-multiselect[type=button]:hover {
 .ui-multiselect-none span, .ui-multiselect-all span{
     font-size: 11px;
 }
-.ui-multiselect-menu li {
+#content_area .ui-multiselect-menu li {
     font-size: 14px;
+    padding-right: 5px;
 }
 .ui-multiselect-menu label {
     font-weight: normal;

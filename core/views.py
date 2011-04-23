@@ -37,8 +37,8 @@ def home(request,
     context['action'] = request.REQUEST.get('action', '')
     
     event_kwargs = {}
-    event_kwargs['datetime__gt'] = datetime.datetime.now()
-    events = Event.objects.filter(**event_kwargs).order_by("-datetime_created")
+    event_kwargs['start_datetime__gt'] = datetime.datetime.now()
+    events = Event.objects.filter(**event_kwargs).order_by("-start_datetime_created")
     context['events'] = list(events)[:3]
     
     context.update(extra_context or {})

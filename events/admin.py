@@ -9,13 +9,13 @@ from events.models import Event, EventType
 
 class EventAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Required Info', {'fields': ['employer', 'name', 'datetime', 'type']}),
-        ('Extra Content', {'fields': ['days', 'hours', 'minutes', 'location', 'audience', 'description']}),
+        ('Required Info', {'fields': ['employer', 'name', 'start_datetime', 'type']}),
+        ('Extra Content', {'fields': ['end_datetime', 'location', 'audience', 'description']}),
     ]
-    list_display = ('employer', 'name', 'datetime', 'type', 'days', 'hours', 'minutes', 'location')
+    list_display = ('employer', 'name', 'start_datetime', 'end_datetime', 'type', 'location')
     list_filter = ('employer', 'type', 'audience')
     search_fields = ['name', 'description']
-    date_hierarchy = 'datetime'
+    date_hierarchy = 'start_datetime'
     
 class EventTypeAdmin(admin.ModelAdmin):
     fields = ['name']
