@@ -152,7 +152,7 @@ sample_employer2.industries.add(Industry.objects.get(name__exact="Waste Manageme
 print "Created Employers"
 
 # Create Student Lists 
-all_students = StudentList.objects.create(name=student_constants.ALL_STUDENT_GROUP_NAME, type=student_enums.GENERAL)
+all_students = StudentList.objects.create(name=student_constants.ALL_STUDENT_GROUP_NAME, sort_order=1, type=student_enums.GENERAL)
 all_students.students.add(*list(Student.objects.filter(active=True)))
 all_students.employers.add(*list(Employer.objects.filter(subscriber=True)))
 print "Created Student Lists"

@@ -89,6 +89,8 @@ urlpatterns += patterns('student.views',
 urlpatterns += patterns('employer.views',
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
+    # Employer Home
+    (r'^employer/$', 'employer_home', {}, 'employer_home'), 
     # Employer Account Settings
     (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'), 
     # Employer Student Default Filtering Parameters
@@ -103,6 +105,6 @@ urlpatterns += patterns('employer.views',
     (r'^employer/events/(?P<id>\d+)/$', 'employer_event', {}, 'employer_event'),
     # Employer Invitations
     (r'^employer/invitations/$', 'employer_invitations', {}, 'employer_invitations'),
-    # Employer Home
-    (r'^employer/(?P<username>\w+)/$', 'employer_home', {}, 'employer_home'),
+    # Employer Company Profile
+    (r'^employer/(?P<username>\w+)/$', 'employer_company_profile', {}, 'employer_company_profile'),
 )

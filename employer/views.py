@@ -28,25 +28,36 @@ from student import constants as student_constants
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_home(request, username, template_name="employer_home.html", extra_context = None):
+def employer_home(request, template_name="employer_home.html", extra_context = None):
+    if request.user.employer.automatic_filtering_setup_completed:
+        check_for_new_student_matches(request.user.employer)
+    
+    context = {
+               'search_form': SearchForm(),
+               'notices': Notice.objects.notices_for(request.user),
+               'unseen_notice_num': Notice.objects.unseen_count_for(request.user)
+               }
+    
+    context.update(extra_context or {})
+    return render_to_response(template_name, 
+                              context, 
+                              context_instance=RequestContext(request))
+
+
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def employer_company_profile(request, username, 
+                             template_name="employer_company_profile.html", 
+                             extra_context = None):
     if username == str(request.user):
-        
-        if request.user.employer.automatic_filtering_setup_completed:
-            check_for_new_student_matches(request.user.employer)
-        
-        context = {
-                   'search_form': SearchForm(),
-                   'notices': Notice.objects.notices_for(request.user),
-                   'unseen_notice_num': Notice.objects.unseen_count_for(request.user)
-                   }
-        
+        context = {}
         context.update(extra_context or {})
         return render_to_response(template_name, 
                                   context, 
                                   context_instance=RequestContext(request))
     else:
-        return redirect(reverse('employer_home', kwargs={'username': request.user}))
-
+        return redirect(reverse('employer_company_profile', kwargs={'username': request.user}))
+    
                                                  
 def employer_registration(request, 
                            template_name="employer_registration.html", 

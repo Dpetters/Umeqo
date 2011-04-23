@@ -8,16 +8,16 @@ from django.db import models
 
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, UserProfile, Language, Industry
 from core.models_helper import get_resume_filename
-from employer.models import Employer
 from events.models import Event
 from student import enums as student_enums
 
 
 class StudentList(models.Model):
-    name = models.CharField("Student List Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    name = models.CharField("Student List Name", max_length = 42, help_text="Maximum 42 characters.")
     students = models.ManyToManyField("student.Student", blank = True, null = True)
     employers = models.ManyToManyField("employer.Employer", blank = True, null = True)
     type = models.IntegerField(choices=student_enums.STUDENT_GROUP_TYPE_CHOICES)
+    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the student lists to be displayed.')
 
     # Meta
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
@@ -53,11 +53,11 @@ class Student(UserProfile):
     # Work Info
     looking_for_internship = models.BooleanField()
     looking_for_fulltime = models.BooleanField()
-    previous_employers = models.ManyToManyField(Employer, blank = True, null=True, related_name="previous_employers_of")
+    previous_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="previous_employers_of")
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="industries_of_interest_of")
     
     # Event Info
-    subscribed_employers = models.ManyToManyField(Employer, blank = True, null=True, related_name="subscribed_employers")
+    subscribed_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="subscribed_employers")
     subscribed_industries = models.ManyToManyField(Industry, blank = True, null=True, related_name="subscribed_industries")
     last_seen_events = models.ManyToManyField(Event, blank = True, null=True, related_name = "last_seen_by")
     new_events = models.ManyToManyField(Event, blank = True, null = True)
