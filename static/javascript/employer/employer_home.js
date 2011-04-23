@@ -7,8 +7,6 @@
 $(document).ready( function () {
 
     var search_form_validator = $("#search_form").validate({
-        highlight: highlight,
-        unhighlight: unhighlight,
         errorPlacement: place_errors,
         rules: {
             query: {
