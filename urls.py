@@ -93,10 +93,9 @@ urlpatterns += patterns('employer.views',
     (r'^employer/home/$', 'employer_home', {}, 'employer_home'), 
     # Employer Account Settings
     (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'), 
-    # Employer Student Default Filtering Parameters
-    (r'^employer/setup-default-filtering-parameters', 'employer_setup_default_filtering_parameters', {}, 'employer_setup_default_filtering_parameters'),
     # Employer Student Filtering
     (r'^employer/add-to-resume-book/(?P<student_id>\d+)/$', 'employer_add_to_resume_book', {}, 'employer_add_to_resume_book'),
+    (r'^employer/filtering-setup/$', 'employer_setup_default_filtering', {}, 'employer_setup_default_filtering'),
     (r'^employer/student-filtering/$', 'employer_student_filtering', {}, 'employer_student_filtering'),
     # Employer Events
     (r'^employer/events/$', 'employer_events', {}, 'employer_events'),
