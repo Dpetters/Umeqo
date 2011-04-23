@@ -18,11 +18,11 @@ $(document).ready( function() {
 	var graduation_years = new Array();
 	var previous_employers = new Array();
 	var industries_of_interest = new Array();
-	var looking_for_internship = None;
-	var looking_for_fulltime = None;
+	var looking_for_internship = null;
+	var looking_for_fulltime = null;
 	var languages = new Array();
 	var campus_organizations = new Array()
-	var must_be_older_than_18 = False;
+	var must_be_older_than_18 = false;
 	
 	
     var prev_multiselect_height = 0;
@@ -269,10 +269,10 @@ $(document).ready( function() {
             data: {
             	'results_per_page':20,
                 'query': query,
-                'gpa' : gpa,
-                'act': act,
+                'gpa' : min_gpa,
+                'act': min_act,
+                'sat' : min_sat,
                 'page': page,
-                'sat' : sat,
                 'ordering': ordering,
                 'results_per_page': results_per_page,
                 'courses' : courses},

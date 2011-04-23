@@ -22,6 +22,7 @@ $(document).ready( function() {
         $dialog.dialog('open');
         return $dialog;
     };
+    
     $('#create_campus_organization_link').click( function () {
         var $create_campus_organization_dialog = open_create_campus_organization_dialog();
         $create_campus_organization_dialog.html(ajax_loader);
@@ -259,7 +260,7 @@ $(document).ready( function() {
     var v = $("#profile_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors,
+        errorPlacement: place_errors_table,
         rules: {
             first_name: {
                 required: true
@@ -319,14 +320,12 @@ $(document).ready( function() {
     $("#id_resume").change( function() {
         v.element("#id_resume");
     });
-    format_required_labels();
-
+	/*
     if(window.location.pathname == "/student/create-profile/") {
         $("label[for=id_resume]").addClass("required").css('font-weight', 'bold').append("<span class='error'>*</span>");
         $("#id_resume").rules( "add", { required:true } );
     }
-
-    align_form();
+    */
 
     $("#id_school_year").multiselect({
         noneSelectedText: "select school year",

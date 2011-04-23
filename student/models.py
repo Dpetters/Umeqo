@@ -6,7 +6,7 @@
 
 from django.db import models
 
-from core.models import CampusOrg, SchoolYear, GraduationYear, Course, UserProfile, Language, Industry
+from core.models import CampusOrg, SchoolYear, GraduationYear, Course, UserProfile, Language, Industry, EmploymentType
 from core.models_helper import get_resume_filename
 from events.models import Event
 from student import enums as student_enums
@@ -51,8 +51,7 @@ class Student(UserProfile):
     campus_orgs = models.ManyToManyField(CampusOrg, blank = True, null=True)
 
     # Work Info
-    looking_for_internship = models.BooleanField()
-    looking_for_fulltime = models.BooleanField()
+    looking_for = models.ManyToManyField(EmploymentType, blank = True, null=True) 
     previous_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="previous_employers_of")
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="industries_of_interest_of")
     
