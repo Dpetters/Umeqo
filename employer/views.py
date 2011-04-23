@@ -174,11 +174,6 @@ def employer_setup_default_filtering(request,
             form.save()
             request.user.employer.automatic_filtering_setup_completed = True
             request.user.employer.save()
-            data = {"valid":True }
-            return HttpResponse(simplejson.dumps(data))
-        invalid_data = {"valid":True, 
-                        "error": form.errors}
-        return HttpResponse(simplejson.dumps(invalid_data))
     else:
         form = form_class(instance=request.user.employer)
     
