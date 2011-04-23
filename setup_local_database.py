@@ -315,32 +315,33 @@ delete_contents(existing_contents_path)
 Event.objects.create(employer=sample_employer1,
                      name="Weiss Asset Management Info Session",
                      start_datetime=datetime.datetime(2011, 11, 10, 17, 53, 59),
+                     end_datetime=datetime.datetime(2011, 11, 10, 18, 53, 59),
                      type = EventType.objects.get(name="Info Session"),
-                     rsvp_type = RSVPType.objects.get(name="On This Site"),
                      location="3-217",
                      description="Learn more about the organization and meet company representatives in a less formal situation than an interview. You have the opportunity to ask questions (not about salary, please) in advance of the interview.")
 Event.objects.create(employer=sample_employer1,
                      name="Google Internship Resume Drop Deadline",
-                     start_datetime=datetime.datetime(2011, 6, 10, 17, 53, 59),
+                     end_datetime=datetime.datetime(2011, 6, 10, 18, 23, 59),
                      type = EventType.objects.get(name="Deadline"),
                      description="Get your resume to us if you want to be considered for an interview!")
 Event.objects.create(employer=sample_employer1,
                      name="Morgan Stanley MIT Alumni Panel",
                      start_datetime=datetime.datetime(2011, 7, 10, 17, 53, 59),
+                     end_datetime=datetime.datetime(2011, 7, 10, 19, 53, 59),
                      type = EventType.objects.get(name="Panel"),
-                     rsvp_type = RSVPType.objects.get(name="By Email"),
                      location="10-250",
                      description="See what MIT Alumni have to say about working for our company.")
 Event.objects.create(employer=sample_employer2,
                      name="Goldman Sachs Networking Event",
                      start_datetime=datetime.datetime(2011, 4, 10, 17, 53, 59),
+                     end_datetime=datetime.datetime(2011, 4, 10, 18, 53, 59),
                      type = EventType.objects.get(name="Networking"),
-                     rsvp_type = RSVPType.objects.get(name="On External Website"),
                      location="Marriot",
                      description="Learn more about the organization and meet company representatives in a less formal situation than an interview.")
 Event.objects.create(employer=sample_employer2,
                      name="Thomson Reuters Interview Sign-up Deadline",
                      start_datetime=datetime.datetime(2011, 5, 23, 17, 53, 59),
+                     end_datetime=datetime.datetime(2011, 4, 10, 18, 53, 59),
                      type = EventType.objects.get(name="Deadline"),
                      description="Make sure to sign up for an interview by going to cnn.com")
 print "Created Events"

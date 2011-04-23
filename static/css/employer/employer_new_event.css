@@ -42,7 +42,8 @@
     left:88px;
 }
 #new_event_form #id_description {
-    width:100%;
+    width:99%;
+    height: 80px;
     margin-top:3px;
 }
 #datepicker, .ui-datepicker-calendar .ui-state-default {
