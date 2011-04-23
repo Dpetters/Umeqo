@@ -68,15 +68,19 @@ class Employer(UserProfile):
     
     def save( self, *args, **kwargs ):
         super(Employer, self).save( *args, **kwargs )
-        latest_student_matches = StudentList.objects.create(sort_order=2, 
+        starred_students = StudentList.objects.create(sort_order=2, 
+                                                            name=student_constants.STARRED_STUDENTS_STUDENT_GROUP_NAME, 
+                                                            type=student_enums.GENERAL)
+        starred_students.employers.add(self)
+        latest_student_matches = StudentList.objects.create(sort_order=4, 
                                                             name=student_constants.LATEST_DEFAULT_FILTERING_STUDENT_GROUP_NAME, 
                                                             type=student_enums.GENERAL)
         latest_student_matches.employers.add(self)
-        all_student_matches = StudentList.objects.create(sort_order=3, 
+        all_student_matches = StudentList.objects.create(sort_order=5, 
                                                          name=student_constants.ALL_DEFAULT_FILTERING_STUDENT_GROUP_NAME, 
                                                          type=student_enums.GENERAL)
         all_student_matches.employers.add(self)
-        in_current_resume_book = StudentList.objects.create(sort_order=4, 
+        in_current_resume_book = StudentList.objects.create(sort_order=3, 
                                                             name=student_constants.IN_CURRENT_RESUME_BOOK_STUDENT_GROUP_NAME, 
                                                             type=student_enums.GENERAL)
         in_current_resume_book.employers.add(self)  

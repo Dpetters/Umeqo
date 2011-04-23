@@ -7,20 +7,30 @@
 $(document).ready( function() {
 
     /* FILTERING VARIABLES */
-    var gpa = 0;
-    var act = 0;
-    var sat = 600;
+    var min_gpa = 0;
+    var min_act = 0;
+    var min_sat = 600;
     var page = 1;
     var ordering = $("#id_ordering option:selected").val();
     var results_per_page = $("#id_results_per_page option:selected").val();
     var courses = new Array();
-
+	var school_years = new Array();
+	var graduation_years = new Array();
+	var previous_employers = new Array();
+	var industries_of_interest = new Array();
+	var looking_for_internship = None;
+	var looking_for_fulltime = None;
+	var languages = new Array();
+	var campus_organizations = new Array()
+	var must_be_older_than_18 = False;
+	
+	
     var prev_multiselect_height = 0;
 
     $("#id_student_list").multiselect({
-        height:200,
+        height:138,
         header:false,
-        minWidth:315,
+        minWidth:318,
         selectedList: 1,
         multiple: false
     });
@@ -29,7 +39,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Campus Organizations',
         selectedText: 'Filtering by # Campus Organizations',
         checkAllText: "All",
-        minWidth:315,
+        minWidth:318,
         height: 125,
         open: function(event, ui) {
             var parent = $("#id_campus_orgs").parents(".ui-accordion-content");
@@ -45,7 +55,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By School Year',
         selectedText: 'Filtering by # School Years',
         checkAllText: "All",
-        minWidth:315,
+        minWidth:318,
         height: 62,
         open: function(event, ui) {
             var parent = $("#id_school_years").parents(".ui-accordion-content");
@@ -61,7 +71,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Languages',
         selectedText: 'Filtering by # Languages',
         checkAllText: "All",
-        minWidth:315,
+        minWidth:318,
         height: 120,
         uncheckAllText: "None",
     }).multiselectfilter();
@@ -70,7 +80,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Previous Employers',
         selectedText: 'Filtering by # Previous Employers',
         checkAllText: "All",
-        minWidth:315,
+        minWidth:318,
         height: 90,
         uncheckAllText: "None",
     }).multiselectfilter();
@@ -79,37 +89,17 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Industries of Interest',
         selectedText: 'Filtering by # Industries of Interest',
         checkAllText: "All",
-        minWidth:315,
+        minWidth:318,
         height: 70,
         uncheckAllText: "None",
-    }).multiselectfilter();
-
-    $("#id_grad_years").multiselect({
-        noneSelectedText: 'Filter By Graduation Year',
-        selectedText: 'Filtering by # Graduation Years',
-        checkAllText: "All",
-        minWidth:315,
-        height: 62,
-        open: function(event, ui) {
-            var parent = $("#id_grad_years").parents(".ui-accordion-content");
-            $(parent).css('height', $("#id_grad_years").nextAll(".ui-multiselect-menu").height()+135);
-        },
-        uncheckAllText: "None",
-        close: function(e) {
-            $("#id_grad_years").parents(".ui-accordion-content").css("height", "");
-        },
     }).multiselectfilter();
 
     $("#id_majors").multiselect({
         noneSelectedText: 'Filter By Major',
         selectedText: 'Filtering by # Majors',
         checkAllText: "All",
-        minWidth:315,
-        height: 100,
-        open: function(event, ui) {
-            var parent = $("#id_majors").parents(".ui-accordion-content");
-            $(parent).css('height', $("#id_majors").nextAll(".ui-multiselect-menu").height()+60);
-        },
+        minWidth:318,
+        height: 120,
         uncheckAllText: "None",
         close: function(e) {
             $("#id_majors").parents(".ui-accordion-content").css("height", "");
@@ -120,22 +110,31 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By School Year',
         selectedText: 'Filtering by # School Years',
         checkAllText: "All",
-        minWidth:315,
-        height: 62,
+        minWidth:318,
+        height: 80,
+        uncheckAllText: "None",
+    }).multiselectfilter();
+    
+    $("#id_graduation_years").multiselect({
+        noneSelectedText: 'Filter By Graduation Year',
+        selectedText: 'Filtering by # Graduation Years',
+        checkAllText: "All",
+        minWidth:318,
+        height: 94,
         open: function(event, ui) {
-            var parent = $("#id_school_years").parents(".ui-accordion-content");
-            $(parent).css('height', $("#id_school_years").nextAll(".ui-multiselect-menu").height()+110);
+            var parent = $("#id_graduation_years").parents(".ui-accordion-content");
+            $(parent).css('height', $("#id_graduation_years").nextAll(".ui-multiselect-menu").height()+106);
         },
         uncheckAllText: "None",
         close: function(e) {
-            $("#id_school_years").parents(".ui-accordion-content").css("height", "");
+            $("#id_graduation_years").parents(".ui-accordion-content").css("height", "");
         },
-    }).multiselectfilter();
+    });
     
     $("#id_ordering").multiselect({
         height:47,
         header:false,
-        minWidth:190,
+        minWidth:202,
         selectedList: 1,
         multiple: false
     });
@@ -143,7 +142,7 @@ $(document).ready( function() {
     $("#id_results_per_page").multiselect({
         height:47,
         header:false,
-        minWidth:187,
+        minWidth:202,
         selectedList: 1,
         multiple: false
     });
@@ -160,22 +159,6 @@ $(document).ready( function() {
     });
 
     $("#search_form_submit_button").live('click', initiate_search);
-
-    var el = $('#side_block_area');
-    var elpos_original = el.offset().top;
-
-    $(window).scroll( function() {
-        var elpos = el.offset().top;
-        var windowpos = $(window).scrollTop();
-        var finaldestination = windowpos;
-        if(windowpos<elpos_original) {
-            finaldestination = elpos_original;
-            el.stop(true).animate({'top' : 0}, 600, 'easeInOutExpo');
-        } else {
-            el.stop(true).animate({'top' : windowpos-100}, 600, 'easeInOutExpo');
-        }
-    });
-    $("#filtering_accordion").accordion({ autoHeight: false });
 
     // Starts Search
     function initiate_search() {
@@ -213,9 +196,9 @@ $(document).ready( function() {
             $("#id_gpa").val(ui.value);
         },
         change: function(event, ui) {
-            if (gpa != ui.value) {
+            if (min_gpa != ui.value) {
                 page = 1;
-                gpa = ui.value;
+                min_gpa = ui.value;
                 initiate_ajax_call();
             }
         }
@@ -231,9 +214,9 @@ $(document).ready( function() {
             $("#id_sat").val(ui.value);
         },
         change: function(event, ui) {
-            if (sat != ui.value) {
+            if (min_sat != ui.value) {
                 page = 1;
-                sat = ui.value;
+                min_sat = ui.value;
                 initiate_ajax_call();
             }
         }
@@ -249,9 +232,9 @@ $(document).ready( function() {
             $("#id_act").val(ui.value);
         },
         change: function(event, ui) {
-            if (act != ui.value) {
+            if (min_act != ui.value) {
                 page = 1;
-                act = ui.value;
+                min_act = ui.value;
                 initiate_ajax_call();
             }
         }
@@ -275,13 +258,16 @@ $(document).ready( function() {
     var initiate_ajax_call = function() {
         $("#results_section").css('opacity', 0.5);
         $("#results_block_loader_section").css('display', 'block');
+        
         $.ajax({
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'))
             },
             type: 'POST',
             url: '/employer/student-filtering/',
-            data: {'results_per_page':20,
+            dataType: "html",
+            data: {
+            	'results_per_page':20,
                 'query': query,
                 'gpa' : gpa,
                 'act': act,
@@ -290,7 +276,6 @@ $(document).ready( function() {
                 'ordering': ordering,
                 'results_per_page': results_per_page,
                 'courses' : courses},
-            dataType: "html",
             success: function (data) {
                 $('#results_section').html(data);
 
@@ -313,6 +298,8 @@ $(document).ready( function() {
             }
         });
     };
+    
+    
     $("#results_menu_checkbox").live('click', function() {
         if($("#results_menu_checkbox").attr('checked')==false) {
             $(".student_checkbox:checked").each( function() {
@@ -327,6 +314,7 @@ $(document).ready( function() {
         }
     });
     
+    
     /* Results Menu Bar */
     $("#results_menu_toggle_details").live('click', function() {
         if( $("#results_menu_toggle_details span").text()=="View All Details") {
@@ -339,5 +327,22 @@ $(document).ready( function() {
             $("#results_menu_toggle_details span").text("View All Details");
         }
     });
+    
     initiate_ajax_call();
+	
+	
+	var el = $('#side_block_area');
+    var elpos_original = el.offset().top;
+    $(window).scroll( function() {
+        var elpos = el.offset().top;
+        var windowpos = $(window).scrollTop();
+        var finaldestination = windowpos;
+        if(windowpos<elpos_original) {
+            finaldestination = elpos_original;
+            el.stop(true).animate({'top' : 0}, 600, 'easeInOutExpo');
+        } else {
+            el.stop(true).animate({'top' : windowpos-100}, 600, 'easeInOutExpo');
+        }
+    });
+    $("#filtering_accordion").accordion({ autoHeight: false });
 });

@@ -39,7 +39,7 @@ Copyright 2011. All Rights Reserved.
 <div id="side_block_area" class="left_side_container">
 	<div id="student_list_block" class="side_block">
 		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume_png.png" />
+			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
 			<span class="side_block_header_title">Choose Student List to Filter</span>
 		</div>
 		<div class="side_block_content">
@@ -50,7 +50,7 @@ Copyright 2011. All Rights Reserved.
 	</div>
 	<div id="resume_book_block" class="side_block">
 		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume_png.png" />
+			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
 			<span class="side_block_header_title">Create Resume Book</span>
 		</div>
 		<div class="side_block_content">
@@ -67,7 +67,7 @@ Copyright 2011. All Rights Reserved.
 	</div>
 	<div id="filtering_block" class="side_block">
 		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/search_magnifier_png/32x32/search_magnifier.png" />
+			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png"/>
 			<span class="side_block_header_title">Search & Filter</span>
 		</div>
 		<div class="side_block_content">
@@ -87,23 +87,20 @@ Copyright 2011. All Rights Reserved.
 						{{student_filtering_form.school_years}}
 					</div>
 					<div>
-						{{student_filtering_form.grad_years}}
+						{{student_filtering_form.graduation_years}}
 					</div>
-					<div id="gpa_filter_section" class="slider_section">
-						<div>
-						</div>
+					<div class="slider_section">
+						<div></div>
 						<label for="gpa_value">Minimum GPA:</label>
 						{{student_filtering_form.gpa}}
 					</div>
-					<div id="sat_filter_section" class="slider_section">
-						<div>
-						</div>
+					<div class="slider_section">
+						<div></div>
 						<label for="sat_value">Minimum SAT:</label>
 						{{student_filtering_form.sat}}
 					</div>
-					<div id="act_filter_section" class="slider_section">
-						<div>
-						</div>
+					<div class="slider_section">
+						<div></div>
 						<label for="act_value">Minimum ACT:</label>
 						{{student_filtering_form.act}}
 					</div>
@@ -118,11 +115,11 @@ Copyright 2011. All Rights Reserved.
 					<div>
 						{{student_filtering_form.industries_of_interest}}
 					</div>
-					<div class="select_wrapper ">
+					<div class="select_wrapper">
 						<label for="looking_for_internship">Looking for internship:</label>
 						{{student_filtering_form.looking_for_internship}}
 					</div>
-					<div class="select_wrapper ">
+					<div class="select_wrapper">
 						<label for="looking_for_fulltime">Looking for fulltime:</label>
 						{{student_filtering_form.looking_for_fulltime}}
 					</div>
@@ -150,11 +147,11 @@ Copyright 2011. All Rights Reserved.
 				<a href="#">Search Options</a>
 				</h3>
 				<div>
-					<div>
+					<div class="select_wrapper">
 						<label for="id_ordering">Order Results By:</label>
 						{{student_filtering_form.ordering}}
 					</div>
-					<div class="top_pad bottom_pad_5">
+					<div class="select_wrapper">
 						<label for="id_results_per_page">Results Per Page:</label>
 						{{student_filtering_form.results_per_page}}
 					</div>
