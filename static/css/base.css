@@ -192,6 +192,7 @@ p {
 .main_block_content, .side_block_content {
     border-top: 1px solid #CCCCCC;
 }
+/*
 .side_block_content a {
     text-decoration: none;
     display: block;
@@ -200,6 +201,7 @@ p {
     font-size: 12px;
     font-weight: bold;
 }
+*/
 .side_block_content a:hover {
     background-color: #EEE;
     color: #000;

@@ -5,6 +5,7 @@
 """
 
 ALL_STUDENT_GROUP_NAME = "All Students"
+STARRED_STUDENTS_STUDENT_GROUP_NAME = "Starred Students"
 LATEST_DEFAULT_FILTERING_STUDENT_GROUP_NAME = "Latest Default Filtering Student Matches"
 ALL_DEFAULT_FILTERING_STUDENT_GROUP_NAME = "All Default Filtering Student Matches"
 IN_CURRENT_RESUME_BOOK_STUDENT_GROUP_NAME = "Student in Current Resume Book"

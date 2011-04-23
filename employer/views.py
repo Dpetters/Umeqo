@@ -17,31 +17,12 @@ from django.utils import simplejson
 from employer.forms import SearchForm, FilteringForm, StudentFilteringForm
 from student.models import Student
 from employer.models import Employer
-from employer.view_helpers import check_for_new_student_matches, filter_students, search_students, order_results
+from employer.view_helpers import filter_students, search_students, order_results
 from core.decorators import is_employer
 from digg_paginator.digg_paginator import DiggPaginator
 from events.forms import EventForm
 from events.models import Event
-from notification.models import Notice
 from student import constants as student_constants
-
-
-@login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_home(request, template_name="employer_home.html", extra_context = None):
-    if request.user.employer.automatic_filtering_setup_completed:
-        check_for_new_student_matches(request.user.employer)
-    
-    context = {
-               'search_form': SearchForm(),
-               'notices': Notice.objects.notices_for(request.user),
-               'unseen_notice_num': Notice.objects.unseen_count_for(request.user)
-               }
-    
-    context.update(extra_context or {})
-    return render_to_response(template_name, 
-                              context, 
-                              context_instance=RequestContext(request))
 
 
 @login_required

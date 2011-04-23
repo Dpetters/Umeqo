@@ -4,11 +4,13 @@
  Copyright 2011. All Rights Reserved.
  */
 
-#resume_book_block .side_block_content {
-    text-align:center;
-    height:32px;
+.select_wrapper{
+    float:right;
+    margin: 5px 4px 5px 0;
 }
-
+.select_wrapper select {
+    width:180px;
+}
 
 .add_to_resume_book_area_active {
     border-top:1px solid #AAAAAA;
@@ -19,30 +21,26 @@
     background-color:#F9F9F9;
 }
 
-/* Accordion Content */
-.select_wrapper select {
-    width:180px;
+
+#filtering_block .side_block_content, #student_list_block .side_block_content {
+    padding:0;
 }
-.ui-accordion .ui-accordion-content {
-    border:none;
-    background-color:white;
-    padding:10px 0px 5px 6px
+
+#search_section, #student_list_section {
+    background: #EEEEEE;
+    border-top:1px solid white;
+    padding:10px 0px 6px 5px
 }
-.ui-accordion .ui-accordion-header {
-    border-bottom:1px solid #CCCCCC;
+
+#search_section{
+    border-bottom: 1px solid #CCCCCC;
+    padding:6px 0px 6px 5px
 }
-/* JQuery UI override */
-button.ui-multiselect[type="button"] {
-    margin-bottom:5px;
-    behavior: url(/static/lib/pie/PIE.htc);
-    -moz-border-radius: 3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
-}
+
 #query_field {
     height:22px;
     vertical-align:middle;
-    width:225px;
+    width:237px;
     padding-left:6px;
     color: #303030;
     font-size:15px;
@@ -51,7 +49,9 @@ button.ui-multiselect[type="button"] {
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
+
 #search_form_submit_button {
+<<<<<<< HEAD
     height:28px;
     bottom:1px;
     position:relative;
@@ -76,26 +76,43 @@ button.ui-multiselect[type="button"] {
 }
 .slider_section {
     margin-bottom:10px;
+=======
+    height:30px;
+    top:2px;
+    position:relative;
 }
+.slider_section {
+    margin-bottom:6px;
+    margin-top:3px;
+    padding-left:3px;
+>>>>>>> cdbb85f0142eda670ae74c0c260d811be2fb962a
+}
+
 .slider_section input {
     color:black;
     border:0;
     background-color:transparent;
 }
 
+<<<<<<< HEAD
 #side_block_area{
     width:328px;
 }
 
+=======
+>>>>>>> cdbb85f0142eda670ae74c0c260d811be2fb962a
 .slider_section div {
     top:5px;
     margin-right:18px;
     float:right;
     width:167px;
 }
+<<<<<<< HEAD
 #gpa_filter div {
     width: 178px;
 }
+=======
+>>>>>>> cdbb85f0142eda670ae74c0c260d811be2fb962a
 
 #id_gpa{
     width:20px;
@@ -106,6 +123,28 @@ button.ui-multiselect[type="button"] {
 #id_act{
     width:20px;
 }
+
+/* JQuery UI overrides */
+.ui-accordion .ui-accordion-content {
+    border:none;
+    padding:10px 0px 3px 4px
+}
+.ui-accordion .ui-accordion-header {
+    border-bottom:1px solid #CCCCCC;
+}
+
+button.ui-multiselect[type="button"] {
+    margin-bottom:5px;
+    behavior: url(/static/lib/pie/PIE.htc);
+    -moz-border-radius: 3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+
+#side_block_area{
+    width:328px;
+}
+
 #id_ordering, #id_results_per_page {
     width:192px;
 }

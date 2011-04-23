@@ -29,22 +29,6 @@ from core.models import Language
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_home(request,
-                 template_name='student_home.html', 
-                 extra_context=None):
-
-    if request.user.student.profile_created:
-        return redirect('student_edit_profile')
-    
-    context = {}
-    context.update(extra_context or {}) 
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_account_settings(request, 
                              template_name="student_account_settings.html", 
                              extra_context=None):
@@ -154,7 +138,7 @@ def student_edit_profile(request,
                 os.remove(settings.MEDIA_ROOT + old_resume_name)
                 return process_resume(request.user.student)
             else:
-                return redirect(reverse('student_home', kwargs={ 'username': request.user}))
+                return redirect('home')
     else:
         form = form_class(instance=request.user.student)
 
@@ -392,7 +376,7 @@ def process_resume(student):
     student.last_update = datetime.datetime.now()
     student.save()
     
-    return redirect(reverse('student_home', kwargs={ 'username': student.user}))
+    return redirect('home')
 
 """
 def compute_suggested_employers_list(student, exclude = None):
