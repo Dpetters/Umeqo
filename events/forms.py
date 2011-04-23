@@ -38,9 +38,9 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
 class EventForm(forms.ModelForm):
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), empty_label="select event type")
     rsvp_type = forms.ModelChoiceField(queryset = RSVPType.objects.all(), empty_label="select RSVP type", required=False)
-    start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(dateAttrs={'class':'datefield'},timeAttrs={'class':'timefield'}))
+    start_datetime = forms.DateTimeField(initial=["6:30"], widget=ImprovedSplitDateTimeWidget(dateAttrs={'class':'datefield'},timeAttrs={'class':'timefield'}))
     end_datetime = forms.DateTimeField()
 
     class Meta:
-        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'rsvp_type', 'external_site', 'email', 'location', 'audience', 'description')
+        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description')
         model = Event

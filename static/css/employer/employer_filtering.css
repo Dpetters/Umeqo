@@ -4,22 +4,12 @@
  Copyright 2011. All Rights Reserved.
  */
 
-#content_block, #login_info_block {
-	padding-bottom:0px;
-}
-#info_block {
-	position:relative;
-}
-#resume_book_block {
-	margin-top:10px;
-}
 #resume_book_block .side_block_content {
 	text-align:center;
-	height:40px;
+	height:32px;
 }
-#resume_book_block .side_block_content p {
-	margin-top:12px;
-}
+
+
 .add_to_resume_book_area_active {
 	border-top:1px solid #AAAAAA;
 	font-weight:bold;
@@ -28,18 +18,10 @@
 .add_to_resume_book_area_hover {
 	background-color:#F9F9F9;
 }
+
 /* Accordion Content */
-.ui-accordion .select_wrapper {
-	line-height:22px;
-}
-.ui-accordion .select_wrapper label {
-	position:relative;
-	bottom:5px;
-}
-.ui-accordion .select_wrapper select {
-	margin-right:7px;
-	width:168px;
-	float:right;
+.select_wrapper select {
+	width:180px;
 }
 .ui-accordion .ui-accordion-content {
 	border:none;
@@ -58,13 +40,16 @@ button.ui-multiselect[type="button"] {
 	border-radius:3px;
 }
 #query_field {
-	padding-left:5px;
-	height:26px;
-	width:227px;
-	behavior: url(/static/lib/pie/PIE.htc);
-	box-shadow: inset 1px 1px 2px #DDDDDD;
-	-moz-box-shadow: inset 1px 1px 2px #DDDDDD;
-	-webkit-box-shadow: inset 1px 1px 2px #DDDDDD;
+    height:22px;
+    vertical-align:middle;
+    width:225px;
+    padding-left:6px;
+    color: #303030;
+    font-size:15px;
+    behavior: url(/static/lib/pie/PIE.htc);
+    box-shadow: inset 2px 2px 2px #DDDDDD;
+    -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
+    -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
 #search_form_submit_button {
 	height:28px;
@@ -75,14 +60,19 @@ button.ui-multiselect[type="button"] {
 #filtering_block .side_block_content {
 	padding:0;
 }
-#filtering_block #search_section, #student_list_section {
+#search_section, #student_list_section {
 	background: #EEEEEE;
 	border-top:1px solid white;
-	border-bottom: 1px solid #CCCCCC;
-	padding:10px 0px 10px 5px
+	padding:10px 0px 6px 5px
 }
-#filtering_block label {
-	border:0;
+
+#search_section{
+	border-bottom: 1px solid #CCCCCC;
+	padding:6px 0px 6px 5px
+}
+
+#student_list_block .side_block_content{
+	padding:0;
 }
 .slider_section {
 	margin-bottom:10px;
@@ -90,58 +80,31 @@ button.ui-multiselect[type="button"] {
 .slider_section input {
 	color:black;
 	border:0;
-	font-weight:bold;
-	width:20px;
-	background-color:#F9F9F9;
-	padding-left:0px;
+	background-color:transparent;
 }
+
+#side_block_area{
+	width:328px;
+}
+
 .slider_section div {
-	top:3px;
-	margin-right:10px;
-	margin-left:5px;
+	top:5px;
+	margin-right:18px;
 	float:right;
+	width:167px;
 }
 #gpa_filter div {
 	width: 178px;
 }
-#gpa_filter input {
-	width:19px;
-	background:none;
+
+#id_gpa{
+	width:20px;
 }
-#sat_t_filter div {
-	width: 168px;
-}
-#sat_t_filter input {
+#id_sat{
 	width:29px;
-	background:none;
 }
-#sat_v_filter div {
-	width: 123px;
-}
-#sat_v_filter input {
-	width:22px;
-	background:none;
-}
-#sat_m_filter div {
-	width: 135px;
-}
-#sat_m_filter input {
-	width:22px;
-	background:none;
-}
-#sat_w_filter div {
-	width: 120px;
-}
-#sat_w_filter input {
-	width:22px;
-	background:none;
-}
-#act_filter div {
-	width: 180px;
-}
-#act_filter input {
-	width:16px;
-	background:none;
+#id_act{
+	width:20px;
 }
 #id_ordering, #id_results_per_page {
 	width:192px;

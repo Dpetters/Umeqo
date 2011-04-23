@@ -197,10 +197,11 @@ def employer_student_filtering(request,
                        result_template_name='employer_student_filtering_results.html',
                        filtering_page_template_name='employer_student_filtering.html',
                        extra_context=None):
-    context = {}
     
+    context = {}
+
     if request.is_ajax():
-        
+
         gpa=None
         if request.POST['gpa'] != "0":
             gpa = request.POST['gpa']
@@ -208,24 +209,24 @@ def employer_student_filtering(request,
         act=None
         if request.POST['act'] != "0":
             act = request.POST['act']
-        
+
         sat=None
         if request.POST['sat'] != "600":
             sat = request.POST['sat']
 
         filtering_results = filter_students(gpa, act, sat)
-        
+
         search_results = []
         if request.POST['query'] != None:
             search_results = search_students(request.POST['query'])
-        
+
         ordered_results = order_results(filtering_results, search_results, request.POST['ordering'])
         
         for student in ordered_results:
             student.shown_in_results_count += 1
             student.save()
-        
-        paginator = DiggPaginator(ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2) 
+
+        paginator = DiggPaginator(list(ordered_results)*100, int(request.POST['results_per_page']), body=5, padding=1, margin=2) 
 
         context['page'] = paginator.page(request.POST['page'])
         

@@ -10,7 +10,7 @@ from django.contrib.sites.models import Site
 from django.utils.http import urlquote_plus
 
 register = template.Library()
-
+"""
 @register.filter
 def google_calendarize(event):
     
@@ -39,3 +39,4 @@ def google_calendarize(event):
     return s + '&trp=false'
 
 google_calendarize.safe = True
+"""

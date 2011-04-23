@@ -65,7 +65,9 @@ p {
     height: 60px;
 }
 #logo_image {
-    margin-top: -2px;
+    margin-top: 6px;
+    margin-left:8px;
+    height:52px;
 }
 #navigation_block {
     text-shadow: 0 -1px 0 black;
@@ -257,7 +259,7 @@ p {
     float:left;
 }
 .side_block {
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 .side_block p {
     margin-top:3px;
@@ -268,8 +270,8 @@ p {
     margin-left:8px;
 }
 .side_block_header_title {
-    font-size: 16px;
-    margin-left:3px;
+    font-size: 18px;
+    margin-left:5px;
     line-height: 30px;
 }
 .side_block_header_content {
@@ -418,10 +420,10 @@ p {
     bottom:2px;
     font-weight:bold;
 }
-#content_area .ui-multiselect-all, #content_area .ui-multiselect-none {
-    padding: 2px 6px 2px 4px;
-    margin-top: 2px;
+.ui-multiselect-all, .ui-multiselect-none {
+    padding: 0 6px 0 3px;
 }
+
 /* Forms */
 .errorspace {
     position: relative;
@@ -468,9 +470,6 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
 }
 input[type=submit] {
     font-family: Arial;
-}
-select {
-    height:20px;
 }
 select[multiple=multiple] {
     height:auto;
@@ -667,6 +666,10 @@ button.ui-multiselect[type=button]:hover {
     margin-right:4px;
     top:2px;
 }
+a.ui-slider-handle{
+	padding:1px 2px;
+}
+
 .ui-widget-header {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#E6E6E6, #DADADA);

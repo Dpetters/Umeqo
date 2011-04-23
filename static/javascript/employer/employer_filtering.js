@@ -9,10 +9,7 @@ $(document).ready( function() {
     /* FILTERING VARIABLES */
     var gpa = 0;
     var act = 0;
-    var sat_t = 600;
-    var sat_m = 200;
-    var sat_v = 200;
-    var sat_w = 200;
+    var sat = 600;
     var page = 1;
     var ordering = $("#id_ordering option:selected").val();
     var results_per_page = $("#id_results_per_page option:selected").val();
@@ -21,9 +18,9 @@ $(document).ready( function() {
     var prev_multiselect_height = 0;
 
     $("#id_student_list").multiselect({
-        height:47,
+        height:200,
         header:false,
-        minWidth:305,
+        minWidth:315,
         selectedList: 1,
         multiple: false
     });
@@ -32,7 +29,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Campus Organizations',
         selectedText: 'Filtering by # Campus Organizations',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 125,
         open: function(event, ui) {
             var parent = $("#id_campus_orgs").parents(".ui-accordion-content");
@@ -48,7 +45,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By School Year',
         selectedText: 'Filtering by # School Years',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 62,
         open: function(event, ui) {
             var parent = $("#id_school_years").parents(".ui-accordion-content");
@@ -64,7 +61,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Languages',
         selectedText: 'Filtering by # Languages',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 120,
         uncheckAllText: "None",
     }).multiselectfilter();
@@ -73,7 +70,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Previous Employers',
         selectedText: 'Filtering by # Previous Employers',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 90,
         uncheckAllText: "None",
     }).multiselectfilter();
@@ -82,7 +79,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Industries of Interest',
         selectedText: 'Filtering by # Industries of Interest',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 70,
         uncheckAllText: "None",
     }).multiselectfilter();
@@ -91,7 +88,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Graduation Year',
         selectedText: 'Filtering by # Graduation Years',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 62,
         open: function(event, ui) {
             var parent = $("#id_grad_years").parents(".ui-accordion-content");
@@ -107,7 +104,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By Major',
         selectedText: 'Filtering by # Majors',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 100,
         open: function(event, ui) {
             var parent = $("#id_majors").parents(".ui-accordion-content");
@@ -123,7 +120,7 @@ $(document).ready( function() {
         noneSelectedText: 'Filter By School Year',
         selectedText: 'Filtering by # School Years',
         checkAllText: "All",
-        minWidth:305,
+        minWidth:315,
         height: 62,
         open: function(event, ui) {
             var parent = $("#id_school_years").parents(".ui-accordion-content");
@@ -164,7 +161,7 @@ $(document).ready( function() {
 
     $("#search_form_submit_button").live('click', initiate_search);
 
-    var el = $('#info_block');
+    var el = $('#side_block_area');
     var elpos_original = el.offset().top;
 
     $(window).scroll( function() {
@@ -207,13 +204,13 @@ $(document).ready( function() {
         page = $(this).attr("id").substring(5);
         initiate_ajax_call();
     });
-    $("#gpa_filter div").slider({
+    $("#gpa_filter_section div").slider({
         min: 0,
         max: 5.0,
         step: .1,
         value: 0,
         slide: function(event, ui) {
-            $("#gpa_value").val(ui.value);
+            $("#id_gpa").val(ui.value);
         },
         change: function(event, ui) {
             if (gpa != ui.value) {
@@ -225,85 +222,31 @@ $(document).ready( function() {
     });
 
     //SAT Total Slider
-    $("#sat_t_filter div").slider({
+    $("#sat_filter_section div").slider({
         min: 600,
         max: 2400,
         step: 10,
         value: 600,
         slide: function(event, ui) {
-            $("#sat_t_value").val(ui.value);
+            $("#id_sat").val(ui.value);
         },
         change: function(event, ui) {
-            if (sat_t != ui.value) {
+            if (sat != ui.value) {
                 page = 1;
-                sat_t = ui.value;
-                initiate_ajax_call();
-            }
-        }
-    });
-
-    //SAT M Slider
-    $("#sat_m_filter div").slider({
-        min: 200,
-        max: 800,
-        step: 10,
-        value: 200,
-        slide: function(event, ui) {
-            $("#sat_m_value").val(ui.value);
-        },
-        change: function(event, ui) {
-            if (sat_m != ui.value) {
-                page = 1;
-                sat_m = ui.value;
-                initiate_ajax_call();
-            }
-        }
-    });
-
-    //SAT V Slider
-    $("#sat_v_filter div").slider({
-        min: 200,
-        max: 800,
-        step: 10,
-        value: 200,
-        slide: function(event, ui) {
-            $("#sat_v_value").val(ui.value);
-        },
-        change: function(event, ui) {
-            if (sat_v != ui.value) {
-                page = 1;
-                sat_v = ui.value;
-                initiate_ajax_call();
-            }
-        }
-    });
-
-    //SAT W Slider
-    $("#sat_w_filter div").slider({
-        min: 200,
-        max: 800,
-        step: 10,
-        value: 200,
-        slide: function(event, ui) {
-            $("#sat_w_value").val(ui.value);
-        },
-        change: function(event, ui) {
-            if (sat_w != ui.value) {
-                page = 1;
-                sat_w = ui.value;
+                sat = ui.value;
                 initiate_ajax_call();
             }
         }
     });
 
     //ACT Slider
-    $("#act_filter div").slider({
+    $("#act_filter_section div").slider({
         min: 0,
         max: 36,
         step: 1,
         value: 0,
         slide: function(event, ui) {
-            $("#act_value").val(ui.value);
+            $("#id_act").val(ui.value);
         },
         change: function(event, ui) {
             if (act != ui.value) {
@@ -317,10 +260,7 @@ $(document).ready( function() {
     // Set up filtering values
     $("#gpa_value").val($("#gpa_filter div").slider("value"));
     $("#act_value").val($("#act_filter div").slider("value"));
-    $("#sat_t_value").val($("#sat_t_filter div").slider("value"));
-    $("#sat_m_value").val($("#sat_m_filter div").slider("value"));
-    $("#sat_w_value").val($("#sat_w_filter div").slider("value"));
-    $("#sat_v_value").val($("#sat_v_filter div").slider("value"));
+    $("#sat_value").val($("#sat_filter div").slider("value"));
 
     $("#resume_book_block .side_block_content").droppable({
         activeClass: "add_to_resume_book_area_active",
@@ -328,7 +268,7 @@ $(document).ready( function() {
         drop: function(event, ui) {
             $.ajax({'url':'/employer/add-to-resume-book/' + $(ui.draggable).attr("id").substring(4) + "/",
                 success: function(date) {
-                }});
+            }});
         }
     });
 
@@ -341,15 +281,12 @@ $(document).ready( function() {
             },
             type: 'POST',
             url: '/employer/student-filtering/',
-            data: {'results_per_page':1,
+            data: {'results_per_page':20,
                 'query': query,
                 'gpa' : gpa,
-                'act':act,
-                'page':page,
-                'sat_t' : sat_t,
-                'sat_m': sat_m,
-                'sat_v': sat_v,
-                'sat_w': sat_w,
+                'act': act,
+                'page': page,
+                'sat' : sat,
                 'ordering': ordering,
                 'results_per_page': results_per_page,
                 'courses' : courses},

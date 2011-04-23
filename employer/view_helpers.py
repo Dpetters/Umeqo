@@ -27,18 +27,18 @@ def check_for_new_student_matches(employer):
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
     
     
-def filter_students(gpa=None, act=None, sat=None, courses=None):
-    kwargs = {}    
-    
-    all_students = Student.objects.all()
-    
+def filter_students(student_group=None, gpa=None, act=None, sat=None, courses=None):
+    kwargs = {}
+
+    all_students = Student.objects.filter(profile_created=True)
+
     if gpa:
         kwargs['gpa__gte'] = gpa
     if act:
         kwargs['act__gte'] = act
     if sat:
         kwargs['sat__gte'] = sat
-        
+    
     filtering_results = all_students.filter(**kwargs)
     
     if courses:
