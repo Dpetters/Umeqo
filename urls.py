@@ -16,7 +16,14 @@ admin.autodiscover()
 import haystack
 haystack.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('')
+
+if not settings.LAUNCHED and not settings.DEBUG:
+    urlpatterns += patterns('',
+    (r'^$', 'core.views.landing'),
+    )
+
+urlpatterns += patterns('',
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     (r'^admin/', include(admin.site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
