@@ -199,12 +199,17 @@ $(document).ready( function () {
         });
     };
     place_errors_table = function(error,element) {
-        $(error).appendTo(element.prev());
+        if (element.prev().get(0).tagName=='DIV') {
+            $(error).appendTo(element.prev());
+        } else if (element.prev().prev().html()=="" || !element.prev().prev().children(":eq(0)").is(":visible")){
+            $(error).appendTo(element.prev().prev());
+        }
         if ($(element).position().left == 0) {
             if ($(element).next(":button.ui-multiselect").length!=0) {
                 var offset = element.next().position().left-element.parent().position().left;
             }
-        } else {
+        } else if (element.prev().prev().get(0) && element.prev().prev().get(0).tagName!='DIV'){
+            console.log(element.prev().prev());
             var offset = element.position().left-element.parent().position().left;
         }
         $(error).css({

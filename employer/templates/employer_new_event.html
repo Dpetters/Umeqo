@@ -11,6 +11,11 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 {% block metadata %}
+
+<script type="text/javascript">
+var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_availability %}";
+</script>
+
 <!-- JQuery Masker Input -->
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input_1.2.2.js">
 </script>
@@ -39,28 +44,28 @@ Copyright 2011. All Rights Reserved.
             <div class="new_event_form_col">
                 <table class="form_table">
                     <tr>
-                        <th><label for="id_event_type" class="required">Event Type:</label></th>
-                        <td>
-                            <div class="errorspace"></div>
-                            {{form.type}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label for="id_title" class="required">Event Name:</label></th>
+                        <th>{{form.name.label_tag}}</th>
                         <td>
                             <div class="errorspace"></div>
                             {{form.name}}
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="id_datetime" class="required">Start Date/Time:</label></th>
+                        <th>{{form.type.label_tag}}</th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.type}}
+                        </td>
+                    </tr>
+                    <tr class="event_only_field">
+                        <th>{{form.start_datetime.label_tag}}</th>
                         <td>
                             <div class="errorspace"></div>
                             {{form.start_datetime}}
                         </td>
                     </tr>
-                    <tr id="end_datetime_div" class="event_only_field">
-                        <th><label for="id_duration" class="required">End Date/Time:</label></th>
+                    <tr>
+                        <th>{{form.end_datetime.label_tag}}</th>
                         <td>
                             <div class="errorspace"></div>
                             {{form.end_datetime}}
@@ -69,35 +74,29 @@ Copyright 2011. All Rights Reserved.
                 </table>
             </div>
             <div class="new_event_form_col">
-                <div class="errorspace event_only_field"></div>
-                <div class="event_only_field">
-                    <label for="id_location" class="required">Location:</label>
-                    {{form.location}}
-                </div>
-                <div class="errorspace event_only_field">
-                </div>
-                <div class="event_only_field">
-                    <label for="id_rsvp_type">RSVP:</label>
-                    {{form.rsvp_type}}
-                </div>
-                <div class="errorspace event_only_field email_rsvp_only_field">
-                </div>
-                <div class="event_only_field email_rsvp_only_field">
-                    <label for="id_email" class="required">RSVP Email:</label>
-                    {{form.email}}
-                </div>
-                <div class="errorspace event_only_field external_rsvp_only_field">
-                </div>
-                <div class="event_only_field external_rsvp_only_field">
-                    <label for="id_external_site" class="required">RSVP Website:</label>
-                    {{form.external_site}}
-                </div>
-                <div class="errorspace">
-                </div>
-                <div>
-                    <label for="id_location">Intended Audience:</label>
-                    {{form.audience}}
-                </div>
+                <table class="form_table">
+                    <tr class="event_only_field">
+                        <th>{{form.location.label_tag}}</th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.location}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{{form.audience.label_tag}}</th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.audience}}
+                        </td>
+                    </tr>
+                    <tr class="event_only_field">
+                        <th>{{form.rsvp_message.label_tag}}</th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.rsvp_message}}
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="errorspace">
             </div>

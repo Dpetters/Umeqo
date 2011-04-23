@@ -164,20 +164,40 @@ def employer_events(request,
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_new_event(request, template_name = 'employer_new_event.html'):
-    employer = Employer.objects.get(user__exact = request.user)
     if request.method == 'POST':
         form = EventForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             event_obj = form.save(commit=False)
-            event_obj.employer = employer
+            event_obj.employer = request.user.employer
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            employer.events_posted +=1
-            employer.save()
+            request.user.employer.events_posted +=1
+            request.user.employer.save()
             return HttpResponseRedirect('/employer/events/' + str(event_obj.id))
-        # WHAT HAPPENS IF THE FORM IS INVALID?
-    return render_to_response(template_name, {'form':EventForm({'email':employer.user.email, 'datetime':datetime.datetime.now()})}, context_instance = RequestContext(request) )
+    else:
+        form = EventForm({'start_datetime':datetime.datetime.now()})
+        
+    context = {
+        'form': form
+    }
+    
+    #context.update(extra_context or {})
+    return render_to_response(template_name, 
+                              context,
+                              context_instance = RequestContext(request) )
+
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def check_event_name_availability(request):
+
+  if request.is_ajax():
+      try:
+          Event.objects.get(name=request.GET.get("name", ""))
+          return HttpResponse(simplejson.dumps(False), mimetype="application/json")
+      except Event.DoesNotExist:
+          return HttpResponse(simplejson.dumps(True), mimetype="application/json")
+  return redirect('home')
 
 
 def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVariable
