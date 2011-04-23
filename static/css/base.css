@@ -31,7 +31,7 @@ p {
     color: #666;
 }
 .content p {
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 
@@ -243,7 +243,7 @@ p {
     line-height: 30px;
 }
 .main_block_content {
-    padding: 5px;
+    padding: 15px;
 }
 .main_block_footer {
 }

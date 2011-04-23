@@ -12,14 +12,6 @@ Copyright 2011. All Rights Reserved.
 
 {% block metadata %}
 {{block.super}}
-<!-- JQuery MultiSelect Widget -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-
-<!-- JQuery MultiSelect Widget Filtering Plugin -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-
 <!-- Custom -->
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_home.css" />
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_home.js"></script>
@@ -104,7 +96,7 @@ Copyright 2011. All Rights Reserved.
             </p>
             <br>
             <p>
-                <a href="javascript:void(0)" id="open_default_parameters_form_link"><strong>Setup Automatic Filtering</strong></a>
+                <a href="{% url employer_setup_default_filtering %}"><strong>Setup Automatic Filtering</strong></a>
             </p>
         </div>
     </div>

@@ -59,38 +59,6 @@ def employer_add_to_resume_book(request, student_id):
         return HttpResponse(simplejson.dumps({"valid":True}))
     redirect('home')
 
-    
-@login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_setup_default_filtering_parameters(request,
-                                                template_name = "employer_default_filtering_params_form.html",
-                                                form_class=FilteringForm,
-                                                extra_context = None):
-    
-    if request.method == 'POST':
-        form = form_class(data=request.POST,
-                          instance = request.user.employer)
-        if form.is_valid():
-            form.save()
-            request.user.employer.automatic_filtering_setup_completed = True
-            request.user.employer.save()
-            data = {"valid":True }
-            return HttpResponse(simplejson.dumps(data))
-        invalid_data = {"valid":True, 
-                        "error": form.errors}
-        return HttpResponse(simplejson.dumps(invalid_data))
-    else:
-        form = form_class(instance=request.user.employer)
-    
-    context = {
-        'form':form
-    }
-    context.update(extra_context or {}) 
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
-
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_event(request,
@@ -144,7 +112,7 @@ def employer_events(request,
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_new_event(request, template_name = 'employer_new_event.html'):
+def employer_new_event(request, template_name='employer_new_event.html', extra_context=None):
     if request.method == 'POST':
         form = EventForm(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -163,7 +131,7 @@ def employer_new_event(request, template_name = 'employer_new_event.html'):
         'form': form
     }
     
-    #context.update(extra_context or {})
+    context.update(extra_context or {})
     return render_to_response(template_name, 
                               context,
                               context_instance = RequestContext(request) )
@@ -190,7 +158,32 @@ def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVari
             except Event.DoesNotExist:
                 return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     return HttpResponseRedirect('/')
-        
+
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+
+def employer_setup_default_filtering(request,
+                                                template_name = "employer_setup_default_filtering.html",
+                                                form_class=FilteringForm,
+                                                extra_context = None):
+    
+    if request.method == 'POST':
+        form = form_class(data=request.POST,
+                          instance = request.user.employer)
+        if form.is_valid():
+            form.save()
+            request.user.employer.automatic_filtering_setup_completed = True
+            request.user.employer.save()
+    else:
+        form = form_class(instance=request.user.employer)
+    
+    context = {
+        'form':form
+    }
+    context.update(extra_context or {}) 
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
         
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
