@@ -19,6 +19,7 @@
     background-image: -moz-linear-gradient(#707070, #333);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#707070), to(#333));
     -pie-background: linear-gradient(#707070, #333);
+    color: #33BFE4;
 }
 
 #loginWrapper {
@@ -26,7 +27,7 @@
     border-radius: 3px;
     position: absolute;
     top: 6px;
-    right: 225px;
+    right: 150px;
     background: white;
     padding: 10px;
     border: 2px solid #CCC;

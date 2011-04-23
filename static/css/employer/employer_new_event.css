@@ -5,68 +5,73 @@
  */
 
 #new_event_form_block {
-	width:700px;
-	margin-left: auto;
-	margin-right: auto;
+    width:700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 #new_event_form_block .main_block_header {
-	text-align:center;
+    text-align:center;
 }
 #new_event_form_block .main_block_content {
-	padding-bottom:16px;
-	padding-left:25px;
-	padding-right:25px;
+    padding-bottom:16px;
+    padding-left:25px;
+    padding-right:25px;
 }
 #new_event_form select {
-	width:204px;
+    width:204px;
 }
 #new_event_form input[type=text], input[type=password] {
-	width:200px;
+    width:200px;
 }
 #new_event_form #id_days, #new_event_form #id_hours, #new_event_form #id_minutes {
-	width:65px;
-	margin-right:5px;
+    width:65px;
+    margin-right:5px;
 }
 .duration_field_label {
-	border:none;
+    border:none;
 }
 .day_label {
-	margin-left:40px;
+    margin-left:40px;
 }
 .hour_label {
-	margin-left:36px;
+    margin-left:36px;
 }
 .minute_label {
-	margin-left:35px;
+    margin-left:35px;
+}
+#new_event_form label {
+    width: 110px;
+    display: inline-block;
+    text-align: right;
 }
 #new_event_form label[for=id_description] {
-	border-right:none;
-	padding-left:0px !important;
+    border-right:none;
+    padding-left:0px !important;
 }
 #new_event_form .error[for=id_description] {
-	top:18px;
-	left:88px;
+    top:18px;
+    left:88px;
 }
 #new_event_form #id_description {
-	width:100%;
-	margin-top:3px;
+    width:100%;
+    margin-top:3px;
 }
 #datepicker, .ui-datepicker-calendar .ui-state-default {
-	border:1px solid #808080
+    border:1px solid #808080
 }
 #datepicker, .ui-datepicker-calendar .ui-state-active {
-	border:1px solid black;
-	background:#606060;
-	color:white;
+    border:1px solid black;
+    background:#606060;
+    color:white;
 }
 #datepicker .ui-datepicker-current {
-	font-weight:bold;
-	border:1px solid #808080;
-	color:black;
+    font-weight:bold;
+    border:1px solid #808080;
+    color:black;
 }
 #pickerplug .ui-icon-closethick {
-	cursor:pointer;
-	border-right:1px solid #808080;
-	border-bottom:1px solid #808080;
-	border-top:1px solid #808080;
+    cursor:pointer;
+    border-right:1px solid #808080;
+    border-bottom:1px solid #808080;
+    border-top:1px solid #808080;
 }

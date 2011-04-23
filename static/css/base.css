@@ -12,7 +12,6 @@ html, body {
     font-size: 13px;
     font-family: Arial, sans-serif;
     color: #000;
-    background-color: #fcfff5;
 }
 img {
     border: none;
@@ -40,7 +39,7 @@ p {
     min-width: 986px;
 }
 #below_header_area {
-    min-height: 10px;
+    min-height: 20px;
     min-width: 986px;
 }
 .below_header_message {
@@ -66,7 +65,7 @@ p {
     height: 60px;
 }
 #logo_image {
-    margin-top: 10px;
+    margin-top: -2px;
 }
 #navigation_block {
     text-shadow: 0 -1px 0 black;
@@ -81,35 +80,35 @@ p {
     text-align: center;
     line-height: 60px;
     height: 60px;
-    margin: 0 5px;
+    margin: 0 4px;
     position: relative;
 }
 #navigation_block a {
     display: inline-block;
-    color: #365FB7;
     text-decoration: none;
     line-height: 30px;
-    padding: 0 10px;
+    padding: 0 6px;
     -webkit-transition: color 0.2s ease, background-color 0.2s ease;
     -moz-transition: color 0.2s ease, background-color 0.2s ease;
     transition: color 0.2s ease, background-color 0.2s ease;
-    border: 1px solid #000;
-    border-radius: 3px;
     -moz-border-radius: 2px;
-    text-shadow: #FFF 0 1px 0;
-    behavior: url(/static/lib/pie/PIE.htc);
-    background-image: -moz-linear-gradient(rgba(255,255,255,0.8), rgba(210,210,210,0.8));
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.8)), to(rgba(210,210,210,0.8)));
-    -pie-background: linear-gradient(rgba(255,255,255,0.8), rgba(210,210,210,0.8));
+    text-shadow: none;
+    /*
     -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
+    */
+    font-weight: bold;
+    color: #FFF;
+    font-size: 12px;
+    border-radius: 2px;
 }
 #navigation_block a:hover {
-    behavior: url(/static/lib/pie/PIE.htc);
-    background-image: -moz-linear-gradient(rgba(255,255,255,1.0), rgba(210,210,210,0.8));
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,1.0)), to(rgba(210,210,210,0.8)));
-    -pie-background: linear-gradient(rgba(255,255,255,1.0), rgba(210,210,210,0.8));
+    background-color: rgba(255,255,255,0.1);
+    color: #DDD;
+}
+#navigation_block .arrow {
+    font-size: 0.8em;
 }
 
 #login_section {
@@ -171,7 +170,7 @@ p {
 .main_block_header_title, .side_block_header_title {
     text-shadow: 0px 1px white;
     vertical-align:middle;
-    font-weight: bold;
+    color:#444;
 }
 .main_block_header_content, .side_block_header_content {
     float:right;
@@ -217,19 +216,16 @@ p {
 }
 .main_block_header {
     padding: 3px 0px;
+    line-height: 30px;
 }
 .main_block_header_icon {
     margin-left:10px;
-    margin-right:10px;
     position:relative;
     bottom:1px;
 }
 .main_block_header_title {
-    font-size: 22px;
-    margin-left: 6px;
+    font-size: 18px;
     text-shadow: #FFF 0 1px 0;
-}
-.main_block_header_content {
 }
 .main_block_content_form_info {
     margin-top: 20px;
@@ -274,6 +270,7 @@ p {
 .side_block_header_title {
     font-size: 16px;
     margin-left:3px;
+    line-height: 30px;
 }
 .side_block_header_content {
 }
@@ -341,7 +338,7 @@ p {
     margin-right: 5px;
 }
 /* Buttons */
-.button, .ui-multiselect-menu .ui-multiselect-none {
+.button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#F0F0F0, #DDD);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#DDD));
@@ -351,17 +348,17 @@ p {
     border-radius: 2px;
     outline: none;
     border: 1px solid #888;
-    color: #0281CC;
+    color: #6e97b9;
     cursor: pointer;
     height: 30px;
     font-size: 13px;
     text-shadow: #FFF 0 1px 0;
     display: inline-block;
     padding: 0 8px;
-    line-height: 30px;
+    line-height: 28px;
     text-decoration: none;
 }
-.ui-multiselect-menu .ui-multiselect-none {
+.ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     height: 19px;
     line-height: 19px;
     position: relative;
@@ -373,7 +370,7 @@ p {
     top: 1px;
     background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
 }
-#content_area .ui-multiselect-menu .ui-multiselect-none a:hover, #content_area .ui-multiselect-menu .ui-multiselect-none span:hover {
+#content_area .ui-multiselect-none a:hover, #content_area .ui-multiselect-none span:hover {
     text-decoration: none;
 }
 
@@ -387,11 +384,11 @@ p {
 .button::-moz-focus-inner {
     border: 0;
 }
-.button:hover, .ui-multiselect-menu .ui-multiselect-none:hover {
+.button:hover, .ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
-    color: #0281CC !important;
+    color: #6e97b9 !important;
 }
-.button:active, .ui-multiselect-menu .ui-multiselect-none:active {
+.button:active, .ui-multiselect-menu .ui-multiselect-none:active, .ui-multiselect-menu .ui-multiselect-all:active {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#DDD, #F0F0F0);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDD), to(#F0F0F0));
@@ -523,7 +520,7 @@ input[type=text], input[type=password] {
     position: relative;
 }
 #content_area a, a {
-    color: #0281CC;
+    color: #6e97b9;
     outline: none;
 }
 #content_area a:hover, a:hover {
@@ -589,6 +586,7 @@ a:focus {
     font-size:17px;
     font-weight:normal;
     text-shadow: #FFF 0 1px 0;
+    padding:2px 3px;
 }
 .ui-dialog {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -675,7 +673,7 @@ button.ui-multiselect[type=button]:hover {
 .ui-multiselect-none {
     line-height: auto;
 }
-.ui-multiselect-none span {
+.ui-multiselect-none span, .ui-multiselect-all span{
     font-size: 11px;
 }
 .ui-multiselect-menu li {
@@ -694,13 +692,13 @@ button.ui-multiselect[type=button]:hover {
 }
 #content_area .ui-multiselect-optgroup-label a:hover {
     cursor: default;
-    color: #0281CC;
+    color: #6e97b9;
 }
 .ui-widget-header .ui-icon {
     background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
 }
 .ui-widget-header .ui-icon:hover {
-    background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_FFFFFF_256x240.png');
+    background-image: url('/static/lib/jquery_ui_custom/css/images/ui-icons_000000_256x240.png');
 }
 
 .clearfix::after {
@@ -717,11 +715,11 @@ button.ui-multiselect[type=button]:hover {
     transition: none;
 }
 #account.pressed, #account.pressed:hover {
-    background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
+    /*background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
-    -pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
+    -pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));*/
     color: #FFF;
-    text-shadow: #000 0 -1px 0;
+    background-color: rgba(255,255,255,0.3);
 }
 #account_dropdown {
 	min-width:120px;
@@ -777,7 +775,7 @@ button.ui-multiselect[type=button]:hover {
 #account_dropdown .info {
     color: #FFF;
     padding: 10px;
-    text-shadow: #FFF 0 0 2px;
+    text-shadow: rgba(255,255,255,0.8) 0 0 2px;
     background-color: #333;
     font-size: 14px;
     overflow-x: hidden;

@@ -80,7 +80,7 @@ Copyright 2011. All Rights Reserved.
                         <a id="help" href="{% url help %}">Help</a>
                     </li>
                     <li>
-                        <a id="account" href="javascript:void(0)">Account</a>
+                        <a id="account" href="javascript:void(0)">Account <span class="arrow">&#9660;</span></a>
                         <ul id="account_dropdown">
                             <li class="info">{% if user.company_name %}{{user.company_name}}{% else %}{{user}}{% endif %}</li>
                         {% if user.student %}
@@ -108,7 +108,7 @@ Copyright 2011. All Rights Reserved.
                    {% endif %}
                 </ul>
                 <a id="logo_block" href="/">
-                    <img id="logo_image" src="{{ STATIC_URL }}images/SBConnectBanner.png" />
+                    <img id="logo_image" src="{{ STATIC_URL }}images/logo.png" />
                 </a>
             </div>
         </div>

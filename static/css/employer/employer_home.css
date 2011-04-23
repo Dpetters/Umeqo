@@ -42,10 +42,6 @@ label[for=search_form_submit_button] {
     height: 32px;
     line-height: 32px;
 }
-#events_and_deadlines_block .main_block_header_icon {
-    position:relative;
-    bottom:2px;
-}
 #events_and_deadlines_block .main_block_header_links {
     margin-right:20px;
 }
