@@ -138,7 +138,7 @@ def student_edit_profile(request,
                 os.remove(settings.MEDIA_ROOT + old_resume_name)
                 return process_resume(request.user.student)
             else:
-                return redirect(reverse('student_home', kwargs={ 'username': request.user}))
+                return redirect('home')
     else:
         form = form_class(instance=request.user.student)
 
@@ -376,7 +376,7 @@ def process_resume(student):
     student.last_update = datetime.datetime.now()
     student.save()
     
-    return redirect(reverse('student_home', kwargs={ 'username': student.user}))
+    return redirect('home')
 
 """
 def compute_suggested_employers_list(student, exclude = None):

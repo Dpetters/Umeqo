@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.shortcuts import render_to_response, redirect
@@ -24,7 +25,9 @@ from events.models import Event
 
 
 def home(request,
-         template_name="home.html",
+         anonymous_home_template_name="anonymous_home.html",
+         student_home_template_name="student_home.html",
+         employer_home_template_name="employer_home.html",
          extra_context=None):
     
     if request.user.is_authenticated():
@@ -34,7 +37,7 @@ def home(request,
             
             context = {}
             context.update(extra_context or {}) 
-            return render_to_response(template_name,
+            return render_to_response(student_home_template_name,
                                       context,
                                       context_instance=RequestContext(request))
             
@@ -49,15 +52,16 @@ def home(request,
                        }
             
             context.update(extra_context or {})
-            return render_to_response(template_name, 
+            return render_to_response(employer_home_template_name, 
                                       context, 
                                       context_instance=RequestContext(request))
     
     request.session.set_test_cookie()
     
-    context = {}
-    
-    context['action'] = request.REQUEST.get('action', '')
+    context = {
+               'login_form':AuthenticationForm,
+               'action':request.REQUEST.get('action', '')
+               }
     
     event_kwargs = {}
     event_kwargs['start_datetime__gt'] = datetime.datetime.now()
@@ -65,7 +69,7 @@ def home(request,
     context['events'] = list(events)[:3]
     
     context.update(extra_context or {})
-    return render_to_response(template_name,
+    return render_to_response(anonymous_home_template_name,
                               context,
                               context_instance=RequestContext(request))
 

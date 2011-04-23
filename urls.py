@@ -32,7 +32,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('core.views',
-    (r'^$', 'home', {'extra_context': {'login_form':AuthenticationForm}}, 'home'),
+    (r'^$', 'home', {}, 'home'),
     (r'^about/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'about.html' }, 'about'),
     (r'^blog/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'blog.html' }, 'blog'),
     (r'^enable-javascript/$', direct_to_template, { 'template' : 'enable_javascript.html' }, 'enable_javascript'),
@@ -81,16 +81,12 @@ urlpatterns += patterns('student.views',
     (r'^student/events/$', 'student_events', {}, 'student_events'),
     (r'^student/events/(?P<id>\d+)/$', 'student_event', {}, 'student_event'),
     # Student Invitations
-    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),
-    # Student Home
-    (r'^student/home/$', 'student_home', {}, "student_home"),    
+    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),   
 )
 
 urlpatterns += patterns('employer.views',
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
-    # Employer Home
-    (r'^employer/home/$', 'employer_home', {}, 'employer_home'), 
     # Employer Account Settings
     (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'), 
     # Employer Student Default Filtering Parameters
