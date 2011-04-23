@@ -131,11 +131,11 @@ def employer_account_settings(request,
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_events(request,
-                    template_name="employer/employer_events.html",
+                    template_name="employer_events.html",
                     extra_context=None):
     
     context = {}
-    context['upcoming_events'] = request.user.employer.events.filter(datetime__gt=datetime.datetime.now())
+    context['upcoming_events'] = request.user.employer.event_set.filter(start_datetime__gt=datetime.datetime.now())
     context.update(extra_context or {})
     return render_to_response(template_name,
                               context,
