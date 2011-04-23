@@ -110,16 +110,54 @@ Copyright 2011. All Rights Reserved.
         </div>
     </div>
     <div class="main_block_content">
+        {% if your_events %}
+        <h3>Upcoming in the Next Week</h3>
+        <ul class="event_list">
+            {% for event in your_events %}
+                <li>
+                    <div class="name">
+                        <span class="type">{{event.type}}</span> {{event.name}}
+                        <div class="datetime">
+                            {% if event.start_datetime %}
+                            <span class="start">{{event.start_datetime|date:"D n/j/y P"}}</span> - 
+                            {% endif %}
+                            <span class="end">
+                                {% ifequal event.start_datetime.day event.end_datetime.day %}
+                                {% ifequal event.start_datetime.month event.end_datetime.month %}
+                                {% ifequal event.start_datetime.year event.end_datetime.year %}
+                                    {{event.end_datetime|date:"P"}}
+                                {% endifequal %}{% endifequal %}
+                                {% else %}
+                                    {{event.end_datetime|date:"D n/j/y P"}}
+                                {% endifequal %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="details">
+                        {% if event.location %}
+                        <div>
+                            <strong>Location:</strong>
+                            <span class="location">{{event.location}}</span>
+                        </div>
+                        {% endif %}
+                        {% if event.description %}
+                        <div>{{event.description}}</div>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
         <div class="message_block">
             <p>
                 You can post your company's events and deadlines for students to view and add to their calendars.
             </p>
-            <br>
             <p>
                 You currently don't have any upcoming events/deadlines. You can
                 <a href="/employer/events/new/"><strong>create one now</strong></a>.
             </p>
         </div>
+        {% endif %}
     </div>
     <div class="main_block_footer">
         <div class="main_block_footer_links">

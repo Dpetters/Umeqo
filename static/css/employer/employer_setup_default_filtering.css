@@ -1,0 +1,13 @@
+#default_filtering_parameters_form .section {
+    float: left;
+    margin-right: 40px;
+}
+.setup_default_filtering_parameters_dialog input[type=text] {
+    width:225px;
+}
+.setup_default_filtering_parameters_dialog select {
+    width:275px;
+}
+#id_languages, #id_campus_orgs, #id_industries_of_interest, #id_previous_employers, #id_majors {
+    width:315px;
+}

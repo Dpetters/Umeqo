@@ -23,6 +23,8 @@ from core.models import Course, CampusOrg, Language
 from employer.models import Employer
 from events.models import Event
 
+def landing(request):
+    return render_to_response('landing.html')
 
 def home(request,
          anonymous_home_template_name="anonymous_home.html",
@@ -45,10 +47,13 @@ def home(request,
             if request.user.employer.automatic_filtering_setup_completed:
                 check_for_new_student_matches(request.user.employer)
             
+            your_events = Event.objects.filter(employer=request.user.employer,end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+            
             context = {
                        'search_form': SearchForm(),
                        'notices': Notice.objects.notices_for(request.user),
-                       'unseen_notice_num': Notice.objects.unseen_count_for(request.user)
+                       'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
+                       'your_events': your_events
                        }
             
             context.update(extra_context or {})

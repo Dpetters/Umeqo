@@ -142,6 +142,8 @@ INSTALLED_APPS = (
     'digg_paginator'
 )
 
+LAUNCHED = False
+
 try:
     from settings_local import *
 except ImportError:

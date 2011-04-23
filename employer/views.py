@@ -39,7 +39,6 @@ def employer_company_profile(request, username,
     else:
         return redirect(reverse('employer_company_profile', kwargs={'username': request.user}))
     
-                                                 
 def employer_registration(request, 
                            template_name="employer_registration.html", 
                            extra_context = None):
@@ -48,7 +47,6 @@ def employer_registration(request,
     return render_to_response(template_name,
                               context,
                               context_instance=RequestContext(request))
-
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
