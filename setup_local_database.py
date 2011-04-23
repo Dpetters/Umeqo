@@ -167,7 +167,7 @@ for year in contents:
 print "Created Graduation Years"
 
 # Create Employment Types
-new_contents_path = ROOT + "/initial_content/EmploymentType/"
+new_contents_path = ROOT + "/initial_content/EmploymentTypes/"
 contents_file = open(new_contents_path + "contents.json")
 contents = simplejson.loads(contents_file.read())
 for type in contents:
