@@ -48,7 +48,7 @@ def activate_user(request,
                   **kwargs):
 
     account = backend.activate(request, **kwargs)
-
+    
     if account:
         if success_url is None:
             to, args, kwargs = backend.post_activation_redirect(request, account)

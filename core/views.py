@@ -24,14 +24,11 @@ def home(request,
          template_name="home.html",
          extra_context=None):
     
-    url = ""
-    
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
-            url = "/student/"
+            return redirect("student_home")
         elif hasattr(request.user, "employer"):
-            url = "/employer/"
-        return redirect(url + str(request.user) + "/")
+            return redirect("employer_home")
     
     request.session.set_test_cookie()
     
