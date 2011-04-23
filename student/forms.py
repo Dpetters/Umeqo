@@ -35,13 +35,8 @@ class StudentCreateProfileForm(forms.ModelForm):
     # School Year school_year = forms.ModelChoiceField(queryset = SchoolYear.objects.all(), empty_label="select school year")
     # Graduation Year graduation_year = forms.ModelChoiceField(queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
     # First Major first_major = forms.ModelChoiceField(queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
-    #gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
+    gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
     resume = PdfField()
-    
-   
-    # Older than 18
-    # Citizen
-    website = forms.URLField(required = False)
 
     second_major = forms.ModelChoiceField(queryset = Course.objects.all(), required = False, empty_label = "select course")
     sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
@@ -51,7 +46,15 @@ class StudentCreateProfileForm(forms.ModelForm):
     
     older_than_18 = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
     citizen = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
-
+    
+    """
+        Miscellaneous
+    """
+    
+    # Older than 18
+    # Citizen
+    website = forms.URLField(required = False)
+    
     # Looking For    
     # Previous Employers
     # Industries of Interest
