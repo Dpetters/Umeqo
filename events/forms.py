@@ -42,5 +42,5 @@ class EventForm(forms.ModelForm):
     end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(), required=False)
 
     class Meta:
-        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'rsvp_type', 'external_site', 'email', 'location', 'audience', 'description')
+        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description')
         model = Event
