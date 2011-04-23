@@ -20,8 +20,6 @@ def login(request,
           template_name='homepage.html'):
 
     if request.is_ajax():
-        print request.POST
-        print request.GET
         if request.method == "POST":
             redirect_to = request.POST.get(redirect_field_name, '')
             username = request.POST['username']
@@ -48,10 +46,13 @@ def activate_user(request,
                   **kwargs):
 
     account = backend.activate(request, **kwargs)
-    
+    print "hey"
+    print account
     if account:
         if success_url is None:
             to, args, kwargs = backend.post_activation_redirect(request, account)
+            print 'to'
+            print to
             return redirect(to, *args, **kwargs)
         else:
             return redirect(success_url)
