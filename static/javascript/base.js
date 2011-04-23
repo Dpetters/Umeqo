@@ -136,7 +136,7 @@ $(document).ready( function () {
     /* Function Definitions */
     
     // Aligns the inputs of a form
-    align_form = function(container, shift) {
+    /*align_form = function(container, shift) {
         container = typeof(container) != 'undefined' ? container : "";
         shift = typeof(shift) != 'undefined' ? shift : 0;
 
@@ -148,12 +148,12 @@ $(document).ready( function () {
             var diff = Array.max(widths) - this.offsetWidth;
             label.style.paddingLeft = diff + shift + "px";
         });
-    };
+    };*/
     // Form Required Label Formatting
-    format_required_labels = function(container) {
+    /*format_required_labels = function(container) {
         container = typeof(container) != 'undefined' ? container : "";
         $(container + " .required").css('font-weight', 'bold').append("<span class='error'>*</span>");
-    };
+    };*/
     show_loading_failed_message = function(dialog) {
         $(".dialog .message_section").html("This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.");
     };
@@ -183,7 +183,6 @@ $(document).ready( function () {
         $(element).filter("select").css('border', '1px solid #AAA');
     };
     place_errors = function(error, element) {
-        
         $(error).appendTo(element.parent().prev());
         if ($(element).position().left == 0) {
             if ($(element).next(":button.ui-multiselect").length!=0) {
@@ -199,6 +198,22 @@ $(document).ready( function () {
             "bottom": 0
         });
     };
+    place_errors_table = function(error,element) {
+        $(error).appendTo(element.prev());
+        if ($(element).position().left == 0) {
+            if ($(element).next(":button.ui-multiselect").length!=0) {
+                var offset = element.next().position().left-element.parent().position().left;
+            }
+        } else {
+            var offset = element.position().left-element.parent().position().left;
+        }
+        $(error).css({
+            "padding-left": offset,
+            "float": "left",
+            "position": "absolute",
+            "bottom": 0
+        });
+    }
     // Multiselect Warning Function
     show_multiselect_warning = function(e, max) {
         var element = $("#" + e)

@@ -5,15 +5,15 @@
  */
 
 $(document).ready( function() {
-
-    $("#id_hours, #id_minutes").bind('change', function() {
-        new_event_form_validator.element("#id_days");
-    });
+    
     var event_rules = {
         name:{
             required: true,
         },
         start_datetime_0:{
+            required: true,
+        },
+        end_datetime_0:{
             required: true,
         },
         type:{
@@ -33,6 +33,9 @@ $(document).ready( function() {
             required: true,
         },
         start_datetime_0:{
+            required: true,
+        },
+        end_datetime_0:{
             required: true,
         },
         type:{
@@ -105,12 +108,10 @@ $(document).ready( function() {
     var new_event_form_validator = $("#new_event_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors,
+        errorPlacement: place_errors_table,
     });
 
     addRules(event_rules);
-    format_required_labels();
-    align_form();
 
     $('.external_rsvp_only_field, .email_rsvp_only_field').hide();
 

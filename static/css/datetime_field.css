@@ -5,7 +5,9 @@
 #content_area input[type=text].datefield:hover {
     cursor: pointer;
 }
-#content_area input[type=text].timefield {
+#content_area select.timefield {
+    width: auto;
+    margin-left: 5px;
 }
 .ui-datepicker-header {
     font-size: 14px;

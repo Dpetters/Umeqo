@@ -37,30 +37,36 @@ Copyright 2011. All Rights Reserved.
         <form id="new_event_form" method='POST' action="." enctype="multipart/form-data">
             {% csrf_token %}
             <div class="new_event_form_col">
-                <div class="errorspace">
-                </div>
-                <div>
-                    <label for="id_event_type" class="required">Event Type:</label>
-                    {{form.type}}
-                </div>
-                <div class="errorspace">
-                </div>
-                <div>
-                    <label for="id_title" class="required">Event Name:</label>
-                    {{form.name}}
-                </div>
-                <div class="errorspace">
-                </div>
-                <div>
-                    <label for="id_datetime" class="required">Start Date/Time:</label>
-                    {{form.start_datetime}}
-                </div>
-                <div class="errorspace event_only_field">
-                </div>
-                <div class="event_only_field">
-                    <label for="id_duration" class="required">End Date/Time:</label>
-                    {{form.end_datetime}}
-                </div>
+                <table class="form_table">
+                    <tr>
+                        <th><label for="id_event_type" class="required">Event Type:</label></th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.type}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="id_title" class="required">Event Name:</label></th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="id_datetime" class="required">Start Date/Time:</label></th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.start_datetime}}
+                        </td>
+                    </tr>
+                    <tr id="end_datetime_div" class="event_only_field">
+                        <th><label for="id_duration" class="required">End Date/Time:</label></th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.end_datetime}}
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="new_event_form_col">
                 <div class="errorspace event_only_field"></div>

@@ -19,7 +19,7 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     date_format = forms.DateInput.format
     time_format = forms.TimeInput.format
 
-    def __init__(self, dateAttrs=None, timeAttrs=None, date_format=None, time_format=None):   
+    def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None):   
         widgets = (forms.DateInput(attrs=dateAttrs, format=date_format),
                    forms.Select(attrs=timeAttrs, choices=TIME_CHOICES))
         super(ImprovedSplitDateTimeWidget, self).__init__(widgets, {})
@@ -38,8 +38,8 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
 class EventForm(forms.ModelForm):
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), empty_label="select event type")
     rsvp_type = forms.ModelChoiceField(queryset = RSVPType.objects.all(), empty_label="select RSVP type", required=False)
-    start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(dateAttrs={'class':'datefield'},timeAttrs={'class':'timefield'}))
-    end_datetime = forms.DateTimeField()
+    start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget())
+    end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(), required=False)
 
     class Meta:
         fields = ('name', 'start_datetime', 'end_datetime', 'type', 'rsvp_type', 'external_site', 'email', 'location', 'audience', 'description')

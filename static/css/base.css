@@ -329,14 +329,6 @@ p {
     color: #FFF;
     background-color: #BBB;
 }
-#footer_reference_block {
-    padding-top: 5px;
-    float: right;
-}
-.reference_button {
-    border: none;
-    margin-right: 5px;
-}
 /* Buttons */
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -469,12 +461,6 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
 input[type=submit] {
     font-family: Arial;
 }
-select {
-    height:20px;
-}
-select[multiple=multiple] {
-    height:auto;
-}
 .ui-multiselect {
     behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius:3px;
@@ -501,6 +487,18 @@ input[type=text], input[type=password] {
     margin-top: 20px;
     text-align:center;
 }
+.required::after {
+    content: '*';
+    color: #F22;
+}
+
+/* TABLES + FORMS = <3 */
+.form_table th {
+    vertical-align: bottom;
+    padding-bottom: 3px;
+    text-align: right;
+}
+
 /* Form Info */
 .side_form_info {
     margin-top: 20px;
