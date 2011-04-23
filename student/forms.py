@@ -10,7 +10,7 @@ from student.models import Student
 from core.forms_helper import campus_org_types_as_choices
 from core.models import SchoolYear, GraduationYear, Course
 from core.fields import PdfField
-from core.choices import YES_NO_CHOICES
+from core.choices import SELECT_YES_NO_CHOICES
     
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     
@@ -32,10 +32,10 @@ class StudentCreateProfileForm(forms.ModelForm):
     # Last Name
     # Graduation Year
     # First Major
-    school_year = forms.ModelChoiceField(queryset = SchoolYear.objects.all(), empty_label="select school year")
-    graduation_year = forms.ModelChoiceField(queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
-    first_major = forms.ModelChoiceField(queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
-    gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
+    # School Year school_year = forms.ModelChoiceField(queryset = SchoolYear.objects.all(), empty_label="select school year")
+    # Graduation Year graduation_year = forms.ModelChoiceField(queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
+    # First Major first_major = forms.ModelChoiceField(queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
+    #gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
     resume = PdfField()
     
    
@@ -44,21 +44,17 @@ class StudentCreateProfileForm(forms.ModelForm):
     website = forms.URLField(required = False)
 
     second_major = forms.ModelChoiceField(queryset = Course.objects.all(), required = False, empty_label = "select course")
-    sat_m = forms.IntegerField(max_value = 800, min_value = 200, required = False, widget=forms.TextInput(attrs={'class': 'sat'}))
-    sat_v = forms.IntegerField(max_value = 800, min_value = 200, required = False, widget=forms.TextInput(attrs={'class': 'sat'}))
-    sat_w = forms.IntegerField(max_value = 800, min_value = 200, required = False, widget=forms.TextInput(attrs={'class': 'sat'}))
+    sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
     act = forms.IntegerField(max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
     
     # Campus Orgs
     
-    older_than_18 = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
-    citizen = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
-    
-    looking_for_internship = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
-    looking_for_fulltime = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
-    
+    older_than_18 = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
+    citizen = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
+
+    # Looking For    
     # Previous Employers
-    # industries_interest
+    # Industries of Interest
     
     class Meta:
         fields = ('first_name',
@@ -72,14 +68,11 @@ class StudentCreateProfileForm(forms.ModelForm):
                    'citizen',
                    'website',
                    'second_major',
-                   'sat_m',
-                   'sat_v',
-                   'sat_w',
+                   'sat',
                    'act',
                    'campus_orgs',
                    'languages',
-                   'looking_for_internship',
-                   'looking_for_fulltime',
+                   'looking_for',
                    'previous_employers',
                    'industries_of_interest')
         model = Student

@@ -6,7 +6,7 @@
 
 from django import forms
 
-from core.choices import YES_NO_CHOICES
+from core.choices import NO_YES_CHOICES, SELECT_YES_NO_CHOICES
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
@@ -18,10 +18,11 @@ class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field'}))
 
 class FilteringForm(forms.ModelForm):
-    older_than_18 = forms.ChoiceField(choices = YES_NO_CHOICES, required = False, widget=forms.Select(attrs={'class':"older_than_18"}))
-    citizen = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
-    looking_for_internship = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
-    looking_for_fulltime = forms.ChoiceField(choices = YES_NO_CHOICES, required = False)
+    looking_for_internship = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
+    looking_for_fulltime = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
+    
+    older_than_18 = forms.ChoiceField(choices = NO_YES_CHOICES, required = False, widget=forms.Select(attrs={'class':"older_than_18"}))
+    citizen = forms.ChoiceField(choices = NO_YES_CHOICES, required = False)
 
     sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
     act = forms.IntegerField(max_value = 36, required = False)

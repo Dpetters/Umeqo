@@ -61,48 +61,57 @@ Copyright 2011. All Rights Reserved.
                     </div>
                 </div>
                 <div id="required_info_page">
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_first_name" class="required">First Name:</label>
-                        {{form.first_name}}
-                    </div>
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_last_name" class="required">Last Name:</label>
-                        {{form.last_name}}
-                    </div>
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_school_year" class="required">School Year:</label>
-                        {{form.school_year}}
-                    </div>
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_graduation_year" class="required">Graduation Year:</label>
-                        {{form.graduation_year}}
-                    </div>
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_first_major" class="required">First Major:</label>
-                        {{form.first_major}}
-                    </div>
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_gpa" class="required">GPA:</label>
-                        {{form.gpa}}
-                    </div>
-                    <div class="errorspace">
-                    </div>
-                    <div class="field_wrapper">
-                        <label for="id_resume">Resume:</label>
-                        {{form.resume}}
-                    </div>
+                	<table class="form_table">
+                		<tr>
+                			<th>{{form.first_name.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.first_name}}
+                			</td>
+                		</tr>
+                        <tr>
+                			<th>{{form.last_name.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.last_name}}
+                			</td>
+                		</tr>
+                		<tr>
+                			<th>{{form.school_year.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.school_year}}
+                			</td>
+                		</tr>
+                		<tr>
+                			<th>{{form.graduation_year.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.graduation_year}}
+                			</td>
+                		</tr>
+                		<tr>
+                			<th>{{form.first_major.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.first_major}}
+                			</td>
+                		</tr>
+                		<tr>
+                			<th>{{form.gpa.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.gpa}}
+                			</td>
+                		</tr>
+                		<tr>
+                			<th>{{form.resume.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.resume}}
+                			</td>
+                		</tr>
+                	</table>
                     <div class="button_wrapper_with_margins">
                         <input id="submit_button" class="button" type='submit' alt="Submit" value='Submit'>
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />

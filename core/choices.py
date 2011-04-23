@@ -4,8 +4,13 @@
  Copyright 2011. All Rights Reserved.
 """
  
-YES_NO_CHOICES = (
+SELECT_YES_NO_CHOICES = (
 ('', 'select'),
 (True, 'Yes'),
 (False, 'No'),
+)
+
+NO_YES_CHOICES = (
+(False, 'No'),
+(True, 'Yes'),
 )

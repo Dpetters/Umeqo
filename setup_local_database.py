@@ -29,7 +29,7 @@ from help.models import Topic, Question
 from help import enums as help_enums
 from employer import enums as employer_enums
 from events.models import Event, EventType, RSVPType
-from core.models import Industry, GraduationYear, SchoolYear, Language, Course, CampusOrg, CampusOrgType
+from core.models import Industry, GraduationYear, SchoolYear, Language, Course, CampusOrg, CampusOrgType, EmploymentType
 from employer.models import Employer
 from student.models import Student, StudentList
 from student import enums as student_enums
@@ -166,7 +166,14 @@ for year in contents:
     GraduationYear.objects.create(year=year)
 print "Created Graduation Years"
 
-
+# Create Employment Types
+new_contents_path = ROOT + "/initial_content/EmploymentType/"
+contents_file = open(new_contents_path + "contents.json")
+contents = simplejson.loads(contents_file.read())
+for type in contents:
+    print type
+    EmploymentType.objects.create(name=type)
+print "Created Employment Types"
 
 # Create School Years
 new_contents_path = ROOT + "/initial_content/SchoolYears/"

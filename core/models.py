@@ -83,7 +83,23 @@ class Course(CommonInfo):
     def save(self, *args, **kwargs):
         self.full_clean()
         super(Course, self).save(*args, **kwargs)
+
+class EmploymentType(models.Model):
+    name = models.CharField("Employment Type", max_length = 42, unique = True)
+    last_updated = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(auto_now_add=True)
         
+    class Meta:
+        verbose_name = "Employment Type"
+        verbose_name_plural = "Employment Types"
+    
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(EmploymentType, self).save(*args, **kwargs)
+        
+    def __unicode__(self):
+        return self.name
+    
 class CampusOrgType(models.Model):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)
