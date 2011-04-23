@@ -56,15 +56,15 @@ urlpatterns += patterns('contact_form.views',
 
 urlpatterns += patterns('registration.views',
     (r'^login/', 'login', {}, 'login'),
-    (r'^student/activation/(?P<activation_key>\w+)/$', 'activate_user', {}, 'student_activation'),
+    (r'^activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'activation_complete.html' }, 'activation_complete'),
+    (r'^activation/(?P<activation_key>\w+)/$', 'activate_user', {}, 'student_activation'),
 )
 
 urlpatterns += patterns('student.views',
     # Student Registration
     (r'^student/registration/$', 'student_registration', {'extra_context': {'login_form':AuthenticationForm}}, "student_registration"),
     (r'^student/registration/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'registration_complete.html' }, 'student_registration_complete'),
-    (r'^student/activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'registration/activation_complete.html' }, 'registration_activation_complete'),
-    (r'^student/registration/closed/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'registration/registration_closed.html' }, 'student_registration_closed'),
+    (r'^student/registration/closed/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'registration_closed.html' }, 'student_registration_closed'),
     # Student Profile Management
     (r'^student/edit-profile/$', 'student_edit_profile', {}, "student_edit_profile"),
     (r'^student/create-profile/$', 'student_create_profile', {}, "student_create_profile"),
