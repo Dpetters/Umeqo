@@ -38,6 +38,7 @@ def employer_company_profile(request, username,
                                   context_instance=RequestContext(request))
     else:
         return redirect(reverse('employer_company_profile', kwargs={'username': request.user}))
+
     
 def employer_registration(request, 
                            template_name="employer_registration.html", 
@@ -48,6 +49,7 @@ def employer_registration(request,
                               context,
                               context_instance=RequestContext(request))
 
+
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_add_to_resume_book(request, student_id):
@@ -56,6 +58,7 @@ def employer_add_to_resume_book(request, student_id):
         employer.studentlist_set.get(name=student_constants.IN_CURRENT_RESUME_BOOK_STUDENT_GROUP_NAME).add(Student.objects.get(id=student_id))
         return HttpResponse(simplejson.dumps({"valid":True}))
     redirect('home')
+
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
@@ -134,17 +137,18 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
                               context,
                               context_instance = RequestContext(request) )
 
+
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def check_event_name_availability(request):
 
-  if request.is_ajax():
-      try:
-          Event.objects.get(name=request.GET.get("name", ""))
-          return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-      except Event.DoesNotExist:
-          return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-  return redirect('home')
+    if request.is_ajax():
+        try:
+            Event.objects.get(name=request.GET.get("name", ""))
+            return HttpResponse(simplejson.dumps(False), mimetype="application/json")
+        except Event.DoesNotExist:
+            return HttpResponse(simplejson.dumps(True), mimetype="application/json")
+    return redirect('home')
 
 
 def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVariable
@@ -157,9 +161,9 @@ def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVari
                 return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     return HttpResponseRedirect('/')
 
+
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-
 def employer_setup_default_filtering(request,
                                                 template_name = "employer_setup_default_filtering.html",
                                                 form_class=FilteringForm,
@@ -182,7 +186,8 @@ def employer_setup_default_filtering(request,
     return render_to_response(template_name,
                               context,
                               context_instance=RequestContext(request))
-        
+
+
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_student_filtering(request,

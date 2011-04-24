@@ -89,17 +89,17 @@ Copyright 2011. All Rights Reserved.
 					<div>
 						{{student_filtering_form.graduation_years}}
 					</div>
-					<div class="slider_section">
+					<div id="gpa_filter_section" class="slider_section">
 						<div></div>
 						<label for="gpa_value">Minimum GPA:</label>
 						{{student_filtering_form.gpa}}
 					</div>
-					<div class="slider_section">
+					<div id="sat_filter_section" class="slider_section">
 						<div></div>
 						<label for="sat_value">Minimum SAT:</label>
 						{{student_filtering_form.sat}}
 					</div>
-					<div class="slider_section">
+					<div id="act_filter_section" class="slider_section">
 						<div></div>
 						<label for="act_value">Minimum ACT:</label>
 						{{student_filtering_form.act}}
@@ -110,18 +110,13 @@ Copyright 2011. All Rights Reserved.
 				</h3>
 				<div>
 					<div>
+						{{student_filtering_form.employment_types}}
+					</div>
+					<div>
 						{{student_filtering_form.previous_employers}}
 					</div>
 					<div>
 						{{student_filtering_form.industries_of_interest}}
-					</div>
-					<div class="select_wrapper">
-						<label for="looking_for_internship">Looking for internship:</label>
-						{{student_filtering_form.looking_for_internship}}
-					</div>
-					<div class="select_wrapper">
-						<label for="looking_for_fulltime">Looking for fulltime:</label>
-						{{student_filtering_form.looking_for_fulltime}}
 					</div>
 				</div>
 				<h3>

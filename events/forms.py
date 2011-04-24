@@ -6,10 +6,8 @@
 
 from django import forms
 
-from events.models import Event, EventType, RSVPType
+from events.models import Event, EventType
 from events.choices import TIME_CHOICES
-
-import copy
 
 from core.forms_helper import decorate_bound_field
 
@@ -41,7 +39,6 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
 
 class EventForm(forms.ModelForm):
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), empty_label="select event type",label="Type:")
-    rsvp_type = forms.ModelChoiceField(queryset = RSVPType.objects.all(), empty_label="select RSVP type", required=False)
     start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(),required=False,label="Start Date/Time:")
     end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(),label="End Date/Time:")
     

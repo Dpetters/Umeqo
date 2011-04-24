@@ -51,32 +51,6 @@
 }
 
 #search_form_submit_button {
-<<<<<<< HEAD
-    height:28px;
-    bottom:1px;
-    position:relative;
-}
-/* Filtering Block */
-#filtering_block .side_block_content {
-    padding:0;
-}
-#search_section, #student_list_section {
-    background: #EEEEEE;
-    border-top:1px solid white;
-    padding:10px 0px 6px 5px
-}
-
-#search_section{
-    border-bottom: 1px solid #CCCCCC;
-    padding:6px 0px 6px 5px
-}
-
-#student_list_block .side_block_content{
-    padding:0;
-}
-.slider_section {
-    margin-bottom:10px;
-=======
     height:30px;
     top:2px;
     position:relative;
@@ -85,7 +59,6 @@
     margin-bottom:6px;
     margin-top:3px;
     padding-left:3px;
->>>>>>> cdbb85f0142eda670ae74c0c260d811be2fb962a
 }
 
 .slider_section input {
@@ -94,25 +67,12 @@
     background-color:transparent;
 }
 
-<<<<<<< HEAD
-#side_block_area{
-    width:328px;
-}
-
-=======
->>>>>>> cdbb85f0142eda670ae74c0c260d811be2fb962a
 .slider_section div {
     top:5px;
     margin-right:18px;
     float:right;
     width:167px;
 }
-<<<<<<< HEAD
-#gpa_filter div {
-    width: 178px;
-}
-=======
->>>>>>> cdbb85f0142eda670ae74c0c260d811be2fb962a
 
 #id_gpa{
     width:20px;
@@ -145,9 +105,6 @@ button.ui-multiselect[type="button"] {
     width:328px;
 }
 
-#id_ordering, #id_results_per_page {
-    width:192px;
-}
 label[for="id_results_per_page"], #id_results_per_page {
     position:relative;
     right:2px;

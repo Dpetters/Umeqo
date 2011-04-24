@@ -44,7 +44,7 @@ def home(request,
                                       context_instance=RequestContext(request))
             
         elif hasattr(request.user, "employer"):
-            if request.user.employer.automatic_filtering_setup_completed:
+            if request.user.employer.default_filtering_parameters:
                 check_for_new_student_matches(request.user.employer)
             
             your_events = Event.objects.filter(employer=request.user.employer,end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
