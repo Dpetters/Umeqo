@@ -358,8 +358,13 @@ p {
 .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     height: 19px;
     line-height: 19px;
-    position: relative;
-    top: -2px;
+}
+.ui-multiselect-menu  .ui-multiselect-hasfilter ul{
+	top:0px;
+}
+.ui-multiselect-menu  .ui-multiselect-close{
+	position:relative;
+	top:2px;
 }
 .ui-multiselect-menu .ui-multiselect-none span.ui-icon {
     position: relative;

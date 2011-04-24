@@ -6,11 +6,11 @@
 
 from django import forms
 
-from core.choices import NO_YES_CHOICES, SELECT_YES_NO_CHOICES
+from core.choices import NO_YES_CHOICES
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
-from employer.models import Employer
+from employer.models import FilteringParameters
 from employer import enums
 
 
@@ -18,31 +18,16 @@ class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field'}))
 
 class FilteringForm(forms.ModelForm):
-    looking_for_internship = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
-    looking_for_fulltime = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
     
-    older_than_18 = forms.ChoiceField(choices = NO_YES_CHOICES, required = False, widget=forms.Select(attrs={'class':"older_than_18"}))
+    older_than_18 = forms.ChoiceField(choices = NO_YES_CHOICES, required = False)
     citizen = forms.ChoiceField(choices = NO_YES_CHOICES, required = False)
 
     sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
     act = forms.IntegerField(max_value = 36, required = False)
+    gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
     
     class Meta:
-        fields = ('looking_for_internship',
-                   'looking_for_fulltime',
-                   'older_than_18',
-                   'citizen',
-                   'school_years',
-                   'majors',
-                   'graduation_years',
-                   'languages',
-                   'campus_orgs',
-                   'industries_of_interest',
-                   'previous_employers',
-                   'gpa',
-                   'sat',
-                   'act')
-        model = Employer
+        model = FilteringParameters
         
     def __init__(self, *args, **kwargs):
         super(FilteringForm, self).__init__(*args, **kwargs)

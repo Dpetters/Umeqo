@@ -8,7 +8,7 @@ from django import forms
 
 from student.models import Student
 from core.forms_helper import campus_org_types_as_choices
-from core.models import SchoolYear, GraduationYear, Course
+from core.models import Course
 from core.fields import PdfField
 from core.choices import SELECT_YES_NO_CHOICES
     
@@ -27,7 +27,10 @@ class StudentUpdateResumeForm(forms.ModelForm):
         model = Student
 
 class StudentCreateProfileForm(forms.ModelForm):
-            
+         
+    """
+    Required Info
+    """  
     # First Name
     # Last Name
     # Graduation Year
@@ -37,27 +40,29 @@ class StudentCreateProfileForm(forms.ModelForm):
     # First Major first_major = forms.ModelChoiceField(queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
     gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
     resume = PdfField()
-
+    
+    
+    """
+        Academic Info
+    """
     second_major = forms.ModelChoiceField(queryset = Course.objects.all(), required = False, empty_label = "select course")
     sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
     act = forms.IntegerField(max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
     
-    # Campus Orgs
-    
-    older_than_18 = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
-    citizen = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
-    
     """
-        Miscellaneous
+        Work-Related Info
     """
-    
-    # Older than 18
-    # Citizen
-    website = forms.URLField(required = False)
-    
     # Looking For    
     # Previous Employers
     # Industries of Interest
+    
+    """
+        Miscellaneous Info
+    """
+    # Campus Orgs
+    older_than_18 = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
+    citizen = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
+    website = forms.URLField(required = False)
     
     class Meta:
         fields = ('first_name',

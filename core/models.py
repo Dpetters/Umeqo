@@ -100,6 +100,7 @@ class EmploymentType(models.Model):
     def __unicode__(self):
         return self.name
     
+    
 class CampusOrgType(models.Model):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)

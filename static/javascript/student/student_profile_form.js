@@ -322,7 +322,6 @@ $(document).ready( function() {
     });
 	/*
     if(window.location.pathname == "/student/create-profile/") {
-        $("label[for=id_resume]").addClass("required").css('font-weight', 'bold').append("<span class='error'>*</span>");
         $("#id_resume").rules( "add", { required:true } );
     }
     */
