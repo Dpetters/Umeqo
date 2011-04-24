@@ -1,3 +1,7 @@
+LAUNCHED = False
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
 CACHE_BACKEND = 'memcached://127.0.0.01:11211/'
 
 DATABASES = {
