@@ -4,9 +4,6 @@ TEMPLATE_DEBUG = DEBUG
 
 CACHE_BACKEND = 'memcached://127.0.0.01:11211/'
 
-DEBUG = True 
-TEMPLATE_DEBUG = DEBUG
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',    # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
