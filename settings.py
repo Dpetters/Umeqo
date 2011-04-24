@@ -143,6 +143,8 @@ INSTALLED_APPS = (
 )
 
 LAUNCHED = False
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 try:
     from settings_local import *
