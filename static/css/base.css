@@ -42,6 +42,7 @@ p {
 #below_header_area {
     min-height: 20px;
     min-width: 986px;
+    position: relative;
 }
 .below_header_message {
     behavior: url(/static/lib/pie/PIE.htc);
