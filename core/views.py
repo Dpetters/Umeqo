@@ -23,8 +23,31 @@ from core.models import Course, CampusOrg, Language
 from employer.models import Employer
 from events.models import Event
 
+from django import forms
+from django.conf import settings
+from django.core.mail import send_mail
+
+class EmailForm(forms.Form):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. josh@gmail.com'}))
+    
 def landing(request):
-    return render_to_response('landing.html',context_instance=RequestContext(request))
+    posted = False
+    if request.method=="POST":
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            subject = "[umeqo] landing page signup"
+            message = "Someone with the email "+form.cleaned_data['email']+" signed up!"
+            sender = settings.DEFAULT_FROM_EMAIL
+            recipients = map(lambda n: n[1],settings.ADMINS)
+            send_mail(subject,message,sender,recipients)
+            posted = True
+    else:
+        form = EmailForm()
+    c = {
+        'form': form,
+        'posted': posted
+    }
+    return render_to_response('landing.html',c,context_instance=RequestContext(request))
 
 def home(request,
          anonymous_home_template_name="anonymous_home.html",

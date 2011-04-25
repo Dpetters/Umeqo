@@ -30,7 +30,7 @@ HAYSTACK_XAPIAN_PATH = ROOT + '/xapian_index'
 # Email Settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sbconnect.mit@gmail.com'
+EMAIL_HOST_USER = 'Umeqo.mit@gmail.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
@@ -42,7 +42,7 @@ AKISMET_API_KEY = "39ec1788fc8e"
 LOGIN_URL = '/'
 
 # Emails sent to users will be coming from this email address
-DEFAULT_FROM_EMAIL = 'sbconnect.mit@gmail.com'
+DEFAULT_FROM_EMAIL = 'Umeqo.mit@gmail.com'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
