@@ -48,12 +48,23 @@ table {
 }
 
 body {
-    text-align: center;
+    background-color: #55738d;
 }
 h1 {
     display: inline-block;
-    width: 171px;
+    width: 471px;
     height: 150px;
-    background: url('/static/images/logo_landing.png') no-repeat center center #55738d;
+    background: url('/static/images/logo_landing.png') no-repeat center center transparent;
     text-indent: -10000px;
+}
+p {
+    font-family: Arial;
+    color: white;
+    line-height: 21px;
+    font-size: 15px;
+    margin: 10px 0;
+}
+div.center {
+    text-align: center;
+    padding: 20px 50px;
 }
