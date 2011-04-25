@@ -2,13 +2,13 @@
 <html>
     <head>
         <title>Umeqo</title>
-        <link href="{{STATIC_URL}}css/landing.css" rel="stylesheet" type="text/css" />
+        <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         {% if posted %}
-		        <div class="message">
-		            Thank you for your interest! We'll let you know when the beta opens.
-		        </div>
+                <div class="message">
+                    Thank you for your interest! We'll let you know when the beta opens.
+                </div>
         {% endif %}
         <div class="center">
             <h1>Umeqo</h1>
@@ -28,6 +28,9 @@
                         <input type="submit" value="submit"/>
                     </form>
                 <p>
+            </div>
+            <div class="footer">
+                <a href="mailto:umeqo@mit.edu">umeqo@mit.edu</a>
             </div>
         </div>
     </body>
