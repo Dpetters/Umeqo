@@ -85,6 +85,7 @@ input[type="text"] {
     border-radius: 5px;
     width: 200px;
     height: 40px;
+    vertical-align: middle;
 }
 input[type="text"]:focus {
     box-shadow: 0 0 6px rgba(255,255,255,0.6), inset 0 1px 1px rgba(0, 0, 0, 0.8);
@@ -95,8 +96,13 @@ input[type="submit"] {
     font-size: 16px;
     vertical-align: middle;
     behavior: url(/static/lib/pie/PIE.htc);
-    background-image: -moz-linear-gradient(#EEE, #DDD);
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
-    -pie-background: linear-gradient(#EEE, #DDD);
-    border-radius: 5px;
+    background-image: -moz-linear-gradient(#555, #333);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#333));
+    -pie-background: linear-gradient(#555, #333);
+    border-radius: 2px;
+    text-shadow: black 0 -1px 0;
+    border: 1px solid black;
+    -moz-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
 }
