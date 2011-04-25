@@ -6,9 +6,15 @@
     </head>
     <body>
         {% if posted %}
-        <div class="message">
-            Thanks for your interest! We'll let you know when the beta opens.
-        </div>
+        	{% if already_showed_interest %}
+		        <div class="message">
+		            Thank you for your interest! We'll let you know when the beta opens.
+		        </div>
+		    {% else %}
+		        <div class="message">
+		            We already have your email, but thanks again! We'll let you know when the beta opens.
+		        </div>
+		    {% endif %}
         {% endif %}
         <div class="center">
             <h1>Umeqo</h1>

@@ -29,7 +29,7 @@ HAYSTACK_XAPIAN_PATH = ROOT + '/xapian_index'
 # Email Settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'Umeqo.mit@gmail.com'
+EMAIL_HOST_USER = 'sbconnect.mit@gmail.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
