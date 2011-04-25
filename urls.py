@@ -20,7 +20,7 @@ urlpatterns = patterns('')
 
 if not settings.LAUNCHED and not settings.DEBUG:
     urlpatterns += patterns('',
-    (r'^*$', 'core.views.landing'),
+    (r'^.*$', 'core.views.landing'),
     )
 
 urlpatterns += patterns('',
