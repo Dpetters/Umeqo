@@ -38,7 +38,7 @@
                 },
                 function(){ //mouse out
                         $(this).stop().css('border', '1px solid #808080');
-                        $('#firm_name').html('Firms using SBConnect');
+                        $('#firm_name').html('Firms using Umeqo');
                 }
         );
     });
