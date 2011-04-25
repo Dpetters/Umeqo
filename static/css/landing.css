@@ -49,6 +49,7 @@ table {
 
 body {
     background: url('/static/images/landing_bg.png') #55738d;
+    font-family: Arial;
 }
 h1 {
     display: inline-block;
@@ -58,7 +59,6 @@ h1 {
     text-indent: -10000px;
 }
 p {
-    font-family: Arial;
     color: white;
     line-height: 21px;
     font-size: 15px;
@@ -68,7 +68,7 @@ p {
 }
 div.center {
     text-align: center;
-    padding: 20px 50px;
+    padding: 50px 50px 0;
     width: 800px;
     margin: 0 auto;
 }
@@ -76,6 +76,9 @@ div.center {
     width: 380px;
     float: left;
     padding: 0 10px;
+}
+form {
+    margin: 20px 0;
 }
 input[type="text"] {
     border: 0;
@@ -99,10 +102,41 @@ input[type="submit"] {
     background-image: -moz-linear-gradient(#555, #333);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#333));
     -pie-background: linear-gradient(#555, #333);
-    border-radius: 2px;
+    border-radius: 4px;
     text-shadow: black 0 -1px 0;
     border: 1px solid black;
     -moz-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
     box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+    color: #FFF;
+}
+input[type="submit"]:hover {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background-image: -moz-linear-gradient(#666, #444);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666), to(#444));
+    -pie-background: linear-gradient(#666, #444);
+    cursor: pointer;
+}
+strong {
+    font-size: 30px;
+    line-height: 30px;
+}
+.message {
+    text-align: center;
+    margin: 0 30px;
+    padding: 10px;
+    behavior: url(/static/lib/pie/PIE.htc);
+    background-image: -moz-linear-gradient(#F0F0F0, #BBB);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#BBB));
+    -pie-background: linear-gradient(#F0F0F0, #BBB);
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 14px;
+    text-shadow: #FFF 0 1px 0;
 }
