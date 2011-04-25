@@ -48,7 +48,7 @@ table {
 }
 
 body {
-    background-color: #55738d;
+    background: url('/static/images/landing_bg.png') #55738d;
 }
 h1 {
     display: inline-block;
@@ -71,4 +71,9 @@ div.center {
     padding: 20px 50px;
     width: 800px;
     margin: 0 auto;
+}
+.col {
+    width: 380px;
+    float: left;
+    padding: 0 10px;
 }
