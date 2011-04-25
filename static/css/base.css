@@ -358,7 +358,7 @@ p {
 }
 .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     height: 19px;
-    line-height: 19px;
+    line-height: 17px;
 }
 .ui-multiselect-menu  .ui-multiselect-hasfilter ul{
 	top:0px;
