@@ -63,8 +63,12 @@ p {
     line-height: 21px;
     font-size: 15px;
     margin: 10px 0;
+    text-align: left;
+    text-shadow: #444 0 -1px 0;
 }
 div.center {
     text-align: center;
     padding: 20px 50px;
+    width: 800px;
+    margin: 0 auto;
 }
