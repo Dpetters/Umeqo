@@ -87,7 +87,8 @@
 /* JQuery UI overrides */
 .ui-accordion .ui-accordion-content {
     border:none;
-    padding:10px 0px 3px 4px
+    padding:10px 0px 3px 4px;
+    overflow-y:hidden;
 }
 .ui-accordion .ui-accordion-header {
     border-bottom:1px solid #CCCCCC;

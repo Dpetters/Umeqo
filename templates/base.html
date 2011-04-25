@@ -51,16 +51,6 @@ Copyright 2011. All Rights Reserved.
     </head>
     <body>
         <div id="above_header_area">
-            {% if user.is_authenticated %}
-                <div id="idletimeout_block">
-                    You will be logged off in
-                    <span>
-                        <!-- countdown placeholder -->
-                    </span>&nbsp;seconds due to inactivity.
-                    <a id="idletimeout-resume" href="#">Click here to continue using SBConnect</a>.
-                </div>
-            {% endif %}
-
             {% block above_header_area %}
             {% endblock %}
         </div>

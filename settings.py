@@ -68,6 +68,16 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+# URL prefix for admin static files -- CSS, JavaScript and images.
+# Make sure to use a trailing slash.
+# Examples: "http://foo.com/static/admin/", "/static/admin/".
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/media/'
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
@@ -76,6 +86,7 @@ MEDIA_ROOT = ROOT + '/media/'
 STATICFILES_DIRS = (
     ROOT + '/static',
 )
+
     
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"

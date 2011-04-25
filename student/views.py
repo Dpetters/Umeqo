@@ -11,7 +11,6 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -96,13 +95,13 @@ def student_create_profile(request,
         return redirect('student_edit_profile')
         
     if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES)
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
             student = form.save(commit=False)
             student.profile_created = True
             student.save()
-            if hasattr(form, 'save_m2m'):
-                form.save_m2m()
+            if hasattr(student, 'save_m2m'):
+                student.save_m2m()
             return process_resume(student)
     else:
         form = form_class()
@@ -129,13 +128,14 @@ def student_edit_profile(request,
         
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-        old_resume_name = str(request.user.resume)
+        old_resume_name = str(request.user.student.resume)
         if form.is_valid():
-            profile = form.save()
-            profile.last_updated = datetime.datetime.now()
-            profile.save()
+            student = form.save()
+            student.last_updated = datetime.datetime.now()
+            student.save()
             if request.FILES.has_key('resume'):
-                os.remove(settings.MEDIA_ROOT + old_resume_name)
+                if os.path.exists(settings.MEDIA_ROOT + old_resume_name):
+                    os.remove(settings.MEDIA_ROOT + old_resume_name)
                 return process_resume(request.user.student)
             else:
                 return redirect('home')

@@ -34,7 +34,7 @@ def home(request,
     
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
-            if request.user.student.profile_created:
+            if not request.user.student.profile_created:
                 return redirect('student_edit_profile')
             
             context = {}

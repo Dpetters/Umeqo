@@ -58,6 +58,17 @@ $(document).ready( function() {
 		multiple: false
 	});
 
+	var handle_multiselect_open_in_accordion = function(event, ui) {
+			var parent = $('#' + $(event.target).attr('id')).parents(".ui-accordion-content");
+			var multiselect = $('#' + $(event.target).attr('id')).nextAll(".ui-multiselect-menu");
+			var new_height = parseInt($(multiselect).css('height'), 10) + parseInt($(multiselect).css('top'), 10);		
+			$(parent).css('height', new_height);
+	};
+	
+	var handle_multiselect_close_in_accordion = function(event) {
+			$('#' + $(event.target).attr('id')).parents(".ui-accordion-content").css("height", "");
+	};
+	
 	$("#id_majors").multiselect({
 		noneSelectedText: 'Filter By Major',
 		selectedText: 'Filtering by # Majors',
@@ -65,9 +76,8 @@ $(document).ready( function() {
 		minWidth:318,
 		height: 120,
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_majors").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 	$("#id_school_years").multiselect({
@@ -77,6 +87,8 @@ $(document).ready( function() {
 		minWidth:318,
 		height: 86,
 		uncheckAllText: "None",
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
 
 	$("#id_graduation_years").multiselect({
@@ -85,14 +97,9 @@ $(document).ready( function() {
 		checkAllText: "All",
 		minWidth:318,
 		height: 86,
-		open: function(event, ui) {
-			var parent = $("#id_graduation_years").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_graduation_years").nextAll(".ui-multiselect-menu").height()+125);
-		},
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_graduation_years").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
 
 	$("#id_employment_types").multiselect({
@@ -101,14 +108,9 @@ $(document).ready( function() {
 		checkAllText: "All",
 		minWidth:318,
 		height: 50,
-		open: function(event, ui) {
-			var parent = $("#id_employment_types").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_employment_types").nextAll(".ui-multiselect-menu").height()+45);
-		},
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_employment_types").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
 	
 	$("#id_previous_employers").multiselect({
@@ -117,14 +119,9 @@ $(document).ready( function() {
 		checkAllText: "All",
 		minWidth:318,
 		height: 90,
-		open: function(event, ui) {
-			var parent = $("#id_previous_employers").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_previous_employers").nextAll(".ui-multiselect-menu").height()+75);
-		},
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_previous_employers").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 	$("#id_industries_of_interest").multiselect({
@@ -133,14 +130,9 @@ $(document).ready( function() {
 		checkAllText: "All",
 		minWidth:318,
 		height: 110,
-		open: function(event, ui) {
-			var parent = $("#id_industries_of_interest").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_industries_of_interest").nextAll(".ui-multiselect-menu").height()+110);
-		},
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_industries_of_interest").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 	$("#id_languages").multiselect({
@@ -149,14 +141,9 @@ $(document).ready( function() {
 		checkAllText: "All",
 		minWidth:318,
 		height: 120,
-		open: function(event, ui) {
-			var parent = $("#id_languages").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_languages").nextAll(".ui-multiselect-menu").height()+45);
-		},
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_languages").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 
@@ -166,14 +153,9 @@ $(document).ready( function() {
 		checkAllText: "All",
 		minWidth:318,
 		height: 140,
-		open: function(event, ui) {
-			var parent = $("#id_campus_orgs").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_campus_orgs").nextAll(".ui-multiselect-menu").height()+75);
-		},
 		uncheckAllText: "None",
-		close: function(e) {
-			$("#id_campus_orgs").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 	$("#id_older_than_18").multiselect({
@@ -181,7 +163,9 @@ $(document).ready( function() {
 		header:false,
 		minWidth:182,
 		selectedList: 1,
-		multiple: false
+		multiple: false,
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
 
 	$("#id_citizen").multiselect({
@@ -190,21 +174,19 @@ $(document).ready( function() {
 		minWidth:182,
 		selectedList: 1,
 		multiple: false,
-		open: function(event, ui) {
-			var parent = $("#id_citizen").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_citizen").nextAll(".ui-multiselect-menu").height()+150);
-		},
-		close: function(e) {
-			$("#id_citizen").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
+	
 	
 	$("#id_ordering").multiselect({
 		height:47,
 		header:false,
 		minWidth:202,
 		selectedList: 1,
-		multiple: false
+		multiple: false,
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
 
 	$("#id_results_per_page").multiselect({
@@ -213,13 +195,8 @@ $(document).ready( function() {
 		minWidth:202,
 		selectedList: 1,
 		multiple: false,
-		open: function(event, ui) {
-			var parent = $("#id_results_per_page").parents(".ui-accordion-content");
-			$(parent).css('height', $("#id_results_per_page").nextAll(".ui-multiselect-menu").height()+85);
-		},
-		close: function(e) {
-			$("#id_results_per_page").parents(".ui-accordion-content").css("height", "");
-		},
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion
 	});
 
 	// Result Collapse
@@ -301,7 +278,7 @@ $(document).ready( function() {
 			});
 		}
 	});
-
+		
 	function campus_org_link_click() {
 
 	};
@@ -397,8 +374,10 @@ $(document).ready( function() {
 		}
 	});
 	// Filtering block is an accordion
-	$("#filtering_accordion").accordion({
-		autoHeight: false
+	a = $("#filtering_accordion").accordion({
+		autoHeight: false,
+		clearStyle: true,
+		collapsible: true
 	});
 
 	// Make the first ajax call for results automatically
