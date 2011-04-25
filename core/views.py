@@ -15,27 +15,27 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.shortcuts import render_to_response, redirect
+from django import forms
+from django.conf import settings
+from django.core.mail import send_mail
 
 from employer.forms import SearchForm
 from notification.models import Notice
 from employer.view_helpers import check_for_new_student_matches
 from core.models import Course, CampusOrg, Language
+from core.forms import EmailForm
 from employer.models import Employer
 from events.models import Event
 
-from django import forms
-from django.conf import settings
-from django.core.mail import send_mail
-
-class EmailForm(forms.Form):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. josh@gmail.com'}))
     
-def landing(request):
+def landing(request,
+            template_name="landing_page.html",
+            extra_context = None):
     posted = False
     if request.method=="POST":
         form = EmailForm(request.POST)
         if form.is_valid():
-            subject = "[umeqo] landing page signup"
+            subject = "[Umeqo] landing page signup"
             message = "Someone with the email "+form.cleaned_data['email']+" signed up!"
             sender = settings.DEFAULT_FROM_EMAIL
             recipients = map(lambda n: n[1],settings.ADMINS)
@@ -43,11 +43,12 @@ def landing(request):
             posted = True
     else:
         form = EmailForm()
-    c = {
+    context = {
         'form': form,
         'posted': posted
     }
-    return render_to_response('landing.html',c,context_instance=RequestContext(request))
+    context.update(extra_context or {})
+    return render_to_response('landing.html',context ,context_instance=RequestContext(request))
 
 def home(request,
          anonymous_home_template_name="anonymous_home.html",

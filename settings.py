@@ -8,8 +8,7 @@ import os
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 ADMINS = (
-    ("Dmitrij", "dpetters@mit.edu"),
-    ("Josh", "me@joshma.com"),
+    ("Umeqo Admins", "umeqo@mit.edu"),
     # Customer Support People
     # Customer Support Email Account
 )

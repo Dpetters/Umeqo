@@ -9,6 +9,10 @@ from django.contrib.auth.models import User
 
 from core.models_helper import get_image_filename
 
+class InterestedPerson(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField("Contact E-mail", blank=True, null=True)
+    
 class CommonInfo(models.Model):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)

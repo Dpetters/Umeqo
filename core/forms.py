@@ -8,6 +8,9 @@ from django import forms
 
 from core.models import CampusOrg, Language
 
+class EmailForm(forms.Form):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. me@example.com'}))
+    
 class CreateCampusOrganizationForm(forms.ModelForm):
     class Meta:
         fields = ('name',
