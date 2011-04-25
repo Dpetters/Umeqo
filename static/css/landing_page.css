@@ -107,13 +107,14 @@ input[type="text"]:focus {
     box-shadow: 0 0 6px rgba(255,255,255,0.6), inset 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 input[type="submit"] {
+    behavior: url(/static/lib/pie/PIE.htc);
     height: 40px;
     border: 1px solid #EEE;
     font-size: 16px;
     vertical-align: middle;
-    behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#555, #333);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#333));
+    background-color: #222;
     -pie-background: linear-gradient(#555, #333);
     border-radius: 4px;
     text-shadow: black 0 -1px 0;
