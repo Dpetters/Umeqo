@@ -89,6 +89,7 @@ div.center {
 }
 form {
     margin: 25px 0;
+    text-align: left;
 }
 input[type="text"] {
     border: 0;
