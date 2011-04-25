@@ -80,10 +80,7 @@ Copyright 2011. All Rights Reserved.
         <div class="main_block_header_content">
             <form id="search_form" method="post" action="/employer/student-filtering/">
                 {% csrf_token %}
-                <div id="query_field_wrapper" class="fade_input_label">
-                    <label for="search_form_submit_button">Enter search terms</label>
-                    {{search_form.query}}
-                </div>
+                {{search_form.query}}
                 <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
                 <a href="/employer/student-filtering/" class="button">Browse Students</a>
             </form>

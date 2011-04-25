@@ -307,19 +307,22 @@ $(document).ready( function () {
             return true;
         }
     }, "Please specify a valid duration");
-    
-    $('.fade_input_label input').focus(function(){
+
+    /*
+    $('.input_placeholder_div input').focus(function(){
         $(this).prev().animate({'opacity':0},200);
     });
-    $('.fade_input_label input').each(function(){
+    
+    $('.input_placeholder_div input').each(function(){
         if ($(this).val()!="") {
             $(this).prev().css('opacity',0);
         }
     });
-    $('.fade_input_label input').blur(function(){
+    
+    $('.input_placeholder_div input').blur(function(){
        if ($(this).val()=="") {
            $(this).prev().animate({'opacity':1},200);
        } 
     });
-    
+    */
 });

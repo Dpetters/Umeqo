@@ -83,12 +83,13 @@ div.center {
     margin: 0 auto;
 }
 .col {
-    width: 375px;
+    width: 370px;
     float: left;
-    padding: 0 10px;
+    padding: 0 13px;
 }
 form {
     margin: 25px 0;
+    text-align:center;
 }
 input[type="text"] {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -116,7 +117,7 @@ input[type="submit"] {
     vertical-align: middle;
     background-image: -moz-linear-gradient(#555, #333);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#333));
-    background-color: #3A3A3A;
+    background-color: #3F3F3F;
     -pie-background: linear-gradient(#555, #333);
     border-radius: 4px;
     text-shadow: black 0 -1px 0;
