@@ -8,7 +8,9 @@ import os
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 ADMINS = (
-    ("Umeqo Admins", "umeqo@mit.edu"),
+    ("Dmitrij", "Dpetters91@gmail.com"),
+    ("Zach", "zdearing@gmail.com"),
+    ("Josh", "me@joshma.com")
     # Customer Support People
     # Customer Support Email Account
 )
@@ -41,7 +43,7 @@ AKISMET_API_KEY = "39ec1788fc8e"
 LOGIN_URL = '/'
 
 # Emails sent to users will be coming from this email address
-DEFAULT_FROM_EMAIL = 'Umeqo.mit@gmail.com'
+DEFAULT_FROM_EMAIL = 'sbconnect.mit@gmail.com'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

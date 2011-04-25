@@ -33,16 +33,16 @@ def landing_page(request,
             extra_context = None):
     
     posted = False
-    already_showed_interest = False
     
     if request.method == "POST":
         form = form_class(request.POST)
         if form.is_valid():
+            """
             try:
                 InterestedPerson.objects.get(email=form.cleaned_data['email'])
-                already_showed_interest = True
             except InterestedPerson.DoesNotExist:
                 InterestedPerson.objects.create(email=form.cleaned_data['email'])
+            """
             subject = "[Umeqo] landing page signup"
             message = "Someone with the email "+ form.cleaned_data['email'] +" signed up!"
             sender = settings.DEFAULT_FROM_EMAIL
@@ -54,7 +54,6 @@ def landing_page(request,
         
     context = {
             'form': form,
-            'already_showed_interest': already_showed_interest,
             'posted': posted
     }
 
