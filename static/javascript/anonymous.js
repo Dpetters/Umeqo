@@ -31,7 +31,7 @@ $(document).ready( function () {
                             $("#reset_password_link").css("margin-top", 5);
                             break;
                         case "inactive":
-                            $("#login_form_error_section").html("<p class=error>This account has been suspended. Please direct all inquiries to admin@sbconnect.org.</p>");
+                            $("#login_form_error_section").html("<p class=error>This account has been suspended. Please direct all inquiries to admin@Umeqo.org.</p>");
                             $("#reset_password_link").css("margin-top", 5);
                             break;
                         case "cookies_disabled":
@@ -77,7 +77,7 @@ $(document).ready( function () {
                             $("#login_form_submit_button_wrapper").css("margin-top", 15);
                             break;
                         case "inactive":
-                            $("#dialog_form_error_section").html("<p class=error>This account has been suspended.<br/> Please direct all inquiries to admin@sbconnect.org.</p>");
+                            $("#dialog_form_error_section").html("<p class=error>This account has been suspended.<br/> Please direct all inquiries to admin@Umeqo.org.</p>");
                             $("#login_form_submit_button_wrapper").css("margin-top", 15);
                             break;
                         case "cookies_disabled":

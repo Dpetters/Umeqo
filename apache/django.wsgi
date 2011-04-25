@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.append('/var/www/SBConnect')
+sys.path.append('/var/www/Umeqo')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 import django.core.handlers.wsgi

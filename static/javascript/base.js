@@ -85,7 +85,7 @@ $(document).ready( function () {
                                         $contact_us_dialog.dialog('option', 'position', 'center');
                                         break;
                                     case false:
-                                        $("#dialog_form_error_section").html("<p class='error'>Our system thinks your message is spam. If you think this is a mistake, email us instead at support@sbconnect.com.</p>");
+                                        $("#dialog_form_error_section").html("<p class='error'>Our system thinks your message is spam. If you think this is a mistake, email us instead at support@umeqo.com.</p>");
                                         break;
                                     default:
                                         var error_message_details = '<div class="message_section"><strong><br />Error Details</strong><br />"Response status isn\'t valid."</strong></div>';
