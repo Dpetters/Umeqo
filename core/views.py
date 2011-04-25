@@ -24,7 +24,7 @@ from employer.models import Employer
 from events.models import Event
 
 def landing(request):
-    return render_to_response('landing.html')
+    return render_to_response('landing.html',context_instance=RequestContext(request))
 
 def home(request,
          anonymous_home_template_name="anonymous_home.html",
