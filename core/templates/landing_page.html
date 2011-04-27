@@ -40,9 +40,10 @@
                     {% if not disabled %}
                         {{form.email}}
                     {% else %}
-                    <input disabled="disabled" type="text" placeholder="e.g. me@example.com" name="email" id="id_email">
+                        <input disabled="disabled" type="text" placeholder="e.g. me@example.com" name="email" id="id_email">
+                        <input type="submit" value="thanks!" disabled="disabled" />
                     {% endif %}
-                        <input type="submit" value="thanks!" disabled="disabled"/>
+                        <input type="submit" value="submit"/> 
                     </form>
                 <p>
             </div>
