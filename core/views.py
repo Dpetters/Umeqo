@@ -44,7 +44,7 @@ def landing_page(request,
             except InterestedPerson.DoesNotExist:
                 InterestedPerson.objects.create(email=form.cleaned_data['email'])
             """
-            subject = "[Umeqo] landing page signup"
+            subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
             message = "Someone with the email "+ form.cleaned_data['email'] +" signed up!"
             sender = settings.DEFAULT_FROM_EMAIL
             recipients = map(lambda n: n[1],settings.ADMINS)
