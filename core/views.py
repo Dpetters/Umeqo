@@ -33,6 +33,7 @@ def landing_page(request,
             extra_context = None):
     
     posted = False
+    disabled = False
     
     if request.method == "POST":
         form = form_class(request.POST)
@@ -49,12 +50,14 @@ def landing_page(request,
             recipients = map(lambda n: n[1],settings.ADMINS)
             send_mail(subject,message,sender,recipients)
             posted = True
+            disabled = True
     else:
         form = EmailForm()
         
     context = {
             'form': form,
-            'posted': posted
+            'posted': posted,
+            'disabled': disabled
     }
 
     context.update(extra_context or {})
