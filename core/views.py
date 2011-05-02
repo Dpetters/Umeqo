@@ -38,12 +38,10 @@ def landing_page(request,
     if request.method == "POST":
         form = form_class(request.POST)
         if form.is_valid():
-            """
             try:
                 InterestedPerson.objects.get(email=form.cleaned_data['email'])
             except InterestedPerson.DoesNotExist:
                 InterestedPerson.objects.create(email=form.cleaned_data['email'])
-            """
             subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
             message = "Someone with the email "+ form.cleaned_data['email'] +" signed up!"
             sender = settings.DEFAULT_FROM_EMAIL
@@ -182,6 +180,16 @@ def check_email_availability(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return redirect('home')
 
+@login_required
+def check_event_name_uniqueness(request):
+
+    if request.is_ajax():
+        try:
+            Event.objects.get(name=request.GET.get("name", ""))
+            return HttpResponse(simplejson.dumps(False), mimetype="application/json")
+        except Event.DoesNotExist:
+            return HttpResponse(simplejson.dumps(True), mimetype="application/json")
+    return redirect('home')
 
 @login_required
 def get_major_info(request,
@@ -230,3 +238,13 @@ def check_language_uniqueness(request):
         except Language.DoesNotExist:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return redirect('home')
+
+
+def browser_configuration_not_supported(request,
+                                        template_name="browser_configuration_not_supported.html",
+                                        extra_context=None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))

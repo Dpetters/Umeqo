@@ -62,9 +62,9 @@ def employer_add_to_resume_book(request, student_id):
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_event(request,
-                   template_name="employer_event.html",
-                   extra_context=None):
+def employer_event_preview(request,
+                           template_name="employer_event.html",
+                           extra_context=None):
     
     context = {}
     context.update(extra_context or {})
@@ -137,21 +137,9 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
                               context,
                               context_instance = RequestContext(request) )
 
-
-@login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def check_event_name_availability(request):
-
-    if request.is_ajax():
-        try:
-            Event.objects.get(name=request.GET.get("name", ""))
-            return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-        except Event.DoesNotExist:
-            return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return redirect('home')
-
-
-def delete_event(request, template = 'employer_delete_event.html'): #@UnusedVariable
+def delete_event(request, 
+                 template = 'employer_delete_event.html'):
+    
     if request.is_ajax():
         if request.method == 'POST':
             try:

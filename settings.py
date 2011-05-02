@@ -151,7 +151,8 @@ INSTALLED_APPS = (
     'messages',
     'help',
     'haystack',
-    'digg_paginator'
+    'digg_paginator',
+    'south'
 )
 
 LAUNCHED = False

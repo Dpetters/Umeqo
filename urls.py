@@ -44,14 +44,14 @@ urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
     (r'^about/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'about.html' }, 'about'),
     (r'^blog/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'blog.html' }, 'blog'),
-    (r'^enable-javascript/$', direct_to_template, { 'template' : 'enable_javascript.html' }, 'enable_javascript'),
-    (r'^browser-not-supported/$', direct_to_template, { 'template' : 'browser_not_supported.html' }, 'browser_not_supported'),
+    (r'^browser-configuration-not-supported/$', 'browser_configuration_not_supported', {}, 'browser_configuration_not_supported'),
     (r'^get-major-info/$', 'get_major_info', {}, 'get_major_info'),
     (r'^check-email-availability/$', 'check_email_availability', {}, 'check_email_availability'),
     (r'^check-email-existence/$', 'check_email_existence', {}, 'check_email_existence'),
     (r'^check-username-existence/$', 'check_username_existence', {}, 'check_username_existence'),
     (r'^check-campus-organization-uniqueness/$', 'check_campus_organization_uniqueness', {}, 'check_campus_organization_uniqueness'),
-    (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),   
+    (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
+    (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website')
 )
 
@@ -106,8 +106,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/events/$', 'employer_events', {}, 'employer_events'),
     (r'^employer/events/summary/(?P<id>\d+)/$', 'employer_event_summary', {}, 'employer_event_summary'),
     (r'^employer/events/new/$', 'employer_new_event', {}, 'employer_new_event'),
-    (r'^employer/events/new/check-name/$', 'check_event_name_availability', {}, 'check_event_name_availability'),
-    (r'^employer/events/(?P<id>\d+)/$', 'employer_event', {}, 'employer_event'),
+    (r'^employer/events/(?P<id>\d+)/$', 'employer_event_preview', {}, 'employer_event_preview'),
     # Employer Invitations
     (r'^employer/invitations/$', 'employer_invitations', {}, 'employer_invitations'),
     # Employer Company Profile
