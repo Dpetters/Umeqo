@@ -5,22 +5,7 @@
 """
 
 from django.db import models
-
-class EventType(models.Model):
-    name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
-    last_updated = models.DateTimeField(auto_now = True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        verbose_name = "Event Type"
-        verbose_name_plural = "Event Types"
-    
-    def __unicode__(self):
-        return self.name
-    
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super(EventType, self).save(*args, **kwargs)
+from core.models import EventType
     
 class Event(models.Model):
 

@@ -12,9 +12,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic.simple import direct_to_template
 
 admin.autodiscover()
+"""
+from haystack import site
+from student.models import Student
+from student.search_indexes import StudentIndex
 
-import haystack
-haystack.autodiscover()
+site.register(Student, StudentIndex)
+"""
 
 urlpatterns = patterns('',
         url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATICFILES_DIRS[0] }),
@@ -42,6 +46,8 @@ urlpatterns += patterns('',
 
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
+    (r'^contact-us-dialog/$', 'contact_us_dialog', {}, 'contact_us_dialog'),
+    (r'^help/$', 'help', {'extra_context': {'login_form': AuthenticationForm}}, 'help'),
     (r'^about/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'about.html' }, 'about'),
     (r'^blog/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'blog.html' }, 'blog'),
     (r'^browser-configuration-not-supported/$', 'browser_configuration_not_supported', {}, 'browser_configuration_not_supported'),
@@ -53,14 +59,6 @@ urlpatterns += patterns('core.views',
     (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website')
-)
-
-urlpatterns += patterns('help.views',
-    (r'^help/$', 'help', {'extra_context': {'login_form': AuthenticationForm}}, 'help'),
-)
-
-urlpatterns += patterns('contact_form.views',
-    (r'^contact-us-dialog/$', 'contact_us_dialog', {}, 'contact_us_dialog'),
 )
 
 urlpatterns += patterns('registration.views',

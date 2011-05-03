@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 from django import template
 from django.db import models
 from haystack.query import SearchQuerySet

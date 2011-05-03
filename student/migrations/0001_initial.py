@@ -16,6 +16,7 @@ class Migration(SchemaMigration):
             ('type', self.gf('django.db.models.fields.IntegerField')()),
             ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('testfield', self.gf('django.db.models.fields.CharField')(max_length=200)),
         ))
         db.send_create_signal('student', ['StudentList'])
 
@@ -261,6 +262,13 @@ class Migration(SchemaMigration):
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
         },
+        'core.eventtype': {
+            'Meta': {'object_name': 'EventType'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
+        },
         'core.graduationyear': {
             'Meta': {'object_name': 'GraduationYear'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -335,15 +343,8 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'rsvp_message': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'start_datetime': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['events.EventType']"}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.EventType']"}),
             'view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
-        },
-        'events.eventtype': {
-            'Meta': {'object_name': 'EventType'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
         },
         'student.student': {
             'Meta': {'object_name': 'Student'},
@@ -393,6 +394,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '42'}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'students': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'studentlist_set'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['student.Student']"}),
+            'testfield': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'type': ('django.db.models.fields.IntegerField', [], {})
         }
     }

@@ -1,12 +1,8 @@
-"""
- OpenSource
-"""
-
 # Backport of Django 1.2's ``django.utils.decorators``.
 try:
     from functools import wraps, update_wrapper, WRAPPER_ASSIGNMENTS
 except ImportError:
-    from django.utils.functional import wraps, update_wrapper, WRAPPER_ASSIGNMENTS  # Python 2.4 fallback. @UnusedImport
+    from django.utils.functional import wraps, update_wrapper, WRAPPER_ASSIGNMENTS  # Python 2.4 fallback.
 
 
 def method_decorator(decorator):

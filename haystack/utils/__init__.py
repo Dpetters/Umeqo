@@ -1,14 +1,6 @@
-"""
- OpenSource
-"""
-
 import re
 from django.utils.html import strip_tags
 from haystack.constants import ID, DJANGO_CT, DJANGO_ID
-try:
-    set
-except NameError:
-    from sets import Set as set
 
 
 IDENTIFIER_REGEX = re.compile('^[\w\d_]+\.[\w\d_]+\.\d+$')
@@ -101,7 +93,7 @@ class Highlighter(object):
         words_found = []
         
         # Next, make sure we found any words at all.
-        for word, offset_list in highlight_locations.items(): #@UnusedVariable
+        for word, offset_list in highlight_locations.items():
             if len(offset_list):
                 # Add all of the locations to the list.
                 words_found.extend(offset_list)
@@ -161,7 +153,7 @@ class Highlighter(object):
             hl_start = '<%s>' % (self.html_tag)
         
         hl_end = '</%s>' % self.html_tag
-        highlight_length = len(hl_start + hl_end) #@UnusedVariable
+        highlight_length = len(hl_start + hl_end)
         
         # Copy the part from the start of the string to the first match,
         # and there replace the match with a highlighted version.

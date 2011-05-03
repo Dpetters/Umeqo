@@ -113,11 +113,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'core.middleware.UserTypeMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -134,25 +133,22 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'core',
-    'registration',
-    'student',
     'employer',
     'events',
-    'contact_form',
-    'notification',
-    'messages',
-    'help',
     'haystack',
-    'digg_paginator',
-    'south'
+    'messages',
+    'notification',
+    'registration',
+    'south',
+    'student'
 )
 
 LAUNCHED = False

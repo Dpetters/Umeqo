@@ -19,7 +19,7 @@ from student.models import Student
 from employer.models import Employer
 from employer.view_helpers import filter_students, search_students, order_results
 from core.decorators import is_employer
-from digg_paginator.digg_paginator import DiggPaginator
+from core.digg_paginator import DiggPaginator
 from events.forms import EventForm
 from events.models import Event
 from student import constants as student_constants

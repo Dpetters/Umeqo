@@ -1,8 +1,4 @@
-"""
- OpenSource
-"""
-
-from django.conf.urls.defaults import * #@UnusedWildImport
+from django.conf.urls.defaults import *
 from haystack.views import SearchView
 
 

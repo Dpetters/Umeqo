@@ -20,6 +20,19 @@ from django.utils.translation import ugettext_lazy as _
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
 
+class InterestedPerson(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField("Contact E-mail", blank=True, null=True)
+    
+    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, unique=True)
+    
+    class Meta:
+        abstract = True,
+        ordering = ['user']
+        
+        
 class RegistrationManager(models.Manager):
     """
     Custom manager for the ``RegistrationProfile`` model.

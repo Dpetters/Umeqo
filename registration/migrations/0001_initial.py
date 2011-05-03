@@ -8,6 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
+        # Adding model 'InterestedPerson'
+        db.create_table('registration_interestedperson', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
+        ))
+        db.send_create_signal('registration', ['InterestedPerson'])
+
         # Adding model 'RegistrationProfile'
         db.create_table('registration_registrationprofile', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -19,6 +27,9 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
         
+        # Deleting model 'InterestedPerson'
+        db.delete_table('registration_interestedperson')
+
         # Deleting model 'RegistrationProfile'
         db.delete_table('registration_registrationprofile')
 
@@ -59,6 +70,12 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
+        'registration.interestedperson': {
+            'Meta': {'object_name': 'InterestedPerson'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'registration.registrationprofile': {
             'Meta': {'object_name': 'RegistrationProfile'},

@@ -1,11 +1,7 @@
-"""
- OpenSource
-"""
-
 from django.contrib.admin.options import ModelAdmin
 from django.contrib.admin.views.main import (ChangeList, MAX_SHOW_ALL_ALLOWED,
                                              SEARCH_VAR)
-from django.core.exceptions import PermissionDenied, ImproperlyConfigured #@UnusedImport
+from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 from django.core.paginator import Paginator, InvalidPage
 from django.shortcuts import render_to_response
 from django import template
@@ -82,7 +78,7 @@ class SearchModelAdmin(ModelAdmin):
         list_display = list(self.list_display)
         
         changelist = SearchChangeList(request, self.model, list_display, self.list_display_links, self.list_filter, self.date_hierarchy, self.search_fields, self.list_select_related, self.list_per_page, self.list_editable, self)
-        formset = changelist.formset = None #@UnusedVariable
+        formset = changelist.formset = None
         media = self.media
         
         # Build the action form and populate it with available actions.

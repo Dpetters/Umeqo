@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 import inspect
 import logging
 import os
@@ -15,7 +11,7 @@ except ImportError:
 
 
 __author__ = 'Daniel Lindsley'
-__version__ = (1, 1, 0)
+__version__ = (1, 2, 0, 'beta')
 __all__ = ['backend']
 
 
@@ -59,12 +55,12 @@ def load_backend(backend_name=None):
         # Most of the time, the search backend will be one of the
         # backends that ships with haystack, so look there first.
         return importlib.import_module('haystack.backends.%s_backend' % backend_name)
-    except ImportError, e: #@UnusedVariable
+    except ImportError, e:
         # If the import failed, we might be looking for a search backend
         # distributed external to haystack. So we'll try that next.
         try:
             return importlib.import_module('%s_backend' % backend_name)
-        except ImportError, e_user: #@UnusedVariable
+        except ImportError, e_user:
             # The search backend wasn't found. Display a helpful error message
             # listing all possible (built-in) database backends.
             backend_dir = os.path.join(__path__[0], 'backends')
@@ -94,7 +90,7 @@ def autodiscover():
     Again, almost exactly as django.contrib.admin does things, for consistency.
     """
     import imp
-    from django.conf import settings #@Reimport
+    from django.conf import settings
     
     for app in settings.INSTALLED_APPS:
         # For each app, we need to look for an search_indexes.py inside that app's
@@ -152,7 +148,7 @@ def handle_registrations(*args, **kwargs):
     
     # Pull in the config file, causing any SearchSite initialization code to
     # execute.
-    search_sites_conf = importlib.import_module(settings.HAYSTACK_SITECONF) #@UnusedVariable
+    search_sites_conf = importlib.import_module(settings.HAYSTACK_SITECONF)
 
 
 handle_registrations()

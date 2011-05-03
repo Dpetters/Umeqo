@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 from optparse import make_option
 import sys
 from django.core.management.base import BaseCommand
@@ -19,7 +15,7 @@ class Command(BaseCommand):
     def handle(self, **options):
         """Clears out the search index completely."""
         # Cause the default site to load.
-        from haystack import site #@UnusedImport
+        from haystack import site
         self.verbosity = int(options.get('verbosity', 1))
         
         if options.get('interactive', True):

@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 from django.conf import settings
 
 # Reserved field names

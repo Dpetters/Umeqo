@@ -6,7 +6,8 @@
 
 from django.db import models
 
-from core.models import CampusOrg, SchoolYear, GraduationYear, Course, UserProfile, Language, Industry, EmploymentType
+from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
+from registration.models import UserProfile
 from core.models_helper import get_resume_filename
 from events.models import Event
 from student import enums as student_enums

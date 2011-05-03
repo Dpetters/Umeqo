@@ -1,26 +1,23 @@
-"""
- OpenSource
-"""
-# Copyright (C) 2009 David Sauve, Trapeze
+# Copyright (C) 2009-2011 David Sauve, Trapeze.  All rights reserved.
 
 __author__ = 'David Sauve'
-__version__ = (1, 1, 3, 'beta')
+__version__ = (1, 1, 5, 'beta')
 
 import time
 import datetime
 import cPickle as pickle
 import os
 import re
-import shutil #@UnusedImport
+import shutil
 import sys
-import warnings #@UnusedImport
+import warnings
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.encoding import smart_unicode, force_unicode #@UnusedImport
+from django.utils.encoding import smart_unicode, force_unicode
 
 from haystack.backends import BaseSearchBackend, BaseSearchQuery, SearchNode, log_query
-from haystack.exceptions import HaystackError, MissingDependency
+from haystack.exceptions import HaystackError, MissingDependency, MoreLikeThisError
 from haystack.fields import DateField, DateTimeField, IntegerField, FloatField, BooleanField, MultiValueField
 from haystack.models import SearchResult
 from haystack.utils import get_identifier
@@ -34,6 +31,16 @@ except ImportError:
 DOCUMENT_ID_TERM_PREFIX = 'Q'
 DOCUMENT_CUSTOM_TERM_PREFIX = 'X'
 DOCUMENT_CT_TERM_PREFIX = DOCUMENT_CUSTOM_TERM_PREFIX + 'CONTENTTYPE'
+
+BACKEND_NAME = 'xapian'
+
+DEFAULT_XAPIAN_FLAGS = (
+    xapian.QueryParser.FLAG_PHRASE | 
+    xapian.QueryParser.FLAG_BOOLEAN |
+    xapian.QueryParser.FLAG_LOVEHATE |
+    xapian.QueryParser.FLAG_WILDCARD |
+    xapian.QueryParser.FLAG_PURE_NOT
+)
 
 
 class InvalidIndexError(HaystackError):
@@ -135,9 +142,6 @@ class SearchBackend(BaseSearchBackend):
         if not os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
             os.makedirs(settings.HAYSTACK_XAPIAN_PATH)
         
-        if not os.access(settings.HAYSTACK_XAPIAN_PATH, os.W_OK):
-            raise IOError("The path to your Xapian index '%s' is not writable for the current user/group." % settings.HAYSTACK_XAPIAN_PATH)
-        
         self.language = language
         self._schema = None
         self._content_field_name = None
@@ -164,10 +168,11 @@ class SearchBackend(BaseSearchBackend):
             `iterable` -- An iterable of model instances to index
         
         For each object in `iterable`, a document is created containing all
-        of the terms extracted from `index.prepare(obj)` with stemming prefixes,
-        field prefixes, and 'as-is'.
+        of the terms extracted from `index.full_prepare(obj)` with field prefixes, 
+        and 'as-is' as needed.  Also, if the field type is 'text' it will be 
+        stemmed and stored with the 'Z' prefix as well.
         
-        eg. `content:Testing` ==> `testing, Ztest, ZXCONTENTtest`
+        eg. `content:Testing` ==> `testing, Ztest, ZXCONTENTtest, XCONTENTtest`
         
         Each document also contains an extra term in the format:
         
@@ -204,15 +209,46 @@ class SearchBackend(BaseSearchBackend):
                 term_generator.set_document(document)
                 
                 document_id = DOCUMENT_ID_TERM_PREFIX + get_identifier(obj)
-                data = index.prepare(obj)
-                
+                data = index.full_prepare(obj)
+                weights = index.get_field_weights()
                 for field in self.schema:
                     if field['field_name'] in data.keys():
                         prefix = DOCUMENT_CUSTOM_TERM_PREFIX + field['field_name'].upper()
                         value = data[field['field_name']]
-                        term_generator.index_text(_marshal_term(value))
-                        term_generator.index_text(_marshal_term(value), 1, prefix)
-                        document.add_value(field['column'], _marshal_value(value))
+                        try:
+                            weight = int(weights[field['field_name']])
+                        except KeyError:
+                            weight = 1
+                        if field['type'] == 'text':
+                            if field['multi_valued'] == 'false':
+                                term = _marshal_term(value)
+                                term_generator.index_text(term, weight)
+                                term_generator.index_text(term, weight, prefix)
+                                if len(term.split()) == 1:
+                                    document.add_term(term, weight)
+                                    document.add_term(prefix + term, weight)
+                                document.add_value(field['column'], _marshal_value(value))
+                            else:
+                                for term in value:
+                                    term = _marshal_term(term)
+                                    term_generator.index_text(term, weight)
+                                    term_generator.index_text(term, weight, prefix)
+                                    if len(term.split()) == 1:
+                                        document.add_term(term, weight)
+                                        document.add_term(prefix + term, weight)
+                        else:
+                            if field['multi_valued'] == 'false':
+                                term = _marshal_term(value)
+                                if len(term.split()) == 1:
+                                    document.add_term(term, weight)
+                                    document.add_term(prefix + term, weight)
+                                    document.add_value(field['column'], _marshal_value(value))
+                            else:
+                                for term in value:
+                                    term = _marshal_term(term)
+                                    if len(term.split()) == 1:
+                                        document.add_term(term, weight)
+                                        document.add_term(prefix + term, weight)
                 
                 document.set_data(pickle.dumps(
                     (obj._meta.app_label, obj._meta.module_name, obj.pk, data),
@@ -228,6 +264,9 @@ class SearchBackend(BaseSearchBackend):
         except UnicodeDecodeError:
             sys.stderr.write('Chunk failed.\n')
             pass
+        
+        finally:
+            database = None
     
     def remove(self, obj):
         """
@@ -256,22 +295,29 @@ class SearchBackend(BaseSearchBackend):
         """
         database = self._database(writable=True)
         if not models:
-            query = xapian.Query('')
-            enquire = xapian.Enquire(database)
-            enquire.set_query(query)
-            for match in enquire.get_mset(0, database.get_doccount()):
-                database.delete_document(match.docid)
+            # Because there does not appear to be a "clear all" method,
+            # it's much quicker to remove the contents of the `HAYSTACK_XAPIAN_PATH`
+            # folder than it is to remove each document one at a time.
+            if os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
+                shutil.rmtree(settings.HAYSTACK_XAPIAN_PATH)
         else:
             for model in models:
                 database.delete_document(
                     DOCUMENT_CT_TERM_PREFIX + '%s.%s' %
                     (model._meta.app_label, model._meta.module_name)
                 )
+
+    def document_count(self):
+        try:
+            return self._database().get_doccount()
+        except InvalidIndexError:
+            return 0
+
     @log_query
     def search(self, query, sort_by=None, start_offset=0, end_offset=None,
-               fields='', highlight=False, facets=None, date_facets=None, #@UnusedVariable
+               fields='', highlight=False, facets=None, date_facets=None,
                query_facets=None, narrow_queries=None, spelling_query=None,
-               limit_to_registered_models=True, **kwargs): #@UnusedVariable
+               limit_to_registered_models=True, **kwargs):
         """
         Executes the Xapian::query as defined in `query`.
         
@@ -365,12 +411,12 @@ class SearchBackend(BaseSearchBackend):
         }
         
         if not end_offset:
-            end_offset = database.get_doccount()
+            end_offset = database.get_doccount() - start_offset
         
-        matches = enquire.get_mset(start_offset, end_offset)
+        matches = self._get_enquire_mset(database, enquire, start_offset, end_offset)
         
         for match in matches:
-            app_label, module_name, pk, model_data = pickle.loads(match.document.get_data())
+            app_label, module_name, pk, model_data = pickle.loads(self._get_document_data(database, match.document))
             if highlight:
                 model_data['highlighted'] = {
                     self.content_field_name: self._do_highlight(
@@ -378,7 +424,7 @@ class SearchBackend(BaseSearchBackend):
                     )
                 }
             results.append(
-                SearchResult(app_label, module_name, pk, match.percent, weight=match.weight, **model_data)
+                SearchResult(app_label, module_name, pk, match.percent, **model_data)
             )
         
         if facets:
@@ -390,14 +436,14 @@ class SearchBackend(BaseSearchBackend):
         
         return {
             'results': results,
-            'hits': matches.get_matches_estimated(),
+            'hits': self._get_hit_count(database, enquire),
             'facets': facets_dict,
             'spelling_suggestion': spelling_suggestion,
         }
     
     def more_like_this(self, model_instance, additional_query=None,
                        start_offset=0, end_offset=None,
-                       limit_to_registered_models=True, **kwargs): #@UnusedVariable
+                       limit_to_registered_models=True, **kwargs):
         """
         Given a model instance, returns a result set of similar documents.
         
@@ -439,11 +485,13 @@ class SearchBackend(BaseSearchBackend):
         if not end_offset:
             end_offset = database.get_doccount()
         
-        for match in enquire.get_mset(0, end_offset):
+        for match in self._get_enquire_mset(database, enquire, 0, end_offset):
             rset.add_document(match.docid)
-        
-        query = xapian.Query(xapian.Query.OP_OR,
-            [expand.term for expand in enquire.get_eset(match.document.termlist_count(), rset, XHExpandDecider())]
+                
+        query = xapian.Query(
+            xapian.Query.OP_ELITE_SET,
+            [expand.term for expand in enquire.get_eset(match.document.termlist_count(), rset, XHExpandDecider())],
+            match.document.termlist_count()
         )
         query = xapian.Query(
             xapian.Query.OP_AND_NOT, [query, DOCUMENT_ID_TERM_PREFIX + get_identifier(model_instance)]
@@ -468,18 +516,17 @@ class SearchBackend(BaseSearchBackend):
         enquire.set_query(query)
         
         results = []
-        matches = enquire.get_mset(start_offset, end_offset)
+        matches = self._get_enquire_mset(database, enquire, start_offset, end_offset)
         
         for match in matches:
-            document = match.get_document()
-            app_label, module_name, pk, model_data = pickle.loads(document.get_data())
+            app_label, module_name, pk, model_data = pickle.loads(self._get_document_data(database, match.document))
             results.append(
-                SearchResult(app_label, module_name, pk, match.percent, weight=match.weight, **model_data)
+                SearchResult(app_label, module_name, pk, match.percent, **model_data)
             )
-        
+
         return {
             'results': results,
-            'hits': matches.get_matches_estimated(),
+            'hits': self._get_hit_count(database, enquire),
             'facets': {
                 'fields': {},
                 'dates': {},
@@ -502,18 +549,13 @@ class SearchBackend(BaseSearchBackend):
         elif query_string == '':
             return xapian.Query()   # Match nothing
         
-        flags = xapian.QueryParser.FLAG_PARTIAL \
-              | xapian.QueryParser.FLAG_PHRASE \
-              | xapian.QueryParser.FLAG_BOOLEAN \
-              | xapian.QueryParser.FLAG_LOVEHATE \
-              | xapian.QueryParser.FLAG_WILDCARD \
-              | xapian.QueryParser.FLAG_PURE_NOT
+        flags = getattr(settings, 'HAYSTACK_XAPIAN_FLAGS', DEFAULT_XAPIAN_FLAGS)
         qp = xapian.QueryParser()
         qp.set_database(self._database())
         qp.set_stemmer(xapian.Stem(self.language))
         qp.set_stemming_strategy(xapian.QueryParser.STEM_SOME)
         qp.add_boolean_prefix('django_ct', DOCUMENT_CT_TERM_PREFIX)
-        
+
         for field_dict in self.schema:
             qp.add_prefix(
                 field_dict['field_name'],
@@ -541,30 +583,31 @@ class SearchBackend(BaseSearchBackend):
         
         for field_name, field_class in fields.items():
             if field_class.document is True:
-                content_field_name = field_name
+                content_field_name = field_class.index_fieldname
             
             if field_class.indexed is True:
                 field_data = {
-                    'field_name': field_name,
+                    'field_name': field_class.index_fieldname,
                     'type': 'text',
                     'multi_valued': 'false',
                     'column': column,
                 }
                 
-                if isinstance(field_class, (DateField, DateTimeField)):
+                if field_class.field_type in ['date', 'datetime']:
                     field_data['type'] = 'date'
-                elif isinstance(field_class, IntegerField):
+                elif field_class.field_type == 'integer':
                     field_data['type'] = 'long'
-                elif isinstance(field_class, FloatField):
+                elif field_class.field_type == 'float':
                     field_data['type'] = 'float'
-                elif isinstance(field_class, BooleanField):
+                elif field_class.field_type == 'boolean':
                     field_data['type'] = 'boolean'
-                elif isinstance(field_class, MultiValueField):
+                
+                if field_class.is_multivalued:
                     field_data['multi_valued'] = 'true'
                 
                 schema_fields.append(field_data)
                 column += 1
-        
+
         return (content_field_name, schema_fields)
     
     def _do_highlight(self, content, query, tag='em'):
@@ -695,7 +738,7 @@ class SearchBackend(BaseSearchBackend):
         
         return facet_dict
     
-    def _do_query_facets(self, results, query_facets): #@UnusedVariable
+    def _do_query_facets(self, results, query_facets):
         """
         Private method that facets a document by query
         
@@ -761,6 +804,55 @@ class SearchBackend(BaseSearchBackend):
 
         return database
 
+    def _get_enquire_mset(self, database, enquire, start_offset, end_offset):
+        """
+        A safer version of Xapian.enquire.get_mset
+
+        Simply wraps the Xapian version and catches any `Xapian.DatabaseModifiedError`,
+        attempting a `database.reopen` as needed.
+
+        Required arguments:
+            `database` -- The database to be read
+            `enquire` -- An instance of an Xapian.enquire object
+            `start_offset` -- The start offset to pass to `enquire.get_mset`
+            `end_offset` -- The end offset to pass to `enquire.get_mset`
+        """
+        try:
+            return enquire.get_mset(start_offset, end_offset)
+        except xapian.DatabaseModifiedError:
+            database.reopen()
+            return enquire.get_mset(start_offset, end_offset)
+
+    def _get_document_data(self, database, document):
+        """
+        A safer version of Xapian.document.get_data
+
+        Simply wraps the Xapian version and catches any `Xapian.DatabaseModifiedError`,
+        attempting a `database.reopen` as needed.
+
+        Required arguments:
+            `database` -- The database to be read
+            `document` -- An instance of an Xapian.document object
+        """
+        try:
+            return document.get_data()
+        except xapian.DatabaseModifiedError:
+            database.reopen()
+            return document.get_data()
+
+    def _get_hit_count(self, database, enquire):
+        """
+        Given a database and enquire instance, returns the estimated number
+        of matches.
+        
+        Required arguments:
+            `database` -- The database to be queried
+            `enquire` -- The enquire instance
+        """
+        return self._get_enquire_mset(
+            database, enquire, 0, database.get_doccount()
+        ).size()
+
     def _value_column(self, field):
         """
         Private method that returns the column value slot in the database
@@ -810,18 +902,6 @@ class SearchQuery(BaseSearchQuery):
         super(SearchQuery, self).__init__(backend=backend)
         self.backend = backend or SearchBackend(site=site)
     
-    def run(self, spelling_query=None):
-        try:
-            return super(SearchQuery, self).run(spelling_query=spelling_query)
-        except xapian.DatabaseModifiedError:
-            return super(SearchQuery, self).run(spelling_query=spelling_query)
-
-    def run_mlt(self):
-        try:
-            return super(SearchQuery, self).run_mlt()
-        except xapian.DatabaseModifiedError:
-            return super(SearchQuery, self).run_mlt()
-    
     def build_query(self):
         if not self.query_filter:
             query = xapian.Query('')
@@ -862,12 +942,7 @@ class SearchQuery(BaseSearchQuery):
         for child in search_node.children:
             if isinstance(child, SearchNode):
                 query_list.append(
-                    xapian.Query(
-                        xapian.Query.OP_AND,
-                        self._query_from_search_node(
-                            child, child.negated
-                        )
-                    )
+                    self._query_from_search_node(child, child.negated)
                 )
             else:
                 expression, term = child
@@ -969,15 +1044,11 @@ class SearchQuery(BaseSearchQuery):
         for term in term_list:
             if ' ' in term:
                 query_list.append(
-                    xapian.Query(
-                        xapian.Query.OP_OR, self._phrase_query(term.split(), field)
-                    )
+                    self._phrase_query(term.split(), field)
                 )
             else:
                 query_list.append(
-                    xapian.Query(
-                        xapian.Query.OP_OR, self._term_query(term, field)
-                    )
+                    self._term_query(term, field)
                 )
         if is_not:
             return xapian.Query(xapian.Query.OP_AND_NOT, self._all_query(), xapian.Query(xapian.Query.OP_OR, query_list))
@@ -997,13 +1068,13 @@ class SearchQuery(BaseSearchQuery):
         Returns:
             A xapian.Query
         """
-        sb = SearchBackend()
-        term_list = set()
-        for t in sb._database().allterms():
-            if t.term.startswith(term.rstrip('*')):
-                term_list.add(t.term)
-        
-        return self._filter_in(list(term_list), field, is_not)
+        if is_not:
+            return xapian.Query(
+                xapian.Query.OP_AND_NOT,
+                self._all_query(),
+                self.backend.parse_query('%s:%s*' % (field, term)),
+            )
+        return self.backend.parse_query('%s:%s*' % (field, term))
     
     def _filter_gt(self, term, field, is_not):
         return self._filter_lte(term, field, is_not=(is_not != True))
@@ -1061,24 +1132,27 @@ class SearchQuery(BaseSearchQuery):
             A xapian.Query
         """
         stem = xapian.Stem(self.backend.language)
-        if field:
-            return xapian.Query(
-                xapian.Query.OP_OR, 
-                xapian.Query('Z%s%s%s' % (
-                        DOCUMENT_CUSTOM_TERM_PREFIX, field.upper(), stem(term)
-                    )
-                ),
-                xapian.Query('%s%s%s' % (
-                        DOCUMENT_CUSTOM_TERM_PREFIX, field.upper(), term
-                    )
-                )
+        
+        if field == 'id':
+            return xapian.Query('%s%s' % (DOCUMENT_ID_TERM_PREFIX, term))
+        elif field == 'django_ct':
+            return xapian.Query('%s%s' % (DOCUMENT_CT_TERM_PREFIX, term))
+        elif field:
+            stemmed = 'Z%s%s%s' % (
+                DOCUMENT_CUSTOM_TERM_PREFIX, field.upper(), stem(term)
+            )
+            unstemmed = '%s%s%s' % (
+                DOCUMENT_CUSTOM_TERM_PREFIX, field.upper(), term
             )
         else:
-            return xapian.Query(
-                xapian.Query.OP_OR,
-                xapian.Query('Z%s' % term),
-                xapian.Query(term)
-            )
+            stemmed = 'Z%s' % stem(term)
+            unstemmed = term
+            
+        return xapian.Query(
+            xapian.Query.OP_OR,
+            xapian.Query(stemmed),
+            xapian.Query(unstemmed)
+        )
     
     def _phrase_query(self, term_list, field=None):
         """
@@ -1154,3 +1228,60 @@ def _marshal_datetime(dt):
             dt.year, dt.month, dt.day, dt.hour,
             dt.minute, dt.second
         )
+
+
+def run(self):
+    """
+    Builds and executes the query. Returns a list of search results.
+    """
+    final_query = self.build_query()
+    kwargs = {
+        'start_offset': self.start_offset,
+    }
+
+    if self.order_by:
+        kwargs['sort_by'] = self.order_by
+
+    if self.end_offset is not None:
+        kwargs['end_offset'] = self.end_offset - self.start_offset
+
+    if self.highlight:
+        kwargs['highlight'] = self.highlight
+
+    if self.facets:
+        kwargs['facets'] = list(self.facets)
+
+    if self.date_facets:
+        kwargs['date_facets'] = self.date_facets
+
+    if self.query_facets:
+        kwargs['query_facets'] = self.query_facets
+
+    if self.narrow_queries:
+        kwargs['narrow_queries'] = self.narrow_queries
+
+    results = self.backend.search(final_query, **kwargs)
+    self._results = results.get('results', [])
+    self._hit_count = results.get('hits', 0)
+    self._facet_counts = results.get('facets', {})
+    self._spelling_suggestion = results.get('spelling_suggestion', None)
+
+
+def run_mlt(self):
+    """
+    Builds and executes the query. Returns a list of search results.
+    """
+    if self._more_like_this is False or self._mlt_instance is None:
+        raise MoreLikeThisError("No instance was provided to determine 'More Like This' results.")
+
+    additional_query_string = self.build_query()
+    kwargs = {
+        'start_offset': self.start_offset,
+    }
+
+    if self.end_offset is not None:
+        kwargs['end_offset'] = self.end_offset - self.start_offset
+
+    results = self.backend.more_like_this(self._mlt_instance, additional_query_string, **kwargs)
+    self._results = results.get('results', [])
+    self._hit_count = results.get('hits', 0)

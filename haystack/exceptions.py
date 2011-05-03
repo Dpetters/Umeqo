@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 class HaystackError(Exception):
     """A generic exception for all others to extend."""
     pass

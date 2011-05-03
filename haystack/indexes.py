@@ -1,13 +1,9 @@
-"""
- OpenSource
-"""
-
 import copy
-import sys #@UnusedImport
+import sys
 from django.db.models import signals
 from django.utils.encoding import force_unicode
 from haystack.constants import ID, DJANGO_CT, DJANGO_ID
-from haystack.fields import * #@UnusedWildImport
+from haystack.fields import *
 from haystack.utils import get_identifier, get_facet_field_name
 
 
@@ -73,8 +69,8 @@ class SearchIndex(object):
             author = CharField(model_attr='user')
             pub_date = DateTimeField(model_attr='pub_date')
             
-            def get_queryset(self):
-                return super(NoteIndex, self).get_queryset().filter(pub_date__lte=datetime.datetime.now())
+            def index_queryset(self):
+                return super(NoteIndex, self).index_queryset().filter(pub_date__lte=datetime.datetime.now())
     
     """
     __metaclass__ = DeclarativeMetaclass
@@ -114,13 +110,28 @@ class SearchIndex(object):
         """A hook for removing the behavior when the registered model is deleted."""
         pass
     
-    def get_queryset(self):
+    def index_queryset(self):
         """
         Get the default QuerySet to index when doing a full update.
         
         Subclasses can override this method to avoid indexing certain objects.
         """
         return self.model._default_manager.all()
+    
+    def get_queryset(self):
+        """
+        Alias of index_queryset for backwards compatibility.
+        """
+        return self.index_queryset()
+    
+    def read_queryset(self):
+        """
+        Get the default QuerySet for read actions.
+        
+        Subclasses can override this method to work with other managers.
+        Useful when working with default managers that filter some objects.
+        """
+        return self.index_queryset()
     
     def prepare(self, obj):
         """
@@ -167,7 +178,7 @@ class SearchIndex(object):
     
     def get_content_field(self):
         """Returns the field that supplies the primary document to be indexed."""
-        for field_name, field in self.fields.items(): #@UnusedVariable
+        for field_name, field in self.fields.items():
             if field.document is True:
                 return field.index_fieldname
     
@@ -175,13 +186,13 @@ class SearchIndex(object):
         """Returns a dict of fields with weight values"""
         weights = {}
         for field_name, field in self.fields.items():
-            if field.weight:
-                weights[field_name] = field.weight
+            if field.boost:
+                weights[field_name] = field.boost
         return weights
     
     def update(self):
         """Update the entire index"""
-        self.backend.update(self, self.get_queryset())
+        self.backend.update(self, self.index_queryset())
     
     def update_object(self, instance, **kwargs):
         """

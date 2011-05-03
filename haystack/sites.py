@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 import copy
 from haystack.exceptions import AlreadyRegistered, NotRegistered, SearchFieldError
 
@@ -91,8 +87,8 @@ class SearchSite(object):
         content_field_name = ''
         fields = {}
         
-        for model, index in self.get_indexes().items(): #@UnusedVariable
-            for field_name, field_object in index.fields.items(): #@UnusedVariable
+        for model, index in self.get_indexes().items():
+            for field_name, field_object in index.fields.items():
                 if field_object.document is True:
                     if content_field_name != '' and content_field_name != field_object.index_fieldname:
                         raise SearchFieldError("All SearchIndex fields with 'document=True' must use the same fieldname.")
@@ -158,11 +154,11 @@ class SearchSite(object):
         
         If not found, returns the fieldname provided.
         """
-        facet_fieldname = None #@UnusedVariable
+        facet_fieldname = None
         
-        reverse_map = {} #@UnusedVariable
+        reverse_map = {}
         
-        for field, info in self._field_mapping().items(): #@UnusedVariable
+        for field, info in self._field_mapping().items():
             if info['facet_fieldname'] and info['facet_fieldname'] == fieldname:
                 return info['index_fieldname']
         
@@ -174,7 +170,7 @@ class SearchSite(object):
         if self._cached_field_mapping:
             return self._cached_field_mapping
         
-        for model, index in self.get_indexes().items(): #@UnusedVariable
+        for model, index in self.get_indexes().items():
             for field_name, field_object in index.fields.items():
                 if field_name in mapping and field_object.index_fieldname != mapping[field_name]['index_fieldname']:
                     # We've already seen this field in the list. Raise an exception if index_fieldname differs.

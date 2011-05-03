@@ -1,10 +1,7 @@
-"""
- OpenSource
-"""
-
-import re #@UnusedImport
+import operator
+import re
 import warnings
-from django.conf import settings #@UnusedImport
+from django.conf import settings
 from haystack.backends import SQ
 from haystack.constants import REPR_OUTPUT_SIZE, ITERATOR_LOAD_PER_QUERY, DEFAULT_OPERATOR
 from haystack.exceptions import NotRegistered
@@ -64,6 +61,10 @@ class SearchQuerySet(object):
     def __len__(self):
         if not self._result_count:
             self._result_count = self.query.get_count()
+            
+            # Some backends give weird, false-y values here. Convert to zero.
+            if not self._result_count:
+                self._result_count = 0
         
         # This needs to return the actual number of hits, not what's in the cache.
         return self._result_count - self._ignored_result_count
@@ -136,7 +137,7 @@ class SearchQuerySet(object):
         self.query.set_limits(start, end)
         results = self.query.get_results()
         
-        if len(results) == 0:
+        if results == None or len(results) == 0:
             return False
         
         # Setup the full cache now that we know how many results there are.
@@ -146,7 +147,7 @@ class SearchQuerySet(object):
         # an array of 100,000 ``None``s consumed less than .5 Mb, which ought
         # to be an acceptable loss for consistent and more efficient caching.
         if len(self._result_cache) == 0:
-            self._result_cache = [None for i in xrange(self.query.get_count())] #@UnusedVariable
+            self._result_cache = [None for i in xrange(self.query.get_count())]
         
         if start is None:
             start = 0
@@ -167,8 +168,13 @@ class SearchQuerySet(object):
             
             # Load the objects for each model in turn.
             for model in models_pks:
-                loaded_objects[model] = model._default_manager.in_bulk(models_pks[model])
-        
+                try:
+                    loaded_objects[model] = self.site.get_index(model).read_queryset().in_bulk(models_pks[model])
+                except NotRegistered:
+                    self.log.warning("Model not registered with search site '%s.%s'." % (self.app_label, self.model_name))
+                    # Revert to old behaviour
+                    loaded_objects[model] = model._default_manager.in_bulk(models_pks[model])
+
         to_cache = []
         
         for result in results:
@@ -298,6 +304,17 @@ class SearchQuerySet(object):
         
         return clone
     
+    def result_class(self, klass):
+        """
+        Allows specifying a different class to use for results.
+        
+        Overrides any previous usages. If ``None`` is provided, Haystack will
+        revert back to the default ``SearchResult`` object.
+        """
+        clone = self._clone()
+        clone.query.set_result_class(klass)
+        return clone
+    
     def boost(self, term, boost):
         """Boosts a certain aspect of the query."""
         clone = self._clone()
@@ -385,6 +402,26 @@ class SearchQuerySet(object):
                 clone = clone.filter(content=cleaned_keyword)
         
         return clone
+    
+    def autocomplete(self, **kwargs):
+        """
+        A shortcut method to perform an autocomplete search.
+        
+        Must be run against fields that are either ``NgramField`` or
+        ``EdgeNgramField``.
+        """
+        clone = self._clone()
+        query_bits = []
+        
+        for field_name, query in kwargs.items():
+            for word in query.split(' '):
+                bit = clone.query.clean(word.strip())
+                kwargs = {
+                    field_name: bit,
+                }
+                query_bits.append(SQ(**kwargs))
+        
+        return clone.filter(reduce(operator.__and__, query_bits))
     
     # Methods that do not return a SearchQuerySet.
     

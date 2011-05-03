@@ -8,12 +8,34 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from core.models import InterestedPerson, CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry
+from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType
 
-class InterestedPersonAdmin(admin.ModelAdmin):
-    pass
+class TopicAdmin(admin.ModelAdmin):
 
-admin.site.register(InterestedPerson, InterestedPersonAdmin)
+    prepopulated_fields = {'slug':('name',)}
+    list_display = ('name', 'sort_order', 'audience')
+    list_filter = ['audience']
+    search_fields = ['name']
+    
+class QuestionAdmin(admin.ModelAdmin):
+    fields= ['audience', 'status', 'sort_order', 'question', 'answer', 'slug']
+    prepopulated_fields = {'slug':('question',)}
+    list_display = ['question', 'topic', 'audience', 'sort_order', 'created_by', 'created_on', 'updated_by', 'updated_on', 'status']
+    list_filter = ['topic', 'audience', 'status']
+    search_fields = ['question', 'answer']
+    
+    def save_model(self, request, obj, form, change): #@UnusedVariable
+        '''
+        Overrided because I want to also set who created this instance.
+        '''
+        instance = form.save( commit=False )
+        if instance.id is None:
+            instance.created_by = request.user
+                
+        instance.updated_by = request.user
+        instance.save()
+        
+        return instance
 
 class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'last_login', 'date_joined')
@@ -38,6 +60,11 @@ class LanguageAdmin(admin.ModelAdmin):
     ordering = ('-last_updated',)
     
 class CampusOrgTypeAdmin(admin.ModelAdmin):
+    fields = ['name']
+    ordering = ('-last_updated',)
+    date_hierarchy = 'last_updated'
+    
+class EmploymentTypeAdmin(admin.ModelAdmin):
     fields = ['name']
     ordering = ('-last_updated',)
     date_hierarchy = 'last_updated'
@@ -70,3 +97,6 @@ admin.site.register(Industry, IndustryAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CampusOrgType, CampusOrgTypeAdmin)
 admin.site.register(CampusOrg, CampusOrgAdmin)
+admin.site.register(EmploymentType, EmploymentTypeAdmin)
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Topic, TopicAdmin)

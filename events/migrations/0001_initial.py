@@ -8,22 +8,13 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'EventType'
-        db.create_table('events_eventtype', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
-            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-        ))
-        db.send_create_signal('events', ['EventType'])
-
         # Adding model 'Event'
         db.create_table('events_event', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('employer', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['employer.Employer'])),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
             ('end_datetime', self.gf('django.db.models.fields.DateTimeField')()),
-            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['events.EventType'])),
+            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.EventType'])),
             ('start_datetime', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
             ('location', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
@@ -45,9 +36,6 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
         
-        # Deleting model 'EventType'
-        db.delete_table('events_eventtype')
-
         # Deleting model 'Event'
         db.delete_table('events_event')
 
@@ -134,6 +122,13 @@ class Migration(SchemaMigration):
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
         },
+        'core.eventtype': {
+            'Meta': {'object_name': 'EventType'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
+        },
         'core.graduationyear': {
             'Meta': {'object_name': 'GraduationYear'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -208,15 +203,8 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'rsvp_message': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'start_datetime': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['events.EventType']"}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.EventType']"}),
             'view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
-        },
-        'events.eventtype': {
-            'Meta': {'object_name': 'EventType'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
         }
     }
 

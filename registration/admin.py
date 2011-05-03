@@ -9,9 +9,11 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
-from registration.models import RegistrationProfile
+from registration.models import RegistrationProfile, InterestedPerson
 
-
+class InterestedPersonAdmin(admin.ModelAdmin):
+    date_hierarchy = 'date_created'
+    
 class RegistrationAdmin(admin.ModelAdmin):
     actions = ['activate_users', 'resend_activation_email']
     list_display = ('user', 'activation_key_expired')
@@ -50,3 +52,4 @@ class RegistrationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(RegistrationProfile, RegistrationAdmin)
+admin.site.register(InterestedPerson, InterestedPersonAdmin)

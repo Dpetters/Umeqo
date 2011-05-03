@@ -17,14 +17,70 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from django.core.mail import send_mail
+from django.db.models import Q
 
 from employer.forms import SearchForm
 from notification.models import Notice
 from employer.view_helpers import check_for_new_student_matches
-from core.models import Course, CampusOrg, Language, InterestedPerson
-from core.forms import EmailForm
+from core.models import Course, CampusOrg, Language, Topic
+from registration.models import InterestedPerson
+from core.forms import EmailForm, AkismetContactForm
 from employer.models import Employer
 from events.models import Event
+from core import enums
+
+
+def help(request,
+         template_name='help.html',
+         extra_context = None):
+    
+    context = {'topics':[]}
+    if hasattr(request.user, "employer"):
+        topics = Topic.objects.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.ALL))
+    elif hasattr(request.user, "student"):
+        topics = Topic.objects.filter(Q(audience=enums.STUDENT) | Q(audience=enums.ALL))
+    else:
+        topics = Topic.objects.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+        
+    for topic in topics:
+        questions = topic.question_set.filter(status = enums.ACTIVE)
+        if hasattr(request.user, "employer"):
+            questions = topic.question_set.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.ALL))
+        elif hasattr(request.user, "student"):
+            questions = topic.question_set.filter(Q(audience=enums.STUDENT) | Q(audience=enums.ALL))
+        else:
+            questions = topic.question_set.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+        
+        context['topics'].append({'name': topic, 'questions':questions})
+
+    context.update(extra_context or {})  
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
+    
+def contact_us_dialog(request,
+                      template_name='contact_dialog.html',
+                      form_class=AkismetContactForm,
+                      fail_silently=False,
+                      extra_context=None):
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST, request=request)
+            if form.is_valid():
+                form.save(fail_silently=fail_silently)
+                return HttpResponse(simplejson.dumps({"valid":True}))
+            return HttpResponse(simplejson.dumps({"valid":False}))
+        else:
+            form = form_class(request=request)
+    
+        context = {
+                'contact_form': form,
+                }
+        context.update(extra_context or {}) 
+        return render_to_response(template_name,
+                                  context,
+                                  context_instance=RequestContext(request))
+    return redirect('home')
 
     
 def landing_page(request,

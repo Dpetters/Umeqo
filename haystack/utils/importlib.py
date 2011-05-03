@@ -1,7 +1,3 @@
-"""
- OpenSource
-"""
-
 # A copy of importlib from Django 1.1.
 # Present here to maintain backward-compatibility with Django 1.0.
 import sys
@@ -11,7 +7,7 @@ def _resolve_name(name, package, level):
     if not hasattr(package, 'rindex'):
         raise ValueError("'package' not set to a string")
     dot = len(package)
-    for x in xrange(level, 1, -1): #@UnusedVariable
+    for x in xrange(level, 1, -1):
         try:
             dot = package.rindex('.', 0, dot)
         except ValueError:

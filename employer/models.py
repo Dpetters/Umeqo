@@ -7,7 +7,8 @@
 from django.db import models
 from django.contrib.localflavor.us.models import PhoneNumberField
 
-from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType, UserProfile
+from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
+from registration.models import UserProfile
 from employer import enums as employer_enums
 from student.models import StudentList
 from student import constants as student_constants

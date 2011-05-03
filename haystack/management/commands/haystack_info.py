@@ -1,8 +1,5 @@
-"""
- OpenSource
-"""
-
 from django.core.management.base import NoArgsCommand
+
 
 class Command(NoArgsCommand):
     help = "Provides feedback about the current Haystack setup."
