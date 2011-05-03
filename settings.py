@@ -132,6 +132,10 @@ TEMPLATE_DIRS = (
     ROOT + "/templates/"
 )
 
+SOUTH_MIGRATION_MODULES = {
+    'messages': 'sbconnect.messages.migrations',
+}
+
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.auth',
