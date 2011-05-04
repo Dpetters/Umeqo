@@ -118,6 +118,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -152,8 +153,12 @@ INSTALLED_APPS = (
     'notification',
     'registration',
     'south',
-    'student'
+    'student',
+    'debug_toolbar'
 )
+
+#only allow toolbar from localhost
+INTERNAL_IPS = ('127.0.0.1',)
 
 LAUNCHED = False
 

@@ -11,6 +11,13 @@ Note that in order for this file to work, the initial_contents folder has remain
 the the same directory as this script.
 """
 
+c  = raw_input('STOP. This script is meant to create the initial data, but that data has already been dumped and stored in initial_data.json.\n\
+Chances are you do NOT need to run this script again. Are you SURE you want to proceed? Press Ctrl+D or type n to exit.\n\
+    [y/n]')
+
+if c=='n':
+    exit()
+
 # Don't switch the order the next three sections!
 
 # Must remain first
