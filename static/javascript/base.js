@@ -3,7 +3,11 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
  */
-
+var multiselectCheckAllText = "All";
+var multiselectUncheckAllText = "None";
+var multiselectShowAnimation = "";
+var multiselectHideAnimation = "";
+	
 $(document).ready( function () {
 
     /* The main blocks that we use need to have their line-heights set

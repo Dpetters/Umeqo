@@ -12,16 +12,16 @@ Copyright 2011. All Rights Reserved.
 
 {% block metadata %}
 {{ block.super }}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/registration/student_registration.css" />
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/registration/student_registration.js">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_registration.js">
 </script>
 {% endblock %}
 
 {% block content_area %}
 <div id="student_registration_block" class="main_block">
 	<div class="main_block_header">
-		<img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user_add_png/32x32/user_add.png" />
-		<span class="main_block_header_title">New Student Registration</span>
+		<img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+		<span class="main_block_header_title">Student Registration</span>
 	</div>
 	<div class="main_block_content">
 		<ul id="student_registration_form_info" class="main_block_content_form_info">
@@ -31,25 +31,29 @@ Copyright 2011. All Rights Reserved.
 		</ul>
 		<form id="student_registration_form" method='POST' action="">
 			{% csrf_token %}
-
-			<div class="errorspace">
-			</div>
-			<div>
-				<label class="required" for="id_email">Your MIT Email:</label>
-				{{form.email}}
-			</div>
-			<div class="errorspace">
-			</div>
-			<div>
-				<label class="required" for="id_password1">Choose a password:</label>
-				{{form.password1}}
-			</div>
-			<div class="errorspace">
-			</div>
-			<div>
-				<label class="required" for="id_password2">Re-enter password:</label>
-				{{form.password2}}
-			</div>
+			<table class="form_table">
+				<tr>
+					<th>{{form.email.label_tag}}</th>
+					<td>
+						<div class="errorspace"></div>
+						{{form.email}}
+					</td>
+				</tr>
+				<tr>
+					<th>{{form.password1.label_tag}}</th>
+					<td>
+						<div class="errorspace"></div>
+						{{form.password1}}
+					</td>
+				</tr>
+				<tr>
+					<th>{{form.password2.label_tag}}</th>
+					<td>
+						<div class="errorspace"></div>
+						{{form.password2}}
+					</td>
+				</tr>
+			</table>
 			<div id="student_registration_form_error_section" class="error">
 			</div>
 			<div class="button_wrapper_with_margins">

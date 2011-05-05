@@ -6,9 +6,6 @@
 
 $(document).ready( function() {
 
-    format_required_labels("#student_registration_form");
-    align_form("#student_registration_form");
-
     $("#student_registration_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
@@ -23,7 +20,7 @@ $(document).ready( function() {
                             $("#student_registration_block .main_block_content").html(status_500_message);
                             break;
                         default:
-                            $("#student_registration_form_error_section").html(check_connection_message);    
+                            $("#student_registration_form_error_section").html(check_connection_message);
                     }
                 },
                 success: function(data) {
@@ -45,7 +42,7 @@ $(document).ready( function() {
         },
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors,
+        errorPlacement: place_errors_table,
         rules: {
             email: {
                 required: true,
@@ -58,7 +55,7 @@ $(document).ready( function() {
                                 $("#student_registration_block .main_block_content").html(status_500_message);
                                 break;
                             default:
-                                $("#student_registration_form_error_section").html(check_connection_message);    
+                                $("#student_registration_form_error_section").html(check_connection_message);
                         }
                     },
                 }

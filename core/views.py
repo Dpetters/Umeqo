@@ -123,7 +123,7 @@ def home(request,
          student_home_template_name="student_home.html",
          employer_home_template_name="employer_home.html",
          extra_context=None):
-    
+    print request.user.is_authenticated()
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:

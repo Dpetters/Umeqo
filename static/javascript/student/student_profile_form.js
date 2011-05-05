@@ -5,8 +5,13 @@
 */
 
 $(document).ready( function() {
-
-    var open_create_campus_organization_dialog = function () {
+    var languages_max = 12;
+    var campus_org_max = 12;
+    var industries_of_interest_max = 12;
+    var previous_employers_max = 12;
+   
+        
+    function open_create_campus_organization_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
@@ -18,6 +23,37 @@ $(document).ready( function() {
             close: function() {
                 $create_campus_organization_dialog.remove();
             }
+        });
+        $dialog.dialog('open');
+        return $dialog;
+    };
+	
+	function open_create_language_dialog() {
+        var $dialog = $('<div class="dialog"></div>')
+        .dialog({
+            autoOpen: false,
+            title:"New Language",
+            dialogClass: "create_language_dialog",
+            modal:true,
+            width:500,
+            resizable: false,
+            close: function() {
+                $create_language_dialog.remove();
+            }
+        });
+        $dialog.dialog('open');
+        return $dialog;
+    };
+    
+    function open_profile_form_info_dialog(){
+        var $dialog = $('<div></div>')
+        .dialog({
+            autoOpen: false,
+            title:"Why More Information is Better",
+            dialogClass: "profile_form_info_dialog",
+            modal:true,
+            width:700,
+            resizable: false
         });
         $dialog.dialog('open');
         return $dialog;
@@ -121,22 +157,6 @@ $(document).ready( function() {
             }
         });
     });
-    var open_create_language_dialog = function () {
-        var $dialog = $('<div class="dialog"></div>')
-        .dialog({
-            autoOpen: false,
-            title:"New Language",
-            dialogClass: "create_language_dialog",
-            modal:true,
-            width:500,
-            resizable: false,
-            close: function() {
-                $create_language_dialog.remove();
-            }
-        });
-        $dialog.dialog('open');
-        return $dialog;
-    };
     
     $('#create_language_link').click( function () {
         
@@ -236,19 +256,7 @@ $(document).ready( function() {
             }
         });
     });
-    var open_profile_form_info_dialog = function () {
-        var $dialog = $('<div></div>')
-        .dialog({
-            autoOpen: false,
-            title:"Why More Information is Better",
-            dialogClass: "profile_form_info_dialog",
-            modal:true,
-            width:700,
-            resizable: false
-        });
-        $dialog.dialog('open');
-        return $dialog;
-    };
+
     $('#profile_form_info_link').click( function () {
         var $profile_form_info_dialog = open_profile_form_info_dialog();
 
@@ -320,14 +328,11 @@ $(document).ready( function() {
     $("#id_resume").change( function() {
         v.element("#id_resume");
     });
-	/*
-    if(window.location.pathname == "/student/create-profile/") {
-        $("#id_resume").rules( "add", { required:true } );
-    }
-    */
 
     $("#id_school_year").multiselect({
         noneSelectedText: "select school year",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         header:false,
         minWidth:310,
         height:140,
@@ -342,6 +347,8 @@ $(document).ready( function() {
 
     $("#id_graduation_year").multiselect({
         noneSelectedText: "select graduation year",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         header:false,
         selectedList: 1,
         height:117,
@@ -356,6 +363,8 @@ $(document).ready( function() {
 
     $("#id_first_major").multiselect({
         noneSelectedText: "select first major",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         height:140,
         header:false,
         minWidth:310,
@@ -370,6 +379,8 @@ $(document).ready( function() {
 
     $("#id_second_major").multiselect({
         noneSelectedText: "select second major",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         height:140,
         header:false,
         minWidth:310,
@@ -377,17 +388,10 @@ $(document).ready( function() {
         multiple: false
     });
 
-    $("#id_looking_for_internship").multiselect({
+    $("#id_looking_for").multiselect({
         noneSelectedText: "select",
-        height:47,
-        header:false,
-        minWidth:187,
-        selectedList: 1,
-        multiple: false
-    });
-
-    $("#id_looking_for_fulltime").multiselect({
-        noneSelectedText: "select",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         height:47,
         header:false,
         minWidth:187,
@@ -397,6 +401,8 @@ $(document).ready( function() {
 
     $("#id_older_than_18").multiselect({
         noneSelectedText: "select",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         height:47,
         header:false,
         minWidth:187,
@@ -406,6 +412,8 @@ $(document).ready( function() {
 
     $("#id_citizen").multiselect({
         noneSelectedText: "select",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         height:47,
         header:false,
         minWidth:187,
@@ -413,11 +421,12 @@ $(document).ready( function() {
         multiple: false
     });
 
-    var languages_max = 12;
     $("#id_languages").multiselect({
         noneSelectedText: 'select languages',
-        checkAllText: "All",
-        uncheckAllText: "None",
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         minWidth:310,
         height:170,
         beforeclose: function() {
@@ -432,11 +441,12 @@ $(document).ready( function() {
         }
     }).multiselectfilter();
 
-    var campus_org_max = 12;
     $("#id_campus_orgs").multiselect({
         noneSelectedText: 'select campus organizations',
-        checkAllText: "All",
-        uncheckAllText: "None",
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         minWidth:310,
         height:230,
         optgrouptoggle: function(e, ui) {
@@ -458,11 +468,12 @@ $(document).ready( function() {
         }
     }).multiselectfilter();
 
-    var industries_of_interest_max = 12;
     $("#id_industries_of_interest").multiselect({
         noneSelectedText: 'select industries',
-        checkAllText: "All",
-        uncheckAllText: "None",
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         minWidth:310,
         beforeclose: function() {
             $(".warning").remove();
@@ -476,11 +487,12 @@ $(document).ready( function() {
         }
     }).multiselectfilter();
 
-    var previous_employers_max = 12;
     $("#id_previous_employers").multiselect({
         noneSelectedText: 'select employers',
-        checkAllText: "All",
-        uncheckAllText: "None",
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
         minWidth:310,
         beforeclose: function() {
             $(".warning").remove();
@@ -493,18 +505,7 @@ $(document).ready( function() {
             }
         }
     }).multiselectfilter();
-
-    $.validator.addMethod("pageRequired", function(value, element) {
-        var $element = $(element)
-        function match(index) {
-            return current == index && $(element).parents("#pg" + (index + 1)).length;
-        }
-
-        if (match(0) || match(1) || match(2) || match(3) || match(4)) {
-            return !this.optional(element);
-        }
-        return "dependency-mismatch";
-    }, $.validator.messages.required)
+    
     // Set up multipart form navigation
     $(".navigation").click( function() {
         if (current < this.id) {
@@ -526,7 +527,18 @@ $(document).ready( function() {
         accordion.accordion("activate", 1);
         current = 1;
     });
+    $("#pg4 .open2").click( function() {
+        accordion.accordion("activate", 2);
+        current = 2;
+    });
+    
     // Next buttons need to run validation
+    $("#pg3 .open3").click( function() {
+        if (v.form()) {
+            accordion.accordion("activate", 3);
+            current = 3;
+        }
+    });
     $("#pg2 .open2").click( function() {
         if (v.form()) {
             accordion.accordion("activate", 2);
@@ -539,13 +551,15 @@ $(document).ready( function() {
             current = 1;
         }
     });
+
     // Set up accordion and validation
     var current = 0;  // Current Page
     var accordion = $("#stepForm").accordion({
         autoHeight:false,
-        animated:false,
+        animated:false
     });
     accordion.accordion( "option", "active", parseInt(get_parameter_by_name("page")));
+    
     // Field masks
     $("#id_act").mask("99",{placeholder:" "}).blur( function() {
         if($(this).val()=="") {

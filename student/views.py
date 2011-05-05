@@ -15,12 +15,12 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils import simplejson
+from django.core.urlresolvers import reverse
 
 from events.models import Event
-from student.forms import StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
+from student.forms import StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
 from student.models import Student
 from registration.backend import RegistrationBackend
-from registration.forms import RegistrationForm
 from core.decorators import is_student
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
@@ -34,15 +34,17 @@ def student_account_settings(request,
 
     context = {}
     context.update(extra_context or {})
-    return render_to_response(template_name, context, context_instance=RequestContext(request))
+    return render_to_response(template_name, 
+                              context, 
+                              context_instance=RequestContext(request))
 
 
 def student_registration(request,
              backend = RegistrationBackend(), 
-             form_class=RegistrationForm,
-             success_url="/student/registration/complete/", 
-             disallowed_url='student_registration_disallowed',
-             template_name='student_registration.html',
+             form_class = StudentRegistrationForm,
+             success_url = 'student_registration_complete', 
+             disallowed_url = 'student_registration_disallowed',
+             template_name = 'student_registration.html',
              extra_context = None):
     
     if not backend.registration_allowed(request):
@@ -71,7 +73,7 @@ def student_registration(request,
             
             Student.objects.create(user=new_user)
 
-            return HttpResponse(simplejson.dumps(success_url), mimetype="application/json")
+            return HttpResponse(simplejson.dumps(reverse(success_url)), mimetype="application/json")
     else:
         form = form_class()
 
@@ -98,6 +100,9 @@ def student_create_profile(request,
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
             student = form.save(commit=False)
+            if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
+                student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
+            student.last_updated = datetime.datetime.now()
             student.profile_created = True
             student.save()
             if hasattr(student, 'save_m2m'):
@@ -131,6 +136,8 @@ def student_edit_profile(request,
         old_resume_name = str(request.user.student.resume)
         if form.is_valid():
             student = form.save()
+            if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
+                student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
             student.last_updated = datetime.datetime.now()
             student.save()
             if request.FILES.has_key('resume'):

@@ -10,7 +10,6 @@ from django.contrib.sites.models import Site
 
 from registration import signals
 from registration.models import RegistrationProfile
-from registration.forms import RegistrationForm
 
 
 class RegistrationBackend(object):
@@ -121,13 +120,6 @@ class RegistrationBackend(object):
         
         """
         return getattr(settings, 'REGISTRATION_OPEN', True)
-
-    def get_form_class(self, request):
-        """
-        Return the default form class used for user registration.
-        
-        """
-        return RegistrationForm
 
     def post_registration_redirect(self, request, user):
         """

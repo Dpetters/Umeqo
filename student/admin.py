@@ -6,9 +6,13 @@
 
 from django.contrib import admin
 
-from student.models import StudentList
+from student.models import StudentList, Student
+
+class StudentAdmin(admin.ModelAdmin):
+    pass
 
 class StudentListAdmin(admin.ModelAdmin):
     pass
     
 admin.site.register(StudentList, StudentListAdmin)
+admin.site.register(Student, StudentAdmin)

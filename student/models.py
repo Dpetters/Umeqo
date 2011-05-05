@@ -51,7 +51,10 @@ class Student(UserProfile):
     
     # Academic Info
     second_major = models.ForeignKey(Course, related_name = "second_major", blank = True, null=True)
-    sat = models.PositiveSmallIntegerField(blank = True, null=True)
+    sat_t = models.PositiveSmallIntegerField(blank = True, null=True)
+    sat_m = models.PositiveSmallIntegerField(blank = True, null=True)
+    sat_v = models.PositiveSmallIntegerField(blank = True, null=True)
+    sat_w = models.PositiveSmallIntegerField(blank = True, null=True)
     act = models.PositiveSmallIntegerField(blank = True, null=True)
     
     # Work Info
@@ -60,7 +63,7 @@ class Student(UserProfile):
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="industries_of_interest_of")
 
     # Miscellaneous Info
-    campus_orgs = models.ManyToManyField(CampusOrg, blank = True, null=True)
+    campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null=True)
     older_than_18 = models.BooleanField()
     citizen = models.BooleanField()
     languages = models.ManyToManyField(Language, blank = True, null = True)
