@@ -4,9 +4,12 @@
  Copyright 2011. All Rights Reserved.
  */
 
+#side_block_area{
+    width:330px;
+}
 .select_wrapper{
     float:right;
-    margin: 5px 4px 5px 0;
+    margin-right:4px;
 }
 .select_wrapper select {
     width:180px;
@@ -29,12 +32,15 @@
 #search_section, #student_list_section {
     background: #EEEEEE;
     border-top:1px solid white;
-    padding:10px 0px 6px 5px
+}
+
+#student_list_section{
+	padding:7px 0px 3px 5px
 }
 
 #search_section{
     border-bottom: 1px solid #CCCCCC;
-    padding:6px 0px 6px 5px
+    padding:5px 0px 5px 4px
 }
 
 #query_field {
@@ -56,8 +62,7 @@
     position:relative;
 }
 .slider_section {
-    margin-bottom:6px;
-    margin-top:3px;
+    margin-bottom:5px;
     padding-left:3px;
 }
 
@@ -84,26 +89,8 @@
     width:20px;
 }
 
-/* JQuery UI overrides */
-.ui-accordion .ui-accordion-content {
-    border:none;
-    padding:10px 0px 3px 4px;
-    overflow-y:hidden;
-}
-.ui-accordion .ui-accordion-header {
-    border-bottom:1px solid #CCCCCC;
-}
-
 button.ui-multiselect[type="button"] {
     margin-bottom:5px;
-    behavior: url(/static/lib/pie/PIE.htc);
-    -moz-border-radius: 3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
-}
-
-#side_block_area{
-    width:328px;
 }
 
 label[for="id_results_per_page"], #id_results_per_page {
