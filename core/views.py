@@ -139,7 +139,7 @@ def home(request,
             if request.user.employer.default_filtering_parameters:
                 check_for_new_student_matches(request.user.employer)
             
-            your_events = Event.objects.filter(employer=request.user.employer,end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+            your_events = request.user.employer.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
             
             context = {
                        'search_form': SearchForm(),

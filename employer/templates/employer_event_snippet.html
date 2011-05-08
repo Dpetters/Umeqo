@@ -1,0 +1,36 @@
+<div class="name">
+    <span class="type">{{event.type}}</span> {{event.name}}
+    <div class="datetime">
+        {% if event.start_datetime %}
+        <span class="start">{{event.start_datetime|date:"D n/j/y P"}}</span> - 
+        {% endif %}
+        <span class="end">
+            {% ifequal event.start_datetime.day event.end_datetime.day %}
+            {% ifequal event.start_datetime.month event.end_datetime.month %}
+            {% ifequal event.start_datetime.year event.end_datetime.year %}
+                {{event.end_datetime|date:"P"}}
+            {% endifequal %}{% endifequal %}
+            {% else %}
+                {{event.end_datetime|date:"D n/j/y P"}}
+            {% endifequal %}
+        </span>
+    </div>
+</div>
+{% if edit %}
+<div class="edit">
+<a href="#">Edit</a>
+<a href="#">Delete</a>
+<a href="#">View Description</a>
+</div>
+{% endif %}
+<div class="details">
+    {% if event.location %}
+    <div>
+        <strong>Location:</strong>
+        <span class="location">{{event.location}}</span>
+    </div>
+    {% endif %}
+    {% if event.description %}
+    <div>{{event.description}}</div>
+    {% endif %}
+</div>
