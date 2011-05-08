@@ -133,12 +133,12 @@ class ContactForm(forms.Form):
     
     name = forms.CharField(max_length=100,
                            widget=forms.TextInput(),
-                           label=u'Your name')
+                           label=u'Your Name:')
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(maxlength=200)),
-                             label=u'Your email address')
+                             label=u'Your Email:')
     
     body = forms.CharField(widget=forms.Textarea(),
-                              label=u'Your message')
+                              label=u'Message')
     
     from_email = settings.DEFAULT_FROM_EMAIL
     

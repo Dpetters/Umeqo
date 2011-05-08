@@ -48,7 +48,7 @@ Copyright 2011. All Rights Reserved.
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
-                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
+                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
                     <span class="main_block_header_title">{% usemacro title %}</span>
                     <div class="main_block_header_links">
                         <span>
@@ -119,7 +119,7 @@ Copyright 2011. All Rights Reserved.
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                     </div>
                 </div>
-                <div class="side_form_info">
+                <div class="profile_side_form_info">
                     <h3>Umeqo makes it easy for employers to discover you!</h3>
                     <ul>
                         <li id="profile_form_required_first">
@@ -163,6 +163,13 @@ Copyright 2011. All Rights Reserved.
                 			</td>
                 		</tr>
                 		<tr>
+                			<th>{{form.act.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.act}}
+                			</td>
+                		</tr>
+                		<tr>
                 			<th>{{form.sat_m.label_tag}}</th>
                 			<td>
                 				<div class="errorspace"></div>
@@ -183,13 +190,6 @@ Copyright 2011. All Rights Reserved.
                 				{{form.sat_w}}
                 			</td>
                 		</tr>
-                		<tr>
-                			<th>{{form.act.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.act}}
-                			</td>
-                		</tr>
                 	</table>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
@@ -197,7 +197,7 @@ Copyright 2011. All Rights Reserved.
                         <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
                     </div>
                 </div>
-                <div class="side_form_info">
+                <div class="profile_side_form_info">
                     <h3>Give us a hint of your academics.</h3>
                     <ul>
                         <li id="create_campus_organization_link">
@@ -247,10 +247,10 @@ Copyright 2011. All Rights Reserved.
                 			</td>
                 		</tr>
                 		<tr>
-                			<th>{{form.industries_of_interest.label_tag}}</th>
+                			<th>{{form.previous_employers.label_tag}}</th>
                 			<td>
                 				<div class="errorspace"></div>
-                				{{form.industries_of_interest}}
+                				{{form.previous_employers}}
                 			</td>
                 		</tr>
                 	</table>
@@ -260,7 +260,10 @@ Copyright 2011. All Rights Reserved.
                         <input name="formNext3" type="button" class="open3 button" value="Next" alt="Next" />
                     </div>
                 </div>
-                <div class="side_form_info">
+                <div class="profile_side_form_info">
+                    <h3></h3>
+                    <ul>
+                    </ul>
                 </div>
             </div>
         </li>
@@ -325,7 +328,10 @@ Copyright 2011. All Rights Reserved.
                         <input id="submit_button" class="button" type='submit' value='Submit' alt="Submit">
                     </div>
                 </div>
-                <div class="side_form_info">
+                <div class="profile_side_form_info">
+                    <h3></h3>
+                    <ul>
+                    </ul>
                 </div>
             </div>
         </li>

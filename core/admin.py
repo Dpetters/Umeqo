@@ -65,7 +65,7 @@ class CampusOrgTypeAdmin(admin.ModelAdmin):
     date_hierarchy = 'last_updated'
     
 class EmploymentTypeAdmin(admin.ModelAdmin):
-    fields = ['name']
+    fields = ['name', 'sort_order']
     ordering = ('-last_updated',)
     date_hierarchy = 'last_updated'
     

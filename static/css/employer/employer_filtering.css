@@ -4,8 +4,10 @@
  Copyright 2011. All Rights Reserved.
  */
 
+
 #side_block_area{
     width:330px;
+    position:relative;
 }
 .select_wrapper{
     float:right;
@@ -13,6 +15,24 @@
 }
 .select_wrapper select {
     width:180px;
+}
+
+/* A big block is what you can use instead of multiple main blocks */
+/* For example, the results for student filtering appear in a blank block */
+.big_block {
+    padding-left:15px;
+}
+.big_block_header {
+    padding-bottom:3px;
+}
+.big_block_header_title {
+    font-weight:normal;
+    font-size:26px;
+}
+.big_block_header_links {
+    float:right;
+}
+.big_block_content {
 }
 
 .add_to_resume_book_area_active {
@@ -46,7 +66,7 @@
 #query_field {
     height:22px;
     vertical-align:middle;
-    width:237px;
+    width:240px;
     padding-left:6px;
     color: #303030;
     font-size:15px;
@@ -74,29 +94,33 @@
 
 .slider_section div {
     top:5px;
-    margin-right:18px;
+    margin-right:17px;
     float:right;
-    width:167px;
+    width:175px;
 }
 
-#id_gpa{
+#sat_m_filter_section div, #sat_v_filter_section div, #sat_w_filter_section div{
+	width:130px;
+}
+#academic_info_section label, #test_scores_section label{
+	padding-right:0px;
+}
+
+#id_gpa, #id_act{
     width:20px;
 }
-#id_sat{
+#id_sat_t{
     width:29px;
 }
-#id_act{
-    width:20px;
+#id_sat_m, #id_sat_v, #id_sat_w{
+    width:22px;
 }
+
 
 button.ui-multiselect[type="button"] {
     margin-bottom:5px;
 }
 
-label[for="id_results_per_page"], #id_results_per_page {
-    position:relative;
-    right:2px;
-}
 #results_block {
     position:relative;
     margin-top:8px;
@@ -120,11 +144,28 @@ label[for="id_results_per_page"], #id_results_per_page {
 #results_menu_toggle_details {
     float:right;
 }
-#results_block_loader_section {
+#results_block_info_section {
     display:none;
     position:absolute;
     top:180px;
-    right:250px;
+	width:650px;
+	text-align:center;
+    z-index:100;
+}
+#results_block_info{
+	background:#FFF;
+	border:2px solid black;
+	margin-left:auto;
+	margin-right:auto;
+	padding:6px;
+	width:210px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+    behavior: url(/static/lib/pie/PIE.htc);
+}
+#results_block_info img{
+	margin-top:4px;
 }
 #no_results_block {
     height:600px;

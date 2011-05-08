@@ -1105,8 +1105,19 @@
   "model": "core.employmenttype", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-07 15:34:18", 
    "name": "Full-Time"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.employmenttype", 
+  "fields": {
+   "date_created": "2011-05-07 15:29:00", 
+   "sort_order": 1, 
+   "last_updated": "2011-05-07 15:34:04", 
+   "name": "Part-Time"
   }
  }, 
  {
@@ -1114,8 +1125,19 @@
   "model": "core.employmenttype", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
+   "sort_order": 2, 
+   "last_updated": "2011-05-07 15:33:43", 
    "name": "Internship"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.employmenttype", 
+  "fields": {
+   "date_created": "2011-05-07 15:29:11", 
+   "sort_order": 3, 
+   "last_updated": "2011-05-07 15:33:29", 
+   "name": "Externship"
   }
  }, 
  {
@@ -1123,6 +1145,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Academic Organization"
   }
@@ -1132,6 +1155,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Art/Music Organization"
   }
@@ -1141,6 +1165,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Competition"
   }
@@ -1150,6 +1175,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Cultural Organization"
   }
@@ -1159,6 +1185,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Business/Finance Organization"
   }
@@ -1168,6 +1195,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Greek Organization"
   }
@@ -1177,6 +1205,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Living Group"
   }
@@ -1186,6 +1215,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Interest Group"
   }
@@ -1195,6 +1225,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Service Organization"
   }
@@ -1204,6 +1235,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Student Government Organization"
   }
@@ -1213,6 +1245,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Sport"
   }
@@ -1222,6 +1255,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Technology Organization"
   }
@@ -1231,6 +1265,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Religious Organization"
   }
@@ -1240,6 +1275,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Activism Organization"
   }

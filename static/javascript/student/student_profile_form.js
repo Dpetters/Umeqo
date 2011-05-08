@@ -334,7 +334,7 @@ $(document).ready( function() {
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         header:false,
-        minWidth:310,
+        minWidth:multiselectMinWidth,
         height:140,
         selectedList: 1,
         multiple: false,
@@ -351,8 +351,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
         header:false,
         selectedList: 1,
-        height:117,
-        minWidth:310,
+        height:118,
+        minWidth:multiselectMinWidth,
         multiple: false,
         close: function(e) {
             if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
@@ -365,9 +365,9 @@ $(document).ready( function() {
         noneSelectedText: "select first major",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        height:140,
+        height:multiselectLargeHeight,
         header:false,
-        minWidth:310,
+        minWidth:multiselectMinWidth,
         selectedList: 1,
         multiple: false,
         close: function(e) {
@@ -381,74 +381,68 @@ $(document).ready( function() {
         noneSelectedText: "select second major",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        height:140,
+        height:multiselectLargeHeight,
         header:false,
-        minWidth:310,
+        minWidth:multiselectMinWidth,
         selectedList: 1,
         multiple: false
     });
 
     $("#id_looking_for").multiselect({
-        noneSelectedText: "select",
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
-        height:47,
-        header:false,
-        minWidth:187,
-        selectedList: 1,
-        multiple: false
-    });
-
-    $("#id_older_than_18").multiselect({
-        noneSelectedText: "select",
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
-        height:47,
-        header:false,
-        minWidth:187,
-        selectedList: 1,
-        multiple: false
-    });
-
-    $("#id_citizen").multiselect({
-        noneSelectedText: "select",
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
-        height:47,
-        header:false,
-        minWidth:187,
-        selectedList: 1,
-        multiple: false
-    });
-
-    $("#id_languages").multiselect({
-        noneSelectedText: 'select languages',
+        noneSelectedText: 'select employment types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        minWidth:310,
-        height:170,
+        minWidth:multiselectMinWidth
+    }).multiselectfilter();
+    
+    $("#id_interested_in").multiselect({
+        noneSelectedText: 'select industries',
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+        minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
         },
         click: function(e) {
             $(".warning").remove();
-            if( $(this).multiselect("widget").find("input:checked").length > languages_max ) {
-                show_multiselect_warning("id_languages", languages_max);
+            if( $(this).multiselect("widget").find("input:checked").length > industries_of_interest_max ) {
+                show_multiselect_warning("id_industries_of_interest", industries_of_interest_max);
                 return false;
             }
         }
     }).multiselectfilter();
 
-    $("#id_campus_orgs").multiselect({
+    $("#id_previous_employers").multiselect({
+        noneSelectedText: 'select employers',
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+        minWidth:multiselectMinWidth,
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(e) {
+            $(".warning").remove();
+            if( $(this).multiselect("widget").find("input:checked").length > previous_employers_max ) {
+                show_multiselect_warning("id_previous_employers", previous_employers_max);
+                return false;
+            }
+        }
+    }).multiselectfilter();
+    
+    $("#id_campus_involvement").multiselect({
         noneSelectedText: 'select campus organizations',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        minWidth:310,
-        height:230,
+        minWidth:multiselectMinWidth,
+        height:multiselectLargeHeight,
         optgrouptoggle: function(e, ui) {
             $(".warning").remove();
             if (ui.inputs.length + $(this).multiselect("widget").find("input:checked").length > campus_org_max) {
@@ -468,43 +462,47 @@ $(document).ready( function() {
         }
     }).multiselectfilter();
 
-    $("#id_industries_of_interest").multiselect({
-        noneSelectedText: 'select industries',
+    $("#id_languages").multiselect({
+        noneSelectedText: 'select languages',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        minWidth:310,
+        minWidth:multiselectMinWidth,
+        height:multiselectLargeHeight,
         beforeclose: function() {
             $(".warning").remove();
         },
         click: function(e) {
             $(".warning").remove();
-            if( $(this).multiselect("widget").find("input:checked").length > industries_of_interest_max ) {
-                show_multiselect_warning("id_industries_of_interest", industries_of_interest_max);
+            if( $(this).multiselect("widget").find("input:checked").length > languages_max ) {
+                show_multiselect_warning("id_languages", languages_max);
                 return false;
             }
         }
     }).multiselectfilter();
 
-    $("#id_previous_employers").multiselect({
-        noneSelectedText: 'select employers',
-        checkAllText: multiselectCheckAllText,
-        uncheckAllText: multiselectUncheckAllText,
+    $("#id_older_than_18").multiselect({
+        noneSelectedText: "select yes or no",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        minWidth:310,
-        beforeclose: function() {
-            $(".warning").remove();
-        },
-        click: function(e) {
-            $(".warning").remove();
-            if( $(this).multiselect("widget").find("input:checked").length > previous_employers_max ) {
-                show_multiselect_warning("id_previous_employers", previous_employers_max);
-                return false;
-            }
-        }
-    }).multiselectfilter();
+        height:multiselectTwoOptionHeight,
+        header:false,
+        minWidth:multiselectYesNoSingleSelectWidth,
+        selectedList: 1,
+        multiple: false
+    });
+
+    $("#id_citizen").multiselect({
+        noneSelectedText: "select yes or no",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+        height:multiselectTwoOptionHeight,
+        header:false,
+        minWidth:multiselectYesNoSingleSelectWidth,
+        selectedList: 1,
+        multiple: false
+    });
     
     // Set up multipart form navigation
     $(".navigation").click( function() {

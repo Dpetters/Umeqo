@@ -8,7 +8,8 @@ from django import forms
 
 from student.models import Student
 from core.forms_helper import campus_org_types_as_choices
-from core.models import Course, GraduationYear, SchoolYear
+from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, CampusOrg, Language
+from employer.models import Employer
 from core.fields import PdfField
 from core.choices import SELECT_YES_NO_CHOICES
 
@@ -55,26 +56,28 @@ class StudentCreateProfileForm(forms.ModelForm):
     """
         Academic Info
     """
-    second_major = forms.ModelChoiceField(queryset = Course.objects.all(), required = False, empty_label = "select course")
-    sat_m = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    sat_v = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    sat_w = forms.IntegerField(max_value = 800, min_value = 200, required = False)
-    act = forms.IntegerField(max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
+    second_major = forms.ModelChoiceField(label="Second Major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
+    act = forms.IntegerField(label="ACT:", max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
+    sat_m = forms.IntegerField(label="SAT Math:", max_value = 800, min_value = 200, required = False)
+    sat_v = forms.IntegerField(label="SAT Verbal:", max_value = 800, min_value = 200, required = False)
+    sat_w = forms.IntegerField(label="SAT Writing:", max_value = 800, min_value = 200, required = False)
     
     """
         Work-Related Info
     """
-    # Looking For    
-    # Previous Employers
-    # Industries of Interest
+    looking_for = forms.ModelMultipleChoiceField(label="Looking For:", queryset = EmploymentType.objects.all(), required = False)
+    previous_employers = forms.ModelMultipleChoiceField(label="Previous Employers:", queryset = Employer.objects.all(), required = False)
+    interested_in = forms.ModelMultipleChoiceField(label="Interested In:", queryset = Industry.objects.all(), required = False)
     
     """
         Miscellaneous Info
     """
     # Campus Orgs
-    older_than_18 = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
-    citizen = forms.ChoiceField(choices = SELECT_YES_NO_CHOICES, required = False)
-    website = forms.URLField(required = False)
+    campus_involvement = forms.ModelMultipleChoiceField(label="Campus Involvement:", queryset = CampusOrg.objects.all(), required = False)
+    languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
+    older_than_18 = forms.ChoiceField(label="Older Than 18:", choices = SELECT_YES_NO_CHOICES, required = False)
+    citizen = forms.ChoiceField(label="Citizen:", choices = SELECT_YES_NO_CHOICES, required = False)
+    website = forms.URLField(label="Website:", required = False)
     
     class Meta:
         fields = ('first_name',
@@ -104,4 +107,4 @@ class StudentCreateProfileForm(forms.ModelForm):
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
 
 class StudentEditProfileForm(StudentCreateProfileForm):
-    resume = PdfField(label="Resume:")
+    resume = PdfField(label="Resume:", required=False)

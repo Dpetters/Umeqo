@@ -5,20 +5,16 @@
  */
 
 $(document).ready( function() {
-
-	/* Multiselect Widget Properties */
-	var minWidth = 318;
-	var smallSingleSelectWidth = 182;
-	var middleSingleSelectWidth = 202;
-	var mediumHeight = 97;
-	var largeHeight = 146;
-	var twoOptionHeight = 47;
 	
 	/* Filtering Variables */
 	var min_gpa = 0;
 	var min_act = 0;
-	var min_sat = 600;
+	var min_sat_t = 600;
+	var min_sat_m = 200;
+	var min_sat_v = 200;
+	var min_sat_w = 200;
 	var page = 1;
+	var student_list = $("#id_student_list option:selected").val(); 
 	var ordering = $("#id_ordering option:selected").val();
 	var results_per_page = $("#id_results_per_page option:selected").val();
 	var courses = new Array();
@@ -32,13 +28,11 @@ $(document).ready( function() {
 	var campus_organizations = new Array()
 	var must_be_older_than_18 = false;
 
-
 	function handle_multiselect_open_in_accordion(event, ui) {
 		var parent = $(event.target).parents(".ui-accordion-content");
 		var multiselect = $(event.target).multiselect('widget');
 		var new_height = multiselect.height() + parseInt(multiselect.css('top'), 10);
 		$(parent).css('height', new_height);
-		//$(parent).animate({'height':new_height}, 200);
 	};
 	
 	function handle_multiselect_close_in_accordion(event, ui) {
@@ -55,9 +49,9 @@ $(document).ready( function() {
 	};
 
 	function initiate_ajax_call() {
-		$("#results_section").css('opacity', 0.5);
-		$("#results_block_loader_section").css('display', 'block');
-
+		$("#results_section").css('opacity', 0.3);
+		$("#results_block_info_section").css('display', 'block');
+		var error_dialog_timeout = setTimeout(function(){$(long_load_message).insert("#results_block_info img");}, 10000);
 		$.ajax({
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'))
@@ -66,17 +60,21 @@ $(document).ready( function() {
 			url: '/employer/student-filtering/',
 			dataType: "html",
 			data: {
-				'results_per_page':20,
+				'page': page,
+				'student_list': student_list,
 				'query': query,
 				'gpa' : min_gpa,
 				'act': min_act,
-				'sat' : min_sat,
-				'page': page,
+				'sat_t' : min_sat_t,
+				'sat_m' : min_sat_m,
+				'sat_v' : min_sat_v,
+				'sat_w' : min_sat_w,
+				'courses' : courses,
 				'ordering': ordering,
 				'results_per_page': results_per_page,
-				'courses' : courses
 			},
 			success: function (data) {
+				clearTimeout(error_dialog_timeout);
 				$('#results_section').html(data);
 
 				// Hide all extra details except for the first
@@ -97,11 +95,14 @@ $(document).ready( function() {
 
 				// Bring the opacity back to normal and hide the ajax loader
 				$("#results_section").css('opacity', 1);
-				$("#results_block_loader_section").css('display', 'none');
-			}
+				$("#results_block_info_section").css('display', 'none');
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				clearTimeout(error_dialog_timeout);
+                show_error_dialog(generic_error_message);
+            },
 		});
 	};
-	
 	
 	// Listen for a campus organization info link click
 	$(".campus_org_link").live('click', campus_org_link_click);
@@ -153,11 +154,11 @@ $(document).ready( function() {
 	// Listen for hide/view all details click
 	$("#results_menu_toggle_details").live('click', function() {
 		if( $("#results_menu_toggle_details span").text()=="View All Details") {
-			$(".view_student_detailed_info_link").text("Show Details");
+			$(".view_student_detailed_info_link").text("Hide Details");
 			$(".student_detailed_info").show('slow');
 			$("#results_menu_toggle_details span").text("Hide All Details");
 		} else {
-			$(".view_student_detailed_info_link").text("Hide Details");
+			$(".view_student_detailed_info_link").text("Show Details");
 			$(".student_detailed_info").hide('slow');
 			$("#results_menu_toggle_details span").text("View All Details");
 		}
@@ -168,10 +169,14 @@ $(document).ready( function() {
 		header:false,
 		multiple: false,
 		selectedList: 1,
-		height:largeHeight,
-		minWidth:minWidth,
+		height:multiselectLargeHeight,
+		minWidth:multiselectMinWidth,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
+		click: function(event, ui){
+			student_list = ui.value;
+			initiate_ajax_call();
+		}
 	});
 	
 	$("#id_majors").multiselect({
@@ -181,8 +186,8 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: largeHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
@@ -194,8 +199,8 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: mediumHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectMediumHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	});
@@ -207,8 +212,8 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: mediumHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectMediumHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	});
@@ -220,8 +225,8 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: twoOptionHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectTwoOptionHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	});
@@ -233,8 +238,8 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: largeHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
@@ -246,8 +251,8 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: largeHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
@@ -259,22 +264,22 @@ $(document).ready( function() {
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: largeHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 
 	$("#id_campus_orgs").multiselect({
-		noneSelectedText: 'Filter By Campus Organizations',
+		noneSelectedText: 'Filter By Campus Involvement',
 		selectedText: 'Filtering by # Campus Organizations',
 		checkAllText: multiselectCheckAllText,
 		uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:minWidth,
-		height: largeHeight,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
@@ -285,8 +290,8 @@ $(document).ready( function() {
 		multiple: false,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		height:twoOptionHeight,
-		minWidth:smallSingleSelectWidth,
+		height: multiselectTwoOptionHeight,
+		minWidth: multiselectYesNoSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	});
@@ -297,8 +302,8 @@ $(document).ready( function() {
 		multiple: false,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		height:twoOptionHeight,
-		minWidth:smallSingleSelectWidth,
+		height: multiselectTwoOptionHeight,
+		minWidth:multiselectYesNoSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	});
@@ -309,8 +314,8 @@ $(document).ready( function() {
 		multiple: false,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		height:twoOptionHeight,
-		minWidth:middleSingleSelectWidth,
+		height: multiselectTwoOptionHeight,
+		minWidth:multiselectSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
 		close: handle_multiselect_close_in_accordion
 	});
@@ -321,10 +326,14 @@ $(document).ready( function() {
 		multiple: false,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		height:twoOptionHeight,
-		minWidth:middleSingleSelectWidth,
+		height: multiselectTwoOptionHeight,
+		minWidth:multiselectSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			results_per_page = ui.value;
+			initiate_ajax_call();
+		}
 	});
 
 	// GPA Slider
@@ -345,24 +354,78 @@ $(document).ready( function() {
 		}
 	});
 
-	// SAT Slider
-	$("#sat_filter_section div").slider({
+	// SAT Total Slider
+	$("#sat_t_filter_section div").slider({
 		min: 600,
 		max: 2400,
 		step: 10,
 		value: 600,
 		slide: function(event, ui) {
-			$("#id_sat").val(ui.value);
+			$("#id_sat_t").val(ui.value);
 		},
 		change: function(event, ui) {
-			if (min_sat != ui.value) {
+			if (min_sat_t != ui.value) {
 				page = 1;
-				min_sat = ui.value;
+				min_sat_t = ui.value;
 				initiate_ajax_call();
 			}
 		}
 	});
 
+	// SAT Math Slider
+	$("#sat_m_filter_section div").slider({
+		min: 200,
+		max: 800,
+		step: 10,
+		value: 200,
+		slide: function(event, ui) {
+			$("#id_sat_m").val(ui.value);
+		},
+		change: function(event, ui) {
+			if (min_sat_m != ui.value) {
+				page = 1;
+				min_sat_m = ui.value;
+				initiate_ajax_call();
+			}
+		}
+	});
+	
+	// SAT Verbal Slider
+	$("#sat_v_filter_section div").slider({
+		min: 200,
+		max: 800,
+		step: 10,
+		value: 200,
+		slide: function(event, ui) {
+			$("#id_sat_v").val(ui.value);
+		},
+		change: function(event, ui) {
+			if (min_sat_v != ui.value) {
+				page = 1;
+				min_sat_v = ui.value;
+				initiate_ajax_call();
+			}
+		}
+	});
+	
+	// SAT Writing Slider
+	$("#sat_w_filter_section div").slider({
+		min: 200,
+		max: 800,
+		step: 10,
+		value: 200,
+		slide: function(event, ui) {
+			$("#id_sat_w").val(ui.value);
+		},
+		change: function(event, ui) {
+			if (min_sat_w != ui.value) {
+				page = 1;
+				min_sat_w = ui.value;
+				initiate_ajax_call();
+			}
+		}
+	});
+	
 	//ACT Slider
 	$("#act_filter_section div").slider({
 		min: 0,
@@ -383,8 +446,10 @@ $(document).ready( function() {
 
 	$("#id_gpa").val($("#gpa_filter_section div").slider("value"));
 	$("#id_act").val($("#act_filter_section div").slider("value"));
-	$("#id_sat").val($("#sat_filter_section div").slider("value"));
-
+	$("#id_sat_t").val($("#sat_t_filter_section div").slider("value"));
+	$("#id_sat_m").val($("#sat_m_filter_section div").slider("value"));
+	$("#id_sat_v").val($("#sat_v_filter_section div").slider("value"));
+	$("#id_sat_w").val($("#sat_w_filter_section div").slider("value"));
 	
 	// Make the resume block into a droppable area
 	$("#resume_book_block .side_block_content").droppable({
@@ -410,11 +475,11 @@ $(document).ready( function() {
 			finaldestination = elpos_original;
 			el.stop(true).animate({
 				'top' : 0
-			}, 600, 'easeInOutExpo');
+			}, 400, 'easeInOutExpo');
 		} else {
 			el.stop(true).animate({
-				'top' : windowpos-100
-			}, 600, 'easeInOutExpo');
+				'top' : windowpos-80
+			}, 400, 'easeInOutExpo');
 		}
 	});
 	

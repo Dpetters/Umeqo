@@ -56,7 +56,7 @@
     left: -146px;
     height: 20px;
     width: 150px;
-    margin-top: 9px;
+    margin-top: 28px;
 }
 #login_form .errorspace label {
     background: white;
@@ -69,6 +69,12 @@
     border-radius: 3px;
     -moz-border-radius: 3px;
 }
+
+#reset_password_link{
+	float:right;
+	margin:6px 8px 0 0;
+}
+
 .fade_input_label {
     position: relative;
 }

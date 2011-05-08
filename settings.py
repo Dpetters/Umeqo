@@ -24,9 +24,9 @@ ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 # Haystack Settings
 HAYSTACK_INCLUDE_SPELLING = True
 HAYSTACK_DEFAULT_OPERATOR = 'OR'
-HAYSTACK_SITECONF = 'urls'
+HAYSTACK_SITECONF = 'student.search_indexes'
 HAYSTACK_SEARCH_ENGINE = 'xapian'
-HAYSTACK_XAPIAN_PATH = ROOT + '/xapian_index'
+HAYSTACK_XAPIAN_PATH = (ROOT + '\\xapian_index').replace('\\', '/')
 
 # Email Settings
 EMAIL_USE_TLS = True

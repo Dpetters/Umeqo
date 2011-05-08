@@ -15,13 +15,7 @@ $(document).ready( function() {
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                     hide_form_submit_loader("#student_registration_form");
-                    switch(jqXHR.status){
-                        case 500:
-                            $("#student_registration_block .main_block_content").html(status_500_message);
-                            break;
-                        default:
-                            $("#student_registration_form_error_section").html(check_connection_message);
-                    }
+                	how_error_dialog(generic_error_message);
                 },
                 success: function(data) {
                     hide_form_submit_loader("#student_registration_form");
@@ -52,7 +46,7 @@ $(document).ready( function() {
                     error: function(jqXHR, textStatus, errorThrown) {
                         switch(jqXHR.status){
                             case 500:
-                                $("#student_registration_block .main_block_content").html(status_500_message);
+                                $("#student_registration_block .main_block_content").html(generic_error_message);
                                 break;
                             default:
                                 $("#student_registration_form_error_section").html(check_connection_message);
