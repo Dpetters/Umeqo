@@ -8,7 +8,7 @@ from django.db.models import Q
 
 from notification import models as notification
 from haystack.query import SearchQuerySet
-from student.models import Student
+from student.models import StudentList
 from employer import enums
 
 
@@ -27,17 +27,23 @@ def check_for_new_student_matches(employer):
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
     
     
-def filter_students(student_group=None, gpa=None, act=None, sat=None, courses=None):
+def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, courses=None):
     kwargs = {}
-
-    all_students = Student.objects.filter(profile_created=True)
+    
+    all_students = StudentList.objects.get(id=student_list).students.all()
 
     if gpa:
         kwargs['gpa__gte'] = gpa
     if act:
         kwargs['act__gte'] = act
-    if sat:
-        kwargs['sat__gte'] = sat
+    if sat_t:
+        kwargs['sat_t__gte'] = sat_t
+    if sat_m:
+        kwargs['sat_m__gte'] = sat_m
+    if sat_v:
+        kwargs['sat_v__gte'] = sat_v
+    if sat_w:
+        kwargs['sat_w__gte'] = sat_w
     
     filtering_results = all_students.filter(**kwargs)
     
@@ -52,7 +58,7 @@ def search_students(query):
     return [result.object for result in search_query_set]
     
 
-def order_results(filtering_results, search_results, ordering):
+def combine_and_order_results(filtering_results, search_results, ordering, query):
     ordered_results = []
     if search_results:
         if ordering == enums.ORDERING_CHOICES[0][0]:
@@ -66,7 +72,9 @@ def order_results(filtering_results, search_results, ordering):
                     ordered_results.append(student)
         return ordered_results
     else:
-        if ordering == enums.ORDERING_CHOICES[0][0]:
-            return filtering_results.order_by('last_updated')
-        else:
-            return filtering_results.order_by(ordering)        
+        if query == "null":
+            if ordering == enums.ORDERING_CHOICES[0][0]:
+                return filtering_results.order_by('last_updated')
+            else:
+                return filtering_results.order_by(ordering)
+        return []

@@ -79,7 +79,7 @@ Copyright 2011. All Rights Reserved.
 				<h3>
 				<a href="#">Academic Info</a>
 				</h3>
-				<div>
+				<div id="academic_info_section">
 					<div>
 						{{student_filtering_form.majors}}
 					</div>
@@ -91,18 +91,38 @@ Copyright 2011. All Rights Reserved.
 					</div>
 					<div id="gpa_filter_section" class="slider_section">
 						<div></div>
-						<label for="gpa_value">Minimum GPA:</label>
+						{{student_filtering_form.gpa.label_tag}}
 						{{student_filtering_form.gpa}}
 					</div>
-					<div id="sat_filter_section" class="slider_section">
-						<div></div>
-						<label for="sat_value">Minimum SAT:</label>
-						{{student_filtering_form.sat}}
-					</div>
+				</div>
+				<h3>
+				<a href="#">Test Scores</a>
+				</h3>
+				<div id="test_scores_section">
 					<div id="act_filter_section" class="slider_section">
 						<div></div>
-						<label for="act_value">Minimum ACT:</label>
+						{{student_filtering_form.act.label_tag}}
 						{{student_filtering_form.act}}
+					</div>
+					<div id="sat_t_filter_section" class="slider_section">
+						<div></div>
+						{{student_filtering_form.sat_t.label_tag}}
+						{{student_filtering_form.sat_t}}
+					</div>
+					<div id="sat_m_filter_section" class="slider_section">
+						<div></div>
+						{{student_filtering_form.sat_m.label_tag}}
+						{{student_filtering_form.sat_m}}
+					</div>
+					<div id="sat_v_filter_section" class="slider_section">
+						<div></div>
+						{{student_filtering_form.sat_v.label_tag}}
+						{{student_filtering_form.sat_v}}
+					</div>
+					<div id="sat_w_filter_section" class="slider_section">
+						<div></div>
+						{{student_filtering_form.sat_w.label_tag}}
+						{{student_filtering_form.sat_w}}
 					</div>
 				</div>
 				<h3>
@@ -120,7 +140,7 @@ Copyright 2011. All Rights Reserved.
 					</div>
 				</div>
 				<h3>
-				<a href="#">Other Info</a>
+				<a href="#">Miscellaneous Info</a>
 				</h3>
 				<div>
 					<div>
@@ -130,11 +150,11 @@ Copyright 2011. All Rights Reserved.
 						{{student_filtering_form.campus_orgs}}
 					</div>
 					<div class="select_wrapper ">
-						<label for="older_than_18">Must be older than 18:</label>
+						{{student_filtering_form.older_than_18.label_tag}}
 						{{student_filtering_form.older_than_18}}
 					</div>
 					<div class="select_wrapper ">
-						<label for="citizen">Must be a citizen:</label>
+						{{student_filtering_form.citizen.label_tag}}
 						{{student_filtering_form.citizen}}
 					</div>
 				</div>
@@ -143,11 +163,11 @@ Copyright 2011. All Rights Reserved.
 				</h3>
 				<div>
 					<div class="select_wrapper">
-						<label for="id_ordering">Order Results By:</label>
+						{{student_filtering_form.ordering.label_tag}}
 						{{student_filtering_form.ordering}}
 					</div>
 					<div class="select_wrapper">
-						<label for="id_results_per_page">Results Per Page:</label>
+						{{student_filtering_form.results_per_page.label_tag}}
 						{{student_filtering_form.results_per_page}}
 					</div>
 				</div>
@@ -156,8 +176,9 @@ Copyright 2011. All Rights Reserved.
 	</div>
 </div>
 <div id="results_block" class="big_block">
-	<div id="results_block_loader_section">
-		<img src='{{ STATIC_URL }}images/page_elements/loaders/results_loader.gif'>
+	<div id="results_block_info_section">
+		<div id="results_block_info">
+		</div>
 	</div>
 	<div id="results_section">
 	</div>

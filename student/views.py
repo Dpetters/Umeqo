@@ -4,10 +4,7 @@
  Copyright 2011. All Rights Reserved.
 """
  
-import subprocess
-import re
-import os
-import datetime
+import os, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -19,7 +16,8 @@ from django.core.urlresolvers import reverse
 
 from events.models import Event
 from student.forms import StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
-from student.models import Student
+from student.models import Student, StudentList
+from student.view_helpers import process_resume
 from registration.backend import RegistrationBackend
 from core.decorators import is_student
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
@@ -104,6 +102,7 @@ def student_create_profile(request,
                 student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
             student.last_updated = datetime.datetime.now()
             student.profile_created = True
+            StudentList.objects.get(id=1).students.add(student)
             student.save()
             if hasattr(student, 'save_m2m'):
                 student.save_m2m()
@@ -338,51 +337,6 @@ def student_update_resume(request,
                 os.remove(settings.MEDIA_ROOT + old_resume_name)
                 form.save()
                 return process_resume(request.user.student)
-    return redirect('home')
-
-
-def process_resume(student):
-    
-    # Create the resume text directory if it doesn't exist
-    resume_text_directory = settings.MEDIA_ROOT + "/resumedata/submitted_resumes/"
-    if not os.path.exists(resume_text_directory):
-        os.makedirs(resume_text_directory)
-        
-    # Create the resume directory if it doesn't exist
-    resume_directory = settings.MEDIA_ROOT + "/submitted_resumes/"
-    if not os.path.exists(resume_directory):
-        os.makedirs(resume_directory)
-    
-    # Convert resume to text
-    p = subprocess.Popen("pdftotext " + settings.MEDIA_ROOT + student.resume.name + " " + settings.MEDIA_ROOT + "resumedata/" + student.resume.name[:-4] + ".txt", shell=True)
-    p.wait()
-    
-    # Words that we want to parse out of the resume keywords
-    stopWords = set(open(settings.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
-    
-    # Read in the resume text
-    f = open(str(settings.MEDIA_ROOT + "/resumedata/" + student.resume.name[:-4] + ".txt"))
-    allText = f.read()
-    f.close()
-    
-    # Delete the text file
-    current_resume_text_file = settings.MEDIA_ROOT + "/resumedata/" + student.resume.name[:-4] + ".txt"
-    if os.path.exists(current_resume_text_file):
-        os.remove(current_resume_text_file)
-    
-    # Get rid of stop words
-    fullWords = re.findall(r'[a-zA-Z]{3,}', allText)
-    result=""
-    for word in fullWords:
-        word=word.lower()
-        if word not in stopWords:
-            result += " " + word
-    
-    # Update the student profile and save
-    student.keywords = result
-    student.last_update = datetime.datetime.now()
-    student.save()
-    
     return redirect('home')
 
 """

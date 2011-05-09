@@ -1,7 +1,21 @@
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-CACHE_BACKEND = 'memcached://127.0.0.01:11211/'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+ADMINS = (
+    ("Dmitrij", "Dpetters91@gmail.com"),
+    ("Zach", "zdearing@gmail.com"),
+    ("Josh", "me@joshma.com")
+    # Customer Support People
+    # Customer Support Email Account
+)
+MANAGERS = ADMINS
 
 DATABASES = {
     'default': {

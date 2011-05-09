@@ -7,15 +7,6 @@
 import os
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
-ADMINS = (
-    ("Dmitrij", "Dpetters91@gmail.com"),
-    ("Zach", "zdearing@gmail.com"),
-    ("Josh", "me@joshma.com")
-    # Customer Support People
-    # Customer Support Email Account
-)
-MANAGERS = ADMINS
-
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
@@ -24,9 +15,9 @@ ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 # Haystack Settings
 HAYSTACK_INCLUDE_SPELLING = True
 HAYSTACK_DEFAULT_OPERATOR = 'OR'
-HAYSTACK_SITECONF = 'urls'
+HAYSTACK_SITECONF = 'student.search_indexes'
 HAYSTACK_SEARCH_ENGINE = 'xapian'
-HAYSTACK_XAPIAN_PATH = ROOT + '/xapian_index'
+HAYSTACK_XAPIAN_PATH = (ROOT + '\\xapian_index').replace('\\', '/')
 
 # Email Settings
 EMAIL_USE_TLS = True

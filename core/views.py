@@ -178,14 +178,14 @@ def home(request,
 def check_website(request):
     
     if request.is_ajax():
-        url_validator =  URLValidator(verify_exists = True)
+        url_validator =  URLValidator(verify_exists = False)
         website = request.GET.get("website", "")
-        if website[:5] != "http":
-            website = "http://" + website
         try:
-            url_validator(website)
+            print "trying"
+            print url_validator(website)
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
         except ValidationError:
+            print "exception"
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     return redirect('home')
 

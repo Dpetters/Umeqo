@@ -5,7 +5,7 @@
 """
 
 
-from core.models import CampusOrg, Language
+from core.models import CampusOrg, Language, CampusOrgType
 from django import forms
 from django.conf import settings
 from django.template import loader, RequestContext
@@ -133,12 +133,12 @@ class ContactForm(forms.Form):
     
     name = forms.CharField(max_length=100,
                            widget=forms.TextInput(),
-                           label=u'Your name')
+                           label=u'Your Name:')
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(maxlength=200)),
-                             label=u'Your email address')
+                             label=u'Your Email:')
     
     body = forms.CharField(widget=forms.Textarea(),
-                              label=u'Your message')
+                              label=u'Message')
     
     from_email = settings.DEFAULT_FROM_EMAIL
     
@@ -231,6 +231,10 @@ class EmailForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. me@example.com'}))
     
 class CreateCampusOrganizationForm(forms.ModelForm):
+    name = forms.CharField(label="Name:", max_length=42)
+    type = forms.ModelChoiceField(label="Type:", queryset = CampusOrgType.objects.all())
+    website = forms.URLField(label="Website:", required = False)
+    
     class Meta:
         fields = ('name',
                   'type',

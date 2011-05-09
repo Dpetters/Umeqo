@@ -70,10 +70,6 @@ delete_contents(submitted_resumes_path)
 #Give password to superuser
 admin_user = User.objects.get(id=1)
 
-# Create Student
-sample_student = Student.objects.create(user = admin_user)
-
-
 #Create sample employer users
 sample_employer_user1 = User.objects.create(username = SAMPLE_EMPLOYER_USERNAME_1,
                                             email = SAMPLE_EMPLOYER_EMAIL_1)

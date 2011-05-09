@@ -19,12 +19,16 @@ class SearchForm(forms.Form):
 
 class FilteringForm(forms.ModelForm):
     
-    older_than_18 = forms.ChoiceField(choices = NO_YES_CHOICES, required = False)
-    citizen = forms.ChoiceField(choices = NO_YES_CHOICES, required = False)
+    older_than_18 = forms.ChoiceField(label="Must be older than 18:", choices = NO_YES_CHOICES, required = False)
+    citizen = forms.ChoiceField(label="Must be a citizen:", choices = NO_YES_CHOICES, required = False)
 
-    sat = forms.IntegerField(max_value = 2400, min_value = 600, required = False)
-    act = forms.IntegerField(max_value = 36, required = False)
-    gpa = forms.DecimalField(min_value = 0, max_value = 5, max_digits=5)
+    gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, required = False)
+    act = forms.IntegerField(label="Minimum ACT:", max_value = 36, required = False)
+    sat_t = forms.IntegerField(label="Minimum SAT:", max_value = 2400, min_value = 600, required = False)
+    sat_m = forms.IntegerField(label="Minimum SAT Math:", max_value = 800, min_value = 200, required = False)
+    sat_v = forms.IntegerField(label="Minimum SAT Verbal:", max_value = 800, min_value = 200, required = False)
+    sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, required = False)
+
     
     class Meta:
         model = FilteringParameters
@@ -34,8 +38,8 @@ class FilteringForm(forms.ModelForm):
         self.fields['campus_orgs'].choices = campus_org_types_as_choices()
     
 class StudentFilteringForm(FilteringForm):
-    ordering = forms.ChoiceField(choices = enums.ORDERING_CHOICES)
-    results_per_page = forms.ChoiceField(choices = enums.RESULTS_PER_PAGE_CHOICES)
+    ordering = forms.ChoiceField(label="Order Results By:", choices = enums.ORDERING_CHOICES, required = False)
+    results_per_page = forms.ChoiceField(label="Results Per Page:", choices = enums.RESULTS_PER_PAGE_CHOICES, required = False)
     
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)

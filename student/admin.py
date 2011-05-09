@@ -12,7 +12,8 @@ class StudentAdmin(admin.ModelAdmin):
     pass
 
 class StudentListAdmin(admin.ModelAdmin):
-    pass
+    fields = ['name', 'employers', 'event', 'type', 'sort_order', 'students']
+    list_display = ('name', 'type')
     
 admin.site.register(StudentList, StudentListAdmin)
 admin.site.register(Student, StudentAdmin)

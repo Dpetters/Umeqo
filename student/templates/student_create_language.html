@@ -12,11 +12,16 @@ Copyright 2011. All Rights Reserved.
 </div>
 <form id="create_language_form" method='POST' action="/student/create-language/">
 	{% csrf_token %}
-	<div class="errorspace">
-	</div>
-	<div>
-		<label class="required" for="id_name">Name:</label>
-		{{create_language_form.name}}
+	<table class="form_table">
+		<tr>
+			<th>{{create_language_form.name.label_tag}}</th>
+			<td>
+				<div class="errorspace"></div>
+				{{create_language_form.name}}
+			</td>
+		</tr>
+	</table>
+	<div class="error_section error">
 	</div>
 	<div class="button_wrapper_with_margins anchor">
 		<input id="create_language_form_submit_button" class="button" type='submit' value='Create'>

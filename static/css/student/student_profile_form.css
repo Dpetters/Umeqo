@@ -27,27 +27,62 @@ select {
 #profile_form_title {
 	padding-bottom:15px;
 }
-#required_info_page, #basic_info_page, #academic_info_page {
+#required_info_page, #work_info_page, #academic_info_page, #miscellaneous_info_page {
 	float:left;
 	padding-top:15px;
-	width:465px;
+	width:450px;
+	padding-left:10px;
 }
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
 	height: 1px;
 }
+
+/* Form Info */
+.profile_side_form_info {
+    margin-top: 20px;
+    position: relative;
+    left: 5px;
+    width: 510px;
+    float: left;
+}
+.profile_side_form_info h3 {
+    margin-bottom: 10px;
+    position:relative;
+    left: 5px;
+    font-size:18px;
+    text-shadow:#FFF 0 1px 0;
+}
+.profile_side_form_info ul {
+    border-left: 5px solid #DDDDDD;
+}
+.profile_side_form_info li {
+    left: 15px;
+    list-style: disc outside none;
+    margin: 10px 15px 0 10px;
+    position: relative;
+}
+
+
 /* Create Campus Organization Dialog */
 .create_campus_organization_dialog .ui-dialog-content {
 	padding:20px 20px 25px 20px;
+	text-align:center;
 }
-.create_campus_organization_dialog #id_type {
-	width:307px;
+.create_campus_organization_dialog .form_table {
+	margin-left:auto;
+	margin-right:auto;
 }
 .create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website {
-	width:300px;
+	width:308px;
 }
 /* Create Language Dialog */
 .create_language_dialog .ui-dialog-content {
 	padding:20px 20px 25px 20px;
+	text-align:center;
+}
+.create_language_dialog .form_table {
+	margin-left:auto;
+	margin-right:auto;
 }
 .create_language_dialog #id_name {
 	width:265px;
@@ -69,12 +104,8 @@ select {
 	padding:10px 15px;
 }
 
-input.sat {
-    width: 2em;
-    text-align: center;
-}
-input.act {
-    width: 1.4em;
+#id_sat_m, #id_sat_v, #id_sat_w, #id_act{
+    width: 3em;
     text-align: center;
 }
 

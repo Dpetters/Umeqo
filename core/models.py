@@ -137,12 +137,14 @@ class Course(CommonInfo):
 
 class EmploymentType(models.Model):
     name = models.CharField("Employment Type", max_length = 42, unique = True)
+    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the employment types to be displayed.')
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
         
     class Meta:
         verbose_name = "Employment Type"
         verbose_name_plural = "Employment Types"
+        ordering = ['sort_order']
     
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -154,12 +156,14 @@ class EmploymentType(models.Model):
     
 class CampusOrgType(models.Model):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
+    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the campus org types to be displayed.')
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
         
     class Meta:
         verbose_name = "On-Campus Organization Type"
         verbose_name_plural = "On-Campus Organization Types"
+        ordering = ['sort_order']
     
     def save(self, *args, **kwargs):
         self.full_clean()

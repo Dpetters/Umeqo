@@ -8,7 +8,6 @@
 .project
 .pydevproject
 .settings
-resumedata
 submitted_user_images
 submitted_resumes
 xapian_index

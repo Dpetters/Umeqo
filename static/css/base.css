@@ -194,16 +194,6 @@ p {
 .main_block_content, .side_block_content {
     border-top: 1px solid #CCCCCC;
 }
-/*
-.side_block_content a {
-    text-decoration: none;
-    display: block;
-    padding: 4px 6px;
-    color: #666;
-    font-size: 12px;
-    font-weight: bold;
-}
-*/
 .side_block_content a:hover {
     background-color: #EEE;
     color: #000;
@@ -263,7 +253,7 @@ p {
     float:left;
 }
 .side_block {
-    margin-bottom:20px;
+    margin-bottom:16px;
 }
 .side_block p {
     margin-top:3px;
@@ -289,24 +279,6 @@ p {
     text-align:center;
 }
 .side_block_footer_links {
-}
-/* A big block is what you can use instead of multiple main blocks */
-/* For example, the results for student filtering appear in a blank block */
-.big_block {
-    padding-left:15px;
-}
-.big_block_header {
-    border-bottom:1px solid #D9D9D9;
-    padding-bottom:5px;
-}
-.big_block_header_title {
-    font-weight:normal;
-    font-size:26px;
-}
-.big_block_header_links {
-    float:right;
-}
-.big_block_content {
 }
 #footer_area {
     line-height: 18px;
@@ -482,6 +454,7 @@ input[type=text], input[type=password] {
 #ajax_form_submit_loader {
     margin-left:5px;
     margin-top:5px;
+    position:absolute;
 }
 .button_wrapper_no_margins {
     text-align:center;
@@ -500,31 +473,6 @@ input[type=text], input[type=password] {
     vertical-align: bottom;
     padding-bottom: 3px;
     text-align: right;
-}
-
-/* Form Info */
-.side_form_info {
-    margin-top: 20px;
-    position: relative;
-    left: 5px;
-    width: 510px;
-    float: left;
-}
-.side_form_info h3 {
-    margin-bottom: 10px;
-    position:relative;
-    left: 5px;
-    font-size:18px;
-    text-shadow:#FFF 0 1px 0;
-}
-.side_form_info ul {
-    border-left: 5px solid #DDDDDD;
-}
-.side_form_info li {
-    left: 15px;
-    list-style: disc outside none;
-    margin: 10px 15px 0 10px;
-    position: relative;
 }
 #content_area a, a {
     color: #6e97b9;
@@ -545,8 +493,8 @@ a:focus {
     border-right:none;
 }
 .contact_us_dialog .error[for=id_body] {
-    top:18px;
-    left:88px;
+    top:20px;
+    left:76px;
 }
 .contact_us_dialog #id_body {
     width:99%;
@@ -574,6 +522,10 @@ a:focus {
 .anchor {
     clear:both;
 }
+.error_section{
+	margin-top:10px;
+	text-align:center;
+}
 /* Dialogs */
 #dialog_loader {
     margin-top: 25px;
@@ -581,7 +533,7 @@ a:focus {
 }
 .dialog_info_section {
     line-height:22px;
-    margin-bottom:10px;
+    margin-bottom:5px;
 }
 .dialog_side_info_section{
     float:right;
