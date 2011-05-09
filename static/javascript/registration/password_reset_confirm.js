@@ -5,12 +5,11 @@
  */
 
 $(document).ready( function() {
-
-	// Password Reset Confirm Form Validation
+	
 	password_reset_form_validator = $("#password_reset_confirm_form").validate({
 		highlight: highlight,
 		unhighlight: unhighlight,
-		errorPlacement: place_errors,
+		errorPlacement: place_errors_table,
 		rules: {
 			new_password1: {
 				required: true,
@@ -26,8 +25,4 @@ $(document).ready( function() {
 			}
 		}
 	});
-
-	// Form Alignment
-	format_required_labels("#password_reset_confirm_form");
-	align_form("#password_reset_confirm_form");
 });

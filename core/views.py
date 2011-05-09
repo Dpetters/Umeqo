@@ -69,7 +69,7 @@ def contact_us_dialog(request,
             if form.is_valid():
                 form.save(fail_silently=fail_silently)
                 return HttpResponse(simplejson.dumps({"valid":True}))
-            return HttpResponse(simplejson.dumps({"valid":False}))
+            return HttpResponse(simplejson.dumps({"valid":False, "errors":form.errors}))
         else:
             form = form_class(request=request)
     
@@ -123,7 +123,6 @@ def home(request,
          student_home_template_name="student_home.html",
          employer_home_template_name="employer_home.html",
          extra_context=None):
-    print request.user.is_authenticated()
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:
@@ -181,11 +180,9 @@ def check_website(request):
         url_validator =  URLValidator(verify_exists = False)
         website = request.GET.get("website", "")
         try:
-            print "trying"
-            print url_validator(website)
+            url_validator(website)
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
         except ValidationError:
-            print "exception"
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     return redirect('home')
 

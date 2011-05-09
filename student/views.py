@@ -4,7 +4,7 @@
  Copyright 2011. All Rights Reserved.
 """
  
-import os, datetime
+import os, datetime, ldap
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -48,7 +48,7 @@ def student_registration(request,
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
     
-    if request.method == 'POST':
+    if request.is_ajax() and request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -56,22 +56,24 @@ def student_registration(request,
             """
             ending = email.split("@")[1]
             if ending != "mit.edu":
-                return HttpResponse(simplejson.dumps("notmit"), mimetype="application/json")
+                return HttpResponse(simplejson.dumps({'valid':False, 'reason':"notmit"}), mimetype="application/json")
 
-            con = ldap.open('ldap.mit.edu')
+            con = ldap.initialize('ldap.mit.edu')
             con.simple_bind_s("", "")
             dn = "dc=mit,dc=edu"
             fields = ['cn', 'sn', 'givenName', 'mail', ]
             result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
             if result == []:
-                return HttpResponse(simplejson.dumps("notstudent"), mimetype="application/json") 
+                return HttpResponse(simplejson.dumps({'valid':False, 'reason':"notstudent"}), mimetype="application/json") 
             """
             form.cleaned_data['username']= username
             new_user = backend.register(request, **form.cleaned_data)
             
             Student.objects.create(user=new_user)
 
-            return HttpResponse(simplejson.dumps(reverse(success_url)), mimetype="application/json")
+            return HttpResponse(simplejson.dumps({'valid':True, 'url':reverse(success_url)}), mimetype="application/json")
+        else: 
+            return HttpResponse(simplejson.dumps({'valid':False}))
     else:
         form = form_class()
 

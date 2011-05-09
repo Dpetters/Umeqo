@@ -230,6 +230,9 @@ $(document).ready( function () {
                                         success_message += close_dialog_link;
                                         contact_us_dialog.html(success_message);
                                         break;
+                                    case false:
+                                    	$(".contact_us_dialog .error_section").html(data.errors);
+                                    	break;
                                     default:
 										contact_us_dialog.html(dialog_error_message);
                                         break;

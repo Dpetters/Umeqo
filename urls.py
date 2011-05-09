@@ -11,14 +11,9 @@ from django.contrib import admin
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic.simple import direct_to_template
 
-admin.autodiscover()
-"""
-from haystack import site
-from student.models import Student
-from student.search_indexes import StudentIndex
+from registration.forms import PasswordResetForm, SetPasswordForm
 
-site.register(Student, StudentIndex)
-"""
+admin.autodiscover()
 
 urlpatterns = patterns('',
         url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATICFILES_DIRS[0] }),
@@ -38,8 +33,8 @@ urlpatterns += patterns('',
     url(r'^logout/$', auth_views.logout_then_login, {'login_url':'/?action=logged-out'}, name='logout'),
     url(r'^password/change/$', auth_views.password_change, {'template_name' : 'password_change_form.html'}, name='auth_password_change'),
     url(r'^password/change/done/$', auth_views.password_change_done, {'template_name' : 'password_successfully_changed.html'}, name='auth_password_change_done'),
-    url(r'^password/reset/$', auth_views.password_reset, {'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset'),
-    url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'template_name' : 'password_reset_confirm.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_confirm'),
+    url(r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset'),
+    url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_confirm.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_confirm'),
     url(r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_complete'),
     url(r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_done'),
 )

@@ -34,18 +34,28 @@ $(document).ready( function () {
                 },
                 success: function(data) {
                     hide_form_submit_loader("#login_form");
-                    switch(data) {
-                        case "invalid":
-                            $("#login_form .error_section").html("<p class=error>The password you entered was not correct.<br\> Note that it is case-sensitive.</p>");
+                    switch(data.valid) {
+                    	case false:
+                   			switch(data.reason) {
+		                        case "invalid":
+		                            $("#login_form .error_section").html("<p class=error>This username and password combo is invalid. Note that both are case-sensitive.</p>");
+		                            break;
+		                        case "inactive":
+		                            $("#login_form .error_section").html("<p class=error>This account has been suspended. Please direct all inquiries to admin@umeqo.com.</p>");
+		                            break;
+		                        case "cookies_disabled":
+		                            $("#login_form .error_section").html("<p class=error>Your browser doesn't seem to have cookies enabled. Cookies are required to login.</p>");
+		                            break;
+		                        default:
+									show_error_dialog(page_error_message);
+	                                break;
+	                        }
                             break;
-                        case "inactive":
-                            $("#login_form .error_section").html("<p class=error>This account has been suspended.<br/> Please direct all inquiries to admin@Umeqo.org.</p>");
+	                    case true:
+	                    	window.location.replace(data.url);
+ 		                default:
+							show_error_dialog(page_error_message);
                             break;
-                        case "cookies_disabled":
-                            $("#login_form .error_section").html("<p class=error>Your browser doesn't seem to have cookies enabled.<br/> Cookies are required to login.</p>");
-                            break;
-                        default:
-                            window.location.replace(data);
                     }
                 }
             });
@@ -56,6 +66,7 @@ $(document).ready( function () {
         rules: {
             username: {
                 required: true,
+                /*
                 remote: {
                     url:"/check-username-existence/",
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -68,6 +79,7 @@ $(document).ready( function () {
                         }
                     },
                 }
+                */
             },
             password: {
                 required: true
