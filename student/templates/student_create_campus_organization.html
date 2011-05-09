@@ -12,23 +12,30 @@ Copyright 2011. All Rights Reserved.
 </div>
 <form id="create_campus_organization_form" method='POST' action="/student/create-campus-organization/">
 	{% csrf_token %}
-	<div class="errorspace">
-	</div>
-	<div>
-		<label class="required" for="id_name">Type:</label>
-		{{create_campus_organization_form.type}}
-	</div>
-	<div class="errorspace">
-	</div>
-	<div>
-		<label class="required" for="id_name">Name:</label>
-		{{create_campus_organization_form.name}}
-	</div>
-	<div class="errorspace">
-	</div>
-	<div>
-		<label for="id_website">Website:</label>
-		{{create_campus_organization_form.website}}
+	<table class="form_table">
+		<tr>
+			<th>{{create_campus_organization_form.name.label_tag}}</th>
+			<td>
+				<div class="errorspace"></div>
+				{{create_campus_organization_form.name}}
+			</td>
+		</tr>
+		<tr>
+			<th>{{create_campus_organization_form.type.label_tag}}</th>
+			<td>
+				<div class="errorspace"></div>
+				{{create_campus_organization_form.type}}
+			</td>
+		</tr>
+		<tr>
+			<th>{{create_campus_organization_form.website.label_tag}}</th>
+			<td>
+				<div class="errorspace"></div>
+				{{create_campus_organization_form.website}}
+			</td>
+		</tr>
+	</table>
+	<div class="error_section error">
 	</div>
 	<div class="button_wrapper_with_margins anchor">
 		<input id="create_campus_organization_form_submit_button" class="button" type='submit' value='Create'>

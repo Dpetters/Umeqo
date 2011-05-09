@@ -1,0 +1,54 @@
+[
+ {
+  "pk": 1, 
+  "model": "student.student", 
+  "fields": {
+   "resume_view_count": 0, 
+   "last_name": "Petters", 
+   "last_updated": "2011-05-08 15:15:39", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_new_event": false, 
+   "sat_m": 790, 
+   "sat_t": 2320, 
+   "sat_v": 770, 
+   "sat_w": 760, 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor science computer science electrical engineering mathematics cambridge sep may sat sat math sat physic act awards parsons brinkerhoff national scholarship sparling company scholarship and bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms diff equations microeconomics bellevue college gpa supplemented high school curriculum associate engineering transfer track with high distinction bellevue sep jun scholar with honors time aime participant work experience thomson reuters software development intern eagan jun aug worked team member the website vertical fixed high priority bugs developed new features attended design planning meetings developed data mining script that used state machine extract pertinent info from tens thousands logs added new automated entry point into flagship product westlawnext with check for akamai pinging other servers crafted set interactive javascript widgets with custom form validation well jquery plug for mail text areas rbm technologies software engineer intern cambridge jan feb developed the ruby rails mobile visual merchandising manager app allow retail workers take digital pictures fixtures and upload them textures onto their respective floor plan models programmed automated rml based report using the rml pdf conversion library which summarized nation wide advertising campaigns for cellular firms such verizon and mobile mit agelab undergraduate researcher cambridge oct may combined python pil and ffmpeg produce video overlay that showed the exact spot simulation video which subject was looking any given moment skewed gaze data had translated before use researched the possibility heads display projected the windshield laboratory car which using the facelab gaze tracking system and data correction algorithms would allow user make selections visually activities leadership sbc sloan business club entrepreneurship project development leader cambridge feb present lead developer sbconnect django web app designed connect employers with the mit student body features jquery xapian search engine ajax student filtering and shopping cart mechanism for resume book creation student profiles have real time model indexing that works with the parsed and stemmed keywords extracted from the resumes four person team collaborating using trac svn developing ubuntu using eclipse with pydev and aptana four consulting client development team lead cambridge nov oct furthered act our work makes non student run organizations worked internal development case mit bhs outdoor and indoor track and field and cross country varsity runner cambridge aug may mile mile led bhs team place state finish improvement from previous place finish skills and interests technical java python django latex javascript jquery css and brief familiarity with and ruby rails languages fluent russian interests ted talks street hockey and entrepreneurship", 
+   "looking_for": [
+    2, 
+    4
+   ], 
+   "last_seen_events": [], 
+   "first_name": "Dmitrij", 
+   "first_major": 12, 
+   "event_invite_count": 0, 
+   "new_events": [], 
+   "gpa": "4.9", 
+   "email_on_invite_to_public_event": false, 
+   "campus_involvement": [
+    394
+   ], 
+   "languages": [
+    27
+   ], 
+   "profile_created": true, 
+   "school_year": 2, 
+   "citizen": false, 
+   "previous_employers": [
+    1
+   ], 
+   "website": "http://www.umeqo.com/", 
+   "second_major": 25, 
+   "resume": "submitted_resumes/Petters_Dmitrij_Dpetters91_2011-05-08-15-15-39.pdf", 
+   "graduation_year": 2, 
+   "subscribed_employers": [], 
+   "user": 5, 
+   "active": true, 
+   "shown_in_results_count": 1, 
+   "add_to_resumebook_count": 0, 
+   "industries_of_interest": [], 
+   "act": 34, 
+   "date_created": "2011-05-08 15:09:02", 
+   "older_than_18": true
+  }
+ }
+]

@@ -47,10 +47,13 @@ $(document).ready( function() {
 		query = $("#query_field").val().replace(/[^a-z\d ]+/ig,'');
 		initiate_ajax_call();
 	};
+	
+	$("#initiate_ajax_call").live('click', initiate_ajax_call);
 
 	function initiate_ajax_call() {
 		$("#results_section").css('opacity', 0.3);
 		$("#results_block_info_section").css('display', 'block');
+		$("#results_block_info").html(ajax_loader);
 		var error_dialog_timeout = setTimeout(function(){$(long_load_message).insert("#results_block_info img");}, 10000);
 		$.ajax({
 			beforeSend: function(xhr) {
@@ -97,9 +100,15 @@ $(document).ready( function() {
 				$("#results_section").css('opacity', 1);
 				$("#results_block_info_section").css('display', 'none');
 			},
-			error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textStatus, errorThrown) {
 				clearTimeout(error_dialog_timeout);
-                show_error_dialog(generic_error_message);
+                switch(jqXHR.status){
+                    case 0:
+                    	$("#results_block_info").html(check_connection_message + " by clicking <a id='initiate_ajax_call' class='error' href='javascript:void(0)'>here</a>.</p>");
+                        break;
+                    default:
+                    	$("#results_block_info").html(page_error_message);
+                }
             },
 		});
 	};

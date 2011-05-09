@@ -2,6 +2,11 @@
     width:235px;
 }
 
+#login_form .error_section{
+	margin-bottom:5px;
+	margin-top:0px;
+}
+
 #login_button a {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#555, #333);

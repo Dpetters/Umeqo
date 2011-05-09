@@ -14,7 +14,18 @@ $(document).ready( function() {
 		rules: {
 			old_password: {
 				required: true,
-				remote: "/check_password/",
+                remote: {
+                    url:"/check_password/",
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        switch(jqXHR.status){
+                            case 0:
+                            	$("#password_change_form .error_section").html(form_check_connection_message);
+                                break;
+                            default:
+                            	show_error_dialog(page_error_message);
+                        }
+                    },
+                }
 			},
 			new_password1: {
 				required: true,

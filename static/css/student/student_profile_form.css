@@ -66,16 +66,23 @@ select {
 /* Create Campus Organization Dialog */
 .create_campus_organization_dialog .ui-dialog-content {
 	padding:20px 20px 25px 20px;
+	text-align:center;
 }
-.create_campus_organization_dialog #id_type {
-	width:307px;
+.create_campus_organization_dialog .form_table {
+	margin-left:auto;
+	margin-right:auto;
 }
 .create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website {
-	width:300px;
+	width:308px;
 }
 /* Create Language Dialog */
 .create_language_dialog .ui-dialog-content {
 	padding:20px 20px 25px 20px;
+	text-align:center;
+}
+.create_language_dialog .form_table {
+	margin-left:auto;
+	margin-right:auto;
 }
 .create_language_dialog #id_name {
 	width:265px;

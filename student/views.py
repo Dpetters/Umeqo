@@ -16,7 +16,7 @@ from django.core.urlresolvers import reverse
 
 from events.models import Event
 from student.forms import StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
-from student.models import Student
+from student.models import Student, StudentList
 from student.view_helpers import process_resume
 from registration.backend import RegistrationBackend
 from core.decorators import is_student
@@ -102,6 +102,7 @@ def student_create_profile(request,
                 student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
             student.last_updated = datetime.datetime.now()
             student.profile_created = True
+            StudentList.objects.get(id=1).students.add(student)
             student.save()
             if hasattr(student, 'save_m2m'):
                 student.save_m2m()

@@ -8,6 +8,15 @@ CACHES = {
     }
 }
 
+ADMINS = (
+    ("Dmitrij", "Dpetters91@gmail.com"),
+    ("Zach", "zdearing@gmail.com"),
+    ("Josh", "me@joshma.com")
+    # Customer Support People
+    # Customer Support Email Account
+)
+MANAGERS = ADMINS
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',    # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.

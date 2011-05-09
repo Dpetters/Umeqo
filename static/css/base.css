@@ -521,6 +521,10 @@ a:focus {
 .anchor {
     clear:both;
 }
+.error_section{
+	margin-top:10px;
+	text-align:center;
+}
 /* Dialogs */
 #dialog_loader {
     margin-top: 25px;
@@ -528,7 +532,7 @@ a:focus {
 }
 .dialog_info_section {
     line-height:22px;
-    margin-bottom:10px;
+    margin-bottom:5px;
 }
 .dialog_side_info_section{
     float:right;

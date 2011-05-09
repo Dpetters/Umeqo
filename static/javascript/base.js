@@ -17,12 +17,20 @@ var multiselectShowAnimation = "";
 var multiselectHideAnimation = "";
 
 var dialog_class = "dialog";
-var ajax_loader = "<div class='message_section'></div><div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
+var ajax_loader = "<div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
 var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
 var close_dialog_link = "<br><div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
-var generic_error_message = "<div class='message_section'><p>Oops, something went wrong! We'be been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by refreshing the page.</p></div>" + refresh_page_link;
-var long_load_message = "<p>This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>"
-var check_connection_message = "<p class='error'>Unable to reach Umeqo. Please check your connection and try again.</p>";
+
+var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by";
+var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
+var dialog_error_message = error_message + " reopening the dialog.</p></div>" + close_dialog_link;
+
+var check_connection_message = "<div class='message_section'><p>Unable to reach Umeqo.<br> Please check you connection and try again by"
+var page_check_connection_message = check_connection_message + " refreshing the page.</p></div>" + refresh_page_link;
+var dialog_check_connection_message = check_connection_message + " reopening the dialog.</p></div>" + close_dialog_link;
+var form_check_connection_message = "<p class='error'>Unable to reach Umeqo. Please check your connection and try again.</p>";
+
+var long_load_message = "<div class='message_section'><p>This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p></div>"
 
 function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
@@ -41,12 +49,14 @@ function create_error_dialog() {
         return error_dialog;
 };
 function show_error_dialog(message){
-	 var error_dialog = create_error_dialog();
+	 error_dialog = create_error_dialog();
      error_dialog.html(message);
 };    
-function show_loading_failed_message(dialog) {
-    $(".dialog .message_section").html(long_load_message);
+
+function show_long_load_message(dialog) {
+    $(long_load_message).insertBefore(".dialog #dialog_loader");
 };
+
 function show_form_submit_loader(container) {
     container = typeof(container) != 'undefined' ? container : "";
     $(container + " #ajax_form_submit_loader").css("display", "");
@@ -152,8 +162,8 @@ Array.max = function (array) {
 $(document).ready( function () {
     
     /* Contact Dialog */
-    var create_contact_dialog = function () {
-        var $contact_us_dialog = $('<div class="dialog"></div>')
+    var open_contact_dialog = function () {
+        var contact_us_dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
             title: "Contact Us",
@@ -162,29 +172,36 @@ $(document).ready( function () {
             modal: true,
             width: 650,
             close: function() {
-                $contact_us_dialog.remove();
+                contact_us_dialog.remove();
             }
         });
-        $contact_us_dialog.dialog('open');
-        return $contact_us_dialog;
+        contact_us_dialog.dialog('open');
+        return contact_us_dialog;
     };
     $('.open_contact_us_dialog_link').live('click', function () {
 
-        var $contact_us_dialog = create_contact_dialog();
-        $contact_us_dialog.html(ajax_loader);
+        contact_us_dialog = open_contact_dialog();
+        contact_us_dialog.html(ajax_loader);
 
-        var contact_us_dialog_timeout = setTimeout(show_loading_failed_message, 10000);
+        var contact_us_dialog_timeout = setTimeout(show_long_load_message, 10000);
         $.ajax({
             dataType: "html",
             url: '/contact-us-dialog/',
             error: function(jqXHR, textStatus, errorThrown) {
                 clearTimeout(contact_us_dialog_timeout);
-                show_error_dialog(generic_error_message);
+                switch(jqXHR.status){
+                    case 0:
+                    	contact_us_dialog.html(dialog_check_connection_message);
+                        break;
+                    default:
+                        contact_us_dialog.html(dialog_error_message);
+                };
             },
             success: function (data) {
                 clearTimeout(contact_us_dialog_timeout);
-
-                $contact_us_dialog.html(data);
+                contact_us_dialog.html(data);
+                contact_us_dialog.dialog('option', 'position', 'center');
+                
                 $("#id_name").focus();
 
                 contact_form_validator = $("#contact_form").validate({
@@ -195,29 +212,29 @@ $(document).ready( function () {
                                 show_form_submit_loader("#contact_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
-                                var error_message_details = '<div class="message_section"><strong><br />Error Details</strong><br />"' + textStatus + '"</strong></div>';
-                                $contact_us_dialog.html(error_message_template + error_message_details + close_dialog_link);
+                            	hide_form_submit_loader("#contact_form");
+                           		switch(jqXHR.status){
+				                    case 0:
+				                        $(".contact_us_dialog .error_section").html(form_check_connection_message);
+				                        break;
+				                    default:
+				                        contact_us_dialog.html(dialog_error_message);
+				                }
                             },
                             success: function (data) {
-
                                 hide_form_submit_loader("#contact_form");
 
                                 switch(data.valid) {
                                     case true:
                                         var success_message = "<br><div class='message_section'><p>We have received your message. Thanks for contacting us!</p></div>";
                                         success_message += close_dialog_link;
-                                        $contact_us_dialog.html(success_message);
-                                        $contact_us_dialog.dialog('option', 'position', 'center');
-                                        break;
-                                    case false:
-                                        $("#dialog_form_error_section").html("<p class='error'>Our system thinks your message is spam. If you think this is a mistake, email us instead at support@umeqo.com.</p>");
+                                        contact_us_dialog.html(success_message);
                                         break;
                                     default:
-                                        var error_message_details = '<div class="message_section"><strong><br />Error Details</strong><br />"Response status isn\'t valid."</strong></div>';
-                                        error_message_details += close_dialog_link;
-                                        $contact_us_dialog.html(error_message_template + error_message_details);
+										contact_us_dialog.html(dialog_error_message);
                                         break;
                                 }
+                                contact_us_dialog.dialog('option', 'position', 'center');
                             }
                         });
                     },
@@ -257,6 +274,20 @@ $(document).ready( function () {
         window.location.reload();
     });
 
+	jQuery.validator.addMethod("complete_url", function(val, elem) {
+	    // if no url, don't do anything
+	    if (val.length == 0) { return true; }
+	 
+	    // if user has not entered http:// https:// or ftp:// assume they mean http://
+	    if(!/^(https?|ftp):\/\//i.test(val)) {
+	        val = 'http://'+val; // set both the value
+	        $(elem).val(val); // also update the form element
+	    }
+	    // now check if valid url
+	    // http://docs.jquery.com/Plugins/Validation/Methods/url
+	    // contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
+	    return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
+	})
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;
