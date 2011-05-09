@@ -27,14 +27,14 @@ def login(request,
             if username and password:
                 user_cache = authenticate(username = username, password=password)
                 if user_cache is None:
-                    return HttpResponse(simplejson.dumps("invalid"), mimetype="application/json")
+                    return HttpResponse(simplejson.dumps({"valid":False, "reason":"invalid"}), mimetype="application/json")
                 elif not user_cache.is_active:
-                    return HttpResponse(simplejson.dumps("inactive"), mimetype="application/json")
+                    return HttpResponse(simplejson.dumps({"valid":False, "reason":"inactive"}), mimetype="application/json")
                 else:
                     if not request.session.test_cookie_worked():
-                        return HttpResponse(simplejson.dumps("cookies_disabled"), mimetype="application/json")
+                        return HttpResponse(simplejson.dumps({"valid":False, "reason":"cookies_disabled"}), mimetype="application/json")
                     auth_login(request, user_cache)
-                    return HttpResponse(simplejson.dumps(modify_redirect(request, redirect_to)), mimetype="application/json")
+                    return HttpResponse(simplejson.dumps({"valid":True, "url":modify_redirect(request, redirect_to)}), mimetype="application/json")
     return redirect("home")
 
 
@@ -46,13 +46,9 @@ def activate_user(request,
                   **kwargs):
 
     account = backend.activate(request, **kwargs)
-    print "hey"
-    print account
     if account:
         if success_url is None:
             to, args, kwargs = backend.post_activation_redirect(request, account)
-            print 'to'
-            print to
             return redirect(to, *args, **kwargs)
         else:
             return redirect(success_url)

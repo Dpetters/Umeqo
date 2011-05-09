@@ -11,25 +11,37 @@ $(document).ready( function() {
             $(form).ajaxSubmit({
                 beforeSubmit: function (arr, $form, options) {
                     show_form_submit_loader("#student_registration_form");
-                    $("#student_registration_form_error_section").html("");
+                    $("#student_registration_form .error_section").html("");
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                     hide_form_submit_loader("#student_registration_form");
-                	how_error_dialog(generic_error_message);
+                    switch(jqXHR.status){
+                        case 0:
+                        	$("#student_registration_form .error_section").html(form_check_connection_message);
+                            break;
+                        default:
+                            $("#student_registration_block .main_block_content").html(page_error_message);
+                    }
                 },
                 success: function(data) {
                     hide_form_submit_loader("#student_registration_form");
-                    switch(data) {
-                        case "notmit":
-                            $("#student_registration_form_error_section").html("<p class='error'>Please use an mit.edu address.</p>");
-                            $("#id_email").css('border', '1px solid red').focus().val("");
-                            break;
-                        case "notstudent":
-                            $("#student_registration_form_error_section").html("<p class='error'>Please enter a valid MIT student's email address.</p>");
-                            $("#id_email").css('border', '1px solid red').focus().val("");
-                            break;
-                        default:
-                            window.location.replace(data);
+                    switch(data.valid) {
+                        case false:
+                        	switch(data.reason) {
+		                        case "notmit":
+		                            $("#student_registration_form .error_section").html("<p class='error'>Please use an mit.edu address.</p>");
+		                            $("#id_email").css('border', '1px solid red').focus().val("");
+		                            break;
+		                        case "notstudent":
+		                            $("#student_registration_form .error_section").html("<p class='error'>Please enter a valid MIT student's email address.</p>");
+		                            $("#id_email").css('border', '1px solid red').focus().val("");
+		                            break;
+		                        default:
+		                        	$("#student_registration_block .main_block_content").html(page_error_message);
+		                    }
+		                    break;
+		                case true:
+                            window.location.replace(data.url);
                     }
                 }
             });
@@ -45,11 +57,11 @@ $(document).ready( function() {
                     url:"/check-email-availability/",
                     error: function(jqXHR, textStatus, errorThrown) {
                         switch(jqXHR.status){
-                            case 500:
-                                $("#student_registration_block .main_block_content").html(generic_error_message);
+                            case 0:
+                            	$("#student_registration_form .error_section").html(form_check_connection_message);
                                 break;
                             default:
-                                $("#student_registration_form_error_section").html(check_connection_message);
+                                $("#student_registration_block .main_block_content").html(page_error_message);
                         }
                     },
                 }

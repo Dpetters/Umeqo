@@ -6,7 +6,6 @@
 
 """ 
 This script is meant to populate the database with the initial content for the site.
-
 Note that in order for this file to work, the initial_contents folder has remain in
 the the same directory as this script.
 """
@@ -18,12 +17,8 @@ Chances are you do NOT need to run this script again. Are you SURE you want to p
 if c=='n':
     exit()
 
-# Don't switch the order the next three sections!
-
-# Must remain first
 import os
 
-# Must remain second
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
@@ -51,9 +46,11 @@ student_account_management = Topic.objects.create(name="Account Management", slu
 student_employer_subscriptions = Topic.objects.create(name="Employer Subscriptions", slug="employer_subscriptions", sort_order=2, audience=enums.STUDENT)
 student_events = Topic.objects.create(name="Events", slug="events", sort_order=3, audience=enums.STUDENT)
 student_invitations = Topic.objects.create(name="Invitations", slug="invitations", sort_order=4, audience=enums.STUDENT)
+print "Created FAQ Topics"
 
 # Create FAQ Questions
 Question.objects.create(topic=basics_topic, question="What is Umeqo?", slug="what-is-umeqo", answer="Umeqo is a new platform for helping students and employers connect during recruiting season.", status=enums.ACTIVE, audience=enums.ALL, sort_order=0)
+print "Created FAQ Questions"
 
 # Create Employment Types
 new_contents_path = ROOT + "/initial_content/EmploymentTypes/"

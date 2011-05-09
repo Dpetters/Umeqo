@@ -44,6 +44,9 @@ p {
     min-width: 986px;
     position: relative;
 }
+#email_icon_section {
+	margin-top:60px;
+}
 .below_header_message {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image: -moz-linear-gradient(#E6E6E6, #EEEEEE);

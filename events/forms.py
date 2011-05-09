@@ -22,7 +22,6 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     time_format = forms.TimeInput.format
 
     def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None, initial=None):
-        print "initial: ",initial
         widgets = (forms.DateInput(attrs=dateAttrs, format=date_format),
                    forms.Select(attrs=timeAttrs, choices=TIME_CHOICES))
         super(ImprovedSplitDateTimeWidget, self).__init__(widgets, {})
