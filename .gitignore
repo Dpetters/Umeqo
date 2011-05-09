@@ -8,8 +8,7 @@
 .project
 .pydevproject
 .settings
-submitted_user_images
-submitted_resumes
+media
 xapian_index
 settings_local.py
 *.DS_Store

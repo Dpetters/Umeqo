@@ -5,37 +5,22 @@
 """
 
 """ 
-This script is meant to populate the database with the initial content for the site.
-
-Note that in order for this file to work, the initial_contents folder has remain in
-the the same directory as this script.
+This script is meant to populate the database with some fake non-fixturable data.
 """
 
-# Don't switch the order the next three sections!
-
-# Must remain first
 import os, datetime
 
-# Must remain second
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
-# Must remain third
 from django.conf import settings
 from django.contrib.auth.models import User
 
 from events.models import Event, EventType
 from core.models import Industry
 from employer.models import Employer
-from student.models import Student
-
-# Change the following email to yours. All emails sent 
-#to the fake accounts will then go there.
-#YOUR_EMAIL = "dpetters@mit.edu"
 
 PASSWORD_TO_FAKE_ACCOUNTS = "Jamb4Juic3"
-
-#ADMIN_USERNAME = "admin"
 
 SAMPLE_EMPLOYER_USERNAME_1 = "SampleEmployer1"
 SAMPLE_EMPLOYER_COMPANY_NAME_1 = "Sample Employer 1"
@@ -66,9 +51,9 @@ delete_contents(settings.HAYSTACK_XAPIAN_PATH)
 submitted_resumes_path = ROOT + "/media/submitted_resumes/"
 delete_contents(submitted_resumes_path)
 
-
-#Give password to superuser
-admin_user = User.objects.get(id=1)
+# Delete the old submitted user images
+submitted_user_images_path = ROOT + "/media/submitted_user_images/"
+delete_contents(submitted_user_images_path)
 
 #Create sample employer users
 sample_employer_user1 = User.objects.create(username = SAMPLE_EMPLOYER_USERNAME_1,
@@ -104,12 +89,6 @@ sample_employer3 = Employer.objects.create(user=sample_employer_user3,
                                           company_name=SAMPLE_EMPLOYER_COMPANY_NAME_3,
                                           contact_phone="9999999999")
 print "Created Employers"
-
-
-
-# Delete Existing Event Content
-existing_contents_path =  ROOT + "/media/submitted_user_images/Events/"
-delete_contents(existing_contents_path)
 
 # Create Events
 Event.objects.create(employer=sample_employer1,

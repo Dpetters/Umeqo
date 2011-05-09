@@ -208,7 +208,6 @@ def get_cached_filtering_results(request):
         if request.POST['act'] != "0":
             act = request.POST['act']
         
-        print request.POST['sat_t']
         sat_t = None
         if request.POST['sat_t'] != "600":
             sat_t = request.POST['sat_t']

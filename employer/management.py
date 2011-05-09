@@ -13,7 +13,6 @@ from student import constants as student_constants
 
 @receiver(post_save, sender=Employer)
 def employer_creation_callback(instance, **kwargs):
-    print "YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
     latest_student_matches = StudentList(name=student_constants.LATEST_DEFAULT_FILTERING_STUDENT_GROUP_NAME, type=student_enums.GENERAL)
     latest_student_matches.employers.add(kwargs.get("instance", ""))
     all_student_matches = StudentList(name=student_constants.ALL_DEFAULT_FILTERING_STUDENT_GROUP_NAME, type=student_enums.GENERAL)
