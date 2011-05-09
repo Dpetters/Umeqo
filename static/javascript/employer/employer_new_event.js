@@ -8,19 +8,7 @@ $(document).ready( function() {
 
     var event_rules = {
         name:{
-            required: true,
-            remote: {
-                url: CHECK_NAME_AVAILABILITY_URL,
-                error: function(jqXHR, textStatus, errorThrown) {
-                    switch(jqXHR.status){
-                        case 500:
-                            $("#new_event_form_block .main_block_content").html(status_500_message);
-                            break;
-                        default:
-                            $("#new_event_form_block .main_block_content").html(check_connection_message);    
-                    }
-                },
-            }
+            required: true
         },
         start_datetime_0:{
             required: {
@@ -95,13 +83,32 @@ $(document).ready( function() {
     
     $('#id_type').change();
 
-    var new_event_form_validator = $("#new_event_form").validate({
+    var event_form_validator = $("#new_event_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_errors_table,
         rules: event_rules,
         messages: messages
     });
+    console.log(typeof event_form_validator);
+    if (typeof EDIT_FORM != 'undefined' && EDIT_FORM==false) {
+        event_form_validator.addClassRules({
+            name:{
+                remote: {
+                    url: CHECK_NAME_AVAILABILITY_URL,
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        switch(jqXHR.status){
+                            case 500:
+                                $("#new_event_form_block .main_block_content").html(status_500_message);
+                                break;
+                            default:
+                                $("#new_event_form_block .main_block_content").html(check_connection_message);    
+                        }
+                    },
+                }
+            }
+        });
+    }
 
     $("#id_audience").multiselect({
         noneSelectedText: 'select school years',

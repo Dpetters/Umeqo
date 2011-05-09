@@ -12,7 +12,7 @@ Copyright 2011. All Rights Reserved.
 
 {% block metadata %}
 {{block.super}}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer_event_snippet.css" />
 {% endblock %}
 
 {% block content_area %}
@@ -22,10 +22,10 @@ Copyright 2011. All Rights Reserved.
         <span class="main_block_header_title">Your Events</span>
     </div>
     <div class="main_block_content">
-        <ul class="event_list editable_event_list">
+        <ul class="event_list">
         {% for event in upcoming_events %}
            <li>
-           {% include "employer_event_snippet.html" with edit="True"%}
+           {% include "employer_event_snippet.html" %}
            </li>
         {% endfor %}
         </ul>

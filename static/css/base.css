@@ -442,6 +442,7 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
 }
 input[type=submit] {
     font-family: Arial;
+    font-size: 13px;
 }
 
 input[type=text], input[type=password] {
@@ -736,4 +737,10 @@ a.ui-slider-handle{
 
 .main_block_header_links a {
     font-weight: bold;
+}
+
+/*goes for nav-like links next to headers, e.g. "go back to events" */
+#content_area .back_link {
+    font-size: 12px;
+    vertical-align: middle;
 }

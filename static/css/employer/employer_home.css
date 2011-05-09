@@ -40,45 +40,11 @@ label[for=search_form_submit_button] {
     vertical-align:middle;
     height: 32px;
     line-height: 32px;
+    font-size: 13px;
 }
 
 #search_form a {
     vertical-align:middle;
     margin-right: 0;
-    line-height:32px;
-}
-
-.event_list {
-    list-style: none;
-    border-top: 1px solid #DDD;
-}
-.event_list li {
-    clear: both;
-    padding: 5px;
-    background-color: #F6F6F6;
-    border-bottom: 1px solid #DDD;
-}
-.event_list .name {
-    font-size: 16px;
-}
-.event_list .datetime {
-    display: inline-block;
-    font-size: 12px;
-    float: right;
-    color: #222;
-}
-.event_list .name .type {
-    font-size: 11px;
-    background-color: #666;
-    color: #FFF;
-    display: inline-block;
-    padding: 2px 4px;
-    vertical-align: top;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    text-shadow: #000 0 -1px 0;
-}
-.event_list .details {
-    margin-top: 3px;
-    color: #666;
+    line-height:31px;
 }

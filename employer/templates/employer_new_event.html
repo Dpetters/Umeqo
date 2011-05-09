@@ -7,13 +7,18 @@ Copyright 2011. All Rights Reserved.
 {% extends "base.html" %}
 
 {% block title %}
-| New Event
+| {% if edit %}Edit Event{% else %}New Event{% endif %}
 {% endblock %}
 
 {% block metadata %}
 
 <script type="text/javascript">
-var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_availability %}";
+var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
+{% if edit %}
+var EDIT_FORM = true;
+{% else %}
+var EDIT_FORM = false;
+{% endif %}
 </script>
 
 <!-- JQuery Masker Input -->
@@ -36,10 +41,18 @@ var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_availability %}";
 <div id="new_event_form_block" class="main_block no_top_margin">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
-        <span class="main_block_header_title">Create New Event</span>
+        <span class="main_block_header_title">
+        {% if edit %}
+            Edit Event
+            <p><a href="{% url employer_events %}" class="back_link" >back to events</a></p>
+        {% else %}
+            Create New Event
+            <p><a href="{% url home %}" class="back_link" >back to home</a></p>
+        {% endif %}
+        </span>
     </div>
     <div class="main_block_content">
-        <form id="new_event_form" method='POST' action="." enctype="multipart/form-data">
+        <form id="new_event_form" method="POST" action="">
             {% csrf_token %}
             <div class="new_event_form_col">
                 <table class="form_table">
