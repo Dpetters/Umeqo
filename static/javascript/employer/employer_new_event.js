@@ -90,9 +90,8 @@ $(document).ready( function() {
         rules: event_rules,
         messages: messages
     });
-    console.log(typeof event_form_validator);
     if (typeof EDIT_FORM != 'undefined' && EDIT_FORM==false) {
-        event_form_validator.addClassRules({
+        $('#id_name').rules("add",{
             name:{
                 remote: {
                     url: CHECK_NAME_AVAILABILITY_URL,

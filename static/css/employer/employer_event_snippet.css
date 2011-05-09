@@ -47,7 +47,14 @@
 .event_list .edit {
     float: right;
 }
-.event_list .edit a {
-    display: block;
+.event_list .edit p {
     text-align: right;
+}
+.event_list .edit a {
+    text-align: right;
+    display: inline-block;
+    padding: 1px 3px;
+}
+.event_list .edit a:hover {
+    background-color: #EEE;
 }

@@ -44,10 +44,10 @@ var EDIT_FORM = false;
         <span class="main_block_header_title">
         {% if edit %}
             Edit Event
-            <p><a href="{% url employer_events %}" class="back_link" >back to events</a></p>
+            <p><a href="{% url home %}#events" class="back_link" >back to home</a></p>
         {% else %}
             Create New Event
-            <p><a href="{% url home %}" class="back_link" >back to home</a></p>
+            <p><a href="{% url home %}#events" class="back_link" >back to home</a></p>
         {% endif %}
         </span>
     </div>

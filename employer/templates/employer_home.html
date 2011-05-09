@@ -100,7 +100,7 @@ Copyright 2011. All Rights Reserved.
     </div>
 </div>
 <div id="events_and_deadlines_block" class="main_block">
-    <div class="main_block_header">
+    <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Events and Deadlines</span>
         <div class="main_block_header_links">
@@ -109,11 +109,11 @@ Copyright 2011. All Rights Reserved.
     </div>
     <div class="main_block_content">
         {% if your_events %}
-        <h3>Upcoming in the Next Week</h3>
+        <h3>Upcoming</h3>
         <ul class="event_list">
             {% for event in your_events %}
                 <li>
-                {% include "employer_event_snippet.html" %}
+                {% include "employer_event_snippet.html" with edit='True' %}
                 </li>
             {% endfor %}
         </ul>
@@ -128,11 +128,6 @@ Copyright 2011. All Rights Reserved.
             </p>
         </div>
         {% endif %}
-    </div>
-    <div class="main_block_footer">
-        <div class="main_block_footer_links">
-            <a id="view_all_events_link" href="/employer/events/"><strong>View All Events</strong></a>
-        </div>
     </div>
 </div>
 {% endblock %}

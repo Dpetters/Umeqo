@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.utils import simplejson
 
 from employer.forms import SearchForm, FilteringForm, StudentFilteringForm
@@ -125,8 +125,6 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            request.user.employer.events_posted +=1
-            request.user.employer.save()
             return HttpResponseRedirect('/employer/events/' + str(event_obj.id))
     else:
         form = EventForm({'start_datetime':datetime.datetime.now()})
@@ -144,6 +142,8 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_edit_event(request, id=None, template_name='employer_new_event.html', extra_context=None):
     event = Event.objects.get(pk=id)
+    if event.employer!=request.user.employer:
+        return HttpResponseForbidden('not your event!')
     if request.method=='POST':
         form = EventForm(request.POST,instance=event)
         if form.is_valid():
@@ -165,18 +165,23 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
                               context,
                               context_instance = RequestContext(request) )
 
-def delete_event(request, 
-                 template = 'employer_delete_event.html'):
-    
-    if request.is_ajax():
-        if request.method == 'POST':
-            try:
-                Event.objects.get(id=request.POST["event_id"]).delete()
-                return HttpResponse(simplejson.dumps(request.POST["event_id"]), mimetype="application/json")
-            except Event.DoesNotExist:
-                return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-    return HttpResponseRedirect('/')
-
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def employer_delete_event(request,
+                          id,
+                          extra_context = None):
+    try:
+        event = Event.objects.get(pk=id)
+        if event.employer!=request.user.employer:
+            return HttpResponseForbidden('not your event!')
+        event.is_active = False
+        event.save()
+        if request.is_ajax():
+            return HttpResponse(simplejson.dumps(id), mimetype="application/json")
+        else:
+            return HttpResponseRedirect(reverse('home'))
+    except Event.DoesNotExist:
+        return HttpResponse(simplejson.dumps(False), mimetype="application/json")
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)

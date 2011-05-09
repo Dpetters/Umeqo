@@ -6,8 +6,13 @@
 
 from django.db import models
 from core.models import EventType
+from core.managers import ActiveManager
     
 class Event(models.Model):
+    
+    #replaces default objects with a manager that filters out inactive events
+    is_active = models.BooleanField(default=True,editable=False)
+    objects = ActiveManager()
 
     # Required Fields
     employer = models.ForeignKey("employer.Employer")

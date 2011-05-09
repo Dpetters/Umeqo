@@ -17,5 +17,12 @@ $(document).ready( function () {
             query: "Please supply a query"
         }
     });
+
+    $('.delete-event-link').live('click',function(e) {
+        $.post($(this).attr('href'),function(data) {
+            console.log(data);
+        });
+        e.preventDefault();
+    });
     
 });

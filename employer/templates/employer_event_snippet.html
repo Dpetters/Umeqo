@@ -18,9 +18,11 @@
 </div>
 {% if edit %}
 <div class="edit">
-<a href="{% url employer_edit_event id=event.id %}">Edit</a>
-<a href="#">Delete</a>
-<a href="#">View Description</a>
+<p><a href="#">View Description</a></p>
+<p>
+    <a href="{% url employer_edit_event id=event.id %}">Edit</a>
+    <a href="{% url employer_delete_event id=event.id %}" class="delete-event-link">Delete</a>
+</p>
 </div>
 {% endif %}
 <div class="details">
