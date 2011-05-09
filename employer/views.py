@@ -63,6 +63,7 @@ def employer_add_to_resume_book(request, student_id):
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_event_preview(request,
+                           id,
                            template_name="employer_event.html",
                            extra_context=None):
     
@@ -103,8 +104,9 @@ def employer_events(request,
                     template_name="employer_events.html",
                     extra_context=None):
     
-    context = {}
-    context['upcoming_events'] = request.user.employer.event_set.filter(start_datetime__gt=datetime.datetime.now())
+    context = {
+        'upcoming_events': request.user.employer.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+    }
     context.update(extra_context or {})
     return render_to_response(template_name,
                               context,
@@ -115,7 +117,7 @@ def employer_events(request,
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_new_event(request, template_name='employer_new_event.html', extra_context=None):
     if request.method == 'POST':
-        form = EventForm(data=request.POST, files=request.FILES)
+        form = EventForm(data=request.POST)
         if form.is_valid():
             event_obj = form.save(commit=False)
             event_obj.employer = request.user.employer
@@ -134,6 +136,31 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
     
     context.update(extra_context or {})
     return render_to_response(template_name, 
+                              context,
+                              context_instance = RequestContext(request))
+
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def employer_edit_event(request, id=None, template_name='employer_new_event.html', extra_context=None):
+    event = Event.objects.get(pk=id)
+    if request.method=='POST':
+        form = EventForm(request.POST,instance=event)
+        if form.is_valid():
+            event_obj = form.save(commit=False)
+            event_obj.employer = request.user.employer
+            event_obj.save()
+            if hasattr(form, 'save_m2m'):
+                form.save_m2m()
+            return HttpResponseRedirect('/employer/events/' + str(event_obj.id))
+    else:
+        form = EventForm(instance=event)
+    context = {
+        'form': form,
+        'edit': True
+    }
+
+    context.update(extra_context or {})
+    return render_to_response(template_name,
                               context,
                               context_instance = RequestContext(request) )
 

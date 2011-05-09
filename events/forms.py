@@ -21,14 +21,15 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     date_format = forms.DateInput.format
     time_format = forms.TimeInput.format
 
-    def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None):   
+    def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None, initial=None):
+        print "initial: ",initial
         widgets = (forms.DateInput(attrs=dateAttrs, format=date_format),
                    forms.Select(attrs=timeAttrs, choices=TIME_CHOICES))
         super(ImprovedSplitDateTimeWidget, self).__init__(widgets, {})
 
     def decompress(self, value):
         if value:
-            return [value.date(), value.time().replace(microsecond=0)]
+            return [value.date(), value.time().replace(microsecond=0).strftime("%H:%M")]
         return [None, None]
         
     class Media:

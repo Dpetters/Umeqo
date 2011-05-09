@@ -104,6 +104,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/events/$', 'employer_events', {}, 'employer_events'),
     (r'^employer/events/summary/(?P<id>\d+)/$', 'employer_event_summary', {}, 'employer_event_summary'),
     (r'^employer/events/new/$', 'employer_new_event', {}, 'employer_new_event'),
+    (r'^employer/events/edit/(?P<id>\d+)$', 'employer_edit_event', {}, 'employer_edit_event'),
     (r'^employer/events/(?P<id>\d+)/$', 'employer_event_preview', {}, 'employer_event_preview'),
     # Employer Invitations
     (r'^employer/invitations/$', 'employer_invitations', {}, 'employer_invitations'),

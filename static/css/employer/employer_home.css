@@ -40,10 +40,11 @@ label[for=search_form_submit_button] {
     vertical-align:middle;
     height: 32px;
     line-height: 32px;
+    font-size: 13px;
 }
 
 #search_form a {
     vertical-align:middle;
     margin-right: 0;
-    line-height:32px;
+    line-height:31px;
 }
