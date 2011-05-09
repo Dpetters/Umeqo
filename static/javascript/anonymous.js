@@ -53,6 +53,7 @@ $(document).ready( function () {
                             break;
 	                    case true:
 	                    	window.location.replace(data.url);
+	                    	break;
  		                default:
 							show_error_dialog(page_error_message);
                             break;
