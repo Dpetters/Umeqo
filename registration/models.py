@@ -16,14 +16,15 @@ from django.template.loader import render_to_string
 from django.utils.hashcompat import sha_constructor
 from django.utils.translation import ugettext_lazy as _
 
-
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
-
 
 class InterestedPerson(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
-    email = models.EmailField("Contact E-mail", blank=True, null=True)
-    
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
+    summer_plans = models.CharField("Summer plans?",max_length=200)
+    ip_address = models.IPAddressField(editable=False)
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
