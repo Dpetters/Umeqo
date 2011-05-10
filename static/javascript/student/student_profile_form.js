@@ -71,7 +71,6 @@ $(document).ready( function() {
             url: '/student/create-camus-organization/',
             error: function(jqXHR, textStatus, errorThrown) {
             	clearTimeout(create_campus_organization_dialog_timeout);
-            	alert(jqXHR.status);
                 switch(jqXHR.status){
                     case 0:
                     	create_campus_organization_dialog.html(dialog_check_connection_message);
@@ -133,6 +132,9 @@ $(document).ready( function() {
                                             $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
                                             create_campus_organization_dialog.dialog('destroy');
                                         });
+                                        break;
+									case false:
+										create_campus_organization_dialog.html(dialog_error_message);
                                         break;
                                     default:
 										create_campus_organization_dialog.html(dialog_error_message);
@@ -257,6 +259,9 @@ $(document).ready( function() {
                                             create_language_dialog.dialog('destroy');
                                         });
                                         break;
+									case false:
+										create_campus_organization_dialog.html(dialog_error_message);
+                                        break;
                                     default:
 										create_language_dialog.html(dialog_error_message);
                                         break;
@@ -302,6 +307,7 @@ $(document).ready( function() {
         $profile_form_info_dialog.load('/student/profile-form-info/', function () {
         });
     });
+    
     // Create Profile Form Validation
     var v = $("#profile_form").validate({
         highlight: highlight,

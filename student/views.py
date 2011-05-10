@@ -72,7 +72,8 @@ def student_registration(request,
             Student.objects.create(user=new_user)
 
             return HttpResponse(simplejson.dumps({'valid':True, 'url':reverse(success_url)}), mimetype="application/json")
-        else: 
+        else:
+            # Should be handled by javascript. Bug!
             return HttpResponse(simplejson.dumps({'valid':False}))
     else:
         form = form_class()
@@ -109,6 +110,8 @@ def student_create_profile(request,
             if hasattr(student, 'save_m2m'):
                 student.save_m2m()
             return process_resume(student)
+        else:
+            pass # Should have been handled by javascript! Bug.
     else:
         form = form_class()
     
@@ -147,6 +150,8 @@ def student_edit_profile(request,
                 return process_resume(request.user.student)
             else:
                 return redirect('home')
+        else:
+            pass # Should have been handled by javascript! Bug.
     else:
         form = form_class(instance=request.user.student)
 
@@ -188,8 +193,9 @@ def student_create_campus_organization(request,
                         "name": new_campus_organization.name, 
                         "id": new_campus_organization.id}
                 return HttpResponse(simplejson.dumps(data))
+            # Should be caught by javascript. Bug!
             invalid_data = {"valid": False, 
-                            "error": form.errors}
+                            "errors": form.errors}
             return HttpResponse(simplejson.dumps(invalid_data))
         else:
             create_campus_organization_form = form_class()
@@ -225,8 +231,9 @@ def student_create_language(request,
                         "proficient_id":proficient.id, 
                         "basic_id":basic.id}  
                 return HttpResponse(simplejson.dumps(data))
+            # Should be caught by javascript. Bug!
             invalid_data = {"valid": False, 
-                            "error": form.errors}
+                            "errors": form.errors}
             return HttpResponse(simplejson.dumps(invalid_data))
         else:
             create_language_form = form_class()

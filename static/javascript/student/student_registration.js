@@ -42,6 +42,10 @@ $(document).ready( function() {
 		                    break;
 		                case true:
                             window.location.replace(data.url);
+                            break;
+                        default:
+                    		$("#student_registration_block .main_block_content").html(page_error_message);
+                    		break;
                     }
                 }
             });
