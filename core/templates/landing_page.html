@@ -16,6 +16,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
         </script>
+        <link href="http://fonts.googleapis.com/css?family=Rokkitt:regular" rel="stylesheet" type="text/css" >
     </head>
     <body>
         {% if email_error %}
@@ -34,16 +35,19 @@
         {% endif %}
         <div class="center">
             <h1>Umeqo</h1>
-            <br />
-            <h3>Coming to MIT Fall 2011</h3>
+            <h3 class="mit">Coming to MIT Fall 2011</h3>
             <div class="col">
-                <p>Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events.</p>
-                <p>The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events.</p>
-                <p>Within minutes, students can create their easy-to-maintain profile, find and RSVP to company events, and subscribe to employers for future event updates.</p>
+                <p>Umeqo is an innovative recruiting resource for students and employers to discover one another.</p>
+                <h2>What’s so innovative?</h2>
+                <p class="deets"><span>Easy-to-Maintain Profile.</span> Fill in just a few fields to be discovered by employers. Umeqo indexes your resume and makes your profile searchable so employers can easily find you.</p>
+                <p class="deets"><span>Streamlined Events.</span> Add events to Google Calendar with a click of a button, view and print location maps - never again be misinformed of what to bring and what to wear.</p>
+                <p class="deets"><span>Automatic Notifications.</span> Subscribe to employers you’re interested in and get notified when they post new events and deadlines.</p>
+                <p class="deets"><span>Event Invites.</span> Receive invites to both public and private events from employers interested in you.</p>
             </div>
             <div class="col">
                 <p><strong>We're working hard to craft the ultimate experience.</strong></p>
-                <p>Interested? Submit your email below and we'll let you know the moment it's ready.</p>
+                <p>Interested? Help us by participating in the beta!</p>
+                <p>Fill in the information below (we won't sell it, rent it, or trade it - promise!) and we'll get in touch when the time comes.</p>
                 <p>
                     <form action="" method="POST">
                         {% csrf_token %}

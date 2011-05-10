@@ -19,7 +19,7 @@ urlpatterns = patterns('',
         url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATICFILES_DIRS[0] }),
     )
 
-if not settings.LAUNCHED:
+if not settings.LAUNCHED and not settings.DEBUG:
     urlpatterns += patterns('',
         (r'^', 'core.views.landing_page'),
     )

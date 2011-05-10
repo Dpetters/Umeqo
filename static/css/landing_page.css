@@ -58,24 +58,41 @@ h1 {
     background: url('/static/images/logo_landing.png') no-repeat center center transparent;
     text-indent: -10000px;
 }
-h3{ 
+h3.mit{ 
 	color: white;
-    line-height: 21px;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom:20px;
 	margin-left:auto;
 	margin-right:auto;
-    width:250px;
+    width:260px;
     text-shadow: #444 0 -1px 0;
     text-transform: uppercase;
+    letter-spacing: 2px;
+}
+h2 {
+    color: #FFF;
+    margin: 20px 0 10px;
+    font-size: 30px;
+    font-family: 'Rokkitt', serif;
+    text-shadow: #000 0 -1px 0;
 }
 p {
-    color: white;
+    color: #DDD;
     line-height: 21px;
     font-size: 15px;
-    margin: 20px 0;
+    margin: 10px 0;
     text-align: justify;
     text-shadow: #444 0 -1px 0;
+}
+p.deets {
+    text-align: justify;
+    font-size: 14px;
+}
+p.deets span {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 3px;
 }
 div.center {
     text-align: center;
@@ -84,9 +101,9 @@ div.center {
     margin: 0 auto;
 }
 .col {
-    width: 370px;
+    width: 380px;
     float: left;
-    padding: 0 13px;
+    padding: 0 10px;
 }
 form {
     margin: 25px 0;
@@ -100,20 +117,24 @@ label {
     width: 110px;
     text-align: right;
     margin-right: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFF;
 }
 input[type="text"] {
     behavior: url(/static/lib/pie/PIE.htc);
     border: 0;
-    padding: 0 5px;
+    padding: 0 7px;
     font-size: 12px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
+    border-radius: 2px;
     width: 216px;
-    height: 35px;
+    height: 30px;
     vertical-align: middle;
     -webkit-transition: box-shadow 0.5s ease;
     -moz-transition: box-shadow 0.5s ease;
     transition: box-shadow 0.5s ease;
+    border: 1px solid #FFF;
 }
 input[type="text"]:focus {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -137,7 +158,7 @@ input[type="submit"] {
     box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
     color: #FFF;
     float: left;
-    margin-left: 119px;
+    margin-left: 115px;
 }
 input[type="submit"]:hover {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -149,6 +170,8 @@ input[type="submit"]:hover {
 strong {
     font-size: 30px;
     line-height: 30px;
+    color: #FFF;
+    font-family: 'Rokkitt', serif;
 }
 .message {
     text-align: center;
