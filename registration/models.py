@@ -23,8 +23,8 @@ class InterestedPerson(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
-    summer_plans = models.CharField("Summer plans?",max_length=200)
-    ip_address = models.IPAddressField(editable=False)
+    summer_plans = models.CharField("Summer plans?",max_length=200, null=True)
+    ip_address = models.IPAddressField(editable=False, null=True)
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)

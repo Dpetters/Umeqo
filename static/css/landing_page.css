@@ -169,6 +169,14 @@ strong {
     font-size: 14px;
     text-shadow: #EEE 0 1px 0;
 }
+.message.error {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background-image: -moz-linear-gradient(#F0F0F0, #BBB);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#900000), to(#700000));
+    -pie-background: linear-gradient(#F0F0F0, #BBB);
+    color: #FFF;
+    text-shadow: #000 0 -1px 0;
+}
 .footer {
     clear: both;
     padding-top: 50px;

@@ -34,7 +34,7 @@ AKISMET_API_KEY = "39ec1788fc8e"
 LOGIN_URL = '/'
 
 # Emails sent to users will be coming from this email address
-DEFAULT_FROM_EMAIL = 'sbconnect.mit@gmail.com'
+DEFAULT_FROM_EMAIL = 'umeqo@mit.edu'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

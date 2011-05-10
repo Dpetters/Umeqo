@@ -89,13 +89,15 @@ def landing_page(request,
     
     posted = False
     disabled = False
+    form_error = False
+    email_error = False
     
-    if request.method == "POST":
+    if request.method=="POST":
         form = form_class(request.POST)
         if form.is_valid():
-            
-            print request.META['REMOTE_ADDR']
-            #form.save()
+            person = form.save(commit=False)
+            person.ip_address = request.META['REMOTE_ADDR']
+            person.save()
             
             subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
             message = "Someone with the email "+ form.cleaned_data['email'] +" signed up!"
@@ -104,13 +106,21 @@ def landing_page(request,
             send_mail(subject,message,sender,recipients)
             posted = True
             disabled = True
+        else:
+            print "invalid"
+            if InterestedPerson.objects.filter(email=request.POST.get('email')).exists():
+                email_error = True
+                print "email error"
+            form_error = True
     else:
         form = form_class()
         
     context = {
             'form': form,
             'posted': posted,
-            'disabled': disabled
+            'disabled': disabled,
+            'form_error': form_error,
+            'email_error': email_error
     }
 
     context.update(extra_context or {})

@@ -49,7 +49,7 @@ function create_error_dialog() {
         return error_dialog;
 };
 function show_error_dialog(message){
-	 error_dialog = create_error_dialog();
+     error_dialog = create_error_dialog();
      error_dialog.html(message);
 };    
 
@@ -191,7 +191,7 @@ $(document).ready( function () {
                 clearTimeout(contact_us_dialog_timeout);
                 switch(jqXHR.status){
                     case 0:
-                    	contact_us_dialog.html(dialog_check_connection_message);
+                        contact_us_dialog.html(dialog_check_connection_message);
                         break;
                     default:
                         contact_us_dialog.html(dialog_error_message);
@@ -212,14 +212,14 @@ $(document).ready( function () {
                                 show_form_submit_loader("#contact_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
-                            	hide_form_submit_loader("#contact_form");
-                           		switch(jqXHR.status){
-				                    case 0:
-				                        $(".contact_us_dialog .error_section").html(form_check_connection_message);
-				                        break;
-				                    default:
-				                        contact_us_dialog.html(dialog_error_message);
-				                }
+                                hide_form_submit_loader("#contact_form");
+                                   switch(jqXHR.status){
+                                    case 0:
+                                        $(".contact_us_dialog .error_section").html(form_check_connection_message);
+                                        break;
+                                    default:
+                                        contact_us_dialog.html(dialog_error_message);
+                                }
                             },
                             success: function (data) {
                                 hide_form_submit_loader("#contact_form");
@@ -231,10 +231,10 @@ $(document).ready( function () {
                                         contact_us_dialog.html(success_message);
                                         break;
                                     case false:
-                                    	$(".contact_us_dialog .error_section").html(data.errors);
-                                    	break;
+                                        $(".contact_us_dialog .error_section").html(data.errors);
+                                        break;
                                     default:
-										contact_us_dialog.html(dialog_error_message);
+                                        contact_us_dialog.html(dialog_error_message);
                                         break;
                                 }
                                 contact_us_dialog.dialog('option', 'position', 'center');
@@ -277,20 +277,20 @@ $(document).ready( function () {
         window.location.reload();
     });
 
-	jQuery.validator.addMethod("complete_url", function(val, elem) {
-	    // if no url, don't do anything
-	    if (val.length == 0) { return true; }
-	 
-	    // if user has not entered http:// https:// or ftp:// assume they mean http://
-	    if(!/^(https?|ftp):\/\//i.test(val)) {
-	        val = 'http://'+val; // set both the value
-	        $(elem).val(val); // also update the form element
-	    }
-	    // now check if valid url
-	    // http://docs.jquery.com/Plugins/Validation/Methods/url
-	    // contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
-	    return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
-	})
+    jQuery.validator.addMethod("complete_url", function(val, elem) {
+        // if no url, don't do anything
+        if (val.length == 0) { return true; }
+     
+        // if user has not entered http:// https:// or ftp:// assume they mean http://
+        if(!/^(https?|ftp):\/\//i.test(val)) {
+            val = 'http://'+val; // set both the value
+            $(elem).val(val); // also update the form element
+        }
+        // now check if valid url
+        // http://docs.jquery.com/Plugins/Validation/Methods/url
+        // contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
+        return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
+    })
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;
@@ -307,4 +307,27 @@ $(document).ready( function () {
             return true;
         }
     }, "Please specify a valid duration");
+});
+
+/* THIS ADDS CSRF PROTECTION TO AJAX CALLS */
+$(document).ajaxSend(function(event, xhr, settings) {
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
 });

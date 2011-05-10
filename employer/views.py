@@ -75,19 +75,6 @@ def employer_event_preview(request,
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_event_summary(request, 
-                           template_name="employer_event_summary.html",
-                           extra_context=None):
-    
-    context = {}
-    context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
-
-@login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_account_settings(request, 
                               template_name="employer_account_settings.html", 
                               extra_context=None):

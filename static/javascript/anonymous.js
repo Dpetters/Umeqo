@@ -23,39 +23,39 @@ $(document).ready( function () {
                     show_form_submit_loader("#login_form");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-    	            hide_form_submit_loader("#login_form");
-	                switch(jqXHR.status){
-	                    case 0:
-	                    	$("#login_form .error_section").html(form_check_connection_message);
-	                        break;
-	                    default:
-							show_error_dialog(page_error_message);
-	                }
+                        hide_form_submit_loader("#login_form");
+                    switch(jqXHR.status){
+                        case 0:
+                            $("#login_form .error_section").html(form_check_connection_message);
+                            break;
+                        default:
+                            show_error_dialog(page_error_message);
+                    }
                 },
                 success: function(data) {
                     hide_form_submit_loader("#login_form");
                     switch(data.valid) {
-                    	case false:
-                   			switch(data.reason) {
-		                        case "invalid":
-		                            $("#login_form .error_section").html("<p class=error>This username and password combo is invalid. Note that both are case-sensitive.</p>");
-		                            break;
-		                        case "inactive":
-		                            $("#login_form .error_section").html("<p class=error>This account has been suspended. Please direct all inquiries to admin@umeqo.com.</p>");
-		                            break;
-		                        case "cookies_disabled":
-		                            $("#login_form .error_section").html("<p class=error>Your browser doesn't seem to have cookies enabled. Cookies are required to login.</p>");
-		                            break;
-		                        default:
-									show_error_dialog(page_error_message);
-	                                break;
-	                        }
+                        case false:
+                               switch(data.reason) {
+                                case "invalid":
+                                    $("#login_form .error_section").html("<p class=error>This username and password combo is invalid. Note that both are case-sensitive.</p>");
+                                    break;
+                                case "inactive":
+                                    $("#login_form .error_section").html("<p class=error>This account has been suspended. Please direct all inquiries to admin@umeqo.com.</p>");
+                                    break;
+                                case "cookies_disabled":
+                                    $("#login_form .error_section").html("<p class=error>Your browser doesn't seem to have cookies enabled. Cookies are required to login.</p>");
+                                    break;
+                                default:
+                                    show_error_dialog(page_error_message);
+                                    break;
+                            }
                             break;
-	                    case true:
-	                    	window.location.replace(data.url);
-	                    	break;
- 		                default:
-							show_error_dialog(page_error_message);
+                        case true:
+                            window.location = data.url;
+                            break;
+                         default:
+                            show_error_dialog(page_error_message);
                             break;
                     }
                 }
@@ -73,10 +73,10 @@ $(document).ready( function () {
                     error: function(jqXHR, textStatus, errorThrown) {
                         switch(jqXHR.status){
                             case 0:
-                            	$("#login_form .error_section").html(form_check_connection_message);
+                                $("#login_form .error_section").html(form_check_connection_message);
                                 break;
                             default:
-                            	show_error_dialog(page_error_message);
+                                show_error_dialog(page_error_message);
                         }
                     },
                 }

@@ -18,6 +18,15 @@
         </script>
     </head>
     <body>
+        {% if email_error %}
+            <div class="message">
+                The email you've submitted has already been recorded. Thanks for your interest!
+            </div>
+        {% else %}{% if form_error %}
+            <div class="message error">
+                Please check that you've filled out your first name, last name, and email.
+            </div>
+        {% endif %}{% endif %}
         {% if posted %}
                 <div class="message">
                     Thank you for your interest! We'll let you know when the beta opens.
@@ -38,7 +47,9 @@
                 <p>
                     <form action="" method="POST">
                         {% csrf_token %}
-                        {{form.as_p}}
+                        {% for field in form %}
+                            <p>{{field.label_tag}}{{field}}</p>
+                        {% endfor %}
                         {% if not disabled %}
                         <input type="submit" value="submit"/> 
                         {% else %}
