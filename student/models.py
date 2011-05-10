@@ -28,8 +28,6 @@ class StudentList(models.Model):
     # Dates
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
-    testfield = models.CharField(max_length=200)
-    
     def __unicode__(self):
         return self.name
 
