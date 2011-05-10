@@ -125,7 +125,7 @@ TEMPLATE_DIRS = (
 )
 
 SOUTH_MIGRATION_MODULES = {
-    'messages': 'sbconnect.messages.migrations',
+    'messages': 'umeqo.messages.migrations',
 }
 
 INSTALLED_APPS = (
