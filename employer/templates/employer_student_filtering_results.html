@@ -55,7 +55,11 @@ Copyright 2011. All Rights Reserved.
 	<div id="results">
 		{% if page.object_list %}
 		{% for student in page.object_list %}
+		{% if forloop.first %}
+		<div id="first_student_main_info" class="student_main_info">
+		{% else %}
 		<div class="student_main_info">
+		{% endif %}
 			<table class="student_main_info_table">
 				<tr>
 					<td class="student_checkbox_cell">
@@ -78,7 +82,7 @@ Copyright 2011. All Rights Reserved.
 					{% endif %}
 					</td>
 					<td class="student_resume_cell">
-					<a class="view_resume_link" target="_blank" href="{{ STATIC_URL }}{{student.resume}}">View Resume</a>
+					<a class="view_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
 					</td>
 				</tr>
 				<tr>

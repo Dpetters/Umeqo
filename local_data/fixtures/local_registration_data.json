@@ -1,0 +1,18 @@
+[
+ {
+  "pk": 1, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "57dc1ad43a02f53164311436720233ee3565043d", 
+   "user": 5
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "481a0145fd311d7d8d23f6d7d70e5dd0109f86c6", 
+   "user": 6
+  }
+ }
+]

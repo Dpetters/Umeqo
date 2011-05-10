@@ -44,6 +44,12 @@
     background-color:#F9F9F9;
 }
 
+#results_menu{
+	border-bottom:1px solid #CCC;
+}
+#first_student_main_info{
+	border-top:none;
+}
 
 #filtering_block .side_block_content, #student_list_block .side_block_content {
     padding:0;
