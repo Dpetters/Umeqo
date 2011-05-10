@@ -65,8 +65,9 @@ h3{
     margin-bottom:20px;
 	margin-left:auto;
 	margin-right:auto;
-    width:200px;
+    width:250px;
     text-shadow: #444 0 -1px 0;
+    text-transform: uppercase;
 }
 p {
     color: white;
@@ -91,15 +92,24 @@ form {
     margin: 25px 0;
     text-align:center;
 }
+form p {
+    margin: 7px 0;
+}
+label {
+    display: inline-block;
+    width: 110px;
+    text-align: right;
+    margin-right: 5px;
+}
 input[type="text"] {
     behavior: url(/static/lib/pie/PIE.htc);
     border: 0;
-    padding: 0 10px;
-    font-size: 16px;
+    padding: 0 5px;
+    font-size: 12px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
     border-radius: 5px;
     width: 216px;
-    height: 40px;
+    height: 35px;
     vertical-align: middle;
     -webkit-transition: box-shadow 0.5s ease;
     -moz-transition: box-shadow 0.5s ease;
@@ -111,9 +121,9 @@ input[type="text"]:focus {
 }
 input[type="submit"] {
     behavior: url(/static/lib/pie/PIE.htc);
-    height: 40px;
+    height: 30px;
     border: 1px solid #EEE;
-    font-size: 16px;
+    font-size: 13px;
     vertical-align: middle;
     background-image: -moz-linear-gradient(#555, #333);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#333));
@@ -126,6 +136,8 @@ input[type="submit"] {
     -webkit-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
     box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
     color: #FFF;
+    float: left;
+    margin-left: 119px;
 }
 input[type="submit"]:hover {
     behavior: url(/static/lib/pie/PIE.htc);

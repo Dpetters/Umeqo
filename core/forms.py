@@ -10,7 +10,7 @@ from django import forms
 from django.conf import settings
 from django.template import loader, RequestContext
 from django.contrib.sites.models import Site
-
+from registration.models import InterestedPerson
 
 class ContactForm(forms.Form):
     """
@@ -227,8 +227,12 @@ class AkismetContactForm(ContactForm):
         return self.cleaned_data['body']
 
 
-class EmailForm(forms.Form):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. me@example.com'}))
+class BetaForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. susan@mit.edu'}))
+    summer_plans = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'e.g. Goldman, Microsoft, UROP'}))
+    class Meta:
+        fields = ('first_name','last_name','email','summer_plans')
+        model = InterestedPerson
     
 class CreateCampusOrganizationForm(forms.ModelForm):
     name = forms.CharField(label="Name:", max_length=42)

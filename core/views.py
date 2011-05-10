@@ -24,7 +24,7 @@ from notification.models import Notice
 from employer.view_helpers import check_for_new_student_matches
 from core.models import Course, CampusOrg, Language, Topic
 from registration.models import InterestedPerson
-from core.forms import EmailForm, AkismetContactForm
+from core.forms import BetaForm, AkismetContactForm
 from employer.models import Employer
 from events.models import Event
 from core import enums
@@ -82,10 +82,9 @@ def contact_us_dialog(request,
                                   context_instance=RequestContext(request))
     return redirect('home')
 
-    
 def landing_page(request,
             template_name="landing_page.html",
-            form_class = EmailForm,
+            form_class = BetaForm,
             extra_context = None):
     
     posted = False
@@ -94,10 +93,10 @@ def landing_page(request,
     if request.method == "POST":
         form = form_class(request.POST)
         if form.is_valid():
-            try:
-                InterestedPerson.objects.get(email=form.cleaned_data['email'])
-            except InterestedPerson.DoesNotExist:
-                InterestedPerson.objects.create(email=form.cleaned_data['email'])
+            
+            print request.META['REMOTE_ADDR']
+            #form.save()
+            
             subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
             message = "Someone with the email "+ form.cleaned_data['email'] +" signed up!"
             sender = settings.DEFAULT_FROM_EMAIL
@@ -106,7 +105,7 @@ def landing_page(request,
             posted = True
             disabled = True
     else:
-        form = EmailForm()
+        form = form_class()
         
     context = {
             'form': form,
