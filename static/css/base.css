@@ -472,6 +472,13 @@ input[type=text], input[type=password] {
 }
 
 /* TABLES + FORMS = <3 */
+.form_table{
+	width:100%;
+}
+.form_table td{
+	text-align:left;
+}
+
 .form_table th {
     vertical-align: bottom;
     padding-bottom: 3px;
