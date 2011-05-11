@@ -38,7 +38,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         'show_rsvp': False,
         'attending': False
     }
-    if request.user.student:
+    if hasattr(request.user,"student"):
         rsvp_events = request.user.student.event_set.all()
         if event in rsvp_events:
             context['attending'] = True
