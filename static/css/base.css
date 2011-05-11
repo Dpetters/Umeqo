@@ -347,7 +347,7 @@ p {
     left: -3px;
     top: 1px;
 }
-#content_area .ui-multiselect-menu {
+#filtering_block .ui-multiselect-menu {
     position: static;
     margin: -4px 0 5px;
     border-radius: 2px;
