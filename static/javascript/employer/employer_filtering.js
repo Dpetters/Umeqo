@@ -14,6 +14,7 @@ $(document).ready( function() {
 	var min_sat_v = 200;
 	var min_sat_w = 200;
 	var page = 1;
+	var last_page = 1;
 	var student_list = $("#id_student_list option:selected").val(); 
 	var ordering = $("#id_ordering option:selected").val();
 	var results_per_page = $("#id_results_per_page option:selected").val();
@@ -22,8 +23,7 @@ $(document).ready( function() {
 	var graduation_years = new Array();
 	var previous_employers = new Array();
 	var industries_of_interest = new Array();
-	var looking_for_internship = null;
-	var looking_for_fulltime = null;
+	var employment_types = new Array();
 	var languages = new Array();
 	var campus_organizations = new Array()
 	var older_than_18 = "False";
@@ -56,7 +56,12 @@ $(document).ready( function() {
 		$("#results_block_info_section").css('display', 'block');
 		$("#results_block_info").html(ajax_loader);
 		var error_dialog_timeout = setTimeout(function(){$(long_load_message).insert("#results_block_info img");}, 10000);
-		console.log(courses);
+		if(page == last_page){
+			page = 1;			
+		}else{
+			last_page = page;
+		}
+			
 		$.ajax({
 			type: 'POST',
 			url: '/employer/student-filtering/',
@@ -71,7 +76,12 @@ $(document).ready( function() {
 				'sat_m' : min_sat_m,
 				'sat_v' : min_sat_v,
 				'sat_w' : min_sat_w,
-				'courses' : courses,
+				'courses' : courses.join('~'),
+				'school_years' : school_years.join('~'),
+				'graduation_years' : graduation_years.join('~'),
+				'employment_types' : employment_types.join('~'),
+				'previous_employers' : previous_employers.join('~'),
+				'industries_of_interest' : industries_of_interest.join('~'),
 				'older_than_18' : older_than_18,
 				'citizen' : citizen,
 				'ordering': ordering,
@@ -200,6 +210,18 @@ $(document).ready( function() {
 		height: multiselectLargeHeight,
 		//open: handle_multiselect_open_in_accordion,
 		//close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			courses = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			courses = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
 		click: function(event, ui){
 			courses = $("#id_majors").multiselect("getChecked").map(function(){
 			   return this.value;	
@@ -219,8 +241,20 @@ $(document).ready( function() {
 		height: multiselectMediumHeight,
 		//open: handle_multiselect_open_in_accordion,
 		//close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			school_years = $("#id_school_years").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			school_years = $("#id_school_years").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
 		click: function(event, ui){
-			school_years = $("#id_majors").multiselect("getChecked").map(function(){
+			school_years = $("#id_school_years").multiselect("getChecked").map(function(){
 			   return this.value;	
 			}).get();
 			initiate_ajax_call();
@@ -238,8 +272,20 @@ $(document).ready( function() {
 		height: multiselectMediumHeight,
 		//open: handle_multiselect_open_in_accordion,
 		//close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			graduation_years = $("#id_graduation_years").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			graduation_years = $("#id_graduation_years").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
 		click: function(event, ui){
-			graduation_years = $("#id_majors").multiselect("getChecked").map(function(){
+			graduation_years = $("#id_graduation_years").multiselect("getChecked").map(function(){
 			   return this.value;	
 			}).get();
 			initiate_ajax_call();
@@ -257,8 +303,20 @@ $(document).ready( function() {
 		height: multiselectTwoOptionHeight,
 		//open: handle_multiselect_open_in_accordion,
 		//close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			employment_types = $("#id_employment_types").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			employment_types = $("#id_employment_types").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
 		click: function(event, ui){
-			employment_types = $("#id_majors").multiselect("getChecked").map(function(){
+			employment_types = $("#id_employment_types").multiselect("getChecked").map(function(){
 			   return this.value;	
 			}).get();
 			initiate_ajax_call();
@@ -276,8 +334,20 @@ $(document).ready( function() {
 		height: multiselectLargeHeight,
 		//open: handle_multiselect_open_in_accordion,
 		//close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			previous_employers = $("#id_previous_employers").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			previous_employers = $("#id_previous_employers").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
 		click: function(event, ui){
-			previous_employers = $("#id_majors").multiselect("getChecked").map(function(){
+			previous_employers = $("#id_previous_employers").multiselect("getChecked").map(function(){
 			   return this.value;	
 			}).get();
 			initiate_ajax_call();
@@ -295,6 +365,24 @@ $(document).ready( function() {
 		height: multiselectLargeHeight,
 		//open: handle_multiselect_open_in_accordion,
 		//close: handle_multiselect_close_in_accordion
+		checkAll: function(){
+			industries_of_interest = $("#id_industries_of_interest").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			industries_of_interest = $("#id_industries_of_interest").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		click: function(event, ui){
+			industries_of_interest = $("#id_industries_of_interest").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	}).multiselectfilter();
 
 	$("#id_languages").multiselect({

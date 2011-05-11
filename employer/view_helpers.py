@@ -27,7 +27,21 @@ def check_for_new_student_matches(employer):
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
     
     
-def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, citizen=None, older_than_18=None, courses=None):
+def filter_students(student_list=None,
+                    gpa=None,
+                    act=None,
+                    sat_t=None, 
+                    sat_m=None, 
+                    sat_v=None, 
+                    sat_w=None, 
+                    citizen=None, 
+                    older_than_18=None, 
+                    courses=None,
+                    school_years=None,
+                    graduation_years=None,
+                    employment_types=None,
+                    previous_employers=None,
+                    industries_of_interest=None):
     kwargs = {}
     
     all_students = StudentList.objects.get(id=student_list).students.all()
@@ -48,15 +62,22 @@ def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=Non
         kwargs['citizen'] = citizen
     if older_than_18:
         kwargs['older_than_18'] = older_than_18
+    if school_years:
+        kwargs['school_year__id__in'] = school_years
+    if graduation_years:
+        kwargs['graduation_year__id__in'] = graduation_years
+    if employment_types:
+        kwargs['looking_for__id__in'] = employment_types
+    if previous_employers:
+        kwargs['previous_employers__id__in'] = previous_employers
+    if industries_of_interest:
+        kwargs['industries_of_interest__id__in'] = industries_of_interest
     
+    print kwargs
     filtering_results = all_students.filter(**kwargs)
-    print "Courses " + courses
+    print filtering_results
     if courses:
-        print "filtering by courses"
-        int_courses = []
-        for course in courses:
-            int_courses.append(int(course))
-        filtering_results = filtering_results.filter(Q(first_major__id__in=int_courses) | Q(second_major__id__in=int_courses))
+        filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))
     
     return filtering_results
 

@@ -8,7 +8,7 @@ class LogMiddleware(object):
         logger = logging.getLogger("django.request")
         
         server_name = socket.gethostname()
-        tb_text     = traceback.extract_tb()
+        tb_text     = traceback.format_exc()
         class_name  = exception.__class__.__name__
 
         exception_info = dict(

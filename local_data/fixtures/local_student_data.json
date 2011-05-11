@@ -297,5 +297,48 @@
    "date_created": "2011-05-10 16:53:51", 
    "older_than_18": true
   }
+ }, 
+ {
+  "pk": 3, 
+  "model": "student.student", 
+  "fields": {
+   "resume_view_count": 0, 
+   "last_name": null, 
+   "last_updated": null, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_new_event": false, 
+   "sat_m": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": "", 
+   "looking_for": [], 
+   "last_seen_events": [], 
+   "first_name": null, 
+   "first_major": null, 
+   "event_invite_count": 0, 
+   "new_events": [], 
+   "gpa": null, 
+   "email_on_invite_to_public_event": false, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": false, 
+   "school_year": null, 
+   "citizen": false, 
+   "previous_employers": [], 
+   "website": null, 
+   "second_major": null, 
+   "resume": "", 
+   "graduation_year": null, 
+   "subscribed_employers": [], 
+   "user": 7, 
+   "active": true, 
+   "shown_in_results_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-05-11 15:45:32", 
+   "older_than_18": false
+  }
  }
 ]

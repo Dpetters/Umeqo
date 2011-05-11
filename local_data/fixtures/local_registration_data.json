@@ -14,5 +14,13 @@
    "activation_key": "481a0145fd311d7d8d23f6d7d70e5dd0109f86c6", 
    "user": 6
   }
+ }, 
+ {
+  "pk": 3, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "fd9821e6a7dc01871a5cacbe33767723828fdc63", 
+   "user": 7
+  }
  }
 ]

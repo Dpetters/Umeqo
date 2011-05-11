@@ -232,9 +232,30 @@ def get_cached_filtering_results(request):
             sat_w = request.POST['sat_w']
 
         courses = None
-        if request.POST.has_key('courses[]'):
-            courses = request.POST['courses[]']
+        if request.POST['courses']:
+            courses = request.POST['courses'].split('~');
+        
+        school_years = None
+        if request.POST['school_years']:
+            school_years = request.POST['school_years'].split('~');
             
+        graduation_years = None
+        if request.POST['graduation_years']:
+            graduation_years = request.POST['graduation_years'].split('~');
+        
+        employment_types = None
+        if request.POST['employment_types']:
+            employment_types = request.POST['employment_types'].split('~');
+
+        previous_employers = None
+        if request.POST['previous_employers']:
+            previous_employers = request.POST['previous_employers'].split('~');
+        
+        industries_of_interest = None
+        if request.POST['industries_of_interest']:
+            industries_of_interest = request.POST['industries_of_interest'].split('~');
+            print industries_of_interest
+        
         citizen = None
         if request.POST['citizen'] != "False":
             citizen = request.POST['citizen']
@@ -246,11 +267,16 @@ def get_cached_filtering_results(request):
         current_filtering_results = filter_students(student_list=request.POST['student_list'],
                                                     gpa=gpa,
                                                     courses = courses,
+                                                    school_years = school_years,
+                                                    graduation_years = graduation_years,
                                                     act=act,
                                                     sat_t=sat_t,
                                                     sat_m=sat_m,
                                                     sat_v=sat_v,
                                                     sat_w=sat_w,
+                                                    employment_types=employment_types,
+                                                    previous_employers=previous_employers,
+                                                    industries_of_interest=industries_of_interest,
                                                     citizen = citizen,
                                                     older_than_18 = older_than_18)
         
