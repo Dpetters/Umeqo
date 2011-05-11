@@ -7,6 +7,7 @@
 from django.db import models
 from core.models import EventType
 from core.managers import ActiveManager
+from django.template.defaultfilters import slugify
     
 class Event(models.Model):
     
@@ -20,7 +21,7 @@ class Event(models.Model):
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)
 
-    # Non-Deadline Fields    
+    # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
 
@@ -34,10 +35,12 @@ class Event(models.Model):
     view_count = models.PositiveIntegerField(default=0)
     
     datetime_created = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(default="event-page")
     
     def __unicode__(self):
         return self.name
     
     def save(self, *args, **kwargs):
         self.full_clean()
+        self.slug = slugify(self.name)
         super(Event, self).save(*args, **kwargs)

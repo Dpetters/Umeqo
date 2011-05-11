@@ -63,18 +63,6 @@ def employer_add_to_resume_book(request, student_id):
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_event_preview(request,
-                           id,
-                           template_name="employer_event.html",
-                           extra_context=None):
-    
-    context = {}
-    context.update(extra_context or {})
-    return render_to_response(template_name, context, context_instance=RequestContext(request))
-
-
-@login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_account_settings(request, 
                               template_name="employer_account_settings.html", 
                               extra_context=None):
@@ -112,7 +100,7 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            return HttpResponseRedirect('/employer/events/' + str(event_obj.id))
+            return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm({'start_datetime':datetime.datetime.now()})
         
