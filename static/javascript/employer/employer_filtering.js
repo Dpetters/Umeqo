@@ -207,8 +207,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectMediumHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion
 	});
 
 	$("#id_graduation_years").multiselect({
