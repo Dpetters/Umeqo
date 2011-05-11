@@ -1,0 +1,97 @@
+[
+ {
+  "pk": 1, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-11-10 17:53:59", 
+   "name": "Weiss Asset Management Info Session", 
+   "datetime_created": "2011-05-10 16:34:46", 
+   "description": "Learn more about the organization and meet company representatives in a less formal situation than an interview. You have the opportunity to ask questions (not about salary, please) in advance of the interview.", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "employer": 1, 
+   "audience": [], 
+   "end_datetime": "2011-11-10 18:53:59", 
+   "rsvp_message": null, 
+   "type": 1, 
+   "location": "3-217"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "name": "Google Internship Resume Drop Deadline", 
+   "datetime_created": "2011-05-10 16:34:46", 
+   "description": "Get your resume to us if you want to be considered for an interview!", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "employer": 1, 
+   "audience": [], 
+   "end_datetime": "2011-06-10 18:23:59", 
+   "rsvp_message": null, 
+   "type": 2, 
+   "location": null
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-07-10 17:53:59", 
+   "name": "Morgan Stanley MIT Alumni Panel", 
+   "datetime_created": "2011-05-10 16:34:46", 
+   "description": "See what MIT Alumni have to say about working for our company.", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "employer": 1, 
+   "audience": [], 
+   "end_datetime": "2011-07-10 19:53:59", 
+   "rsvp_message": null, 
+   "type": 3, 
+   "location": "10-250"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-04-10 17:53:59", 
+   "name": "Goldman Sachs Networking Event", 
+   "datetime_created": "2011-05-10 16:34:46", 
+   "description": "Learn more about the organization and meet company representatives in a less formal situation than an interview.", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "employer": 2, 
+   "audience": [], 
+   "end_datetime": "2011-04-10 18:53:59", 
+   "rsvp_message": null, 
+   "type": 9, 
+   "location": "Marriot"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-05-23 17:53:59", 
+   "name": "Thomson Reuters Interview Sign-up Deadline", 
+   "datetime_created": "2011-05-10 16:34:46", 
+   "description": "Make sure to sign up for an interview by going to cnn.com", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "employer": 2, 
+   "audience": [], 
+   "end_datetime": "2011-04-10 18:53:59", 
+   "rsvp_message": null, 
+   "type": 2, 
+   "location": null
+  }
+ }
+]
