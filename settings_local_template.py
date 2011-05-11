@@ -12,11 +12,11 @@ ROOT = os.path.dirname(os.path.realpath("__file__"))
 
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
-LOCAL_SETTINGS_APPS = ('employer,'
+LOCAL_SETTINGS_APPS = ('employer',
                        'student',
                        'events',
                        'registration',
-                       'auth.user',
+                       'user',
                        )
 
 DATABASES = {
