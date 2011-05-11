@@ -1,5 +1,5 @@
 <div class="name">
-    <span class="type">{{event.type}}</span> {{event.name}}
+    <span class="type">{{event.type}}</span> <a href="{% url event_page id=event.id,slug=event.slug %}">{{event.name}}</a>
     <div class="datetime">
         {% if event.start_datetime %}
         <span class="start">{{event.start_datetime|date:"D n/j/y P"}}</span> - 

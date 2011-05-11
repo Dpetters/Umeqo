@@ -54,12 +54,13 @@ class Event(models.Model):
 
 @receiver(signals.m2m_changed)
 def update_rsvp_count(sender, **kwargs):
-    supported = {
-        'post_add': 1,
-        'post_remove': -1
-    }
-    action = kwargs['action']
-    instance = kwargs['instance']
-    pk_set = kwargs['pk_set']
-    if action in supported:
-        instance.rsvp_count += supported[action]*len(pk_set)
+    if type(kwargs['instance']).__name__=='Event':
+        supported = {
+            'post_add': 1,
+            'post_remove': -1
+        }
+        action = kwargs['action']
+        instance = kwargs['instance']
+        pk_set = kwargs['pk_set']
+        if action in supported:
+            instance.rsvp_count += supported[action]*len(pk_set)
