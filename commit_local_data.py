@@ -40,9 +40,9 @@ if os.path.exists(submitted_user_images_path):
     delete_contents(submitted_user_images_path)
     os.rmdir(submitted_user_images_path)
 
-shutil.copytree("./local_data/local_xapian_index/", "./xapian_index/")
-shutil.copytree("./local_data/media/local_submitted_resumes/", "./media/submitted_resumes/")
-shutil.copytree("./local_data/media/local_submitted_user_images/", "./media/submitted_user_images/")
+shutil.copytree("./local_data/xapian_index/", "./xapian_index/")
+shutil.copytree("./local_data/media/submitted_resumes/", "./media/submitted_resumes/")
+shutil.copytree("./local_data/media/submitted_user_images/", "./media/submitted_user_images/")
 
 p = subprocess.Popen("python manage.py syncdb --noinput --migrate", shell=True)
 p.wait()
