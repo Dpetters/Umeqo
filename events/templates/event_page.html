@@ -11,12 +11,18 @@ Copyright 2011. All Rights Reserved.
 
 {% block metadata %}
 <!--open graph, FB meta tags -->
-<meta property="og:title" content="{{event.name}} | Umeqo" />
+<meta property="og:title" content="{{event.name}}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{page_url}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
+
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+<script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
+<script type="text/javascript">
+var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
+var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
+</script>
 {% endblock %}
 
 {% block content_area %}
@@ -26,6 +32,14 @@ Copyright 2011. All Rights Reserved.
         <span class="main_block_header_title">{{event.name}}</span>
     </div>
     <div class="main_block_content">
+        <div id="event_rsvp">
+            {% if show_rsvp %}
+            <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
+            {% else %}{% if attending %}
+            <span>Attending</span>
+            <a href="{% url event_unrsvp id=event.id %}" id="not-attending-button">RSVP: Not attending</a>
+            {% endif %}{% endif %}
+        </div>
         <div id="photo"></div>
         <table id="event_details">
             <tr>
@@ -59,11 +73,8 @@ Copyright 2011. All Rights Reserved.
                 <td>{{event.employer.company_name}}</td>
             </tr>
             <tr>
-                <th>RSVP</th>
+                <th></th>
                 <td>
-                    <a href="#" class="button">Attending</a>
-                    <a href="#" class="button">Maybe</a>
-                    <a href="#" class="button">No</a>
                     <div class="like_iframe">
                         <iframe src="http://www.facebook.com/plugins/like.php?href={{page_url|urlencode}}&amp;send=true&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
                     </div>

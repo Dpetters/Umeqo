@@ -5,15 +5,19 @@
 """
 
 from django.db import models
+from django.db.models import signals
+from django.dispatch import receiver
+from student.models import *
+from django.template.defaultfilters import slugify
 from core.models import EventType
 from core.managers import ActiveManager
-from django.template.defaultfilters import slugify
     
 class Event(models.Model):
     
     #replaces default objects with a manager that filters out inactive events
     is_active = models.BooleanField(default=True,editable=False)
     objects = ActiveManager()
+
 
     # Required Fields
     employer = models.ForeignKey("employer.Employer")
@@ -37,6 +41,9 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
     
+    rsvps = models.ManyToManyField('student.Student',null=True)
+    rsvp_count = models.IntegerField(default=0)
+    
     def __unicode__(self):
         return self.name
     
@@ -44,3 +51,15 @@ class Event(models.Model):
         self.full_clean()
         self.slug = slugify(self.name)
         super(Event, self).save(*args, **kwargs)
+
+@receiver(signals.m2m_changed)
+def update_rsvp_count(sender, **kwargs):
+    supported = {
+        'post_add': 1,
+        'post_remove': -1
+    }
+    action = kwargs['action']
+    instance = kwargs['instance']
+    pk_set = kwargs['pk_set']
+    if action in supported:
+        instance.rsvp_count += supported[action]*len(pk_set)

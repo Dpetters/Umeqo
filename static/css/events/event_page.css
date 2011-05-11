@@ -16,17 +16,25 @@
     display: inline-block;
     width: 150px;
     height: 150px;
-    background-color: #AAA;
+    background-color: #EEE;
 }
 #event_rsvp {
     float: right;
-    display: inline-block;
-    width: 100px;
-}
-#event_rsvp a {
-    display: block;
     text-align: center;
-    margin: 5px 0;
+}
+#event_rsvp span {
+    line-height: 30px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 8px;
+    background-color: #EEE;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+#not-attending-button {
+    display: block;
+    font-size: 12px;
+    margin-top: 3px;
 }
 .like_iframe {
     margin-top: 5px;

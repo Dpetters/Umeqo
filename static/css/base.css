@@ -347,6 +347,13 @@ p {
     left: -3px;
     top: 1px;
 }
+#content_area .ui-multiselect-menu {
+    position: static;
+    margin: -4px 0 5px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    border: 1px solid #AAA;
+}
 #content_area .ui-multiselect-none a:hover, #content_area .ui-multiselect-none span:hover {
     text-decoration: none;
 }
