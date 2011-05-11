@@ -52,15 +52,14 @@ class Event(models.Model):
         self.slug = slugify(self.name)
         super(Event, self).save(*args, **kwargs)
 
-@receiver(signals.m2m_changed)
+@receiver(signals.m2m_changed, sender=Event.rsvps.through)
 def update_rsvp_count(sender, **kwargs):
-    if type(kwargs['instance']).__name__=='Event':
-        supported = {
-            'post_add': 1,
-            'post_remove': -1
-        }
-        action = kwargs['action']
-        instance = kwargs['instance']
-        pk_set = kwargs['pk_set']
-        if action in supported:
-            instance.rsvp_count += supported[action]*len(pk_set)
+    supported = {
+        'post_add': 1,
+        'post_remove': -1
+    }
+    action = kwargs['action']
+    instance = kwargs['instance']
+    pk_set = kwargs['pk_set']
+    if action in supported:
+        instance.rsvp_count += supported[action]*len(pk_set)
