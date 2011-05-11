@@ -197,8 +197,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			courses = $("#id_majors").multiselect("getChecked").map(function(){
 			   return this.value;	
@@ -216,8 +216,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectMediumHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			school_years = $("#id_majors").multiselect("getChecked").map(function(){
 			   return this.value;	
@@ -235,8 +235,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectMediumHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			graduation_years = $("#id_majors").multiselect("getChecked").map(function(){
 			   return this.value;	
@@ -254,8 +254,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectTwoOptionHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			employment_types = $("#id_majors").multiselect("getChecked").map(function(){
 			   return this.value;	
@@ -273,8 +273,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			previous_employers = $("#id_majors").multiselect("getChecked").map(function(){
 			   return this.value;	
@@ -292,8 +292,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 	$("#id_languages").multiselect({
@@ -305,8 +305,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 
@@ -319,8 +319,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion
 	}).multiselectfilter();
 
 	$("#id_older_than_18").multiselect({
@@ -331,8 +331,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		height: multiselectTwoOptionHeight,
 		minWidth: multiselectYesNoSingleSelectWidth,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			older_than_18 = ui.value;
 			initiate_ajax_call();
@@ -347,8 +347,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		height: multiselectTwoOptionHeight,
 		minWidth:multiselectYesNoSingleSelectWidth,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			citizen = ui.value;
 			initiate_ajax_call();
@@ -363,8 +363,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		height: multiselectTwoOptionHeight,
 		minWidth:multiselectSingleSelectWidth,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			ordering = ui.value;
 			initiate_ajax_call();
