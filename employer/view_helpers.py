@@ -52,7 +52,11 @@ def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=Non
     filtering_results = all_students.filter(**kwargs)
     print "Courses " + courses
     if courses:
-        filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))
+        print "filtering by courses"
+        int_courses = []
+        for course in courses:
+            int_courses.append(int(course))
+        filtering_results = filtering_results.filter(Q(first_major__id__in=int_courses) | Q(second_major__id__in=int_courses))
     
     return filtering_results
 

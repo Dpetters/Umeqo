@@ -207,7 +207,6 @@ def get_cached_filtering_results(request):
     if cached_filtering_results:
         return cached_filtering_results
     else:
-        print "HERE"
         gpa = None
         if request.POST['gpa'] != "0":
             gpa = request.POST['gpa']
@@ -231,11 +230,10 @@ def get_cached_filtering_results(request):
         sat_w = None
         if request.POST['sat_w'] != "200":
             sat_w = request.POST['sat_w']
-        
-        print request.POST['courses'] 
+
         courses = None
-        if request.POST['courses'] != None:
-            courses = request.POST['courses']
+        if request.POST.has_key('courses[]'):
+            courses = request.POST['courses[]']
             
         citizen = None
         if request.POST['citizen'] != "False":

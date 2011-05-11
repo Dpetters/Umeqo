@@ -56,6 +56,7 @@ $(document).ready( function() {
 		$("#results_block_info_section").css('display', 'block');
 		$("#results_block_info").html(ajax_loader);
 		var error_dialog_timeout = setTimeout(function(){$(long_load_message).insert("#results_block_info img");}, 10000);
+		console.log(courses);
 		$.ajax({
 			type: 'POST',
 			url: '/employer/student-filtering/',
