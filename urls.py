@@ -79,9 +79,6 @@ urlpatterns += patterns('student.views',
     (r'^student/account-settings/$', 'student_account_settings', {}, "student_account_settings"),   
     # Student Employer Subscriptions
     (r'^student/employer-subscriptions/$', 'student_employer_subscriptions', {}, 'student_employer_subscriptions'),
-    # Student Events
-    (r'^student/events/$', 'student_events', {}, 'student_events'),
-    (r'^student/events/(?P<id>\d+)/$', 'student_event', {}, 'student_event'),
     # Student Invitations
     (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),   
 )
@@ -106,6 +103,7 @@ urlpatterns += patterns('employer.views',
 )
 
 urlpatterns += patterns('events.views',
+    (r'^events/$', 'events_list', {}, 'events_list'),
     (r'^events/(?P<id>\d+)/(?P<slug>[a-zA-Z-]+)$', 'event_page', {}, 'event_page'),
     (r'^events/rsvp/(?P<id>\d+)$', 'event_rsvp', {}, 'event_rsvp'),
     (r'^events/unrsvp/(?P<id>\d+)$', 'event_unrsvp', {}, 'event_unrsvp'),

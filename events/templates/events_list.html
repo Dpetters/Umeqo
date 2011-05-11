@@ -1,9 +1,8 @@
 <!--
-Developers : Dmitrij Petters,
+Developers : Joshua Ma,
 All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
-
 {% extends "base.html" %}
 
 {% block title %}
@@ -16,19 +15,19 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 {% block content_area %}
-<div class="main_block">
+<div id="browse_students_block" class="main_block">
     <div class="main_block_header">
-        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
-        <span class="main_block_header_title">Your Events</span>
+        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
+        <span class="main_block_header_title">Events Listing</span>
     </div>
     <div class="main_block_content">
-        <ul class="event_list editable_event_list">
-        {% for event in upcoming_events %}
-           <li>
-           {% include "event_snippet.html" with edit="True"%}
-           </li>
-        {% endfor %}
-        </ul>
+    {% for event in events %}
+    <ul class="event_list">
+        <li>
+        {% include "event_snippet.html" %}
+        </li>
+    {% endfor %}
+    </ul>
     </div>
 </div>
 {% endblock %}

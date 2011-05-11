@@ -13,12 +13,20 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from core.decorators import is_student
 from events.models import Event
 from django.utils import simplejson
+from datetime import datetime
 
 @login_required
-def event_page(request,
-               id,slug,
-               template_name='event_page.html',
-               extra_context=None):
+def events_list(request, template_name='events_list.html', extra_context=None):
+    events = Event.objects.all().filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
+    context = {
+        'events': events
+    }
+    context.update(extra_context or {})
+    return render_to_response(template_name,context,context_instance=RequestContext(request))
+
+
+@login_required
+def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
     #check slug matches event
     if event.slug!=slug:
@@ -36,14 +44,12 @@ def event_page(request,
             context['attending'] = True
         else:
             context['show_rsvp'] = True
+    context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def event_rsvp(request,
-               id,
-               template_name=None,
-               extra_context=None):
+def event_rsvp(request, id, template_name=None, extra_context=None):
     event = Event.objects.get(pk=id)
     event.rsvps.add(request.user.student)
     event.save()
@@ -54,10 +60,7 @@ def event_rsvp(request,
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def event_unrsvp(request,
-                 id,
-                 template_name=None,
-                 extra_context=None):
+def event_unrsvp(request, id, template_name=None, extra_context=None):
     event = Event.objects.get(pk=id)
     event.rsvps.remove(request.user.student)
     event.save()

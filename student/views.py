@@ -277,42 +277,6 @@ def student_employer_subscriptions(request,
                               context,
                               context_instance=RequestContext(request))
 
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_events(request,
-                   template_name = "student_events.html",
-                   extra_context = None):
-
-    if request.user.student.profile_created:
-        return redirect('student_edit_profile')
-    
-    context = {
-            'upcoming_events': Event.objects.filter(datetime__gt=datetime.datetime.now()),
-            'past_events': Event.objects.filter(datetime__lte=datetime.datetime.now()),
-            }
-    context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_event(request,
-                        template_name="student_event.html",
-                        extra_context=None):
-
-    if request.user.student.profile_created:
-        return redirect('student_edit_profile')
-    
-    context = {}
-    context.update(extra_context or {})  
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-    
-
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_invitations(request,
