@@ -3,7 +3,7 @@
 *.exe
 *.pyc
 *.pyo
-*.db
+database.db
 .tmp*
 .project
 .pydevproject
