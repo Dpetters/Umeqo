@@ -152,11 +152,10 @@ INSTALLED_APPS = (
 #only allow toolbar from localhost
 INTERNAL_IPS = ('127.0.0.1',)
 
-LAUNCHED = False
-
 try:
     from settings_local import *
 except ImportError:
     from settings_prod import *
 
+#this is used for absolute URLs, specifically FB API urls
 DOMAIN = 'umeqo.com'

@@ -1,6 +1,8 @@
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+USE_LANDING_PAGE = True
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
