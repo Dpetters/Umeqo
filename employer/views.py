@@ -207,6 +207,7 @@ def get_cached_filtering_results(request):
     if cached_filtering_results:
         return cached_filtering_results
     else:
+        print "HERE"
         gpa = None
         if request.POST['gpa'] != "0":
             gpa = request.POST['gpa']
@@ -231,7 +232,29 @@ def get_cached_filtering_results(request):
         if request.POST['sat_w'] != "200":
             sat_w = request.POST['sat_w']
         
-        current_filtering_results = filter_students(student_list=request.POST['student_list'], gpa=gpa, act=act, sat_t=sat_t, sat_m=sat_m, sat_v=sat_v, sat_w=sat_w)
+        print request.POST['courses'] 
+        courses = None
+        if request.POST['courses'] != None:
+            courses = request.POST['courses']
+            
+        citizen = None
+        if request.POST['citizen'] != "False":
+            citizen = request.POST['citizen']
+            
+        older_than_18 = None
+        if request.POST['older_than_18'] != "False":
+            older_than_18 = request.POST['older_than_18']
+                    
+        current_filtering_results = filter_students(student_list=request.POST['student_list'],
+                                                    gpa=gpa,
+                                                    courses = courses,
+                                                    act=act,
+                                                    sat_t=sat_t,
+                                                    sat_m=sat_m,
+                                                    sat_v=sat_v,
+                                                    sat_w=sat_w,
+                                                    citizen = citizen,
+                                                    older_than_18 = older_than_18)
         
         cache.set('filtering_results', current_filtering_results)
     return current_filtering_results

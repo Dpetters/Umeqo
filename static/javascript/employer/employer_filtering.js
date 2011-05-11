@@ -26,7 +26,8 @@ $(document).ready( function() {
 	var looking_for_fulltime = null;
 	var languages = new Array();
 	var campus_organizations = new Array()
-	var must_be_older_than_18 = false;
+	var older_than_18 = "False";
+	var citizen = "False";
 
 	function handle_multiselect_open_in_accordion(event, ui) {
 		var parent = $(event.target).parents(".ui-accordion-content");
@@ -70,6 +71,8 @@ $(document).ready( function() {
 				'sat_v' : min_sat_v,
 				'sat_w' : min_sat_w,
 				'courses' : courses,
+				'older_than_18' : older_than_18,
+				'citizen' : citizen,
 				'ordering': ordering,
 				'results_per_page': results_per_page,
 			},
@@ -195,7 +198,13 @@ $(document).ready( function() {
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			courses = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	}).multiselectfilter();
 
 	$("#id_school_years").multiselect({
@@ -207,8 +216,14 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		minWidth:multiselectMinWidth,
 		height: multiselectMediumHeight,
-		//open: handle_multiselect_open_in_accordion,
-		//close: handle_multiselect_close_in_accordion
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			school_years = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	});
 
 	$("#id_graduation_years").multiselect({
@@ -221,7 +236,13 @@ $(document).ready( function() {
 		minWidth:multiselectMinWidth,
 		height: multiselectMediumHeight,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			graduation_years = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	});
 
 	$("#id_employment_types").multiselect({
@@ -234,7 +255,13 @@ $(document).ready( function() {
 		minWidth:multiselectMinWidth,
 		height: multiselectTwoOptionHeight,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			employment_types = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	});
 	
 	$("#id_previous_employers").multiselect({
@@ -247,7 +274,13 @@ $(document).ready( function() {
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			previous_employers = $("#id_majors").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	}).multiselectfilter();
 
 	$("#id_industries_of_interest").multiselect({
@@ -299,7 +332,11 @@ $(document).ready( function() {
 		height: multiselectTwoOptionHeight,
 		minWidth: multiselectYesNoSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			older_than_18 = ui.value;
+			initiate_ajax_call();
+		}
 	});
 
 	$("#id_citizen").multiselect({
@@ -311,7 +348,11 @@ $(document).ready( function() {
 		height: multiselectTwoOptionHeight,
 		minWidth:multiselectYesNoSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			citizen = ui.value;
+			initiate_ajax_call();
+		}
 	});
 	
 	$("#id_ordering").multiselect({
@@ -323,7 +364,11 @@ $(document).ready( function() {
 		height: multiselectTwoOptionHeight,
 		minWidth:multiselectSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			ordering = ui.value;
+			initiate_ajax_call();
+		}
 	});
 
 	$("#id_results_per_page").multiselect({
@@ -334,8 +379,8 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
 		height: multiselectTwoOptionHeight,
 		minWidth:multiselectSingleSelectWidth,
-		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion,
+		//open: handle_multiselect_open_in_accordion,
+		//close: handle_multiselect_close_in_accordion,
 		click: function(event, ui){
 			results_per_page = ui.value;
 			initiate_ajax_call();

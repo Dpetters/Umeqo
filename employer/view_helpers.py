@@ -27,7 +27,7 @@ def check_for_new_student_matches(employer):
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
     
     
-def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, courses=None):
+def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=None, sat_v=None, sat_w=None, citizen=None, older_than_18=None, courses=None):
     kwargs = {}
     
     all_students = StudentList.objects.get(id=student_list).students.all()
@@ -44,11 +44,15 @@ def filter_students(student_list=None, gpa=None, act=None, sat_t=None, sat_m=Non
         kwargs['sat_v__gte'] = sat_v
     if sat_w:
         kwargs['sat_w__gte'] = sat_w
+    if citizen:
+        kwargs['citizen'] = citizen
+    if older_than_18:
+        kwargs['older_than_18'] = older_than_18
     
     filtering_results = all_students.filter(**kwargs)
-    
+    print "Courses " + courses
     if courses:
-        filtering_results = filtering_results.filter(Q(first_major__name__in=courses) | Q(second_major__name__in=courses))
+        filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))
     
     return filtering_results
 
