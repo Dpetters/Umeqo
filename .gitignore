@@ -15,4 +15,4 @@ settings_local.py
 *.DS_Store
 *.psd
 *.swp
-*.log
+logs/*
