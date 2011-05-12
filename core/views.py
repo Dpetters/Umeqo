@@ -107,10 +107,8 @@ def landing_page(request,
             posted = True
             disabled = True
         else:
-            print "invalid"
             if InterestedPerson.objects.filter(email=request.POST.get('email')).exists():
                 email_error = True
-                print "email error"
             form_error = True
     else:
         form = form_class()

@@ -254,7 +254,6 @@ def get_cached_filtering_results(request):
         industries_of_interest = None
         if request.POST['industries_of_interest']:
             industries_of_interest = request.POST['industries_of_interest'].split('~');
-            print industries_of_interest
         
         citizen = None
         if request.POST['citizen'] != "False":

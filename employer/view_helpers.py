@@ -73,9 +73,8 @@ def filter_students(student_list=None,
     if industries_of_interest:
         kwargs['industries_of_interest__id__in'] = industries_of_interest
     
-    print kwargs
     filtering_results = all_students.filter(**kwargs)
-    print filtering_results
+
     if courses:
         filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))
     
