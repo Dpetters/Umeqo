@@ -12,6 +12,7 @@ html, body {
     font-size: 13px;
     font-family: Arial, sans-serif;
     color: #000;
+    background-color: #F6F6F6;
 }
 img {
     border: none;
@@ -152,11 +153,10 @@ p {
 /* Main Block and Side Block are the ones you see on the homepages */
 .main_block, .side_block {
     overflow:hidden;
-    background: #FCFCFC;
     border-top: 1px solid #CCCCCC;
     border-right: 1px solid #CCCCCC;
     border-left: 1px solid #CCCCCC;
-    border-bottom: 2px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
     behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius: 3px;
     -webkit-border-radius:3px;
@@ -168,8 +168,8 @@ p {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#E6E6E6));
     -pie-background: linear-gradient(#F0F0F0, #E6E6E6);
     overflow:hidden;
-    width:100%;
-    border-top: 1px solid #FFFFFF;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #CCC;
 }
 .main_block_header_icon , .side_block_header_icon {
     vertical-align:middle;
@@ -193,9 +193,6 @@ p {
 .main_block_header_links img, .side_block_header_links img {
     margin-right: 4px;
     vertical-align:middle;
-}
-.main_block_content, .side_block_content {
-    border-top: 1px solid #CCCCCC;
 }
 .side_block_content a:hover {
     background-color: #EEE;
@@ -309,6 +306,15 @@ p {
 #footer_navigation_block a:hover {
     color: #FFF;
     background-color: #BBB;
+}
+/* For sub modules in between the header and content,
+   like the one use for the like/share buttons on events */
+.sub_block {
+    margin: 5px 10px;
+    background-color: #EEE;
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid #FFF;
 }
 /* Buttons */
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {

@@ -1,9 +1,18 @@
+#browse_students_block {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+#browse_students_block .main_block_header {
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+}
 #event_details {
     width: 600px;
 }
 #event_details th {
     width: 80px;
-    text-align: left;
+    text-align: right;
     padding: 6px 5px;
     vertical-align: top;
     color: #777;
@@ -18,11 +27,12 @@
     height: 150px;
     background-color: #EEE;
 }
-#event_rsvp {
+#event_side {
     float: right;
     text-align: center;
+    width: 150px;
 }
-#event_rsvp span {
+#event_side span {
     line-height: 30px;
     font-weight: bold;
     display: inline-block;
@@ -38,4 +48,8 @@
 }
 .like_iframe {
     margin-top: 5px;
+}
+.google-button {
+    display: inline-block;
+    margin: 0 0 5px;
 }

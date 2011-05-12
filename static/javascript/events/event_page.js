@@ -4,7 +4,7 @@ $(document).ready(function(){
         $.post($(this).attr('href'),function(data) {
             if (typeof data['valid']!='undefined' && data['valid']==true) {
                 that.parent().fadeOut(200,function() {
-                    var newText = $('<span>Attending</span>');
+                    var newText = $('<span id="attending-span">Attending</span>');
                     var newLink = $('<a href="" id="not-attending-button">RSVP: Not attending</a>');
                     newLink.attr('href',EVENT_UNRSVP_URL);
                     that.replaceWith(newText);
@@ -23,7 +23,7 @@ $(document).ready(function(){
                     var newText = $('<a href="" id="attending-button" class="button">RSVP: Attending</a>');
                     newText.attr('href',EVENT_RSVP_URL);
                     that.replaceWith(newText);
-                    $('#event_rsvp span').remove();
+                    $('#attending-span').remove();
                 });
                 that.parent().fadeIn();
             }
