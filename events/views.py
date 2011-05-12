@@ -35,6 +35,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     context = {
         'event': event,
         'page_url': page_url,
+        'DOMAIN': settings.DOMAIN,
         'show_rsvp': False,
         'attending': False
     }

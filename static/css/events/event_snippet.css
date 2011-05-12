@@ -7,6 +7,7 @@
     padding: 5px;
     background-color: #F6F6F6;
     border-bottom: 1px solid #DDD;
+    position: relative;
 }
 /* THIS IS IMPORTANT SO THAT .edit DOESN'T OVERFLOW INTO NEXT <li> IF IT IS TALLER THAN .details */
 .event_list li::after {
@@ -42,18 +43,21 @@
 }
 
 .editable_event_list .details {
-    margin-right: 200px;
+    margin-right: 100px;
 }
 .event_list .edit {
-    float: right;
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
 }
-.event_list .edit p {
-    text-align: right;
-}
-.event_list .edit a {
+#content_area .event_list .edit a {
     text-align: right;
     display: inline-block;
     padding: 1px 3px;
+    color: #BBB;
+}
+#content_area .event_list li:hover .edit a {
+    color: #6E97B9;
 }
 .event_list .edit a:hover {
     background-color: #EEE;

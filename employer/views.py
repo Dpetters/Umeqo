@@ -127,7 +127,7 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            return HttpResponseRedirect('/employer/events/' + str(event_obj.id))
+            return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm(instance=event)
     context = {
