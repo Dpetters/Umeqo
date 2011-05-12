@@ -1,0 +1,128 @@
+[
+ {
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "root", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": true, 
+   "is_staff": true, 
+   "last_login": "2011-05-11 18:01:02", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$47188$04601d672aa891cf3dbdec4c0e8fbb8a4c53afa7", 
+   "email": "umeqo@mit.edu", 
+   "date_joined": "2011-05-10 16:34:21"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "SampleEmployer1", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-10 17:06:22", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$65681$66cd85fe536cf855df7f3b0439c6e7b25950edbd", 
+   "email": "sample@employer1.com", 
+   "date_joined": "2011-05-10 16:34:45"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "SampleEmployer2", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-10 16:34:45", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$84026$e60e9b3173f3b260107a30ae91fe0ecee0a6f37b", 
+   "email": "sample@employer2.com", 
+   "date_joined": "2011-05-10 16:34:45"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "SampleEmployer3", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-10 16:34:45", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$f85f9$5d65568e11e9d47d13862f47817265d3b48fb695", 
+   "email": "sample@employer3.com", 
+   "date_joined": "2011-05-10 16:34:45"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "student1", 
+   "first_name": "Dmitrij", 
+   "last_name": "Petters", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-10 16:55:05", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$f21df$93795075ac1bef4615857064ea8e77fcc600c82d", 
+   "email": "student1@mit.edu", 
+   "date_joined": "2011-05-10 16:53:25"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "student2", 
+   "first_name": "Zachary", 
+   "last_name": "Dearing", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-10 17:01:32", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$62b90$dbd6bbda975b01d542287053a19832462593cd2d", 
+   "email": "student2@mit.edu", 
+   "date_joined": "2011-05-10 16:53:50"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "student3", 
+   "first_name": "Joshua", 
+   "last_name": "Ma", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-11 18:02:23", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$9e4a8$c2ec60cfedbf853df0f195add385d2e369285c77", 
+   "email": "student3@mit.edu", 
+   "date_joined": "2011-05-11 15:45:26"
+  }
+ }
+]
