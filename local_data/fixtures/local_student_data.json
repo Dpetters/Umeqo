@@ -6,7 +6,8 @@
    "name": "All Students", 
    "students": [
     1, 
-    2
+    2, 
+    3
    ], 
    "employers": [
     1, 
@@ -296,6 +297,49 @@
    "act": 35, 
    "date_created": "2011-05-10 16:53:51", 
    "older_than_18": true
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "student.student", 
+  "fields": {
+   "resume_view_count": 0, 
+   "last_name": "Ma", 
+   "last_updated": "2011-05-11 18:18:56", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_new_event": false, 
+   "sat_m": 795, 
+   "sat_t": 2385, 
+   "sat_v": 795, 
+   "sat_w": 795, 
+   "keywords": " javapythonpython", 
+   "looking_for": [], 
+   "last_seen_events": [], 
+   "first_name": "Joshua", 
+   "first_major": 15, 
+   "event_invite_count": 0, 
+   "new_events": [], 
+   "gpa": "4.8", 
+   "email_on_invite_to_public_event": false, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": true, 
+   "school_year": 1, 
+   "citizen": true, 
+   "previous_employers": [], 
+   "website": "", 
+   "second_major": null, 
+   "resume": "submitted_resumes/Ma_Joshua_student3_2011-05-11-18-18-56.pdf", 
+   "graduation_year": 3, 
+   "subscribed_employers": [], 
+   "user": 7, 
+   "active": true, 
+   "shown_in_results_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "industries_of_interest": [], 
+   "act": 36, 
+   "date_created": "2011-05-11 15:45:32", 
+   "older_than_18": false
   }
  }
 ]

@@ -9,7 +9,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-05-10 17:05:22", 
+   "last_login": "2011-05-11 18:42:46", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$47188$04601d672aa891cf3dbdec4c0e8fbb8a4c53afa7", 
@@ -105,6 +105,24 @@
    "password": "sha1$62b90$dbd6bbda975b01d542287053a19832462593cd2d", 
    "email": "student2@mit.edu", 
    "date_joined": "2011-05-10 16:53:50"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "student3", 
+   "first_name": "Joshua", 
+   "last_name": "Ma", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-05-11 18:02:23", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$9e4a8$c2ec60cfedbf853df0f195add385d2e369285c77", 
+   "email": "student3@mit.edu", 
+   "date_joined": "2011-05-11 15:45:26"
   }
  }
 ]

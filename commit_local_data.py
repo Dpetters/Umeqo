@@ -5,7 +5,7 @@
 """
 
 """ 
-This script is meant to populate the database with some fake non-fixturable data.
+This script is meant to dump newly-added fake non-fixturable data to what we already have.
 """
 
 import os, subprocess, shutil
@@ -24,30 +24,28 @@ def delete_contents(directory):
             os.rmdir(os.path.join(root, name))
 
 # Delete old search index files
-if os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
-    delete_contents(settings.HAYSTACK_XAPIAN_PATH)
-    os.rmdir(settings.HAYSTACK_XAPIAN_PATH)
+if os.path.exists("./local_data/local_xapian_index/"):
+    delete_contents("./local_data/local_xapian_index/")
+    os.rmdir("./local_data/local_xapian_index/")
 
 # Delete the old submitted resumes
-submitted_resumes_path = ROOT + "/media/submitted_resumes/"
-if os.path.exists(submitted_resumes_path):
-    delete_contents(submitted_resumes_path)
-    os.rmdir(submitted_resumes_path)
+if os.path.exists("./local_data/media/local_submitted_resumes/"):
+    delete_contents("./local_data/media/local_submitted_resumes/")
+    os.rmdir("./local_data/media/local_submitted_resumes/")
 
 # Delete the old submitted user images
-submitted_user_images_path = ROOT + "/media/submitted_user_images/"
-if os.path.exists(submitted_user_images_path):
-    delete_contents(submitted_user_images_path)
-    os.rmdir(submitted_user_images_path)
+if os.path.exists("./local_data/media/local_submitted_user_images/"):
+    delete_contents("./local_data/media/local_submitted_user_images/")
+    os.rmdir("./local_data/media/local_submitted_user_images/")
 
-shutil.copytree("./local_data/xapian_index/", "./xapian_index/")
-shutil.copytree("./local_data/media/submitted_resumes/", "./media/submitted_resumes/")
-shutil.copytree("./local_data/media/submitted_user_images/", "./media/submitted_user_images/")
-
-p = subprocess.Popen("python manage.py syncdb --noinput --migrate", shell=True)
-p.wait()
+shutil.copytree("./xapian_index/", "./local_data/local_xapian_index/")
+shutil.copytree("./media/submitted_resumes/", "./local_data/media/local_submitted_resumes/")
+shutil.copytree("./media/submitted_user_images/", "./local_data/media/local_submitted_user_images/")
 
 for app in settings.LOCAL_SETTINGS_APPS:
-    print "python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json"
-    p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
+    # For some reason just putting user down on loaddata works but for dumpdata you need auth.user
+    if app == "user":
+        p = subprocess.Popen("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json", shell=True)
+    else:
+        p = subprocess.Popen("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json", shell=True)
     p.wait()
