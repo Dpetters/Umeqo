@@ -440,7 +440,7 @@ $(document).ready( function() {
         minWidth:multiselectMinWidth
     }).multiselectfilter();
     
-    $("#id_interested_in").multiselect({
+    $("#id_industries_of_interest").multiselect({
         noneSelectedText: 'select industries',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,

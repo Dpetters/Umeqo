@@ -184,9 +184,6 @@ button.ui-multiselect[type="button"] {
 #results_section {
     min-height:700px;
 }
-#results_section .main_area_header {
-    border-bottom:none;
-}
 #results {
     border-bottom:1px solid #CCC;
 }
@@ -212,31 +209,20 @@ button.ui-multiselect[type="button"] {
     font-weight:bold;
     background:#C6D5FF;
 }
-.student_main_info {
-    padding-bottom:10px;
-    padding-top:10px;
-    border-top: 1px solid #CCC;
-}
+
 .student_detailed_info {
     background-color:#FBFBFB;
     border-top: 1px solid #E9E9E9;
-    padding: 7px 7px 7px 49px;
+    padding-top: 5px;
+    padding-left: 43px;
+    padding-bottom:8px;
     text-align:left;
 }
-.student_main_info_table, .student_detailed_info_table {
+.student_detailed_info_table {
     width:100%;
 }
-.student_number {
-    font-weight:bold;
-    font-size:16px;
-}
-.student_drag_anchor {
-    cursor:move;
-    vertical-align:middle;
-}
-.student_name, .student_drag_div {
-    font-size:20px;
-}
+
+/* Student Drag Div */
 .student_drag_div {
     background:#EEE;
     padding:3px 5px 3px 5px;
@@ -250,62 +236,56 @@ button.ui-multiselect[type="button"] {
     -webkit-border-radius:3px;
     border-radius:3px;
 }
-.student_checkbox_cell {
-    width:7%;
+
+
+.student_main_info {
+    padding-bottom:10px;
+    padding-top:10px;
+    border-top: 1px solid #CCC;
+    line-height:20px;
+}
+.student_main_info p{
+	line-height:20px;
+	color:#000;
+}
+.student_drag_anchor {
+    cursor:move;
+    vertical-align:middle;
+    margin-left:5px;
+    float:left;
 }
 .student_checkbox {
-    position:relative;
-    vertical-align:middle;
-    left:4px;
+    margin-left:5px;
 }
-.student_name_cell {
-    width:64%;
+.student_name{
+    font-size:20px;
+    margin-left:5px;
 }
-.student_year {
-    position:relative;
-    bottom: 1px;
+.student_year{
+	font-size:20px;
 }
-.student_is_citizen_cell {
-    width:13%;
+.student_citizen {
+	float:right;
+	margin-right:18px;
 }
-.student_resume_cell {
-    width:12%;
+.student_resume_link{
+	float:right;
 }
-.view_student_detailed_info_link_cell {
-    text-align:right;
+.student_major{
+	margin-left:45px;
 }
-.student_detailed_info_table {
-    display:table;
+.student_gpa{
+	float:right;
+	margin-right:20px;
 }
-.student_detailed_info_row {
-    display:table-row;
+.student_view_info_link{
+	float:right;
 }
-.student_detailed_info_row > div {
-    padding-bottom: 7px;
+
+.student_detailed_info h3{
+	margin-top:5px;
+	margin-bottom:3px;
 }
-.student_general_cell {
-    display:table-cell;
-    width:60%;
-}
-.student_scores_cell {
-    display:table-cell;
-    width:31%;
-}
-.student_general_cell strong, .student_scores_cell strong {
-    line-height:19px;
-}
-.student_campus_orgs_cell {
-    display:table-cell;
-}
-.student_languages_cell {
-    display:table-cell;
-}
-.student_previous_employers_cell {
-    display:table-cell;
-}
-.student_industries_of_interest_cell {
-    display:table-cell;
-}
-.student_campus_orgs_cell strong, .student_languages_cell strong, .student_previous_employers_cell strong, .student_industries_of_interest_cell strong {
-    line-height:20px;
+.student_campus_involvement{
+	
 }

@@ -67,7 +67,7 @@ class StudentCreateProfileForm(forms.ModelForm):
     """
     looking_for = forms.ModelMultipleChoiceField(label="Looking For:", queryset = EmploymentType.objects.all(), required = False)
     previous_employers = forms.ModelMultipleChoiceField(label="Previous Employers:", queryset = Employer.objects.all(), required = False)
-    interested_in = forms.ModelMultipleChoiceField(label="Interested In:", queryset = Industry.objects.all(), required = False)
+    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested In:", queryset = Industry.objects.all(), required = False)
     
     """
         Miscellaneous Info
