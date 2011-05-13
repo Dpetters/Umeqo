@@ -229,7 +229,7 @@ class AkismetContactForm(ContactForm):
 
 class BetaForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. susan@mit.edu'}))
-    summer_plans = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'e.g. Goldman, Microsoft, UROP'}))
+    summer_plans = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'e.g. Goldman, Microsoft, UROP'}),required=False)
     class Meta:
         fields = ('first_name','last_name','email','summer_plans')
         model = InterestedPerson
