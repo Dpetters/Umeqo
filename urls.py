@@ -107,4 +107,5 @@ urlpatterns += patterns('events.views',
     (r'^events/(?P<id>\d+)/(?P<slug>[a-zA-Z-]+)$', 'event_page', {}, 'event_page'),
     (r'^events/rsvp/(?P<id>\d+)$', 'event_rsvp', {}, 'event_rsvp'),
     (r'^events/unrsvp/(?P<id>\d+)$', 'event_unrsvp', {}, 'event_unrsvp'),
+    (r'^events/search/$', 'event_search', {}, 'event_search'),
 )

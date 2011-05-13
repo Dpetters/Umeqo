@@ -12,6 +12,11 @@ Copyright 2011. All Rights Reserved.
 {% block metadata %}
 {{block.super}}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/events_list.css" />
+<script type="text/javascript">
+var SEARCH_URL = "{% url event_search %}";
+</script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/events/events_list.js"></script>
 {% endblock %}
 
 {% block content_area %}
@@ -21,13 +26,17 @@ Copyright 2011. All Rights Reserved.
         <span class="main_block_header_title">Events Listing</span>
     </div>
     <div class="main_block_content">
-    {% for event in events %}
-    <ul class="event_list">
-        <li>
-        {% include "event_snippet.html" %}
-        </li>
-    {% endfor %}
-    </ul>
+        <form id="event_search_form" action="">
+            <label for="event_search_query">Filter Events:</label><input type="text" id="event_search_query" name="q" />
+            <noscript><input type="submit" value="Filter" /></noscript>
+        </form>
+        <ul id="main_event_list" class="event_list">
+        {% for event in events %}
+            <li>
+            {% include "event_snippet.html" %}
+            </li>
+        {% endfor %}
+        </ul>
     </div>
 </div>
 {% endblock %}

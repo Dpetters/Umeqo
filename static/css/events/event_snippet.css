@@ -24,7 +24,14 @@
     display: inline-block;
     font-size: 12px;
     float: right;
-    color: #222;
+    color: #555;
+}
+.event_list .datetime strong {
+    color: #000;
+}
+.event_list .datetime em {
+    font-style: normal;
+    font-weight: 600;
 }
 .event_list .name .type {
     font-size: 11px;

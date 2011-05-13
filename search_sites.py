@@ -1,0 +1,2 @@
+import student.search_indexes
+import events.search_indexes

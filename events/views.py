@@ -14,16 +14,24 @@ from core.decorators import is_student
 from events.models import Event
 from django.utils import simplejson
 from datetime import datetime
+from haystack.query import SearchQuerySet
 
 @login_required
 def events_list(request, template_name='events_list.html', extra_context=None):
-    events = Event.objects.all().filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
+    search_results = search_helper(request.GET.get('q',''))
+    #we use map to extract the object for each event
+    events = map(lambda n: n.object,search_results)
     context = {
         'events': events
     }
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
 
+def search_helper(query):
+    search_results = SearchQuerySet().models(Event).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
+    if query!="":
+        search_results = search_results.filter(content__startswith=query)
+    return search_results
 
 @login_required
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
@@ -50,7 +58,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def event_rsvp(request, id, template_name=None, extra_context=None):
+def event_rsvp(request, id):
     event = Event.objects.get(pk=id)
     event.rsvps.add(request.user.student)
     event.save()
@@ -61,7 +69,7 @@ def event_rsvp(request, id, template_name=None, extra_context=None):
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def event_unrsvp(request, id, template_name=None, extra_context=None):
+def event_unrsvp(request, id):
     event = Event.objects.get(pk=id)
     event.rsvps.remove(request.user.student)
     event.save()
@@ -69,3 +77,13 @@ def event_unrsvp(request, id, template_name=None, extra_context=None):
         return HttpResponse(simplejson.dumps({"valid":True}))
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
+
+@login_required
+def event_search(request, template_name='events_list_ajax.html', extra_context=None):
+    search_results = search_helper(request.GET.get('q',''))
+    events = map(lambda n: n.object, search_results)
+    context = {
+        'events': events
+    }
+    context.update(extra_context or {})
+    return render_to_response(template_name,context,context_instance=RequestContext(request))
