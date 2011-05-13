@@ -8,7 +8,7 @@ from django.db.models import Q
 
 from notification import models as notification
 from haystack.query import SearchQuerySet
-from student.models import StudentList
+from student.models import StudentList, Student
 from employer import enums
 
 
@@ -34,14 +34,16 @@ def filter_students(student_list=None,
                     sat_m=None, 
                     sat_v=None, 
                     sat_w=None, 
-                    citizen=None, 
-                    older_than_18=None, 
                     courses=None,
                     school_years=None,
                     graduation_years=None,
                     employment_types=None,
                     previous_employers=None,
-                    industries_of_interest=None):
+                    industries_of_interest=None,
+                    citizen=None, 
+                    older_than_18=None,
+                    languages=None,
+                    campus_orgs=None):
     kwargs = {}
     
     all_students = StudentList.objects.get(id=student_list).students.all()
@@ -58,10 +60,6 @@ def filter_students(student_list=None,
         kwargs['sat_v__gte'] = sat_v
     if sat_w:
         kwargs['sat_w__gte'] = sat_w
-    if citizen:
-        kwargs['citizen'] = citizen
-    if older_than_18:
-        kwargs['older_than_18'] = older_than_18
     if school_years:
         kwargs['school_year__id__in'] = school_years
     if graduation_years:
@@ -72,6 +70,14 @@ def filter_students(student_list=None,
         kwargs['previous_employers__id__in'] = previous_employers
     if industries_of_interest:
         kwargs['industries_of_interest__id__in'] = industries_of_interest
+    if citizen:
+        kwargs['citizen'] = citizen
+    if older_than_18:
+        kwargs['older_than_18'] = older_than_18
+    if languages:
+        kwargs['languages__id__in'] = languages
+    if campus_orgs:
+        kwargs['campus_orgs__id__in'] = campus_orgs        
     
     filtering_results = all_students.filter(**kwargs)
 
@@ -82,7 +88,7 @@ def filter_students(student_list=None,
 
 
 def search_students(query):
-    search_query_set = SearchQuerySet().filter(content=query)
+    search_query_set = SearchQuerySet().models(Student).filter(content=query)
     return [result.object for result in search_query_set]
     
 

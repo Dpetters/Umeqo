@@ -239,8 +239,8 @@ button.ui-multiselect[type="button"] {
 
 
 .student_main_info {
-    padding-bottom:10px;
-    padding-top:10px;
+    padding-bottom:5px;
+    padding-top:8px;
     border-top: 1px solid #CCC;
     line-height:20px;
 }
@@ -266,7 +266,7 @@ button.ui-multiselect[type="button"] {
 }
 .student_citizen {
 	float:right;
-	margin-right:18px;
+	margin-right:24px;
 }
 .student_resume_link{
 	float:right;
@@ -278,7 +278,7 @@ button.ui-multiselect[type="button"] {
 	float:right;
 	margin-right:20px;
 }
-.student_view_info_link{
+.student_toggle_detailed_info_link{
 	float:right;
 }
 
@@ -286,6 +286,54 @@ button.ui-multiselect[type="button"] {
 	margin-top:5px;
 	margin-bottom:3px;
 }
+.student_detailed_info p{
+	color:#000;
+}
+.student_detailed_info ul{
+	list-style:none;
+}
+.student_detailed_info_left_col{
+	display:inline-block;
+	vertical-align:top;
+	width:438px;
+}
+.student_detailed_info_right_col{
+	display:inline-block;
+	vertical-align:top;
+}
+
+
+.student_second_major{
+	
+}
+.student_older_than_18{
+	
+}
+.student_website{
+	
+}
+.student_test_scores{
+
+}
+.student_test_scores th{
+	text-align:right;
+}
 .student_campus_involvement{
 	
+}
+.student_languages{
+	
+}
+.student_looking_for{
+	
+}
+.student_industries_of_interest{
+	
+}
+.student_previous_employers{
+	
+}
+.student_hide_details_link{
+	clear:right;
+	text-align:center;	
 }
