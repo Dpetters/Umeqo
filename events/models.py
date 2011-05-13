@@ -47,10 +47,16 @@ class Event(models.Model):
     def __unicode__(self):
         return self.name
     
+    def __init__(self, *args, **kwargs):
+        super(Event, self).__init__(*args, **kwargs)
+    
     def save(self, *args, **kwargs):
         self.full_clean()
-        self.slug = slugify(self.name)
         super(Event, self).save(*args, **kwargs)
+
+@receiver(signals.pre_save, sender=Event)
+def save_slug(sender, instance, **kwargs):
+    instance.slug = slugify(instance.name)
 
 @receiver(signals.m2m_changed, sender=Event.rsvps.through)
 def update_rsvp_count(sender, **kwargs):
