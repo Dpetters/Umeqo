@@ -54,7 +54,7 @@ $(document).ready( function () {
                         case true:
                             window.location = data.url;
                             break;
-                         default:
+                        default:
                             show_error_dialog(page_error_message);
                             break;
                     }

@@ -12,7 +12,6 @@ html, body {
     font-size: 13px;
     font-family: Arial, sans-serif;
     color: #000;
-    background-color: #FFF;
 }
 img {
     border: none;
@@ -335,6 +334,9 @@ p {
     display: inline-block;
     padding: 0 8px;
     line-height: 30px;
+}
+.button span, .button img {
+    vertical-align: middle;
 }
 .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     height: 19px;
