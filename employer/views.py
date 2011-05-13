@@ -233,27 +233,27 @@ def get_cached_filtering_results(request):
 
         courses = None
         if request.POST['courses']:
-            courses = request.POST['courses'].split('~');
+            courses = request.POST['courses'].split('~')
         
         school_years = None
         if request.POST['school_years']:
-            school_years = request.POST['school_years'].split('~');
+            school_years = request.POST['school_years'].split('~')
             
         graduation_years = None
         if request.POST['graduation_years']:
-            graduation_years = request.POST['graduation_years'].split('~');
+            graduation_years = request.POST['graduation_years'].split('~')
         
         employment_types = None
         if request.POST['employment_types']:
-            employment_types = request.POST['employment_types'].split('~');
+            employment_types = request.POST['employment_types'].split('~')
 
         previous_employers = None
         if request.POST['previous_employers']:
-            previous_employers = request.POST['previous_employers'].split('~');
+            previous_employers = request.POST['previous_employers'].split('~')
         
         industries_of_interest = None
         if request.POST['industries_of_interest']:
-            industries_of_interest = request.POST['industries_of_interest'].split('~');
+            industries_of_interest = request.POST['industries_of_interest'].split('~')
         
         citizen = None
         if request.POST['citizen'] != "False":
@@ -262,7 +262,15 @@ def get_cached_filtering_results(request):
         older_than_18 = None
         if request.POST['older_than_18'] != "False":
             older_than_18 = request.POST['older_than_18']
-                    
+            
+        languages = None
+        if request.POST['languages']:
+            languages  = request.POST['languages'].split('~')
+
+        campus_orgs = None
+        if request.POST['campus_orgs']:
+            campus_orgs  = request.POST['campus_orgs'].split('~')
+                                
         current_filtering_results = filter_students(student_list=request.POST['student_list'],
                                                     gpa=gpa,
                                                     courses = courses,
@@ -277,7 +285,9 @@ def get_cached_filtering_results(request):
                                                     previous_employers=previous_employers,
                                                     industries_of_interest=industries_of_interest,
                                                     citizen = citizen,
-                                                    older_than_18 = older_than_18)
+                                                    older_than_18 = older_than_18,
+                                                    languages=languages,
+                                                    campus_orgs=campus_orgs)
         
         cache.set('filtering_results', current_filtering_results)
     return current_filtering_results

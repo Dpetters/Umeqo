@@ -25,7 +25,7 @@ $(document).ready( function() {
 	var industries_of_interest = new Array();
 	var employment_types = new Array();
 	var languages = new Array();
-	var campus_organizations = new Array()
+	var campus_orgs = new Array()
 	var older_than_18 = "False";
 	var citizen = "False";
 
@@ -82,6 +82,8 @@ $(document).ready( function() {
 				'employment_types' : employment_types.join('~'),
 				'previous_employers' : previous_employers.join('~'),
 				'industries_of_interest' : industries_of_interest.join('~'),
+				'languages' : languages.join('~'),
+				'campus_orgs' : campus_orgs.join('~'),
 				'older_than_18' : older_than_18,
 				'citizen' : citizen,
 				'ordering': ordering,
@@ -94,7 +96,7 @@ $(document).ready( function() {
 				// Hide all extra details except for the first
 				$(".student_detailed_info").hide();
 				$("#student_detailed_info_0").show();
-				$(".view_student_detailed_info_link_cell #0").text("Hide Details");
+				$("#student_toggle_detailed_info_link_0").text("Hide Details");
 
 				$(".student_drag_anchor").draggable({
 					'revert':true,
@@ -126,40 +128,38 @@ $(document).ready( function() {
 	
 	// Listen for a campus organization info link click
 	$(".campus_org_link").live('click', campus_org_link_click);
-	
-	// Listen for a new search
-	$("#search_form_submit_button").click(initiate_search);
 
-	// Listen for results per page change
-	$("#id_results_per_page").change( function() {
-		results_per_page = $("#id_results_per_page option:selected").val();
-		initiate_ajax_call();
+	$("#results_menu_toggle_details").live('click', function() {
+		if( $("#results_menu_toggle_details span").text()=="View All Details") {
+			$(".student_toggle_detailed_info_link").text("Hide Details");
+			$(".student_detailed_info").show('slow');
+			$("#results_menu_toggle_details span").text("Hide All Details");
+		} else {
+			$(".student_toggle_detailed_info_link").text("View Details");
+			$(".student_detailed_info").hide('slow');
+			$("#results_menu_toggle_details span").text("View All Details");
+		}
 	});
 	
-	// Listen for result ordering change
-	$("#id_ordering").change( function() {
-		ordering = $("#id_ordering option:selected").val();
-		initiate_ajax_call();
+	$(".student_toggle_detailed_info_link").live('click', function() {
+		var id_array = this.id.split('_');
+		var id = id_array[id_array.length-1];
+		if ($(this).text() === "Hide Details"){
+			$('#student_detailed_info_'+ id).hide('slow');
+			$(this).text("View Details");
+		}else{
+			$('#student_detailed_info_'+ id).show('slow');
+			$(this).text("Hide Details");
+		}
 	});
 	
-	// Listen for result page change
-	$(".page_link").live('click', function() {
-		page = $(this).attr("id").substring(5);
-		initiate_ajax_call();
+	$(".student_hide_details_link").live('click', function(){
+		var id_array = this.id.split('_');
+		var id = id_array[id_array.length-1];
+		$('#student_detailed_info_'+ id).hide('slow');
+		$('#student_toggle_detailed_info_link_' + id).text("View Details");
 	});
-
-	// Listen for result detailed info toggle
-	$(".view_student_detailed_info_link").live('click', function() {
-		var selector = ".view_student_detailed_info_link_cell #" + this.id;
-
-		if ($(selector).text() === "Hide Details")
-			$(selector).text("View Details");
-		else
-			$(selector).text("Hide Details");
-		$('#student_detailed_info_'+ this.id).slideToggle('slow');
-	});
-
-	// Listen for mater checkbox click
+	
 	$("#results_menu_checkbox").live('click', function() {
 		if($("#results_menu_checkbox").attr('checked')==false) {
 			$(".student_checkbox:checked").each( function() {
@@ -171,19 +171,15 @@ $(document).ready( function() {
 			});
 		}
 	});
-	// Listen for hide/view all details click
-	$("#results_menu_toggle_details").live('click', function() {
-		if( $("#results_menu_toggle_details span").text()=="View All Details") {
-			$(".view_student_detailed_info_link").text("Hide Details");
-			$(".student_detailed_info").show('slow');
-			$("#results_menu_toggle_details span").text("Hide All Details");
-		} else {
-			$(".view_student_detailed_info_link").text("Show Details");
-			$(".student_detailed_info").hide('slow');
-			$("#results_menu_toggle_details span").text("View All Details");
-		}
-	});
 	
+	// Listen for a new search
+	$("#search_form_submit_button").click(initiate_search);
+	
+	// Listen for result page change
+	$(".page_link").live('click', function() {
+		page = $(this).attr("id").substring(5);
+		initiate_ajax_call();
+	});
 	
 	$("#id_student_list").multiselect({
 		header:false,
@@ -629,7 +625,6 @@ $(document).ready( function() {
 		clearStyle: true,
 		collapsible: true
 	});
-
 
 	// Make the first ajax call for results automatically
 	initiate_ajax_call();
