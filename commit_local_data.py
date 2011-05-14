@@ -8,9 +8,13 @@
 This script is meant to dump newly-added fake non-fixturable data to what we already have.
 """
 
-c  = raw_input('Make sure that you ran "create_local_data.py" then created the new local data, and only then are running this script in that order.\n\
-Otherwise you risk overwriting existing local data. Press lowercase "y" to continue.\n\'')
-
+c  = raw_input('This script might overwrite local data that has already been created. \
+                \n To avoid this, make sure that you have done things in the following order. \
+                \n 1. Pulled from git to make sure you have the latest local_data. \
+                \n 2. Ran "create_local_data.py" to integrate the local_data. \
+                \n 3. Now, having the latest local data, you created new your local data. \
+                \n 4. And are now running this script to save it!. \
+                \n Press lowercase "y" to continue, anything else to quit.')
 if not c=='y':
     exit()
     
