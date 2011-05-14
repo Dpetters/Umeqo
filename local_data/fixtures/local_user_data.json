@@ -27,7 +27,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-05-10 17:06:22", 
+   "last_login": "2011-05-13 02:48:50", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$65681$66cd85fe536cf855df7f3b0439c6e7b25950edbd", 

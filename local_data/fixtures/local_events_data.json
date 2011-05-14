@@ -17,7 +17,7 @@
    "end_datetime": "2011-11-10 18:53:59", 
    "rsvp_message": null, 
    "type": 1, 
-   "slug": "event-page", 
+   "slug": "weiss-asset-management-info-session", 
    "location": "3-217"
   }
  }, 
@@ -39,7 +39,7 @@
    "end_datetime": "2011-06-10 18:23:59", 
    "rsvp_message": null, 
    "type": 2, 
-   "slug": "event-page", 
+   "slug": "google-internship-resume-drop-deadline", 
    "location": null
   }
  }, 
@@ -61,7 +61,7 @@
    "end_datetime": "2011-07-10 19:53:59", 
    "rsvp_message": null, 
    "type": 3, 
-   "slug": "event-page", 
+   "slug": "morgan-stanley-mit-alumni-panel", 
    "location": "10-250"
   }
  }, 
@@ -83,7 +83,7 @@
    "end_datetime": "2011-04-10 18:53:59", 
    "rsvp_message": null, 
    "type": 9, 
-   "slug": "event-page", 
+   "slug": "goldman-sachs-networking-event", 
    "location": "Marriot"
   }
  }, 
@@ -105,7 +105,7 @@
    "end_datetime": "2011-04-10 18:53:59", 
    "rsvp_message": null, 
    "type": 2, 
-   "slug": "event-page", 
+   "slug": "thomson-reuters-interview-sign-up-deadline", 
    "location": null
   }
  }
