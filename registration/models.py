@@ -25,6 +25,9 @@ class InterestedPerson(models.Model):
     email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
     summer_plans = models.CharField("Summer plans?",max_length=200, null=True, blank=True)
     ip_address = models.IPAddressField(editable=False, null=True)
+
+    def __unicode__(self):
+        return self.first_name + " " + self.last_name
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
