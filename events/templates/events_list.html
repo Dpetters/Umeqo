@@ -27,7 +27,7 @@ var SEARCH_URL = "{% url event_search %}";
     </div>
     <div class="main_block_content">
         <form id="event_search_form" action="">
-            <label for="event_search_query">Filter Events:</label><input type="text" id="event_search_query" name="q" />
+            <label for="event_search_query">Filter Events:</label><input type="text" id="event_search_query" name="q" value="{{query}}"/>
             <noscript><input type="submit" value="Filter" /></noscript>
         </form>
         <ul id="main_event_list" class="event_list">

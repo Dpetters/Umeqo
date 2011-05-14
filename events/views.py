@@ -18,11 +18,13 @@ from haystack.query import SearchQuerySet
 
 @login_required
 def events_list(request, template_name='events_list.html', extra_context=None):
-    search_results = search_helper(request.GET.get('q',''))
+    query = request.GET.get('q','')
+    search_results = search_helper(query)
     #we use map to extract the object for each event
     events = map(lambda n: n.object,search_results)
     context = {
-        'events': events
+        'events': events,
+        'query': query
     }
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
