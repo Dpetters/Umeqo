@@ -261,7 +261,7 @@
    "subscribed_employers": [], 
    "user": 5, 
    "active": true, 
-   "shown_in_results_count": 22, 
+   "shown_in_results_count": 23, 
    "add_to_resumebook_count": 0, 
    "industries_of_interest": [
     1, 
@@ -279,7 +279,7 @@
   "fields": {
    "resume_view_count": 0, 
    "last_name": "Dearing", 
-   "last_updated": "2011-05-10 17:03:25", 
+   "last_updated": "2011-05-14 13:53:55", 
    "email_on_invite_to_private_event": false, 
    "email_on_new_event": false, 
    "sat_m": 750, 
@@ -287,7 +287,9 @@
    "sat_v": 800, 
    "sat_w": 790, 
    "keywords": " zachary dearing campus address hereford street boston tel email zdearing mit edu home address waverly dallas education massachusetts institute technology june gpa candidate for bachelor science economics and political science cambridge relevant coursework principles microeconomics macroeconomics intermediate macroeconomics finance theory accounting statistical method economics single multivariable calculus episcopal school dallas may gpa act dallas salutatorian national scholar national merit semi finalist experience goldman sachs and summer financial analyst securities division new york summer worked deal structuring project exploring arbitrage opportunities between pricing mortgage backed securities and underlying collateral value analyzed publicly traded company market cap determine was undervalued enough warrant being taken private communication media advisors winter consulting analyst boutique consulting and investment management firm boston winter staffed due diligence project for large investment bank evaluating cable markets southern modeled future revenue streams operating costs and growth opportunities based upon market trends and demographics worked team six with founding partner construct predictive models and the final compendium capital division standard poors development intern technical product specialist team new york summer developed application manage over virtual machines with approximately global users wrote application integrating vmware esx servers active directory and windows instrumentation management led team four organizing meetings deliverables and managing work streams get application production mccurley orsinger mccurley nelson downing intern law practice and administration dallas summer assisted legal teams with case preparation investigating witnesses and constructing cross examination questions managed the opening bank accounts thorough evaluating banks handling interactions assisting with cash management charged with tracking over million among accounts ensure that proper deposit levels were maintained maverick capital financial analyst intern operations and hedge fund accounting dallas summer august parsed key information and consolidated fund prospectus for easier use the senior traders compiled over past positions held and performance data facilitate its use quantitative analysis project maintained item fixed asset register supported the group with excel based spreadsheet analysis united states senate page washington january june facilitated voting procedure ensuring senators voted and were informed what issue was being decided upon provided logistical support for senators and staff assisting with any needs that they had while the senate chamber pcs founder and owner computer assembly business dallas july september founded and ran company with total revenue that built and sold custom computers direct customers designed website application with crm spec custom computers online and provide real time quotes leadership ring committee publicity chair committee member cambridge present shared responsibility for design marketing and production mit brass rat with committee led publicity efforts for events with combined budget and attendance people each sloan undergraduate management association suma director corporate relations associate cambridge fall present organized first ever mba panel with representatives from harvard sloan etc secured sponsorship from kaplan mit underclassmen giving campaign chair class cambridge october present devised innovative fundraising strategy leading class raise record this year fund student service trips abroad with participation rate interests skills java asp net php javascript html marathon running golf politics modern architecture chi phi", 
-   "looking_for": [], 
+   "looking_for": [
+    1
+   ], 
    "last_seen_events": [], 
    "first_name": "Zachary", 
    "first_major": 23, 
@@ -295,8 +297,14 @@
    "new_events": [], 
    "gpa": "5", 
    "email_on_invite_to_public_event": false, 
-   "campus_involvement": [], 
-   "languages": [], 
+   "campus_involvement": [
+    327, 
+    330
+   ], 
+   "languages": [
+    3, 
+    6
+   ], 
    "profile_created": true, 
    "school_year": 3, 
    "citizen": true, 
@@ -308,9 +316,12 @@
    "subscribed_employers": [], 
    "user": 6, 
    "active": true, 
-   "shown_in_results_count": 9, 
+   "shown_in_results_count": 10, 
    "add_to_resumebook_count": 0, 
-   "industries_of_interest": [], 
+   "industries_of_interest": [
+    11, 
+    12
+   ], 
    "act": 35, 
    "date_created": "2011-05-10 16:53:51", 
    "older_than_18": true
@@ -351,7 +362,7 @@
    "subscribed_employers": [], 
    "user": 7, 
    "active": true, 
-   "shown_in_results_count": 1, 
+   "shown_in_results_count": 2, 
    "add_to_resumebook_count": 0, 
    "industries_of_interest": [], 
    "act": 36, 
