@@ -219,7 +219,7 @@
   "fields": {
    "resume_view_count": 0, 
    "last_name": "Petters", 
-   "last_updated": "2011-05-10 16:57:34", 
+   "last_updated": "2011-05-14 16:43:50", 
    "email_on_invite_to_private_event": false, 
    "email_on_new_event": false, 
    "sat_m": 800, 
@@ -227,7 +227,10 @@
    "sat_v": 780, 
    "sat_w": 760, 
    "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor science computer science electrical engineering mathematics cambridge sep may sat sat math sat physic act awards parsons brinkerhoff national scholarship sparling company scholarship and bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented high school curriculum associate engineering transfer track with high distinction bellevue sep jun work experience athena capital research software engineer extern new york jan feb created risk graphing utility which used trader log data simulate past activity transfer into cache and graph long short position exposure and limits versus time used highcharts extjs for front end pion networking and boost libraries the backend wrote extjs plugin export gridpanels and its subclasses csv and xls thomson reuters software development intern eagan jun aug worked team member the website vertical fixed high priority bugs developed new features attended design planning meetings developed data mining script that used state machine extract pertinent info from tens thousands logs added new automated entry point into flagship product westlawnext with check for akamai pinging other servers crafted set interactive javascript widgets with custom form validation well jquery plug for mail text areas rbm technologies software engineer extern cambridge jan feb developed the ruby rails mobile visual merchandising manager app allow retail workers take digital pictures fixtures and upload them textures onto their respective floor plan models programmed automated rml based report using the rml pdf conversion library which summarized nation wide advertising campaigns for cellular firms such verizon and mobile mit agelab undergraduate researcher cambridge oct may combined python pil and ffmpeg produce video overlay that showed the exact spot simulation video which subject was looking any given moment skewed gaze data had translated before use researched the possibility heads display projected the windshield laboratory car which using the facelab gaze tracking system and data correction algorithms would allow user make selections visually activities leadership sbc sloan business club entrepreneurship project development leader cambridge feb present lead developer sbconnect django employer student interaction webapp featuring events invitations resume book creation etc collaborating with designer through github currently working resume parsing search backend and ajax filtering four consulting client development team lead cambridge nov oct furthered act our work makes non student run organizations worked internal development case mit bhs outdoor and indoor track and field and cross country varsity runner cambridge aug may mile mile led bhs team place state finish improvement from previous place finish skills and interests technical java python django javascript jquery extjs css latex languages fluent russian interests ted talks street hockey and entrepreneurship", 
-   "looking_for": [], 
+   "looking_for": [
+    2, 
+    4
+   ], 
    "last_seen_events": [], 
    "first_name": "Dmitrij", 
    "first_major": 12, 
@@ -235,12 +238,22 @@
    "new_events": [], 
    "gpa": "4.9", 
    "email_on_invite_to_public_event": false, 
-   "campus_involvement": [], 
-   "languages": [], 
+   "campus_involvement": [
+    2, 
+    3, 
+    5
+   ], 
+   "languages": [
+    3, 
+    27
+   ], 
    "profile_created": true, 
    "school_year": 2, 
    "citizen": false, 
-   "previous_employers": [], 
+   "previous_employers": [
+    1, 
+    2
+   ], 
    "website": "http://www.facebook.com/dpetters", 
    "second_major": 25, 
    "resume": "submitted_resumes/Petters_Dmitrij_student1_2011-05-10-16-57-34.pdf", 
@@ -248,9 +261,13 @@
    "subscribed_employers": [], 
    "user": 5, 
    "active": true, 
-   "shown_in_results_count": 21, 
+   "shown_in_results_count": 22, 
    "add_to_resumebook_count": 0, 
-   "industries_of_interest": [], 
+   "industries_of_interest": [
+    1, 
+    2, 
+    3
+   ], 
    "act": 34, 
    "date_created": "2011-05-10 16:53:27", 
    "older_than_18": true
@@ -291,7 +308,7 @@
    "subscribed_employers": [], 
    "user": 6, 
    "active": true, 
-   "shown_in_results_count": 8, 
+   "shown_in_results_count": 9, 
    "add_to_resumebook_count": 0, 
    "industries_of_interest": [], 
    "act": 35, 
@@ -334,7 +351,7 @@
    "subscribed_employers": [], 
    "user": 7, 
    "active": true, 
-   "shown_in_results_count": 0, 
+   "shown_in_results_count": 1, 
    "add_to_resumebook_count": 0, 
    "industries_of_interest": [], 
    "act": 36, 
