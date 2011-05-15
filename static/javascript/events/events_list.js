@@ -4,7 +4,6 @@ $(document).ready(function(){
         var query = $('#event_search_query').val();
         $.get(SEARCH_URL,{'q':query},function(data) {
             $('#main_event_list').html(data);
-            console.log('received');
         });
     }
     $('.name a').live('click',function() {
@@ -17,6 +16,6 @@ $(document).ready(function(){
     });
     
     window.onpopstate = function(event) {
-        $('#event_search_query').val(event.state.q);
+        if (event.state != null) $('#event_search_query').val(event.state.q);
     }
 });
