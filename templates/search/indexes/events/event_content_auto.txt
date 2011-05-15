@@ -1,0 +1,6 @@
+{{ object.name }}
+{{ object.description }}
+{{ object.start_datetime|date:"l F j, Y g:i A"}}
+{{ object.end_datetime|date:"l F j, Y g:i A"}}
+{{ object.employer.company_name }}
+{{ object.type.name }}

@@ -25,8 +25,8 @@ def delete_contents(directory):
 
 # Delete old search index files.
 # New index files get created automatically when loaddata gets run below
-if os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
-    delete_contents(settings.HAYSTACK_XAPIAN_PATH)
+if os.path.exists(settings.HAYSTACK_WHOOSH_PATH):
+    delete_contents(settings.HAYSTACK_WHOOSH_PATH)
 
 # Delete the old submitted resumes. Also delete the directory if it exists because
 # copytree below will throw a fit if it already exists
