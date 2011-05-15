@@ -10,7 +10,7 @@ database.db
 .settings
 submitted_resumes
 submitted_user_images
-xapian_index
+whoosh_index
 settings_local.py
 *.DS_Store
 *.psd
