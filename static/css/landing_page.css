@@ -147,7 +147,6 @@ input[type="text"] {
     -webkit-transition: box-shadow 0.5s ease;
     -moz-transition: box-shadow 0.5s ease;
     transition: box-shadow 0.5s ease;
-    border: 1px solid #FFF;
 }
 input[type="text"]:focus {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -228,4 +227,11 @@ input[type="submit"]:hover {
 }
 .footer a:hover {
     color: #CCC;
+}
+#fb-like {
+    clear: both;
+    padding-top: 10px;
+}
+#fb-like iframe {
+    margin-top: 0px;
 }
