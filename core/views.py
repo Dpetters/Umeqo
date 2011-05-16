@@ -100,7 +100,7 @@ def landing_page(request,
             person.save()
             
             subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
-            message = "Someone with the email "+ form.cleaned_data['email'] +" signed up!"
+            message = "%s %s (%s) signed up!" % (form.cleaned_data['first_name'],form.cleaned_data['last_name'],form.cleaned_data['email'])
             sender = settings.DEFAULT_FROM_EMAIL
             recipients = map(lambda n: n[1],settings.ADMINS)
             send_mail(subject,message,sender,recipients)
