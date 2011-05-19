@@ -127,7 +127,7 @@ TEMPLATE_DIRS = (
 )
 
 SOUTH_MIGRATION_MODULES = {
-    'messages': 'umeqo.messages.migrations',
+    'messages': 'Umeqo.messages.migrations',
 }
 
 INSTALLED_APPS = (
