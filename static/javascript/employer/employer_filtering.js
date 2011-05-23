@@ -15,15 +15,17 @@ $(document).ready( function() {
 	var min_sat_w = 200;
 	var page = 1;
 	var last_page = 1;
-	var student_list = $("#id_student_list option:selected").val(); 
+	var student_list = $("#id_student_list option:selected").text(); 
 	var ordering = $("#id_ordering option:selected").val();
 	var results_per_page = $("#id_results_per_page option:selected").val();
+	var gender = $("#id_gender option:selected").val();
 	var courses = new Array();
 	var school_years = new Array();
 	var graduation_years = new Array();
 	var previous_employers = new Array();
 	var industries_of_interest = new Array();
 	var employment_types = new Array();
+	var ethnicities = new Array();
 	var languages = new Array();
 	var campus_orgs = new Array()
 	var older_than_18 = "False";
@@ -82,8 +84,10 @@ $(document).ready( function() {
 				'employment_types' : employment_types.join('~'),
 				'previous_employers' : previous_employers.join('~'),
 				'industries_of_interest' : industries_of_interest.join('~'),
-				'languages' : languages.join('~'),
 				'campus_orgs' : campus_orgs.join('~'),
+				'ethnicities' : ethnicities.join('~'),
+				'languages' : languages.join('~'),
+				'gender' : gender,
 				'older_than_18' : older_than_18,
 				'citizen' : citizen,
 				'ordering': ordering,
@@ -190,7 +194,7 @@ $(document).ready( function() {
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
 		click: function(event, ui){
-			student_list = ui.value;
+			student_list = ui.text;
 			initiate_ajax_call();
 		}
 	});
@@ -380,7 +384,72 @@ $(document).ready( function() {
 			initiate_ajax_call();
 		}
 	}).multiselectfilter();
-
+	
+	$("#id_campus_involvement").multiselect({
+		noneSelectedText: 'Filter By Campus Involvement',
+		selectedText: 'Filtering by # Campus Organizations',
+		checkAllText: multiselectCheckAllText,
+		uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion,
+        optgrouptoggle: function(e, ui) {
+			/* To do */
+        },
+		checkAll: function(){
+			campus_orgs = $("#id_campus_involvement").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			campus_orgs = $("#id_campus_involvement").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		click: function(event, ui){
+			campus_orgs = $("#id_campus_orgs").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
+	}).multiselectfilter();
+	
+	$("#id_ethnicities").multiselect({
+		noneSelectedText: 'Filter By Ethnicities',
+		selectedText: 'Filtering by # Ethnicities',
+		checkAllText: multiselectCheckAllText,
+		uncheckAllText: multiselectUncheckAllText,
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+		minWidth:multiselectMinWidth,
+		height: multiselectLargeHeight,
+		open: handle_multiselect_open_in_accordion,
+		close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			ethnicities = $("#id_ethnicities").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			ethnicities = $("#id_ethnicities").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		click: function(event, ui){
+			ethnicities = $("#id_ethnicities").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
+	});
+	
 	$("#id_languages").multiselect({
 		noneSelectedText: 'Filter By Languages',
 		selectedText: 'Filtering by # Languages',
@@ -391,23 +460,43 @@ $(document).ready( function() {
 		minWidth:multiselectMinWidth,
 		height: multiselectLargeHeight,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
+		close: handle_multiselect_close_in_accordion,
+		checkAll: function(){
+			languages = $("#id_languages").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		uncheckAll: function(){
+			languages = $("#id_languages").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		},
+		click: function(event, ui){
+			languages = $("#id_languages").multiselect("getChecked").map(function(){
+			   return this.value;	
+			}).get();
+			initiate_ajax_call();
+		}
 	}).multiselectfilter();
 
-
-	$("#id_campus_orgs").multiselect({
-		noneSelectedText: 'Filter By Campus Involvement',
-		selectedText: 'Filtering by # Campus Organizations',
-		checkAllText: multiselectCheckAllText,
-		uncheckAllText: multiselectUncheckAllText,
+	$("#id_gender").multiselect({
+		header:false,
+		selectedList: 1,
+		multiple: false,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-		minWidth:multiselectMinWidth,
-		height: multiselectLargeHeight,
+		height: multiselectThreeOptionHeight,
+		minWidth: multiselectYesNoSingleSelectWidth,
 		open: handle_multiselect_open_in_accordion,
-		close: handle_multiselect_close_in_accordion
-	}).multiselectfilter();
-
+		close: handle_multiselect_close_in_accordion,
+		click: function(event, ui){
+			gender = ui.value;
+			initiate_ajax_call();
+		}
+	});
+	
 	$("#id_older_than_18").multiselect({
 		header:false,
 		selectedList: 1,
@@ -625,7 +714,17 @@ $(document).ready( function() {
 		clearStyle: true,
 		collapsible: true
 	});
-
+	
+	if(query){
+		$("#query_field").val(query);
+	}
+	
+	var timeoutID;
+    $('#query_field').keydown(function() {
+        if (typeof timeoutID!='undefined') window.clearTimeout(timeoutID);
+        timeoutID = window.setTimeout(initiate_search,500);
+    });
+    
 	// Make the first ajax call for results automatically
 	initiate_ajax_call();
 });

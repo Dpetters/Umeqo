@@ -4,23 +4,7 @@
  Copyright 2011. All Rights Reserved.
  */
 
- .below_header_message
- {
-     behavior: url(/static/lib/pie/PIE.htc);
-     background-image: -moz-linear-gradient(#FFF, #F2F2F2);
-     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#F2F2F2));
-     -pie-background: linear-gradient(#FFF, #F2F2F2);
-     text-shadow: 0 1px 0 #FFFFFF;
-     text-align:center;
-     font-weight:bold;
-     color:#000;
-     border:1px solid #AAA;
-     padding-top:4px;
-     padding-bottom:4px;
-     border-radius: 4px;
-     -moz-border-radius: 4px;
-     margin-top: 8px;
- }
+
  #bottom_info_block {
      padding-top:20px;
      text-align:center;
@@ -95,12 +79,6 @@
 
  .longInfo {
      clear: both;
- }
- #below_header_area {
-     position: absolute;
-     width: 986px;
-     left: 50%;
-     margin-left: -493px;
  }
 
  .longInfo {

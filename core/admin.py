@@ -8,7 +8,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType
+from core.models import RelationshipType, CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType
+
+class RelationshipTypeAdmin(admin.ModelAdmin):
+    field = ['name', 'slug']
+    list_display = ('name',)
+
+admin.site.register(RelationshipType, RelationshipTypeAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
 

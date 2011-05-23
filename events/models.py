@@ -7,7 +7,6 @@
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
-from student.models import *
 from django.template.defaultfilters import slugify
 from core.models import EventType
 from core.managers import ActiveManager
@@ -20,7 +19,10 @@ class Event(models.Model):
 
 
     # Required Fields
-    employer = models.ForeignKey("employer.Employer")
+    employer_user = models.ManyToManyField("employer.EmployerUser")
+    
+    # Foreign Key to Campus Organization
+    
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)

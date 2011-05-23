@@ -6,7 +6,7 @@
 
 $(document).ready( function() {
     var languages_max = 12;
-    var campus_org_max = 12;
+    var campus_involvement_max = 12;
     var industries_of_interest_max = 12;
     var previous_employers_max = 12;
     
@@ -31,7 +31,7 @@ $(document).ready( function() {
     };
 	
 	function open_create_language_dialog() {
-        var $dialog = $('<div class="dialog"></div>')
+        var dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
             title:"New Language",
@@ -43,12 +43,12 @@ $(document).ready( function() {
                 create_language_dialog.remove();
             }
         });
-        $dialog.dialog('open');
-        return $dialog;
+        dialog.dialog('open');
+        return dialog;
     };
     
     function open_profile_form_info_dialog(){
-        var $dialog = $('<div></div>')
+        var dialog = $('<div></div>')
         .dialog({
             autoOpen: false,
             title:"Why More Information is Better",
@@ -57,8 +57,8 @@ $(document).ready( function() {
             width:700,
             resizable: false
         });
-        $dialog.dialog('open');
-        return $dialog;
+        dialog.dialog('open');
+        return dialog;
     };
     
     $('#create_campus_organization_link').click( function () {
@@ -87,7 +87,7 @@ $(document).ready( function() {
 
                 $("#id_type").multiselect({
                     noneSelectedText: "select campus organization type",
-                    height:140,
+                    height:multiselectLargeHeight,
                     header:false,
                     minWidth:multiselectMinWidth,
                     selectedList: 1,
@@ -103,7 +103,6 @@ $(document).ready( function() {
                             },
                             error: function(jqXHR, textStatus, errorThrown){
                             	hide_form_submit_loader("#create_campus_organization_form");
-                            	alert(jqXHR.status);
 				                switch(jqXHR.status){
 				                    case 0:
 				                    	(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
@@ -310,6 +309,48 @@ $(document).ready( function() {
     
     // Create Profile Form Validation
     var v = $("#profile_form").validate({
+    	/*
+		submitHandler: function(form) {
+            $(form).ajaxSubmit({
+                dataType: 'json',
+                beforeSubmit: function (arr, $form, options) {
+                    show_form_submit_loader("#profile_form");
+                    $("#profile_form .error_section").html("");
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    hide_form_submit_loader("#profile_form");
+                    switch(jqXHR.status){
+                        case 0:
+                        	if (errorThrown.slice(0, 12-errorThrown.length)=="Invalid JSON"){
+                            	show_error_dialog(page_error_message);
+                            }
+                            else{
+                        		$("#profile_form .error_section").html(form_check_connection_message);
+                            }
+                            break;
+                        default:
+                            show_error_dialog(page_error_message);
+                    }
+                },
+                success: function(data) {
+                    hide_form_submit_loader("#student_registration_form");
+                    switch(data.valid) {
+                        case false:
+							if (data.form_errors.__all__){
+                        		place_non_field_ajax_errors(data.form_errors.__all__, "#profile_form");
+                        	}
+		                    break;
+		                case true:
+                            window.location.replace(data.success_url);
+                            break;
+                        default:
+                    		show_error_dialog(page_error_message);
+                    		break;
+                    }
+                }
+            });
+        },
+        */
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_errors_table,
@@ -328,9 +369,6 @@ $(document).ready( function() {
             },
             first_major: {
                 required: true
-            },
-            second_major: {
-                notEqualTo : '#id_first_major'
             },
             gpa: {
                 required: true,
@@ -361,13 +399,12 @@ $(document).ready( function() {
             }
         },
         messages: {
-            resume: "Please select a PDF version of your resume.",
-            second_major: "Second major must be different from first."
+            resume: RESUME_MUST_BE_A_PDF_MESSAGE,
         }
     });
 
     // Get rid of resume field errors as a user selects a file
-    // JQuery validation doesn't support the change event
+    // JQuery validation doesn't respond to the change event
     $("#id_resume").change( function() {
         v.element("#id_resume");
     });
@@ -378,25 +415,27 @@ $(document).ready( function() {
 		hide: multiselectHideAnimation,
         header:false,
         minWidth:multiselectMinWidth,
-        height:140,
+        height:multiselectLargeHeight,
         selectedList: 1,
         multiple: false,
+        /* Added close so the error message gets removed once something is selected*/
         close: function(e) {
             if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
                 v.element("#id_school_year");
             }
         },
     });
-
+    
     $("#id_graduation_year").multiselect({
         noneSelectedText: "select graduation year",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         header:false,
         selectedList: 1,
-        height:118,
+        height:multiselectLargeHeight,
         minWidth:multiselectMinWidth,
         multiple: false,
+        /* Added close so the error message gets removed once something is selected*/
         close: function(e) {
             if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
                 v.element("#id_graduation_year");
@@ -413,6 +452,7 @@ $(document).ready( function() {
         minWidth:multiselectMinWidth,
         selectedList: 1,
         multiple: false,
+        /* Added close so the error message gets removed once something is selected*/
         close: function(e) {
             if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
                 v.element("#id_first_major");
@@ -453,7 +493,7 @@ $(document).ready( function() {
         click: function(e) {
             $(".warning").remove();
             if( $(this).multiselect("widget").find("input:checked").length > industries_of_interest_max ) {
-                show_multiselect_warning("id_industries_of_interest", industries_of_interest_max);
+                place_multiselect_warning_table($("#id_industries_of_interest"), industries_of_interest_max);
                 return false;
             }
         }
@@ -472,7 +512,7 @@ $(document).ready( function() {
         click: function(e) {
             $(".warning").remove();
             if( $(this).multiselect("widget").find("input:checked").length > previous_employers_max ) {
-                show_multiselect_warning("id_previous_employers", previous_employers_max);
+                place_multiselect_warning_table($("#id_previous_employers"), previous_employers_max);
                 return false;
             }
         }
@@ -488,8 +528,8 @@ $(document).ready( function() {
         height:multiselectLargeHeight,
         optgrouptoggle: function(e, ui) {
             $(".warning").remove();
-            if (ui.inputs.length + $(this).multiselect("widget").find("input:checked").length > campus_org_max) {
-                show_multiselect_warning("id_campus_orgs", campus_org_max);
+            if (ui.inputs.length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max) {
+                place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
                 return false;
             }
         },
@@ -498,13 +538,24 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
-            if( $(this).multiselect("widget").find("input:checked").length > campus_org_max ) {
-                show_multiselect_warning("id_campus_orgs", campus_org_max);
+            if( $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
+                place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
                 return false;
             }
         }
     }).multiselectfilter();
-
+    
+    $("#id_ethnicity").multiselect({
+        noneSelectedText: "select ethnicity",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+        height:multiselectLargeHeight,
+        header:false,
+        minWidth:multiselectMinWidth,
+        selectedList: 1,
+        multiple: false
+    });
+    
     $("#id_languages").multiselect({
         noneSelectedText: 'select languages',
         checkAllText: multiselectCheckAllText,
@@ -519,12 +570,23 @@ $(document).ready( function() {
         click: function(e) {
             $(".warning").remove();
             if( $(this).multiselect("widget").find("input:checked").length > languages_max ) {
-                show_multiselect_warning("id_languages", languages_max);
+                place_multiselect_warning_table($("#id_languages"), languages_max);
                 return false;
             }
         }
     }).multiselectfilter();
 
+    $("#id_gender").multiselect({
+        noneSelectedText: "select male or female",
+		show: multiselectShowAnimation,
+		hide: multiselectHideAnimation,
+        height:multiselectTwoOptionHeight,
+        header:false,
+        minWidth:multiselectYesNoSingleSelectWidth,
+        selectedList: 1,
+        multiple: false
+    });
+    
     $("#id_older_than_18").multiselect({
         noneSelectedText: "select yes or no",
 		show: multiselectShowAnimation,

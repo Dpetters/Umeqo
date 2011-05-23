@@ -144,16 +144,23 @@ Copyright 2011. All Rights Reserved.
 				</h3>
 				<div>
 					<div>
-						{{student_filtering_form.languages}}
+						{{student_filtering_form.campus_involvement}}
 					</div>
 					<div>
-						{{student_filtering_form.campus_orgs}}
+						{{student_filtering_form.ethnicities}}
 					</div>
-					<div class="select_wrapper ">
+					<div>
+						{{student_filtering_form.languages}}
+					</div>
+					<div class="select_wrapper">
+						{{student_filtering_form.gender.label_tag}}
+						{{student_filtering_form.gender}}
+					</div>
+					<div class="select_wrapper">
 						{{student_filtering_form.older_than_18.label_tag}}
 						{{student_filtering_form.older_than_18}}
 					</div>
-					<div class="select_wrapper ">
+					<div class="select_wrapper">
 						{{student_filtering_form.citizen.label_tag}}
 						{{student_filtering_form.citizen}}
 					</div>

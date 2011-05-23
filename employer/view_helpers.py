@@ -8,8 +8,10 @@ from django.db.models import Q
 
 from notification import models as notification
 from haystack.query import SearchQuerySet
-from student.models import StudentList, Student
+from core import choices as core_choices
+from student.models import Student
 from employer import enums
+from student import enums as student_enums
 
 
 def check_for_new_student_matches(employer):
@@ -40,14 +42,31 @@ def filter_students(student_list=None,
                     employment_types=None,
                     previous_employers=None,
                     industries_of_interest=None,
+                    gender=None,
                     citizen=None, 
                     older_than_18=None,
+                    ethnicities=None,
                     languages=None,
                     campus_orgs=None):
-    kwargs = {}
     
-    all_students = StudentList.objects.get(id=student_list).students.all()
-
+    students = []
+    # All Students
+    if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
+        students = Student.objects.all()
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
+        pass
+        # all starred students
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
+        pass
+        # resumebook students
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:
+        pass
+        # latest default filtering parameter matches students
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[4][1]:
+        pass
+        # all default filtering parameter matches
+            
+    kwargs = {}
     if gpa:
         kwargs['gpa__gte'] = gpa
     if act:
@@ -70,16 +89,20 @@ def filter_students(student_list=None,
         kwargs['previous_employers__id__in'] = previous_employers
     if industries_of_interest:
         kwargs['industries_of_interest__id__in'] = industries_of_interest
+    if gender and gender != core_choices.BOTH_GENDERS:
+        kwargs['gender'] = gender
     if citizen:
         kwargs['citizen'] = citizen
     if older_than_18:
         kwargs['older_than_18'] = older_than_18
+    if ethnicities:
+        kwargs['ethnicity__id__in'] = ethnicities
     if languages:
         kwargs['languages__id__in'] = languages
     if campus_orgs:
-        kwargs['campus_orgs__id__in'] = campus_orgs        
-    
-    filtering_results = all_students.filter(**kwargs)
+        kwargs['campus_involvement__id__in'] = campus_orgs        
+    print kwargs
+    filtering_results = students.filter(**kwargs)
 
     if courses:
         filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))

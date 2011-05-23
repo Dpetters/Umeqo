@@ -5,40 +5,27 @@
 """
 
 from django.db import models
+from django.contrib.auth.models import User
 
-from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
-from registration.models import UserProfile
+from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, Ethnicity
 from core.models_helper import get_resume_filename
-from events.models import Event
-from student import enums as student_enums
+from core.choices import GENDER_CHOICES
+from relationships.managers import RelationshipManagerMixin
 
+class StudentManager(models.Manager, RelationshipManagerMixin):
+    pass
 
-class StudentList(models.Model):
+class Student(models.Model):
     
-    name = models.CharField("Student List Name", max_length = 42, help_text="Maximum 42 characters.")
-    employers = models.ManyToManyField("employer.Employer", blank = True, null = True)
-    event = models.ForeignKey("events.Event", blank = True, null = True)
-    type = models.IntegerField(choices=student_enums.STUDENT_GROUP_TYPE_CHOICES)
-    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the student lists to be displayed.')
+    objects = StudentManager()
     
-    # "Last Seen" field is used for RSVP Notifications if this is an event student list
-    last_seen_students = models.ManyToManyField("student.Student", blank = True, null = True, related_name="last_seen_studentlist_set")
-    students = models.ManyToManyField("student.Student", blank = True, null = True, related_name="studentlist_set")
-   
-    # Dates
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+    user = models.OneToOneField(User)
     
-    def __unicode__(self):
-        return self.name
-
-class Student(UserProfile):
-
     # Account Info
-    active = models.BooleanField(default=True)
     profile_created = models.BooleanField(default=False)
     
     # Extracted from resumes
-    keywords = models.TextField()
+    keywords = models.TextField(blank=True, null=True)
     
     # Required Info
     first_name = models.CharField(max_length = 20, blank = True, null=True)
@@ -59,33 +46,25 @@ class Student(UserProfile):
     
     # Work Info
     looking_for = models.ManyToManyField(EmploymentType, blank = True, null=True) 
-    previous_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="previous_employers_of")
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="industries_of_interest_of")
+    previous_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="previous_employers_of")
+
 
     # Miscellaneous Info
     campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null=True)
-    older_than_18 = models.BooleanField()
-    citizen = models.BooleanField()
     languages = models.ManyToManyField(Language, blank = True, null = True)
     website = models.URLField(blank = True, null=True)
+    gender = models.CharField(max_length=1, choices = GENDER_CHOICES, blank = True, null = True)
+    older_than_18 = models.BooleanField()
+    ethnicity = models.ForeignKey(Ethnicity, blank = True, null = True)
+    citizen = models.BooleanField()
     
     # Subscriptions
     subscribed_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="subscribed_employers")
-    
-    # "Last Seen" field is used for New Event Notifications
-    last_seen_events = models.ManyToManyField(Event, blank = True, null=True, related_name = "last_seen_by")
-    new_events = models.ManyToManyField(Event, blank = True, null = True)
-    
-    # Preferences
-    email_on_invite_to_public_event = models.BooleanField()
-    email_on_invite_to_private_event = models.BooleanField()
-    email_on_new_event = models.BooleanField()
-    
-    # Statistics
-    event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
-    add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
-    resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
-    shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)
+
+    is_active = models.BooleanField(default=True)
+    preferences = models.OneToOneField("student.StudentPreferences")
+    statistics = models.OneToOneField("student.StudentStatistics")
     
     # Dates
     last_updated = models.DateTimeField(editable=False, blank = True, null=True)
@@ -103,3 +82,14 @@ class Student(UserProfile):
             self.user.last_name = self.last_name
             self.user.save()
         super(Student, self).save( *args, **kwargs )
+
+class StudentPreferences(models.Model):
+    email_on_invite_to_public_event = models.BooleanField()
+    email_on_invite_to_private_event = models.BooleanField()
+    email_on_new_event = models.BooleanField()
+
+class StudentStatistics(models.Model):
+    event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
+    add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
+    resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
+    shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)

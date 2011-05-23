@@ -36,7 +36,7 @@ Copyright 2011. All Rights Reserved.
         <script src="{{ STATIC_URL }}javascript/browser_not_supported.js" type="text/javascript"></script>
         <![endif]-->
 
-        {% if user.is_authenticated and user.student or user.employer %}
+        {% if user.is_authenticated and user.student or user.employeruser %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             <script type="text/javascript" src="{{ STATIC_URL }}javascript/logged_in.js">
             </script>
@@ -50,16 +50,16 @@ Copyright 2011. All Rights Reserved.
 
         {% endblock %}
 		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+		  	_gaq.push(['_setAccount', 'UA-22946783-1']);
+		  	_gaq.push(['_trackPageview']);
 		
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-22946783-1']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		</script>
     </head>
     <body>
@@ -70,7 +70,7 @@ Copyright 2011. All Rights Reserved.
         <div id="header_area">
             <div class="width_container">
                 <ul id="navigation_block">
-                    {% if not user.is_authenticated or not user.student and not user.employer %}
+                    {% if not user.is_authenticated or not user.student and not user.employeruser %}
                     <li id="login_button">
                         <a href="javascript:void(0)">Login</a>
                     </li>
@@ -78,18 +78,18 @@ Copyright 2011. All Rights Reserved.
                     <li>
                         <a id="home" href="{% url home %}">Home</a>
                     </li>
-                    {% if user.is_authenticated and user.student or user.employer %}
+                    {% if user.is_authenticated and user.student or user.employeruser %}
                     <li>
                         <a id="help" href="{% url help %}">Help</a>
                     </li>
                     <li>
                         <a id="account" href="javascript:void(0)">Account <span class="arrow">&#9660;</span></a>
                         <ul id="account_dropdown">
-                            <li class="info">{% if user.company_name %}{{user.company_name}}{% else %}{{user}}{% endif %}</li>
+                            <li class="info">{{user}}</li>
                         {% if user.student %}
                         	<li><a href="{% url student_account_settings %}">Account Settings</a></li>
                             <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
-                        {% else %}{% if user.employer %}    
+                        {% else %}{% if user.employeruser %}    
                             <li><a href="{% url employer_account_settings %}">Account Settings</a></li>
                         {% endif %}{% endif %}
                             <li><a href="{% url logout %}">Logout</a></li>
@@ -116,7 +116,7 @@ Copyright 2011. All Rights Reserved.
             </div>
         </div>
         <div id="below_header_area">
-                {% if not user.is_authenticated or not user.student and not user.employer %}
+                {% if not user.is_authenticated or not user.student and not user.employeruser %}
                 <div id="loginWrapper">
                     <form id="login_form" action="/login/" method='POST'>
                         {% csrf_token %}
