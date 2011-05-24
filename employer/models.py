@@ -8,6 +8,7 @@ from django.db import models
 from django.contrib.localflavor.us.models import PhoneNumberField
 from django.contrib.auth.models import User
 
+from countries.models import Country
 from core.models import Industry, Ethnicity, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
 from employer import enums as employer_enums
 from core import choices as core_choices
@@ -39,7 +40,7 @@ class FilteringParameters(models.Model):
     languages = models.ManyToManyField(Language, blank = True, null = True)
     gender = models.CharField(max_length=1, choices = core_choices.FILTERING_GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.BooleanField()
-    citizen = models.BooleanField()  
+    countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
 
 class EmployerUser(models.Model):
     

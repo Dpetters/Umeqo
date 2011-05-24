@@ -7,6 +7,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, Ethnicity
 from core.models_helper import get_resume_filename
 from core.choices import GENDER_CHOICES
@@ -57,7 +58,7 @@ class Student(models.Model):
     gender = models.CharField(max_length=1, choices = GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.BooleanField()
     ethnicity = models.ForeignKey(Ethnicity, blank = True, null = True)
-    citizen = models.BooleanField()
+    country_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
     
     # Subscriptions
     subscribed_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="subscribed_employers")

@@ -11,7 +11,7 @@ input[type=text] {
 select {
 	width:310px;
 }
-#id_older_than_18, #id_citizen, #id_requires_sponsorship, #id_gender {
+#id_older_than_18, #id_requires_sponsorship, #id_gender {
 	width:185px;
 }
 .button {

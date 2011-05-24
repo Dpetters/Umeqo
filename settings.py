@@ -86,6 +86,8 @@ STATICFILES_DIRS = (
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+COUNTRIES_FLAG_PATH = STATIC_URL + 'images/flags/%s.png'
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '=myl84m2+qr&d1&w^$(!ks0=6$6zlj4o438$c$_snv_45bpwow'
 
@@ -145,6 +147,7 @@ INSTALLED_APPS = (
     'events',
     'haystack',
     'messages',
+    'countries',
     'notification',
     'registration',
     'south',

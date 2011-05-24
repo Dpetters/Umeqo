@@ -8,11 +8,18 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from core.models import RelationshipType, CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType
+from core.models import Ethnicity, RelationshipType, CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType
+
+class EthnicityAdmin(admin.ModelAdmin):
+    fields = ['name']
+    list_display = ('name',)
+
+admin.site.register(Ethnicity, EthnicityAdmin)
 
 class RelationshipTypeAdmin(admin.ModelAdmin):
-    field = ['name', 'slug']
+    fields = ['name', 'slug']
     list_display = ('name',)
+    prepopulated_fields = {"slug": ("name",)}
 
 admin.site.register(RelationshipType, RelationshipTypeAdmin)
 

@@ -58,9 +58,6 @@ p {
 	-moz-border-radius: 4px;
 	margin-top: 8px;
 }
-#email_icon_section {
-	margin-top:60px;
-}
 .width_container {
 	width: 986px;
 	margin:0 auto;
@@ -130,11 +127,86 @@ p {
 #login_section img {
 	position:absolute;
 }
+#account a {
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+#account.pressed, #account.pressed:hover {
+	/*background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
+	 background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
+	 -pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));*/
+	color: #FFF;
+	background-color: rgba(255,255,255,0.3);
+}
+#account_dropdown {
+	min-width:120px;
+	display: block;
+	position: absolute;
+	right: 2px;
+	text-shadow: none;
+	background: #333;
+	top: 50px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid #000;
+	background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
+	-pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
+	z-index: 100;
+	-moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+#account_dropdown li {
+	padding: 0;
+	margin: 0;
+	float: none;
+	height: auto;
+	line-height: normal;
+	text-align: left;
+	font-family: Arial;
+	letter-spacing: normal;
+	font-weight: bold;
+}
+#account_dropdown li a {
+	border: none;
+	background: none;
+	padding: 0 0 0 10px;
+	display: block;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #DDD;
+	text-shadow: #000 0 -1px 0;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+	font-size: 11px;
+}
+#account_dropdown li a:hover {
+	background: #404040;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	color: #FFF;
+}
+#account_dropdown .info {
+	color: #FFF;
+	padding: 10px;
+	text-shadow: rgba(255,255,255,0.8) 0 0 2px;
+	background-color: #333;
+	font-size: 14px;
+	overflow-x: hidden;
+}
 #content_area {
 	padding-bottom: 40px;
 	padding-top:23px;
 }
-/* Message Block is for confirmation pages where we just have a title and a short message */
+/*goes for nav-like links next to headers, e.g. "go back to events" */
+#content_area .back_link {
+	font-size: 12px;
+	vertical-align: middle;
+}
 .message_block {
 	text-align:center;
 	margin-top:30px;
@@ -225,9 +297,6 @@ p {
 	float:right;
 	margin-right:20px;
 }
-/* The following are for side blocks only */
-
-/* What to put side blocks in */
 .right_side_container {
 	float:right;
 }
@@ -312,26 +381,6 @@ p {
 .button span, .button img {
 	vertical-align: middle;
 }
-.ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
-	height: 19px;
-	line-height: 17px;
-}
-.ui-multiselect-menu  .ui-multiselect-hasfilter ul {
-	top:0px;
-}
-.ui-multiselect-menu  .ui-multiselect-close {
-	position:relative;
-	top:2px;
-	right:2px;
-}
-.ui-multiselect-menu .ui-multiselect-none span.ui-icon {
-	position: relative;
-	left: -3px;
-	top: 1px;
-}
-#content_area .ui-multiselect-none a:hover, #content_area .ui-multiselect-none span:hover {
-	text-decoration: none;
-}
 .button.large {
 	line-height: 34px;
 	height: 34px;
@@ -376,31 +425,13 @@ p {
 	bottom:2px;
 	font-weight:bold;
 }
-.ui-multiselect-all, .ui-multiselect-none {
-	padding: 0 6px 0 3px;
-}
 /* Forms */
-.errorspace .errorlist {
-	color: #FF2222;
-	list-style:none;
-	position:absolute;
-	bottom:0px;
-}
 .errorspace {
 	color: #FF2222;
 	position: relative;
 	height: 20px;
 	font-size: 12px;
 	text-align: left;
-}
-.title {
-	margin-bottom:3px;
-}
-.top_pad {
-	margin-top:10px;
-}
-.abovepad {
-	margin-top: 20px;
 }
 .asterisk, .error {
 	color: #FF2222;
@@ -635,6 +666,29 @@ button.ui-multiselect[type=button]:hover {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 }
+.ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
+	height: 19px;
+	line-height: 17px;
+}
+.ui-multiselect-menu  .ui-multiselect-hasfilter ul {
+	top:0px;
+}
+.ui-multiselect-menu  .ui-multiselect-close {
+	position:relative;
+	top:2px;
+	right:2px;
+}
+.ui-multiselect-all, .ui-multiselect-none {
+	padding: 0 6px 0 3px;
+}
+.ui-multiselect-menu .ui-multiselect-none span.ui-icon {
+	position: relative;
+	left: -3px;
+	top: 1px;
+}
+#content_area .ui-multiselect-none a:hover, #content_area .ui-multiselect-none span:hover {
+	text-decoration: none;
+}
 /* JQuery Slider */
 a.ui-slider-handle {
 	padding:1px 2px;
@@ -645,80 +699,4 @@ a.ui-slider-handle {
 	display: block;
 	height: 0;
 	visibility: hidden;
-}
-#account a {
-	-webkit-transition: none;
-	-moz-transition: none;
-	transition: none;
-}
-#account.pressed, #account.pressed:hover {
-	/*background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
-	 background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
-	 -pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));*/
-	color: #FFF;
-	background-color: rgba(255,255,255,0.3);
-}
-#account_dropdown {
-	min-width:120px;
-	display: block;
-	position: absolute;
-	right: 2px;
-	text-shadow: none;
-	background: #333;
-	top: 50px;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	border: 1px solid #000;
-	background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
-	-pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
-	z-index: 100;
-	-moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-	-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-	box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-}
-#account_dropdown li {
-	padding: 0;
-	margin: 0;
-	float: none;
-	height: auto;
-	line-height: normal;
-	text-align: left;
-	font-family: Arial;
-	letter-spacing: normal;
-	font-weight: bold;
-}
-#account_dropdown li a {
-	border: none;
-	background: none;
-	padding: 0 0 0 10px;
-	display: block;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	color: #DDD;
-	text-shadow: #000 0 -1px 0;
-	-webkit-transition: none;
-	-moz-transition: none;
-	transition: none;
-	font-size: 11px;
-}
-#account_dropdown li a:hover {
-	background: #404040;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	color: #FFF;
-}
-#account_dropdown .info {
-	color: #FFF;
-	padding: 10px;
-	text-shadow: rgba(255,255,255,0.8) 0 0 2px;
-	background-color: #333;
-	font-size: 14px;
-	overflow-x: hidden;
-}
-/*goes for nav-like links next to headers, e.g. "go back to events" */
-#content_area .back_link {
-	font-size: 12px;
-	vertical-align: middle;
 }

@@ -3,13 +3,16 @@ Developers : Dmitrij Petters,
 All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
-
 {% extends "base.html" %}
+
 
 {% load macros %}
 
+
 {% block title %}
+{{block.super}}
 {% endblock %}
+
 
 {% block metadata %}
 {{block.super}}
@@ -20,29 +23,32 @@ Copyright 2011. All Rights Reserved.
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js">
 </script>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-
 <!-- Filtering plugin for Multiselect Widget -->
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js">
 </script>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-
 <!-- Custom -->
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_form.js">
 </script>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_form.css"/>
+<!-- Scripts -->
 <script type="text/javascript">
 	var RESUME_MUST_BE_A_PDF_MESSAGE = "{{resume_must_be_a_pdf_message}}";
 </script>
 {% endblock %}
 
-{% macro title %}
-{% block main_block_header_title %} Repeatblock {% endblock %}
+
+{% macro student_profile_form_block_title %}
+{% block student_profile_form_block_title %}{% endblock %}
 {% endmacro %}
 
-{% block content_area %}
 
-{% block header %}
+{% block content_area %}
+{{block.super}}
+
+{% block page_header %}
 {% endblock %}
+
 <form id="profile_form" method='POST' action="" enctype="multipart/form-data">
     {% csrf_token %}
     <ul id="stepForm">
@@ -51,7 +57,7 @@ Copyright 2011. All Rights Reserved.
             <div class="main_block">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
                     <div class="main_block_header_content">
                         <span>
                             <strong>Required Info</strong>
@@ -120,7 +126,7 @@ Copyright 2011. All Rights Reserved.
 						{{form.errors}}
 					</div>
                     <div class="button_wrapper_with_margins">
-                        <input class="student_profile_form_submit_button" class="button" type='submit' alt="Submit" value='Submit'>
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Submit" value='Submit'>
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
@@ -146,7 +152,7 @@ Copyright 2011. All Rights Reserved.
             <div class="main_block">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
-                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
                         &raquo;
@@ -202,7 +208,7 @@ Copyright 2011. All Rights Reserved.
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-                        <input class="student_profile_form_submit_button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
                         <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
@@ -219,7 +225,7 @@ Copyright 2011. All Rights Reserved.
             <div class="main_block">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
-                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
                         &raquo;
@@ -261,7 +267,7 @@ Copyright 2011. All Rights Reserved.
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
-                        <input class="student_profile_form_submit_button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
                         <input name="formNext3" type="button" class="open3 button" value="Next" alt="Next" />
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
@@ -278,7 +284,7 @@ Copyright 2011. All Rights Reserved.
             <div class="main_block">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
-                    <span class="main_block_header_title">{% usemacro title %}</span>
+                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
                         &raquo;
@@ -348,7 +354,7 @@ Copyright 2011. All Rights Reserved.
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack2" type="button" class="open2 button" value="Back" alt="Back" />
-                        <input class="student_profile_form_submit_button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
                 </div>

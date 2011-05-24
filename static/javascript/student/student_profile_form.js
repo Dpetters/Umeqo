@@ -598,8 +598,8 @@ $(document).ready( function() {
         multiple: false
     });
 
-    $("#id_citizen").multiselect({
-        noneSelectedText: "select yes or no",
+    $("#id_country_of_citizenship").multiselect({
+        noneSelectedText: "select country",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         height:multiselectTwoOptionHeight,

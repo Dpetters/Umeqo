@@ -4,16 +4,18 @@
  Copyright 2011. All Rights Reserved.
  */
 
+#content_area{
+	padding-top:0px;
+}
 
  #bottom_info_block {
-     padding-top:20px;
      text-align:center;
  }
 
  /* NEW HOMEPAGE STYLES */
  #homePage {
      background: url('/static/images/home/bg.png') repeat-x;
-     padding-top: 50px;
+     padding-top: 40px;
      width: 100%;
  }
  #homepageTitle {
@@ -23,7 +25,6 @@
      text-shadow: #444 0 -1px 0;
      color: #444;
      text-transform: uppercase;
-     padding-top: 20px;
  }
  #homepageTitle span {
      font-size: 30px;
