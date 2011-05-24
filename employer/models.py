@@ -6,20 +6,20 @@
 
 from django.db import models
 from django.contrib.localflavor.us.models import PhoneNumberField
+from django.contrib.auth.models import User
 
-from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
-from registration.models import UserProfile
+from countries.models import Country
+from core.models import Industry, Ethnicity, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
 from employer import enums as employer_enums
-from student.models import StudentList
-from student import constants as student_constants
-from student import enums as student_enums
+from core import choices as core_choices
 
-
+        
 class ResumeBook(models.Model):
+    employer_user = models.OneToOneField("employer.EmployerUser")
+    
     name = models.CharField("Resume Book Name", max_length = 42, blank = True, null = True, help_text="Maximum 42 characters.")
     students = models.ManyToManyField("student.Student", blank = True, null = True)
     
-    # Dates
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
 
 
@@ -35,54 +35,61 @@ class FilteringParameters(models.Model):
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="default_filtering_employers")
     employment_types = models.ManyToManyField(EmploymentType, blank = True, null = True)
     
-    campus_orgs = models.ManyToManyField(CampusOrg, blank = True, null = True)
+    campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null = True)
+    ethnicities = models.ManyToManyField(Ethnicity, blank = True, null = True)
     languages = models.ManyToManyField(Language, blank = True, null = True)
+    gender = models.CharField(max_length=1, choices = core_choices.FILTERING_GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.BooleanField()
-    citizen = models.BooleanField()  
+    countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
 
+class EmployerUser(models.Model):
+    
+    user = models.OneToOneField(User)
+    employer = models.ForeignKey("employer.Employer")
+    
+    is_active = models.BooleanField(default=True)
+    subscribed = models.BooleanField(default=False)
+    
+    preferences = models.OneToOneField("employer.EmployerPreferences")
+    default_filtering_parameters = models.OneToOneField("employer.FilteringParameters", blank = True, null = True)
+    statistics = models.OneToOneField("employer.EmployerStatistics")
+    
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
 
-class Employer(UserProfile):
+    class Meta:
+        verbose_name = "Employer User"
+        verbose_name_plural = "Employer Users"
+        
+    def __unicode__(self):
+        return self.user.first_name + " " + self.user.last_name
     
-    active = models.BooleanField(default=True)
-    subscriber = models.BooleanField(default=True)
-    
-    # Required Info
+    def save( self, *args, **kwargs ):
+        if not hasattr(self, "preferences"):
+            self.preferences = EmployerPreferences.objects.create()
+        if not hasattr(self, "default_filtering_parameters"):
+            self.default_filtering_parameters = FilteringParameters.objects.create()
+        if not hasattr(self, "statistics"):
+            self.statistics = EmployerStatistics.objects.create()
+        super(EmployerUser, self).save( *args, **kwargs )
+        
+class Employer(models.Model): 
     company_name = models.CharField("Company Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    
     industries = models.ManyToManyField(Industry)
-    contact_phone = PhoneNumberField("Contact Phone #")
-    
-    # Default Filtering Parameters
-    default_filtering_parameters = models.ForeignKey(FilteringParameters, blank = True, null = True)
 
-    #Statistics
-    resumes_viewed = models.PositiveIntegerField(default = 0, blank = True, null=True)
-    
-    # Preferences
-    email_on_rsvp = models.BooleanField()
-    results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
-    default_student_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
-    
-    # Meta
+    main_contact = models.CharField("Main Contact", max_length = 50) 
+    main_contact_phone = PhoneNumberField("Contact Phone #")
+
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     def __unicode__(self):
         return self.company_name
     
-    def save( self, *args, **kwargs ):
-        super(Employer, self).save( *args, **kwargs )
-        starred_students = StudentList.objects.create(sort_order=2, 
-                                                            name=student_constants.STARRED_STUDENTS_STUDENT_GROUP_NAME, 
-                                                            type=student_enums.GENERAL)
-        starred_students.employers.add(self)
-        latest_student_matches = StudentList.objects.create(sort_order=4, 
-                                                            name=student_constants.LATEST_DEFAULT_FILTERING_STUDENT_GROUP_NAME, 
-                                                            type=student_enums.GENERAL)
-        latest_student_matches.employers.add(self)
-        all_student_matches = StudentList.objects.create(sort_order=5, 
-                                                         name=student_constants.ALL_DEFAULT_FILTERING_STUDENT_GROUP_NAME, 
-                                                         type=student_enums.GENERAL)
-        all_student_matches.employers.add(self)
-        in_current_resume_book = StudentList.objects.create(sort_order=3, 
-                                                            name=student_constants.IN_CURRENT_RESUME_BOOK_STUDENT_GROUP_NAME, 
-                                                            type=student_enums.GENERAL)
-        in_current_resume_book.employers.add(self)  
+class EmployerPreferences(models.Model):
+    email_on_rsvp = models.BooleanField()
+    results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
+    default_student_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
+
+class EmployerStatistics(models.Model):
+    resumes_viewed = models.PositiveIntegerField(default = 0, blank = True, null=True)
+        

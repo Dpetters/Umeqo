@@ -44,6 +44,15 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('core', ['SchoolYear'])
 
+        # Adding model 'Ethnicity'
+        db.create_table('core_ethnicity', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+        ))
+        db.send_create_signal('core', ['Ethnicity'])
+
         # Adding model 'GraduationYear'
         db.create_table('core_graduationyear', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -83,6 +92,7 @@ class Migration(SchemaMigration):
         db.create_table('core_employmenttype', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
+            ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
@@ -92,6 +102,7 @@ class Migration(SchemaMigration):
         db.create_table('core_campusorgtype', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
+            ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
@@ -141,6 +152,9 @@ class Migration(SchemaMigration):
 
         # Deleting model 'SchoolYear'
         db.delete_table('core_schoolyear')
+
+        # Deleting model 'Ethnicity'
+        db.delete_table('core_ethnicity')
 
         # Deleting model 'GraduationYear'
         db.delete_table('core_graduationyear')
@@ -218,11 +232,12 @@ class Migration(SchemaMigration):
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },
         'core.campusorgtype': {
-            'Meta': {'object_name': 'CampusOrgType'},
+            'Meta': {'ordering': "['sort_order']", 'object_name': 'CampusOrgType'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
+            'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'})
         },
         'core.course': {
             'Meta': {'ordering': "['sort_order']", 'object_name': 'Course'},
@@ -240,7 +255,15 @@ class Migration(SchemaMigration):
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },
         'core.employmenttype': {
-            'Meta': {'object_name': 'EmploymentType'},
+            'Meta': {'ordering': "['sort_order']", 'object_name': 'EmploymentType'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
+            'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'})
+        },
+        'core.ethnicity': {
+            'Meta': {'object_name': 'Ethnicity'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),

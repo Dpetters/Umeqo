@@ -9,8 +9,11 @@ from core.models import CampusOrg, Language, CampusOrgType
 from django import forms
 from django.conf import settings
 from django.template import loader, RequestContext
+from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
+
 from registration.models import InterestedPerson
+from core import messages
 
 class ContactForm(forms.Form):
     """
@@ -223,7 +226,7 @@ class AkismetContactForm(ContactForm):
                                  'user_ip': self.request.META.get('REMOTE_ADDR', ''),
                                  'user_agent': self.request.META.get('HTTP_USER_AGENT', '') }
                 if akismet_api.comment_check(smart_str(self.cleaned_data['body']), data=akismet_data, build_data=True):
-                    raise forms.ValidationError(u"spam")
+                    raise forms.ValidationError(_(messages.contact_us_message_spam))
         return self.cleaned_data['body']
 
 

@@ -7,6 +7,7 @@
 from django import forms
 
 from core.choices import NO_YES_CHOICES
+from core import choices as core_choices
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
@@ -18,7 +19,7 @@ class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc'}))
 
 class FilteringForm(forms.ModelForm):
-    
+    gender = forms.ChoiceField(label="Filter by gender:", choices = core_choices.FILTERING_GENDER_CHOICES, initial= core_choices.BOTH_GENDERS, required= False)
     older_than_18 = forms.ChoiceField(label="Must be older than 18:", choices = NO_YES_CHOICES, required = False)
     citizen = forms.ChoiceField(label="Must be a citizen:", choices = NO_YES_CHOICES, required = False)
 
@@ -35,7 +36,7 @@ class FilteringForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(FilteringForm, self).__init__(*args, **kwargs)
-        self.fields['campus_orgs'].choices = campus_org_types_as_choices()
+        self.fields['campus_involvement'].choices = campus_org_types_as_choices()
     
 class StudentFilteringForm(FilteringForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = enums.ORDERING_CHOICES, required = False)
@@ -43,4 +44,4 @@ class StudentFilteringForm(FilteringForm):
     
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)
-        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(args[0].get('employer', '')))
+        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(args[0].get('employer_user', '')))

@@ -4,7 +4,7 @@
  Copyright 2011. All Rights Reserved.
 """
  
-import os, datetime, ldap
+import os, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -14,14 +14,14 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
-from events.models import Event
 from student.forms import StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
-from student.models import Student, StudentList
+from student.models import Student, StudentPreferences, StudentStatistics
 from student.view_helpers import process_resume
 from registration.backend import RegistrationBackend
 from core.decorators import is_student
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
+from core import messages
 
 
 @login_required
@@ -35,52 +35,64 @@ def student_account_settings(request,
     return render_to_response(template_name, 
                               context, 
                               context_instance=RequestContext(request))
-
-
+"""
+    if request.method == "POST":
+        form = form_class(request.POST, recipient_filter=recipient_filter)
+        if form.is_valid():
+            form.save(sender=request.user)
+            request.user.message_set.create(
+                message=_(u"Message successfully sent."))
+            if success_url is None:
+                success_url = reverse('messages_inbox')
+            if request.GET.has_key('next'):
+                success_url = request.GET['next']
+            return HttpResponseRedirect(success_url)
+    else:
+        form = form_class()
+        if recipient is not None:
+            recipients = [u for u in User.objects.filter(username__in=[r.strip() for r in recipient.split('+')])]
+            form.fields['recipient'].initial = recipients
+    return render_to_response(template_name, {
+        'form': form,
+    }, context_instance=RequestContext(request))
+compose = login_required(compose)
+"""
 def student_registration(request,
-             backend = RegistrationBackend(), 
-             form_class = StudentRegistrationForm,
-             success_url = 'student_registration_complete', 
-             disallowed_url = 'student_registration_disallowed',
-             template_name = 'student_registration.html',
-             extra_context = None):
+                         backend = RegistrationBackend(), 
+                         form_class = StudentRegistrationForm,
+                         success_url = 'student_registration_complete', 
+                         disallowed_url = 'student_registration_disallowed',
+                         template_name = 'student_registration.html',
+                         extra_context = None):
     
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
     
-    if request.is_ajax() and request.method == 'POST':
+    if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            username = email.split("@")[0]
-            """
-            ending = email.split("@")[1]
-            if ending != "mit.edu":
-                return HttpResponse(simplejson.dumps({'valid':False, 'reason':"notmit"}), mimetype="application/json")
-
-            con = ldap.initialize('ldap.mit.edu')
-            con.simple_bind_s("", "")
-            dn = "dc=mit,dc=edu"
-            fields = ['cn', 'sn', 'givenName', 'mail', ]
-            result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
-            if result == []:
-                return HttpResponse(simplejson.dumps({'valid':False, 'reason':"notstudent"}), mimetype="application/json") 
-            """
-            form.cleaned_data['username']= username
+            form.cleaned_data['username']= form.cleaned_data['email'].split("@")[0]
             new_user = backend.register(request, **form.cleaned_data)
-            
-            Student.objects.create(user=new_user)
-
-            return HttpResponse(simplejson.dumps({'valid':True, 'url':reverse(success_url)}), mimetype="application/json")
+            Student.objects.create(user=new_user,
+                                   preferences = StudentPreferences.objects.create(),
+                                   statistics = StudentStatistics.objects.create())
+            if request.is_ajax():
+                return HttpResponse(simplejson.dumps({'valid':True, 'success_url':reverse(success_url)}), mimetype="application/json")
+            return redirect(success_url)
         else:
-            # Should be handled by javascript. Bug!
-            return HttpResponse(simplejson.dumps({'valid':False}))
+            if request.is_ajax():
+                data = {'valid':False,
+                        'form_errors':form.errors}
+                return HttpResponse(simplejson.dumps(data))
     else:
         form = form_class()
 
     context = {
             'form':form,
+            'email_already_registered_message': messages.email_already_registered,
+            'passwords_dont_match_message': messages.passwords_dont_match
             }
+    
     context.update(extra_context or {}) 
     return render_to_response(template_name,
                               context,
@@ -95,6 +107,10 @@ def student_create_profile(request,
                            extra_context=None):
 
     if request.user.student.profile_created:
+        if request.is_ajax():
+            data = {'valid':True,
+                    'success_url':reverse("student_edit_profile")}
+            return HttpResponse(simplejson.dumps(data))
         return redirect('student_edit_profile')
         
     if request.method == 'POST':
@@ -105,17 +121,20 @@ def student_create_profile(request,
                 student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
             student.last_updated = datetime.datetime.now()
             student.profile_created = True
-            StudentList.objects.get(id=1).students.add(student)
             student.save()
             if hasattr(student, 'save_m2m'):
                 student.save_m2m()
-            return process_resume(student)
+            return process_resume(student, request.is_ajax())
         else:
-            pass # Should have been handled by javascript! Bug.
+            if request.is_ajax():
+                data = {'valid':False,
+                        'form_errors':form.errors}
+                return HttpResponse(simplejson.dumps(data))
     else:
         form = form_class()
     
     context = {
+               'resume_must_be_a_pdf_message' : messages.resume_must_be_a_pdf,
                'form' : form
                }
 
@@ -133,6 +152,10 @@ def student_edit_profile(request,
                          extra_context=None):
 
     if not request.user.student.profile_created:
+        if request.is_ajax():
+            data = {'valid':True,
+                    'success_url':reverse("student_create_profile")}
+            return HttpResponse(simplejson.dumps(data))
         return redirect('student_create_profile')
         
     if request.method == 'POST':
@@ -147,15 +170,23 @@ def student_edit_profile(request,
             if request.FILES.has_key('resume'):
                 if os.path.exists(settings.MEDIA_ROOT + old_resume_name):
                     os.remove(settings.MEDIA_ROOT + old_resume_name)
-                return process_resume(request.user.student)
+                return process_resume(request.user.student, request.is_ajax())
             else:
+                if request.is_ajax():
+                    data = {'valid':False,
+                            'success_url':reverse("home")}
+                    return HttpResponse(simplejson.dumps(data))
                 return redirect('home')
         else:
-            pass # Should have been handled by javascript! Bug.
+            if request.is_ajax():
+                data = {'valid':False,
+                        'form_errors':form.errors}
+                return HttpResponse(simplejson.dumps(data))
     else:
         form = form_class(instance=request.user.student)
 
     context = {
+               'resume_must_be_a_pdf_message' : messages.resume_must_be_a_pdf,
                'form' : form
                }
       

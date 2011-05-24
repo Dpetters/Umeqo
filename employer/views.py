@@ -16,14 +16,11 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.utils import simplejson
 
 from employer.forms import SearchForm, FilteringForm, StudentFilteringForm
-from student.models import Student
-from employer.models import Employer
 from employer.view_helpers import filter_students, search_students, combine_and_order_results
 from core.decorators import is_employer
 from core.digg_paginator import DiggPaginator
 from events.forms import EventForm
 from events.models import Event
-from student import constants as student_constants
 
 
 @login_required
@@ -55,8 +52,6 @@ def employer_registration(request,
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_add_to_resume_book(request, student_id):
     if request.ajax():
-        employer = Employer.objects.get(user__exact = request.user)
-        employer.studentlist_set.get(name=student_constants.IN_CURRENT_RESUME_BOOK_STUDENT_GROUP_NAME).add(Student.objects.get(id=student_id))
         return HttpResponse(simplejson.dumps({"valid":True}))
     redirect('home')
 
@@ -255,6 +250,10 @@ def get_cached_filtering_results(request):
         if request.POST['industries_of_interest']:
             industries_of_interest = request.POST['industries_of_interest'].split('~')
         
+        gender=None
+        if request.POST['gender']:
+            gender = int(request.POST['gender'])
+            
         citizen = None
         if request.POST['citizen'] != "False":
             citizen = request.POST['citizen']
@@ -262,6 +261,10 @@ def get_cached_filtering_results(request):
         older_than_18 = None
         if request.POST['older_than_18'] != "False":
             older_than_18 = request.POST['older_than_18']
+        
+        ethnicities = None
+        if request.POST['ethnicities']:
+            ethnicities = request.POST['ethnicities'].split('~')
             
         languages = None
         if request.POST['languages']:
@@ -286,7 +289,9 @@ def get_cached_filtering_results(request):
                                                     industries_of_interest=industries_of_interest,
                                                     citizen = citizen,
                                                     older_than_18 = older_than_18,
+                                                    ethnicities=ethnicities,
                                                     languages=languages,
+                                                    gender=gender,
                                                     campus_orgs=campus_orgs)
         
         cache.set('filtering_results', current_filtering_results)
@@ -346,7 +351,7 @@ def employer_student_filtering(request,
         context['page'] = current_paginator.page(request.POST['page'])
         
         for student in context['page'].object_list:
-            student.shown_in_results_count += 1
+            student.statistics.shown_in_results_count += 1
             student.save()
         
         context.update(extra_context or {}) 
@@ -355,9 +360,9 @@ def employer_student_filtering(request,
         if request.method == "POST" and request.POST.has_key('query'):
                 context['query'] = request.POST.get('query', '')
 
-        context['student_filtering_form'] = StudentFilteringForm({'employer': request.user.employer},
-                                                                 initial={'ordering': request.user.employer.default_student_ordering,                           
-                                                                          'results_per_page' : request.user.employer.results_per_page})
+        context['student_filtering_form'] = StudentFilteringForm({'employer_user': request.user.employeruser},
+                                                                 initial={'ordering': request.user.employeruser.preferences.default_student_ordering,                           
+                                                                          'results_per_page' : request.user.employeruser.preferences.results_per_page})
         context['student_search_form'] = SearchForm()
         
     context.update(extra_context or {})

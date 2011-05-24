@@ -15,6 +15,11 @@ Copyright 2011. All Rights Reserved.
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration.css" />
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_registration.js">
 </script>
+
+<script type="text/javascript">
+	var EMAIL_ALREADY_REGISTERED_MESSAGE = "{{email_already_registered_message}}";
+	var PASSWORDS_DONT_MATCH_MESSAGE = "{{passwords_dont_match_message}}";
+</script>
 {% endblock %}
 
 {% block content_area %}
@@ -35,30 +40,30 @@ Copyright 2011. All Rights Reserved.
 				<tr>
 					<th>{{form.email.label_tag}}</th>
 					<td>
-						<div class="errorspace"></div>
+						<div class="errorspace">{{form.email.errors}}</div>
 						{{form.email}}
 					</td>
 				</tr>
 				<tr>
 					<th>{{form.password1.label_tag}}</th>
 					<td>
-						<div class="errorspace"></div>
+						<div class="errorspace">{{form.password1.errors}}</div>
 						{{form.password1}}
 					</td>
 				</tr>
 				<tr>
 					<th>{{form.password2.label_tag}}</th>
 					<td>
-						<div class="errorspace"></div>
+						<div class="errorspace">{{form.password2.errors}}</div>
 						{{form.password2}}
 					</td>
 				</tr>
 			</table>
 			<div class="error_section error">
-				{{form.errors}}
+				{{form.non_field_errors}}
 			</div>
 			<div class="button_wrapper_with_margins">
-				<input id="student_registration_button" class="button" type='submit' value='Submit'>
+				<input id="student_registration_form_submit_button" class="button" type='submit' value='Submit'>
 				<img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
 			</div>
 		</form>

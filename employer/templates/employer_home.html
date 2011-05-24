@@ -32,26 +32,8 @@ Copyright 2011. All Rights Reserved.
             <span class="side_block_header_title">My Statistics</span>
         </div>
         <div class="side_block_content">
-            <p>
-                Student Subscribers: {{user.event_subscribers}}
-            </p>
-            <p>
-                Total Event Views: {{user.event_views}}
-            </p>
-            <p>
-                Total Events Posted: {{user.events_posted}}
-            </p>
-            <p>
-                Total Resumes Viewed: {{user.resumes_viewed}}
-            </p>
-            <p>
-                Resume Books Created: {{user.resumes_downloaded}}
-            </p>
         </div>
         <div class="side_block_footer">
-            <div class="side_block_footer_link">
-                <a id="view_statistics_link" href="javascript:void(0)">See Details</a>
-            </div>
         </div>
     </div>
 </div>
@@ -103,7 +85,7 @@ Copyright 2011. All Rights Reserved.
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Events and Deadlines</span>
-        <div class="main_block_header_links">
+        <div class="main_block_header_content">
             <a href="/employer/events/new" class="button"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png"/><span>Add New Event</span></a>
         </div>
     </div>

@@ -11,7 +11,7 @@ input[type=text] {
 select {
 	width:310px;
 }
-#id_older_than_18, #id_citizen, #id_requires_sponsorship, #id_looking_for_internship, #id_looking_for_fulltime {
+#id_older_than_18, #id_requires_sponsorship, #id_gender {
 	width:185px;
 }
 .button {
@@ -20,7 +20,7 @@ select {
 .main_block_header {
 	border-bottom:1px solid #CCCCCC;
 }
-.main_block_header_links {
+.main_block_header_content {
 	font-size: 17px;
 	margin-right:28px;
 }
@@ -104,7 +104,7 @@ select {
 	padding:10px 15px;
 }
 
-#id_sat_m, #id_sat_v, #id_sat_w, #id_act{
+#id_sat_m, #id_sat_v, #id_sat_w, #id_act, #id_gpa{
     width: 3em;
     text-align: center;
 }

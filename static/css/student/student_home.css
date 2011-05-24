@@ -10,19 +10,7 @@
 .side_block {
     width:200px;
 }
-#my_statistics_block .main_block_content {
-    height:123px;
-}
-#drop-area {
-    color: #909090;
-    background-color: #e9e9e9;
-    display: table-cell;
-    text-align: center;
-    vertical-align:middle;
-    height: 186px;
-    width: 178px;
-    border: 1px dotted #303030;
-}
+
 #quick_resume_updater_block .hover {
     border: 1px solid #303030;
     color: #303030;
@@ -36,6 +24,21 @@
 #quick_resume_updater_block .error {
     border: 1px solid red;
 }
+#quick_resume_updater_block #drop-area {
+    color: #909090;
+    background-color: #e9e9e9;
+    display: table-cell;
+    text-align: center;
+    vertical-align:middle;
+    height: 186px;
+    width: 178px;
+    border: 1px dotted #303030;
+}
+
+#notifications_block .main_block_header{
+	line-height:22px;
+}
+
 #id_subscribed_employers {
     width: 300px;
 }
