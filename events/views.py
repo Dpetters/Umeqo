@@ -17,6 +17,7 @@ from datetime import datetime
 from haystack.query import SearchQuerySet
 
 @login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def events_list(request, template_name='events_list.html', extra_context=None):
     query = request.GET.get('q','')
     search_results = search_helper(query)
@@ -31,6 +32,7 @@ def events_list(request, template_name='events_list.html', extra_context=None):
 
 def search_helper(query):
     search_results = SearchQuerySet().models(Event).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
+    print query
     if query!="":
         search_results = search_results.filter(content_auto=query)
     return search_results
@@ -42,12 +44,15 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     if event.slug!=slug:
         return HttpResponseNotFound()
     page_url = 'http://'+settings.DOMAIN+reverse('event_page',kwargs={'id':event.id,'slug':event.slug})
+    #google_description is the description + stuff to link back to umeqo
+    google_description = event.description + '\n\nRSVP and more at %s' % page_url
     context = {
         'event': event,
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
         'show_rsvp': False,
-        'attending': False
+        'attending': False,
+        'google_description': google_description
     }
     if hasattr(request.user,"student"):
         rsvp_events = request.user.student.event_set.all()

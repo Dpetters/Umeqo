@@ -16,6 +16,8 @@ $(document).ready(function(){
     });
     
     window.onpopstate = function(event) {
-        if (event.state != null) $('#event_search_query').val(event.state.q);
+        if (event.state != null && event.state.q!="") $('#event_search_query').val(event.state.q);
+        else $('#event_search_query').val("");
+        filterEvents();
     }
 });
