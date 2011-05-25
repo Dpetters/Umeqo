@@ -24,6 +24,7 @@ LOCAL_SETTINGS_APPS = ('employer',
                        'events',
                        'registration',
                        'user',
+                       'relationships'
                        )
 
 DEBUG_TOOLBAR_CONFIG = {
