@@ -1,0 +1,14 @@
+[
+ {
+  "pk": 1, 
+  "model": "relationships.relationship", 
+  "fields": {
+   "date_updated": "2011-05-23 04:56:13", 
+   "object_id": 1, 
+   "user": 3, 
+   "content_type": 37, 
+   "date_created": "2011-05-23 04:56:13", 
+   "type": 1
+  }
+ }
+]
