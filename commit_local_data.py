@@ -68,6 +68,9 @@ if not os.path.exists(submitted_user_images_path):
     
 shutil.copytree(submitted_user_images_path, "./local_data/media/local_submitted_user_images/")
 
+if not os.path.exists("./local_data/fixtures/"):
+    os.mkdir("./local_data/fixtures/")
+    
 for app in settings.LOCAL_SETTINGS_APPS:
     # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
     if app == "user":
