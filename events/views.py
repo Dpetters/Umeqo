@@ -65,7 +65,7 @@ def event_rsvp(request, id):
     event.rsvps.add(request.user.student)
     event.save()
     if request.is_ajax():
-        return HttpResponse(simplejson.dumps({"valid":True}))
+        return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
@@ -76,7 +76,7 @@ def event_unrsvp(request, id):
     event.rsvps.remove(request.user.student)
     event.save()
     if request.is_ajax():
-        return HttpResponse(simplejson.dumps({"valid":True}))
+        return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 

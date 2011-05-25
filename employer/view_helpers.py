@@ -12,6 +12,7 @@ from core import choices as core_choices
 from student.models import Student
 from employer import enums
 from student import enums as student_enums
+from relationships.models import RelationshipType
 
 
 def check_for_new_student_matches(employer):
@@ -29,7 +30,8 @@ def check_for_new_student_matches(employer):
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
     
     
-def filter_students(student_list=None,
+def filter_students(recruiter,
+                    student_list=None,
                     gpa=None,
                     act=None,
                     sat_t=None, 
@@ -49,10 +51,10 @@ def filter_students(student_list=None,
                     languages=None,
                     campus_orgs=None):
     
-    students = []
+    favorite_relationship = RelationshipType.objects.get(name="Favorite")
     # All Students
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
-        students = Student.objects.all()
+        students = Student.objects.with_relationship_for(recruiter, favorite_relationship)
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
         pass
         # all starred students

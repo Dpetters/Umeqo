@@ -6,14 +6,17 @@ qn = connection.ops.quote_name
 class RelationshipManagerMixin(object):
     """ A Mixin to add a `favorite__favorite` column via extra 
     """
-    def with_favorite_for(self, user, type, all=True):
+    def with_relationship_for(self, user, type, all=True):
         """ Adds a column favorite__favorite to the returned object, which
         indicates whether or not this item is a favorite for a user
         """
         
         if user.is_authenticated():
+            
             Relationship = models.get_model('relationships', 'Relationship')
+            
             content_type = ContentType.objects.get_for_model(self.model)
+            
             pk_field = "%s.%s" % (qn(self.model._meta.db_table),
                                   qn(self.model._meta.pk.column))
 
@@ -30,8 +33,9 @@ class RelationshipManagerMixin(object):
                }
 
             extras = {
-                'select': {'relationship__relationship': relationship_sql},
+                'select': {'relationship': relationship_sql},
                 }
+            
             if not all:
                 extras['where'] = ['relationship__relationship == 1']
 

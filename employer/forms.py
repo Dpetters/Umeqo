@@ -21,7 +21,6 @@ class SearchForm(forms.Form):
 class FilteringForm(forms.ModelForm):
     gender = forms.ChoiceField(label="Filter by gender:", choices = core_choices.FILTERING_GENDER_CHOICES, initial= core_choices.BOTH_GENDERS, required= False)
     older_than_18 = forms.ChoiceField(label="Must be older than 18:", choices = NO_YES_CHOICES, required = False)
-    citizen = forms.ChoiceField(label="Must be a citizen:", choices = NO_YES_CHOICES, required = False)
 
     gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, required = False)
     act = forms.IntegerField(label="Minimum ACT:", max_value = 36, required = False)

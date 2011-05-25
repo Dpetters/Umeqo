@@ -83,7 +83,7 @@ def student_registration(request,
             if request.is_ajax():
                 data = {'valid':False,
                         'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data))
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = form_class()
 
@@ -110,7 +110,7 @@ def student_create_profile(request,
         if request.is_ajax():
             data = {'valid':True,
                     'success_url':reverse("student_edit_profile")}
-            return HttpResponse(simplejson.dumps(data))
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         return redirect('student_edit_profile')
         
     if request.method == 'POST':
@@ -129,7 +129,7 @@ def student_create_profile(request,
             if request.is_ajax():
                 data = {'valid':False,
                         'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data))
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = form_class()
     
@@ -150,12 +150,12 @@ def student_edit_profile(request,
                          form_class=StudentEditProfileForm,
                          template_name='student_edit_profile.html',
                          extra_context=None):
-
+    print request.is_ajax()
     if not request.user.student.profile_created:
         if request.is_ajax():
             data = {'valid':True,
                     'success_url':reverse("student_create_profile")}
-            return HttpResponse(simplejson.dumps(data))
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         return redirect('student_create_profile')
         
     if request.method == 'POST':
@@ -175,13 +175,13 @@ def student_edit_profile(request,
                 if request.is_ajax():
                     data = {'valid':False,
                             'success_url':reverse("home")}
-                    return HttpResponse(simplejson.dumps(data))
+                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
                 return redirect('home')
         else:
             if request.is_ajax():
                 data = {'valid':False,
                         'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data))
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = form_class(instance=request.user.student)
 
@@ -223,11 +223,11 @@ def student_create_campus_organization(request,
                         "type": new_campus_organization.type.name, 
                         "name": new_campus_organization.name, 
                         "id": new_campus_organization.id}
-                return HttpResponse(simplejson.dumps(data))
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             # Should be caught by javascript. Bug!
             invalid_data = {"valid": False, 
                             "errors": form.errors}
-            return HttpResponse(simplejson.dumps(invalid_data))
+            return HttpResponse(simplejson.dumps(invalid_data), mimetype="application/json")
         else:
             create_campus_organization_form = form_class()
             
@@ -261,11 +261,11 @@ def student_create_language(request,
                         "fluent_id":fluent.id, 
                         "proficient_id":proficient.id, 
                         "basic_id":basic.id}  
-                return HttpResponse(simplejson.dumps(data))
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             # Should be caught by javascript. Bug!
             invalid_data = {"valid": False, 
                             "errors": form.errors}
-            return HttpResponse(simplejson.dumps(invalid_data))
+            return HttpResponse(simplejson.dumps(invalid_data), mimetype="application/json")
         else:
             create_language_form = form_class()
             
@@ -293,10 +293,10 @@ def student_employer_subscriptions(request,
         if form.is_valid():
             form.save()
             data = {"valid":True}
-            return HttpResponse(simplejson.dumps(data))
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         invalid_data = {"valid":False,
                         "error":form.errors}
-        return HttpResponse(simplejson.dumps(invalid_data))
+        return HttpResponse(simplejson.dumps(invalid_data), mimetype="application/json")
     else:
         form = form_class(instance=request.user.student)
         

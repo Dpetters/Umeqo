@@ -80,7 +80,7 @@ Copyright 2011. All Rights Reserved.
                     </li>
                     {% if user.is_authenticated and user.student or user.employeruser %}
                     <li>
-                        <a id="help" href="{% url help %}">Help</a>
+                        <a id="help" href="{% url help_center %}">Help</a>
                     </li>
                     <li>
                         <a id="account" href="javascript:void(0)">Account <span class="arrow">&#9660;</span></a>
@@ -103,7 +103,7 @@ Copyright 2011. All Rights Reserved.
                         <a id="blog" href="{% url blog %}">Blog</a>
                     </li>
                     <li>
-                        <a id="help" href="{% url help %}">Help</a>
+                        <a id="help_center" href="{% url help_center %}">Help</a>
                     </li>
                     <li>
                         <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact</a>
@@ -155,7 +155,7 @@ Copyright 2011. All Rights Reserved.
                 <div id="footer_navigation_block">
                     <a id="home" href="{% url home %}" title="home">Home</a>
                     <a id="about" href="{% url about %}" title="about">About</a>
-                    <a id="help" href="{% url help %}" title="help">Help</a>
+                    <a id="help" href="{% url help_center %}" title="help">Help</a>
                     <a id="blog" href="{% url blog %}" title="blog">Blog</a>
                     <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact">Contact Us</a>
                 </div>

@@ -123,7 +123,11 @@ Copyright 2011. All Rights Reserved.
                 		</tr>
                 	</table>
                 	<div class="error_section error">
-						{{form.errors}}
+                    	{% if form.errors %}
+						    {% for field, errors in form.errors.items %}
+						        {{ errors|escape }}
+						    {% endfor %}
+						{% endif %}
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Submit" value='Submit'>
@@ -204,7 +208,11 @@ Copyright 2011. All Rights Reserved.
                 		</tr>
                 	</table>
                 	<div class="error_section error">
-                		{{form.errors}}
+                    	{% if form.errors %}
+						    {% for field, errors in form.errors.items %}
+						        {{ errors|escape }}
+						    {% endfor %}
+						{% endif %}
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
@@ -263,7 +271,11 @@ Copyright 2011. All Rights Reserved.
                 		</tr>
                 	</table>
                     <div class="error_section error">
-                		{{form.errors}}
+                    	{% if form.errors %}
+						    {% for field, errors in form.errors.items %}
+						        {{ errors|escape }}
+						    {% endfor %}
+						{% endif %}
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
@@ -328,6 +340,13 @@ Copyright 2011. All Rights Reserved.
                 			</td>
                 		</tr>
                 		<tr>
+                			<th>{{form.countries_of_citizenship.label_tag}}</th>
+                			<td>
+                				<div class="errorspace"></div>
+                				{{form.countries_of_citizenship}}
+                			</td>
+                		</tr>
+                		<tr>
                 			<th>{{form.gender.label_tag}}</th>
                 			<td>
                 				<div class="errorspace"></div>
@@ -341,16 +360,13 @@ Copyright 2011. All Rights Reserved.
                 				{{form.older_than_18}}
                 			</td>
                 		</tr>
-                		<tr>
-                			<th>{{form.citizen.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.citizen}}
-                			</td>
-                		</tr>
                 	</table>
                     <div class="error_section error">
-                		{{form.errors}}
+                    	{% if form.errors %}
+						    {% for field, errors in form.errors.items %}
+						        {{ errors|escape }}
+						    {% endfor %}
+						{% endif %}
 					</div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack2" type="button" class="open2 button" value="Back" alt="Back" />

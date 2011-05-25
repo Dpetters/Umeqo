@@ -3,7 +3,8 @@ Developers : Dmitrij Petters,
 All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
-
+{% load relationships %}
+				    
 <div class="big_block_header">
 	<span class="big_block_header_title">Student Matches ({{page.paginator.count}})</span>
 	<div class="big_block_header_links">
@@ -77,6 +78,9 @@ Copyright 2011. All Rights Reserved.
 						{% endif %}
 					</p>
 					<br />
+				
+				    <a url="{% get_toggle_relationship_url student %}" class="student_star_link" href="javascript:void(0)"><img class="student_star" src="{{ STATIC_URL }}images/icons/{% if student.relationship %}blank{% else %}yellow{% endif %}_star.png"/></a>
+				    <a class="student_resumebook_link" href="javascript:void(0)">{% if student.relationship %}<img class="student_resumebook_marker" src="{{ STATIC_URL }}images/icons/cross.png"/>{% else %}<img class="student_resumebook_marker" src="{{ STATIC_URL }}images/icons/plus.png"/>{% endif %}</a>
 					<span class="student_major">
 						<strong>First Major:</strong>
 						{% if student.first_major.display %}

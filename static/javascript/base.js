@@ -10,6 +10,7 @@ var multiselectYesNoSingleSelectWidth = 182;
 var multiselectSingleSelectWidth = 202;
 var multiselectTwoOptionHeight = 47;
 var multiselectThreeOptionHeight = 72;
+var singleselectThreeOptionHeight = 83;
 var multiselectMediumHeight = 97;
 var multiselectLargeHeight = 146;
 var multiselectCheckAllText = "All";
@@ -37,7 +38,7 @@ function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            title: "Error",
+            title: "Server Error",
             dialogClass: "error_dialog",
             resizable: false,
             modal: true,
