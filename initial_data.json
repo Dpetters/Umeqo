@@ -1,6 +1,38 @@
 [
  {
   "pk": 1, 
+  "model": "core.relationshiptype", 
+  "fields": {
+   "name": "Favorite", 
+   "slug": "favorite"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.relationshiptype", 
+  "fields": {
+   "name": "Latest", 
+   "slug": "latest"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.relationshiptype", 
+  "fields": {
+   "name": "Starred", 
+   "slug": "starred"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.relationshiptype", 
+  "fields": {
+   "name": "In Resume Book", 
+   "slug": "resume-book"
+  }
+ }, 
+ {
+  "pk": 1, 
   "model": "core.topic", 
   "fields": {
    "audience": 0, 
@@ -188,6 +220,114 @@
    "date_created": "2011-05-03 12:27:35", 
    "last_updated": "2011-05-03 12:27:35", 
    "name": "Graduate (PHD)"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:41:07", 
+   "last_updated": "2011-05-23 23:41:07", 
+   "name": "Arctic (Siberian, Eskimo)"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:41:21", 
+   "last_updated": "2011-05-23 23:41:21", 
+   "name": "Caucasian (European)"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:41:27", 
+   "last_updated": "2011-05-23 23:41:27", 
+   "name": "Caucasian (Indian)"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:41:33", 
+   "last_updated": "2011-05-23 23:41:33", 
+   "name": "Caucasian (Middle East)"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:41:42", 
+   "last_updated": "2011-05-23 23:41:42", 
+   "name": "Caucasian (North African, Other)"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:41:48", 
+   "last_updated": "2011-05-23 23:41:48", 
+   "name": "Indigenous Australian"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:42:02", 
+   "last_updated": "2011-05-23 23:42:02", 
+   "name": "Native American"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:42:24", 
+   "last_updated": "2011-05-23 23:42:24", 
+   "name": "North East Asian (Mongol, Tibetan, etc)"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:42:32", 
+   "last_updated": "2011-05-23 23:42:32", 
+   "name": "Pacific (Polynesian, Micronesian, etc)"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:42:48", 
+   "last_updated": "2011-05-23 23:42:48", 
+   "name": "South East Asian (Chinese, Thai, etc)"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:45:51", 
+   "last_updated": "2011-05-23 23:45:51", 
+   "name": "West African, Bushmen, Ethiopian"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.ethnicity", 
+  "fields": {
+   "date_created": "2011-05-23 23:45:58", 
+   "last_updated": "2011-05-23 23:45:58", 
+   "name": "Other Race"
   }
  }, 
  {
