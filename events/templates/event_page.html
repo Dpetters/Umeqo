@@ -38,7 +38,7 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     </div>
     <div class="main_block_content">
         <div id="event_side">
-            <a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{event.description|urlencode}}&location={{event.location|urlencode}}"><img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google" class="google-button"/></a>
+            <a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{google_description|urlencode}}&location={{event.location|urlencode}}"><img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google" class="google-button"/></a>
             <div>
                 {% if show_rsvp %}
                 <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
