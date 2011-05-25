@@ -5,18 +5,12 @@
  */
 
 $(document).ready( function () {
-
-    var search_form_validator = $("#search_form").validate({
-        errorPlacement: place_errors,
-        rules: {
-            query: {
-                required: true,
-            }
-        },
-        messages: {
-            query: "Please supply a query"
-        }
-    });
+	$("#search_form_submit_button").live('click', function(e){
+		if (!$("#query_field").val()){
+			$("#query_field").focus();
+			e.preventDefault();
+		}
+	});
 
     $('.delete-event-link').live('click',function(e) {
         var that = $(this);

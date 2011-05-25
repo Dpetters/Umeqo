@@ -6,7 +6,6 @@
  
 from django.contrib.auth.models import User, Permission
 
-from employer.models import Employer
 
 class CustomModelBackend(object):
     """
@@ -15,8 +14,6 @@ class CustomModelBackend(object):
     supports_object_permissions = False
     supports_anonymous_user = True
 
-    # TODO: Model, login attribute name and password attribute name should be
-    # configurable.
     def authenticate(self, username=None, password=None):
         try:
             user = User.objects.get(username=username)
@@ -24,10 +21,7 @@ class CustomModelBackend(object):
             try:
                 user = User.objects.get(email=username)
             except User.DoesNotExist:
-                try:
-                    user = Employer.objects.get(company_name = username).user
-                except Employer.DoesNotExist:
-                    return None
+                return None
         if user.check_password(password):
             return user
         return None

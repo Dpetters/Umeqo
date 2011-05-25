@@ -9,6 +9,8 @@ var multiselectMinWidth = 318;
 var multiselectYesNoSingleSelectWidth = 182;
 var multiselectSingleSelectWidth = 202;
 var multiselectTwoOptionHeight = 47;
+var multiselectThreeOptionHeight = 72;
+var singleselectThreeOptionHeight = 83;
 var multiselectMediumHeight = 97;
 var multiselectLargeHeight = 146;
 var multiselectCheckAllText = "All";
@@ -19,7 +21,7 @@ var multiselectHideAnimation = "";
 var dialog_class = "dialog";
 var ajax_loader = "<div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
 var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
-var close_dialog_link = "<br><div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
+var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
 
 var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by";
 var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
@@ -36,7 +38,7 @@ function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            title: "Error",
+            title: "Server Error",
             dialogClass: "error_dialog",
             resizable: false,
             modal: true,
@@ -82,6 +84,31 @@ function unhighlight(element, errorClass) {
     $(element).filter("input[type=text]").css('border', '1px solid #AAA');
     $(element).filter("select").css('border', '1px solid #AAA');
 };
+
+/*
+ * Places field errors which got returned from an ajax submit in a non-table form
+ * Currently we show on field error at a time
+ */
+function place_errors_ajax(errors, element){
+	var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
+	place_errors($(error), element);
+}
+
+/*
+ * Places field errors which got returned from an ajax submit in a table forms
+ * Currently we show on field error at a time
+ */
+function place_errors_ajax_table(errors, element){
+	var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
+	place_errors_table($(error), element);
+};
+
+/*
+ * Places non-field errors which got returned from an ajax submit in the error section of a form
+ */
+function place_non_field_ajax_errors(errors, form){
+	$(form + " .error_section").html(data.form_errors.__all__[0]);
+};
 function place_errors(error, element) {
     $(error).appendTo(element.parent().prev());
     if ($(element).position().left == 0) {
@@ -100,18 +127,18 @@ function place_errors(error, element) {
 };
 function place_errors_table(error,element) {
     if (element.prev().get(0).tagName=='DIV') {
-        $(error).appendTo(element.prev());
+        element.prev().html(error);
     } else if (element.prev().prev().html()=="" || !element.prev().prev().children(":eq(0)").is(":visible")){
-        $(error).appendTo(element.prev().prev());
+        element.prev().prev().html(error);
     }
     if ($(element).position().left == 0) {
         if ($(element).next(":button.ui-multiselect").length!=0) {
             var offset = element.next().position().left-element.parent().position().left;
         }
     } else if (element.prev().prev().get(0) && element.prev().prev().get(0).tagName!='DIV'){
-        console.log(element.prev().prev());
         var offset = element.position().left-element.parent().position().left;
     }
+    console.log(error);
     $(error).css({
         "padding-left": offset,
         "float": "left",
@@ -119,12 +146,12 @@ function place_errors_table(error,element) {
         "bottom": 0
     });
 }
-// Multiselect Warning Function
-function show_multiselect_warning(e, max) {
-    var element = $("#" + e)
-    var error = $("<label class='warning' for'" + e + "'>You can check at most " + max + " checkboxes.</label>");
-    $(error).appendTo(element.parent().prev());
-    $(error).css("padding-left", $(element).prev().outerWidth()+3).css("float", "left").css('position', 'absolute').css('bottom','0');
+// Shows max number that one can select on that multiselect
+function place_multiselect_warning_table(element, max) {
+    var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
+    place_errors_table($(warning), element)
+    //$(error).appendTo(element.parent().prev());
+    //$(error).css("padding-left", $(element).prev().outerWidth()+3).css("float", "left").css('position', 'absolute').css('bottom','0');
 };
 // Pick out url GET parameters by name
 function get_parameter_by_name(name) {
@@ -223,15 +250,21 @@ $(document).ready( function () {
                             },
                             success: function (data) {
                                 hide_form_submit_loader("#contact_form");
-
                                 switch(data.valid) {
                                     case true:
-                                        var success_message = "<br><div class='message_section'><p>We have received your message. Thanks for contacting us!</p></div>";
+                                        var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
                                         success_message += close_dialog_link;
                                         contact_us_dialog.html(success_message);
                                         break;
                                     case false:
-                                        $(".contact_us_dialog .error_section").html(data.errors);
+                                        if (data.body_errors){
+											$(".contact_us_dialog .error_section").html(data.body_errors);
+					                        $("#id_body").css('border', '1px solid red').focus();
+					                        break;
+			                        	}
+                                        if (data.non_field_errors){
+											$(".contact_us_dialog .error_section").html(data.non_field_errors);
+			                        	}
                                         break;
                                     default:
                                         contact_us_dialog.html(dialog_error_message);

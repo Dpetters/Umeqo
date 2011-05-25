@@ -16,8 +16,10 @@ ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 HAYSTACK_INCLUDE_SPELLING = True
 HAYSTACK_DEFAULT_OPERATOR = 'AND'
 HAYSTACK_SITECONF = 'search_sites'
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_WHOOSH_PATH = (ROOT + '\\whoosh_index').replace('\\', '/')
+#HAYSTACK_SEARCH_ENGINE = 'whoosh'
+#HAYSTACK_WHOOSH_PATH = (ROOT + '\\whoosh_index').replace('\\', '/')
+HAYSTACK_SEARCH_ENGINE = 'xapian'
+HAYSTACK_XAPIAN_PATH = (ROOT + '\\xapian_index').replace('\\', '/')
 
 # Email Settings
 EMAIL_USE_TLS = True
@@ -84,6 +86,8 @@ STATICFILES_DIRS = (
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+COUNTRIES_FLAG_PATH = STATIC_URL + 'images/flags/%s.png'
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '=myl84m2+qr&d1&w^$(!ks0=6$6zlj4o438$c$_snv_45bpwow'
 
@@ -143,10 +147,12 @@ INSTALLED_APPS = (
     'events',
     'haystack',
     'messages',
+    'countries',
     'notification',
     'registration',
     'south',
     'student',
+    'relationships',
     'debug_toolbar'
 )
 

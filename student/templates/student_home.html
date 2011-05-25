@@ -28,18 +28,16 @@ Copyright 2011. All Rights Reserved.
 {% block content_area %}
     
     <div class="right_side_container">
-        <div id="my_statistics_block" class="side_block">
+    	<div id="statistics_block" class="side_block">
             <div class="side_block_header">
                 <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/system-monitor.png"/>
                 <span class="side_block_header_title">My Statistics</span>
             </div>
             <div class="side_block_content">
-              <p>Result Appearances: {{student.results_count}}</p>
-              <p>Total Resume Views: {{student.resume_view_count}}</p>
-              <p>Times Added to Cart: {{student.add_to_cart_count}}</p>
             </div>
+            <div class="side_block_footer">
+        	</div>
         </div>
-        
         <div id="quick_resume_updater_block" class="side_block">
             <div class="side_block_header">
                 <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume.png" />

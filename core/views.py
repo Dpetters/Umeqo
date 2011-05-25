@@ -21,17 +21,28 @@ from django.db.models import Q
 
 from employer.forms import SearchForm
 from notification.models import Notice
-from employer.view_helpers import check_for_new_student_matches
 from core.models import Course, CampusOrg, Language, Topic
+from core.view_helpers import does_email_exist
 from registration.models import InterestedPerson
 from core.forms import BetaForm, AkismetContactForm
 from employer.models import Employer
 from events.models import Event
 from core import enums
+from core import messages
 
 
-def help(request,
-         template_name='help.html',
+def help_center(request,
+         template_name='help_center.html',
+         extra_context = None):
+    
+    context = {}
+    context.update(extra_context or {})  
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
+
+def faq(request,
+         template_name='faq.html',
          extra_context = None):
     
     context = {'topics':[]}
@@ -57,24 +68,45 @@ def help(request,
     return render_to_response(template_name,
                               context,
                               context_instance=RequestContext(request))
+
+def tutorials(request,
+              template_name='tutorials.html',
+              extra_context = None):
     
+    context = {}
+    context.update(extra_context or {})  
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
+    
+# Ajax-Only View
 def contact_us_dialog(request,
                       template_name='contact_dialog.html',
                       form_class=AkismetContactForm,
                       fail_silently=False,
                       extra_context=None):
+
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, request=request)
             if form.is_valid():
                 form.save(fail_silently=fail_silently)
-                return HttpResponse(simplejson.dumps({"valid":True}))
-            return HttpResponse(simplejson.dumps({"valid":False, "errors":form.errors}))
+                return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
+            else:
+                print form.errors
+                print form.non_field_errors()
+                data = {'valid':False}
+                if form['body'].errors:
+                    data['body_errors'] = str(form["body"].errors)
+                if form.non_field_errors():
+                    data['non_field_errors'] = str(form.non_field_errors())
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             form = form_class(request=request)
     
         context = {
-                'contact_form': form,
+                'form': form,
+                'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
                 }
         context.update(extra_context or {}) 
         return render_to_response(template_name,
@@ -141,11 +173,9 @@ def home(request,
                                       context,
                                       context_instance=RequestContext(request))
             
-        elif hasattr(request.user, "employer"):
-            if request.user.employer.default_filtering_parameters:
-                check_for_new_student_matches(request.user.employer)
+        elif hasattr(request.user, "employeruser"):
             
-            your_events = request.user.employer.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+            your_events = request.user.employeruser.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
             
             context = {
                        'search_form': SearchForm(),
@@ -218,15 +248,9 @@ def check_username_existence(request):
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return redirect('home')
  
- 
 def check_email_existence(request):
-    
     if request.is_ajax():
-        try:
-            User.objects.get(email=request.GET.get("email", ""))
-            return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-        except User.DoesNotExist:
-            return HttpResponse(simplejson.dumps(False), mimetype="application/json")
+        return HttpResponse(simplejson.dumps(does_email_exist(request.GET.get("email", ""))), mimetype="application/json")
     return redirect('home')
 
 

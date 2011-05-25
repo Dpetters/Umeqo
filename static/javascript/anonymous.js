@@ -20,6 +20,7 @@ $(document).ready( function () {
                 dataType: 'json',
                 data: {next: get_parameter_by_name('next')},
                 beforeSubmit: function (arr, $form, options) {
+                	$("#login_form .error_section").html("");
                     show_form_submit_loader("#login_form");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -36,23 +37,10 @@ $(document).ready( function () {
                     hide_form_submit_loader("#login_form");
                     switch(data.valid) {
                         case false:
-                               switch(data.reason) {
-                                case "invalid":
-                                    $("#login_form .error_section").html("<p class=error>This username and password combo is invalid. Note that both are case-sensitive.</p>");
-                                    break;
-                                case "inactive":
-                                    $("#login_form .error_section").html("<p class=error>This account has been suspended. Please direct all inquiries to admin@umeqo.com.</p>");
-                                    break;
-                                case "cookies_disabled":
-                                    $("#login_form .error_section").html("<p class=error>Your browser doesn't seem to have cookies enabled. Cookies are required to login.</p>");
-                                    break;
-                                default:
-                                    show_error_dialog(page_error_message);
-                                    break;
-                            }
+                       		$("#login_form .error_section").html(data.error);
                             break;
                         case true:
-                            window.location = data.url;
+                            window.location = data.success_url;
                             break;
                         default:
                             show_error_dialog(page_error_message);
@@ -67,30 +55,11 @@ $(document).ready( function () {
         rules: {
             username: {
                 required: true,
-                /*
-                remote: {
-                    url:"/check-username-existence/",
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        switch(jqXHR.status){
-                            case 0:
-                                $("#login_form .error_section").html(form_check_connection_message);
-                                break;
-                            default:
-                                show_error_dialog(page_error_message);
-                        }
-                    },
-                }
-                */
             },
             password: {
                 required: true
             }
         },
-        messages:{
-            username:{
-                remote: "This username is not registered"
-            }
-        }
     });
     
     if(get_parameter_by_name("next")){

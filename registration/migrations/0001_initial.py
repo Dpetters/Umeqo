@@ -12,7 +12,11 @@ class Migration(SchemaMigration):
         db.create_table('registration_interestedperson', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
+            ('first_name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('last_name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, unique=True, null=True, blank=True)),
+            ('summer_plans', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('ip_address', self.gf('django.db.models.fields.IPAddressField')(max_length=15, null=True)),
         ))
         db.send_create_signal('registration', ['InterestedPerson'])
 
@@ -74,8 +78,12 @@ class Migration(SchemaMigration):
         'registration.interestedperson': {
             'Meta': {'object_name': 'InterestedPerson'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'unique': 'True', 'null': 'True', 'blank': 'True'}),
+            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'ip_address': ('django.db.models.fields.IPAddressField', [], {'max_length': '15', 'null': 'True'}),
+            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'summer_plans': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },
         'registration.registrationprofile': {
             'Meta': {'object_name': 'RegistrationProfile'},

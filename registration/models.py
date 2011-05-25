@@ -28,13 +28,6 @@ class InterestedPerson(models.Model):
 
     def __unicode__(self):
         return self.first_name + " " + self.last_name
-    
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, unique=True)
-    
-    class Meta:
-        abstract = True,
-        ordering = ['user']
         
         
 class RegistrationManager(models.Manager):

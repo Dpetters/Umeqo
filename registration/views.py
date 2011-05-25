@@ -9,12 +9,14 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.utils.translation import ugettext as _
 from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
 
 from registration.backend import RegistrationBackend
 from registration.view_helpers import modify_redirect
+from core import messages
 
-
+# Ajax-Only View
 def login(request,
           redirect_field_name = REDIRECT_FIELD_NAME,
           template_name='homepage.html'):
@@ -27,14 +29,14 @@ def login(request,
             if username and password:
                 user_cache = authenticate(username = username, password=password)
                 if user_cache is None:
-                    return HttpResponse(simplejson.dumps({"valid":False, "reason":"invalid"}), mimetype="application/json")
+                    return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.incorrect_username_password_combo)}), mimetype="application/json")
                 elif not user_cache.is_active:
-                    return HttpResponse(simplejson.dumps({"valid":False, "reason":"inactive"}), mimetype="application/json")
+                    return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.account_suspended)}), mimetype="application/json")
                 else:
                     if not request.session.test_cookie_worked():
-                        return HttpResponse(simplejson.dumps({"valid":False, "reason":"cookies_disabled"}), mimetype="application/json")
+                        return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.enable_cookies)}), mimetype="application/json")
                     auth_login(request, user_cache)
-                    return HttpResponse(simplejson.dumps({"valid":True, "url":modify_redirect(request, redirect_to)}), mimetype="application/json")
+                    return HttpResponse(simplejson.dumps({"valid":True, "success_url":modify_redirect(request, redirect_to)}), mimetype="application/json")
     return redirect("home")
 
 

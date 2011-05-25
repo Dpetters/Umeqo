@@ -10,6 +10,22 @@ SELECT_YES_NO_CHOICES = (
 (False, 'No'),
 )
 
+GENDER_CHOICES = (
+('', 'select'),
+('M', 'Male'),
+('F', 'Female'),
+)
+
+BOTH_GENDERS = 0
+MALE = 1
+FEMALE = 2
+
+FILTERING_GENDER_CHOICES = (
+(BOTH_GENDERS, 'Male and Female'),
+(MALE, 'Male'),
+(FEMALE, 'Female'),
+)
+
 NO_YES_CHOICES = (
 (False, 'No'),
 (True, 'Yes'),

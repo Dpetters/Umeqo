@@ -45,7 +45,9 @@ urlpatterns += patterns('',
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
     (r'^contact-us-dialog/$', 'contact_us_dialog', {}, 'contact_us_dialog'),
-    (r'^help/$', 'help', {'extra_context': {'login_form': AuthenticationForm}}, 'help'),
+    (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),
+    (r'^help/faq/$', 'faq', {'extra_context': {'login_form': AuthenticationForm}}, 'faq'),
+    (r'^help/tutorials/$', 'tutorials', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),
     (r'^about/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'about.html' }, 'about'),
     (r'^blog/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'blog.html' }, 'blog'),
     (r'^browser-configuration-not-supported/$', 'browser_configuration_not_supported', {}, 'browser_configuration_not_supported'),
@@ -79,20 +81,19 @@ urlpatterns += patterns('student.views',
     (r'^student/update-resume/$', 'student_update_resume', {}, 'student_update_resume'),
     (r'^student/resume-info/$', 'student_resume_info', {}, 'resume_info'),
     # Student Account Settings
-    (r'^student/account-settings/$', 'student_account_settings', {}, "student_account_settings"),   
+    (r'^student/account-settings/$', 'student_account_settings', {}, "student_account_settings"),
     # Student Employer Subscriptions
     (r'^student/employer-subscriptions/$', 'student_employer_subscriptions', {}, 'student_employer_subscriptions'),
     # Student Invitations
-    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),   
+    (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),
 )
 
 urlpatterns += patterns('employer.views',
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     # Employer Account Settings
-    (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'), 
+    (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'),
     # Employer Student Filtering
-    (r'^employer/add-to-resume-book/(?P<student_id>\d+)/$', 'employer_add_to_resume_book', {}, 'employer_add_to_resume_book'),
     (r'^employer/filtering-setup/$', 'employer_setup_default_filtering', {}, 'employer_setup_default_filtering'),
     (r'^employer/student-filtering/$', 'employer_student_filtering', {}, 'employer_student_filtering'),
     # Employer Events
@@ -111,4 +112,8 @@ urlpatterns += patterns('events.views',
     (r'^events/rsvp/(?P<id>\d+)$', 'event_rsvp', {}, 'event_rsvp'),
     (r'^events/unrsvp/(?P<id>\d+)$', 'event_unrsvp', {}, 'event_unrsvp'),
     (r'^events/search/$', 'event_search', {}, 'event_search'),
+)
+
+urlpatterns += patterns('relationships.views',
+    (r'^toggle/(?P<relationship_type_slug>[-\w]+)/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', 'toggle_relationship_ajax', {}, 'toggle_relationship'),
 )

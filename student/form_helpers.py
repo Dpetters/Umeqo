@@ -7,14 +7,20 @@
 from student import enums as student_enums
 
 
-def student_lists_as_choices(employer):
+def student_lists_as_choices(employer_user):
     student_list_types = []
-    for student_list_type in student_enums.STUDENT_GROUP_TYPE_CHOICES:
+    for student_list_type in student_enums.STUDENT_LIST_TYPE_CHOICES:
+        print student_list_type
+        print student_list_type[0]
         new_student_list_type = []
         student_lists = []
-        for student_list in employer.studentlist_set.filter(type=student_list_type[0]).order_by("sort_order"):
-            student_lists.append([student_list.id, student_list.name])
-        
+        if student_list_type[0] == student_enums.GENERAL:
+            for student_list in student_enums.GENERAL_STUDENT_LISTS:
+                student_lists.append([0, student_list[1]])
+        if student_list_type[0] == student_enums.EVENT:
+            for event in employer_user.event_set.all():
+                student_lists.append([0, event.name + " RSVPS"])
+                student_lists.append([0, event.name + " Attendees"])
         new_student_list_type = [student_list_type[1], student_lists]
         student_list_types.append(new_student_list_type)
     return student_list_types
