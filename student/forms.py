@@ -3,8 +3,6 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
-import ldap
-
 from django import forms
 
 from student.models import Student
@@ -14,6 +12,7 @@ from core.view_helpers import does_email_exist
 from employer.models import Employer
 from django.utils.translation import ugettext as _
 from core.fields import PdfField
+from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, GENDER_CHOICES
 from core import messages
 
@@ -103,10 +102,11 @@ class StudentCreateProfileForm(forms.ModelForm):
     campus_involvement = forms.ModelMultipleChoiceField(label="Campus Involvement:", queryset = CampusOrg.objects.all(), required = False)
     languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
     website = forms.URLField(label="Website:", required = False)
+    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of Citizenship:", queryset = Country.objects.all(), required=False)
     gender = forms.ChoiceField(label="Gender:", choices = GENDER_CHOICES, required=False)
     older_than_18 = forms.ChoiceField(label="Older Than 18:", choices = SELECT_YES_NO_CHOICES, required = False)
-    ethnicity = forms.ModelChoiceField(label="Ethnicity:", queryset = Ethnicity.objects.all(), required=False)
-    citizen = forms.ChoiceField(label="Citizen:", choices = SELECT_YES_NO_CHOICES, required = False)
+    ethnicity = forms.ModelChoiceField(label="Ethnicity:", queryset = Ethnicity.objects.all(), empty_label="select ethnicity", required=False)
+
 
     
     class Meta:
@@ -118,7 +118,7 @@ class StudentCreateProfileForm(forms.ModelForm):
                    'gpa',
                    'resume',
                    'older_than_18',
-                   'citizen',
+                   'countries_of_citizenship',
                    'website',
                    'second_major',
                    'sat_m',

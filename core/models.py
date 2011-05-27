@@ -24,7 +24,11 @@ class RelationshipType(models.Model):
     """
     name = models.CharField(max_length=255, help_text="The singular name of this fave type, i.e. 'Favorite' or 'Wishlist Item'.")
     slug = models.SlugField()
-    
+
+    class Meta:
+        verbose_name = "Relationship Type"
+        verbose_name_plural = "Relationship Types"
+        
     def __unicode__(self):
         return self.name
     

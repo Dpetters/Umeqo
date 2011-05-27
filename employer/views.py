@@ -50,14 +50,6 @@ def employer_registration(request,
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
-def employer_add_to_resume_book(request, student_id):
-    if request.ajax():
-        return HttpResponse(simplejson.dumps({"valid":True}))
-    redirect('home')
-
-
-@login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_account_settings(request, 
                               template_name="employer_account_settings.html", 
                               extra_context=None):
@@ -274,7 +266,8 @@ def get_cached_filtering_results(request):
         if request.POST['campus_orgs']:
             campus_orgs  = request.POST['campus_orgs'].split('~')
                                 
-        current_filtering_results = filter_students(student_list=request.POST['student_list'],
+        current_filtering_results = filter_students(request.user,
+                                                    student_list=request.POST['student_list'],
                                                     gpa=gpa,
                                                     courses = courses,
                                                     school_years = school_years,

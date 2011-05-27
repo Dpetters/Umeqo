@@ -9,6 +9,7 @@ $(document).ready( function() {
     var campus_involvement_max = 12;
     var industries_of_interest_max = 12;
     var previous_employers_max = 12;
+    var countries_of_citizenship_max = 3;
     
     var create_campus_organization_dialog = null;
     var create_language_dialog = null;
@@ -309,7 +310,6 @@ $(document).ready( function() {
     
     // Create Profile Form Validation
     var v = $("#profile_form").validate({
-    	/*
 		submitHandler: function(form) {
             $(form).ajaxSubmit({
                 dataType: 'json',
@@ -350,7 +350,6 @@ $(document).ready( function() {
                 }
             });
         },
-        */
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_errors_table,
@@ -410,7 +409,6 @@ $(document).ready( function() {
     });
 
     $("#id_school_year").multiselect({
-        noneSelectedText: "select school year",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         header:false,
@@ -427,7 +425,6 @@ $(document).ready( function() {
     });
     
     $("#id_graduation_year").multiselect({
-        noneSelectedText: "select graduation year",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         header:false,
@@ -444,7 +441,6 @@ $(document).ready( function() {
     });
 
     $("#id_first_major").multiselect({
-        noneSelectedText: "select first major",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
@@ -461,7 +457,6 @@ $(document).ready( function() {
     });
 
     $("#id_second_major").multiselect({
-        noneSelectedText: "select second major",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
@@ -472,7 +467,6 @@ $(document).ready( function() {
     });
 
     $("#id_looking_for").multiselect({
-        noneSelectedText: 'select employment types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
@@ -482,7 +476,7 @@ $(document).ready( function() {
     
     $("#id_industries_of_interest").multiselect({
         noneSelectedText: 'select industries',
-        checkAllText: multiselectCheckAllText,
+        classes: 'interested_in_multiselect',
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
@@ -501,7 +495,7 @@ $(document).ready( function() {
 
     $("#id_previous_employers").multiselect({
         noneSelectedText: 'select employers',
-        checkAllText: multiselectCheckAllText,
+        classes: 'previous_employers_multiselect',
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
@@ -517,28 +511,28 @@ $(document).ready( function() {
             }
         }
     }).multiselectfilter();
-    
+
     $("#id_campus_involvement").multiselect({
         noneSelectedText: 'select campus organizations',
-        checkAllText: multiselectCheckAllText,
+        classes: 'campus_involvement_multiselect',
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
-        minWidth:multiselectMinWidth,
-        height:multiselectLargeHeight,
-        optgrouptoggle: function(e, ui) {
+		beforeoptgrouptoggle: function(e, ui){
             $(".warning").remove();
-            if (ui.inputs.length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max) {
+            if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
                 place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
                 return false;
             }
-        },
+		},
+		hide: multiselectHideAnimation,
+        minWidth:multiselectMinWidth,
+        height:multiselectLargeHeight,
         beforeclose: function() {
             $(".warning").remove();
         },
-        click: function(e) {
+        click: function(e, ui) {
             $(".warning").remove();
-            if( $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
+            if( ui.checked && $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
                 place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
                 return false;
             }
@@ -546,7 +540,6 @@ $(document).ready( function() {
     }).multiselectfilter();
     
     $("#id_ethnicity").multiselect({
-        noneSelectedText: "select ethnicity",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
@@ -558,7 +551,7 @@ $(document).ready( function() {
     
     $("#id_languages").multiselect({
         noneSelectedText: 'select languages',
-        checkAllText: multiselectCheckAllText,
+        classes: 'languages_multiselect',
         uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
@@ -580,7 +573,7 @@ $(document).ready( function() {
         noneSelectedText: "select male or female",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        height:multiselectTwoOptionHeight,
+        height:singleselectThreeOptionHeight,
         header:false,
         minWidth:multiselectYesNoSingleSelectWidth,
         selectedList: 1,
@@ -591,23 +584,33 @@ $(document).ready( function() {
         noneSelectedText: "select yes or no",
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        height:multiselectTwoOptionHeight,
+        height:singleselectThreeOptionHeight,
         header:false,
         minWidth:multiselectYesNoSingleSelectWidth,
         selectedList: 1,
         multiple: false
     });
 
-    $("#id_country_of_citizenship").multiselect({
-        noneSelectedText: "select country",
+    $("#id_countries_of_citizenship").multiselect({
+        noneSelectedText: "select countries",
+        classes: 'countries_of_citizenship_multiselect',
+        uncheckAllText: multiselectUncheckAllText,
 		show: multiselectShowAnimation,
 		hide: multiselectHideAnimation,
-        height:multiselectTwoOptionHeight,
-        header:false,
-        minWidth:multiselectYesNoSingleSelectWidth,
+        height:multiselectLargeHeight,
+        minWidth:multiselectMinWidth,
         selectedList: 1,
-        multiple: false
-    });
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(e) {
+            $(".warning").remove();
+            if( $(this).multiselect("widget").find("input:checked").length > countries_of_citizenship_max ) {
+                place_multiselect_warning_table($("#id_countries_of_citizenship"), countries_of_citizenship_max);
+                return false;
+            }
+        }
+    }).multiselectfilter();
     
     // Set up multipart form navigation
     $(".navigation").click( function() {

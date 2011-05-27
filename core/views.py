@@ -31,8 +31,18 @@ from core import enums
 from core import messages
 
 
-def help(request,
-         template_name='help.html',
+def help_center(request,
+         template_name='help_center.html',
+         extra_context = None):
+    
+    context = {}
+    context.update(extra_context or {})  
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
+
+def faq(request,
+         template_name='faq.html',
          extra_context = None):
     
     context = {'topics':[]}
@@ -59,6 +69,16 @@ def help(request,
                               context,
                               context_instance=RequestContext(request))
 
+def tutorials(request,
+              template_name='tutorials.html',
+              extra_context = None):
+    
+    context = {}
+    context.update(extra_context or {})  
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
+    
 # Ajax-Only View
 def contact_us_dialog(request,
                       template_name='contact_dialog.html',
@@ -71,7 +91,7 @@ def contact_us_dialog(request,
             form = form_class(data=request.POST, request=request)
             if form.is_valid():
                 form.save(fail_silently=fail_silently)
-                return HttpResponse(simplejson.dumps({"valid":True}))
+                return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
             else:
                 print form.errors
                 print form.non_field_errors()
@@ -80,7 +100,7 @@ def contact_us_dialog(request,
                     data['body_errors'] = str(form["body"].errors)
                 if form.non_field_errors():
                     data['non_field_errors'] = str(form.non_field_errors())
-                return HttpResponse(simplejson.dumps(data))
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             form = form_class(request=request)
     

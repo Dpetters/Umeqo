@@ -271,8 +271,14 @@ button.ui-multiselect[type="button"] {
 .student_resume_link{
 	float:right;
 }
+.student_star_link{
+	margin-left:4px;
+}
+.student_resumebook_link{
+	
+}
 .student_major{
-	margin-left:45px;
+	margin-left:3px;
 }
 .student_gpa{
 	float:right;

@@ -23,10 +23,14 @@ def delete_contents(directory):
         for name in dirs:
             os.rmdir(os.path.join(root, name))
 
+# Delete old database file.
+if os.path.exists("./database.db"):
+    os.remove("./database.db")
+            
 # Delete old search index files.
 # New index files get created automatically when loaddata gets run below
-if os.path.exists(settings.HAYSTACK_WHOOSH_PATH):
-    delete_contents(settings.HAYSTACK_WHOOSH_PATH)
+if os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
+    delete_contents(settings.HAYSTACK_XAPIAN_PATH)
 
 # Delete the old submitted resumes. Also delete the directory if it exists because
 # copytree below will throw a fit if it already exists

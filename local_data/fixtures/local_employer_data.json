@@ -1,0 +1,133 @@
+[
+ {
+  "pk": 1, 
+  "model": "employer.employeruser", 
+  "fields": {
+   "statistics": 1, 
+   "preferences": 1, 
+   "subscribed": false, 
+   "is_active": true, 
+   "employer": 1, 
+   "user": 3, 
+   "date_created": "2011-05-22 19:50:44", 
+   "default_filtering_parameters": null
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.employeruser", 
+  "fields": {
+   "statistics": 2, 
+   "preferences": 2, 
+   "subscribed": false, 
+   "is_active": true, 
+   "employer": 2, 
+   "user": 5, 
+   "date_created": "2011-05-22 23:09:33", 
+   "default_filtering_parameters": null
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.employeruser", 
+  "fields": {
+   "statistics": 3, 
+   "preferences": 3, 
+   "subscribed": false, 
+   "is_active": true, 
+   "employer": 3, 
+   "user": 6, 
+   "date_created": "2011-05-22 23:09:42", 
+   "default_filtering_parameters": null
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    1
+   ], 
+   "main_contact_phone": "234-234-2345", 
+   "company_name": "Sample Employer 1", 
+   "main_contact": "George Lopez", 
+   "date_created": "2011-05-22 19:50:17"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    27, 
+    34
+   ], 
+   "main_contact_phone": "234-234-2345", 
+   "company_name": "Sample Employer 2", 
+   "main_contact": "Sergio Martinez", 
+   "date_created": "2011-05-22 23:04:22"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    5, 
+    7
+   ], 
+   "main_contact_phone": "234-234-2345", 
+   "company_name": "Sample Employer 3", 
+   "main_contact": "Jorge Martinez", 
+   "date_created": "2011-05-22 23:04:54"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.employerpreferences", 
+  "fields": {
+   "email_on_rsvp": false, 
+   "results_per_page": 10, 
+   "default_student_ordering": "relevancy"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.employerpreferences", 
+  "fields": {
+   "email_on_rsvp": false, 
+   "results_per_page": 10, 
+   "default_student_ordering": "relevancy"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.employerpreferences", 
+  "fields": {
+   "email_on_rsvp": false, 
+   "results_per_page": 10, 
+   "default_student_ordering": "relevancy"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "resumes_viewed": 0
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "resumes_viewed": 0
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "resumes_viewed": 0
+  }
+ }
+]

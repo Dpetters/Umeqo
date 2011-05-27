@@ -199,8 +199,8 @@ p {
 	overflow-x: hidden;
 }
 #content_area {
-	padding-bottom: 40px;
-	padding-top:23px;
+	margin-bottom: 40px;
+	margin-top:20px;
 }
 /*goes for nav-like links next to headers, e.g. "go back to events" */
 #content_area .back_link {
@@ -569,7 +569,6 @@ a:focus {
 /* JQuery Accordion */
 .ui-accordion .ui-accordion-content {
 	padding:10px 0px 3px 4px;
-	overflow-y:hidden;
 }
 .ui-accordion .ui-accordion-header {
 	border-bottom:1px solid #CCCCCC;
@@ -635,6 +634,9 @@ button.ui-multiselect[type=button] {
 }
 button.ui-multiselect[type=button]:hover {
 	cursor: pointer;
+}
+.ui-multiselect-filter{
+	padding-left:4px;
 }
 .ui-multiselect-single .ui-multiselect-checkboxes label {
 	padding:3px !important;

@@ -11,6 +11,7 @@ database.db
 submitted_resumes
 submitted_user_images
 whoosh_index
+xapian_index
 settings_local.py
 *.DS_Store
 *.psd

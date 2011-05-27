@@ -30,7 +30,8 @@ $(document).ready( function() {
 	var campus_orgs = new Array()
 	var older_than_18 = "False";
 	var citizen = "False";
-
+	
+	
 	function handle_multiselect_open_in_accordion(event, ui) {
 		var parent = $(event.target).parents(".ui-accordion-content");
 		var multiselect = $(event.target).multiselect('widget');
@@ -155,6 +156,31 @@ $(document).ready( function() {
 			$('#student_detailed_info_'+ id).show('slow');
 			$(this).text("Hide Details");
 		}
+	});
+	
+	$(".student_star_link").live('click', function(){
+		$.ajax({
+			type: 'POST',
+			url: $(this).attr("url"),
+			dataType: "json",
+            beforeSend: function (jqXHR, settings) {
+            	v = this;
+                $(this).children('img').attr("src", "/static/images/page_elements/loaders/small_ajax_loader.png");
+            },
+			success: function (data) {
+				alert("success!");
+			},
+            error: function(jqXHR, textStatus, errorThrown) {
+                switch(jqXHR.status){
+                    case 0:
+                    	$("#results_block_info").html(check_connection_message + " by clicking <a id='initiate_ajax_call' class='error' href='javascript:void(0)'>here</a>.</p>");
+                        break;
+                    default:
+                    	$("#results_block_info").html(page_error_message);
+                }
+            },
+		});
+		
 	});
 	
 	$(".student_hide_details_link").live('click', function(){

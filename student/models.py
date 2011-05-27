@@ -50,15 +50,14 @@ class Student(models.Model):
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="industries_of_interest_of")
     previous_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="previous_employers_of")
 
-
     # Miscellaneous Info
     campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null=True)
     languages = models.ManyToManyField(Language, blank = True, null = True)
-    website = models.URLField(blank = True, null=True)
+    website = models.URLField(verify_exists=False, blank = True, null=True)
     gender = models.CharField(max_length=1, choices = GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.BooleanField()
     ethnicity = models.ForeignKey(Ethnicity, blank = True, null = True)
-    country_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
+    countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
     
     # Subscriptions
     subscribed_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="subscribed_employers")

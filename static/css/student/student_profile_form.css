@@ -30,19 +30,28 @@ select {
 #required_info_page, #work_info_page, #academic_info_page, #miscellaneous_info_page {
 	float:left;
 	padding-top:15px;
-	width:450px;
 	padding-left:10px;
 }
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
 	height: 1px;
 }
 
+.previous_employers_multiselect .ui-multiselect-filter input, .interested_in_multiselect .ui-multiselect-filter input, .campus_involvement_multiselect .ui-multiselect-filter input, .countries_of_citizenship_multiselect .ui-multiselect-filter input, .languages_multiselect .ui-multiselect-filter input{
+	width:154px;
+}
+.previous_employers_multiselect .ui-multiselect-all, .interested_in_multiselect .ui-multiselect-all, .campus_involvement_multiselect .ui-multiselect-all, .countries_of_citizenship_multiselect .ui-multiselect-all, .languages_multiselect .ui-multiselect-all{
+	display:none;
+}
+.button_wrapper_with_margins{
+	margin-top:42px;
+}
 /* Form Info */
 .profile_side_form_info {
     margin-top: 20px;
+    margin-left:10px;
     position: relative;
     left: 5px;
-    width: 510px;
+    width: 498px;
     float: left;
 }
 .profile_side_form_info h3 {
