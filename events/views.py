@@ -52,6 +52,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         'DOMAIN': settings.DOMAIN,
         'show_rsvp': False,
         'attending': False,
+        'recruiters': event.recruiters.all(),
         'google_description': google_description
     }
     if hasattr(request.user,"student"):
