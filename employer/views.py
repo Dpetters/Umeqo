@@ -68,7 +68,7 @@ def employer_events(request,
                     extra_context=None):
     
     context = {
-        'upcoming_events': request.user.employer.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+        'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
     }
     context.update(extra_context or {})
     return render_to_response(template_name,
@@ -82,8 +82,8 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
     if request.method == 'POST':
         form = EventForm(data=request.POST)
         if form.is_valid():
-            event_obj = form.save(commit=False)
-            event_obj.employer = request.user.employer
+            event_obj = form.save()
+            event_obj.recruiters.add(request.user.recruiter)
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
@@ -104,13 +104,13 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_edit_event(request, id=None, template_name='employer_new_event.html', extra_context=None):
     event = Event.objects.get(pk=id)
-    if event.employer!=request.user.employer:
+    if event.employer!=request.user.recruiter:
         return HttpResponseForbidden('not your event!')
     if request.method=='POST':
         form = EventForm(request.POST,instance=event)
         if form.is_valid():
             event_obj = form.save(commit=False)
-            event_obj.employer = request.user.employer
+            event_obj.employer = request.user.recruiter
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
@@ -134,7 +134,7 @@ def employer_delete_event(request,
                           extra_context = None):
     try:
         event = Event.objects.get(pk=id)
-        if event.employer!=request.user.employer:
+        if event.employer!=request.user.recruiter:
             return HttpResponseForbidden('not your event!')
         event.is_active = False
         event.save()
@@ -154,13 +154,13 @@ def employer_setup_default_filtering(request,
     
     if request.method == 'POST':
         form = form_class(data=request.POST,
-                          instance = request.user.employer)
+                          instance = request.user.recruiter)
         if form.is_valid():
             form.save()
-            request.user.employer.automatic_filtering_setup_completed = True
-            request.user.employer.save()
+            request.user.recruiter.automatic_filtering_setup_completed = True
+            request.user.recruiter.save()
     else:
-        form = form_class(instance=request.user.employer)
+        form = form_class(instance=request.user.recruiter)
     
     context = {
         'form':form
@@ -353,9 +353,9 @@ def employer_student_filtering(request,
         if request.method == "POST" and request.POST.has_key('query'):
                 context['query'] = request.POST.get('query', '')
 
-        context['student_filtering_form'] = StudentFilteringForm({'employer_user': request.user.employeruser},
-                                                                 initial={'ordering': request.user.employeruser.preferences.default_student_ordering,                           
-                                                                          'results_per_page' : request.user.employeruser.preferences.results_per_page})
+        context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
+                                                                 initial={'ordering': request.user.recruiter.preferences.default_student_ordering,                           
+                                                                          'results_per_page' : request.user.recruiter.preferences.results_per_page})
         context['student_search_form'] = SearchForm()
         
     context.update(extra_context or {})

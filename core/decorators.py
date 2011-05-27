@@ -8,4 +8,4 @@ def is_student(user):
     return hasattr(user, "student")
     
 def is_employer(user):
-    return hasattr(user, "employeruser")
+    return hasattr(user, "recruiter")

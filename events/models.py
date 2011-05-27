@@ -19,7 +19,7 @@ class Event(models.Model):
 
 
     # Required Fields
-    employer_user = models.ManyToManyField("employer.EmployerUser")
+    recruiters = models.ManyToManyField("employer.Recruiter")
     
     # Foreign Key to Campus Organization
     

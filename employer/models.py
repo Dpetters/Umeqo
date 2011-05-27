@@ -15,7 +15,7 @@ from core import choices as core_choices
 
         
 class ResumeBook(models.Model):
-    employer_user = models.OneToOneField("employer.EmployerUser")
+    recruiter = models.OneToOneField("employer.Recruiter")
     
     name = models.CharField("Resume Book Name", max_length = 42, blank = True, null = True, help_text="Maximum 42 characters.")
     students = models.ManyToManyField("student.Student", blank = True, null = True)
@@ -42,7 +42,7 @@ class FilteringParameters(models.Model):
     older_than_18 = models.BooleanField()
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
 
-class EmployerUser(models.Model):
+class Recruiter(models.Model):
     
     user = models.OneToOneField(User)
     employer = models.ForeignKey("employer.Employer")
@@ -55,10 +55,6 @@ class EmployerUser(models.Model):
     statistics = models.OneToOneField("employer.EmployerStatistics")
     
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
-
-    class Meta:
-        verbose_name = "Employer User"
-        verbose_name_plural = "Employer Users"
         
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -70,7 +66,7 @@ class EmployerUser(models.Model):
             self.default_filtering_parameters = FilteringParameters.objects.create()
         if not hasattr(self, "statistics"):
             self.statistics = EmployerStatistics.objects.create()
-        super(EmployerUser, self).save( *args, **kwargs )
+        super(Recruiter, self).save( *args, **kwargs )
         
 class Employer(models.Model): 
     company_name = models.CharField("Company Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")

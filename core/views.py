@@ -173,9 +173,9 @@ def home(request,
                                       context,
                                       context_instance=RequestContext(request))
             
-        elif hasattr(request.user, "employeruser"):
+        elif hasattr(request.user, "recruiter"):
             
-            your_events = request.user.employeruser.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+            your_events = request.user.recruiter.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
             
             context = {
                        'search_form': SearchForm(),
