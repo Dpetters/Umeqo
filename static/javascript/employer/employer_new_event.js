@@ -71,7 +71,7 @@ $(document).ready( function() {
 
     $("#id_type").change( function() {
         if($("#id_type option:selected").text() === "Deadline") {
-            $("label[for=id_name]").text("Deadline Name");
+            $("label[for=   ]").text("Deadline Name");
             $("label[for=id_description]").text("Deadline Description");
             $('.event_only_field').hide();
         } else {
@@ -92,19 +92,17 @@ $(document).ready( function() {
     });
     if (typeof EDIT_FORM != 'undefined' && EDIT_FORM==false) {
         $('#id_name').rules("add",{
-            name:{
-                remote: {
-                    url: CHECK_NAME_AVAILABILITY_URL,
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        switch(jqXHR.status){
-                            case 500:
-                                $("#new_event_form_block .main_block_content").html(status_500_message);
-                                break;
-                            default:
-                                $("#new_event_form_block .main_block_content").html(check_connection_message);    
-                        }
-                    },
-                }
+            remote: {
+                url: CHECK_NAME_AVAILABILITY_URL,
+                error: function(jqXHR, textStatus, errorThrown) {
+                    switch(jqXHR.status){
+                        case 500:
+                            $("#new_event_form_block .main_block_content").html(status_500_message);
+                            break;
+                        default:
+                            $("#new_event_form_block .main_block_content").html(check_connection_message);    
+                    }
+                },
             }
         });
     }
