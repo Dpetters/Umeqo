@@ -15,7 +15,7 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.utils import simplejson
 
-from employer.forms import SearchForm, FilteringForm, StudentFilteringForm
+from employer.forms import EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm
 from employer.view_helpers import filter_students, search_students, combine_and_order_results
 from core.decorators import is_employer
 from core.digg_paginator import DiggPaginator
@@ -47,6 +47,33 @@ def employer_registration(request,
                               context,
                               context_instance=RequestContext(request))
 
+@login_required
+@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+def employer_preferences(request, 
+                         template_name="employer_preferences.html", 
+                         form_class = EmployerPreferences,
+                         extra_context=None):
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST, files=request.FILES, instance=request.user.employeruser)
+            if form.is_valid():
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            else:
+                data = {'valid':False,
+                        'form_errors':form.errors}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            form = form_class(instance=request.user.employeruser)
+    
+        context = {
+                   'form' : form
+                   }
+        context.update(extra_context or {})
+        return render_to_response(template_name,
+                                  context,
+                                  context_instance=RequestContext(request))
+    return redirect('home')
 
 @login_required
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)

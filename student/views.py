@@ -35,28 +35,7 @@ def student_account_settings(request,
     return render_to_response(template_name, 
                               context, 
                               context_instance=RequestContext(request))
-"""
-    if request.method == "POST":
-        form = form_class(request.POST, recipient_filter=recipient_filter)
-        if form.is_valid():
-            form.save(sender=request.user)
-            request.user.message_set.create(
-                message=_(u"Message successfully sent."))
-            if success_url is None:
-                success_url = reverse('messages_inbox')
-            if request.GET.has_key('next'):
-                success_url = request.GET['next']
-            return HttpResponseRedirect(success_url)
-    else:
-        form = form_class()
-        if recipient is not None:
-            recipients = [u for u in User.objects.filter(username__in=[r.strip() for r in recipient.split('+')])]
-            form.fields['recipient'].initial = recipients
-    return render_to_response(template_name, {
-        'form': form,
-    }, context_instance=RequestContext(request))
-compose = login_required(compose)
-"""
+
 def student_registration(request,
                          backend = RegistrationBackend(), 
                          form_class = StudentRegistrationForm,

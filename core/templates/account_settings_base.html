@@ -9,3 +9,25 @@ Copyright 2011. All Rights Reserved.
 {% block title %}
 | Account Settings
 {% endblock %}
+
+{% block metadata %}
+
+{{block.super}}
+<!-- Custom -->
+<link rel="stylesheet" href="{{ STATIC_URL }}css/account_settings.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/account_settings.js"></script>
+{% endblock %}
+
+{% block content_area %}
+<div id="account_settings_block" class="main_block">
+    <div class="main_block_header">
+        <span class="main_block_header_title">Account Settings</span>
+    </div>
+    <div class="main_block_content">
+		<div id="account_settings_tabs">
+			{% block account_settings_tabs %}
+			{% endblock %}
+		</div>
+    </div>
+</div>
+{% endblock %}

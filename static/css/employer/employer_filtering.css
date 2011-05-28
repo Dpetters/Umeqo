@@ -222,22 +222,6 @@ button.ui-multiselect[type="button"] {
     width:100%;
 }
 
-/* Student Drag Div */
-.student_drag_div {
-    background:#EEE;
-    padding:3px 5px 3px 5px;
-    font-weight:bold;
-    border:1px solid #CCC;
-    behavior: url(/static/lib/pie/PIE.htc);
-    box-shadow:0 1px 2px #888888;
-    -moz-box-shadow:0 1px 2px #888888;
-    -moz-box-shadow: 0px 1px 2px #888888;
-    -moz-border-radius: 3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
-}
-
-
 .student_main_info {
     padding-bottom:5px;
     padding-top:8px;
@@ -255,7 +239,6 @@ button.ui-multiselect[type="button"] {
     float:left;
 }
 .student_checkbox {
-    margin-left:5px;
 }
 .student_name{
     font-size:20px;
@@ -272,10 +255,10 @@ button.ui-multiselect[type="button"] {
 	float:right;
 }
 .student_star_link{
-	margin-left:4px;
+	margin-left:21px;
 }
 .student_resumebook_link{
-	
+	margin-left:4px;
 }
 .student_major{
 	margin-left:3px;
