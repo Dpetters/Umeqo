@@ -69,16 +69,18 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
                     {% endifequal %}
                 </span>
                 </td>
+            </tr>
+            <tr>
                 <th>Place:</th>
                 <td>{{event.location}}</td>
             </tr>
             <tr>
                 <th>Created by:</th>
-                <td colspan="3">{{event.employer.company_name}}</td>
+                <td>{% for recruiter in recruiters %}{{recruiter.employer.company_name}}{% endfor %}</td>
             </tr>
             <tr>
                 <th>Description:</th>
-                <td colspan="3">{{event.description}}</td>
+                <td>{{event.description}}</td>
             </tr>
         </table>
     </div>

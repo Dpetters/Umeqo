@@ -48,4 +48,4 @@ class StudentFilteringForm(FilteringForm):
     
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)
-        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(args[0].get('employer_user', '')))
+        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(args[0].get('recruiter', '')))

@@ -1,7 +1,7 @@
 [
  {
   "pk": 1, 
-  "model": "employer.employeruser", 
+  "model": "employer.recruiter", 
   "fields": {
    "statistics": 1, 
    "preferences": 1, 
@@ -15,7 +15,7 @@
  }, 
  {
   "pk": 2, 
-  "model": "employer.employeruser", 
+  "model": "employer.recruiter", 
   "fields": {
    "statistics": 2, 
    "preferences": 2, 
@@ -29,7 +29,7 @@
  }, 
  {
   "pk": 3, 
-  "model": "employer.employeruser", 
+  "model": "employer.recruiter", 
   "fields": {
    "statistics": 3, 
    "preferences": 3, 

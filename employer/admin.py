@@ -6,15 +6,15 @@
 
 from django.contrib import admin
 
-from employer.models import Employer, EmployerUser
+from employer.models import Employer, Recruiter
 
-class EmployerUserAdmin(admin.ModelAdmin):
+class RecruiterAdmin(admin.ModelAdmin):
     fields = ['user', 'employer', 'is_active']
     list_display = ('employer', 'is_active', 'subscribed', 'date_created')
     search_fields = ['employer']
     date_hierarchy = 'date_created'
         
-admin.site.register(EmployerUser, EmployerUserAdmin)
+admin.site.register(Recruiter, RecruiterAdmin)
     
 class EmployerAdmin(admin.ModelAdmin):
     fields = ['company_name', 'industries', 'main_contact', 'main_contact_phone']

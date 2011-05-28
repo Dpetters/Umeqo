@@ -4,18 +4,11 @@
  Copyright 2011. All Rights Reserved.
  */
 
-#new_event_form_block {
-    width:700px;
-    margin-left: auto;
-    margin-right: auto;
-}
 #new_event_form_block .main_block_header {
     text-align:center;
 }
 #new_event_form_block .main_block_content {
-    padding-bottom:16px;
-    padding-left:10px;
-    padding-right:10px;
+    padding: 20px;
 }
 #new_event_form select {
     width:204px;
@@ -42,7 +35,7 @@
     left:88px;
 }
 #new_event_form #id_description {
-    width:99%;
+    width: 400px;
     height: 80px;
     margin-top:3px;
 }
