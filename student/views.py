@@ -129,7 +129,7 @@ def student_edit_profile(request,
                          form_class=StudentEditProfileForm,
                          template_name='student_edit_profile.html',
                          extra_context=None):
-    print request.is_ajax()
+
     if not request.user.student.profile_created:
         if request.is_ajax():
             data = {'valid':True,

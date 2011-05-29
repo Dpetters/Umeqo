@@ -107,7 +107,7 @@ function place_errors_ajax_table(errors, element){
  * Places non-field errors which got returned from an ajax submit in the error section of a form
  */
 function place_non_field_ajax_errors(errors, form){
-	$(form + " .error_section").html(data.form_errors.__all__[0]);
+	$(form + " .error_section").html(errors.__all__[0]);
 };
 function place_errors(error, element) {
     $(error).appendTo(element.parent().prev());

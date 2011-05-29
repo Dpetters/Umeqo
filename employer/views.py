@@ -55,7 +55,7 @@ def employer_preferences(request,
                          extra_context=None):
     if request.is_ajax():
         if request.method == 'POST':
-            form = form_class(data=request.POST, files=request.FILES, instance=request.user.employeruser)
+            form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter)
             if form.is_valid():
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
@@ -64,7 +64,7 @@ def employer_preferences(request,
                         'form_errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            form = form_class(instance=request.user.employeruser)
+            form = form_class(instance=request.user.recruiter)
     
         context = {
                    'form' : form
