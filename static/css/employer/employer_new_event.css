@@ -23,8 +23,6 @@
 .duration_field_label {
     border:none;
 }
-#new_event_form label {
-}
 #new_event_form label[for=id_description] {
     border-right:none;
     padding-left:0px !important;
@@ -35,7 +33,7 @@
     left:88px;
 }
 #new_event_form #id_description {
-    width: 400px;
+    width: 350px;
     height: 80px;
     margin-top:3px;
 }

@@ -4,7 +4,7 @@
  Copyright 2011. All Rights Reserved.
 """
 
-import datetime
+from datetime import datetime
 
 from django.core.cache import cache
 from django.conf import settings
@@ -95,7 +95,7 @@ def employer_events(request,
                     extra_context=None):
     
     context = {
-        'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+        'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
     }
     context.update(extra_context or {})
     return render_to_response(template_name,
@@ -116,7 +116,7 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
                 form.save_m2m()
             return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
-        form = EventForm({'start_datetime':datetime.datetime.now()})
+        form = EventForm()
         
     context = {
         'form': form

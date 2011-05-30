@@ -228,6 +228,10 @@ p {
     -webkit-border-radius:3px;
     border-radius:3px;
 }
+.main_block.solo_block {
+    width: 800px;
+    margin: 0 auto;
+}
 .main_block_header, .side_block_header {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image:-moz-linear-gradient(#F0F0F0, #E6E6E6);
@@ -237,6 +241,9 @@ p {
     border-top: 1px solid #FFF;
     border-bottom: 1px solid #DDD;
 }
+#content_area .main_block.solo_block .main_block_header {
+    text-align: left;
+}
 .main_block_header_icon , .side_block_header_icon {
     vertical-align:middle;
 }
@@ -245,6 +252,7 @@ p {
 	vertical-align:middle;
 	color:#444;
 	margin-left:10px;
+	display: inline-block;
 }
 .main_block_header_content, .side_block_header_content {
     float:right;
@@ -376,7 +384,7 @@ p {
     text-shadow: #FFF 0 1px 0;
     text-decoration:none;
     display: inline-block;
-    padding: 0 8px;
+    padding: 0 5px;
     line-height: 30px;
 }
 .button span, .button img {
@@ -661,7 +669,7 @@ button.ui-multiselect[type=button]:hover {
 }
 #content_area .ui-multiselect-menu li {
 	font-size: 14px;
-	padding: 0px 5px 0px 0px;
+	padding: 0 4px 0 0;
 }
 .ui-multiselect-menu label {
     font-weight: normal;
@@ -683,6 +691,7 @@ button.ui-multiselect[type=button]:hover {
 .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     height: 19px;
     line-height: 17px;
+    padding: 0 4px 0;
 }
 .ui-multiselect-menu  .ui-multiselect-hasfilter ul {
     top:0px;

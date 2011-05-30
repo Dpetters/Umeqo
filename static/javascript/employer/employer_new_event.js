@@ -113,6 +113,10 @@ $(document).ready( function() {
         height:146
     });
     
-    $('label[for=id_start_datetime_0]').addClass('required')
+    $('label[for=id_start_datetime_0]').addClass('required');
+    
+    $('.datefield').datepicker({
+        minDate: 0
+    });
 
 });
