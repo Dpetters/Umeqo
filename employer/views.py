@@ -117,7 +117,7 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
             return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm()
-        
+
     context = {
         'form': form
     }
@@ -131,7 +131,7 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
 @user_passes_test(is_employer, login_url=settings.LOGIN_URL)
 def employer_edit_event(request, id=None, template_name='employer_new_event.html', extra_context=None):
     event = Event.objects.get(pk=id)
-    if event.employer!=request.user.recruiter:
+    if not request.user.recruiter in event.recruiters.all():
         return HttpResponseForbidden('not your event!')
     if request.method=='POST':
         form = EventForm(request.POST,instance=event)

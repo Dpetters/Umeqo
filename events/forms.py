@@ -19,22 +19,16 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     Copied from SplitDateTimeWidget, but also adds a class to date and time for js/css customization:
     A Widget that splits datetime input into two <input type="text"> boxes.
     """
-    date_format = forms.DateInput.format
-    time_format = forms.TimeInput.format
 
     def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None, initial=None):
-        widgets = (forms.DateInput(attrs=dateAttrs, format=date_format),
+        widgets = (forms.DateInput(attrs=dateAttrs, format="%m/%d/%Y"),
                    forms.Select(attrs=timeAttrs, choices=TIME_CHOICES))
         super(ImprovedSplitDateTimeWidget, self).__init__(widgets, {})
-    
-    def render(self,name,value,attrs=None):
-        print value
-        return super(ImprovedSplitDateTimeWidget, self).render(name,value,attrs)
 
     def decompress(self, value):
         if value:
             thedate = value.date()
-            thetime = value.time().replace(minute=round(value.minute/60.0)*60).strftime("%H:%M")
+            thetime = value.time().replace(minute=round(value.minute/60.0)*60).strftime("%I:%M %p")
             return [thedate, thetime]
         return [None, None]
         

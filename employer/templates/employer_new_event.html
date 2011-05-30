@@ -106,7 +106,7 @@ var EDIT_FORM = false;
                     <tr>
                         <th></th>
                         <td>
-                            <input id="new_event_form_submit_button" class="button" type='submit' value='Create Event'>
+                            <input id="new_event_form_submit_button" class="button" type='submit' value='{% if edit %}Edit Event{% else %}Create Event{% endif %}'>
                         </td>
                     </tr>
                 </table>
