@@ -11,7 +11,7 @@ from core import choices as core_choices
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
-from employer.models import FilteringParameters
+from employer.models import FilteringParameters, EmployerPreferences
 from employer import enums
 
 
@@ -36,6 +36,11 @@ class FilteringForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(FilteringForm, self).__init__(*args, **kwargs)
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
+
+class EmployerPreferencesForm(forms.ModelForm):
+    
+    class Meta:
+        model = EmployerPreferences
     
 class StudentFilteringForm(FilteringForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = enums.ORDERING_CHOICES, required = False)

@@ -1,0 +1,22 @@
+#account_settings_block .main_block_content{
+	padding:0px;
+}
+#account_settings_tabs{
+	padding:0px;
+	border:none;
+}
+#account_settings_tabs ul.ui-tabs-nav{
+	border:none;
+	background: -moz-linear-gradient(center top , #F7F7F7 90%, #E6E6E6) repeat scroll 0 0 transparent;
+	padding-left:10px;
+}
+#account_settings_tabs .ui-tabs-nav li{
+	text-shadow:0 1px 0 #FFF;
+}
+#account_settings_tabs .ui-tabs-nav li.ui-tabs-selected{
+	background:#FFF;
+	padding-bottom:0px;
+}
+#account_settings_tabs .ui-tabs-nav li.ui-tabs-selected a{
+	color:#555;
+}

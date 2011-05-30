@@ -16,10 +16,8 @@ ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 HAYSTACK_INCLUDE_SPELLING = True
 HAYSTACK_DEFAULT_OPERATOR = 'AND'
 HAYSTACK_SITECONF = 'search_sites'
-#HAYSTACK_WHOOSH_PATH = (ROOT + '\\whoosh_index').replace('\\', '/')
 HAYSTACK_SEARCH_ENGINE = 'solr'
 HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
-#HAYSTACK_XAPIAN_PATH = (ROOT + '\\xapian_index').replace('\\', '/')
 
 # Email Settings
 EMAIL_USE_TLS = True

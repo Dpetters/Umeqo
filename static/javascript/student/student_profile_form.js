@@ -310,46 +310,6 @@ $(document).ready( function() {
     
     // Create Profile Form Validation
     var v = $("#profile_form").validate({
-		submitHandler: function(form) {
-            $(form).ajaxSubmit({
-                dataType: 'json',
-                beforeSubmit: function (arr, $form, options) {
-                    show_form_submit_loader("#profile_form");
-                    $("#profile_form .error_section").html("");
-                },
-                error: function(jqXHR, textStatus, errorThrown){
-                    hide_form_submit_loader("#profile_form");
-                    switch(jqXHR.status){
-                        case 0:
-                        	if (errorThrown.slice(0, 12-errorThrown.length)=="Invalid JSON"){
-                            	show_error_dialog(page_error_message);
-                            }
-                            else{
-                        		$("#profile_form .error_section").html(form_check_connection_message);
-                            }
-                            break;
-                        default:
-                            show_error_dialog(page_error_message);
-                    }
-                },
-                success: function(data) {
-                    hide_form_submit_loader("#student_registration_form");
-                    switch(data.valid) {
-                        case false:
-							if (data.form_errors.__all__){
-                        		place_non_field_ajax_errors(data.form_errors.__all__, "#profile_form");
-                        	}
-		                    break;
-		                case true:
-                            window.location.replace(data.success_url);
-                            break;
-                        default:
-                    		show_error_dialog(page_error_message);
-                    		break;
-                    }
-                }
-            });
-        },
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_errors_table,
@@ -465,6 +425,92 @@ $(document).ready( function() {
         selectedList: 1,
         multiple: false
     });
+	
+	$("#id_gpa").change(function(){
+		gpa_slider.slider('value', $(this).val());
+	});
+	
+	// GPA Slider
+	var gpa_slider = $("#gpa_section .slider").slider({
+		min: 0,
+		max: 5.0,
+		step: .1,
+		value: $("#id_gpa").val(),
+		slide: function(event, ui) {
+			$("#id_gpa").val(ui.value);
+		},
+		change: function(event, ui) {
+			v.element("#id_gpa");
+		}
+	});
+
+	// SAT Math Slider
+	var sat_m_slider = $("#sat_m_section .slider").slider({
+		min: 200,
+		max: 800,
+		step: 10,
+		value: $("#id_sat_m").val(),
+		slide: function(event, ui) {
+			$("#id_sat_m").val(ui.value);
+		},
+		change: function(event, ui) {
+			v.element("#id_sat_m");
+		}
+	});
+	$("#id_sat_m").change(function(){
+		sat_m_slider.slider('value', $(this).val());
+	});
+	
+	// SAT Verbal Slider
+	var sat_v_slider = $("#sat_v_section .slider").slider({
+		min: 200,
+		max: 800,
+		step: 10,
+		value: $("#id_sat_v").val(),
+		slide: function(event, ui) {
+			$("#id_sat_v").val(ui.value);
+		},
+		change: function(event, ui) {
+			v.element("#id_sat_v");
+		}
+	});
+	$("#id_sat_v").change(function(){
+		sat_v_slider.slider('value', $(this).val());
+	});
+		
+	// SAT Writing Slider
+	var sat_w_slider = $("#sat_w_section .slider").slider({
+		min: 200,
+		max: 800,
+		step: 10,
+		value: $("#id_sat_w").val(),
+		slide: function(event, ui) {
+			$("#id_sat_w").val(ui.value);
+		},
+		change: function(event, ui) {
+			v.element("#id_sat_w");
+		}
+	});
+	$("#id_sat_w").change(function(){
+		sat_w_slider.slider('value', $(this).val());
+	});
+	
+	//ACT Slider
+	var act_slider = $("#act_section .slider").slider({
+		min: 0,
+		max: 36,
+		step: 1,
+		value: $("#id_act").val(),
+		slide: function(event, ui) {
+			$("#id_act").val(ui.value);
+		},
+		change: function(event, ui) {
+			v.element("#id_act");
+		}
+	});
+	$("#id_act").change(function(){
+		act_slider.slider('value', $(this).val());
+	});
 
     $("#id_looking_for").multiselect({
         checkAllText: multiselectCheckAllText,
@@ -633,18 +679,8 @@ $(document).ready( function() {
         accordion.accordion("activate", 1);
         current = 1;
     });
-    $("#pg4 .open2").click( function() {
-        accordion.accordion("activate", 2);
-        current = 2;
-    });
     
     // Next buttons need to run validation
-    $("#pg3 .open3").click( function() {
-        if (v.form()) {
-            accordion.accordion("activate", 3);
-            current = 3;
-        }
-    });
     $("#pg2 .open2").click( function() {
         if (v.form()) {
             accordion.accordion("activate", 2);

@@ -241,9 +241,10 @@ p {
     vertical-align:middle;
 }
 .main_block_header_title, .side_block_header_title {
-    text-shadow: 0px 1px white;
-    vertical-align:middle;
-    color:#444;
+	text-shadow: 0px 1px white;
+	vertical-align:middle;
+	color:#444;
+	margin-left:10px;
 }
 .main_block_header_content, .side_block_header_content {
     float:right;
@@ -503,7 +504,7 @@ input[type=text], input[type=password] {
     outline: none;
 }
 #content_area a:hover, a:hover {
-    color: #AAA;
+	color: #557389;
 }
 a:focus {
     outline: none;
@@ -565,10 +566,19 @@ a:focus {
     text-align:center;
 }
 /** JQuery UI Overrides **/
-
+/* Jquery Widget */
+.ui-widget-content{
+	background:#FFF;
+}
+/* Jquery Tabs */
+.ui-tabs-nav .ui-state-active{
+	background:#FFF;
+}
 /* JQuery Accordion */
 .ui-accordion .ui-accordion-content {
-    padding:10px 0px 3px 4px;
+	padding:10px 0px 3px 4px;
+	overflow-y:hidden;
+	overflow-x:hidden;
 }
 .ui-accordion .ui-accordion-header {
     border-bottom:1px solid #CCCCCC;
@@ -635,6 +645,7 @@ button.ui-multiselect[type=button] {
 button.ui-multiselect[type=button]:hover {
     cursor: pointer;
 }
+
 .ui-multiselect-filter{
     padding-left:4px;
 }
@@ -649,16 +660,17 @@ button.ui-multiselect[type=button]:hover {
     font-size: 11px;
 }
 #content_area .ui-multiselect-menu li {
-    font-size: 14px;
-    padding-right: 5px;
+	font-size: 14px;
+	padding: 0px 5px 0px 0px;
 }
 .ui-multiselect-menu label {
     font-weight: normal;
 }
 .ui-multiselect-menu label.ui-state-hover {
-    background:#fdf5ce;
-    border:1px solid #fbcb09;
-    color:#c77405;
+	background:#fdf5ce;
+	border:1px solid #fbcb09;
+	color:#c77405;
+	font-weight:normal;
 }
 .ui-multiselect-header {
     border-radius: 3px;
