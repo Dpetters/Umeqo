@@ -136,8 +136,9 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
     if request.method=='POST':
         form = EventForm(request.POST,instance=event)
         if form.is_valid():
-            event_obj = form.save(commit=False)
-            event_obj.employer = request.user.recruiter
+            event_obj = form.save()
+            event_obj.recruiters.clear()
+            event_obj.recruiters.add(request.user.recruiter)
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
@@ -146,7 +147,11 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
         form = EventForm(instance=event)
     context = {
         'form': form,
-        'edit': True
+        'edit': True,
+        'event': {
+            'id': event.id,
+            'slug': event.slug
+        }
     }
 
     context.update(extra_context or {})
@@ -161,7 +166,7 @@ def employer_delete_event(request,
                           extra_context = None):
     try:
         event = Event.objects.get(pk=id)
-        if event.employer!=request.user.recruiter:
+        if request.user.recruiter not in event.recruiters.all():
             return HttpResponseForbidden('not your event!')
         event.is_active = False
         event.save()

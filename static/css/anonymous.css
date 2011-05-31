@@ -40,7 +40,7 @@
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     width: 200px;
 }
-#loginWrapper:before {
+#loginWrapper::before {
     content: ' ';  
     position: absolute;  
     width: 0;  

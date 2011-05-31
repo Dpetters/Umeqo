@@ -50,8 +50,8 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         'event': event,
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
-        'show_rsvp': False,
         'attending': False,
+        'show_rsvp': True,
         'recruiters': event.recruiters.all(),
         'google_description': google_description
     }
@@ -59,8 +59,8 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         rsvp_events = request.user.student.event_set.all()
         if event in rsvp_events:
             context['attending'] = True
-        else:
-            context['show_rsvp'] = True
+    else:
+        context['show_rsvp'] = False
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
 

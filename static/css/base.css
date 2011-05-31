@@ -262,6 +262,10 @@ p {
     margin-right: 4px;
     vertical-align:middle;
 }
+.main_block_header_sidelink {
+    float: right;
+    padding-right: 5px;
+}
 .side_block_content a:hover {
     background-color: #EEE;
     color: #000;
@@ -301,6 +305,14 @@ p {
 }
 .main_block_content {
     padding: 10px;
+}
+#loading_div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/page_elements/loaders/results_loader.gif') no-repeat center center rgba(240,240,240,0.5);
 }
 .main_block_footer_links {
     float:right;
@@ -386,6 +398,14 @@ p {
     display: inline-block;
     padding: 0 5px;
     line-height: 30px;
+}
+#content_area .button.disabled-button {
+    color: #888;
+}
+#content_area .button.disabled-button:hover {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
+    color: #888 !important;
+    cursor: default !important;
 }
 .button span, .button img {
     vertical-align: middle;
@@ -712,14 +732,34 @@ button.ui-multiselect[type=button]:hover {
 #content_area .ui-multiselect-none a:hover, #content_area .ui-multiselect-none span:hover {
     text-decoration: none;
 }
+
 /* JQuery Slider */
 a.ui-slider-handle {
     padding:1px 2px;
 }
+
 .clearfix::after {
     clear: both;
     content: '';
     display: block;
     height: 0;
     visibility: hidden;
+}
+
+.help-bubble {
+    display: inline-block;
+    position: absolute;
+    border: 1px solid #CCC;
+    box-shadow: rgba(0,0,0,0.3) 2px 2px 5px;
+    color: #666;
+}
+.help-bubble::before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    border-color: #CCC #CCC transparent transparent;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
 }

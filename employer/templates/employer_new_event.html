@@ -115,6 +115,7 @@ var EDIT_FORM = false;
                 <div class="errorspace"></div>
                 {{form.description.label_tag}}
                 {{form.description}}
+                {% if edit %}<a href="{% url event_page id=event.id,slug=event.slug %}">View your event page.</a>{% endif %}
             </div>
             <div class="clearfix"></div>
         </form>

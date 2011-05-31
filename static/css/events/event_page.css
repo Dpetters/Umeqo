@@ -12,7 +12,7 @@
 }
 #event_details th {
     width: 80px;
-    text-align: right;
+    text-align: left;
     padding: 6px 5px;
     vertical-align: top;
     color: #777;
@@ -52,4 +52,16 @@
 .google-button {
     display: inline-block;
     margin: 0 0 5px;
+}
+
+#rsvp_div {
+    position: relative;
+}
+#rsvp_div .help-bubble {
+    right: 140px;
+    width: 180px;
+}
+#rsvp_div .help-bubble::before {
+    right: -5px;
+    top: 10px;
 }
