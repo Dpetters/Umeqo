@@ -11,28 +11,34 @@
     width:200px;
 }
 
-#quick_resume_updater_block .hover {
-    border: 1px solid #303030;
-    color: #303030;
-}
-#quick_resume_updater_block .uploading {
-    border: 1px solid orange;
-}
-#quick_resume_updater_block .success {
-    border: 1px solid #00EA1B;
-}
-#quick_resume_updater_block .error {
-    border: 1px solid red;
-}
-#quick_resume_updater_block #drop-area {
-    color: #909090;
+#dropbox {
+	opacity: 0.5;
     background-color: #e9e9e9;
-    display: table-cell;
-    text-align: center;
-    vertical-align:middle;
-    height: 186px;
+    height: 185px;
     width: 178px;
     border: 1px dotted #303030;
+}
+#dropbox_status{
+	font-weight:bold;
+	height:0px;
+	position:relative;
+	top:75px;
+}
+#quick_resume_updater_block #dropbox.hover {
+    border: 1px dashed #303030;
+    opacity:0.3;
+}
+#quick_resume_updater_block #dropbox.uploading {
+    border: 1px solid orange;
+}
+#quick_resume_updater_block #dropbox.success {
+    border: 1px solid #00EA1B;
+}
+#quick_resume_updater_block #dropbox.error {
+    border: 1px solid red;
+}
+#quick_resume_updater_block .side_block_content{
+	text-align:center;
 }
 
 #notifications_block .main_block_header{

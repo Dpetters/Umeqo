@@ -44,8 +44,12 @@ p {
 }
 .below_header_message {
 	behavior: url(/static/lib/pie/PIE.htc);
-	background-image: -moz-linear-gradient(#FFF, #F2F2F2);
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#F2F2F2));
+	background: #F9F9F9;
+	background: -moz-linear-gradient(#FFF, #F2F2F2);
+	background: -webkit-gradient(#FFF, #F2F2F2);
+	background: -webkit-linear-gradient(#FFF, #F2F2F2);
+	background: -o-linear-gradient(#FFF, #F2F2F2);
+	background: linear-gradient(#FFF, #F2F2F2);
 	-pie-background: linear-gradient(#FFF, #F2F2F2);
 	text-shadow: 0 1px 0 #FFFFFF;
 	text-align:center;
@@ -54,8 +58,9 @@ p {
 	border:1px solid #AAA;
 	padding-top:4px;
 	padding-bottom:4px;
-	border-radius: 4px;
 	-moz-border-radius: 4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
 	margin-top: 8px;
 }
 .width_container {
@@ -98,11 +103,6 @@ p {
 	transition: color 0.2s ease, background-color 0.2s ease;
 	-moz-border-radius: 2px;
 	text-shadow: none;
-	/*
-	 -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
-	 -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
-	 box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
-	 */
 	font-weight: bold;
 	color: #FFF;
 	font-size: 12px;
@@ -133,26 +133,26 @@ p {
 	transition: none;
 }
 #account.pressed, #account.pressed:hover {
-	/*background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
-	 background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
-	 -pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));*/
 	color: #FFF;
 	background-color: rgba(255,255,255,0.3);
 }
 #account_dropdown {
+	background: #333;
+	background:  -moz-linear-gradient(rgba(50,50,50,0.9), rgba(20,20,20,0.9));
+	background: -webkit-gradient(rgba(50,50,50,0.9)), rgba(20,20,20,0.9));
+	background: -webkit-linear-gradient(rgba(50,50,50,0.9), rgba(20,20,20,0.9));
+	background: -o-linear-gradient(rgba(50,50,50,0.9), rgba(20,20,20,0.9));
+	background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
+	-pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
 	min-width:120px;
 	display: block;
 	position: absolute;
 	right: 2px;
 	text-shadow: none;
-	background: #333;
 	top: 50px;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	border: 1px solid #000;
-	background-image: -moz-linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.8)), to(rgba(20,20,20,0.8)));
-	-pie-background: linear-gradient(rgba(50,50,50,0.8), rgba(20,20,20,0.8));
 	z-index: 100;
 	-moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
 	-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
@@ -177,7 +177,7 @@ p {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-	color: #DDD;
+	color: #EEE;
 	text-shadow: #000 0 -1px 0;
 	-webkit-transition: none;
 	-moz-transition: none;
@@ -221,19 +221,21 @@ p {
 	text-align:center;
 }
 .main_block, .side_block {
-	overflow:hidden;
-	border: 1px solid #CCCCCC;
 	behavior: url(/static/lib/pie/PIE.htc);
 	-moz-border-radius: 3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
+	border: 1px solid #CCCCCC;
 }
 .main_block_header, .side_block_header {
 	behavior: url(/static/lib/pie/PIE.htc);
-	background-image:-moz-linear-gradient(#F0F0F0, #E6E6E6);
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#E6E6E6));
+	background: #F0F0F0;
+	background: -moz-linear-gradient(#F0F0F0, #E6E6E6);
+	background: -webkit-gradient(#F0F0F0, #E6E6E6);
+	background: -webkit-linear-gradient(#F0F0F0, #E6E6E6);
+	background: -o-linear-gradient(#F0F0F0, #E6E6E6);
+	background: linear-gradient(#F0F0F0, #E6E6E6);
 	-pie-background: linear-gradient(#F0F0F0, #E6E6E6);
-	overflow:hidden;
 	border-top: 1px solid #FFF;
 	border-bottom: 1px solid #CCC;
 }
@@ -362,8 +364,12 @@ p {
 /* Buttons */
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
 	behavior: url(/static/lib/pie/PIE.htc);
-	background-image: -moz-linear-gradient(#F0F0F0, #DDD);
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#DDD));
+	background: #F0F0F0;
+	background: -moz-linear-gradient(#F0F0F0, #DDD);
+	background: -webkit-gradient(#F0F0F0, #DDD);
+	background: -webkit-linear-gradient(#F0F0F0, #DDD);
+	background: -o-linear-gradient(#F0F0F0, #DDD);
+	background: linear-gradient(#F0F0F0, #DDD);
 	-pie-background: linear-gradient(#F0F0F0, #DDD);
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
