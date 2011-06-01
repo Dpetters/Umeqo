@@ -32,9 +32,11 @@ def events_list(request, template_name='events_list.html', extra_context=None):
 
 def search_helper(query):
     search_results = SearchQuerySet().models(Event).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
-    print query
     if query!="":
-        search_results = search_results.filter(content_auto=query)
+        for q in query.split(' '):
+            if q.strip()!="":
+                search_results = search_results.filter(content_auto=q)
+    print search_results
     return search_results
 
 @login_required

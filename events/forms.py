@@ -28,7 +28,7 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     def decompress(self, value):
         if value:
             thedate = value.date()
-            thetime = value.time().replace(minute=(value.minute/30)*30).strftime("%I:%M %p")
+            thetime = value.time().replace(minute=(value.minute/30)*30).strftime("%H:%M")
             return [thedate, thetime]
         return [None, None]
         
