@@ -175,8 +175,9 @@ def home(request,
             
         elif hasattr(request.user, "recruiter"):
             
-            now_datetime = datetime.now().strftime('%Y-%m-%d')
-            your_events = request.user.recruiter.event_set.order_by("-start_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
+            now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+            print now_datetime
+            your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             
             context = {
                        'search_form': SearchForm(),
