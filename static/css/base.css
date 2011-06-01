@@ -312,7 +312,7 @@ p {
     top: 0;
     right: 0;
     bottom: 0;
-    background: url('../images/page_elements/loaders/results_loader.gif') no-repeat center center rgba(240,240,240,0.5);
+    background: url('../images/page_elements/loaders/small_ajax_loader.gif') no-repeat center right;
 }
 .main_block_footer_links {
     float:right;

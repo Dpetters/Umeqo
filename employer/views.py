@@ -1,5 +1,5 @@
 """
- Developers : Dmitrij Petters,
+ Developers : Dmitrij Petters, Joshua Ma
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
@@ -145,6 +145,7 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
             return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm(instance=event)
+    
     context = {
         'form': form,
         'edit': True,
