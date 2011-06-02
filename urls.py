@@ -79,7 +79,7 @@ urlpatterns += patterns('student.views',
     (r'^student/create-campus-organization/$', 'student_create_campus_organization', {}, 'student_create_campus_organization'),
     (r'^student/create-language/$', 'student_create_language', {}, 'student_create_language'),
     (r'^student/update-resume/$', 'student_update_resume', {}, 'student_update_resume'),
-    (r'^student/resume-info/$', 'student_resume_info', {}, 'resume_info'),
+    (r'^student/update-resume/info/$', 'student_update_resume_info', {}, 'student_update_resume_info'),
     # Student Account Settings
     (r'^student/account-settings/$', 'student_account_settings', {}, "student_account_settings"),
     # Student Employer Subscriptions

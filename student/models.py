@@ -81,6 +81,10 @@ class Student(models.Model):
             self.user.first_name = self.first_name
             self.user.last_name = self.last_name
             self.user.save()
+        if not self.preferences:
+            self.preferences = StudentPreferences.objects.create()
+        if not self.statistics:
+            self.statistics = StudentStatistics.objects.create()
         super(Student, self).save( *args, **kwargs )
 
 class StudentPreferences(models.Model):

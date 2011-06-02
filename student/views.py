@@ -15,7 +15,7 @@ from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
 from student.forms import StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
-from student.models import Student, StudentPreferences, StudentStatistics
+from student.models import Student
 from student.view_helpers import process_resume
 from registration.backend import RegistrationBackend
 from core.decorators import is_student
@@ -52,9 +52,7 @@ def student_registration(request,
         if form.is_valid():
             form.cleaned_data['username']= form.cleaned_data['email'].split("@")[0]
             new_user = backend.register(request, **form.cleaned_data)
-            Student.objects.create(user=new_user,
-                                   preferences = StudentPreferences.objects.create(),
-                                   statistics = StudentStatistics.objects.create())
+            Student.objects.create(user=new_user)
             if request.is_ajax():
                 return HttpResponse(simplejson.dumps({'valid':True, 'success_url':reverse(success_url)}), mimetype="application/json")
             return redirect(success_url)
@@ -174,10 +172,25 @@ def student_edit_profile(request,
                               context,
                               context_instance=RequestContext(request))
 
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_update_resume(request,
+                          form_class=StudentUpdateResumeForm):
+    
+    if request.is_ajax() and request.method == 'POST':
+        form = form_class(data=request.POST,
+                          files=request.FILES,
+                          instance=request.user.student)
+        old_resume_name = str(request.user.student.resume)
+        if form.is_valid():
+            os.remove(settings.MEDIA_ROOT + old_resume_name)
+            form.save()
+            return process_resume(request.user.student, request.is_ajax())
+    return redirect('home')
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_resume_info(request):
+def student_update_resume_info(request):
     
     if request.is_ajax():
         data = {'path_to_new_resume' : str(request.user.student.resume), 
@@ -302,25 +315,6 @@ def student_invitations(request,
                               context,
                               context_instance=RequestContext(request))
 
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_update_resume(request,
-                          form_class=StudentUpdateResumeForm):
-    
-    if request.is_ajax() and request.method == 'POST':
-        if request.GET.has_key('base64'):
-            pass # NEED TO SUPPORT CHROME LATER
-        else:
-            form = form_class(data=request.POST,
-                              files=request.FILES,
-                              instance=request.user.student)
-            old_resume_name =str(request.user.student.resume)
-            if form.is_valid():
-                os.remove(settings.MEDIA_ROOT + old_resume_name)
-                form.save()
-                return process_resume(request.user.student)
-    return redirect('home')
 
 """
 def compute_suggested_employers_list(student, exclude = None):
