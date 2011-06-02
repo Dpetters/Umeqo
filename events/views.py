@@ -42,6 +42,8 @@ def search_helper(query):
 @login_required
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
+    event.view_count += 1
+    event.save()
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound()
@@ -50,10 +52,11 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     context = {
         'event': event,
+        'rsvps': event.rsvps.all(),
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
         'attending': False,
-        'show_rsvp': True,
+        'show_admin': False,
         'recruiters': event.recruiters.all(),
         'google_description': google_description
     }
@@ -62,7 +65,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         if event in rsvp_events:
             context['attending'] = True
     else:
-        context['show_rsvp'] = False
+        context['show_admin'] = True
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
 

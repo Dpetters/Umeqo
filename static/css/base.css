@@ -265,6 +265,7 @@ p {
 .main_block_header_sidelink {
     float: right;
     padding-right: 5px;
+    margin: 3px 5px 0 0;
 }
 .side_block_content a:hover {
     background-color: #EEE;
@@ -283,7 +284,6 @@ p {
     line-height: 30px;
 }
 .main_block_header_content a, .main_block_header_content input.button {
-    font-weight: bold;
     vertical-align:middle;
 }
 .main_block_header_icon {
@@ -379,6 +379,7 @@ p {
     border-radius: 3px;
     border: 1px solid #FFF;
 }
+
 /* Buttons */
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -392,12 +393,29 @@ p {
     border: 1px solid #888;
     color: #6e97b9;
     cursor: pointer;
-    height: 30px;
     text-shadow: #FFF 0 1px 0;
     text-decoration:none;
     display: inline-block;
     padding: 0 5px;
+    vertical-align: middle;
+}
+input.button, .button[type=submit] {
+    height: 30px;
     line-height: 30px;
+}
+a.button {
+    height: 28px;
+    line-height: 28px;
+}
+#content_area a.button.sub-button {
+    background: #CCC;
+    color: #000;
+    line-height: 23px;
+    height: 23px;
+}
+#content_area a.button.sub-button:hover {
+    background: #D0D0D0;
+    color: #222 !important;
 }
 #content_area .button.disabled-button {
     color: #888;
@@ -423,6 +441,7 @@ p {
 .button:hover, .ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
     color: #6e97b9 !important;
+    box-shadow: #666 0 0 2px;
 }
 .button:active, .ui-multiselect-menu .ui-multiselect-none:active, .ui-multiselect-menu .ui-multiselect-all:active {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -484,6 +503,7 @@ input[type=text], input[type=password], select, textarea {
     border: 1px solid #AAA;
     background-color: white;
     color: #555;
+    font-family: Arial;
 }
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
     border: 1px solid #666;
@@ -664,11 +684,16 @@ a:focus {
 .ui-multiselect-menu {
     border:1px solid #808080;
 }
+.ui-multiselect-checkboxes label {
+    font-size: 11px;
+}
 button.ui-multiselect[type=button] {
     background: white;
     border: 1px solid #AAA;
     font-weight: normal;
-    padding: 4px;
+    padding: 2px 4px;
+    font-size: 11px;
+    line-height: 16px;
 }
 button.ui-multiselect[type=button]:hover {
     cursor: pointer;

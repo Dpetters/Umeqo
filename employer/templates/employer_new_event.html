@@ -48,6 +48,8 @@ var EDIT_FORM = false;
             Create New Event
         {% endif %}
         </span>
+        <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
+        {% if edit %}<a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink button sub-button">View Event</a>{% endif %}
     </div>
     <div class="main_block_content">
         <form id="new_event_form" method="POST" action="">
@@ -106,7 +108,7 @@ var EDIT_FORM = false;
                     <tr>
                         <th></th>
                         <td>
-                            <input id="new_event_form_submit_button" class="button" type='submit' value='{% if edit %}Edit Event{% else %}Create Event{% endif %}'>
+                            <input id="new_event_form_submit_button" class="button" type='submit' value='{% if edit %}Save Event{% else %}Create Event{% endif %}'>
                         </td>
                     </tr>
                 </table>
@@ -115,7 +117,6 @@ var EDIT_FORM = false;
                 <div class="errorspace"></div>
                 {{form.description.label_tag}}
                 {{form.description}}
-                {% if edit %}<a href="{% url event_page id=event.id,slug=event.slug %}">View your event page.</a>{% endif %}
             </div>
             <div class="clearfix"></div>
         </form>
