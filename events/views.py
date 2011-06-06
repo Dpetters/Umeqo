@@ -60,6 +60,8 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         'recruiters': event.recruiters.all(),
         'google_description': google_description
     }
+    if len(event.audience.all())>0:
+        context['audience'] = event.audience.all()
     if hasattr(request.user,"student"):
         rsvp_events = request.user.student.event_set.all()
         if event in rsvp_events:

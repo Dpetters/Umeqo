@@ -21,6 +21,10 @@
 #event_details td {
     padding: 6px 3px;
 }
+#event_details ul {
+    padding-left: 18px;
+}
+
 #photo {
     float: left;
     display: inline-block;

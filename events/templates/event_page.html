@@ -119,6 +119,18 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
                 <th>Description:</th>
                 <td>{% if event.description %}{{event.description}}{% else %}No description provided.{% endif %}</td>
             </tr>
+            {% if audience %}
+            <tr>
+                <th>Audience:</th>
+                <td>
+                    <ul>
+                    {% for a in audience %}
+                        <li>{{a}}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endif %}
         </table>
         <div id="photo"></div>
     </div>
