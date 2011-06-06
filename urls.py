@@ -23,7 +23,6 @@ if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
         (r'^admin/', include(admin.site.urls)),
         (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-        (r'^.+$', 'django.views.generic.simple.redirect_to', {'url':'/'}),
         (r'^$', 'core.views.landing_page'),
     )
 

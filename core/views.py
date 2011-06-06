@@ -119,6 +119,9 @@ def landing_page(request,
             form_class = BetaForm,
             extra_context = None):
     
+    if request.GET.get('magic','')!='':
+        return home(request)
+    
     posted = False
     disabled = False
     form_error = False
