@@ -8,6 +8,7 @@ from django import forms
 
 from events.models import Event, EventType
 from events.choices import TIME_CHOICES
+from datetime import datetime
 
 from core.forms_helper import decorate_bound_field
 
@@ -18,24 +19,23 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     Copied from SplitDateTimeWidget, but also adds a class to date and time for js/css customization:
     A Widget that splits datetime input into two <input type="text"> boxes.
     """
-    date_format = forms.DateInput.format
-    time_format = forms.TimeInput.format
 
     def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None, initial=None):
-        widgets = (forms.DateInput(attrs=dateAttrs, format=date_format),
+        widgets = (forms.DateInput(attrs=dateAttrs, format="%m/%d/%Y"),
                    forms.Select(attrs=timeAttrs, choices=TIME_CHOICES))
         super(ImprovedSplitDateTimeWidget, self).__init__(widgets, {})
 
     def decompress(self, value):
         if value:
-            return [value.date(), value.time().replace(microsecond=0).strftime("%H:%M")]
+            thedate = value.date()
+            thetime = value.time().replace(minute=(value.minute/30)*30).strftime("%H:%M")
+            return [thedate, thetime]
         return [None, None]
         
     class Media:
         css = {
             'all': ('css/datetime_field.css',),
         }
-        js = ('javascript/datetime_field.js',)
 
 class EventForm(forms.ModelForm):
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), empty_label="select event type",label="Type:")
@@ -44,7 +44,10 @@ class EventForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(EventForm,self).__init__(*args,**kwargs)
-        self.fields['name'].label = 'Name:'
+        self.fields['name'].label += ':'
+        self.fields['location'].label += ':'
+        self.fields['audience'].label += ':'
+        self.fields['description'].label += ':'
 
     class Meta:
         fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description')

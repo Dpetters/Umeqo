@@ -33,12 +33,16 @@ def events_list(request, template_name='events_list.html', extra_context=None):
 def search_helper(query):
     search_results = SearchQuerySet().models(Event).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
     if query!="":
-        search_results = search_results.filter(content_auto=query)
+        for q in query.split(' '):
+            if q.strip()!="":
+                search_results = search_results.filter(content_auto=q)
+    print search_results
     return search_results
 
-@login_required
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
+    event.view_count += 1
+    event.save()
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound()
@@ -47,19 +51,27 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     context = {
         'event': event,
+        'rsvps': event.rsvps.all(),
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
-        'show_rsvp': False,
         'attending': False,
+        'can_rsvp': False,
+        'show_admin': False,
         'recruiters': event.recruiters.all(),
         'google_description': google_description
     }
+    if len(event.audience.all())>0:
+        context['audience'] = event.audience.all()
     if hasattr(request.user,"student"):
         rsvp_events = request.user.student.event_set.all()
         if event in rsvp_events:
             context['attending'] = True
-        else:
-            context['show_rsvp'] = True
+        context['can_rsvp'] = True
+    elif hasattr(request.user,"recruiter"):
+        context['show_admin'] = True
+    
+    context['company_logo'] = "http://"+settings.DOMAIN+settings.STATIC_URL+'images/company_logo_filler.png'
+    
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
 

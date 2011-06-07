@@ -35,14 +35,14 @@ def delete_contents(directory):
 
 # Delete old local_data search index files. Also delete the directory if it exists because
 # copytree below will throw a fit if it already exists
-if os.path.exists("./local_data/local_xapian_index/"):
-    delete_contents("./local_data/local_xapian_index/")
-    os.rmdir("./local_data/local_xapian_index/")
+#if os.path.exists("./local_data/local_xapian_index/"):
+#    delete_contents("./local_data/local_xapian_index/")
+#    os.rmdir("./local_data/local_xapian_index/")
 
-if not os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
-    os.mkdir(settings.HAYSTACK_XAPIAN_PATH)
+#if not os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
+#    os.mkdir(settings.HAYSTACK_XAPIAN_PATH)
 
-shutil.copytree(settings.HAYSTACK_XAPIAN_PATH, "./local_data/local_xapian_index/")
+#shutil.copytree(settings.HAYSTACK_XAPIAN_PATH, "./local_data/local_xapian_index/")
 
 # Delete the old local_data submitted resumes. Also delete the directory if it exists because
 # copytree below will throw a fit if it already exists

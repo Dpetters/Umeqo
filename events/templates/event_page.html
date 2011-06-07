@@ -14,6 +14,7 @@ Copyright 2011. All Rights Reserved.
 <meta property="og:title" content="{{event.name}}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{page_url}}" />
+<meta property="og:image" content="{{company_logo}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
 
@@ -30,25 +31,62 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">{{event.name}}</span>
+        <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
+        {% if show_admin %}<a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>{% endif %}
     </div>
     <div class="sub_block">
         <div class="like_iframe">
-            <iframe src="http://www.facebook.com/plugins/like.php?href={{page_url|urlencode}}&amp;send=true&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:25px;" allowTransparency="true"></iframe>
+            <fb:like width="600" height="80" show_faces="false"/>
         </div>
     </div>
     <div class="main_block_content">
+        {% if show_admin %}
+        <div class="clearfix"></div>
+        <div id="event_admin">
+            <h1>Event Admin (visible only to you)</h1>
+            <div id="event_rsvps">
+                <h2>Attending Students</h2>
+                {% for student in rsvps %}
+                <div class="event_rsvp" id="{{student.id}}">
+                    {{student.first_name}} {{student.last_name}}
+                    <form id="f-{{student.id}}" action="{% url employer_student_filtering %}" method="POST" target="_blank">
+                        {% csrf_token %}
+                        <input type="hidden" name="query" value="{{student.first_name}} {{student.last_name}}" />
+                    </form>
+                </div>
+                {% empty %}
+                <div id="event_rsvps_empty">There are no RSVPs yet.</div>
+                {% endfor %}
+            </div>
+            <table id="event_numbers">
+                <tr>
+                    <td class="number">{{rsvps|length}}</td>
+                    <td class="number_label">attending</td>
+                </tr>
+                <tr>
+                    <td class="number">{{event.view_count}}</td>
+                    <td class="number_label">pageview{{event.view_count|pluralize}}</td>
+                </tr>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+        {% endif %}
         <div id="event_side">
             <a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{google_description|urlencode}}&location={{event.location|urlencode}}"><img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google" class="google-button"/></a>
-            <div>
-                {% if show_rsvp %}
-                <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
-                {% else %}{% if attending %}
+            <div id="rsvp_div">
+            {% if show_admin %}
+                <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="Disabled because you are not a student.">RSVP: Attending</a>
+                <span class="help-bubble">Students can click to RSVP.</span>
+            {% else %}{% if can_rsvp %}
+                {% if attending %}
                 <span id="attending-span">Attending</span>
                 <a href="{% url event_unrsvp id=event.id %}" id="not-attending-button">RSVP: Not attending</a>
-                {% endif %}{% endif %}
+                {% else %}
+                <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
+                {% endif %}
+            {% endif %}{% endif %}
             </div>
         </div>
-        <div id="photo"></div>
         <table id="event_details">
             <tr>
                 <th>Time:</th>
@@ -80,9 +118,37 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             </tr>
             <tr>
                 <th>Description:</th>
-                <td>{{event.description}}</td>
+                <td>{% if event.description %}{{event.description}}{% else %}No description provided.{% endif %}</td>
             </tr>
+            {% if audience %}
+            <tr>
+                <th>Audience:</th>
+                <td>
+                    <ul>
+                    {% for a in audience %}
+                        <li>{{a}}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endif %}
         </table>
+        <div id="photo">
+            <img src="{{company_logo}}" alt="company logo" />
+        </div>
     </div>
 </div>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({appId: '119497238132973', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+</script>
 {% endblock %}

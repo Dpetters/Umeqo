@@ -6,7 +6,7 @@
 
 /* Multiselect Widget Properties */
 var multiselectMinWidth = 318;
-var multiselectYesNoSingleSelectWidth = 182;
+var multiselectYesNoSingleSelectWidth = 181;
 var multiselectSingleSelectWidth = 202;
 var multiselectTwoOptionHeight = 47;
 var multiselectThreeOptionHeight = 72;

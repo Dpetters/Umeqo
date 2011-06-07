@@ -30,4 +30,11 @@ $(document).ready(function(){
         },"json");
         e.preventDefault();
     });
+    $('.event_rsvp').each(function() {
+        $(this).click(function() {
+            console.log('test');
+            var id = $(this).attr('id');
+            $('#f-'+id).submit();
+        });
+    });
 });

@@ -86,17 +86,20 @@ Copyright 2011. All Rights Reserved.
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="/employer/events/new" class="button"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png"/><span>Add New Event</span></a>
+            <a href="/employer/events/new" class="button sub-button"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png"/><span>Add New Event</span></a>
         </div>
     </div>
     <div class="main_block_content">
-        <h3>Upcoming</h3>
+        {% for event in your_events %}
+        {% ifchanged event.upcoming %}
+        {% if not forloop.first %}</ul>{% endif %}
+        <h3>{% cycle "Upcoming" "Past" %}</h3>
         <ul class="event_list editable_event_list">
-            {% for event in your_events %}
-                <li>
-                {% include "event_snippet.html" with edit='True' %}
-                </li>
-            {% endfor %}
+        {% endifchanged %}
+            <li>
+            {% include "event_snippet.html" with edit='True' %}
+            </li>
+        {% endfor %}
         </ul>
         <div id="no_events_block" class="message_block" {% if your_events %}style="display:none"{% endif %}>
             <p>

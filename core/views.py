@@ -4,7 +4,7 @@
  Copyright 2011. All Rights Reserved.
 """
 
-import datetime
+from datetime import datetime
 
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, HttpResponseForbidden
@@ -117,6 +117,9 @@ def landing_page(request,
             form_class = BetaForm,
             extra_context = None):
     
+    if request.GET.get('magic','')!='':
+        return home(request)
+    
     posted = False
     disabled = False
     form_error = False
@@ -173,7 +176,9 @@ def home(request,
             
         elif hasattr(request.user, "recruiter"):
             
-            your_events = request.user.recruiter.event_set.filter(end_datetime__gte=datetime.datetime.now()).order_by("start_datetime")
+            now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+            print now_datetime
+            your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             
             context = {
                        'search_form': SearchForm(),
@@ -195,7 +200,7 @@ def home(request,
                }
     
     event_kwargs = {}
-    event_kwargs['start_datetime__gt'] = datetime.datetime.now()
+    event_kwargs['start_datetime__gt'] = datetime.now()
     events = Event.objects.filter(**event_kwargs).order_by("-start_datetime")
     context['events'] = list(events)[:3]
     

@@ -38,18 +38,18 @@ var EDIT_FORM = false;
 {% endblock %}
 
 {% block content_area %}
-<div id="new_event_form_block" class="main_block no_top_margin">
+<div id="new_event_form_block" class="main_block solo_block no_top_margin">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">
         {% if edit %}
             Edit Event
-            <p><a href="{% url home %}#events" class="back_link" >back to home</a></p>
         {% else %}
             Create New Event
-            <p><a href="{% url home %}#events" class="back_link" >back to home</a></p>
         {% endif %}
         </span>
+        <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
+        {% if edit %}<a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink button sub-button">View Event</a>{% endif %}
     </div>
     <div class="main_block_content">
         <form id="new_event_form" method="POST" action="">
@@ -84,10 +84,6 @@ var EDIT_FORM = false;
                             {{form.end_datetime}}
                         </td>
                     </tr>
-                </table>
-            </div>
-            <div class="new_event_form_col">
-                <table class="form_table">
                     <tr class="event_only_field">
                         <th>{{form.location.label_tag}}</th>
                         <td>
@@ -109,17 +105,20 @@ var EDIT_FORM = false;
                             {{form.rsvp_message}}
                         </td>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input id="new_event_form_submit_button" class="button" type='submit' value='{% if edit %}Save Event{% else %}Create Event{% endif %}'>
+                        </td>
+                    </tr>
                 </table>
             </div>
-            <div class="errorspace">
-            </div>
-            <div class="description">
-                <label for="id_description">Event Description:</label>
+            <div class="new_event_form_col">
+                <div class="errorspace"></div>
+                {{form.description.label_tag}}
                 {{form.description}}
             </div>
-            <div class="button_wrapper_with_margins">
-                <input id="new_event_form_submit_button" class="button" type='submit' value='Submit'>
-            </div>
+            <div class="clearfix"></div>
         </form>
     </div>
 </div>

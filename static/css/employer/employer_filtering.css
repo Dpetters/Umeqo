@@ -48,18 +48,41 @@
 	padding:5px 0px 5px 4px
 }
 #query_field {
+	behavior: url(/static/lib/pie/PIE.htc);
 	height:22px;
 	vertical-align:middle;
 	width:95%;
 	padding-left:6px;
 	color: #303030;
 	font-size:15px;
-	behavior: url(/static/lib/pie/PIE.htc);
 	box-shadow: inset 2px 2px 2px #DDDDDD;
 	-moz-box-shadow: inset 2px 2px 2px #DDDDDD;
 	-webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
-#sat_m_filter_section div, #sat_v_filter_section div, #sat_w_filter_section div {
+
+#search_form_submit_button {
+    height:30px;
+    position:relative;
+}
+.slider_section {
+    margin-bottom:5px;
+    padding-left:3px;
+}
+
+.slider_section input {
+    color:black;
+    border:0;
+    background-color:transparent;
+}
+
+.slider_section div {
+    top:5px;
+    margin-right:17px;
+    float:right;
+    width:175px;
+}
+
+#sat_m_filter_section.slider_section div, #sat_v_filter_section.slider_section div, #sat_w_filter_section.slider_section div{
 	width:130px;
 }
 #academic_info_section label, #test_scores_section label {
