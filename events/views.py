@@ -46,7 +46,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound()
-    page_url = '//'+settings.DOMAIN+reverse('event_page',kwargs={'id':event.id,'slug':event.slug})
+    page_url = 'http://'+settings.DOMAIN+reverse('event_page',kwargs={'id':event.id,'slug':event.slug})
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     context = {
