@@ -150,7 +150,6 @@ INSTALLED_APPS = (
     'registration',
     'south',
     'student',
-    'relationships',
     'debug_toolbar'
 )
 

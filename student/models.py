@@ -11,14 +11,8 @@ from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, Ethnicity
 from core.models_helper import get_resume_filename
 from core import choices as core_choices
-from relationships.managers import RelationshipManagerMixin
-
-class StudentManager(models.Manager, RelationshipManagerMixin):
-    pass
 
 class Student(models.Model):
-    
-    objects = StudentManager()
     
     user = models.OneToOneField(User)
     

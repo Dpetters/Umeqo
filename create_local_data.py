@@ -26,12 +26,12 @@ def delete_contents(directory):
 # Delete old database file.
 if os.path.exists("./database.db"):
     os.remove("./database.db")
-            
+"""        
 # Delete old search index files.
 # New index files get created automatically when loaddata gets run below
 if os.path.exists(settings.HAYSTACK_XAPIAN_PATH):
     delete_contents(settings.HAYSTACK_XAPIAN_PATH)
-
+"""
 # Delete the old submitted resumes. Also delete the directory if it exists because
 # copytree below will throw a fit if it already exists
 submitted_resumes_path = ROOT + "/media/submitted_resumes/"

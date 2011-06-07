@@ -13,25 +13,6 @@ from django.contrib.auth.models import User
 from core.models_helper import get_image_filename
 from core import enums
 
-class RelationshipType(models.Model):
-    """
-    A RelationshipType is a "type" of relationship between a user and an object. This
-    allows you to use one app (django-faves) for multiple types of
-    relationships. For example, perhaps you want to let users "favorite"
-    objects, but also add them to a "wishlist". Or to "flag" them as offensive.
-    By creating multiple RelationshipType instances, you can do this sort of thing.
-    
-    """
-    name = models.CharField(max_length=255, help_text="The singular name of this fave type, i.e. 'Favorite' or 'Wishlist Item'.")
-    slug = models.SlugField()
-
-    class Meta:
-        verbose_name = "Relationship Type"
-        verbose_name_plural = "Relationship Types"
-        
-    def __unicode__(self):
-        return self.name
-    
 class Topic(models.Model):
     """
     Generic Topics for FAQ question grouping

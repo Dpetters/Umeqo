@@ -119,7 +119,3 @@ urlpatterns += patterns('events.views',
     (r'^events/unrsvp/(?P<id>\d+)$', 'event_unrsvp', {}, 'event_unrsvp'),
     (r'^events/search/$', 'event_search', {}, 'event_search'),
 )
-
-urlpatterns += patterns('relationships.views',
-    (r'^toggle/(?P<relationship_type_slug>[-\w]+)/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', 'toggle_relationship_ajax', {}, 'toggle_relationship'),
-)

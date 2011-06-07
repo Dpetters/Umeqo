@@ -15,7 +15,6 @@ from employer import enums
 from employer.models import ResumeBook
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
-from relationships.models import RelationshipType
 
 
 def check_for_new_student_matches(employer):
@@ -211,10 +210,9 @@ def filter_students(recruiter,
                     countries_of_citizenship=None,
                     campus_orgs=None):
     
-    favorite_relationship = RelationshipType.objects.get(name="Favorite")
     # All Students
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
-        students = Student.objects.with_relationship_for(recruiter, favorite_relationship)
+        students = Student.objects.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
         pass
         # all starred students
