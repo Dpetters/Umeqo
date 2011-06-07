@@ -31,7 +31,7 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">{{event.name}}</span>
         <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
-        <a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>
+        {% if show_admin %}<a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>{% endif %}
     </div>
     <div class="sub_block">
         <div class="like_iframe">
@@ -76,14 +76,14 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             {% if show_admin %}
                 <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="Disabled because you are not a student.">RSVP: Attending</a>
                 <span class="help-bubble">Students can click to RSVP.</span>
-            {% else %}
+            {% else %}{% if can_rsvp %}
                 {% if attending %}
                 <span id="attending-span">Attending</span>
                 <a href="{% url event_unrsvp id=event.id %}" id="not-attending-button">RSVP: Not attending</a>
                 {% else %}
                 <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
                 {% endif %}
-            {% endif %}
+            {% endif %}{% endif %}
             </div>
         </div>
         <table id="event_details">

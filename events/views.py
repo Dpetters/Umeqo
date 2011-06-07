@@ -39,7 +39,6 @@ def search_helper(query):
     print search_results
     return search_results
 
-@login_required
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
     event.view_count += 1
@@ -56,6 +55,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
         'attending': False,
+        'can_rsvp': False,
         'show_admin': False,
         'recruiters': event.recruiters.all(),
         'google_description': google_description
@@ -66,7 +66,8 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         rsvp_events = request.user.student.event_set.all()
         if event in rsvp_events:
             context['attending'] = True
-    else:
+        context['can_rsvp'] = True
+    elif hasattr(request.user,"recruiter"):
         context['show_admin'] = True
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
