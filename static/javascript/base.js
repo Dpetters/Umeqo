@@ -19,6 +19,7 @@ var multiselectShowAnimation = "";
 var multiselectHideAnimation = "";
 
 var dialog_class = "dialog";
+var tiny_ajax_loader = "<img src='/static/images/page_elements/loaders/tiny_ajax_loader.gif'>";
 var ajax_loader = "<div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
 var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
 var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
@@ -66,6 +67,10 @@ function show_form_submit_loader(container) {
 function hide_form_submit_loader() {
     container = typeof(container) != 'undefined' ? container : "";
     $(container + " #ajax_form_submit_loader").css("display", "none");
+};
+function place_tiny_ajax_loader(container) {
+    container = typeof(container) != 'undefined' ? container : "";
+    $(container).html(tiny_ajax_loader);
 };
 // Validation Highlighting, unhighlighting and positioning of errors
 function highlight(element, errorClass) {
@@ -249,6 +254,7 @@ $(document).ready( function () {
                                 }
                             },
                             success: function (data) {
+                            	console.log(data);
                                 hide_form_submit_loader("#contact_form");
                                 switch(data.valid) {
                                     case true:

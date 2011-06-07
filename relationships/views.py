@@ -18,5 +18,5 @@ def toggle_relationship_ajax(request, content_type_id, object_id, relationship_t
         relationship, created = Relationship.objects.get_or_create(type=relationship_type, user=request.user, content_type=content_type, object_id=relationship_object.id)
         context = {'valid': True, 'created' : created}
         return HttpResponse(simplejson.dumps(context), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
                             

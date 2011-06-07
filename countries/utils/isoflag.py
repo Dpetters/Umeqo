@@ -32,4 +32,4 @@ def iso_flag(iso, flag_path=u''):
 			flag_name = flag_path % iso
 		except (ValueError, TypeError):
 			return u''
-	return u''.join((settings.MEDIA_URL, flag_name))
+	return flag_name

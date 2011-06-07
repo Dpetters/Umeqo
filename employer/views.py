@@ -12,19 +12,31 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest
 from django.utils import simplejson
 
-from employer.forms import EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm
-from employer.view_helpers import filter_students, search_students, combine_and_order_results
-from core.decorators import is_employer
-from core.digg_paginator import DiggPaginator
+from employer.models import ResumeBook
+from employer.forms import EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm, StudentCommentForm
+from employer.view_helpers import get_cached_paginator
+from employer import enums as employer_enums
+from employer import snippets as employer_snippets
+
+from core.decorators import is_recruiter
 from events.forms import EventForm
 from events.models import Event
+from student.models import Student
 
+def employer_registration(request, 
+                           template_name="employer_registration.html", 
+                           extra_context = None):
+    context = {}
+    context.update(extra_context or {})
+    return render_to_response(template_name,
+                              context,
+                              context_instance=RequestContext(request))
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_company_profile(request, username, 
                              template_name="employer_company_profile.html", 
                              extra_context = None):
@@ -37,18 +49,8 @@ def employer_company_profile(request, username,
     else:
         return redirect(reverse('employer_company_profile', kwargs={'username': request.user}))
 
-    
-def employer_registration(request, 
-                           template_name="employer_registration.html", 
-                           extra_context = None):
-    context = {}
-    context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_preferences(request, 
                          template_name="employer_preferences.html", 
                          form_class = EmployerPreferences,
@@ -73,10 +75,10 @@ def employer_preferences(request,
         return render_to_response(template_name,
                                   context,
                                   context_instance=RequestContext(request))
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_account_settings(request, 
                               template_name="employer_account_settings.html", 
                               extra_context=None):
@@ -87,9 +89,136 @@ def employer_account_settings(request,
                               context,
                               context_instance=RequestContext(request))
 
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_star_student_toggle(request,
+                                 extra_context=None):
+    
+    if request.is_ajax():
+        if request.POST.has_key('student_id'):
+            student = Student.objects.get(id=request.POST['student_id'])
+            if student in request.user.recruiter.starred_students.all():
+                request.user.recruiter.starred_students.remove(student)
+                data = {'valid':True,
+                        'action':employer_enums.UNSTARRED}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
+            else:
+                request.user.recruiter.starred_students.add(student)
+                data = {'valid':True,
+                        'action':employer_enums.STARRED}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Student ID is missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_star_students_add(request,
+                               extra_context=None):
+    
+    if request.is_ajax():
+        print request.POST
+        if request.POST.has_key('student_ids'):
+            for id in request.POST['student_ids'].split('~'):
+                student = Student.objects.get(id=id)  
+                if student not in request.user.recruiter.starred_students.all():
+                    request.user.recruiter.starred_students.add(student)
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Student IDs are missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_star_students_remove(request,
+                                  extra_context=None):
+    
+    if request.is_ajax():
+        if request.POST.has_key('student_ids'):
+            for id in request.POST['student_ids'].split('~'):
+                student = Student.objects.get(id=id)  
+                if student in request.user.recruiter.starred_students.all():
+                    request.user.recruiter.starred_students.remove(student)
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Student IDs are missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_resume_book_student_toggle(request,
+                                        extra_context=None):
+    
+    if request.is_ajax():
+        if request.POST.has_key('student_id'):
+            student = Student.objects.get(id=request.POST['student_id'])
+            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+            if not resume_books.exists():
+                latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+            else:
+                latest_resume_book = resume_books.order_by('-date_created')[0]
+            if student in latest_resume_book.students.all():
+                latest_resume_book.students.remove(student)
+                data = {'valid':True,
+                        'action':employer_enums.REMOVED}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
+            else:
+                latest_resume_book.students.add(student)
+                data = {'valid':True,
+                        'action':employer_enums.ADDED}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Student ID is missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_resume_book_students_add(request,
+                                         extra_context=None):
+    
+    if request.is_ajax():
+        if request.POST.has_key('student_ids'):
+            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+            if not resume_books.exists():
+                latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+            else:
+                latest_resume_book = resume_books.order_by('-date_created')[0]
+            for id in request.POST['student_ids'].split('~'):
+                student = Student.objects.get(id=id)  
+                if student not in latest_resume_book.students.all():
+                    latest_resume_book.students.add(student)
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Student IDs are missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_resume_book_students_remove(request,
+                                              extra_context=None):
+    
+    if request.is_ajax():
+        if request.POST.has_key('student_ids'):
+            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+            if not resume_books.exists():
+                latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+            else:
+                latest_resume_book = resume_books.order_by('-date_created')[0]
+            for id in request.POST['student_ids'].split('~'):
+                student = Student.objects.get(id=id)  
+                if student in latest_resume_book.students.all():
+                    latest_resume_book.students.remove(student)
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Student IDs are missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_events(request,
                     template_name="employer_events.html",
                     extra_context=None):
@@ -104,7 +233,7 @@ def employer_events(request,
 
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_new_event(request, template_name='employer_new_event.html', extra_context=None):
     if request.method == 'POST':
         form = EventForm(data=request.POST)
@@ -128,7 +257,7 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
                               context_instance = RequestContext(request))
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_edit_event(request, id=None, template_name='employer_new_event.html', extra_context=None):
     event = Event.objects.get(pk=id)
     if event.employer!=request.user.recruiter:
@@ -155,7 +284,7 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
                               context_instance = RequestContext(request) )
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_delete_event(request,
                           id,
                           extra_context = None):
@@ -173,7 +302,7 @@ def employer_delete_event(request,
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_setup_default_filtering(request,
                                     template_name = "employer_setup_default_filtering.html",
                                     form_class=FilteringForm,
@@ -198,140 +327,38 @@ def employer_setup_default_filtering(request,
                               context_instance=RequestContext(request))
 
 
-def get_cached_paginator(request):
-    cached_paginator = cache.get('paginator')
-    if cached_paginator:
-        return cached_paginator
-    else:
-        current_paginator = DiggPaginator(get_cached_ordered_results(request), int(request.POST['results_per_page']), body=5, padding=1, margin=2)
-        cache.set('paginator', current_paginator)
-        return current_paginator
-    
-def get_cached_ordered_results(request):
-    cached_ordered_results = cache.get('ordered_results')
-    if cached_ordered_results:
-        return cached_ordered_results
-    else:
-        current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
-        cache.set('ordered_results', current_ordered_results)
-        return current_ordered_results
-    
-def get_cached_filtering_results(request):
-    cached_filtering_results = cache.get('filtering_results')
-    if cached_filtering_results:
-        return cached_filtering_results
-    else:
-        gpa = None
-        if request.POST['gpa'] != "0":
-            gpa = request.POST['gpa']
-        
-        act = None
-        if request.POST['act'] != "0":
-            act = request.POST['act']
-        
-        sat_t = None
-        if request.POST['sat_t'] != "600":
-            sat_t = request.POST['sat_t']
 
-        sat_m = None
-        if request.POST['sat_m'] != "200":
-            sat_m = request.POST['sat_m']
-            
-        sat_v = None
-        if request.POST['sat_v'] != "200":
-            sat_v = request.POST['sat_v']
-
-        sat_w = None
-        if request.POST['sat_w'] != "200":
-            sat_w = request.POST['sat_w']
-
-        courses = None
-        if request.POST['courses']:
-            courses = request.POST['courses'].split('~')
-        
-        school_years = None
-        if request.POST['school_years']:
-            school_years = request.POST['school_years'].split('~')
-            
-        graduation_years = None
-        if request.POST['graduation_years']:
-            graduation_years = request.POST['graduation_years'].split('~')
-        
-        employment_types = None
-        if request.POST['employment_types']:
-            employment_types = request.POST['employment_types'].split('~')
-
-        previous_employers = None
-        if request.POST['previous_employers']:
-            previous_employers = request.POST['previous_employers'].split('~')
-        
-        industries_of_interest = None
-        if request.POST['industries_of_interest']:
-            industries_of_interest = request.POST['industries_of_interest'].split('~')
-        
-        gender=None
-        if request.POST['gender']:
-            gender = int(request.POST['gender'])
-            
-        citizen = None
-        if request.POST['citizen'] != "False":
-            citizen = request.POST['citizen']
-            
-        older_than_18 = None
-        if request.POST['older_than_18'] != "False":
-            older_than_18 = request.POST['older_than_18']
-        
-        ethnicities = None
-        if request.POST['ethnicities']:
-            ethnicities = request.POST['ethnicities'].split('~')
-            
-        languages = None
-        if request.POST['languages']:
-            languages  = request.POST['languages'].split('~')
-
-        campus_orgs = None
-        if request.POST['campus_orgs']:
-            campus_orgs  = request.POST['campus_orgs'].split('~')
-                                
-        current_filtering_results = filter_students(request.user,
-                                                    student_list=request.POST['student_list'],
-                                                    gpa=gpa,
-                                                    courses = courses,
-                                                    school_years = school_years,
-                                                    graduation_years = graduation_years,
-                                                    act=act,
-                                                    sat_t=sat_t,
-                                                    sat_m=sat_m,
-                                                    sat_v=sat_v,
-                                                    sat_w=sat_w,
-                                                    employment_types=employment_types,
-                                                    previous_employers=previous_employers,
-                                                    industries_of_interest=industries_of_interest,
-                                                    citizen = citizen,
-                                                    older_than_18 = older_than_18,
-                                                    ethnicities=ethnicities,
-                                                    languages=languages,
-                                                    gender=gender,
-                                                    campus_orgs=campus_orgs)
-        
-        cache.set('filtering_results', current_filtering_results)
-    return current_filtering_results
-
-def get_cached_search_results(request):
-    current_search_results = []
-    if request.POST['query'] != "null":
-        current_search_results = search_students(request.POST['query'])
-    cache.set('search_results', current_search_results)
-    return current_search_results
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_resume_book_summary(request,
+                                 template_name="employer_resume_book_summary.html",
+                                 extra_context=None):
+    if request.is_ajax():
+        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+        if not resume_books.exists():
+            latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+        else:
+            latest_resume_book = resume_books.order_by('-date_created')[0]
+            context = {}
+            context['resume_book'] = latest_resume_book
+            context.update(extra_context or {}) 
+        return render_to_response(template_name, context, context_instance=RequestContext(request))
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_student_filtering(request,
                                result_template_name='employer_student_filtering_results.html',
                                filtering_page_template_name='employer_student_filtering.html',
                                extra_context=None):
     
     context = {}
+    context['add_to_resume_book_img'] = employer_snippets.add_to_resumebook_img
+    context['remove_from_resume_book_img'] = employer_snippets.remove_from_resumebook_img
+    context['starred_img'] = employer_snippets.starred_img
+    context['unstarred_img'] = employer_snippets.unstarred_img
+    
     if request.is_ajax():
         cached_page = cache.get('page')
         if cached_page and cached_page != int(request.POST['page']):
@@ -369,28 +396,36 @@ def employer_student_filtering(request,
 
         current_paginator = get_cached_paginator(request)      
         context['page'] = current_paginator.page(request.POST['page'])
-        
-        for student in context['page'].object_list:
+        context['student_comment_form'] = StudentCommentForm()
+        for student, is_in_resume_book, is_starred in context['page'].object_list:
             student.statistics.shown_in_results_count += 1
             student.save()
         
         context.update(extra_context or {}) 
         return render_to_response(result_template_name, context, context_instance=RequestContext(request))
     else:
+        cache.delete('paginator')
+        cache.delete('ordered_results')
+        cache.delete('filtering_results')
+        cache.delete('search_results')
         if request.method == "POST" and request.POST.has_key('query'):
                 context['query'] = request.POST.get('query', '')
-
+                
         context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
                                                                  initial={'ordering': request.user.recruiter.preferences.default_student_ordering,                           
                                                                           'results_per_page' : request.user.recruiter.preferences.results_per_page})
         context['student_search_form'] = SearchForm()
+        context['added'] = employer_enums.ADDED
+        context['removed'] = employer_enums.REMOVED
+        context['starred'] = employer_enums.STARRED
+        context['unstarred'] = employer_enums.UNSTARRED
         
     context.update(extra_context or {})
     return render_to_response(filtering_page_template_name, context, context_instance=RequestContext(request))
 
 
 @login_required
-@user_passes_test(is_employer, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_invitations(request, template_name='employer_invitations.html', extra_context=None):
     context = {}
     context.update(extra_context or {})  

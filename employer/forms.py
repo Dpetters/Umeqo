@@ -11,12 +11,12 @@ from core import choices as core_choices
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
-from employer.models import FilteringParameters, EmployerPreferences
+from employer.models import FilteringParameters, EmployerPreferences, StudentComment
 from employer import enums
 
 
 class SearchForm(forms.Form):
-    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc'}))
+    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))
 
 class FilteringForm(forms.ModelForm):
     gender = forms.ChoiceField(label="Filter by gender:", choices = core_choices.FILTERING_GENDER_CHOICES, initial= core_choices.BOTH_GENDERS, required= False)
@@ -41,7 +41,14 @@ class EmployerPreferencesForm(forms.ModelForm):
     
     class Meta:
         model = EmployerPreferences
+
+class StudentCommentForm(forms.Form):
+    comment = forms.CharField(max_length = 500, widget=forms.Textarea(attrs={'class':'student_comment', 'placeholder':'Add Note'}))
     
+    class Meta:
+        model = StudentComment
+        fields = ('comment',)
+        
 class StudentFilteringForm(FilteringForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = enums.ORDERING_CHOICES, required = False)
     results_per_page = forms.ChoiceField(label="Results Per Page:", choices = enums.RESULTS_PER_PAGE_CHOICES, required = False)

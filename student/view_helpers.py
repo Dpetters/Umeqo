@@ -35,4 +35,4 @@ def process_resume(student, ajax):
         data = {'valid':True,
                 'success_url':reverse("home")}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")

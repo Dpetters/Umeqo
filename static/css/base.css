@@ -102,6 +102,8 @@ p {
 	-moz-transition: color 0.2s ease, background-color 0.2s ease;
 	transition: color 0.2s ease, background-color 0.2s ease;
 	-moz-border-radius: 2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	text-shadow: none;
 	font-weight: bold;
 	color: #FFF;
@@ -307,7 +309,7 @@ p {
 	float:left;
 }
 .side_block {
-	margin-bottom:16px;
+	margin-bottom:11px;
 }
 .side_block_header_icon {
 	margin-left:8px;
@@ -315,7 +317,7 @@ p {
 .side_block_header_title {
 	font-size: 18px;
 	margin-left:5px;
-	line-height: 30px;
+	line-height: 27px;
 }
 .side_block_content {
 	padding:10px;
@@ -408,6 +410,9 @@ p {
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDD), to(#F0F0F0));
 	-pie-background: linear-gradient(#F0F0F0, #DDD);
 }
+.dropdown_menu_button{
+	position:relative;
+}
 .menu_button {
 	behavior: url(/static/lib/pie/PIE.htc);
 	background-image:-moz-linear-gradient(center top , #F9F9F9, #E3E3E3);
@@ -416,21 +421,52 @@ p {
 	cursor:pointer;
 	padding:5px 4px 2px 5px;
 	display:inline-block;
-	-webkit-border-radius:3px;
 	border-radius:3px;
+	-webkit-border-radius:3px;
 	-moz-border-radius: 3px;
 	border: 1px solid #BBBBBB;
+	margin-left:1px;
 }
 .menu_button:hover {
-	border:1px solid #808080;
+	border:1px solid #888;
 }
-.menu_button:active {
+.menu_button:active, .menu_button.pressed {
 	background:#E3E3E3;
+}
+.menu_button.pressed {
+	border:1px solid #666;
+	border-radius:3px 3px 0px 0px;
+	-webkit-border-radius:3px 3px 0px 0px;
+	-moz-border-radius: 3px 3px 0px 0px;
 }
 .menu_button span {
 	position:relative;
 	bottom:2px;
 	font-weight:bold;
+}
+.menu_button ul{
+	behavior: url(/static/lib/pie/PIE.htc);
+	list-style:none;
+	padding:2px;
+	background: #FFF;
+	min-width:104px;
+	display: block;
+	position: absolute;
+	left: -1px;
+	top: 23px;
+	border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius:3px;
+	border: 1px solid #666;
+	z-index: 100;
+}
+.menu_button ul li {
+	line-height:18px;
+	padding: 0 3px;
+	font-weight: bold;
+}
+.menu_button ul li:hover {
+	background:#F8F8F8;
 }
 /* Forms */
 .errorspace {
@@ -557,7 +593,7 @@ a:focus {
 }
 /* Dialogs */
 #dialog_loader {
-	margin-top: 25px;
+	margin-top: 40px;
 	text-align:center;
 }
 .dialog_info_section {
