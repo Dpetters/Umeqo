@@ -14,6 +14,7 @@ Copyright 2011. All Rights Reserved.
 <meta property="og:title" content="{{event.name}}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{page_url}}" />
+<meta property="og:image" content="{{company_logo}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
 
@@ -133,11 +134,7 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             {% endif %}
         </table>
         <div id="photo">
-            {% if company_logo %}
-                <img src="{{company_logo}}" alt="company logo" />
-            {% else %}
-                <img src="{{STATIC_URL}}images/company_logo_filler.png" alt="company logo" />
-            {% endif %}
+            <img src="{{company_logo}}" alt="company logo" />
         </div>
     </div>
 </div>
