@@ -70,7 +70,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     elif hasattr(request.user,"recruiter"):
         context['show_admin'] = True
     
-    context['company_logo'] = "//"+settings.DOMAIN+settings.STATIC_URL+'images/company_logo_filler.png'
+    context['company_logo'] = "http://"+settings.DOMAIN+settings.STATIC_URL+'images/company_logo_filler.png'
     
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))
