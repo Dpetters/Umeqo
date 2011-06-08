@@ -32,6 +32,18 @@ Copyright 2011. All Rights Reserved.
 	{% if query %}
 		query = "{{query}}";
 	{% endif %}
+	
+	var STATIC_URL = "{{STATIC_URL}}";
+	
+	var ADDED = "{{ added }}";
+	var REMOVED = "{{ removed }}";
+	
+	var STARRED = "{{ starred }}";
+	var UNSTARRED = "{{ unstarred }}";
+	var REMOVE_FROM_RESUME_BOOK_IMG = "{{ remove_from_resume_book_img|safe }}";
+	var ADD_TO_RESUME_BOOK_IMG = "{{ add_to_resume_book_img|safe }}";
+	var STARRED_IMG = "{{ starred_img|safe }}";
+	var UNSTARRED_IMG = "{{ unstarred_img|safe }}";
 </script>
 {% endblock %}
 
@@ -48,23 +60,6 @@ Copyright 2011. All Rights Reserved.
 			</div>
 		</div>
 	</div>
-	<div id="resume_book_block" class="side_block">
-		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
-			<span class="side_block_header_title">Create Resume Book</span>
-		</div>
-		<div class="side_block_content">
-			{% if cart %}
-			<p>
-				{{cart|length}} students in cart
-			</p>
-			{% else %}
-			<p>
-				Drag student's name here!
-			</p>
-			{% endif %}
-		</div>
-	</div>
 	<div id="filtering_block" class="side_block">
 		<div class="side_block_header">
 			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png"/>
@@ -73,7 +68,6 @@ Copyright 2011. All Rights Reserved.
 		<div class="side_block_content">
 			<div id="search_section">
 				{{student_search_form.query}}
-				<input id="search_form_submit_button" type="submit" value="Search" class="button" />
 			</div>
 			<div id="filtering_accordion">
 				<h3>
@@ -180,13 +174,24 @@ Copyright 2011. All Rights Reserved.
 			</div>
 		</div>
 	</div>
+	<div id="resume_book_block" class="side_block">
+		<div class="side_block_header">
+			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
+			<span class="side_block_header_title">Create Resume Book</span>	
+		</div>
+		<div class="side_block_content clearfix">
+			<input id="student_get_resume_book_button" class="dark_button" value="Create">
+			<strong id="num_of_students_in_resume_book_header">Students in Resume Book</strong>
+			<span id="num_of_students_in_resume_book_message"></span>
+		</div>
+	</div>
 </div>
-<div id="results_block" class="big_block">
+<div id="results_block">
 	<div id="results_block_info_section">
 		<div id="results_block_info">
 		</div>
 	</div>
-	<div id="results_section">
+	<div id="results_block_content">
 	</div>
 </div>
 {% endblock %}

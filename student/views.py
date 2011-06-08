@@ -153,7 +153,7 @@ def student_edit_profile(request,
                     data = {'valid':False,
                             'success_url':reverse("home")}
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                return redirect('home')
+                return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
         else:
             if request.is_ajax():
                 data = {'valid':False,
@@ -186,7 +186,7 @@ def student_update_resume(request,
             os.remove(settings.MEDIA_ROOT + old_resume_name)
             form.save()
             return process_resume(request.user.student, request.is_ajax())
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -196,7 +196,7 @@ def student_update_resume_info(request):
         data = {'path_to_new_resume' : str(request.user.student.resume), 
                 'num_of_extracted_keywords' : str(len(request.user.student.keywords.split(" ")))}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
     
 @login_required
@@ -230,7 +230,7 @@ def student_create_campus_organization(request,
         return render_to_response(template_name,
                                   context,
                                   context_instance=RequestContext(request))
-    redirect('home')
+    HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
@@ -268,7 +268,7 @@ def student_create_language(request,
         return render_to_response(template_name, 
                                   context, 
                                   context_instance=RequestContext(request))
-    redirect('home')
+    HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required

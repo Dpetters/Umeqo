@@ -3,192 +3,218 @@ Developers : Dmitrij Petters,
 All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
-{% load relationships %}
-				    
-<div class="big_block_header">
-	<span class="big_block_header_title">Student Matches ({{page.paginator.count}})</span>
-	<div class="big_block_header_links">
-		<div id="results_navigation_section">
-			{% if page.has_previous %}
-			<a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
-			{% else %}
-			<a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
-			{% endif %}
 
-			{% for num in page.page_range %}
-			{% if not num %} ...  {# literally output dots #}
-			{% else %}
-			{% ifequal num page.number %}
-			<a href="javascript:void(0)" class="current_page_link" id="page_{{ num }}">{{ num }}</a>
-			{% else %}
-			<a href="javascript:void(0)" class="page_link" id="page_{{ num }}">{{ num }}</a>
-			{% endifequal %}
-			{% endif %}
-			{% endfor %}
+{% load countries_tags %}
+<span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
+<div id="results_navigation_section">
+	{% if page.has_previous %}
+	<a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
+	{% else %}
+	<a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
+	{% endif %}
 
-			{% if page.has_next %}
-			<a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
-			{% else %}
-			<a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
-			{% endif %}
-		</div>
+	{% for num in page.page_range %}
+	{% if not num %} ...  {# literally output dots #}
+	{% else %}
+	{% ifequal num page.number %}
+	<a href="javascript:void(0)" class="current_page_link" id="page_{{ num }}">{{ num }}</a>
+	{% else %}
+	<a href="javascript:void(0)" class="page_link" id="page_{{ num }}">{{ num }}</a>
+	{% endifequal %}
+	{% endif %}
+	{% endfor %}
+
+	{% if page.has_next %}
+	<a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
+	{% else %}
+	<a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
+	{% endif %}
+</div>
+<div id="results_menu">
+	<div id="results_menu_checkbox_menu_button" class="dropdown_menu_button menu_button">
+		<input id="results_menu_checkbox" type="checkbox"/>
+		<img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+	    <ul>
+	        <li>All on Page</li>
+	        <li>Starred</li>
+	        <li>Not Starred</li>
+	        <li>In Resume Book</li>
+	        <li>Not in Resume Book</li>        
+	    </ul>
+	</div>
+	<div id="resume_book_students_add" class="menu_button">
+		<span>Add to Resume Book</span>
+	</div>
+	<div id="resume_book_students_remove" class="menu_button">
+		<span>Remove from Resume Book</span>
+	</div>
+	<div id="results_menu_more_actions" class="dropdown_menu_button menu_button">
+		<span>More Actions</span>
+		<img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+	    <ul>
+	        <li id="event_students_invitation">Invite To Event</li>
+	        <li id="star_students_add">Add Star</li>
+	        <li id="star_students_remove">Remove Star</li>        
+	    </ul>
+	</div>
+	<div id="results_menu_toggle_details" class="menu_button">
+		<span>View All Details</span>
 	</div>
 </div>
-<div class="big_block_content">
-	<div id="results_menu">
-		<div id="results_menu_checkbox_section" class="menu_button">
-			<img id="results_menu_checkbox_section_dropdown" src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
-			<input id="results_menu_checkbox" type="checkbox"/>
-		</div>
-		<div id="results_menu_add_to_resume_book" class="menu_button">
-			<span>Add to Resume Book</span>
-		</div>
-		<div id="results_menu_invite_to_event" class="menu_button">
-			<span>Invite To Event</span>
-		</div>
-		<div id="results_menu_mark_as_favorite" class="menu_button">
-			<span>Add Star</span>
-		</div>
-		<div id="results_menu_toggle_details" class="menu_button">
-			<span>View All Details</span>
-		</div>
-	</div>
-	<div id="results">
-		{% if page.object_list %}
-			{% for student in page.object_list %}
-				{% if forloop.first %}
-				<div id="first_student_main_info" class="student_main_info">
+<div id="results">
+{% if page.object_list %}
+	{% for student, in_resume_book, starred in page.object_list %}
+		{% if forloop.first %}
+		<div id="first_student_main_info" class="student_main_info">
+		{% else %}
+		<div class="student_main_info">
+		{% endif %}
+			<input class="student_checkbox" num="{{student.id}}" type="checkbox"/>		
+			<strong class="student_name">{{student.first_name}} {{student.last_name}}</strong>
+			<span class="student_year">
+				({{student.graduation_year}}
+				{{student.school_year}})
+			</span>
+			<a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
+			<br />
+			<a num="{{student.id}}" class="student_toggle_resume_book_link" href="javascript:void(0)">{% if in_resume_book %} {{ remove_from_resume_book_img|safe }} {% else %} {{ add_to_resume_book_img|safe }} {% endif %}</a>
+			<span class="student_major">
+				<strong>First Major:</strong>
+				{% if student.first_major.display %}
+					<a href="javascript:void(0)" title="Click for Details" class="student_major_link" num="{{student.second_major.id}}">{{student.first_major}}</a>
 				{% else %}
-				<div class="student_main_info">
+					{{student.first_major}}
 				{% endif %}
-					<a class="student_resumebook_link" href="javascript:void(0)">{% if student.relationship %}<img class="student_resumebook_marker" src="{{ STATIC_URL }}images/icons/cross.png"/>{% else %}<img class="student_resumebook_marker" src="{{ STATIC_URL }}images/icons/plus.png"/>{% endif %}</a>
-					<input class="student_checkbox" id="student_checkbox_{{forloop.counter0}}" type="checkbox"/>		
-					<strong class="student_name" id="student_name_{{student.id}}">{{student.first_name}} {{student.last_name}}</strong>
-					<span class="student_year">
-						({{student.graduation_year}}
-						{{student.school_year}})
-					</span>
-					<a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
-					<p class="student_citizen">
-						<strong>Citizen:</strong>
-						{% if student.is_citizen %}
-							Yes
-						{% else %}
-							No
-						{% endif %}
-					</p>
-					<br />
-					<a url="{% get_toggle_relationship_url student %}" class="student_star_link" href="javascript:void(0)"><img class="student_star" src="{{ STATIC_URL }}images/icons/{% if student.relationship %}blank{% else %}yellow{% endif %}_star.png"/></a>
-					<span class="student_major">
-						<strong>First Major:</strong>
-						{% if student.first_major.display %}
-							<a href="javascript:void(0)" class="student_major_link" id="student_major_{{student.second_major.id}}">{{student.first_major}}</a>
-						{% else %}
-							{{student.first_major}}
-						{% endif %}
-					</span>
-					<a class="student_toggle_detailed_info_link" id="student_toggle_detailed_info_link_{{forloop.counter0}}"  href="javascript:void(0)">View Details</a>
-					<p class="student_gpa">
-						<strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
-					</p>
-					<br />
-				</div>
-				<div class="student_detailed_info" id="student_detailed_info_{{forloop.counter0}}">
-					{% if student.second_major or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.looking_for.all or student.previous_employers.all or student.industries_of_interest.all or student.campus_involvement.all or student.older_than_18 or student.citizen or student.languages.all or student.website %}
-						<div class="student_detailed_info_left_col">
-							{% if student.second_major %}
-								<p class="student_second_major">
-									<strong>Second Major:</strong>
-									{% if student.second_major.display %}
-										<a href="javascript:void(0)" class="major_link" id="major_{{student.second_major.id}}">{{student.second_major}}</a>
-									{% else %}
-										{{student.second_major}}
-									{% endif %}								
-								</p>
-							{% endif %}
-							
-							{% ifnotequal student.older_than_18 ""%}
-								<p class="student_older_than_18">
-									<strong>Older Than 18:</strong>
-									{% ifequal student.older_than_18 "true" %} Yes {% else %} No {% endifequal %}
-								</p>
-							{% endifnotequal %}
-	
-							{% if student.website %}
-								<p class="student_website">
-									<strong>Website:</strong>
-									<a href="{{student.website}}">{{student.website}}</a>
-								</p>
-							{% endif %}
-							
-							{% if student.campus_involvement.all %}
-								<ul class="student_campus_involvement">
-									<h3><u>On-Campus Involvement</u></h3>
-									{% for campus_org in student.campus_involvement.all %}
-										{% if campus_org.display %}
-											<li><a href="javascript:void(0)" class="campus_org_link" id="campus_org_{{campus_org.id}}">{{campus_org}}</a></li>
-										{% else %}
-											<li>{{campus_org}}</li>
-										{% endif %}
-									{% endfor %}					
-								</ul>
-							{% endif %}
-							{% if student.looking_for.all %}
-								<ul class="student_looking_for">
-									<h3><u>Looking For</u></h3>
-									{% for employment_type in student.looking_for.all %}
-											<li>{{employment_type}}</li>
-									{% endfor %}					
-								</ul>
-							{% endif %}
-							{% if student.industries_of_interest.all %}
-								<ul class="student_industries_of_interest">
-									<h3><u>Industries of Interest</u></h3>
-									{% for industry in student.industries_of_interest.all %}
-										<li>{{industry}}</li>
-									{% endfor %}					
-								</ul>
-							{% endif %}
-							{% if student.previous_employers.all %}
-								<ul class="student_previous_employers">
-									<h3><u>Previous Employers</u></h3>
-									{% for employer in student.previous_employers.all %}
-										<li>{{employer}}</li>
-									{% endfor %}					
-								</ul>
-							{% endif %}							
-						</div>
-						<div class="student_detailed_info_right_col">
-							{% if student.languages.all %}
-								<ul class="student_languages">
-									<h3><u>Languages</u></h3>
-									{% for language in student.languages.all %}
-										<li>{{language}}</li>
-									{% endfor %}					
-								</ul>
-							{% endif %}
-							{% if student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act %}
-								<div class="student_test_scores">
-									<h3><u>Test Scores</u></h3>
-									<p><strong>SAT Total: </strong>{{student.sat_t}} / 2400</p>
-									<p><strong>SAT Math: </strong>{{student.sat_m}} / 800</p>
-									<p><strong>SAT Verbal: </strong>{{student.sat_v}} / 800</p>
-									<p><strong>SAT Writing: </strong>{{student.sat_w}} / 800</p>
-									<p><strong>ACT: </strong>{{student.act}} / 36</p>
-								</div>
-							{% endif %}
-						</div>
-						<p class="student_hide_details_link" id="student_hide_details_link_{{forloop.counter0}}"><a href="javascript:void(0)">Hide Details</a></p>
-					{% else %}
-						<span>No detailed info available.</span>
+			</span>
+			<a class="student_more_actions_link" href="javascript:void(0)">More Actions</a>
+			<p class="student_gpa">
+				<strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
+			</p>
+			<br />
+			<a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% if starred %} {{ starred_img|safe }} {% else %} {{unstarred_img|safe}} {% endif %}</a>
+			{{student_comment_form.comment}}
+			<a class="student_toggle_detailed_info_link" num="{{forloop.counter0}}"  href="javascript:void(0)">View Details</a>
+		</div>
+		<div class="student_detailed_info" num="{{forloop.counter0}}">
+			{% if student.ethnicity or student.second_major or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.looking_for.all or student.previous_employers.all or student.industries_of_interest.all or student.campus_involvement.all or student.older_than_18 or student.citizen or student.languages.all or student.website %}
+				<div class="student_detailed_info_first_col">
+					{% if student.countries_of_citizenship.all %}
+						{% for country in student.countries_of_citizenship.all %}
+							<img title="Citizen of {{country}}" class="student_country_of_citizenship" src="{{ country.iso|iso_flag }}" />
+						{% endfor %}
 					{% endif %}
 				</div>
-			{% endfor %}
-		{% else %}
-			<div id="no_results_block">
-				<b id="no_results_message">No students matched your search or filtering parameters.</strong>
-			</div>
-		{% endif %}
+				<div class="student_detailed_info_second_col">
+					{% if student.second_major %}
+						<p class="student_second_major">
+							<strong>Second Major:</strong>
+							{% if student.second_major.display %}
+								<a href="javascript:void(0)" class="major_link" num="{{student.second_major.id}}">{{student.second_major}}</a>
+							{% else %}
+								{{student.second_major}}
+							{% endif %}								
+						</p>
+					{% endif %}
+
+					{% if student.website %}
+						<p class="student_website">
+							<strong>Website:</strong>
+							<a href="{{student.website}}">{{student.website}}</a>
+						</p>
+					{% endif %}
+					
+					{% if student.ethnicity %}
+						<p class="student_ethnicity">
+							<strong>Ethnicity:</strong>
+							<span>{{student.ethnicity}}</span>
+						</p>
+					{% endif %}
+
+					{% ifnotequal student.gender "" %}
+						<p class="student_gender">
+							<strong>Gender:</strong>
+							<span>{% ifequal student.gender "M" %}Male{% else %}Female{% endifequal %}</span>
+						</p>
+					{% endifnotequal %}
+												
+					{% ifnotequal student.older_than_18 "" %}
+						<p class="student_older_than_18">
+							<strong>Over 18:</strong>
+							{% ifequal student.older_than_18 "Y" %}Yes{% else %}No{% endifequal %}
+						</p>
+					{% endifnotequal %}
+												
+					{% if student.looking_for.all %}
+						<ul class="student_looking_for">
+							<p class="student_detailed_info_header">Looking For</p>
+							{% for employment_type in student.looking_for.all %}
+									<li>{{employment_type}}</li>
+							{% endfor %}					
+						</ul>
+					{% endif %}
+					
+					{% if student.previous_employers.all %}
+						<ul class="student_previous_employers">
+							<p class="student_detailed_info_header">Previous Employers</p>
+							{% for employer in student.previous_employers.all %}
+								<li>{{employer}}</li>
+							{% endfor %}					
+						</ul>
+					{% endif %}	
+					
+					{% if student.industries_of_interest.all %}
+						<ul class="student_industries_of_interest">
+							<p class="student_detailed_info_header">Industries of Interest</p>
+							{% for industry in student.industries_of_interest.all %}
+								<li>{{industry}}</li>
+							{% endfor %}					
+						</ul>
+					{% endif %}						
+				</div>
+				<div class="student_detailed_info_third_col">
+					{% if student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act %}
+						<div class="student_test_scores">
+							<p class="student_detailed_info_header">Test Scores</p>
+							<p><strong>SAT Total: </strong>{{student.sat_t}} / 2400</p>
+							<p><strong>SAT Math: </strong>{{student.sat_m}} / 800</p>
+							<p><strong>SAT Verbal: </strong>{{student.sat_v}} / 800</p>
+							<p><strong>SAT Writing: </strong>{{student.sat_w}} / 800</p>
+							<p><strong>ACT: </strong>{{student.act}} / 36</p>
+						</div>
+					{% endif %}
+					
+					{% if student.campus_involvement.all %}
+						<ul class="student_campus_involvement">
+							<p class="student_detailed_info_header">On-Campus Involvement</p>
+							{% for campus_org in student.campus_involvement.all %}
+								{% if campus_org.display %}
+									<li><a href="javascript:void(0)" class="campus_org_link" id="campus_org_{{campus_org.id}}">{{campus_org}}</a></li>
+								{% else %}
+									<li>{{campus_org}}</li>
+								{% endif %}
+							{% endfor %}					
+						</ul>
+					{% endif %}
+					
+					{% if student.languages.all %}
+						<ul class="student_languages">
+							<p class="student_detailed_info_header">Languages</p>
+							{% for language in student.languages.all %}
+								<li>{{language}}</li>
+							{% endfor %}					
+						</ul>
+					{% endif %}
+				</div>
+				<p class="student_hide_details_link" num="{{forloop.counter0}}"><a href="javascript:void(0)">Hide Details</a></p>
+			{% else %}
+				<span>No detailed info available.</span>
+			{% endif %}
+		</div>
+	{% endfor %}
+{% else %}
+	<div id="no_results_block">
+		<b id="no_results_message">No students matched your search or filtering parameters.</strong>
 	</div>
+{% endif %}
 </div>
 

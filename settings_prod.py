@@ -19,7 +19,6 @@ LOCAL_SETTINGS_APPS = ('employer',
                        'events',
                        'registration',
                        'user',
-                       'relationships'
                        )
 
 ADMINS = (

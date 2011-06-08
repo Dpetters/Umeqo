@@ -7,7 +7,7 @@
 from datetime import datetime
 
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson
@@ -93,8 +93,6 @@ def contact_us_dialog(request,
                 form.save(fail_silently=fail_silently)
                 return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
             else:
-                print form.errors
-                print form.non_field_errors()
                 data = {'valid':False}
                 if form['body'].errors:
                     data['body_errors'] = str(form["body"].errors)
@@ -112,7 +110,7 @@ def contact_us_dialog(request,
         return render_to_response(template_name,
                                   context,
                                   context_instance=RequestContext(request))
-    return redirect('home')
+    return HttpResponseBadRequest()
 
 def landing_page(request,
             template_name="landing_page.html",
@@ -223,7 +221,7 @@ def check_website(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
         except ValidationError:
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 def check_password(request):
@@ -233,7 +231,7 @@ def check_password(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
         else:
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 def check_username_existence(request):
@@ -251,12 +249,12 @@ def check_username_existence(request):
                 except Employer.DoesNotExist:
                     return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
  
 def check_email_existence(request):
     if request.is_ajax():
         return HttpResponse(simplejson.dumps(does_email_exist(request.GET.get("email", ""))), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 def check_email_availability(request):
@@ -267,7 +265,7 @@ def check_email_availability(request):
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         except User.DoesNotExist:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
 def check_event_name_uniqueness(request):
@@ -278,16 +276,17 @@ def check_event_name_uniqueness(request):
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         except Event.DoesNotExist:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
 def get_major_info(request,
+                   course_id=None,
                    template_name="major_info.html",
                    extra_context = None):
-    
+
     if request.is_ajax():
         try:
-            major = Course.objects.get(name=request.GET.get('course_name', ''))
+            major = Course.objects.get(id=course_id)
             context = {'name': major.name,
                        'num': major.num, 
                        'admin' : major.admin,
@@ -302,7 +301,7 @@ def get_major_info(request,
                                       context_instance=RequestContext(request))
         except:
             return HttpResponseNotFound()
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
@@ -314,7 +313,7 @@ def check_campus_organization_uniqueness(request):
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         except CampusOrg.DoesNotExist:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
@@ -326,7 +325,7 @@ def check_language_uniqueness(request):
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         except Language.DoesNotExist:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return redirect('home')
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 def browser_configuration_not_supported(request,

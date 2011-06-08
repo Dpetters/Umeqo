@@ -3,12 +3,12 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
- 
+
 from django.contrib import admin
 
-from relationships.models import Relationship
+from countries.models import Country
 
-class RelationshipAdmin(admin.ModelAdmin):
+class CountryAdmin(admin.ModelAdmin):
     pass
-
-admin.site.register(Relationship, RelationshipAdmin)
+        
+admin.site.register(Country, CountryAdmin)

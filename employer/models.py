@@ -8,6 +8,7 @@ from django.db import models
 from django.contrib.localflavor.us.models import PhoneNumberField
 from django.contrib.auth.models import User
 
+from student.models import Student
 from countries.models import Country
 from core.models import Industry, Ethnicity, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
 from employer import enums as employer_enums
@@ -39,13 +40,15 @@ class FilteringParameters(models.Model):
     ethnicities = models.ManyToManyField(Ethnicity, blank = True, null = True)
     languages = models.ManyToManyField(Language, blank = True, null = True)
     gender = models.CharField(max_length=1, choices = core_choices.FILTERING_GENDER_CHOICES, blank = True, null = True)
-    older_than_18 = models.BooleanField()
+    older_than_18 = models.CharField(max_length=1, choices = core_choices.NO_YES_CHOICES, blank = True, null = True)
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
-
+    
 class Recruiter(models.Model):
     
     user = models.OneToOneField(User)
     employer = models.ForeignKey("employer.Employer")
+    
+    starred_students = models.ManyToManyField("student.Student")
     
     is_active = models.BooleanField(default=True)
     subscribed = models.BooleanField(default=False)
@@ -67,7 +70,12 @@ class Recruiter(models.Model):
         if not hasattr(self, "statistics"):
             self.statistics = EmployerStatistics.objects.create()
         super(Recruiter, self).save( *args, **kwargs )
-        
+
+class StudentComment(models.Model):
+    recruiter = models.OneToOneField(Recruiter)
+    student = models.OneToOneField(Student)
+    comment = models.CharField(max_length=500)
+    
 class Employer(models.Model): 
     company_name = models.CharField("Company Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
     

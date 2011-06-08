@@ -10,8 +10,6 @@ from student import enums as student_enums
 def student_lists_as_choices(recruiter):
     student_list_types = []
     for student_list_type in student_enums.STUDENT_LIST_TYPE_CHOICES:
-        print student_list_type
-        print student_list_type[0]
         new_student_list_type = []
         student_lists = []
         if student_list_type[0] == student_enums.GENERAL:
