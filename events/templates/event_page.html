@@ -45,6 +45,16 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
         <div id="event_admin">
             <h1>Event Admin (visible only to you)</h1>
             <div id="event_rsvps">
+                <table id="event_numbers">
+                    <tr>
+                        <td class="number">{{rsvps|length}}</td>
+                        <td class="number_label">attending</td>
+                    </tr>
+                    <tr>
+                        <td class="number">{{event.view_count}}</td>
+                        <td class="number_label">pageview{{event.view_count|pluralize}}</td>
+                    </tr>
+                </table>
                 <h2>Attending Students</h2>
                 {% for student in rsvps %}
                 <div class="event_rsvp" id="{{student.id}}">
@@ -58,16 +68,6 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
                 <div id="event_rsvps_empty">There are no RSVPs yet.</div>
                 {% endfor %}
             </div>
-            <table id="event_numbers">
-                <tr>
-                    <td class="number">{{rsvps|length}}</td>
-                    <td class="number_label">attending</td>
-                </tr>
-                <tr>
-                    <td class="number">{{event.view_count}}</td>
-                    <td class="number_label">pageview{{event.view_count|pluralize}}</td>
-                </tr>
-            </table>
             <div class="clearfix"></div>
         </div>
         {% endif %}

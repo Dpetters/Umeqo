@@ -416,7 +416,7 @@ a.button {
 #content_area a.button.sub-button {
     background: #CCC;
     color: #000;
-    line-height: 23px;
+    line-height: 21px;
     height: 23px;
 }
 #content_area a.button.sub-button:hover {

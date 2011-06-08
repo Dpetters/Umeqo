@@ -64,6 +64,7 @@
 #rsvp_div .help-bubble {
     right: 140px;
     width: 180px;
+    opacity: 0.85;
 }
 #rsvp_div .help-bubble::before {
     right: -5px;
@@ -80,43 +81,40 @@
 }
 #event_admin h1 {
     font-size: 16px;
-    margin: 4px 0;
+    background: #EEE;
+    margin: -10px -10px 0;
+    padding: 10px 10px 5px;
 }
 
 #event_numbers {
     font-size: 16px;
     color: #FFF;
     text-align: right;
-    float: left;
+    float: right;
     border-collapse: collapse;
     border-radius: 2px;
     border: 1px solid #FFF;
 }
+#event_rsvps h2 {
+    font-size: 14px;
+}
 #event_numbers .event_number {
     margin: 5px 0;
 }
-#event_numbers .number {
-    font-size: 30px;
-    padding: 3px 5px;
+#event_numbers td {
+    font-size: 16px;
     background-color: #EEE;
     color: #000;
+}
+#event_numbers .number {
+    padding: 3px 2px 3px 5px;
 }
 #event_numbers .number_label {
+    padding: 3px 5px 3px 2px;
     text-align: left;
-    line-height: 30px;
-    vertical-align: bottom;
-    background-color: #EEE;
-    color: #000;
-    padding: 0 3px 0 0;
 }
 #event_rsvps {
-    float: left;
-    width: 764px;
-    background: #EEE;
-    padding: 10px;
-    margin-right: 15px;
-    border-radius: 2px;
-    border: 1px solid #FFF;
+    padding-top: 10px;
 }
 #event_rsvps .event_rsvp {
     display: inline-block;
