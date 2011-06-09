@@ -94,7 +94,11 @@ urlpatterns += patterns('employer.views',
     (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'),
     # Employer Student Filtering
     (r'^employer/filtering-setup/$', 'employer_setup_default_filtering', {}, 'employer_setup_default_filtering'),
-    (r'^employer/students/filtering/$', 'employer_student_filtering', {}, 'employer_student_filtering'),
+    (r'^employer/students/$', 'employer_students', {}, 'employer_students'),
+    (r'^employer/resume-books/download/$', 'employer_resume_books_download', {}, 'employer_resume_books_download'),
+    (r'^employer/resume-books/email/$', 'employer_resume_books_email', {}, 'employer_resume_books_email'),    
+    (r'^employer/resume-books/deliver/$', 'employer_resume_books_deliver', {}, 'employer_resume_books_deliver'),
+    (r'^employer/resume-books/create/$', 'employer_resume_books_create', {}, 'employer_resume_books_create'),
     (r'^employer/resume-book/summary/$', 'employer_resume_book_summary', {}, 'employer_resume_book_summary'),    
     (r'^employer/resume-book/student/toggle/$', 'employer_resume_book_student_toggle', {}, 'employer_resume_book_student_toggle'),
     (r'^employer/resume-book/students/add/$', 'employer_resume_book_students_add', {}, 'employer_resume_book_students_add'),
@@ -108,8 +112,9 @@ urlpatterns += patterns('employer.views',
     (r'^employer/events/delete/(?P<id>\d+)$', 'employer_delete_event', {}, 'employer_delete_event'),
     # Employer Invitations
     (r'^employer/invitations/$', 'employer_invitations', {}, 'employer_invitations'),
-    # Employer Company Profile
-    (r'^employer/(?P<username>\w+)/$', 'employer_company_profile', {}, 'employer_company_profile'),
+    # Employer Profile
+    (r'^employer/(?P<employer>\w*)$', 'employer_employer_profile', {}, 'employer_employer_profile'),
+    (r'^employer/(?P<employer>\w+)/$', 'employer_employer_profile', {}, 'employer_employer_profile'),
 )
 
 urlpatterns += patterns('events.views',

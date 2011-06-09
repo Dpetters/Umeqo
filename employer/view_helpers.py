@@ -155,7 +155,7 @@ def get_cached_filtering_results(request):
         if request.POST['campus_orgs']:
             campus_orgs  = request.POST['campus_orgs'].split('~')
                                 
-        current_filtering_results = filter_students(request.user,
+        current_filtering_results = filter_students(request.user.recruiter,
                                                     student_list=request.POST['student_list'],
                                                     gpa=gpa,
                                                     courses = courses,
@@ -209,7 +209,7 @@ def filter_students(recruiter,
                     languages=None,
                     countries_of_citizenship=None,
                     campus_orgs=None):
-    
+    print student_list
     # All Students
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
         students = Student.objects.all()
@@ -217,8 +217,12 @@ def filter_students(recruiter,
         pass
         # all starred students
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
-        pass
-        # resumebook students
+        resume_books = ResumeBook.objects.filter(recruiter = recruiter)
+        if not resume_books.exists():
+            latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
+        else:
+            latest_resume_book = resume_books.order_by('-date_created')[0]
+        students = latest_resume_book.students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:
         pass
         # latest default filtering parameter matches students

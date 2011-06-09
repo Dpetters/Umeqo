@@ -8,7 +8,7 @@ import os, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils import simplejson
@@ -153,7 +153,7 @@ def student_edit_profile(request,
                     data = {'valid':False,
                             'success_url':reverse("home")}
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+                return redirect('home')
         else:
             if request.is_ajax():
                 data = {'valid':False,

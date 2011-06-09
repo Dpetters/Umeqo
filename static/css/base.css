@@ -221,6 +221,10 @@ p {
     margin-top:20px;
     margin-bottom: 20px;
     text-align:center;
+	line-height:20px;
+}
+.message_section p{
+	line-height:20px;
 }
 .main_block, .side_block {
 	behavior: url(/static/lib/pie/PIE.htc);
@@ -286,9 +290,6 @@ p {
 .main_block_header {
     padding: 3px 0px;
     line-height: 30px;
-}
-.main_block_header_content a, .main_block_header_content input.button {
-    vertical-align:middle;
 }
 .main_block_header_icon {
     margin-left:10px;
@@ -389,12 +390,12 @@ p {
 .dark_button{
     behavior: url(/static/lib/pie/PIE.htc);
     background: #618AA5;
-    background: -moz-linear-gradient(#82B3D8, #53738D);
-    background: -webkit-gradient(#82B3D8, #53738D);
-    background: -webkit-linear-gradient(#82B3D8, #53738D);
-    background: -o-linear-gradient(#82B3D8, #53738D);
-    background: linear-gradient(#82B3D8, #53738D);
-    -pie-background: linear-gradient(#82B3D8, #53738D);
+    background: -moz-linear-gradient(#6E97B9, #53738D);
+    background: -webkit-gradient(#6E97B9, #53738D);
+    background: -webkit-linear-gradient(#6E97B9, #53738D);
+    background: -o-linear-gradient(#6E97B9, #53738D);
+    background: linear-gradient(#6E97B9, #53738D);
+    -pie-background: linear-gradient(#6E97B9, #53738D);
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -403,17 +404,30 @@ p {
     display:inline-block;
     text-align:center;
     color:#FFF;
+    padding:0 5px 2px 5px;
+    text-decoration:none;
     height:30px;
+    vertical-align:middle;
+
+    outline:none;
 }
 .dark_button:hover{
-    border: 1px solid #53738D;
+    border: 1px solid #4E6D84;
+    box-shadow: #4E6D84 0 0 2px;
+    color:#FFF;
 }
 .dark_button:active{
-    background: #53738D;
+    background: #4E6D84;
+    color:#FFF;
 }
+a.dark_button{
+	color:#FFF;
+	height:26px;
+	line-height:27px;
+}	
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     behavior: url(/static/lib/pie/PIE.htc);
-    background: #F0F0F0;
+    background: #EAEAEA;
     background: -moz-linear-gradient(#F0F0F0, #DDD);
     background: -webkit-gradient(#F0F0F0, #DDD);
     background: -webkit-linear-gradient(#F0F0F0, #DDD);
@@ -441,20 +455,20 @@ a.button {
     height: 28px;
     line-height: 28px;
 }
-#content_area a.button.sub-button {
+a.button.sub-button {
     background: #CCC;
     color: #000;
     line-height: 23px;
     height: 23px;
 }
-#content_area a.button.sub-button:hover {
+a.button.sub-button:hover {
     background: #D0D0D0;
     color: #222 !important;
 }
-#content_area .button.disabled-button {
+.button.disabled-button {
     color: #888;
 }
-#content_area .button.disabled-button:hover {
+.button.disabled-button:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
     color: #888 !important;
     cursor: default !important;
@@ -535,8 +549,7 @@ a.button {
 }
 .menu_button ul li {
 	line-height:18px;
-	padding: 0 3px;
-	font-weight: bold;
+	padding: 0 4px;
 }
 .menu_button ul li:hover {
 	background:#F8F8F8;
@@ -577,10 +590,6 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
     border: 1px solid #888;
     color: #000;
 }
-input[type=submit] {
-    font-family: Arial;
-    font-size: 13px;
-}
 input[type=text], input[type=password] {
     width: 180px;
 }
@@ -615,11 +624,11 @@ input[type=text], input[type=password] {
     padding-bottom: 3px;
     text-align: right;
 }
-#content_area a, a {
+a {
     color: #6e97b9;
     outline: none;
 }
-#content_area a:hover, a:hover {
+a:hover {
 	color: #557389;
 }
 a:focus {
@@ -741,6 +750,7 @@ a:focus {
 }
 .ui-slider .ui-slider-handle {
     border:1px solid #808080;
+    top:-0.35em;
 }
 /* JQuery Multiselect */
 .ui-multiselect {
@@ -752,7 +762,7 @@ a:focus {
 .ui-multiselect-menu {
     border:1px solid #808080;
 }
-.ui-multiselect-checkboxes label {
+.ui-multiselect-checkboxes label, select[multiple=multiple] {
     font-size: 11px;
 }
 button.ui-multiselect[type=button] {

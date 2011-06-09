@@ -49,7 +49,7 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
                 {% for student in rsvps %}
                 <div class="event_rsvp" id="{{student.id}}">
                     {{student.first_name}} {{student.last_name}}
-                    <form id="f-{{student.id}}" action="{% url employer_student_filtering %}" method="POST" target="_blank">
+                    <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
                         {% csrf_token %}
                         <input type="hidden" name="query" value="{{student.first_name}} {{student.last_name}}" />
                     </form>

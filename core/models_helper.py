@@ -5,9 +5,10 @@
 """
  
 import datetime
+from django.conf import settings
 
-def get_resume_filename(instance, filename): #@UnusedVariable
-    filename = 'submitted_resumes/' + instance.last_name + "_" + instance.first_name + "_" + str(instance.user) + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf"
+def get_resume_filename(instance, filename):
+    filename = settings.SUBMITTED_RESUME_ROOT + instance.last_name + "_" + instance.first_name + "_" + str(instance.user) + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf"
     return filename
 
 def get_image_filename(instance, filename):

@@ -24,6 +24,7 @@ var ajax_loader = "<div id='dialog_loader'><img src='/static/images/page_element
 var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
 var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
 
+var resume_book_delivered_message = "<div class='message_section'><p>The delivered Resume Book can be viewed and delivered again<br/> through the <a href='/employer/resume_books/'>Resume Book History</a> page.</p></div>" + close_dialog_link;
 var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by";
 var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
 var dialog_error_message = error_message + " reopening the dialog.</p></div>" + close_dialog_link;
@@ -185,6 +186,36 @@ function getCookie(name) {
     }
     return cookieValue;
 };
+
+// number formatting function
+// copyright Stephen Chapman 24th March 2006, 10th February 2007
+// permission to use this function is granted provided
+// that this copyright notice is retained intact
+function formatNumber(num,dec,thou,pnt,curr1,curr2,n1,n2)
+{
+  var x = Math.round(num * Math.pow(10,dec));
+  if (x >= 0) n1=n2=''; 
+
+  var y = (''+Math.abs(x)).split('');
+  var z = y.length - dec; 
+
+  if (z<0) z--; 
+
+  for(var i = z; i < 0; i++)
+    y.unshift('0'); 
+
+  y.splice(z, 0, pnt);
+  if(y[0] == pnt) y.unshift('0'); 
+
+  while (z > 3)
+  {
+    z-=3;
+    y.splice(z,0,thou);
+  } 
+
+  var r = curr1+n1+y.join('')+n2+curr2;
+  return r;
+}
 
 // Get max of array
 Array.max = function (array) {
