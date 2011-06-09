@@ -74,7 +74,7 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
 
-RESUME_BOOK_ROOT  = MEDIA_ROOT + "resume_book/"
+RESUME_BOOK_ROOT  = MEDIA_ROOT + "resume_books/"
 
 SUBMITTED_RESUME_ROOT = MEDIA_ROOT + "submitted_resumes/"
 

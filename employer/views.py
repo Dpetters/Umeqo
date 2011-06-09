@@ -458,6 +458,8 @@ def employer_resume_books_create(request):
                 output.addPage(PdfFileReader(file(str(settings.MEDIA_ROOT).replace("\\", "/") + "/" + str(student.resume), "rb")).getPage(0))
             resume_book_name = str(request.user) + "_" + datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf";
             latest_resume_book.resume_book_name = resume_book_name
+            if not os.path.exists(str(settings.RESUME_BOOK_ROOT)):
+                os.mkdir(str(settings.RESUME_BOOK_ROOT))  
             outputStream = file(str(settings.RESUME_BOOK_ROOT) + resume_book_name, "wb")
             output.write(outputStream)
             latest_resume_book.file_name = resume_book_name
