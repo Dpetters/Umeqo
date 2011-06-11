@@ -5,7 +5,7 @@
 """
 
 import os
-ROOT = os.path.dirname(os.path.realpath(__file__))
+ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -73,6 +73,10 @@ MEDIA_URL = '/media/'
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
+
+RESUME_BOOK_ROOT  = MEDIA_ROOT + "resume_books/"
+
+SUBMITTED_RESUME_ROOT = MEDIA_ROOT + "submitted_resumes/"
 
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (

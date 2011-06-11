@@ -12,9 +12,18 @@ from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
 from employer.models import FilteringParameters, EmployerPreferences, StudentComment
-from employer import enums
+from employer import enums as employer_enums
 
-
+class DeliverResumeBookForm(forms.Form):
+    delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
+    name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
+    email = forms.EmailField(label="Delivery Email:", required=False)
+    
+    def __init__(self, *args, **kwargs):
+        super(DeliverResumeBookForm, self).__init__(*args, **kwargs)
+        print args
+        print kwargs
+        
 class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))
 
@@ -48,10 +57,10 @@ class StudentCommentForm(forms.Form):
     class Meta:
         model = StudentComment
         fields = ('comment',)
-        
+     
 class StudentFilteringForm(FilteringForm):
-    ordering = forms.ChoiceField(label="Order Results By:", choices = enums.ORDERING_CHOICES, required = False)
-    results_per_page = forms.ChoiceField(label="Results Per Page:", choices = enums.RESULTS_PER_PAGE_CHOICES, required = False)
+    ordering = forms.ChoiceField(label="Order Results By:", choices = employer_enums.ORDERING_CHOICES, required = False)
+    results_per_page = forms.ChoiceField(label="Results Per Page:", choices = employer_enums.RESULTS_PER_PAGE_CHOICES, required = False)
     
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)

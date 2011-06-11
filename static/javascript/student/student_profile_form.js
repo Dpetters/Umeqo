@@ -425,7 +425,9 @@ $(document).ready( function() {
         selectedList: 1,
         multiple: false
     });
-	
+	$("#id_gpa").blur(function(){
+		$("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
+	});
 	$("#id_gpa").change(function(){
 		gpa_slider.slider('value', $(this).val());
 	});
@@ -434,10 +436,10 @@ $(document).ready( function() {
 	var gpa_slider = $("#gpa_section .slider").slider({
 		min: 0,
 		max: 5.0,
-		step: .1,
+		step: .01,
 		value: $("#id_gpa").val(),
 		slide: function(event, ui) {
-			$("#id_gpa").val(ui.value);
+			$("#id_gpa").val(formatNumber(ui.value,2,' ','.','','','-','').toString());
 		},
 		change: function(event, ui) {
 			v.element("#id_gpa");
@@ -703,6 +705,11 @@ $(document).ready( function() {
     accordion.accordion( "option", "active", parseInt(get_parameter_by_name("page")));
     
     // Field masks
+    $("#id_gpa").mask("9.99",{placeholder:" "}).blur( function() {
+        if($(this).val()=="") {
+            $("#act .error").remove();
+        }
+    });
     $("#id_act").mask("99",{placeholder:" "}).blur( function() {
         if($(this).val()=="") {
             $("#act .error").remove();

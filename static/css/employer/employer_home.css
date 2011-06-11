@@ -26,7 +26,3 @@
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
-#search_form_submit_button {
-    height: 30px;
-    line-height: 28px;
-}

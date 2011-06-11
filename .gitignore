@@ -8,6 +8,7 @@ database.db
 .project
 .pydevproject
 .settings
+resume_books
 submitted_resumes
 submitted_user_images
 whoosh_index

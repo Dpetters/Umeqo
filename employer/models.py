@@ -17,10 +17,9 @@ from core import choices as core_choices
         
 class ResumeBook(models.Model):
     recruiter = models.OneToOneField("employer.Recruiter")
-    
+    file_name = models.CharField(max_length = 100, blank = True, null=True)
     name = models.CharField("Resume Book Name", max_length = 42, blank = True, null = True, help_text="Maximum 42 characters.")
     students = models.ManyToManyField("student.Student", blank = True, null = True)
-    
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
 
 
@@ -78,6 +77,7 @@ class StudentComment(models.Model):
     
 class Employer(models.Model): 
     company_name = models.CharField("Company Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    slug = models.CharField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     
     industries = models.ManyToManyField(Industry)
 
