@@ -49,7 +49,8 @@
     1
    ], 
    "main_contact_phone": "234-234-2345", 
-   "    name": "Sample Employer 1", 
+   "name": "Sample Employer 1", 
+   "slug": "sample-employer-1",
    "main_contact": "George Lopez", 
    "date_created": "2011-05-22 19:50:17"
   }
@@ -63,7 +64,8 @@
     34
    ], 
    "main_contact_phone": "234-234-2345", 
-   "    name": "Sample Employer 2", 
+   "name": "Sample Employer 2", 
+   "slug": "sample-employer-2",
    "main_contact": "Sergio Martinez", 
    "date_created": "2011-05-22 23:04:22"
   }
@@ -77,7 +79,8 @@
     7
    ], 
    "main_contact_phone": "234-234-2345", 
-   "    name": "Sample Employer 3", 
+   "name": "Sample Employer 3", 
+   "slug": "sample-employer-3",
    "main_contact": "Jorge Martinez", 
    "date_created": "2011-05-22 23:04:54"
   }
