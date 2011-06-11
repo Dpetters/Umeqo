@@ -11,28 +11,28 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 {% block help_content %}
-	<a id="top"></a>
-	<h1>FAQ</h1>
-	<br/>
-	
-	{% for topic in topics %}
-		<h2>{{topic.name}}</h2>
-		<ul>
-		{% for question in topic.questions %}
-				<br><a href="#{{question.slug}}">{{question.question}}</a>
-		{% endfor %}
-		</ul>
-		<br/>
-	{% endfor %}
-	
-	{% for topic in topics %}
-		<h2>{{topic.name}}</h2>
-		{% for question in topic.questions %}
-			<a id="{{question.slug}}"></a>
-			<h3>{{question.question}}</h3>
-			<p>{{question.answer}}</p>
-			<a href="#top">Back to top</a>
-		{% endfor %}
-		<br/>
-	{% endfor %}
+    <a id="top"></a>
+    <h1>FAQ</h1>
+    <br/>
+    
+    {% for topic in topics %}
+        <h2>{{topic.name}}</h2>
+        <ul>
+        {% for question in topic.questions %}
+                <br><a href="#{{question.slug}}">{{question.question}}</a>
+        {% endfor %}
+        </ul>
+        <br/>
+    {% endfor %}
+    
+    {% for topic in topics %}
+        <h2>{{topic.name}}</h2>
+        {% for question in topic.questions %}
+            <a id="{{question.slug}}"></a>
+            <h3>{{question.question}}</h3>
+            <p>{{question.answer}}</p>
+            <a href="#top">Back to top</a>
+        {% endfor %}
+        <br/>
+    {% endfor %}
 {% endblock %}

@@ -5,12 +5,12 @@
  */
 
 $(document).ready( function () {
-	$("#search_form_submit_button").live('click', function(e){
-		if (!$("#query_field").val()){
-			$("#query_field").focus();
-			e.preventDefault();
-		}
-	});
+    $("#search_form_submit_button").live('click', function(e){
+        if (!$("#query_field").val()){
+            $("#query_field").focus();
+            e.preventDefault();
+        }
+    });
 
     $('.delete-event-link').live('click',function(e) {
         var that = $(this);

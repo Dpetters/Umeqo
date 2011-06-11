@@ -30,8 +30,8 @@ $(document).ready( function() {
         $dialog.dialog('open');
         return $dialog;
     };
-	
-	function open_create_language_dialog() {
+    
+    function open_create_language_dialog() {
         var dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
@@ -71,10 +71,10 @@ $(document).ready( function() {
             dataType: "html",
             url: '/student/create-camus-organization/',
             error: function(jqXHR, textStatus, errorThrown) {
-            	clearTimeout(create_campus_organization_dialog_timeout);
+                clearTimeout(create_campus_organization_dialog_timeout);
                 switch(jqXHR.status){
                     case 0:
-                    	create_campus_organization_dialog.html(dialog_check_connection_message);
+                        create_campus_organization_dialog.html(dialog_check_connection_message);
                         break;
                     default:
                         create_campus_organization_dialog.html(dialog_error_message);
@@ -103,14 +103,14 @@ $(document).ready( function() {
                                 show_form_submit_loader("#create_campus_organization_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
-                            	hide_form_submit_loader("#create_campus_organization_form");
-				                switch(jqXHR.status){
-				                    case 0:
-				                    	(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
-				                        break;
-				                    default:
-				                        create_campus_organization_dialog.html(dialog_status_500_error_message);
-				                }
+                                hide_form_submit_loader("#create_campus_organization_form");
+                                switch(jqXHR.status){
+                                    case 0:
+                                        (".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                        break;
+                                    default:
+                                        create_campus_organization_dialog.html(dialog_status_500_error_message);
+                                }
                             },
                             success: function(data) {
                                 hide_form_submit_loader("#create_campus_organization_form");
@@ -133,11 +133,11 @@ $(document).ready( function() {
                                             create_campus_organization_dialog.dialog('destroy');
                                         });
                                         break;
-									case false:
-										create_campus_organization_dialog.html(dialog_error_message);
+                                    case false:
+                                        create_campus_organization_dialog.html(dialog_error_message);
                                         break;
                                     default:
-										create_campus_organization_dialog.html(dialog_error_message);
+                                        create_campus_organization_dialog.html(dialog_error_message);
                                         break;
                                 }
                                 create_campus_organization_dialog.dialog('option', 'position', 'center');
@@ -151,17 +151,17 @@ $(document).ready( function() {
                         name: {
                             required: true,
                             remote: {
-			                    url:"/check-campus-organization-uniqueness/",
-			                    error: function(jqXHR, textStatus, errorThrown) {
-			                        switch(jqXHR.status){
-			                            case 0:
-			                            	$(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
-			                                break;
-			                            default:
-			                                create_campus_organization_dialog.html(dialog_error_message);
-			                        }
-			                    },
-			                }
+                                url:"/check-campus-organization-uniqueness/",
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    switch(jqXHR.status){
+                                        case 0:
+                                            $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                            break;
+                                        default:
+                                            create_campus_organization_dialog.html(dialog_error_message);
+                                    }
+                                },
+                            }
                         },
                         type: {
                             required: true
@@ -190,7 +190,7 @@ $(document).ready( function() {
             dataType: "html",
             url: '/student/create-language/',
             error: function(jqXHR, textStatus, errorThrown) {
-            	clearTimeout(create_language_dialog_timeout);
+                clearTimeout(create_language_dialog_timeout);
                 switch(jqXHR.status){
                     case 0:
                         create_language_dialog.html(dialog_check_connection_message);
@@ -213,14 +213,14 @@ $(document).ready( function() {
                                 show_form_submit_loader("#create_language_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
-                            	hide_form_submit_loader("#create_language_form");
-				                switch(jqXHR.status){
-				                    case 0:
-				                        $(".create_language_dialog .error_section").html(form_check_connection_message);
-				                        break;
-				                    default:
-				                        create_language_dialog.html(dialog_error_message);
-				                }
+                                hide_form_submit_loader("#create_language_form");
+                                switch(jqXHR.status){
+                                    case 0:
+                                        $(".create_language_dialog .error_section").html(form_check_connection_message);
+                                        break;
+                                    default:
+                                        create_language_dialog.html(dialog_error_message);
+                                }
                             },
                             success: function(data) {
                                 hide_form_submit_loader("#create_language_form");
@@ -259,11 +259,11 @@ $(document).ready( function() {
                                             create_language_dialog.dialog('destroy');
                                         });
                                         break;
-									case false:
-										create_campus_organization_dialog.html(dialog_error_message);
+                                    case false:
+                                        create_campus_organization_dialog.html(dialog_error_message);
                                         break;
                                     default:
-										create_language_dialog.html(dialog_error_message);
+                                        create_language_dialog.html(dialog_error_message);
                                         break;
                                 }
                                 create_language_dialog.dialog('option', 'position', 'center');
@@ -277,17 +277,17 @@ $(document).ready( function() {
                         name: {
                             required: true,
                             remote: {
-			                    url:"/check-language-uniqueness/",
-			                    error: function(jqXHR, textStatus, errorThrown) {
-			                        switch(jqXHR.status){
-			                            case 0:
-			                                $(".create_language_dialog .error_section").html(form_check_connection_message);
-			                                break;
-			                            default:
-			                                create_language_dialog.html(dialog_error_message);
-			                        }
-			                    },
-			                }
+                                url:"/check-language-uniqueness/",
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    switch(jqXHR.status){
+                                        case 0:
+                                            $(".create_language_dialog .error_section").html(form_check_connection_message);
+                                            break;
+                                        default:
+                                            create_language_dialog.html(dialog_error_message);
+                                    }
+                                },
+                            }
                         },
                     },
                     messages:{
@@ -369,8 +369,8 @@ $(document).ready( function() {
     });
 
     $("#id_school_year").multiselect({
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         header:false,
         minWidth:multiselectMinWidth,
         height:multiselectLargeHeight,
@@ -385,8 +385,8 @@ $(document).ready( function() {
     });
     
     $("#id_graduation_year").multiselect({
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         header:false,
         selectedList: 1,
         height:multiselectLargeHeight,
@@ -401,8 +401,8 @@ $(document).ready( function() {
     });
 
     $("#id_first_major").multiselect({
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
         header:false,
         minWidth:multiselectMinWidth,
@@ -417,108 +417,108 @@ $(document).ready( function() {
     });
 
     $("#id_second_major").multiselect({
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
         header:false,
         minWidth:multiselectMinWidth,
         selectedList: 1,
         multiple: false
     });
-	$("#id_gpa").blur(function(){
-		$("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
-	});
-	$("#id_gpa").change(function(){
-		gpa_slider.slider('value', $(this).val());
-	});
-	
-	// GPA Slider
-	var gpa_slider = $("#gpa_section .slider").slider({
-		min: 0,
-		max: 5.0,
-		step: .01,
-		value: $("#id_gpa").val(),
-		slide: function(event, ui) {
-			$("#id_gpa").val(formatNumber(ui.value,2,' ','.','','','-','').toString());
-		},
-		change: function(event, ui) {
-			v.element("#id_gpa");
-		}
-	});
+    $("#id_gpa").blur(function(){
+        $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
+    });
+    $("#id_gpa").change(function(){
+        gpa_slider.slider('value', $(this).val());
+    });
+    
+    // GPA Slider
+    var gpa_slider = $("#gpa_section .slider").slider({
+        min: 0,
+        max: 5.0,
+        step: .01,
+        value: $("#id_gpa").val(),
+        slide: function(event, ui) {
+            $("#id_gpa").val(formatNumber(ui.value,2,' ','.','','','-','').toString());
+        },
+        change: function(event, ui) {
+            v.element("#id_gpa");
+        }
+    });
 
-	// SAT Math Slider
-	var sat_m_slider = $("#sat_m_section .slider").slider({
-		min: 200,
-		max: 800,
-		step: 10,
-		value: $("#id_sat_m").val(),
-		slide: function(event, ui) {
-			$("#id_sat_m").val(ui.value);
-		},
-		change: function(event, ui) {
-			v.element("#id_sat_m");
-		}
-	});
-	$("#id_sat_m").change(function(){
-		sat_m_slider.slider('value', $(this).val());
-	});
-	
-	// SAT Verbal Slider
-	var sat_v_slider = $("#sat_v_section .slider").slider({
-		min: 200,
-		max: 800,
-		step: 10,
-		value: $("#id_sat_v").val(),
-		slide: function(event, ui) {
-			$("#id_sat_v").val(ui.value);
-		},
-		change: function(event, ui) {
-			v.element("#id_sat_v");
-		}
-	});
-	$("#id_sat_v").change(function(){
-		sat_v_slider.slider('value', $(this).val());
-	});
-		
-	// SAT Writing Slider
-	var sat_w_slider = $("#sat_w_section .slider").slider({
-		min: 200,
-		max: 800,
-		step: 10,
-		value: $("#id_sat_w").val(),
-		slide: function(event, ui) {
-			$("#id_sat_w").val(ui.value);
-		},
-		change: function(event, ui) {
-			v.element("#id_sat_w");
-		}
-	});
-	$("#id_sat_w").change(function(){
-		sat_w_slider.slider('value', $(this).val());
-	});
-	
-	//ACT Slider
-	var act_slider = $("#act_section .slider").slider({
-		min: 0,
-		max: 36,
-		step: 1,
-		value: $("#id_act").val(),
-		slide: function(event, ui) {
-			$("#id_act").val(ui.value);
-		},
-		change: function(event, ui) {
-			v.element("#id_act");
-		}
-	});
-	$("#id_act").change(function(){
-		act_slider.slider('value', $(this).val());
-	});
+    // SAT Math Slider
+    var sat_m_slider = $("#sat_m_section .slider").slider({
+        min: 200,
+        max: 800,
+        step: 10,
+        value: $("#id_sat_m").val(),
+        slide: function(event, ui) {
+            $("#id_sat_m").val(ui.value);
+        },
+        change: function(event, ui) {
+            v.element("#id_sat_m");
+        }
+    });
+    $("#id_sat_m").change(function(){
+        sat_m_slider.slider('value', $(this).val());
+    });
+    
+    // SAT Verbal Slider
+    var sat_v_slider = $("#sat_v_section .slider").slider({
+        min: 200,
+        max: 800,
+        step: 10,
+        value: $("#id_sat_v").val(),
+        slide: function(event, ui) {
+            $("#id_sat_v").val(ui.value);
+        },
+        change: function(event, ui) {
+            v.element("#id_sat_v");
+        }
+    });
+    $("#id_sat_v").change(function(){
+        sat_v_slider.slider('value', $(this).val());
+    });
+        
+    // SAT Writing Slider
+    var sat_w_slider = $("#sat_w_section .slider").slider({
+        min: 200,
+        max: 800,
+        step: 10,
+        value: $("#id_sat_w").val(),
+        slide: function(event, ui) {
+            $("#id_sat_w").val(ui.value);
+        },
+        change: function(event, ui) {
+            v.element("#id_sat_w");
+        }
+    });
+    $("#id_sat_w").change(function(){
+        sat_w_slider.slider('value', $(this).val());
+    });
+    
+    //ACT Slider
+    var act_slider = $("#act_section .slider").slider({
+        min: 0,
+        max: 36,
+        step: 1,
+        value: $("#id_act").val(),
+        slide: function(event, ui) {
+            $("#id_act").val(ui.value);
+        },
+        change: function(event, ui) {
+            v.element("#id_act");
+        }
+    });
+    $("#id_act").change(function(){
+        act_slider.slider('value', $(this).val());
+    });
 
     $("#id_looking_for").multiselect({
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth
     }).multiselectfilter();
     
@@ -526,8 +526,8 @@ $(document).ready( function() {
         noneSelectedText: 'select industries',
         classes: 'interested_in_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
@@ -545,8 +545,8 @@ $(document).ready( function() {
         noneSelectedText: 'select employers',
         classes: 'previous_employers_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
@@ -564,15 +564,15 @@ $(document).ready( function() {
         noneSelectedText: 'select campus organizations',
         classes: 'campus_involvement_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-		show: multiselectShowAnimation,
-		beforeoptgrouptoggle: function(e, ui){
+        show: multiselectShowAnimation,
+        beforeoptgrouptoggle: function(e, ui){
             $(".warning").remove();
             if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
                 place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
                 return false;
             }
-		},
-		hide: multiselectHideAnimation,
+        },
+        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         height:multiselectLargeHeight,
         beforeclose: function() {
@@ -588,8 +588,8 @@ $(document).ready( function() {
     }).multiselectfilter();
     
     $("#id_ethnicity").multiselect({
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
         header:false,
         minWidth:multiselectMinWidth,
@@ -601,8 +601,8 @@ $(document).ready( function() {
         noneSelectedText: 'select languages',
         classes: 'languages_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         height:multiselectLargeHeight,
         beforeclose: function() {
@@ -619,8 +619,8 @@ $(document).ready( function() {
 
     $("#id_gender").multiselect({
         noneSelectedText: "select male or female",
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         height:singleselectThreeOptionHeight,
         header:false,
         minWidth:multiselectYesNoSingleSelectWidth,
@@ -630,8 +630,8 @@ $(document).ready( function() {
     
     $("#id_older_than_18").multiselect({
         noneSelectedText: "select yes or no",
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         height:singleselectThreeOptionHeight,
         header:false,
         minWidth:multiselectYesNoSingleSelectWidth,
@@ -643,8 +643,8 @@ $(document).ready( function() {
         noneSelectedText: "select countries",
         classes: 'countries_of_citizenship_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-		show: multiselectShowAnimation,
-		hide: multiselectHideAnimation,
+        show: multiselectShowAnimation,
+        hide: multiselectHideAnimation,
         height:multiselectLargeHeight,
         minWidth:multiselectMinWidth,
         selectedList: 1,

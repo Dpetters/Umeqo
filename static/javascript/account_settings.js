@@ -1,3 +1,3 @@
 $(document).ready( function () {
-	$("#account_settings_tabs").tabs();
+    $("#account_settings_tabs").tabs();
 });

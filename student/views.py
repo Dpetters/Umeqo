@@ -8,7 +8,7 @@ import os, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils import simplejson
@@ -186,7 +186,7 @@ def student_update_resume(request,
             os.remove(settings.MEDIA_ROOT + old_resume_name)
             form.save()
             return process_resume(request.user.student, request.is_ajax())
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    return redirect('home')
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -196,7 +196,7 @@ def student_update_resume_info(request):
         data = {'path_to_new_resume' : str(request.user.student.resume), 
                 'num_of_extracted_keywords' : str(len(request.user.student.keywords.split(" ")))}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    return redirect('home')
 
     
 @login_required
@@ -230,7 +230,7 @@ def student_create_campus_organization(request,
         return render_to_response(template_name,
                                   context,
                                   context_instance=RequestContext(request))
-    HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    redirect('home')
 
 
 @login_required
@@ -268,7 +268,7 @@ def student_create_language(request,
         return render_to_response(template_name, 
                                   context, 
                                   context_instance=RequestContext(request))
-    HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    redirect('home')
 
 
 @login_required
@@ -322,21 +322,21 @@ def compute_suggested_employers_list(student, exclude = None):
     if exclude:
         for industry in student.industries_of_interest.all():
             for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]).exclude(company_name__in=[n for n in exclude]):
-                suggested_employers.append(employer.company_name)
+                suggested_employers.append(employer.    name)
     
         for employer in student.previous_employers.all():
             for industry in employer.industry.all():
-                for employer in industry.employer_set.all().exclude(company_name__in=[o for o in suggested_employers]).exclude(company_name__in=[n for n in exclude]):
-                    suggested_employers.append(employer.company_name)
+                for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]).exclude(    name__in=[n for n in exclude]):
+                    suggested_employers.append(employer.    name)
     else:
         for industry in student.industries_of_interest.all():
             for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]):
-                suggested_employers.append(employer.company_name)
+                suggested_employers.append(employer.    name)
     
         for employer in student.previous_employers.all():
             for industry in employer.industry.all():
-                for employer in industry.employer_set.all().exclude(company_name__in=[o for o in suggested_employers]):
-                    suggested_employers.append(employer.company_name)
+                for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]):
+                    suggested_employers.append(employer.    name)
     
     random.shuffle(suggested_employers)
 

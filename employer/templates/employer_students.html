@@ -28,178 +28,178 @@ Copyright 2011. All Rights Reserved.
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_filtering.css" />
 
 <script type="text/javascript">
-	var query = null;
-	{% if query %}
-		query = "{{query}}";
-	{% endif %}
-	
-	var STATIC_URL = "{{STATIC_URL}}";
-	
-	var ADDED = "{{ added }}";
-	var REMOVED = "{{ removed }}";
-	
-	var STARRED = "{{ starred }}";
-	var UNSTARRED = "{{ unstarred }}";
-	var REMOVE_FROM_RESUME_BOOK_IMG = "{{ remove_from_resume_book_img|safe }}";
-	var ADD_TO_RESUME_BOOK_IMG = "{{ add_to_resume_book_img|safe }}";
-	var STARRED_IMG = "{{ starred_img|safe }}";
-	var UNSTARRED_IMG = "{{ unstarred_img|safe }}";
-	var SHOW_DETAILS_LINK = "{{ show_details_link|safe }}";
-	var HIDE_DETAILS_LINK = "{{ hide_details_link|safe }}";
-	var IN_RESUME_BOOK_STUDENT_LIST = "{{ in_resume_book_student_list }}";
-	var NO_STUDENTS_IN_RESUME_BOOK = "{{ no_students_in_resume_book|safe }}";
+    var query = null;
+    {% if query %}
+        query = "{{query}}";
+    {% endif %}
+    
+    var STATIC_URL = "{{STATIC_URL}}";
+    
+    var ADDED = "{{ added }}";
+    var REMOVED = "{{ removed }}";
+    
+    var STARRED = "{{ starred }}";
+    var UNSTARRED = "{{ unstarred }}";
+    var REMOVE_FROM_RESUME_BOOK_IMG = "{{ remove_from_resume_book_img|safe }}";
+    var ADD_TO_RESUME_BOOK_IMG = "{{ add_to_resume_book_img|safe }}";
+    var STARRED_IMG = "{{ starred_img|safe }}";
+    var UNSTARRED_IMG = "{{ unstarred_img|safe }}";
+    var SHOW_DETAILS_LINK = "{{ show_details_link|safe }}";
+    var HIDE_DETAILS_LINK = "{{ hide_details_link|safe }}";
+    var IN_RESUME_BOOK_STUDENT_LIST = "{{ in_resume_book_student_list }}";
+    var NO_STUDENTS_IN_RESUME_BOOK = "{{ no_students_in_resume_book|safe }}";
     var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
 </script>
 {% endblock %}
 
 {% block content_area %}
 <div id="side_block_area" class="left_side_container">
-	<div id="student_list_block" class="side_block">
-		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-			<span class="side_block_header_title">Choose Student List</span>
-		</div>
-		<div class="side_block_content">
-			<div id="student_list_section">
-				{{student_filtering_form.student_list}}
-			</div>
-		</div>
-	</div>
-	<div id="filtering_block" class="side_block">
-		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png"/>
-			<span class="side_block_header_title">Search & Filter</span>
-		</div>
-		<div class="side_block_content">
-			<div id="search_section">
-				{{student_search_form.query}}
-			</div>
-			<div id="filtering_accordion">
-				<h3>
-				<a href="#">Academic Info</a>
-				</h3>
-				<div id="academic_info_section">
-					<div>
-						{{student_filtering_form.majors}}
-					</div>
-					<div>
-						{{student_filtering_form.school_years}}
-					</div>
-					<div>
-						{{student_filtering_form.graduation_years}}
-					</div>
-					<div id="gpa_filter_section" class="slider_section">
-						<div></div>
-						{{student_filtering_form.gpa.label_tag}}
-						{{student_filtering_form.gpa}}
-					</div>
-				</div>
-				<h3>
-				<a href="#">Test Scores</a>
-				</h3>
-				<div id="test_scores_section">
-					<div id="act_filter_section" class="slider_section">
-						<div></div>
-						{{student_filtering_form.act.label_tag}}
-						{{student_filtering_form.act}}
-					</div>
-					<div id="sat_t_filter_section" class="slider_section">
-						<div></div>
-						{{student_filtering_form.sat_t.label_tag}}
-						{{student_filtering_form.sat_t}}
-					</div>
-					<div id="sat_m_filter_section" class="slider_section">
-						<div></div>
-						{{student_filtering_form.sat_m.label_tag}}
-						{{student_filtering_form.sat_m}}
-					</div>
-					<div id="sat_v_filter_section" class="slider_section">
-						<div></div>
-						{{student_filtering_form.sat_v.label_tag}}
-						{{student_filtering_form.sat_v}}
-					</div>
-					<div id="sat_w_filter_section" class="slider_section">
-						<div></div>
-						{{student_filtering_form.sat_w.label_tag}}
-						{{student_filtering_form.sat_w}}
-					</div>
-				</div>
-				<h3>
-				<a href="#">Work Info</a>
-				</h3>
-				<div>
-					<div>
-						{{student_filtering_form.employment_types}}
-					</div>
-					<div>
-						{{student_filtering_form.previous_employers}}
-					</div>
-					<div>
-						{{student_filtering_form.industries_of_interest}}
-					</div>
-				</div>
-				<h3>
-				<a href="#">Miscellaneous Info</a>
-				</h3>
-				<div>
-					<div>
-						{{student_filtering_form.campus_involvement}}
-					</div>
-					<div>
-						{{student_filtering_form.ethnicities}}
-					</div>
-					<div>
-						{{student_filtering_form.languages}}
-					</div>
-					<div>
-						{{student_filtering_form.countries_of_citizenship}}
-					</div>
-					<div class="select_wrapper">
-						{{student_filtering_form.gender.label_tag}}
-						{{student_filtering_form.gender}}
-					</div>
-					<div class="select_wrapper">
-						{{student_filtering_form.older_than_18.label_tag}}
-						{{student_filtering_form.older_than_18}}
-					</div>
-				</div>
-				<h3>
-				<a href="#">Search Options</a>
-				</h3>
-				<div>
-					<div class="select_wrapper">
-						{{student_filtering_form.ordering.label_tag}}
-						{{student_filtering_form.ordering}}
-					</div>
-					<div class="select_wrapper">
-						{{student_filtering_form.results_per_page.label_tag}}
-						{{student_filtering_form.results_per_page}}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="resume_book_block" class="side_block">
-		<div class="side_block_header">
-			<img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
-			<span class="side_block_header_title">Create Resume Book</span>	
-		</div>
-		<div class="side_block_content clearfix">
-			<input id="student_deliver_resume_book_button" class="dark_button" value="Deliver">
-			<div id="num_of_students_in_resume_book_section">
-				<b>Currently Included: </b><span id="num_of_students_in_resume_book"></span>				
-				<img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-			</div>
+    <div id="student_list_block" class="side_block">
+        <div class="side_block_header">
+            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+            <span class="side_block_header_title">Choose Student List</span>
+        </div>
+        <div class="side_block_content">
+            <div id="student_list_section">
+                {{student_filtering_form.student_list}}
+            </div>
+        </div>
+    </div>
+    <div id="filtering_block" class="side_block">
+        <div class="side_block_header">
+            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png"/>
+            <span class="side_block_header_title">Search & Filter</span>
+        </div>
+        <div class="side_block_content">
+            <div id="search_section">
+                {{student_search_form.query}}
+            </div>
+            <div id="filtering_accordion">
+                <h3>
+                <a href="#">Academic Info</a>
+                </h3>
+                <div id="academic_info_section">
+                    <div>
+                        {{student_filtering_form.majors}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.school_years}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.graduation_years}}
+                    </div>
+                    <div id="gpa_filter_section" class="slider_section">
+                        <div></div>
+                        {{student_filtering_form.gpa.label_tag}}
+                        {{student_filtering_form.gpa}}
+                    </div>
+                </div>
+                <h3>
+                <a href="#">Test Scores</a>
+                </h3>
+                <div id="test_scores_section">
+                    <div id="act_filter_section" class="slider_section">
+                        <div></div>
+                        {{student_filtering_form.act.label_tag}}
+                        {{student_filtering_form.act}}
+                    </div>
+                    <div id="sat_t_filter_section" class="slider_section">
+                        <div></div>
+                        {{student_filtering_form.sat_t.label_tag}}
+                        {{student_filtering_form.sat_t}}
+                    </div>
+                    <div id="sat_m_filter_section" class="slider_section">
+                        <div></div>
+                        {{student_filtering_form.sat_m.label_tag}}
+                        {{student_filtering_form.sat_m}}
+                    </div>
+                    <div id="sat_v_filter_section" class="slider_section">
+                        <div></div>
+                        {{student_filtering_form.sat_v.label_tag}}
+                        {{student_filtering_form.sat_v}}
+                    </div>
+                    <div id="sat_w_filter_section" class="slider_section">
+                        <div></div>
+                        {{student_filtering_form.sat_w.label_tag}}
+                        {{student_filtering_form.sat_w}}
+                    </div>
+                </div>
+                <h3>
+                <a href="#">Work Info</a>
+                </h3>
+                <div>
+                    <div>
+                        {{student_filtering_form.employment_types}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.previous_employers}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.industries_of_interest}}
+                    </div>
+                </div>
+                <h3>
+                <a href="#">Miscellaneous Info</a>
+                </h3>
+                <div>
+                    <div>
+                        {{student_filtering_form.campus_involvement}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.ethnicities}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.languages}}
+                    </div>
+                    <div>
+                        {{student_filtering_form.countries_of_citizenship}}
+                    </div>
+                    <div class="select_wrapper">
+                        {{student_filtering_form.gender.label_tag}}
+                        {{student_filtering_form.gender}}
+                    </div>
+                    <div class="select_wrapper">
+                        {{student_filtering_form.older_than_18.label_tag}}
+                        {{student_filtering_form.older_than_18}}
+                    </div>
+                </div>
+                <h3>
+                <a href="#">Search Options</a>
+                </h3>
+                <div>
+                    <div class="select_wrapper">
+                        {{student_filtering_form.ordering.label_tag}}
+                        {{student_filtering_form.ordering}}
+                    </div>
+                    <div class="select_wrapper">
+                        {{student_filtering_form.results_per_page.label_tag}}
+                        {{student_filtering_form.results_per_page}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="resume_book_block" class="side_block">
+        <div class="side_block_header">
+            <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
+            <span class="side_block_header_title">Create Resume Book</span>    
+        </div>
+        <div class="side_block_content clearfix">
+            <input id="student_deliver_resume_book_button" class="dark_button" value="Deliver">
+            <div id="num_of_students_in_resume_book_section">
+                <b>Currently Included: </b><span id="num_of_students_in_resume_book"></span>                
+                <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div id="results_block">
-	<div id="results_block_info_section">
-		<div id="results_block_info">
-		</div>
-	</div>
-	<div id="results_block_content">
-	</div>
+    <div id="results_block_info_section">
+        <div id="results_block_info">
+        </div>
+    </div>
+    <div id="results_block_content">
+    </div>
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@
         var sliderWidth=$('#firm_thumb_scroller').width();
         var itemWidth=$('#firm_thumb_scroller .firm_thumb_content').width();
         $('#firm_thumb_scroller .firm_thumb_content').each(function (i) {
-                        totalContent=i*itemWidth;	
+                        totalContent=i*itemWidth;    
                         $('#firm_thumb_scroller #firm_thumb_container').css("width",totalContent+itemWidth);
         });
         $('#firm_thumb_scroller').mousemove(function(e){

@@ -5,28 +5,28 @@ Copyright 2011. All Rights Reserved.
 -->
 
 <form id="employer_subscriptions_form" method='POST' action="/employer_subscriptions" enctype="multipart/form-data">
-	{% csrf_token %}
-	<h3>Select which employers you wish to subscribe to below.</h3>
-	<div class="errorspace">
-	</div>
-	<div>
-		<label class="required" for="id_subscribed_employers">Subscribe Me To:</label>
-		{{form.subscribed_employers}}
-	</div>
-	<br>
+    {% csrf_token %}
+    <h3>Select which employers you wish to subscribe to below.</h3>
+    <div class="errorspace">
+    </div>
+    <div>
+        <label class="required" for="id_subscribed_employers">Subscribe Me To:</label>
+        {{form.subscribed_employers}}
+    </div>
+    <br>
 
-	<ul id="suggested_employers_list">
-	</ul>
-	<div id="employer_suggestions_info">
-		<label>
-			<strong>Our Suggestions:</strong>
-		</label>
-		<p id="click_to_add_note">
-			(click to add)
-		</p>
-	</div>
-	<div class="button_wrapper_with_margins">
-		<input id="employer_subscriptions_form_submit_button" class="button" type='submit' value='Submit'>
-		<img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-	</div>
+    <ul id="suggested_employers_list">
+    </ul>
+    <div id="employer_suggestions_info">
+        <label>
+            <strong>Our Suggestions:</strong>
+        </label>
+        <p id="click_to_add_note">
+            (click to add)
+        </p>
+    </div>
+    <div class="button_wrapper_with_margins">
+        <input id="employer_subscriptions_form_submit_button" class="button" type='submit' value='Submit'>
+        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+    </div>
 </form>

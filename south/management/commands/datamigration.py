@@ -39,7 +39,7 @@ class Command(BaseCommand):
         # --stdout means name = -
         if stdout:
             name = "-"
-	
+    
         # Only allow valid names
         if re.search('[^_\w]', name) and name != "-":
             self.error("Migration names should contain only alphanumeric characters and underscores.")

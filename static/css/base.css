@@ -43,18 +43,18 @@ p {
     margin-left: -493px;
 }
 #below_header_message_wrapper{
-	text-align: center;
+    text-align: center;
 }
 #below_header_message_wrapper p{
-	background:#7AA7CC;
-	border-radius: 0 0 3px 3px;
-	bottom:2px;
-	color:white;
-	display:inline;
-	font-weight:bold;
-	margin-top:0;
-	padding:0 11px 2px;
-	position:relative;
+    background:#7AA7CC;
+    border-radius: 0 0 3px 3px;
+    bottom:2px;
+    color:white;
+    display:inline;
+    font-weight:bold;
+    margin-top:0;
+    padding:0 11px 2px;
+    position:relative;
 }
 .below_header_message {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -235,10 +235,10 @@ p {
     margin-top:20px;
     margin-bottom: 20px;
     text-align:center;
-	line-height:20px;
+    line-height:20px;
 }
 .message_section p{
-	line-height:20px;
+    line-height:20px;
 }
 .main_block, .side_block {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -435,10 +435,10 @@ p {
     color:#FFF;
 }
 a.dark_button{
-	color:#FFF;
-	height:26px;
-	line-height:27px;
-}	
+    color:#FFF;
+    height:26px;
+    line-height:27px;
+}    
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     behavior: url(/static/lib/pie/PIE.htc);
     background: #EAEAEA;

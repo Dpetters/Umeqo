@@ -3,19 +3,19 @@
 }
 
 #login_form .error_section{
-	margin-bottom:5px;
-	margin-top:0px;
+    margin-bottom:5px;
+    margin-top:0px;
 }
 
 #login_button a {
     behavior: url(/static/lib/pie/PIE.htc);
-	background: #444;
-	background: -moz-linear-gradient(#555, #333);
-	background: -webkit-gradient(#555, #333);
-	background: -webkit-linear-gradient(#555, #333);
-	background: -o-linear-gradient(#555, #333);
-	background: linear-gradient(#555, #333);
-	-pie-background: linear-gradient(#555, #333);
+    background: #444;
+    background: -moz-linear-gradient(#555, #333);
+    background: -webkit-gradient(#555, #333);
+    background: -webkit-linear-gradient(#555, #333);
+    background: -o-linear-gradient(#555, #333);
+    background: linear-gradient(#555, #333);
+    -pie-background: linear-gradient(#555, #333);
     color: #33BFE4;
     text-shadow: #000 0 -1px 0;
     border: 1px solid #000;
@@ -25,13 +25,13 @@
 }
 #login_button a:hover {
     behavior: url(/static/lib/pie/PIE.htc);
-	background: #707070;
-	background: -moz-linear-gradient(#707070, #333);
-	background: -webkit-gradient(#707070, #333);
-	background: -webkit-linear-gradient(#707070, #333);
-	background: -o-linear-gradient(#707070, #333);
-	background: linear-gradient(#707070, #333);
-	-pie-background: linear-gradient(#707070, #333);
+    background: #707070;
+    background: -moz-linear-gradient(#707070, #333);
+    background: -webkit-gradient(#707070, #333);
+    background: -webkit-linear-gradient(#707070, #333);
+    background: -o-linear-gradient(#707070, #333);
+    background: linear-gradient(#707070, #333);
+    -pie-background: linear-gradient(#707070, #333);
     color: #33BFE4;
 }
 
@@ -84,8 +84,8 @@
 }
 
 #reset_password_link{
-	float:right;
-	margin:6px 8px 0 0;
+    float:right;
+    margin:6px 8px 0 0;
 }
 
 .fade_input_label {

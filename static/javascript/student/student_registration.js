@@ -19,9 +19,9 @@ $(document).ready( function() {
                     switch(jqXHR.status){
                         case 0:
                             if (errorThrown.slice(0, 12-errorThrown.length)=="Invalid JSON"){
-                            	$("#student_registration_block .main_block_content").html(page_error_message);
+                                $("#student_registration_block .main_block_content").html(page_error_message);
                             }
-                        	$("#student_registration_form .error_section").html(form_check_connection_message);
+                            $("#student_registration_form .error_section").html(form_check_connection_message);
                             break;
                         default:
                             $("#student_registration_block .main_block_content").html(page_error_message);
@@ -32,25 +32,25 @@ $(document).ready( function() {
                     console.log(data);
                     switch(data.valid) {
                         case false:
-                        	if (data.form_errors.email){
-                        		element = $("#id_email");
-                        		element.css('border', '1px solid red').focus().val("");
-                        		place_errors_ajax_table(data.form_errors.email, element);
-                        	}
-                        	else if (data.form_errors.__all__){
-                        		place_non_field_ajax_errors(data.form_errors.__all__, "#student_registration_form");
-		                        if(data.form_errors.__all__[0] == PASSWORDS_DONT_MATCH_MESSAGE){
-		                        	$("#id_password1").css('border', '1px solid red').focus().val("");
-		                        	$("#id_password2").css('border', '1px solid red').val("");		                        	
-		                        }
-                        	}
-		                    break;
-		                case true:
+                            if (data.form_errors.email){
+                                element = $("#id_email");
+                                element.css('border', '1px solid red').focus().val("");
+                                place_errors_ajax_table(data.form_errors.email, element);
+                            }
+                            else if (data.form_errors.__all__){
+                                place_non_field_ajax_errors(data.form_errors.__all__, "#student_registration_form");
+                                if(data.form_errors.__all__[0] == PASSWORDS_DONT_MATCH_MESSAGE){
+                                    $("#id_password1").css('border', '1px solid red').focus().val("");
+                                    $("#id_password2").css('border', '1px solid red').val("");                                    
+                                }
+                            }
+                            break;
+                        case true:
                             window.location.replace(data.success_url);
                             break;
                         default:
-                    		$("#student_registration_block .main_block_content").html(page_error_message);
-                    		break;
+                            $("#student_registration_block .main_block_content").html(page_error_message);
+                            break;
                     }
                 }
             });
@@ -69,9 +69,9 @@ $(document).ready( function() {
                         switch(jqXHR.status){
                             case 0:
                                 if (errorThrown.slice(0, 12-errorThrown.length)=="Invalid JSON"){
-									$("#student_registration_block .main_block_content").html(page_error_message);
-	                            }
-                            	$("#student_registration_form .error_section").html(form_check_connection_message);
+                                    $("#student_registration_block .main_block_content").html(page_error_message);
+                                }
+                                $("#student_registration_form .error_section").html(form_check_connection_message);
                                 break;
                             default:
                                 $("#student_registration_block .main_block_content").html(page_error_message);

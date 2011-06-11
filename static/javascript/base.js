@@ -96,8 +96,8 @@ function unhighlight(element, errorClass) {
  * Currently we show on field error at a time
  */
 function place_errors_ajax(errors, element){
-	var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-	place_errors($(error), element);
+    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
+    place_errors($(error), element);
 }
 
 /*
@@ -105,15 +105,15 @@ function place_errors_ajax(errors, element){
  * Currently we show on field error at a time
  */
 function place_errors_ajax_table(errors, element){
-	var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-	place_errors_table($(error), element);
+    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
+    place_errors_table($(error), element);
 };
 
 /*
  * Places non-field errors which got returned from an ajax submit in the error section of a form
  */
 function place_non_field_ajax_errors(errors, form){
-	$(form + " .error_section").html(errors.__all__[0]);
+    $(form + " .error_section").html(errors.__all__[0]);
 };
 function place_errors(error, element) {
     $(error).appendTo(element.parent().prev());
@@ -285,7 +285,7 @@ $(document).ready( function () {
                                 }
                             },
                             success: function (data) {
-                            	console.log(data);
+                                console.log(data);
                                 hide_form_submit_loader("#contact_form");
                                 switch(data.valid) {
                                     case true:
@@ -295,13 +295,13 @@ $(document).ready( function () {
                                         break;
                                     case false:
                                         if (data.body_errors){
-											$(".contact_us_dialog .error_section").html(data.body_errors);
-					                        $("#id_body").css('border', '1px solid red').focus();
-					                        break;
-			                        	}
+                                            $(".contact_us_dialog .error_section").html(data.body_errors);
+                                            $("#id_body").css('border', '1px solid red').focus();
+                                            break;
+                                        }
                                         if (data.non_field_errors){
-											$(".contact_us_dialog .error_section").html(data.non_field_errors);
-			                        	}
+                                            $(".contact_us_dialog .error_section").html(data.non_field_errors);
+                                        }
                                         break;
                                     default:
                                         contact_us_dialog.html(dialog_error_message);

@@ -17,15 +17,15 @@ Copyright 2011. All Rights Reserved.
     </div>
 </div>
 <form id="deliver_resume_book_form" method='POST' action="/employer/resume-books/email/">
-	{% csrf_token %}
-	<table class="form_table">
-		<tr>
-			<th>{{deliver_resume_book_form.delivery_type.label_tag}}</th>
-			<td>
-				<div class="errorspace"></div>
-				{{deliver_resume_book_form.delivery_type}}
-			</td>
-		</tr>
+    {% csrf_token %}
+    <table class="form_table">
+        <tr>
+            <th>{{deliver_resume_book_form.delivery_type.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{deliver_resume_book_form.delivery_type}}
+            </td>
+        </tr>
         <tr>
             <th>{{deliver_resume_book_form.name.label_tag}}</th>
             <td>
@@ -33,19 +33,19 @@ Copyright 2011. All Rights Reserved.
                 {{deliver_resume_book_form.name}}
             </td>
         </tr>
-		<tr class="email_delivery_type_only_field">
-			<th>{{deliver_resume_book_form.email.label_tag}}</th>
-			<td>
-				<div class="errorspace"></div>
-				{{deliver_resume_book_form.email}}
-			</td>
-		</tr>
-	</table>
-	<div class="error_section error">
-	</div>
-	<div class="button_wrapper_with_margins">
-	    <a id="download_resume_book_link" href="/employer/resume-books/download/"></a>
-		<input id="deliver_resume_book_form_submit_button" class="button" type='submit' value='Download'>
-		<img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-	</div>
+        <tr class="email_delivery_type_only_field">
+            <th>{{deliver_resume_book_form.email.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{deliver_resume_book_form.email}}
+            </td>
+        </tr>
+    </table>
+    <div class="error_section error">
+    </div>
+    <div class="button_wrapper_with_margins">
+        <a id="download_resume_book_link" href="/employer/resume-books/download/"></a>
+        <input id="deliver_resume_book_form_submit_button" class="button" type='submit' value='Download'>
+        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+    </div>
 </form>

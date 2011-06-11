@@ -20,7 +20,7 @@ $(document).ready( function () {
                 dataType: 'json',
                 data: {next: get_parameter_by_name('next')},
                 beforeSubmit: function (arr, $form, options) {
-                	$("#login_form .error_section").html("");
+                    $("#login_form .error_section").html("");
                     show_form_submit_loader("#login_form");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -37,7 +37,7 @@ $(document).ready( function () {
                     hide_form_submit_loader("#login_form");
                     switch(data.valid) {
                         case false:
-                       		$("#login_form .error_section").html(data.error);
+                               $("#login_form .error_section").html(data.error);
                             break;
                         case true:
                             window.location = data.success_url;

@@ -33,7 +33,7 @@ Copyright 2011. All Rights Reserved.
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_form.css"/>
 <!-- Scripts -->
 <script type="text/javascript">
-	var RESUME_MUST_BE_A_PDF_MESSAGE = "{{resume_must_be_a_pdf_message}}";
+    var RESUME_MUST_BE_A_PDF_MESSAGE = "{{resume_must_be_a_pdf_message}}";
 </script>
 {% endblock %}
 
@@ -69,65 +69,65 @@ Copyright 2011. All Rights Reserved.
                     </div>
                 </div>
                 <div id="required_info_page">
-                	<table class="form_table">
-                		<tr>
-                			<th>{{form.first_name.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.first_name}}
-                			</td>
-                		</tr>
+                    <table class="form_table">
                         <tr>
-                			<th>{{form.last_name.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.last_name}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.school_year.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.school_year}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.graduation_year.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.graduation_year}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.first_major.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.first_major}}
-                			</td>
-                		</tr>
-                		<tr id="gpa_section">
-                			<th>{{form.gpa.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.gpa}}
-               					<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.resume.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.resume}}
-                			</td>
-                		</tr>
-                	</table>
-                	<div class="error_section error">
-                    	{% if form.errors %}
-						    {% for field, errors in form.errors.items %}
-						        {{ errors|escape }}
-						    {% endfor %}
-						{% endif %}
-					</div>
+                            <th>{{form.first_name.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.first_name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.last_name.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.last_name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.school_year.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.school_year}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.graduation_year.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.graduation_year}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.first_major.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.first_major}}
+                            </td>
+                        </tr>
+                        <tr id="gpa_section">
+                            <th>{{form.gpa.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.gpa}}
+                                   <div class="slider"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.resume.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.resume}}
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="error_section error">
+                        {% if form.errors %}
+                            {% for field, errors in form.errors.items %}
+                                {{ errors|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="button_wrapper_with_margins">
                         <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Submit" value='Submit'>
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
@@ -167,75 +167,75 @@ Copyright 2011. All Rights Reserved.
                     </div>
                 </div>
                 <div id="academic_info_page">
-                	<table class="form_table">
-                		<tr>
-                			<th>{{form.looking_for.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.looking_for}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.industries_of_interest.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.industries_of_interest}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.previous_employers.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.previous_employers}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.second_major.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.second_major}}
-                			</td>
-                		</tr>
-                		<tr id="act_section">
-                			<th>{{form.act.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.act}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr id="sat_m_section">
-                			<th>{{form.sat_m.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.sat_m}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr id="sat_v_section">
-                			<th>{{form.sat_v.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.sat_v}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr id="sat_w_section">
-                			<th>{{form.sat_w.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.sat_w}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                	</table>
-                	<div class="error_section error">
-                    	{% if form.errors %}
-						    {% for field, errors in form.errors.items %}
-						        {{ errors|escape }}
-						    {% endfor %}
-						{% endif %}
-					</div>
+                    <table class="form_table">
+                        <tr>
+                            <th>{{form.looking_for.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.looking_for}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.industries_of_interest.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.industries_of_interest}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.previous_employers.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.previous_employers}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.second_major.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.second_major}}
+                            </td>
+                        </tr>
+                        <tr id="act_section">
+                            <th>{{form.act.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.act}}
+                                  <div class="slider"></div>
+                            </td>
+                        </tr>
+                        <tr id="sat_m_section">
+                            <th>{{form.sat_m.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.sat_m}}
+                                  <div class="slider"></div>
+                            </td>
+                        </tr>
+                        <tr id="sat_v_section">
+                            <th>{{form.sat_v.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.sat_v}}
+                                  <div class="slider"></div>
+                            </td>
+                        </tr>
+                        <tr id="sat_w_section">
+                            <th>{{form.sat_w.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.sat_w}}
+                                  <div class="slider"></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="error_section error">
+                        {% if form.errors %}
+                            {% for field, errors in form.errors.items %}
+                                {{ errors|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
                         <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
@@ -250,7 +250,7 @@ Copyright 2011. All Rights Reserved.
                 </div>
             </div>
         </li>
-		<li id="pg3">
+        <li id="pg3">
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
@@ -267,64 +267,64 @@ Copyright 2011. All Rights Reserved.
                     </div>
                 </div>
                 <div id="miscellaneous_info_page">
-                	<table class="form_table">
-                		<tr>
-                			<th>{{form.campus_involvement.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.campus_involvement}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.website.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.website}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.ethnicity.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.ethnicity}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.languages.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.languages}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.countries_of_citizenship.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.countries_of_citizenship}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.gender.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.gender}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.older_than_18.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.older_than_18}}
-                			</td>
-                		</tr>
-                	</table>
+                    <table class="form_table">
+                        <tr>
+                            <th>{{form.campus_involvement.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.campus_involvement}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.website.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.website}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.ethnicity.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.ethnicity}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.languages.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.languages}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.countries_of_citizenship.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.countries_of_citizenship}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.gender.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.gender}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.older_than_18.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.older_than_18}}
+                            </td>
+                        </tr>
+                    </table>
                     <div class="error_section error">
-                    	{% if form.errors %}
-						    {% for field, errors in form.errors.items %}
-						        {{ errors|escape }}
-						    {% endfor %}
-						{% endif %}
-					</div>
+                        {% if form.errors %}
+                            {% for field, errors in form.errors.items %}
+                                {{ errors|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack2" type="button" class="open1 button" value="Back" alt="Back" />
                         <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
