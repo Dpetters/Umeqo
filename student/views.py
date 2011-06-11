@@ -322,21 +322,21 @@ def compute_suggested_employers_list(student, exclude = None):
     if exclude:
         for industry in student.industries_of_interest.all():
             for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]).exclude(company_name__in=[n for n in exclude]):
-                suggested_employers.append(employer.    name)
+                suggested_employers.append(employer.name)
     
         for employer in student.previous_employers.all():
             for industry in employer.industry.all():
                 for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]).exclude(    name__in=[n for n in exclude]):
-                    suggested_employers.append(employer.    name)
+                    suggested_employers.append(employer.name)
     else:
         for industry in student.industries_of_interest.all():
             for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]):
-                suggested_employers.append(employer.    name)
+                suggested_employers.append(employer.name)
     
         for employer in student.previous_employers.all():
             for industry in employer.industry.all():
                 for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]):
-                    suggested_employers.append(employer.    name)
+                    suggested_employers.append(employer.name)
     
     random.shuffle(suggested_employers)
 
