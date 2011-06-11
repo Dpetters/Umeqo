@@ -49,7 +49,7 @@
    ], 
    "act": 34, 
    "date_created": "2011-05-22 20:02:37", 
-   "older_than_18": true
+   "older_than_18": "True"
   }
  }, 
  {
@@ -87,7 +87,7 @@
    "industries_of_interest": [], 
    "act": 35, 
    "date_created": "2011-05-23 21:58:49", 
-   "older_than_18": true
+   "older_than_18": "True"
   }
  }, 
  {
@@ -177,7 +177,7 @@
    ], 
    "act": 36, 
    "date_created": "2011-05-23 22:01:57", 
-   "older_than_18": true
+   "older_than_18": "True"
   }
  }, 
  {

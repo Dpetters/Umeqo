@@ -9,10 +9,10 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-05-27 00:42:44", 
+   "last_login": "2011-06-11 12:24:19", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$354f6$2e7c3cc9147e536fa4f1f7ec0355351ecb66d22c", 
+   "password": "sha1$bdeef$43732d4a5bfd22cdf03f95f024c3c6b6fa5beaa6", 
    "email": "umeqo@mit.edu", 
    "date_joined": "2011-05-22 19:39:52"
   }
@@ -30,7 +30,7 @@
    "last_login": "2011-06-06 22:37:48", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$a3706$6eaeee60f31e6d181152fc51aeb9456e0e53ef56", 
+   "password": "sha1$40235$2e395e3eba5d0af98846688405f69ce5781f98af", 
    "email": "melindo@sampleemployer1.com", 
    "date_joined": "2011-05-22 19:49:19"
   }
@@ -48,7 +48,7 @@
    "last_login": "2011-06-05 22:49:12", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$25072$bb6daae2faf3d3a21019ab5ffee23b4d83c9e0d5", 
+   "password": "sha1$f9550$075e3dc7f29336844ae6a349e8b7edc9e3097a1f", 
    "email": "samplestudent1@mit.edu", 
    "date_joined": "2011-05-22 20:02:14"
   }
@@ -66,7 +66,7 @@
    "last_login": "2011-05-22 23:07:01", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$aeedf$9c66b79d260e2e433fd3a008781609bb4dfbb10c", 
+   "password": "sha1$72f12$3935b1bcc2d30378b00bef21f935c7d3e4b47023", 
    "email": "macgarva@sampleemployer2.com", 
    "date_joined": "2011-05-22 23:07:01"
   }
@@ -84,7 +84,7 @@
    "last_login": "2011-05-22 23:08:27", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$3c4b9$802166eddf1c66ed3beb3b8389d542bab7fc5aae", 
+   "password": "sha1$7a537$7a51d82699da93b6e4e7c1304a988d134e3fa197", 
    "email": "parker@sampleemployer3.com", 
    "date_joined": "2011-05-22 23:08:27"
   }
@@ -102,7 +102,7 @@
    "last_login": "2011-06-05 21:53:22", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$cd807$0b289d09cb3dc2fe5a76554420e6007f0abff645", 
+   "password": "sha1$13b5b$3ba6a77698b2cfea4ec6f467941e2b6e01ff3293", 
    "email": "samplestudent2@mit.edu", 
    "date_joined": "2011-05-23 21:58:38"
   }
@@ -120,7 +120,7 @@
    "last_login": "2011-06-05 22:04:13", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$510fb$91e0694970d5f99d80d3eb7192049e12c3247a1b", 
+   "password": "sha1$5e810$14cd5a5e127f292d797962d91c5f535cd5614f27", 
    "email": "samplestudent3@mit.edu", 
    "date_joined": "2011-05-23 22:01:47"
   }
