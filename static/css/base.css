@@ -42,6 +42,20 @@ p {
     left: 50%;
     margin-left: -493px;
 }
+#below_header_message_wrapper{
+	text-align: center;
+}
+#below_header_message_wrapper p{
+	background:#7AA7CC;
+	border-radius: 0 0 3px 3px;
+	bottom:2px;
+	color:white;
+	display:inline;
+	font-weight:bold;
+	margin-top:0;
+	padding:0 11px 2px;
+	position:relative;
+}
 .below_header_message {
 	behavior: url(/static/lib/pie/PIE.htc);
 	background: #F9F9F9;

@@ -221,7 +221,7 @@
 .page_link, .current_page_link, .disabled_page_link {
 	margin-top:1px;
 	font-size: 12px;
-	border:1px solid #303030;
+	border:1px solid #808080;
 	padding:2px;
 	text-decoration:none;
 }

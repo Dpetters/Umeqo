@@ -94,7 +94,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/account-settings/$', 'employer_account_settings', {}, 'employer_account_settings'),
     # Employer Student Filtering
     (r'^employer/filtering-setup/$', 'employer_setup_default_filtering', {}, 'employer_setup_default_filtering'),
-    (r'^employer/students/$', 'employer_students', {}, 'employer_students'),
+    (r'^employer/students/*$', 'employer_students', {}, 'employer_students'),
     (r'^employer/resume-books/download/$', 'employer_resume_books_download', {}, 'employer_resume_books_download'),
     (r'^employer/resume-books/email/$', 'employer_resume_books_email', {}, 'employer_resume_books_email'),    
     (r'^employer/resume-books/deliver/$', 'employer_resume_books_deliver', {}, 'employer_resume_books_deliver'),

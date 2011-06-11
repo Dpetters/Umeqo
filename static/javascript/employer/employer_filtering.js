@@ -249,42 +249,47 @@ $(document).ready( function() {
 			if (this.checked)
 				ids.push($(this).attr('num'));
 		});
-		$.ajax({
-			type: 'POST',
-			url: "/employer/resume-book/students/add/",
-			dataType: "json",
-			data: {
-				'student_ids': ids.join('~'),
-			},
-			beforeSend: function (jqXHR, settings) {
-				$(ids).each( function() {
-					place_tiny_ajax_loader(".student_toggle_resume_book_link[num=" + this + "]");
-				});
-			},
-			success: function (data) {
-				initiate_resume_book_summary_update();
-				switch(data.valid) {
-					case true:
-						$(ids).each( function() {
-							$(".student_toggle_resume_book_link[num=" + this + "]").html(REMOVE_FROM_RESUME_BOOK_IMG);
-						});
-						break;
-					case false:
-					default:
-						show_error_dialog(page_error_message);
-						break;
-				};
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				switch(jqXHR.status) {
-					case 0:
-						show_error_dialog(page_check_connection_message);
-						break;
-					default:
-						show_error_dialog(page_error_message);
-				}
-			},
-		});
+
+		if(ids.length){			
+			$.ajax({
+				type: 'POST',
+				url: "/employer/resume-book/students/add/",
+				dataType: "json",
+				data: {
+					'student_ids': ids.join('~'),
+				},
+				beforeSend: function (jqXHR, settings) {
+					$(ids).each( function() {
+						place_tiny_ajax_loader(".student_toggle_resume_book_link[num=" + this + "]");
+					});
+				},
+				success: function (data) {
+					initiate_resume_book_summary_update();
+					switch(data.valid) {
+						case true:
+							$(ids).each( function() {
+								$(".student_toggle_resume_book_link[num=" + this + "]").html(REMOVE_FROM_RESUME_BOOK_IMG);
+							});
+							break;
+						case false:
+						default:
+							show_error_dialog(page_error_message);
+							break;
+					};
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					switch(jqXHR.status) {
+						case 0:
+							show_error_dialog(page_check_connection_message);
+							break;
+						default:
+							show_error_dialog(page_error_message);
+					}
+				},
+			});
+		} else {
+			$("#below_header_area").html("<div id='below_header_message_wrapper'><p>No students selected.</p></div>");
+		}
 	};
 
 	function handle_student_toggle_resume_book_link_click(e) {
