@@ -1,0 +1,23 @@
+#employers_list_block .main_block_content {
+    padding: 0;
+    position: relative;
+}
+#employers_listings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    overflow-y: scroll;
+}
+#employers_listings .employers_listing {
+    padding: 5px;
+}
+#employers_listings .employers_listing h2 {
+    font-size: 14px;
+}
+#employers_events {
+    margin-left: 200px;
+    min-height: 40px;
+    padding: 10px;
+}

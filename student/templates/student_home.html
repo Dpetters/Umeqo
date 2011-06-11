@@ -65,18 +65,16 @@ Copyright 2011. All Rights Reserved.
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Events and Deadlines</span>
+            <div class="main_block_header_content">
+                <a class="button sub-button" href="{% url employers_list %}">Browse Employers</a>
+                <a class="button sub-button" href="{% url events_list %}">Browse Events</a>
+            </div>
         </div>
         <div class="main_block_content">
             <div class="message_block">
                 <p>Browse events in full using the links below, or subscribe to employers to get automatic notifications of any new events.<p>
                 <br>
                 <p><a href="javascript:void(0)" id="setup_employer_subscriptions_link"><strong>Setup Employer Subscriptions</strong></a></p>
-            </div>
-        </div>
-        <div class="main_block_footer">
-            <div class="main_block_footer_links">
-                <a id="events_by_company_link" href="javascript:void(0)">Browse Events by Employer</a>&nbsp&nbsp
-                <a href="{% url events_list %}">Browse All Events</a>
             </div>
         </div>
     </div>

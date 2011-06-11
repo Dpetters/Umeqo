@@ -15,13 +15,13 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest
 from django.utils import simplejson
 
-from employer.models import ResumeBook
+from employer.models import ResumeBook, Employer
 from employer.forms import EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm, StudentCommentForm
 from employer.view_helpers import get_cached_paginator
 from employer import enums as employer_enums
 from employer import snippets as employer_snippets
 
-from core.decorators import is_recruiter
+from core.decorators import is_student, is_recruiter
 from events.forms import EventForm
 from events.models import Event
 from student.models import Student
@@ -435,4 +435,13 @@ def employer_student_filtering(request,
 def employer_invitations(request, template_name='employer_invitations.html', extra_context=None):
     context = {}
     context.update(extra_context or {})  
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def employers_list(request, template_name='employers_list.html', extra_content=None):
+    employers = Employer.objects.all()
+    context = {
+        'employers': employers
+    }
     return render_to_response(template_name, context, context_instance=RequestContext(request))

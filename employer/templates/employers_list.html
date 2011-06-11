@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+| Employers
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers_list.css" />
+{% endblock %}
+
+{% block content_area %}
+<div id="employers_list_block" class="main_block">
+    <div class="main_block_header">
+        <span class="main_block_header_title">Employers Listing</span>
+    </div>
+    <div class="main_block_content">
+        <div id="employers_listings">
+            {% for employer in employers %}
+                <div class="employers_listing">
+                    <h2>{{employer.company_name}}</h2>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="employers_events">
+            test content
+        </div>
+    </div>
+</div>
+{% endblock %}

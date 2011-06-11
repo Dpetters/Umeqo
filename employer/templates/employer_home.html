@@ -56,7 +56,7 @@ Copyright 2011. All Rights Reserved.
         {% endfor %}
     </div>
 </div>
-<div id="browse_students_block" class="main_block">
+<div class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
         <span class="main_block_header_title">Browse Students</span>
@@ -84,9 +84,9 @@ Copyright 2011. All Rights Reserved.
 <div id="events_and_deadlines_block" class="main_block">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
-        <span class="main_block_header_title">Events and Deadlines</span>
+        <span class="main_block_header_title">Your Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="/employer/events/new" class="button sub-button"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png"/><span>Add New Event</span></a>
+            <a href="{% url employer_new_event %}" class="button sub-button">New Event</a>
         </div>
     </div>
     <div class="main_block_content">

@@ -27,7 +27,7 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
 {% endblock %}
 
 {% block content_area %}
-<div id="browse_students_block" class="main_block">
+<div id="event_page_block" class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">{{event.name}}</span>
@@ -47,12 +47,10 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             <div id="event_rsvps">
                 <table id="event_numbers">
                     <tr>
-                        <td class="number">{{rsvps|length}}</td>
-                        <td class="number_label">attending</td>
+                        <td>{{rsvps|length}} attending</td>
                     </tr>
                     <tr>
-                        <td class="number">{{event.view_count}}</td>
-                        <td class="number_label">pageview{{event.view_count|pluralize}}</td>
+                        <td>{{event.view_count}} pageview{{event.view_count|pluralize}}</td>
                     </tr>
                 </table>
                 <h2>Attending Students</h2>

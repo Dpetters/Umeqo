@@ -1,9 +1,9 @@
-#browse_students_block {
+#event_page_block {
     border-left: none;
     border-right: none;
     border-bottom: none;
 }
-#browse_students_block .main_block_header {
+#event_page_block .main_block_header {
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
 }
