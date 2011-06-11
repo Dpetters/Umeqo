@@ -112,7 +112,7 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             </tr>
             <tr>
                 <th>Created by:</th>
-                <td>{% for recruiter in recruiters %}{{recruiter.employer.company_name}}{% endfor %}</td>
+                <td>{% for recruiter in recruiters %}{{recruiter.employer.name}}{% endfor %}</td>
             </tr>
             <tr>
                 <th>Description:</th>

@@ -76,7 +76,8 @@ class StudentComment(models.Model):
     comment = models.CharField(max_length=500)
     
 class Employer(models.Model): 
-    company_name = models.CharField("Company Name", max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    description = models.CharField(max_length=500, blank=True, default="")
     slug = models.CharField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     
     industries = models.ManyToManyField(Industry)
@@ -87,7 +88,7 @@ class Employer(models.Model):
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     def __unicode__(self):
-        return self.company_name
+        return self.    name
     
 class EmployerPreferences(models.Model):
     email_on_rsvp = models.BooleanField()
