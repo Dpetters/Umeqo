@@ -7,12 +7,12 @@ Copyright 2011. All Rights Reserved.
 <div class="dialog_info_section">
     <div id="resume_book_summary" class="clearfix">
         <div id="resume_book_contents_div">
-            <p id="resume_book_contents_header">Contents</u>
-            <p id="resume_book_contents">{{resume_book.students.all|length}} student{{resume_book.students.all|pluralize}}</p>
+            <p id="resume_book_contents_header">Contents</p>
+            <a href="javascript:void(0)" id="switch_to_students_in_resume_book_student_list_dialog_link">{{resume_book.students.all|length}} student{{resume_book.students.all|pluralize}}</a>
         </div>
         <div id="resume_book_status_div">
              <p id="resume_book_status_header">Status</p>
-             <p id="resume_book_status">Being Created</p>
+             <p id="resume_book_status" class="warning">Being Created</p>
         </div>
     </div>
 </div>

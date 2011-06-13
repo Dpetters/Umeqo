@@ -88,7 +88,7 @@ class Employer(models.Model):
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     def __unicode__(self):
-        return self.    name
+        return self.name
     
 class EmployerPreferences(models.Model):
     email_on_rsvp = models.BooleanField()
