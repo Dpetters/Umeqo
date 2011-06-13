@@ -31,7 +31,11 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">{{event.name}}</span>
+        {% if user.student %}
+        <a href="{% url events_list %}" class="main_block_header_sidelink button sub-button">Event List</a>
+        {% else %}
         <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
+        {% endif %}
         {% if show_admin %}<a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>{% endif %}
     </div>
     <div class="sub_block">
@@ -112,7 +116,11 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             </tr>
             <tr>
                 <th>Created by:</th>
-                <td>{% for recruiter in recruiters %}{{recruiter.employer.name}}{% endfor %}</td>
+                <td>
+                    {% for recruiter in recruiters %}
+                        <a href="{% url employers_list %}?id={{recruiter.employer.id}}" class="employer">{{recruiter.employer.name}}</a>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Description:</th>

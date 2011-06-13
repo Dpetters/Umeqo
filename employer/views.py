@@ -31,6 +31,7 @@ from events.forms import EventForm
 from events.models import Event
 from student.models import Student
 from student import enums as student_enums
+from operator import attrgetter
 
 def employer_registration(request, 
                            template_name="employer_registration.html", 
@@ -541,7 +542,48 @@ def employer_invitations(request, template_name='employer_invitations.html', ext
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def employers_list(request, template_name='employers_list.html', extra_content=None):
     employers = Employer.objects.all()
+    try:
+        employer_id = int(request.GET.get('id',None))
+    except TypeError:
+        employer = employers[0]
+        employer_id = employer.id
+    else:
+        employer = employers.get(id=employer_id)
+    recruiter = employer.recruiter_set.all()[0]
+    
+    now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+    events = reduce(
+        lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+        employer.recruiter_set.all(),
+        []
+    )
     context = {
-        'employers': employers
+        'employers': employers,
+        'employer': employer,
+        'events': events,
+        'employer_id': employer_id
     }
     return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def employers_list_el(request, template_name='employers_list_el.html', extra_content=None):
+    employer_id = request.GET.get('id',None)
+    if employer_id and Employer.objects.filter(id=employer_id).exists():
+        employer = Employer.objects.get(id=employer_id)
+        
+        now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+        events = reduce(
+            lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+            employer.recruiter_set.all(),
+            []
+        )
+        events = sorted(events, key=attrgetter('end_datetime'), reverse=True)
+
+        context = {
+            'employer': employer,
+            'events': events
+        }
+        return render_to_response(template_name, context, context_instance=RequestContext(request))
+    else:
+        return HttpResponseBadRequest("Bad request.")

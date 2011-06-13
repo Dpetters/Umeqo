@@ -1,7 +1,5 @@
 {% for event in events %}
-    <li>
     {% include "event_snippet.html" %}
-    </li>
 {% empty %}
     <div id="event_list_empty">No matching events found.</div>
 {% endfor %}

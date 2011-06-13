@@ -177,7 +177,6 @@ def home(request,
         elif hasattr(request.user, "recruiter"):
             
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            print now_datetime
             your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             
             context = {
@@ -200,8 +199,8 @@ def home(request,
                }
     
     event_kwargs = {}
-    event_kwargs['start_datetime__gt'] = datetime.now()
-    events = Event.objects.filter(**event_kwargs).order_by("-start_datetime")
+    event_kwargs['end_datetime__gt'] = datetime.now()
+    events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")
     context['events'] = list(events)[:3]
     
     context.update(extra_context or {})

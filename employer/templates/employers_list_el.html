@@ -1,0 +1,15 @@
+<div class="industries">
+    {% for industry in employer.industries.all %}
+        <div>{{industry}}</div>
+    {% endfor %}
+</div>
+<h1>{{employer.name}}</h1>
+<div class="description">{{employer.description}}</div>
+<h2>Events</h2>
+<ul class="event_list editable_event_list">
+{% for event in events %}
+    {% include "event_snippet.html" %}
+{% empty %}
+    <li>This employer has no listed events.</li>
+{% endfor %}
+</ul>

@@ -89,6 +89,7 @@ urlpatterns += patterns('student.views',
 
 urlpatterns += patterns('employer.views',
     #Employer List
+    (r'^employers/el/$', 'employers_list_el', {}, 'employers_list_el'),
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
