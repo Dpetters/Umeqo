@@ -13,3 +13,8 @@
     <li>This employer has no listed events.</li>
 {% endfor %}
 </ul>
+{% if isnotajax %}
+    <input id="isnotajax" value="true" type="hidden" />
+{% else %}
+    <input id="isnotajax" value="false" type="hidden" />
+{% endif %}

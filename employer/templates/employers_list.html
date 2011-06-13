@@ -11,6 +11,7 @@
 <script>
     var EMPLOYERS_LIST_EL_URL = "{% url employers_list_el %}";
     var EMPLOYERS_LIST_URL = "{% url employers_list %}"
+    var FIRST_EMPLOYER_ID = {{employer.id}}
     var employer_ids = [
         {% for employer in employers %}
             "{{employer.id}}",
@@ -35,7 +36,7 @@
             {% endfor %}
         </div>
         <div id="employers_detail">
-            {% include "employers_list_el.html" with employer=employer events=events %}
+            {% include "employers_list_el.html" with employer=employer events=events isnotajax="True" %}
         </div>
     </div>
 </div>

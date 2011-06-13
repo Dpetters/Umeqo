@@ -23,4 +23,5 @@ $(document).ready(function(){
             filterEvents();
         }
     }
+    $('#event_search_query').focus();
 });
