@@ -366,10 +366,6 @@ def employer_students(request,
                                extra_context=None):
     
     context = {}
-    context['add_to_resume_book_img'] = employer_snippets.add_to_resumebook_img
-    context['remove_from_resume_book_img'] = employer_snippets.remove_from_resumebook_img
-    context['starred_img'] = employer_snippets.starred_img
-    context['unstarred_img'] = employer_snippets.unstarred_img
     context['show_details_link'] = employer_snippets.show_details_link
     context['hide_details_link'] = employer_snippets.hide_details_link
         
@@ -426,7 +422,9 @@ def employer_students(request,
             student.save()
         
         context.update(extra_context or {}) 
-        return render_to_response(result_template_name, context, context_instance=RequestContext(request))
+        return render_to_response(result_template_name,
+                                  context,
+                                  context_instance=RequestContext(request))
     else:
         cache.delete('paginator')
         cache.delete('ordered_results')

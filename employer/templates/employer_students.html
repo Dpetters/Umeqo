@@ -3,8 +3,10 @@ Developers : Dmitrij Petters,
 All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
-
 {% extends "base.html" %}
+
+{% load student_star %}
+{% load student_resume_book %}
 
 {% block title %}
 | Student Filtering
@@ -40,10 +42,13 @@ Copyright 2011. All Rights Reserved.
     
     var STARRED = "{{ starred }}";
     var UNSTARRED = "{{ unstarred }}";
-    var REMOVE_FROM_RESUME_BOOK_IMG = "{{ remove_from_resume_book_img|safe }}";
-    var ADD_TO_RESUME_BOOK_IMG = "{{ add_to_resume_book_img|safe }}";
-    var STARRED_IMG = "{{ starred_img|safe }}";
-    var UNSTARRED_IMG = "{{ unstarred_img|safe }}";
+    
+    var REMOVE_FROM_RESUME_BOOK_IMG = "{% student_resume_book 'True' %}";
+    var ADD_TO_RESUME_BOOK_IMG = "{% student_resume_book '' %}";
+    
+    var STARRED_IMG = "{% student_star 'True' %}";
+    var UNSTARRED_IMG = "{% student_star '' %}";
+    
     var SHOW_DETAILS_LINK = "{{ show_details_link|safe }}";
     var HIDE_DETAILS_LINK = "{{ hide_details_link|safe }}";
     var IN_RESUME_BOOK_STUDENT_LIST = "{{ in_resume_book_student_list }}";

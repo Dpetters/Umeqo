@@ -5,6 +5,9 @@ Copyright 2011. All Rights Reserved.
 -->
 
 {% load countries_tags %}
+{% load student_star %}
+{% load student_resume_book %}
+
 <span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
 <div id="results_navigation_section">
     {% if page.has_previous %}
@@ -77,7 +80,7 @@ Copyright 2011. All Rights Reserved.
             </span>
             <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
             <br />
-            <a num="{{student.id}}" class="student_toggle_resume_book_link" href="javascript:void(0)">{% if in_resume_book %} {{ remove_from_resume_book_img|safe }} {% else %} {{ add_to_resume_book_img|safe }} {% endif %}</a>
+            <a num="{{student.id}}" class="student_toggle_resume_book_link" href="javascript:void(0)">{% student_resume_book in_resume_book %}</a>
             <span class="student_major">
                 <strong>First Major:</strong>
                 {% if student.first_major.display %}
@@ -91,7 +94,7 @@ Copyright 2011. All Rights Reserved.
                 <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
             </p>
             <br />
-            <a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% if starred %} {{ starred_img|safe }} {% else %} {{unstarred_img|safe}} {% endif %}</a>
+            <a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% student_star starred %}</a>
             <textarea num="{{student.id}}" class="student_comment" placeholder="Add Note"></textarea>
             <a class="student_toggle_detailed_info_link" num="{{student.id}}"  href="javascript:void(0)">{{show_details_link|safe}}</a>
         </div>

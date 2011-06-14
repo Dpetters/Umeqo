@@ -6,8 +6,6 @@
 
 $(document).ready( function() {
 	var no_students_selected_message = "<p>No students selected.</p>";
-    var add_to_resumebook_link = '<img title="Add to Resume Book" class="student_resumebook_marker" src="' + STATIC_URL + 'images/icons/plus.png"/>';
-    var remove_from_resumebook_link = '<img title="Remove from Resume Book" class="student_resumebook_marker" src="' + STATIC_URL + 'images/icons/cross.png"/>';
     var star = ""
     var filtering_ajax_request = null;
     

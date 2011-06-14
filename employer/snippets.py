@@ -14,8 +14,3 @@ no_students_in_resume_book = results_message_beginning + messages.no_students_in
 
 hide_details_link = "<span class='hide_details'>Hide Details&thinsp;&#x25B2;</span>";
 show_details_link = "<span class='show_details'>Show Details&thinsp;&#x25bc;</span>"
-
-starred_img = "<img class='starred_img' title='Remove Star' src='" + settings.STATIC_URL + "images/icons/yellow_star.png'/>";
-unstarred_img = "<img class='unstarred_img' title='Add Star' src='" + settings.STATIC_URL + "images/icons/blank_star.png'/>";
-add_to_resumebook_img = "<img class='add_to_resume_book_img' title='Add to Resume Book' src='" + settings.STATIC_URL + "images/icons/plus.png'/>";
-remove_from_resumebook_img = "<img class='remove_from_resume_book_img' title='Remove from Resume Book' src='" + settings.STATIC_URL + "images/icons/cross.png'/>";
