@@ -496,6 +496,7 @@ $(document).ready( function() {
                 $(this).attr('checked', true);
             });
         }
+        e.stopPropagation();
     };
     
     function handle_menu_all_on_page_click(){
