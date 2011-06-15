@@ -659,7 +659,7 @@ $(document).ready( function() {
     
     $(".student_hide_details_link").live('click', function() {
         var id = $(this).attr('num');
-        $('.student_detailed_info[num=' + id  + ']').hide('slow');
+        $('.student_detailed_info[num=' + id  + ']').slideUp('slow');
         $('.student_toggle_detailed_info_link[num=' + id  + ']').html(SHOW_DETAILS_LINK);
     });
     // Listen for a new search

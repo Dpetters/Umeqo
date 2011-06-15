@@ -366,9 +366,6 @@ def employer_students(request,
                                extra_context=None):
     
     context = {}
-    context['show_details_link'] = employer_snippets.show_details_link
-    context['hide_details_link'] = employer_snippets.hide_details_link
-        
     if request.is_ajax():
         cached_page = cache.get('page')
         if cached_page and cached_page != int(request.POST['page']):

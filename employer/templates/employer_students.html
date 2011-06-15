@@ -48,9 +48,10 @@ Copyright 2011. All Rights Reserved.
     
     var STARRED_IMG = "{% student_star 'True' %}";
     var UNSTARRED_IMG = "{% student_star '' %}";
-    
-    var SHOW_DETAILS_LINK = "{{ show_details_link|safe }}";
-    var HIDE_DETAILS_LINK = "{{ hide_details_link|safe }}";
+
+    var SHOW_DETAILS_LINK = "{% include 'student_show_details_link.html' %}";    
+    var HIDE_DETAILS_LINK = "{% include 'student_hide_details_link.html' %}";
+
     var IN_RESUME_BOOK_STUDENT_LIST = "{{ in_resume_book_student_list }}";
     var NO_STUDENTS_IN_RESUME_BOOK = "{{ no_students_in_resume_book|safe }}";
     var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
