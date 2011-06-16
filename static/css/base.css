@@ -885,3 +885,7 @@ a.ui-slider-handle {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.hid {
+    display: none;
+}

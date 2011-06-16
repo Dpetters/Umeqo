@@ -37,4 +37,18 @@ $(document).ready(function(){
             $('#f-'+id).submit();
         });
     });
+    
+    $('#event_signin_link').click(function(e) {
+        $(this).children('.filler').eq(0).animate({
+            height: '100%'
+        }, function() {
+            $('#event_signin_main').removeClass('hid').animate({
+                opacity: 1.0
+            });
+            $('body').css('overflow', 'hidden');
+        });
+        $(this).addClass('filled');
+        e.preventDefault();
+    });
+    
 });
