@@ -41,8 +41,10 @@ def search_helper(query):
 
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
-    event.view_count += 1
-    event.save()
+    if not hasattr(request.user,"recruiter"):
+        event.view_count += 1
+        event.save()
+    is_past = event.end_datetime < datetime.now()    
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound()
@@ -57,6 +59,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
         'attending': False,
         'can_rsvp': False,
         'show_admin': False,
+        'is_past': is_past,
         'recruiters': event.recruiters.all(),
         'google_description': google_description
     }

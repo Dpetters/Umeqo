@@ -64,9 +64,31 @@
     padding: 1px 3px;
     color: #BBB;
 }
+
 #content_area .event_list li:hover .edit a {
     color: #6E97B9;
 }
 .event_list .edit a:hover {
     background-color: #EEE;
+}
+
+.event_list .outdated {
+    background-color: #FAFAFA;
+}
+#content_area .outdated a {
+    color: #AAA;
+}
+.event_list .outdated .details {
+    color: #BBB;
+}
+.event_list .outdated .datetime {
+    color: #CCC;
+}
+.event_list .outdated .datetime strong {
+    color: #BBB;
+}
+.event_list .outdated .name .type {
+    background-color: #AAA;
+    text-shadow: #888 0 -1px 0;
+}
 }

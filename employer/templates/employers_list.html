@@ -7,6 +7,18 @@
 {% block metadata %}
 {{block.super}}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<script>
+    var EMPLOYERS_LIST_EL_URL = "{% url employers_list_el %}";
+    var EMPLOYERS_LIST_URL = "{% url employers_list %}"
+    var FIRST_EMPLOYER_ID = {{employer.id}}
+    var employer_ids = [
+        {% for employer in employers %}
+            "{{employer.id}}",
+        {% endfor %}
+    ];
+</script>
+<script src="{{ STATIC_URL }}javascript/employer/employers_list.js"></script>
 {% endblock %}
 
 {% block content_area %}
@@ -17,13 +29,14 @@
     <div class="main_block_content">
         <div id="employers_listings">
             {% for employer in employers %}
-                <div class="employers_listing">
+                <div class="employers_listing{% if employer_id == employer.id %} selected{% endif %}">
                     <h2>{{employer.name}}</h2>
+                    <div class="description">{{employer.description}}</div>
                 </div>
             {% endfor %}
         </div>
-        <div id="employers_events">
-            test content
+        <div id="employers_detail">
+            {% include "employers_list_el.html" with employer=employer events=events isnotajax="True" %}
         </div>
     </div>
 </div>

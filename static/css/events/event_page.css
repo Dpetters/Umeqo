@@ -9,6 +9,7 @@
 }
 #event_details {
     width: 600px;
+    margin-left: 30px;
     float: left;
 }
 #event_details th {
@@ -26,17 +27,15 @@
 }
 
 #photo {
-    float: left;
     display: inline-block;
     width: 200px;
     height: 150px;
 }
 #event_side {
-    float: right;
-    text-align: center;
-    width: 150px;
+    float: left;
+    width: 200px;
 }
-#event_side span {
+#event_side #attending-span {
     line-height: 30px;
     font-weight: bold;
     display: inline-block;
@@ -45,17 +44,23 @@
     border-radius: 2px;
     -moz-border-radius: 2px;
 }
+#event_actions {
+    margin-top: 5px;
+    text-align: left;
+}
 #not-attending-button {
     display: block;
     font-size: 12px;
     margin-top: 3px;
 }
-.like_iframe {
-    margin-top: 5px;
+#like-button {
+    float: left;
+    width: 70px;
+    min-height: 50px;
 }
 .google-button {
     display: inline-block;
-    margin: 0 0 5px;
+    margin: 8px 0 5px;
 }
 
 #rsvp_div {
@@ -102,7 +107,7 @@
     margin: 5px 0;
 }
 #event_numbers td {
-    font-size: 16px;
+    font-size: 14px;
     background-color: #EEE;
     color: #000;
 }

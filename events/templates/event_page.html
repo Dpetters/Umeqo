@@ -31,13 +31,17 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">{{event.name}}</span>
-        <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
-        {% if show_admin %}<a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>{% endif %}
+        {% if user.is_authenticated %}
+            {% if user.student %}
+                <a href="{% url events_list %}" class="main_block_header_sidelink button sub-button">Event List</a>
+            {% else %}
+                <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
+            {% endif %}
+            {% if show_admin %}
+                <a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>
+            {% endif %}
+        {% endif %}
     </div>
-    <div class="sub_block">
-        <div class="like_iframe">
-            <fb:like width="600" height="80" show_faces="false"/>
-        </div>
     </div>
     <div class="main_block_content">
         {% if show_admin %}
@@ -47,10 +51,12 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             <div id="event_rsvps">
                 <table id="event_numbers">
                     <tr>
-                        <td>{{rsvps|length}} attending</td>
+                        <td class="number">{{rsvps|length}}</td>
+                        <td class="number_label">attending</td>
                     </tr>
                     <tr>
-                        <td>{{event.view_count}} pageview{{event.view_count|pluralize}}</td>
+                        <td class="number">{{event.view_count}}</td>
+                        <td class="number_label">pageview{{event.view_count|pluralize}}</td>
                     </tr>
                 </table>
                 <h2>Attending Students</h2>
@@ -70,19 +76,42 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
         </div>
         {% endif %}
         <div id="event_side">
-            <a href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{google_description|urlencode}}&location={{event.location|urlencode}}"><img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google" class="google-button"/></a>
-            <div id="rsvp_div">
-            {% if show_admin %}
-                <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="Disabled because you are not a student.">RSVP: Attending</a>
-                <span class="help-bubble">Students can click to RSVP.</span>
-            {% else %}{% if can_rsvp %}
-                {% if attending %}
-                <span id="attending-span">Attending</span>
-                <a href="{% url event_unrsvp id=event.id %}" id="not-attending-button">RSVP: Not attending</a>
-                {% else %}
-                <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
-                {% endif %}
-            {% endif %}{% endif %}
+            <div id="photo">
+                <img src="{{company_logo}}" alt="company logo" />
+            </div>
+            <div id="event_actions">
+                <div id="like-button">
+                    <fb:like href="" send="true" layout="box_count" width="100" show_faces="true" id="like-button"></fb:like>
+                </div>
+                <div id="rsvp_div">
+                    {% if show_admin or is_past %}
+                        <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="RSVP disabled.">
+                            {% if is_past %}
+                                Event already passed!
+                            {% else %}
+                                RSVP: Attending
+                            {% endif %}
+                        </a>
+                        {% if show_admin %}
+                        <span class="help-bubble">Students can click to RSVP.</span>
+                        {% endif %}
+                    {% else %}{% if can_rsvp %}
+                        {% if attending %}
+                        <span id="attending-span">Attending</span>
+                        <a href="{% url event_unrsvp id=event.id %}" id="not-attending-button">RSVP: Not attending</a>
+                        {% else %}
+                        <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
+                        {% endif %}
+                    {% endif %}{% endif %}
+                    {% if not user.is_authenticated %}
+                        <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="RSVP disabled.">
+                            Login to RSVP.
+                        </a>
+                    {% endif %}
+                </div>
+                <a class="google-button" href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{google_description|urlencode}}&location={{event.location|urlencode}}">
+                    <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
+                </a>
             </div>
         </div>
         <table id="event_details">
@@ -112,7 +141,11 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             </tr>
             <tr>
                 <th>Created by:</th>
-                <td>{% for recruiter in recruiters %}{{recruiter.employer.name}}{% endfor %}</td>
+                <td>
+                    {% for recruiter in recruiters %}
+                        <a href="{% url employers_list %}?id={{recruiter.employer.id}}" class="employer">{{recruiter.employer.name}}</a>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Description:</th>
@@ -131,9 +164,6 @@ var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
             </tr>
             {% endif %}
         </table>
-        <div id="photo">
-            <img src="{{company_logo}}" alt="company logo" />
-        </div>
     </div>
 </div>
 <div id="fb-root"></div>

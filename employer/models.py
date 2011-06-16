@@ -14,6 +14,8 @@ from core.models import Industry, Ethnicity, CampusOrg, Language, SchoolYear, Gr
 from employer import enums as employer_enums
 from core import choices as core_choices
 
+from datetime import datetime
+
         
 class ResumeBook(models.Model):
     recruiter = models.OneToOneField("employer.Recruiter")
@@ -41,7 +43,7 @@ class FilteringParameters(models.Model):
     gender = models.CharField(max_length=1, choices = core_choices.FILTERING_GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.CharField(max_length=1, choices = core_choices.NO_YES_CHOICES, blank = True, null = True)
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
-    
+
 class Recruiter(models.Model):
     
     user = models.OneToOneField(User)

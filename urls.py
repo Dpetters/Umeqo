@@ -89,6 +89,7 @@ urlpatterns += patterns('student.views',
 
 urlpatterns += patterns('employer.views',
     #Employer List
+    (r'^employers/el/$', 'employers_list_el', {}, 'employers_list_el'),
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
@@ -122,7 +123,7 @@ urlpatterns += patterns('employer.views',
 
 urlpatterns += patterns('events.views',
     (r'^events/$', 'events_list', {}, 'events_list'),
-    (r'^events/(?P<id>\d+)/(?P<slug>[a-zA-Z-]+)$', 'event_page', {}, 'event_page'),
+    (r'^events/(?P<id>\d+)/(?P<slug>[a-zA-Z-]+)$', 'event_page', {'extra_context': {'login_form':AuthenticationForm}}, 'event_page'),
     (r'^events/rsvp/(?P<id>\d+)$', 'event_rsvp', {}, 'event_rsvp'),
     (r'^events/unrsvp/(?P<id>\d+)$', 'event_unrsvp', {}, 'event_unrsvp'),
     (r'^events/search/$', 'event_search', {}, 'event_search'),
