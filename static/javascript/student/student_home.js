@@ -33,7 +33,7 @@ $(document).ready( function() {
     $('#setup_employer_subscriptions_link').click( function () {
         var $employerSubscriptionsDialog = openEmployerSubscriptionsDialog();
 
-        $employerSubscriptionsDialog.html(ajax_loader);
+        $employerSubscriptionsDialog.html(dialog_ajax_loader);
         $employerSubscriptionsDialog.load('/student/employer-subscriptions-dialog/', function () {
             $employerSubscriptionsDialog.dialog('option', 'position', 'center');
 

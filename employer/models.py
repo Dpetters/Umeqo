@@ -73,7 +73,7 @@ class Recruiter(models.Model):
         super(Recruiter, self).save( *args, **kwargs )
 
 class StudentComment(models.Model):
-    recruiter = models.OneToOneField(Recruiter)
+    recruiter = models.ForeignKey(Recruiter)
     student = models.OneToOneField(Student)
     comment = models.CharField(max_length=500)
     

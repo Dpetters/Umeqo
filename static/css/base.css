@@ -689,8 +689,12 @@ a:focus {
 }
 /* Dialogs */
 #dialog_loader {
-    margin-top: 25px;
+    margin-top: 3px;
     text-align:center;
+}
+#dialog_long_load_message{
+	margin-bottom: 10px;
+	min-height:17px;
 }
 .dialog_info_section {
     line-height:22px;
