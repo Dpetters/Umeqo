@@ -12,7 +12,7 @@ from haystack.query import SearchQuerySet
 from core import choices as core_choices
 from student.models import Student
 from employer import enums
-from employer.models import ResumeBook
+from employer.models import ResumeBook, StudentComment
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
 
@@ -31,14 +31,11 @@ def check_for_new_student_matches(employer):
     
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
 
-def get_cached_paginator(request):
-    cached_paginator = cache.get('paginator')
-    if cached_paginator:
-        return cached_paginator
-    else:
-        current_paginator = DiggPaginator(get_cached_ordered_results(request), int(request.POST['results_per_page']), body=5, padding=1, margin=2)
-        cache.set('paginator', current_paginator)
-        return current_paginator
+def get_paginator(request):
+    current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
+    processed_ordered_results = process_results(request.user.recruiter, current_ordered_results)
+    current_paginator = DiggPaginator(processed_ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2)
+    return current_paginator
 
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
@@ -48,11 +45,23 @@ def get_is_starred_attributes(recruiter, students):
         else:
             starred_attr_dict[student] = False
     return starred_attr_dict
-    
+
+def get_comments(recruiter, students):
+    comments_dict = {}
+    for student in students:
+        student_comments = StudentComment.objects.filter(recruiter=recruiter, student=student)
+        if student_comments.exists():
+            comments_dict[student] = student_comments[0].comment
+        else:
+            StudentComment.objects.create(recruiter=recruiter, student=student, comment="")
+            comments_dict[student] = ""   
+    return comments_dict
+
 def process_results(recruiter, students):
     is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, students)
     is_starred_attributes = get_is_starred_attributes(recruiter, students)
-    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student]) for student in students]
+    comments = get_comments(recruiter, students)
+    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student]) for student in students]
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}
@@ -67,16 +76,6 @@ def get_is_in_resumebook_attributes(recruiter, students):
         else:
             resume_book_dict[student] = False
     return resume_book_dict
-
-def get_cached_ordered_results(request):
-    cached_ordered_results = cache.get('ordered_results')
-    if cached_ordered_results:
-        return cached_ordered_results
-    else:
-        current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
-        processed_ordered_results = process_results(request.user.recruiter, current_ordered_results)
-        cache.set('ordered_results', processed_ordered_results)
-        return processed_ordered_results
     
 def get_cached_filtering_results(request):
     cached_filtering_results = cache.get('filtering_results')
@@ -209,7 +208,6 @@ def filter_students(recruiter,
                     languages=None,
                     countries_of_citizenship=None,
                     campus_orgs=None):
-    print student_list
     # All Students
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
         students = Student.objects.all()

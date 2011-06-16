@@ -90,7 +90,7 @@ $(document).ready( function() {
     };
     $("#new_event_link").click( function () {
         var $new_event_dialog = create_new_event_dialog();
-        $new_event_dialog.html(ajax_loader);
+        $new_event_dialog.html(dialog_ajax_loader);
 
         $new_event_dialog.load( '/new_event', function () {
 

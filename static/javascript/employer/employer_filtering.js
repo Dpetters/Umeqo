@@ -3,7 +3,6 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
  */
-
 $(document).ready( function() {
 	var no_students_selected_message = "<p>No students selected.</p>";
     var star = ""
@@ -17,7 +16,6 @@ $(document).ready( function() {
     var min_sat_v = 200;
     var min_sat_w = 200;
     var page = 1;
-    var last_page = 1;
     var student_list = $("#id_student_list option:selected").text();
     var ordering = $("#id_ordering option:selected").val();
     var results_per_page = $("#id_results_per_page option:selected").val();
@@ -522,9 +520,9 @@ $(document).ready( function() {
 
     function major_link_click_handler() {
         major_info_dialog = open_major_info_dialog();
-        major_info_dialog.html(ajax_loader);
+        major_info_dialog.html(dialog_ajax_loader);
 
-        var major_info_dialog_timeout = setTimeout(show_long_load_message, 10000);
+        var major_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             type: 'GET',
             url: '/get-major-info/',
@@ -540,7 +538,7 @@ $(document).ready( function() {
                 clearTimeout(major_info_dialog_timeout);
                 switch(jqXHR.status) {
                     case 0:
-                        //major_info_dialog.html(dialog_check_connection_message);
+                        major_info_dialog.html(dialog_check_connection_message);
                         break;
                     default:
                         major_info_dialog.html(dialog_error_message);
@@ -557,21 +555,17 @@ $(document).ready( function() {
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
 	
     function initiate_ajax_call() {
-    	
+    	var xhr;
+    	if(xhr && xhr.readystate != 4){ xhr.abort(); }
     	$("#below_header_message_wrapper").html("");
         $("#results_block_content").css('opacity', 0.25);
         $("#results_block_info_section").css('display', 'block');
-        $("#results_block_info").html(ajax_loader);
+        $("#results_block_info").html(long_ajax_loader);
         var error_dialog_timeout = setTimeout( function() {
-            $(long_load_message).insert("#results_block_info img");
+            $("#results_block_info").prepend(two_line_long_load_message);
         }, 10000);
-        if(page == last_page) {
-            page = 1;
-        } else {
-            last_page = page;
-        }
 	
-        ajax = $.ajax({
+        xhr = $.ajax({
             type: 'POST',
             url: '/employer/students/',
             dataType: "html",
@@ -672,11 +666,11 @@ $(document).ready( function() {
     });
     $('#student_deliver_resume_book_button').click( function () {
         deliver_resume_book_dialog = open_deliver_resume_book_dialog();
-        deliver_resume_book_dialog.html(ajax_loader);
+        deliver_resume_book_dialog.html(dialog_ajax_loader);
 
         var resume_book_created = false;
 
-        var deliver_resume_book_dialog_timeout = setTimeout(show_long_load_message, 10000);
+        var deliver_resume_book_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             dataType: "html",
             url: '/employer/resume-books/deliver/',
@@ -1356,7 +1350,6 @@ $(document).ready( function() {
             }
         });
     };
-
     set_up_side_block_scrolling();
     $(window).resize(set_up_side_block_scrolling);
 
@@ -1375,16 +1368,49 @@ $(document).ready( function() {
     $('#query_field').keydown( function() {
         if (typeof timeoutID!='undefined')
             window.clearTimeout(timeoutID);
-        timeoutID = window.setTimeout(initiate_search,500);
+        timeoutID = window.setTimeout(initiate_search, 1000);
     });
-	$('.student_comment').keydown( function() {
+	$('.student_comment').live('keydown', function() {
+		var student_id = $(this).attr('num');
+		var textarea = this;
         if (typeof timeoutID!='undefined')
             window.clearTimeout(timeoutID);
-        timeoutID = window.setTimeout(save_student_comment($(this).attr('num')), 500);
+        timeoutID = window.setTimeout( function(){
+        	save_student_comment(student_id, $(textarea).val());
+        }, 1000);
     });
-    function save_student_comment(student_id){
-    	console.log(student_id);
+    
+    function save_student_comment(student_id, comment){
+ 		$.ajax({
+            type: 'POST',
+            url: '/employer/students/comment/',
+            dataType: "json",
+            data: {
+                'student_id': student_id,
+                'comment': comment,
+            },
+            success: function (data) {
+                switch(data.valid) {
+                    case true:
+                        break;
+                    case false:
+                    default:
+                        show_error_dialog(page_error_message);
+                        break;
+                };
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                switch(jqXHR.status) {
+                    case 0:
+                        show_error_dialog(page_check_connection_message);
+                        break;
+                    default:
+                        show_error_dialog(page_error_message);
+                }
+            },
+        });
     };
+    
     // Make the first ajax call for results automatically
     initiate_ajax_call();
     initiate_resume_book_summary_update();

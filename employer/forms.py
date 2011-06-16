@@ -51,13 +51,6 @@ class EmployerPreferencesForm(forms.ModelForm):
     
     class Meta:
         model = EmployerPreferences
-
-class StudentCommentForm(forms.Form):
-    comment = forms.CharField(max_length = 500, widget=forms.Textarea(attrs={'class':'student_comment', 'placeholder':'Add Note'}))
-    
-    class Meta:
-        model = StudentComment
-        fields = ('comment',)
      
 class StudentFilteringForm(FilteringForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = employer_enums.ORDERING_CHOICES, required = False)

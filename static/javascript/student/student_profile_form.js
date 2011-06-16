@@ -64,9 +64,9 @@ $(document).ready( function() {
     
     $('#create_campus_organization_link').click( function () {
         create_campus_organization_dialog = open_create_campus_organization_dialog();
-        create_campus_organization_dialog.html(ajax_loader);
+        create_campus_organization_dialog.html(dialog_ajax_loader);
         
-        var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message, 10000);
+        var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             dataType: "html",
             url: '/student/create-camus-organization/',
@@ -183,9 +183,9 @@ $(document).ready( function() {
     $('#create_language_link').click( function () {
         
         create_language_dialog = open_create_language_dialog();
-        create_language_dialog.html(ajax_loader);
+        create_language_dialog.html(dialog_ajax_loader);
 
-        var create_language_dialog_timeout = setTimeout(show_long_load_message, 10000);
+        var create_language_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             dataType: "html",
             url: '/student/create-language/',
@@ -303,7 +303,7 @@ $(document).ready( function() {
     $('#profile_form_info_link').click( function () {
         var $profile_form_info_dialog = open_profile_form_info_dialog();
 
-        $profile_form_info_dialog.html(ajax_loader);
+        $profile_form_info_dialog.html(dialog_ajax_loader);
         $profile_form_info_dialog.load('/student/profile-form-info/', function () {
         });
     });

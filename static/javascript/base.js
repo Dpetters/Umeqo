@@ -20,7 +20,8 @@ var multiselectHideAnimation = "";
 
 var dialog_class = "dialog";
 var tiny_ajax_loader = "<img src='/static/images/page_elements/loaders/tiny_ajax_loader.gif'>";
-var ajax_loader = "<div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
+var long_ajax_loader = "<img src='/static/images/page_elements/loaders/dialog_loader.gif'>";
+var dialog_ajax_loader = "<div id='dialog_loader'><p id='dialog_long_load_message'></p>" + long_ajax_loader + "</div>";
 var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
 var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
 
@@ -29,12 +30,13 @@ var error_message = "<div class='message_section'><p>Oops, something went wrong!
 var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
 var dialog_error_message = error_message + " reopening the dialog.</p></div>" + close_dialog_link;
 
-var check_connection_message = "<div class='message_section'><p>Unable to reach Umeqo.<br> Please check you connection and try again by"
+var check_connection_message = "<div class='message_section'><p>Unable to reach Umeqo.<br> Please check you connection and try again by";
 var page_check_connection_message = check_connection_message + " refreshing the page.</p></div>" + refresh_page_link;
 var dialog_check_connection_message = check_connection_message + " reopening the dialog.</p></div>" + close_dialog_link;
 var form_check_connection_message = "<p class='error'>Unable to reach Umeqo. Please check your connection and try again.</p>";
 
-var long_load_message = "<div class='message_section'><p>This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p></div>"
+var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
+var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
 
 function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
@@ -57,8 +59,8 @@ function show_error_dialog(message){
      error_dialog.html(message);
 };    
 
-function show_long_load_message(dialog) {
-    $(long_load_message).insertBefore(".dialog #dialog_loader");
+function show_long_load_message_in_dialog(dialog) {
+	$("#dialog_loader p").html(single_line_long_load_message);
 };
 
 function show_form_submit_loader(container) {
@@ -244,9 +246,9 @@ $(document).ready( function () {
     $('.open_contact_us_dialog_link').live('click', function () {
 
         contact_us_dialog = open_contact_dialog();
-        contact_us_dialog.html(ajax_loader);
+        contact_us_dialog.html(dialog_ajax_loader);
 
-        var contact_us_dialog_timeout = setTimeout(show_long_load_message, 10000);
+        var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             dataType: "html",
             url: '/contact-us-dialog/',
@@ -262,7 +264,7 @@ $(document).ready( function () {
             },
             success: function (data) {
                 clearTimeout(contact_us_dialog_timeout);
-                contact_us_dialog.html(data);
+                //contact_us_dialog.html(data);
                 contact_us_dialog.dialog('option', 'position', 'center');
                 
                 $("#id_name").focus();

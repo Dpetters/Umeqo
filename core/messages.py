@@ -1,8 +1,3 @@
-
-# Student Filtering
-no_filtering_results = "No students matched your criteria."
-no_students_in_resume_book = "Your current resume book is empty."
-
 #Student Profile Form
 resume_must_be_a_pdf = "Please select a PDF version of your resume."
 first_and_second_major_must_be_diff = "Second major must be different from first."

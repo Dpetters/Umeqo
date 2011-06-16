@@ -10,7 +10,6 @@ from pyPdf import PdfFileReader, PdfFileWriter
  
 from django.core.mail import EmailMessage
 from django.core.cache import cache
-from django.core.files import File
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render_to_response, redirect
@@ -18,15 +17,13 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest
 from django.utils import simplejson
-from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
 from core.decorators import is_student, is_recruiter
-from employer.models import ResumeBook, Employer
-from employer.forms import DeliverResumeBookForm, EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm, StudentCommentForm
-from employer.view_helpers import get_cached_paginator
+from employer.models import ResumeBook, Employer, StudentComment
+from employer.forms import DeliverResumeBookForm, EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm
+from employer.view_helpers import get_paginator
 from employer import enums as employer_enums
-from employer import snippets as employer_snippets
 from events.forms import EventForm
 from events.models import Event
 from student.models import Student
@@ -151,6 +148,37 @@ def employer_star_students_remove(request,
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             return HttpResponseBadRequest("Student IDs are missing")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_students_comment(request,
+                                        extra_context=None):
+    
+    if request.is_ajax():
+        if request.POST.has_key('student_id'):
+            if request.POST.has_key('comment'):
+                student = Student.objects.get(id=request.POST['student_id'])
+                comment = request.POST['comment']
+                student_comments = StudentComment.objects.filter(student=student, recruiter=request.user.recruiter)
+                if not student_comments.exists():
+                    StudentComment.objects.create(recruiter = request.user.recruiter, student=student, comment=comment)
+                else:
+                    student_comment = student_comments[0]
+                    print 1
+                    print student_comment.comment
+                    print 2
+                    print comment
+                    student_comment.comment = comment
+                    student_comment.save()
+                    print 3
+                    print student_comment.comment
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            else:
+                return HttpResponseBadRequest("Comment is missing")
+        else:
+            return HttpResponseBadRequest("Student ID is missing")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
@@ -361,9 +389,9 @@ def employer_resume_book_summary(request,
 @login_required
 @user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_students(request,
-                               result_template_name='employer_students_results.html',
-                               filtering_page_template_name='employer_students.html',
-                               extra_context=None):
+                       result_template_name='employer_students_results.html',
+                       filtering_page_template_name='employer_students.html',
+                       extra_context=None):
     
     context = {}
     if request.is_ajax():
@@ -401,20 +429,12 @@ def employer_students(request,
                         cache.delete('ordered_results')
                         cache.delete('filtering_results')
 
-        current_paginator = get_cached_paginator(request)
-        
+        current_paginator = get_paginator(request)
         context['page'] = current_paginator.page(request.POST['page'])
         
-        context['student_list'] = request.POST['student_list']
-        context['student_comment_form'] = StudentCommentForm()
+        context['current_student_list'] = request.POST['student_list']
         
-        context['all_students'] = student_enums.GENERAL_STUDENT_LISTS[0][1]
-        context['no_filtering_results'] = employer_snippets.no_filtering_results
-        
-        context['students_in_current_resume_book'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
-        context['no_students_in_resume_book'] = employer_snippets.no_students_in_resume_book
-        
-        for student, is_in_resume_book, is_starred in context['page'].object_list:
+        for student, is_in_resume_book, is_starred, comment in context['page'].object_list:
             student.statistics.shown_in_results_count += 1
             student.save()
         
@@ -440,7 +460,6 @@ def employer_students(request,
         context['unstarred'] = employer_enums.UNSTARRED
         context['email_delivery_type'] = employer_enums.EMAIL
         context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
-        context['no_students_selected_snippet'] = employer_snippets.no_students_selected_snippet
         
     context.update(extra_context or {})
     return render_to_response(filtering_page_template_name, context, context_instance=RequestContext(request))
