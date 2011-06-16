@@ -388,15 +388,6 @@ p {
     color: #FFF;
     background-color: #BBB;
 }
-/* For sub modules in between the header and content,
- like the one use for the like/share buttons on events */
-.sub_block {
-    margin: 5px 10px;
-    background-color: #EEE;
-    padding: 1px 6px;
-    border-radius: 3px;
-    border: 1px solid #FFF;
-}
 
 /* Buttons */
 .dark_button{
@@ -873,6 +864,8 @@ a.ui-slider-handle {
     border: 1px solid #CCC;
     box-shadow: rgba(0,0,0,0.3) 2px 2px 5px;
     color: #666;
+    background-color: #EEE;
+    padding: 0 8px;
 }
 .help-bubble::before {
     content: ' ';
