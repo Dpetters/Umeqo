@@ -5,6 +5,9 @@ Copyright 2011. All Rights Reserved.
 -->
 
 {% load countries_tags %}
+{% load student_star %}
+{% load student_resume_book %}
+
 <span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
 <div id="results_navigation_section">
     {% if page.has_previous %}
@@ -35,11 +38,11 @@ Copyright 2011. All Rights Reserved.
         <input id="results_menu_checkbox" type="checkbox"/>
         <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
         <ul>
-            <li>All on Page</li>
-            <li>Starred</li>
-            <li>Not Starred</li>
-            <li>In Resume Book</li>
-            <li>Not in Resume Book</li>        
+            <li id="results_menu_all_on_page">All on page</li>
+            <li id="results_menu_starred">Starred</li>
+            <li id="results_menu_not_starred">Not starred</li>
+            <li id="results_menu_in_resume_book">In Resume Book</li>
+            <li id="results_menu_not_in_resume_book">Not in Resume Book</li>        
         </ul>
     </div>
     <div id="resume_book_students_add" class="menu_button">
@@ -70,14 +73,14 @@ Copyright 2011. All Rights Reserved.
         <div class="student_main_info" num="{{student.id}}">
         {% endif %}
             <input class="student_checkbox" num="{{student.id}}" type="checkbox"/>        
-            <strong class="student_name">{{student.first_name}} {{student.last_name}}</strong>
+            <strong num="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</strong>
             <span class="student_year">
                 ({{student.graduation_year}}
                 {{student.school_year}})
             </span>
             <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
             <br />
-            <a num="{{student.id}}" class="student_toggle_resume_book_link" href="javascript:void(0)">{% if in_resume_book %} {{ remove_from_resume_book_img|safe }} {% else %} {{ add_to_resume_book_img|safe }} {% endif %}</a>
+            <a num="{{student.id}}" class="student_toggle_resume_book_link" href="javascript:void(0)">{% student_resume_book in_resume_book %}</a>
             <span class="student_major">
                 <strong>First Major:</strong>
                 {% if student.first_major.display %}
@@ -91,9 +94,9 @@ Copyright 2011. All Rights Reserved.
                 <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
             </p>
             <br />
-            <a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% if starred %} {{ starred_img|safe }} {% else %} {{unstarred_img|safe}} {% endif %}</a>
-            {{student_comment_form.comment}}
-            <a class="student_toggle_detailed_info_link" num="{{student.id}}"  href="javascript:void(0)">{{show_details_link|safe}}</a>
+            <a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% student_star starred %}</a>
+            <textarea num="{{student.id}}" class="student_comment" placeholder="Add Note"></textarea>
+            <a class="student_toggle_detailed_info_link" num="{{student.id}}"  href="javascript:void(0)">{% include 'student_show_details_link.html' %}</a>
         </div>
         <div class="student_detailed_info" num="{{student.id}}">
             {% if student.ethnicity or student.second_major or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.looking_for.all or student.previous_employers.all or student.industries_of_interest.all or student.campus_involvement.all or student.older_than_18 or student.citizen or student.languages.all or student.website %}
@@ -173,14 +176,36 @@ Copyright 2011. All Rights Reserved.
                 </div>
                 <div class="student_detailed_info_third_col">
                     {% if student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act %}
-                        <div class="student_test_scores">
-                            <p class="student_detailed_info_header">Test Scores</p>
-                            <p><strong>SAT Total: </strong>{{student.sat_t}} / 2400</p>
-                            <p><strong>SAT Math: </strong>{{student.sat_m}} / 800</p>
-                            <p><strong>SAT Verbal: </strong>{{student.sat_v}} / 800</p>
-                            <p><strong>SAT Writing: </strong>{{student.sat_w}} / 800</p>
-                            <p><strong>ACT: </strong>{{student.act}} / 36</p>
-                        </div>
+                        <table class="student_test_scores">
+                            <tr>
+                                <th class="student_detailed_info_header">Test Scores</th>
+                            </tr>
+                            {% if student.sat_t %}
+                            <tr>
+                                <th>SAT Total:</th><td>{{student.sat_t}} / 2400</td>
+                            </tr>
+                            {% endif %}
+                            {% if student.sat_m %}
+                            <tr>
+                                <th>SAT Math:  </th><td>{{student.sat_m}} / 800</td>
+                            </tr>
+                            {% endif %}
+                            {% if student.sat_v %}
+                            <tr>
+                                <th>SAT Verbal:  </th><td>{{student.sat_v}} / 800</td>
+                            </tr>
+                            {% endif %}
+                            {% if student.sat_w %}
+                            <tr>
+                                <th>SAT Writing:  </th><td>{{student.sat_w}} / 800</td>
+                            </tr>
+                            {% endif %}
+                            {% if student.act %}
+                            <tr>
+                                <th>ACT:  </th><td>{{student.act}} / 36</td>
+                            </tr>
+                            {% endif %}
+                        </table>
                     {% endif %}
                     
                     {% if student.campus_involvement.all %}
@@ -205,7 +230,7 @@ Copyright 2011. All Rights Reserved.
                         </ul>
                     {% endif %}
                 </div>
-                <p class="student_hide_details_link" num="{{student.id}}"><a href="javascript:void(0)">{{ hide_details_link|safe }}</a></p>
+                <p class="student_hide_details_link" num="{{student.id}}"><a href="javascript:void(0)">{% include 'student_hide_details_link.html' %}</a></p>
             {% else %}
                 <span>No detailed info available.</span>
             {% endif %}

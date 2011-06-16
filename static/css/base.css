@@ -126,7 +126,6 @@ p {
 }
 #navigation_block a:hover {
     background-color: rgba(255,255,255,0.1);
-    color: #DDD;
 }
 #navigation_block .arrow {
     font-size: 0.8em;
@@ -290,7 +289,6 @@ p {
     margin: 3px 5px 0 0;
 }
 .side_block_content a:hover {
-    background-color: #EEE;
     color: #000;
 }
 .main_block_footer, .side_block_footer {
@@ -552,7 +550,7 @@ a.button.sub-button:hover {
     list-style:none;
     padding:2px;
     background: #FFF;
-    min-width:104px;
+    min-width:99px;
     display: block;
     position: absolute;
     left: -1px;
@@ -560,16 +558,19 @@ a.button.sub-button:hover {
     border-radius: 0px 0px 3px 3px;
     -moz-border-radius: 0px 0px 3px 3px;
     -webkit-border-radius:3px;
-    border: 1px solid #666;
+    border: 1px solid #888;
     z-index: 100;
 }
 .menu_button ul li {
     line-height:18px;
-    padding: 0 3px;
-    font-weight: bold;
+    padding: 1px 3px;
+    font-size:12px;
+    border:1px solid #FFF;
 }
 .menu_button ul li:hover {
-    background:#F8F8F8;
+    background: none repeat scroll 0 0 #FDF5CE;
+	border: 1px solid #FBCB09;
+	color: #C77405;
 }
 /* Forms */
 .errorspace {
@@ -583,8 +584,11 @@ a.button.sub-button:hover {
     color: #FF2222;
     border: 0;
 }
+.ready {
+	color: #00B20E;
+}
 .warning {
-    color:orange;
+    color:#FFCF4C;
     border: 0;
 }
 label {
@@ -642,7 +646,7 @@ input[type=text], input[type=password] {
     padding-bottom: 3px;
     text-align: right;
 }
-a {
+.ui-widget-content a, a {
     color: #6e97b9;
     outline: none;
 }

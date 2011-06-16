@@ -193,10 +193,11 @@ def employer_resume_book_students_add(request,
                 latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
             else:
                 latest_resume_book = resume_books.order_by('-date_created')[0]
-            for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
-                if student not in latest_resume_book.students.all():
-                    latest_resume_book.students.add(student)
+            if request.POST['student_ids']:
+                for id in request.POST['student_ids'].split('~'):
+                    student = Student.objects.get(id=id)  
+                    if student not in latest_resume_book.students.all():
+                        latest_resume_book.students.add(student)
             data = {'valid':True}
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
@@ -215,10 +216,11 @@ def employer_resume_book_students_remove(request,
                 latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
             else:
                 latest_resume_book = resume_books.order_by('-date_created')[0]
-            for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
-                if student in latest_resume_book.students.all():
-                    latest_resume_book.students.remove(student)
+            if request.POST['student_ids']:
+                for id in request.POST['student_ids'].split('~'):
+                    student = Student.objects.get(id=id)  
+                    if student in latest_resume_book.students.all():
+                        latest_resume_book.students.remove(student)
             data = {'valid':True}
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
@@ -365,13 +367,6 @@ def employer_students(request,
                                extra_context=None):
     
     context = {}
-    context['add_to_resume_book_img'] = employer_snippets.add_to_resumebook_img
-    context['remove_from_resume_book_img'] = employer_snippets.remove_from_resumebook_img
-    context['starred_img'] = employer_snippets.starred_img
-    context['unstarred_img'] = employer_snippets.unstarred_img
-    context['show_details_link'] = employer_snippets.show_details_link
-    context['hide_details_link'] = employer_snippets.hide_details_link
-        
     if request.is_ajax():
         cached_page = cache.get('page')
         if cached_page and cached_page != int(request.POST['page']):
@@ -425,7 +420,9 @@ def employer_students(request,
             student.save()
         
         context.update(extra_context or {}) 
-        return render_to_response(result_template_name, context, context_instance=RequestContext(request))
+        return render_to_response(result_template_name,
+                                  context,
+                                  context_instance=RequestContext(request))
     else:
         cache.delete('paginator')
         cache.delete('ordered_results')
@@ -444,6 +441,7 @@ def employer_students(request,
         context['unstarred'] = employer_enums.UNSTARRED
         context['email_delivery_type'] = employer_enums.EMAIL
         context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
+        context['no_students_selected_snippet'] = employer_snippets.no_students_selected_snippet
         
     context.update(extra_context or {})
     return render_to_response(filtering_page_template_name, context, context_instance=RequestContext(request))
@@ -515,13 +513,13 @@ def employer_resume_books_download(request):
 @login_required
 @user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 def employer_resume_books_deliver(request,
-                             form_class = DeliverResumeBookForm,
-                             template_name="employer_resume_books_deliver.html",
-                             extra_context=None):
+                                  form_class = DeliverResumeBookForm,
+                                  template_name="employer_resume_books_deliver.html",
+                                  extra_context=None):
     if request.is_ajax():
         context = {}
         if request.method == 'GET':
-            context['deliver_resume_book_form'] = form_class()
+            context['deliver_resume_book_form'] = form_class(initial={'email':request.user.email})
             context['resume_book'] = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
             context.update(extra_context or {})
             return render_to_response(template_name,
