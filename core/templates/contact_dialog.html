@@ -7,37 +7,39 @@
     var THANK_YOU_FOR_CONTACTING_US_MESSAGE = "{{thank_you_for_contacting_us_message}}";        
 </script>
 
-<div class="dialog_info_section">
-    <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
-</div>
-
-<form id="contact_form" method='POST' action="/contact-us-dialog/">
-    {% csrf_token %}
+<div class="dialog_content_wrapper">
+    <div class="dialog_info_section">
+        <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
+    </div>
     
-    <div class="errorspace">{{form.name.errors}}</div>
-    <div>
-        {{form.name.label_tag}}
-        {{form.name}}
-    </div>
-
-    <div class="errorspace">{{form.email.errors}}</div>
-    <div>
-        {{form.email.label_tag}}
-        {{form.email}}
-    </div>
-
-    <div class="errorspace">{{form.body.errors}}</div>
-    <div id="id_body_wrapper">
-        {{form.body.label_tag}}
-        {{form.body}}
-    </div>
-
-    <div class="error_section error">
-        {{form.non_field_errors}}
-    </div>
-
-    <div class="button_wrapper_with_margins">
-        <input id="contact_form_submit_button" class="button" type='submit' value='Submit'>
-        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-    </div>
-</form>
+    <form id="contact_form" method='POST' action="/contact-us-dialog/">
+        {% csrf_token %}
+        
+        <div class="errorspace">{{form.name.errors}}</div>
+        <div>
+            {{form.name.label_tag}}
+            {{form.name}}
+        </div>
+    
+        <div class="errorspace">{{form.email.errors}}</div>
+        <div>
+            {{form.email.label_tag}}
+            {{form.email}}
+        </div>
+    
+        <div class="errorspace">{{form.body.errors}}</div>
+        <div id="id_body_wrapper">
+            {{form.body.label_tag}}
+            {{form.body}}
+        </div>
+    
+        <div class="error_section error">
+            {{form.non_field_errors}}
+        </div>
+    
+        <div class="button_wrapper_with_margins">
+            <input id="contact_form_submit_button" class="button" type='submit' value='Submit'>
+            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+        </div>
+    </form>
+</div>

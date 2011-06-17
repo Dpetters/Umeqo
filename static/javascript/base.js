@@ -26,7 +26,7 @@ var refresh_page_link = "<div class='message_section'><a class='refresh_page_lin
 var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
 
 var resume_book_delivered_message = "<div class='message_section'><p>The delivered Resume Book can be viewed and delivered again<br/> through the <a href='/employer/resume_books/'>Resume Book History</a> page.</p></div>" + close_dialog_link;
-var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by";
+var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><p>Meanwhile, you can try again by";
 var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
 var dialog_error_message = error_message + " reopening the dialog.</p></div>" + close_dialog_link;
 

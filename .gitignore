@@ -8,6 +8,7 @@ database.db
 .project
 .pydevproject
 .settings
+content
 resume_books
 submitted_resumes
 submitted_user_images
