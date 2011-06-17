@@ -85,7 +85,7 @@ Copyright 2011. All Rights Reserved.
             <span class="student_major">
                 <strong>First Major:</strong>
                 {% if student.first_major.display %}
-                    <a href="javascript:void(0)" title="Click for Details" class="student_major_link" num="{{student.second_major.id}}">{{student.first_major}}</a>
+                    <a href="javascript:void(0)" title="Click for Details" class="course_link" num="{{student.first_major.id}}">{{student.first_major}}</a>
                 {% else %}
                     {{student.first_major}}
                 {% endif %}
@@ -97,7 +97,7 @@ Copyright 2011. All Rights Reserved.
             <br />
             <a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% student_star starred %}</a>
             <textarea num="{{student.id}}" class="student_comment" placeholder="Add Note">{{comment}}</textarea>
-            <span num="{{student.id}}" class="student_saved_note">Saved</span>
+            <span num="{{student.id}}" class="student_saved_note hid">Saved</span>
             <a class="student_toggle_detailed_info_link" num="{{student.id}}"  href="javascript:void(0)">{% include 'student_show_details_link.html' %}</a>
         </div>
         <div class="student_detailed_info" num="{{student.id}}">
@@ -114,7 +114,7 @@ Copyright 2011. All Rights Reserved.
                         <p class="student_second_major">
                             <strong>Second Major:</strong>
                             {% if student.second_major.display %}
-                                <a href="javascript:void(0)" class="major_link" num="{{student.second_major.id}}">{{student.second_major}}</a>
+                                <a href="javascript:void(0)" class="course_link" num="{{student.second_major.id}}">{{student.second_major}}</a>
                             {% else %}
                                 {{student.second_major}}
                             {% endif %}                                
@@ -215,7 +215,7 @@ Copyright 2011. All Rights Reserved.
                             <p class="student_detailed_info_header">On-Campus Involvement</p>
                             {% for campus_org in student.campus_involvement.all %}
                                 {% if campus_org.display %}
-                                    <li><a href="javascript:void(0)" class="campus_org_link" id="campus_org_{{campus_org.id}}">{{campus_org}}</a></li>
+                                    <li><a href="javascript:void(0)" class="campus_org_link" num="{{campus_org.id}}">{{campus_org}}</a></li>
                                 {% else %}
                                     <li>{{campus_org}}</li>
                                 {% endif %}

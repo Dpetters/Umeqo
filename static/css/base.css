@@ -648,7 +648,7 @@ a:focus {
     outline: none;
 }
 /* Contact Form Dialog */
-.contact_us_dialog .ui-dialog-content {
+.contact_us_dialog .dialog_content_wrapper {
     padding: 20px 25px 20px 25px
 }
 .contact_us_dialog label[for=id_body] {
@@ -689,7 +689,7 @@ a:focus {
 }
 /* Dialogs */
 #dialog_loader {
-    margin-top: 3px;
+    margin-top: 13px;
     text-align:center;
 }
 #dialog_long_load_message{
@@ -706,6 +706,18 @@ a:focus {
 #dialog_form_error_section {
     margin-top:10px;
     text-align:center;
+}
+.campus_org_image, .course_image{
+	float:left;
+	margin-right:10px;
+	margin-bottom:10px;
+	min-height:75px;
+}
+.campus_org_info_dialog .dialog_content_wrapper, .course_info_dialog .dialog_content_wrapper{
+	padding:10px;
+}
+.campus_org_info_dialog .dialog_content_wrapper p, .course_info_dialog .dialog_content_wrapper p{
+	margin-top:3px;
 }
 /** JQuery UI Overrides **/
 /* Jquery Widget */
@@ -732,6 +744,9 @@ a:focus {
     -moz-box-shadow:0px 0px 20px #606060;
     -webkit-box-shadow:0px 0px 20px #606060;
     border: 1px solid #505050;
+}
+.ui-dialog .ui-dialog-content{
+	padding:0px;
 }
 .ui-dialog .ui-dialog-titlebar {
     border-radius: 3px;

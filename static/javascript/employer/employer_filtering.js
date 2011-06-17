@@ -66,17 +66,34 @@ $(document).ready( function() {
         return $dialog;
     };
 
-    function open_major_info_dialog() {
+    function open_campus_org_info_dialog(campus_org_name) {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            title:"New Campus Organization",
-            dialogClass: "major_info_dialog",
+            title:campus_org_name,
+            dialogClass: "campus_org_info_dialog",
             modal:true,
-            width:475,
+            width:550,
             resizable: false,
             close: function() {
-                create_campus_organization_dialog.remove();
+                campus_org_info_dialog.remove();
+            }
+        });
+        $dialog.dialog('open');
+        return $dialog;
+    };
+    
+    function open_course_info_dialog(major_name) {
+        var $dialog = $('<div class="dialog"></div>')
+        .dialog({
+            autoOpen: false,
+            title:major_name,
+            dialogClass: "course_info_dialog",
+            modal:true,
+            width:550,
+            resizable: false,
+            close: function() {
+                course_info_dialog.remove();
             }
         });
         $dialog.dialog('open');
@@ -515,33 +532,61 @@ $(document).ready( function() {
     };
 
     function campus_org_link_click_handler() {
-        alert("Campus org link click func not implemented!")
-    };
+    	campus_org_id = $(this).attr('num');
+    	console.log(campus_org_id);
+        campus_org_info_dialog = open_campus_org_info_dialog($(this).text());
+        campus_org_info_dialog.html(dialog_ajax_loader);
 
-    function major_link_click_handler() {
-        major_info_dialog = open_major_info_dialog();
-        major_info_dialog.html(dialog_ajax_loader);
-
-        var major_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        var campus_org_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             type: 'GET',
-            url: '/get-major-info/',
+            url: '/get-campus-org-info/',
             dataType: "html",
             data: {
-                'course_id': $(this).attr('num'),
+                'campus_org_id': campus_org_id,
             },
             success: function (data) {
-                clearTimeout(major_info_dialog_timeout);
-                major_info_dialog.html(data);
+                clearTimeout(campus_org_info_dialog_timeout);
+                campus_org_info_dialog.html(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                clearTimeout(major_info_dialog_timeout);
+                clearTimeout(campus_org_info_dialog_timeout);
                 switch(jqXHR.status) {
                     case 0:
-                        major_info_dialog.html(dialog_check_connection_message);
+                        campus_org_info_dialog.html(dialog_check_connection_message);
                         break;
                     default:
-                        major_info_dialog.html(dialog_error_message);
+                        campus_org_info_dialog.html(dialog_error_message);
+                }
+            },
+        });
+    };
+
+    function course_link_click_handler() {
+    	var course_id = $(this).attr('num');
+        course_info_dialog = open_course_info_dialog($(this).text());
+        course_info_dialog.html(dialog_ajax_loader);
+
+        var course_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        $.ajax({
+            type: 'GET',
+            url: '/get-course-info/',
+            dataType: "html",
+            data: {
+                'course_id': course_id,
+            },
+            success: function (data) {
+                clearTimeout(course_info_dialog_timeout);
+                course_info_dialog.html(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                clearTimeout(course_info_dialog_timeout);
+                switch(jqXHR.status) {
+                    case 0:
+                        course_info_dialog.html(dialog_check_connection_message);
+                        break;
+                    default:
+                        course_info_dialog.html(dialog_error_message);
                 }
             },
         });
@@ -640,7 +685,7 @@ $(document).ready( function() {
     $("#results_menu_checkbox").live('click', handle_results_menu_checkbox_click);
     
     $(".campus_org_link").live('click', campus_org_link_click_handler);
-    $(".major_link").live('click', major_link_click_handler);
+    $(".course_link").live('click', course_link_click_handler);
     $(".student_toggle_resume_book_link").live('click', handle_student_toggle_resume_book_link_click);
     $(".student_toggle_star_link").live('click', handle_star_student_toggle_click);
     $("#star_students_add").live('click', handle_star_students_add_click);
@@ -1380,6 +1425,7 @@ $(document).ready( function() {
             window.clearTimeout(timeoutID);
         timeoutID = window.setTimeout(initiate_search, 1000);
     });
+    
 	$('.student_comment').live('keydown', function() {
 		var student_id = $(this).attr('num');
 		var textarea = this;
@@ -1401,9 +1447,9 @@ $(document).ready( function() {
                 'comment': comment,
             },
             success: function (data) {
-            	$(".student_saved_note[num=" + student_id + "]").show();
+            	$(".student_saved_note[num=" + student_id + "]").removeClass('hid');
             	window.setTimeout(function(){
-            		$(".student_saved_note[num=" + student_id + "]").hide();
+            		$(".student_saved_note[num=" + student_id + "]").addClass('hid');
             	}, 3000);
                 
                 switch(data.valid) {
