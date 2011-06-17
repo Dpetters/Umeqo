@@ -554,6 +554,10 @@ $(document).ready( function() {
 
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
 	
+	$(".student_comment").live('blur', function(){
+		$(this).height(17);
+	});
+	
     function initiate_ajax_call() {
     	var xhr;
     	if(xhr && xhr.readystate != 4){ xhr.abort(); }
@@ -597,7 +601,13 @@ $(document).ready( function() {
             success: function (data) {
                 clearTimeout(error_dialog_timeout);
                 $('#results_block_content').html(data);
-
+				
+				$(".student_comment").autoResize({
+				    // Quite slow animation:
+				    animateDuration : 0,
+				    // More extra space:
+				    extraSpace : 18
+				});
                 // Results Menu Styles
                 $('.dropdown_menu_button ul').hide();
 
@@ -1381,6 +1391,7 @@ $(document).ready( function() {
     });
     
     function save_student_comment(student_id, comment){
+    	//var student_id = student_id;
  		$.ajax({
             type: 'POST',
             url: '/employer/students/comment/',
@@ -1390,6 +1401,11 @@ $(document).ready( function() {
                 'comment': comment,
             },
             success: function (data) {
+            	$(".student_saved_note[num=" + student_id + "]").show();
+            	window.setTimeout(function(){
+            		$(".student_saved_note[num=" + student_id + "]").hide();
+            	}, 3000);
+                
                 switch(data.valid) {
                     case true:
                         break;

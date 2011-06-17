@@ -97,6 +97,7 @@ Copyright 2011. All Rights Reserved.
             <br />
             <a num="{{student.id}}" class="student_toggle_star_link" href="javascript:void(0)">{% student_star starred %}</a>
             <textarea num="{{student.id}}" class="student_comment" placeholder="Add Note">{{comment}}</textarea>
+            <span num="{{student.id}}" class="student_saved_note">Saved</span>
             <a class="student_toggle_detailed_info_link" num="{{student.id}}"  href="javascript:void(0)">{% include 'student_show_details_link.html' %}</a>
         </div>
         <div class="student_detailed_info" num="{{student.id}}">

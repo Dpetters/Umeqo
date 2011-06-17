@@ -305,6 +305,12 @@
     min-width:488px;
     height:17px;
 }
+.student_saved_note {
+	color:#888;
+	margin-top:2px;
+	position:absolute;
+	right:40px;
+}
 .student_toggle_detailed_info_link {
     float:right;
 }

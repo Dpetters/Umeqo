@@ -595,7 +595,7 @@ input[type=text], input[type=password], select, textarea {
     padding: 4px;
     border: 1px solid #AAA;
     background-color: white;
-    color: #555;
+    color: #333;
     font-family: Arial;
     font-size: 12px;
 }
