@@ -10,6 +10,7 @@ from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.decorators.http import require_http_methods 
 from core.decorators import is_student
 from events.models import Event
 from django.utils import simplejson
@@ -39,6 +40,10 @@ def search_helper(query):
     print search_results
     return search_results
 
+def event_page_redirect(request, id):
+    event = Event.objects.get(pk=id)
+    return redirect(reverse('event_page', kwargs={'id':event.id,'slug':event.slug}))
+
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
     if not hasattr(request.user,"recruiter"):
@@ -48,7 +53,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound()
-    page_url = 'http://'+settings.DOMAIN+reverse('event_page',kwargs={'id':event.id,'slug':event.slug})
+    page_url = 'http://'+settings.DOMAIN+reverse('event_page', kwargs={'id':event.id,'slug':event.slug})
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     context = {
@@ -79,15 +84,26 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     return render_to_response(template_name,context,context_instance=RequestContext(request))
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@require_http_methods(["GET", "POST"])
 def event_rsvp(request, id):
     event = Event.objects.get(pk=id)
-    event.rsvps.add(request.user.student)
-    event.save()
-    if request.is_ajax():
-        return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
+    if request.method == 'GET' and hasattr(request.user, 'recruiter'):
+        rsvps = map(lambda n: {'id': n.id, 'email': n.user.email}, event.rsvps.all())
+        rsvps_lookup = dict([(n['email'], n['id']) for n in rsvps])
+        data = {
+            'rsvps': rsvps,
+            'rsvps_lookup': rsvps_lookup
+        }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    elif request.method == 'POST' and hasattr(request.user, 'student'):
+        event.rsvps.add(request.user.student)
+        event.save()
+        if request.is_ajax():
+            return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
+        else:
+            return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
     else:
-        return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
+        return HttpResponseForbidden()
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -99,6 +115,10 @@ def event_unrsvp(request, id):
         return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
+
+#login is not required since it's from a shared computer
+def event_checkin():
+    pass
 
 @login_required
 def event_search(request, template_name='events_list_ajax.html', extra_context=None):

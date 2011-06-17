@@ -210,28 +210,57 @@
     right: 0;
     background: #FFF;
     z-index: 200;
-    padding: 15px;
     opacity: 0;
 }
 #event_signin_main h2 {
     margin: 0;
-    font-size: 40px;
+    font-size: 25px;
     color: #888;
+    padding: 10px 8px;
+    background: #EEE;
+    border-bottom: 2px solid #CCC;
+}
+#event_signin_main h2 span {
+    font-size: 20px;
+    color: #AAA;
+    float: right;
+}
+#event_signin_main h2 span img {
+    margin: 0 0 -16px -3px;
+}
+#event_signin_content {
+    padding: 15px;
 }
 #event_signin_main h1 {
     margin: -7px 0 10px;
-    font-size: 75px;
+    font-size: 60px;
     letter-spacing: -2px;
-}
-#event_signin_main h1 span {
-    font-size: 35px;
-    color: #AAA;
-}
-#event_signin_main h1 span img {
-    margin: 0 0 -19px -7px;
+    color: #444;
 }
 #event_signin_main input {
-    font-size: 40px;
+    font-size: 30px;
     width: 600px;
     border-radius: 3px;
+    padding: 5px;
+}
+
+#email_input_autofill {
+    list-style: none;
+    width: 610px;
+}
+#email_input_autofill li {
+    display: block;
+    padding: 8px 5px;
+    font-size: 25px;
+    border-left: 1px solid #888;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
+    color: #666;
+}
+#email_input_autofill li:hover {
+    cursor: pointer;
+}
+#email_input_autofill .selected {
+    background-color: #6E97B9;
+    color: #FFF;
 }

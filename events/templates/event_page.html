@@ -23,29 +23,33 @@ Copyright 2011. All Rights Reserved.
 <script type="text/javascript">
 var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
 var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
+var CHECKIN_URL = "{% url event_checkin id=event.id }";
 </script>
 {% endblock %}
 
 {% block content_area %}
 <div id="event_signin_main" class="hid">
-    <h2>{{event.name}}</h2>
-    <h1>Event Signin <span>(powered by <img src="{{ STATIC_URL }}images/logo_dark_small.png" alt="Umeqo" />)</span></h1>
-    <form action="">
-        <input type="text" name="name" placeholder="Enter your email"/>
-    </form>
+    <h2>{{event.name}} <span>(powered by <img src="{{ STATIC_URL }}images/logo_dark_small.png" alt="Umeqo" />)</span></h2>
+    <div id="event_signin_content">
+        <h1>Event Signin</h1>
+        <form action="">
+            <input id="email_input" type="text" name="name" placeholder="Enter your email"/>
+            <ul id="email_input_autofill"></ul>
+        </form>
+    </div>
 </div>
 <div id="event_page_block" class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">{{event.name}}</span>
         {% if user.is_authenticated %}
+            {% if show_admin %}
+                <a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>
+            {% endif %}
             {% if user.student %}
                 <a href="{% url events_list %}" class="main_block_header_sidelink button sub-button">Event List</a>
             {% else %}
                 <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
-            {% endif %}
-            {% if show_admin %}
-                <a href="{% url employer_edit_event id=event.id %}" class=" main_block_header_sidelink button sub-button">Edit Event</a>
             {% endif %}
         {% endif %}
     </div>
