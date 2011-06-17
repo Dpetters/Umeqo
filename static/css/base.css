@@ -870,14 +870,26 @@ a.ui-slider-handle {
     color: #666;
     background-color: #EEE;
     padding: 0 8px;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
 }
 .help-bubble::before {
     content: ' ';
     position: absolute;
+    left: -5px;
     width: 0;
     height: 0;
     border: 5px solid;
-    border-color: #CCC #CCC transparent transparent;
-    -webkit-transform: rotate(45deg);
+    border-color: transparent transparent #CCC #CCC;
     -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.hid {
+    display: none;
 }

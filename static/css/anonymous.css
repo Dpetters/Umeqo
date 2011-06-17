@@ -59,6 +59,9 @@
     border-color: transparent transparent #CCC #CCC;
     -webkit-transform: rotate(-225deg); 
     -moz-transform: rotate(-225deg);
+    -o-transform: rotate(-225deg);
+    -ms-transform: rotate(-225deg);
+    transform: rotate(-225deg);
 }
 #login_form input {
     margin: 3px 0;
