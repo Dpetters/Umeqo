@@ -709,9 +709,10 @@ a:focus {
 }
 .campus_org_image, .course_image{
 	float:left;
-	margin-right:10px;
-	margin-bottom:10px;
-	min-height:75px;
+	margin-right:12px;
+	margin-bottom:8px;
+	margin-top:2px;
+	
 }
 .campus_org_info_dialog .dialog_content_wrapper, .course_info_dialog .dialog_content_wrapper{
 	padding:10px;

@@ -83,6 +83,8 @@ STATICFILES_DIRS = (
     ROOT + '/static',
 )
 
+MAX_DIALOG_IMAGE_WIDTH = 200
+MAX_DIALOG_IMAGE_HEIGHT = 140
     
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"

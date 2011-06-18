@@ -4,9 +4,12 @@
  Copyright 2011. All Rights Reserved.
 """
 import mimetypes, os
+import cStringIO
 
 from datetime import datetime
 from pyPdf import PdfFileReader, PdfFileWriter
+from reportlab.pdfgen import canvas  
+from reportlab.lib.units import cm
  
 from django.core.mail import EmailMessage
 from django.core.cache import cache
@@ -472,6 +475,21 @@ def employer_resume_books_create(request):
         if request.method == 'POST':
             latest_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
             output = PdfFileWriter()
+            report_buffer = cStringIO.StringIO() 
+            c = canvas.Canvas(report_buffer)  
+            c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
+            c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
+            c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
+            c.drawString(16*cm, 29*cm, "Created using Umeqo")
+            page_num = 0
+            for student in latest_resume_book.students.all():
+                page_num += 1
+                c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
+                c.drawString(16*cm, (22-page_num)*cm, str(page_num))
+            c.showPage()
+            c.save()
+            pdfInput = PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) 
+            output.addPage(pdfInput.getPage(0)) 
             for student in latest_resume_book.students.all():
                 output.addPage(PdfFileReader(file(str(settings.MEDIA_ROOT).replace("\\", "/") + "/" + str(student.resume), "rb")).getPage(0))
             resume_book_name = str(request.user) + "_" + datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf";
