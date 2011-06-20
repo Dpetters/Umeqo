@@ -14,9 +14,6 @@ from core.models import Industry, Ethnicity, CampusOrg, Language, SchoolYear, Gr
 from employer import enums as employer_enums
 from core import choices as core_choices
 
-from datetime import datetime
-
-        
 class ResumeBook(models.Model):
     recruiter = models.OneToOneField("employer.Recruiter")
     file_name = models.CharField(max_length = 100, blank = True, null=True)
