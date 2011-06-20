@@ -68,7 +68,6 @@ $(document).ready(function () {
         $(this).addClass('filled');
         e.preventDefault();
     });
-    $('#event_signin_link').click();
     $('#email_input').keydown(function (e) {
         if (e.which == 38) {
             e.preventDefault();
