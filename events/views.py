@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
+from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
@@ -39,12 +40,34 @@ def search_helper(query):
         for q in query.split(' '):
             if q.strip()!="":
                 search_results = search_results.filter(content_auto=q)
-    print search_results
     return search_results
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
     return redirect(reverse('event_page', kwargs={'id':event.id,'slug':event.slug}))
+
+def buildAttendee(obj):
+    output = {
+        'email': obj.email,
+        'datetime_created': obj.datetime_created.isoformat()
+    }
+    if obj.student:
+        output['name'] = obj.student.first_name + ' ' + obj.student.last_name
+        output['account'] = True
+        output['id'] = obj.student.id
+    else:
+        output['name'] = obj.name
+        output['account'] = False
+    return output
+
+def buildRSVP(obj):
+    output = {
+        'id': obj.student.id,
+        'name': obj.student.first_name + ' ' + obj.student.last_name,
+        'datetime_created': obj.datetime_created.isoformat(),
+        'account': True
+    }
+    return output
 
 def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
     event = Event.objects.get(pk=id)
@@ -58,12 +81,14 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     page_url = 'http://'+settings.DOMAIN+reverse('event_page', kwargs={'id':event.id,'slug':event.slug})
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
-    checkins = map(lambda n: n.student, event.attendee_set.all().order_by('-datetime_created'))
-    rsvps = map(lambda n: n.student, event.rsvp_set.all())
+    rsvps = map(buildRSVP, event.rsvp_set.all())
+    checkins = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
+    all_responses = sorted(checkins + rsvps, key=lambda n: n['datetime_created'])
     context = {
         'event': event,
-        'checkins': checkins,
         'rsvps': rsvps,
+        'checkins': checkins,
+        'all_responses': all_responses,
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
         'attending': False,
@@ -93,7 +118,7 @@ def event_rsvp(request, id):
     event = Event.objects.get(pk=id)
     # if method is GET then get a list of RSVPed students
     if request.method == 'GET' and hasattr(request.user, 'recruiter'):
-        data = map(lambda n: {'id': n.id, 'email': n.user.email}, event.rsvps.all())
+        data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     # if POST then record student's RSVP
     elif request.method == 'POST' and hasattr(request.user, 'student'):
@@ -123,13 +148,6 @@ def event_unrsvp(request, id):
 def event_checkin(request, id):
     event = Event.objects.get(pk=id)
     if request.method == 'GET':
-        def buildAttendee(obj):
-            output = {'email': obj.email}
-            if obj.student:
-                output['name'] = obj.student.first_name + ' ' + obj.student.last_name
-            else:
-                output['name'] = obj.name
-            return output
         attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
         return HttpResponse(simplejson.dumps(attendees), mimetype="application/json")
     else:
@@ -154,7 +172,14 @@ def event_checkin(request, id):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
         attendee = Attendee(email=email, name=name, student=student, event=event)
-        attendee.save()
+        try:
+            attendee.save()
+        except IntegrityError:
+            data = {
+                'valid': False,
+                'error': 'Duplicate checkin!'
+            }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         output = {
             'valid': True,
             'email': email

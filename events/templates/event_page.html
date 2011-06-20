@@ -28,7 +28,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
 {% endblock %}
 
 {% block content_area %}
-{% include "event_checkin.html" with event=event %}
+{% include "events_checkin.html" with event=event %}
 <div id="event_page_block" class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
@@ -66,31 +66,25 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
             </div>
             <div id="event_rsvps" class="responses">
                 {% for student in rsvps %}
-                <div class="event_rsvp" id="{{student.id}}">
-                    {{student.first_name}} {{student.last_name}}
-                    <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
-                        {% csrf_token %}
-                        <input type="hidden" name="query" value="{{student.first_name}} {{student.last_name}}" />
-                    </form>
-                </div>
+                    {% include "events_response_token.html" with student=student %}
                 {% empty %}
                 <div id="event_response_empty">There are no RSVPs yet.</div>
                 {% endfor %}
             </div>
             <div id="event_checkins" class="hid responses">
                 {% for student in checkins %}
-                <div class="event_rsvp" id="{{student.id}}">
-                    {{student.first_name}} {{student.last_name}}
-                    <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
-                        {% csrf_token %}
-                        <input type="hidden" name="query" value="{{student.first_name}} {{student.last_name}}" />
-                    </form>
-                </div>
+                    {% include "events_response_token.html" with student=student %}
                 {% empty %}
                 <div id="event_response_empty">There are no checkins yet.</div>
                 {% endfor %}
             </div>
-            <div id="event_all" class="hid responses"></div>
+            <div id="event_all" class="hid responses">
+                {% for student in all_responses %}
+                    {% include "events_response_token.html" with student=student %}
+                {% empty %}
+                <div id="event_response_empty">There are no checkins yet.</div>
+                {% endfor %}
+            </div>
             <div class="clearfix"></div>
         </div>
         {% endif %}
@@ -184,9 +178,9 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
             {% endif %}
         </table>
         {% if show_admin %}
-        <div id="event_signin">
-            <h3>Event signin mode</h3>
-            <a id="event_signin_link" href="#">
+        <div id="event_checkin">
+            <h3>Event checkin mode</h3>
+            <a id="event_checkin_link" href="#">
                 <span class="text">Enable</span>
                 <span class="filler"></span>
             </a>

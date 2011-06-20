@@ -1,0 +1,12 @@
+<div class="event_rsvp{% if student.id %} hoverable{% endif %}" id="{{student.id}}">
+    {{student.name}}
+    {% if not student.account %}
+        <span class="email">{{student.email}}</span>
+    {% endif %}
+    {% if student.id %}
+        <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
+            {% csrf_token %}
+            <input type="hidden" name="query" value="{{student.name}}" />
+        </form>
+    {% endif %}
+</div>

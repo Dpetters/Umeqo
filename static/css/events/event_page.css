@@ -100,17 +100,6 @@
     -pie-background: linear-gradient(#888, #666);
 }
 
-#event_numbers {
-    font-size: 16px;
-    color: #FFF;
-    text-align: right;
-    float: right;
-    border-collapse: collapse;
-    border-radius: 2px;
-    border: 1px solid #CCC;
-}
-#event_tabs {
-}
 #event_tabs h2 {
     font-size: 13px;
     display: inline-block;
@@ -142,6 +131,16 @@
     padding: 6px 5px 3px;
     font-size: 12px;
     color: #444;
+}
+#event_numbers {
+    font-size: 16px;
+    color: #FFF;
+    text-align: right;
+    float: right;
+    border-collapse: collapse;
+    border-radius: 2px;
+    border: 1px solid #CCC;
+    margin-top: 24px;
 }    
 #event_numbers .event_number {
     margin: 5px 0;
@@ -174,8 +173,20 @@
     color: #FFF;
     background-color: #999;
 }
+.responses .event_rsvp.hoverable:hover {
+    background-color: #557389;
+}
+.responses .event_rsvp .email {
+    font-weight: 400;
+}
+.responses .event_rsvp .email::before {
+    content: '(';
+}
+.responses .event_rsvp .email::after{
+    content: ')';
+}
 
-#event_signin_link {
+#event_checkin_link {
     position: relative;
     display: inline-block;
     padding: 10px 15px;
@@ -194,7 +205,7 @@
     -pie-background: linear-gradient(#888, #666);
     overflow: hidden;
 }
-#event_signin_link:active {
+#event_checkin_link:active {
     background: #666;
     background: -moz-linear-gradient(top, #666 0%, #888 100%);
     background: -webkit-linear-gradient(top, #666 0%,#888 100%);
@@ -203,17 +214,17 @@
     behavior: url(/static/lib/pie/PIE.htc);
     -pie-background: linear-gradient(#666, #888);
 }
-#event_signin_link .text {
+#event_checkin_link .text {
     position: relative;
     z-index: 100;
     color: #FFF;
     text-shadow: #000 0 -1px 0;
 }
-#event_signin_link.filled .text {
+#event_checkin_link.filled .text {
     color: inherit;
     text-shadow: inherit;
 }
-#event_signin_link .filler {
+#event_checkin_link .filler {
     position: absolute;
     display: block;
     bottom: 0;
@@ -229,7 +240,7 @@
     -pie-background: linear-gradient(#FFF, #DDD);
 }
 
-#event_signin_main {
+#event_checkin_main {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -239,7 +250,7 @@
     z-index: 200;
     opacity: 0;
 }
-#event_signin_main h2 {
+#event_checkin_main h2 {
     margin: 0;
     font-size: 25px;
     color: #888;
@@ -247,28 +258,28 @@
     background: #EEE;
     border-bottom: 2px solid #CCC;
 }
-#event_signin_main h2 span {
+#event_checkin_main h2 span {
     font-size: 20px;
     color: #AAA;
     float: right;
 }
-#event_signin_main h2 span img {
+#event_checkin_main h2 span img {
     margin: 0 0 -16px -3px;
 }
-#event_signin_main p {
+#event_checkin_main p {
     font-size: 20px;
     padding: 10px 0;
 }
-#event_signin_content {
+#event_checkin_content {
     padding: 15px;
 }
-#event_signin_main h1 {
+#event_checkin_main h1 {
     margin: -7px 0 10px;
     font-size: 60px;
     letter-spacing: -2px;
     color: #444;
 }
-#event_signin_main input {
+#event_checkin_main input {
     font-size: 30px;
     width: 400px;
     border-radius: 3px;

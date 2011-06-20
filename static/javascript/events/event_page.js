@@ -43,7 +43,7 @@ $(document).ready(function() {
         return $('#name_input').val();
     }
     var rsvps, selectedIndex = 0, userText = "";
-    $('#event_signin_link').click(function(e) {
+    $('#event_checkin_link').click(function(e) {
         $(this).children('.filler').eq(0).animate({
             height: '100%'
         }, function() {
@@ -58,7 +58,7 @@ $(document).ready(function() {
                         newLi.attr('id','');
                         $('#checkins').append(newLi);
                     });
-                    $('#event_signin_main').removeClass('hid').animate({
+                    $('#event_checkin_main').removeClass('hid').animate({
                         opacity: 1.0
                     });
                     $('body').addClass('overflowHidden');
@@ -198,14 +198,14 @@ $(document).ready(function() {
         }
     );
     $('#close_button').click(function(e) {
-        $('#event_signin_main').addClass('hid').animate({
+        $('#event_checkin_main').addClass('hid').animate({
             opacity: 0
         });
         $('body').removeClass('overflowHidden');
-        $('#event_signin_link').children('.filler').eq(0).animate({
+        $('#event_checkin_link').children('.filler').eq(0).animate({
             height: '0%'
         });
-        $('#event_signin_link').removeClass('filled');
+        $('#event_checkin_link').removeClass('filled');
     });
     
     $('#event_tabs h2').each(function(i) {
