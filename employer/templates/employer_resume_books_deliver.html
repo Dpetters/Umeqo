@@ -3,49 +3,50 @@ Developers : Dmitrij Petters,
 All code is property of original developers.
 Copyright 2011. All Rights Reserved.
 -->
-
-<div class="dialog_info_section">
-    <div id="resume_book_summary" class="clearfix">
-        <div id="resume_book_contents_div">
-            <p id="resume_book_contents_header">Contents</p>
-            <a href="javascript:void(0)" id="switch_to_students_in_resume_book_student_list_dialog_link">{{resume_book.students.all|length}} student{{resume_book.students.all|pluralize}}</a>
-        </div>
-        <div id="resume_book_status_div">
-             <p id="resume_book_status_header">Status</p>
-             <p id="resume_book_status" class="error">Being Created</p>
+<div class="dialog_content_wrapper">
+    <div class="dialog_info_section">
+        <div id="resume_book_summary" class="clearfix">
+            <div id="resume_book_contents_div">
+                <p id="resume_book_contents_header">Contents</p>
+                <a href="javascript:void(0)" id="switch_to_students_in_resume_book_student_list_dialog_link">{{resume_book.students.all|length}} student{{resume_book.students.all|pluralize}}</a>
+            </div>
+            <div id="resume_book_status_div">
+                 <p id="resume_book_status_header">Status</p>
+                 <p id="resume_book_status" class="error">Being Created</p>
+            </div>
         </div>
     </div>
+    <form id="deliver_resume_book_form" method='POST' action="/employer/resume-books/email/">
+        {% csrf_token %}
+        <table class="form_table">
+            <tr>
+                <th>{{deliver_resume_book_form.delivery_type.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{deliver_resume_book_form.delivery_type}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{deliver_resume_book_form.name.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{deliver_resume_book_form.name}}
+                </td>
+            </tr>
+            <tr class="email_delivery_type_only_field">
+                <th>{{deliver_resume_book_form.email.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{deliver_resume_book_form.email}}
+                </td>
+            </tr>
+        </table>
+        <div class="error_section error">
+        </div>
+        <div class="button_wrapper_with_margins">
+            <a id="download_resume_book_link" href="/employer/resume-books/download/"></a>
+            <input id="deliver_resume_book_form_submit_button" class="button" type='submit' value='Download'>
+            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+        </div>
+    </form>
 </div>
-<form id="deliver_resume_book_form" method='POST' action="/employer/resume-books/email/">
-    {% csrf_token %}
-    <table class="form_table">
-        <tr>
-            <th>{{deliver_resume_book_form.delivery_type.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{deliver_resume_book_form.delivery_type}}
-            </td>
-        </tr>
-        <tr>
-            <th>{{deliver_resume_book_form.name.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{deliver_resume_book_form.name}}
-            </td>
-        </tr>
-        <tr class="email_delivery_type_only_field">
-            <th>{{deliver_resume_book_form.email.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{deliver_resume_book_form.email}}
-            </td>
-        </tr>
-    </table>
-    <div class="error_section error">
-    </div>
-    <div class="button_wrapper_with_margins">
-        <a id="download_resume_book_link" href="/employer/resume-books/download/"></a>
-        <input id="deliver_resume_book_form_submit_button" class="button" type='submit' value='Download'>
-        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-    </div>
-</form>

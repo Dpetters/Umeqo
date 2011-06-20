@@ -689,7 +689,7 @@ a:focus {
 }
 /* Dialogs */
 #dialog_loader {
-    margin-top: 13px;
+    margin-top: 16px;
     text-align:center;
 }
 #dialog_long_load_message{

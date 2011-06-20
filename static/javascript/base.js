@@ -8,35 +8,10 @@
 var multiselectMinWidth = 318;
 var multiselectYesNoSingleSelectWidth = 181;
 var multiselectSingleSelectWidth = 202;
-var multiselectTwoOptionHeight = 47;
-var multiselectThreeOptionHeight = 72;
-var singleselectThreeOptionHeight = 83;
-var multiselectMediumHeight = 97;
-var multiselectLargeHeight = 146;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
 var multiselectShowAnimation = "";
 var multiselectHideAnimation = "";
-
-var dialog_class = "dialog";
-var tiny_ajax_loader = "<img src='/static/images/page_elements/loaders/tiny_ajax_loader.gif'>";
-var long_ajax_loader = "<img src='/static/images/page_elements/loaders/dialog_loader.gif'>";
-var dialog_ajax_loader = "<div id='dialog_loader'><p id='dialog_long_load_message'></p>" + long_ajax_loader + "</div>";
-var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
-var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
-
-var resume_book_delivered_message = "<div class='message_section'><p>The delivered Resume Book can be viewed and delivered again<br/> through the <a href='/employer/resume_books/'>Resume Book History</a> page.</p></div>" + close_dialog_link;
-var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><p>Meanwhile, you can try again by";
-var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
-var dialog_error_message = error_message + " reopening the dialog.</p></div>" + close_dialog_link;
-
-var check_connection_message = "<div class='message_section'><p>Unable to reach Umeqo.<br> Please check you connection and try again by";
-var page_check_connection_message = check_connection_message + " refreshing the page.</p></div>" + refresh_page_link;
-var dialog_check_connection_message = check_connection_message + " reopening the dialog.</p></div>" + close_dialog_link;
-var form_check_connection_message = "<p class='error'>Unable to reach Umeqo. Please check your connection and try again.</p>";
-
-var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
-var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
 
 function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
@@ -158,8 +133,6 @@ function place_errors_table(error,element) {
 function place_multiselect_warning_table(element, max) {
     var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
     place_errors_table($(warning), element)
-    //$(error).appendTo(element.parent().prev());
-    //$(error).css("padding-left", $(element).prev().outerWidth()+3).css("float", "left").css('position', 'absolute').css('bottom','0');
 };
 // Pick out url GET parameters by name
 function get_parameter_by_name(name) {
@@ -264,7 +237,7 @@ $(document).ready( function () {
             },
             success: function (data) {
                 clearTimeout(contact_us_dialog_timeout);
-                //contact_us_dialog.html(data);
+                contact_us_dialog.html(data);
                 contact_us_dialog.dialog('option', 'position', 'center');
                 
                 $("#id_name").focus();

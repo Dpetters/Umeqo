@@ -6,11 +6,17 @@ Copyright 2011. All Rights Reserved.
 
 {% extends "account_settings_base.html" %}
 
+{% block metadata %}
+{{block.super}}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account_settings.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_account_settings.js"></script>
+{% endblock %}
+
 {% block account_settings_tabs %}
     <ul>
-        <li><a href="#tabs-1">Account Overview</a></li>
-        <li><a href="#tabs-2">Subscription &amp; Billing</a></li>
-        <li><a href="#tabs-3">Preferences</a></li>
+        <li><a id="account_overview_link" href="#tabs-1">Account Overview</a></li>
+        <li><a id="subscription_and_billing_link" href="#tabs-2">Subscription &amp; Billing</a></li>
+        <li><a id="preferences_link" href="#tabs-3">Preferences</a></li>
     </ul>
     <div id="tabs-1">
         
