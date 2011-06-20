@@ -42,9 +42,6 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
     
-    rsvps = models.ManyToManyField('student.Student',null=True)
-    rsvp_count = models.IntegerField(default=0)
-    
     def __unicode__(self):
         return self.name
     
@@ -59,17 +56,10 @@ class Event(models.Model):
 def save_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.name)
 
-@receiver(signals.m2m_changed, sender=Event.rsvps.through)
-def update_rsvp_count(sender, **kwargs):
-    supported = {
-        'post_add': 1,
-        'post_remove': -1
-    }
-    action = kwargs['action']
-    instance = kwargs['instance']
-    pk_set = kwargs['pk_set']
-    if action in supported:
-        instance.rsvp_count += supported[action]*len(pk_set)
+class RSVP(models.Model):
+    student = models.ForeignKey('student.Student')
+    event = models.ForeignKey(Event)
+    datetime_created = models.DateTimeField(auto_now=True)
 
 class Attendee(models.Model):
     email = models.EmailField()

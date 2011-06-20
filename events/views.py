@@ -16,7 +16,7 @@ from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
-from events.models import Attendee, Event
+from events.models import Attendee, Event, RSVP
 from haystack.query import SearchQuerySet
 
 @login_required
@@ -58,9 +58,12 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     page_url = 'http://'+settings.DOMAIN+reverse('event_page', kwargs={'id':event.id,'slug':event.slug})
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
+    checkins = map(lambda n: n.student, event.attendee_set.all().order_by('-datetime_created'))
+    rsvps = map(lambda n: n.student, event.rsvp_set.all())
     context = {
         'event': event,
-        'rsvps': event.rsvps.all(),
+        'checkins': checkins,
+        'rsvps': rsvps,
         'page_url': page_url,
         'DOMAIN': settings.DOMAIN,
         'attending': False,
@@ -73,8 +76,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     if len(event.audience.all())>0:
         context['audience'] = event.audience.all()
     if hasattr(request.user,"student"):
-        rsvp_events = request.user.student.event_set.all()
-        if event in rsvp_events:
+        if RSVP.objects.filter(event=event, student=request.user.student).exists():
             context['attending'] = True
         context['can_rsvp'] = True
     elif hasattr(request.user,"recruiter"):
@@ -95,8 +97,8 @@ def event_rsvp(request, id):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     # if POST then record student's RSVP
     elif request.method == 'POST' and hasattr(request.user, 'student'):
-        event.rsvps.add(request.user.student)
-        event.save()
+        rsvp = RSVP(student=request.user.student, event=event)
+        rsvp.save()
         if request.is_ajax():
             return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
         else:
@@ -108,8 +110,8 @@ def event_rsvp(request, id):
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def event_unrsvp(request, id):
     event = Event.objects.get(pk=id)
-    event.rsvps.remove(request.user.student)
-    event.save()
+    rsvp = RSVP.objects.filter(student=request.user.student, event=event)
+    rsvp.delete()
     if request.is_ajax():
         return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
     else:

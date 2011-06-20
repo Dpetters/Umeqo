@@ -78,15 +78,14 @@
 
 #event_admin {
     clear: both;
-    background-color: #E4EAEE;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 20px;
     border: 1px solid #CCC;
     border-radius: 2px;
 }
 #event_admin h1 {
     font-size: 16px;
-    margin: -10px -10px 0;
+    margin: -5px -5px 5px;
     padding: 7px 10px;
     color: #FFF;
     text-shadow: #000 0 -1px 0;
@@ -108,17 +107,48 @@
     float: right;
     border-collapse: collapse;
     border-radius: 2px;
-    border: 1px solid #FFF;
+    border: 1px solid #CCC;
 }
-#event_rsvps h2 {
-    font-size: 14px;
+#event_tabs {
 }
+#event_tabs h2 {
+    font-size: 13px;
+    display: inline-block;
+    padding: 4px 6px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    top: 1px;
+    position: relative;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+    border-color: transparent;
+}
+#event_tabs h2.current, #event_tabs h2:hover {
+    background-color: #E4EAEE;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+    border-color: #CCC;
+    cursor: pointer;
+}
+.responses {
+    border: 1px solid #CCC;
+    width: 820px;
+    padding: 0 3px 5px;
+    background-color: #E4EAEE;
+}
+#event_response_empty {
+    padding: 6px 5px 3px;
+    font-size: 12px;
+    color: #444;
+}    
 #event_numbers .event_number {
     margin: 5px 0;
 }
 #event_numbers td {
     font-size: 14px;
-    background-color: #FAFAFA;
+    background-color: #E4EAEE;
     color: #000;
 }
 #event_numbers .number {
@@ -130,10 +160,7 @@
     text-transform: uppercase;
     font-size: 12px;
 }
-#event_rsvps {
-    padding-top: 10px;
-}
-#event_rsvps .event_rsvp {
+.responses .event_rsvp {
     display: inline-block;
     padding: 7px;
     background-color: #FFF;
@@ -142,7 +169,7 @@
     font-weight: bold;
     border-radius: 2px;
 }
-#event_rsvps .event_rsvp:hover {
+.responses .event_rsvp:hover {
     cursor: pointer;
     color: #FFF;
     background-color: #999;

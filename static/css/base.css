@@ -454,7 +454,7 @@ a.dark_button{
 }
 input.button, .button[type=submit] {
     height: 30px;
-    line-height: 30px;
+    line-height: 28px;
 }
 a.button {
     height: 28px;

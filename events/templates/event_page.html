@@ -49,18 +49,22 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
         <div class="clearfix"></div>
         <div id="event_admin">
             <h1>Event Admin (visible only to you)</h1>
-            <div id="event_rsvps">
-                <table id="event_numbers">
-                    <tr>
-                        <td class="number">{{rsvps|length}}</td>
-                        <td class="number_label">attending</td>
-                    </tr>
-                    <tr>
-                        <td class="number">{{event.view_count}}</td>
-                        <td class="number_label">pageview{{event.view_count|pluralize}}</td>
-                    </tr>
-                </table>
-                <h2>Attending Students</h2>
+            <table id="event_numbers">
+                <tr>
+                    <td class="number">{{rsvps|length}}</td>
+                    <td class="number_label">attending</td>
+                </tr>
+                <tr>
+                    <td class="number">{{event.view_count}}</td>
+                    <td class="number_label">pageview{{event.view_count|pluralize}}</td>
+                </tr>
+            </table>
+            <div id="event_tabs">
+                <h2 class="current">RSVP'd Attending Students</h2>
+                <h2>Checked In Students</h2>
+                <h2>All Students</h2>
+            </div>
+            <div id="event_rsvps" class="responses">
                 {% for student in rsvps %}
                 <div class="event_rsvp" id="{{student.id}}">
                     {{student.first_name}} {{student.last_name}}
@@ -70,9 +74,23 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                     </form>
                 </div>
                 {% empty %}
-                <div id="event_rsvps_empty">There are no RSVPs yet.</div>
+                <div id="event_response_empty">There are no RSVPs yet.</div>
                 {% endfor %}
             </div>
+            <div id="event_checkins" class="hid responses">
+                {% for student in checkins %}
+                <div class="event_rsvp" id="{{student.id}}">
+                    {{student.first_name}} {{student.last_name}}
+                    <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
+                        {% csrf_token %}
+                        <input type="hidden" name="query" value="{{student.first_name}} {{student.last_name}}" />
+                    </form>
+                </div>
+                {% empty %}
+                <div id="event_response_empty">There are no checkins yet.</div>
+                {% endfor %}
+            </div>
+            <div id="event_all" class="hid responses"></div>
             <div class="clearfix"></div>
         </div>
         {% endif %}

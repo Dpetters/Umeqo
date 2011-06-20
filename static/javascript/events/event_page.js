@@ -1,9 +1,9 @@
-$(document).ready(function () {
-    $('#attending-button').live('click', function (e) {
+$(document).ready(function() {
+    $('#attending-button').live('click', function(e) {
         var that = $(this);
-        $.post($(this).attr('href'), function (data) {
+        $.post($(this).attr('href'), function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
-                that.parent().fadeOut(200, function () {
+                that.parent().fadeOut(200, function() {
                     var newText = $('<span id="attending-span">Attending</span>');
                     var newLink = $('<a href="" id="not-attending-button">RSVP: Not attending</a>');
                     newLink.attr('href', EVENT_UNRSVP_URL);
@@ -15,11 +15,11 @@ $(document).ready(function () {
         }, "json");
         e.preventDefault();
     });
-    $('#not-attending-button').live('click', function (e) {
+    $('#not-attending-button').live('click', function(e) {
         var that = $(this);
-        $.post($(this).attr('href'), function (data) {
+        $.post($(this).attr('href'), function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
-                that.parent().fadeOut(200, function () {
+                that.parent().fadeOut(200, function() {
                     var newText = $('<a href="" id="attending-button" class="button">RSVP: Attending</a>');
                     newText.attr('href', EVENT_RSVP_URL);
                     that.replaceWith(newText);
@@ -30,8 +30,8 @@ $(document).ready(function () {
         }, "json");
         e.preventDefault();
     });
-    $('.event_rsvp').each(function () {
-        $(this).click(function () {
+    $('.event_rsvp').each(function() {
+        $(this).click(function() {
             var id = $(this).attr('id');
             $('#f-' + id).submit();
         });
@@ -43,11 +43,11 @@ $(document).ready(function () {
         return $('#name_input').val();
     }
     var rsvps, selectedIndex = 0, userText = "";
-    $('#event_signin_link').click(function (e) {
+    $('#event_signin_link').click(function(e) {
         $(this).children('.filler').eq(0).animate({
             height: '100%'
-        }, function () {
-            $.get(EVENT_RSVP_URL, function (data) {
+        }, function() {
+            $.get(EVENT_RSVP_URL, function(data) {
                 rsvps = data;
                 $.get(CHECKIN_URL, function(data) {
                     $('#checkins').children().remove();
@@ -68,7 +68,7 @@ $(document).ready(function () {
         $(this).addClass('filled');
         e.preventDefault();
     });
-    $('#email_input').keydown(function (e) {
+    $('#email_input').keydown(function(e) {
         if (e.which == 38) {
             e.preventDefault();
         }
@@ -102,7 +102,7 @@ $(document).ready(function () {
             }
         }
     }
-    $('#email_input').keyup(function (e) {
+    $('#email_input').keyup(function(e) {
         var email = getEmail();
         //down button
         if (e.which == 40) {
@@ -118,8 +118,8 @@ $(document).ready(function () {
             clearMatches();
         }
     });
-    $('#checkin_form input').each(function () {
-        $(this).keyup(function (e) {
+    $('#checkin_form input').each(function() {
+        $(this).keyup(function(e) {
             //enable submit by enter button
             if (e.which == 13) {
                 clearMatches();
@@ -130,12 +130,12 @@ $(document).ready(function () {
             }
         });
     });
-    $('#email_input_autofill li').live('click', function () {
+    $('#email_input_autofill li').live('click', function() {
         clearMatches();
         $('#email_input').val($(this).html());
         $('#email_input').focus();
     });
-    $('#email_input_autofill li').live('hover', function () {
+    $('#email_input_autofill li').live('hover', function() {
         $('.selected').removeClass('selected');
         $(this).addClass('selected');
         selectedIndex = $('#email_input_autofill').children().index($(this)) + 1;
@@ -150,11 +150,11 @@ $(document).ready(function () {
     function hideError() {
         $('#checkin_error').hide();
     }
-    $('#checkin_form').submit(function (e) {
+    $('#checkin_form').submit(function(e) {
         var email = getEmail();
         var data = {'email': email };
         data.name = getName();
-        $.post(CHECKIN_URL, data, function (res) {
+        $.post(CHECKIN_URL, data, function(res) {
             if (res.valid) {
                 $('#checkin_status').removeClass();
                 $('#checkin_status').addClass('success');
@@ -178,7 +178,7 @@ $(document).ready(function () {
     });
 
     var hasClickedClose = false;
-    $('#close_box').click(function () {
+    $('#close_box').click(function() {
         if (!hasClickedClose) {
             $(this).animate({'opacity': 0});
             $('#close_dialogue').animate({'opacity': 0});
@@ -186,18 +186,18 @@ $(document).ready(function () {
         }
     });
     $('#close_box').hover(
-        function () {
+        function() {
             if (hasClickedClose) {
                 $(this).stop().animate({'opacity': 1});
             }
         },
-        function () {
+        function() {
             if (hasClickedClose) {
                 $(this).stop().animate({'opacity': 0});
             }
         }
     );
-    $('#close_button').click(function (e) {
+    $('#close_button').click(function(e) {
         $('#event_signin_main').addClass('hid').animate({
             opacity: 0
         });
@@ -206,5 +206,14 @@ $(document).ready(function () {
             height: '0%'
         });
         $('#event_signin_link').removeClass('filled');
+    });
+    
+    $('#event_tabs h2').each(function(i) {
+        $(this).click(function() {
+            $('.responses').addClass('hid');
+            $('.responses').eq(i).removeClass('hid');
+            $('.current').removeClass('current');
+            $(this).addClass('current');
+        });
     });
 });
