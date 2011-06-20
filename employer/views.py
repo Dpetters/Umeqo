@@ -125,7 +125,6 @@ def employer_star_students_add(request,
                                extra_context=None):
     
     if request.is_ajax():
-        print request.POST
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
@@ -169,14 +168,8 @@ def employer_students_comment(request,
                     StudentComment.objects.create(recruiter = request.user.recruiter, student=student, comment=comment)
                 else:
                     student_comment = student_comments[0]
-                    print 1
-                    print student_comment.comment
-                    print 2
-                    print comment
                     student_comment.comment = comment
                     student_comment.save()
-                    print 3
-                    print student_comment.comment
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:

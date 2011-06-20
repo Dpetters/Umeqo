@@ -673,7 +673,7 @@ $(document).ready(function() {
     	$("#below_header_message_wrapper").html("");
         $("#results_block_content").css('opacity', 0.25);
         $("#results_block_info_section").css('display', 'block');
-        $("#results_block_info").html(long_ajax_loader);
+        $("#results_block_info").html(long_horizontal_ajax_loader);
         var error_dialog_timeout = setTimeout( function() {
             $("#results_block_info").prepend(two_line_long_load_message);
         }, 10000);
@@ -712,9 +712,7 @@ $(document).ready(function() {
                 $('#results_block_content').html(data);
 				
 				$(".student_comment").autoResize({
-				    // Quite slow animation:
 				    animateDuration : 0,
-				    // More extra space:
 				    extraSpace : 18
 				});
                 // Results Menu Styles
@@ -907,7 +905,7 @@ $(document).ready(function() {
         header:false,
         multiple: false,
         selectedList: 1,
-        height:multiselectLargeHeight,
+        height:146,
         minWidth:multiselectMinWidth,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
@@ -925,7 +923,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -956,7 +954,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectMediumHeight,
+        height: 97,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -987,7 +985,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectMediumHeight,
+        height: 97,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1018,7 +1016,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectMediumHeight,
+        height: 97,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1049,7 +1047,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1080,7 +1078,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1111,7 +1109,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         optgrouptoggle: function(e, ui) {
@@ -1145,7 +1143,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1176,7 +1174,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1207,7 +1205,7 @@ $(document).ready(function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height: multiselectLargeHeight,
+        height: 146,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
         checkAll: function() {
@@ -1236,7 +1234,7 @@ $(document).ready(function() {
         multiple: false,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height: multiselectThreeOptionHeight,
+        height: 72,
         minWidth: multiselectYesNoSingleSelectWidth,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
@@ -1252,7 +1250,7 @@ $(document).ready(function() {
         multiple: false,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height: multiselectTwoOptionHeight,
+        height: 47,
         minWidth: multiselectYesNoSingleSelectWidth,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
@@ -1268,7 +1266,7 @@ $(document).ready(function() {
         multiple: false,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height: multiselectMediumHeight,
+        height: 97,
         minWidth:multiselectSingleSelectWidth,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,
@@ -1284,7 +1282,7 @@ $(document).ready(function() {
         multiple: false,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height: multiselectMediumHeight,
+        height: 97,
         minWidth:multiselectSingleSelectWidth,
         open: handle_multiselect_open_in_accordion,
         close: handle_multiselect_close_in_accordion,

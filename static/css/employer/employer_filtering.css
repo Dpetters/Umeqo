@@ -349,7 +349,7 @@
     clear:right;
     text-align:center;
 }
-.deliver_resume_book_dialog .ui-dialog-content{
+.deliver_resume_book_dialog .dialog_content_wrapper{
     padding:18px 0px 18px 0px;
 }
 #id_name, #id_email{

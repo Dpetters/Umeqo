@@ -43,6 +43,19 @@
 
         {% endblock %}
         <script type="text/javascript">
+            var tiny_ajax_loader = "{% include 'tiny_ajax_loader.html' %}";
+            var long_horizontal_ajax_loader = "{% include 'long_horizontal_ajax_loader.html' %}";
+            var dialog_ajax_loader = "{% include 'dialog_ajax_loader.html' %}";
+            
+            var page_error_message = "{% include 'page_error_message.html' %}";
+            var dialog_error_message = "{% include 'dialog_error_message.html' %}";
+            
+            var page_check_connection_message = "{% include 'page_check_connection_message.html' %}";
+            var dialog_check_connection_message = "{% include 'dialog_check_connection_message.html' %}";
+            var form_check_connection_message = "{% include 'form_check_connection_message.html' %}";
+            
+            var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
+            var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
 
             var _gaq = _gaq || [];
               _gaq.push(['_setAccount', 'UA-22946783-1']);

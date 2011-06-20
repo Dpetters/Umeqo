@@ -88,7 +88,7 @@ $(document).ready( function() {
 
                 $("#id_type").multiselect({
                     noneSelectedText: "select campus organization type",
-                    height:multiselectLargeHeight,
+                    height:146,
                     header:false,
                     minWidth:multiselectMinWidth,
                     selectedList: 1,
@@ -373,7 +373,7 @@ $(document).ready( function() {
         hide: multiselectHideAnimation,
         header:false,
         minWidth:multiselectMinWidth,
-        height:multiselectLargeHeight,
+        height:146,
         selectedList: 1,
         multiple: false,
         /* Added close so the error message gets removed once something is selected*/
@@ -389,7 +389,7 @@ $(document).ready( function() {
         hide: multiselectHideAnimation,
         header:false,
         selectedList: 1,
-        height:multiselectLargeHeight,
+        height:146,
         minWidth:multiselectMinWidth,
         multiple: false,
         /* Added close so the error message gets removed once something is selected*/
@@ -403,7 +403,7 @@ $(document).ready( function() {
     $("#id_first_major").multiselect({
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height:multiselectLargeHeight,
+        height:146,
         header:false,
         minWidth:multiselectMinWidth,
         selectedList: 1,
@@ -419,7 +419,7 @@ $(document).ready( function() {
     $("#id_second_major").multiselect({
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height:multiselectLargeHeight,
+        height:146,
         header:false,
         minWidth:multiselectMinWidth,
         selectedList: 1,
@@ -574,7 +574,7 @@ $(document).ready( function() {
         },
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height:multiselectLargeHeight,
+        height:146,
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -590,7 +590,7 @@ $(document).ready( function() {
     $("#id_ethnicity").multiselect({
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height:multiselectLargeHeight,
+        height:146,
         header:false,
         minWidth:multiselectMinWidth,
         selectedList: 1,
@@ -604,16 +604,24 @@ $(document).ready( function() {
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
-        height:multiselectLargeHeight,
+        height:146,
         beforeclose: function() {
             $(".warning").remove();
         },
-        click: function(e) {
+        click: function(event, ui) {
             $(".warning").remove();
             if( $(this).multiselect("widget").find("input:checked").length > languages_max ) {
                 place_multiselect_warning_table($("#id_languages"), languages_max);
                 return false;
             }
+            var num = $(this).multiselect("widget").find("input:checked").filter(function(){
+            	 if(this.title.split(' (')[0] == ui.text.split(' (')[0])
+            	 	return true;
+           	}).length;
+           	if (num > 1){
+           		place_errors_table($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
+           		return false;
+           	}
         }
     }).multiselectfilter();
 
@@ -621,7 +629,7 @@ $(document).ready( function() {
         noneSelectedText: "select male or female",
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height:singleselectThreeOptionHeight,
+        height:83,
         header:false,
         minWidth:multiselectYesNoSingleSelectWidth,
         selectedList: 1,
@@ -632,7 +640,7 @@ $(document).ready( function() {
         noneSelectedText: "select yes or no",
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height:singleselectThreeOptionHeight,
+        height:83,
         header:false,
         minWidth:multiselectYesNoSingleSelectWidth,
         selectedList: 1,
@@ -645,7 +653,7 @@ $(document).ready( function() {
         uncheckAllText: multiselectUncheckAllText,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
-        height:multiselectLargeHeight,
+        height:146,
         minWidth:multiselectMinWidth,
         selectedList: 1,
         beforeclose: function() {
