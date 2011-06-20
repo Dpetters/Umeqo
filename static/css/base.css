@@ -908,3 +908,6 @@ a.ui-slider-handle {
 .hid {
     display: none;
 }
+.overflowHidden {
+    overflow: hidden;
+}

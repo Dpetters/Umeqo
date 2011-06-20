@@ -23,21 +23,12 @@ Copyright 2011. All Rights Reserved.
 <script type="text/javascript">
 var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
 var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
-var CHECKIN_URL = "{% url event_checkin id=event.id }";
+var CHECKIN_URL = "{% url event_checkin id=event.id %}";
 </script>
 {% endblock %}
 
 {% block content_area %}
-<div id="event_signin_main" class="hid">
-    <h2>{{event.name}} <span>(powered by <img src="{{ STATIC_URL }}images/logo_dark_small.png" alt="Umeqo" />)</span></h2>
-    <div id="event_signin_content">
-        <h1>Event Signin</h1>
-        <form action="">
-            <input id="email_input" type="text" name="name" placeholder="Enter your email"/>
-            <ul id="email_input_autofill"></ul>
-        </form>
-    </div>
-</div>
+{% include "event_checkin.html" with event=event %}
 <div id="event_page_block" class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
@@ -174,6 +165,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id }";
             </tr>
             {% endif %}
         </table>
+        {% if show_admin %}
         <div id="event_signin">
             <h3>Event signin mode</h3>
             <a id="event_signin_link" href="#">
@@ -181,6 +173,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id }";
                 <span class="filler"></span>
             </a>
         </div>
+        {% endif %}
     </div>
 </div>
 <div id="fb-root"></div>

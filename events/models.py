@@ -10,6 +10,7 @@ from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from core.models import EventType
 from core.managers import ActiveManager
+from student.models import Student
     
 class Event(models.Model):
     
@@ -17,12 +18,10 @@ class Event(models.Model):
     is_active = models.BooleanField(default=True,editable=False)
     objects = ActiveManager()
 
-
     # Required Fields
     recruiters = models.ManyToManyField("employer.Recruiter")
     
     # Foreign Key to Campus Organization
-    
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)
@@ -71,3 +70,10 @@ def update_rsvp_count(sender, **kwargs):
     pk_set = kwargs['pk_set']
     if action in supported:
         instance.rsvp_count += supported[action]*len(pk_set)
+
+class Attendee(models.Model):
+    email = models.EmailField()
+    name = models.CharField(max_length=200, null=True)
+    student = models.ForeignKey(Student, null=True)
+    event = models.ForeignKey(Event)
+    datetime_created = models.DateTimeField(auto_now=True)
