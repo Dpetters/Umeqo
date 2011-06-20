@@ -228,6 +228,10 @@
 #event_signin_main h2 span img {
     margin: 0 0 -16px -3px;
 }
+#event_signin_main p {
+    font-size: 20px;
+    padding: 10px 0;
+}
 #event_signin_content {
     padding: 15px;
 }
@@ -239,14 +243,14 @@
 }
 #event_signin_main input {
     font-size: 30px;
-    width: 600px;
+    width: 400px;
     border-radius: 3px;
     padding: 5px;
 }
 
 #email_input_autofill {
     list-style: none;
-    width: 610px;
+    width: 410px;
 }
 #email_input_autofill li {
     display: block;
@@ -263,4 +267,81 @@
 #email_input_autofill .selected {
     background-color: #6E97B9;
     color: #FFF;
+}
+
+#checkin_form {
+    display: inline-block;
+}
+#checkins {
+    list-style: none;
+    padding-top: 10px;
+    width: 400px;
+}
+#checkins li {
+    font-size: 20px;
+    padding: 7px 4px 7px 8px;
+    color: #666;
+    border-left: 6px solid #CCC;
+    background-color: #FAFAFA;
+    margin-top: 2px;
+}
+#checkins li .email {
+    font-size: 16px;
+    color: #999;
+}
+#checkins li .email::before {
+    content: '[';
+}
+#checkins li .email::after {
+    content: ']';
+}
+#checkin_status {
+    margin-top: 5px;
+    height: 2px;
+    width: 828px;
+    background-color: #46c0d6;
+}
+#checkin_status.success {
+    background-color: #5bcb33;
+}
+#checkin_status.error {
+    background-color: #cc0000;
+}
+#checkin_error {
+    font-size: 20px;
+    padding-top: 5px;
+    color: #cc0000;
+}
+#close_box {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    text-align: right;
+}
+#close_box:hover {
+    cursor: pointer;
+}
+#close_box:hover #close_dialogue {
+    background-color: #FAFAFA;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+#close_dialogue {
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: left;
+}
+#close_button {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #EEE;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    font-size: 18px;
 }

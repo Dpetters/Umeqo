@@ -4,17 +4,19 @@
  Copyright 2011. All Rights Reserved.
 """
 
-from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render_to_response, redirect
-from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.decorators.http import require_http_methods 
-from core.decorators import is_student
-from events.models import Event
-from django.utils import simplejson
+from core.decorators import is_recruiter, is_student
 from datetime import datetime
+from django.conf import settings
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.core.validators import email_re
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
+from django.shortcuts import redirect, render_to_response
+from django.template import RequestContext
+from django.utils import simplejson
+from django.views.decorators.http import require_http_methods
+from events.models import Attendee, Event
 from haystack.query import SearchQuerySet
 
 @login_required
@@ -87,14 +89,11 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
 @require_http_methods(["GET", "POST"])
 def event_rsvp(request, id):
     event = Event.objects.get(pk=id)
+    # if method is GET then get a list of RSVPed students
     if request.method == 'GET' and hasattr(request.user, 'recruiter'):
-        rsvps = map(lambda n: {'id': n.id, 'email': n.user.email}, event.rsvps.all())
-        rsvps_lookup = dict([(n['email'], n['id']) for n in rsvps])
-        data = {
-            'rsvps': rsvps,
-            'rsvps_lookup': rsvps_lookup
-        }
+        data = map(lambda n: {'id': n.id, 'email': n.user.email}, event.rsvps.all())
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    # if POST then record student's RSVP
     elif request.method == 'POST' and hasattr(request.user, 'student'):
         event.rsvps.add(request.user.student)
         event.save()
@@ -116,9 +115,53 @@ def event_unrsvp(request, id):
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
-#login is not required since it's from a shared computer
-def event_checkin():
-    pass
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+@require_http_methods(["GET", "POST"])
+def event_checkin(request, id):
+    event = Event.objects.get(pk=id)
+    if request.method == 'GET':
+        def buildAttendee(obj):
+            output = {'email': obj.email}
+            if obj.student:
+                output['name'] = obj.student.first_name + ' ' + obj.student.last_name
+            else:
+                output['name'] = obj.name
+            return output
+        attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
+        return HttpResponse(simplejson.dumps(attendees), mimetype="application/json")
+    else:
+        email = request.POST.get('email', None)
+        if not email or not email_re.match(email):
+            data = {
+                'valid': False,
+                'error': 'Enter a valid email!'
+            }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        name = request.POST.get('name', None)
+        student = None
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            if hasattr(user, 'student'):
+                student = user.student
+        if not name and not student:
+            data = {
+                'valid': False,
+                'error': "This email isn't registered with Umeqo. Enter your name!"
+            }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+        attendee = Attendee(email=email, name=name, student=student, event=event)
+        attendee.save()
+        output = {
+            'valid': True,
+            'email': email
+        }
+        if student:
+            output['name'] = student.first_name + ' ' + student.last_name
+        else:
+            output['name'] = name
+        return HttpResponse(simplejson.dumps(output), mimetype="application/json")
 
 @login_required
 def event_search(request, template_name='events_list_ajax.html', extra_context=None):
