@@ -156,7 +156,6 @@ class Course(CommonInfo):
 
 @receiver(signals.post_save, sender=Course)
 def resize_course_image(sender, instance, **kwargs):
-    print "RESIZED"
     if instance.image:
         filename = instance.image.path
         image = Image.open(filename)
@@ -195,7 +194,7 @@ class CampusOrgType(models.Model):
         verbose_name = "On-Campus Organization Type"
         verbose_name_plural = "On-Campus Organization Types"
         ordering = ['sort_order']
-    
+
     def save(self, *args, **kwargs):
         self.full_clean()
         super(CampusOrgType, self).save(*args, **kwargs)
@@ -217,8 +216,14 @@ class CampusOrg(CommonInfo):
         verbose_name_plural = "On-Campus Organizations"
           
 @receiver(signals.post_save, sender=CampusOrg)
-def resize_image(sender, instance, **kwargs):
-    resize_image(instance, settings.MAX_DIALOG_IMAGE_WIDTH, settings.MAX_DIALOG_IMAGE_HEIGHT)
+def resize_campus_org_image(sender, instance, **kwargs):
+    if instance.image:
+        filename = instance.image.path
+        image = Image.open(filename)
+        ratio = min(float(settings.MAX_DIALOG_IMAGE_WIDTH)/instance.image.width, float(settings.MAX_DIALOG_IMAGE_HEIGHT)/instance.image.height)
+        size = (int(ratio * instance.image.width), int(ratio * instance.image.height))
+        image.thumbnail(size, Image.ANTIALIAS)
+        image.save(filename)
 
 class Industry(models.Model):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
