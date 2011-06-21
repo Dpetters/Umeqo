@@ -68,5 +68,8 @@ class Attendee(models.Model):
     event = models.ForeignKey(Event)
     datetime_created = models.DateTimeField(auto_now=True)
 
+    def __unicode__(self):
+        return '%s <%s>' % (self.name, self.email)
+
     class Meta:
         unique_together = (("student", "event"),)

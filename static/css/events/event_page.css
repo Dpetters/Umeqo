@@ -167,14 +167,20 @@
     font-size: 12px;
     font-weight: bold;
     border-radius: 2px;
+    border-bottom: 2px solid #FFF;
 }
 .responses .event_rsvp:hover {
-    cursor: pointer;
     color: #FFF;
-    background-color: #999;
+    background-color: #BBB;
+    border-bottom: 2px solid #BBB;
+    cursor: default;
+}
+.responses .event_rsvp.hoverable {
+    border-bottom: 2px solid #557389;
 }
 .responses .event_rsvp.hoverable:hover {
     background-color: #557389;
+    cursor: pointer;
 }
 .responses .event_rsvp .email {
     font-weight: 400;

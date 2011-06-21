@@ -65,6 +65,7 @@ def buildRSVP(obj):
         'id': obj.student.id,
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.isoformat(),
+        'email': obj.student.user.email,
         'account': True
     }
     return output
@@ -81,9 +82,19 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     page_url = 'http://'+settings.DOMAIN+reverse('event_page', kwargs={'id':event.id,'slug':event.slug})
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
-    rsvps = map(buildRSVP, event.rsvp_set.all())
-    checkins = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
-    all_responses = sorted(checkins + rsvps, key=lambda n: n['datetime_created'])
+    rsvps = map(buildRSVP, event.rsvp_set.all().order_by('student__first_name'))
+    print event.rsvp_set.all().order_by('name')
+    print rsvps
+    checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
+    checkins.sort(key=lambda n: 0 if n['account'] else 1)
+    emails_dict = {}
+    all_responses = []
+    for res in checkins + rsvps:
+        if res['email'] not in emails_dict:
+            emails_dict[res['email']] = 1
+            all_responses.append(res)
+    all_responses.sort(key=lambda n: n['datetime_created'])
+    all_responses.sort(key=lambda n: 0 if n['account'] else 1)
     context = {
         'event': event,
         'rsvps': rsvps,
@@ -170,7 +181,8 @@ def event_checkin(request, id):
                 'error': "This email isn't registered with Umeqo. Enter your name!"
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
+        if not name:
+            name = "%s %s" % (user.student.first_name, user.student.last_name)
         attendee = Attendee(email=email, name=name, student=student, event=event)
         try:
             attendee.save()
