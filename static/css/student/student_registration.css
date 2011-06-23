@@ -5,13 +5,23 @@
  */
 
 #student_registration_block {
-    width: 540px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    border-width: 1px 0 0;
+}
+
+#student_registration_block .main_block_header {
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    text-align: left;
 }
 
 #student_registration_block .form_table{
     margin-left: auto;
     margin-right: auto;    
+}
+
+#student_registration_form {
+    display: inline-block;
 }

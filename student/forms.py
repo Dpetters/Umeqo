@@ -18,9 +18,9 @@ from core import messages
 
 class StudentRegistrationForm(forms.Form):
 
-    email = forms.EmailField(label="Your MIT Email:")
-    password1 = forms.CharField(label="Choose a Password:", widget=forms.PasswordInput(render_value=False))
-    password2 = forms.CharField(label="Re-enter Password:", widget=forms.PasswordInput(render_value=False))
+    email = forms.EmailField(label="MIT email:")
+    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False))
+    password2 = forms.CharField(label="Password again:", widget=forms.PasswordInput(render_value=False))
     
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -28,8 +28,7 @@ class StudentRegistrationForm(forms.Form):
         if does_email_exist(email):
             raise forms.ValidationError(_(messages.email_already_registered))
         
-        ending = email.split("@")[1]
-        if ending != "mit.edu":
+        if email[-len("mit.edu"):] != "mit.edu":
             raise forms.ValidationError(_(messages.use_an_mit_email_address))
         """
         con = ldap.open('ldap.mit.edu')
@@ -65,10 +64,7 @@ class StudentUpdateResumeForm(forms.ModelForm):
         model = Student
 
 class StudentCreateProfileForm(forms.ModelForm):
-         
-    """
-    Required Info
-    """  
+    # Required Info
     first_name = forms.CharField(label="First Name:", max_length = 20)
     last_name = forms.CharField(label="Last Name:", max_length = 30)
     school_year = forms.ModelChoiceField(label="School Year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
@@ -77,10 +73,7 @@ class StudentCreateProfileForm(forms.ModelForm):
     gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5)
     resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
     
-    
-    """
-        Academic Info
-    """
+    # Academic Info
     second_major = forms.ModelChoiceField(label="Second Major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
     #minor = forms.ModelChoiceField(label="Minor:", queryset = Course.objects.all(), required = False, empty_label = "select course")
     act = forms.IntegerField(label="ACT:", max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
@@ -88,16 +81,12 @@ class StudentCreateProfileForm(forms.ModelForm):
     sat_v = forms.IntegerField(label="SAT Verbal:", max_value = 800, min_value = 200, required = False)
     sat_w = forms.IntegerField(label="SAT Writing:", max_value = 800, min_value = 200, required = False)
     
-    """
-        Work-Related Info
-    """
+    # Work-Related Info
     looking_for = forms.ModelMultipleChoiceField(label="Looking For:", queryset = EmploymentType.objects.all(), required = False)
     industries_of_interest = forms.ModelMultipleChoiceField(label="Interested In:", queryset = Industry.objects.all(), required = False)
     previous_employers = forms.ModelMultipleChoiceField(label="Previous Employers:", queryset = Employer.objects.all(), required = False)
     
-    """
-        Miscellaneous Info
-    """
+    # Miscellaneous Info
     # Campus Orgs
     campus_involvement = forms.ModelMultipleChoiceField(label="Campus Involvement:", queryset = CampusOrg.objects.all(), required = False)
     languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
@@ -107,8 +96,6 @@ class StudentCreateProfileForm(forms.ModelForm):
     older_than_18 = forms.ChoiceField(label="Older Than 18:", choices = SELECT_YES_NO_CHOICES, required = False)
     ethnicity = forms.ModelChoiceField(label="Ethnicity:", queryset = Ethnicity.objects.all(), empty_label="select ethnicity", required=False)
 
-
-    
     class Meta:
         fields = ('first_name',
                    'last_name',

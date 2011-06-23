@@ -5,7 +5,9 @@
 */
 
 $(document).ready( function() {
-
+    $.validator.addMethod('isMITEmail', function(value, element) {
+        return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
+    });
     $("#student_registration_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
@@ -29,7 +31,6 @@ $(document).ready( function() {
                 },
                 success: function(data) {
                     hide_form_submit_loader("#student_registration_form");
-                    console.log(data);
                     switch(data.valid) {
                         case false:
                             if (data.form_errors.email){
@@ -48,7 +49,7 @@ $(document).ready( function() {
                         case true:
                             window.location.replace(data.success_url);
                             break;
-                        default:
+                        defaultfalse:
                             $("#student_registration_block .main_block_content").html(page_error_message);
                             break;
                     }
@@ -61,7 +62,8 @@ $(document).ready( function() {
         rules: {
             email: {
                 required: true,
-                email:true,
+                email: true,
+                isMITEmail: true,
                 remote: {
                     dataType: 'json',
                     url:"/check-email-availability/",
@@ -84,12 +86,23 @@ $(document).ready( function() {
             },
             password2:{
                 required: true,
+                equalTo: '#id_password1',
             },
         },
         messages:{
             email:{
+                required: "What's your email?",
+                email: "Doesn't look like a valid email.",
+                isMITEmail: 'Must be an MIT email.',
                 remote: EMAIL_ALREADY_REGISTERED_MESSAGE
             },
+            password1: {
+                required: 'You need a password!'
+            },
+            password2: {
+                required: 'A second time, just to check.',
+                equalTo: "Passwords don't match."
+            }
         }
     });
 });

@@ -38,7 +38,6 @@ def student_account_settings(request,
 
 def student_registration(request,
                          backend = RegistrationBackend(), 
-                         form_class = StudentRegistrationForm,
                          success_url = 'student_registration_complete', 
                          disallowed_url = 'student_registration_disallowed',
                          template_name = 'student_registration.html',
@@ -48,11 +47,12 @@ def student_registration(request,
         return redirect(disallowed_url)
     
     if request.method == 'POST':
-        form = form_class(data=request.POST)
+        form = StudentRegistrationForm(data=request.POST)
         if form.is_valid():
-            form.cleaned_data['username']= form.cleaned_data['email'].split("@")[0]
+            form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
-            Student.objects.create(user=new_user)
+            student = Student(user=new_user)
+            student.save()
             if request.is_ajax():
                 return HttpResponse(simplejson.dumps({'valid':True, 'success_url':reverse(success_url)}), mimetype="application/json")
             return redirect(success_url)
@@ -62,7 +62,7 @@ def student_registration(request,
                         'form_errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        form = form_class()
+        form = StudentRegistrationForm()
 
     context = {
             'form':form,

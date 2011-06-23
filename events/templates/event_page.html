@@ -85,6 +85,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                 <div id="event_response_empty">There are no checkins yet.</div>
                 {% endfor %}
             </div>
+            <p>*Grayed out students do not have an Umeqo account.</p>
             <div class="clearfix"></div>
         </div>
         {% endif %}
@@ -156,7 +157,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                 <th>Created by:</th>
                 <td>
                     {% for recruiter in recruiters %}
-                        <a href="{% url employers_list %}?id={{recruiter.employer.id}}" class="employer">{{recruiter.employer.name}}</a>
+                    <a href="{% if not show_admin %}{% url employers_list %}?id={{recruiter.employer.id}}{% else %}#{% endif %}" class="employer">{{recruiter.employer.name}}</a>
                     {% endfor %}
                 </td>
             </tr>

@@ -565,14 +565,14 @@ a.button.sub-button:hover {
 }
 /* Forms */
 .errorspace {
-    color: #FF2222;
+    color: #FF7B7B;
     position: relative;
     height: 20px;
     font-size: 12px;
     text-align: left;
 }
 .asterisk, .error {
-    color: #FF2222;
+    color: #FF7B7B;
     border: 0;
 }
 .ready {
@@ -623,7 +623,7 @@ input[type=text], input[type=password] {
 }
 .required::after {
     content: '*';
-    color: #F22;
+    color: #FF7B7B;
 }
 /* TABLES + FORMS = <3 */
 .form_table {
@@ -637,6 +637,42 @@ input[type=text], input[type=password] {
     padding-bottom: 3px;
     text-align: right;
 }
+.form_table input[type=submit] {
+    margin-top: 10px;
+}
+.form_table .info {
+    width: 300px;
+    padding-left: 10px;
+    padding-top: 20px;
+    vertical-align: top;
+}
+p {
+    line-height: 24px;
+    font-size: 15px;
+}
+.form_table.grande {
+    width: auto;
+}
+.form_table.grande input[type=text], .form_table.grande input[type=password] {
+    font-size: 20px;
+    padding: 5px;
+    width: 250px;
+}
+.form_table.grande label {
+    line-height: 30px;
+    font-size: 16px;
+}
+.form_table.grande label.error {
+    font-size: 14px;
+    line-height: 18px;
+}
+.form_table.grande input[type=submit] {
+    font-size: 16px;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 10px;
+}
+
 .ui-widget-content a, a {
     color: #6e97b9;
     outline: none;

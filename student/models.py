@@ -6,6 +6,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, Ethnicity
@@ -70,16 +71,20 @@ class Student(models.Model):
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
   
-    def save( self, *args, **kwargs ):
+    def save(self, *args, **kwargs):
         if self.first_name and self.last_name:
             self.user.first_name = self.first_name
             self.user.last_name = self.last_name
             self.user.save()
-        if not self.preferences:
+        try:
+            self.preferences
+        except ObjectDoesNotExist:
             self.preferences = StudentPreferences.objects.create()
-        if not self.statistics:
+        try:
+            self.statistics
+        except ObjectDoesNotExist:
             self.statistics = StudentStatistics.objects.create()
-        super(Student, self).save( *args, **kwargs )
+        super(Student, self).save(*args, **kwargs)
 
 class StudentPreferences(models.Model):
     email_on_invite_to_public_event = models.BooleanField()

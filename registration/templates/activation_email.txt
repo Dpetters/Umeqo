@@ -1,5 +1,6 @@
-You have recently registered on Umeqo.
+Thanks for signing up at Umeqo!
 
-Click the following link to activate your account:
+Activate your account by clicking this link:
 
 http://localhost:8000/activation/{{activation_key}}/
+

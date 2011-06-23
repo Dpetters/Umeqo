@@ -99,6 +99,9 @@
     behavior: url(/static/lib/pie/PIE.htc);
     -pie-background: linear-gradient(#888, #666);
 }
+#event_admin p {
+    margin-top: 5px;
+}
 
 #event_tabs h2 {
     font-size: 13px;
@@ -162,12 +165,12 @@
 .responses .event_rsvp {
     display: inline-block;
     padding: 7px;
-    background-color: #FFF;
+    background-color: #F0F0F0;
     margin-top: 5px;
     font-size: 12px;
     font-weight: bold;
     border-radius: 2px;
-    border-bottom: 2px solid #FFF;
+    border-bottom: 2px solid #F0F0F0;
 }
 .responses .event_rsvp:hover {
     color: #FFF;
@@ -176,6 +179,7 @@
     cursor: default;
 }
 .responses .event_rsvp.hoverable {
+    background-color: #FFF;
     border-bottom: 2px solid #557389;
 }
 .responses .event_rsvp.hoverable:hover {
