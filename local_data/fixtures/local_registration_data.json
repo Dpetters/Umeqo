@@ -1,25 +1,25 @@
 [
  {
-  "pk": 1, 
-  "model": "registration.registrationprofile", 
+  "pk": 1,
+  "model": "registration.registrationprofile",
   "fields": {
-   "activation_key": "49818517de064ca60f56761aef73b091973773a7", 
+   "activation_key": "49818517de064ca60f56761aef73b091973773a7",
    "user": 4
   }
- }, 
+ },
  {
-  "pk": 2, 
-  "model": "registration.registrationprofile", 
+  "pk": 2,
+  "model": "registration.registrationprofile",
   "fields": {
-   "activation_key": "863e63501b30f8793af7f6b1f4fd402c7ad59785", 
+   "activation_key": "863e63501b30f8793af7f6b1f4fd402c7ad59785",
    "user": 7
   }
- }, 
+ },
  {
-  "pk": 3, 
-  "model": "registration.registrationprofile", 
+  "pk": 3,
+  "model": "registration.registrationprofile",
   "fields": {
-   "activation_key": "b25103468611cc687e07cf59603fc90b4ce5171f", 
+   "activation_key": "b25103468611cc687e07cf59603fc90b4ce5171f",
    "user": 8
   }
  }

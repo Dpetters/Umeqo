@@ -1,140 +1,182 @@
 [
  {
-  "pk": 1, 
-  "model": "employer.recruiter", 
+  "pk": 1,
+  "model": "employer.resumebook",
   "fields": {
-   "statistics": 1, 
-   "preferences": 1, 
-   "subscribed": false, 
-   "starred_students": [], 
-   "is_active": true, 
-   "employer": 1, 
-   "user": 3, 
-   "date_created": "2011-05-22 19:50:44", 
+   "students": [
+    2
+   ],
+   "file_name": "SampleRecruiter1_2011-06-19-18-22-53.pdf",
+   "recruiter": 1,
+   "name": null,
+   "date_created": "2011-06-12 23:00:00"
+  }
+ },
+ {
+  "pk": 1,
+  "model": "employer.recruiter",
+  "fields": {
+   "statistics": 1,
+   "preferences": 1,
+   "subscribed": false,
+   "starred_students": [
+    3
+   ],
+   "is_active": true,
+   "employer": 1,
+   "user": 3,
+   "date_created": "2011-05-22 19:50:44",
    "default_filtering_parameters": null
   }
- }, 
+ },
  {
-  "pk": 2, 
-  "model": "employer.recruiter", 
+  "pk": 2,
+  "model": "employer.recruiter",
   "fields": {
-   "statistics": 2, 
-   "preferences": 2, 
-   "subscribed": false, 
-   "starred_students": [], 
-   "is_active": true, 
-   "employer": 2, 
-   "user": 5, 
-   "date_created": "2011-05-22 23:09:33", 
+   "statistics": 2,
+   "preferences": 2,
+   "subscribed": false,
+   "starred_students": [],
+   "is_active": true,
+   "employer": 2,
+   "user": 5,
+   "date_created": "2011-05-22 23:09:33",
    "default_filtering_parameters": null
   }
- }, 
+ },
  {
-  "pk": 3, 
-  "model": "employer.recruiter", 
+  "pk": 3,
+  "model": "employer.recruiter",
   "fields": {
-   "statistics": 3, 
-   "preferences": 3, 
-   "subscribed": false, 
-   "starred_students": [], 
-   "is_active": true, 
-   "employer": 3, 
-   "user": 6, 
-   "date_created": "2011-05-22 23:09:42", 
+   "statistics": 3,
+   "preferences": 3,
+   "subscribed": false,
+   "starred_students": [],
+   "is_active": true,
+   "employer": 3,
+   "user": 6,
+   "date_created": "2011-05-22 23:09:42",
    "default_filtering_parameters": null
   }
- }, 
+ },
  {
-  "pk": 1, 
-  "model": "employer.employer", 
+  "pk": 1,
+  "model": "employer.studentcomment",
+  "fields": {
+   "comment": "",
+   "recruiter": 1,
+   "student": 3
+  }
+ },
+ {
+  "pk": 2,
+  "model": "employer.studentcomment",
+  "fields": {
+   "comment": "",
+   "recruiter": 1,
+   "student": 2
+  }
+ },
+ {
+  "pk": 3,
+  "model": "employer.studentcomment",
+  "fields": {
+   "comment": "",
+   "recruiter": 1,
+   "student": 1
+  }
+ },
+ {
+  "pk": 1,
+  "model": "employer.employer",
   "fields": {
    "industries": [
     1
-   ], 
-   "name": "Sample Employer 1", 
-   "main_contact": "George Lopez", 
-   "main_contact_phone": "234-234-2345", 
-   "date_created": "2011-05-22 19:50:17", 
-   "slug": "sample-employer-1", 
-   "description": ""
+   ],
+   "name": "Sample Employer 1",
+   "main_contact": "George Lopez",
+   "main_contact_phone": "234-234-2345",
+   "date_created": "2011-05-22 19:50:17",
+   "slug": "sample-employer-1",
+   "description": "Leading the way with innovation, employer 1 has creatively originated inventive things."
   }
- }, 
+ },
  {
-  "pk": 2, 
-  "model": "employer.employer", 
+  "pk": 2,
+  "model": "employer.employer",
   "fields": {
    "industries": [
-    27, 
+    27,
     34
-   ], 
-   "name": "Sample Employer 2", 
-   "main_contact": "Sergio Martinez", 
-   "main_contact_phone": "234-234-2345", 
-   "date_created": "2011-05-22 23:04:22", 
-   "slug": "sample-employer-2", 
-   "description": ""
+   ],
+   "name": "Sample Employer 2",
+   "main_contact": "Sergio Martinez",
+   "main_contact_phone": "234-234-2345",
+   "date_created": "2011-05-22 23:04:22",
+   "slug": "sample-employer-2",
+   "description": "With a long standing history of doing stuff, sample employer 2 looks to the future with the thing that this may do."
   }
- }, 
+ },
  {
-  "pk": 3, 
-  "model": "employer.employer", 
+  "pk": 3,
+  "model": "employer.employer",
   "fields": {
    "industries": [
-    5, 
+    5,
     7
-   ], 
-   "name": "Sample Employer 3", 
-   "main_contact": "Jorge Martinez", 
-   "main_contact_phone": "234-234-2345", 
-   "date_created": "2011-05-22 23:04:54", 
-   "slug": "sample-employer-3", 
-   "description": ""
+   ],
+   "name": "Sample Employer 3",
+   "main_contact": "Jorge Martinez",
+   "main_contact_phone": "234-234-2345",
+   "date_created": "2011-05-22 23:04:54",
+   "slug": "sample-employer-3",
+   "description": "Sample Employer 3 has been an employer who has done things that may have not really done yes."
   }
- }, 
+ },
  {
-  "pk": 1, 
-  "model": "employer.employerpreferences", 
+  "pk": 1,
+  "model": "employer.employerpreferences",
   "fields": {
-   "email_on_rsvp": false, 
-   "results_per_page": 10, 
+   "email_on_rsvp": false,
+   "results_per_page": 10,
    "default_student_ordering": "relevancy"
   }
- }, 
+ },
  {
-  "pk": 2, 
-  "model": "employer.employerpreferences", 
+  "pk": 2,
+  "model": "employer.employerpreferences",
   "fields": {
-   "email_on_rsvp": false, 
-   "results_per_page": 10, 
+   "email_on_rsvp": false,
+   "results_per_page": 10,
    "default_student_ordering": "relevancy"
   }
- }, 
+ },
  {
-  "pk": 3, 
-  "model": "employer.employerpreferences", 
+  "pk": 3,
+  "model": "employer.employerpreferences",
   "fields": {
-   "email_on_rsvp": false, 
-   "results_per_page": 10, 
+   "email_on_rsvp": false,
+   "results_per_page": 10,
    "default_student_ordering": "relevancy"
   }
- }, 
+ },
  {
-  "pk": 1, 
-  "model": "employer.employerstatistics", 
+  "pk": 1,
+  "model": "employer.employerstatistics",
   "fields": {
    "resumes_viewed": 0
   }
- }, 
+ },
  {
-  "pk": 2, 
-  "model": "employer.employerstatistics", 
+  "pk": 2,
+  "model": "employer.employerstatistics",
   "fields": {
    "resumes_viewed": 0
   }
- }, 
+ },
  {
-  "pk": 3, 
-  "model": "employer.employerstatistics", 
+  "pk": 3,
+  "model": "employer.employerstatistics",
   "fields": {
    "resumes_viewed": 0
   }

@@ -1,85 +1,117 @@
 [
  {
-  "pk": 2, 
-  "model": "events.event", 
+  "pk": 2,
+  "model": "events.event",
   "fields": {
-   "view_count": 194, 
-   "start_datetime": "2011-06-23 22:00:00", 
-   "name": "Morgan Stanley Talk", 
-   "rsvp_count": 3, 
-   "datetime_created": "2011-06-06 22:37:57", 
-   "description": "Hear experts from Morgan Stanley talk about their work.", 
-   "rsvps": [
-    1, 
-    2, 
-    3
-   ], 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
+   "view_count": 276,
+   "start_datetime": "2011-06-23 22:00:00",
+   "name": "Morgan Stanley Talk",
+   "datetime_created": "2011-06-23 01:40:13",
+   "description": "Hear experts from Morgan Stanley talk about their work.",
+   "is_active": true,
+   "last_seen_view_count": 0,
    "recruiters": [
     1
-   ], 
+   ],
    "audience": [
-    1, 
-    2, 
+    1,
+    2,
     3
-   ], 
-   "location": "10-250", 
-   "rsvp_message": null, 
-   "type": 1, 
-   "slug": "morgan-stanley-talk", 
+   ],
+   "location": "10-250",
+   "rsvp_message": null,
+   "type": 1,
+   "slug": "morgan-stanley-talk",
    "end_datetime": "2011-06-23 23:00:00"
   }
- }, 
+ },
  {
-  "pk": 4, 
-  "model": "events.event", 
+  "pk": 4,
+  "model": "events.event",
   "fields": {
-   "view_count": 3, 
-   "start_datetime": "2011-06-10 17:00:00", 
-   "name": "Investment Banking Panel", 
-   "rsvp_count": 0, 
-   "datetime_created": "2011-06-06 22:36:19", 
-   "description": "", 
-   "rsvps": [], 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
+   "view_count": 11,
+   "start_datetime": "2011-06-10 17:00:00",
+   "name": "Investment Banking Panel",
+   "datetime_created": "2011-06-12 23:06:10",
+   "description": "",
+   "is_active": true,
+   "last_seen_view_count": 0,
    "recruiters": [
     1
-   ], 
+   ],
    "audience": [
-    2, 
+    2,
     3
-   ], 
-   "location": "5-231", 
-   "rsvp_message": null, 
-   "type": 3, 
-   "slug": "investment-banking-panel", 
+   ],
+   "location": "5-231",
+   "rsvp_message": null,
+   "type": 3,
+   "slug": "investment-banking-panel",
    "end_datetime": "2011-06-10 18:00:00"
   }
- }, 
+ },
  {
-  "pk": 5, 
-  "model": "events.event", 
+  "pk": 5,
+  "model": "events.event",
   "fields": {
-   "view_count": 18, 
-   "start_datetime": "2011-06-09 15:30:00", 
-   "name": "Google Hackathon", 
-   "rsvp_count": 0, 
-   "datetime_created": "2011-06-06 23:03:07", 
-   "description": "", 
-   "rsvps": [], 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
+   "view_count": 18,
+   "start_datetime": "2011-06-09 15:30:00",
+   "name": "Google Hackathon",
+   "datetime_created": "2011-06-06 23:03:07",
+   "description": "",
+   "is_active": true,
+   "last_seen_view_count": 0,
    "recruiters": [
     1
-   ], 
-   "audience": [], 
-   "location": "Stata", 
-   "rsvp_message": null, 
-   "type": 6, 
-   "slug": "google-hackathon", 
+   ],
+   "audience": [],
+   "location": "Stata",
+   "rsvp_message": null,
+   "type": 6,
+   "slug": "google-hackathon",
    "end_datetime": "2011-06-09 17:00:00"
+  }
+ },
+ {
+  "pk": 1,
+  "model": "events.rsvp",
+  "fields": {
+   "datetime_created": "2011-06-19 22:54:17",
+   "event": 2,
+   "student": 1
+  }
+ },
+ {
+  "pk": 1,
+  "model": "events.attendee",
+  "fields": {
+   "event": 2,
+   "datetime_created": "2011-06-21 00:25:48",
+   "email": "samplestudent1@mit.edu",
+   "student": 1,
+   "name": "Dmitrij Petters"
+  }
+ },
+ {
+  "pk": 2,
+  "model": "events.attendee",
+  "fields": {
+   "event": 2,
+   "datetime_created": "2011-06-21 00:25:52",
+   "email": "samplestudent2@mit.edu",
+   "student": 2,
+   "name": "Zachary Dearing"
+  }
+ },
+ {
+  "pk": 3,
+  "model": "events.attendee",
+  "fields": {
+   "event": 2,
+   "datetime_created": "2011-06-21 00:26:06",
+   "email": "joe@joshma.com",
+   "student": null,
+   "name": "Joe Shmoe"
   }
  }
 ]
