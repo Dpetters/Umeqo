@@ -8,6 +8,10 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# The primary key of the site model.
+# 2 is dev, 1 is prod
+SITE_ID = 2
+
 USE_LANDING_PAGE = False
 
 ROOT = os.path.dirname(os.path.realpath("__file__"))

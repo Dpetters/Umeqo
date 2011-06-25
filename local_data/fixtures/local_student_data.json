@@ -289,6 +289,78 @@
   }
  },
  {
+  "pk": 13,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 14,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 15,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 16,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 17,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 18,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 19,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 20,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
   "pk": 1,
   "model": "student.studentstatistics",
   "fields": {
@@ -400,6 +472,86 @@
  },
  {
   "pk": 12,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 13,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 14,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 15,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 16,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 17,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 18,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 19,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 20,
   "model": "student.studentstatistics",
   "fields": {
    "shown_in_results_count": 0,

@@ -5,6 +5,10 @@ TEMPLATE_DEBUG = DEBUG
 
 USE_LANDING_PAGE = True
 
+# The primary key of the site model.
+# 2 is dev, 1 is prod
+SITE_ID = 1
+
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
 CACHES = {

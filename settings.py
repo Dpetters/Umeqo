@@ -22,7 +22,7 @@ HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
 # Email Settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sbconnect.mit@gmail.com'
+EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
@@ -48,9 +48,6 @@ TIME_ZONE = None
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
-
-# The primary key of the site model.
-SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
