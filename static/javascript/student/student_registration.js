@@ -38,18 +38,12 @@ $(document).ready( function() {
                                 element.css('border', '1px solid red').focus().val("");
                                 place_errors_ajax_table(data.form_errors.email, element);
                             }
-                            else if (data.form_errors.__all__){
-                                place_non_field_ajax_errors(data.form_errors.__all__, "#student_registration_form");
-                                if(data.form_errors.__all__[0] == PASSWORDS_DONT_MATCH_MESSAGE){
-                                    $("#id_password1").css('border', '1px solid red').focus().val("");
-                                    $("#id_password2").css('border', '1px solid red').val("");                                    
-                                }
-                            }
                             break;
                         case true:
-                            window.location.replace(data.success_url);
+                            $('#email_form_input)'.val($('#id_email').val());
+                            $('#email_form').submit();
                             break;
-                        defaultfalse:
+                        default:
                             $("#student_registration_block .main_block_content").html(page_error_message);
                             break;
                     }
@@ -83,11 +77,7 @@ $(document).ready( function() {
             },
             password1: {
                 required: true,
-            },
-            password2:{
-                required: true,
-                equalTo: '#id_password1',
-            },
+            }
         },
         messages:{
             email:{
@@ -98,10 +88,6 @@ $(document).ready( function() {
             },
             password1: {
                 required: 'You need a password!'
-            },
-            password2: {
-                required: 'A second time, just to check.',
-                equalTo: "Passwords don't match."
             }
         }
     });

@@ -8,10 +8,16 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm as DjangoAuthForm
+from django import forms
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.simple import direct_to_template
 
 from registration.forms import PasswordResetForm, SetPasswordForm
+
+# Overwriting Authentication Form
+class AuthenticationForm(DjangoAuthForm):
+    test = forms.CharField(label=_("Email"), max_length=30)
 
 admin.autodiscover()
 

@@ -20,7 +20,6 @@ class StudentRegistrationForm(forms.Form):
 
     email = forms.EmailField(label="MIT email:")
     password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False))
-    password2 = forms.CharField(label="Password again:", widget=forms.PasswordInput(render_value=False))
     
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -41,13 +40,6 @@ class StudentRegistrationForm(forms.Form):
             raise forms.ValidationError(_(messages.not_an_mit_student))
         """
         return self.cleaned_data['email']
-    
-    def clean(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError(_(messages.passwords_dont_match))
-        return self.cleaned_data
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     

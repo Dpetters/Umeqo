@@ -75,7 +75,6 @@ def student_registration(request,
                               context,
                               context_instance=RequestContext(request))
 
-
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_create_profile(request,
