@@ -6,7 +6,10 @@
 
 $(document).ready( function() {
     $.validator.addMethod('isMITEmail', function(value, element) {
-        return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
+        // For testing, allow umeqo.com emails as well.
+        return (value.length - "mit.edu".length) == value.indexOf("mit.edu") ||
+                (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
+
     });
     $("#student_registration_form").validate({
         submitHandler: function(form) {
@@ -34,14 +37,14 @@ $(document).ready( function() {
                     switch(data.valid) {
                         case false:
                             if (data.form_errors.email){
-                                element = $("#id_email");
+                                var element = $("#id_email");
                                 element.css('border', '1px solid red').focus().val("");
                                 place_errors_ajax_table(data.form_errors.email, element);
                             }
                             break;
                         case true:
-                            $('#email_form_input)'.val($('#id_email').val());
-                            $('#email_form').submit();
+                            var email = data.email;
+                            window.location = data.success_url + "?email=" + email;
                             break;
                         default:
                             $("#student_registration_block .main_block_content").html(page_error_message);

@@ -2,5 +2,4 @@ Thanks for signing up at Umeqo!
 
 Activate your account by clicking this link:
 
-http://localhost:8000/activation/{{activation_key}}/
-
+http://{{site}}/activation/{{activation_key}}/

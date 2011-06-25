@@ -8,16 +8,12 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.contrib.auth.forms import AuthenticationForm as DjangoAuthForm
+from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.simple import direct_to_template
 
 from registration.forms import PasswordResetForm, SetPasswordForm
-
-# Overwriting Authentication Form
-class AuthenticationForm(DjangoAuthForm):
-    test = forms.CharField(label=_("Email"), max_length=30)
 
 admin.autodiscover()
 
@@ -76,7 +72,7 @@ urlpatterns += patterns('registration.views',
 urlpatterns += patterns('student.views',
     # Student Registration
     (r'^student/registration/$', 'student_registration', {'extra_context': {'login_form':AuthenticationForm}}, "student_registration"),
-    (r'^student/registration/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template' : 'student_registration_complete.html' }, 'student_registration_complete'),
+    (r'^student/registration/complete/$', 'student_registration_complete', { 'extra_context': {'login_form':AuthenticationForm}}, 'student_registration_complete'),
     (r'^student/registration/closed/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'registration_closed.html' }, 'student_registration_closed'),
     # Student Profile Management
     (r'^student/edit-profile/$', 'student_edit_profile', {}, "student_edit_profile"),

@@ -22,7 +22,10 @@ Copyright 2011. All Rights Reserved.
 <div id="registration_complete_block" class="message_block">
     <h1 id="registration_complete_block_title" class="message_block_title">Almost there!</h1>
     <p class="message_section">
-        A confirmation email has been sent. Please confirm your email address by clicking the activation link the email.
+    A confirmation email has been sent to
+    {% if email %}
+        <strong>{{ email }}</strong>{% else %}
+        your email{% endif %}. Please confirm your email address by clicking the activation link the email.
     </p>
 </div>
 {% endblock %}

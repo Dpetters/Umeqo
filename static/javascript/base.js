@@ -121,7 +121,6 @@ function place_errors_table(error,element) {
     } else if (element.prev().prev().get(0) && element.prev().prev().get(0).tagName!='DIV'){
         var offset = element.position().left-element.parent().position().left;
     }
-    console.log(error);
     $(error).css({
         "padding-left": offset,
         "float": "left",

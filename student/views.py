@@ -26,22 +26,20 @@ from core import messages
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_account_settings(request, 
-                             template_name="student_account_settings.html", 
-                             extra_context=None):
+def student_account_settings(request, template_name="student_account_settings.html", 
+        extra_context=None):
 
     context = {}
     context.update(extra_context or {})
-    return render_to_response(template_name, 
-                              context, 
-                              context_instance=RequestContext(request))
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def student_registration(request,
                          backend = RegistrationBackend(), 
-                         success_url = 'student_registration_complete', 
-                         disallowed_url = 'student_registration_disallowed',
                          template_name = 'student_registration.html',
                          extra_context = None):
+    
+    success_url = 'student_registration_complete'
+    disallowed_url = 'student_registration_disallowed'
     
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
@@ -54,7 +52,12 @@ def student_registration(request,
             student = Student(user=new_user)
             student.save()
             if request.is_ajax():
-                return HttpResponse(simplejson.dumps({'valid':True, 'success_url':reverse(success_url)}), mimetype="application/json")
+                data = {
+                    'valid': True,
+                    'success_url': reverse(success_url),
+                    'email': form.cleaned_data['email']
+                }
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             return redirect(success_url)
         else:
             if request.is_ajax():
@@ -74,6 +77,16 @@ def student_registration(request,
     return render_to_response(template_name,
                               context,
                               context_instance=RequestContext(request))
+
+def student_registration_complete(request,
+            template_name='student_registration_complete.html',
+            extra_context = None):
+    email = request.GET.get('email', None)
+    context = {'email': email}
+    context.update(extra_context)
+    return render_to_response(template_name, context,
+            context_instance = RequestContext(request))
+    
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
