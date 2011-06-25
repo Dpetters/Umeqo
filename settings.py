@@ -122,7 +122,7 @@ MIDDLEWARE_CLASSES = (
 AUTH_PROFILE_MODULE = "student.Student"
 
 AUTHENTICATION_BACKENDS = (
-    "core.backends.CustomModelBackend",
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'urls'
