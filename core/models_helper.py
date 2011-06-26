@@ -13,5 +13,5 @@ def get_resume_filename(instance, filename):
 
 def get_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    filename = "content/images/" + instance.name.replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
+    filename = "images/" + instance.name.replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
     return filename

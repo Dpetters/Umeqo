@@ -8,9 +8,8 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-# The primary key of the site model.
-# 2 is dev, 1 is prod
-SITE_ID = 2
+# 1 - Prod, 2 - Staging, 3 - Local
+SITE_ID = 3
 
 USE_LANDING_PAGE = False
 
