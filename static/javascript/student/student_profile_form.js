@@ -23,6 +23,9 @@ $(document).ready( function() {
             modal:true,
             width:475,
             resizable: false,
+            open: function() {
+                alert('test');
+            },
             close: function() {
                 create_campus_organization_dialog.remove();
             }
@@ -358,6 +361,15 @@ $(document).ready( function() {
             }
         },
         messages: {
+            first_name: 'Enter your first name.',
+            last_name: 'Enter your last name.',
+            school_year: 'Choose your school year.',
+            graduation_year: 'Choose your graduation year.',
+            first_major: 'Choose your major.',
+            gpa: {
+                required: 'Enter your GPA.',
+                range: 'Your GPA should be between 0 and 5.'
+            },
             resume: RESUME_MUST_BE_A_PDF_MESSAGE,
         }
     });
@@ -368,160 +380,19 @@ $(document).ready( function() {
         v.element("#id_resume");
     });
 
-    $("#id_school_year").multiselect({
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        header:false,
-        minWidth:multiselectMinWidth,
-        height:146,
-        selectedList: 1,
-        multiple: false,
-        /* Added close so the error message gets removed once something is selected*/
-        close: function(e) {
-            if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
-                v.element("#id_school_year");
-            }
-        },
-    });
-    
-    $("#id_graduation_year").multiselect({
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        header:false,
-        selectedList: 1,
-        height:146,
-        minWidth:multiselectMinWidth,
-        multiple: false,
-        /* Added close so the error message gets removed once something is selected*/
-        close: function(e) {
-            if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
-                v.element("#id_graduation_year");
-            }
-        },
-    });
-
-    $("#id_first_major").multiselect({
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        height:146,
-        header:false,
-        minWidth:multiselectMinWidth,
-        selectedList: 1,
-        multiple: false,
-        /* Added close so the error message gets removed once something is selected*/
-        close: function(e) {
-            if( $(this).multiselect("widget").find("input:checked").length > 0 ) {
-                v.element("#id_first_major");
-            }
-        },
-    });
-
-    $("#id_second_major").multiselect({
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        height:146,
-        header:false,
-        minWidth:multiselectMinWidth,
-        selectedList: 1,
-        multiple: false
-    });
-    $("#id_gpa").blur(function(){
-        $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
-    });
-    $("#id_gpa").change(function(){
-        gpa_slider.slider('value', $(this).val());
-    });
-    
-    // GPA Slider
-    var gpa_slider = $("#gpa_section .slider").slider({
-        min: 0,
-        max: 5.0,
-        step: .01,
-        value: $("#id_gpa").val(),
-        slide: function(event, ui) {
-            $("#id_gpa").val(formatNumber(ui.value,2,' ','.','','','-','').toString());
-        },
-        change: function(event, ui) {
-            v.element("#id_gpa");
-        }
-    });
-
-    // SAT Math Slider
-    var sat_m_slider = $("#sat_m_section .slider").slider({
-        min: 200,
-        max: 800,
-        step: 10,
-        value: $("#id_sat_m").val(),
-        slide: function(event, ui) {
-            $("#id_sat_m").val(ui.value);
-        },
-        change: function(event, ui) {
-            v.element("#id_sat_m");
-        }
-    });
-    $("#id_sat_m").change(function(){
-        sat_m_slider.slider('value', $(this).val());
-    });
-    
-    // SAT Verbal Slider
-    var sat_v_slider = $("#sat_v_section .slider").slider({
-        min: 200,
-        max: 800,
-        step: 10,
-        value: $("#id_sat_v").val(),
-        slide: function(event, ui) {
-            $("#id_sat_v").val(ui.value);
-        },
-        change: function(event, ui) {
-            v.element("#id_sat_v");
-        }
-    });
-    $("#id_sat_v").change(function(){
-        sat_v_slider.slider('value', $(this).val());
-    });
-        
-    // SAT Writing Slider
-    var sat_w_slider = $("#sat_w_section .slider").slider({
-        min: 200,
-        max: 800,
-        step: 10,
-        value: $("#id_sat_w").val(),
-        slide: function(event, ui) {
-            $("#id_sat_w").val(ui.value);
-        },
-        change: function(event, ui) {
-            v.element("#id_sat_w");
-        }
-    });
-    $("#id_sat_w").change(function(){
-        sat_w_slider.slider('value', $(this).val());
-    });
-    
-    //ACT Slider
-    var act_slider = $("#act_section .slider").slider({
-        min: 0,
-        max: 36,
-        step: 1,
-        value: $("#id_act").val(),
-        slide: function(event, ui) {
-            $("#id_act").val(ui.value);
-        },
-        change: function(event, ui) {
-            v.element("#id_act");
-        }
-    });
-    $("#id_act").change(function(){
-        act_slider.slider('value', $(this).val());
-    });
-
     $("#id_looking_for").multiselect({
+        noneSelectedText: 'select options',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth
-    }).multiselectfilter();
-    
+    }).multiselectfilter();    
+
+    $("#id_gpa").blur(function(){
+        $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
+    });
+
     $("#id_industries_of_interest").multiselect({
         noneSelectedText: 'select industries',
         classes: 'interested_in_multiselect',
@@ -587,16 +458,6 @@ $(document).ready( function() {
         }
     }).multiselectfilter();
     
-    $("#id_ethnicity").multiselect({
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        height:146,
-        header:false,
-        minWidth:multiselectMinWidth,
-        selectedList: 1,
-        multiple: false
-    });
-    
     $("#id_languages").multiselect({
         noneSelectedText: 'select languages',
         classes: 'languages_multiselect',
@@ -624,28 +485,6 @@ $(document).ready( function() {
            	}
         }
     }).multiselectfilter();
-
-    $("#id_gender").multiselect({
-        noneSelectedText: "select male or female",
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        height:83,
-        header:false,
-        minWidth:multiselectYesNoSingleSelectWidth,
-        selectedList: 1,
-        multiple: false
-    });
-    
-    $("#id_older_than_18").multiselect({
-        noneSelectedText: "select yes or no",
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        height:83,
-        header:false,
-        minWidth:multiselectYesNoSingleSelectWidth,
-        selectedList: 1,
-        multiple: false
-    });
 
     $("#id_countries_of_citizenship").multiselect({
         noneSelectedText: "select countries",

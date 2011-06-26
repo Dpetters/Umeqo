@@ -11,13 +11,13 @@ MALE = 'M'
 FEMALE = 'F'
 
 SELECT_YES_NO_CHOICES = (
-('', 'select'),
+('', '--'),
 (YES, 'Yes'),
 (NO, 'No'),
 )
 
 GENDER_CHOICES = (
-('', 'select'),
+('', '--'),
 (MALE, 'Male'),
 (FEMALE, 'Female'),
 )

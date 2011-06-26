@@ -8,17 +8,11 @@
 input[type=text] {
     width:180px;
 }
-select {
-    width:310px;
-}
 .slider{
     margin-top:7px;
     margin-right:13px;
     float:right;
     width:235px;
-}
-#id_older_than_18, #id_requires_sponsorship, #id_gender {
-    width:185px;
 }
 .button {
     width:100px;
@@ -71,8 +65,9 @@ select {
 .profile_side_form_info li {
     left: 15px;
     list-style: disc outside none;
-    margin: 10px 15px 0 10px;
+    margin: 15px 15px 0 10px;
     position: relative;
+    line-height: 20px;
 }
 
 
@@ -117,7 +112,7 @@ select {
     padding:10px 15px;
 }
 
-#id_sat_m, #id_sat_v, #id_sat_w, #id_act, #id_gpa{
+#id_gpa {
     width: 3em;
     text-align: center;
 }
