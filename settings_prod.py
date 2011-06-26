@@ -1,9 +1,12 @@
-import os
+import os, socket
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-USE_LANDING_PAGE = True
+def is_prod():
+    return "66.228.51.22" == socket.gethostbyname_ex(socket.gethostname())[2]
+
+USE_LANDING_PAGE = is_prod()
 
 # The primary key of the site model.
 # 2 is dev, 1 is prod
@@ -11,26 +14,10 @@ SITE_ID = 1
 
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
-LOCAL_SETTINGS_APPS = ('employer',
-                       'student',
-                       'events',
-                       'registration',
-                       'user',
-                       )
-
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),
     ("Zach", "zdearing@gmail.com"),
     ("Josh", "me@joshma.com")
-    # Customer Support People
-    # Customer Support Email Account
 )
 MANAGERS = ADMINS
 

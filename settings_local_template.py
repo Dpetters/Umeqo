@@ -16,13 +16,6 @@ USE_LANDING_PAGE = False
 
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
 LOCAL_SETTINGS_APPS = ('employer',
                        'student',
                        'events',
@@ -32,6 +25,33 @@ LOCAL_SETTINGS_APPS = ('employer',
 
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'request_handler': {
+                'level':'DEBUG',
+                'class':'logging.handlers.RotatingFileHandler',
+                'filename': ROOT + '/logs/django_request.log',
+                'maxBytes': 1024*1024*5, # 5 MB
+                'backupCount': 5,
+                'formatter':'standard',
+        },
+    },
+    'loggers': {
+        'django.request': { # Stop SQL debug from logging to main logger
+            'handlers': ['request_handler'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+    }
 }
 
 DATABASES = {
