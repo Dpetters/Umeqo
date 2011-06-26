@@ -31,27 +31,3 @@ DATABASES = {
         'PORT': '',                         # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'standard': {
-            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-        },
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'standard'
-        }
-    },
-    'loggers': {
-        'django.request': { # Stop SQL debug from logging to main logger
-            'handlers': ['mail_admins'],
-            'level': 'DEBUG',
-            'propagate': False
-        },
-    }
-}
