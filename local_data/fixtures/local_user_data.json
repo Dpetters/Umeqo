@@ -9,7 +9,7 @@
    "is_active": true,
    "is_superuser": true,
    "is_staff": true,
-   "last_login": "2011-06-24 22:01:28",
+   "last_login": "2011-06-25 18:40:48",
    "groups": [],
    "user_permissions": [],
    "password": "sha1$bdeef$43732d4a5bfd22cdf03f95f024c3c6b6fa5beaa6",
@@ -123,6 +123,24 @@
    "password": "sha1$5e810$14cd5a5e127f292d797962d91c5f535cd5614f27",
    "email": "student3@umeqo.com",
    "date_joined": "2011-05-23 22:01:47"
+  }
+ },
+ {
+  "pk": 9,
+  "model": "auth.user",
+  "fields": {
+   "username": "o__o@mit.edu",
+   "first_name": "",
+   "last_name": "",
+   "is_active": true,
+   "is_superuser": false,
+   "is_staff": false,
+   "last_login": "2011-06-25 15:51:58",
+   "groups": [],
+   "user_permissions": [],
+   "password": "sha1$55a03$e09ad60d34ce794e7ea049257fcf866d355bd86a",
+   "email": "o__o@mit.edu",
+   "date_joined": "2011-06-25 15:19:09"
   }
  }
 ]

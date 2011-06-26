@@ -181,6 +181,44 @@
   }
  },
  {
+  "pk": 4,
+  "model": "student.student",
+  "fields": {
+   "last_name": null,
+   "last_updated": null,
+   "sat_m": null,
+   "sat_t": null,
+   "sat_v": null,
+   "sat_w": null,
+   "keywords": null,
+   "looking_for": [],
+   "countries_of_citizenship": [],
+   "ethnicity": null,
+   "first_name": null,
+   "first_major": null,
+   "preferences": 39,
+   "gpa": null,
+   "campus_involvement": [],
+   "languages": [],
+   "profile_created": false,
+   "school_year": null,
+   "graduation_year": null,
+   "previous_employers": [],
+   "website": null,
+   "second_major": null,
+   "resume": "",
+   "is_active": true,
+   "subscribed_employers": [],
+   "statistics": 39,
+   "user": 9,
+   "gender": null,
+   "industries_of_interest": [],
+   "act": null,
+   "date_created": "2011-06-25 15:19:11",
+   "older_than_18": null
+  }
+ },
+ {
   "pk": 1,
   "model": "student.studentpreferences",
   "fields": {
@@ -361,6 +399,177 @@
   }
  },
  {
+  "pk": 21,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 22,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 23,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 24,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 25,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 26,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 27,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 28,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 29,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 30,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 31,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 32,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 33,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 34,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 35,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 36,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 37,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 38,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
+  "pk": 39,
+  "model": "student.studentpreferences",
+  "fields": {
+   "email_on_new_event": false,
+   "email_on_invite_to_private_event": false,
+   "email_on_invite_to_public_event": false
+  }
+ },
+ {
   "pk": 1,
   "model": "student.studentstatistics",
   "fields": {
@@ -552,6 +761,196 @@
  },
  {
   "pk": 20,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 21,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 22,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 23,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 24,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 25,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 26,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 27,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 28,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 29,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 30,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 31,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 32,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 33,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 34,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 35,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 36,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 37,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 38,
+  "model": "student.studentstatistics",
+  "fields": {
+   "shown_in_results_count": 0,
+   "resume_view_count": 0,
+   "event_invite_count": 0,
+   "add_to_resumebook_count": 0
+  }
+ },
+ {
+  "pk": 39,
   "model": "student.studentstatistics",
   "fields": {
    "shown_in_results_count": 0,
