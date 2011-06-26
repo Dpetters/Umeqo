@@ -41,14 +41,11 @@ LOGGING = {
         },
     },
     'handlers': {
-        'request_handler': {
-                'level':'DEBUG',
-                'class':'logging.handlers.RotatingFileHandler',
-                'filename': 'var/log/umeqo/request_error.log',
-                'maxBytes': 1024*1024*5, # 5 MB
-                'backupCount': 5,
-                'formatter':'standard',
-        },
+        'mail_admins': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': ['standard']
+        }
     },
     'loggers': {
         'django.request': { # Stop SQL debug from logging to main logger
