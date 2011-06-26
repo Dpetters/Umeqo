@@ -44,7 +44,7 @@ LOGGING = {
         'mail_admins': {
             'level': 'DEBUG',
             'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': ['standard']
+            'formatter': 'standard'
         }
     },
     'loggers': {
