@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 def process_resume(student, ajax):
    
     resume_text = ""
-    resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
+    resume_file = file(student.resume.name, "rb")
     resume = pyPdf.PdfFileReader(resume_file)
     for i in range(0, resume.getNumPages()):
         resume_text += resume.getPage(i).extractText() + "\n"
@@ -20,9 +20,9 @@ def process_resume(student, ajax):
     
     # Get rid of stop words
     fullWords = re.findall(r'[a-zA-Z]{3,}', resume_text)
-    result=""
+    result = ""
     for word in fullWords:
-        word=word.lower()
+        word = word.lower()
         if word not in stopWords:
             result += " " + word
     
@@ -35,4 +35,4 @@ def process_resume(student, ajax):
         data = {'valid':True,
                 'success_url':reverse("home")}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return redirect('home')
+    return redirect(reverse('home') + '?msg=profile_saved')

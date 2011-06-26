@@ -25,6 +25,15 @@ Copyright 2011. All Rights Reserved.
   <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_home.js"></script>
 {% endblock %}
 
+{% block below_header_area %}
+{{ block.super }}
+{% if msg %}
+<div class="below_header_message">
+    <p>{{ msg }}</p>
+</div>
+{% endif %}
+{% endblock %}
+
 {% block content_area %}
     
     <div class="right_side_container">

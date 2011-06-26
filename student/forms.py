@@ -62,7 +62,7 @@ class StudentCreateProfileForm(forms.ModelForm):
     school_year = forms.ModelChoiceField(label="School year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
     graduation_year = forms.ModelChoiceField(label="Graduation year:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
     first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
-    gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5)
+    gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5, decimal_places=2)
     resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
     
     # Academic Info
@@ -72,10 +72,6 @@ class StudentCreateProfileForm(forms.ModelForm):
     sat_m = forms.ChoiceField(label="SAT Math:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_v = forms.ChoiceField(label="SAT Verbal:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_w = forms.ChoiceField(label="SAT Writing:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
-    #act = forms.IntegerField(label="ACT:", max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
-    #sat_m = forms.IntegerField(label="SAT Math:", max_value = 800, min_value = 200, required = False)
-    #sat_v = forms.IntegerField(label="SAT Verbal:", max_value = 800, min_value = 200, required = False)
-    #sat_w = forms.IntegerField(label="SAT Writing:", max_value = 800, min_value = 200, required = False)
     
     # Work-Related Info
     looking_for = forms.ModelMultipleChoiceField(label="Looking for:", queryset = EmploymentType.objects.all(), required = False)

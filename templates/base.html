@@ -29,6 +29,8 @@
         <script src="{{ STATIC_URL }}javascript/browser_not_supported.js" type="text/javascript"></script>
         <![endif]-->
 
+        <link href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+
         {% if user.is_authenticated and user.student or user.recruiter %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             <script type="text/javascript" src="{{ STATIC_URL }}javascript/logged_in.js">
@@ -77,6 +79,9 @@
             <div class="width_container">
                 <ul id="navigation_block">
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
+                    <li id="signup_button">
+                        <a href="{% url student_registration %}">Join Umeqo!</a>
+                    </li>
                     <li id="login_button">
                         <a href="javascript:void(0)">Login</a>
                     </li>

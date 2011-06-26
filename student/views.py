@@ -116,15 +116,15 @@ def student_create_profile(request,
             return process_resume(student, request.is_ajax())
         else:
             if request.is_ajax():
-                data = {'valid':False,
-                        'form_errors':form.errors}
+                data = {'valid': False,
+                        'form_errors': form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = form_class()
     
     context = {
-               'resume_must_be_a_pdf_message' : messages.resume_must_be_a_pdf,
-               'form' : form
+               'resume_must_be_a_pdf_message': messages.resume_must_be_a_pdf,
+               'form': form
                }
 
     context.update(extra_context or {})
@@ -165,7 +165,7 @@ def student_edit_profile(request,
                     data = {'valid':False,
                             'success_url':reverse("home")}
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                return redirect('home')
+                return redirect(reverse('home') + '?msg=profile_saved')
         else:
             if request.is_ajax():
                 data = {'valid':False,

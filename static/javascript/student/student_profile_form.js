@@ -392,6 +392,9 @@ $(document).ready( function() {
     $("#id_gpa").blur(function(){
         $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
     });
+    // Also just do this on load so that the value from Django (2.3 for example)
+    // escapes validation and becomes 2.30.
+    $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
 
     $("#id_industries_of_interest").multiselect({
         noneSelectedText: 'select industries',

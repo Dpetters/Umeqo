@@ -49,7 +49,7 @@ Copyright 2011. All Rights Reserved.
 {% block page_header %}
 {% endblock %}
 
-<form id="profile_form" method='POST' action="" enctype="multipart/form-data">
+<form id="profile_form" method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     <ul id="stepForm">
         <li id="pg1">
@@ -128,23 +128,23 @@ Copyright 2011. All Rights Reserved.
                         {% endif %}
                     </div>
                     <div class="button_wrapper_with_margins">
-                        <input name="formBack1" type="button" class="open1 button disabled-button" value="Back" alt="Back" disabled="disabled" />
+                        <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Submit" value='Submit'>
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Save Profile" value='Save Profile'>
                         <img id='ajax_form_submit_loader' style="display:none" src="{{ STATIC_URL }}images/icons/user.png">
                     </div>
                 </div>
                 <div class="profile_side_form_info">
                     <h3>Umeqo makes it easy for employers to discover you!</h3>
                     <ul>
-                        <li id="profile_form_required_first">
-                            Employers filter students by the attributes listed and search by keywords and skills that we automatically parse from your resume.
+                        <li>
+                        Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
                         </li>
-                        <li id="profile_form_required_second">
+                        <li>
                             The more you fill out, the the more likely you are to show up in the results and the more attractive your listing will appear. <a href="javascript:void(0)" id="profile_form_info_link">Learn more</a>.
                         </li>
                         <li id="profile_form_required_third">
-                            Submit this page, or click <strong>Next</strong> to provide us with more info.
+                            Submit this page, or click <strong>Next</strong> to provide more information.
                         </li>
                     </ul>
                 </div>
@@ -235,13 +235,16 @@ Copyright 2011. All Rights Reserved.
                     <div class="button_wrapper_with_margins">
                         <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
                         <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value="Save Profile" alt="Save Profile">
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
                 </div>
                 <div class="profile_side_form_info">
-                    <h3>Give us a hint of your academics.</h3>
+                    <h3>Give us a hint of your academics and work experience.</h3>
                     <ul>
+                        <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
+                        <li>Employers will be able to find students by interested industries, and you'll get notifications about relevant employers as well.</li>
+                        <li>Yes, some employers still care about standardized test scores.</li>
                     </ul>
                 </div>
             </div>
@@ -272,20 +275,6 @@ Copyright 2011. All Rights Reserved.
                             </td>
                         </tr>
                         <tr>
-                            <th>{{form.website.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.website}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.ethnicity.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.ethnicity}}
-                            </td>
-                        </tr>
-                        <tr>
                             <th>{{form.languages.label_tag}}</th>
                             <td>
                                 <div class="errorspace"></div>
@@ -297,6 +286,13 @@ Copyright 2011. All Rights Reserved.
                             <td>
                                 <div class="errorspace"></div>
                                 {{form.countries_of_citizenship}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.ethnicity.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.ethnicity}}
                             </td>
                         </tr>
                         <tr>
@@ -313,6 +309,13 @@ Copyright 2011. All Rights Reserved.
                                 {{form.older_than_18}}
                             </td>
                         </tr>
+                        <tr>
+                            <th>{{form.website.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.website}}
+                            </td>
+                        </tr>
                     </table>
                     <div class="error_section error">
                         {% if form.errors %}
@@ -322,8 +325,9 @@ Copyright 2011. All Rights Reserved.
                         {% endif %}
                     </div>
                     <div class="button_wrapper_with_margins">
-                        <input name="formBack2" type="button" class="open1 button" value="Back" alt="Back" />
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
+                        <input name="formNext2" type="button" class="button disabled-button" value="Next" alt="Next" disabled="disabled" />
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Save Profile' alt="Save Profile">
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
                 </div>

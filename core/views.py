@@ -163,12 +163,21 @@ def home(request,
          student_home_template_name="student_home.html",
          employer_home_template_name="employer_home.html",
          extra_context=None):
+
+    context = {}
+
+    homePageMessages = {
+        'profile_saved': 'Your profile has been saved.',
+    }
+    msg = request.GET.get('msg',None)
+    if msg:
+        context.update(msg = homePageMessages[msg])
+
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:
                 return redirect('student_edit_profile')
             
-            context = {}
             context.update(extra_context or {}) 
             return render_to_response(student_home_template_name,
                                       context,
@@ -179,12 +188,12 @@ def home(request,
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
             your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             
-            context = {
-                       'search_form': SearchForm(),
-                       'notices': Notice.objects.notices_for(request.user),
-                       'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                       'your_events': your_events
-                       }
+            context.update({
+                'search_form': SearchForm(),
+                'notices': Notice.objects.notices_for(request.user),
+                'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
+                'your_events': your_events
+            });
             
             context.update(extra_context or {})
             return render_to_response(employer_home_template_name, 
@@ -193,11 +202,11 @@ def home(request,
     
     request.session.set_test_cookie()
     
-    context = {
-               'login_form':AuthenticationForm,
-               'action':request.REQUEST.get('action', '')
-               }
-    
+    context.update({
+        'login_form': AuthenticationForm,
+        'action': request.REQUEST.get('action', '')
+    })
+
     event_kwargs = {}
     event_kwargs['end_datetime__gt'] = datetime.now()
     events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")

@@ -16,6 +16,10 @@ html, body {
 img {
     border: none;
 }
+h1 {
+    font-family: 'Lato', 'Arial', serif;
+    font-size: 35px;
+}
 h2 {
     font-size: 20px;
     text-shadow: #FFF 0 1px 0;
@@ -37,10 +41,8 @@ p {
     min-width: 986px;
 }
 #below_header_area {
-    position: absolute;
     width: 986px;
-    left: 50%;
-    margin-left: -493px;
+    margin: 0 auto;
 }
 #below_header_message_wrapper{
     text-align: center;
@@ -112,9 +114,6 @@ p {
     text-decoration: none;
     line-height: 30px;
     padding: 0 6px;
-    -webkit-transition: color 0.2s ease, background-color 0.2s ease;
-    -moz-transition: color 0.2s ease, background-color 0.2s ease;
-    transition: color 0.2s ease, background-color 0.2s ease;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -142,10 +141,8 @@ p {
 #login_section img {
     position: absolute;
 }
-#account a {
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
+#signup_button {
+    float: left;
 }
 #account.pressed, #account.pressed:hover {
     color: #FFF;
@@ -194,9 +191,6 @@ p {
     box-shadow: none;
     color: #EEE;
     text-shadow: #000 0 -1px 0;
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
     font-size: 11px;
 }
 #account_dropdown li a:hover {
@@ -612,7 +606,7 @@ a.button.sub-button:hover {
 	color: #00B20E;
 }
 .warning {
-    color:#FFCF4C;
+    color: #222;
     border: 0;
 }
 label {
@@ -661,6 +655,7 @@ input[type=text], input[type=password] {
 /* TABLES + FORMS = <3 */
 .form_table {
     width: 100%;
+    margin-top: -16px;
 }
 .form_table td {
     text-align: left;
@@ -682,6 +677,7 @@ input[type=text], input[type=password] {
 .form_table.grande p {
     line-height: 24px;
     font-size: 15px;
+    width: 310px;
 }
 .form_table.grande {
     width: auto;
