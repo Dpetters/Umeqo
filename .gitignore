@@ -11,9 +11,6 @@ index
 .settings
 media/images
 media/resume_books
-media/resumes
-data/index
-data/spellchecker
 whoosh_index
 xapian_index
 settings_local.py
