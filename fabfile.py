@@ -3,12 +3,14 @@ from fabric.api import local, lcd, abort
 from fabric.contrib.console import confirm
 from fabric.contrib import django as fabric_django
 
+
+fabric_django.settings_module('Umeqo.settings')
+from django.conf import settings
+
 #fabric_django.settings_module("settings")
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-os.chdir(ROOT)
-from django.conf import settings
+print settings
 
 
 
