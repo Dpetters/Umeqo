@@ -71,7 +71,7 @@ class Recruiter(models.Model):
 
 class StudentComment(models.Model):
     recruiter = models.ForeignKey(Recruiter)
-    student = models.OneToOneField(Student)
+    student = models.ForeignKey(Student)
     comment = models.CharField(max_length=500)
     
 class Employer(models.Model): 
