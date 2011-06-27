@@ -1,4 +1,4 @@
-import os, subprocess, shutil, ctypes, win32api, win32con
+import os, subprocess, shutil
 from fabric.api import local, lcd, abort
 from fabric.contrib.console import confirm
 import settings
