@@ -7,7 +7,7 @@ import settings
 
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
-__all__=["run_server", "run_memcached", "run_solr", "run_local", "refresh_database", "commit_local_data"]
+__all__= ["refresh_database", "commit_local_data"]
 
 # Helper Function
 def delete_contents(directory):
@@ -16,7 +16,7 @@ def delete_contents(directory):
             os.remove(os.path.join(root, name))
         for name in dirs:
             os.rmdir(os.path.join(root, name))
-
+"""
 def run_server():
     subprocess.Popen("python manage.py runserver", shell=True)
 
@@ -31,7 +31,7 @@ def run_local():
     run_server()
     run_memcached()
     run_solr()
-
+"""
 def refresh_database():
     if os.path.exists("./database.db"):
         os.remove("./database.db")
@@ -70,13 +70,13 @@ def refresh_database():
     p.wait()
 
     #os.chdir(ROOT +"/apache-solr-1.4.1/example/")
-    solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/")
+    #solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/")
     
     for app in settings.LOCAL_SETTINGS_APPS:
         p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
         
-    solr_proc.kill()
+    #solr_proc.kill()
 
 
 def commit_local_data():
