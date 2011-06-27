@@ -4,13 +4,14 @@
 *.pyc
 *.pyo
 database.db
+index
 .tmp*
 .project
 .pydevproject
 .settings
-images
-resume_books
-submitted_resumes
+media/images
+media/resume_books
+media/resumes
 whoosh_index
 xapian_index
 settings_local.py
