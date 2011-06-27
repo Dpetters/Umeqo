@@ -18,3 +18,4 @@ settings_local.py
 *.swp
 *.log
 apache-solr-1.4.1/solr/data/
+fabfile.py
