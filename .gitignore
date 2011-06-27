@@ -17,4 +17,4 @@ settings_local.py
 *.psd
 *.swp
 *.log
-apache-solr-1.4.1/solr/data/index
+apache-solr-1.4.1/solr/data/index/
