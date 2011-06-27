@@ -327,7 +327,14 @@ def student_invitations(request,
                               context,
                               context_instance=RequestContext(request))
 
-
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_resume(request):
+    # Show the student his/her resume
+    resume = request.user.student.resume.read()
+    response = HttpResponse(resume, mimetype='application/pdf')
+    response['Content-Disposition'] = 'inline; filename=%s_%s.pdf' % (request.user.last_name.lower(), request.user.first_name.lower())
+    return response
 """
 def compute_suggested_employers_list(student, exclude = None):
     suggested_employers = []

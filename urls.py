@@ -88,6 +88,8 @@ urlpatterns += patterns('student.views',
     (r'^student/employer-subscriptions/$', 'student_employer_subscriptions', {}, 'student_employer_subscriptions'),
     # Student Invitations
     (r'^student/invitations/$', 'student_invitations', {}, 'student_invitations'),
+    # Student Resume
+    (r'^student/resume/$', 'student_resume', {}, 'student_resume'),
 )
 
 urlpatterns += patterns('employer.views',

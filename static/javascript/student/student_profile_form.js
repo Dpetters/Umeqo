@@ -23,9 +23,6 @@ $(document).ready( function() {
             modal:true,
             width:475,
             resizable: false,
-            open: function() {
-                alert('test');
-            },
             close: function() {
                 create_campus_organization_dialog.remove();
             }
