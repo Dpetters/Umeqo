@@ -12,6 +12,8 @@ index
 media/images
 media/resume_books
 media/resumes
+data/index
+data/spellchecker
 whoosh_index
 xapian_index
 settings_local.py
@@ -19,4 +21,3 @@ settings_local.py
 *.psd
 *.swp
 *.log
-apache-solr-1.4.1/solr/data
