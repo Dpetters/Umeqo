@@ -39,14 +39,14 @@ def refresh_database():
 
     # Delete existing resumes and the parent directory
     # copytree requires that that directory doesn't exist
-    submitted_resumes_path = ROOT + "/media/submitted_resumes/"
+    submitted_resumes_path = ROOT + "/media/resumes/"
     if os.path.exists(submitted_resumes_path):
         delete_contents(submitted_resumes_path)
         os.rmdir(submitted_resumes_path)
 
     # Create the local resumes directory
     # copytree requires that it exists
-    local_data_submitted_resumes_path = ROOT + "/local_data/media/local_submitted_resumes/"
+    local_data_submitted_resumes_path = ROOT + "/local_data/media/resumes/"
     if not os.path.exists(local_data_submitted_resumes_path):
         os.mkdir(local_data_submitted_resumes_path)
 
@@ -93,14 +93,14 @@ def commit_local_data():
 
     # Delete existing local data resumes and the parent directory
     # copytree requires that that directory doesn't exist
-    local_data_submitted_resumes_path = ROOT + "/local_data/media/local_submitted_resumes/"
+    local_data_submitted_resumes_path = ROOT + "/local_data/media/resumes/"
     if os.path.exists(local_data_submitted_resumes_path):
         delete_contents(local_data_submitted_resumes_path)
         os.rmdir(local_data_submitted_resumes_path)
 
     # Create the submitted resumes directory
     # copytree requires that it exists
-    submitted_resumes_path = ROOT + "/media/submitted_resumes/"
+    submitted_resumes_path = ROOT + "/media/resumes/"
     if not os.path.exists(submitted_resumes_path):
         os.mkdir(submitted_resumes_path)  
     
@@ -115,7 +115,7 @@ def commit_local_data():
 
     # Create the submitted images directory
     # copytree requires that it exists
-    submitted_user_images_path = ROOT + "/media/submitted_user_images/"
+    submitted_user_images_path = ROOT + "/media/images/"
     if not os.path.exists(submitted_user_images_path):
         os.mkdir(submitted_user_images_path)  
         
