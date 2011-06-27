@@ -8,10 +8,9 @@ database.db
 .project
 .pydevproject
 .settings
-content
+images
 resume_books
 submitted_resumes
-submitted_user_images
 whoosh_index
 xapian_index
 settings_local.py

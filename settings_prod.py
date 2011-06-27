@@ -8,9 +8,11 @@ def is_prod():
 
 USE_LANDING_PAGE = is_prod()
 
-# The primary key of the site model.
-# 2 is dev, 1 is prod
-SITE_ID = 1
+# 1 - Prod, 2 - Staging, 3 - Local
+if is_prod():
+    SITE_ID = 1
+else:
+    SITE_ID = 2
 
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
