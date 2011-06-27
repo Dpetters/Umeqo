@@ -1,7 +1,10 @@
 import os, subprocess, shutil
 from fabric.api import local, lcd, abort
 from fabric.contrib.console import confirm
-import settings
+from fabric.contrib import django
+
+django.project('Umeqo')
+from django.conf import settings
 
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
