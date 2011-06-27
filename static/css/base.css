@@ -43,6 +43,7 @@ p {
 #below_header_area {
     width: 986px;
     margin: 0 auto;
+    position: relative;
 }
 #below_header_message_wrapper{
     text-align: center;
@@ -869,7 +870,7 @@ a:focus {
     font-size: 11px;
 }
 button.ui-multiselect[type=button] {
-    background: #E8E8E8;
+    background: #FAFAFA;
     color: #333;
     text-shadow: #FFF 0 1px 0;
     border: 1px solid #AAA;
@@ -891,7 +892,7 @@ button.ui-multiselect[type="button"].ui-state-active {
 }
 button.ui-multiselect[type=button]:hover {
     cursor: pointer;
-    background: #FAFAFA;
+    background: #E8E8E8;
 }
 .ui-multiselect-filter{
     padding-left: 4px;
@@ -967,7 +968,6 @@ a.ui-slider-handle {
     display: inline-block;
     position: absolute;
     border: 1px solid #CCC;
-    box-shadow: rgba(0,0,0,0.3) 2px 2px 5px;
     color: #666;
     background-color: #EEE;
     padding: 0 8px;
@@ -976,14 +976,14 @@ a.ui-slider-handle {
     border-radius: 2px;
     -moz-border-radius: 2px;
 }
-.help-bubble::before {
+.help-bubble::after {
     content: ' ';
     position: absolute;
-    left: -5px;
+    right: -5px;
     width: 0;
     height: 0;
     border: 5px solid;
-    border-color: transparent transparent #CCC #CCC;
+    border-color: #CCC #CCC transparent transparent;
     -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);

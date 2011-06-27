@@ -1,40 +1,34 @@
 #event_page_block {
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    border: none;
 }
 #event_page_block .main_block_header {
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
 }
-#event_details {
-    width: 550px;
-    margin-left: 30px;
-    float: left;
+#event_time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    margin-top: 5px;
 }
-#event_details th {
-    width: 80px;
-    text-align: left;
-    padding: 6px 5px;
-    vertical-align: top;
-    color: #777;
+#event_external_buttons {
+    padding: 20px 0 0;
 }
-#event_details td {
-    padding: 6px 3px;
-}
-#event_details ul {
-    padding-left: 18px;
-}
-
-#logo {
+.external_button {
     display: inline-block;
-    width: 200px;
-    height: 150px;
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 70px;
+}
+#event_description {
+    width: 650px;
+    float: left;
 }
 #event_side {
-    float: left;
-    width: 200px;
+    width: 280px;
+    float: right;
 }
+
 #event_side #attending-span {
     line-height: 30px;
     font-weight: bold;
@@ -53,31 +47,49 @@
     font-size: 12px;
     margin-top: 3px;
 }
-#like-button {
-    float: left;
-    width: 70px;
-    min-height: 50px;
+
+#event_audience {
+    margin-bottom: 10px;
 }
+#event_audience .label {
+    font-size: 14px;
+    font-weight: bold;
+}
+#event_audience ul {
+    list-style: none;
+}
+#event_audience li {
+    float: left;
+    display: inline-block;
+    padding: 3px 6px;
+    background-color: #EEE;
+    margin-right: 4px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    color: #555;
+}
+
 .google-button {
     display: inline-block;
     margin: 8px 0 5px;
+    float: right;
 }
 
 #rsvp_div {
     position: relative;
 }
 #rsvp_div .help-bubble {
-    left: 190px;
+    right: 120px;
     width: 180px;
     opacity: 0.85;
+    top: 0;
 }
-#rsvp_div .help-bubble::before {
-    right: -5px;
+#rsvp_div .help-bubble::after {
     top: 10px;
 }
 
 #event_admin {
-    clear: both;
     padding: 5px;
     margin-bottom: 20px;
     border: 1px solid #CCC;
@@ -126,24 +138,28 @@
 }
 .responses {
     border: 1px solid #CCC;
-    width: 820px;
-    padding: 0 3px 5px;
+    width: 765px;
+    padding: 0 5px 5px;
     background-color: #E4EAEE;
+    min-height: 110px;
 }
 #event_response_empty {
     padding: 6px 5px 3px;
     font-size: 12px;
     color: #444;
 }
+#event_admin_side {
+    float: left;
+}
 #event_numbers {
     font-size: 16px;
     color: #FFF;
     text-align: right;
-    float: right;
     border-collapse: collapse;
     border-radius: 2px;
     border: 1px solid #CCC;
-    margin-top: 24px;
+    margin-top: 1px;
+    width: 162px;
 }    
 #event_numbers .event_number {
     margin: 5px 0;
@@ -161,6 +177,16 @@
     text-align: left;
     text-transform: uppercase;
     font-size: 12px;
+    font-weight: bold;
+    color: #555;
+}
+#event_admin_main {
+    float: left;
+    margin-left: 10px;
+}
+
+#event_actions {
+    float: right;
 }
 .responses .event_rsvp {
     display: inline-block;
@@ -196,10 +222,21 @@
     content: ')';
 }
 
+#event_checkin {
+    width: 150px;
+    text-align: center;
+    background-color: #E4EAEE;
+    border: 1px solid #CCC;
+    padding: 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    margin-top: 10px;
+}
 #event_checkin_link {
     position: relative;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 10px 25px;
     font-size: 20px;
     text-transform: uppercase;
     border: 1px solid #555;
@@ -240,7 +277,7 @@
     bottom: 0;
     width: 100%;
     height: 0;
-    margin-left: -15px;
+    margin-left: -25px;
     background: #888;
     background: -moz-linear-gradient(top, #FFF 0%, #DDD 100%);
     background: -webkit-linear-gradient(top, #FFF 0%,#DDD 100%);
@@ -315,6 +352,27 @@
 #email_input_autofill .selected {
     background-color: #6E97B9;
     color: #FFF;
+}
+
+#event_who .event_company {
+    margin-bottom: 10px;
+}
+#event_who .event_company_name {
+    font-size: 20px;
+    font-family: 'Lato', 'Arial', serif;
+}
+#event_who .event_company_description {
+    margin: 10px 0;
+    color: #666;
+    line-height: 20px;
+}
+#event_who .industries div {
+    display: inline-block;
+    background-color: #EEE;
+    border-radius: 2px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 #checkin_form {
