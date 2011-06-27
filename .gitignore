@@ -12,10 +12,9 @@ index
 media/images
 media/resume_books
 media/resumes
-whoosh_index
-xapian_index
 settings_local.py
 *.DS_Store
 *.psd
 *.swp
 *.log
+apache-solr-1.4.1/solr/data/index
