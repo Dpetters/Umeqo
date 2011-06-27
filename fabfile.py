@@ -68,7 +68,7 @@ def refresh_database():
     p.wait()
 
     #os.chdir(ROOT +"/apache-solr-1.4.1/example/")
-    solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/example/")
+    solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/")
     
     for app in settings.LOCAL_SETTINGS_APPS:
         p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
