@@ -3,10 +3,10 @@
   "pk": 2, 
   "model": "events.event", 
   "fields": {
-   "view_count": 276, 
-   "start_datetime": "2011-06-23 22:00:00", 
+   "view_count": 277, 
+   "start_datetime": "2011-09-23 22:00:00", 
    "name": "Morgan Stanley Talk", 
-   "datetime_created": "2011-06-23 01:40:13", 
+   "datetime_created": "2011-06-26 22:47:06", 
    "description": "Hear experts from Morgan Stanley talk about their work.", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -22,7 +22,7 @@
    "rsvp_message": null, 
    "type": 1, 
    "slug": "morgan-stanley-talk", 
-   "end_datetime": "2011-06-23 23:00:00"
+   "end_datetime": "2011-09-23 23:00:00"
   }
  }, 
  {
@@ -30,9 +30,9 @@
   "model": "events.event", 
   "fields": {
    "view_count": 11, 
-   "start_datetime": "2011-06-10 17:00:00", 
+   "start_datetime": "2011-09-10 17:00:00", 
    "name": "Investment Banking Panel", 
-   "datetime_created": "2011-06-12 23:06:10", 
+   "datetime_created": "2011-06-26 22:20:43", 
    "description": "", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -47,7 +47,7 @@
    "rsvp_message": null, 
    "type": 3, 
    "slug": "investment-banking-panel", 
-   "end_datetime": "2011-06-10 18:00:00"
+   "end_datetime": "2011-09-10 18:00:00"
   }
  }, 
  {
