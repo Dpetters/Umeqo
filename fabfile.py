@@ -3,8 +3,7 @@ from fabric.api import local, lcd, abort
 from fabric.contrib.console import confirm
 from fabric.contrib import django
 
-django.project('Umeqo')
-from django.conf import settings
+import settings
 
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
@@ -34,6 +33,10 @@ def run_local():
     run_solr()
 
 def refresh_database():
+    
+    for app in settings.LOCAL_SETTINGS_APPS:
+        print app
+    
     if os.path.exists("./database.db"):
         os.remove("./database.db")
 
