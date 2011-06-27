@@ -22,7 +22,7 @@ def run_memcached():
     subprocess.Popen("memcached", shell=True)
 
 def run_solr():
-    os.chdir(ROOT +"/apache-solr-1.4.1/example/")
+    os.chdir(ROOT +"/apache-solr-1.4.1/")
     subprocess.Popen("java -jar start.jar", shell=True)
 
 def run_local():
