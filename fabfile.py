@@ -33,10 +33,6 @@ def run_local():
     run_solr()
 
 def refresh_database():
-    
-    for app in settings.LOCAL_SETTINGS_APPS:
-        print app
-    
     if os.path.exists("./database.db"):
         os.remove("./database.db")
 
