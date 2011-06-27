@@ -9,7 +9,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-06-25 18:40:48", 
+   "last_login": "2011-06-26 22:20:17", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$bdeef$43732d4a5bfd22cdf03f95f024c3c6b6fa5beaa6", 
@@ -21,7 +21,7 @@
   "pk": 3, 
   "model": "auth.user", 
   "fields": {
-   "username": "melindo@umeqo.com", 
+   "username": "recruiter2@umeqo.com", 
    "first_name": "Jessica", 
    "last_name": "Melindo", 
    "is_active": true, 
@@ -31,7 +31,7 @@
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$40235$2e395e3eba5d0af98846688405f69ce5781f98af", 
-   "email": "melindo@umeqo.com", 
+   "email": "recruiter2@umeqo.com", 
    "date_joined": "2011-05-22 19:49:19"
   }
  }, 
@@ -57,7 +57,7 @@
   "pk": 5, 
   "model": "auth.user", 
   "fields": {
-   "username": "macgarva@umeqo.com", 
+   "username": "recruiter1@umeqo.com", 
    "first_name": "Lindsay", 
    "last_name": "MacGarva", 
    "is_active": true, 
@@ -67,7 +67,7 @@
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$72f12$3935b1bcc2d30378b00bef21f935c7d3e4b47023", 
-   "email": "macgarva@umeqo.com", 
+   "email": "recruiter1@umeqo.com", 
    "date_joined": "2011-05-22 23:07:01"
   }
  }, 
@@ -75,7 +75,7 @@
   "pk": 6, 
   "model": "auth.user", 
   "fields": {
-   "username": "parker@umeqo.com", 
+   "username": "recruiter3@umeqo.com", 
    "first_name": "Sarah", 
    "last_name": "Parker", 
    "is_active": true, 
@@ -85,7 +85,7 @@
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7a537$7a51d82699da93b6e4e7c1304a988d134e3fa197", 
-   "email": "parker@umeqo.com", 
+   "email": "recruiter3@umeqo.com", 
    "date_joined": "2011-05-22 23:08:27"
   }
  }, 
@@ -130,12 +130,12 @@
   "model": "auth.user", 
   "fields": {
    "username": "o__o@mit.edu", 
-   "first_name": "", 
-   "last_name": "", 
+   "first_name": "Joshua", 
+   "last_name": "Ma", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-06-25 15:51:58", 
+   "last_login": "2011-06-26 21:59:11", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$55a03$e09ad60d34ce794e7ea049257fcf866d355bd86a", 
