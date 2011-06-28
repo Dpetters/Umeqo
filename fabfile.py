@@ -1,22 +1,15 @@
-import os, subprocess, shutil
+import os, subprocess, shutil, sys
 from fabric.api import local, lcd, abort
 from fabric.contrib.console import confirm
 from fabric.contrib import django as fabric_django
 
-
-fabric_django.settings_module('Umeqo.settings')
-from django.conf import settings
-
-#fabric_django.settings_module("settings")
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
-
-print settings
-
-
+sys.path.append(ROOT)
+fabric_django.settings_module('settings')
+from django.conf import settings
 
 __all__= ["refresh_database", "commit_local_data"]
 
-# Helper Function
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
         for name in files:
@@ -40,9 +33,6 @@ def run_local():
     run_solr()
 """
 def refresh_database():
-    for app in settings.LOCAL_SETTINGS_APPS:
-        print app
-        
     if os.path.exists("./database.db"):
         os.remove("./database.db")
 
