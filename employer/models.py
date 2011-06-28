@@ -74,6 +74,10 @@ class StudentComment(models.Model):
     student = models.ForeignKey(Student)
     comment = models.CharField(max_length=500)
     
+    class Meta:
+        unique_together = (("recruiter", "student"),)
+        
+        
 class Employer(models.Model): 
     name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
     description = models.CharField(max_length=500, blank=True, default="")

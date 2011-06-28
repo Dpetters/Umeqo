@@ -3,9 +3,11 @@
   "pk": 1, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Basics", 
    "audience": 0, 
    "sort_order": 0, 
-   "name": "Basics", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "basics"
   }
  }, 
@@ -13,9 +15,11 @@
   "pk": 2, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Registration", 
    "audience": 3, 
    "sort_order": 0, 
-   "name": "Registration", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "registration"
   }
  }, 
@@ -23,9 +27,11 @@
   "pk": 8, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Registration", 
    "audience": 2, 
    "sort_order": 0, 
-   "name": "Registration", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "registration"
   }
  }, 
@@ -33,9 +39,11 @@
   "pk": 3, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Account Management", 
    "audience": 3, 
    "sort_order": 1, 
-   "name": "Account Management", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "account-management"
   }
  }, 
@@ -43,9 +51,11 @@
   "pk": 9, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Account Management", 
    "audience": 2, 
    "sort_order": 1, 
-   "name": "Account Management", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "account-management"
   }
  }, 
@@ -53,9 +63,11 @@
   "pk": 10, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Employer Subscriptions", 
    "audience": 2, 
    "sort_order": 2, 
-   "name": "Employer Subscriptions", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "employer_subscriptions"
   }
  }, 
@@ -63,9 +75,11 @@
   "pk": 4, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Student Filtering", 
    "audience": 3, 
    "sort_order": 2, 
-   "name": "Student Filtering", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "student-filtering"
   }
  }, 
@@ -73,9 +87,11 @@
   "pk": 11, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Events", 
    "audience": 2, 
    "sort_order": 3, 
-   "name": "Events", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "events"
   }
  }, 
@@ -83,9 +99,11 @@
   "pk": 5, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Resumebooks", 
    "audience": 3, 
    "sort_order": 3, 
-   "name": "Resumebooks", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "resumebooks"
   }
  }, 
@@ -93,9 +111,11 @@
   "pk": 6, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Events", 
    "audience": 3, 
    "sort_order": 4, 
-   "name": "Events", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "events"
   }
  }, 
@@ -103,9 +123,11 @@
   "pk": 12, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Invitations", 
    "audience": 2, 
    "sort_order": 4, 
-   "name": "Invitations", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "invitations"
   }
  }, 
@@ -113,9 +135,11 @@
   "pk": 7, 
   "model": "core.topic", 
   "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Invitations", 
    "audience": 3, 
    "sort_order": 5, 
-   "name": "Invitations", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "invitations"
   }
  }, 
@@ -124,15 +148,13 @@
   "model": "core.question", 
   "fields": {
    "status": 1, 
-   "updated_by": null, 
+   "last_updated": "2011-06-28 01:55:42", 
    "question": "What is Umeqo?", 
-   "created_on": "2011-05-03 12:27:34", 
-   "created_by": null, 
    "topic": 1, 
    "audience": 0, 
    "sort_order": 0, 
    "answer": "Umeqo is a new platform for helping students and employers connect during recruiting season.", 
-   "updated_on": "2011-05-03 12:27:34", 
+   "date_created": "2011-06-28 01:55:42", 
    "slug": "what-is-umeqo"
   }
  }, 
@@ -1438,7 +1460,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:36", 
+   "last_updated": "2011-06-28 01:57:29", 
    "description": "", 
    "image": "", 
    "email": "", 

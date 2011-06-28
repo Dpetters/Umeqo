@@ -33,8 +33,8 @@ def run_local():
     run_solr()
 """
 def refresh_database():
-    if os.path.exists("./database.db"):
-        os.remove("./database.db")
+    if os.path.exists(ROOT + "/database.db"):
+        os.remove(ROOT + "/database.db")
 
     # Delete existing resumes and the parent directory
     # copytree requires that that directory doesn't exist

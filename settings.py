@@ -78,9 +78,11 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
 
-RESUME_BOOK_ROOT  = MEDIA_ROOT + "resume_books/"
+RESUME_BOOKS_ROOT  = MEDIA_ROOT + "resume_books/"
 
-SUBMITTED_RESUME_ROOT = MEDIA_ROOT + "submitted_resumes/"
+RESUMES_ROOT = MEDIA_ROOT + "resumes/"
+
+IMAGES_ROOT = MEDIA_ROOT + "images/"
 
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (

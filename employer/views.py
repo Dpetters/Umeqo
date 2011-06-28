@@ -487,9 +487,9 @@ def employer_resume_books_create(request):
                 output.addPage(PdfFileReader(file(str(settings.MEDIA_ROOT).replace("\\", "/") + "/" + str(student.resume), "rb")).getPage(0))
             resume_book_name = str(request.user) + "_" + datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf";
             latest_resume_book.resume_book_name = resume_book_name
-            if not os.path.exists(str(settings.RESUME_BOOK_ROOT)):
-                os.mkdir(str(settings.RESUME_BOOK_ROOT))  
-            outputStream = file(str(settings.RESUME_BOOK_ROOT) + resume_book_name, "wb")
+            if not os.path.exists(str(settings.RESUME_BOOKS_ROOT)):
+                os.mkdir(str(settings.RESUME_BOOKS_ROOT))  
+            outputStream = file(str(settings.RESUME_BOOKS_ROOT) + resume_book_name, "wb")
             output.write(outputStream)
             latest_resume_book.file_name = resume_book_name
             latest_resume_book.save()
@@ -512,9 +512,9 @@ def employer_resume_books_email(request,
                 subject = ''.join(render_to_string(subject_template, {}).splitlines())
                 body = render_to_string(body_template, {})
                 message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-                message.attach_file(str(settings.RESUME_BOOK_ROOT) + str(latest_resume_book.file_name))
+                message.attach_file(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name))
                 message.send()
-                os.remove(str(settings.RESUME_BOOK_ROOT) + str(latest_resume_book.file_name))
+                os.remove(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name))
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
@@ -530,12 +530,12 @@ def employer_resume_books_download(request):
         latest_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
         mimetype = mimetypes.guess_type(latest_resume_book.file_name)[0]
         if not mimetype: mimetype = "application/octet-stream"
-        response = HttpResponse(file(str(settings.RESUME_BOOK_ROOT) + str(latest_resume_book.file_name), "rb").read(), mimetype=mimetype)
+        response = HttpResponse(file(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name), "rb").read(), mimetype=mimetype)
         filename = str(latest_resume_book.file_name)
         if request.GET.has_key('name'):
             filename = request.GET['name']
         response["Content-Disposition"]= "attachment; filename=%s" % filename
-        os.remove(str(settings.RESUME_BOOK_ROOT) + str(latest_resume_book.file_name))
+        os.remove(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name))
         return response
     else:
         return HttpResponseBadRequest("Request must be a GET")

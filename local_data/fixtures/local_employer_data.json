@@ -87,15 +87,6 @@
   }
  }, 
  {
-  "pk": 4, 
-  "model": "employer.studentcomment", 
-  "fields": {
-   "comment": "", 
-   "recruiter": 1, 
-   "student": 4
-  }
- }, 
- {
   "pk": 1, 
   "model": "employer.employer", 
   "fields": {
