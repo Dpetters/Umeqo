@@ -13,21 +13,6 @@ $(document).ready( function() {
             email: {
                 required: true,
                 email: true,
-                remote: {
-                    url:"/check-email-existence/",
-                     beforeSend: function() {
-                        $("#password_reset_form label.error").css("display", "none");
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        switch(jqXHR.status){
-                            case 0:
-                                $("#password_reset_form .error_section").html(form_check_connection_message);
-                                break;
-                            default:
-                                $("#password_reset_block .main_block_content").html(page_error_message);
-                        }
-                    },
-                }
             },
         },
         messages:{

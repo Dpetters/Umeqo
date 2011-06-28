@@ -116,9 +116,16 @@ var EDIT_FORM = false;
                 </table>
             </div>
             <div class="new_event_form_col">
-                <div class="errorspace"></div>
-                {{form.description.label_tag}}
-                {{form.description}}
+                <table class="form_table">
+                    <tr>
+                        <th></th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.description.label_tag}}
+                            {{form.description}}
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="clearfix"></div>
         </form>
