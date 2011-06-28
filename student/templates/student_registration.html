@@ -17,61 +17,44 @@ Copyright 2011. All Rights Reserved.
 </script>
 
 <script type="text/javascript">
-	var EMAIL_ALREADY_REGISTERED_MESSAGE = "{{email_already_registered_message}}";
-	var PASSWORDS_DONT_MATCH_MESSAGE = "{{passwords_dont_match_message}}";
+    var EMAIL_ALREADY_REGISTERED_MESSAGE = "{{email_already_registered_message}}";
+    var PASSWORDS_DONT_MATCH_MESSAGE = "{{passwords_dont_match_message}}";
 </script>
 {% endblock %}
 
 {% block content_area %}
 <div id="student_registration_block" class="main_block">
-	<div class="main_block_header">
-		<img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-		<span class="main_block_header_title">Student Registration</span>
-	</div>
-	<div class="main_block_content">
-		<ul id="student_registration_form_info" class="main_block_content_form_info">
-			<li>
-				Once registered, a confirmation email will be sent to your mit.edu email address.
-			</li>
-		</ul>
-		<form id="student_registration_form" method='POST' action="">
-			{% csrf_token %}
-			<table class="form_table">
-				<tr>
-					<th>{{form.email.label_tag}}</th>
-					<td>
-						<div class="errorspace">{{form.email.errors}}</div>
-						{{form.email}}
-					</td>
-				</tr>
-				<tr>
-					<th>{{form.password1.label_tag}}</th>
-					<td>
-						<div class="errorspace">{{form.password1.errors}}</div>
-						{{form.password1}}
-					</td>
-				</tr>
-				<tr>
-					<th>{{form.password2.label_tag}}</th>
-					<td>
-						<div class="errorspace">{{form.password2.errors}}</div>
-						{{form.password2}}
-					</td>
-				</tr>
-			</table>
-			<div class="error_section error">
-				{{form.non_field_errors}}
-			</div>
-			<div class="button_wrapper_with_margins">
-				<input id="student_registration_form_submit_button" class="button" type='submit' value='Submit'>
-				<img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-			</div>
-		</form>
-	</div>
-	<div class="main_block_footer">
-		<div class="main_block_footer_links">
-			<a id="back_to_home_link" href="/">Back to Home</a>
-		</div>
-	</div>
+    <h1>Student Registration</h1>
+    <div class="main_block_content">
+        <form id="student_registration_form" method='POST' action="" autocomplete="off">
+            {% csrf_token %}
+            <table class="form_table grande">
+                <tr>
+                    <th>{{form.email.label_tag}}</th>
+                    <td>
+                        <div class="errorspace">{{form.email.errors}}</div>
+                        {{form.email}}
+                    </td>
+                    <td class="info" rowspan="4">
+                        <p>Creating an account is simple - all we need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.password1.label_tag}}</th>
+                    <td>
+                        <div class="errorspace">{{form.password1.errors}}</div>
+                        {{form.password1}}
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input id="student_registration_form_submit_button" class="button" type='submit' value='Create my account'>
+                        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 {% endblock %}

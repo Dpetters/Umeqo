@@ -3,35 +3,19 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
-
+import Image
 from datetime import datetime
- 
+
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.db.models import signals
+from django.dispatch import receiver
 
 from core.models_helper import get_image_filename
 from core import enums
 
-class RelationshipType(models.Model):
-    """
-    A RelationshipType is a "type" of relationship between a user and an object. This
-    allows you to use one app (django-faves) for multiple types of
-    relationships. For example, perhaps you want to let users "favorite"
-    objects, but also add them to a "wishlist". Or to "flag" them as offensive.
-    By creating multiple RelationshipType instances, you can do this sort of thing.
-    
-    """
-    name = models.CharField(max_length=255, help_text="The singular name of this fave type, i.e. 'Favorite' or 'Wishlist Item'.")
-    slug = models.SlugField()
-
-    class Meta:
-        verbose_name = "Relationship Type"
-        verbose_name_plural = "Relationship Types"
-        
-    def __unicode__(self):
-        return self.name
-    
 class Topic(models.Model):
     """
     Generic Topics for FAQ question grouping
@@ -52,7 +36,7 @@ class Question(models.Model):
     """
     Represents a frequently asked question.
     """
-    topic = models.ForeignKey(Topic)    
+    topic = models.ForeignKey(Topic)
     status = models.IntegerField( choices=enums.QUESTION_STATUS_CHOICES, help_text="Only questions with their status set to 'Active' will be displayed." )
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
     sort_order = models.IntegerField(_('sort order'), default=0, help_text='This in which you would like the question to be displayed.')
@@ -170,6 +154,17 @@ class Course(CommonInfo):
         self.full_clean()
         super(Course, self).save(*args, **kwargs)
 
+@receiver(signals.post_save, sender=Course)
+def resize_course_image(sender, instance, **kwargs):
+    if instance.image:
+        filename = instance.image.path
+        image = Image.open(filename)
+        ratio = min(float(settings.MAX_DIALOG_IMAGE_WIDTH)/instance.image.width, float(settings.MAX_DIALOG_IMAGE_HEIGHT)/instance.image.height)
+        size = (int(ratio * instance.image.width), int(ratio * instance.image.height))
+        image.thumbnail(size, Image.ANTIALIAS)
+        image.save(filename)
+
+
 class EmploymentType(models.Model):
     name = models.CharField("Employment Type", max_length = 42, unique = True)
     sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the employment types to be displayed.')
@@ -199,7 +194,7 @@ class CampusOrgType(models.Model):
         verbose_name = "On-Campus Organization Type"
         verbose_name_plural = "On-Campus Organization Types"
         ordering = ['sort_order']
-    
+
     def save(self, *args, **kwargs):
         self.full_clean()
         super(CampusOrgType, self).save(*args, **kwargs)
@@ -219,8 +214,17 @@ class CampusOrg(CommonInfo):
     class Meta(CommonInfo.Meta):
         verbose_name = "On-Campus Organization"
         verbose_name_plural = "On-Campus Organizations"
+          
+@receiver(signals.post_save, sender=CampusOrg)
+def resize_campus_org_image(sender, instance, **kwargs):
+    if instance.image:
+        filename = instance.image.path
+        image = Image.open(filename)
+        ratio = min(float(settings.MAX_DIALOG_IMAGE_WIDTH)/instance.image.width, float(settings.MAX_DIALOG_IMAGE_HEIGHT)/instance.image.height)
+        size = (int(ratio * instance.image.width), int(ratio * instance.image.height))
+        image.thumbnail(size, Image.ANTIALIAS)
+        image.save(filename)
 
-        
 class Industry(models.Model):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)

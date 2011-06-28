@@ -6,19 +6,14 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, Ethnicity
 from core.models_helper import get_resume_filename
-from core.choices import GENDER_CHOICES
-from relationships.managers import RelationshipManagerMixin
-
-class StudentManager(models.Manager, RelationshipManagerMixin):
-    pass
+from core import choices as core_choices
 
 class Student(models.Model):
-    
-    objects = StudentManager()
     
     user = models.OneToOneField(User)
     
@@ -54,8 +49,8 @@ class Student(models.Model):
     campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null=True)
     languages = models.ManyToManyField(Language, blank = True, null = True)
     website = models.URLField(verify_exists=False, blank = True, null=True)
-    gender = models.CharField(max_length=1, choices = GENDER_CHOICES, blank = True, null = True)
-    older_than_18 = models.BooleanField()
+    gender = models.CharField(max_length=1, choices = core_choices.GENDER_CHOICES, blank = True, null = True)
+    older_than_18 = models.CharField(max_length=1, choices = core_choices.SELECT_YES_NO_CHOICES, blank = True, null = True)
     ethnicity = models.ForeignKey(Ethnicity, blank = True, null = True)
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
     
@@ -76,16 +71,20 @@ class Student(models.Model):
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
   
-    def save( self, *args, **kwargs ):
+    def save(self, *args, **kwargs):
         if self.first_name and self.last_name:
             self.user.first_name = self.first_name
             self.user.last_name = self.last_name
             self.user.save()
-        if not self.preferences:
+        try:
+            self.preferences
+        except ObjectDoesNotExist:
             self.preferences = StudentPreferences.objects.create()
-        if not self.statistics:
+        try:
+            self.statistics
+        except ObjectDoesNotExist:
             self.statistics = StudentStatistics.objects.create()
-        super(Student, self).save( *args, **kwargs )
+        super(Student, self).save(*args, **kwargs)
 
 class StudentPreferences(models.Model):
     email_on_invite_to_public_event = models.BooleanField()

@@ -10,6 +10,7 @@ from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from core.models import EventType
 from core.managers import ActiveManager
+from student.models import Student
     
 class Event(models.Model):
     
@@ -17,12 +18,10 @@ class Event(models.Model):
     is_active = models.BooleanField(default=True,editable=False)
     objects = ActiveManager()
 
-
     # Required Fields
     recruiters = models.ManyToManyField("employer.Recruiter")
     
     # Foreign Key to Campus Organization
-    
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)
@@ -43,9 +42,6 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
     
-    rsvps = models.ManyToManyField('student.Student',null=True)
-    rsvp_count = models.IntegerField(default=0)
-    
     def __unicode__(self):
         return self.name
     
@@ -60,14 +56,20 @@ class Event(models.Model):
 def save_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.name)
 
-@receiver(signals.m2m_changed, sender=Event.rsvps.through)
-def update_rsvp_count(sender, **kwargs):
-    supported = {
-        'post_add': 1,
-        'post_remove': -1
-    }
-    action = kwargs['action']
-    instance = kwargs['instance']
-    pk_set = kwargs['pk_set']
-    if action in supported:
-        instance.rsvp_count += supported[action]*len(pk_set)
+class RSVP(models.Model):
+    student = models.ForeignKey('student.Student')
+    event = models.ForeignKey(Event)
+    datetime_created = models.DateTimeField(auto_now=True)
+
+class Attendee(models.Model):
+    email = models.EmailField()
+    name = models.CharField(max_length=200, null=True)
+    student = models.ForeignKey(Student, null=True)
+    event = models.ForeignKey(Event)
+    datetime_created = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return '%s <%s>' % (self.name, self.email)
+
+    class Meta:
+        unique_together = (("student", "event"),)

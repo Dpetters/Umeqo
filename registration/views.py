@@ -15,6 +15,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
 from registration.backend import RegistrationBackend
 from registration.view_helpers import modify_redirect
 from core import messages
+import settings
 
 # Ajax-Only View
 def login(request,
@@ -49,6 +50,9 @@ def activate_user(request,
 
     account = backend.activate(request, **kwargs)
     if account:
+        # account needs backend
+        account.backend = settings.AUTHENTICATION_BACKENDS[0]
+        auth_login(request, account)
         if success_url is None:
             to, args, kwargs = backend.post_activation_redirect(request, account)
             return redirect(to, *args, **kwargs)

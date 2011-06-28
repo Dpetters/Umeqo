@@ -26,35 +26,38 @@ from core import messages
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_account_settings(request, 
-                             template_name="student_account_settings.html", 
-                             extra_context=None):
+def student_account_settings(request, template_name="student_account_settings.html", 
+        extra_context=None):
 
     context = {}
     context.update(extra_context or {})
-    return render_to_response(template_name, 
-                              context, 
-                              context_instance=RequestContext(request))
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def student_registration(request,
                          backend = RegistrationBackend(), 
-                         form_class = StudentRegistrationForm,
-                         success_url = 'student_registration_complete', 
-                         disallowed_url = 'student_registration_disallowed',
                          template_name = 'student_registration.html',
                          extra_context = None):
+    
+    success_url = 'student_registration_complete'
+    disallowed_url = 'student_registration_disallowed'
     
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
     
     if request.method == 'POST':
-        form = form_class(data=request.POST)
+        form = StudentRegistrationForm(data=request.POST)
         if form.is_valid():
-            form.cleaned_data['username']= form.cleaned_data['email'].split("@")[0]
+            form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
-            Student.objects.create(user=new_user)
+            student = Student(user=new_user)
+            student.save()
             if request.is_ajax():
-                return HttpResponse(simplejson.dumps({'valid':True, 'success_url':reverse(success_url)}), mimetype="application/json")
+                data = {
+                    'valid': True,
+                    'success_url': reverse(success_url),
+                    'email': form.cleaned_data['email']
+                }
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             return redirect(success_url)
         else:
             if request.is_ajax():
@@ -62,7 +65,7 @@ def student_registration(request,
                         'form_errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        form = form_class()
+        form = StudentRegistrationForm()
 
     context = {
             'form':form,
@@ -75,6 +78,15 @@ def student_registration(request,
                               context,
                               context_instance=RequestContext(request))
 
+def student_registration_complete(request,
+            template_name='student_registration_complete.html',
+            extra_context = None):
+    email = request.GET.get('email', None)
+    context = {'email': email}
+    context.update(extra_context)
+    return render_to_response(template_name, context,
+            context_instance = RequestContext(request))
+    
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -104,15 +116,15 @@ def student_create_profile(request,
             return process_resume(student, request.is_ajax())
         else:
             if request.is_ajax():
-                data = {'valid':False,
-                        'form_errors':form.errors}
+                data = {'valid': False,
+                        'form_errors': form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = form_class()
     
     context = {
-               'resume_must_be_a_pdf_message' : messages.resume_must_be_a_pdf,
-               'form' : form
+               'resume_must_be_a_pdf_message': messages.resume_must_be_a_pdf,
+               'form': form
                }
 
     context.update(extra_context or {})
@@ -153,7 +165,7 @@ def student_edit_profile(request,
                     data = {'valid':False,
                             'success_url':reverse("home")}
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                return redirect('home')
+                return redirect(reverse('home') + '?msg=profile_saved')
         else:
             if request.is_ajax():
                 data = {'valid':False,
@@ -315,28 +327,35 @@ def student_invitations(request,
                               context,
                               context_instance=RequestContext(request))
 
-
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_resume(request):
+    # Show the student his/her resume
+    resume = request.user.student.resume.read()
+    response = HttpResponse(resume, mimetype='application/pdf')
+    response['Content-Disposition'] = 'inline; filename=%s_%s.pdf' % (request.user.last_name.lower(), request.user.first_name.lower())
+    return response
 """
 def compute_suggested_employers_list(student, exclude = None):
     suggested_employers = []
     if exclude:
         for industry in student.industries_of_interest.all():
             for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]).exclude(company_name__in=[n for n in exclude]):
-                suggested_employers.append(employer.company_name)
+                suggested_employers.append(employer.name)
     
         for employer in student.previous_employers.all():
             for industry in employer.industry.all():
-                for employer in industry.employer_set.all().exclude(company_name__in=[o for o in suggested_employers]).exclude(company_name__in=[n for n in exclude]):
-                    suggested_employers.append(employer.company_name)
+                for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]).exclude(    name__in=[n for n in exclude]):
+                    suggested_employers.append(employer.name)
     else:
         for industry in student.industries_of_interest.all():
             for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]):
-                suggested_employers.append(employer.company_name)
+                suggested_employers.append(employer.name)
     
         for employer in student.previous_employers.all():
             for industry in employer.industry.all():
-                for employer in industry.employer_set.all().exclude(company_name__in=[o for o in suggested_employers]):
-                    suggested_employers.append(employer.company_name)
+                for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]):
+                    suggested_employers.append(employer.name)
     
     random.shuffle(suggested_employers)
 

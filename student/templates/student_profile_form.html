@@ -17,7 +17,7 @@ Copyright 2011. All Rights Reserved.
 {% block metadata %}
 {{block.super}}
 <!-- JQuery Masker Input -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input_1.2.2.js">
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js">
 </script>
 <!-- JQuery Multiselect Widget -->
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js">
@@ -33,7 +33,7 @@ Copyright 2011. All Rights Reserved.
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_form.css"/>
 <!-- Scripts -->
 <script type="text/javascript">
-	var RESUME_MUST_BE_A_PDF_MESSAGE = "{{resume_must_be_a_pdf_message}}";
+    var RESUME_MUST_BE_A_PDF_MESSAGE = "{{resume_must_be_a_pdf_message}}";
 </script>
 {% endblock %}
 
@@ -49,7 +49,7 @@ Copyright 2011. All Rights Reserved.
 {% block page_header %}
 {% endblock %}
 
-<form id="profile_form" method='POST' action="" enctype="multipart/form-data">
+<form id="profile_form" method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     <ul id="stepForm">
         <li id="pg1">
@@ -69,82 +69,82 @@ Copyright 2011. All Rights Reserved.
                     </div>
                 </div>
                 <div id="required_info_page">
-                	<table class="form_table">
-                		<tr>
-                			<th>{{form.first_name.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.first_name}}
-                			</td>
-                		</tr>
+                    <table class="form_table">
                         <tr>
-                			<th>{{form.last_name.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.last_name}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.school_year.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.school_year}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.graduation_year.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.graduation_year}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.first_major.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.first_major}}
-                			</td>
-                		</tr>
-                		<tr id="gpa_section">
-                			<th>{{form.gpa.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.gpa}}
-               					<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.resume.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.resume}}
-                			</td>
-                		</tr>
-                	</table>
-                	<div class="error_section error">
-                    	{% if form.errors %}
-						    {% for field, errors in form.errors.items %}
-						        {{ errors|escape }}
-						    {% endfor %}
-						{% endif %}
-					</div>
+                            <th>{{form.first_name.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.first_name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.last_name.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.last_name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.school_year.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.school_year}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.graduation_year.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.graduation_year}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.first_major.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.first_major}}
+                            </td>
+                        </tr>
+                        <tr id="gpa_section">
+                            <th>{{form.gpa.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.gpa}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.resume.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.resume}}
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="error_section error">
+                        {% if form.errors %}
+                            {% for field, errors in form.errors.items %}
+                                {{ errors|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="button_wrapper_with_margins">
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Submit" value='Submit'>
+                        <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
-                        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Save Profile" value='Save Profile'>
+                        <img id='ajax_form_submit_loader' style="display:none" src="{{ STATIC_URL }}images/icons/user.png">
                     </div>
                 </div>
                 <div class="profile_side_form_info">
                     <h3>Umeqo makes it easy for employers to discover you!</h3>
                     <ul>
-                        <li id="profile_form_required_first">
-                            Employers filter students by the attributes listed and search by keywords and skills that we automatically parse from your resume.
+                        <li>
+                        Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
                         </li>
-                        <li id="profile_form_required_second">
+                        <li>
                             The more you fill out, the the more likely you are to show up in the results and the more attractive your listing will appear. <a href="javascript:void(0)" id="profile_form_info_link">Learn more</a>.
                         </li>
                         <li id="profile_form_required_third">
-                            Submit this page, or click <strong>Next</strong> to provide us with more info.
+                            Submit this page, or click <strong>Next</strong> to provide more information.
                         </li>
                     </ul>
                 </div>
@@ -154,7 +154,7 @@ Copyright 2011. All Rights Reserved.
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
-                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
+                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
                     <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
@@ -163,98 +163,97 @@ Copyright 2011. All Rights Reserved.
                             <strong>Academic &amp; Work Info</strong>
                         </span>
                         &raquo;
-                        <a href="javascript:void(0)" class="navigation" id="2">Work Info</a>
+                        <a href="javascript:void(0)" class="navigation" id="2">Miscellaneous Info</a>
                     </div>
                 </div>
                 <div id="academic_info_page">
-                	<table class="form_table">
-                		<tr>
-                			<th>{{form.looking_for.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.looking_for}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.industries_of_interest.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.industries_of_interest}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.previous_employers.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.previous_employers}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.second_major.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.second_major}}
-                			</td>
-                		</tr>
-                		<tr id="act_section">
-                			<th>{{form.act.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.act}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr id="sat_m_section">
-                			<th>{{form.sat_m.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.sat_m}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr id="sat_v_section">
-                			<th>{{form.sat_v.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.sat_v}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                		<tr id="sat_w_section">
-                			<th>{{form.sat_w.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.sat_w}}
-                          		<div class="slider"></div>
-                			</td>
-                		</tr>
-                	</table>
-                	<div class="error_section error">
-                    	{% if form.errors %}
-						    {% for field, errors in form.errors.items %}
-						        {{ errors|escape }}
-						    {% endfor %}
-						{% endif %}
-					</div>
+                    <table class="form_table">
+                        <tr>
+                            <th>{{form.looking_for.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.looking_for}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.industries_of_interest.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.industries_of_interest}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.previous_employers.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.previous_employers}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.second_major.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.second_major}}
+                            </td>
+                        </tr>
+                        <tr id="act_section">
+                            <th>{{form.act.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.act}}
+                            </td>
+                        </tr>
+                        <tr id="sat_m_section">
+                            <th>{{form.sat_m.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.sat_m}}
+                            </td>
+                        </tr>
+                        <tr id="sat_v_section">
+                            <th>{{form.sat_v.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.sat_v}}
+                            </td>
+                        </tr>
+                        <tr id="sat_w_section">
+                            <th>{{form.sat_w.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.sat_w}}
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="error_section error">
+                        {% if form.errors %}
+                            {% for field, errors in form.errors.items %}
+                                {{ errors|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="button_wrapper_with_margins">
                         <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
                         <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value="Save Profile" alt="Save Profile">
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
                 </div>
                 <div class="profile_side_form_info">
-                    <h3>Give us a hint of your academics.</h3>
+                    <h3>Give us a hint of your academics and work experience.</h3>
                     <ul>
+                        <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
+                        <li>Employers will be able to find students by interested industries, and you'll get notifications about relevant employers as well.</li>
+                        <li>Yes, some employers still care about standardized test scores.</li>
                     </ul>
                 </div>
             </div>
         </li>
-		<li id="pg3">
+        <li id="pg3">
             <a href='#' class="ui-accordion-link"></a>
             <div class="main_block">
                 <div class="main_block_header">
-                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/male_user_png/32x32/male_user.png" />
+                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
                     <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
@@ -267,80 +266,77 @@ Copyright 2011. All Rights Reserved.
                     </div>
                 </div>
                 <div id="miscellaneous_info_page">
-                	<table class="form_table">
-                		<tr>
-                			<th>{{form.campus_involvement.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.campus_involvement}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.website.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.website}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.ethnicity.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.ethnicity}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.languages.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.languages}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.countries_of_citizenship.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.countries_of_citizenship}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.gender.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.gender}}
-                			</td>
-                		</tr>
-                		<tr>
-                			<th>{{form.older_than_18.label_tag}}</th>
-                			<td>
-                				<div class="errorspace"></div>
-                				{{form.older_than_18}}
-                			</td>
-                		</tr>
-                	</table>
+                    <table class="form_table">
+                        <tr>
+                            <th>{{form.campus_involvement.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.campus_involvement}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.languages.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.languages}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.countries_of_citizenship.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.countries_of_citizenship}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.ethnicity.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.ethnicity}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.gender.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.gender}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.older_than_18.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.older_than_18}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{form.website.label_tag}}</th>
+                            <td>
+                                <div class="errorspace"></div>
+                                {{form.website}}
+                            </td>
+                        </tr>
+                    </table>
                     <div class="error_section error">
-                    	{% if form.errors %}
-						    {% for field, errors in form.errors.items %}
-						        {{ errors|escape }}
-						    {% endfor %}
-						{% endif %}
-					</div>
+                        {% if form.errors %}
+                            {% for field, errors in form.errors.items %}
+                                {{ errors|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="button_wrapper_with_margins">
-                        <input name="formBack2" type="button" class="open1 button" value="Back" alt="Back" />
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Submit' alt="Submit">
+                        <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
+                        <input name="formNext2" type="button" class="button disabled-button" value="Next" alt="Next" disabled="disabled" />
+                        <input class="student_profile_form_submit_button button" class="button" type='submit' value='Save Profile' alt="Save Profile">
                         <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                     </div>
                 </div>
                 <div class="profile_side_form_info">
-                    <h3></h3>
+                    <h3>Almost there - for real this time.</h3>
                     <ul>
-                        <li id="create_campus_organization_link">
+                        <li>
                             Don't see your campus organization?
-                            <a href="javascript:void(0)" id="create_campus_organization_link">Create it now</a>.
-                        </li>
-                        <li id="create_language_link">
-                            Don't see your language?
-                            <a href="javascript:void(0)" id="create_language_link">Create it now</a>.
+                            <a href="#" id="create_campus_organization_link">Submit yours to the list.</a>
                         </li>
                     </ul>
                 </div>

@@ -22,7 +22,7 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
         
-        # Adding M2M table for field employer_user on 'Event'
+        # Adding M2M table for field         on 'Event'
         db.create_table('events_event_employer_user', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('event', models.ForeignKey(orm['events.event'], null=False)),

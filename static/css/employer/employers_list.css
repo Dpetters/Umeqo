@@ -1,0 +1,62 @@
+#employers_list_block .main_block_content {
+    padding: 0;
+    position: relative;
+}
+#employers_listings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    overflow-y: scroll;
+    background-color: #EEE;
+}
+#employers_listings .employers_listing {
+    padding: 5px;
+}
+#employers_listings .employers_listing:hover {
+    background-color: #F6F6F6;
+    cursor: pointer;
+}
+#employers_listings .selected {
+    background-color: #FFF;
+}
+#employers_listings .selected:hover {
+    background-color: #FFF;
+}
+
+#employers_listings .employers_listing h2 {
+    font-size: 14px;
+}
+
+#employers_listings .description {
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 270px;
+    display: inline-block;
+    color: #777;
+}
+
+#employers_detail {
+    margin-left: 300px;
+    min-height: 200px;
+    padding: 10px;
+}
+#employers_detail .industries {
+    float: right;
+}
+#employers_detail .industries div {
+    display: inline-block;
+    background-color: #EEE;
+    border-radius: 2px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+#employers_detail .description {
+    
+}
+#employers_detail h2 {
+    margin-top: 10px;
+    color: #444;
+}

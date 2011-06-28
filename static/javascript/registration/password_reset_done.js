@@ -5,15 +5,15 @@
  */
 
 $(document).ready( function() {
-	$('#email_icon_section').Fisheye(
-	{
-		maxWidth: 30,
-		items: 'a',
-		itemsText: 'span',
-		container: '.dock_container',
-		itemWidth: 40,
-		proximity: 80,
-		halign: 'center',
-		valign: 'bottom'
-	})
+    $('#email_icon_section').Fisheye(
+    {
+        maxWidth: 30,
+        items: 'a',
+        itemsText: 'span',
+        container: '.dock_container',
+        itemWidth: 40,
+        proximity: 80,
+        halign: 'center',
+        valign: 'bottom'
+    })
 });

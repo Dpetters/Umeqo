@@ -11,12 +11,22 @@ from core import choices as core_choices
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
-from employer.models import FilteringParameters, EmployerPreferences
-from employer import enums
+from employer.models import FilteringParameters, EmployerPreferences, StudentComment
+from employer import enums as employer_enums
 
-
+class DeliverResumeBookForm(forms.Form):
+    delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
+    name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
+    email = forms.EmailField(label="Delivery Email:", required=False)
+    
+    def __init__(self, *args, **kwargs):
+        super(DeliverResumeBookForm, self).__init__(*args, **kwargs)
+        print args
+        print self
+        print kwargs
+        
 class SearchForm(forms.Form):
-    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc'}))
+    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))
 
 class FilteringForm(forms.ModelForm):
     gender = forms.ChoiceField(label="Filter by gender:", choices = core_choices.FILTERING_GENDER_CHOICES, initial= core_choices.BOTH_GENDERS, required= False)
@@ -29,7 +39,7 @@ class FilteringForm(forms.ModelForm):
     sat_v = forms.IntegerField(label="Minimum SAT Verbal:", max_value = 800, min_value = 200, required = False)
     sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, required = False)
 
-    
+    widget=forms.FileInput(attrs={'class':'required'})
     class Meta:
         model = FilteringParameters
         
@@ -41,10 +51,17 @@ class EmployerPreferencesForm(forms.ModelForm):
     
     class Meta:
         model = EmployerPreferences
-    
+     
 class StudentFilteringForm(FilteringForm):
-    ordering = forms.ChoiceField(label="Order Results By:", choices = enums.ORDERING_CHOICES, required = False)
-    results_per_page = forms.ChoiceField(label="Results Per Page:", choices = enums.RESULTS_PER_PAGE_CHOICES, required = False)
+    ordering = forms.ChoiceField(label="Order Results By:", choices = employer_enums.ORDERING_CHOICES, required = False)
+    results_per_page = forms.ChoiceField(label="Results Per Page:", choices = employer_enums.RESULTS_PER_PAGE_CHOICES, required = False)
+
+    gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
+    act = forms.IntegerField(label="Minimum ACT:", max_value = 36, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
+    sat_t = forms.IntegerField(label="Minimum SAT:", max_value = 2400, min_value = 600, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
+    sat_m = forms.IntegerField(label="Minimum SAT Math:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
+    sat_v = forms.IntegerField(label="Minimum SAT Verbal:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
+    sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
     
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)

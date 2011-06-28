@@ -6,50 +6,44 @@
 
 /* Profile Form Fields */
 input[type=text] {
-	width:180px;
-}
-select {
-	width:310px;
+    width:180px;
 }
 .slider{
-	margin-top:7px;
-	margin-right:13px;
-	float:right;
-	width:235px;
-}
-#id_older_than_18, #id_requires_sponsorship, #id_gender {
-	width:185px;
+    margin-top:7px;
+    margin-right:13px;
+    float:right;
+    width:235px;
 }
 .button {
-	width:100px;
+    width:100px;
 }
 .main_block_header {
-	border-bottom:1px solid #CCCCCC;
+    border-bottom:1px solid #CCCCCC;
 }
 .main_block_header_content {
-	font-size: 17px;
-	margin-right:28px;
+    font-size: 17px;
+    margin-right:28px;
 }
 #profile_form_title {
-	padding-bottom:15px;
+    padding-bottom:15px;
 }
 #required_info_page, #work_info_page, #academic_info_page, #miscellaneous_info_page {
-	float:left;
-	padding-top:15px;
-	padding-left:10px;
+    float:left;
+    padding-top:15px;
+    padding-left:10px;
 }
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
-	height: 1px;
+    height: 1px;
 }
 
 .previous_employers_multiselect .ui-multiselect-filter input, .interested_in_multiselect .ui-multiselect-filter input, .campus_involvement_multiselect .ui-multiselect-filter input, .countries_of_citizenship_multiselect .ui-multiselect-filter input, .languages_multiselect .ui-multiselect-filter input{
-	width:154px;
+    width:154px;
 }
 .previous_employers_multiselect .ui-multiselect-all, .interested_in_multiselect .ui-multiselect-all, .campus_involvement_multiselect .ui-multiselect-all, .countries_of_citizenship_multiselect .ui-multiselect-all, .languages_multiselect .ui-multiselect-all{
-	display:none;
+    display:none;
 }
 .button_wrapper_with_margins{
-	margin-top:35px;
+    margin-top:35px;
 }
 /* Form Info */
 .profile_side_form_info {
@@ -65,59 +59,57 @@ select {
     font-size:18px;
     text-shadow:#FFF 0 1px 0;
 }
-.profile_side_form_info ul {
-    border-left: 5px solid #DDDDDD;
-}
 .profile_side_form_info li {
     left: 15px;
     list-style: disc outside none;
-    margin: 10px 15px 0 10px;
+    margin: 15px 15px 0 10px;
     position: relative;
+    line-height: 20px;
 }
 
 
 /* Create Campus Organization Dialog */
 .create_campus_organization_dialog .ui-dialog-content {
-	padding:20px 20px 25px 20px;
-	text-align:center;
+    padding:20px 20px 25px 20px;
+    text-align:center;
 }
 .create_campus_organization_dialog .form_table {
-	margin-left:auto;
-	margin-right:auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 .create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website {
-	width:308px;
+    width:308px;
 }
 /* Create Language Dialog */
 .create_language_dialog .ui-dialog-content {
-	padding:20px 20px 25px 20px;
-	text-align:center;
+    padding:20px 20px 25px 20px;
+    text-align:center;
 }
 .create_language_dialog .form_table {
-	margin-left:auto;
-	margin-right:auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 .create_language_dialog #id_name {
-	width:265px;
+    width:265px;
 }
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
-	display:none;
+    display:none;
 }
 .ui-accordion .ui-accordion-content {
-	overflow:hidden;
-	border-top: 1px solid #CCCCCC;
-	padding:0 0 20px 0;
+    overflow:hidden;
+    border-top: 1px solid #CCCCCC;
+    padding:0 0 20px 0;
 }
 /* Multiselect Widget Modifications */
 .ui-multiselect-all {
-	display: none;
+    display: none;
 }
 .profile_form_info_dialog .ui-dialog-content {
-	padding:10px 15px;
+    padding:10px 15px;
 }
 
-#id_sat_m, #id_sat_v, #id_sat_w, #id_act, #id_gpa{
+#id_gpa {
     width: 3em;
     text-align: center;
 }

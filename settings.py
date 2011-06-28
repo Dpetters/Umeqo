@@ -5,7 +5,7 @@
 """
 
 import os
-ROOT = os.path.dirname(os.path.realpath(__file__))
+ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -22,9 +22,16 @@ HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
 # Email Settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sbconnect.mit@gmail.com'
+EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
+
+LOCAL_DATA_APPS = ('employer',
+                   'student',
+                   'events',
+                   'registration',
+                   'user',
+                   )
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"
@@ -49,9 +56,6 @@ TIME_ZONE = None
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-# The primary key of the site model.
-SITE_ID = 1
-
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -74,11 +78,17 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
 
+RESUME_BOOK_ROOT  = MEDIA_ROOT + "resume_books/"
+
+SUBMITTED_RESUME_ROOT = MEDIA_ROOT + "submitted_resumes/"
+
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
     ROOT + '/static',
 )
 
+MAX_DIALOG_IMAGE_WIDTH = 200
+MAX_DIALOG_IMAGE_HEIGHT = 140
     
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -119,7 +129,7 @@ MIDDLEWARE_CLASSES = (
 AUTH_PROFILE_MODULE = "student.Student"
 
 AUTHENTICATION_BACKENDS = (
-    "core.backends.CustomModelBackend",
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'urls'
@@ -150,39 +160,19 @@ INSTALLED_APPS = (
     'registration',
     'south',
     'student',
-    'relationships',
     'debug_toolbar'
 )
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'standard': {
-            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-        },
-    },
-    'handlers': {
-        'request_handler': {
-                'level':'DEBUG',
-                'class':'logging.handlers.RotatingFileHandler',
-                'filename': ROOT + '/logs/django_request.log',
-                'maxBytes': 1024*1024*5, # 5 MB
-                'backupCount': 5,
-                'formatter':'standard',
-        },
-    },
-    'loggers': {
-        'django.request': { # Stop SQL debug from logging to main logger
-            'handlers': ['request_handler'],
-            'level': 'DEBUG',
-            'propagate': False
-        },
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
     }
 }
 
 #only allow toolbar from localhost
-INTERNAL_IPS = ('127.0.0.1',)
+#INTERNAL_IPS = ('127.0.0.1',)
 
 try:
     from settings_local import *

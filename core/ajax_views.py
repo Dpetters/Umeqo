@@ -86,7 +86,7 @@ def check_username_existence(request):
                 User.objects.get(email=username)
             except User.DoesNotExist:
                 try:
-                    Employer.objects.get(company_name = username).user
+                    Employer.objects.get(name = username).user
                 except Employer.DoesNotExist:
                     return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")

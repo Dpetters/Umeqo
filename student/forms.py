@@ -18,9 +18,8 @@ from core import messages
 
 class StudentRegistrationForm(forms.Form):
 
-    email = forms.EmailField(label="Your MIT Email:")
-    password1 = forms.CharField(label="Choose a Password:", widget=forms.PasswordInput(render_value=False))
-    password2 = forms.CharField(label="Re-enter Password:", widget=forms.PasswordInput(render_value=False))
+    email = forms.EmailField(label="MIT email:")
+    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False))
     
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -28,8 +27,7 @@ class StudentRegistrationForm(forms.Form):
         if does_email_exist(email):
             raise forms.ValidationError(_(messages.email_already_registered))
         
-        ending = email.split("@")[1]
-        if ending != "mit.edu":
+        if email[-len("mit.edu"):] != "mit.edu":
             raise forms.ValidationError(_(messages.use_an_mit_email_address))
         """
         con = ldap.open('ldap.mit.edu')
@@ -42,13 +40,6 @@ class StudentRegistrationForm(forms.Form):
             raise forms.ValidationError(_(messages.not_an_mit_student))
         """
         return self.cleaned_data['email']
-    
-    def clean(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError(_(messages.passwords_dont_match))
-        return self.cleaned_data
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     
@@ -65,50 +56,38 @@ class StudentUpdateResumeForm(forms.ModelForm):
         model = Student
 
 class StudentCreateProfileForm(forms.ModelForm):
-         
-    """
-    Required Info
-    """  
-    first_name = forms.CharField(label="First Name:", max_length = 20)
-    last_name = forms.CharField(label="Last Name:", max_length = 30)
-    school_year = forms.ModelChoiceField(label="School Year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
-    graduation_year = forms.ModelChoiceField(label="Graduation Year:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
-    first_major = forms.ModelChoiceField(label="First Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
-    gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5)
+    # Required Info
+    first_name = forms.CharField(label="First name:", max_length = 20)
+    last_name = forms.CharField(label="Last name:", max_length = 30)
+    school_year = forms.ModelChoiceField(label="School year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
+    graduation_year = forms.ModelChoiceField(label="Graduation year:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select graduation year")
+    first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
+    gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5, decimal_places=2)
     resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
     
-    
-    """
-        Academic Info
-    """
-    second_major = forms.ModelChoiceField(label="Second Major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
+    # Academic Info
+    second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
     #minor = forms.ModelChoiceField(label="Minor:", queryset = Course.objects.all(), required = False, empty_label = "select course")
-    act = forms.IntegerField(label="ACT:", max_value = 36, required = False, widget=forms.TextInput(attrs={'class': 'act'}))
-    sat_m = forms.IntegerField(label="SAT Math:", max_value = 800, min_value = 200, required = False)
-    sat_v = forms.IntegerField(label="SAT Verbal:", max_value = 800, min_value = 200, required = False)
-    sat_w = forms.IntegerField(label="SAT Writing:", max_value = 800, min_value = 200, required = False)
+    act = forms.ChoiceField(label="ACT:", required = False, choices=[('','--')]+[(x,x) for x in range(36,0,-1)])
+    sat_m = forms.ChoiceField(label="SAT Math:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
+    sat_v = forms.ChoiceField(label="SAT Verbal:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
+    sat_w = forms.ChoiceField(label="SAT Writing:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     
-    """
-        Work-Related Info
-    """
-    looking_for = forms.ModelMultipleChoiceField(label="Looking For:", queryset = EmploymentType.objects.all(), required = False)
-    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested In:", queryset = Industry.objects.all(), required = False)
-    previous_employers = forms.ModelMultipleChoiceField(label="Previous Employers:", queryset = Employer.objects.all(), required = False)
+    # Work-Related Info
+    looking_for = forms.ModelMultipleChoiceField(label="Looking for:", queryset = EmploymentType.objects.all(), required = False)
+    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested in:", queryset = Industry.objects.all(), required = False)
+    previous_employers = forms.ModelMultipleChoiceField(label="Previous employers:", queryset = Employer.objects.all(), required = False)
     
-    """
-        Miscellaneous Info
-    """
+    # Miscellaneous Info
     # Campus Orgs
-    campus_involvement = forms.ModelMultipleChoiceField(label="Campus Involvement:", queryset = CampusOrg.objects.all(), required = False)
+    campus_involvement = forms.ModelMultipleChoiceField(label="Campus involvement:", queryset = CampusOrg.objects.all(), required = False)
     languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
     website = forms.URLField(label="Website:", required = False)
-    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of Citizenship:", queryset = Country.objects.all(), required=False)
+    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of citizenship:", queryset = Country.objects.all(), required=False)
     gender = forms.ChoiceField(label="Gender:", choices = GENDER_CHOICES, required=False)
-    older_than_18 = forms.ChoiceField(label="Older Than 18:", choices = SELECT_YES_NO_CHOICES, required = False)
+    older_than_18 = forms.ChoiceField(label="Older than 18:", choices = SELECT_YES_NO_CHOICES, required = False)
     ethnicity = forms.ModelChoiceField(label="Ethnicity:", queryset = Ethnicity.objects.all(), empty_label="select ethnicity", required=False)
 
-
-    
     class Meta:
         fields = ('first_name',
                    'last_name',

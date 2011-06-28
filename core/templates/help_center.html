@@ -15,24 +15,24 @@ Copyright 2011. All Rights Reserved.
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/help/help.js">
 </script>
 <script type="text/javascript">
-	HELP_CENTER_URL = "{% url help_center %}";
-	FAQ_URL = "{% url faq %}";
-	TUTORIALS_URL = "{% url tutorials %}";
+    HELP_CENTER_URL = "{% url help_center %}";
+    FAQ_URL = "{% url faq %}";
+    TUTORIALS_URL = "{% url tutorials %}";
 </script>
 {% endblock %}
 
 {% block content_area %}
 <div class="sidebar_l">
-	<ul class="menu">
-		<li id="help_center_link"><a href="/help/">Help Center</a></li>
-		<li id="faq_link"><a href="/help/faq/">FAQ</a></li>
-		<li id="tutorials_link"><a href="/help/tutorials/">Tutorials</a></li>
-		<li class="open_contact_us_dialog_link"><a href="javascript:void(0)">Contact Us</a></li>
-		<li id="home_link"><a href="/">Back to Home »</a></li>
-	</ul>
+    <ul class="menu">
+        <li id="help_center_link"><a href="/help/">Help Center</a></li>
+        <li id="faq_link"><a href="/help/faq/">FAQ</a></li>
+        <li id="tutorials_link"><a href="/help/tutorials/">Tutorials</a></li>
+        <li class="open_contact_us_dialog_link"><a href="javascript:void(0)">Contact Us</a></li>
+        <li id="home_link"><a href="/">Back to Home »</a></li>
+    </ul>
 </div>
 <div id="content_wrap">
-	{% block help_content %}
-	{% endblock %}	
+    {% block help_content %}
+    {% endblock %}    
 </div>
 {% endblock %}

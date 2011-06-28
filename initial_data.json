@@ -1,38 +1,6 @@
 [
  {
   "pk": 1, 
-  "model": "core.relationshiptype", 
-  "fields": {
-   "name": "Favorite", 
-   "slug": "favorite"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "core.relationshiptype", 
-  "fields": {
-   "name": "Latest", 
-   "slug": "latest"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "core.relationshiptype", 
-  "fields": {
-   "name": "Starred", 
-   "slug": "starred"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "core.relationshiptype", 
-  "fields": {
-   "name": "In Resume Book", 
-   "slug": "resume-book"
-  }
- }, 
- {
-  "pk": 1, 
   "model": "core.topic", 
   "fields": {
    "audience": 0, 
@@ -8294,6 +8262,30 @@
    "date_created": "2011-05-03 12:27:43", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Networking"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "localhost:8000", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "staging.umeqo.com", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "umeqo.com", 
+   "name": "Umeqo"
   }
  }
 ]

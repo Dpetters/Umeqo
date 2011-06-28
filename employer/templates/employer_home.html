@@ -56,16 +56,16 @@ Copyright 2011. All Rights Reserved.
         {% endfor %}
     </div>
 </div>
-<div id="browse_students_block" class="main_block">
+<div class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
         <span class="main_block_header_title">Browse Students</span>
         <div class="main_block_header_content">
-            <form id="search_form" method="post" action="/employer/student-filtering/">
+            <form id="search_form" method="post" action="/employer/students/">
                 {% csrf_token %}
                 {{search_form.query}}
                 <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
-                <a href="/employer/student-filtering/" class="button">Browse Students</a>
+                <a href="/employer/students/" class="button">Browse Students</a>
             </form>
         </div>
     </div>
@@ -84,9 +84,9 @@ Copyright 2011. All Rights Reserved.
 <div id="events_and_deadlines_block" class="main_block">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
-        <span class="main_block_header_title">Events and Deadlines</span>
+        <span class="main_block_header_title">Your Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="/employer/events/new" class="button sub-button"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png"/><span>Add New Event</span></a>
+            <a href="{% url employer_new_event %}" class="button sub-button">New Event</a>
         </div>
     </div>
     <div class="main_block_content">
@@ -96,9 +96,7 @@ Copyright 2011. All Rights Reserved.
         <h3>{% cycle "Upcoming" "Past" %}</h3>
         <ul class="event_list editable_event_list">
         {% endifchanged %}
-            <li>
             {% include "event_snippet.html" with edit='True' %}
-            </li>
         {% endfor %}
         </ul>
         <div id="no_events_block" class="message_block" {% if your_events %}style="display:none"{% endif %}>

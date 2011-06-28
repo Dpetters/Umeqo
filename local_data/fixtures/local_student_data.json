@@ -49,7 +49,7 @@
    ], 
    "act": 34, 
    "date_created": "2011-05-22 20:02:37", 
-   "older_than_18": true
+   "older_than_18": "True"
   }
  }, 
  {
@@ -87,7 +87,7 @@
    "industries_of_interest": [], 
    "act": 35, 
    "date_created": "2011-05-23 21:58:49", 
-   "older_than_18": true
+   "older_than_18": "True"
   }
  }, 
  {
@@ -177,7 +177,45 @@
    ], 
    "act": 36, 
    "date_created": "2011-05-23 22:01:57", 
-   "older_than_18": true
+   "older_than_18": "True"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "Ma", 
+   "last_updated": "2011-06-26 22:01:37", 
+   "sat_m": 800, 
+   "sat_t": 800800800, 
+   "sat_v": 800, 
+   "sat_w": 800, 
+   "keywords": " joshua memorial cambridge joshma mit edu http joshma com education massachusetts institute technology cambridge candidate bachelor electrical engineering computer june technology lincroft mathematics departmental award gpa unweighted june hubspot cambridge engineering extern jan played active role migrating knowledgebase zendesk platform integrating zendesk into hubspot authentication forum ideas migration analysis usage worked extensively java backend struts zendesk api python scripting exposed maven builds tests selenium tests deployment practices agile development mobility mit media lab cambridge research intern oct dec designed developed mobile web application tin meeting project worked tornado backend non blocking dynamic javascript html css interface login meetings manage tasks topics national bowl bee ridgewood freelance web developer june developed wordpress based web application national academic competition built content management csv parsing competition results developed online testing javascript php preliminary bee gary boards wildwood freelance web developer mar november developed wordpress based web application local surf skate apparel integrated ecommerce into wordpress installation mitre quantum information eatontown intern sept feb modeled simulated tested mappings pseudo random quantum operators using matlab worked towards reconstructing mappings into quantum gates mathematica jersey trash clothing gibbstown freelance web developer jan jun developed cakephp based web application local clothing integrated custom ecommerce paypal skills experienced html css javascript jquery mootools php cakephp kohana python django actionscript java struts maven mysql solr proficient adobe photoshop adobe flash professional matlab mathematica awards activities creator http www centeroid independently developed google app based web application integrated google maps designed optimal timesaving meeting national siemens award advanced placement national male winner highest overall scores advanced placement math exams moody mega math challenge applied mathematics competition teams across physics olympiad semifinalist semifinalist competitors national physics competition vice president jersey technology association coordinated technology conference participating schools schools efforts implementing transparent competition feedback", 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "ethnicity": 10, 
+   "first_name": "Joshua", 
+   "first_major": 15, 
+   "preferences": 39, 
+   "gpa": "5", 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": true, 
+   "school_year": 1, 
+   "graduation_year": 1, 
+   "previous_employers": [], 
+   "website": "http://joshma.com/", 
+   "second_major": 23, 
+   "resume": "/Users/Josh/umeqo/media/submitted_resumes/Ma_Joshua_o__o@mit.edu_2011-06-26-22-01-37.pdf", 
+   "is_active": true, 
+   "subscribed_employers": [], 
+   "statistics": 39, 
+   "user": 9, 
+   "gender": "M", 
+   "industries_of_interest": [], 
+   "act": 36, 
+   "date_created": "2011-06-25 15:19:11", 
+   "older_than_18": "Y"
   }
  }, 
  {
@@ -208,6 +246,330 @@
   }
  }, 
  {
+  "pk": 4, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 26, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 28, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 29, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_event": false, 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
@@ -229,6 +591,366 @@
  }, 
  {
   "pk": 3, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 26, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 28, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 29, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "resume_view_count": 0, 
+   "event_invite_count": 0, 
+   "add_to_resumebook_count": 0
+  }
+ }, 
+ {
+  "pk": 39, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 

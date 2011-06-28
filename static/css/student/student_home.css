@@ -12,17 +12,17 @@
 }
 
 #dropbox {
-	opacity: 0.5;
+    opacity: 0.5;
     background-color: #e9e9e9;
     height: 185px;
     width: 178px;
     border: 1px dotted #303030;
 }
 #dropbox_status{
-	font-weight:bold;
-	height:0px;
-	position:relative;
-	top:75px;
+    font-weight:bold;
+    height:0px;
+    position:relative;
+    top:75px;
 }
 #quick_resume_updater_block #dropbox.hover {
     border: 1px dashed #303030;
@@ -38,11 +38,11 @@
     border: 1px solid red;
 }
 #quick_resume_updater_block .side_block_content{
-	text-align:center;
+    text-align:center;
 }
 
 #notifications_block .main_block_header{
-	line-height:22px;
+    line-height:22px;
 }
 
 #id_subscribed_employers {

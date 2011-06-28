@@ -25,10 +25,19 @@ Copyright 2011. All Rights Reserved.
   <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_home.js"></script>
 {% endblock %}
 
+{% block below_header_area %}
+{{ block.super }}
+{% if msg %}
+<div class="below_header_message">
+    <p>{{ msg }}</p>
+</div>
+{% endif %}
+{% endblock %}
+
 {% block content_area %}
     
     <div class="right_side_container">
-    	<div id="statistics_block" class="side_block">
+        <div id="statistics_block" class="side_block">
             <div class="side_block_header">
                 <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/system-monitor.png"/>
                 <span class="side_block_header_title">My Statistics</span>
@@ -36,7 +45,7 @@ Copyright 2011. All Rights Reserved.
             <div class="side_block_content">
             </div>
             <div class="side_block_footer">
-        	</div>
+            </div>
         </div>
         <div id="quick_resume_updater_block" class="side_block">
             <div class="side_block_header">
@@ -44,13 +53,13 @@ Copyright 2011. All Rights Reserved.
                 <span class="side_block_header_title">Resume Updater</span>
             </div>
             <div class="side_block_content">
-            	<p id="dropbox_status">Drop PDF File Here</p>
-              	<div id="dropbox">
-              	</div>
+                <p id="dropbox_status">Drop PDF File Here</p>
+                  <div id="dropbox">
+                  </div>
             </div>
             <div class="side_block_footer">
                 <div class="side_block_footer_link">
-                    <a id="view_resume_link" target="_blank" href="{{ MEDIA_URL }}{{user.student.resume}}">View Current Resume</a>
+                    <a id="view_resume_link" target="_blank" href="{% url student_resume %}">View Current Resume</a>
                 </div>
             </div>
         </div>
@@ -65,18 +74,16 @@ Copyright 2011. All Rights Reserved.
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Events and Deadlines</span>
+            <div class="main_block_header_content">
+                <a class="button sub-button" href="{% url employers_list %}">Browse Employers</a>
+                <a class="button sub-button" href="{% url events_list %}">Browse Events</a>
+            </div>
         </div>
         <div class="main_block_content">
             <div class="message_block">
                 <p>Browse events in full using the links below, or subscribe to employers to get automatic notifications of any new events.<p>
                 <br>
                 <p><a href="javascript:void(0)" id="setup_employer_subscriptions_link"><strong>Setup Employer Subscriptions</strong></a></p>
-            </div>
-        </div>
-        <div class="main_block_footer">
-            <div class="main_block_footer_links">
-                <a id="events_by_company_link" href="javascript:void(0)">Browse Events by Employer</a>&nbsp&nbsp
-                <a href="{% url events_list %}">Browse All Events</a>
             </div>
         </div>
     </div>

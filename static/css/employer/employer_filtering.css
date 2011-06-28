@@ -4,79 +4,63 @@
  Copyright 2011. All Rights Reserved.
  */
 
-
-#side_block_area{
+#side_block_area {
     width:330px;
     position:relative;
 }
-.select_wrapper{
+#side_block_area .side_block{
+    margin-bottom:11px;
+}
+#side_block_area .select_wrapper {
     float:right;
     margin-right:4px;
 }
-.select_wrapper select {
+#side_block_area .select_wrapper select {
     width:180px;
 }
-
-/* A big block is what you can use instead of multiple main blocks */
-/* For example, the results for student filtering appear in a blank block */
-.big_block {
-    padding-left:15px;
+#side_block_area .slider_section {
+    margin-bottom:5px;
+    padding-left:3px;
 }
-.big_block_header {
-    padding-bottom:3px;
+#side_block_area .slider_section input {
+    color:black;
+    border:0;
+    background-color:transparent;
 }
-.big_block_header_title {
-    font-weight:normal;
-    font-size:26px;
-}
-.big_block_header_links {
+#side_block_area .slider_section div {
+    top:5px;
+    margin-right:17px;
     float:right;
+    width:175px;
 }
-.big_block_content {
+#side_block_area button.ui-multiselect[type="button"] {
+    margin-bottom:5px;
 }
-
-.add_to_resume_book_area_active {
-    border-top:1px solid #AAAAAA;
-    font-weight:bold;
-    color:#000000
-}
-.add_to_resume_book_area_hover {
-    background-color:#F9F9F9;
-}
-
-#results_menu{
-	border-bottom:1px solid #CCC;
-}
-#first_student_main_info{
-	border-top:none;
-}
-
 #filtering_block .side_block_content, #student_list_block .side_block_content {
     padding:0;
 }
-
-#search_section, #student_list_section {
+#search_section, #student_list_section, #resume_book_block .side_block_content {
     background: #EEEEEE;
     border-top:1px solid white;
 }
-
-#student_list_section{
-	padding:7px 0px 3px 5px
+#student_list_section {
+    padding:5px 0px 0px 5px
 }
-
-#search_section{
+#resume_book_block .side_block_content{
+    padding:5px;
+}
+#search_section {
     border-bottom: 1px solid #CCCCCC;
     padding:5px 0px 5px 4px
 }
-
 #query_field {
+    behavior: url(/static/lib/pie/PIE.htc);
     height:22px;
     vertical-align:middle;
-    width:240px;
+    width:95%;
     padding-left:6px;
     color: #303030;
     font-size:15px;
-    behavior: url(/static/lib/pie/PIE.htc);
     box-shadow: inset 2px 2px 2px #DDDDDD;
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
@@ -86,91 +70,86 @@
     height:30px;
     position:relative;
 }
-.slider_section {
-    margin-bottom:5px;
-    padding-left:3px;
-}
 
-.slider_section input {
-    color:black;
-    border:0;
-    background-color:transparent;
+#sat_m_filter_section.slider_section div, #sat_v_filter_section.slider_section div, #sat_w_filter_section.slider_section div{
+    width:130px;
 }
-
-.slider_section div {
-    top:5px;
-    margin-right:17px;
-    float:right;
-    width:175px;
+#academic_info_section label, #test_scores_section label {
+    padding-right:0px;
 }
-
-#sat_m_filter_section div, #sat_v_filter_section div, #sat_w_filter_section div{
-	width:130px;
-}
-#academic_info_section label, #test_scores_section label{
-	padding-right:0px;
-}
-
-#id_gpa, #id_act{
+#id_gpa, #id_act {
     width:20px;
 }
-#id_sat_t{
+#id_sat_t {
     width:29px;
 }
-#id_sat_m, #id_sat_v, #id_sat_w{
+#id_sat_m, #id_sat_v, #id_sat_w {
     width:22px;
 }
-
-
-button.ui-multiselect[type="button"] {
-    margin-bottom:5px;
-}
-
-#results_block {
-    position:relative;
-    margin-top:8px;
-    margin-left:320px;
-}
-#results_navigation_section {
-    margin-top:10px;
-}
-#results_menu {
-    padding-bottom:5px;
-    padding-top:5px;
-}
-#results_menu_checkbox_section {
-    padding:5px 4px 2px 6px;
-}
-#results_menu_checkbox_section_dropdown {
-    margin-right:2px;
-}
-#results_menu_checkbox {
-}
-#results_menu_toggle_details {
+#student_deliver_resume_book_button {
+    width:56px;
     float:right;
+    height:24px;
+}
+#num_of_students_in_resume_book_section{
+    background:#FFF;
+    padding:2px 0 2px 8px;
+    width:236px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius:3px;
+    vertical-align:middle;
+    height:24px;
+    line-height:24px;
+}
+#num_of_students_in_resume_book{
+	margin-left:3px;
+}
+#num_of_students_in_resume_book_section #ajax_form_submit_loader{
+    position:static;
+    margin-right:7px;
+    float:right;
+}
+#results_block_content {
+    min-height:700px;
+}
+#num_of_results {
+    font-size:26px;
+}
+.student_detailed_info_header {
+    margin-top:2px;
+    text-decoration:underline;
+    font-weight:bold;
+}
+.student_test_scores th{
+	font-size:12px;
+	padding-right:5px;
+}
+.student_test_scores .student_detailed_info_header{
+	text-align:left;
 }
 #results_block_info_section {
     display:none;
     position:absolute;
-    top:180px;
-	width:650px;
-	text-align:center;
+    top:190px;
+    width:650px;
+    text-align:center;
     z-index:100;
 }
-#results_block_info{
-	background:#F6F6F6;
-	border:1px solid #888;
-	margin-left:auto;
-	margin-right:auto;
-	padding:6px;
-	width:220px;
-    -moz-border-radius: 7px;
-    -webkit-border-radius:7px;
-    border-radius:7px;
+#results_block_info {
     behavior: url(/static/lib/pie/PIE.htc);
+    background:#FAFAFA;
+    border:1px solid #BBB;
+    margin-left:auto;
+    margin-right:auto;
+    padding:6px 6px 3px 6px;
+    width:220px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
 }
-#results_block_info #dialog_loader{
-	margin-top:3px;
+#results_block_info p{
+	margin-bottom:3px;
 }
 #no_results_block {
     height:600px;
@@ -180,21 +159,77 @@ button.ui-multiselect[type="button"] {
 #no_results_message {
     vertical-align:middle;
 }
-#results_section {
-    min-height:700px;
+#results_block {
+    margin-left:320px;
+    padding-left:15px;
+}
+#results_navigation_section {
+    margin-top:10px;
+    float:right;
+}
+#results_menu {
+    padding-bottom:5px;
+    padding-top:5px;
+    border-bottom:1px solid #CCC;
+}
+#results_menu_checkbox_menu_button {
+    padding:5px 5px 2px 7px;
+}
+#results_menu_checkbox_menu_button:active{
+    behavior: url(/static/lib/pie/PIE.htc);
+    background-image:-moz-linear-gradient(center top , #F9F9F9, #E3E3E3);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F9F9F9), to(#E3E3E3));
+    -pie-background: linear-gradient(#898989, #737373);
+	border:1px solid #555;
+}
+#results_menu_checkbox_menu_button ul {
+    width:123px
+}
+#results_menu_checkbox {
+    margin-right:1px;
+}
+#results_menu_more_actions span{
+	font-weight:normal;
+}
+#results_menu_more_actions img {
+    margin-right:2px;
+    margin-left:2px;
+}
+#results_menu_more_actions_dropdown li a:hover {
+    background: #404040;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    color: #FFF;
+}
+#results_menu_more_actions_dropdown .info {
+    color: #FFF;
+    padding: 10px;
+    text-shadow: rgba(255,255,255,0.8) 0 0 2px;
+    background-color: #333;
+    font-size: 14px;
+    overflow-x: hidden;
+}
+#results_menu_toggle_details {
+    float:right;
 }
 #results {
     border-bottom:1px solid #CCC;
 }
+.student_main_info {
+    line-height:21px;
+}
+#first_student_main_info {
+    border-top:none;
+}
 .page_link, .current_page_link, .disabled_page_link {
     margin-top:1px;
     font-size: 12px;
-    border:1px solid #303030;
+    border:1px solid #808080;
     padding:2px;
     text-decoration:none;
 }
 .page_link:hover {
-    background-color:#EEEEEE;
+    background-color:#E5EDFF;
 }
 .disabled_page_link {
     color:#CCCCCC;
@@ -206,122 +241,154 @@ button.ui-multiselect[type="button"] {
 }
 .current_page_link {
     font-weight:bold;
-    background:#C6D5FF;
+    background:#E5EDFF;
 }
+.current_page_link:hover {
+    color:#6E97B9;
+    cursor:default;
 
-.student_detailed_info {
-    background-color:#FBFBFB;
-    border-top: 1px solid #E9E9E9;
-    padding-top: 5px;
-    padding-left: 43px;
-    padding-bottom:8px;
-    text-align:left;
 }
-.student_detailed_info_table {
-    width:100%;
-}
-
 .student_main_info {
     padding-bottom:5px;
     padding-top:8px;
     border-top: 1px solid #CCC;
-    line-height:20px;
 }
-.student_main_info p{
-	line-height:20px;
-	color:#000;
-}
-.student_drag_anchor {
-    cursor:move;
-    vertical-align:middle;
-    margin-left:5px;
-    float:left;
+.student_main_info p {
+    color:#000;
+    line-height:21px;
 }
 .student_checkbox {
+    margin-left:9px;
 }
-.student_name{
+.student_name {
     font-size:20px;
-    margin-left:5px;
+    margin-left:7px;
 }
-.student_year{
-	font-size:20px;
+.student_year {
+    font-size:20px;
 }
-.student_citizen {
-	float:right;
-	margin-right:24px;
+.student_resume_link {
+    float:right;
 }
-.student_resume_link{
-	float:right;
+.student_toggle_resume_book_link, .student_toggle_star_link{
+    margin-left:8px;
+    display:inline-block;
+    min-width:14px;
+	position:relative;
 }
-.student_star_link{
-	margin-left:21px;
+.student_toggle_resume_book_link{
+	top:2px;
 }
-.student_resumebook_link{
-	margin-left:4px;
-}
-.student_major{
-	margin-left:3px;
-}
-.student_gpa{
-	float:right;
-	margin-right:20px;
-}
-.student_toggle_detailed_info_link{
-	float:right;
-}
-
-.student_detailed_info h3{
-	margin-top:5px;
-	margin-bottom:3px;
-}
-.student_detailed_info p{
-	color:#000;
-}
-.student_detailed_info ul{
-	list-style:none;
-}
-.student_detailed_info_left_col{
-	display:inline-block;
+.student_toggle_star_link{
 	vertical-align:top;
-	width:438px;
+	top:4px;
 }
-.student_detailed_info_right_col{
-	display:inline-block;
-	vertical-align:top;
+.student_major {
+    margin-left:7px;
 }
-
-
-.student_second_major{
-	
+.student_more_actions_link {
+    float:right;
 }
-.student_older_than_18{
-	
+.student_gpa {
+    float:right;
+    margin-right:30px;
 }
-.student_website{
-	
+.student_comment {
+    border:1px solid #CCC;
+    font-size:12px;
+    margin-left:7px;
+    padding: 2px 0 0 5px;
+    position:relative;
+    top:2px;
+    width:488px;
+    max-width:488px;
+    min-width:488px;
+    height:17px;
 }
-.student_test_scores{
-
+.student_saved_note {
+	color:#888;
+	margin-top:2px;
+	position:absolute;
+	right:40px;
 }
-.student_test_scores th{
-	text-align:right;
+.student_toggle_detailed_info_link {
+    float:right;
 }
-.student_campus_involvement{
-	
+.student_detailed_info {
+    background-color:#FBFBFB;
+    border-top: 1px solid #E9E9E9;
+    padding-top: 2px;
+    padding-bottom:2px;
+    text-align:left;
 }
-.student_languages{
-	
+.student_detailed_info p {
+    color:#000;
 }
-.student_looking_for{
-	
+.student_detailed_info ul {
+    list-style:none;
 }
-.student_industries_of_interest{
-	
+.student_detailed_info_first_col {
+    display:inline-block;
+    min-width:29px;
 }
-.student_previous_employers{
-	
+.student_detailed_info_second_col {
+    display:inline-block;
+    vertical-align:top;
+    width:320px;
 }
-.student_hide_details_link{
-	clear:right;
-	text-align:center;	
+.student_detailed_info_third_col {
+    display:inline-block;
+    vertical-align:top;
+}
+.student_country_of_citizenship {
+    display:block;
+    margin: 3px 6px 6px 7px;
+}
+.student_hide_details_link {
+    margin-top:2px;
+    clear:right;
+    text-align:center;
+}
+.deliver_resume_book_dialog .dialog_content_wrapper{
+    padding:18px 0px 18px 0px;
+}
+#id_name, #id_email{
+    width:192px;
+}
+.email_delivery_type_only_field, #download_resume_book_link{
+    display:none;
+}
+#resume_book_status_div{
+    float:left;
+    width:199px;
+    border-left:1px solid #666;
+    width:92px;
+}
+#resume_book_status_div, #resume_book_contents_div{
+    float:left;
+    height:35px;
+    line-height:17px;
+}
+#resume_book_contents_div{
+    width:133px;
+    padding-right:8px;
+}
+#resume_book_status_div{
+    border-left:1px solid #000;
+    padding-left:8px;
+    width:132px;
+}
+#resume_book_contents_header, #resume_book_status_header{
+    color:#000;
+    font-weight:bold;
+    text-decoration:underline;
+}
+#resume_book_summary{
+    background:#EEE;
+    border-radius:3px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:4px 8px;
+    text-align:center;
+    width:282px;
 }

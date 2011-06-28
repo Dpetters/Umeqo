@@ -30,21 +30,17 @@ Copyright 2011. All Rights Reserved.
 {{ block.super }}
 {% ifequal action "timed-out" %}
 <div class="below_header_message">
-    <div class="width_container">
-        <p>
-            You timed out and were logged out for the safety of your account.
-        </p>
-    </div>
+    <p>
+        You timed out and were logged out for the safety of your account.
+    </p>
 </div>
 {% endifequal %}
 
 {% ifequal action "logged-out"  %}
 <div class="below_header_message">
-    <div class="width_container">
-        <p>
-            You were successfully logged out.
-        </p>
-    </div>
+    <p>
+        You were successfully logged out.
+    </p>
 </div>
 {% endifequal %}
 {% endblock %}

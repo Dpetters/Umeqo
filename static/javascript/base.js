@@ -6,33 +6,12 @@
 
 /* Multiselect Widget Properties */
 var multiselectMinWidth = 318;
-var multiselectYesNoSingleSelectWidth = 182;
+var multiselectYesNoSingleSelectWidth = 181;
 var multiselectSingleSelectWidth = 202;
-var multiselectTwoOptionHeight = 47;
-var multiselectThreeOptionHeight = 72;
-var singleselectThreeOptionHeight = 83;
-var multiselectMediumHeight = 97;
-var multiselectLargeHeight = 146;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
 var multiselectShowAnimation = "";
 var multiselectHideAnimation = "";
-
-var dialog_class = "dialog";
-var ajax_loader = "<div id='dialog_loader'><img src='/static/images/page_elements/loaders/dialog_loader.gif'></div>";
-var refresh_page_link = "<div class='message_section'><a class='refresh_page_link' href='javascript:void(0)'>Refresh Page</a></div>";
-var close_dialog_link = "<div class='message_section'><a class='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
-
-var error_message = "<div class='message_section'><p>Oops, something went wrong! We've been notified and will fix it ASAP.</p><br/><p>Meanwhile, you can try again by";
-var page_error_message = error_message + " refreshing the page.</p></div>" + refresh_page_link;
-var dialog_error_message = error_message + " reopening the dialog.</p></div>" + close_dialog_link;
-
-var check_connection_message = "<div class='message_section'><p>Unable to reach Umeqo.<br> Please check you connection and try again by"
-var page_check_connection_message = check_connection_message + " refreshing the page.</p></div>" + refresh_page_link;
-var dialog_check_connection_message = check_connection_message + " reopening the dialog.</p></div>" + close_dialog_link;
-var form_check_connection_message = "<p class='error'>Unable to reach Umeqo. Please check your connection and try again.</p>";
-
-var long_load_message = "<div class='message_section'><p>This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p></div>"
 
 function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
@@ -55,8 +34,8 @@ function show_error_dialog(message){
      error_dialog.html(message);
 };    
 
-function show_long_load_message(dialog) {
-    $(long_load_message).insertBefore(".dialog #dialog_loader");
+function show_long_load_message_in_dialog(dialog) {
+	$("#dialog_loader p").html(single_line_long_load_message);
 };
 
 function show_form_submit_loader(container) {
@@ -66,6 +45,10 @@ function show_form_submit_loader(container) {
 function hide_form_submit_loader() {
     container = typeof(container) != 'undefined' ? container : "";
     $(container + " #ajax_form_submit_loader").css("display", "none");
+};
+function place_tiny_ajax_loader(container) {
+    container = typeof(container) != 'undefined' ? container : "";
+    $(container).html(tiny_ajax_loader);
 };
 // Validation Highlighting, unhighlighting and positioning of errors
 function highlight(element, errorClass) {
@@ -90,8 +73,8 @@ function unhighlight(element, errorClass) {
  * Currently we show on field error at a time
  */
 function place_errors_ajax(errors, element){
-	var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-	place_errors($(error), element);
+    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
+    place_errors($(error), element);
 }
 
 /*
@@ -99,15 +82,15 @@ function place_errors_ajax(errors, element){
  * Currently we show on field error at a time
  */
 function place_errors_ajax_table(errors, element){
-	var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-	place_errors_table($(error), element);
+    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
+    place_errors_table($(error), element);
 };
 
 /*
  * Places non-field errors which got returned from an ajax submit in the error section of a form
  */
 function place_non_field_ajax_errors(errors, form){
-	$(form + " .error_section").html(errors.__all__[0]);
+    $(form + " .error_section").html(errors.__all__[0]);
 };
 function place_errors(error, element) {
     $(error).appendTo(element.parent().prev());
@@ -138,7 +121,6 @@ function place_errors_table(error,element) {
     } else if (element.prev().prev().get(0) && element.prev().prev().get(0).tagName!='DIV'){
         var offset = element.position().left-element.parent().position().left;
     }
-    console.log(error);
     $(error).css({
         "padding-left": offset,
         "float": "left",
@@ -150,8 +132,6 @@ function place_errors_table(error,element) {
 function place_multiselect_warning_table(element, max) {
     var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
     place_errors_table($(warning), element)
-    //$(error).appendTo(element.parent().prev());
-    //$(error).css("padding-left", $(element).prev().outerWidth()+3).css("float", "left").css('position', 'absolute').css('bottom','0');
 };
 // Pick out url GET parameters by name
 function get_parameter_by_name(name) {
@@ -181,6 +161,36 @@ function getCookie(name) {
     return cookieValue;
 };
 
+// number formatting function
+// copyright Stephen Chapman 24th March 2006, 10th February 2007
+// permission to use this function is granted provided
+// that this copyright notice is retained intact
+function formatNumber(num,dec,thou,pnt,curr1,curr2,n1,n2)
+{
+  var x = Math.round(num * Math.pow(10,dec));
+  if (x >= 0) n1=n2=''; 
+
+  var y = (''+Math.abs(x)).split('');
+  var z = y.length - dec; 
+
+  if (z<0) z--; 
+
+  for(var i = z; i < 0; i++)
+    y.unshift('0'); 
+
+  y.splice(z, 0, pnt);
+  if(y[0] == pnt) y.unshift('0'); 
+
+  while (z > 3)
+  {
+    z-=3;
+    y.splice(z,0,thou);
+  } 
+
+  var r = curr1+n1+y.join('')+n2+curr2;
+  return r;
+}
+
 // Get max of array
 Array.max = function (array) {
     return Math.max.apply(Math, array);
@@ -208,9 +218,9 @@ $(document).ready( function () {
     $('.open_contact_us_dialog_link').live('click', function () {
 
         contact_us_dialog = open_contact_dialog();
-        contact_us_dialog.html(ajax_loader);
+        contact_us_dialog.html(dialog_ajax_loader);
 
-        var contact_us_dialog_timeout = setTimeout(show_long_load_message, 10000);
+        var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             dataType: "html",
             url: '/contact-us-dialog/',
@@ -249,6 +259,7 @@ $(document).ready( function () {
                                 }
                             },
                             success: function (data) {
+                                console.log(data);
                                 hide_form_submit_loader("#contact_form");
                                 switch(data.valid) {
                                     case true:
@@ -258,13 +269,13 @@ $(document).ready( function () {
                                         break;
                                     case false:
                                         if (data.body_errors){
-											$(".contact_us_dialog .error_section").html(data.body_errors);
-					                        $("#id_body").css('border', '1px solid red').focus();
-					                        break;
-			                        	}
+                                            $(".contact_us_dialog .error_section").html(data.body_errors);
+                                            $("#id_body").css('border', '1px solid red').focus();
+                                            break;
+                                        }
                                         if (data.non_field_errors){
-											$(".contact_us_dialog .error_section").html(data.non_field_errors);
-			                        	}
+                                            $(".contact_us_dialog .error_section").html(data.non_field_errors);
+                                        }
                                         break;
                                     default:
                                         contact_us_dialog.html(dialog_error_message);

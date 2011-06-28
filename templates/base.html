@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
 
     <head>
-		<link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/vnd.microsoft.icon" />
         <noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"/>
         </noscript>
         <title>Umeqo {% block title %}{% endblock %}</title>
@@ -29,6 +29,8 @@
         <script src="{{ STATIC_URL }}javascript/browser_not_supported.js" type="text/javascript"></script>
         <![endif]-->
 
+        <link href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+
         {% if user.is_authenticated and user.student or user.recruiter %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             <script type="text/javascript" src="{{ STATIC_URL }}javascript/logged_in.js">
@@ -42,18 +44,31 @@
         {% block metadata %}
 
         {% endblock %}
-		<script type="text/javascript">
+        <script type="text/javascript">
+            var tiny_ajax_loader = "{% include 'tiny_ajax_loader.html' %}";
+            var long_horizontal_ajax_loader = "{% include 'long_horizontal_ajax_loader.html' %}";
+            var dialog_ajax_loader = "{% include 'dialog_ajax_loader.html' %}";
+            
+            var page_error_message = "{% include 'page_error_message.html' %}";
+            var dialog_error_message = "{% include 'dialog_error_message.html' %}";
+            
+            var page_check_connection_message = "{% include 'page_check_connection_message.html' %}";
+            var dialog_check_connection_message = "{% include 'dialog_check_connection_message.html' %}";
+            var form_check_connection_message = "{% include 'form_check_connection_message.html' %}";
+            
+            var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
+            var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
 
-			var _gaq = _gaq || [];
-		  	_gaq.push(['_setAccount', 'UA-22946783-1']);
-		  	_gaq.push(['_trackPageview']);
-		
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
+            var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-22946783-1']);
+              _gaq.push(['_trackPageview']);
+        
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
     </head>
     <body>
         <div id="above_header_area">
@@ -64,6 +79,9 @@
             <div class="width_container">
                 <ul id="navigation_block">
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
+                    <li id="signup_button">
+                        <a href="{% url student_registration %}">Join Umeqo!</a>
+                    </li>
                     <li id="login_button">
                         <a href="javascript:void(0)">Login</a>
                     </li>
@@ -80,7 +98,7 @@
                         <ul id="account_dropdown">
                             <li class="info">{{user}}</li>
                         {% if user.student %}
-                        	<li><a href="{% url student_account_settings %}">Account Settings</a></li>
+                            <li><a href="{% url student_account_settings %}">Account Settings</a></li>
                             <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
                         {% else %}{% if user.recruiter %}    
                             <li><a href="{% url employer_account_settings %}">Account Settings</a></li>
@@ -115,7 +133,7 @@
                         {% csrf_token %}
                         <div class="errorspace"></div>
                         <div id="username" class="input_div">
-                            <label for="id_username">Username</label>
+                            <label for="id_username">Email</label>
                             {{login_form.username}}
                         </div>
                         <div class="errorspace"></div>

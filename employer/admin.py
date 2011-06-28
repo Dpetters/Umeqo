@@ -17,9 +17,9 @@ class RecruiterAdmin(admin.ModelAdmin):
 admin.site.register(Recruiter, RecruiterAdmin)
     
 class EmployerAdmin(admin.ModelAdmin):
-    fields = ['company_name', 'industries', 'main_contact', 'main_contact_phone']
-    list_display = ('company_name', 'main_contact', 'main_contact_phone', 'date_created')
-    search_fields = ['company_name', 'industries__name', 'main_contact']
+    fields = ['name', 'description', 'slug', 'industries', 'main_contact', 'main_contact_phone']
+    list_display = ('name', 'main_contact', 'main_contact_phone', 'date_created')
+    search_fields = ['name', 'industries__name', 'main_contact']
     date_hierarchy = 'date_created'
     
 admin.site.register(Employer, EmployerAdmin)

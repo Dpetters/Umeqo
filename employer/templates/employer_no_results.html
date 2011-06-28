@@ -1,0 +1,10 @@
+<div id='no_results_block'>
+    <strong id='no_results_message'>
+            {% ifequal current_student_list all_students %}
+                No students matched your criteria.
+            {% endifequal %}
+            {% ifequal current_student_list in_resume_book_student_list %}
+                Your current resume book is empty.
+            {% endifequal %}
+    </strong>
+</div>

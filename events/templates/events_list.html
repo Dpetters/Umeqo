@@ -20,7 +20,7 @@ var SEARCH_URL = "{% url event_search %}";
 {% endblock %}
 
 {% block content_area %}
-<div id="browse_students_block" class="main_block">
+<div id="events_list_block" class="main_block">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
         <span class="main_block_header_title">Events Listing</span>
@@ -32,9 +32,7 @@ var SEARCH_URL = "{% url event_search %}";
         </form>
         <ul id="main_event_list" class="event_list">
         {% for event in events %}
-            <li>
             {% include "event_snippet.html" %}
-            </li>
         {% endfor %}
         </ul>
     </div>

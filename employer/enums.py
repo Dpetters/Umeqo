@@ -20,3 +20,24 @@ ORDERING_CHOICES = (
 ("gpa", "Lowest GPA First"),
 ("-gpa", "Highest GPA First"),
 )
+
+DOWNLOAD = "d"
+EMAIL = "e"
+RESUME_BOOK_DELIVERY_CHOICES = (
+(DOWNLOAD, "Download"),
+(EMAIL, "Email")
+)
+
+ADDED = "a"
+REMOVED = "r"
+STUDENT_RESUME_BOOK_ACTIONS = (
+(ADDED, "Added"),
+(REMOVED, "Removed"),
+)
+
+STARRED = "s"
+UNSTARRED = "u"
+STUDENT_STAR_ACTIONS = (
+(STARRED, "Starred"),
+(UNSTARRED, "Unstarred"),
+)

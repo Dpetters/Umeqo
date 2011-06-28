@@ -22,5 +22,13 @@
    "activation_key": "b25103468611cc687e07cf59603fc90b4ce5171f", 
    "user": 8
   }
+ }, 
+ {
+  "pk": 4, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "ALREADY_ACTIVATED", 
+   "user": 9
+  }
  }
 ]
