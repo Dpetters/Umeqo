@@ -15,13 +15,6 @@ USE_LANDING_PAGE = False
 
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
-LOCAL_SETTINGS_APPS = ('employer',
-                       'student',
-                       'events',
-                       'registration',
-                       'user',
-                       )
-
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }

@@ -72,7 +72,7 @@ def refresh_database():
     #os.chdir(ROOT +"/apache-solr-1.4.1/example/")
     #solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/")
     
-    for app in settings.LOCAL_SETTINGS_APPS:
+    for app in settings.LOCAL_DATA_APPS:
         p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
         
@@ -124,7 +124,7 @@ def commit_local_data():
     if not os.path.exists(local_data_fixtures_path):
         os.mkdir(local_data_fixtures_path)
         
-    for app in settings.LOCAL_SETTINGS_APPS:
+    for app in settings.LOCAL_DATA_APPS:
         # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
         if app == "user":
             p = subprocess.Popen("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json", shell=True)
