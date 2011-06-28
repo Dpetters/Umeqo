@@ -281,8 +281,11 @@ def employer_new_event(request, template_name='employer_new_event.html', extra_c
     else:
         form = EventForm()
 
+    hours = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
+
     context = {
-        'form': form
+        'form': form,
+        'hours': hours
     }
     
     context.update(extra_context or {})
@@ -308,6 +311,8 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
             return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm(instance=event)
+
+    hours = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     
     context = {
         'form': form,
@@ -315,7 +320,8 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
         'event': {
             'id': event.id,
             'slug': event.slug
-        }
+        },
+        'hours': hours
     }
 
     context.update(extra_context or {})

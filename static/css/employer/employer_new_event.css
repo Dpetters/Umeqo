@@ -65,3 +65,61 @@ div.description {
     clear: both;
     padding-top: 20px;
 }
+
+#event_scheduler {
+    height: 200px;
+    padding: 5px;
+    overflow-y: scroll;
+    position: relative;
+    width: 350px;
+}
+#event_scheduler table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#event_scheduler th {
+    font-weight: normal;
+    text-align: right;
+    width: 40px;
+    vertical-align: top;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F2F2F2 gold #F2F2F2 #F2F2F2;
+    padding: 3px;
+    color: #666;
+    font-size: 11px;
+}
+#event_scheduler td {
+    height: 15px;
+}
+#event_scheduler tr:nth-child(odd) td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DDD #EEE #EEE;
+}
+#event_scheduler tr:nth-child(even) td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #EEE #EEE #DDD;
+}
+
+.event_block {
+    position: absolute;
+    left: 60px;
+    right: 13px;
+    min-height: 12px;
+    background-color: #CCC;
+    border: 2px dashed #666;
+}
+#event1 {
+    top: 421px;
+    height: 28px;
+}
+#event2 {
+    top: 486px;
+    height: 44px;
+}
+#event3 {
+    top: 598px;
+    height: 44px;
+}

@@ -125,6 +125,28 @@ var EDIT_FORM = false;
                             {{form.description}}
                         </td>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <label>Find a time:</label>
+                            <div id="event_scheduler">
+                                <table>
+                                    {% for hour in hours %}
+                                    <tr>
+                                        <th rowspan="2">{{ hour }}</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                                <div id="event1" class="event_block"></div>
+                                <div id="event2" class="event_block"></div>
+                                <div id="event3" class="event_block"></div>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="clearfix"></div>
