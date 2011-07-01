@@ -9,8 +9,6 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from django.contrib.auth.forms import AuthenticationForm
-from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic.simple import direct_to_template
 
 from registration.forms import PasswordResetForm, SetPasswordForm
@@ -34,9 +32,6 @@ urlpatterns += patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^messages/', include('messages.urls')),
     (r'^notifications/', include('notification.urls')),
-    url(r'^logout/$', auth_views.logout_then_login, {'login_url':'/?action=logged-out'}, name='logout'),
-    url(r'^password/change/$', auth_views.password_change, {'template_name' : 'password_change_form.html'}, name='auth_password_change'),
-    url(r'^password/change/done/$', auth_views.password_change_done, {'template_name' : 'password_successfully_changed.html'}, name='auth_password_change_done'),
     url(r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset'),
     url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_confirm.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_confirm'),
     url(r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_complete'),
@@ -65,6 +60,8 @@ urlpatterns += patterns('core.views',
 
 urlpatterns += patterns('registration.views',
     (r'^login/', 'login', {}, 'login'),
+    (r'^logout/$', 'logout', {'login_url':'/?action=logged-out'}, 'logout'),
+    (r'^password/change/$','password_change', {}, 'password_change'),
     (r'^activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'activation_complete.html' }, 'activation_complete'),
     (r'^activation/(?P<activation_key>\w+)/$', 'activate_user', {}, 'student_activation'),
 )
@@ -73,7 +70,6 @@ urlpatterns += patterns('student.views',
     # Student Registration
     (r'^student/registration/$', 'student_registration', {'extra_context': {'login_form':AuthenticationForm}}, "student_registration"),
     (r'^student/registration/complete/$', 'student_registration_complete', { 'extra_context': {'login_form':AuthenticationForm}}, 'student_registration_complete'),
-    (r'^student/registration/closed/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'registration_closed.html' }, 'student_registration_closed'),
     # Student Profile Management
     (r'^student/edit-profile/$', 'student_edit_profile', {}, "student_edit_profile"),
     (r'^student/create-profile/$', 'student_create_profile', {}, "student_create_profile"),

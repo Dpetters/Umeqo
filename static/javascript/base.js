@@ -68,15 +68,18 @@ function unhighlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #AAA');
 };
 
-/*
- * Places field errors which got returned from an ajax submit in a non-table form
- * Currently we show on field error at a time
- */
-function place_errors_ajax(errors, element){
-    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-    place_errors($(error), element);
-}
-
+function place_form_errors(form, errors){
+	for (error in errors){
+		console.log(error);
+		console.log(errors[error]);
+		if (error == "non_field_error"){
+			place_non_field_ajax_errors(form, errors[error]);
+		}
+		else{
+			place_errors_table(errors[error], $("#"+error));
+		}
+	};
+};
 /*
  * Places field errors which got returned from an ajax submit in a table forms
  * Currently we show on field error at a time
@@ -89,7 +92,7 @@ function place_errors_ajax_table(errors, element){
 /*
  * Places non-field errors which got returned from an ajax submit in the error section of a form
  */
-function place_non_field_ajax_errors(errors, form){
+function place_non_field_ajax_error(form, error){
     $(form + " .error_section").html(errors.__all__[0]);
 };
 function place_errors(error, element) {

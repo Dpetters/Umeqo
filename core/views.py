@@ -78,8 +78,7 @@ def tutorials(request,
     return render_to_response(template_name,
                               context,
                               context_instance=RequestContext(request))
-    
-# Ajax-Only View
+
 def contact_us_dialog(request,
                       template_name='contact_dialog.html',
                       form_class=AkismetContactForm,

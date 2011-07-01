@@ -9,7 +9,7 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 
 from registration import signals
-from registration.models import RegistrationProfile
+from registration.models import RegistrationProfile, UserAttributes
 
 
 class RegistrationBackend(object):
@@ -85,6 +85,7 @@ class RegistrationBackend(object):
 
         new_user = RegistrationProfile.objects.create_inactive_user(username, email,
                                                                     password, site)
+        UserAttributes.objects.create(user=new_user)
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,
                                      request=request)

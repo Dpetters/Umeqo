@@ -5,7 +5,7 @@
 """
 from django import forms
 
-from student.models import Student
+from student.models import Student, StudentPreferences
 from core.forms_helper import campus_org_types_as_choices
 from core.models import Course, Ethnicity, GraduationYear, SchoolYear, EmploymentType, Industry, CampusOrg, Language
 from core.view_helpers import does_email_exist
@@ -126,3 +126,11 @@ class StudentCreateProfileForm(forms.ModelForm):
 
 class StudentEditProfileForm(StudentCreateProfileForm):
     resume = PdfField(label="Resume:", required=False)
+
+class StudentPreferencesForm(forms.ModelForm):
+
+    class Meta:
+        fields = ("email_on_invite_to_public_event",
+                  "email_on_invite_to_private_event",
+                  "email_on_new_event" )
+        model = StudentPreferences

@@ -9,12 +9,13 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
-from registration.models import RegistrationProfile, InterestedPerson
+from registration.models import RegistrationProfile, InterestedPerson, UserAttributes, SessionKey
 
 class InterestedPersonAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_created'
-    
-class RegistrationAdmin(admin.ModelAdmin):
+admin.site.register(InterestedPerson, InterestedPersonAdmin)
+
+class RegistrationProfileAdmin(admin.ModelAdmin):
     actions = ['activate_users', 'resend_activation_email']
     list_display = ('user', 'activation_key_expired')
     raw_id_fields = ['user']
@@ -40,7 +41,7 @@ class RegistrationAdmin(admin.ModelAdmin):
         activated.
         
         """
-        if Site._meta.installed: #@UndefinedVariable
+        if Site._meta.installed:
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)
@@ -49,7 +50,12 @@ class RegistrationAdmin(admin.ModelAdmin):
             if not profile.activation_key_expired():
                 profile.send_activation_email(site)
     resend_activation_email.short_description = _("Re-send activation emails")
+admin.site.register(RegistrationProfile, RegistrationProfileAdmin)
 
-
-admin.site.register(RegistrationProfile, RegistrationAdmin)
-admin.site.register(InterestedPerson, InterestedPersonAdmin)
+class SessionKeyAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(SessionKey, SessionKeyAdmin) 
+    
+class UserAttributesAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(UserAttributes, UserAttributesAdmin)    

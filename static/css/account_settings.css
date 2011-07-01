@@ -7,8 +7,16 @@
 }
 #account_settings_tabs ul.ui-tabs-nav{
     border:none;
-    background: -moz-linear-gradient(center top , #F7F7F7 90%, #E6E6E6) repeat scroll 0 0 transparent;
+    behavior: url(/static/lib/pie/PIE.htc);
+	background: #f7f7f7; /* Old browsers */
+	background: -moz-linear-gradient(top, #f7f7f7 88%, #e6e6e6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(88%,#f7f7f7), color-stop(100%,#e6e6e6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #f7f7f7 88%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #f7f7f7 88%,#e6e6e6 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #f7f7f7 88%,#e6e6e6 100%); /* IE10+ */
+	background: linear-gradient(top, #f7f7f7 88%,#e6e6e6 100%); /* W3C */
     padding-left:10px;
+    padding-top : 5px;
 }
 #account_settings_tabs .ui-tabs-nav li{
     text-shadow:0 1px 0 #FFF;
@@ -19,4 +27,90 @@
 }
 #account_settings_tabs .ui-tabs-nav li.ui-tabs-selected a{
     color:#555;
+}
+.form_table{
+	margin-top:0px;
+}
+#account_overview_left_side{
+	float:left;
+	width:400px;
+	padding-left:2px;
+	padding-top:5px;
+}
+#preferences_left_side{
+	float:left;
+	width:532px;
+	padding-left:4px;
+	padding-top:5px;
+}
+#account_overview_left_side h3, #preferences_left_side h3{
+	border-bottom:1px solid #DDD;
+	padding-left:2px;
+	margin: 20px 0px 6px 0px;
+}
+#password_change_form{
+	margin-top:12px;
+}
+#basic_info_table th{
+	width:129px;
+}
+#password_change_form th{
+	width:130px;
+}
+#deactivate_account_link{
+	float:right;
+	margin-right:9px;
+	color:#990000 !important;
+}
+#notifications_table{
+	border-collapse: collapse;
+	width:100%;
+	font-size: 12px;
+}
+#notifications_table th{
+	border-bottom: 1px solid #DDD;
+	padding: 15px 0 5px;
+	text-align: left;
+	text-transform: uppercase;
+}
+#notifications_table td{
+	border-bottom: 1px solid #DDD;
+	padding: 2px 0;
+}
+#notifications_table td.checkbox{
+	width:1%;
+	text-align:center;
+}
+#notifications_table td.checkbox input{
+	margin-top:3px;
+}
+#global_settings_section{
+	color:#555;
+	text-align:right;
+	border-radius:5px;
+	margin-top:15px;
+	margin-top:9px;
+	background:#F6F6F6;
+	padding:6px;
+}
+#global_settings_section span{
+	float:left;
+	margin-top:2px;
+	font-weight:bold;
+}
+#global_settings_section label{
+	bottom:2px;
+	padding:0;
+	position:relative;
+}
+#global_settings_section input{
+	margin: 4px 5px;
+}
+#global_settings_section th, #global_settings_section td{
+	padding:6px;
+	border-bottom:none;
+}
+#global_settings_section td.checkbox{
+	text-align:right;
+	width:100%;
 }

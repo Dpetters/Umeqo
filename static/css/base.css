@@ -41,22 +41,25 @@ p {
     min-width: 986px;
 }
 #below_header_area {
+	height:15px;
     width: 986px;
     margin: 0 auto;
     position: relative;
 }
 #below_header_message_wrapper{
     text-align: center;
+    position:relative;
+    bottom:16px;
 }
 #below_header_message_wrapper p{
     background:#7AA7CC;
-    border-radius: 0 0 3px 3px;
+    border-radius: 3px 3px 0px 0px;
     bottom: 2px;
     color: white;
     display: inline;
     font-weight: bold;
     margin-top: 0;
-    padding: 0 11px 2px;
+    padding: 2px 11px 1px;
     position: relative;
 }
 .below_header_message {
@@ -210,7 +213,6 @@ p {
 }
 #content_area {
     margin-bottom: 40px;
-    margin-top: 20px;
 }
 /*goes for nav-like links next to headers, e.g. "go back to events" */
 #content_area .back_link {
@@ -267,7 +269,7 @@ p {
     text-shadow: 0px 1px white;
     vertical-align: middle;
     color:#444;
-    margin-left: 10px;
+    margin-left: 7px;
     display: inline-block;
 }
 .main_block_header_content, .side_block_header_content {
@@ -615,6 +617,9 @@ label {
     font-size: 12px;
     font-weight: bold;
 }
+label.error{
+	padding-right:0px;
+}
 input[type=text], input[type=password], select, textarea {
     behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius: 3px;
@@ -663,11 +668,16 @@ input[type=text], input[type=password] {
 }
 .form_table th {
     vertical-align: bottom;
-    padding-bottom: 3px;
     text-align: right;
 }
+.form_table td p, .form_table th{
+    padding-bottom: 3px;
+}
 .form_table input[type=submit] {
-    margin-top: 10px;
+    margin-top: 14px;
+}
+.sub_header_message{
+	padding-left:6px;
 }
 .form_table .info {
     width: 300px;
@@ -740,7 +750,7 @@ a:focus {
     text-decoration: underline;
 }
 .no_top_margin {
-    margin-top: 0px;
+    margin-top: 0px !important;
 }
 .no_bottom_margin {
     margin-bottom: 0px;
@@ -875,7 +885,7 @@ button.ui-multiselect[type=button] {
     text-shadow: #FFF 0 1px 0;
     border: 1px solid #AAA;
     font-weight: normal;
-    padding: 5px;
+    padding: 4px 5px;
 }
 button.ui-multiselect[type="button"].ui-state-active:hover,
 button.ui-multiselect[type="button"].ui-state-active {
