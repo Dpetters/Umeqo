@@ -6,6 +6,7 @@
  
 from datetime import datetime
 from employer.models import Employer
+from events.models import Event
 from haystack import indexes, site
 
 class EmployerIndex(indexes.RealTimeSearchIndex):
@@ -18,10 +19,6 @@ class EmployerIndex(indexes.RealTimeSearchIndex):
         return [industry.id for industry in obj.industries.all()]
     
     def prepare_has_events(self, obj):
-        recruiters = obj.recruiter_set.all()
-        for recruiter in recruiters:
-            if recruiter.event_set.filter(end_datetime__gte=datetime.now()).count() > 0:
-                return True
-        return False
+        return Event.objects.filter(recruiters__in=obj.recruiter_set.all()).count() > 0
 
 site.register(Employer, EmployerIndex)
