@@ -66,6 +66,14 @@ div.description {
     padding-top: 20px;
 }
 
+#event_scheduler_day {
+    padding: 5px 5px 2px;
+    font-size: 12px;
+    color: #333;
+}
+#event_scheduler_day span {
+    font-weight: 600;
+}
 #event_scheduler {
     height: 200px;
     padding: 5px;
@@ -107,19 +115,31 @@ div.description {
     position: absolute;
     left: 60px;
     right: 13px;
-    min-height: 12px;
+    min-height: 8px;
+    color: #FFF;
+    padding: 4px 0 0 4px;
+}
+.gray {
     background-color: #CCC;
     border: 2px dashed #666;
 }
+.green {
+    background-color: #B08B59;
+    border: 2px dashed #000;
+}
 #event1 {
     top: 421px;
-    height: 28px;
+    height: 24px;
 }
 #event2 {
     top: 486px;
-    height: 44px;
+    height: 40px;
 }
 #event3 {
     top: 598px;
-    height: 44px;
+    height: 40px;
+}
+#yourevent {
+    top: 549px;
+    height: 29px;
 }
