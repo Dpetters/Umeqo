@@ -93,6 +93,7 @@ def employer_account_settings(request,
                               extra_context=None):
     
     context = {}
+    context['action'] =  request.REQUEST.get('action', '')
     context.update(extra_context or {})
     return render_to_response(template_name,
                               context,

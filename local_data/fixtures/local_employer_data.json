@@ -13,6 +13,17 @@
   }
  }, 
  {
+  "pk": 2, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "students": [], 
+   "file_name": null, 
+   "recruiter": 2, 
+   "name": null, 
+   "date_created": "2011-06-30 00:28:13"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "employer.recruiter", 
   "fields": {
@@ -83,6 +94,33 @@
   "fields": {
    "comment": "", 
    "recruiter": 1, 
+   "student": 1
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 2, 
+   "student": 2
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 2, 
+   "student": 3
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 2, 
    "student": 1
   }
  }, 

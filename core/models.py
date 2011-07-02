@@ -17,7 +17,7 @@ from core import enums
 class Topic(models.Model):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
-    sort_order = models.IntegerField(default=0, help_text='The order you would like the topic to be displayed.')
+    sort_order = models.IntegerField(default=0, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES)
     last_updated = models.DateTimeField(auto_now=True, default=datetime.now())
     date_created = models.DateTimeField(auto_now_add=True, default=datetime.now())
@@ -33,7 +33,7 @@ class Question(models.Model):
     topic = models.ForeignKey(Topic)
     status = models.IntegerField(choices=enums.QUESTION_STATUS_CHOICES, help_text="Only questions with their status set to 'Active' will be displayed." )
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
-    sort_order = models.IntegerField(default=0, help_text='This in which you would like the question to be displayed.')
+    sort_order = models.IntegerField(default=0, help_text='Questions will be ordered by the sort order. (Smallest at top.)')
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
@@ -51,7 +51,7 @@ class CommonInfo(models.Model):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)
     description = models.TextField(max_length=500, blank=True, null=True, help_text="Maximum 500 characters.")
-    image = models.ImageField(upload_to=get_image_filename, blank=True, null=True, help_text="Resize to 240 x 160 before uploading.")
+    image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -111,8 +111,8 @@ class Language(models.Model):
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
-    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the majors to be displayed.')
-    admin = models.CharField("Course Administrator", max_length=41, blank=True, null=True, help_text="Maximum 43 characters.")
+    sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
+    admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     
     class Meta:
         ordering = ['sort_order']
@@ -129,8 +129,8 @@ class Course(CommonInfo):
 
 
 class EmploymentType(models.Model):
-    name = models.CharField("Employment Type", max_length = 42, unique = True)
-    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the employment types to be displayed.')
+    name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    sort_order = models.IntegerField("sort order", default=0, help_text='EmploymentTypes will be ordered by the sort order. (Smallest at top.)')
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
         
@@ -145,7 +145,7 @@ class EmploymentType(models.Model):
     
 class CampusOrgType(models.Model):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    sort_order = models.IntegerField("sort order", default=0, help_text='The order you would like the campus org types to be displayed.')
+    sort_order = models.IntegerField("sort order", default=0, help_text='CampusOrgTypes will be ordered by the sort order. (Smallest at top.)')
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
         

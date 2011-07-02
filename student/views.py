@@ -8,15 +8,16 @@ import os, datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
-from student.forms import StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
+from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
 from student.models import Student
 from student.view_helpers import process_resume
+from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
 from core.decorators import is_student
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
@@ -26,12 +27,43 @@ from core import messages
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_account_settings(request, template_name="student_account_settings.html", 
-        extra_context=None):
+def student_account_settings(request, template_name="student_account_settings.html",
+                             preferences_form_class = StudentPreferencesForm, 
+                             change_password_form_class = PasswordChangeForm, extra_context=None):
+    
+    if request.method == "GET":
+        context = {}
+        context['preferences_form'] = preferences_form_class(instance = request.user.student.preferences)
+        context['change_password_form'] = change_password_form_class(request.user)
+        context['last_password_change_date'] = request.user.userattributes.last_password_change_date
+        context['action'] =  request.REQUEST.get('action', '')
+        context.update(extra_context or {})
+        return render_to_response(template_name, context, context_instance=RequestContext(request))
+    return HttpResponseForbidden("Request must be a GET")
 
-    context = {}
-    context.update(extra_context or {})
-    return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
+    if request.is_ajax():
+        if request.method == "POST":
+            form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
+            if form.is_valid():
+                student_preferences = form.save()
+                if hasattr(student_preferences, 'save_m2m'):
+                    student_preferences.save_m2m()
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
+            else:
+                data = {'valid':False,
+                        'form_errors':form.errors}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseForbidden("Request must be a POST.")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 def student_registration(request,
                          backend = RegistrationBackend(), 

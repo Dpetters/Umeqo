@@ -90,7 +90,13 @@ class StudentPreferences(models.Model):
     email_on_invite_to_public_event = models.BooleanField()
     email_on_invite_to_private_event = models.BooleanField()
     email_on_new_event = models.BooleanField()
-
+    
+    class Meta:
+        verbose_name_plural = "Student Preferences"
+    
+    def __unicode__(self):
+        return self.user
+  
 class StudentStatistics(models.Model):
     event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
     add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)

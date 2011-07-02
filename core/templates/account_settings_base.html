@@ -18,9 +18,22 @@ Copyright 2011. All Rights Reserved.
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/account_settings.js"></script>
 {% endblock %}
 
+{% block below_header_area %}
+
+{{ block.super }}
+{% ifequal action "timed-out" %}
+<div id='below_header_message_wrapper'>
+    <p>
+        Password Changed Sucessfully.
+    </p>
+</div>
+{% endifequal %}
+{% endblock %}
+
 {% block content_area %}
-<div id="account_settings_block" class="main_block">
+<div id="account_settings_block" class="main_block no_top_margin">
     <div class="main_block_header">
+        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/switch.png"/>
         <span class="main_block_header_title">Account Settings</span>
     </div>
     <div class="main_block_content">
