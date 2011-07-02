@@ -1,6 +1,8 @@
 $(document).ready( function () {
     $("#account_settings_tabs").tabs();
-
+	                    	    
+	$("#below_header_message_wrapper").html("<p>" + ids.length + " students starred.</p>");
+	                    	    
     $("#password_change_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
@@ -29,7 +31,7 @@ $(document).ready( function () {
                             }
                             break;
                         case true:
-                            window.location.reload(true);
+                        	windows.location.href = account_settings_url + "/?action=password-changed"
                             break;
                         default:
                             show_error_dialog(page_error_message);
