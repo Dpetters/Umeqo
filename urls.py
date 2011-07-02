@@ -92,6 +92,7 @@ urlpatterns += patterns('employer.views',
     #Employer List
     (r'^employers/el/$', 'employers_list_el', {}, 'employers_list_el'),
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
+    (r'^employers/ajax$', 'employers_list_ajax', {}, 'employers_list_ajax'),
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     # Employer Account Settings

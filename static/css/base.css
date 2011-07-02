@@ -458,13 +458,13 @@ a.button {
     line-height: 28px;
 }
 a.button.sub-button {
-    background: #CCC;
+    background: #DDD;
     color: #000;
     line-height: 21px;
     height: 23px;
 }
 a.button.sub-button:hover {
-    background: #D0D0D0;
+    background: #DFDFDF;
     color: #222 !important;
 }
 .button.disabled-button {

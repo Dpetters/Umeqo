@@ -11,3 +11,4 @@ pyPdf==1.13
 pycrypto==2.3
 pysolr==2.0.15
 reportlab==2.5
+django-annoying==0.7.5

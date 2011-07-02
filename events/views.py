@@ -18,15 +18,12 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
 from events.models import Attendee, Event, RSVP
-from events.view_helpers import event_search_helper
+from events.views_helper import event_search_helper
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def events_list(request, template_name='events_list.html', extra_context=None):
-    query = request.GET.get('q','')
-    search_results = event_search_helper(query)
-    #we use map to extract the object for each event
-    events = map(lambda n: n.object,search_results)
+    events = event_search_helper(request)
     context = {
         'events': events,
         'query': query
@@ -197,10 +194,7 @@ def event_checkin(request, id):
 
 @login_required
 def event_search(request, template_name='events_list_ajax.html', extra_context=None):
-    search_results = event_search_helper(request.GET.get('q',''))
-    events = map(lambda n: n.object, search_results)
-    context = {
-        'events': events
-    }
+    events = event_search_helper(request)
+    context = {'events': events}
     context.update(extra_context or {})
     return render_to_response(template_name,context,context_instance=RequestContext(request))

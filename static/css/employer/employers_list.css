@@ -2,13 +2,19 @@
     padding: 0;
     position: relative;
 }
+#employers_list_form {
+    float: right;
+    position: relative;
+    padding-right: 20px;
+    margin-right: 5px;
+}
 #employers_listings {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     width: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #EEE;
 }
 #employers_listings .employers_listing {

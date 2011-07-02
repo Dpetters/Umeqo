@@ -160,10 +160,9 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
             <div class="main_block_content">
                 {% if audience %}
                 <div id="event_audience">
-                    <div class="label">Audience:</div>
-                    <ul>
+                    <span class="label">Audience:</span>
                     {% for a in audience %}
-                        <li>{{a}}</li>
+                        {{a}}{% if not forloop.last %},{% endif %}
                     {% endfor %}
                     </ul>
                     <div class="clearfix"></div>

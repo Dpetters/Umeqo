@@ -29,7 +29,7 @@
     float: right;
 }
 
-#event_side #attending-span {
+#attending-span {
     line-height: 30px;
     font-weight: bold;
     display: inline-block;
@@ -50,24 +50,12 @@
 
 #event_audience {
     margin-bottom: 10px;
+    color: #666;
 }
 #event_audience .label {
     font-size: 14px;
     font-weight: bold;
-}
-#event_audience ul {
-    list-style: none;
-}
-#event_audience li {
-    float: left;
-    display: inline-block;
-    padding: 3px 6px;
-    background-color: #EEE;
-    margin-right: 4px;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    color: #555;
+    color: #222;
 }
 
 .google-button {
@@ -78,6 +66,7 @@
 
 #rsvp_div {
     position: relative;
+    text-align: right;
 }
 #rsvp_div .help-bubble {
     right: 120px;
