@@ -8,7 +8,7 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-# 1 - Prod, 2 - Staging, 3 - Local
+# 1 - Prod, 2 - Staging, 3 - Dev/Local
 SITE_ID = 3
 
 USE_LANDING_PAGE = False
@@ -56,13 +56,3 @@ DATABASES = {
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
