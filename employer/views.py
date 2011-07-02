@@ -23,9 +23,10 @@ from django.utils import simplejson
 from django.template.loader import render_to_string
 
 from core.decorators import is_student, is_recruiter
+from core.models import Industry
 from employer.models import ResumeBook, Employer, StudentComment
 from employer.forms import DeliverResumeBookForm, EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm
-from employer.view_helpers import get_paginator
+from employer.view_helpers import get_paginator, employer_search_helper
 from employer import enums as employer_enums
 from events.forms import EventForm
 from events.models import Event
@@ -319,6 +320,7 @@ def employer_edit_event(request, id=None, template_name='employer_new_event.html
         'edit': True,
         'event': {
             'id': event.id,
+            'name': event.name,
             'slug': event.slug
         },
         'hours': hours
@@ -575,28 +577,37 @@ def employer_invitations(request, template_name='employer_invitations.html', ext
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def employers_list(request, template_name='employers_list.html', extra_content=None):
-    employers = Employer.objects.all()
-    try:
-        employer_id = int(request.GET.get('id',None))
-    except TypeError:
-        employer = employers[0]
-        employer_id = employer.id
-    else:
-        employer = employers.get(id=employer_id)
-    recruiter = employer.recruiter_set.all()[0]
-    
-    now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-    events = reduce(
-        lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
-        employer.recruiter_set.all(),
-        []
-    )
+    query = request.GET.get('q', '')
+    search_results = employer_search_helper(query)
+    employers = map(lambda n: n.object, search_results)
+    industries = Industry.objects.all()
     context = {
         'employers': employers,
-        'employer': employer,
-        'events': events,
-        'employer_id': employer_id
+        'industries': industries,
+        'query': query
     }
+    if len(employers) > 0:
+        print employers
+        try:
+            employer_id = int(request.GET.get('id',None))
+        except TypeError:
+            employer = employers[0]
+            employer_id = employer.id
+        else:
+            employer = Employer.objects.get(id=employer_id)
+        recruiter = employer.recruiter_set.all()[0]
+        
+        now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+        events = reduce(
+            lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+            employer.recruiter_set.all(),
+            []
+        )
+        context.update({
+            'employer': employer,
+            'events': events,
+            'employer_id': employer_id
+        })
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required

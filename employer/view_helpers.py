@@ -12,7 +12,7 @@ from haystack.query import SearchQuerySet
 from core import choices as core_choices
 from student.models import Student
 from employer import enums
-from employer.models import ResumeBook, StudentComment
+from employer.models import ResumeBook, StudentComment, Employer
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
 
@@ -296,3 +296,11 @@ def combine_and_order_results(filtering_results, search_results, ordering, query
             else:
                 return filtering_results.order_by(ordering)
         return []
+
+def employer_search_helper(query):
+    search_results = SearchQuerySet().models(Employer).filter()
+    if query != "":
+        for q in query.split(' '):
+            if q.strip() != "":
+                search_results = search_results.filter(content_auto=q)
+    return search_results

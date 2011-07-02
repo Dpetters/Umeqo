@@ -25,6 +25,15 @@
 <div id="employers_list_block" class="main_block">
     <div class="main_block_header">
         <span class="main_block_header_title">Employers Listing</span>
+        <form id="employers_list_form">
+            <input type="text" name="q" id="employers_filter_name" value="{{ query }}"/>
+            <select name="i" id="employers_filter_industry">
+                <option value="">Filter by industry</option>
+                {% for industry in industries %}
+                    <option value="{{industry.id}}">{{industry}}</option>
+                {% endfor %}
+            </select>
+        </form>
     </div>
     <div class="main_block_content">
         <div id="employers_listings">

@@ -9,7 +9,7 @@ from events.models import Event, EventType
 
 class EventAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Required Info', {'fields': ['recruiters', 'name', 'start_datetime', 'type']}),
+        ('Required Info', {'fields': ['recruiters', 'name', 'slug', 'start_datetime', 'type']}),
         ('Extra Content', {'fields': ['end_datetime', 'location', 'audience', 'description']}),
     ]
     list_display = ('name', 'start_datetime', 'end_datetime', 'type', 'location')

@@ -128,7 +128,7 @@ urlpatterns += patterns('employer.views',
 
 urlpatterns += patterns('events.views',
     (r'^events/$', 'events_list', {}, 'events_list'),
-    (r'^events/(?P<id>\d+)/(?P<slug>[a-zA-Z-]+)$', 'event_page', {'extra_context': {'login_form':AuthenticationForm}}, 'event_page'),
+    (r'^events/(?P<id>\d+)/(?P<slug>[0-9a-zA-Z-]+)$', 'event_page', {'extra_context': {'login_form':AuthenticationForm}}, 'event_page'),
     (r'^events/(?P<id>\d+)/?$', 'event_page_redirect', {}, 'event_page_redirect'),
     (r'^events/checkin/(?P<id>\d+)$', 'event_checkin', {}, 'event_checkin'),
     (r'^events/rsvp/(?P<id>\d+)$', 'event_rsvp', {}, 'event_rsvp'),

@@ -111,6 +111,10 @@
     behavior: url(/static/lib/pie/PIE.htc);
     -pie-background: linear-gradient(#888, #666);
 }
+#event_admin h1 .button {
+    float: right;
+    margin-top: -4px;
+}
 #event_admin p {
     margin-top: 5px;
 }
