@@ -14,14 +14,14 @@ if is_prod():
 else:
     SITE_ID = 2
 
-ROOT = os.path.dirname(os.path.realpath("__file__"))
-
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),
     ("Zach", "zdearing@gmail.com"),
     ("Josh", "me@joshma.com"),
 )
 MANAGERS = ADMINS
+
+STATIC_ROOT = "/var/www/static/"
 
 DATABASES = {
     'default': {

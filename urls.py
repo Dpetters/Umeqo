@@ -3,8 +3,8 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
-
-from django.conf.urls.defaults import patterns, include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.defaults import patterns, include
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
@@ -16,26 +16,23 @@ from registration.forms import PasswordResetForm, SetPasswordForm
 admin.autodiscover()
 
 urlpatterns = patterns('',
-        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATICFILES_DIRS[0] }),
-    )
+    (r'^admin/', include(admin.site.urls)),
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+)
 
 if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
-        (r'^admin/', include(admin.site.urls)),
-        (r'^admin/doc/', include('django.contrib.admindocs.urls')),
         (r'^$', 'core.views.landing_page'),
     )
 
 urlpatterns += patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-    (r'^admin/', include(admin.site.urls)),
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^messages/', include('messages.urls')),
     (r'^notifications/', include('notification.urls')),
-    url(r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset'),
-    url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_confirm.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_confirm'),
-    url(r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_complete'),
-    url(r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, name='auth_password_reset_done'),
+    (r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset'),
+    (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_confirm.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset_confirm'),
+    (r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset_complete'),
+    (r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset_done'),
 )
 
 urlpatterns += patterns('core.views',
@@ -89,7 +86,7 @@ urlpatterns += patterns('student.views',
 )
 
 urlpatterns += patterns('employer.views',
-    #Employer List
+    # Employer List
     (r'^employers/el/$', 'employers_list_el', {}, 'employers_list_el'),
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
     (r'^employers/ajax$', 'employers_list_ajax', {}, 'employers_list_ajax'),
@@ -133,3 +130,4 @@ urlpatterns += patterns('events.views',
     (r'^events/checkin/(?P<id>\d+)$', 'event_checkin', {}, 'event_checkin'),
     (r'^events/search/$', 'event_search', {}, 'event_search'),
 )
+urlpatterns += staticfiles_urlpatterns()
