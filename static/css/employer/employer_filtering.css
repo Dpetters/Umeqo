@@ -163,7 +163,7 @@
     margin-left:320px;
     padding-left:15px;
 }
-#results_navigation_section {
+.results_navigation_section {
     margin-top:10px;
     float:right;
 }
@@ -286,7 +286,7 @@
 .student_major {
     margin-left:7px;
 }
-.student_more_actions_link {
+.student_invite_to_event_link {
     float:right;
 }
 .student_gpa {
