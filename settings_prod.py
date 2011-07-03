@@ -4,7 +4,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 def is_prod():
-    return "66.228.51.22" == socket.gethostbyname_ex(socket.gethostname())[2]
+    return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
 
 USE_LANDING_PAGE = is_prod()
 
