@@ -108,6 +108,8 @@
 
     <field name="start_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
+    <field name="subscribers" type="text" indexed="true" stored="true" multiValued="true" />
+
     <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />

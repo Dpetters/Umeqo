@@ -1,5 +1,5 @@
 """
- Developers : Dmitrij Petters,
+ Developers : Dmitrij Petters, Joshua Ma
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
@@ -21,15 +21,16 @@ from events.models import Attendee, Event, RSVP
 from events.views_helper import event_search_helper
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def events_list(request, template_name='events_list.html', extra_context=None):
+@user_passes_test(is_student)
+def events_list(request, extra_context=None):
+    query = request.GET.get('q', '')
     events = event_search_helper(request)
     context = {
         'events': events,
         'query': query
     }
     context.update(extra_context or {})
-    return render_to_response(template_name,context,context_instance=RequestContext(request))
+    return render_to_response('events_list.html' ,context,context_instance=RequestContext(request))
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
@@ -59,7 +60,7 @@ def buildRSVP(obj):
     }
     return output
 
-def event_page(request, id, slug, template_name='event_page.html', extra_context=None):
+def event_page(request, id, slug, extra_context=None):
     event = Event.objects.get(pk=id)
     if not hasattr(request.user,"recruiter"):
         event.view_count += 1
@@ -111,7 +112,7 @@ def event_page(request, id, slug, template_name='event_page.html', extra_context
     # context['company_logo'] = "http://"+settings.DOMAIN+settings.STATIC_URL+'images/company_logo_filler.png'
     
     context.update(extra_context or {})
-    return render_to_response(template_name,context,context_instance=RequestContext(request))
+    return render_to_response('event_page.html',context,context_instance=RequestContext(request))
 
 @login_required
 @require_http_methods(["GET", "POST"])
@@ -133,7 +134,7 @@ def event_rsvp(request, id):
         return HttpResponseForbidden()
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student)
 def event_unrsvp(request, id):
     event = Event.objects.get(pk=id)
     rsvp = RSVP.objects.filter(student=request.user.student, event=event)
@@ -144,7 +145,7 @@ def event_unrsvp(request, id):
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
 @login_required
-@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter)
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, id):
     event = Event.objects.get(pk=id)
@@ -193,8 +194,9 @@ def event_checkin(request, id):
         return HttpResponse(simplejson.dumps(output), mimetype="application/json")
 
 @login_required
-def event_search(request, template_name='events_list_ajax.html', extra_context=None):
+def event_search(request, extra_context=None):
     events = event_search_helper(request)
     context = {'events': events}
     context.update(extra_context or {})
-    return render_to_response(template_name,context,context_instance=RequestContext(request))
+    return render_to_response('events_list_ajax.html', context,
+            context_instance=RequestContext(request))

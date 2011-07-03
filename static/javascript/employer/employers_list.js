@@ -7,7 +7,7 @@ $(document).ready(function() {
         timeoutID = window.setTimeout(filterEmployers,200);
     });
 
-    $('#employers_filter_industry, #employers_filter_has_events').change(function() {
+    $('#employers_filter_industry, #employers_filter_has_events, #employers_filter_in_subscriptions').change(function() {
         filterEmployers();
     });
 
@@ -15,17 +15,47 @@ $(document).ready(function() {
         var query = $('#employers_filter_name').val();
         var industry = $('#employers_filter_industry').val();
         var has_events = $('#employers_filter_has_events').attr('checked');
+        var in_subscriptions = $('#employers_filter_in_subscriptions').attr('checked');
         startLoading();
-        $.get(SEARCH_URL,{
-                'q': query,
-                'i': industry,
-                'h': has_events
-            }, function(data) {
+        $.get(SEARCH_URL, {
+            'q': query,
+            'i': industry,
+            'h': has_events,
+            's': in_subscriptions
+        }, function(data) {
             $('#employers_listings').html(data);
             bindLoadEmployerHandlers();
             stopLoading();
         });
     }
+});
+
+$('#employer_subscribe').live('click', function(e) {
+    var loaded_id = $('#loaded_employer_id').val();
+    $(this).html('<img src="' + STATIC_URL + 'images/page_elements/loaders/small_ajax_loader.gif" />');
+    $(this).addClass('disabled-button');
+    var that = $(this);
+    $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 1}, function(data) {
+        that.html('Unsubscribe');
+        that.attr('id','employer_unsubscribe');
+        that.removeClass('disabled-button');
+        that.addClass('warning-button');
+    });
+    e.preventDefault();
+});
+
+$('#employer_unsubscribe').live('click', function(e) {
+    var loaded_id = $('#loaded_employer_id').val();
+    $(this).html('<img src="' + STATIC_URL + 'images/page_elements/loaders/small_ajax_loader.gif" />');
+    $(this).removeClass('warning-button');
+    $(this).addClass('disabled-button');
+    var that = $(this);
+    $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 0}, function(data) {
+        that.html('Subscribe');
+        that.attr('id','employer_subscribe');
+        that.removeClass('disabled-button');
+    });
+    e.preventDefault();
 });
 
 function startLoading() {
@@ -63,7 +93,7 @@ function loadEmployer(target, id, noPush) {
         listing = target;
     }
     startLoading();
-    $.get(EMPLOYERS_LIST_EL_URL, {id: id}, function(data) {
+    $.get(EMPLOYERS_LIST_PANE_URL, {id: id}, function(data) {
         $('#employers_detail').html(data);
         if (!disablePush) {
             var stateObj = {id: id};

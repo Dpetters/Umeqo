@@ -279,6 +279,7 @@ def search_students(query):
 def combine_and_order_results(filtering_results, search_results, ordering, query):
     ordered_results = []
     if search_results:
+        # FIXME(dpetters): should be using the enum, not array indices?
         if ordering == enums.ORDERING_CHOICES[0][0]:
             for student in search_results:
                 if student in filtering_results:
@@ -299,6 +300,9 @@ def combine_and_order_results(filtering_results, search_results, ordering, query
 
 def employer_search_helper(request):
     search_results = SearchQuerySet().models(Employer)
+    in_subscriptions = True if request.GET.get('s', 'false')=='true' else False
+    if in_subscriptions:
+        search_results = search_results.filter(subscribers=request.user.id)
     has_events = True if request.GET.get('h', 'false')=='true' else False
     if has_events:
         search_results = search_results.filter(has_events=True)
@@ -310,4 +314,7 @@ def employer_search_helper(request):
         for q in query.split(' '):
             if q.strip() != "":
                 search_results = search_results.filter(content_auto=q)
-    return map(lambda n: n.object, search_results)
+    # Extract the object.
+    employers = map(lambda n: n.object, search_results)
+    # Sort the employers.
+    return sorted(employers, key=lambda n: n.name)

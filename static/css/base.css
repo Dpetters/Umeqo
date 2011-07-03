@@ -532,6 +532,37 @@ a.button.sub-button:hover {
     background: linear-gradient(#F0F0F0, #DDD);
     -pie-background: linear-gradient(#F0F0F0, #DDD);
 }
+.warning-button {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background: #FF7B7B;
+    background: -moz-linear-gradient(#FF7B7B, #FF4444);
+    background: -webkit-linear-gradient(#FF7B7B, #FF4444);
+    background: linear-gradient(#FF7B7B, #FF4444);
+    -pie-background: linear-gradient(#FF7B7B, #FF4444);
+    color: #FFF;
+    text-shadow: #000 0 -1px 0;
+}
+.warning-button:hover {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background: #FFAAAA;
+    background: -moz-linear-gradient(#FFAAAA, #FF4444);
+    background: -webkit-linear-gradient(#FFAAAA, #FF4444);
+    background: linear-gradient(#FFAAAA, #FF4444);
+    -pie-background: linear-gradient(#FFAAAA, #FF4444);
+    color: #FFF !important;
+    text-shadow: #000 0 -1px 0;
+}
+.warning-button:active {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background: #FF4444;
+    background: -moz-linear-gradient(#FF4444, #FF7B7B);
+    background: -webkit-linear-gradient(#FF4444, #FF7B7B);
+    background: linear-gradient(#FF4444, #FF7B7B);
+    -pie-background: linear-gradient(#FF4444, #FF7B7B);
+    color: #FFF;
+    text-shadow: #000 0 -1px 0;
+}
+
 .dropdown_menu_button{
     position: relative;
 }

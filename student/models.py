@@ -55,7 +55,7 @@ class Student(models.Model):
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
     
     # Subscriptions
-    subscribed_employers = models.ManyToManyField("employer.Employer", blank = True, null=True, related_name="subscribed_employers")
+    subscriptions = models.ManyToManyField("employer.Employer", blank=True, null=True, related_name="subscriptions")
 
     is_active = models.BooleanField(default=True)
     preferences = models.OneToOneField("student.StudentPreferences")

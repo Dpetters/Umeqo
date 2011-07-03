@@ -44,7 +44,7 @@ class StudentRegistrationForm(forms.Form):
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     
     class Meta:
-        fields = ('subscribed_employers',)
+        fields = ('subscriptions',)
         model = Student
 
 class StudentUpdateResumeForm(forms.ModelForm):

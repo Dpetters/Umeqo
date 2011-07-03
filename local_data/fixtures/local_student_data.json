@@ -21,6 +21,7 @@
    "first_name": "Dmitrij", 
    "first_major": 12, 
    "preferences": 1, 
+   "subscriptions": [], 
    "gpa": "4.8", 
    "campus_involvement": [
     394
@@ -39,7 +40,6 @@
    "second_major": 25, 
    "resume": "submitted_resumes/Petters_Dmitrij_samplestudent1_2011-05-22-20-07-02.pdf", 
    "is_active": false, 
-   "subscribed_employers": [], 
    "statistics": 1, 
    "user": 4, 
    "gender": "M", 
@@ -69,6 +69,7 @@
    "first_name": "Zachary", 
    "first_major": 12, 
    "preferences": 2, 
+   "subscriptions": [], 
    "gpa": "4.5", 
    "campus_involvement": [], 
    "languages": [], 
@@ -80,7 +81,6 @@
    "second_major": 32, 
    "resume": "submitted_resumes/Dearing_Zachary_samplestudent2_2011-05-23-23-23-43.pdf", 
    "is_active": true, 
-   "subscribed_employers": [], 
    "statistics": 2, 
    "user": 7, 
    "gender": "M", 
@@ -116,6 +116,7 @@
    "first_name": "Joshua", 
    "first_major": 12, 
    "preferences": 3, 
+   "subscriptions": [], 
    "gpa": "5", 
    "campus_involvement": [
     2, 
@@ -157,7 +158,6 @@
    "second_major": null, 
    "resume": "submitted_resumes/Ma_Joshua_samplestudent3_2011-05-23-23-26-31.pdf", 
    "is_active": true, 
-   "subscribed_employers": [], 
    "statistics": 3, 
    "user": 8, 
    "gender": "M", 

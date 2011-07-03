@@ -9,10 +9,12 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers_list.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 <script>
-    var EMPLOYERS_LIST_EL_URL = "{% url employers_list_el %}";
+    var EMPLOYERS_LIST_PANE_URL = "{% url employers_list_pane %}";
     var EMPLOYERS_LIST_URL = "{% url employers_list %}"
     var FIRST_EMPLOYER_ID = {{employer.id}};
     var SEARCH_URL = "{% url employers_list_ajax %}";
+    var SUBSCRIBE_URL = "{% url employers_subscribe %}";
+    var STATIC_URL = "{{ STATIC_URL }}";
 </script>
 <script src="{{ STATIC_URL }}javascript/employer/employers_list.js"></script>
 {% endblock %}
@@ -21,6 +23,10 @@
 <div id="employers_list_block" class="main_block">
     <div class="main_block_header">
         <form id="employers_list_form">
+            <input type="checkbox" name="h" value="1" id="employers_filter_has_events" />
+            <label for="employers_filter_has_events">Has events</label>
+            <input type="checkbox" name="s" value="1" id="employers_filter_in_subscriptions" />
+            <label for="employers_filter_in_subscriptions">Subscribed</label>
             <input type="text" name="q" id="employers_filter_name" value="{{ query }}"/>
             <select name="i" id="employers_filter_industry">
                 <option value="">Filter by industry</option>
@@ -28,8 +34,6 @@
                     <option value="{{industry.id}}">{{industry}}</option>
                 {% endfor %}
             </select>
-            <input type="checkbox" name="h" value="1" id="employers_filter_has_events" />
-            <label for="employers_filter_has_events">Has events</label>
         </form>
         <span class="main_block_header_title">Employers Listing</span>
     </div>

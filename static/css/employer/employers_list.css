@@ -59,10 +59,13 @@
     font-size: 12px;
     font-weight: 600;
 }
-#employers_detail .description {
-    
-}
 #employers_detail h2 {
     margin-top: 10px;
     color: #444;
+}
+
+#employer_subscribe, #employer_unsubscribe {
+    margin-bottom: 5px;
+    width: 100px;
+    text-align: center;
 }

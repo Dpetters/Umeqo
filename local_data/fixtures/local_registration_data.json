@@ -35,6 +35,20 @@
   }
  }, 
  {
+  "pk": "e1720e795376283c94ecec8905956a1c", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 4
+  }
+ }, 
+ {
+  "pk": "4479f513258037ebd30d38dd9d4fba4a", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 3
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {

@@ -34,6 +34,7 @@ from student.models import Student
 from student import enums as student_enums
 from operator import attrgetter
 from annoying.decorators import render_to
+from django.core.exceptions import ObjectDoesNotExist
 
 @render_to('employer_registration.html')
 def employer_registration(request, extra_context = None):
@@ -545,14 +546,16 @@ def employers_list(request, extra_content=None):
         'query': query
     }
     if len(employers) > 0:
-        print employers
-        try:
-            employer_id = int(request.GET.get('id',None))
-        except TypeError:
+        employer_id = request.GET.get('id', None)
+        if employer_id:
+            try:
+                employer_id = int(employer_id)
+                employer = Employer.objects.get(id=employer_id)
+            except (ValueError, ObjectDoesNotExist):
+                return redirect('employers_list')
+        else:
             employer = employers[0]
             employer_id = employer.id
-        else:
-            employer = Employer.objects.get(id=employer_id)
         recruiter = employer.recruiter_set.all()[0]
         
         now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
@@ -561,16 +564,21 @@ def employers_list(request, extra_content=None):
             employer.recruiter_set.all(),
             []
         )
+
+        subscriptions = request.user.student.subscriptions.all()
+        subbed = employer in subscriptions
+
         context.update({
             'employer': employer,
             'events': events,
-            'employer_id': employer_id
+            'employer_id': employer_id,
+            'subbed': subbed
         })
     return render_to_response('employers_list.html', context, context_instance=RequestContext(request))
 
 @login_required
 @user_passes_test(is_student)
-def employers_list_el(request, extra_content=None):
+def employers_list_pane(request, extra_content=None):
     employer_id = request.GET.get('id',None)
     if employer_id and Employer.objects.filter(id=employer_id).exists():
         employer = Employer.objects.get(id=employer_id)
@@ -583,18 +591,46 @@ def employers_list_el(request, extra_content=None):
         )
         events = sorted(events, key=attrgetter('end_datetime'), reverse=True)
 
+        subscriptions = request.user.student.subscriptions.all()
+        subbed = employer in subscriptions
+
         context = {
             'employer': employer,
-            'events': events
+            'events': events,
+            'subbed': subbed
         }
         return render_to_response('employers_list_pane.html', context, context_instance=RequestContext(request))
-    else:
-        return HttpResponseBadRequest("Bad request.")
+    return HttpResponseBadRequest("Bad request.")
 
 @login_required
 @user_passes_test(is_student)
 @render_to('employers_list_ajax.html')
 def employers_list_ajax(request):
-    employers = sorted(employer_search_helper(request), key=lambda n: n.name)
+    employers = employer_search_helper(request)
     context = {'employers': employers}
     return context
+
+@login_required
+@user_passes_test(is_student)
+def employers_subscribe(request):
+    employer_id = request.POST.get('id', None)
+    if employer_id and Employer.objects.filter(id=employer_id).exists():
+        employer = Employer.objects.get(id=employer_id)
+        student = request.user.student
+        subscribe = request.POST.get('subscribe', None)
+        if not subscribe:
+            return HttpResponseBadRequest("Bad request.")
+        subscribe = bool(int(subscribe))
+        if subscribe:
+            student.subscriptions.add(employer)
+        elif employer in student.subscriptions.all() and not subscribe:
+            student.subscriptions.remove(employer)
+        else:
+            return HttpResponseBadRequest("Bad request.")
+        student.save()
+        # Force save employer to have Haystack update index
+        employer.save()
+        data = {'valid':True,'subscribe':subscribe}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    return HttpResponseBadRequest("Bad request.")
+

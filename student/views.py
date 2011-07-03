@@ -41,8 +41,6 @@ def student_account_settings(request, template_name="student_account_settings.ht
         return render_to_response(template_name, context, context_instance=RequestContext(request))
     return HttpResponseForbidden("Request must be a GET")
 
-
-
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
