@@ -1,0 +1,24 @@
+<div class="results_navigation_section">
+    {% if page.has_previous %}
+    <a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
+    {% else %}
+    <a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
+    {% endif %}
+
+    {% for num in page.page_range %}
+    {% if not num %} ...  {# literally output dots #}
+    {% else %}
+    {% ifequal num page.number %}
+    <a href="javascript:void(0)" class="current_page_link" id="page_{{ num }}">{{ num }}</a>
+    {% else %}
+    <a href="javascript:void(0)" class="page_link" id="page_{{ num }}">{{ num }}</a>
+    {% endifequal %}
+    {% endif %}
+    {% endfor %}
+
+    {% if page.has_next %}
+    <a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
+    {% else %}
+    <a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
+    {% endif %}
+</div>

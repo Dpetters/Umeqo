@@ -10,30 +10,7 @@ Copyright 2011. All Rights Reserved.
 {% load employer_no_results %}
 
 <span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
-<div id="results_navigation_section">
-    {% if page.has_previous %}
-    <a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
-    {% else %}
-    <a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'-1'}}">&laquo; Previous</a>
-    {% endif %}
-
-    {% for num in page.page_range %}
-    {% if not num %} ...  {# literally output dots #}
-    {% else %}
-    {% ifequal num page.number %}
-    <a href="javascript:void(0)" class="current_page_link" id="page_{{ num }}">{{ num }}</a>
-    {% else %}
-    <a href="javascript:void(0)" class="page_link" id="page_{{ num }}">{{ num }}</a>
-    {% endifequal %}
-    {% endif %}
-    {% endfor %}
-
-    {% if page.has_next %}
-    <a href="javascript:void(0)" class="enabled page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
-    {% else %}
-    <a href="javascript:void(0)" class="disabled_page_link" id="page_{{page.number|add:'1'}}">Next &raquo</a>
-    {% endif %}
-</div>
+{% include "paging.html" %}
 <div id="results_menu">
     <div id="results_menu_checkbox_menu_button" class="dropdown_menu_button menu_button">
         <input id="results_menu_checkbox" type="checkbox"/>
@@ -90,7 +67,7 @@ Copyright 2011. All Rights Reserved.
                     {{student.first_major}}
                 {% endif %}
             </span>
-            <a class="student_more_actions_link" href="javascript:void(0)">More Actions&thinsp;&#x25bc;</a>
+            <a class="student_invite_to_event_link" href="javascript:void(0)">Invite To Event</a>
             <p class="student_gpa">
                 <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
             </p>
@@ -242,4 +219,5 @@ Copyright 2011. All Rights Reserved.
     {% employer_no_results current_student_list %}
 {% endif %}
 </div>
+{% include "paging.html" %}
 

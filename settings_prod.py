@@ -4,7 +4,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 def is_prod():
-    return "66.228.51.22" == socket.gethostbyname_ex(socket.gethostname())[2]
+    return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
 
 USE_LANDING_PAGE = is_prod()
 
@@ -14,14 +14,14 @@ if is_prod():
 else:
     SITE_ID = 2
 
-ROOT = os.path.dirname(os.path.realpath("__file__"))
-
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),
     ("Zach", "zdearing@gmail.com"),
     ("Josh", "me@joshma.com"),
 )
 MANAGERS = ADMINS
+
+STATIC_ROOT = "/var/www/static/"
 
 DATABASES = {
     'default': {

@@ -7,9 +7,6 @@
 import os
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
-# By default, a session expires when the browser is closed.
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
 ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 
 # Haystack Settings
@@ -64,7 +61,9 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-STATIC_ROOT = "/var/www/static/"
+STATICFILES_DIRS = (
+    ROOT + '/static',
+)
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -74,7 +73,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -85,11 +84,6 @@ RESUME_BOOKS_ROOT  = MEDIA_ROOT + "resume_books/"
 RESUMES_ROOT = MEDIA_ROOT + "resumes/"
 
 IMAGES_ROOT = MEDIA_ROOT + "images/"
-
-# a list of folders inside of which of django looks for static files
-STATICFILES_DIRS = (
-    ROOT + '/static',
-)
 
 MAX_DIALOG_IMAGE_WIDTH = 200
 MAX_DIALOG_IMAGE_HEIGHT = 140
