@@ -294,9 +294,10 @@ p {
     padding-bottom: 15px;
 }
 .side_nav {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .side_nav h3 {
+    margin-top: 5px;
     margin-bottom: 2px;
 }
 .side_nav a {
@@ -311,6 +312,7 @@ p {
     margin-top: 20px;
     display: inline-block;
     width: 100%;
+    margin-left: 20px;
 }
 .main_block_header {
     padding: 3px 0px;

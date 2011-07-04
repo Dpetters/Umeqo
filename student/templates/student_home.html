@@ -37,29 +37,16 @@ Copyright 2011. All Rights Reserved.
 
 {% block content_area %}
     
-<div class="right_side_container">
+<div class="left_side_container">
         <div class="side_nav"> 
             <h3>Browse</h3>
             <a href="{% url events_list %}">Deadlines and Events</a>
             <a href="{% url employers_list %}">Employers</a>
-        </div>
-        <div class="side_nav">
             <h3>Account</h3>
             <a href="{% url student_edit_profile %}">Edit Profile</a>
+            <a href="{% url student_resume %}" target="_blank">Your Resume</a>
             <a href="{% url student_account_settings %}">Account Settings</a>
         </div>
-        {% comment %}
-        <div id="statistics_block" class="side_block">
-            <div class="side_block_header">
-                <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/system-monitor.png"/>
-                <span class="side_block_header_title">My Statistics</span>
-            </div>
-            <div class="side_block_content">
-            </div>
-            <div class="side_block_footer">
-            </div>
-        </div>
-        {% endcomment %}
         <div id="quick_resume_updater_block" class="side_block">
             <div class="side_block_header">
                 <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume.png" />
