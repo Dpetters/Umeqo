@@ -25,7 +25,7 @@ from core.models import Course, CampusOrg, Language, Topic
 from core.view_helpers import does_email_exist
 from registration.models import InterestedPerson
 from core.forms import BetaForm, AkismetContactForm
-from employer.models import Employer
+from employer.models import Employer, Recruiter
 from events.models import Event
 from core import enums
 from core import messages
@@ -176,6 +176,19 @@ def home(request,
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:
                 return redirect('student_edit_profile')
+
+            subscriptions = request.user.student.subscriptions.all()
+            if len(subscriptions) > 0:
+                context['has_subscriptions'] = True
+                recruiters = Recruiter.objects.filter(employer__in=subscriptions)
+                sub_events = Event.objects.filter(recruiters__in=recruiters).filter(end_datetime__gt=datetime.now())
+                context.update({
+                    'has_subscriptions': True,
+                    'sub_events': sub_events
+                })
+            else:
+                context['has_subscriptions'] = False
+
             
             context.update(extra_context or {}) 
             return render_to_response(student_home_template_name,

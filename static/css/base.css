@@ -293,8 +293,24 @@ p {
     width: 100%;
     padding-bottom: 15px;
 }
+.side_nav {
+    margin-bottom: 10px;
+}
+.side_nav h3 {
+    margin-bottom: 2px;
+}
+.side_nav a {
+    display: block;
+    text-decoration: none;
+    padding: 4px 0 4px 15px;
+}
+.side_nav a:hover {
+    background-color: #EEE;
+}
 .main_block {
     margin-top: 20px;
+    display: inline-block;
+    width: 100%;
 }
 .main_block_header {
     padding: 3px 0px;
@@ -544,11 +560,11 @@ a.button.sub-button:hover {
 }
 .warning-button:hover {
     behavior: url(/static/lib/pie/PIE.htc);
-    background: #FFAAAA;
-    background: -moz-linear-gradient(#FFAAAA, #FF4444);
-    background: -webkit-linear-gradient(#FFAAAA, #FF4444);
-    background: linear-gradient(#FFAAAA, #FF4444);
-    -pie-background: linear-gradient(#FFAAAA, #FF4444);
+    background: #FF8888;
+    background: -moz-linear-gradient(#FF8888, #FF4444);
+    background: -webkit-linear-gradient(#FF8888, #FF4444);
+    background: linear-gradient(#FF8888, #FF4444);
+    -pie-background: linear-gradient(#FF8888, #FF4444);
     color: #FFF !important;
     text-shadow: #000 0 -1px 0;
 }

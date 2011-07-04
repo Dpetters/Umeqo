@@ -98,8 +98,8 @@
                         <ul id="account_dropdown">
                             <li class="info">{{user}}</li>
                         {% if user.student %}
-                            <li><a href="{% url student_account_settings %}">Account Settings</a></li>
                             <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
+                            <li><a href="{% url student_account_settings %}">Account Settings</a></li>
                         {% else %}{% if user.recruiter %}    
                             <li><a href="{% url employer_account_settings %}">Account Settings</a></li>
                         {% endif %}{% endif %}

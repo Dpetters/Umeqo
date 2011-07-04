@@ -37,6 +37,7 @@
     background-color: #EEE;
     border-radius: 2px;
     -moz-border-radius: 2px;
+    width: 100px;
 }
 #event_actions {
     margin-top: 5px;
@@ -66,7 +67,7 @@
 
 #rsvp_div {
     position: relative;
-    text-align: right;
+    text-align: center;
 }
 #rsvp_div .help-bubble {
     right: 120px;

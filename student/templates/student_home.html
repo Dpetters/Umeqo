@@ -15,6 +15,7 @@ Copyright 2011. All Rights Reserved.
 <!-- JQuery MultiSelect Widget -->
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 
 <!-- JQuery MultiSelect Widget Filtering Plugin -->
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
@@ -36,7 +37,18 @@ Copyright 2011. All Rights Reserved.
 
 {% block content_area %}
     
-    <div class="right_side_container">
+<div class="right_side_container">
+        <div class="side_nav"> 
+            <h3>Browse</h3>
+            <a href="{% url events_list %}">Deadlines and Events</a>
+            <a href="{% url employers_list %}">Employers</a>
+        </div>
+        <div class="side_nav">
+            <h3>Account</h3>
+            <a href="{% url student_edit_profile %}">Edit Profile</a>
+            <a href="{% url student_account_settings %}">Account Settings</a>
+        </div>
+        {% comment %}
         <div id="statistics_block" class="side_block">
             <div class="side_block_header">
                 <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/system-monitor.png"/>
@@ -47,6 +59,7 @@ Copyright 2011. All Rights Reserved.
             <div class="side_block_footer">
             </div>
         </div>
+        {% endcomment %}
         <div id="quick_resume_updater_block" class="side_block">
             <div class="side_block_header">
                 <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume.png" />
@@ -73,18 +86,31 @@ Copyright 2011. All Rights Reserved.
     <div id="events_and_deadlines_block" class="main_block">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
-            <span class="main_block_header_title">Events and Deadlines</span>
-            <div class="main_block_header_content">
-                <a class="button sub-button" href="{% url employers_list %}">Browse Employers</a>
-                <a class="button sub-button" href="{% url events_list %}">Browse Events</a>
-            </div>
+            <span class="main_block_header_title">Deadlines and Events</span>
         </div>
         <div class="main_block_content">
-            <div class="message_block">
-                <p>Browse events in full using the links below, or subscribe to employers to get automatic notifications of any new events.<p>
-                <br>
-                <p><a href="javascript:void(0)" id="setup_employer_subscriptions_link"><strong>Setup Employer Subscriptions</strong></a></p>
-            </div>
+            {% if has_subscriptions %}
+                {% if sub_events %}
+                    <ul class="event_list">
+                        {% for event in sub_events %}
+                            {% include "event_snippet.html" with edit='True' %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="message_block">
+                            <p>You have no upcoming events from the employers that you are subscribed to!</p>
+                            <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers_list %}">subscribing to some more employers</a>.
+                        </p>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="message_block">
+                    <p>
+                        When you <a href="{% url employers_list %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
+                        <a href="{% url events_list %}">Browse the full listing</a> to search and filter for deadlines and events.
+                    </p>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
