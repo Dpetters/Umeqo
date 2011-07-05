@@ -85,11 +85,8 @@ p {
     height: 60px;
 }
 #header_area .width_container{
+    text-align: left;
 	position:relative;
-}
-#logo_block{
-	position:absolute;
-	left:0px;
 }
 #logo_image {
     margin-top: 6px;
@@ -98,8 +95,7 @@ p {
 }
 #navigation_block {
     text-shadow: 0 -1px 0 black;
-    position:absolute;
-    right:0px;
+    float: right;
     height: 60px;
     letter-spacing: 1px;
 }
@@ -298,7 +294,7 @@ p {
 }
 .side_nav {
     margin-bottom: 20px;
-    width:220px;
+    width: 200px;
 }
 .side_nav h3 {
     margin-top: 5px;
@@ -316,6 +312,7 @@ p {
     margin-top: 20px;
     display: inline-block;
     width: 100%;
+    float: right;
 }
 .main_block_header {
     padding: 3px 0px;
@@ -1058,4 +1055,62 @@ a.ui-slider-handle {
 }
 .overflowHidden {
     overflow: hidden;
+}
+
+#notifications {
+    float: right;
+    margin: 18px 20px 0 0;
+    position: relative;
+}
+#notifications_count {
+    padding: 5px 10px;
+    display: inline-block;
+    background-color: #EEE;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+#notifications_count.active, #notifications_count:hover {
+    background-color: #FFF;
+    cursor: pointer;
+}
+#notifications_pane {
+    position: absolute;
+    z-index: 100;
+    width: 300px;
+    background-color: #FFF;
+    left: 0;
+    top: 41px;
+    padding: 10px;
+    border: 1px solid #CCC;
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
+    display: none;
+}
+#notifications_pane ul {
+    list-style: none;
+}
+#notifications_pane li {
+    border-top: 1px solid #CCC;
+    padding-top: 5px;
+    margin-top: 10px;
+}
+#notifications_pane a {
+    text-decoration: none;
+}
+#notifications_pane .type {
+    font-weight: 600;
+    margin-right: 5px;
+}
+#notifications_pane .details {
+    margin-bottom: 3px;
+    padding: 2px 0;
+}
+#notifications_pane .timestamp {
+    float: right;
+    color: #888;
+}
+#notifications_pane .message {
+    color: #444;
 }

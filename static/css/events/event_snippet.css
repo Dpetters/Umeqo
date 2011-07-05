@@ -9,6 +9,7 @@
     background-color: #F6F6F6;
     border-bottom: 1px solid #DDD;
     position: relative;
+    min-height: 30px;
 }
 /* THIS IS IMPORTANT SO THAT .edit DOESN'T OVERFLOW INTO NEXT <li> IF IT IS TALLER THAN .details */
 .event_list li::after {

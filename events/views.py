@@ -4,7 +4,7 @@
  Copyright 2011. All Rights Reserved.
 """
 
-from core.decorators import is_recruiter, is_student
+from core.decorators import is_recruiter, is_student, render_to
 from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -22,6 +22,7 @@ from events.views_helper import event_search_helper
 
 @login_required
 @user_passes_test(is_student)
+@render_to('events_list.html')
 def events_list(request, extra_context=None):
     query = request.GET.get('q', '')
     events = event_search_helper(request)
@@ -30,7 +31,7 @@ def events_list(request, extra_context=None):
         'query': query
     }
     context.update(extra_context or {})
-    return render_to_response('events_list.html' ,context,context_instance=RequestContext(request))
+    return context
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
@@ -73,8 +74,6 @@ def event_page(request, id, slug, extra_context=None):
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     rsvps = map(buildRSVP, event.rsvp_set.all().order_by('student__first_name'))
-    print event.rsvp_set.all().order_by('name')
-    print rsvps
     checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
     checkins.sort(key=lambda n: 0 if n['account'] else 1)
     emails_dict = {}
@@ -194,9 +193,10 @@ def event_checkin(request, id):
         return HttpResponse(simplejson.dumps(output), mimetype="application/json")
 
 @login_required
+@user_passes_test(is_student)
+@render_to('events_list_ajax.html')
 def event_search(request, extra_context=None):
     events = event_search_helper(request)
     context = {'events': events}
     context.update(extra_context or {})
-    return render_to_response('events_list_ajax.html', context,
-            context_instance=RequestContext(request))
+    return context

@@ -18,32 +18,27 @@ from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models import Q
-
-from employer.forms import SearchForm
 from notification.models import Notice
-from core.models import Course, CampusOrg, Language, Topic
-from core.view_helpers import does_email_exist
 from registration.models import InterestedPerson
+
+from core import enums, messages
+from core.decorators import render_to
+from core.models import Course, CampusOrg, Language, Topic
 from core.forms import BetaForm, AkismetContactForm
+from core.view_helpers import does_email_exist
+from employer.forms import SearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
-from core import enums
-from core import messages
 
-
-def help_center(request,
-         template_name='help_center.html',
-         extra_context = None):
+@render_to('help_center.html')
+def help_center(request, extra_context = None):
     
     context = {}
-    context.update(extra_context or {})  
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    context.update(extra_context or {})
+    return context
 
-def faq(request,
-         template_name='faq.html',
-         extra_context = None):
+@render_to('faq.html')
+def faq(request, extra_context = None):
     
     context = {'topics':[]}
     if hasattr(request.user, "employer"):
@@ -65,25 +60,19 @@ def faq(request,
         context['topics'].append({'name': topic, 'questions':questions})
 
     context.update(extra_context or {})  
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    return context
 
-def tutorials(request,
-              template_name='tutorials.html',
-              extra_context = None):
+@render_to('tutorials.html')
+def tutorials(request, extra_context = None):
     
     context = {}
-    context.update(extra_context or {})  
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    context.update(extra_context or {})
+    return context
 
-def contact_us_dialog(request,
-                      template_name='contact_dialog.html',
-                      form_class=AkismetContactForm,
-                      fail_silently=False,
-                      extra_context=None):
+def contact_us_dialog(request, extra_context=None):
+
+    form_class = AkismetContactForm
+    fail_silently = False;
 
     if request.is_ajax():
         if request.method == 'POST':
@@ -106,16 +95,16 @@ def contact_us_dialog(request,
                 'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
                 }
         context.update(extra_context or {}) 
-        return render_to_response(template_name,
+        return render_to_response('contact_dialog.html',
                                   context,
                                   context_instance=RequestContext(request))
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-def landing_page(request,
-            template_name="landing_page.html",
-            form_class = BetaForm,
-            extra_context = None):
+@render_to('landing_page.html')
+def landing_page(request, extra_context = None):
     
+    form_class = BetaForm
+
     if request.GET.get('magic','')!='':
         return home(request)
     
@@ -154,14 +143,10 @@ def landing_page(request,
     }
 
     context.update(extra_context or {})
-    return render_to_response(template_name, context ,context_instance=RequestContext(request))
+    return context
 
 
-def home(request,
-         anonymous_home_template_name="anonymous_home.html",
-         student_home_template_name="student_home.html",
-         employer_home_template_name="employer_home.html",
-         extra_context=None):
+def home(request, extra_context=None):
 
     context = {}
 
@@ -191,9 +176,8 @@ def home(request,
 
             
             context.update(extra_context or {}) 
-            return render_to_response(student_home_template_name,
-                                      context,
-                                      context_instance=RequestContext(request))
+            return render_to_response('student_home.html', context,
+                    context_instance=RequestContext(request))
             
         elif hasattr(request.user, "recruiter"):
             
@@ -208,9 +192,8 @@ def home(request,
             });
             
             context.update(extra_context or {})
-            return render_to_response(employer_home_template_name, 
-                                      context, 
-                                      context_instance=RequestContext(request))
+            return render_to_response('employer_home.html', context, 
+                    context_instance=RequestContext(request))
     
     request.session.set_test_cookie()
     
@@ -225,9 +208,8 @@ def home(request,
     context['events'] = list(events)[:3]
     
     context.update(extra_context or {})
-    return render_to_response(anonymous_home_template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    return render_to_response('anonymous_home.html', context,
+            context_instance=RequestContext(request))
 
 
 @login_required
@@ -299,9 +281,7 @@ def check_event_name_uniqueness(request):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
-def get_course_info(request,
-                   template_name="course_info.html",
-                   extra_context = None):
+def get_course_info(request, extra_context = None):
 
     if request.is_ajax():
         if request.GET.has_key('course_id'):
@@ -316,7 +296,7 @@ def get_course_info(request,
                            'description': course.description,
                            'image': course.image.name}
                 context.update(extra_context or {})
-                return render_to_response(template_name,
+                return render_to_response('course_info.html',
                                           context,
                                           context_instance=RequestContext(request))
             else:
@@ -326,9 +306,7 @@ def get_course_info(request,
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
 
 @login_required
-def get_campus_org_info(request,
-                       template_name = "campus_org_info.html",
-                       extra_context = None):
+def get_campus_org_info(request, extra_context = None):
 
     if request.is_ajax():
         if request.GET.has_key('campus_org_id'):
@@ -341,9 +319,8 @@ def get_campus_org_info(request,
                            'description': campus_org.description,
                            'image': campus_org.image.name}
                 context.update(extra_context or {})
-                return render_to_response(template_name,
-                                          context,
-                                          context_instance=RequestContext(request))
+                return render_to_response('campus_org_info.html', context,
+                        context_instance=RequestContext(request))
             else:
                 return HttpResponseServerError("Campus Org ID doesn't match any existing campus org's ID.")        
         else:
@@ -374,11 +351,8 @@ def check_language_uniqueness(request):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
-def browser_configuration_not_supported(request,
-                                        template_name="browser_configuration_not_supported.html",
-                                        extra_context=None):
+@render_to('browser_configuration_not_supported.html')
+def browser_configuration_not_supported(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    return context

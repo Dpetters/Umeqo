@@ -3,38 +3,35 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
-import mimetypes, os
 import cStringIO
-
 from datetime import datetime
-from pyPdf import PdfFileReader, PdfFileWriter
-from reportlab.pdfgen import canvas  
-from reportlab.lib.units import cm
+import mimetypes, os
+from operator import attrgetter
  
-from django.core.mail import EmailMessage
-from django.core.cache import cache
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render_to_response, redirect
+from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
-from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest
-from django.utils import simplejson
+from django.shortcuts import render_to_response, redirect
+from django.template import RequestContext
 from django.template.loader import render_to_string
+from django.template.loader import render_to_string
+from django.utils import simplejson
 
-from core.decorators import is_student, is_recruiter
+from core.decorators import is_student, is_recruiter, render_to
 from core.models import Industry
+from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, StudentComment
 from employer.forms import DeliverResumeBookForm, EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm
 from employer.views_helper import get_paginator, employer_search_helper
-from employer import enums as employer_enums
 from events.forms import EventForm
 from events.models import Event
-from student.models import Student
 from student import enums as student_enums
-from operator import attrgetter
-from annoying.decorators import render_to
-from django.core.exceptions import ObjectDoesNotExist
+from student.models import Student
+from notification import models as notification
 
 @render_to('employer_registration.html')
 def employer_registration(request, extra_context = None):
@@ -255,6 +252,17 @@ def employer_new_event(request, extra_context=None):
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
+            # Send notificaions.
+            employers = Employer.objects.filter(recruiter=event_obj.recruiters.all())
+            subscribers = Student.objects.filter(subscriptions__in=employers)
+            to_users = map(lambda n: n.user, subscribers)
+            employer_word = "Employer" if len(employers)==1 else "Employers"
+            employer_names = ", ".join(map(lambda n: n.name, employers))
+            has_word = "has" if len(employers)==1 else "have"
+            notification.send(to_users, 'new_event', {
+                'message': '%s %s %s a new event: "%s"' % (employer_word, employer_names, has_word, event_obj.name)
+            })
+
             return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm()
@@ -268,7 +276,7 @@ def employer_new_event(request, extra_context=None):
     
     context.update(extra_context or {})
     return render_to_response('employer_new_event.html', context,
-                              context_instance = RequestContext(request))
+            context_instance = RequestContext(request))
 
 @login_required
 @user_passes_test(is_recruiter)
@@ -304,7 +312,7 @@ def employer_edit_event(request, id=None, extra_context=None):
 
     context.update(extra_context or {})
     return render_to_response('employer_new_event.html', context,
-                              context_instance = RequestContext(request) )
+            context_instance = RequestContext(request) )
 
 @login_required
 @user_passes_test(is_recruiter)
@@ -326,7 +334,7 @@ def employer_delete_event(request, id, extra_context = None):
 @user_passes_test(is_recruiter)
 def employer_setup_default_filtering(request, extra_context = None):
     
-    form_class=FilteringForm,
+    form_class=FilteringForm
     if request.method == 'POST':
         form = form_class(data=request.POST,
                           instance = request.user.recruiter)
@@ -556,7 +564,6 @@ def employers_list(request, extra_content=None):
         else:
             employer = employers[0]
             employer_id = employer.id
-        recruiter = employer.recruiter_set.all()[0]
         
         now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
         events = reduce(
