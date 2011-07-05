@@ -26,6 +26,17 @@ Copyright 2011. All Rights Reserved.
 {% block content_area %}
 
 <div class="left_side_container">
+    <div class="side_nav"> 
+        <h3>Students</h3>
+        <a href="{% url employer_students %}">Filter and Search</a>
+        <a href="{% url employer_setup_default_filtering %}">Automatic Filtering</a>
+        <h3>Events</h3>
+        <a href="{% url employer_new_event %}">New Event</a>
+        <h3>Account</h3>
+        <a href="{% url employer_account_settings %}">Account Settings</a>
+        <a href="{% url logout %}">Logout</a>
+    </div>
+    {% comment %}
     <div id="statistics_block" class="side_block">
         <div class="side_block_header">
             <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/system-monitor.png"/>
@@ -36,27 +47,9 @@ Copyright 2011. All Rights Reserved.
         <div class="side_block_footer">
         </div>
     </div>
+    {% endcomment %}
 </div>
-<div id="notifications_block" class="main_block no_top_margin">
-    <div class="main_block_header">
-        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/megaphone.png"/>
-        <span class="main_block_header_title">Notifications ({{unseen_notice_num}})</span>
-    </div>
-    <div class="main_block_header_content">
-        {% for notice in notices %}
-            {% if notice.is_unseen %}
-                <tr class="unseen_notice">
-            {% else %}
-                <tr class="notice">
-            {% endif %}
-                <td class="notice_type">[{{ notice.notice_type.display }}]</td>
-                <td class="notice_message">{{ notice.message|safe }}</td>
-                <td class="notice_time">{{ notice.added|timesince }} ago</td>
-            </tr>
-        {% endfor %}
-    </div>
-</div>
-<div class="main_block">
+<div class="main_block no_top_margin">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
         <span class="main_block_header_title">Browse Students</span>
@@ -65,7 +58,7 @@ Copyright 2011. All Rights Reserved.
                 {% csrf_token %}
                 {{search_form.query}}
                 <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
-                <a href="/employer/students/" class="button">Browse Students</a>
+                <a href="{% url employer_students %}" class="button">Browse Students</a>
             </form>
         </div>
     </div>

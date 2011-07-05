@@ -3,6 +3,8 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 def is_student(user):
     return hasattr(user, "student")
@@ -10,7 +12,22 @@ def is_student(user):
 def is_recruiter(user):
     return hasattr(user, "recruiter")
 
+#
 # From django-annoying
+#
+try:
+    from functools import wraps
+except ImportError: 
+    def wraps(wrapped, assigned=('__module__', '__name__', '__doc__'),
+              updated=('__dict__',)):
+        def inner(wrapper):
+            for attr in assigned:
+                setattr(wrapper, attr, getattr(wrapped, attr))
+            for attr in updated:
+                getattr(wrapper, attr).update(getattr(wrapped, attr, {}))
+            return wrapper
+        return inner
+
 def render_to(template=None, mimetype=None):
     """
     Decorator for Django views that sends returned dict to render_to_response 

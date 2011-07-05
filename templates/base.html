@@ -21,6 +21,9 @@
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js">
         </script>
         <!-- Custom -->
+        <script>
+            var NOTIFICATIONS_URL = "{% url notification_ajax %}";
+        </script>
         <script type="text/javascript" src="{{ STATIC_URL }}javascript/base.js">
         </script>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
@@ -79,48 +82,55 @@
             <div class="width_container">
                 <ul id="navigation_block">
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
-                    <li id="signup_button">
-                        <a href="{% url student_registration %}">Join Umeqo!</a>
-                    </li>
-                    <li id="login_button">
-                        <a href="javascript:void(0)">Login</a>
-                    </li>
+                        <li id="signup_button">
+                            <a href="{% url student_registration %}">Join Umeqo!</a>
+                        </li>
+                        <li id="login_button">
+                            <a href="javascript:void(0)">Login</a>
+                        </li>
                     {% endif %}
                     <li>
                         <a id="home" href="{% url home %}">Home</a>
                     </li>
                     {% if user.is_authenticated and user.student or user.recruiter %}
-                    <li>
-                        <a id="help" href="{% url help_center %}">Help</a>
-                    </li>
-                    <li>
-                        <a id="account" href="javascript:void(0)">Account <span class="arrow">&#9660;</span></a>
-                        <ul id="account_dropdown">
-                            <li class="info">{{user}}</li>
-                        {% if user.student %}
-                            <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
-                            <li><a href="{% url student_account_settings %}">Account Settings</a></li>
-                        {% else %}{% if user.recruiter %}    
-                            <li><a href="{% url employer_account_settings %}">Account Settings</a></li>
-                        {% endif %}{% endif %}
-                            <li><a href="{% url logout %}">Logout</a></li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a id="help" href="{% url help_center %}">Help</a>
+                        </li>
+                        <li>
+                            <a id="account" href="javascript:void(0)">Account <span class="arrow">&#9660;</span></a>
+                            <ul id="account_dropdown">
+                                <li class="info">{{user}}</li>
+                            {% if user.student %}
+                                <li><a href="{% url student_edit_profile %}">Edit Profile</a></li>
+                                <li><a href="{% url student_account_settings %}">Account Settings</a></li>
+                            {% else %}{% if user.recruiter %}    
+                                <li><a href="{% url employer_account_settings %}">Account Settings</a></li>
+                            {% endif %}{% endif %}
+                                <li><a href="{% url logout %}">Logout</a></li>
+                            </ul>
+                        </li>
                     {% else %}
-                    <li>
-                        <a id="about" href="{% url about %}">About</a>
-                    </li>
-                    <li>
-                        <a id="blog" href="{% url blog %}">Blog</a>
-                    </li>
-                    <li>
-                        <a id="help_center" href="{% url help_center %}">Help</a>
-                    </li>
-                    <li>
-                        <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact</a>
-                    </li>
-                   {% endif %}
+                        <li>
+                            <a id="about" href="{% url about %}">About</a>
+                        </li>
+                        <li>
+                            <a id="blog" href="{% url blog %}">Blog</a>
+                        </li>
+                        <li>
+                            <a id="help_center" href="{% url help_center %}">Help</a>
+                        </li>
+                        <li>
+                            <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact</a>
+                        </li>
+                    {% endif %}
                 </ul>
+                {% if user.student %}
+                    <div id="notifications">
+                        <div id="notifications_count">{{ notice_unseen_count }}</div>
+                        <div id="notifications_pane">
+                        </div>
+                    </div>
+                {% endif %}
                 <a id="logo_block" href="/">
                     <img id="logo_image" src="{{ STATIC_URL }}images/logo.png" />
                 </a>

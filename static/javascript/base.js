@@ -354,11 +354,39 @@ $(document).ready( function () {
             return true;
         }
     }, "Please specify a valid duration");
+
+    // NOTIFICATIONS.
+    $('#notifications_count').click(function() {
+        if (!$('#notifications_pane').is(':visible')) {
+            $.get(NOTIFICATIONS_URL, function(data) {
+                $('#notifications_pane').html(data);
+            });
+            $('#notifications_count').addClass('active');
+        } else {
+            $('#notifications_count').removeClass('active');
+        }
+        $('#notifications_pane').toggle();
+    });
+
+    $(document).keydown(function(e) {
+        if (e.which == 27) {
+            $('#notifications_pane').hide();
+            $('#notifications_count').removeClass('active');
+        }
+    });
+    $(document).click(function(e) {
+        if ($(e.target).parents('#notifications_pane').length == 0 &&
+            e.target.id != 'notifications_count') {
+            $('#notifications_pane').hide();
+            $('#notifications_count').removeClass('active');
+        }
+    });
+
 });
 
 /* THIS ADDS CSRF PROTECTION TO AJAX CALLS */
 $(document).ajaxSend(function(event, xhr, settings) {
-    function sameOrigin(url) {
+function sameOrigin(url) {
         // url could be relative or scheme relative or absolute
         var host = document.location.host; // host + port
         var protocol = document.location.protocol;

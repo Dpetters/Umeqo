@@ -21,7 +21,6 @@ class Event(models.Model):
     # Required Fields
     recruiters = models.ManyToManyField("employer.Recruiter")
     
-    # Foreign Key to Campus Organization
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)

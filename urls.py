@@ -3,12 +3,12 @@
  All code is property of original developers.
  Copyright 2011. All Rights Reserved.
 """
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.conf.urls.defaults import patterns, include
 from django.conf import settings
-from django.contrib.auth import views as auth_views
+from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template
 
 from registration.forms import PasswordResetForm, SetPasswordForm
@@ -52,7 +52,7 @@ urlpatterns += patterns('core.views',
     (r'^check-campus-organization-uniqueness/$', 'check_campus_organization_uniqueness', {}, 'check_campus_organization_uniqueness'),
     (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
-    (r'^check-website/$', 'check_website', {}, 'check_website')
+    (r'^check-website/$', 'check_website', {}, 'check_website'),
 )
 
 urlpatterns += patterns('registration.views',
@@ -87,9 +87,10 @@ urlpatterns += patterns('student.views',
 
 urlpatterns += patterns('employer.views',
     # Employer List
-    (r'^employers/el/$', 'employers_list_el', {}, 'employers_list_el'),
+    (r'^employers/pane/$', 'employers_list_pane', {}, 'employers_list_pane'),
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
     (r'^employers/ajax$', 'employers_list_ajax', {}, 'employers_list_ajax'),
+    (r'^employers/subscribe$', 'employers_subscribe', {}, 'employers_subscribe'),
     # Employer Registration
     (r'^employer/registration/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     # Employer Account Settings
@@ -130,4 +131,9 @@ urlpatterns += patterns('events.views',
     (r'^events/checkin/(?P<id>\d+)$', 'event_checkin', {}, 'event_checkin'),
     (r'^events/search/$', 'event_search', {}, 'event_search'),
 )
+
 urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += patterns('notification.views',
+    (r'^notification/ajax$', 'notices', {}, 'notification_ajax'),
+)

@@ -1,0 +1,16 @@
+<h2>Notifications</h2>
+<ul>
+    {% for notice in notices %}
+        <li>
+            <a href="#">
+                <div class="details">
+                    <span class="type">{{ notice.notice_type.display }}</span>
+                    <span class="timestamp">{{ notice.added|timesince }} ago</span>
+                </div>
+                <span class="message">{{ notice.message|safe }}</span>
+            </a>
+        </li>
+    {% empty %}
+        <li>There are no notifications at this time.</li>
+    {% endfor %}
+</ul>

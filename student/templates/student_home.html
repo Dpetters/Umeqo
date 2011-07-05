@@ -46,6 +46,7 @@ Copyright 2011. All Rights Reserved.
             <a href="{% url student_edit_profile %}">Edit Profile</a>
             <a href="{% url student_resume %}" target="_blank">Your Resume</a>
             <a href="{% url student_account_settings %}">Account Settings</a>
+            <a href="{% url logout %}">Logout</a>
         </div>
         <div id="quick_resume_updater_block" class="side_block">
             <div class="side_block_header">
@@ -64,13 +65,7 @@ Copyright 2011. All Rights Reserved.
             </div>
         </div>
     </div>
-    <div id="notifications_block" class="main_block no_top_margin">
-        <div class="main_block_header">
-            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/megaphone.png" />
-            <span class="main_block_header_title">Notifications (0)</span>
-        </div>
-    </div>
-    <div id="events_and_deadlines_block" class="main_block">
+    <div id="events_and_deadlines_block" class="main_block no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Deadlines and Events</span>
