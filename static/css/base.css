@@ -85,11 +85,8 @@ p {
     height: 60px;
 }
 #header_area .width_container{
+    text-align: left;
 	position:relative;
-}
-#logo_block{
-	position:absolute;
-	left:0px;
 }
 #logo_image {
     margin-top: 6px;
@@ -98,8 +95,7 @@ p {
 }
 #navigation_block {
     text-shadow: 0 -1px 0 black;
-    position:absolute;
-    right:0px;
+    float: right;
     height: 60px;
     letter-spacing: 1px;
 }
@@ -1099,6 +1095,9 @@ a.ui-slider-handle {
     border-top: 1px solid #CCC;
     padding-top: 5px;
     margin-top: 10px;
+}
+#notifications_pane a {
+    text-decoration: none;
 }
 #notifications_pane .type {
     font-weight: 600;
