@@ -23,12 +23,13 @@ EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
-LOCAL_DATA_APPS = ('employer',
-                   'student',
-                   'events',
-                   'registration',
-                   'user',
-                   )
+DATA_APPS = (
+    'employer',
+    'student',
+    'events',
+    'registration',
+    'user',
+)
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"

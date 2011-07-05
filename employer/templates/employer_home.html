@@ -7,7 +7,7 @@ Copyright 2011. All Rights Reserved.
 {% extends "base.html" %}
 
 {% block title %}
-| Home
+Home |
 {% endblock %}
 
 {% block metadata %}
@@ -26,7 +26,7 @@ Copyright 2011. All Rights Reserved.
 {% block content_area %}
 
 <div class="left_side_container">
-    <div id="statistics_block" class="side_block">
+    <div id="statistics_block" class="side_block hid">
         <div class="side_block_header">
             <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/system-monitor.png"/>
             <span class="side_block_header_title">My Statistics</span>
@@ -37,7 +37,8 @@ Copyright 2011. All Rights Reserved.
         </div>
     </div>
 </div>
-<div id="notifications_block" class="main_block no_top_margin">
+
+<div id="notifications_block" class="main_block no_top_margin hid">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/megaphone.png"/>
         <span class="main_block_header_title">Notifications ({{unseen_notice_num}})</span>
@@ -56,7 +57,8 @@ Copyright 2011. All Rights Reserved.
         {% endfor %}
     </div>
 </div>
-<div class="main_block">
+
+<div class="main_block no_top_margin">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
         <span class="main_block_header_title">Browse Students</span>

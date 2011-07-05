@@ -7,7 +7,7 @@ Copyright 2011. All Rights Reserved.
 {% extends "base.html" %}
 
 {% block title %}
-| Account Settings
+Account Settings |
 {% endblock %}
 
 {% block metadata %}
@@ -18,16 +18,11 @@ Copyright 2011. All Rights Reserved.
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/account_settings.js"></script>
 {% endblock %}
 
-{% block below_header_area %}
-
+{% block message_area %}
 {{ block.super }}
-{% ifequal action "timed-out" %}
-<div id='below_header_message_wrapper'>
-    <p>
-        Password Changed Sucessfully.
-    </p>
-</div>
-{% endifequal %}
+{% if msg %}
+        <p>{{msg}}</p>
+{% endif %}
 {% endblock %}
 
 {% block content_area %}

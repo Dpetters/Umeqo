@@ -33,11 +33,19 @@ def student_account_settings(request, template_name="student_account_settings.ht
     
     if request.method == "GET":
         context = {}
+        page_messages = {
+            'password-changed': messages.password_changed,
+        }
+        msg = request.GET.get('msg', None)
+        if msg:
+            context["msg"] = page_messages[msg]
+        print messages.password_changed
         context['preferences_form'] = preferences_form_class(instance = request.user.student.preferences)
         context['change_password_form'] = change_password_form_class(request.user)
         context['last_password_change_date'] = request.user.userattributes.last_password_change_date
         context['action'] =  request.REQUEST.get('action', '')
         context.update(extra_context or {})
+        print context
         return render_to_response(template_name, context, context_instance=RequestContext(request))
     return HttpResponseForbidden("Request must be a GET")
 

@@ -7,7 +7,7 @@ Copyright 2011. All Rights Reserved.
 {% extends "base.html" %}
 
 {% block title %}
-| {{user}}
+{{user}} | 
 {% endblock %}
 
 {% block metadata %}
@@ -26,12 +26,10 @@ Copyright 2011. All Rights Reserved.
   <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_home.js"></script>
 {% endblock %}
 
-{% block below_header_area %}
+{% block message_area %}
 {{ block.super }}
 {% if msg %}
-<div class="below_header_message">
     <p>{{ msg }}</p>
-</div>
 {% endif %}
 {% endblock %}
 
@@ -64,13 +62,15 @@ Copyright 2011. All Rights Reserved.
             </div>
         </div>
     </div>
-    <div id="notifications_block" class="main_block no_top_margin">
+
+    <div id="notifications_block" class="main_block no_top_margin hid">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/megaphone.png" />
             <span class="main_block_header_title">Notifications (0)</span>
         </div>
     </div>
-    <div id="events_and_deadlines_block" class="main_block">
+
+    <div id="events_and_deadlines_block" class="main_block no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Deadlines and Events</span>

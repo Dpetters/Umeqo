@@ -40,25 +40,16 @@ p {
 #above_header_area {
     min-width: 986px;
 }
-#below_header_area {
-	height:15px;
-    width: 986px;
-    margin: 0 auto;
-    position: relative;
+#message_area{
+	text-align:center;
 }
-#below_header_message_wrapper{
-    text-align: center;
-    position:relative;
-    bottom:16px;
-}
-#below_header_message_wrapper p{
+#message_area p{
+	display:inline;
     background:#7AA7CC;
     border-radius: 3px 3px 0px 0px;
-    bottom: 2px;
+    bottom:18px;
     color: white;
-    display: inline;
     font-weight: bold;
-    margin-top: 0;
     padding: 2px 11px 1px;
     position: relative;
 }
@@ -90,7 +81,15 @@ p {
 #header_area {
     background: url('/static/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
     min-width: 986px;
+    text-align:center;
     height: 60px;
+}
+#header_area .width_container{
+	position:relative;
+}
+#logo_block{
+	position:absolute;
+	left:0px;
 }
 #logo_image {
     margin-top: 6px;
@@ -99,7 +98,8 @@ p {
 }
 #navigation_block {
     text-shadow: 0 -1px 0 black;
-    float: right;
+    position:absolute;
+    right:0px;
     height: 60px;
     letter-spacing: 1px;
 }
@@ -211,6 +211,9 @@ p {
     font-size: 14px;
     overflow-x: hidden;
 }
+#below_header_area{
+	min-height:15px;
+}
 #content_area {
     margin-bottom: 40px;
 }
@@ -295,6 +298,7 @@ p {
 }
 .side_nav {
     margin-bottom: 20px;
+    width:220px;
 }
 .side_nav h3 {
     margin-top: 5px;
@@ -312,7 +316,6 @@ p {
     margin-top: 20px;
     display: inline-block;
     width: 100%;
-    margin-left: 20px;
 }
 .main_block_header {
     padding: 3px 0px;

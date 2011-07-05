@@ -165,12 +165,12 @@ def home(request,
 
     context = {}
 
-    homePageMessages = {
-        'profile_saved': 'Your profile has been saved.',
+    page_messages = {
+        'profile_saved': messages.profile_saved
     }
     msg = request.GET.get('msg',None)
     if msg:
-        context.update(msg = homePageMessages[msg])
+        context.update(msg = page_messages[msg])
 
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):

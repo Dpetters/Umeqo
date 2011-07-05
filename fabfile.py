@@ -1,5 +1,5 @@
 import os, subprocess, shutil, sys
-from fabric.api import local, lcd, abort
+from fabric.api import local, lcd, abort, env, sudo, run, cd
 from fabric.contrib.console import confirm
 from fabric.contrib import django as fabric_django
 
@@ -8,7 +8,7 @@ sys.path.append(ROOT)
 fabric_django.settings_module('settings')
 from django.conf import settings
 
-__all__= ["refresh_database", "commit_local_data"]
+__all__= ["pull_prod_data_to_staging", "staging", "prod", "reboot", "refresh_database", "commit_local_data"]
 
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
@@ -32,6 +32,16 @@ def run_local():
     run_memcached()
     run_solr()
 """
+def staging():
+    env.hosts = ['root@staging.umeqo.com']
+
+def prod():
+    env.hosts = ['root@umeqo.com']
+
+def reboot(): 
+    sudo('service apache2 restart')
+    sudo('service nginx restart')
+        
 def refresh_database():
     if os.path.exists(ROOT + "/database.db"):
         os.remove(ROOT + "/database.db")
@@ -72,7 +82,7 @@ def refresh_database():
     #os.chdir(ROOT +"/apache-solr-1.4.1/example/")
     #solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/")
     
-    for app in settings.LOCAL_DATA_APPS:
+    for app in settings.DATA_APPS:
         p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
         
@@ -124,10 +134,33 @@ def commit_local_data():
     if not os.path.exists(local_data_fixtures_path):
         os.mkdir(local_data_fixtures_path)
         
-    for app in settings.LOCAL_DATA_APPS:
+    for app in settings.DATA_APPS:
         # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
         if app == "user":
             p = subprocess.Popen("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json", shell=True)
         else:
             p = subprocess.Popen("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
+
+def pull_prod_data_to_staging():
+    # Creating the prod_data directories
+    # dumpdata requires that they exist
+    ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
+    prod_data_directories = [
+        "/prod_data/",
+        "/prod_data/fixtures/",
+        "/prod_data/media/",
+        "/prod_data/media/images/",
+        "/prod_data/media/resumebooks/",
+        "/prod_data/media/resumes/",
+    ]
+    for dir in prod_data_directories:
+        run("mkdir %s" % (ROOT + dir,))
+
+    for app in settings.DATA_APPS:
+        with cd("/var/www/umeqo"):
+            # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
+            if app == "user":
+                run("python manage.py dumpdata auth.user --indent=1 > ./prod_data/fixtures/prod_user_data.json")
+            else:
+                run("python manage.py dumpdata " + app + " --indent=1 > ./prod_data/fixtures/prod_" + app + "_data.json")

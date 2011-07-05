@@ -5,7 +5,7 @@
         <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/vnd.microsoft.icon" />
         <noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"/>
         </noscript>
-        <title>Umeqo {% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %}Umeqo</title>
         
         <!-- JQuery -->
         <script src="{{ STATIC_URL }}lib/jquery/jquery.js" type="text/javascript" charset="utf-8">
@@ -127,6 +127,7 @@
             </div>
         </div>
         <div id="below_header_area">
+            <div class="width_container">
                 {% if not user.is_authenticated or not user.student and not user.recruiter %}
                 <div id="loginWrapper">
                     <form id="login_form" action="/login/" method='POST'>
@@ -152,10 +153,12 @@
                         </div>
                     </form>
                 </div>
-            {% endif %}
-            
-            {% block below_header_area %}
-            {% endblock %}
+                {% endif %}
+                <div id="message_area">
+                    {% block message_area %}
+                    {% endblock %}
+                </div>
+            </div>
         </div>
         <div class="width_container">
             <div id="content_area" class="clearfix">

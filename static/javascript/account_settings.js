@@ -1,8 +1,6 @@
 $(document).ready( function () {
     $("#account_settings_tabs").tabs();
-	                    	    
-	$("#below_header_message_wrapper").html("<p>" + ids.length + " students starred.</p>");
-	                    	    
+
     $("#password_change_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
@@ -24,14 +22,13 @@ $(document).ready( function () {
                     hide_form_submit_loader("#login_form");
                     switch(data.valid) {
                         case false:
-                        	console.log(data.errors);
                         	place_form_errors("#login_form", data.errors);
                             if (data.errors.id_old_password){
                                 $("#id_old_password").val("").css('border', '1px solid red').focus();
                             }
                             break;
                         case true:
-                        	windows.location.href = account_settings_url + "/?action=password-changed"
+                        	window.location.href = window.location.href + "?msg=password-changed"
                             break;
                         default:
                             show_error_dialog(page_error_message);
