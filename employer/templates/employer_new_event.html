@@ -7,7 +7,7 @@ Copyright 2011. All Rights Reserved.
 {% extends "base.html" %}
 
 {% block title %}
-| {% if edit %}Edit Event{% else %}New Event{% endif %}
+{% if edit %}Edit Event{% else %}New Event{% endif %} |
 {% endblock %}
 
 {% block metadata %}

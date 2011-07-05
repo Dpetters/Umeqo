@@ -134,9 +134,9 @@ $(document).ready(function() {
 	                            $(".student_toggle_star_link[num=" + this + "]").html(STARRED_IMG);
 	                        });
 	                        if (ids.length == 1){
-                            	$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " has been starred.</p>");
+                            	$("#message_area").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " has been starred.</p>");
 	                        } else {
-	                    	    $("#below_header_message_wrapper").html("<p>" + ids.length + " students starred.</p>");
+	                    	    $("#message_area").html("<p>" + ids.length + " students starred.</p>");
 	                        }
 	                        break;
 	                    case false:
@@ -156,7 +156,7 @@ $(document).ready(function() {
 	            },
 	        });
         } else {
-        	$("#below_header_message_wrapper").html(no_students_selected_message);
+        	$("#message_area").html(no_students_selected_message);
         }
 	};
 
@@ -186,9 +186,9 @@ $(document).ready(function() {
 	                            $(".student_toggle_star_link[num=" + this + "]").html(UNSTARRED_IMG);
 	                        });
 	                        if (ids.length == 1){
-                            	$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " has been unstarred.</p>");
+                            	$("#message_area").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " has been unstarred.</p>");
 	                        } else {
-	                    	    $("#below_header_message_wrapper").html("<p>" + ids.length + " students unstarred.</p>");
+	                    	    $("#message_area").html("<p>" + ids.length + " students unstarred.</p>");
 	                        }
 	                        break;
 	                    case false:
@@ -208,7 +208,7 @@ $(document).ready(function() {
 	            },
 	        });
         } else {
-        	$("#below_header_message_wrapper").html(no_students_selected_message);
+        	$("#message_area").html(no_students_selected_message);
         }
     };
 
@@ -230,11 +230,11 @@ $(document).ready(function() {
                     case true:
                         switch(data.action) {
                             case STARRED:
-                           		$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " has been starred.</p>");
+                           		$("#message_area").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " has been starred.</p>");
                                 $(container).html(STARRED_IMG);
                                 break;
                             case UNSTARRED:
-                           		$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " has been unstarred.</p>");
+                           		$("#message_area").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " has been unstarred.</p>");
                                 $(container).html(UNSTARRED_IMG);
                                 break;
                             default:
@@ -291,9 +291,9 @@ $(document).ready(function() {
                                 }
 	                        });
 	                        if (ids.length == 1){
-                            	$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " removed from resume book.</p>");
+                            	$("#message_area").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " removed from resume book.</p>");
 	                        } else {
-	                    	    $("#below_header_message_wrapper").html("<p>" + ids.length + " students removed from resume book.</p>");
+	                    	    $("#message_area").html("<p>" + ids.length + " students removed from resume book.</p>");
 	                        }
 	                        break;
 	                    case false:
@@ -313,7 +313,7 @@ $(document).ready(function() {
 	            },
 	        });
         } else {
-        	$("#below_header_message_wrapper").html(no_students_selected_message);
+        	$("#message_area").html(no_students_selected_message);
         }
     };
 
@@ -347,9 +347,9 @@ $(document).ready(function() {
                                 }
                             });
                             if (ids.length == 1){
-                            	$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " added to resume book.</p>");
+                            	$("#message_area").html("<p>" + $(".student_name[num=" + ids[0] + "]").text() + " added to resume book.</p>");
 	                        } else {
-	                    	    $("#below_header_message_wrapper").html("<p>" + ids.length + " students added to resume book.</p>");
+	                    	    $("#message_area").html("<p>" + ids.length + " students added to resume book.</p>");
 	                        }
                             break;
                         case false:
@@ -369,7 +369,7 @@ $(document).ready(function() {
                 },
             });
         } else {
-        	$("#below_header_message_wrapper").html(no_students_selected_message);
+        	$("#message_area").html(no_students_selected_message);
         }
     };
 
@@ -392,14 +392,14 @@ $(document).ready(function() {
                     case true:
                         switch(data.action) {
                             case ADDED:
-		                    	$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " added to resume book.</p>");
+		                    	$("#message_area").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " added to resume book.</p>");
                                 if ($("#id_student_list").multiselect("getChecked")[0].title == IN_RESUME_BOOK_STUDENT_LIST) {
 									$(".student_main_info[num=" + student_id + "]").css({'opacity': "1", 'background':'#FFF'});
                                 }
                                 $(container).html(REMOVE_FROM_RESUME_BOOK_IMG);
                                 break;
                             case REMOVED:
-		                    	$("#below_header_message_wrapper").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " removed from resume book.</p>");
+		                    	$("#message_area").html("<p>" + $(".student_name[num=" + student_id + "]").text() + " removed from resume book.</p>");
                                 if ($("#id_student_list").multiselect("getChecked")[0].title == IN_RESUME_BOOK_STUDENT_LIST) {
 									$(".student_main_info[num=" + student_id + "]").css({'opacity': ".7", 'background':'#FAFAFA'});
                                 }
@@ -670,7 +670,7 @@ $(document).ready(function() {
     function initiate_ajax_call() {
     	var xhr;
     	if(xhr && xhr.readystate != 4){ xhr.abort(); }
-    	$("#below_header_message_wrapper").html("");
+    	$("#message_area").html("");
         $("#results_block_content").css('opacity', 0.25);
         $("#results_block_info_section").css('display', 'block');
         $("#results_block_info").html(long_horizontal_ajax_loader);

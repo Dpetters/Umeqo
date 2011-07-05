@@ -37,7 +37,7 @@ class SessionKey(models.Model):
         verbose_name_plural = "Session Keys"
         
     def __unicode__(self):
-        return self.user
+        return str(self.user)
   
 class UserAttributes(models.Model):
     user = models.OneToOneField(User)

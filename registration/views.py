@@ -67,7 +67,7 @@ def password_change(request,
             form.save()
             request.user.userattributes.last_password_change_date = datetime.now()
             for session_key_object in request.user.sessionkey_set.all():
-                Session.objects.get(session_key=session_key_object.session_key).delete()
+                Session.objects.filter(session_key=session_key_object.session_key).delete()
             request.user.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, request.user)
             data = {'valid':True}
