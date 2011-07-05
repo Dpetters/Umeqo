@@ -23,6 +23,7 @@
         <!-- Custom -->
         <script>
             var NOTIFICATIONS_URL = "{% url notification_ajax %}";
+            var NOTIFICATIONS_COUNT_URL = "{% url get_notice_unseen_count %}";
         </script>
         <script type="text/javascript" src="{{ STATIC_URL }}javascript/base.js">
         </script>
@@ -126,7 +127,9 @@
                 </ul>
                 {% if user.student %}
                     <div id="notifications">
-                        <div id="notifications_count">{{ notice_unseen_count }}</div>
+                        <div id="notifications_count">
+                            <div id="notifications_number" {% if notice_unseen_count == 0 %}class="invisible"{% endif %}>{{ notice_unseen_count }}</div>
+                        </div>
                         <div id="notifications_pane">
                         </div>
                     </div>

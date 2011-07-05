@@ -1,16 +1,14 @@
 <h2>Notifications</h2>
 <ul>
     {% for notice in notices %}
-        <li>
-            <a href="#">
-                <div class="details">
-                    <span class="type">{{ notice.notice_type.display }}</span>
-                    <span class="timestamp">{{ notice.added|timesince }} ago</span>
-                </div>
-                <span class="message">{{ notice.message|safe }}</span>
-            </a>
+        <li{% if notice.is_unseen %} class="unread"{% endif %}>
+            <div class="details">
+                <span class="type">{{ notice.notice_type.display }}</span>
+                <span class="timestamp">{{ notice.added|timesince }} ago</span>
+            </div>
+            <span class="message">{{ notice.message|safe }}</span>
         </li>
     {% empty %}
-        <li>There are no notifications at this time.</li>
+        <li class="empty_notices">There are no notifications at this time.</li>
     {% endfor %}
-</ul>
+</ul

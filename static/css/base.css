@@ -1051,7 +1051,10 @@ a.ui-slider-handle {
 }
 
 .hid {
-    display: none;
+    display: none !important;
+}
+.invisible {
+    visibility: hidden !important;
 }
 .overflowHidden {
     overflow: hidden;
@@ -1059,49 +1062,76 @@ a.ui-slider-handle {
 
 #notifications {
     float: right;
-    margin: 18px 20px 0 0;
+    margin: 18px 10px 0 0;
     position: relative;
 }
 #notifications_count {
-    padding: 5px 10px;
+    padding: 3px 5px;
     display: inline-block;
-    background-color: #EEE;
+    background: url(../images/plane.png) no-repeat center rgba(255,255,255,0.4);
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
+    border: 1px solid #AAA;
 }
-#notifications_count.active, #notifications_count:hover {
+#notifications_number {
+    display: inline-block;
+    padding: 2px 4px;
+    background-color: #F03D25;
+    left: -15px;
+    top: -10px;
+    position: relative;
+    color: #FFF;
+    border: 1px solid #333;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+#notifications_count:hover {
     background-color: #FFF;
     cursor: pointer;
+}
+#notifications_count.active,
+#notifications_count.active:hover {
+    border: 1px solid #444;
+    background-color: #666;
+    color: #FFF;
 }
 #notifications_pane {
     position: absolute;
     z-index: 100;
-    width: 300px;
+    width: 251px;
     background-color: #FFF;
     left: 0;
     top: 41px;
-    padding: 10px;
     border: 1px solid #CCC;
     -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
     display: none;
 }
+#notifications_pane h2 {
+    padding: 10px;
+}
 #notifications_pane ul {
     list-style: none;
 }
 #notifications_pane li {
     border-top: 1px solid #CCC;
-    padding-top: 5px;
-    margin-top: 10px;
+    background-color: #EEE;
+    padding: 10px;
+}
+#notifications_pane li.unread {
+    background-color: #FFF;
 }
 #notifications_pane a {
     text-decoration: none;
+    display: block;
 }
 #notifications_pane .type {
     font-weight: 600;
     margin-right: 5px;
+    color: #777;
 }
 #notifications_pane .details {
     margin-bottom: 3px;
@@ -1113,4 +1143,7 @@ a.ui-slider-handle {
 }
 #notifications_pane .message {
     color: #444;
+}
+#notifications_pane .empty_notices {
+    padding: 10px;
 }

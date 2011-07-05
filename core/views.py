@@ -29,6 +29,7 @@ from core.view_helpers import does_email_exist
 from employer.forms import SearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
+from notification.models import Notice
 
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
@@ -356,3 +357,7 @@ def browser_configuration_not_supported(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
     return context
+
+def get_notice_unseen_count(request):
+    count = Notice.objects.unseen_count_for(request.user, on_site=True)
+    return HttpResponse(simplejson.dumps({'count': count}), mimetype="application/json")

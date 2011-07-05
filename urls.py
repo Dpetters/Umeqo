@@ -53,6 +53,7 @@ urlpatterns += patterns('core.views',
     (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website'),
+    (r'^notification/count$', 'get_notice_unseen_count', {}, 'get_notice_unseen_count'),
 )
 
 urlpatterns += patterns('registration.views',

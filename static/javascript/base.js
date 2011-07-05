@@ -361,6 +361,7 @@ $(document).ready( function () {
             $.get(NOTIFICATIONS_URL, function(data) {
                 $('#notifications_pane').html(data);
             });
+            $('#notifications_number').addClass('invisible');
             $('#notifications_count').addClass('active');
         } else {
             $('#notifications_count').removeClass('active');
@@ -378,9 +379,9 @@ $(document).ready( function () {
         if ($(e.target).parents('#notifications_pane').length == 0 &&
             e.target.id != 'notifications_count') {
             $('#notifications_pane').hide();
-            $('#notifications_count').removeClass('active');
-        }
-    });
+        $('#notifications_count').removeClass('active');
+    }
+});
 
 });
 
