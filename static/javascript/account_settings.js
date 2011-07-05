@@ -46,6 +46,7 @@ $(document).ready( function () {
             },
             new_password1: {
                 required: true,
+                minlength: PASSWORD_MIN_LENGTH,
             },
             new_password2:{
                 required: true,
