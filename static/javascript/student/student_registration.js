@@ -80,6 +80,7 @@ $(document).ready( function() {
             },
             password1: {
                 required: true,
+                minlength: PASSWORD_MIN_LENGTH,
             }
         },
         messages:{

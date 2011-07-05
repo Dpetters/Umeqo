@@ -4,6 +4,8 @@
  Copyright 2011. All Rights Reserved.
  */
 
+var PASSWORD_MIN_LENGTH = 5;
+
 /* Multiselect Widget Properties */
 var multiselectMinWidth = 318;
 var multiselectYesNoSingleSelectWidth = 181;
@@ -70,13 +72,11 @@ function unhighlight(element, errorClass) {
 
 function place_form_errors(form, errors){
 	for (error in errors){
-		console.log(error);
-		console.log(errors[error]);
 		if (error == "non_field_error"){
 			place_non_field_ajax_errors(form, errors[error]);
 		}
 		else{
-			place_errors_table(errors[error], $("#"+error));
+			place_errors_table($("<label class='error' for='" + error + "'>" + errors[error] + "</label>"), $("#"+error));
 		}
 	};
 };
@@ -95,8 +95,9 @@ function place_errors_ajax_table(errors, element){
 function place_non_field_ajax_error(form, error){
     $(form + " .error_section").html(errors.__all__[0]);
 };
+
 function place_errors(error, element) {
-    $(error).appendTo(element.parent().prev());
+    error.appendTo(element.parent().prev());
     if ($(element).position().left == 0) {
         if ($(element).next(":button.ui-multiselect").length!=0) {
             var offset = element.next().position().left-element.parent().position().left;
@@ -104,14 +105,14 @@ function place_errors(error, element) {
     } else {
         var offset = element.position().left-element.parent().position().left;
     }
-    $(error).css({
+    error.css({
         "padding-left": offset,
         "float": "left",
         "position": "absolute",
         "bottom": 0
     });
 };
-function place_errors_table(error,element) {
+function place_errors_table(error, element) {
     if (element.prev().get(0).tagName=='DIV') {
         element.prev().html(error);
     } else if (element.prev().prev().html()=="" || !element.prev().prev().children(":eq(0)").is(":visible")){
@@ -124,7 +125,7 @@ function place_errors_table(error,element) {
     } else if (element.prev().prev().get(0) && element.prev().prev().get(0).tagName!='DIV'){
         var offset = element.position().left-element.parent().position().left;
     }
-    $(error).css({
+    error.css({
         "padding-left": offset,
         "float": "left",
         "position": "absolute",

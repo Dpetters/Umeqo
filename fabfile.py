@@ -1,5 +1,5 @@
 import os, subprocess, shutil, sys
-from fabric.api import local, lcd, abort, env, sudo, run, cd
+from fabric.api import hosts, local, lcd, abort, env, sudo, run, cd
 from fabric.contrib.console import confirm
 from fabric.contrib import django as fabric_django
 
@@ -8,7 +8,7 @@ sys.path.append(ROOT)
 fabric_django.settings_module('settings')
 from django.conf import settings
 
-__all__= ["pull_prod_data_to_staging", "staging", "prod", "reboot", "refresh_database", "commit_local_data"]
+__all__= ["staging", "prod", "reboot", "refresh_database", "commit_local_data"]
 
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
@@ -16,22 +16,7 @@ def delete_contents(directory):
             os.remove(os.path.join(root, name))
         for name in dirs:
             os.rmdir(os.path.join(root, name))
-"""
-def run_server():
-    subprocess.Popen("python manage.py runserver", shell=True)
 
-def run_memcached():
-    subprocess.Popen("memcached", shell=True)
-
-def run_solr():
-    os.chdir(ROOT +"/apache-solr-1.4.1/")
-    subprocess.Popen("java -jar start.jar", shell=True)
-
-def run_local():
-    run_server()
-    run_memcached()
-    run_solr()
-"""
 def staging():
     env.hosts = ['root@staging.umeqo.com']
 
@@ -79,15 +64,10 @@ def refresh_database():
     p = subprocess.Popen("python manage.py syncdb --noinput --migrate", shell=True)
     p.wait()
 
-    #os.chdir(ROOT +"/apache-solr-1.4.1/example/")
-    #solr_proc = subprocess.Popen(["java", "-jar", "start.jar"], cwd=ROOT +"/apache-solr-1.4.1/")
-    
     for app in settings.DATA_APPS:
         p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
         
-    #solr_proc.kill()
-
 
 def commit_local_data():
     print 'This script might overwrite local data that has already been created. \
@@ -141,26 +121,3 @@ def commit_local_data():
         else:
             p = subprocess.Popen("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
-
-def pull_prod_data_to_staging():
-    # Creating the prod_data directories
-    # dumpdata requires that they exist
-    ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
-    prod_data_directories = [
-        "/prod_data/",
-        "/prod_data/fixtures/",
-        "/prod_data/media/",
-        "/prod_data/media/images/",
-        "/prod_data/media/resumebooks/",
-        "/prod_data/media/resumes/",
-    ]
-    for dir in prod_data_directories:
-        run("mkdir %s" % (ROOT + dir,))
-
-    for app in settings.DATA_APPS:
-        with cd("/var/www/umeqo"):
-            # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
-            if app == "user":
-                run("python manage.py dumpdata auth.user --indent=1 > ./prod_data/fixtures/prod_user_data.json")
-            else:
-                run("python manage.py dumpdata " + app + " --indent=1 > ./prod_data/fixtures/prod_" + app + "_data.json")

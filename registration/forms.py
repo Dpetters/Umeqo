@@ -11,3 +11,13 @@ class SetPasswordForm(AuthSetPasswordForm):
     
 class PasswordChangeForm(SetPasswordForm):
     old_password = forms.CharField(label=_("Old password:"), widget=forms.PasswordInput, required=True)
+   
+    def clean_old_password(self):
+        print "HERE!"
+        """
+        Validates that the old_password field is correct.
+        """
+        old_password = self.cleaned_data["old_password"]
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError(_("Your old password was entered incorrectly."))
+        return old_password

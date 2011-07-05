@@ -13,11 +13,11 @@ from django.utils import simplejson
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import logout as auth_logout_then_login
 from django.contrib.sessions.models import Session
 from django.conf import settings
 
+from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
 from registration.models import SessionKey
 from registration.view_helpers import modify_redirect
@@ -67,7 +67,7 @@ def password_change(request,
             form.save()
             request.user.userattributes.last_password_change_date = datetime.now()
             for session_key_object in request.user.sessionkey_set.all():
-                Session.objects.filter(session_key=session_key_object.session_key).delete()
+                Session.objects.get(session_key=session_key_object.session_key).delete()
             request.user.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, request.user)
             data = {'valid':True}
