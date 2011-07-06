@@ -199,8 +199,8 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Graduate (MD)"
+   "last_updated": "2011-07-06 05:54:59", 
+   "name": "Graduate (Masters)"
   }
  }, 
  {
@@ -258,6 +258,1068 @@
   }
  }, 
  {
+  "pk": 6, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-07-04 18:32:46", 
+   "last_updated": "2011-07-04 18:32:46", 
+   "year": 2017
+  }
+ }, 
+ {
+  "pk": 52, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:08", 
+   "last_updated": "2011-07-04 19:01:08", 
+   "name": "Czech (Basic)"
+  }
+ }, 
+ {
+  "pk": 51, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:00", 
+   "last_updated": "2011-07-04 19:01:00", 
+   "name": "Croatian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 50, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:54", 
+   "last_updated": "2011-07-04 19:00:54", 
+   "name": "Croatian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 49, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:46", 
+   "last_updated": "2011-07-04 19:00:46", 
+   "name": "Croatian (Basic)"
+  }
+ }, 
+ {
+  "pk": 48, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:38", 
+   "last_updated": "2011-07-04 19:00:38", 
+   "name": "Chinese (Fluent)"
+  }
+ }, 
+ {
+  "pk": 47, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:32", 
+   "last_updated": "2011-07-04 19:00:32", 
+   "name": "Chinese (Proficient)"
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:15", 
+   "last_updated": "2011-07-04 19:00:15", 
+   "name": "Chinese (Basic)"
+  }
+ }, 
+ {
+  "pk": 45, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:10", 
+   "last_updated": "2011-07-04 19:00:10", 
+   "name": "Cantonese (Fluent)"
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:59:53", 
+   "last_updated": "2011-07-04 18:59:53", 
+   "name": "Cantonese (Proficient)"
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:59:46", 
+   "last_updated": "2011-07-04 18:59:46", 
+   "name": "Cantonese (Basic)"
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:58:21", 
+   "last_updated": "2011-07-04 18:58:21", 
+   "name": "Bulgarian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:58:15", 
+   "last_updated": "2011-07-04 18:58:15", 
+   "name": "Bulgarian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:58:07", 
+   "last_updated": "2011-07-04 18:58:07", 
+   "name": "Bulgarian (Basic)"
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:53", 
+   "last_updated": "2011-07-04 18:57:53", 
+   "name": "Bengali (Fluent)"
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:48", 
+   "last_updated": "2011-07-04 18:57:48", 
+   "name": "Bengali (Proficient)"
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:40", 
+   "last_updated": "2011-07-04 18:57:40", 
+   "name": "Bengali (Basic)"
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:33", 
+   "last_updated": "2011-07-04 18:57:33", 
+   "name": "Arabic (Fluent)"
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:28", 
+   "last_updated": "2011-07-04 18:57:28", 
+   "name": "Arabic (Proficient)"
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:16", 
+   "last_updated": "2011-07-04 18:57:16", 
+   "name": "Arabic (Basic)"
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:08", 
+   "last_updated": "2011-07-04 18:57:08", 
+   "name": "American Sign Language (Fluent)"
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:56:53", 
+   "last_updated": "2011-07-04 18:56:53", 
+   "name": "American Sign Language (Proficient)"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:55:49", 
+   "last_updated": "2011-07-04 18:55:49", 
+   "name": "American Sign Language (Basic)"
+  }
+ }, 
+ {
+  "pk": 53, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:16", 
+   "last_updated": "2011-07-04 19:01:16", 
+   "name": "Czech (Proficient)"
+  }
+ }, 
+ {
+  "pk": 54, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:31", 
+   "last_updated": "2011-07-04 19:01:31", 
+   "name": "Czech (Fluent)"
+  }
+ }, 
+ {
+  "pk": 55, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:38", 
+   "last_updated": "2011-07-04 19:01:38", 
+   "name": "Danish (Basic)"
+  }
+ }, 
+ {
+  "pk": 56, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:44", 
+   "last_updated": "2011-07-04 19:01:44", 
+   "name": "Danish (Proficient)"
+  }
+ }, 
+ {
+  "pk": 57, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:51", 
+   "last_updated": "2011-07-04 19:01:51", 
+   "name": "Danish (Fluent)"
+  }
+ }, 
+ {
+  "pk": 58, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:57", 
+   "last_updated": "2011-07-04 19:01:57", 
+   "name": "Dutch (Basic)"
+  }
+ }, 
+ {
+  "pk": 59, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:03", 
+   "last_updated": "2011-07-04 19:02:03", 
+   "name": "Dutch (Proficient)"
+  }
+ }, 
+ {
+  "pk": 60, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:08", 
+   "last_updated": "2011-07-04 19:02:08", 
+   "name": "Dutch (Fluent)"
+  }
+ }, 
+ {
+  "pk": 61, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:15", 
+   "last_updated": "2011-07-04 19:02:15", 
+   "name": "Estonian (Basic)"
+  }
+ }, 
+ {
+  "pk": 62, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:34", 
+   "last_updated": "2011-07-04 19:02:34", 
+   "name": "Estonian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 63, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:41", 
+   "last_updated": "2011-07-04 19:02:41", 
+   "name": "Estonian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 64, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:46", 
+   "last_updated": "2011-07-04 19:02:46", 
+   "name": "Farsi (Basic)"
+  }
+ }, 
+ {
+  "pk": 65, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:52", 
+   "last_updated": "2011-07-04 19:02:52", 
+   "name": "Farsi (Proficient)"
+  }
+ }, 
+ {
+  "pk": 66, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:56", 
+   "last_updated": "2011-07-04 19:02:56", 
+   "name": "Farsi (Fluent)"
+  }
+ }, 
+ {
+  "pk": 67, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:27", 
+   "last_updated": "2011-07-04 19:03:27", 
+   "name": "Finnish (Basic)"
+  }
+ }, 
+ {
+  "pk": 68, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:34", 
+   "last_updated": "2011-07-04 19:03:34", 
+   "name": "Finnish (Proficient)"
+  }
+ }, 
+ {
+  "pk": 69, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:39", 
+   "last_updated": "2011-07-04 19:03:39", 
+   "name": "Finnish (Fluent)"
+  }
+ }, 
+ {
+  "pk": 70, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:44", 
+   "last_updated": "2011-07-04 19:03:44", 
+   "name": "French (Basic)"
+  }
+ }, 
+ {
+  "pk": 71, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:49", 
+   "last_updated": "2011-07-04 19:03:49", 
+   "name": "French (Proficient)"
+  }
+ }, 
+ {
+  "pk": 72, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:54", 
+   "last_updated": "2011-07-04 19:03:54", 
+   "name": "French (Fluent)"
+  }
+ }, 
+ {
+  "pk": 73, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:01", 
+   "last_updated": "2011-07-04 19:04:01", 
+   "name": "German (Basic)"
+  }
+ }, 
+ {
+  "pk": 74, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:07", 
+   "last_updated": "2011-07-04 19:04:07", 
+   "name": "German (Proficient)"
+  }
+ }, 
+ {
+  "pk": 75, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:14", 
+   "last_updated": "2011-07-04 19:04:14", 
+   "name": "German (Fluent)"
+  }
+ }, 
+ {
+  "pk": 76, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:19", 
+   "last_updated": "2011-07-04 19:04:19", 
+   "name": "Greek (Basic)"
+  }
+ }, 
+ {
+  "pk": 77, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:28", 
+   "last_updated": "2011-07-04 19:04:28", 
+   "name": "Greek (Proficient)"
+  }
+ }, 
+ {
+  "pk": 78, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:37", 
+   "last_updated": "2011-07-04 19:04:37", 
+   "name": "Greek (Fluent)"
+  }
+ }, 
+ {
+  "pk": 79, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:44", 
+   "last_updated": "2011-07-04 19:04:44", 
+   "name": "Hebrew (Basic)"
+  }
+ }, 
+ {
+  "pk": 80, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:05:22", 
+   "last_updated": "2011-07-04 19:05:22", 
+   "name": "Hebrew (Proficient)"
+  }
+ }, 
+ {
+  "pk": 81, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:05:34", 
+   "last_updated": "2011-07-04 19:05:34", 
+   "name": "Hebrew (Fluent)"
+  }
+ }, 
+ {
+  "pk": 82, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:05:56", 
+   "last_updated": "2011-07-04 19:05:56", 
+   "name": "Hindi (Basic)"
+  }
+ }, 
+ {
+  "pk": 83, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:01", 
+   "last_updated": "2011-07-04 19:06:01", 
+   "name": "Hindi (Proficient)"
+  }
+ }, 
+ {
+  "pk": 84, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:07", 
+   "last_updated": "2011-07-04 19:06:07", 
+   "name": "Hindi (Fluent)"
+  }
+ }, 
+ {
+  "pk": 85, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:52", 
+   "last_updated": "2011-07-04 19:06:52", 
+   "name": "Hungarian (Basic)"
+  }
+ }, 
+ {
+  "pk": 86, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:59", 
+   "last_updated": "2011-07-04 19:06:59", 
+   "name": "Hungarian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 87, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:09", 
+   "last_updated": "2011-07-04 19:07:09", 
+   "name": "Hungarian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 88, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:14", 
+   "last_updated": "2011-07-04 19:07:14", 
+   "name": "Icelandic (Basic)"
+  }
+ }, 
+ {
+  "pk": 89, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:21", 
+   "last_updated": "2011-07-04 19:07:21", 
+   "name": "Icelandic (Proficient)"
+  }
+ }, 
+ {
+  "pk": 90, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:26", 
+   "last_updated": "2011-07-04 19:07:26", 
+   "name": "Icelandic (Fluent)"
+  }
+ }, 
+ {
+  "pk": 91, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:03", 
+   "last_updated": "2011-07-04 19:08:03", 
+   "name": "Italian (Basic)"
+  }
+ }, 
+ {
+  "pk": 92, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:08", 
+   "last_updated": "2011-07-04 19:08:08", 
+   "name": "Italian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 93, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:14", 
+   "last_updated": "2011-07-04 19:08:14", 
+   "name": "Italian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 94, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:22", 
+   "last_updated": "2011-07-04 19:08:22", 
+   "name": "Japanese (Basic)"
+  }
+ }, 
+ {
+  "pk": 95, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:27", 
+   "last_updated": "2011-07-04 19:08:27", 
+   "name": "Japanese (Proficient)"
+  }
+ }, 
+ {
+  "pk": 96, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:33", 
+   "last_updated": "2011-07-04 19:08:33", 
+   "name": "Japanese (Fluent)"
+  }
+ }, 
+ {
+  "pk": 97, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:49", 
+   "last_updated": "2011-07-04 19:08:49", 
+   "name": "Korean (Basic)"
+  }
+ }, 
+ {
+  "pk": 98, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:54", 
+   "last_updated": "2011-07-04 19:08:54", 
+   "name": "Korean (Proficient)"
+  }
+ }, 
+ {
+  "pk": 99, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:01", 
+   "last_updated": "2011-07-04 19:09:01", 
+   "name": "Korean (Fluent)"
+  }
+ }, 
+ {
+  "pk": 100, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:08", 
+   "last_updated": "2011-07-04 19:09:08", 
+   "name": "Latvian (Basic)"
+  }
+ }, 
+ {
+  "pk": 101, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:17", 
+   "last_updated": "2011-07-04 19:09:17", 
+   "name": "Latvian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 102, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:26", 
+   "last_updated": "2011-07-04 19:09:26", 
+   "name": "Latvian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 103, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:36", 
+   "last_updated": "2011-07-04 19:09:36", 
+   "name": "Lithuanian (Basic)"
+  }
+ }, 
+ {
+  "pk": 104, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:46", 
+   "last_updated": "2011-07-04 19:09:46", 
+   "name": "Lithuanian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 105, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:06", 
+   "last_updated": "2011-07-04 19:10:06", 
+   "name": "Lithuanian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 106, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:13", 
+   "last_updated": "2011-07-04 19:10:13", 
+   "name": "Mandarin (Basic)"
+  }
+ }, 
+ {
+  "pk": 107, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:19", 
+   "last_updated": "2011-07-04 19:10:19", 
+   "name": "Mandarin (Proficient)"
+  }
+ }, 
+ {
+  "pk": 108, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:44", 
+   "last_updated": "2011-07-04 19:10:44", 
+   "name": "Mandarin (Fluent)"
+  }
+ }, 
+ {
+  "pk": 109, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:00", 
+   "last_updated": "2011-07-04 19:11:00", 
+   "name": "Norwegian (Basic)"
+  }
+ }, 
+ {
+  "pk": 110, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:07", 
+   "last_updated": "2011-07-04 19:11:07", 
+   "name": "Norwegian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 111, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:12", 
+   "last_updated": "2011-07-04 19:11:12", 
+   "name": "Norwegian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 112, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:21", 
+   "last_updated": "2011-07-04 19:11:21", 
+   "name": "Polish (Basic)"
+  }
+ }, 
+ {
+  "pk": 113, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:31", 
+   "last_updated": "2011-07-04 19:11:31", 
+   "name": "Polish (Proficient)"
+  }
+ }, 
+ {
+  "pk": 114, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:36", 
+   "last_updated": "2011-07-04 19:11:36", 
+   "name": "Polish (Fluent)"
+  }
+ }, 
+ {
+  "pk": 115, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:50", 
+   "last_updated": "2011-07-04 19:11:50", 
+   "name": "Portuguese (Basic)"
+  }
+ }, 
+ {
+  "pk": 116, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:08", 
+   "last_updated": "2011-07-04 19:12:08", 
+   "name": "Portuguese (Proficient)"
+  }
+ }, 
+ {
+  "pk": 117, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:14", 
+   "last_updated": "2011-07-04 19:12:14", 
+   "name": "Portuguese (Fluent)"
+  }
+ }, 
+ {
+  "pk": 118, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:23", 
+   "last_updated": "2011-07-04 19:12:23", 
+   "name": "Romanian (Basic)"
+  }
+ }, 
+ {
+  "pk": 119, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:35", 
+   "last_updated": "2011-07-04 19:12:35", 
+   "name": "Romanian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 120, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:42", 
+   "last_updated": "2011-07-04 19:12:42", 
+   "name": "Romanian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 121, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:50", 
+   "last_updated": "2011-07-04 19:12:50", 
+   "name": "Russian (Basic)"
+  }
+ }, 
+ {
+  "pk": 122, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:54", 
+   "last_updated": "2011-07-04 19:12:54", 
+   "name": "Russian (Proficient)"
+  }
+ }, 
+ {
+  "pk": 123, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:59", 
+   "last_updated": "2011-07-04 19:12:59", 
+   "name": "Russian (Fluent)"
+  }
+ }, 
+ {
+  "pk": 124, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:09", 
+   "last_updated": "2011-07-04 19:13:09", 
+   "name": "Slovak (Basic)"
+  }
+ }, 
+ {
+  "pk": 125, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:17", 
+   "last_updated": "2011-07-04 19:13:17", 
+   "name": "Slovak (Proficient)"
+  }
+ }, 
+ {
+  "pk": 126, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:23", 
+   "last_updated": "2011-07-04 19:13:23", 
+   "name": "Slovak (Fluent)"
+  }
+ }, 
+ {
+  "pk": 127, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:30", 
+   "last_updated": "2011-07-04 19:13:30", 
+   "name": "Spanish (Basic)"
+  }
+ }, 
+ {
+  "pk": 128, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:36", 
+   "last_updated": "2011-07-04 19:13:36", 
+   "name": "Spanish (Proficient)"
+  }
+ }, 
+ {
+  "pk": 129, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:42", 
+   "last_updated": "2011-07-04 19:13:42", 
+   "name": "Spanish (Fluent)"
+  }
+ }, 
+ {
+  "pk": 130, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:49", 
+   "last_updated": "2011-07-04 19:13:49", 
+   "name": "Swedish (Basic)"
+  }
+ }, 
+ {
+  "pk": 131, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:55", 
+   "last_updated": "2011-07-04 19:13:55", 
+   "name": "Swedish (Proficient)"
+  }
+ }, 
+ {
+  "pk": 132, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:14:01", 
+   "last_updated": "2011-07-04 19:14:01", 
+   "name": "Swedish (Fluent)"
+  }
+ }, 
+ {
+  "pk": 133, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:14:07", 
+   "last_updated": "2011-07-04 19:14:07", 
+   "name": "Taiwanese (Basic)"
+  }
+ }, 
+ {
+  "pk": 134, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:23", 
+   "last_updated": "2011-07-04 19:17:23", 
+   "name": "Taiwanese (Proficient)"
+  }
+ }, 
+ {
+  "pk": 135, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:31", 
+   "last_updated": "2011-07-04 19:17:31", 
+   "name": "Taiwanese (Fluent)"
+  }
+ }, 
+ {
+  "pk": 136, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:37", 
+   "last_updated": "2011-07-04 19:17:37", 
+   "name": "Thai (Basic)"
+  }
+ }, 
+ {
+  "pk": 137, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:59", 
+   "last_updated": "2011-07-04 19:17:59", 
+   "name": "Thai (Proficient)"
+  }
+ }, 
+ {
+  "pk": 138, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:03", 
+   "last_updated": "2011-07-04 19:18:03", 
+   "name": "Thai (Fluent)"
+  }
+ }, 
+ {
+  "pk": 139, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:09", 
+   "last_updated": "2011-07-04 19:18:09", 
+   "name": "Turkish (Basic)"
+  }
+ }, 
+ {
+  "pk": 140, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:15", 
+   "last_updated": "2011-07-04 19:18:15", 
+   "name": "Turkish (Proficient)"
+  }
+ }, 
+ {
+  "pk": 141, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:20", 
+   "last_updated": "2011-07-04 19:18:20", 
+   "name": "Turkish (Fluent)"
+  }
+ }, 
+ {
+  "pk": 142, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:30", 
+   "last_updated": "2011-07-04 19:18:30", 
+   "name": "Urdu (Basic)"
+  }
+ }, 
+ {
+  "pk": 143, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:35", 
+   "last_updated": "2011-07-04 19:18:35", 
+   "name": "Urdu (Proficient)"
+  }
+ }, 
+ {
+  "pk": 144, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:43", 
+   "last_updated": "2011-07-04 19:18:43", 
+   "name": "Urdu (Fluent)"
+  }
+ }, 
+ {
+  "pk": 145, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:50", 
+   "last_updated": "2011-07-04 19:18:50", 
+   "name": "Vietnamese (Basic)"
+  }
+ }, 
+ {
+  "pk": 146, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:57", 
+   "last_updated": "2011-07-04 19:18:57", 
+   "name": "Vietnamese (Proficient)"
+  }
+ }, 
+ {
+  "pk": 147, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:19:05", 
+   "last_updated": "2011-07-04 19:19:05", 
+   "name": "Vietnamese (Fluent)"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "core.language", 
   "fields": {
@@ -282,249 +1344,6 @@
    "date_created": "2011-05-03 12:27:35", 
    "last_updated": "2011-05-03 12:27:35", 
    "name": "English (Fluent)"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Chinese (Basic)"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Chinese (Proficient)"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Chinese (Fluent)"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Spanish (Basic)"
-  }
- }, 
- {
-  "pk": 8, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Spanish (Proficient)"
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Spanish (Fluent)"
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Japanese (Basic)"
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Japanese (Proficient)"
-  }
- }, 
- {
-  "pk": 12, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Japanese (Fluent)"
-  }
- }, 
- {
-  "pk": 13, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Portuguese (Basic)"
-  }
- }, 
- {
-  "pk": 14, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Portuguese (Proficient)"
-  }
- }, 
- {
-  "pk": 15, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Portuguese (Fluent)"
-  }
- }, 
- {
-  "pk": 16, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "German (Basic)"
-  }
- }, 
- {
-  "pk": 17, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "German (Proficient)"
-  }
- }, 
- {
-  "pk": 18, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "German (Fluent)"
-  }
- }, 
- {
-  "pk": 19, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Arabic (Basic)"
-  }
- }, 
- {
-  "pk": 20, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Arabic (Proficient)"
-  }
- }, 
- {
-  "pk": 21, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Arabic (Fluent)"
-  }
- }, 
- {
-  "pk": 22, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "French (Basic)"
-  }
- }, 
- {
-  "pk": 23, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "French (Proficient)"
-  }
- }, 
- {
-  "pk": 24, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "French (Fluent)"
-  }
- }, 
- {
-  "pk": 25, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Russian (Basic)"
-  }
- }, 
- {
-  "pk": 26, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Russian (Proficient)"
-  }
- }, 
- {
-  "pk": 27, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Russian (Fluent)"
-  }
- }, 
- {
-  "pk": 28, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Korean (Basic)"
-  }
- }, 
- {
-  "pk": 29, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Korean (Proficient)"
-  }
- }, 
- {
-  "pk": 30, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Korean (Fluent)"
   }
  }, 
  {
@@ -1173,103 +1992,13 @@
   }
  }, 
  {
-  "pk": 2, 
+  "pk": 13, 
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
    "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
-   "name": "Art/Music Organization"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Competition"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Cultural Organization"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Business/Finance Organization"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Greek Organization"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Living Group"
-  }
- }, 
- {
-  "pk": 8, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Interest Group"
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Service Organization"
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Student Government Organization"
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Sport"
+   "name": "Religious Organization"
   }
  }, 
  {
@@ -1283,13 +2012,103 @@
   }
  }, 
  {
-  "pk": 13, 
+  "pk": 11, 
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
    "sort_order": 0, 
    "last_updated": "2011-05-03 12:27:36", 
-   "name": "Religious Organization"
+   "name": "Sport"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Student Government Organization"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Service Organization"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Interest Group"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Living Group"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Greek Organization"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Business/Finance Organization"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Cultural Organization"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Competition"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Art/Music Organization"
   }
  }, 
  {
@@ -7546,13 +8365,13 @@
   "pk": 417, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
+   "website": "http://web.mit.edu/voodoo/www/voodoo.html", 
+   "last_updated": "2011-07-06 06:36:15", 
+   "description": "MIT's only intentionally humorous campus publication.  Since 1919.", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Voo Doo Magazine"
   }
@@ -7562,12 +8381,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:34:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 7, 
    "display": false, 
    "name": "Warehouse Apartments, The"
   }
@@ -7577,12 +8396,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:33:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Western Hemisphere Project"
   }
@@ -7592,12 +8411,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:33:08", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 7, 
    "display": false, 
    "name": "Westgate Community Association"
   }
@@ -7607,7 +8426,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:32:57", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -7622,12 +8441,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:31:33", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Wind Energy Projects in Action"
   }
@@ -7637,12 +8456,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:00:58", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "WMBR Radio"
   }
@@ -7652,12 +8471,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:00:42", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Women's Gymnastics Club"
   }
@@ -7667,12 +8486,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:00:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Women's Ice Hockey Club"
   }
@@ -7682,12 +8501,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:00:22", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Women's Initiative"
   }
@@ -7697,12 +8516,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:00:06", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Women's Rugby Club"
   }
@@ -7712,12 +8531,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 06:00:00", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Women's Ultimate Fri"
   }
@@ -7727,12 +8546,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 05:59:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Women's Volleyball Club"
   }
@@ -7742,12 +8561,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 05:59:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Women's Water Polo"
   }
@@ -7757,12 +8576,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 05:59:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Wrestling Club"
   }
@@ -7772,12 +8591,12 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-06 05:59:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
+   "type": 12, 
    "display": false, 
    "name": "Yan Xin Life Science and Tech Association"
   }
@@ -8176,30 +8995,6 @@
    "date_created": "2011-05-03 12:27:43", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Networking"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "sites.site", 
-  "fields": {
-   "domain": "localhost:8000", 
-   "name": "Umeqo"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "sites.site", 
-  "fields": {
-   "domain": "staging.umeqo.com", 
-   "name": "Umeqo"
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "sites.site", 
-  "fields": {
-   "domain": "umeqo.com", 
-   "name": "Umeqo"
   }
  }
 ]
