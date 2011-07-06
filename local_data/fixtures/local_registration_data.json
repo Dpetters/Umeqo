@@ -49,6 +49,13 @@
   }
  }, 
  {
+  "pk": "eb45a1363e2cf0a7237d9cd29d628f10", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 5
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
