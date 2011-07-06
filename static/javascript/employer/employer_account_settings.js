@@ -1,16 +1,29 @@
 $(document).ready(function(){
 	
-	function handle_account_overview_link_click(){
-		console.log("account_overview");
-	};
-	function handle_subscription_and_billing_link_click(){
-		console.log("subscription_and_billing");
-	};
-	function handle_preferences_link_click(){
-		console.log("preferences");
-	};
-	
-	$("#subscription_and_billing_link").click(handle_subscription_and_billing_link_click);
-	$("#preferences_link").click(handle_preferences_link_click);
-	$("#account_overview_link").click(handle_account_overview_link_click);
+    $('#deactivate_account_link').click( function () {
+        deactivate_account_dialog = open_deactivate_account_dialog();
+        deactivate_account_dialog.html(dialog_ajax_loader);
+
+        var deactivate_account_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        $.ajax({
+            dataType: "html",
+            url: EMPLOYER_DEACTIVATE_ACCOUNT_URL,
+            error: function(jqXHR, textStatus, errorThrown) {
+                clearTimeout(deactivate_account_dialog_timeout);
+                switch(jqXHR.status){
+                    case 0:
+                        deactivate_account_dialog.html(dialog_check_connection_message);
+                        break;
+                    default:
+                        deactivate_account_dialog.html(dialog_error_message);
+                }
+            },
+            success: function (data) {
+                clearTimeout(deactivate_account_dialog_timeout);
+
+                deactivate_account_dialog.html(data);
+                deactivate_account_dialog.dialog('option', 'position', 'center');
+            }
+        });
+    });
 });
