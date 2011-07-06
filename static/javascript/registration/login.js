@@ -17,7 +17,7 @@ $(document).ready(function() {
                 required: 'Enter your email.',
                 email: 'Invalid email.'
             },
-            password: 'Enter a password!',
+            password: 'Enter a password.',
         }
     });
     if (VALIDATE_ON_LOAD) {

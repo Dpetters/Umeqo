@@ -57,7 +57,7 @@ urlpatterns += patterns('core.views',
 )
 
 urlpatterns += patterns('',
-    (r'^login/$', 'django.contrib.auth.views.login', {}, 'login'),
+    (r'^login/$', 'django.contrib.auth.views.login', {'extra_context': {'login_form': AuthenticationForm}}, 'login'),
 )
 urlpatterns += patterns('registration.views',
     (r'^logout/$', 'logout', {'login_url':'/?action=logged-out'}, 'logout'),

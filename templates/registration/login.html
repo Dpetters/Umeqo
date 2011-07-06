@@ -8,7 +8,7 @@ Login |
 {{ block.super }}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/registration/login.css" />
 <script>
-    var VALIDATE_ON_LOAD = {% if form.username.errors %}true{% else %}false{% endif %};
+    var VALIDATE_ON_LOAD = {% if form.errors %}true{% else %}false{% endif %};
 </script>
 <script src="{{ STATIC_URL }}javascript/registration/login.js"></script>
 {% endblock %}
