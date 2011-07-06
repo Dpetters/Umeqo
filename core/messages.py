@@ -8,7 +8,7 @@ resume_must_be_a_pdf = "Please select a PDF version of your resume."
 first_and_second_major_must_be_diff = "Second major must be different from first."
 
 #Login Form
-incorrect_username_password_combo = "This username and password combo is invalid. Note that both are case-sensitive."
+incorrect_username_password_combo = "This email and password combo is invalid. Note that both are case-sensitive."
 account_suspended = "This account has been suspended. Please direct all inquiries to admin@umeqo.com."
 enable_cookies = "Your browser doesn't seem to have cookies enabled. Cookies are required to login."
 

@@ -5,10 +5,11 @@
  */
 
 .main_block {
-    width:760px;
+    width: 760px;
+    float: right;
 }
 .side_block {
-    width:200px;
+    width: 200px;
 }
 
 #dropbox {
@@ -19,14 +20,14 @@
     border: 1px dotted #303030;
 }
 #dropbox_status{
-    font-weight:bold;
-    height:0px;
-    position:relative;
-    top:75px;
+    font-weight: bold;
+    height: 0px;
+    position: relative;
+    top: 75px;
 }
 #quick_resume_updater_block #dropbox.hover {
     border: 1px dashed #303030;
-    opacity:0.3;
+    opacity: 0.3;
 }
 #quick_resume_updater_block #dropbox.uploading {
     border: 1px solid orange;
@@ -38,50 +39,50 @@
     border: 1px solid red;
 }
 #quick_resume_updater_block .side_block_content{
-    text-align:center;
+    text-align: center;
 }
 
 #notifications_block .main_block_header{
-    line-height:22px;
+    line-height: 22px;
 }
 
 #id_subscribed_employers {
     width: 300px;
 }
 .employer_subscriptions_dialog .ui-dialog-content {
-    padding:25px;
+    padding: 25px;
 }
 #suggested_employers_list_info_block {
-    width:112px;
+    width: 112px;
 }
 #suggested_employers_list {
-    float:right;
+    float: right;
     list-style: inside;
     margin-right: 2px;
-    width:300px;
-    min-height:120px;
+    width: 300px;
+    min-height: 120px;
 }
 #suggested_employers_list li {
-    background-color:#d9d9d9;
+    background-color: #d9d9d9;
     padding: 3px 0 3px 4px;
     margin-top: 2px;
     cursor: pointer;
 }
 #suggested_employers_list li:hover {
-    background-color:#c9c9c9;
+    background-color: #c9c9c9;
 }
 #get_more_employer_suggestions_link {
-    top:5px;
+    top: 5px;
     position: relative;
 }
 #employer_subscriptions_form_submit_button {
-    margin-bottom:0px;
+    margin-bottom: 0px;
 }
 #employer_suggestions_info {
-    position:relative;
-    top:5px;
-    width:121px;
+    position: relative;
+    top: 5px;
+    width: 121px;
 }
 #click_to_add_note {
-    margin-left:22px;
+    margin-left: 22px;
 }
