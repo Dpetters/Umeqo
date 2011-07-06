@@ -9,10 +9,9 @@ from django.core.cache import cache
 
 from notification import models as notification
 from haystack.query import SearchQuerySet
-from core import choices as core_choices
 from student.models import Student
 from employer import enums
-from employer.models import ResumeBook, StudentComment, Employer, Industry
+from employer.models import ResumeBook, StudentComment, Employer
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
 
@@ -130,18 +129,10 @@ def get_cached_filtering_results(request):
         if request.POST['industries_of_interest']:
             industries_of_interest = request.POST['industries_of_interest'].split('~')
         
-        gender=None
-        if request.POST['gender']:
-            gender = request.POST['gender']
-
         older_than_18 = None
         if request.POST['older_than_18'] != 'N':
             older_than_18 = request.POST['older_than_18']
-        
-        ethnicities = None
-        if request.POST['ethnicities']:
-            ethnicities = request.POST['ethnicities'].split('~')
-            
+
         languages = None
         if request.POST['languages']:
             languages  = request.POST['languages'].split('~')
@@ -169,10 +160,8 @@ def get_cached_filtering_results(request):
                                                     previous_employers=previous_employers,
                                                     industries_of_interest=industries_of_interest,
                                                     older_than_18 = older_than_18,
-                                                    ethnicities=ethnicities,
                                                     languages=languages,
                                                     countries_of_citizenship=countries_of_citizenship,
-                                                    gender=gender,
                                                     campus_orgs=campus_orgs)
         
         cache.set('filtering_results', current_filtering_results)
@@ -202,9 +191,7 @@ def filter_students(recruiter,
                     employment_types=None,
                     previous_employers=None,
                     industries_of_interest=None,
-                    gender=None,
                     older_than_18=None,
-                    ethnicities=None,
                     languages=None,
                     countries_of_citizenship=None,
                     campus_orgs=None):
@@ -251,12 +238,8 @@ def filter_students(recruiter,
         kwargs['previous_employers__id__in'] = previous_employers
     if industries_of_interest:
         kwargs['industries_of_interest__id__in'] = industries_of_interest
-    if gender and gender != core_choices.BOTH_GENDERS:
-        kwargs['gender'] = gender
     if older_than_18:
         kwargs['older_than_18'] = older_than_18
-    if ethnicities:
-        kwargs['ethnicity__id__in'] = ethnicities
     if languages:
         kwargs['languages__id__in'] = languages
     if countries_of_citizenship:

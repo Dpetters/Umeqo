@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 from student.models import Student
 from countries.models import Country
-from core.models import Industry, Ethnicity, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
+from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
 from employer import enums as employer_enums
 from core import choices as core_choices
 
@@ -35,9 +35,7 @@ class FilteringParameters(models.Model):
     employment_types = models.ManyToManyField(EmploymentType, blank = True, null = True)
     
     campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null = True)
-    ethnicities = models.ManyToManyField(Ethnicity, blank = True, null = True)
     languages = models.ManyToManyField(Language, blank = True, null = True)
-    gender = models.CharField(max_length=1, choices = core_choices.FILTERING_GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.CharField(max_length=1, choices = core_choices.NO_YES_CHOICES, blank = True, null = True)
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
 

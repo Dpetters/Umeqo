@@ -2,8 +2,8 @@
 {% load static %}
  
 {% if starred %}
-    <img class='starred_img' title='Remove Star' src='{% get_static_prefix %}images/icons/yellow_star.png'/>
+    <img class='starred_img' title='Remove Star' src='{% get_static_prefix %}images/icons/star.png'/>
 {% else %}
-    <img class='unstarred_img' title='Add Star' src='{% get_static_prefix %}images/icons/blank_star.png'/>
+    <img class='unstarred_img' title='Add Star' src='{% get_static_prefix %}images/icons/star-empty.png'/>
 {% endif %}
 {% endspaceless %}

@@ -39,9 +39,7 @@ def login(request):
                 else:
                     if not request.session.test_cookie_worked():
                         return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.enable_cookies)}), mimetype="application/json")
-                    print "Before: " + request.session.session_key
                     auth_login(request, user)
-                    print "After: " + request.session.session_key
                     SessionKey.objects.create(user=user, session_key=request.session.session_key)
                     return HttpResponse(simplejson.dumps({"valid":True, "success_url":modify_redirect(request, redirect_to)}), mimetype="application/json")
     return redirect("home")

@@ -17,7 +17,6 @@
    "countries_of_citizenship": [
     "LV"
    ], 
-   "ethnicity": 2, 
    "first_name": "Dmitrij", 
    "first_major": 12, 
    "preferences": 1, 
@@ -41,8 +40,7 @@
    "resume": "submitted_resumes/Petters_Dmitrij_samplestudent1_2011-05-22-20-07-02.pdf", 
    "is_active": false, 
    "statistics": 1, 
-   "user": 4, 
-   "gender": "M", 
+   "user": 4,
    "industries_of_interest": [
     13, 
     15
@@ -64,8 +62,7 @@
    "sat_w": 780, 
    "keywords": " zachary dearing campus address hereford street boston tel email zdearing mit edu home address waverly dallas education massachusetts institute technology june gpa candidate for bachelor science economics and political science cambridge relevant coursework principles microeconomics macroeconomics intermediate macroeconomics finance theory accounting statistical method economics single multivariable calculus episcopal school dallas may gpa act dallas salutatorian national scholar national merit semi finalist experience goldman sachs and summer financial analyst securities division new york summer worked deal structuring project exploring arbitrage opportunities between pricing mortgage backed securities and underlying collateral value analyzed publicly traded company market cap determine was undervalued enough warrant being taken private communication media advisors winter consulting analyst boutique consulting and investment management firm boston winter staffed due diligence project for large investment bank evaluating cable markets southern modeled future revenue streams operating costs and growth opportunities based upon market trends and demographics worked team six with founding partner construct predictive models and the final compendium capital division standard poors development intern technical product specialist team new york summer developed application manage over virtual machines with approximately global users wrote application integrating vmware esx servers active directory and windows instrumentation management led team four organizing meetings deliverables and managing work streams get application production mccurley orsinger mccurley nelson downing intern law practice and administration dallas summer assisted legal teams with case preparation investigating witnesses and constructing cross examination questions managed the opening bank accounts thorough evaluating banks handling interactions assisting with cash management charged with tracking over million among accounts ensure that proper deposit levels were maintained maverick capital financial analyst intern operations and hedge fund accounting dallas summer august parsed key information and consolidated fund prospectus for easier use the senior traders compiled over past positions held and performance data facilitate its use quantitative analysis project maintained item fixed asset register supported the group with excel based spreadsheet analysis united states senate page washington january june facilitated voting procedure ensuring senators voted and were informed what issue was being decided upon provided logistical support for senators and staff assisting with any needs that they had while the senate chamber pcs founder and owner computer assembly business dallas july september founded and ran company with total revenue that built and sold custom computers direct customers designed website application with crm spec custom computers online and provide real time quotes leadership ring committee publicity chair committee member cambridge present shared responsibility for design marketing and production mit brass rat with committee led publicity efforts for events with combined budget and attendance people each sloan undergraduate management association suma director corporate relations associate cambridge fall present organized first ever mba panel with representatives from harvard sloan etc secured sponsorship from kaplan mit underclassmen giving campaign chair class cambridge october present devised innovative fundraising strategy leading class raise record this year fund student service trips abroad with participation rate interests skills java asp net php javascript html marathon running golf politics modern architecture chi phi", 
    "looking_for": [], 
-   "countries_of_citizenship": [], 
-   "ethnicity": null, 
+   "countries_of_citizenship": [],
    "first_name": "Zachary", 
    "first_major": 12, 
    "preferences": 2, 
@@ -82,8 +79,7 @@
    "resume": "submitted_resumes/Dearing_Zachary_samplestudent2_2011-05-23-23-23-43.pdf", 
    "is_active": true, 
    "statistics": 2, 
-   "user": 7, 
-   "gender": "M", 
+   "user": 7,
    "industries_of_interest": [], 
    "act": 35, 
    "date_created": "2011-05-23 21:58:49", 
@@ -112,7 +108,6 @@
     "AX", 
     "AL"
    ], 
-   "ethnicity": 10, 
    "first_name": "Joshua", 
    "first_major": 12, 
    "preferences": 3, 
@@ -160,7 +155,6 @@
    "is_active": true, 
    "statistics": 3, 
    "user": 8, 
-   "gender": "M", 
    "industries_of_interest": [
     1, 
     2, 

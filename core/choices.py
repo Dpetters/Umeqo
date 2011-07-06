@@ -6,26 +6,10 @@
 YES = 'Y'
 NO = 'N'
 
-BOTH_GENDERS = 'B'
-MALE = 'M'
-FEMALE = 'F'
-
 SELECT_YES_NO_CHOICES = (
 ('', '--'),
 (YES, 'Yes'),
 (NO, 'No'),
-)
-
-GENDER_CHOICES = (
-('', '--'),
-(MALE, 'Male'),
-(FEMALE, 'Female'),
-)
-
-FILTERING_GENDER_CHOICES = (
-(BOTH_GENDERS, 'Male and Female'),
-(MALE, 'Male'),
-(FEMALE, 'Female'),
 )
 
 NO_YES_CHOICES = (
