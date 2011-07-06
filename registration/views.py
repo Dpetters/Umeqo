@@ -5,32 +5,29 @@
 """
 from datetime import datetime
 
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
-from django.contrib.auth import authenticate
-from django.http import HttpResponse, HttpResponseForbidden
-from django.utils import simplejson
-from django.utils.translation import ugettext as _
+from django.conf import settings
+from django.contrib.auth import authenticate, REDIRECT_FIELD_NAME, login as auth_login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
 from django.contrib.auth.views import logout as auth_logout_then_login
 from django.contrib.sessions.models import Session
-from django.conf import settings
+from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import render_to_response, redirect
+from django.template import RequestContext
+from django.utils import simplejson
+from django.utils.translation import ugettext as _
 
-from registration.forms import PasswordChangeForm
+from core import messages
 from registration.backend import RegistrationBackend
+from registration.forms import PasswordChangeForm
 from registration.models import SessionKey
 from registration.view_helpers import modify_redirect
-from core import messages
 
 
-def login(request,
-          redirect_field_name = REDIRECT_FIELD_NAME,
-          template_name='homepage.html'):
+def login(request):
 
     if request.is_ajax():
         if request.method == "POST":
-            redirect_to = request.POST.get(redirect_field_name, '')
+            redirect_to = request.POST.get(REDIRECT_FIELD_NAME, '')
             username = request.POST['username']
             password = request.POST['password']
             if username and password:

@@ -5,22 +5,23 @@
  */
 
 .main_block {
-    width:760px;
+    width: 760px;
+    float: right;
 }
 .side_block {
-    width:200px;
+    width: 200px;
 }
 
 #notifications_block .main_block_header{
-    line-height:22px;
+    line-height: 22px;
 }
 
 #query_field {
-    height:22px;
-    vertical-align:middle;
-    width:300px;
-    padding-left:6px;
-    font-size:15px;
+    height: 22px;
+    vertical-align: middle;
+    width: 300px;
+    padding-left: 6px;
+    font-size: 15px;
     behavior: url(/static/lib/pie/PIE.htc);
     box-shadow: inset 2px 2px 2px #DDDDDD;
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;

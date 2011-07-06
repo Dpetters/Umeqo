@@ -75,6 +75,7 @@ p {
     margin-top: 8px;
 }
 .width_container {
+    position: relative;
     width: 986px;
     margin: 0 auto;
 }
@@ -312,7 +313,6 @@ p {
     margin-top: 20px;
     display: inline-block;
     width: 100%;
-    float: right;
 }
 .main_block_header {
     padding: 3px 0px;

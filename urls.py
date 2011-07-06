@@ -57,7 +57,7 @@ urlpatterns += patterns('core.views',
 )
 
 urlpatterns += patterns('registration.views',
-    (r'^login/', 'login', {}, 'login'),
+    (r'^login/$', 'login', {}, 'login'),
     (r'^logout/$', 'logout', {'login_url':'/?action=logged-out'}, 'logout'),
     (r'^password/change/$','password_change', {}, 'password_change'),
     (r'^activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'activation_complete.html' }, 'activation_complete'),
