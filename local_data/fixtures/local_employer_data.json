@@ -16,7 +16,9 @@
   "pk": 2, 
   "model": "employer.resumebook", 
   "fields": {
-   "students": [], 
+   "students": [
+    2
+   ], 
    "file_name": null, 
    "recruiter": 2, 
    "name": null, 
@@ -47,7 +49,9 @@
    "statistics": 2, 
    "preferences": 2, 
    "subscribed": false, 
-   "starred_students": [], 
+   "starred_students": [
+    2
+   ], 
    "is_active": true, 
    "employer": 2, 
    "user": 5, 
