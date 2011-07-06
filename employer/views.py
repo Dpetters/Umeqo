@@ -18,7 +18,6 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from django.template.loader import render_to_string
 from django.utils import simplejson
 
 from core.decorators import is_student, is_recruiter, render_to

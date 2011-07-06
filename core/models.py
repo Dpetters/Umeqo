@@ -71,20 +71,6 @@ class SchoolYear(models.Model):
         
     def __unicode__(self):
         return self.name
-
-
-class Ethnicity(models.Model):
-    name = models.CharField("Ethnicity", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        verbose_name = "Ethnicity"
-        verbose_name_plural = "Ethnicities"
-        
-    def __unicode__(self):
-        return self.name
-
     
 class GraduationYear(models.Model):
     year = models.PositiveSmallIntegerField("Graduation Year", unique=True)

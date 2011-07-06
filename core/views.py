@@ -38,6 +38,16 @@ def help_center(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
+def deactivate_account(request, extra_context = None):
+    
+    context = {}
+    if hasattr(request.user, "student"):
+        context['TEMPLATE'] = "student_deactivate_account.html"
+    elif hasattr(request.user, "employer"):
+        context['TEMPLATE'] = "student_deactivate_account.html"        
+    context.update(extra_context or {})
+    return context
+
 @render_to('faq.html')
 def faq(request, extra_context = None):
     

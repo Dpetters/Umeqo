@@ -18,18 +18,16 @@ $(document).ready(function() {
     var student_list = $("#id_student_list option:selected").text();
     var ordering = $("#id_ordering option:selected").val();
     var results_per_page = $("#id_results_per_page option:selected").val();
-    var gender = $("#id_gender option:selected").val();
     var courses = [];
     var school_years = [];
     var graduation_years = [];
     var previous_employers = [];
     var industries_of_interest = [];
     var employment_types = [];
-    var ethnicities = [];
     var languages = [];
     var countries_of_citizenship = [];
     var campus_orgs = [];
-    var older_than_18 = $("#id_older_than_18 option:selected").val();
+	var older_than_18 = $("#id_older_than_18 option:selected").val();
 	
 	function switch_to_students_in_resume_book_student_list() {
 		$("#id_student_list").multiselect("widget").find("input[title='" + IN_RESUME_BOOK_STUDENT_LIST + "']").click()
@@ -699,10 +697,8 @@ $(document).ready(function() {
                 'previous_employers' : previous_employers.join('~'),
                 'industries_of_interest' : industries_of_interest.join('~'),
                 'campus_orgs' : campus_orgs.join('~'),
-                'ethnicities' : ethnicities.join('~'),
                 'languages' : languages.join('~'),
                 'countries_of_citizenship' : countries_of_citizenship.join('~'),
-                'gender' : gender,
                 'older_than_18' : older_than_18,
                 'ordering': ordering,
                 'results_per_page': results_per_page,
@@ -1135,37 +1131,6 @@ $(document).ready(function() {
         }
     }).multiselectfilter();
 
-    $("#id_ethnicities").multiselect({
-        noneSelectedText: 'Filter By Ethnicities',
-        selectedText: 'Filtering by # Ethnicities',
-        checkAllText: multiselectCheckAllText,
-        uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        minWidth:multiselectMinWidth,
-        height: 146,
-        open: handle_multiselect_open_in_accordion,
-        close: handle_multiselect_close_in_accordion,
-        checkAll: function() {
-            ethnicities = $("#id_ethnicities").multiselect("getChecked").map( function() {
-                return this.value;
-            }).get();
-            initiate_ajax_call();
-        },
-        uncheckAll: function() {
-            ethnicities = $("#id_ethnicities").multiselect("getChecked").map( function() {
-                return this.value;
-            }).get();
-            initiate_ajax_call();
-        },
-        click: function(event, ui) {
-            ethnicities = $("#id_ethnicities").multiselect("getChecked").map( function() {
-                return this.value;
-            }).get();
-            initiate_ajax_call();
-        }
-    });
-
     $("#id_languages").multiselect({
         noneSelectedText: 'Filter By Languages',
         selectedText: 'Filtering by # Languages',
@@ -1227,22 +1192,6 @@ $(document).ready(function() {
             initiate_ajax_call();
         }
     }).multiselectfilter();
-
-    $("#id_gender").multiselect({
-        header:false,
-        selectedList: 1,
-        multiple: false,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
-        height: 72,
-        minWidth: multiselectYesNoSingleSelectWidth,
-        open: handle_multiselect_open_in_accordion,
-        close: handle_multiselect_close_in_accordion,
-        click: function(event, ui) {
-            gender = ui.value;
-            initiate_ajax_call();
-        }
-    });
 
     $("#id_older_than_18").multiselect({
         header:false,

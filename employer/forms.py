@@ -7,29 +7,21 @@
 from django import forms
 
 from core.choices import NO_YES_CHOICES
-from core import choices as core_choices
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
-from employer.models import FilteringParameters, EmployerPreferences, StudentComment
+from employer.models import FilteringParameters, EmployerPreferences
 from employer import enums as employer_enums
 
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
     name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
     email = forms.EmailField(label="Delivery Email:", required=False)
-    
-    def __init__(self, *args, **kwargs):
-        super(DeliverResumeBookForm, self).__init__(*args, **kwargs)
-        print args
-        print self
-        print kwargs
         
 class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))
 
 class FilteringForm(forms.ModelForm):
-    gender = forms.ChoiceField(label="Filter by gender:", choices = core_choices.FILTERING_GENDER_CHOICES, initial= core_choices.BOTH_GENDERS, required= False)
     older_than_18 = forms.ChoiceField(label="Must be older than 18:", choices = NO_YES_CHOICES, required = False)
 
     gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, required = False)

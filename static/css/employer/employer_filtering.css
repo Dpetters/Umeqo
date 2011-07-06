@@ -267,11 +267,15 @@
 .student_year {
     font-size:20px;
 }
+.student_event_attendant{
+	position:relative;
+	top:1px;
+}
 .student_resume_link {
     float:right;
 }
 .student_toggle_resume_book_link, .student_toggle_star_link{
-    margin-left:8px;
+    margin-left:7px;
     display:inline-block;
     min-width:14px;
 	position:relative;
@@ -291,7 +295,7 @@
 }
 .student_gpa {
     float:right;
-    margin-right:30px;
+    margin-right:42px;
 }
 .student_comment {
     border:1px solid #CCC;

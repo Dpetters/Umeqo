@@ -27,7 +27,14 @@ from registration.view_helpers import modify_redirect
 def logout(request, login_url=None, current_app=None, extra_context=None):
     SessionKey.objects.filter(session_key = request.session.session_key).delete()
     return auth_logout_then_login(request, login_url, current_app, extra_context)
-    
+
+@login_required
+def deactivate_account(request):
+    if request.method == "POST":
+        pass
+    else:
+        pass
+        SessionKey.objects.filter(session_key = request.session.session_key).delete()
 
 @login_required
 def password_change(request,

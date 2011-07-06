@@ -8,6 +8,7 @@ Copyright 2011. All Rights Reserved.
 {% load student_star %}
 {% load student_resume_book %}
 {% load employer_no_results %}
+{% load static %}
 
 <span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
 {% include "paging.html" %}
@@ -44,7 +45,7 @@ Copyright 2011. All Rights Reserved.
 </div>
 <div id="results">
 {% if page.object_list %}
-    {% for student, in_resume_book, starred, comment in page.object_list %}
+    {% for student, in_resume_book, starred, comment, attended_event in page.object_list %}
         {% if forloop.first %}
         <div id="first_student_main_info" class="student_main_info" num="{{student.id}}">
         {% else %}
@@ -56,6 +57,9 @@ Copyright 2011. All Rights Reserved.
                 ({{student.graduation_year}}
                 {{student.school_year}})
             </span>
+            {% if in_resume_book %}
+            <img class='student_event_attendant' src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
+            {% endif %}
             <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
             <br />
             <a num="{{student.id}}" class="student_toggle_resume_book_link" href="javascript:void(0)">{% student_resume_book in_resume_book %}</a>
@@ -78,7 +82,7 @@ Copyright 2011. All Rights Reserved.
             <a class="student_toggle_detailed_info_link" num="{{student.id}}"  href="javascript:void(0)">{% include 'student_show_details_link.html' %}</a>
         </div>
         <div class="student_detailed_info" num="{{student.id}}">
-            {% if student.countries_of_citizenship.all or student.second_major or student.website or student.ethnicity or student.gender or student.older_than_18 or student.looking_for.all or student.previous_employers.all or student.industries_of_interest.all or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.campus_involvement.all or student.languages.all %}
+            {% if student.countries_of_citizenship.all or student.second_major or student.website or student.older_than_18 or student.looking_for.all or student.previous_employers.all or student.industries_of_interest.all or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.campus_involvement.all or student.languages.all %}
                 <div class="student_detailed_info_first_col">
                     {% if student.countries_of_citizenship.all %}
                         {% for country in student.countries_of_citizenship.all %}
@@ -104,20 +108,6 @@ Copyright 2011. All Rights Reserved.
                             <a href="{{student.website}}">{{student.website}}</a>
                         </p>
                     {% endif %}
-                    
-                    {% if student.ethnicity %}
-                        <p class="student_ethnicity">
-                            <strong>Ethnicity:</strong>
-                            <span>{{student.ethnicity}}</span>
-                        </p>
-                    {% endif %}
-
-                    {% ifnotequal student.gender "" %}
-                        <p class="student_gender">
-                            <strong>Gender:</strong>
-                            <span>{% ifequal student.gender "M" %}Male{% else %}Female{% endifequal %}</span>
-                        </p>
-                    {% endifnotequal %}
                                                 
                     {% ifnotequal student.older_than_18 "" %}
                         <p class="student_older_than_18">

@@ -64,6 +64,7 @@ urlpatterns += patterns('registration.views',
     (r'^password/change/$','password_change', {}, 'password_change'),
     (r'^activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'activation_complete.html' }, 'activation_complete'),
     (r'^activation/(?P<activation_key>\w+)/$', 'activate_user', {}, 'student_activation'),
+    (r'^deactivate-account/$', 'deactivate_account', {}, 'deactivate_account'),
 )
 
 urlpatterns += patterns('student.views',

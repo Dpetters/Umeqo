@@ -7,13 +7,13 @@ from django import forms
 
 from student.models import Student, StudentPreferences
 from core.forms_helper import campus_org_types_as_choices
-from core.models import Course, Ethnicity, GraduationYear, SchoolYear, EmploymentType, Industry, CampusOrg, Language
+from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, CampusOrg, Language
 from core.view_helpers import does_email_exist
 from employer.models import Employer
 from django.utils.translation import ugettext as _
 from core.fields import PdfField
 from countries.models import Country
-from core.choices import SELECT_YES_NO_CHOICES, GENDER_CHOICES
+from core.choices import SELECT_YES_NO_CHOICES
 from core import messages
 
 class StudentRegistrationForm(forms.Form):
@@ -67,7 +67,6 @@ class StudentCreateProfileForm(forms.ModelForm):
     
     # Academic Info
     second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
-    #minor = forms.ModelChoiceField(label="Minor:", queryset = Course.objects.all(), required = False, empty_label = "select course")
     act = forms.ChoiceField(label="ACT:", required = False, choices=[('','--')]+[(x,x) for x in range(36,0,-1)])
     sat_m = forms.ChoiceField(label="SAT Math:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_v = forms.ChoiceField(label="SAT Verbal:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
@@ -79,14 +78,11 @@ class StudentCreateProfileForm(forms.ModelForm):
     previous_employers = forms.ModelMultipleChoiceField(label="Previous employers:", queryset = Employer.objects.all(), required = False)
     
     # Miscellaneous Info
-    # Campus Orgs
     campus_involvement = forms.ModelMultipleChoiceField(label="Campus involvement:", queryset = CampusOrg.objects.all(), required = False)
     languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
     website = forms.URLField(label="Website:", required = False)
     countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of citizenship:", queryset = Country.objects.all(), required=False)
-    gender = forms.ChoiceField(label="Gender:", choices = GENDER_CHOICES, required=False)
     older_than_18 = forms.ChoiceField(label="Older than 18:", choices = SELECT_YES_NO_CHOICES, required = False)
-    ethnicity = forms.ModelChoiceField(label="Ethnicity:", queryset = Ethnicity.objects.all(), empty_label="select ethnicity", required=False)
 
     class Meta:
         fields = ('first_name',
@@ -109,8 +105,7 @@ class StudentCreateProfileForm(forms.ModelForm):
                    'looking_for',
                    'previous_employers',
                    'industries_of_interest',
-                   'gender',
-                   'ethnicity')
+                    )
         model = Student
         
     def __init__(self, *args, **kwargs):

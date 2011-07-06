@@ -13,7 +13,6 @@ class PasswordChangeForm(SetPasswordForm):
     old_password = forms.CharField(label=_("Old password:"), widget=forms.PasswordInput, required=True)
    
     def clean_old_password(self):
-        print "HERE!"
         """
         Validates that the old_password field is correct.
         """

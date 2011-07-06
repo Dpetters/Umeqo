@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
 from countries.models import Country
-from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, Ethnicity
+from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
 from core.models_helper import get_resume_filename
 from core import choices as core_choices
 
@@ -49,9 +49,7 @@ class Student(models.Model):
     campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null=True)
     languages = models.ManyToManyField(Language, blank = True, null = True)
     website = models.URLField(verify_exists=False, blank = True, null=True)
-    gender = models.CharField(max_length=1, choices = core_choices.GENDER_CHOICES, blank = True, null = True)
     older_than_18 = models.CharField(max_length=1, choices = core_choices.SELECT_YES_NO_CHOICES, blank = True, null = True)
-    ethnicity = models.ForeignKey(Ethnicity, blank = True, null = True)
     countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
     
     # Subscriptions
