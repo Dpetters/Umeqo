@@ -23,30 +23,6 @@ from registration.models import SessionKey
 from registration.view_helpers import modify_redirect
 
 
-def login(request):
-
-    if request.is_ajax():
-        if request.method == "POST":
-            redirect_to = request.POST.get(REDIRECT_FIELD_NAME, '')
-            username = request.POST['username']
-            password = request.POST['password']
-            if username and password:
-                user = authenticate(username = username, password=password)
-                if user is None:
-                    return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.incorrect_username_password_combo)}), mimetype="application/json")
-                elif not user.is_active:
-                    return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.account_suspended)}), mimetype="application/json")
-                else:
-                    if not request.session.test_cookie_worked():
-                        return HttpResponse(simplejson.dumps({"valid":False, "error":_(messages.enable_cookies)}), mimetype="application/json")
-                    print "Before: " + request.session.session_key
-                    auth_login(request, user)
-                    print "After: " + request.session.session_key
-                    SessionKey.objects.create(user=user, session_key=request.session.session_key)
-                    return HttpResponse(simplejson.dumps({"valid":True, "success_url":modify_redirect(request, redirect_to)}), mimetype="application/json")
-    return redirect("home")
-
-
 @login_required
 def logout(request, login_url=None, current_app=None, extra_context=None):
     SessionKey.objects.filter(session_key = request.session.session_key).delete()

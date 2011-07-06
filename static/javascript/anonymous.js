@@ -20,6 +20,7 @@ $(document).ready( function () {
         }
     });
     
+    /*
     var login_form_validator = $('#login_form').validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
@@ -63,8 +64,8 @@ $(document).ready( function () {
             password: 'You need a password!',
         }
     });
-    
     if(get_parameter_by_name("next")){
         $(".login_link").click();    
     }
+    */
 });

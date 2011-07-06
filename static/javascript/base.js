@@ -112,9 +112,6 @@ function place_errors(error, element) {
         "bottom": 0
     });
 };
-function place_errors_login(error, element) {
-    error.appendTo(element.parent().prev());
-}
 function place_errors_table(error, element) {
     if (element.prev().get(0).tagName=='DIV') {
         element.prev().html(error);

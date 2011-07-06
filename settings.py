@@ -39,7 +39,8 @@ AKISMET_API_KEY = "39ec1788fc8e"
 
 # URL to redirect the user to if they try to 
 # access a page and aren't logged in
-LOGIN_URL = '/'
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
 
 # Emails sent to users will be coming from this email address
 DEFAULT_FROM_EMAIL = 'umeqo@mit.edu'
@@ -177,7 +178,7 @@ CACHES = {
 }
 
 #only allow toolbar from localhost
-INTERNAL_IPS = ('127.0.0.1',)
+#INTERNAL_IPS = ('127.0.0.1',)
 
 try:
     from settings_local import *
