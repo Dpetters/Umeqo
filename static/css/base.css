@@ -751,7 +751,8 @@ input[type=text], input[type=password] {
     line-height: 30px;
     font-size: 16px;
 }
-.form_table.grande label.error {
+.form_table.grande label.error,
+.form_table .errorlist li {
     font-size: 14px;
     line-height: 18px;
 }
@@ -760,6 +761,11 @@ input[type=text], input[type=password] {
     line-height: 40px;
     height: 40px;
     padding: 0 10px;
+}
+.form_table.grande .errorlist {
+    list-style: none;
+    width: 250px;
+    color: #FF7B7B;
 }
 a {
     color: #6e97b9;
@@ -1068,7 +1074,7 @@ a.ui-slider-handle {
 #notifications_count {
     padding: 3px 5px;
     display: inline-block;
-    background: url(../images/plane.png) no-repeat center rgba(255,255,255,0.4);
+    background: url(../images/plane.png) no-repeat center rgba(255,255,255,0.2);
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -1088,7 +1094,7 @@ a.ui-slider-handle {
     -webkit-border-radius: 2px;
 }
 #notifications_count:hover {
-    background-color: #FFF;
+    background-color: rgba(255,255,255,0.5);
     cursor: pointer;
 }
 #notifications_count.active,

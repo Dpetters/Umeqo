@@ -8,12 +8,16 @@
 from core.models import CampusOrg, Language, CampusOrgType
 from django import forms
 from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 
 from registration.models import InterestedPerson
 from core import messages
+
+class EmailAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(label='Email', max_length=30)
 
 class ContactForm(forms.Form):
     """

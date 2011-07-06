@@ -27,8 +27,11 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
 </script>
 {% endblock %}
 
-{% block content_area %}
+{% block above_header_area %}
 {% include "events_checkin.html" with event=event %}
+{% endblock %}
+
+{% block content_area %}
 <div id="event_page_block" class="main_block">
     <div class="main_block_content">
         {% if show_admin %}
@@ -46,7 +49,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                     </tr>
                 </table>
                 <div id="event_checkin">
-                    <h3>Checkin Mode</h3>
+                    <h3>Check-in Mode</h3>
                     <a id="event_checkin_link" href="#">
                         <span class="text">Enable</span>
                         <span class="filler"></span>
@@ -70,14 +73,14 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                     {% for student in checkins %}
                         {% include "events_response_token.html" with student=student %}
                     {% empty %}
-                    <div id="event_response_empty">There are no checkins yet.</div>
+                    <div id="event_response_empty">There are no check-ins yet.</div>
                     {% endfor %}
                 </div>
                 <div id="event_all" class="hid responses">
                     {% for student in all_responses %}
                         {% include "events_response_token.html" with student=student %}
                     {% empty %}
-                    <div id="event_response_empty">There are no checkins yet.</div>
+                    <div id="event_response_empty">There are no check-ins yet.</div>
                     {% endfor %}
                 </div>
                 <p>*Grayed out students do not have an Umeqo account.</p>

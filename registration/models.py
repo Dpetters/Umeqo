@@ -7,7 +7,9 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.auth.signals import user_logged_in
 from django.db import models
+from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
@@ -158,3 +160,10 @@ class RegistrationProfile(models.Model):
                                    ctx_dict)
         
         self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+
+@receiver(user_logged_in, sender=User)
+def registerKey(sender, request, user, **kwargs):
+    print "Before: " + request.session.session_key
+    SessionKey.objects.create(user=user, session_key=request.session.session_key)
+    print "After: " + request.session.session_key
+

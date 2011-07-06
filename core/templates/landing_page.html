@@ -49,14 +49,27 @@
                 
                 <p id="innovative">Umeqo is an innovative recruiting resource for <strong>students</strong> and <strong>employers</strong> to <em>discover one another</em>.</p>
                 <h2>What’s so innovative?</h2>
-                <p class="deets"><span>Easy-to-Maintain Profile.</span> Fill in just a few fields to be discovered by employers. Umeqo indexes your resume and makes your profile searchable so employers can easily find you.</p>
-                <p class="deets"><span>Streamlined Events.</span> Add events to Google Calendar with a click of a button, view and print location maps - never again be misinformed of what to bring and what to wear.</p>
-                <p class="deets"><span>Automatic Notifications.</span> Subscribe to employers you’re interested in and get notified when they post new events and deadlines.</p>
-                <p class="deets"><span>Event Invites.</span> Receive invites to both public and private events from employers interested in you.</p>
+                <p class="deets">
+                    <img src="{{ STATIC_URL }}images/landing/maintainprofile.png" />
+                    <span>Easy-to-Maintain Profile.</span> Fill in just a few fields to be discovered by employers. Umeqo indexes your resume and makes your profile searchable so employers can easily find you.
+                </p>
+                <p class="deets">
+                    <img src="{{ STATIC_URL }}images/landing/event.png" />
+                    <span>Streamlined Events.</span> Add events to Google Calendar with a click of a button, view and print location maps - never again be misinformed of what to bring and what to wear.
+                </p>
+                <p class="deets">
+                    <img src="{{ STATIC_URL }}images/landing/notifications.png" />
+                    <span>Automatic Notifications.</span> Subscribe to employers you’re interested in and get notified when they post new events and deadlines.
+                </p>
+                <p class="deets">
+                    <img src="{{ STATIC_URL }}images/landing/email.png" />
+                    <span>Event Invites.</span> Receive invites to both public and private events from employers interested in you.
+                </p>
             </div>
             <div class="col">
                 <p id="working">We're working hard to craft the ultimate experience.</p>
                 <p>Interested? Help us by participating in the beta!</p>
+                <h2>Want to get in on the beta?</h2>
                 <p>Fill in the information below (we won't sell it, rent it, or trade it - promise!) and we'll get in touch when the time comes.</p>
                 <p>
                     <form action="" method="POST">
@@ -71,6 +84,15 @@
                         {% endif %}
                     </form>
                 <p>
+                <div class="clearfix"></div>
+                <h2>Already have an account?</h2>
+                <form action="{% url login %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in login_form %}
+                        <p>{{field.label_tag}}{{field}}</p>
+                    {% endfor %}
+                    <input type="submit" value="login"/> 
+                <form>
                 <div class="clearfix"></div>
                 <div id="fb-like">
                     <iframe src="http://www.facebook.com/plugins/like.php?app_id=119497238132973&amp;href=umeqo.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:35px;" allowTransparency="true"></iframe>

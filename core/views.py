@@ -116,7 +116,7 @@ def landing_page(request, extra_context = None):
     
     form_class = BetaForm
 
-    if request.GET.get('magic','')!='':
+    if request.GET.get('magic','')!='' or request.user.is_authenticated():
         return home(request)
     
     posted = False
@@ -178,6 +178,7 @@ def home(request, extra_context=None):
                 context['has_subscriptions'] = True
                 recruiters = Recruiter.objects.filter(employer__in=subscriptions)
                 sub_events = Event.objects.filter(recruiters__in=recruiters).filter(end_datetime__gt=datetime.now())
+                sub_events = sub_events.order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,
                     'sub_events': sub_events

@@ -7,10 +7,10 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template
 
+from core.forms import EmailAuthenticationForm as AuthenticationForm
 from registration.forms import PasswordResetForm, SetPasswordForm
 
 admin.autodiscover()
@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 
 if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
-        (r'^$', 'core.views.landing_page'),
+        (r'^$', 'core.views.landing_page', {'extra_context': {'login_form': AuthenticationForm}}),
     )
 
 urlpatterns += patterns('',
@@ -56,8 +56,10 @@ urlpatterns += patterns('core.views',
     (r'^notification/count$', 'get_notice_unseen_count', {}, 'get_notice_unseen_count'),
 )
 
+urlpatterns += patterns('',
+    (r'^login/$', 'django.contrib.auth.views.login', {'extra_context': {'login_form': AuthenticationForm}}, 'login'),
+)
 urlpatterns += patterns('registration.views',
-    (r'^login/$', 'login', {}, 'login'),
     (r'^logout/$', 'logout', {'login_url':'/?action=logged-out'}, 'logout'),
     (r'^password/change/$','password_change', {}, 'password_change'),
     (r'^activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'activation_complete.html' }, 'activation_complete'),

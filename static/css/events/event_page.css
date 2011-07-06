@@ -1,5 +1,6 @@
 #event_page_block {
     border: none;
+    margin-top: 0;
 }
 #event_page_block .main_block_header {
     border-left: 1px solid #DDD;
@@ -361,6 +362,7 @@
     line-height: 20px;
 }
 #event_who .industries div {
+    margin-bottom: 3px;
     display: inline-block;
     background-color: #EEE;
     border-radius: 2px;
