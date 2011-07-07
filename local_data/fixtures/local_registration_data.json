@@ -56,6 +56,48 @@
   }
  }, 
  {
+  "pk": "ec82f6ed32a3d551b40f29e73e4fc99e", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 1
+  }
+ }, 
+ {
+  "pk": "1154cac1bdef92a4e49d07abb25ac7ae", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 5
+  }
+ }, 
+ {
+  "pk": "8c0ac8fb8d69313ba1653b14261e200d", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 4
+  }
+ }, 
+ {
+  "pk": "f3dc008902c0b59e898f981e7cd2a0b7", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 1
+  }
+ }, 
+ {
+  "pk": "61f3978949cf503a42ad6bad4e9c3849", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 1
+  }
+ }, 
+ {
+  "pk": "ee058d72a0d88a3e9b85e8e33c96c4db", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "user": 1
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {

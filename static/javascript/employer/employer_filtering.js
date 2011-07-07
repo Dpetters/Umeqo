@@ -891,7 +891,7 @@ $(document).ready(function() {
                 }, 400, 'easeInOutExpo');
             } else {
                 el.stop(true).animate({
-                    'top' : windowpos-80
+                    'top' : windowpos-70
                 }, 400, 'easeInOutExpo');
             }
         });

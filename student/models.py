@@ -7,6 +7,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.dispatch import receiver
+from django.db.models import signals
 
 from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
@@ -84,19 +86,43 @@ class Student(models.Model):
             self.statistics = StudentStatistics.objects.create()
         super(Student, self).save(*args, **kwargs)
 
+@receiver(signals.pre_delete, sender=Student)
+def delete_resume_file(sender, instance, **kwargs):
+    print instance.resume
+    
 class StudentPreferences(models.Model):
     email_on_invite_to_public_event = models.BooleanField()
     email_on_invite_to_private_event = models.BooleanField()
     email_on_new_event = models.BooleanField()
+
+    last_updated = models.DateTimeField(editable=False, auto_now=True)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     class Meta:
+        verbose_name = "Student Preferences"
         verbose_name_plural = "Student Preferences"
     
     def __unicode__(self):
-        return self.user
+        if hasattr(self, "student"):
+            return "Student Preferences for %s" % (self.student,)
+        else:
+            "Unattached Student Preferences"
   
 class StudentStatistics(models.Model):
     event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
     add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
     resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
     shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)
+
+    last_updated = models.DateTimeField(editable=False, auto_now=True)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Student Statistics"
+        verbose_name_plural = "Student Statistics"
+    
+    def __unicode__(self):
+        if hasattr(self, "student"):
+            return "Student Statistics for %s" % (self.student,)
+        else:
+            "Unattached Student Statistics"

@@ -54,9 +54,9 @@ def student_preferences(request, preferences_form_class = StudentPreferencesForm
         if request.method == "POST":
             form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
             if form.is_valid():
-                student_preferences = form.save()
+                request.user.student.student_preferences = form.save()
                 if hasattr(student_preferences, 'save_m2m'):
-                    student_preferences.save_m2m()
+                    request.user.student.student_preferences.save_m2m()
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
             else:
