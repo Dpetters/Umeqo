@@ -361,6 +361,7 @@ def employer_setup_default_filtering(request, extra_context = None):
 @user_passes_test(is_recruiter)
 def employer_resume_book_summary(request, extra_context=None):
     if request.is_ajax():
+        context = {}
         resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
         if not resume_books.exists():
             latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
