@@ -18,9 +18,9 @@ from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models import Q
+
 from notification.models import Notice
 from registration.models import InterestedPerson
-
 from core import enums, messages
 from core.decorators import render_to
 from core.models import Course, CampusOrg, Language, Topic
@@ -29,7 +29,6 @@ from core.view_helpers import does_email_exist
 from employer.forms import SearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
-from notification.models import Notice
 
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
