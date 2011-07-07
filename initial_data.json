@@ -8638,15 +8638,6 @@
   }
  }, 
  {
-  "pk": 5, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Business Services"
-  }
- }, 
- {
   "pk": 6, 
   "model": "core.industry", 
   "fields": {
@@ -8665,30 +8656,21 @@
   }
  }, 
  {
-  "pk": 8, 
+  "pk": 40, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Communications/Media"
+   "date_created": "2011-07-06 18:46:16", 
+   "last_updated": "2011-07-06 18:46:16", 
+   "name": "Trading - Algorithmic & Proprietary "
   }
  }, 
  {
-  "pk": 9, 
+  "pk": 41, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Consulting"
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Consumer Products"
+   "date_created": "2011-07-06 18:47:13", 
+   "last_updated": "2011-07-06 18:47:13", 
+   "name": "Private Equity"
   }
  }, 
  {
@@ -8737,12 +8719,12 @@
   }
  }, 
  {
-  "pk": 16, 
+  "pk": 43, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Financial"
+   "date_created": "2011-07-06 18:47:58", 
+   "last_updated": "2011-07-06 18:47:58", 
+   "name": "Investment Research"
   }
  }, 
  {
@@ -8768,7 +8750,7 @@
   "model": "core.industry", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
+   "last_updated": "2011-07-06 18:47:06", 
    "name": "Hedge Funds"
   }
  }, 
@@ -8782,30 +8764,21 @@
   }
  }, 
  {
-  "pk": 21, 
+  "pk": 38, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Hotel, Restaurant, Hospitality"
+   "date_created": "2011-07-06 18:44:33", 
+   "last_updated": "2011-07-06 18:44:33", 
+   "name": "Consulting - Other"
   }
  }, 
  {
-  "pk": 22, 
+  "pk": 37, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Household/Personal Products"
-  }
- }, 
- {
-  "pk": 23, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Import/Export/International Trade"
+   "date_created": "2011-07-06 18:44:24", 
+   "last_updated": "2011-07-06 18:44:24", 
+   "name": "Consulting - Management"
   }
  }, 
  {
@@ -8827,12 +8800,12 @@
   }
  }, 
  {
-  "pk": 26, 
+  "pk": 36, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Internet"
+   "date_created": "2011-07-06 18:44:12", 
+   "last_updated": "2011-07-06 18:44:12", 
+   "name": "Software Development"
   }
  }, 
  {
@@ -8840,8 +8813,8 @@
   "model": "core.industry", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Investment Banking/Brokerage"
+   "last_updated": "2011-07-06 18:44:54", 
+   "name": "Investment Banking"
   }
  }, 
  {
@@ -8876,8 +8849,8 @@
   "model": "core.industry", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Petroleum/Energy"
+   "last_updated": "2011-07-06 19:17:51", 
+   "name": "Petroleum"
   }
  }, 
  {
@@ -8914,6 +8887,15 @@
    "date_created": "2011-05-03 12:27:34", 
    "last_updated": "2011-05-03 12:27:34", 
    "name": "Utilities"
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:47:19", 
+   "last_updated": "2011-07-06 18:47:19", 
+   "name": "Venture Capital"
   }
  }, 
  {
@@ -8995,6 +8977,30 @@
    "date_created": "2011-05-03 12:27:43", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Networking"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "localhost:8000", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "staging.umeqo.com", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "umeqo.com", 
+   "name": "Umeqo"
   }
  }
 ]
