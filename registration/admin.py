@@ -53,7 +53,9 @@ class RegistrationProfileAdmin(admin.ModelAdmin):
 admin.site.register(RegistrationProfile, RegistrationProfileAdmin)
 
 class SessionKeyAdmin(admin.ModelAdmin):
-    pass
+    fields=[]
+    list_display=['session_key', 'user', 'date_created']
+    
 admin.site.register(SessionKey, SessionKeyAdmin) 
     
 class UserAttributesAdmin(admin.ModelAdmin):

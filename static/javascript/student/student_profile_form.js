@@ -1,9 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-*/
-
 $(document).ready( function() {
     var languages_max = 12;
     var campus_involvement_max = 12;
@@ -378,14 +372,14 @@ $(document).ready( function() {
     });
 
     $("#id_looking_for").multiselect({
-        noneSelectedText: 'select options',
+        noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
         show: multiselectShowAnimation,
         hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth
     }).multiselectfilter();    
-
+	
     $("#id_gpa").blur(function(){
         $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
     });
@@ -552,29 +546,5 @@ $(document).ready( function() {
     accordion.accordion( "option", "active", parseInt(get_parameter_by_name("page")));
     
     // Field masks
-    $("#id_gpa").mask("9.99",{placeholder:" "}).blur( function() {
-        if($(this).val()=="") {
-            $("#act .error").remove();
-        }
-    });
-    $("#id_act").mask("99",{placeholder:" "}).blur( function() {
-        if($(this).val()=="") {
-            $("#act .error").remove();
-        }
-    });
-    $("#id_sat_v").mask("999",{placeholder:" "}).blur( function() {
-        if($(this).val()=="") {
-            $("#sat_v .error").remove();
-        }
-    });
-    $("#id_sat_m").mask("999",{placeholder:" "}).blur( function() {
-        if($(this).val()=="") {
-            $("#sat_m .error").remove();
-        }
-    });
-    $("#id_sat_w").mask("999",{placeholder:" "}).blur( function() {
-        if($(this).val()=="") {
-            $("#sat_w .error").remove();
-        }
-    });
+    $("#id_gpa").mask("9.99",{placeholder:" "});
 });

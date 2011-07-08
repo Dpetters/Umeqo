@@ -581,14 +581,18 @@ $(document).ready(function() {
     };
     
     function handle_multiselect_open_in_accordion(event, ui) {
+    	/*
         var parent = $(event.target).parents(".ui-accordion-content");
         var multiselect = $(event.target).multiselect('widget');
         var new_height = multiselect.height() + parseInt(multiselect.css('top'), 10);
         $(parent).css('height', new_height);
+        */
     };
 
     function handle_multiselect_close_in_accordion(event, ui) {
+    	/*
         $('#' + $(event.target).attr('id')).parents(".ui-accordion-content").css("height", "");
+        */
     };
 
     function campus_org_link_click_handler() {

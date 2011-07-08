@@ -865,8 +865,7 @@ a:focus {
 /* JQuery Accordion */
 .ui-accordion .ui-accordion-content {
     padding: 10px 0px 3px 4px;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: visible;
 }
 .ui-accordion .ui-accordion-header {
     border-bottom: 1px solid #CCCCCC;

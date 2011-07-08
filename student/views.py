@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
 import os, datetime
 
 from django.conf import settings
@@ -143,7 +137,9 @@ def student_create_profile(request,
         if form.is_valid():
             student = form.save(commit=False)
             if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
-                student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
+                student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
+            else:
+                student.sat_t = None
             student.last_updated = datetime.datetime.now()
             student.profile_created = True
             student.save()
@@ -189,12 +185,14 @@ def student_edit_profile(request,
         if form.is_valid():
             student = form.save()
             if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
-                student.sat_t = form.cleaned_data['sat_w'] + form.cleaned_data['sat_v'] + form.cleaned_data['sat_m']
+                student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
+            else:
+                student.sat_t = None
             student.last_updated = datetime.datetime.now()
             student.save()
             if request.FILES.has_key('resume'):
-                if os.path.exists(settings.MEDIA_ROOT + old_resume_name):
-                    os.remove(settings.MEDIA_ROOT + old_resume_name)
+                if os.path.exists(old_resume_name):
+                    os.remove(old_resume_name)
                 return process_resume(request.user.student, request.is_ajax())
             else:
                 if request.is_ajax():

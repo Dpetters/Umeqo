@@ -1,8 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 

@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
 from core.models import CampusOrgType, CampusOrg
 
 def campus_org_types_as_choices():

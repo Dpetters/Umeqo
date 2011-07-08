@@ -1,4 +1,4 @@
-import os, socket
+import socket
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG

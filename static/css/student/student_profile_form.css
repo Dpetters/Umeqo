@@ -1,9 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
-
 /* Profile Form Fields */
 input[type=text] {
     width:180px;
@@ -97,7 +91,6 @@ input[type=text] {
     display:none;
 }
 .ui-accordion .ui-accordion-content {
-    overflow:hidden;
     border-top: 1px solid #CCCCCC;
     padding:0 0 20px 0;
 }
@@ -108,12 +101,19 @@ input[type=text] {
 .profile_form_info_dialog .ui-dialog-content {
     padding:10px 15px;
 }
-
-#id_gpa {
-    width: 3em;
+#id_first_major, #id_second_major{
+	width:318px;
+}
+#id_gpa{
+    width: 40px;
     text-align: center;
 }
-
+#id_sat_v, #id_sat_m, #id_sat_w, #id_act, #id_older_than_18{
+	width:60px;
+}
+#id_website, #id_school_year, #id_graduation_year{
+	width:190px;
+}
 .side_form_info ul {
     padding: 1px 0 10px;
 }
