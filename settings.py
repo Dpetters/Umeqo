@@ -21,11 +21,11 @@ EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
 DATA_APPS = (
+    'user',
     'employer',
     'student',
     'events',
     'registration',
-    'user',
 )
 
 #Akismet Settings
