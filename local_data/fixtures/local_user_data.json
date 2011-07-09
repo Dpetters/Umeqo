@@ -9,34 +9,16 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-06-30 19:59:22", 
+   "last_login": "2011-07-08 00:52:20", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$bdeef$43732d4a5bfd22cdf03f95f024c3c6b6fa5beaa6", 
+   "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
    "email": "umeqo@mit.edu", 
    "date_joined": "2011-05-22 19:39:52"
   }
  }, 
  {
-  "pk": 3, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "recruiter2@umeqo.com", 
-   "first_name": "Jessica", 
-   "last_name": "Melindo", 
-   "is_active": true, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-07-02 11:34:42", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$40235$2e395e3eba5d0af98846688405f69ce5781f98af", 
-   "email": "recruiter2@umeqo.com", 
-   "date_joined": "2011-05-22 19:49:19"
-  }
- }, 
- {
-  "pk": 4, 
+  "pk": 2, 
   "model": "auth.user", 
   "fields": {
    "username": "student1@umeqo.com", 
@@ -45,84 +27,174 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-07-02 11:34:03", 
+   "last_login": "2011-07-08 01:09:47", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$ee50b$0687ebe580ad2854a06c72e6437fe2d65f3f1284", 
+   "password": "sha1$f21cd$6ce7215207c2042fdc7f1e0aa7c620daa70268be", 
    "email": "student1@umeqo.com", 
-   "date_joined": "2011-05-22 20:02:14"
+   "date_joined": "2011-07-07 20:22:36"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "recruiter1@umeqo.com", 
+   "first_name": "Lauren", 
+   "last_name": "Laver", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-07-08 01:02:07", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$c958f$e7322772f54c5731c1d9e6502f6816cb965fba1a", 
+   "email": "recruiter1@umeqo.com", 
+   "date_joined": "2011-07-07 22:03:05"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "student2@umeqo.com", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-07-07 23:56:00", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$700c1$f3e9a729d56257e9983b8d03016c8ed1efd30350", 
+   "email": "student2@umeqo.com", 
+   "date_joined": "2011-07-07 23:56:00"
   }
  }, 
  {
   "pk": 5, 
   "model": "auth.user", 
   "fields": {
-   "username": "recruiter1@umeqo.com", 
-   "first_name": "Lindsay", 
-   "last_name": "MacGarva", 
+   "username": "student3@umeqo.com", 
+   "first_name": "", 
+   "last_name": "", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-07-02 11:33:34", 
+   "last_login": "2011-07-07 23:56:53", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$72f12$3935b1bcc2d30378b00bef21f935c7d3e4b47023", 
-   "email": "recruiter1@umeqo.com", 
-   "date_joined": "2011-05-22 23:07:01"
+   "password": "sha1$9a5b4$bb54c8d442d35f36e2c61256d313f5c001d59ab9", 
+   "email": "student3@umeqo.com", 
+   "date_joined": "2011-07-07 23:56:53"
   }
  }, 
  {
   "pk": 6, 
   "model": "auth.user", 
   "fields": {
-   "username": "recruiter3@umeqo.com", 
-   "first_name": "Sarah", 
-   "last_name": "Parker", 
+   "username": "student4@umeqo.com", 
+   "first_name": "", 
+   "last_name": "", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-05-22 23:08:27", 
+   "last_login": "2011-07-07 23:57:16", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$7a537$7a51d82699da93b6e4e7c1304a988d134e3fa197", 
-   "email": "recruiter3@umeqo.com", 
-   "date_joined": "2011-05-22 23:08:27"
+   "password": "sha1$619a8$3fa6b73dfcdaf0c14e82262cc4f8e92633087334", 
+   "email": "student4@umeqo.com", 
+   "date_joined": "2011-07-07 23:57:16"
   }
  }, 
  {
   "pk": 7, 
   "model": "auth.user", 
   "fields": {
-   "username": "student2@umeqo.com", 
-   "first_name": "Zachary", 
-   "last_name": "Dearing", 
+   "username": "student5@umeqo.com", 
+   "first_name": "", 
+   "last_name": "", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-06-05 21:53:22", 
+   "last_login": "2011-07-07 23:57:41", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$13b5b$3ba6a77698b2cfea4ec6f467941e2b6e01ff3293", 
-   "email": "student2@umeqo.com", 
-   "date_joined": "2011-05-23 21:58:38"
+   "password": "sha1$9c07a$fd3f12380a532976c6795f2e9e2dc24c0a890eb6", 
+   "email": "student5@umeqo.com", 
+   "date_joined": "2011-07-07 23:57:41"
   }
  }, 
  {
   "pk": 8, 
   "model": "auth.user", 
   "fields": {
-   "username": "student3@umeqo.com", 
-   "first_name": "Joshua", 
-   "last_name": "Ma", 
+   "username": "recruiter2@umeqo.com", 
+   "first_name": "Gina", 
+   "last_name": "Vaglia", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-06-05 22:04:13", 
+   "last_login": "2011-07-07 23:58:54", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$5e810$14cd5a5e127f292d797962d91c5f535cd5614f27", 
-   "email": "student3@umeqo.com", 
-   "date_joined": "2011-05-23 22:01:47"
+   "password": "sha1$61e36$b819d1d44669c747e5409867e63acabdd1880fc6", 
+   "email": "recruiter2@umeqo.com", 
+   "date_joined": "2011-07-07 23:58:54"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "recruiter3@umeqo.com", 
+   "first_name": "Liz", 
+   "last_name": "Floyd", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-07-08 00:01:46", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$63457$85cfca7c5856bf37f22fbeafe90a6f3db8e078b5", 
+   "email": "recruiter3@umeqo.com", 
+   "date_joined": "2011-07-08 00:01:46"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "recruiter4@umeqo.com", 
+   "first_name": "Katelyn", 
+   "last_name": "O'Hare", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-07-08 00:02:30", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$ce488$8b5a0a8c5364d11a9a10402e2adfc21c6bb5510b", 
+   "email": "recruiter4@umeqo.com", 
+   "date_joined": "2011-07-08 00:02:30"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "recruiter5@umeqo.com", 
+   "first_name": "Jason", 
+   "last_name": "Mccoy", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-07-08 00:03:38", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$c9085$fa1e329ecfc71f17bbbe078050f00d475730bdba", 
+   "email": "recruiter5@umeqo.com", 
+   "date_joined": "2011-07-08 00:03:38"
   }
  }
 ]

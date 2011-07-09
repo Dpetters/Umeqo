@@ -8,30 +8,27 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Removing M2M table for field subscribed_employers on 'Student'
-        db.delete_table('student_student_subscribed_employers')
-
-        # Adding M2M table for field subscriptions on 'Student'
-        db.create_table('student_student_subscriptions', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('student', models.ForeignKey(orm['student.student'], null=False)),
-            ('employer', models.ForeignKey(orm['employer.employer'], null=False))
+        # Adding model 'EmployerStatistics'
+        db.create_table('employer_employerstatistics', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('employer', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['employer.Employer'], unique=True)),
+            ('resumes_viewed', self.gf('django.db.models.fields.PositiveIntegerField')(default=0, null=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.create_unique('student_student_subscriptions', ['student_id', 'employer_id'])
+        db.send_create_signal('employer', ['EmployerStatistics'])
+
+        # Deleting field 'ResumeBook.file_name'
+        db.delete_column('employer_resumebook', 'file_name')
 
 
     def backwards(self, orm):
         
-        # Adding M2M table for field subscribed_employers on 'Student'
-        db.create_table('student_student_subscribed_employers', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('student', models.ForeignKey(orm['student.student'], null=False)),
-            ('employer', models.ForeignKey(orm['employer.employer'], null=False))
-        ))
-        db.create_unique('student_student_subscribed_employers', ['student_id', 'employer_id'])
+        # Deleting model 'EmployerStatistics'
+        db.delete_table('employer_employerstatistics')
 
-        # Removing M2M table for field subscriptions on 'Student'
-        db.delete_table('student_student_subscriptions')
+        # Adding field 'ResumeBook.file_name'
+        db.add_column('employer_resumebook', 'file_name', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True), keep_default=False)
 
 
     models = {
@@ -115,13 +112,6 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'})
         },
-        'core.ethnicity': {
-            'Meta': {'object_name': 'Ethnicity'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
-        },
         'core.graduationyear': {
             'Meta': {'object_name': 'GraduationYear'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -164,10 +154,80 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '500', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'industries': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['core.Industry']", 'symmetrical': 'False'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'main_contact': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'main_contact_phone': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'slug': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'})
+        },
+        'employer.employerstatistics': {
+            'Meta': {'object_name': 'EmployerStatistics'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'employer': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Employer']", 'unique': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'resumes_viewed': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0', 'null': 'True', 'blank': 'True'})
+        },
+        'employer.filteringparameters': {
+            'Meta': {'object_name': 'FilteringParameters'},
+            'act': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'campus_involvement': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.CampusOrg']", 'null': 'True', 'blank': 'True'}),
+            'countries_of_citizenship': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['countries.Country']", 'null': 'True', 'blank': 'True'}),
+            'employment_types': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.EmploymentType']", 'null': 'True', 'blank': 'True'}),
+            'gpa': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '5', 'decimal_places': '3', 'blank': 'True'}),
+            'graduation_years': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.GraduationYear']", 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'industries_of_interest': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'default_filtering_employers'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['core.Industry']"}),
+            'languages': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.Language']", 'null': 'True', 'blank': 'True'}),
+            'majors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.Course']", 'null': 'True', 'blank': 'True'}),
+            'older_than_18': ('django.db.models.fields.CharField', [], {'max_length': '1', 'null': 'True', 'blank': 'True'}),
+            'previous_employers': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['employer.Employer']", 'null': 'True', 'blank': 'True'}),
+            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'sat': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'school_years': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.SchoolYear']", 'null': 'True', 'blank': 'True'})
+        },
+        'employer.recruiter': {
+            'Meta': {'object_name': 'Recruiter'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'employer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['employer.Employer']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
+            'starred_students': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['student.Student']", 'symmetrical': 'False'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
+        },
+        'employer.recruiterpreferences': {
+            'Meta': {'object_name': 'RecruiterPreferences'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'default_student_ordering': ('django.db.models.fields.CharField', [], {'default': "'relevancy'", 'max_length': '42'}),
+            'email_on_rsvp': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'results_per_page': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '10'})
+        },
+        'employer.recruiterstatistics': {
+            'Meta': {'object_name': 'RecruiterStatistics'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'resumes_viewed': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0', 'null': 'True', 'blank': 'True'})
+        },
+        'employer.resumebook': {
+            'Meta': {'object_name': 'ResumeBook'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '42', 'null': 'True', 'blank': 'True'}),
+            'recruiter': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['employer.Recruiter']"}),
+            'resume_book': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'students': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['student.Student']", 'null': 'True', 'blank': 'True'})
+        },
+        'employer.studentcomment': {
+            'Meta': {'unique_together': "(('recruiter', 'student'),)", 'object_name': 'StudentComment'},
+            'comment': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'recruiter': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['employer.Recruiter']"}),
+            'student': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['student.Student']"})
         },
         'student.student': {
             'Meta': {'object_name': 'Student'},
@@ -175,22 +235,18 @@ class Migration(SchemaMigration):
             'campus_involvement': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.CampusOrg']", 'null': 'True', 'blank': 'True'}),
             'countries_of_citizenship': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['countries.Country']", 'null': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'ethnicity': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Ethnicity']", 'null': 'True', 'blank': 'True'}),
             'first_major': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'first_major'", 'null': 'True', 'to': "orm['core.Course']"}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
-            'gender': ('django.db.models.fields.CharField', [], {'max_length': '1', 'null': 'True', 'blank': 'True'}),
             'gpa': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '5', 'decimal_places': '3', 'blank': 'True'}),
             'graduation_year': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.GraduationYear']", 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'industries_of_interest': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'industries_of_interest_of'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['core.Industry']"}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'keywords': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'languages': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.Language']", 'null': 'True', 'blank': 'True'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True', 'blank': 'True'}),
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'looking_for': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.EmploymentType']", 'null': 'True', 'blank': 'True'}),
             'older_than_18': ('django.db.models.fields.CharField', [], {'max_length': '1', 'null': 'True', 'blank': 'True'}),
-            'preferences': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['student.StudentPreferences']", 'unique': 'True'}),
             'previous_employers': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'previous_employers_of'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['employer.Employer']"}),
             'profile_created': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'resume': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
@@ -200,26 +256,10 @@ class Migration(SchemaMigration):
             'sat_w': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'school_year': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.SchoolYear']", 'null': 'True', 'blank': 'True'}),
             'second_major': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'second_major'", 'null': 'True', 'to': "orm['core.Course']"}),
-            'statistics': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['student.StudentStatistics']", 'unique': 'True'}),
             'subscriptions': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'subscriptions'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['employer.Employer']"}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'}),
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
-        },
-        'student.studentpreferences': {
-            'Meta': {'object_name': 'StudentPreferences'},
-            'email_on_invite_to_private_event': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'email_on_invite_to_public_event': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'email_on_new_event': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        },
-        'student.studentstatistics': {
-            'Meta': {'object_name': 'StudentStatistics'},
-            'add_to_resumebook_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'event_invite_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'resume_view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'shown_in_results_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         }
     }
 
-    complete_apps = ['student']
+    complete_apps = ['employer']

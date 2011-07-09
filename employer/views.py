@@ -1,8 +1,3 @@
-"""
- Developers : Dmitrij Petters, Joshua Ma
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
 import cStringIO
 from datetime import datetime
 import mimetypes, os
@@ -24,7 +19,7 @@ from core.decorators import is_student, is_recruiter, render_to
 from core.models import Industry
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, StudentComment
-from employer.forms import DeliverResumeBookForm, EmployerPreferences, SearchForm, FilteringForm, StudentFilteringForm
+from employer.forms import DeliverResumeBookForm, RecruiterPreferences, SearchForm, FilteringForm, StudentFilteringForm
 from employer.views_helper import get_paginator, employer_search_helper
 from events.forms import EventForm
 from events.models import Event
@@ -53,7 +48,7 @@ def employer_employer_profile(request, employer, extra_context = None):
 @login_required
 @user_passes_test(is_recruiter)
 def employer_preferences(request, extra_context=None):
-    form_class = EmployerPreferences
+    form_class = RecruiterPreferences
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter)
@@ -361,6 +356,7 @@ def employer_setup_default_filtering(request, extra_context = None):
 @user_passes_test(is_recruiter)
 def employer_resume_book_summary(request, extra_context=None):
     if request.is_ajax():
+        context = {}
         resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
         if not resume_books.exists():
             latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
@@ -418,7 +414,7 @@ def employer_students(request, extra_context=None):
         context['current_student_list'] = request.POST['student_list']
         
         for student, is_in_resume_book, is_starred, comment in context['page'].object_list:
-            student.statistics.shown_in_results_count += 1
+            student.studentstatistics.shown_in_results_count += 1
             student.save()
         
         context.update(extra_context or {}) 
@@ -434,8 +430,8 @@ def employer_students(request, extra_context=None):
                 context['query'] = request.POST.get('query', '')
                 
         context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
-                                                                 initial={'ordering': request.user.recruiter.preferences.default_student_ordering,                           
-                                                                          'results_per_page' : request.user.recruiter.preferences.results_per_page})
+                                                                 initial={'ordering': request.user.recruiter.recruiterpreferences.default_student_ordering,                           
+                                                                          'results_per_page' : request.user.recruiter.recruiterpreferences.results_per_page})
         context['student_search_form'] = SearchForm()
         context['added'] = employer_enums.ADDED
         context['removed'] = employer_enums.REMOVED
@@ -477,8 +473,8 @@ def employer_resume_books_create(request):
                 os.mkdir(str(settings.RESUME_BOOKS_ROOT))  
             outputStream = file(str(settings.RESUME_BOOKS_ROOT) + resume_book_name, "wb")
             output.write(outputStream)
-            latest_resume_book.file_name = resume_book_name
-            latest_resume_book.save()
+            resume_book_contents = open(str(settings.RESUME_BOOKS_ROOT) + resume_book_name)
+            latest_resume_book.resume_book.save(str(settings.RESUME_BOOKS_ROOT) + resume_book_name + "yes", resume_book_contents)
             data = {'valid':True}
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         return HttpResponseBadRequest("Request must be a POST")

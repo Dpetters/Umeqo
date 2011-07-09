@@ -1,13 +1,8 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
 import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.auth.signals import user_logged_in
+from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
 from django.dispatch import receiver
 from django.template.loader import render_to_string
@@ -31,20 +26,31 @@ class InterestedPerson(models.Model):
         return self.first_name + " " + self.last_name
 
 class SessionKey(models.Model):
-    session_key = models.CharField(_('session key'), max_length=40, primary_key=True)
-    user = models.ForeignKey(User)
-
+    session_key = models.CharField('Session Key', max_length=40, primary_key=True, editable=False)
+    user = models.ForeignKey(User, editable=False)
+    
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+    
     class Meta:
         verbose_name = "Session Key"
         verbose_name_plural = "Session Keys"
         
     def __unicode__(self):
         return str(self.user)
-  
+
+@receiver(user_logged_out, sender=User)
+def delete_session_key(sender, request, user, **kwargs):
+    SessionKey.objects.filter(user=user, session_key=request.session.session_key).delete()
+    
+@receiver(user_logged_in, sender=User)
+def create_session_key(sender, request, user, **kwargs):
+    SessionKey.objects.create(user=user, session_key=request.session.session_key)
+    
 class UserAttributes(models.Model):
     user = models.OneToOneField(User)
+    is_verified = models.BooleanField(default=False)
     last_password_change_date = models.DateTimeField(blank=True, null=True)
-             
+
     class Meta:
         verbose_name = "User Attributes"
         verbose_name_plural = "User Attributes"
@@ -160,10 +166,3 @@ class RegistrationProfile(models.Model):
                                    ctx_dict)
         
         self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
-
-@receiver(user_logged_in, sender=User)
-def registerKey(sender, request, user, **kwargs):
-    print "Before: " + request.session.session_key
-    SessionKey.objects.create(user=user, session_key=request.session.session_key)
-    print "After: " + request.session.session_key
-

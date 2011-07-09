@@ -1,123 +1,50 @@
 [
  {
-  "pk": "603ad157404a567bd041f682fa7f4f13", 
+  "pk": "c0092120f7a583b6be5866fe9f6eaa64", 
   "model": "registration.sessionkey", 
   "fields": {
-   "user": 4
+   "date_created": "2011-07-08 00:44:08", 
+   "user": 1
   }
  }, 
  {
-  "pk": "fad0fb5f786317422ce2fbf934441419", 
+  "pk": "8b35203850c28b144e8a95b7708f8a9a", 
   "model": "registration.sessionkey", 
   "fields": {
-   "user": 4
-  }
- }, 
- {
-  "pk": "57a3d330f7654e3f4f3e20ce57a38530", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "user": 4
-  }
- }, 
- {
-  "pk": "e0038191c96ea50948de4f53fad00f3a", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "user": 5
-  }
- }, 
- {
-  "pk": "2f3947b8ad2f7fe5849f3cd0e13603b2", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "user": 4
-  }
- }, 
- {
-  "pk": "e1720e795376283c94ecec8905956a1c", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "user": 4
-  }
- }, 
- {
-  "pk": "4479f513258037ebd30d38dd9d4fba4a", 
-  "model": "registration.sessionkey", 
-  "fields": {
+   "date_created": "2011-07-08 00:50:16", 
    "user": 3
   }
  }, 
  {
-  "pk": 1, 
-  "model": "registration.userattributes", 
+  "pk": "56a257baa9c8ebe33bf5e3bd618a625f", 
+  "model": "registration.sessionkey", 
   "fields": {
-   "user": 3, 
-   "last_password_change_date": null
+   "date_created": "2011-07-08 00:52:20", 
+   "user": 1
   }
  }, 
  {
-  "pk": 2, 
-  "model": "registration.userattributes", 
+  "pk": "0019a13ffcabeda0e3271c4e0c115749", 
+  "model": "registration.sessionkey", 
   "fields": {
-   "user": 4, 
-   "last_password_change_date": null
+   "date_created": "2011-07-08 00:53:41", 
+   "user": 2
   }
  }, 
  {
-  "pk": 3, 
-  "model": "registration.userattributes", 
+  "pk": "067dbf3852d1c407c4363d4fa1cbdc72", 
+  "model": "registration.sessionkey", 
   "fields": {
-   "user": 5, 
-   "last_password_change_date": null
+   "date_created": "2011-07-08 00:56:34", 
+   "user": 3
   }
  }, 
  {
-  "pk": 4, 
-  "model": "registration.userattributes", 
+  "pk": "830b8c3d67b7915573842b84fa0ebad1", 
+  "model": "registration.sessionkey", 
   "fields": {
-   "user": 6, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "user": 7, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "user": 8, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "registration.registrationprofile", 
-  "fields": {
-   "activation_key": "49818517de064ca60f56761aef73b091973773a7", 
-   "user": 4
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "registration.registrationprofile", 
-  "fields": {
-   "activation_key": "863e63501b30f8793af7f6b1f4fd402c7ad59785", 
-   "user": 7
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "registration.registrationprofile", 
-  "fields": {
-   "activation_key": "b25103468611cc687e07cf59603fc90b4ce5171f", 
-   "user": 8
+   "date_created": "2011-07-08 01:09:47", 
+   "user": 2
   }
  }
 ]

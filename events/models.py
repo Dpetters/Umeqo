@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver

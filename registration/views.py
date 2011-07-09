@@ -6,7 +6,7 @@
 from datetime import datetime
 
 from django.conf import settings
-from django.contrib.auth import authenticate, REDIRECT_FIELD_NAME, login as auth_login
+from django.contrib.auth import  login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout as auth_logout_then_login
 from django.contrib.sessions.models import Session
@@ -14,18 +14,13 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.utils import simplejson
-from django.utils.translation import ugettext as _
 
-from core import messages
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
-from registration.models import SessionKey
-from registration.view_helpers import modify_redirect
 
 
 @login_required
 def logout(request, login_url=None, current_app=None, extra_context=None):
-    SessionKey.objects.filter(session_key = request.session.session_key).delete()
     return auth_logout_then_login(request, login_url, current_app, extra_context)
 
 @login_required
@@ -34,7 +29,6 @@ def deactivate_account(request):
         pass
     else:
         pass
-        SessionKey.objects.filter(session_key = request.session.session_key).delete()
 
 @login_required
 def password_change(request,
@@ -48,6 +42,7 @@ def password_change(request,
             request.user.userattributes.last_password_change_date = datetime.now()
             for session_key_object in request.user.sessionkey_set.all():
                 Session.objects.get(session_key=session_key_object.session_key).delete()
+            request.user.sessionkey_set.all().delete()
             request.user.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, request.user)
             data = {'valid':True}
@@ -76,7 +71,6 @@ def activate_user(request,
     if user:
         user.backend = settings.AUTHENTICATION_BACKENDS[0]
         auth_login(request, user)
-        SessionKey.objects.create(user=user, session_key=request.session.session_key)
         if success_url is None:
             to, args, kwargs = backend.post_activation_redirect(request, user)
             return redirect(to, *args, **kwargs)

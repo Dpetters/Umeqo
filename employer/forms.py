@@ -1,16 +1,10 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django import forms
 
 from core.choices import NO_YES_CHOICES
 from core.forms_helper import campus_org_types_as_choices
 from student.form_helpers import student_lists_as_choices
 
-from employer.models import FilteringParameters, EmployerPreferences
+from employer.models import FilteringParameters, RecruiterPreferences
 from employer import enums as employer_enums
 
 class DeliverResumeBookForm(forms.Form):
@@ -33,16 +27,17 @@ class FilteringForm(forms.ModelForm):
 
     widget=forms.FileInput(attrs={'class':'required'})
     class Meta:
+        exclude = ("recruiter",)
         model = FilteringParameters
         
     def __init__(self, *args, **kwargs):
         super(FilteringForm, self).__init__(*args, **kwargs)
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
 
-class EmployerPreferencesForm(forms.ModelForm):
+class RecruiterPreferencesForm(forms.ModelForm):
     
     class Meta:
-        model = EmployerPreferences
+        model = RecruiterPreferences
      
 class StudentFilteringForm(FilteringForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = employer_enums.ORDERING_CHOICES, required = False)

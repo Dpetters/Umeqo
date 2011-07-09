@@ -8,18 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'SessionKey'
-        db.create_table('registration_sessionkey', (
-            ('session_key', self.gf('django.db.models.fields.CharField')(max_length=40, primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-        ))
-        db.send_create_signal('registration', ['SessionKey'])
+        # Adding field 'SessionKey.date_created'
+        db.add_column('registration_sessionkey', 'date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2011, 7, 8, 0, 44, 8, 874000), blank=True), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting model 'SessionKey'
-        db.delete_table('registration_sessionkey')
+        # Deleting field 'SessionKey.date_created'
+        db.delete_column('registration_sessionkey', 'date_created')
 
 
     models = {
@@ -77,8 +73,16 @@ class Migration(SchemaMigration):
         },
         'registration.sessionkey': {
             'Meta': {'object_name': 'SessionKey'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'session_key': ('django.db.models.fields.CharField', [], {'max_length': '40', 'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'registration.userattributes': {
+            'Meta': {'object_name': 'UserAttributes'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_verified': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'last_password_change_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
         }
     }
 

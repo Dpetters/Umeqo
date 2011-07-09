@@ -82,10 +82,10 @@ class CampusOrgAdmin(admin.ModelAdmin):
 
 class CourseAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Required Info', {'fields': ['name', 'num']}),
+        ('Required Info', {'fields': ['name', 'num', 'sort_order']}),
         ('Extra Content', {'fields': ['admin', 'email', 'website', 'image', 'description', 'display']}),
     ]
-    list_display = ('name', 'num', 'display')
+    list_display = ('name', 'num', 'display', 'sort_order')
     search_fields = ['name']
 
 admin.site.unregister(User)

@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 import os
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
@@ -145,7 +139,7 @@ TEMPLATE_DIRS = (
 )
 
 SOUTH_MIGRATION_MODULES = {
-    'messages': 'Umeqo.messages.migrations',
+    'messages': 'messages.migrations',
 }
 
 INSTALLED_APPS = (

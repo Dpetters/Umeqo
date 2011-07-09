@@ -67,7 +67,6 @@ def refresh_database():
     for app in settings.DATA_APPS:
         p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
         p.wait()
-        
 
 def commit_local_data():
     print 'This script might overwrite local data that has already been created. \
@@ -91,7 +90,7 @@ def commit_local_data():
     # copytree requires that it exists
     submitted_resumes_path = ROOT + "/media/resumes/"
     if not os.path.exists(submitted_resumes_path):
-        os.mkdir(submitted_resumes_path)  
+        os.mkdir(submitted_resumes_path)
     
     shutil.copytree(submitted_resumes_path, local_data_submitted_resumes_path)
     

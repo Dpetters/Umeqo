@@ -20,6 +20,22 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('registration', ['InterestedPerson'])
 
+        # Adding model 'SessionKey'
+        db.create_table('registration_sessionkey', (
+            ('session_key', self.gf('django.db.models.fields.CharField')(max_length=40, primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+        ))
+        db.send_create_signal('registration', ['SessionKey'])
+
+        # Adding model 'UserAttributes'
+        db.create_table('registration_userattributes', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
+            ('is_verified', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('last_password_change_date', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
+        ))
+        db.send_create_signal('registration', ['UserAttributes'])
+
         # Adding model 'RegistrationProfile'
         db.create_table('registration_registrationprofile', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -33,6 +49,12 @@ class Migration(SchemaMigration):
         
         # Deleting model 'InterestedPerson'
         db.delete_table('registration_interestedperson')
+
+        # Deleting model 'SessionKey'
+        db.delete_table('registration_sessionkey')
+
+        # Deleting model 'UserAttributes'
+        db.delete_table('registration_userattributes')
 
         # Deleting model 'RegistrationProfile'
         db.delete_table('registration_registrationprofile')
@@ -90,6 +112,18 @@ class Migration(SchemaMigration):
             'activation_key': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'unique': 'True'})
+        },
+        'registration.sessionkey': {
+            'Meta': {'object_name': 'SessionKey'},
+            'session_key': ('django.db.models.fields.CharField', [], {'max_length': '40', 'primary_key': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'registration.userattributes': {
+            'Meta': {'object_name': 'UserAttributes'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_verified': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'last_password_change_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
         }
     }
 

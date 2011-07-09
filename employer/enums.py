@@ -1,10 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
-
 RESULTS_PER_PAGE_CHOICES = (
 (1,1),
 (5, 5),

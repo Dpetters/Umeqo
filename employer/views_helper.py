@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django.db.models import Q
 from django.core.cache import cache
 
@@ -14,7 +8,6 @@ from employer import enums
 from employer.models import ResumeBook, StudentComment, Employer
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
-
 
 def check_for_new_student_matches(employer):
     all_student_matches = filter_students(gpa=employer.gpa,

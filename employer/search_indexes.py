@@ -1,10 +1,3 @@
-"""
- Developers : Joshua Ma,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
-from datetime import datetime
 from employer.models import Employer
 from events.models import Event
 from haystack import indexes, site

@@ -1,21 +1,17 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
+from django.dispatch import receiver
+from django.db.models import signals
 
 from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
 from core.models_helper import get_resume_filename
 from core import choices as core_choices
 
+
 class Student(models.Model):
     
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, unique=True)
     
     # Account Info
     profile_created = models.BooleanField(default=False)
@@ -54,49 +50,75 @@ class Student(models.Model):
     
     # Subscriptions
     subscriptions = models.ManyToManyField("employer.Employer", blank=True, null=True, related_name="subscriptions")
-
-    is_active = models.BooleanField(default=True)
-    preferences = models.OneToOneField("student.StudentPreferences")
-    statistics = models.OneToOneField("student.StudentStatistics")
     
     # Dates
     last_updated = models.DateTimeField(editable=False, blank = True, null=True)
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
 
     class Meta:
+        verbose_name = "Student"
         verbose_name_plural = "Students"
     
     def __unicode__(self):
-        return self.user.first_name + " " + self.user.last_name
-  
-    def save(self, *args, **kwargs):
-        if self.first_name and self.last_name:
-            self.user.first_name = self.first_name
-            self.user.last_name = self.last_name
-            self.user.save()
-        try:
-            self.preferences
-        except ObjectDoesNotExist:
-            self.preferences = StudentPreferences.objects.create()
-        try:
-            self.statistics
-        except ObjectDoesNotExist:
-            self.statistics = StudentStatistics.objects.create()
-        super(Student, self).save(*args, **kwargs)
+        if hasattr(self, "user"):
+            return str(self.user)
+        else:
+            return "Unattached Student"
+
+@receiver(signals.post_save, sender=Student)
+def create_related_models(sender, instance, created, raw, **kwargs):
+        if instance.first_name and instance.last_name:
+            instance.user.first_name = instance.first_name
+            instance.user.last_name = instance.last_name
+            instance.user.save()
+        if not StudentPreferences.objects.filter(student=instance).exists():
+            StudentPreferences.objects.create(student=instance)
+        if not StudentStatistics.objects.filter(student=instance).exists():
+            StudentStatistics.objects.create(student=instance)
+
+@receiver(signals.pre_delete, sender=Student)
+def delete_resume_file(sender, instance, **kwargs):
+    instance.resume.delete()
+
 
 class StudentPreferences(models.Model):
+    student = models.OneToOneField("student.Student", unique=True, editable=False)
+    
     email_on_invite_to_public_event = models.BooleanField()
     email_on_invite_to_private_event = models.BooleanField()
     email_on_new_event = models.BooleanField()
+
+    last_updated = models.DateTimeField(editable=False, auto_now=True)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     class Meta:
+        verbose_name = "Student Preferences"
         verbose_name_plural = "Student Preferences"
     
     def __unicode__(self):
-        return self.user
-  
+        if hasattr(self, "student"):
+            return "Student Preferences for %s" % (self.student,)
+        else:
+            return "Unattached Student Preferences"
+    
+    
 class StudentStatistics(models.Model):
+    student = models.OneToOneField("student.Student", unique=True, editable=False)
+    
     event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
     add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
     resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
     shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)
+
+    last_updated = models.DateTimeField(editable=False, auto_now=True)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Student Statistics"
+        verbose_name_plural = "Student Statistics"
+
+    def __unicode__(self):
+        if hasattr(self, "student"):
+            return "Student Statistics for %s" % (self.student,)
+        else:
+            return "Unattached Student Statistics"

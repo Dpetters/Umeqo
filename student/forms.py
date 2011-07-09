@@ -1,8 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
 from django import forms
 
 from student.models import Student, StudentPreferences
@@ -67,7 +62,7 @@ class StudentCreateProfileForm(forms.ModelForm):
     
     # Academic Info
     second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
-    act = forms.ChoiceField(label="ACT:", required = False, choices=[('','--')]+[(x,x) for x in range(36,0,-1)])
+    act = forms.ChoiceField(label="ACT:", required = False, choices=[('','---')]+[(x,x) for x in range(36,0,-1)])
     sat_m = forms.ChoiceField(label="SAT Math:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_v = forms.ChoiceField(label="SAT Verbal:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_w = forms.ChoiceField(label="SAT Writing:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
@@ -112,6 +107,34 @@ class StudentCreateProfileForm(forms.ModelForm):
         super(StudentCreateProfileForm, self).__init__(*args, **kwargs)
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
     
+    # The Django IntegerField does not (but SHOULD) support '' as an empty value
+    # Therefore I have to check for '' and return None if it's that.
+    # We can't use None in the choices themselves because jquery validation
+    # complains that you're not submitting an integer but "None"
+    def clean_sat_m(self):
+        sat_m = self.cleaned_data["sat_m"]
+        if not sat_m:
+            return None
+        return sat_m
+
+    def clean_sat_w(self):
+        sat_w = self.cleaned_data["sat_w"]
+        if not sat_w:
+            return None
+        return sat_w
+        
+    def clean_sat_v(self):
+        sat_v = self.cleaned_data["sat_v"]
+        if not sat_v:
+            return None
+        return sat_v
+        
+    def clean_act(self):
+        act = self.cleaned_data["act"]
+        if not act:
+            return None
+        return act
+    
     def clean(self):
         first_major = self.cleaned_data.get("first_major")
         second_major = self.cleaned_data.get("second_major")
@@ -119,9 +142,11 @@ class StudentCreateProfileForm(forms.ModelForm):
             raise forms.ValidationError(_(messages.first_and_second_major_must_be_diff))
         return self.cleaned_data
 
+ 
 class StudentEditProfileForm(StudentCreateProfileForm):
     resume = PdfField(label="Resume:", required=False)
 
+  
 class StudentPreferencesForm(forms.ModelForm):
 
     class Meta:
