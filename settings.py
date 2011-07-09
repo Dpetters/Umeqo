@@ -87,6 +87,12 @@ STATICFILES_DIRS = (
     ROOT + '/static',
 )
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
 MAX_DIALOG_IMAGE_WIDTH = 200
 MAX_DIALOG_IMAGE_HEIGHT = 140
     
@@ -160,7 +166,8 @@ INSTALLED_APPS = (
     'registration',
     'south',
     'student',
-    'debug_toolbar'
+    'debug_toolbar',
+    'compressor',
 )
 
 

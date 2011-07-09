@@ -10,7 +10,10 @@
         <meta property="fb:app_id" content="119497238132973" />
         <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/x-icon" />
         <title>Umeqo</title>
-        <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
+        {% load compress %}
+        {% compress css %}
+            <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
+        {% endcompress %}
         <script type="text/javascript">
         
           var _gaq = _gaq || [];
