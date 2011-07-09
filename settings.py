@@ -93,6 +93,11 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+)
+
 MAX_DIALOG_IMAGE_WIDTH = 200
 MAX_DIALOG_IMAGE_HEIGHT = 140
     
