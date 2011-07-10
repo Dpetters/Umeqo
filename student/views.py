@@ -13,7 +13,7 @@ from student.models import Student
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
-from core.decorators import is_student
+from core.decorators import is_student, render_to
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
 from core import messages
@@ -244,39 +244,60 @@ def student_update_resume_info(request):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     return redirect('home')
 
-    
-@login_required
+"""
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_create_campus_organization(request,
-                                       form_class=CreateCampusOrganizationForm,
-                                       template_name="student_create_campus_organization.html",
-                                       extra_context=None):
-
+def student_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
     if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
+        if request.method == "POST":
+            form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
             if form.is_valid():
-                new_campus_organization = form.save()
-                data = {"valid":True, 
-                        "type": new_campus_organization.type.name, 
-                        "name": new_campus_organization.name, 
-                        "id": new_campus_organization.id}
+                request.user.student.student_preferences = form.save()
+                if hasattr(student_preferences, 'save_m2m'):
+                    request.user.student.student_preferences.save_m2m()
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
+            else:
+                data = {'valid':False,
+                        'form_errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-            # Should be caught by javascript. Bug!
-            invalid_data = {"valid": False, 
-                            "errors": form.errors}
-            return HttpResponse(simplejson.dumps(invalid_data), mimetype="application/json")
         else:
-            create_campus_organization_form = form_class()
-            
-        context =  {
-                'create_campus_organization_form': create_campus_organization_form
-                }
-        context.update(extra_context or {}) 
-        return render_to_response(template_name,
-                                  context,
-                                  context_instance=RequestContext(request))
-    redirect('home')
+            return HttpResponseForbidden("Request must be a POST.")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+"""
+@render_to()
+def student_create_campus_organization(request, form_class=CreateCampusOrganizationForm, extra_context=None):
+    if request.user.is_authenticated() and hasattr(request.user, "student"):
+        if request.is_ajax():
+            if request.method == 'POST':
+                form = form_class(data=request.POST)
+                if form.is_valid():
+                    new_campus_organization = form.save()
+                    data = {"valid":True,
+                            "type": new_campus_organization.type.name,
+                            "name": new_campus_organization.name,
+                            "id": new_campus_organization.id}
+                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                else:
+                    data = {'valid':False}
+                    errors = {}
+                    for field in form:
+                        if field.errors:
+                            errors[field.auto_id] = field.errors[0]
+                    if form.non_field_errors():
+                        errors['non_field_error'] = form.non_field_errors()[0]
+                    data['errors'] = errors
+                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            else:
+                create_campus_organization_form = form_class()
+            context =  {'create_campus_organization_form': create_campus_organization_form,
+                        'TEMPLATE': "student_create_campus_organization.html" }
+            context.update(extra_context or {}) 
+            return context
+        else:
+            return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    else:
+        return HttpResponseForbidden("You must be logged in.")        
 
 
 @login_required

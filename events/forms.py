@@ -1,15 +1,7 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django import forms
 
 from events.models import Event, EventType
 from events.choices import TIME_CHOICES
-from datetime import datetime
-
 from core.forms_helper import decorate_bound_field
 
 decorate_bound_field()

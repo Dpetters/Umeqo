@@ -1,10 +1,5 @@
-"""
- Developers : Dmitrij Petters, Joshua Ma
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from datetime import datetime
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User

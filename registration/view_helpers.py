@@ -1,9 +1,5 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
 import re
+
 from django.core.urlresolvers import reverse
 
 def modify_redirect(request, redirect_to=None):

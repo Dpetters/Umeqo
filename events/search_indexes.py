@@ -1,9 +1,3 @@
-"""
- Developers : Joshua Ma,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
 from haystack import indexes, site
 from events.models import Event
 

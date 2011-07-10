@@ -1,11 +1,7 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django.contrib import admin
+
 from events.models import Event, EventType
+
 
 class EventAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -16,10 +12,10 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ('recruiters', 'type', 'audience')
     search_fields = ['name', 'description']
     date_hierarchy = 'start_datetime'
-    
+admin.site.register(Event, EventAdmin)
+
+
 class EventTypeAdmin(admin.ModelAdmin):
     fields = ['name']
     ordering = ('-last_updated',)
-
-admin.site.register(Event, EventAdmin)
 admin.site.register(EventType, EventTypeAdmin)

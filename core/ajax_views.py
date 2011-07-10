@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
 from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
@@ -11,7 +5,7 @@ from django.core.validators import URLValidator
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 
-from core.models import Course, CampusOrg, Language
+from core.models import Course, Language
 from student.models import Student
 from employer.models import Employer
 
@@ -33,22 +27,6 @@ def check_website(request):
             except ValidationError:
                 pass
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-    return HttpResponseRedirect('/')
-
-
-# Check if a campus organization with the supplied name already exists
-@login_required
-def check_campus_organization_uniqueness(request):
-    # Only do the check if this is an ajax method
-    if request.is_ajax():
-        # Return a false if the name query param is missing
-        if request.GET.has_key("name"):
-            try:
-                CampusOrg.objects.get(name=request.GET.get("name"))
-                return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-            except CampusOrg.DoesNotExist:
-                pass
-        return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseRedirect('/')
 
 # Check if a language with the supplied name already exists

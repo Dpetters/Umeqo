@@ -20,13 +20,20 @@ EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
-DATA_APPS = (
+
+LOCAL_DATA_APPS = (
     'user',
+    'registration',
     'employer',
     'student',
     'events',
     'registration',
 )
+
+PROD_DATA_APPS = (
+    'core',
+    'sites'
+) 
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"
@@ -76,11 +83,9 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
 
-RESUME_BOOKS_ROOT  = MEDIA_ROOT + "resume_books/"
+LOCAL_DATA_ROOT = ROOT + "/local_data/"
 
-RESUMES_ROOT = MEDIA_ROOT + "resumes/"
-
-IMAGES_ROOT = MEDIA_ROOT + "images/"
+PROD_DATA_ROOT = ROOT + "/prod_data/"
 
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
@@ -134,7 +139,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'core.middleware.SetRemoteAddrMiddleware',
-    'core.middleware.LogMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"

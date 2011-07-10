@@ -1,10 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
-
 from core.models import CampusOrg, Language, CampusOrgType
 from django import forms
 from django.conf import settings

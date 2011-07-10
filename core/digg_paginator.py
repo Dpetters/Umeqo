@@ -1,12 +1,4 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
-from django.core.paginator import (
-    Paginator, Page, InvalidPage, EmptyPage, PageNotAnInteger) #@UnusedImport
-
+from django.core.paginator import Paginator, Page, EmptyPage
 
 __all__ = (
     'ExPaginator',
@@ -17,7 +9,6 @@ __all__ = (
     'PageNotAnInteger',
     'EmptyPage',
 )
-
 
 class ExPaginator(Paginator):
     """Adds a ``softlimit`` option to ``page()``. If True, querying a
@@ -273,8 +264,3 @@ class DiggPage(Page):
                             " ".join(map(str, self.leading_range)),
                             " ".join(map(str, self.main_range)),
                             " ".join(map(str, self.trailing_range))]))
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
