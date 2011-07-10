@@ -133,6 +133,8 @@ urlpatterns += patterns('events.views',
     (r'^events/unrsvp/(?P<id>\d+)$', 'event_unrsvp', {}, 'event_unrsvp'),
     (r'^events/checkin/(?P<id>\d+)$', 'event_checkin', {}, 'event_checkin'),
     (r'^events/search/$', 'event_search', {}, 'event_search'),
+    (r'^events/e/$', 'events_by_employer', {}, 'events_by_employer'),
+    (r'^events/i/$', 'event_invite', {}, 'event_invite'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

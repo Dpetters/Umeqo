@@ -34,6 +34,8 @@ class Event(models.Model):
     
     datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
+
+    is_public = models.BooleanField(default=True)
     
     def __unicode__(self):
         return self.name
@@ -45,6 +47,13 @@ class Event(models.Model):
         self.full_clean()
         super(Event, self).save(*args, **kwargs)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('event_page', (), {
+            'id': self.id,
+            'slug': self.slug,
+        })
+
 @receiver(signals.pre_save, sender=Event)
 def save_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.name)
@@ -53,6 +62,14 @@ class RSVP(models.Model):
     student = models.ForeignKey('student.Student')
     event = models.ForeignKey(Event)
     datetime_created = models.DateTimeField(auto_now=True)
+
+class Invitee(models.Model):
+    student = models.ForeignKey(Student, null=True)
+    event = models.ForeignKey(Event)
+    datetime_created = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("student", "event"),)
 
 class Attendee(models.Model):
     email = models.EmailField()

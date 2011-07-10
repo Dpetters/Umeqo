@@ -190,6 +190,3 @@ try:
     from settings_local import *
 except ImportError:
     from settings_prod import *
-
-#this is used for absolute URLs, specifically FB API urls
-DOMAIN = 'umeqo.com'

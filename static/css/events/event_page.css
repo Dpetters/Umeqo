@@ -139,9 +139,11 @@
     min-height: 110px;
 }
 #event_response_empty {
-    padding: 6px 5px 3px;
+    padding: 0;
     font-size: 12px;
     color: #444;
+    margin-top: 45px;
+    text-align: center;
 }
 #event_admin_side {
     float: left;
@@ -446,4 +448,18 @@
     -webkit-border-radius: 2px;
     -o-border-radius: 2px;
     font-size: 18px;
+}
+
+#event_title span {
+    font-size: 16px;
+    margin-left: 10px;
+    vertical-align: top;
+    color: #888;
+    background-color: #EEE;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+}
+.main_block_content p {
+    padding: 10px 0;
 }

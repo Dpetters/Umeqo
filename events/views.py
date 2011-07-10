@@ -4,21 +4,25 @@
  Copyright 2011. All Rights Reserved.
 """
 
-from core.decorators import is_recruiter, is_student, render_to
 from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
+from notification import models as notification
+
+from core.decorators import is_recruiter, is_student, render_to
 from events.models import Attendee, Event, RSVP
 from events.views_helper import event_search_helper
+from student.models import Student
 
 @login_required
 @user_passes_test(is_student)
@@ -35,7 +39,7 @@ def events_list(request, extra_context=None):
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
-    return redirect(reverse('event_page', kwargs={'id':event.id,'slug':event.slug}))
+    return redirect(event.get_absolute_url())
 
 def buildAttendee(obj):
     output = {
@@ -70,7 +74,8 @@ def event_page(request, id, slug, extra_context=None):
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound()
-    page_url = 'http://'+settings.DOMAIN+reverse('event_page', kwargs={'id':event.id,'slug':event.slug})
+    current_site = Site.objects.get(id=settings.SITE_ID)
+    page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     rsvps = map(buildRSVP, event.rsvp_set.all().order_by('student__first_name'))
@@ -90,7 +95,7 @@ def event_page(request, id, slug, extra_context=None):
         'checkins': checkins,
         'all_responses': all_responses,
         'page_url': page_url,
-        'DOMAIN': settings.DOMAIN,
+        'DOMAIN': current_site.domain,
         'attending': False,
         'can_rsvp': False,
         'show_admin': False,
@@ -106,9 +111,6 @@ def event_page(request, id, slug, extra_context=None):
         context['can_rsvp'] = True
     elif hasattr(request.user,"recruiter"):
         context['show_admin'] = True
-    
-    # TODO(josh): remove this
-    # context['company_logo'] = "http://"+settings.DOMAIN+settings.STATIC_URL+'images/company_logo_filler.png'
     
     context.update(extra_context or {})
     return render_to_response('event_page.html',context,context_instance=RequestContext(request))
@@ -200,3 +202,35 @@ def event_search(request, extra_context=None):
     context = {'events': events}
     context.update(extra_context or {})
     return context
+
+@login_required
+@user_passes_test(is_recruiter)
+def events_by_employer(request):
+    events = Event.objects.filter(recruiters=request.user.recruiter)
+    events = map(lambda n: {
+        'id': n.id,
+        'name': n.name,
+    }, events)
+    return HttpResponse(simplejson.dumps(events), mimetype="application/json")
+
+@login_required
+@user_passes_test(is_recruiter)
+@require_http_methods(["POST"])
+def event_invite(request):
+    event_id = request.POST.get('event_id', None)
+    student_id = request.POST.get('student_id', None)
+    if not (event_id and student_id):
+        return HttpResponseBadRequest()
+    event = Event.objects.filter(id=event_id)
+    student = Student.objects.filter(id=student_id)
+    if not (student.exists() and event.exists()):
+        return HttpResponseBadRequest()
+    event = event.get()
+    student = student.get()
+    employer = request.user.recruiter.employer
+    notification.send([student.user], 'public_invite', {
+        'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
+        'permalink': event.get_absolute_url(),
+    })
+    return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
+    

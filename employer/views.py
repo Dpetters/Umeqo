@@ -254,10 +254,7 @@ def employer_new_event(request, extra_context=None):
             has_word = "has" if len(employers)==1 else "have"
             notification.send(to_users, 'new_event', {
                 'message': '<strong>%s</strong> %s a new event: "%s"' % (employer_names, has_word, event_obj.name),
-                'permalink': reverse('event_page', kwargs = {
-                    'id': event_obj.id,
-                    'slug': event_obj.slug
-                }),
+                'permalink': event_obj.get_absolute_url(),
             })
 
             return HttpResponseRedirect(reverse('event_page', kwargs = {

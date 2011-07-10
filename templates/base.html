@@ -13,7 +13,7 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_ui_custom/css/ui-lightness/jquery-ui-1.8.12.custom.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
             {% if user.is_authenticated and user.student or user.recruiter %}
-                <link   rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
+                <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             {% else %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/anonymous.css" />
             {% endif %}

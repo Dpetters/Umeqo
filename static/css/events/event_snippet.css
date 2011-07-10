@@ -3,6 +3,9 @@
     border-top: 1px solid #DDD;
     margin-bottom: 10px;
 }
+.event_list p {
+    padding: 10px 0;
+}
 .event_list li {
     clear: both;
     padding: 5px;

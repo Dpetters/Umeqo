@@ -6,26 +6,24 @@
 
 {% block metadata %}
 
-<script type="text/javascript">
-var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
-{% if edit %}
-var EDIT_FORM = true;
-{% else %}
-var EDIT_FORM = false;
-{% endif %}
+<script>
+    var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
+    {% if edit %}
+        var EDIT_FORM = true;
+    {% else %}
+        var EDIT_FORM = false;
+    {% endif %}
 </script>
 
-<!-- JQuery Masker Input -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input_1.2.2.js">
-</script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js">
-</script>
+{% load compress %}
+{% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-
-<!-- Custom -->
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new_event.css" />
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_new_event.js">
-</script>
+{% endcompress %}
+{% compress js %}
+<script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<script src="{{ STATIC_URL }}javascript/employer/employer_new_event.js"></script>
+{% endcompress %}
 
 <!--datetime_field media-->
 {{form.media}}
@@ -99,6 +97,13 @@ var EDIT_FORM = false;
                         <td>
                             <div class="errorspace"></div>
                             {{form.rsvp_message}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{{form.is_public.label_tag}}</th>
+                        <td>
+                            <div class="errorspace"></div>
+                            {{form.is_public}}
                         </td>
                     </tr>
                     <tr>
