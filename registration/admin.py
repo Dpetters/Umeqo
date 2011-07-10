@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from django.contrib import admin
 from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
@@ -11,9 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from registration.models import RegistrationProfile, InterestedPerson, UserAttributes, SessionKey
 
+
 class InterestedPersonAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_created'
 admin.site.register(InterestedPerson, InterestedPersonAdmin)
+
 
 class RegistrationProfileAdmin(admin.ModelAdmin):
     actions = ['activate_users', 'resend_activation_email']
@@ -52,12 +48,14 @@ class RegistrationProfileAdmin(admin.ModelAdmin):
     resend_activation_email.short_description = _("Re-send activation emails")
 admin.site.register(RegistrationProfile, RegistrationProfileAdmin)
 
+
 class SessionKeyAdmin(admin.ModelAdmin):
     fields=[]
     list_display=['session_key', 'user', 'date_created']
     
 admin.site.register(SessionKey, SessionKeyAdmin) 
+
     
 class UserAttributesAdmin(admin.ModelAdmin):
     pass
-admin.site.register(UserAttributes, UserAttributesAdmin)    
+admin.site.register(UserAttributes, UserAttributesAdmin)

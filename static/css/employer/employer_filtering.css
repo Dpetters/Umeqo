@@ -1,9 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
-
 #side_block_area {
     width:330px;
     position:relative;
@@ -290,8 +284,9 @@
 .student_major {
     margin-left:7px;
 }
-.student_invite_to_event_link {
+.student_invite_to_event_span {
     float:right;
+    position: relative;
 }
 .student_gpa {
     float:right;
@@ -395,4 +390,30 @@
     padding:4px 8px;
     text-align:center;
     width:282px;
+}
+
+.events_dropdown {
+    position: absolute;
+    padding: 5px;
+    background-color: #FFF;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    width: 200px;
+    border: 1px solid #CCC;
+    box-shadow: #888 3px 3px 2px 1px;
+    text-decoration: none;
+    color: #444;
+    right: 0;
+    z-index: 200;
+}
+.events_dropdown:hover {
+    color: #444;
+}
+.events_dropdown a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+    overflow: hidden;
+    display: inline-block;
 }

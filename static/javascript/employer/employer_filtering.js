@@ -1,8 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
 $(document).ready(function() {
 	var no_students_selected_message = "<p>No students selected.</p>";
     var filtering_ajax_request = null;
@@ -1431,4 +1426,35 @@ $(document).ready(function() {
     set_up_side_block_scrolling();
     initiate_ajax_call();
     initiate_resume_book_summary_update();
+
+    $('.student_invite_to_event_span').live('hover', function() {
+        var that = this;
+        var children_dropdown = $(this).children('.events_dropdown');
+        if (children_dropdown.length == 0) {
+            $.get(EVENTS_LIST_URL, function(events) {
+                var dropdown = $('<div class="events_dropdown"></div>');
+                if (events.length == 0) {
+                    dropdown.html('You have no events!');
+                } else {
+                    $.each(events, function(k,event) {
+                        dropdown.append('<a id="event-' + event.id + '" class="event_invite_link" href="#">' + event.name + '</a>');
+                    });
+                }
+                $(that).append(dropdown);
+            });
+        } else if (children_dropdown.eq(0).hasClass('hid')) {
+            children_dropdown.eq(0).removeClass('hid');
+        } else {
+            children_dropdown.eq(0).addClass('hid');
+        }
+    });
+
+    $('.event_invite_link').live('click', function() {
+        var event_id = $(this).attr('id').split('-')[1];
+        var student_id = $(this).attr('data-studentid');
+        $.post(EVENT_INVITE_URL, {event_id: event_id, student_id: student_id}, function(data) {
+            console.log(data);
+        });
+        return false;
+    });
 });

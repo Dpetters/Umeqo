@@ -1,9 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
-
 var PASSWORD_MIN_LENGTH = 5;
 
 /* Multiselect Widget Properties */

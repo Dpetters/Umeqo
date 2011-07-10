@@ -1,13 +1,14 @@
-import Image, os
+import Image
 from datetime import datetime
 
-from django.conf import settings
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
+from django.conf import settings
 
-from core.models_helper import get_image_filename
+from core.model_helpers import get_course_image_filename, get_campusorg_image_filename, scale_down_image
 from core import enums
+
 
 class Topic(models.Model):
     name = models.CharField(max_length=150)
@@ -46,7 +47,6 @@ class CommonInfo(models.Model):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)
     description = models.TextField(max_length=500, blank=True, null=True, help_text="Maximum 500 characters.")
-    image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -66,7 +66,8 @@ class SchoolYear(models.Model):
         
     def __unicode__(self):
         return self.name
-    
+
+
 class GraduationYear(models.Model):
     year = models.PositiveSmallIntegerField("Graduation Year", unique=True)
     last_updated = models.DateTimeField(auto_now=True)
@@ -92,6 +93,7 @@ class Language(models.Model):
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
+    image = models.ImageField(upload_to=get_course_image_filename, blank=True, null=True)
     sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     
@@ -102,11 +104,9 @@ class Course(CommonInfo):
         return "%s (%s)" % (self.name, self.num)
     
     def save(self, *args, **kwargs):
-        old_instance = Course.objects.get(id=self.id)
-        if old_instance.image:
-            os.remove(old_instance.image.path)
-        self.full_clean()
         super(Course, self).save(*args, **kwargs)
+        if self.image:
+            scale_down_image(self.image)
 
 
 class EmploymentType(models.Model):
@@ -142,6 +142,7 @@ class CampusOrgType(models.Model):
 class CampusOrg(CommonInfo):
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     type = models.ForeignKey(CampusOrgType)
+    image = models.ImageField(upload_to=get_campusorg_image_filename, blank=True, null=True)
 
     class Meta(CommonInfo.Meta):
         verbose_name = "On-Campus Organization"
@@ -149,14 +150,7 @@ class CampusOrg(CommonInfo):
 
     def __unicode__(self):
         return self.name
-    
-    def save(self, *args, **kwargs):
-        old_instance = CampusOrg.objects.get(id=self.id)
-        if old_instance.image:
-            os.remove(old_instance.image.path)
-        self.full_clean()
-        super(CampusOrg, self).save(*args, **kwargs)
-             
+
 
 class Industry(models.Model):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
@@ -181,15 +175,3 @@ class EventType(models.Model):
     
     def __unicode__(self):
         return self.name
-
-
-@receiver(signals.post_save, sender=CampusOrg)
-@receiver(signals.post_save, sender=Course)
-def resize_image(sender, instance, **kwargs):
-    if instance.image:
-        filename = instance.image.path
-        image = Image.open(filename)
-        ratio = min(float(settings.MAX_DIALOG_IMAGE_WIDTH)/instance.image.width, float(settings.MAX_DIALOG_IMAGE_HEIGHT)/instance.image.height)
-        size = (int(ratio * instance.image.width), int(ratio * instance.image.height))
-        image.thumbnail(size, Image.ANTIALIAS)
-        image.save(filename)

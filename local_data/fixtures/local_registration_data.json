@@ -78,5 +78,29 @@
    "date_created": "2011-07-09 17:04:02", 
    "user": 1
   }
+ }, 
+ {
+  "pk": "ffcd4c351892979c68bc2b637e100d6d", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-10 15:20:38", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": "ae42348c95a6c93ecca699bd1dc7138e", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-10 15:24:23", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": "cbb54696960e258b2ce6bb5ab74a4f39", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-10 15:25:44", 
+   "user": 4
+  }
  }
 ]

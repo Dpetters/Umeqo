@@ -20,13 +20,24 @@ EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
-DATA_APPS = (
+PROD_DATA_APPS = (
+    'core',
+    'sites'
+)
+
+LOCAL_DATA_APPS = (
     'user',
+    'registration',
     'employer',
     'student',
     'events',
     'registration',
 )
+
+PROD_DATA_APPS = (
+    'core',
+    'sites'
+) 
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"
@@ -60,8 +71,6 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-STATIC_ROOT = "/var/www/static/"
-
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
@@ -76,11 +85,11 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
 
-RESUME_BOOKS_ROOT  = MEDIA_ROOT + "resume_books/"
+LOCAL_FIXTURES_ROOT = ROOT + "/local_data/fixtures/"
 
-RESUMES_ROOT = MEDIA_ROOT + "resumes/"
+LOCAL_MEDIA_ROOT = ROOT + "/local_data/media/"
 
-IMAGES_ROOT = MEDIA_ROOT + "images/"
+PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
 
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
@@ -134,7 +143,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'core.middleware.SetRemoteAddrMiddleware',
-    'core.middleware.LogMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -190,6 +198,3 @@ try:
     from settings_local import *
 except ImportError:
     from settings_prod import *
-
-#this is used for absolute URLs, specifically FB API urls
-DOMAIN = 'umeqo.com'

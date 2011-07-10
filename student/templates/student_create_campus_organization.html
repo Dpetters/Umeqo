@@ -1,44 +1,40 @@
-<!--
-Developers : Dmitrij Petters,
-All code is property of original developers.
-Copyright 2011. All Rights Reserved.
--->
-
-<div class="dialog_info_section">
-    <h3>Create the campus organization by filling out the fields below.</h3>
-    <p>
-        <strong>Note:</strong> Its authenticity will be checked by site administrators.
-    </p>
+<div class="dialog_content_wrapper">
+    <div class="dialog_info_section">
+        <h3>Create the campus organization by filling out the fields below.</h3>
+        <p>
+            <strong>Note:</strong> Its authenticity will be checked by site administrators.
+        </p>
+    </div>
+    <form id="create_campus_organization_form" method='POST' action="/student/create-campus-organization/">
+        {% csrf_token %}
+        <table class="form_table">
+            <tr>
+                <th>{{create_campus_organization_form.name.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{create_campus_organization_form.name}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{create_campus_organization_form.type.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{create_campus_organization_form.type}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{create_campus_organization_form.website.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{create_campus_organization_form.website}}
+                </td>
+            </tr>
+        </table>
+        <div class="error_section error">
+        </div>
+        <div class="button_wrapper_with_margins">
+            <input id="create_campus_organization_form_submit_button" class="button" type='submit' value='Create'>
+            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+        </div>
+    </form>
 </div>
-<form id="create_campus_organization_form" method='POST' action="/student/create-campus-organization/">
-    {% csrf_token %}
-    <table class="form_table">
-        <tr>
-            <th>{{create_campus_organization_form.name.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{create_campus_organization_form.name}}
-            </td>
-        </tr>
-        <tr>
-            <th>{{create_campus_organization_form.type.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{create_campus_organization_form.type}}
-            </td>
-        </tr>
-        <tr>
-            <th>{{create_campus_organization_form.website.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{create_campus_organization_form.website}}
-            </td>
-        </tr>
-    </table>
-    <div class="error_section error">
-    </div>
-    <div class="button_wrapper_with_margins">
-        <input id="create_campus_organization_form_submit_button" class="button" type='submit' value='Create'>
-        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-    </div>
-</form>

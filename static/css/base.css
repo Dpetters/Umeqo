@@ -1,9 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
-
 * {
     margin: 0;
     padding: 0;
@@ -822,7 +816,7 @@ a:focus {
 }
 /* Dialogs */
 #dialog_loader {
-    margin-top: 16px;
+    margin-top: 30px;
     text-align: center;
 }
 #dialog_long_load_message{
@@ -830,8 +824,7 @@ a:focus {
 	min-height: 17px;
 }
 .dialog_info_section {
-    line-height: 22px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .dialog_side_info_section {
     float: right;
@@ -877,9 +870,11 @@ a:focus {
     -moz-box-shadow: 0px 0px 20px #606060;
     -webkit-box-shadow: 0px 0px 20px #606060;
     border: 1px solid #505050;
+    overflow:visible;
 }
 .ui-dialog .ui-dialog-content{
 	padding: 0px;
+	overflow:visible;
 }
 .ui-dialog .ui-dialog-titlebar {
     border-radius: 3px;
@@ -1105,14 +1100,14 @@ a.ui-slider-handle {
 #notifications_pane {
     position: absolute;
     z-index: 100;
-    width: 251px;
+    width: 300px;
     background-color: #FFF;
-    left: 0;
+    left: -67px;
     top: 41px;
     border: 1px solid #CCC;
     -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
-    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px 1px 1px 2px rgba(0,0,0,0.1);
     display: none;
 }
 #notifications_pane h2 {

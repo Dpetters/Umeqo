@@ -1,6 +1,5 @@
 import os, subprocess, shutil, sys
-from fabric.api import hosts, local, lcd, abort, env, sudo, run, cd
-from fabric.contrib.console import confirm
+from fabric.api import env, sudo
 from fabric.contrib import django as fabric_django
 
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
@@ -8,7 +7,10 @@ sys.path.append(ROOT)
 fabric_django.settings_module('settings')
 from django.conf import settings
 
-__all__= ["staging", "prod", "reboot", "refresh_database", "commit_local_data"]
+
+__all__= ["staging", "prod", "reboot", "create_database", "load_prod_data", 
+          "load_local_data", "commit_local_data", "commit_prod_data", "migrate"]
+
 
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
@@ -17,103 +19,94 @@ def delete_contents(directory):
         for name in dirs:
             os.rmdir(os.path.join(root, name))
 
+
 def staging():
     env.hosts = ['root@staging.umeqo.com']
+
 
 def prod():
     env.hosts = ['root@umeqo.com']
 
+
 def reboot(): 
     sudo('service apache2 restart')
     sudo('service nginx restart')
+
+def migrate():
+    p = subprocess.Popen("python manage.py migrate --all", shell=True)
+    p.wait()
+    
+def copy_in_media(root, apps):
+    if not os.path.exists(root):
+        os.makedirs(root)
         
-def refresh_database():
+    for app in apps:
+        if not os.path.exists(root + app):
+            os.makedirs(root + app)
+        if os.path.exists(settings.MEDIA_ROOT + app):
+            delete_contents(settings.MEDIA_ROOT + app)
+            os.rmdir(settings.MEDIA_ROOT + app)
+        shutil.copytree(root + app, settings.MEDIA_ROOT + app)
+
+def copy_out_media(root, apps):
+    if not os.path.exists(settings.MEDIA_ROOT):
+        os.makedirs(settings.MEDIA_ROOT)
+        
+    if os.path.exists(root):
+        delete_contents(root)
+    else:
+        os.makedirs(root)
+        
+    for app in apps:
+        if not os.path.exists(settings.MEDIA_ROOT + app):
+            os.makedirs(settings.MEDIA_ROOT + app)
+        shutil.copytree(settings.MEDIA_ROOT + app, root + app)
+        
+def copy_in_local_media():
+    copy_in_media(settings.LOCAL_MEDIA_ROOT, settings.LOCAL_DATA_APPS)
+
+def copy_out_local_media():
+    copy_out_media(settings.LOCAL_MEDIA_ROOT, settings.LOCAL_DATA_APPS)
+
+def copy_in_prod_media():
+    copy_in_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
+
+def copy_out_prod_media():
+    copy_out_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
+
+def create_database():
     if os.path.exists(ROOT + "/database.db"):
         os.remove(ROOT + "/database.db")
-
-    # Delete existing resumes and the parent directory
-    # copytree requires that that directory doesn't exist
-    submitted_resumes_path = ROOT + "/media/resumes/"
-    if os.path.exists(submitted_resumes_path):
-        delete_contents(submitted_resumes_path)
-        os.rmdir(submitted_resumes_path)
-
-    # Create the local resumes directory
-    # copytree requires that it exists
-    local_data_submitted_resumes_path = ROOT + "/local_data/media/resumes/"
-    if not os.path.exists(local_data_submitted_resumes_path):
-        os.mkdir(local_data_submitted_resumes_path)
-
-    shutil.copytree(local_data_submitted_resumes_path, submitted_resumes_path)
-
-    # Delete existing user images and the parent directory.
-    # copytree requres that that directory doesn't exist
-    submitted_user_images_path = ROOT + "/media/images/"
-    if os.path.exists(submitted_user_images_path):
-        delete_contents(submitted_user_images_path)
-        os.rmdir(submitted_user_images_path)
-
-    # Create the local images directory
-    # copytree requires that it exists
-    local_data_images_path = ROOT + "/local_data/media/images/"
-    if not os.path.exists(local_data_images_path):
-        os.mkdir(local_data_images_path)
-
-    shutil.copytree(local_data_images_path, submitted_user_images_path)
-
+    copy_in_prod_media()
     p = subprocess.Popen("python manage.py syncdb --noinput --migrate", shell=True)
     p.wait()
 
-    for app in settings.DATA_APPS:
-        p = subprocess.Popen("python manage.py loaddata ./local_data/fixtures/local_" + app + "_data.json", shell=True)
+def load_prod_data():
+    copy_in_prod_media()
+    p = subprocess.Popen("python manage.py flush --noinput", shell=True)
+    p.wait()
+
+def load_local_data():
+    copy_in_local_media()
+    for app in settings.LOCAL_DATA_APPS:
+        p = subprocess.Popen("python manage.py loaddata " + settings.LOCAL_FIXTURES_ROOT + "local_" + app + "_data.json", shell=True)
         p.wait()
 
+def commit_prod_data():
+    p = subprocess.Popen("python manage.py file_cleanup core.CampusOrg core.Course", shell=True)
+    p.wait()
+    copy_out_prod_media()
+    p = subprocess.Popen("python manage.py dumpdata sites --indent=1 > ./initial_data.json", shell=True)
+    p.wait()
+    p = subprocess.Popen("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json", shell=True)
+    p.wait()
+
+
 def commit_local_data():
-    print 'This script might overwrite local data that has already been created. \
-            \n To avoid this, make sure that you have done things in the following order. \
-            \n 1. Pulled from git to make sure you have the latest local_data. \
-            \n 2. Ran "fab refresh_database" to integrate the local_data. \
-            \n 3. Now, having the latest local data, you created new your local data. \
-            \n 4. And are now running this script to save it!.'
-    
-    if not confirm("Continue anyway?"):
-        abort("Aborting at user request.")
-
-    # Delete existing local data resumes and the parent directory
-    # copytree requires that that directory doesn't exist
-    local_data_submitted_resumes_path = ROOT + "/local_data/media/resumes/"
-    if os.path.exists(local_data_submitted_resumes_path):
-        delete_contents(local_data_submitted_resumes_path)
-        os.rmdir(local_data_submitted_resumes_path)
-
-    # Create the submitted resumes directory
-    # copytree requires that it exists
-    submitted_resumes_path = ROOT + "/media/resumes/"
-    if not os.path.exists(submitted_resumes_path):
-        os.mkdir(submitted_resumes_path)
-    
-    shutil.copytree(submitted_resumes_path, local_data_submitted_resumes_path)
-    
-    # Delete existing local user images and the parent directory.
-    # copytree requres that that directory doesn't exist
-    local_data_images_path = ROOT + "/local_data/media/images/"
-    if os.path.exists(local_data_images_path):
-        delete_contents(local_data_images_path)
-        os.rmdir(local_data_images_path)
-
-    # Create the submitted images directory
-    # copytree requires that it exists
-    submitted_user_images_path = ROOT + "/media/images/"
-    if not os.path.exists(submitted_user_images_path):
-        os.mkdir(submitted_user_images_path)  
-        
-    shutil.copytree(submitted_user_images_path,  local_data_images_path)
-    
-    local_data_fixtures_path = "./local_data/fixtures/"
-    if not os.path.exists(local_data_fixtures_path):
-        os.mkdir(local_data_fixtures_path)
-        
-    for app in settings.DATA_APPS:
+    p = subprocess.Popen("python manage.py file_cleanup events.Event student.Student employer.Employer", shell=True)
+    p.wait()
+    copy_out_local_media()
+    for app in settings.LOCAL_DATA_APPS:
         # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
         if app == "user":
             p = subprocess.Popen("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json", shell=True)

@@ -1,9 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
-
 $(document).ready( function () {
     $("#search_form_submit_button").live('click', function(e){
         if (!$("#query_field").val()){
