@@ -1450,10 +1450,33 @@ $(document).ready(function() {
     });
 
     $('.event_invite_link').live('click', function() {
-        var event_id = $(this).attr('id').split('-')[1];
-        var student_id = $(this).attr('data-studentid');
-        $.post(EVENT_INVITE_URL, {event_id: event_id, student_id: student_id}, function(data) {
-            console.log(data);
+        var invite_dialog = $('<div id="invite-dialog" title="Send invite to student?"></div>');
+        var student_name = $(this).closest('span').attr('data-studentname');
+        var event_name = $(this).html();
+        var that = this;
+        invite_dialog.html('<p>' + student_name + ' will get a notification for your event, <strong>' + event_name + '</strong>. Are you sure?</p>');
+        invite_dialog.dialog({
+            height: 'auto',
+            minHeight: 0,
+            resizable: false,
+            modal: true,
+            buttons: {
+                "Send invite": function() {
+                    $(that).dialog("close");
+                    invite_dialog.remove();
+                    var event_id = $(that).attr('id').split('-')[1];
+                    var student_id = $(that).closest('span').attr('data-studentid');
+                    $.post(EVENT_INVITE_URL, {event_id: event_id, student_id: student_id}, function(data) {
+                        $("#message_area").html("<p>Invite sent successfully.</p>");
+                    }).error(function() {
+                        $("#message_area").html("<p>Invite could not be sent. Please try again later.</p>");
+                    });
+                },
+                Cancel: function() {
+                    $(that).dialog("close");
+                    invite_dialog.remove();
+                }
+            }
         });
         return false;
     });

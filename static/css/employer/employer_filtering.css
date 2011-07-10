@@ -399,7 +399,6 @@
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    width: 200px;
     border: 1px solid #CCC;
     box-shadow: #888 3px 3px 2px 1px;
     text-decoration: none;
@@ -413,7 +412,12 @@
 .events_dropdown a {
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 200px;
+    max-width: 200px;
     overflow: hidden;
     display: inline-block;
+    text-align: right;
+}
+
+#invite-dialog p {
+    padding: 5px;
 }
