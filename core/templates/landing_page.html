@@ -70,7 +70,7 @@
                                 <p>{{field.label_tag}}{{field}}</p>
                             {% endfor %}
                             <input type="submit" value="login"/> 
-                        <form>
+                        </form>
                         <div class="clearfix"></div>
                     </div>
                     <div id="fb-like">
@@ -82,19 +82,17 @@
                     <p>Interested? Help us by participating in the beta!</p>
                     <h2>Want to get in on the beta?</h2>
                     <p>Fill in the information below (we won't sell it, rent it, or trade it - promise!) and we'll get in touch when the time comes.</p>
-                    <p>
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            {% for field in form %}
-                                <p>{{field.label_tag}}{{field}}</p>
-                            {% endfor %}
-                            {% if not disabled %}
-                            <input type="submit" value="submit"/> 
-                            {% else %}
-                            <input type="submit" value="thanks!" disabled="disabled" />
-                            {% endif %}
-                        </form>
-                    <p>
+                    <form action="/" method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <p>{{field.label_tag}}{{field}}</p>
+                        {% endfor %}
+                        {% if not disabled %}
+                        <input type="submit" value="submit"/> 
+                        {% else %}
+                        <input type="submit" value="thanks!" disabled="disabled" />
+                        {% endif %}
+                    </form>
                 </div>
                 <div class="clearfix"></div>
             </div>
