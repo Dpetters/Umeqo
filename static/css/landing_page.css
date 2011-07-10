@@ -71,8 +71,8 @@ h3.mit{
 }
 h2 {
     color: #FFF;
-    margin: 20px 0 10px;
-    font-size: 35px;
+    margin: 20px 0 0;
+    font-size: 60px;
     font-family: 'Rokkitt', serif;
     text-shadow: #000 0 -1px 0;
 }
@@ -95,12 +95,28 @@ p.deets {
     margin-bottom: 20px;
     text-align: justify;
     font-size: 14px;
+    height: 300px;
 }
 p.deets span {
     color: #FFF;
     font-weight: bold;
     font-size: 18px;
     margin-right: 3px;
+}
+p.deets span.img {
+    display: inline-block;
+    padding-bottom: 10px;
+}
+.top span.img {
+    height: 200px;
+    line-height: 200px;
+}
+.bottom span.img {
+    height: 100px;
+    line-height: 100px;
+}
+span.img img {
+    vertical-align: bottom;
 }
 div.center {
     text-align: center;
@@ -182,7 +198,7 @@ input[type="submit"]:hover {
     cursor: pointer;
 }
 #working {
-    font-size: 30px;
+    font-size: 35px;
     line-height: 30px;
     color: #FFF;
     font-family: 'Rokkitt', serif;
@@ -257,4 +273,10 @@ input[type="submit"]:hover {
 }
 .module h2 {
     margin-top: 0;
+}
+#innovations {
+    padding-top: 20px;
+}
+#lotsaforms h2 {
+    font-size: 26px;
 }

@@ -2,8 +2,13 @@
 
 {% block metadata %}
 {{block.super}}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account_settings.css" />
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_account_settings.js"></script>
+{% load compress %}
+{% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account_settings.css" />
+{% endcompress %}
+{% compress js %}
+    <script src="{{ STATIC_URL }}javascript/employer/employer_account_settings.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block account_settings_tabs %}

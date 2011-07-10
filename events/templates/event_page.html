@@ -17,9 +17,13 @@ Copyright 2011. All Rights Reserved.
 <meta property="og:image" content="{{company_logo}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
-
-<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
-<script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
+{% load compress %}
+{% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+{% endcompress %}
+{% compress js %}
+    <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
+{% endcompress %}
 <script type="text/javascript">
 var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
 var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
