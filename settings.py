@@ -20,6 +20,7 @@ EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
+
 LOCAL_DATA_APPS = (
     'user',
     'registration',
@@ -28,6 +29,7 @@ LOCAL_DATA_APPS = (
     'events',
     'registration',
 )
+
 PROD_DATA_APPS = (
     'core',
     'sites'
@@ -88,6 +90,17 @@ PROD_DATA_ROOT = ROOT + "/prod_data/"
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
     ROOT + '/static',
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
 )
 
 MAX_DIALOG_IMAGE_WIDTH = 200
@@ -162,7 +175,8 @@ INSTALLED_APPS = (
     'registration',
     'south',
     'student',
-    'debug_toolbar'
+    'debug_toolbar',
+    'compressor',
 )
 
 

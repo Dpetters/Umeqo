@@ -7,9 +7,13 @@ Account Settings |
 {% block metadata %}
 
 {{block.super}}
-<!-- Custom -->
-<link rel="stylesheet" href="{{ STATIC_URL }}css/account_settings.css" />
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/account_settings.js"></script>
+{% load compress %}
+{% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/account_settings.css" />
+{% endcompress %}
+{% compress js %}
+    <script src="{{ STATIC_URL }}javascript/account_settings.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block message_area %}

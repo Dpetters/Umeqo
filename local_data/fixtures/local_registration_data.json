@@ -46,5 +46,37 @@
    "date_created": "2011-07-08 01:09:47", 
    "user": 2
   }
+ }, 
+ {
+  "pk": "1cc6bd71d4a19b5217509f2a60007247", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-09 11:45:48", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": "41b99aa23da82a4fa4248db316d778a0", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-09 17:02:11", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": "ff65b3852288fd488a647d7852eac89b", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-09 17:02:46", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": "c9ba1001cad363a0f724eca25ac1baeb", 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-09 17:04:02", 
+   "user": 1
+  }
  }
 ]
