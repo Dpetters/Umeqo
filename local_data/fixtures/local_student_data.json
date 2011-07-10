@@ -50,6 +50,53 @@
   }
  }, 
  {
+  "pk": 2, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "Joshi", 
+   "last_updated": "2011-07-10 15:30:53", 
+   "sat_m": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": "", 
+   "looking_for": [
+    2, 
+    4
+   ], 
+   "countries_of_citizenship": [
+    "IN"
+   ], 
+   "first_name": "Hrishikesh", 
+   "first_major": 12, 
+   "subscriptions": [], 
+   "gpa": "4.5", 
+   "campus_involvement": [
+    394
+   ], 
+   "languages": [
+    3, 
+    84
+   ], 
+   "profile_created": true, 
+   "school_year": 3, 
+   "graduation_year": 2, 
+   "previous_employers": [
+    4
+   ], 
+   "website": "", 
+   "second_major": 25, 
+   "resume": "student/Student/joshi_hrishikesh_student2@umeqo.com_2011-07-10-15-28-08.pdf", 
+   "user": 4, 
+   "industries_of_interest": [
+    40
+   ], 
+   "act": null, 
+   "date_created": "2011-07-10 15:25:30", 
+   "older_than_18": "Y"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -59,6 +106,18 @@
    "email_on_invite_to_public_event": false, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "last_updated": "2011-07-10 15:25:30", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_new_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 2, 
+   "date_created": "2011-07-10 15:25:30"
   }
  }, 
  {
@@ -72,6 +131,19 @@
    "add_to_resumebook_count": 0, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-07-10 15:25:30", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 2, 
+   "date_created": "2011-07-10 15:25:30"
   }
  }
 ]

@@ -32,50 +32,45 @@ def reboot():
     sudo('service apache2 restart')
     sudo('service nginx restart')
 
-
-def copy_in_local_media():
-    for app in settings.LOCAL_DATA_APPS:
+def copy_in_media(root, apps):
+    if not os.path.exists(root):
+        os.makedirs(root)
+        
+    for app in apps:
+        if not os.path.exists(root + app):
+            os.makedirs(root + app)
         if os.path.exists(settings.MEDIA_ROOT + app):
             delete_contents(settings.MEDIA_ROOT + app)
-    if os.path.exists(settings.MEDIA_ROOT):
-        os.rmdir(settings.MEDIA_ROOT)
+            os.rmdir(settings.MEDIA_ROOT + app)
+        shutil.copytree(root + app, settings.MEDIA_ROOT + app)
 
-    if not os.path.exists(settings.LOCAL_DATA_ROOT):
-        os.makedirs(settings.LOCAL_DATA_ROOT)
-
-    shutil.copytree(settings.LOCAL_DATA_ROOT, settings.MEDIA_ROOT)
-
-
-def copy_out_local_media():
+def copy_out_media(root, apps):
     if not os.path.exists(settings.MEDIA_ROOT):
         os.makedirs(settings.MEDIA_ROOT)
-
-    for app in settings.LOCAL_DATA_APPS:
+        
+    if os.path.exists(root):
+        delete_contents(root)
+    else:
+        os.makedirs(root)
+        
+    for app in apps:
         if not os.path.exists(settings.MEDIA_ROOT + app):
             os.makedirs(settings.MEDIA_ROOT + app)
-            
-    if os.path.exists(settings.LOCAL_DATA_ROOT):
-        os.rmdir(settings.LOCAL_DATA_ROOT)
+        shutil.copytree(settings.MEDIA_ROOT + app, root + app)
+        
+def copy_in_local_media():
+    copy_in_media(settings.LOCAL_MEDIA_ROOT, settings.LOCAL_DATA_APPS)
 
-    shutil.copytree(settings.MEDIA_ROOT, settings.LOCAL_DATA_ROOT)
+def copy_out_local_media():
+    copy_out_media(settings.LOCAL_MEDIA_ROOT, settings.LOCAL_DATA_APPS)
 
-    
+
 def copy_in_prod_media():
-    delete_contents(settings.MEDIA_ROOT)
-    os.rmdir(settings.MEDIA_ROOT)   
-    if not os.path.exists(settings.PROD_DATA_ROOT):
-        os.makedirs(settings.PROD_DATA_ROOT)
-
-    shutil.copytree(settings.PROD_DATA_ROOT, settings.MEDIA_ROOT)
+    copy_in_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
 
 
 def copy_out_prod_media():
-    delete_contents(settings.PROD_DATA_ROOT)
-    os.rmdir(settings.PROD_DATA_ROOT)   
-    if not os.path.exists(settings.MEDIA_ROOT):
-        os.makedirs(settings.MEDIA_ROOT)
-
-    shutil.copytree(settings.MEDIA_ROOT, settings.PROD_DATA_ROOT)
+    copy_out_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
 
 
 def create_database():
@@ -98,7 +93,7 @@ def update_database():
 def load_local_data():
     copy_in_local_media()
     for app in settings.LOCAL_DATA_APPS:
-        p = subprocess.Popen("python manage.py loaddata " + settings.LOCAL_DATA_ROOT + "fixtures/local_" + app + "_data.json", shell=True)
+        p = subprocess.Popen("python manage.py loaddata " + settings.LOCAL_FIXTURES_ROOT + "local_" + app + "_data.json", shell=True)
         p.wait()
 
 

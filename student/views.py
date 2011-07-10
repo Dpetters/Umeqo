@@ -181,7 +181,6 @@ def student_edit_profile(request,
         
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-        old_resume_name = str(request.user.student.resume)
         if form.is_valid():
             student = form.save()
             if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
@@ -191,8 +190,6 @@ def student_edit_profile(request,
             student.last_updated = datetime.datetime.now()
             student.save()
             if request.FILES.has_key('resume'):
-                if os.path.exists(old_resume_name):
-                    os.remove(old_resume_name)
                 return process_resume(request.user.student, request.is_ajax())
             else:
                 if request.is_ajax():
