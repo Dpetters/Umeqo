@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 from datetime import datetime
 
 from django.template import RequestContext
@@ -157,7 +151,7 @@ def landing_page(request, extra_context = None):
 
 
 def home(request, extra_context=None):
-
+    
     context = {}
 
     page_messages = {
@@ -340,7 +334,6 @@ def get_campus_org_info(request, extra_context = None):
 
 @login_required
 def check_campus_organization_uniqueness(request):
-    
     if request.is_ajax():
         try:
             CampusOrg.objects.get(name=request.GET.get("name"))

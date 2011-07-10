@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
- 
 from datetime import timedelta
 from django import template
 from django.contrib.sites.models import Site

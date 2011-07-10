@@ -63,15 +63,13 @@ $(document).ready( function() {
         var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
         $.ajax({
             dataType: "html",
-            url: '/student/create-camus-organization/',
+            url: '/student/create-campus-organization/',
             error: function(jqXHR, textStatus, errorThrown) {
                 clearTimeout(create_campus_organization_dialog_timeout);
-                switch(jqXHR.status){
-                    case 0:
-                        create_campus_organization_dialog.html(dialog_check_connection_message);
-                        break;
-                    default:
-                        create_campus_organization_dialog.html(dialog_error_message);
+                if(jqXHR.status==0){
+					create_campus_organization_dialog.html(dialog_check_connection_message);
+				}else{
+                    create_campus_organization_dialog.html(dialog_error_message);
                 }
             },
             success: function (data) {
@@ -80,15 +78,6 @@ $(document).ready( function() {
                 create_campus_organization_dialog.html(data);
                 create_campus_organization_dialog.dialog('option', 'position', 'center');
 
-                $("#id_type").multiselect({
-                    noneSelectedText: "select campus organization type",
-                    height:146,
-                    header:false,
-                    minWidth:multiselectMinWidth,
-                    selectedList: 1,
-                    multiple: false
-                });
-    
                 var create_campus_organization_form_validator = $("#create_campus_organization_form").validate({
                     submitHandler: function(form) {
                         $(form).ajaxSubmit({
@@ -98,41 +87,36 @@ $(document).ready( function() {
                             },
                             error: function(jqXHR, textStatus, errorThrown){
                                 hide_form_submit_loader("#create_campus_organization_form");
-                                switch(jqXHR.status){
-                                    case 0:
-                                        (".create_campus_organization_dialog .error_section").html(form_check_connection_message);
-                                        break;
-                                    default:
-                                        create_campus_organization_dialog.html(dialog_status_500_error_message);
+                                console.log(jqXHR.status==0);
+                                console.log(jqXHR.status);
+                                if(jqXHR.status==0){
+                                    (".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                }else{
+                                	console.log("here");
+                                    create_campus_organization_dialog.html(dialog_error_message);
                                 }
                             },
                             success: function(data) {
                                 hide_form_submit_loader("#create_campus_organization_form");
-                                switch(data.valid) {
-                                    case true:
-                                        var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add to Profile & Close Dialog</a></p>";
-                                        success_message += close_dialog_link;
-                                        create_campus_organization_dialog.html(success_message);
-    
-                                        // Add the new campus organization to the select and update the widget to include it
-                                        $("optgroup[label='" + data.type + "s']").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>');
+                                if (data.valid) {
+                                    var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add to Profile & Close Dialog</a></p>";
+                                    success_message += close_dialog_link;
+                                    create_campus_organization_dialog.html(success_message);
+
+                                    // Add the new campus organization to the select and update the widget to include it
+                                    $("optgroup[label='" + data.type + "s']").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>');
+                                    $("#id_campus_involvement").multiselect("refresh");
+                                    $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
+
+                                    // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
+                                    $(".select_new_campus_organization_link").click( function() {
+                                        $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
                                         $("#id_campus_involvement").multiselect("refresh");
                                         $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-    
-                                        // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
-                                        $(".select_new_campus_organization_link").click( function() {
-                                            $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
-                                            $("#id_campus_involvement").multiselect("refresh");
-                                            $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-                                            create_campus_organization_dialog.dialog('destroy');
-                                        });
-                                        break;
-                                    case false:
-                                        create_campus_organization_dialog.html(dialog_error_message);
-                                        break;
-                                    default:
-                                        create_campus_organization_dialog.html(dialog_error_message);
-                                        break;
+                                        create_campus_organization_dialog.dialog('destroy');
+                                    });
+								}else{
+                                    create_campus_organization_dialog.html(dialog_error_message);
                                 }
                                 create_campus_organization_dialog.dialog('option', 'position', 'center');
                             }
@@ -147,12 +131,10 @@ $(document).ready( function() {
                             remote: {
                                 url:"/check-campus-organization-uniqueness/",
                                 error: function(jqXHR, textStatus, errorThrown) {
-                                    switch(jqXHR.status){
-                                        case 0:
-                                            $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
-                                            break;
-                                        default:
-                                            create_campus_organization_dialog.html(dialog_error_message);
+                                    if(jqXHR.status==0){
+                                        $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                    }else{
+                                        create_campus_organization_dialog.html(dialog_error_message);
                                     }
                                 },
                             }

@@ -1,11 +1,5 @@
-"""
- Developers : Dmitrij Petters, Joshua Ma
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
-from core.decorators import is_recruiter, is_student, render_to
 from datetime import datetime
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
@@ -17,8 +11,11 @@ from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
+
 from events.models import Attendee, Event, RSVP
 from events.views_helper import event_search_helper
+from core.decorators import is_recruiter, is_student, render_to
+
 
 @login_required
 @user_passes_test(is_student)

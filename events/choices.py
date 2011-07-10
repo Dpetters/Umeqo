@@ -1,9 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
-
 TIME_CHOICES = (
 ('00:00','12:00 AM'),
 ('00:30','12:30 AM'),

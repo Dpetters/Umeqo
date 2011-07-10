@@ -1,8 +1,3 @@
-"""
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
-"""
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include
 from django.contrib import admin

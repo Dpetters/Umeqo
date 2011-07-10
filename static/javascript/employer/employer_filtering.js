@@ -1,8 +1,3 @@
-/*
- Developers : Dmitrij Petters,
- All code is property of original developers.
- Copyright 2011. All Rights Reserved.
- */
 $(document).ready(function() {
 	var no_students_selected_message = "<p>No students selected.</p>";
     var filtering_ajax_request = null;

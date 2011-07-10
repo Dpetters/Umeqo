@@ -37,7 +37,7 @@ input[type=text] {
     display:none;
 }
 .button_wrapper_with_margins{
-    margin-top:35px;
+    margin-top:17px;
 }
 /* Form Info */
 .profile_side_form_info {
@@ -60,21 +60,16 @@ input[type=text] {
     position: relative;
     line-height: 20px;
 }
-
-
-/* Create Campus Organization Dialog */
-.create_campus_organization_dialog .ui-dialog-content {
-    padding:20px 20px 25px 20px;
-    text-align:center;
+.create_campus_organization_dialog .dialog_content_wrapper, .create_language_dialog .dialog_content_wrapper{
+	padding: 15px;
+	text-align:center;
 }
-.create_campus_organization_dialog .form_table {
-    margin-left:auto;
-    margin-right:auto;
+.create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website, .create_language_dialog #id_name {
+    width:296px;
 }
-.create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website {
-    width:308px;
+.create_campus_organization_dialog #id_type{
+	width:305px;
 }
-/* Create Language Dialog */
 .create_language_dialog .ui-dialog-content {
     padding:20px 20px 25px 20px;
     text-align:center;
@@ -82,9 +77,6 @@ input[type=text] {
 .create_language_dialog .form_table {
     margin-left:auto;
     margin-right:auto;
-}
-.create_language_dialog #id_name {
-    width:265px;
 }
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
