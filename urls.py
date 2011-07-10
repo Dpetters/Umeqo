@@ -69,7 +69,7 @@ urlpatterns += patterns('registration.views',
 
 urlpatterns += patterns('student.views',
     # Student Registration
-    (r'^student/registration/$', 'student_registration', {'extra_context': {'login_form':AuthenticationForm}}, "student_registration"),
+    (r'^signup/$', 'student_registration', {'extra_context': {'login_form':AuthenticationForm}}, "student_registration"),
     (r'^student/registration/complete/$', 'student_registration_complete', { 'extra_context': {'login_form':AuthenticationForm}}, 'student_registration_complete'),
     # Student Profile Management
     (r'^student/edit-profile/$', 'student_edit_profile', {}, "student_edit_profile"),
