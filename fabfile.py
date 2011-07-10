@@ -8,8 +8,8 @@ fabric_django.settings_module('settings')
 from django.conf import settings
 
 
-__all__= ["staging", "prod", "reboot", "create_database", "update_database", 
-          "load_local_data", "commit_local_data", "commit_prod_data"]
+__all__= ["staging", "prod", "reboot", "create_database", "load_prod_data", 
+          "load_local_data", "commit_local_data", "commit_prod_data", "migrate"]
 
 
 def delete_contents(directory):
@@ -32,6 +32,10 @@ def reboot():
     sudo('service apache2 restart')
     sudo('service nginx restart')
 
+def migrate():
+    p = subprocess.Popen("python manage.py migrate --all", shell=True)
+    p.wait()
+    
 def copy_in_media(root, apps):
     if not os.path.exists(root):
         os.makedirs(root)
@@ -64,14 +68,11 @@ def copy_in_local_media():
 def copy_out_local_media():
     copy_out_media(settings.LOCAL_MEDIA_ROOT, settings.LOCAL_DATA_APPS)
 
-
 def copy_in_prod_media():
     copy_in_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
 
-
 def copy_out_prod_media():
     copy_out_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
-
 
 def create_database():
     if os.path.exists(ROOT + "/database.db"):
@@ -80,22 +81,16 @@ def create_database():
     p = subprocess.Popen("python manage.py syncdb --noinput --migrate", shell=True)
     p.wait()
 
-
-def update_database():
-    if not os.path.exists(ROOT + "/database.db"):
-        create_database()
-    else:
-        copy_in_prod_media()
-        p = subprocess.Popen("python manage.py flush --noinput", shell=True)
-        p.wait()
-
+def load_prod_data():
+    copy_in_prod_media()
+    p = subprocess.Popen("python manage.py flush --noinput", shell=True)
+    p.wait()
 
 def load_local_data():
     copy_in_local_media()
     for app in settings.LOCAL_DATA_APPS:
         p = subprocess.Popen("python manage.py loaddata " + settings.LOCAL_FIXTURES_ROOT + "local_" + app + "_data.json", shell=True)
         p.wait()
-
 
 def commit_prod_data():
     p = subprocess.Popen("python manage.py file_cleanup core.CampusOrg core.Course", shell=True)

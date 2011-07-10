@@ -6,6 +6,8 @@ TEMPLATE_DEBUG = DEBUG
 def is_prod():
     return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
 
+STATIC_ROOT = "/var/www/static/"
+
 USE_LANDING_PAGE = is_prod()
 
 # 1 - Prod, 2 - Staging, 3 - Dev/Local

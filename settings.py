@@ -71,8 +71,6 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-STATIC_ROOT = "/var/www/static/"
-
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
