@@ -21,7 +21,7 @@ class ContactForm(forms.Form):
     this form to provide basic contact functionality; it will collect
     name, email address and message.
     
-    The ``contact_form`` view included in this application knows how
+    The ``contacr_us_form`` view included in this application knows how
     to work with this form and can handle many types of subclasses as
     well (see below for a discussion of the important points), so in
     many cases it will be all that you need. If you'd like to use this
@@ -75,7 +75,7 @@ class ContactForm(forms.Form):
           
         * ``template_name`` -- used by the base ``message`` method to
           determine which template to use for rendering the
-          message. Default is ``contact_form/contact_form.txt``.
+          message. Default is ``contacr_us_form/contacr_us_form.txt``.
           
     Internally, the base implementation ``_get_message_dict`` method
     collects ``from_email``, ``message``, ``recipient_list`` and
@@ -144,9 +144,9 @@ class ContactForm(forms.Form):
     
     recipient_list = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
 
-    subject_template_name = "contact_form_subject.txt"
+    subject_template_name = "contacr_us_form_subject.txt"
     
-    template_name = 'contact_form.txt'
+    template_name = 'contacr_us_form.txt'
 
     _context = None
     
@@ -233,7 +233,8 @@ class BetaForm(forms.ModelForm):
     class Meta:
         fields = ('first_name','last_name','email','summer_plans')
         model = InterestedPerson
-    
+
+
 class CreateCampusOrganizationForm(forms.ModelForm):
     name = forms.CharField(label="Name:", max_length=42)
     type = forms.ModelChoiceField(label="Type:", queryset = CampusOrgType.objects.all())
@@ -244,10 +245,11 @@ class CreateCampusOrganizationForm(forms.ModelForm):
                   'type',
                   'website')
         model = CampusOrg
+
         
 class CreateLanguageForm(forms.ModelForm):
     
-    name = forms.CharField(max_length=28)
+    name = forms.CharField(label="Language:", max_length=42)
     
     class Meta:
         fields = ('name',)

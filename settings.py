@@ -31,13 +31,15 @@ LOCAL_DATA_APPS = (
     'employer',
     'student',
     'events',
-    'registration',
 )
 
 PROD_DATA_APPS = (
     'core',
     'sites'
 ) 
+
+PROD_PASSWORD = 'H3rcul3s'
+STAGING_PASSWORD = 'Jamb4Juic3'
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"
@@ -143,6 +145,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'core.middleware.SetRemoteAddrMiddleware',
+    'core.middleware.LogMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"

@@ -33,8 +33,8 @@ class Command(LabelCommand):
                 kwargs = {filefield: ''}
                 qs = model.objects.exclude(**kwargs).values_list(filefield, flat=True)
                 filenames_in_database.update(os.path.join(settings.MEDIA_ROOT, name).replace("/", "\\") for name in qs)
-        print filenames_in_database
         print filenames_on_disk
+        print filenames_in_database
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
 
         if not db_has_unseen_files:
@@ -42,11 +42,8 @@ class Command(LabelCommand):
                                 "subset of actual filenames on disk. Will not risk "
                                 "erasing arbitrary files, exiting.")
         
-        print filenames_on_disk
-        print filenames_in_database
         dangling_files = filenames_on_disk - filenames_in_database
         if options['backup_to']:
-            print "backup"
             move_files(dangling_files, options['backup_to'])
         else:
             remove_files(dangling_files)

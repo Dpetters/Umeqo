@@ -1,10 +1,6 @@
-import Image
 from datetime import datetime
 
 from django.db import models
-from django.db.models import signals
-from django.dispatch import receiver
-from django.conf import settings
 
 from core.model_helpers import get_course_image_filename, get_campusorg_image_filename, scale_down_image
 from core import enums

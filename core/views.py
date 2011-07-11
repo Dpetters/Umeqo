@@ -92,14 +92,16 @@ def contact_us_dialog(request, extra_context=None):
                     data['non_field_errors'] = str(form.non_field_errors())
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            form = form_class(request=request)
-    
+            if request.user.is_authenticated():
+                form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+            else:
+                form = form_class(request=request)                
         context = {
                 'form': form,
                 'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
                 }
         context.update(extra_context or {}) 
-        return render_to_response('contact_dialog.html',
+        return render_to_response('contact_us_dialog.html',
                                   context,
                                   context_instance=RequestContext(request))
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")

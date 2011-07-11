@@ -12,10 +12,10 @@ USE_LANDING_PAGE = True
 # 1 - Prod, 2 - Staging, 3 - Dev/Local
 if is_prod():
     SITE_ID = 1
-    DB_PASSWORD = 'H3rcul3s'
+    DB_PASSWORD = PROD_PASSWORD
 else:
     SITE_ID = 2
-    DB_PASSWORD = 'Jamb4Juic3'
+    DB_PASSWORD = STAGING_PASSWORD
 
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),

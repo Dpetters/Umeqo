@@ -8,12 +8,12 @@ def get_resume_filename(instance, filename):
 
 def get_campusorg_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    filename = "core/CampusOrg/" + instance.name.replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
+    filename = "core/CampusOrg/" + instance.name.replace(" ", "_").lower() + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
     return filename
 
 def get_course_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    filename = "core/Course/" + instance.name.replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
+    filename = "core/Course/" + instance.name.replace(" ", "_").lower() + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
     return filename
 
 def scale_down_image(image):

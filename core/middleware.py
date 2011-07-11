@@ -1,7 +1,7 @@
 import traceback
 import socket
 import logging
-"""   
+
 class LogMiddleware(object):
     def process_exception(self, request, exception):
         
@@ -19,7 +19,7 @@ class LogMiddleware(object):
             traceback   = tb_text,
         ) 
         logger.error(exception_info)
-"""       
+      
    
 class SetRemoteAddrMiddleware(object):
     def process_request(self, request):

@@ -1,4 +1,5 @@
 var PASSWORD_MIN_LENGTH = 5;
+var LOAD_WAIT_TIME = 8000;
 
 /* Multiselect Widget Properties */
 var multiselectMinWidth = 318;
@@ -197,7 +198,7 @@ Array.max = function (array) {
 $(document).ready( function () {
     
     /* Contact Dialog */
-    var open_contact_dialog = function () {
+    var open_contact_us_dialog = function () {
         var contact_us_dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
@@ -215,7 +216,7 @@ $(document).ready( function () {
     };
     $('.open_contact_us_dialog_link').live('click', function () {
 
-        contact_us_dialog = open_contact_dialog();
+        contact_us_dialog = open_contact_us_dialog();
         contact_us_dialog.html(dialog_ajax_loader);
 
         var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
@@ -224,60 +225,41 @@ $(document).ready( function () {
             url: '/contact-us-dialog/',
             error: function(jqXHR, textStatus, errorThrown) {
                 clearTimeout(contact_us_dialog_timeout);
-                switch(jqXHR.status){
-                    case 0:
-                        contact_us_dialog.html(dialog_check_connection_message);
-                        break;
-                    default:
-                        contact_us_dialog.html(dialog_error_message);
-                };
+                if(jqXHR.status==0){
+					contact_us_dialog.html(dialog_check_connection_message);
+				}else{
+                    contact_us_dialog.html(dialog_error_message);
+                }
             },
             success: function (data) {
                 clearTimeout(contact_us_dialog_timeout);
                 contact_us_dialog.html(data);
                 contact_us_dialog.dialog('option', 'position', 'center');
                 
-                $("#id_name").focus();
-
-                contact_form_validator = $("#contact_form").validate({
+                contacr_us_form_validator = $("#contacr_us_form").validate({
                     submitHandler: function (form) {
                         $(form).ajaxSubmit({
                             dataType: 'json',
                             beforeSubmit: function (arr, $form, options) {
-                                show_form_submit_loader("#contact_form");
+                                show_form_submit_loader("#contacr_us_form");
                             },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                hide_form_submit_loader("#contact_form");
-                                   switch(jqXHR.status){
-                                    case 0:
-                                        $(".contact_us_dialog .error_section").html(form_check_connection_message);
-                                        break;
-                                    default:
-                                        contact_us_dialog.html(dialog_error_message);
+                            error: function(jqXHR, textStatus, errorThrown){
+                                hide_form_submit_loader("#contact_us_form");
+                                if(jqXHR.status==0){
+                                    $(".contact_us_dialog .error_section").html(form_check_connection_message);
+                                }else{
+                                    contact_us_dialog.html(dialog_error_message);
                                 }
+                                contact_us_dialog.dialog('option', 'position', 'center');
                             },
                             success: function (data) {
-                                console.log(data);
-                                hide_form_submit_loader("#contact_form");
-                                switch(data.valid) {
-                                    case true:
-                                        var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
-                                        success_message += close_dialog_link;
-                                        contact_us_dialog.html(success_message);
-                                        break;
-                                    case false:
-                                        if (data.body_errors){
-                                            $(".contact_us_dialog .error_section").html(data.body_errors);
-                                            $("#id_body").css('border', '1px solid red').focus();
-                                            break;
-                                        }
-                                        if (data.non_field_errors){
-                                            $(".contact_us_dialog .error_section").html(data.non_field_errors);
-                                        }
-                                        break;
-                                    default:
-                                        contact_us_dialog.html(dialog_error_message);
-                                        break;
+                                hide_form_submit_loader("#contacr_us_form");
+                                if(data.valid) {
+                                    var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
+                                    success_message += CLOSE_DIALOG_LINK;
+                                    contact_us_dialog.html(success_message);
+								} else {
+                                    place_form_errors("#contact_us_form", data.errors);
                                 }
                                 contact_us_dialog.dialog('option', 'position', 'center');
                             }

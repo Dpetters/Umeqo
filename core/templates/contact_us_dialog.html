@@ -7,7 +7,7 @@
         <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
     </div>
     
-    <form id="contact_form" method='POST' action="/contact-us-dialog/">
+    <form id="contacr_us_form" method='POST' action="/contact-us-dialog/">
         {% csrf_token %}
         
         <div class="errorspace">{{form.name.errors}}</div>
@@ -33,7 +33,7 @@
         </div>
     
         <div class="button_wrapper_with_margins">
-            <input id="contact_form_submit_button" class="button" type='submit' value='Submit'>
+            <input id="contacr_us_form_submit_button" class="button" type='submit' value='Submit'>
             <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
         </div>
     </form>
