@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 
 if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
-        (r'^$', 'core.views.landing_page', {'extra_context': {'login_form': AuthenticationForm}}),
+        (r'^.*$', 'core.views.landing_page', {'extra_context': {'login_form': AuthenticationForm}}),
     )
 
 urlpatterns += patterns('',

@@ -122,7 +122,7 @@ def load_local_data():
                     abort("load_local_data should not be called on prod.")
                 copy_in_local_media()
                 for app in settings.LOCAL_DATA_APPS:
-                    run("python manage.py loaddata " + settings.LOCAL_FIXTURES_ROOT + "local_" + app + "_data.json")
+                    run("python manage.py loaddata  /var/www/umeqo/local_data/fixtures/local_" + app + "_data.json")
 
 def commit_prod_data():
     if not env.host:
