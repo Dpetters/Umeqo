@@ -13,7 +13,7 @@ class LogMiddleware(object):
 
         exception_info = dict(
             class_name  = class_name,
-            message     = getattr(exception, "message", ""),
+            message     = str(exception),
             url         = request.build_absolute_uri(),
             server_name = server_name,
             traceback   = tb_text,
