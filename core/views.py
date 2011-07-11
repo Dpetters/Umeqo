@@ -190,6 +190,7 @@ def home(request, extra_context=None):
             your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             
             context.update({
+                'teststring': 'asdlfkjasldfja sakfasdlfk asdl ashdfa sdlfja sdlf asdlf asldkjf askldf asjdfa sdfasdf',
                 'search_form': SearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),

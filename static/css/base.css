@@ -1053,6 +1053,9 @@ a.ui-slider-handle {
 .hid {
     display: none !important;
 }
+.nowrap {
+    white-space: nowrap;
+}
 .invisible {
     visibility: hidden !important;
 }
@@ -1115,6 +1118,8 @@ a.ui-slider-handle {
 }
 #notifications_pane ul {
     list-style: none;
+    max-height: 318px;
+    overflow-y: auto;
 }
 #notifications_pane li {
     border-top: 1px solid #CCC;

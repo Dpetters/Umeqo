@@ -417,7 +417,16 @@
     display: inline-block;
     text-align: right;
 }
+.events_dropdown a.disabled,
+.events_dropdown a.disabled:hover {
+    color: #AAA;
+}
 
 #invite-dialog p {
     padding: 5px;
+}
+#invite_text {
+    width: 380px;
+    display: block;
+    margin: 0 auto;
 }
