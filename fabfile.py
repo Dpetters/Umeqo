@@ -137,7 +137,7 @@ def commit_prod_data():
        
 def commit_local_data():
     if not env.host:
-        local("python manage.py file_cleanup student.Student")
+        local("python manage.py file_cleanup student.Student employer.Employer employer.ResumeBook")
         copy_out_local_media()
         for app in settings.LOCAL_DATA_APPS:
             # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
