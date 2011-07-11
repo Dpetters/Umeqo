@@ -33,7 +33,8 @@ class Command(LabelCommand):
                 kwargs = {filefield: ''}
                 qs = model.objects.exclude(**kwargs).values_list(filefield, flat=True)
                 filenames_in_database.update(os.path.join(settings.MEDIA_ROOT, name).replace("/", "\\") for name in qs)
-
+        print filenames_in_database
+        print filenames_on_disk
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
 
         if not db_has_unseen_files:
