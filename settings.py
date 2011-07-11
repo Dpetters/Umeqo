@@ -36,7 +36,10 @@ LOCAL_DATA_APPS = (
 PROD_DATA_APPS = (
     'core',
     'sites'
-)
+) 
+
+PROD_PASSWORD = 'H3rcul3s'
+STAGING_PASSWORD = 'Jamb4Juic3'
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"
