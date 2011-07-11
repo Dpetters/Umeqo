@@ -65,8 +65,8 @@
                     {{student.first_major}}
                 {% endif %}
             </span>
-            <span class="student_invite_to_event_span">
-                <a class="student_invite_to_event_link" href="javascript:void(0)" data-studentid="{{student.id}}">Invite To Event</a>
+            <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
+                <a class="student_invite_to_event_link" href="#">Invite To Event</a>
             </span>
             <p class="student_gpa">
                 <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0

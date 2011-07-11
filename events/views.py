@@ -15,7 +15,7 @@ from django.views.decorators.http import require_http_methods
 from notification import models as notification
 
 from core.decorators import is_recruiter, is_student, render_to
-from events.models import Attendee, Event, RSVP
+from events.models import Attendee, Event, RSVP, Invitee
 from events.views_helper import event_search_helper
 from student.models import Student
 
@@ -201,11 +201,21 @@ def event_search(request, extra_context=None):
 @login_required
 @user_passes_test(is_recruiter)
 def events_by_employer(request):
-    events = Event.objects.filter(recruiters=request.user.recruiter)
-    events = map(lambda n: {
-        'id': n.id,
-        'name': n.name,
-    }, events)
+    events = Event.objects.filter(recruiters=request.user.recruiter).filter(end_datetime__gte=datetime.now())
+    student_id = request.GET.get('student_id', None)
+    if not student_id or not Student.objects.filter(id=student_id).exists():
+        return HttpResponseBadRequest()
+    student = Student.objects.get(id=student_id)
+    def eventMap(event):
+        invited = False
+        if Invitee.objects.filter(event=event, student=student).exists():
+            invited = True
+        return {
+            'id': event.id,
+            'name': event.name,
+            'invited': invited
+        }
+    events = map(eventMap, events)
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
 
 @login_required
@@ -214,7 +224,8 @@ def events_by_employer(request):
 def event_invite(request):
     event_id = request.POST.get('event_id', None)
     student_id = request.POST.get('student_id', None)
-    if not (event_id and student_id):
+    message = request.POST.get('message', None)
+    if not (event_id and student_id and message):
         return HttpResponseBadRequest()
     event = Event.objects.filter(id=event_id)
     student = Student.objects.filter(id=student_id)
@@ -222,10 +233,26 @@ def event_invite(request):
         return HttpResponseBadRequest()
     event = event.get()
     student = student.get()
-    employer = request.user.recruiter.employer
-    notification.send([student.user], 'public_invite', {
-        'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
-        'permalink': event.get_absolute_url(),
-    })
-    return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
+    if not Invitee.objects.filter(event=event, student=student).exists():
+        Invitee.objects.create(event=event, student=student)
+        employer = request.user.recruiter.employer
+        notification.send([student.user], 'public_invite', {
+            'name': student.user.first_name,
+            'recruiter': request.user.first_name + ' ' + request.user.last_name,
+            'employer': employer.name,
+            'event': event.name,
+            'invite_message': message,
+            'permalink': event.get_absolute_url(),
+            'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
+        })
+        data = {
+            'valid': True,
+            'message': 'Invite sent successfully.'
+        }
+    else:
+        data = {
+            'valid': False,
+            'message': 'Student has already been invited.'
+        }
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     

@@ -6,6 +6,7 @@ Help |
 
 {% block metadata %}
 {{block.super}}
+{% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/help/help.css" />
 {% endcompress %}

@@ -1431,30 +1431,71 @@ $(document).ready(function() {
         var that = this;
         var children_dropdown = $(this).children('.events_dropdown');
         if (children_dropdown.length == 0) {
-            $.get(EVENTS_LIST_URL, function(events) {
+            $.get(EVENTS_LIST_URL, {student_id: $(this).attr('data-studentid')}, function(events) {
                 var dropdown = $('<div class="events_dropdown"></div>');
                 if (events.length == 0) {
-                    dropdown.html('You have no events!');
+                    dropdown.html('<span class="nowrap">You have no events!</span>');
                 } else {
                     $.each(events, function(k,event) {
-                        dropdown.append('<a id="event-' + event.id + '" class="event_invite_link" href="#">' + event.name + '</a>');
+                        var link = $('<a data-eventid="' + event.id + '" class="event_invite_link" href="#">' + event.name + '</a>');
+                        if (event.invited) {
+                            link.addClass('disabled');
+                            link.html(link.html() + ' (invited)');
+                        }
+                        dropdown.append(link);
                     });
                 }
                 $(that).append(dropdown);
             });
-        } else if (children_dropdown.eq(0).hasClass('hid')) {
-            children_dropdown.eq(0).removeClass('hid');
         } else {
-            children_dropdown.eq(0).addClass('hid');
+            children_dropdown.eq(0).remove();
         }
     });
+    $('.student_invite_to_event_span').live('click', function(e) {
+        e.preventDefault();
+    });
 
-    $('.event_invite_link').live('click', function() {
-        var event_id = $(this).attr('id').split('-')[1];
-        var student_id = $(this).attr('data-studentid');
-        $.post(EVENT_INVITE_URL, {event_id: event_id, student_id: student_id}, function(data) {
-            console.log(data);
+    $('.event_invite_link').live('click', function(e) {
+        if ($(this).hasClass('disabled')) {
+            return false;
+        }
+        var invite_dialog = $('<div id="invite-dialog" title="Send invite to student?"></div>');
+        var student_name = $(this).closest('span').attr('data-studentname');
+        var event_name = $(this).html();
+        var event_id = $(this).attr('data-eventid');
+        var student_id = $(this).closest('span').attr('data-studentid');
+        var that = this;
+        var that = this;
+        invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below.</p>');
+        var msg_input = $('<textarea id="invite_text">Hi ' + student_name + ', I\'d like to invite you to our event.</textarea>');
+        invite_dialog.append(msg_input);
+        invite_dialog.dialog({
+            height: 'auto',
+            minHeight: 0,
+            width: 400,
+            resizable: false,
+            modal: true,
+            buttons: {
+                "Send invite": function() {
+                    $.post(EVENT_INVITE_URL, {
+                        event_id: event_id,
+                        student_id: student_id,
+                        message: $('#invite_text').val()
+                    }, function(data) {
+                        $("#message_area").html('<p>' + data.message + '</p>');
+                    }).error(function() {
+                        $("#message_area").html('<p>Invite could not be sent. Please try again later.</p>');
+                    });
+                    $(that).dialog("close");
+                    invite_dialog.remove();
+                },
+                Cancel: function() {
+                    $(that).dialog("close");
+                    invite_dialog.remove();
+                }
+            }
         });
-        return false;
+        $('#invite_text').focus().select();
+        e.preventDefault();
     });
 });
