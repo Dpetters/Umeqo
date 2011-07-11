@@ -7,6 +7,9 @@ COMPRESS = True
 def is_prod():
     return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
 
+PROD_PASSWORD = 'H3rcul3s'
+STAGING_PASSWORD = 'Jamb4Juic3'
+
 USE_LANDING_PAGE = True
 
 # 1 - Prod, 2 - Staging, 3 - Dev/Local
