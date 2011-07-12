@@ -26,7 +26,7 @@ class InterestedPerson(models.Model):
         return self.first_name + " " + self.last_name
 
 class SessionKey(models.Model):
-    session_key = models.CharField('Session Key', max_length=40, primary_key=True, editable=False)
+    session_key = models.CharField('Session Key', max_length=40, editable=False)
     user = models.ForeignKey(User, editable=False)
     
     date_created = models.DateTimeField(editable=False, auto_now_add=True)

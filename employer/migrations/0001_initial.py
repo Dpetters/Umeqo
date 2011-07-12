@@ -11,8 +11,8 @@ class Migration(SchemaMigration):
         # Adding model 'ResumeBook'
         db.create_table('employer_resumebook', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('recruiter', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['employer.Recruiter'], unique=True)),
-            ('file_name', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('recruiter', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['employer.Recruiter'])),
+            ('resume_book', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=42, null=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
@@ -31,7 +31,7 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
             ('employer', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['employer.Employer'])),
-            ('subscribed', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('employer', ['Recruiter'])
@@ -143,10 +143,13 @@ class Migration(SchemaMigration):
         db.create_table('employer_employer', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
-            ('description', self.gf('django.db.models.fields.CharField')(default='', max_length=500, blank=True)),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=500, blank=True)),
+            ('logo', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('slug', self.gf('django.db.models.fields.CharField')(unique=True, max_length=20)),
             ('main_contact', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('main_contact_email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
             ('main_contact_phone', self.gf('django.contrib.localflavor.us.models.PhoneNumberField')(max_length=20)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('employer', ['Employer'])
@@ -159,21 +162,35 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('employer_employer_industries', ['employer_id', 'industry_id'])
 
-        # Adding model 'EmployerPreferences'
-        db.create_table('employer_employerpreferences', (
+        # Adding model 'RecruiterPreferences'
+        db.create_table('employer_recruiterpreferences', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('recruiter', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['employer.Recruiter'], unique=True)),
             ('email_on_rsvp', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('results_per_page', self.gf('django.db.models.fields.PositiveSmallIntegerField')(default=10)),
             ('default_student_ordering', self.gf('django.db.models.fields.CharField')(default='relevancy', max_length=42)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal('employer', ['EmployerPreferences'])
+        db.send_create_signal('employer', ['RecruiterPreferences'])
+
+        # Adding model 'RecruiterStatistics'
+        db.create_table('employer_recruiterstatistics', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('recruiter', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['employer.Recruiter'], unique=True)),
+            ('resumes_viewed', self.gf('django.db.models.fields.PositiveIntegerField')(default=0, null=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+        ))
+        db.send_create_signal('employer', ['RecruiterStatistics'])
 
         # Adding model 'EmployerStatistics'
         db.create_table('employer_employerstatistics', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('recruiter', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['employer.Recruiter'], unique=True)),
+            ('employer', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['employer.Employer'], unique=True)),
             ('resumes_viewed', self.gf('django.db.models.fields.PositiveIntegerField')(default=0, null=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('employer', ['EmployerStatistics'])
 
@@ -234,8 +251,11 @@ class Migration(SchemaMigration):
         # Removing M2M table for field industries on 'Employer'
         db.delete_table('employer_employer_industries')
 
-        # Deleting model 'EmployerPreferences'
-        db.delete_table('employer_employerpreferences')
+        # Deleting model 'RecruiterPreferences'
+        db.delete_table('employer_recruiterpreferences')
+
+        # Deleting model 'RecruiterStatistics'
+        db.delete_table('employer_recruiterstatistics')
 
         # Deleting model 'EmployerStatistics'
         db.delete_table('employer_employerstatistics')
@@ -361,26 +381,23 @@ class Migration(SchemaMigration):
         'employer.employer': {
             'Meta': {'object_name': 'Employer'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'description': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '500', 'blank': 'True'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '500', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'industries': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['core.Industry']", 'symmetrical': 'False'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'main_contact': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'main_contact_email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'main_contact_phone': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'slug': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'})
         },
-        'employer.employerpreferences': {
-            'Meta': {'object_name': 'EmployerPreferences'},
-            'default_student_ordering': ('django.db.models.fields.CharField', [], {'default': "'relevancy'", 'max_length': '42'}),
-            'email_on_rsvp': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
-            'results_per_page': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '10'})
-        },
         'employer.employerstatistics': {
             'Meta': {'object_name': 'EmployerStatistics'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'employer': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Employer']", 'unique': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'resumes_viewed': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0', 'null': 'True', 'blank': 'True'})
         },
         'employer.filteringparameters': {
@@ -406,17 +423,35 @@ class Migration(SchemaMigration):
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'employer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['employer.Employer']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'starred_students': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['student.Student']", 'symmetrical': 'False'}),
-            'subscribed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
+        },
+        'employer.recruiterpreferences': {
+            'Meta': {'object_name': 'RecruiterPreferences'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'default_student_ordering': ('django.db.models.fields.CharField', [], {'default': "'relevancy'", 'max_length': '42'}),
+            'email_on_rsvp': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'results_per_page': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '10'})
+        },
+        'employer.recruiterstatistics': {
+            'Meta': {'object_name': 'RecruiterStatistics'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'resumes_viewed': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0', 'null': 'True', 'blank': 'True'})
         },
         'employer.resumebook': {
             'Meta': {'object_name': 'ResumeBook'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'file_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '42', 'null': 'True', 'blank': 'True'}),
-            'recruiter': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['employer.Recruiter']", 'unique': 'True'}),
+            'recruiter': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['employer.Recruiter']"}),
+            'resume_book': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'students': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['student.Student']", 'null': 'True', 'blank': 'True'})
         },
         'employer.studentcomment': {

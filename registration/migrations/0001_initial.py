@@ -22,8 +22,10 @@ class Migration(SchemaMigration):
 
         # Adding model 'SessionKey'
         db.create_table('registration_sessionkey', (
-            ('session_key', self.gf('django.db.models.fields.CharField')(max_length=40, primary_key=True)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('session_key', self.gf('django.db.models.fields.CharField')(max_length=40)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('registration', ['SessionKey'])
 
@@ -115,7 +117,9 @@ class Migration(SchemaMigration):
         },
         'registration.sessionkey': {
             'Meta': {'object_name': 'SessionKey'},
-            'session_key': ('django.db.models.fields.CharField', [], {'max_length': '40', 'primary_key': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'session_key': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
         'registration.userattributes': {
