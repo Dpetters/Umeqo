@@ -233,11 +233,11 @@ class Migration(SchemaMigration):
         'employer.employer': {
             'Meta': {'object_name': 'Employer'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '500', 'blank': 'True'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'industries': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['core.Industry']", 'symmetrical': 'False'}),
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'main_contact': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'main_contact_email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'main_contact_phone': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),

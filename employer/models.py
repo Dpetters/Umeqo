@@ -77,8 +77,8 @@ class StudentComment(models.Model):
         
 class Employer(models.Model): 
     name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    description = models.CharField(max_length=500, blank=True)
-    logo = models.ImageField(upload_to=get_logo_filename, blank=True, null=True)
+    description = models.CharField(max_length=500)
+    logo = models.ImageField(upload_to=get_logo_filename)
     slug = models.CharField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     
     industries = models.ManyToManyField(Industry)
