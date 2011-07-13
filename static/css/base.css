@@ -238,8 +238,8 @@ p {
     border: 1px solid #DDD;
 }
 .main_block.solo_block {
-    width: 900px;
     margin: 0 auto;
+    width: 100%;
 }
 .main_block_header, .side_block_header {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -436,7 +436,7 @@ a.dark_button{
     color:#FFF;
     height: 26px;
     line-height: 27px;
-}    
+}
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     behavior: url(/static/lib/pie/PIE.htc);
     background: #EAEAEA;
@@ -449,6 +449,8 @@ a.dark_button{
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     outline: none;
     border: 1px solid #888;
     color: #6e97b9;
@@ -460,6 +462,39 @@ a.dark_button{
     vertical-align: middle;
     font-size: 13px;
     font-family: Arial;
+}
+.left-group.button {
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+}
+.right-group.button {
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+    border-left: 0;
+}
+.button.selected,
+.button.selected:hover {
+    background: #1e5799;
+    background: -moz-linear-gradient(top, #1e5799 0%, #666666 0%, #999999 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#666666), color-stop(100%,#999999));
+    background: -webkit-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
+    background: -o-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
+    background: -ms-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#999999',GradientType=0 );
+    background: linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
+    color: #FFF !important;
+    text-shadow: #444 0 -1px 0;
+}
+.ui-multiselect-menu {
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 2px 2px;
 }
 input.button, .button[type=submit] {
     height: 30px;
@@ -1089,6 +1124,7 @@ a.ui-slider-handle {
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
+    font-weight: bold;
 }
 #notifications_count:hover {
     background-color: rgba(255,255,255,0.5);

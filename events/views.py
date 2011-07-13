@@ -7,7 +7,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
@@ -73,6 +73,7 @@ def event_page(request, id, slug, extra_context=None):
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
+    invitees = map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
     rsvps = map(buildRSVP, event.rsvp_set.all().order_by('student__first_name'))
     checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
     checkins.sort(key=lambda n: 0 if n['account'] else 1)
@@ -86,11 +87,13 @@ def event_page(request, id, slug, extra_context=None):
     all_responses.sort(key=lambda n: 0 if n['account'] else 1)
     context = {
         'event': event,
+        'invitees': invitees,
         'rsvps': rsvps,
         'checkins': checkins,
         'all_responses': all_responses,
         'page_url': page_url,
         'DOMAIN': current_site.domain,
+        'responded': False,
         'attending': False,
         'can_rsvp': False,
         'show_admin': False,
@@ -101,8 +104,10 @@ def event_page(request, id, slug, extra_context=None):
     if len(event.audience.all())>0:
         context['audience'] = event.audience.all()
     if hasattr(request.user,"student"):
-        if RSVP.objects.filter(event=event, student=request.user.student).exists():
-            context['attending'] = True
+        rsvp = RSVP.objects.filter(event=event, student=request.user.student)
+        if rsvp.exists():
+            context['attending'] = rsvp.get().attending
+            context['responded'] = True
         context['can_rsvp'] = True
     elif hasattr(request.user,"recruiter"):
         context['show_admin'] = True
@@ -120,8 +125,15 @@ def event_rsvp(request, id):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     # if POST then record student's RSVP
     elif request.method == 'POST' and hasattr(request.user, 'student'):
-        rsvp = RSVP(student=request.user.student, event=event)
-        rsvp.save()
+        isAttending = request.POST.get('isAttending', 'true')
+        isAttending = True if isAttending=='true' else False
+        rsvp = RSVP.objects.filter(student=request.user.student, event=event)
+        if rsvp.exists():
+            rsvp = rsvp.get()
+            rsvp.attending = isAttending
+            rsvp.save()
+        else:
+            RSVP.objects.create(student=request.user.student, event=event, attending=isAttending)
         if request.is_ajax():
             return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
         else:
@@ -213,7 +225,8 @@ def events_by_employer(request):
         return {
             'id': event.id,
             'name': event.name,
-            'invited': invited
+            'is_public': event.is_public,
+            'invited': invited,
         }
     events = map(eventMap, events)
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
@@ -236,7 +249,11 @@ def event_invite(request):
     if not Invitee.objects.filter(event=event, student=student).exists():
         Invitee.objects.create(event=event, student=student)
         employer = request.user.recruiter.employer
-        notification.send([student.user], 'public_invite', {
+        if event.is_public:
+            notice_type = 'public_invite'
+        else:
+            notice_type = 'private_invite'
+        notification.send([student.user], notice_type, {
             'name': student.user.first_name,
             'recruiter': request.user.first_name + ' ' + request.user.last_name,
             'employer': employer.name,

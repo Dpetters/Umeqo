@@ -1437,7 +1437,8 @@ $(document).ready(function() {
                     dropdown.html('<span class="nowrap">You have no events!</span>');
                 } else {
                     $.each(events, function(k,event) {
-                        var link = $('<a data-eventid="' + event.id + '" class="event_invite_link" href="#">' + event.name + '</a>');
+                        var ispublic = event.is_public ? 1 : 0;
+                        var link = $('<a data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#">' + event.name + '</a>');
                         if (event.invited) {
                             link.addClass('disabled');
                             link.html(link.html() + ' (invited)');
@@ -1459,16 +1460,26 @@ $(document).ready(function() {
         if ($(this).hasClass('disabled')) {
             return false;
         }
-        var invite_dialog = $('<div id="invite-dialog" title="Send invite to student?"></div>');
         var student_name = $(this).closest('span').attr('data-studentname');
         var event_name = $(this).html();
         var event_id = $(this).attr('data-eventid');
+        var is_public = $(this).attr('data-ispublic') == 1;
         var student_id = $(this).closest('span').attr('data-studentid');
         var that = this;
-        var that = this;
+        var title;
+        var extra_text;
+        if (is_public) {
+            title = "Send invite to student?";
+            extra_text = "This event is <strong>public</strong>. Students that aren't explicitly invited can see it as well.";
+        } else {
+            title = "Send private invite to student?";
+            extra_text = "This event is <strong>private</strong> and only invited students will be able to see it.";
+        }
+        var invite_dialog = $('<div id="invite-dialog" title="' + title + '"></div>');
         invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below.</p>');
         var msg_input = $('<textarea id="invite_text">Hi ' + student_name + ', I\'d like to invite you to our event.</textarea>');
         invite_dialog.append(msg_input);
+        invite_dialog.append('<p>' + extra_text + '</p>');
         invite_dialog.dialog({
             height: 'auto',
             minHeight: 0,
@@ -1477,6 +1488,7 @@ $(document).ready(function() {
             modal: true,
             buttons: {
                 "Send invite": function() {
+                    $("#message_area").html('<p>Sending invite...</p>');
                     $.post(EVENT_INVITE_URL, {
                         event_id: event_id,
                         student_id: student_id,

@@ -21,14 +21,15 @@ Copyright 2011. All Rights Reserved.
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
 {% endcompress %}
+<script type="text/javascript">
+    var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
+    var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
+    var CHECKIN_URL = "{% url event_checkin id=event.id %}";
+    var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
+</script>
 {% compress js %}
     <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
 {% endcompress %}
-<script type="text/javascript">
-var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
-var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
-var CHECKIN_URL = "{% url event_checkin id=event.id %}";
-</script>
 {% endblock %}
 
 {% block above_header_area %}
@@ -64,12 +65,12 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                  <div id="event_tabs">
                     {% if event.is_public %}
                         <h2 class="current">RSVP'd Attending</h2>
-                        <h2>Checked-in</h2>
-                        <h2>All</h2>
                     {% else %}
                         <h2 class="current">Invited</h2>
                         <h2>RSVP'd Attending</h2>
                     {% endif %}
+                        <h2>Checked-in</h2>
+                        <h2>All</h2>
                 </div>
                 {% if not event.is_public %}
                 <div id="event_invites" class="responses">
@@ -86,10 +87,11 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                     {% for student in rsvps %}
                         {% include "events_response_token.html" with student=student %}
                     {% empty %}
-                    <div id="event_response_empty">There are no RSVPs yet.</div>
+                    <div id="event_response_empty">
+                        There are no RSVPs yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
+                    </div>
                     {% endfor %}
                 </div>
-                {% if event.is_public %}
                 <div id="event_checkins" class="hid responses">
                     {% for student in checkins %}
                         {% include "events_response_token.html" with student=student %}
@@ -105,7 +107,6 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                     {% endfor %}
                 </div>
                 <p>*Grayed out students do not have an Umeqo account.</p>
-                {% endif %}
             </div>
             <div class="clearfix"></div>
         </div>
@@ -114,7 +115,7 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
         <div id="event_actions">
             <div id="rsvp_div">
                 {% if show_admin or is_past %}
-                    <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="RSVP disabled.">
+                    <a href="javascript:void(0)" id="rsvp-yes-button" class="button disabled-button" title="RSVP disabled.">
                         {% if is_past %}
                             Event already passed!
                         {% else %}
@@ -125,15 +126,25 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
                     <span class="help-bubble">Students can click to RSVP.</span>
                     {% endif %}
                 {% else %}{% if can_rsvp %}
-                    {% if attending %}
-                    <span id="attending-span">Attending</span>
-                    <a href="{% url event_unrsvp id=event.id %}" id="not-attending-button">RSVP: Not attending</a>
+                    {% if event.is_public %}
+                        <div class="no-response{% if not responded %} hid{% endif %}">
+                            <span id="attending-span">Attending</span>
+                            <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not attending</a>
+                        </div>
+                        <div class="response{% if responded %} hid{% endif %}">
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: Attending</a>
+                        </div>
                     {% else %}
-                    <a href="{% url event_rsvp id=event.id %}" id="attending-button" class="button">RSVP: Attending</a>
+                        <strong>RSVP:</strong>
+                        {% spaceless %}
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}">Attending</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}">Not Attending</a>
+                        {% endspaceless %}
+                        <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
                     {% endif %}
                 {% endif %}{% endif %}
                 {% if not user.is_authenticated %}
-                    <a href="javascript:void(0)" id="attending-button" class="button disabled-button" title="RSVP disabled.">
+                    <a href="javascript:void(0)" id="rsvp-yes-button" class="button disabled-button" title="RSVP disabled.">
                         Login to RSVP.
                     </a>
                 {% endif %}
@@ -162,20 +173,22 @@ var CHECKIN_URL = "{% url event_checkin id=event.id %}";
             </span>
         </div>
         
-        <div id="event_external_buttons">
-            <div class="external_button">
-                <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script><script type="in/share" data-counter="right"></script>
+        {% if event.is_public %}
+            <div id="event_external_buttons">
+                <div class="external_button">
+                    <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script><script type="in/share" data-counter="right"></script>
+                </div>
+                <div class="external_button">
+                    <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="umeqo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                </div>
+                <div class="external_button">
+                    <g:plusone size="medium"></g:plusone>
+                </div>
+                <div class="external_button">
+                    <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+                </div>
             </div>
-            <div class="external_button">
-                <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="umeqo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-            </div>
-            <div class="external_button">
-                <g:plusone size="medium"></g:plusone>
-            </div>
-            <div class="external_button">
-                <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
-            </div>
-        </div>
+        {% endif %}
         
         
         <div id="event_description" class="main_block">

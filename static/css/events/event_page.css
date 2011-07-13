@@ -44,7 +44,7 @@
     margin-top: 5px;
     text-align: left;
 }
-#not-attending-button {
+#remove-rsvp-button {
     display: block;
     font-size: 12px;
     margin-top: 3px;
@@ -454,8 +454,9 @@
     font-size: 16px;
     margin-left: 10px;
     vertical-align: top;
-    color: #888;
-    background-color: #EEE;
+    color: #FFF;
+    text-shadow: #222 0 -1px 0;
+    background-color: #666;
     display: inline-block;
     padding: 5px;
     border-radius: 3px;

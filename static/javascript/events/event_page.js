@@ -1,31 +1,52 @@
 $(document).ready(function() {
-    $('#attending-button').live('click', function(e) {
-        var that = $(this);
-        $.post($(this).attr('href'), function(data) {
+    function rsvp(isAttending) {
+        $.post($(this).attr('href'), {
+            isAttending: isAttending
+        }, function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
-                that.parent().fadeOut(200, function() {
-                    var newText = $('<span id="attending-span">Attending</span>');
-                    var newLink = $('<a href="" id="not-attending-button">RSVP: Not attending</a>');
-                    newLink.attr('href', EVENT_UNRSVP_URL);
-                    that.replaceWith(newText);
-                    newText.after(newLink);
-                });
-                that.parent().fadeIn();
+                if ($('.response').length > 0) {
+                    $('.response').fadeOut(200, function() {
+                        $('.no-response').removeClass('hid');
+                        $('.response').addClass('hid');
+                    });
+                    $('.no-response').fadeIn();
+                } else {
+                    $('.no-response').removeClass('hid');
+                }
             }
         }, "json");
+    }
+    $('#rsvp-yes-button').live('click', function(e) {
+        if ($(this).hasClass('selected')) {
+            return false;
+        }
+        rsvp.apply(this, [true]);
+        if ($(this).hasClass('left-group')) {
+            $('#rsvp_div .selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
         e.preventDefault();
     });
-    $('#not-attending-button').live('click', function(e) {
-        var that = $(this);
+    $('#rsvp-no-button').live('click', function(e) {
+        if ($(this).hasClass('selected')) {
+            return false;
+        }
+        rsvp.apply(this, [false]);
+        if ($(this).hasClass('right-group')) {
+            $('#rsvp_div .selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+        e.preventDefault();
+    });
+    $('#remove-rsvp-button').live('click', function(e) {
         $.post($(this).attr('href'), function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
-                that.parent().fadeOut(200, function() {
-                    var newText = $('<a href="" id="attending-button" class="button">RSVP: Attending</a>');
-                    newText.attr('href', EVENT_RSVP_URL);
-                    that.replaceWith(newText);
-                    $('#attending-span').remove();
+                $('.no-response').fadeOut(200, function() {
+                    $('.response').removeClass('hid');
+                    $('.no-response').addClass('hid');
                 });
-                that.parent().fadeIn();
+                $('.response').fadeIn();
+                $('#rsvp_div .selected').removeClass('selected');
             }
         }, "json");
         e.preventDefault();

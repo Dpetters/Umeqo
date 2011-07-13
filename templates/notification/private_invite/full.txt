@@ -1,0 +1,7 @@
+Hey {{name}},
+
+{{recruiter}} ({{employer}}) has sent you an exclusive invite to "{{event}}" (a private event):
+
+{% load core_extras %}{{invite_message|wordwrapwithindent:80}}
+
+Check out the event details and respond to the invitation at http://{{current_site.domain}}{{permalink}}
