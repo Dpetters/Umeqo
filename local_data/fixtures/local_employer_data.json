@@ -81,11 +81,13 @@
    "industries": [
     42
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:06:02", 
    "name": "Employer2", 
    "main_contact": "Liz Floyd", 
    "main_contact_phone": "543-657-9834", 
    "date_created": "2011-07-08 00:06:02", 
+   "logo": "", 
    "slug": "employer2", 
    "description": ""
   }
@@ -97,11 +99,13 @@
    "industries": [
     28
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:07:34", 
    "name": "Employer3", 
    "main_contact": "Katelyn o'Hare", 
    "main_contact_phone": "523-987-4567", 
    "date_created": "2011-07-08 00:07:34", 
+   "logo": "", 
    "slug": "employer3", 
    "description": ""
   }
@@ -113,11 +117,13 @@
    "industries": [
     41
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:08:02", 
    "name": "Employer4", 
    "main_contact": "Jason Mccoy", 
    "main_contact_phone": "333-333-3333", 
    "date_created": "2011-07-08 00:08:02", 
+   "logo": "", 
    "slug": "employer4", 
    "description": ""
   }
@@ -129,11 +135,13 @@
    "industries": [
     40
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:09:24", 
    "name": "Employer1", 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
    "date_created": "2011-07-08 00:09:24", 
+   "logo": "", 
    "slug": "employer1", 
    "description": ""
   }
