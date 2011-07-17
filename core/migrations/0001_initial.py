@@ -15,8 +15,8 @@ class Migration(SchemaMigration):
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150, db_index=True)),
             ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('audience', self.gf('django.db.models.fields.IntegerField')()),
-            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 7, 20, 6, 5, 894000), auto_now=True, blank=True)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 7, 20, 6, 5, 894000), auto_now_add=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 11, 22, 17, 9, 821000), auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 11, 22, 17, 9, 821000), auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('core', ['Topic'])
 
@@ -30,8 +30,8 @@ class Migration(SchemaMigration):
             ('question', self.gf('django.db.models.fields.TextField')()),
             ('answer', self.gf('django.db.models.fields.TextField')()),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100, db_index=True)),
-            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 7, 20, 6, 5, 895000), auto_now=True, blank=True)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 7, 20, 6, 5, 895000), auto_now_add=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 11, 22, 17, 9, 822000), auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 7, 11, 22, 17, 9, 822000), auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('core', ['Question'])
 
@@ -68,12 +68,12 @@ class Migration(SchemaMigration):
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
             ('website', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')(max_length=500, null=True, blank=True)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('display', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
             ('num', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('admin', self.gf('django.db.models.fields.CharField')(max_length=42, null=True, blank=True)),
         ))
@@ -105,12 +105,12 @@ class Migration(SchemaMigration):
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
             ('website', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')(max_length=500, null=True, blank=True)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('display', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
             ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.CampusOrgType'])),
+            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
         ))
         db.send_create_signal('core', ['CampusOrg'])
 
@@ -246,9 +246,9 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "['sort_order', 'question']", 'object_name': 'Question'},
             'answer': ('django.db.models.fields.TextField', [], {}),
             'audience': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 7, 20, 6, 5, 895000)', 'auto_now_add': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 11, 22, 17, 9, 822000)', 'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 7, 20, 6, 5, 895000)', 'auto_now': 'True', 'blank': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 11, 22, 17, 9, 822000)', 'auto_now': 'True', 'blank': 'True'}),
             'question': ('django.db.models.fields.TextField', [], {}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '100', 'db_index': 'True'}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
@@ -265,9 +265,9 @@ class Migration(SchemaMigration):
         'core.topic': {
             'Meta': {'ordering': "['sort_order', 'name']", 'object_name': 'Topic'},
             'audience': ('django.db.models.fields.IntegerField', [], {}),
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 7, 20, 6, 5, 894000)', 'auto_now_add': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 11, 22, 17, 9, 821000)', 'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 7, 20, 6, 5, 894000)', 'auto_now': 'True', 'blank': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 7, 11, 22, 17, 9, 821000)', 'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150', 'db_index': 'True'}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'})

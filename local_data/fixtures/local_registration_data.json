@@ -1,106 +1,146 @@
 [
  {
-  "pk": "c0092120f7a583b6be5866fe9f6eaa64", 
+  "pk": 1, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-08 00:44:08", 
-   "user": 1
-  }
- }, 
- {
-  "pk": "8b35203850c28b144e8a95b7708f8a9a", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-07-08 00:50:16", 
+   "date_created": "2011-07-12 21:37:40", 
+   "session_key": "411685223756136a7351150c734dfeb9", 
    "user": 3
   }
  }, 
  {
-  "pk": "56a257baa9c8ebe33bf5e3bd618a625f", 
+  "pk": 2, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-08 00:52:20", 
-   "user": 1
-  }
- }, 
- {
-  "pk": "0019a13ffcabeda0e3271c4e0c115749", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-07-08 00:53:41", 
-   "user": 2
-  }
- }, 
- {
-  "pk": "067dbf3852d1c407c4363d4fa1cbdc72", 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-07-08 00:56:34", 
+   "date_created": "2011-07-14 22:14:08", 
+   "session_key": "d0024d53f61f87bacc867c3c8b4ca0fd", 
    "user": 3
   }
  }, 
  {
-  "pk": "830b8c3d67b7915573842b84fa0ebad1", 
+  "pk": 3, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-08 01:09:47", 
-   "user": 2
+   "date_created": "2011-07-15 00:20:36", 
+   "session_key": "4b6eb291b1975ccf160fecb6d2396bbe", 
+   "user": 3
   }
  }, 
  {
-  "pk": "1cc6bd71d4a19b5217509f2a60007247", 
+  "pk": 4, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-09 11:45:48", 
+   "date_created": "2011-07-15 19:14:28", 
+   "session_key": "d76b98973fbf9b0fc5069f93ba5f3ff1", 
    "user": 1
   }
  }, 
  {
-  "pk": "41b99aa23da82a4fa4248db316d778a0", 
+  "pk": 5, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-09 17:02:11", 
-   "user": 2
+   "date_created": "2011-07-16 15:31:47", 
+   "session_key": "45934a72fb8f1953db5026d6adecc246", 
+   "user": 3
   }
  }, 
  {
-  "pk": "ff65b3852288fd488a647d7852eac89b", 
+  "pk": 6, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-09 17:02:46", 
-   "user": 2
+   "date_created": "2011-07-16 16:34:50", 
+   "session_key": "db2ff6554a6a064cabb000d1531a8564", 
+   "user": 3
   }
  }, 
  {
-  "pk": "c9ba1001cad363a0f724eca25ac1baeb", 
-  "model": "registration.sessionkey", 
+  "pk": 1, 
+  "model": "registration.userattributes", 
   "fields": {
-   "date_created": "2011-07-09 17:04:02", 
-   "user": 1
+   "is_verified": true, 
+   "user": 2, 
+   "last_password_change_date": null
   }
  }, 
  {
-  "pk": "ffcd4c351892979c68bc2b637e100d6d", 
-  "model": "registration.sessionkey", 
+  "pk": 2, 
+  "model": "registration.userattributes", 
   "fields": {
-   "date_created": "2011-07-10 15:20:38", 
-   "user": 1
+   "is_verified": true, 
+   "user": 4, 
+   "last_password_change_date": null
   }
  }, 
  {
-  "pk": "ae42348c95a6c93ecca699bd1dc7138e", 
-  "model": "registration.sessionkey", 
+  "pk": 3, 
+  "model": "registration.userattributes", 
   "fields": {
-   "date_created": "2011-07-10 15:24:23", 
-   "user": 1
+   "is_verified": true, 
+   "user": 5, 
+   "last_password_change_date": null
   }
  }, 
  {
-  "pk": "cbb54696960e258b2ce6bb5ab74a4f39", 
-  "model": "registration.sessionkey", 
+  "pk": 4, 
+  "model": "registration.userattributes", 
   "fields": {
-   "date_created": "2011-07-10 15:25:44", 
-   "user": 4
+   "is_verified": true, 
+   "user": 6, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 7, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 3, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 8, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 9, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 10, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 11, 
+   "last_password_change_date": null
   }
  }
 ]

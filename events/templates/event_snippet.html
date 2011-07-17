@@ -21,8 +21,8 @@
     </div>
     {% if edit %}
     <div class="edit">
-        <a href="{% url employer_edit_event id=event.id %}">Edit</a>
-        <a href="{% url employer_delete_event id=event.id %}" class="delete-event-link">Delete</a>
+        <a href="{% url employer_event_edit id=event.id %}">Edit</a>
+        <a href="{% url employer_event_delete id=event.id %}" class="delete-event-link">Delete</a>
     </div>
     {% endif %}
     <div class="details">

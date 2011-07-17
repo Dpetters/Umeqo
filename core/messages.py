@@ -1,5 +1,9 @@
+# Employer Students
+no_students_selected = "No students selected."
+wait_until_resume_book_is_ready = "Please wait until the resume book is ready."
+
 #Account Settinggs
-password_changed = 'Password changed successfully'
+password_changed = 'Password changed successfully.'
 
 profile_saved = 'Your profile has been saved.'
 
@@ -13,7 +17,7 @@ account_suspended = "This account has been suspended. Please direct all inquirie
 enable_cookies = "Your browser doesn't seem to have cookies enabled. Cookies are required to login."
 
 # Contact Form
-thank_you_for_contacting_us = "We have received your message. Thanks for contacting us!"
+thank_you_for_contacting_us = "We have received your message. Thank you for contacting us!"
 contact_us_message_spam = "Our system thinks your message is spam. If you think this is a mistake, email us instead at support@umeqo.com."
 
 # Student Registration

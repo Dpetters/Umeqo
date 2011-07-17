@@ -1,8 +1,11 @@
 import cStringIO
-from datetime import datetime
-import mimetypes, os
+import mimetypes
+import os
+import re
+
 from operator import attrgetter
- 
+from datetime import datetime 
+from django.core.files import File
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
@@ -14,18 +17,23 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils import simplejson
+from pyPdf import PdfFileWriter, PdfFileReader
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.units import cm
 
 from core.decorators import is_student, is_recruiter, render_to
 from core.models import Industry
+from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, StudentComment
 from employer.forms import DeliverResumeBookForm, RecruiterPreferences, SearchForm, FilteringForm, StudentFilteringForm
 from employer.views_helper import get_paginator, employer_search_helper
 from events.forms import EventForm
-from events.models import Event
+from events.models import Event, Attendee
 from student import enums as student_enums
 from student.models import Student
 from notification import models as notification
+
 
 @render_to('employer_registration.html')
 def employer_registration(request, extra_context = None):
@@ -33,211 +41,223 @@ def employer_registration(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-@login_required
-@user_passes_test(is_recruiter)
-def employer_employer_profile(request, employer, extra_context = None):
-    if employer == str(request.user.recruiter.employer):
-        context = {}
-        context.update(extra_context or {})
-        return render_to_response('employer_employer_profile.html', context, 
-                                  context_instance=RequestContext(request))
-    else:
-        redirectUrl = reverse('employer_employer_profile', kwargs={'employer': request.user.recruiter.employer})
-        return redirect(redirectUrl)
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_preferences(request, extra_context=None):
-    form_class = RecruiterPreferences
+@render_to('employer_profile.html')
+def employer_profile(request, employer, extra_context = None):
+    if employer == str(request.user.recruiter.employer):
+        context = {}
+        context.update(extra_context or {})
+        return context
+    else:
+        redirectUrl = reverse('employer_profile', kwargs={'employer': request.user.recruiter.employer})
+        return redirect(redirectUrl)
+
+
+@login_required
+@user_passes_test(is_recruiter)
+@render_to("employer_preferences.html")
+def employer_preferences(request, form_class=RecruiterPreferences):
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter)
             if form.is_valid():
+                request.user.recruiter.recruiter_preferencess = form.save()
                 data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                data = {'valid':False,
-                        'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                data = {'valid':False}
+                errors = {}
+                for field in form:
+                    if field.errors:
+                        errors[field.auto_id] = field.errors[0]
+                if form.non_field_errors():
+                    errors['non_field_error'] = form.non_field_errors()[0]
+                data['errors'] = errors
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            form = form_class(instance=request.user.recruiter)
-    
-        context = {'form': form}
-        context.update(extra_context or {})
-        return render_to_response('employer_preferences.html', context,
-                                  context_instance=RequestContext(request))
+            return HttpResponseForbidden("Request must be a POST.")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 @login_required
 @user_passes_test(is_recruiter)
 @render_to('employer_account_settings.html')
 def employer_account_settings(request, extra_context=None):
-    
     context = {'action': request.REQUEST.get('action', '')}
     context.update(extra_context or {})
     return context
 
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_star_student_toggle(request, extra_context=None):
-    
+def employer_student_toggle_star(request):
     if request.is_ajax():
         if request.POST.has_key('student_id'):
             student = Student.objects.get(id=request.POST['student_id'])
             if student in request.user.recruiter.starred_students.all():
                 request.user.recruiter.starred_students.remove(student)
-                data = {'valid':True,
-                        'action':employer_enums.UNSTARRED}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
+                data = {'action':employer_enums.UNSTARRED}
             else:
                 request.user.recruiter.starred_students.add(student)
-                data = {'valid':True,
-                        'action':employer_enums.STARRED}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                data = {'action':employer_enums.STARRED}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             return HttpResponseBadRequest("Student ID is missing")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_star_students_add(request, extra_context=None):
-    
+def employer_students_add_star(request):    
     if request.is_ajax():
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
                 if student not in request.user.recruiter.starred_students.all():
                     request.user.recruiter.starred_students.add(student)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_star_students_remove(request, extra_context=None):
-    
+def employer_students_remove_star(request):
     if request.is_ajax():
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
                 if student in request.user.recruiter.starred_students.all():
                     request.user.recruiter.starred_students.remove(student)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_students_comment(request, extra_context=None):
-    
+def employer_student_comment(request):
     if request.is_ajax():
         if request.POST.has_key('student_id'):
             if request.POST.has_key('comment'):
                 student = Student.objects.get(id=request.POST['student_id'])
                 comment = request.POST['comment']
-                student_comments = StudentComment.objects.filter(student=student, recruiter=request.user.recruiter)
-                if not student_comments.exists():
+                try:
+                    student_comment = StudentComment.objects.get(student=student, recruiter=request.user.recruiter)
+                except StudentComment.DoesNotExist:
                     StudentComment.objects.create(recruiter = request.user.recruiter, student=student, comment=comment)
-                else:
-                    student_comment = student_comments[0]
-                    student_comment.comment = comment
-                    student_comment.save()
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                student_comment.comment = comment
+                student_comment.save()
+                return HttpResponse()
             else:
-                return HttpResponseBadRequest("Comment is missing")
+                return HttpResponseBadRequest("Comment is missing.")
         else:
-            return HttpResponseBadRequest("Student ID is missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            return HttpResponseBadRequest("Student ID is missing.")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_book_student_toggle(request, extra_context=None):
-    
+def employer_resume_book_current_toggle_student(request):
     if request.is_ajax():
         if request.POST.has_key('student_id'):
             student = Student.objects.get(id=request.POST['student_id'])
             resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
             if not resume_books.exists():
-                latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+                current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
             else:
-                latest_resume_book = resume_books.order_by('-date_created')[0]
-            if student in latest_resume_book.students.all():
-                latest_resume_book.students.remove(student)
-                data = {'valid':True,
-                        'action':employer_enums.REMOVED}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
+                current_resume_book = resume_books.order_by('-date_created')[0]
+            if student in current_resume_book.students.all():
+                current_resume_book.students.remove(student)
+                data = {'action':employer_enums.REMOVED}  
             else:
-                latest_resume_book.students.add(student)
-                data = {'valid':True,
-                        'action':employer_enums.ADDED}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                current_resume_book.students.add(student)
+                data = {'action':employer_enums.ADDED}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            return HttpResponseBadRequest("Student ID is missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            return HttpResponseBadRequest("Student ID is missing.")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_book_students_add(request, extra_context=None):
-    
+def employer_resume_book_current_add_students(request):
     if request.is_ajax():
         if request.POST.has_key('student_ids'):
             resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
             if not resume_books.exists():
-                latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+                current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
             else:
-                latest_resume_book = resume_books.order_by('-date_created')[0]
+                current_resume_book = resume_books.order_by('-date_created')[0]
             if request.POST['student_ids']:
                 for id in request.POST['student_ids'].split('~'):
                     student = Student.objects.get(id=id)  
-                    if student not in latest_resume_book.students.all():
-                        latest_resume_book.students.add(student)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                    if student not in current_resume_book.students.all():
+                        current_resume_book.students.add(student)
+            return HttpResponse()
         else:
-            return HttpResponseBadRequest("Student IDs are missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            return HttpResponseBadRequest("Student IDs are missing.")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_book_students_remove(request, extra_context=None):
-    
+def employer_resume_book_current_remove_students(request):
     if request.is_ajax():
         if request.POST.has_key('student_ids'):
             resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
             if not resume_books.exists():
-                latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+                current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
             else:
-                latest_resume_book = resume_books.order_by('-date_created')[0]
+                current_resume_book = resume_books.order_by('-date_created')[0]
             if request.POST['student_ids']:
-                for id in request.POST['student_ids'].split('~'):
-                    student = Student.objects.get(id=id)  
-                    if student in latest_resume_book.students.all():
-                        latest_resume_book.students.remove(student)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                for student_id in request.POST['student_ids'].split('~'):
+                    student = Student.objects.get(id=student_id)  
+                    if student in current_resume_book.students.all():
+                        current_resume_book.students.remove(student)
+            return HttpResponse()
         else:
-            return HttpResponseBadRequest("Student IDs are missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            return HttpResponseBadRequest("Student IDs are missing.")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+
+
+@login_required
+@user_passes_test(is_recruiter)
+@render_to('employer_student_attendance.html')
+def employer_student_event_attendance(request):
+    if request.is_ajax():
+        if request.GET.has_key('student_id'):
+            context={}
+            student= Student.objects.visible().get(id=request.GET['student_id'])
+            context['events'] = request.user.recruiter.event_set.filter(attendee__student=student)
+            context['student'] = student
+            return context
+        else:
+            return HttpResponseBadRequest("Student ID is missing.")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+
 
 @login_required
 @user_passes_test(is_recruiter)
 @render_to('employer_events.html')
-def employer_events(request, extra_context=None):
+def employer_employer_events(request, extra_context=None):
     
-    context = {
-        'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
-    }
+    context = {'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.now()).order_by("start_datetime") }
     context.update(extra_context or {})
     return context
 
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_new_event(request, extra_context=None):
+def employer_resume_books(request, extra_context=None):
+    pass
+
+@login_required
+@user_passes_test(is_recruiter)
+def employer_event_new(request, extra_context=None):
     if request.method == 'POST':
         form = EventForm(data=request.POST)
         if form.is_valid():
@@ -272,12 +292,13 @@ def employer_new_event(request, extra_context=None):
     }
     
     context.update(extra_context or {})
-    return render_to_response('employer_new_event.html', context,
+    return render_to_response('employer_event_new.html', context,
             context_instance = RequestContext(request))
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_edit_event(request, id=None, extra_context=None):
+def employer_event_edit(request, id=None, extra_context=None):
     event = Event.objects.get(pk=id)
     if not request.user.recruiter in event.recruiters.all():
         return HttpResponseForbidden('not your event!')
@@ -290,7 +311,7 @@ def employer_edit_event(request, id=None, extra_context=None):
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
+            return HttpResponseRedirect(reverse('employer_event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm(instance=event)
 
@@ -308,12 +329,13 @@ def employer_edit_event(request, id=None, extra_context=None):
     }
 
     context.update(extra_context or {})
-    return render_to_response('employer_new_event.html', context,
+    return render_to_response('employer_event_new.html', context,
             context_instance = RequestContext(request) )
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_delete_event(request, id, extra_context = None):
+def employer_event_delete(request, id, extra_context = None):
     try:
         event = Event.objects.get(pk=id)
         if request.user.recruiter not in event.recruiters.all():
@@ -327,9 +349,11 @@ def employer_delete_event(request, id, extra_context = None):
     except Event.DoesNotExist:
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
 
+
+@render_to('employer_students_default_filtering.html')
 @login_required
 @user_passes_test(is_recruiter)
-def employer_setup_default_filtering(request, extra_context = None):
+def employer_students_default_filtering(request, extra_context = None):
     
     form_class=FilteringForm
     if request.method == 'POST':
@@ -342,33 +366,15 @@ def employer_setup_default_filtering(request, extra_context = None):
     else:
         form = form_class(instance=request.user.recruiter)
     
-    context = {
-        'form':form
-    }
+    context = {'form':form}
     context.update(extra_context or {}) 
-    return render_to_response('employer_setup_default_filtering.html', context,
-                              context_instance=RequestContext(request))
+    return context
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_book_summary(request, extra_context=None):
-    if request.is_ajax():
-        context = {}
-        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-        if not resume_books.exists():
-            latest_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-        else:
-            latest_resume_book = resume_books.order_by('-date_created')[0]
-            context = {'resume_book': latest_resume_book}
-            context.update(extra_context or {}) 
-        return render_to_response('employer_resume_book_summary.html', context,
-                                  context_instance=RequestContext(request))
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
-@login_required
-@user_passes_test(is_recruiter)
+@render_to()
 def employer_students(request, extra_context=None):
-    
     context = {}
     if request.is_ajax():
         cached_page = cache.get('page')
@@ -410,135 +416,165 @@ def employer_students(request, extra_context=None):
         
         context['current_student_list'] = request.POST['student_list']
         
+        # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.save()
         
+        context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
-        return render_to_response('employer_students_results.html',
-                                  context,
-                                  context_instance=RequestContext(request))
+        return context
     else:
         cache.delete('paginator')
         cache.delete('ordered_results')
         cache.delete('filtering_results')
         cache.delete('search_results')
+
+        page_messages = {
+            'NO_STUDENTS_SELECTED_MESSAGE': messages.no_students_selected,
+            'WAIT_UNTIL_RESUME_BOOK_IS_READY_MESSAGE': messages.wait_until_resume_book_is_ready
+        }
+        context['page_messages'] = page_messages
+
         if request.method == "POST" and request.POST.has_key('query'):
-                context['query'] = request.POST.get('query', '')
-                
+            context['query'] = request.POST.get('query', '')
+
         context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
                                                                  initial={'ordering': request.user.recruiter.recruiterpreferences.default_student_ordering,                           
                                                                           'results_per_page' : request.user.recruiter.recruiterpreferences.results_per_page})
         context['student_search_form'] = SearchForm()
         context['added'] = employer_enums.ADDED
-        context['removed'] = employer_enums.REMOVED
         context['starred'] = employer_enums.STARRED
-        context['unstarred'] = employer_enums.UNSTARRED
         context['email_delivery_type'] = employer_enums.EMAIL
         context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
-        
+    context['TEMPLATE'] = "employer_students.html"
     context.update(extra_context or {})
-    return render_to_response('employer_students.html', context, context_instance=RequestContext(request))
+    return context
+
+
+@render_to('employer_resume_book_current_summary.html')
+@login_required
+@user_passes_test(is_recruiter)
+def employer_resume_book_current_summary(request, extra_context=None):
+    if request.is_ajax():
+        context = {}
+        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+        if not resume_books.exists():
+            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+        else:
+            current_resume_book = resume_books.order_by('-date_created')[0]
+            context = {'resume_book': current_resume_book}
+            context.update(extra_context or {}) 
+        return context
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+
+@render_to('employer_resume_book_current_deliver.html')
+@login_required
+@user_passes_test(is_recruiter)
+def employer_resume_book_current_deliver(request, form_class= DeliverResumeBookForm, extra_context=None):
+    if request.is_ajax():
+        context = {}
+        if request.method == 'GET':
+            context['deliver_resume_book_form'] = form_class(initial={'emails':request.user.email})
+            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+            if resume_books.exists():
+                context['resume_book'] = resume_books.order_by('-date_created')[0]
+            else:
+                context['resume_book'] = ResumeBook.objects.create(recruiter = request.user.recruiter)
+            context.update(extra_context or {})
+            return context
+        return HttpResponseBadRequest("Request must be a GET")       
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_books_create(request):
+def employer_resume_book_current_create(request):
     if request.is_ajax():
         if request.method == 'POST':
-            latest_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-            output = PdfFileWriter()
+            current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
             report_buffer = cStringIO.StringIO() 
-            c = canvas.Canvas(report_buffer)  
+            c = Canvas(report_buffer)  
             c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
             c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
             c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
             c.drawString(16*cm, 29*cm, "Created using Umeqo")
             page_num = 0
-            for student in latest_resume_book.students.all():
+            for student in current_resume_book.students.all():
                 page_num += 1
                 c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
                 c.drawString(16*cm, (22-page_num)*cm, str(page_num))
             c.showPage()
             c.save()
-            pdfInput = PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) 
-            output.addPage(pdfInput.getPage(0)) 
-            for student in latest_resume_book.students.all():
-                output.addPage(PdfFileReader(file(str(settings.MEDIA_ROOT).replace("\\", "/") + "/" + str(student.resume), "rb")).getPage(0))
-            resume_book_name = str(request.user) + "_" + datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf";
-            latest_resume_book.resume_book_name = resume_book_name
-            if not os.path.exists(str(settings.RESUME_BOOKS_ROOT)):
-                os.mkdir(str(settings.RESUME_BOOKS_ROOT))  
-            outputStream = file(str(settings.RESUME_BOOKS_ROOT) + resume_book_name, "wb")
+            output = PdfFileWriter()
+            output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
+            for student in current_resume_book.students.all():
+                output.addPage(PdfFileReader(file("%s%s" % (settings.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
+            resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
+            current_resume_book.resume_book_name = resume_book_name
+            file_name = "%s%s%s.tmp" % (settings.MEDIA_ROOT, settings.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
+            outputStream = file(file_name, "wb")
             output.write(outputStream)
-            resume_book_contents = open(str(settings.RESUME_BOOKS_ROOT) + resume_book_name)
-            latest_resume_book.resume_book.save(str(settings.RESUME_BOOKS_ROOT) + resume_book_name + "yes", resume_book_contents)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            outputStream.close()
+            resume_book_contents = file(file_name, "rb")
+            current_resume_book.resume_book.save(file_name, File(resume_book_contents))
+            resume_book_contents.close()
+            return HttpResponse()
         return HttpResponseBadRequest("Request must be a POST")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_books_email(request, extra_context=None):
+@render_to("employer_resume_book_current_delivered.html")
+def employer_resume_book_current_email(request, extra_context=None):
     if request.is_ajax():
         if request.method == 'POST':
-            if request.POST.has_key('email'):
-                latest_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-                recipients = [request.POST['email']]
+            if request.POST.has_key('emails'):
+                current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+                reg = re.compile(r"\s*[;, \n]\s*")
+                recipients = reg.split(request.POST['emails'])
                 subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
                 body = render_to_string('resume_book_email_body.txt', {})
                 message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-                message.attach_file(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name))
+                message.attach_file("%s%s" % (settings.MEDIA_ROOT, current_resume_book.resume_book.name))
                 message.send()
-                os.remove(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name))
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                context = {}
+                context.update(extra_context or {}) 
+                return context
             else:
                 return HttpResponseBadRequest("Missing recipient email.")
         else:
             return HttpResponseBadRequest("Request must be a POST")
-    HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-    
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_books_download(request):
+def employer_resume_book_current_download(request):
     if request.method == 'GET':
-        latest_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-        mimetype = mimetypes.guess_type(latest_resume_book.file_name)[0]
+        current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+        mimetype = mimetypes.guess_type(str(current_resume_book.resume_book))[0]
         if not mimetype: mimetype = "application/octet-stream"
-        response = HttpResponse(file(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name), "rb").read(), mimetype=mimetype)
-        filename = str(latest_resume_book.file_name)
+        response = HttpResponse(file("%s%s" % (settings.MEDIA_ROOT, current_resume_book.resume_book.name), "rb").read(), mimetype=mimetype)
+        filename = os.path.basename(current_resume_book.resume_book.name)
         if request.GET.has_key('name'):
             filename = request.GET['name']
         response["Content-Disposition"]= "attachment; filename=%s" % filename
-        os.remove(str(settings.RESUME_BOOKS_ROOT) + str(latest_resume_book.file_name))
         return response
     else:
         return HttpResponseBadRequest("Request must be a GET")
-    
-@login_required
-@user_passes_test(is_recruiter)
-def employer_resume_books_deliver(request, extra_context=None):
-    if request.is_ajax():
-        context = {}
-        if request.method == 'GET':
-            context['deliver_resume_book_form'] = DeliverResumeBookForm(initial={'email':request.user.email})
-            context['resume_book'] = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-            context.update(extra_context or {})
-            return render_to_response('employer_resume_books_deliver.html',
-                                      context,
-                                      context_instance=RequestContext(request))
-        return HttpResponseBadRequest("Request must be a GET")       
-    HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-    
+
+@render_to('employer_invitations.html')
 @login_required
 @user_passes_test(is_recruiter)
-@render_to('employer_invitations.html')
 def employer_invitations(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
     return context
+
 
 @login_required
 @user_passes_test(is_student)
@@ -581,6 +617,7 @@ def employers_list(request, extra_content=None):
         })
     return render_to_response('employers_list.html', context, context_instance=RequestContext(request))
 
+
 @login_required
 @user_passes_test(is_student)
 def employers_list_pane(request, extra_content=None):
@@ -607,17 +644,19 @@ def employers_list_pane(request, extra_content=None):
         return render_to_response('employers_list_pane.html', context, context_instance=RequestContext(request))
     return HttpResponseBadRequest("Bad request.")
 
+
 @login_required
 @user_passes_test(is_student)
 @render_to('employers_list_ajax.html')
-def employers_list_ajax(request):
+def employer_list_ajax(request):
     employers = employer_search_helper(request)
     context = {'employers': employers}
     return context
 
+
 @login_required
 @user_passes_test(is_student)
-def employers_subscribe(request):
+def employer_subscribe(request):
     employer_id = request.POST.get('id', None)
     if employer_id and Employer.objects.filter(id=employer_id).exists():
         employer = Employer.objects.get(id=employer_id)
@@ -638,4 +677,3 @@ def employers_subscribe(request):
         data = {'valid':True,'subscribe':subscribe}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     return HttpResponseBadRequest("Bad request.")
-

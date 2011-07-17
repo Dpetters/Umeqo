@@ -37,7 +37,7 @@
    ], 
    "website": "", 
    "second_major": 25, 
-   "resume": "C:/Users/dpetters/aptana_workspace/Umeqo/media/resumes/Petters_Dmitrij_student1@umeqo.com_2011-07-08-01-22-29.pdf", 
+   "resume": "student/Student/petters_dmitrij_student1@umeqo.com_2011-07-10-17-49-21.pdf", 
    "user": 2, 
    "industries_of_interest": [
     15, 
@@ -97,6 +97,72 @@
   }
  }, 
  {
+  "pk": 3, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "Kao", 
+   "last_updated": "2011-07-10 20:10:21", 
+   "sat_m": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": "", 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": "Albert", 
+   "first_major": 7, 
+   "subscriptions": [], 
+   "gpa": "4.8", 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": true, 
+   "school_year": 4, 
+   "graduation_year": 1, 
+   "previous_employers": [], 
+   "website": "", 
+   "second_major": 4, 
+   "resume": "student/Student/kao_albert_student3@umeqo.com_2011-07-10-20-08-09.pdf", 
+   "user": 5, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-07-10 20:05:56", 
+   "older_than_18": "Y"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "Hsu", 
+   "last_updated": "2011-07-10 20:29:54", 
+   "sat_m": 800, 
+   "sat_t": 2330, 
+   "sat_v": 780, 
+   "sat_w": 750, 
+   "keywords": " terencehsuuniversityaddress memorialdrive cambridge homeaddress leestreet brookline terenceh mit edueducationmassachusettsinstituteoftechnologycambridge macandidateforas inmathematicswithcomputerscienceexpectedgraduation june candidateforas inmanagementsciencegpa candidateforaminorineconomicscourseworkinmathematics calculusi linearalgebra probabilityandrandomvariables principlesofappliedmathematicscourseworkinfinance microeconomics macroeconomics financetheoryi managementcommunicationbuckinghambrowne nicholsschoolcambridge madiplomawithhonorsgpa sat wsep june leadership peertutorpresidentcommunityserviceclubpresidentorchestraconcertmasterexperiencerackemann sawyer brewsterboston malitigationinternsummer servedasaresearchspecialistforthelitigationdepartment focusingontwomainprojectswithregardstocommercialrealestatelitigation firstprojectinvolvedaccountingoftaxesanddeedsofanestateinnantucket workinvolvedonlineresearch collectingdocumentsfromcourthouses aswellascompilingadatabase secondprojectwasavaluationofpropertyholdingsofparkinggaragesinboston theanalysisprimarilycalledformodelingcashwsoftheoperation natixixprivateequityasialimited npea beijing chinaanalystsummer dutiesforgrowthcapitalconcentratedonindustryresearchandanalysisfortwodevelopingdeals withsecondarygoalonmaintainingdeal investeedatabases aswellasmodelingantsystemformonitoringandupdatingmovementontheshenzhenandsouthkoreanexchanges taskedbydealteamtoresearchthefertilizerandcolorizedfertilizerbagindustryinchina regardingnpea sprospectivesyntheticmaterialscompany analysisfocusedonexportpotential overseasregulations andcompetitiveanglesagainstindianmanufacturersandrivalchinesecompanies underseconddealteam analyzedr dpotentialforansuppliesmanufacturerforapremiumbrand nameamericancompany afterresearch gainedperspectiveonmanyexportingchinesemanufacturers commonfailuretoestablishbrandrecognitionbeyondtheimportingbrandnamesandworkedwithdealteamtoconsultinvesteeonhowtoestablishindependencebeyondtheo industry leadershipandactivitiesphibetaepsilonfraternity activebrother presenterships pledgesocialchairfall literarychairfall sloanundergraduatemanagementassocation boardmember presentasajuniorprojectmanager primarygoalistoplannetworkingexclusivesforbusiness mindedmitstudents importantaspectofevent planningcallsforforgingandmaintainingcrucialsponsorsandsupportamongcompaniesinterestedincultivatingstudents interestinthevariousindustriesinmitresonanceacapella assistantdirector presentresponsiblesolelyforthemusicalaspectanddirectionofthegroup whichcallsforleadingtrainingexercises choosingconcertsetlists reviewingandapprovingarrangements conductingprivateteachingsessions andusingownmusicalinsightandexperiencetoleadthegrouptotopperformancequality volunteerwork tenacity tennisinstructor graham parksschool tutor awardsandhonorshighschoolawards cumlaudesocietymember ncitationofhonorsrecipient nationalapscholarwinner musicawards harvardmusicalassociationawardsgrandprize piano mtnanationalcompositioncompetitionthirdplace mtnanortheastcompositioncompetitionfirstplace mmtastatepianocompetitionpodiumwinner skillsandinterestsprogramming pythonhtmlmatlablatexsoftware excelmicrosoftadobephotoshopadobedreamweaveridleforeignlanguages englishcantonese conversational french advanced mandarin advanced generalinterests pianoviolincompositionsingingtenniscyclingscubadiving", 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": "Terence", 
+   "first_major": 25, 
+   "subscriptions": [], 
+   "gpa": "4.4", 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": true, 
+   "school_year": 3, 
+   "graduation_year": 2, 
+   "previous_employers": [], 
+   "website": "", 
+   "second_major": 23, 
+   "resume": "student/Student/hsu_terence_student4@umeqo.com_2011-07-10-20-29-54.pdf", 
+   "user": 6, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-07-10 20:26:02", 
+   "older_than_18": "Y"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -118,6 +184,30 @@
    "email_on_invite_to_public_event": false, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "last_updated": "2011-07-10 20:05:56", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_new_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 3, 
+   "date_created": "2011-07-10 20:05:56"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "last_updated": "2011-07-10 20:26:02", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_new_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 4, 
+   "date_created": "2011-07-10 20:26:02"
   }
  }, 
  {
@@ -144,6 +234,32 @@
    "add_to_resumebook_count": 0, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-07-10 20:05:56", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 3, 
+   "date_created": "2011-07-10 20:05:56"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-07-10 20:26:02", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 4, 
+   "date_created": "2011-07-10 20:26:02"
   }
  }
 ]

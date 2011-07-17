@@ -2,19 +2,15 @@ import datetime, Image
 from django.conf import settings
 
 def get_resume_filename(instance, filename):
-    filename = "student/Student/" + instance.last_name.lower() + "_" + instance.first_name.lower() + "_" + str(instance.user) + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".pdf"
-    print filename
-    return filename
+    return "%s%s_%s_%s_%s.pdf" % (settings.STUDENT_STUDENT_ROOT, instance.last_name.lower(), instance.first_name.lower(), str(instance.user).lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
 
-def get_campusorg_image_filename(instance, filename):
+def get_campus_org_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    filename = "core/CampusOrg/" + instance.name.replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
-    return filename
+    return "%s%s_%s%s" % (settings.CORE_CAMPUS_ORG_ROOT, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def get_course_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    filename = "core/Course/" + instance.name.replace(" ", "_") + "_" + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + extension
-    return filename
+    return "%s%s_%s%s" % (settings.CORE_COURSE_ROOT, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def scale_down_image(image):
     filename = image.path

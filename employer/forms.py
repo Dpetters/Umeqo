@@ -10,7 +10,7 @@ from employer import enums as employer_enums
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
     name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
-    email = forms.EmailField(label="Delivery Email:", required=False)
+    emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)
         
 class SearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))

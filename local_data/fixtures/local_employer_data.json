@@ -3,8 +3,8 @@
   "pk": 1, 
   "model": "employer.resumebook", 
   "fields": {
-   "resume_book": "", 
-   "date_created": "2011-07-08 00:51:20", 
+   "resume_book": "employer/ResumeBook/lauren_laver_recruiter1@umeqo.com_2011-07-16-23-09-56.pdf", 
+   "date_created": "2011-07-16 23:07:00", 
    "recruiter": 1, 
    "students": [], 
    "name": null
@@ -69,9 +69,36 @@
   "pk": 1, 
   "model": "employer.studentcomment", 
   "fields": {
-   "comment": "", 
+   "comment": "\n", 
    "recruiter": 1, 
    "student": 1
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 1, 
+   "student": 2
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 1, 
+   "student": 3
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 1, 
+   "student": 4
   }
  }, 
  {
@@ -81,11 +108,13 @@
    "industries": [
     42
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:06:02", 
    "name": "Employer2", 
    "main_contact": "Liz Floyd", 
    "main_contact_phone": "543-657-9834", 
    "date_created": "2011-07-08 00:06:02", 
+   "logo": "", 
    "slug": "employer2", 
    "description": ""
   }
@@ -97,11 +126,13 @@
    "industries": [
     28
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:07:34", 
    "name": "Employer3", 
    "main_contact": "Katelyn o'Hare", 
    "main_contact_phone": "523-987-4567", 
    "date_created": "2011-07-08 00:07:34", 
+   "logo": "", 
    "slug": "employer3", 
    "description": ""
   }
@@ -113,11 +144,13 @@
    "industries": [
     41
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:08:02", 
    "name": "Employer4", 
    "main_contact": "Jason Mccoy", 
    "main_contact_phone": "333-333-3333", 
    "date_created": "2011-07-08 00:08:02", 
+   "logo": "", 
    "slug": "employer4", 
    "description": ""
   }
@@ -129,11 +162,13 @@
    "industries": [
     40
    ], 
+   "main_contact_email": "", 
    "last_updated": "2011-07-08 00:09:24", 
    "name": "Employer1", 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
    "date_created": "2011-07-08 00:09:24", 
+   "logo": "", 
    "slug": "employer1", 
    "description": ""
   }

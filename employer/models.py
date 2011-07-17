@@ -8,9 +8,8 @@ from student.models import Student
 from countries.models import Country
 from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
 from employer import enums as employer_enums
-from employer.model_helpers import get_resume_book_filename
+from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from core import choices as core_choices
-
 
 class ResumeBook(models.Model):
     recruiter = models.ForeignKey("employer.Recruiter", editable=False)
@@ -78,12 +77,14 @@ class StudentComment(models.Model):
         
 class Employer(models.Model): 
     name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    description = models.CharField(max_length=500, blank=True, default="")
+    description = models.CharField(max_length=500)
+    logo = models.ImageField(upload_to=get_logo_filename)
     slug = models.CharField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     
     industries = models.ManyToManyField(Industry)
 
-    main_contact = models.CharField("Main Contact", max_length = 50) 
+    main_contact = models.CharField("Main Contact", max_length = 50)
+    main_contact_email = models.EmailField("Contact Email")
     main_contact_phone = PhoneNumberField("Contact Phone #")
 
     last_updated = models.DateTimeField(editable=False, auto_now=True)

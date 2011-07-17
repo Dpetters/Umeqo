@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    var THANK_YOU_FOR_CONTACTING_US_MESSAGE = "{{thank_you_for_contacting_us_message}}";        
+</script>
+
+<div class="dialog_content_wrapper">
+    <div class="dialog_info_section">
+        <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
+    </div>
+    
+    <form id="contact_us_form" method='POST' action="/contact-us-dialog/">
+        {% csrf_token %}
+        <table class="form_table">
+            <tr>
+                <th>{{form.name.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.name.errors}}</div>
+                    {{form.name}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.email.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.email.errors}}</div>
+                    {{form.email}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.body.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.body.errors}}</div>
+                    {{form.body}}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="error_section">
+                    {{form.non_field_errors}}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input id="contact_us_form_submit_button" class="button" type='submit' value='Submit'>
+                    <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

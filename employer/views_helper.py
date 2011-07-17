@@ -26,8 +26,7 @@ def check_for_new_student_matches(employer):
 def get_paginator(request):
     current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
     processed_ordered_results = process_results(request.user.recruiter, current_ordered_results)
-    current_paginator = DiggPaginator(processed_ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2)
-    return current_paginator
+    return DiggPaginator(processed_ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2)
 
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
@@ -41,10 +40,9 @@ def get_is_starred_attributes(recruiter, students):
 def get_comments(recruiter, students):
     comments_dict = {}
     for student in students:
-        student_comments = StudentComment.objects.filter(recruiter=recruiter, student=student)
-        if student_comments.exists():
-            comments_dict[student] = student_comments[0].comment
-        else:
+        try:
+            comments_dict[student] = StudentComment.objects.get(recruiter=recruiter, student=student).comment
+        except StudentComment.DoesNotExist:
             StudentComment.objects.create(recruiter=recruiter, student=student, comment="")
             comments_dict[student] = ""   
     return comments_dict
@@ -160,6 +158,7 @@ def get_cached_filtering_results(request):
         cache.set('filtering_results', current_filtering_results)
     return current_filtering_results
 
+
 def get_cached_search_results(request):
     cached_search_results = cache.get('search_results')
     if cached_search_results:
@@ -169,7 +168,8 @@ def get_cached_search_results(request):
         current_search_results = search_students(request.POST['query'])
     cache.set('search_results', current_search_results)
     return current_search_results
-    
+
+
 def filter_students(recruiter,
                     student_list=None,
                     gpa=None,
@@ -188,25 +188,22 @@ def filter_students(recruiter,
                     languages=None,
                     countries_of_citizenship=None,
                     campus_orgs=None):
-    # All Students
-    if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
-        students = Student.objects.all()
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-        pass
-        # all starred students
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
+
+    if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
+        students = Student.objects.visible()
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
+        students = recruiter.starred_students.visible()
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
         resume_books = ResumeBook.objects.filter(recruiter = recruiter)
         if not resume_books.exists():
             latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
         else:
             latest_resume_book = resume_books.order_by('-date_created')[0]
-        students = latest_resume_book.students.all()
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:
+        students = latest_resume_book.students.visible()
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]: # New Default Filtering Matches 
         pass
-        # latest default filtering parameter matches students
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[4][1]:
+    elif student_list == student_enums.GENERAL_STUDENT_LISTS[4][1]: # All Default Filtering Matches
         pass
-        # all default filtering parameter matches
     
     kwargs = {}
     if gpa:
