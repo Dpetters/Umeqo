@@ -28,5 +28,38 @@
    "slug": "quora-hackathon", 
    "end_datetime": "2011-07-10 12:00:00"
   }
+ }, 
+ {
+  "pk": 1, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 1, 
+   "datetime_created": "2011-07-16 15:32:42", 
+   "email": "student1@umeqo.com", 
+   "student": 1, 
+   "name": "Dmitrij Petters"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 1, 
+   "datetime_created": "2011-07-16 15:32:53", 
+   "email": "student2@umeqo.com", 
+   "student": 2, 
+   "name": "Hrishikesh Joshi"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 1, 
+   "datetime_created": "2011-07-16 15:33:06", 
+   "email": "dpetters@mit.edu", 
+   "student": null, 
+   "name": "Dmitrij Petters"
+  }
  }
 ]

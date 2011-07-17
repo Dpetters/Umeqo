@@ -1,5 +1,5 @@
-import os, subprocess, shutil, sys
-from fabric.api import env, sudo, cd, run, local, show
+import os, shutil, sys
+from fabric.api import env, sudo, cd, run, local
 from fabric.context_managers import prefix
 from fabric.contrib import django as fabric_django
 from fabric.utils import abort
@@ -12,7 +12,7 @@ from django.conf import settings
 
 __all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
-          "update"]
+          "update", "create_media_dirs"]
 
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
@@ -85,6 +85,7 @@ def copy_out_prod_media():
     copy_out_media(settings.PROD_MEDIA_ROOT, settings.PROD_DATA_APPS)
 
 def create_database():
+    create_media_dirs()
     if not env.host:  
         if os.path.exists(ROOT + "/database.db"):
             os.remove(ROOT + "/database.db")
@@ -97,7 +98,13 @@ def create_database():
             with prefix(env.activate):
                 run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
                 run("python manage.py syncdb --noinput --migrate")
-                
+
+def create_media_dirs():
+    for model_path in settings.MEDIA_MODEL_PATHS.split(" "):
+        model_root = settings.MEDIA_ROOT + model_path
+        if not os.path.exists(model_root):
+            os.makedirs(model_root)
+    
 def load_prod_data():
     if not env.host:  
         copy_in_prod_media()
@@ -130,14 +137,14 @@ def commit_prod_data():
     else: 
         with cd(env.directory):
             with prefix(env.activate):
-                run("python manage.py file_cleanup core.CampusOrg core.Course")
+                run("python manage.py file_cleanup %s" % (settings.PROD_DATA_MODELS,))
                 copy_out_prod_media()
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                 run("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json")
        
 def commit_local_data():
     if not env.host:
-        local("python manage.py file_cleanup student.Student employer.Employer employer.ResumeBook")
+        local("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
         copy_out_local_media()
         for app in settings.LOCAL_DATA_APPS:
             # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
@@ -165,6 +172,7 @@ def update():
             with prefix(env.activate):
                 run("git pull")
                 run("python manage.py migrate --all")
+                create_media_dirs()
                 run("echo 'yes'|python manage.py collectstatic")
                 restart()       
     else:

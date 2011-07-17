@@ -115,7 +115,7 @@ $(document).ready( function() {
                                         create_campus_organization_dialog.dialog('destroy');
                                     });
 								}else{
-									place_form_errors("#create_campus_org_form", data.errors);
+									place_table_form_errors("#create_campus_org_form", data.errors);
                                 }
                                 create_campus_organization_dialog.dialog('option', 'position', 'center');
                             }
@@ -232,7 +232,7 @@ $(document).ready( function() {
                                         create_language_dialog.dialog('destroy');
                                     });
 								} else {
-									place_form_errors("#create_language_form", data.errors);
+									place_table_form_errors("#create_language_form", data.errors);
                                 }
                                 create_language_dialog.dialog('option', 'position', 'center');
                             }
@@ -348,8 +348,6 @@ $(document).ready( function() {
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth
     }).multiselectfilter();    
 	
@@ -364,8 +362,6 @@ $(document).ready( function() {
         noneSelectedText: 'select industries',
         classes: 'interested_in_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
@@ -383,8 +379,6 @@ $(document).ready( function() {
         noneSelectedText: 'select employers',
         classes: 'previous_employers_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
@@ -402,7 +396,6 @@ $(document).ready( function() {
         noneSelectedText: 'select campus organizations',
         classes: 'campus_involvement_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
         beforeoptgrouptoggle: function(e, ui){
             $(".warning").remove();
             if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
@@ -410,7 +403,6 @@ $(document).ready( function() {
                 return false;
             }
         },
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         height:146,
         beforeclose: function() {
@@ -429,8 +421,6 @@ $(document).ready( function() {
         noneSelectedText: 'select languages',
         classes: 'languages_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         height:146,
         beforeclose: function() {
@@ -457,8 +447,6 @@ $(document).ready( function() {
         noneSelectedText: "select countries",
         classes: 'countries_of_citizenship_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         height:146,
         minWidth:multiselectMinWidth,
         selectedList: 1,

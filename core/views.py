@@ -86,10 +86,13 @@ def contact_us_dialog(request, extra_context=None):
                 return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
             else:
                 data = {'valid':False}
-                if form['body'].errors:
-                    data['body_errors'] = str(form["body"].errors)
+                errors = {}
+                for field in form:
+                    if field.errors:
+                        errors[field.auto_id] = field.errors[0]
                 if form.non_field_errors():
-                    data['non_field_errors'] = str(form.non_field_errors())
+                    errors['non_field_error'] = form.non_field_errors()[0]
+                data['errors'] = errors
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             if request.user.is_authenticated():
@@ -288,14 +291,14 @@ def check_event_name_uniqueness(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-@login_required
-def get_course_info(request, extra_context = None):
 
+@login_required
+@render_to('course_info.html')
+def course_info(request, extra_context = None):
     if request.is_ajax():
         if request.GET.has_key('course_id'):
-            courses = Course.objects.filter(id = request.GET['course_id'])
-            if courses.exists():
-                course = courses[0]
+            try:
+                course = Course.objects.get(id = request.GET['course_id'])
                 context = {'name': course.name,
                            'num': course.num, 
                            'admin' : course.admin,
@@ -304,36 +307,34 @@ def get_course_info(request, extra_context = None):
                            'description': course.description,
                            'image': course.image.name}
                 context.update(extra_context or {})
-                return render_to_response('course_info.html',
-                                          context,
-                                          context_instance=RequestContext(request))
-            else:
-                return HttpResponseServerError("Course ID doesn't match any existing course's ID.")        
+                return context
+            except Course.DoesNotExist:
+                return HttpResponseBadRequest("Course ID doesn't match any existing campus org's ID.")        
         else:
             return HttpResponseBadRequest("Course ID is missing.")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
 
-@login_required
-def get_campus_org_info(request, extra_context = None):
 
+@login_required
+@render_to('campus_org_info.html')
+def campus_org_info(request, extra_context = None):
     if request.is_ajax():
         if request.GET.has_key('campus_org_id'):
-            campus_orgs = CampusOrg.objects.filter(id=request.GET['campus_org_id'])
-            if campus_orgs.exists():
-                campus_org = campus_orgs[0]
+            try:
+                campus_org = CampusOrg.objects.get(id=request.GET['campus_org_id'])
                 context = {'name': campus_org.name,
                            'email': campus_org.email,
                            'website':campus_org.website,
                            'description': campus_org.description,
                            'image': campus_org.image.name}
                 context.update(extra_context or {})
-                return render_to_response('campus_org_info.html', context,
-                        context_instance=RequestContext(request))
-            else:
-                return HttpResponseServerError("Campus Org ID doesn't match any existing campus org's ID.")        
+                return context
+            except CampusOrg.DoesNotExist:
+                return HttpResponseBadRequest("Campus Org ID doesn't match any existing campus org's ID.")        
         else:
             return HttpResponseBadRequest("Campus Org ID is missing")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 @login_required
 def check_campus_organization_uniqueness(request):

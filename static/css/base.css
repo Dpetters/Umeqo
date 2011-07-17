@@ -203,7 +203,7 @@ p {
     overflow-x: hidden;
 }
 #below_header_area{
-	min-height:15px;
+	min-height:17px;
 }
 #content_area {
     margin-bottom: 40px;
@@ -222,8 +222,7 @@ p {
     text-shadow: 0px 1px #FFF;
 }
 .message_section {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
     line-height: 20px;
 }
@@ -675,6 +674,10 @@ input[type=text], input[type=password], select, textarea {
     font-family: Arial;
     font-size: 12px;
 }
+select{
+	padding-top:3px;
+	padding-bottom:3px;
+}
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
     border: 1px solid #888;
     color: #000;
@@ -690,6 +693,9 @@ input[type=text], input[type=password] {
     margin-top: 5px;
     position: absolute;
 }
+td #ajax_form_submit_loader {
+	margin-top:20px;
+}
 .button_wrapper_no_margins {
     text-align: center;
 }
@@ -701,9 +707,9 @@ input[type=text], input[type=password] {
     content: '*';
     color: #FF7B7B;
 }
-/* TABLES + FORMS = <3 */
 .form_table {
-    width: 100%;
+    margin-right:auto;
+    margin-left:auto;
     margin-top: -16px;
 }
 .form_table td {
@@ -714,7 +720,8 @@ input[type=text], input[type=password] {
     text-align: right;
 }
 .form_table td p, .form_table th{
-    padding-bottom: 3px;
+    padding-top: 23px;
+    vertical-align:top;
 }
 .form_table input[type=submit] {
     margin-top: 14px;
@@ -778,19 +785,6 @@ a:focus {
 .contact_us_dialog .dialog_content_wrapper {
     padding: 20px 25px 20px 25px
 }
-.contact_us_dialog label[for=id_body] {
-    border-right: none;
-}
-.contact_us_dialog .error[for=id_body] {
-    top: 20px;
-    left: 76px;
-}
-.contact_us_dialog #id_body {
-    width: 99%;
-    margin-top: 3px;
-    height: 200px;
-    resize: none;
-}
 /* General Styles */
 .nounderline {
     text-decoration: none;
@@ -810,7 +804,7 @@ a:focus {
 .anchor {
     clear: both;
 }
-.error_section {
+.error_section, td.error_section {
     margin-top: 10px;
     text-align: center;
 }
@@ -929,7 +923,7 @@ a:focus {
     font-size: 11px;
 }
 button.ui-multiselect[type=button] {
-    background: #FAFAFA;
+    background: #FFF;
     color: #333;
     text-shadow: #FFF 0 1px 0;
     border: 1px solid #AAA;
@@ -938,20 +932,17 @@ button.ui-multiselect[type=button] {
 }
 button.ui-multiselect[type="button"].ui-state-active:hover,
 button.ui-multiselect[type="button"].ui-state-active {
-    background-color: #666;
+    background-color: #888;
     color: #FFF;
     text-shadow: #000 0 -1px 0;
-    border-color: #000;
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 0px;
-    -moz-border-radius-bottomleft: 0px;
+    border-color: #666;
+    -moz-border-radius: 3px 3px 0px 0px;
     -webkit-border-radius: 3px 3px 0px 0px;
     border-radius: 3px 3px 0px 0px;
 }
 button.ui-multiselect[type=button]:hover {
     cursor: pointer;
-    background: #E8E8E8;
+    background: #E9E9E9;
 }
 .ui-multiselect-filter{
     padding-left: 4px;

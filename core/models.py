@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import signals
 
-from core.model_helpers import get_course_image_filename, get_campusorg_image_filename, scale_down_image
+from core.model_helpers import get_course_image_filename, get_campus_org_image_filename, scale_down_image
 from core import enums
 
 
@@ -140,7 +140,7 @@ class CampusOrgType(models.Model):
 class CampusOrg(CommonInfo):
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     type = models.ForeignKey(CampusOrgType)
-    image = models.ImageField(upload_to=get_campusorg_image_filename, blank=True, null=True)
+    image = models.ImageField(upload_to=get_campus_org_image_filename, blank=True, null=True)
 
     class Meta(CommonInfo.Meta):
         verbose_name = "On-Campus Organization"

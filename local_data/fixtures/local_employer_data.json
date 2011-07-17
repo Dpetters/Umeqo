@@ -3,8 +3,8 @@
   "pk": 1, 
   "model": "employer.resumebook", 
   "fields": {
-   "resume_book": "", 
-   "date_created": "2011-07-08 00:51:20", 
+   "resume_book": "employer/ResumeBook/lauren_laver_recruiter1@umeqo.com_2011-07-16-23-09-56.pdf", 
+   "date_created": "2011-07-16 23:07:00", 
    "recruiter": 1, 
    "students": [], 
    "name": null
@@ -69,9 +69,36 @@
   "pk": 1, 
   "model": "employer.studentcomment", 
   "fields": {
-   "comment": "", 
+   "comment": "\n", 
    "recruiter": 1, 
    "student": 1
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 1, 
+   "student": 2
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 1, 
+   "student": 3
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "employer.studentcomment", 
+  "fields": {
+   "comment": "", 
+   "recruiter": 1, 
+   "student": 4
   }
  }, 
  {

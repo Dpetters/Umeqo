@@ -63,6 +63,7 @@ def list_files(base_path):
         files.update(smart_unicode(os.path.join(root, name).replace("/", "\\")) for name in filenames)
     return files    
 
+
 def move_files(filenames, backup_dir):
     for name in filenames:
         dir = rsplit(backup_dir + name.split(settings.MEDIA_ROOT.replace("/", "\\"))[1], '\\', 1)[0]

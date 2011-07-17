@@ -18,13 +18,11 @@ from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
 from core import messages
 
-
+@render_to("student_account_settings.html")
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_account_settings(request, template_name="student_account_settings.html",
-                             preferences_form_class = StudentPreferencesForm, 
+def student_account_settings(request, preferences_form_class = StudentPreferencesForm, 
                              change_password_form_class = PasswordChangeForm, extra_context=None):
-    
     if request.method == "GET":
         context = {}
         page_messages = {
@@ -35,10 +33,8 @@ def student_account_settings(request, template_name="student_account_settings.ht
             context["msg"] = page_messages[msg]
         context['preferences_form'] = preferences_form_class(instance = request.user.student.preferences)
         context['change_password_form'] = change_password_form_class(request.user)
-        context['last_password_change_date'] = request.user.userattributes.last_password_change_date
-        context['action'] =  request.REQUEST.get('action', '')
         context.update(extra_context or {})
-        return render_to_response(template_name, context, context_instance=RequestContext(request))
+        return context
     return HttpResponseForbidden("Request must be a GET")
 
 @login_required
@@ -49,8 +45,6 @@ def student_preferences(request, preferences_form_class = StudentPreferencesForm
             form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
             if form.is_valid():
                 request.user.student.student_preferences = form.save()
-                if hasattr(student_preferences, 'save_m2m'):
-                    request.user.student.student_preferences.save_m2m()
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
             else:

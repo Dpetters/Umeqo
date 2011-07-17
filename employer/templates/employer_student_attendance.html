@@ -1,0 +1,6 @@
+<p>{{student.first_name}} {{student.last_name}} has attended {{events|length}} event{{events|pluralize}}:</p>
+<ul class="student_event_attendance_list">
+{% for event in events %}
+    <li>{{event}} on {{event.start_datetime|date:"N d, Y"}}</li>
+{% endfor %}
+</ul>

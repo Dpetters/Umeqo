@@ -7,8 +7,6 @@ var multiselectYesNoSingleSelectWidth = 181;
 var multiselectSingleSelectWidth = 202;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
-var multiselectShowAnimation = "";
-var multiselectHideAnimation = "";
 
 function create_error_dialog() {
     var error_dialog = $('<div class="dialog"></div>')
@@ -65,7 +63,8 @@ function unhighlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #AAA');
 };
 
-function place_form_errors(form, errors){
+function place_table_form_errors(form, errors){
+	console.log(errors);
 	for (error in errors){
 		if (error == "non_field_error"){
 			place_non_field_ajax_errors(form, errors[error]);
@@ -89,23 +88,6 @@ function place_errors_ajax_table(errors, element){
  */
 function place_non_field_ajax_error(form, error){
     $(form + " .error_section").html(errors.__all__[0]);
-};
-
-function place_errors(error, element) {
-    error.appendTo(element.parent().prev());
-    if ($(element).position().left == 0) {
-        if ($(element).next(":button.ui-multiselect").length!=0) {
-            var offset = element.next().position().left-element.parent().position().left;
-        }
-    } else {
-        var offset = element.position().left-element.parent().position().left;
-    }
-    error.css({
-        "padding-left": offset,
-        "float": "left",
-        "position": "absolute",
-        "bottom": 0
-    });
 };
 function place_errors_table(error, element) {
     if (element.prev().get(0).tagName=='DIV') {
@@ -219,7 +201,7 @@ $(document).ready( function () {
         contact_us_dialog = open_contact_us_dialog();
         contact_us_dialog.html(dialog_ajax_loader);
 
-        var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             url: '/contact-us-dialog/',
@@ -236,12 +218,12 @@ $(document).ready( function () {
                 contact_us_dialog.html(data);
                 contact_us_dialog.dialog('option', 'position', 'center');
                 
-                contacr_us_form_validator = $("#contacr_us_form").validate({
+                contact_us_form_validator = $("#contact_us_form").validate({
                     submitHandler: function (form) {
                         $(form).ajaxSubmit({
                             dataType: 'json',
                             beforeSubmit: function (arr, $form, options) {
-                                show_form_submit_loader("#contacr_us_form");
+                                show_form_submit_loader("#contact_us_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
                                 hide_form_submit_loader("#contact_us_form");
@@ -253,13 +235,13 @@ $(document).ready( function () {
                                 contact_us_dialog.dialog('option', 'position', 'center');
                             },
                             success: function (data) {
-                                hide_form_submit_loader("#contacr_us_form");
+                                hide_form_submit_loader("#contact_us_form");
                                 if(data.valid) {
                                     var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
                                     success_message += CLOSE_DIALOG_LINK;
                                     contact_us_dialog.html(success_message);
 								} else {
-                                    place_form_errors("#contact_us_form", data.errors);
+                                    place_table_form_errors("#contact_us_form", data.errors);
                                 }
                                 contact_us_dialog.dialog('option', 'position', 'center');
                             }
@@ -267,7 +249,7 @@ $(document).ready( function () {
                     },
                     highlight: highlight,
                     unhighlight: unhighlight,
-                    errorPlacement: place_errors,
+                    errorPlacement: place_errors_table,
                     rules: {
                         name: {
                             required: true
@@ -315,6 +297,20 @@ $(document).ready( function () {
         // contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
         return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
     })
+
+    /* JQuery Validator Additions */
+    jQuery.validator.addMethod("multiemail", function(value, element, param) {
+ 		if (this.optional(element)) // return true on optional element 
+ 			return true; 
+		var emails = value.split( new RegExp( "\\s*[;, \\n]\\s*", "gi" ) );
+        valid = true; 
+ 		for(var i in emails) {
+        	value = emails[i];
+        	if(value)
+        		valid=valid && jQuery.validator.methods.email.call(this, value, element);
+        } 
+        return valid;
+	}, "One of the emails you entered is invalid.");
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;
