@@ -42,6 +42,7 @@ def restart():
 
 def migrate():
     if not env.host:
+        local("find */migrations -name '*.pyc' | xargs rm")
         local("python manage.py migrate --all")
     else:
         abort("migrate can only be called locally.")
@@ -174,6 +175,13 @@ def update():
                 run("python manage.py migrate --all")
                 create_media_dirs()
                 run("echo 'yes'|python manage.py collectstatic")
+                with settings(warn_only=True):
+                    result = run("python manage.py test")
+                if result.failed:
+                    run("git reset --hard master@{1}")
+                    run("python manage.py migrate --all")
+                    create_media_dirs()
+                    run("echo 'yes'|python manage.py collectstatic")
                 restart()       
     else:
         abort("update cannot be called locally.")
