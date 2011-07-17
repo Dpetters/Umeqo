@@ -2,13 +2,15 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_save
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from student.models import Student
+from employer.models import Recruiter
 from registration.managers import RegistrationManager
 
 class InterestedPerson(models.Model):
@@ -56,15 +58,17 @@ class UserAttributes(models.Model):
     class Meta:
         verbose_name = "User Attributes"
         verbose_name_plural = "User Attributes"
-    
+
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
 
 @receiver(post_save, sender=User)
 def create_related_models(sender, instance, created, raw, **kwargs):
-    if created:
-        UserAttributes.objects.create(user=User, is_verified=False)
-
+    if created and not raw:
+        print "UserAttributes"
+        print UserAttributes.objects.filter(user=instance, is_verified=False)
+        UserAttributes.objects.create(user=instance, is_verified=False)
+        print UserAttributes.objects.filter(user=instance, is_verified=False)
 
 class RegistrationProfile(models.Model):
     """
