@@ -118,6 +118,8 @@
 
     <field name="content_auto" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
+    <field name="is_public" type="boolean" indexed="true" stored="true" multiValued="false" />
+
     <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
 
   </fields>

@@ -1,9 +1,8 @@
-import Image
 from datetime import datetime
 
-from django.conf import settings
 from django.db import models
 from django.db.models import signals
+from notification import models as notification
 
 from core.model_helpers import get_course_image_filename, get_campusorg_image_filename, scale_down_image
 from core import enums
@@ -175,14 +174,9 @@ class EventType(models.Model):
     def __unicode__(self):
         return self.name
 
-if 'notification' in settings.INSTALLED_APPS:
-    from notification import models as notification
-    print 'Creating notice types...'
-    def create_notice_types(app, created_models, verbosity, **kwargs):
-        notification.create_notice_type('new_event', 'New Event', 'an employer has created a new event')
-        notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
-        notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')
+def create_notice_types(app, created_models, verbosity, **kwargs):
+    notification.create_notice_type('new_event', 'New Event', 'an employer has created a new event')
+    notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
+    notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')
 
-    signals.post_syncdb.connect(create_notice_types, sender=notification)
-else:
-    print "Not creating notice types - notification app not found"
+signals.post_syncdb.connect(create_notice_types, sender=notification)
