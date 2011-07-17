@@ -8,6 +8,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.sessions.models import Session
 
 from student.models import Student
 from employer.models import Recruiter
@@ -41,6 +42,11 @@ class SessionKey(models.Model):
     def __unicode__(self):
         return str(self.user)
 
+@receiver(post_save, sender=Session)
+def delete_sefssion_key(sender, request, user, **kwargs):
+    Session.objects.all().delete()
+    
+    
 @receiver(user_logged_out, sender=User)
 def delete_session_key(sender, request, user, **kwargs):
     SessionKey.objects.filter(user=user, session_key=request.session.session_key).delete()

@@ -1,5 +1,5 @@
 import os, shutil, sys
-from fabric.api import env, sudo, cd, run, local
+from fabric.api import env, sudo, cd, run, local, settings as fabric_settings
 from fabric.context_managers import prefix
 from fabric.contrib import django as fabric_django
 from fabric.utils import abort
@@ -180,6 +180,13 @@ def update():
                 run("python manage.py migrate --all")
                 create_media_dirs()
                 run("echo 'yes'|python manage.py collectstatic")
+                with fabric_settings(warn_only=True):
+                    result = run("python manage.py test")
+                if result.failed:
+                    run("git reset --hard master@{1}")
+                    run("python manage.py migrate --all")
+                    create_media_dirs()
+                    run("echo 'yes'|python manage.py collectstatic")
                 restart()       
     else:
         abort("update cannot be called locally.")
