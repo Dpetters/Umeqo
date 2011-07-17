@@ -180,6 +180,7 @@ def update():
                 run("python manage.py migrate --all")
                 create_media_dirs()
                 run("echo 'yes'|python manage.py collectstatic")
+                """
                 with fabric_settings(warn_only=True):
                     result = run("python manage.py test")
                 if result.failed:
@@ -187,6 +188,7 @@ def update():
                     run("python manage.py migrate --all")
                     create_media_dirs()
                     run("echo 'yes'|python manage.py collectstatic")
+                """
                 restart()       
     else:
         abort("update cannot be called locally.")
