@@ -25,21 +25,19 @@
                 </td>
             </tr>
             <tr>
-                <th>{{form.body.label_tag}}</th>
-                <td>
+                <td colspan="2">
                     <div class="errorspace">{{form.body.errors}}</div>
+                    {{form.body.label_tag}}
                     {{form.body}}
                 </td>
             </tr>
             <tr>
-                <th></th>
-                <td class="error_section">
+                <td colspan="2" class="error_section error">
                     {{form.non_field_errors}}
                 </td>
             </tr>
             <tr>
-                <th></th>
-                <td>
+                <td class="button_cell" colspan="2">
                     <input id="contact_us_form_submit_button" class="button" type='submit' value='Submit'>
                     <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                 </td>

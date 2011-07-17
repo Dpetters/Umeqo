@@ -347,11 +347,14 @@
 .deliver_resume_book_dialog .dialog_content_wrapper{
     padding:10px 0px 18px;
 }
-#id_name, #id_emails{
+#deliver_resume_book_form #id_name, #deliver_resume_book_form #id_emails{
     width:190px;
 }
-#id_emails{
+#deliver_resume_book_form #id_emails{
 	height:17px;
+}
+#deliver_resume_book_form{
+	text-align:center;
 }
 #deliver_resume_book_form_submit_button{
 	width:72px;
@@ -398,7 +401,7 @@
     z-index:200;
     background:#FFF;
     border:1px solid #CCC;
-    padding:8px;
+    padding:8px 8px 4px 8px;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;

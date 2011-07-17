@@ -417,7 +417,7 @@ def employer_students(request, extra_context=None):
         context['current_student_list'] = request.POST['student_list']
         
         # I don't like this method of statistics
-        for student, is_in_resume_book, is_starred, comment in context['page'].object_list:
+        for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.save()
         

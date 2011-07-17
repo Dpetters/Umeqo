@@ -69,7 +69,7 @@ class Student(models.Model):
 
 @receiver(signals.post_save, sender=Student)
 def create_related_models(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         if instance.first_name and instance.last_name:
             instance.user.first_name = instance.first_name
             instance.user.last_name = instance.last_name
@@ -77,11 +77,7 @@ def create_related_models(sender, instance, created, raw, **kwargs):
         StudentPreferences.objects.create(student=instance)
         StudentStatistics.objects.create(student=instance)
 
-@receiver(signals.pre_delete, sender=Student)
-def delete_resume_file(sender, instance, **kwargs):
-    instance.resume.delete()
-
-
+        
 class StudentPreferences(models.Model):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
     

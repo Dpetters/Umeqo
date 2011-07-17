@@ -39,7 +39,7 @@
 </div>
 <div id="results">
 {% if page.object_list %}
-    {% for student, in_resume_book, starred, comment, attended_event in page.object_list %}
+    {% for student, in_resume_book, starred, comment, num_of_events_attended in page.object_list %}
         {% if forloop.first %}
         <div id="first_student_main_info" class="student_main_info" data-student-id="{{student.id}}">
         {% else %}
@@ -51,7 +51,7 @@
                 ({{student.graduation_year}}
                 {{student.school_year}})
             </span>
-            {% if in_resume_book %}
+            {% if num_of_events_attended > 0 %}
             <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
             {% endif %}
             <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>

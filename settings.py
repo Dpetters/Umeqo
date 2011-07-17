@@ -32,17 +32,11 @@ LOCAL_DATA_APPS = (
     'student',
     'events',
 )
-
-PROD_DATA_APPS = (
-    'core',
-    'sites'
-) 
-
 PROD_PASSWORD = 'H3rcul3s'
 STAGING_PASSWORD = 'Jamb4Juic3'
 
 #Akismet Settings
-AKISMET_API_KEY = "39ec1788fc8e"
+AKISMET_API_KEY = "40daad1e6eb7"
 
 # URL to redirect the user to if they try to 
 # access a page and aren't logged in

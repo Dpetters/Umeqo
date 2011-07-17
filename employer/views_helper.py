@@ -47,11 +47,18 @@ def get_comments(recruiter, students):
             comments_dict[student] = ""   
     return comments_dict
 
+def get_num_of_events_attended_dict(recruiter, students):
+    num_of_events_attended_dict = {}
+    for student in students:
+        num_of_events_attended_dict[student] = len(recruiter.event_set.filter(attendee__student=student))
+    return num_of_events_attended_dict
+
 def process_results(recruiter, students):
     is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, students)
     is_starred_attributes = get_is_starred_attributes(recruiter, students)
     comments = get_comments(recruiter, students)
-    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student]) for student in students]
+    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, students)
+    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student], num_of_events_attended_dict[student]) for student in students]
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}
