@@ -65,10 +65,8 @@ class UserAttributes(models.Model):
 @receiver(post_save, sender=User)
 def create_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:
-        print "UserAttributes"
-        print UserAttributes.objects.filter(user=instance, is_verified=False)
         UserAttributes.objects.create(user=instance, is_verified=False)
-        print UserAttributes.objects.filter(user=instance, is_verified=False)
+
 
 class RegistrationProfile(models.Model):
     """

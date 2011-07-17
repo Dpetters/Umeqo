@@ -74,11 +74,9 @@ def create_related_models(sender, instance, created, raw, **kwargs):
             instance.user.first_name = instance.first_name
             instance.user.last_name = instance.last_name
             instance.user.save()
-        print "StudentPreferences"
-        print StudentPreferences.objects.filter(student=instance) 
         StudentPreferences.objects.create(student=instance)
         StudentStatistics.objects.create(student=instance)
-        print StudentPreferences.objects.filter(student=instance) 
+
         
 class StudentPreferences(models.Model):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
