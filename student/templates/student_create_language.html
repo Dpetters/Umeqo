@@ -1,24 +1,26 @@
-<div class="dialog_info_section">
-    <h3>Create the language by filling out the fields below.</h3>
-    <p>
-        <strong>Note:</strong> Its authenticity will be checked by site administrators.
-    </p>
+<div class="dialog_content_wrapper">
+    <div class="dialog_info_section">
+        <h3>Create the language by filling out the fields below.</h3>
+        <p>
+            <strong>Note:</strong> Its authenticity will be checked by site administrators.
+        </p>
+    </div>
+    <form id="create_language_form" method='POST' action="/student/create-language/">
+        {% csrf_token %}
+        <table class="form_table">
+            <tr>
+                <th>{{create_language_form.name.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{create_language_form.name}}
+                </td>
+            </tr>
+        </table>
+        <div class="error_section error">
+        </div>
+        <div class="button_wrapper_with_margins">
+            <input id="create_language_form_submit_button" class="button" type='submit' value='Create'>
+            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+        </div>
+    </form>
 </div>
-<form id="create_language_form" method='POST' action="/student/create-language/">
-    {% csrf_token %}
-    <table class="form_table">
-        <tr>
-            <th>{{create_language_form.name.label_tag}}</th>
-            <td>
-                <div class="errorspace"></div>
-                {{create_language_form.name}}
-            </td>
-        </tr>
-    </table>
-    <div class="error_section error">
-    </div>
-    <div class="button_wrapper_with_margins">
-        <input id="create_language_form_submit_button" class="button" type='submit' value='Create'>
-        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-    </div>
-</form>

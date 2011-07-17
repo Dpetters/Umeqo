@@ -2,6 +2,7 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
 from django.dispatch import receiver
@@ -26,7 +27,7 @@ class InterestedPerson(models.Model):
         return self.first_name + " " + self.last_name
 
 class SessionKey(models.Model):
-    session_key = models.CharField('Session Key', max_length=40, primary_key=True, editable=False)
+    session_key = models.CharField('Session Key', max_length=40, editable=False)
     user = models.ForeignKey(User, editable=False)
     
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
@@ -45,7 +46,8 @@ def delete_session_key(sender, request, user, **kwargs):
 @receiver(user_logged_in, sender=User)
 def create_session_key(sender, request, user, **kwargs):
     SessionKey.objects.create(user=user, session_key=request.session.session_key)
-    
+
+
 class UserAttributes(models.Model):
     user = models.OneToOneField(User)
     is_verified = models.BooleanField(default=False)
@@ -57,8 +59,13 @@ class UserAttributes(models.Model):
     
     def __unicode__(self):
         return self.user.first_name + " " + self.user.last_name
-  
-  
+
+@receiver(post_save, sender=User)
+def create_related_models(sender, instance, created, raw, **kwargs):
+    if created:
+        UserAttributes.objects.create(user=User, is_verified=False)
+
+
 class RegistrationProfile(models.Model):
     """
     A simple profile which stores an activation key for use during

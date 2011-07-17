@@ -21,7 +21,7 @@ $(document).ready( function() {
         deactivate_account_dialog = open_deactivate_account_dialog();
         deactivate_account_dialog.html(dialog_ajax_loader);
 
-        var deactivate_account_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        var deactivate_account_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             url: STUDENT_DEACTIVATE_ACCOUNT_URL,

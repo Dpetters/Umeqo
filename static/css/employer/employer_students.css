@@ -85,7 +85,7 @@
     float:right;
     height:28px;
 }
-#num_of_students_in_resume_book_section{
+#students_in_resume_book_student_list_link_section{
     background:#FFF;
     padding:2px 0 2px 8px;
     width:236px;
@@ -96,10 +96,10 @@
     height:24px;
     line-height:24px;
 }
-#num_of_students_in_resume_book{
+#students_in_resume_book_student_list_link{
 	margin-left:3px;
 }
-#num_of_students_in_resume_book_section #ajax_form_submit_loader{
+#students_in_resume_book_student_list_link_section #ajax_form_submit_loader{
     position:static;
     margin-right:7px;
     float:right;
@@ -131,9 +131,10 @@
     z-index:100;
 }
 #results_block_info {
+	font-weight:bold;
     behavior: url(/static/lib/pie/PIE.htc);
     background:#FAFAFA;
-    border:1px solid #BBB;
+    border:1px solid #888;
     margin-left:auto;
     margin-right:auto;
     padding:6px 6px 3px 6px;
@@ -261,23 +262,23 @@
 .student_year {
     font-size:20px;
 }
-.student_event_attendant{
+.student_event_attendance_span{
 	position:relative;
 	top:1px;
 }
 .student_resume_link {
     float:right;
 }
-.student_toggle_resume_book_link, .student_toggle_star_link{
+.resume_book_current_toggle_student, .student_toggle_star{
     margin-left:7px;
     display:inline-block;
     min-width:14px;
 	position:relative;
 }
-.student_toggle_resume_book_link{
+.resume_book_current_toggle_student{
 	top:2px;
 }
-.student_toggle_star_link{
+.student_toggle_star{
 	vertical-align:top;
 	top:4px;
 }
@@ -290,7 +291,7 @@
 }
 .student_gpa {
     float:right;
-    margin-right:42px;
+    margin-right:78px;
 }
 .student_comment {
     border:1px solid #CCC;
@@ -299,16 +300,11 @@
     padding: 2px 0 0 5px;
     position:relative;
     top:2px;
-    width:488px;
-    max-width:488px;
-    min-width:488px;
+    width:451px;
     height:17px;
 }
 .student_saved_note {
 	color:#888;
-	margin-top:2px;
-	position:absolute;
-	right:40px;
 }
 .student_toggle_detailed_info_link {
     float:right;
@@ -349,13 +345,16 @@
     text-align:center;
 }
 .deliver_resume_book_dialog .dialog_content_wrapper{
-    padding:18px 0px 18px 0px;
+    padding:10px 0px 18px;
 }
-#id_name, #id_email{
-    width:192px;
+#id_name, #id_emails{
+    width:190px;
 }
-.email_delivery_type_only_field, #download_resume_book_link{
-    display:none;
+#id_emails{
+	height:17px;
+}
+#deliver_resume_book_form_submit_button{
+	width:72px;
 }
 #resume_book_status_div{
     float:left;
@@ -391,7 +390,24 @@
     text-align:center;
     width:282px;
 }
-
+.email_delivery_type_only_field{
+	display:none;
+}
+.student_event_attendance_bubble{ 
+    position: absolute;
+    z-index:200;
+    background:#FFF;
+    border:1px solid #CCC;
+    padding:8px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: #888 3px 3px 2px 1px;
+    color: #444;
+}
+.student_event_attendance_list{
+	list-style:inside;
+}
 .events_dropdown {
     position: absolute;
     padding: 5px;
@@ -401,7 +417,6 @@
     -webkit-border-radius: 3px;
     border: 1px solid #CCC;
     box-shadow: #888 3px 3px 2px 1px;
-    text-decoration: none;
     color: #444;
     right: 0;
     z-index: 200;

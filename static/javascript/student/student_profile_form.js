@@ -32,7 +32,7 @@ $(document).ready( function() {
             title:"New Language",
             dialogClass: "create_language_dialog",
             modal:true,
-            width:500,
+            width:475,
             resizable: false,
             close: function() {
                 create_language_dialog.remove();
@@ -60,7 +60,7 @@ $(document).ready( function() {
         create_campus_organization_dialog = open_create_campus_organization_dialog();
         create_campus_organization_dialog.html(dialog_ajax_loader);
         
-        var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             url: '/student/create-campus-organization/',
@@ -73,34 +73,33 @@ $(document).ready( function() {
                 }
             },
             success: function (data) {
-                clearTimeout(create_campus_organization_dialog_timeout);
-                
+                clearTimeout(create_campus_organization_dialog_timeout);              
                 create_campus_organization_dialog.html(data);
                 create_campus_organization_dialog.dialog('option', 'position', 'center');
-
-                var create_campus_organization_form_validator = $("#create_campus_organization_form").validate({
+                
+                $("#id_name").focus();
+                
+                var create_campus_org_form_validator = $("#create_campus_org_form").validate({
                     submitHandler: function(form) {
                         $(form).ajaxSubmit({
                             dataType: 'json',
                             beforeSubmit: function (arr, $form, options) {
-                                show_form_submit_loader("#create_campus_organization_form");
+                                show_form_submit_loader("#create_campus_org_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
-                                hide_form_submit_loader("#create_campus_organization_form");
-                                console.log(jqXHR.status==0);
-                                console.log(jqXHR.status);
+                                hide_form_submit_loader("#create_campus_org_form");
                                 if(jqXHR.status==0){
-                                    (".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                    $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
                                 }else{
-                                	console.log("here");
                                     create_campus_organization_dialog.html(dialog_error_message);
                                 }
+                                create_campus_organization_dialog.dialog('option', 'position', 'center');
                             },
                             success: function(data) {
-                                hide_form_submit_loader("#create_campus_organization_form");
+                                hide_form_submit_loader("#create_campus_org_form");
                                 if (data.valid) {
-                                    var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add to Profile & Close Dialog</a></p>";
-                                    success_message += close_dialog_link;
+                                    var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
+                                    success_message += CLOSE_DIALOG_LINK
                                     create_campus_organization_dialog.html(success_message);
 
                                     // Add the new campus organization to the select and update the widget to include it
@@ -116,7 +115,7 @@ $(document).ready( function() {
                                         create_campus_organization_dialog.dialog('destroy');
                                     });
 								}else{
-                                    create_campus_organization_dialog.html(dialog_error_message);
+									place_table_form_errors("#create_campus_org_form", data.errors);
                                 }
                                 create_campus_organization_dialog.dialog('option', 'position', 'center');
                             }
@@ -135,6 +134,7 @@ $(document).ready( function() {
                                         $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
                                     }else{
                                         create_campus_organization_dialog.html(dialog_error_message);
+                                		create_campus_organization_dialog.dialog('option', 'position', 'center');
                                     }
                                 },
                             }
@@ -161,26 +161,25 @@ $(document).ready( function() {
         create_language_dialog = open_create_language_dialog();
         create_language_dialog.html(dialog_ajax_loader);
 
-        var create_language_dialog_timeout = setTimeout(show_long_load_message_in_dialog, 10000);
+        var create_language_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             url: '/student/create-language/',
             error: function(jqXHR, textStatus, errorThrown) {
-                clearTimeout(create_language_dialog_timeout);
-                switch(jqXHR.status){
-                    case 0:
-                        create_language_dialog.html(dialog_check_connection_message);
-                        break;
-                    default:
-                        create_language_dialog.html(dialog_error_message);
+                clearTimeout(create_campus_organization_dialog_timeout);
+                if(jqXHR.status==0){
+					create_campus_organization_dialog.html(dialog_check_connection_message);
+				}else{
+                    create_campus_organization_dialog.html(dialog_error_message);
                 }
             },
             success: function (data) {
-                clearTimeout(create_language_dialog_timeout);
-                
+                clearTimeout(create_language_dialog_timeout);              
                 create_language_dialog.html(data);
                 create_language_dialog.dialog('option', 'position', 'center');
-    
+
+                $("#id_name").focus();
+                
                 var create_language_form_validator = $("#create_language_form").validate({
                     submitHandler: function(form) {
                         $(form).ajaxSubmit({
@@ -190,57 +189,50 @@ $(document).ready( function() {
                             },
                             error: function(jqXHR, textStatus, errorThrown){
                                 hide_form_submit_loader("#create_language_form");
-                                switch(jqXHR.status){
-                                    case 0:
-                                        $(".create_language_dialog .error_section").html(form_check_connection_message);
-                                        break;
-                                    default:
-                                        create_language_dialog.html(dialog_error_message);
+                                if(jqXHR.status==0){
+                                    $(".create_language_dialog .error_section").html(form_check_connection_message);
+                                }else{
+                                    create_language_dialog.html(dialog_error_message);
                                 }
+                				create_language_dialog.dialog('option', 'position', 'center');
                             },
                             success: function(data) {
                                 hide_form_submit_loader("#create_language_form");
-                                switch(data.valid) {
-                                    case true:
-                                        var success_message = "<br><div class='message_section'><p>The language \"" + data.name + "\" has been created successfully!</p><br />";
-                                        success_message += "<p><a class='select_basic_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Basic)\" to Profile & Close Dialog</a></p><br />";
-                                        success_message += "<p><a class='select_proficient_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Proficient)\" to Profile & Close Dialog</a></p><br />";
-                                        success_message += "<p><a class='select_fluent_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Fluent)\" to Profile & Close Dialog</a></p><br />";
-                                        success_message += close_dialog_link;
-                                        create_language_dialog.html(success_message);
-    
-                                        // Add the new campus organization to the select and update the widget to include it
-                                        $("#id_languages").append('<option name="' + data.name + ' (Basic)" value="' + data.basic_id + '">' + data.name + ' (Basic)</option>');
-                                        $("#id_languages").append('<option name="' + data.name + ' (Proficient)" value="' + data.proficient_id + '">' + data.name + ' (Proficient)</option>');
-                                        $("#id_languages").append('<option name="' + data.name + ' (Fluent)" value="' + data.fluent_id + '">' + data.name +  ' (Fluent)</option>');
+                                if(data.valid) {
+                                    var success_message = "<div class='message_section'><p>The language \"" + data.name + "\" has been created successfully!</p>";
+                                    success_message += "<p><a class='select_basic_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Basic)\" to your Languages & Close Dialog</a></p>";
+                                    success_message += "<p><a class='select_proficient_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Proficient)\" to your Languages & Close Dialog</a></p>";
+                                    success_message += "<p><a class='select_fluent_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Fluent)\" to your Language & Close Dialog</a></p>";
+                                    success_message += CLOSE_DIALOG_LINK;
+                                    create_language_dialog.html(success_message);
+
+                                    // Add the new campus organization to the select and update the widget to include it
+                                    $("#id_languages").append('<option name="' + data.name + ' (Basic)" value="' + data.basic_id + '">' + data.name + ' (Basic)</option>');
+                                    $("#id_languages").append('<option name="' + data.name + ' (Proficient)" value="' + data.proficient_id + '">' + data.name + ' (Proficient)</option>');
+                                    $("#id_languages").append('<option name="' + data.name + ' (Fluent)" value="' + data.fluent_id + '">' + data.name +  ' (Fluent)</option>');
+                                    $("#id_languages").multiselect("refresh");
+                                    $("#id_languages").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
+
+                                    // Marks the basic version of the language as selected on the actual select field, updates the widget, and then closes the dialog
+                                    $(".select_basic_language_link").click( function() {
+                                        $("#id_languages").find('option[name="' + data.name + ' (Basic)"]').attr('selected', true);
                                         $("#id_languages").multiselect("refresh");
-                                        $("#id_languages").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-    
-                                        // Marks the basic version of the language as selected on the actual select field, updates the widget, and then closes the dialog
-                                        $(".select_basic_language_link").click( function() {
-                                            $("#id_languages").find('option[name="' + data.name + ' (Basic)"]').attr('selected', true);
-                                            $("#id_languages").multiselect("refresh");
-                                            create_language_dialog.dialog('destroy');
-                                        });
-                                        // Marks the proficient version of the language as selected on the actual select field, updates the widget, and then closes the dialog
-                                        $(".select_proficient_language_link").click( function() {
-                                            $("#id_languages").find('option[name="' + data.name + ' (Proficient)"]').attr('selected', true);
-                                            $("#id_languages").multiselect("refresh");
-                                            create_language_dialog.dialog('destroy');
-                                        });
-                                        // Marks the fluent version of the language as selected on the actual select field, updates the widget, and then closes the dialog
-                                        $(".select_fluent_language_link").click( function() {
-                                            $("#id_languages").find('option[name="' + data.name + ' (Fluent)"]').attr('selected', true);
-                                            $("#id_languages").multiselect("refresh");
-                                            create_language_dialog.dialog('destroy');
-                                        });
-                                        break;
-                                    case false:
-                                        create_campus_organization_dialog.html(dialog_error_message);
-                                        break;
-                                    default:
-                                        create_language_dialog.html(dialog_error_message);
-                                        break;
+                                        create_language_dialog.dialog('destroy');
+                                    });
+                                    // Marks the proficient version of the language as selected on the actual select field, updates the widget, and then closes the dialog
+                                    $(".select_proficient_language_link").click( function() {
+                                        $("#id_languages").find('option[name="' + data.name + ' (Proficient)"]').attr('selected', true);
+                                        $("#id_languages").multiselect("refresh");
+                                        create_language_dialog.dialog('destroy');
+                                    });
+                                    // Marks the fluent version of the language as selected on the actual select field, updates the widget, and then closes the dialog
+                                    $(".select_fluent_language_link").click( function() {
+                                        $("#id_languages").find('option[name="' + data.name + ' (Fluent)"]').attr('selected', true);
+                                        $("#id_languages").multiselect("refresh");
+                                        create_language_dialog.dialog('destroy');
+                                    });
+								} else {
+									place_table_form_errors("#create_language_form", data.errors);
                                 }
                                 create_language_dialog.dialog('option', 'position', 'center');
                             }
@@ -255,12 +247,11 @@ $(document).ready( function() {
                             remote: {
                                 url:"/check-language-uniqueness/",
                                 error: function(jqXHR, textStatus, errorThrown) {
-                                    switch(jqXHR.status){
-                                        case 0:
-                                            $(".create_language_dialog .error_section").html(form_check_connection_message);
-                                            break;
-                                        default:
-                                            create_language_dialog.html(dialog_error_message);
+                                    if(jqXHR.status==0){
+                                        $(".create_language_dialog .error_section").html(form_check_connection_message);
+                                    }else{
+                                        create_language_dialog.html(dialog_error_message);
+                						create_language_dialog.dialog('option', 'position', 'center');
                                     }
                                 },
                             }
@@ -357,8 +348,6 @@ $(document).ready( function() {
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth
     }).multiselectfilter();    
 	
@@ -373,8 +362,6 @@ $(document).ready( function() {
         noneSelectedText: 'select industries',
         classes: 'interested_in_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
@@ -392,8 +379,6 @@ $(document).ready( function() {
         noneSelectedText: 'select employers',
         classes: 'previous_employers_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         beforeclose: function() {
             $(".warning").remove();
@@ -411,7 +396,6 @@ $(document).ready( function() {
         noneSelectedText: 'select campus organizations',
         classes: 'campus_involvement_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
         beforeoptgrouptoggle: function(e, ui){
             $(".warning").remove();
             if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
@@ -419,7 +403,6 @@ $(document).ready( function() {
                 return false;
             }
         },
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         height:146,
         beforeclose: function() {
@@ -438,8 +421,6 @@ $(document).ready( function() {
         noneSelectedText: 'select languages',
         classes: 'languages_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         minWidth:multiselectMinWidth,
         height:146,
         beforeclose: function() {
@@ -466,8 +447,6 @@ $(document).ready( function() {
         noneSelectedText: "select countries",
         classes: 'countries_of_citizenship_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        show: multiselectShowAnimation,
-        hide: multiselectHideAnimation,
         height:146,
         minWidth:multiselectMinWidth,
         selectedList: 1,

@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 def process_resume(student, ajax):
    
     resume_text = ""
-    resume_file = file(student.resume.name, "rb")
+    resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
     resume = pyPdf.PdfFileReader(resume_file)
     for i in range(0, resume.getNumPages()):
         resume_text += resume.getPage(i).extractText() + "\n"

@@ -7,7 +7,7 @@ from countries.models import Country
 from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
 from core.model_helpers import get_resume_filename
 from core import choices as core_choices
-
+from student.managers import StudentManager
 
 class Student(models.Model):
     
@@ -54,7 +54,9 @@ class Student(models.Model):
     # Dates
     last_updated = models.DateTimeField(editable=False, blank = True, null=True)
     date_created = models.DateTimeField(editable=False, auto_now_add=True)
-
+    
+    objects = StudentManager()
+    
     class Meta:
         verbose_name = "Student"
         verbose_name_plural = "Students"
@@ -67,14 +69,13 @@ class Student(models.Model):
 
 @receiver(signals.post_save, sender=Student)
 def create_related_models(sender, instance, created, raw, **kwargs):
+    if created:
         if instance.first_name and instance.last_name:
             instance.user.first_name = instance.first_name
             instance.user.last_name = instance.last_name
             instance.user.save()
-        if not StudentPreferences.objects.filter(student=instance).exists():
-            StudentPreferences.objects.create(student=instance)
-        if not StudentStatistics.objects.filter(student=instance).exists():
-            StudentStatistics.objects.create(student=instance)
+        StudentPreferences.objects.create(student=instance)
+        StudentStatistics.objects.create(student=instance)
 
 @receiver(signals.pre_delete, sender=Student)
 def delete_resume_file(sender, instance, **kwargs):

@@ -22,7 +22,7 @@ $(document).ready( function () {
                     hide_form_submit_loader("#login_form");
                     switch(data.valid) {
                         case false:
-                        	place_form_errors("#login_form", data.errors);
+                        	place_table_form_errors("#login_form", data.errors);
                             if (data.errors.id_old_password){
                                 $("#id_old_password").val("").css('border', '1px solid red').focus();
                             }

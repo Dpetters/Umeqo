@@ -18,13 +18,11 @@ from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
 from core import messages
 
-
+@render_to("student_account_settings.html")
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_account_settings(request, template_name="student_account_settings.html",
-                             preferences_form_class = StudentPreferencesForm, 
+def student_account_settings(request, preferences_form_class = StudentPreferencesForm, 
                              change_password_form_class = PasswordChangeForm, extra_context=None):
-    
     if request.method == "GET":
         context = {}
         page_messages = {
@@ -35,10 +33,8 @@ def student_account_settings(request, template_name="student_account_settings.ht
             context["msg"] = page_messages[msg]
         context['preferences_form'] = preferences_form_class(instance = request.user.student.preferences)
         context['change_password_form'] = change_password_form_class(request.user)
-        context['last_password_change_date'] = request.user.userattributes.last_password_change_date
-        context['action'] =  request.REQUEST.get('action', '')
         context.update(extra_context or {})
-        return render_to_response(template_name, context, context_instance=RequestContext(request))
+        return context
     return HttpResponseForbidden("Request must be a GET")
 
 @login_required
@@ -49,8 +45,6 @@ def student_preferences(request, preferences_form_class = StudentPreferencesForm
             form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
             if form.is_valid():
                 request.user.student.student_preferences = form.save()
-                if hasattr(student_preferences, 'save_m2m'):
-                    request.user.student.student_preferences.save_m2m()
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
             else:
@@ -286,8 +280,8 @@ def student_create_campus_organization(request, form_class=CreateCampusOrganizat
                     data['errors'] = errors
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                create_campus_organization_form = form_class()
-            context =  {'create_campus_organization_form': create_campus_organization_form,
+                create_campus_org_form = form_class()
+            context =  {'create_campus_org_form': create_campus_org_form,
                         'TEMPLATE': "student_create_campus_organization.html" }
             context.update(extra_context or {}) 
             return context
@@ -297,42 +291,45 @@ def student_create_campus_organization(request, form_class=CreateCampusOrganizat
         return HttpResponseForbidden("You must be logged in.")        
 
 
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_create_language(request, 
-                            form_class=CreateLanguageForm,
-                            template_name="student_create_language.html",
-                            extra_context=None):
+@render_to()
+def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
     
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
-            if form.is_valid():
-                new_language_name = form.cleaned_data['name']
-                basic = Language.objects.create(name=new_language_name + " (Basic)")
-                proficient = Language.objects.create(name=new_language_name + " (Proficient)")
-                fluent = Language.objects.create(name=new_language_name + " (Fluent)")
-                data = {"valid":True, 
-                        "name":new_language_name, 
-                        "fluent_id":fluent.id, 
-                        "proficient_id":proficient.id, 
-                        "basic_id":basic.id}  
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-            # Should be caught by javascript. Bug!
-            invalid_data = {"valid": False, 
-                            "errors": form.errors}
-            return HttpResponse(simplejson.dumps(invalid_data), mimetype="application/json")
+    if request.user.is_authenticated() and hasattr(request.user, "student"):
+        if request.is_ajax():
+            if request.method == 'POST':
+                form = form_class(data=request.POST)
+                if form.is_valid():
+                    new_language_name = form.cleaned_data['name']
+                    basic = Language.objects.create(name=new_language_name + " (Basic)")
+                    proficient = Language.objects.create(name=new_language_name + " (Proficient)")
+                    fluent = Language.objects.create(name=new_language_name + " (Fluent)")
+                    data = {"valid":True, 
+                            "name":new_language_name, 
+                            "fluent_id":fluent.id, 
+                            "proficient_id":proficient.id, 
+                            "basic_id":basic.id}  
+                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                else:
+                    data = {'valid':False}
+                    errors = {}
+                    for field in form:
+                        if field.errors:
+                            errors[field.auto_id] = field.errors[0]
+                    if form.non_field_errors():
+                        errors['non_field_error'] = form.non_field_errors()[0]
+                    data['errors'] = errors
+                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            else:
+                create_language_form = form_class()
+                
+            context =  { 'create_language_form': create_language_form,
+                        'TEMPLATE': "student_create_language.html" }
+            context.update(extra_context or {})
+            return context
         else:
-            create_language_form = form_class()
-            
-        context =  {
-                'create_language_form': create_language_form
-                }
-        context.update(extra_context or {})
-        return render_to_response(template_name, 
-                                  context, 
-                                  context_instance=RequestContext(request))
-    redirect('home')
+            return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    else:
+        return HttpResponseForbidden("You must be logged in.")     
 
 
 @login_required

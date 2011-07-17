@@ -31,13 +31,15 @@ LOCAL_DATA_APPS = (
     'employer',
     'student',
     'events',
-    'registration',
 )
 
 PROD_DATA_APPS = (
     'core',
     'sites'
 ) 
+
+PROD_PASSWORD = 'H3rcul3s'
+STAGING_PASSWORD = 'Jamb4Juic3'
 
 #Akismet Settings
 AKISMET_API_KEY = "39ec1788fc8e"
@@ -91,6 +93,27 @@ LOCAL_MEDIA_ROOT = ROOT + "/local_data/media/"
 
 PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
 
+STUDENT_STUDENT_MODEL = "student.Student"
+STUDENT_STUDENT_PATH = "student/Student/"
+
+EMPLOYER_EMPLOYER_MODEL = "employer.Employer"
+EMPLOYER_EMPLOYER_PATH = "employer/Employer/"
+
+EMPLOYER_RESUME_BOOK_MODEL = "employer.ResumeBook"
+EMPLOYER_RESUME_BOOK_PATH = "employer/ResumeBook/"
+
+CORE_CAMPUS_ORG_MODEL = "core.CampusOrg"
+CORE_CAMPUS_ORG_PATH = "core/CampusOrg/"
+
+CORE_COURSE_MODEL = "core.Course"
+CORE_COURSE_PATH = "core/Course/"
+
+LOCAL_DATA_MODELS = "%s %s %s" % (STUDENT_STUDENT_MODEL, EMPLOYER_EMPLOYER_MODEL, EMPLOYER_RESUME_BOOK_MODEL)
+
+PROD_DATA_MODELS = "%s %s" % (CORE_CAMPUS_ORG_MODEL, CORE_COURSE_MODEL,)
+
+MEDIA_MODEL_PATHS = "%s %s %s %s %s" % (STUDENT_STUDENT_PATH, EMPLOYER_EMPLOYER_PATH, EMPLOYER_RESUME_BOOK_PATH, CORE_CAMPUS_ORG_PATH, CORE_COURSE_PATH)
+
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
     ROOT + '/static',
@@ -143,6 +166,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'core.middleware.SetRemoteAddrMiddleware',
+    'core.middleware.LogMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
