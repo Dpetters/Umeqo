@@ -211,7 +211,7 @@ class AkismetContactForm(ContactForm):
     Akismet API key.
     
     """
-    def clean_body(self):
+    def clean(self):
         if 'body' in self.cleaned_data and getattr(settings, 'AKISMET_API_KEY', ''):
             from akismet import Akismet
             from django.utils.encoding import smart_str
@@ -222,10 +222,9 @@ class AkismetContactForm(ContactForm):
                                  'referer': self.request.META.get('HTTP_REFERER', ''),
                                  'user_ip': self.request.META.get('REMOTE_ADDR', ''),
                                  'user_agent': self.request.META.get('HTTP_USER_AGENT', '') }
-                raise forms.ValidationError(_(messages.contact_us_message_spam))
                 if akismet_api.comment_check(smart_str(self.cleaned_data['body']), data=akismet_data, build_data=True):
                     raise forms.ValidationError(_(messages.contact_us_message_spam))
-        return self.cleaned_data['body']
+        return self.cleaned_data
 
 
 class BetaForm(forms.ModelForm):

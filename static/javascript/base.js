@@ -67,7 +67,7 @@ function place_table_form_errors(form, errors){
 	console.log(errors);
 	for (error in errors){
 		if (error == "non_field_error"){
-			place_non_field_ajax_errors(form, errors[error]);
+			$(form + " .error_section").html(errors[error]);
 		}
 		else{
 			place_errors_table($("<label class='error' for='" + error + "'>" + errors[error] + "</label>"), $("#"+error));
@@ -83,12 +83,6 @@ function place_errors_ajax_table(errors, element){
     place_errors_table($(error), element);
 };
 
-/*
- * Places non-field errors which got returned from an ajax submit in the error section of a form
- */
-function place_non_field_ajax_error(form, error){
-    $(form + " .error_section").html(errors.__all__[0]);
-};
 function place_errors_table(error, element) {
     if (element.prev().get(0).tagName=='DIV') {
         element.prev().html(error);
@@ -188,7 +182,7 @@ $(document).ready( function () {
             dialogClass: "contact_us_dialog",
             resizable: false,
             modal: true,
-            width: 650,
+            width: 600,
             close: function() {
                 contact_us_dialog.remove();
             }
@@ -241,6 +235,7 @@ $(document).ready( function () {
                                     success_message += CLOSE_DIALOG_LINK;
                                     contact_us_dialog.html(success_message);
 								} else {
+									console.log(data);
                                     place_table_form_errors("#contact_us_form", data.errors);
                                 }
                                 contact_us_dialog.dialog('option', 'position', 'center');

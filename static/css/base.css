@@ -696,7 +696,7 @@ input[type=text], input[type=password] {
 td #ajax_form_submit_loader {
 	margin-top:20px;
 }
-.button_wrapper_no_margins {
+.form_table .button_cell{
     text-align: center;
 }
 .button_wrapper_with_margins {
@@ -708,8 +708,6 @@ td #ajax_form_submit_loader {
     color: #FF7B7B;
 }
 .form_table {
-    margin-right:auto;
-    margin-left:auto;
     margin-top: -16px;
 }
 .form_table td {
@@ -785,6 +783,22 @@ a:focus {
 .contact_us_dialog .dialog_content_wrapper {
     padding: 20px 25px 20px 25px
 }
+.contact_us_dialog .error[for=id_body] {
+    top:20px;
+    left:76px;
+}
+.contact_us_dialog #id_body {
+	width:535px;
+    margin-top:3px;
+    height:175px;
+    resize: none;
+}
+#contact_us_form th{
+	width:74px;
+}
+label.required[for=id_body]{
+	margin-left:2px;
+} 
 /* General Styles */
 .nounderline {
     text-decoration: none;
