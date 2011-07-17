@@ -64,6 +64,10 @@ input[type=text] {
 	padding: 15px;
 	text-align:center;
 }
+#create_campus_org_form .form_table, #create_language_form .form_table{
+	margin-left:auto;
+	margin-right:auto;
+}
 .create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website, .create_language_dialog #id_name {
     width:250px;
 }
