@@ -32,12 +32,6 @@ LOCAL_DATA_APPS = (
     'student',
     'events',
 )
-
-PROD_DATA_APPS = (
-    'core',
-    'sites'
-) 
-
 PROD_PASSWORD = 'H3rcul3s'
 STAGING_PASSWORD = 'Jamb4Juic3'
 
