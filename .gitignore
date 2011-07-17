@@ -12,6 +12,7 @@ index
 media/images
 media/resume_books
 media/resumes
+media/CACHE
 settings_local.py
 *.DS_Store
 *.psd
