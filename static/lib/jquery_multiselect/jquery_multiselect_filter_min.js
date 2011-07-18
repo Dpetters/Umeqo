@@ -12,4 +12,152 @@
  *   http://www.gnu.org/licenses/gpl.html
  *
 */
-(function(c){var f=/[\-\[\]{}()*+?.,\\^$|#\s]/g;c.widget("ech.multiselectfilter",{options:{label:"Filter:",width:null,placeholder:"Enter keywords"},_create:function(){var e;var a=this,b=this.options,d=this.instance=c(this.element).data("multiselect");this.header=d.menu.find(".ui-multiselect-header").addClass("ui-multiselect-hasfilter");e=this.wrapper=c('<div class="ui-multiselect-filter">'+(b.label.length?b.label:"")+'<input placeholder="'+b.placeholder+'" type="search"'+(/\d/.test(b.width)?'style="width:'+b.width+'px"':"")+" /></div>").prependTo(this.header),b=e;this.inputs=d.menu.find('input[type="checkbox"], input[type="radio"]');this.input=b.find("input").bind({keydown:function(a){a.which===13&&a.preventDefault()},keyup:c.proxy(a._handler,a),click:c.proxy(a._handler,a)});this.updateCache();d._toggleChecked=function(b,d){var e=d&&d.length?d:this.labels.find("input"),i=this,e=e.not(a.instance._isOpen?":disabled, :hidden":":disabled").each(this._toggleCheckbox("checked",b));this.update();var j=e.map(function(){return this.value}).get();this.element.find("option").filter(function(){!this.disabled&&c.inArray(this.value,j)>-1&&i._toggleCheckbox("selected",b).call(this)})};c(document).bind("multiselectrefresh",function(){a.updateCache();a._handler()})},_handler:function(a){var b=c.trim(this.input[0].value.toLowerCase()),d=this.rows,g=this.inputs,h=this.cache;if(b){d.hide();var e=RegExp(b.replace(f,"\\$&"),"gi");this._trigger("filter",a,c.map(h,function(a,b){if(a.search(e)!==-1)return d.eq(b).show(),g.get(b);return null}))}else d.show();this.instance.menu.find(".ui-multiselect-optgroup-label").each(function(){var a=c(this);a[a.nextUntil(".ui-multiselect-optgroup-label").filter(":visible").length?"show":"hide"]()})},updateCache:function(){this.rows=this.instance.menu.find(".ui-multiselect-checkboxes li:not(.ui-multiselect-optgroup-label)");this.cache=this.element.children().map(function(){var a=c(this);this.tagName.toLowerCase()==="optgroup"&&(a=a.children());if(!a.val().length)return null;return a.map(function(){return this.innerHTML.toLowerCase()}).get()}).get()},widget:function(){return this.wrapper},destroy:function(){c.Widget.prototype.destroy.call(this);this.input.val("").trigger("keyup");this.wrapper.remove()}})})(jQuery);
+(function($){
+    var rEscape = /[\-\[\]{}()*+?.,\\^$|#\s]/g;
+    
+    $.widget("ech.multiselectfilter", {
+        
+        options: {
+            label: "Filter:",
+            width: null, /* override default width set in css file (px). null will inherit */
+            placeholder: "Enter keywords"
+        },
+        
+        _create: function(){
+            var self = this,
+                opts = this.options,
+                instance = (this.instance = $(this.element).data("multiselect")),
+                
+                // store header; add filter class so the close/check all/uncheck all links can be positioned correctly
+                header = (this.header = instance.menu.find(".ui-multiselect-header").addClass("ui-multiselect-hasfilter")),
+                
+                // wrapper elem
+                wrapper = (this.wrapper = $('<div class="ui-multiselect-filter">'+(opts.label.length ? opts.label : '')+'<input placeholder="'+opts.placeholder+'" type="search"' + (/\d/.test(opts.width) ? 'style="width:'+opts.width+'px"' : '') + ' /></div>').prependTo( this.header ));
+
+            // reference to the actual inputs
+            this.inputs = instance.menu.find('input[type="checkbox"], input[type="radio"]');
+            
+            // build the input box
+            this.input = wrapper
+            .find("input")
+            .bind({
+                keydown: function( e ){
+                    // prevent the enter key from submitting the form / closing the widget
+                    if( e.which === 13 ){
+                        e.preventDefault();
+                    }
+                },
+                keyup: $.proxy(self._handler, self),
+                click: $.proxy(self._handler, self)
+            });
+            
+            // cache input values for searching
+            this.updateCache();
+            
+            // rewrite internal _toggleChecked fn so that when checkAll/uncheckAll is fired,
+            // only the currently filtered elements are checked
+            instance._toggleChecked = function(flag, group){
+                var $inputs = (group && group.length) ?
+                        group :
+                        this.labels.find('input'),
+                    
+                    _self = this,
+
+                    // do not include hidden elems if the menu isn't open.
+                    selector = self.instance._isOpen ?
+                        ":disabled, :hidden" :
+                        ":disabled";
+
+                $inputs = $inputs.not( selector ).each(this._toggleCheckbox('checked', flag));
+                
+                // update text
+                this.update();
+                
+                // figure out which option tags need to be selected
+                var values = $inputs.map(function(){
+                    return this.value;
+                }).get();
+                
+                // select option tags
+                this.element
+                    .find('option')
+                    .filter(function(){
+                        if( !this.disabled && $.inArray(this.value, values) > -1 ){
+                            _self._toggleCheckbox('selected', flag).call( this );
+                        }
+                    });
+            };
+            
+            // rebuild cache when multiselect is updated
+            $(document).bind("multiselectrefresh", function(){
+                self.updateCache();
+                self._handler();
+            });
+        },
+        
+        // thx for the logic here ben alman
+        _handler: function( e ){
+            var term = $.trim( this.input[0].value.toLowerCase() ),
+            
+                // speed up lookups
+                rows = this.rows, inputs = this.inputs, cache = this.cache;
+            
+            if( !term ){
+                rows.show();
+            } else {
+                rows.hide();
+                
+                var regex = new RegExp(term.replace(rEscape, "\\$&"), 'gi');
+                
+                this._trigger( "filter", e, $.map(cache, function(v,i){
+                    if( v.search(regex) !== -1 ){
+                        rows.eq(i).show();
+                        return inputs.get(i);
+                    }
+                    
+                    return null;
+                }));
+            }
+
+            // show/hide optgroups
+            this.instance.menu.find(".ui-multiselect-optgroup-label").each(function(){
+                var $this = $(this);
+                $this[ $this.nextUntil('.ui-multiselect-optgroup-label').filter(':visible').length ? 'show' : 'hide' ]();
+            });
+        },
+        
+        updateCache: function(){
+            // each list item
+            this.rows = this.instance.menu.find(".ui-multiselect-checkboxes li:not(.ui-multiselect-optgroup-label)");
+            
+            // cache
+            this.cache = this.element.children().map(function(){
+                var self = $(this);
+                
+                // account for optgroups
+                if( this.tagName.toLowerCase() === "optgroup" ){
+                    self = self.children();
+                }
+                
+                // see _create() in jquery.multiselect.js
+                if( !self.val().length ){
+                    return null;
+                }
+                
+                return self.map(function(){
+                    return this.innerHTML.toLowerCase();
+                }).get();
+            }).get();
+        },
+        
+        widget: function(){
+            return this.wrapper;
+        },
+        
+        destroy: function(){
+            $.Widget.prototype.destroy.call( this );
+            this.input.val('').trigger("keyup");
+            this.wrapper.remove();
+        }
+    });
+})(jQuery);
