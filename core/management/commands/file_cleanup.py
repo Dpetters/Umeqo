@@ -1,7 +1,7 @@
-import os, shutil
+import os
+import shutil
 from string import rsplit
 
-from logging import warn
 from optparse import make_option
 from django.conf import settings
 from django.core.management.base import CommandError, LabelCommand
@@ -32,7 +32,7 @@ class Command(LabelCommand):
             for filefield in filefields:
                 kwargs = {filefield: ''}
                 qs = model.objects.exclude(**kwargs).values_list(filefield, flat=True)
-                filenames_in_database.update(os.path.join(settings.MEDIA_ROOT, name).replace("/", "\\") for name in qs)
+                filenames_in_database.update(os.path.join(settings.MEDIA_ROOT, name) for name in qs)
         print filenames_on_disk
         print filenames_in_database
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
@@ -60,16 +60,16 @@ def get_filefields(model_cls):
 def list_files(base_path):
     files = set()
     for (root, dirnames, filenames) in os.walk(base_path):
-        files.update(smart_unicode(os.path.join(root, name).replace("/", "\\")) for name in filenames)
+        files.update(smart_unicode(os.path.join(root, name)).replace("\\", "/") for name in filenames)
     return files    
 
 
 def move_files(filenames, backup_dir):
     for name in filenames:
-        dir = rsplit(backup_dir + name.split(settings.MEDIA_ROOT.replace("/", "\\"))[1], '\\', 1)[0]
+        dir = rsplit(backup_dir + name.split(settings.MEDIA_ROOT)[1], '\\', 1)[0]
         if not os.path.exists(dir):
             os.makedirs(dir)
-        shutil.copyfile(name, backup_dir + name.split(settings.MEDIA_ROOT.replace("/", "\\"))[1])
+        shutil.copyfile(name, backup_dir + name.split(settings.MEDIA_ROOT)[1])
     remove_files(filenames)
 
 

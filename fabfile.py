@@ -174,11 +174,11 @@ def update():
     if env.host:
         with cd(env.directory):
             with prefix(env.activate):
+                create_media_dirs()
                 commit_local_data()
                 commit_prod_data()
                 run("git pull")
                 run("python manage.py migrate --all")
-                create_media_dirs()
                 run("echo 'yes'|python manage.py collectstatic")
                 """
                 with fabric_settings(warn_only=True):
