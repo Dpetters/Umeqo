@@ -61,7 +61,8 @@ def list_files(base_path):
     files = set()
     for (root, dirnames, filenames) in os.walk(base_path):
         files.update(smart_unicode(os.path.join(root, name)).replace("\\", "/") for name in filenames)
-    return files    
+    return files
+
 
 
 def move_files(filenames, backup_dir):
