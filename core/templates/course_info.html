@@ -1,7 +1,7 @@
 <div class="dialog_content_wrapper">
-    <img class="course_image" src="{{MEDIA_URL}}{{image}}" />
-    <p><strong>Administrator: </strong> {{admin}}</p>
-    <p><strong>E-mail: </strong> {{email}}</p>
-    <p><strong>Website: </strong> <a href="{{website}}" target="_blank">{{website}}</a></p>
-    <p><strong>Description: </strong> {{description}}</p>
+    <img class="course_image" src="{{MEDIA_URL}}{{course.thumbnail}}" />
+    <p><strong>Administrator: </strong> {{course.admin}}</p>
+    <p><strong>E-mail: </strong> {{course.email}}</p>
+    <p><strong>Website: </strong> <a href="{{course.website}}" target="_blank">{{course.website}}</a></p>
+    <p><strong>Description: </strong> {{course.description}}</p>
 </div>

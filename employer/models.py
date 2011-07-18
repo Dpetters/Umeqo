@@ -11,6 +11,7 @@ from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from core import choices as core_choices
 
+
 class ResumeBook(models.Model):
     recruiter = models.ForeignKey("employer.Recruiter", editable=False)
     resume_book = models.FileField(upload_to = get_resume_book_filename, blank = True, null=True)

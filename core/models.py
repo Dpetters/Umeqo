@@ -3,8 +3,9 @@ from datetime import datetime
 from django.conf import settings
 from django.db import models
 from django.db.models import signals
+from django.dispatch import receiver
 
-from core.model_helpers import get_course_image_filename, get_campus_org_image_filename, scale_down_image
+from core.model_helpers import get_course_image_filename, get_campus_org_image_filename, get_course_thumbnail_filename, get_campus_org_thumbnail_filename, generate_thumbnail
 from core import enums
 
 
@@ -92,6 +93,7 @@ class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
     image = models.ImageField(upload_to=get_course_image_filename, blank=True, null=True)
+    thumbnail = models.ImageField(upload_to=get_course_thumbnail_filename, blank=True, null=True)
     sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     
@@ -101,11 +103,6 @@ class Course(CommonInfo):
     def __unicode__(self):
         return "%s (%s)" % (self.name, self.num)
     
-    def save(self, *args, **kwargs):
-        super(Course, self).save(*args, **kwargs)
-        if self.image:
-            scale_down_image(self.image)
-
 
 class EmploymentType(models.Model):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
@@ -141,6 +138,7 @@ class CampusOrg(CommonInfo):
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     type = models.ForeignKey(CampusOrgType)
     image = models.ImageField(upload_to=get_campus_org_image_filename, blank=True, null=True)
+    thumbnail = models.ImageField(upload_to=get_campus_org_thumbnail_filename, blank=True, null=True)
 
     class Meta(CommonInfo.Meta):
         verbose_name = "On-Campus Organization"
@@ -150,6 +148,13 @@ class CampusOrg(CommonInfo):
         return self.name
 
 
+@receiver(signals.post_save, sender=CampusOrg)
+@receiver(signals.post_save, sender=Course)
+def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
+    if instance.image and not instance.thumbnail:
+        temp_name, content = generate_thumbnail(instance.image)
+        instance.thumbnail.save(temp_name, content)
+        
 class Industry(models.Model):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     last_updated = models.DateTimeField(auto_now=True)
