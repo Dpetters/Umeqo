@@ -311,7 +311,7 @@ def employer_event_edit(request, id=None, extra_context=None):
             event_obj.save()
             if hasattr(form, 'save_m2m'):
                 form.save_m2m()
-            return HttpResponseRedirect(reverse('employer_event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
+            return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
     else:
         form = EventForm(instance=event)
 
