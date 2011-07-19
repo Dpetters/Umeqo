@@ -7,7 +7,7 @@ from registration.models import RegistrationProfile, InterestedPerson, UserAttri
 
 
 class InterestedPersonAdmin(admin.ModelAdmin):
-    date_hierarchy = 'date_created'
+    pass
 admin.site.register(InterestedPerson, InterestedPersonAdmin)
 
 

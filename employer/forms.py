@@ -4,7 +4,7 @@ from core.choices import NO_YES_CHOICES
 from student.form_helpers import student_lists_as_choices
 from student.forms import StudentBaseAttributeForm
 
-from employer.models import RecruiterPreferences, DefaultStudentFilteringParams
+from employer.models import RecruiterPreferences, FilteringParams
 from employer import enums as employer_enums
 
 class DeliverResumeBookForm(forms.Form):
@@ -20,7 +20,7 @@ class RecruiterPreferencesForm(forms.ModelForm):
     class Meta:
         model = RecruiterPreferences
 
-class DefaultStudentFilteringParamsForm(StudentBaseAttributeForm):
+class FilteringParamsForm(StudentBaseAttributeForm):
     older_than_21 = forms.ChoiceField(label="Must be older than 21:", choices = NO_YES_CHOICES, required = False)
 
     gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
@@ -31,10 +31,10 @@ class DefaultStudentFilteringParamsForm(StudentBaseAttributeForm):
     sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
         
     class Meta:
-        model = DefaultStudentFilteringParams
+        model = FilteringParams
     
     
-class StudentFilteringForm(DefaultStudentFilteringParamsForm):
+class StudentFilteringForm(FilteringParamsForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = employer_enums.ORDERING_CHOICES, required = False)
     results_per_page = forms.ChoiceField(label="Results Per Page:", choices = employer_enums.RESULTS_PER_PAGE_CHOICES, required = False)
 
