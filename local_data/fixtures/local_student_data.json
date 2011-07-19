@@ -47,7 +47,12 @@
     40
    ], 
    "act": 34, 
+<<<<<<< HEAD
    "date_created": "2011-07-07 20:30:03"
+=======
+   "date_created": "2011-07-07 20:30:03", 
+   "older_than_21": "Y"
+>>>>>>> a31efed6dcd078107d3e964c3b8e3504a65d03a4
   }
  }, 
  {
@@ -95,7 +100,12 @@
     40
    ], 
    "act": null, 
+<<<<<<< HEAD
    "date_created": "2011-07-10 15:25:30"
+=======
+   "date_created": "2011-07-10 15:25:30", 
+   "older_than_21": "Y"
+>>>>>>> a31efed6dcd078107d3e964c3b8e3504a65d03a4
   }
  }, 
  {
@@ -129,7 +139,12 @@
    "user": 5, 
    "industries_of_interest": [], 
    "act": null, 
+<<<<<<< HEAD
    "date_created": "2011-07-10 20:05:56"
+=======
+   "date_created": "2011-07-10 20:05:56", 
+   "older_than_21": "Y"
+>>>>>>> a31efed6dcd078107d3e964c3b8e3504a65d03a4
   }
  }, 
  {
@@ -163,7 +178,12 @@
    "user": 6, 
    "industries_of_interest": [], 
    "act": null, 
+<<<<<<< HEAD
    "date_created": "2011-07-10 20:26:02"
+=======
+   "date_created": "2011-07-10 20:26:02", 
+   "older_than_21": "Y"
+>>>>>>> a31efed6dcd078107d3e964c3b8e3504a65d03a4
   }
  }, 
  {
