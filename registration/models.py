@@ -13,7 +13,7 @@ from core import mixins as core_mixins
 from registration.managers import RegistrationManager
 
 
-class InterestedPerson(core_mixins.DateTracking):
+class InterestedPerson(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
