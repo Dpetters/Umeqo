@@ -47,7 +47,8 @@
     40
    ], 
    "act": 34, 
-   "date_created": "2011-07-07 20:30:03"
+   "date_created": "2011-07-07 20:30:03", 
+   "older_than_21": "Y"
   }
  }, 
  {
@@ -95,7 +96,8 @@
     40
    ], 
    "act": null, 
-   "date_created": "2011-07-10 15:25:30"
+   "date_created": "2011-07-10 15:25:30", 
+   "older_than_21": "Y"
   }
  }, 
  {
@@ -129,7 +131,8 @@
    "user": 5, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-07-10 20:05:56"
+   "date_created": "2011-07-10 20:05:56", 
+   "older_than_21": "Y"
   }
  }, 
  {
@@ -163,7 +166,8 @@
    "user": 6, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-07-10 20:26:02"
+   "date_created": "2011-07-10 20:26:02", 
+   "older_than_21": "Y"
   }
  }, 
  {
