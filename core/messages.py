@@ -8,8 +8,16 @@ password_changed = 'Password changed successfully.'
 profile_saved = 'Your profile has been saved.'
 
 #Student Profile Form
-resume_must_be_a_pdf = "Please select a PDF version of your resume."
-first_and_second_major_must_be_diff = "Second major must be different from first."
+student_profile_form_first_name = 'Enter your first name.';
+student_profile_form_last_name = 'Enter your last name.';
+student_profile_form_school_year = "Choose your school year.";
+student_profile_form_graduation_year = 'Choose your graduation year.';
+student_profile_form_first_major = 'Choose your major.';
+student_profile_form_gpa_required = 'Enter your GPA.';
+student_profile_form_gpa_range = 'Your GPA should be between 0 and 5.';
+student_profile_form_resume = "Please select a PDF version of your resume.";
+student_profile_form_website = 'Please enter a valid url.';
+student_profle_form_first_second_majors_diff = "Second major must be different from first.";
 
 #Login Form
 incorrect_username_password_combo = "This email and password combo is invalid. Note that both are case-sensitive."

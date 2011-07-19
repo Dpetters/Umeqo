@@ -67,7 +67,7 @@ $(document).ready(function(){
         multiple: false
     });
 
-    $("label[for=id_older_than_18]").parent().next().children(':eq(0)').multiselect({
+    $("label[for=id_older_than_21]").parent().next().children(':eq(0)').multiselect({
         noneSelectedText: "select",
         height:47,
         header:false,

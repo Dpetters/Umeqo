@@ -63,17 +63,18 @@ $(document).ready( function() {
         var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
-            url: '/student/create-campus-organization/',
-            error: function(jqXHR, textStatus, errorThrown) {
+            url: CREATE_CAMPUS_ORGANIZATION_URL,
+            complete: function(jqXHR, textStatus) {
                 clearTimeout(create_campus_organization_dialog_timeout);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
 					create_campus_organization_dialog.html(dialog_check_connection_message);
 				}else{
                     create_campus_organization_dialog.html(dialog_error_message);
                 }
             },
-            success: function (data) {
-                clearTimeout(create_campus_organization_dialog_timeout);              
+            success: function (data) {             
                 create_campus_organization_dialog.html(data);
                 create_campus_organization_dialog.dialog('option', 'position', 'center');
                 
@@ -86,8 +87,10 @@ $(document).ready( function() {
                             beforeSubmit: function (arr, $form, options) {
                                 show_form_submit_loader("#create_campus_org_form");
                             },
-                            error: function(jqXHR, textStatus, errorThrown){
+                            complete: function(jqXHR, textStatus) {
                                 hide_form_submit_loader("#create_campus_org_form");
+				            },
+                            error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
                                     $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
                                 }else{
@@ -96,7 +99,6 @@ $(document).ready( function() {
                                 create_campus_organization_dialog.dialog('option', 'position', 'center');
                             },
                             success: function(data) {
-                                hide_form_submit_loader("#create_campus_org_form");
                                 if (data.valid) {
                                     var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
                                     success_message += CLOSE_DIALOG_LINK
@@ -112,7 +114,6 @@ $(document).ready( function() {
                                         $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
                                         $("#id_campus_involvement").multiselect("refresh");
                                         $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-                                        create_campus_organization_dialog.dialog('destroy');
                                     });
 								}else{
 									place_table_form_errors("#create_campus_org_form", data.errors);
@@ -128,14 +129,14 @@ $(document).ready( function() {
                         name: {
                             required: true,
                             remote: {
-                                url:"/check-campus-organization-uniqueness/",
+                                url: CHECK_CAMPUS_ORGANIZATION_UNIQUENESS_URL,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
                                         $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
                                     }else{
                                         create_campus_organization_dialog.html(dialog_error_message);
-                                		create_campus_organization_dialog.dialog('option', 'position', 'center');
                                     }
+                                	create_campus_organization_dialog.dialog('option', 'position', 'center');
                                 },
                             }
                         },
@@ -148,7 +149,7 @@ $(document).ready( function() {
                     },
                     messages:{
                         name:{
-                            remote: "A campus organization with this name already exists"
+                            remote: "This campus organization already exists."
                         },
                     }
                 });
@@ -164,17 +165,18 @@ $(document).ready( function() {
         var create_language_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
-            url: '/student/create-language/',
+            url: CREATE_LANGUAGE_URL,
+            complete: function(jqXHR, textStatus) {
+                clearTimeout(create_language_dialog_timeout);
+            },
             error: function(jqXHR, textStatus, errorThrown) {
-                clearTimeout(create_campus_organization_dialog_timeout);
                 if(jqXHR.status==0){
 					create_campus_organization_dialog.html(dialog_check_connection_message);
 				}else{
                     create_campus_organization_dialog.html(dialog_error_message);
                 }
             },
-            success: function (data) {
-                clearTimeout(create_language_dialog_timeout);              
+            success: function (data) {             
                 create_language_dialog.html(data);
                 create_language_dialog.dialog('option', 'position', 'center');
 
@@ -187,8 +189,10 @@ $(document).ready( function() {
                             beforeSubmit: function (arr, $form, options) {
                                 show_form_submit_loader("#create_language_form");
                             },
-                            error: function(jqXHR, textStatus, errorThrown){
+				            complete: function(jqXHR, textStatus) {
                                 hide_form_submit_loader("#create_language_form");
+				            },
+                            error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
                                     $(".create_language_dialog .error_section").html(form_check_connection_message);
                                 }else{
@@ -197,7 +201,6 @@ $(document).ready( function() {
                 				create_language_dialog.dialog('option', 'position', 'center');
                             },
                             success: function(data) {
-                                hide_form_submit_loader("#create_language_form");
                                 if(data.valid) {
                                     var success_message = "<div class='message_section'><p>The language \"" + data.name + "\" has been created successfully!</p>";
                                     success_message += "<p><a class='select_basic_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Basic)\" to your Languages & Close Dialog</a></p>";
@@ -245,7 +248,7 @@ $(document).ready( function() {
                         name: {
                             required: true,
                             remote: {
-                                url:"/check-language-uniqueness/",
+                                url:CHECK_LANGUAGE_UNIQUENESS_URL,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
                                         $(".create_language_dialog .error_section").html(form_check_connection_message);
@@ -259,7 +262,7 @@ $(document).ready( function() {
                     },
                     messages:{
                         name:{
-                            remote: "This language already exists"
+                            remote: "This language already exists."
                         },
                     }
                 });
@@ -325,16 +328,17 @@ $(document).ready( function() {
             }
         },
         messages: {
-            first_name: 'Enter your first name.',
-            last_name: 'Enter your last name.',
-            school_year: 'Choose your school year.',
-            graduation_year: 'Choose your graduation year.',
-            first_major: 'Choose your major.',
+            first_name: STUDENT_PROFILE_FORM_FIRST_NAME,
+            last_name: STUDENT_PROFILE_FORM_LAST_NAME,
+            school_year: STUDENT_PROFILE_FORM_SCHOOL_YEAR,
+            graduation_year: STUDENT_PROFILE_FORM_GRADUATION_YEAR,
+            first_major: STUDENT_PROFILE_FORM_FIRST_MAJOR,
             gpa: {
-                required: 'Enter your GPA.',
-                range: 'Your GPA should be between 0 and 5.'
+                required: STUDENT_PROFILE_FORM_GPA_REQUIRED,
+                range: STUDENT_PROFILE_FORM_GPA_RANGE
             },
-            resume: RESUME_MUST_BE_A_PDF_MESSAGE,
+            resume: STUDENT_PROFILE_FORM_RESUME,
+            website: STUDENT_PROFILE_FORM_WEBSITE
         }
     });
 

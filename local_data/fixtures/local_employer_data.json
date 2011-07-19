@@ -1,13 +1,118 @@
 [
  {
-  "pk": 1, 
-  "model": "employer.resumebook", 
+  "pk": 2, 
+  "model": "employer.employer", 
   "fields": {
-   "resume_book": "employer/ResumeBook/lauren_laver_recruiter1@umeqo.com_2011-07-16-23-09-56.pdf", 
-   "date_created": "2011-07-16 23:07:00", 
-   "recruiter": 1, 
-   "students": [], 
-   "name": null
+   "industries": [
+    42
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-07-08 00:06:02", 
+   "name": "Employer2", 
+   "main_contact": "Liz Floyd", 
+   "main_contact_phone": "543-657-9834", 
+   "offered_job_types": [], 
+   "date_created": "2011-07-08 00:06:02", 
+   "logo": "", 
+   "slug": "employer2", 
+   "description": ""
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    28
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-07-08 00:07:34", 
+   "name": "Employer3", 
+   "main_contact": "Katelyn o'Hare", 
+   "main_contact_phone": "523-987-4567", 
+   "offered_job_types": [], 
+   "date_created": "2011-07-08 00:07:34", 
+   "logo": "", 
+   "slug": "employer3", 
+   "description": ""
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    41
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-07-08 00:08:02", 
+   "name": "Employer4", 
+   "main_contact": "Jason Mccoy", 
+   "main_contact_phone": "333-333-3333", 
+   "offered_job_types": [], 
+   "date_created": "2011-07-08 00:08:02", 
+   "logo": "", 
+   "slug": "employer4", 
+   "description": ""
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    40
+   ], 
+   "main_contact_email": "temp@temp.com", 
+   "last_updated": "2011-07-18 01:20:01", 
+   "name": "Employer1", 
+   "main_contact": "Gina Vaglia", 
+   "main_contact_phone": "999-999-9999", 
+   "offered_job_types": [], 
+   "date_created": "2011-07-08 00:09:24", 
+   "logo": "employer/Employer/employer1_2011-07-18-01-20-01.png", 
+   "slug": "employer1", 
+   "description": "temp"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-07-08 00:06:02", 
+   "last_updated": "2011-07-08 00:06:02", 
+   "resumes_viewed": 0, 
+   "employer": 2
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-07-08 00:07:34", 
+   "last_updated": "2011-07-08 00:07:34", 
+   "resumes_viewed": 0, 
+   "employer": 3
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-07-08 00:08:02", 
+   "last_updated": "2011-07-08 00:08:02", 
+   "resumes_viewed": 0, 
+   "employer": 4
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-07-08 00:09:24", 
+   "last_updated": "2011-07-08 00:09:24", 
+   "resumes_viewed": 0, 
+   "employer": 5
   }
  }, 
  {
@@ -16,7 +121,7 @@
   "fields": {
    "starred_students": [], 
    "date_created": "2011-07-08 00:11:22", 
-   "last_updated": null, 
+   "last_updated": "2011-07-19 00:03:51", 
    "user": 3, 
    "employer": 5
   }
@@ -27,7 +132,7 @@
   "fields": {
    "starred_students": [], 
    "date_created": "2011-07-08 00:11:33", 
-   "last_updated": null, 
+   "last_updated": "2011-07-19 00:03:51", 
    "user": 8, 
    "employer": 5
   }
@@ -38,7 +143,7 @@
   "fields": {
    "starred_students": [], 
    "date_created": "2011-07-08 00:12:02", 
-   "last_updated": null, 
+   "last_updated": "2011-07-19 00:03:51", 
    "user": 9, 
    "employer": 2
   }
@@ -49,7 +154,7 @@
   "fields": {
    "starred_students": [], 
    "date_created": "2011-07-08 00:12:13", 
-   "last_updated": null, 
+   "last_updated": "2011-07-19 00:03:51", 
    "user": 10, 
    "employer": 3
   }
@@ -60,9 +165,23 @@
   "fields": {
    "starred_students": [], 
    "date_created": "2011-07-08 00:12:22", 
-   "last_updated": null, 
+   "last_updated": "2011-07-19 00:03:51", 
    "user": 11, 
    "employer": 4
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "last_updated": "2011-07-19 00:03:51", 
+   "name": null, 
+   "students": [
+    1
+   ], 
+   "recruiter": 1, 
+   "resume_book": "employer/ResumeBook/lauren_laver_recruiter1@umeqo.com_2011-07-17-10-39-06.pdf", 
+   "date_created": "2011-07-16 23:07:00"
   }
  }, 
  {
@@ -99,78 +218,6 @@
    "comment": "", 
    "recruiter": 1, 
    "student": 4
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    42
-   ], 
-   "main_contact_email": "", 
-   "last_updated": "2011-07-08 00:06:02", 
-   "name": "Employer2", 
-   "main_contact": "Liz Floyd", 
-   "main_contact_phone": "543-657-9834", 
-   "date_created": "2011-07-08 00:06:02", 
-   "logo": "", 
-   "slug": "employer2", 
-   "description": ""
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    28
-   ], 
-   "main_contact_email": "", 
-   "last_updated": "2011-07-08 00:07:34", 
-   "name": "Employer3", 
-   "main_contact": "Katelyn o'Hare", 
-   "main_contact_phone": "523-987-4567", 
-   "date_created": "2011-07-08 00:07:34", 
-   "logo": "", 
-   "slug": "employer3", 
-   "description": ""
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    41
-   ], 
-   "main_contact_email": "", 
-   "last_updated": "2011-07-08 00:08:02", 
-   "name": "Employer4", 
-   "main_contact": "Jason Mccoy", 
-   "main_contact_phone": "333-333-3333", 
-   "date_created": "2011-07-08 00:08:02", 
-   "logo": "", 
-   "slug": "employer4", 
-   "description": ""
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    40
-   ], 
-   "main_contact_email": "", 
-   "last_updated": "2011-07-08 00:09:24", 
-   "name": "Employer1", 
-   "main_contact": "Gina Vaglia", 
-   "main_contact_phone": "999-999-9999", 
-   "date_created": "2011-07-08 00:09:24", 
-   "logo": "", 
-   "slug": "employer1", 
-   "description": ""
   }
  }, 
  {
@@ -281,46 +328,6 @@
    "recruiter": 5, 
    "last_updated": "2011-07-08 00:12:22", 
    "resumes_viewed": 0
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "employer.employerstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:06:02", 
-   "last_updated": "2011-07-08 00:06:02", 
-   "resumes_viewed": 0, 
-   "employer": 2
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "employer.employerstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:07:34", 
-   "last_updated": "2011-07-08 00:07:34", 
-   "resumes_viewed": 0, 
-   "employer": 3
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "employer.employerstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:08:02", 
-   "last_updated": "2011-07-08 00:08:02", 
-   "resumes_viewed": 0, 
-   "employer": 4
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "employer.employerstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:09:24", 
-   "last_updated": "2011-07-08 00:09:24", 
-   "resumes_viewed": 0, 
-   "employer": 5
   }
  }
 ]

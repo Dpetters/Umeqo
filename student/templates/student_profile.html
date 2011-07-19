@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load macros %}
+{% load text_snippet %}
 
 {% block metadata %}
 {{block.super}}
@@ -21,23 +22,39 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_form.css"/>
 <!-- Scripts -->
 <script type="text/javascript">
-    var RESUME_MUST_BE_A_PDF_MESSAGE = "{{resume_must_be_a_pdf_message}}";
+    var CHECK_CAMPUS_ORGANIZATION_UNIQUENESS_URL = "{% url check_campus_organization_uniqueness %}";
+    var CHECK_LANGUAGE_UNIQUENESS_URL = "{% url check_language_uniqueness %}";
+    var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_organization %}";
+    var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
+    
     var STATIC_URL = "{{STATIC_URL}}";
+
+    var STUDENT_PROFILE_FORM_FIRST_NAME = "{% text_snippet 'student_profile_form_first_name' %}";
+    var STUDENT_PROFILE_FORM_LAST_NAME = "{% text_snippet 'student_profile_form_last_name' %}";
+    var STUDENT_PROFILE_FORM_SCHOOL_YEAR = "{% text_snippet 'student_profile_form_school_year' %}";
+    var STUDENT_PROFILE_FORM_GRADUATION_YEAR = "{% text_snippet 'student_profile_form_graduation_year' %}";
+    var STUDENT_PROFILE_FORM_FIRST_MAJOR = "{% text_snippet 'student_profile_form_first_major' %}";
+    var STUDENT_PROFILE_FORM_GPA_REQUIRED = "{% text_snippet 'student_profile_form_gpa_required' %}";
+    var STUDENT_PROFILE_FORM_GPA_RANGE = "{% text_snippet 'student_profile_form_gpa_range' %}";
+    var STUDENT_PROFILE_FORM_RESUME = "{% text_snippet 'student_profile_form_resume' %}";
+    var STUDENT_PROFILE_FORM_WEBSITE = "{% text_snippet 'student_profile_form_website' %}";
+    var STUDENT_PROFILE_FORM_FIRST_SECOND_MAJORS_DIFF = "{% text_snippet 'student_profle_form_first_second_majors_diff' %}";
 </script>
 {% endblock %}
 
-
-{% macro student_profile_form_block_title %}
-{% block student_profile_form_block_title %}{% endblock %}
-{% endmacro %}
-
+{% block title %}
+{% if edit %}
+Edit Profile |
+{% else %}
+Create Profile |
+{% endif %}
+{% endblock %}
 
 {% block content_area %}
 {{block.super}}
-
-{% block page_header %}
-{% endblock %}
-
+{% if not edit %}
+<h1 id="profile_form_title">Welcome to Umeqo!</h1>
+{% endif %}
 <form id="profile_form" method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     <ul id="stepForm">
@@ -46,7 +63,7 @@
             <div class="main_block clearfix">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
+                    <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
                     <div class="main_block_header_content">
                         <span>
                             <strong>Required Info</strong>
@@ -84,7 +101,7 @@
                             <th>{{form.graduation_year.label_tag}}</th>
                             <td>
                                 <div class="errorspace"></div>
-                                {{form.graduation_year}}
+                                {{form.graduation_year}}{{form.graduation_month}}
                             </td>
                         </tr>
                         <tr>
@@ -144,7 +161,7 @@
             <div class="main_block clearfix">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
+                    <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
                         &raquo;
@@ -243,7 +260,7 @@
             <div class="main_block clearfix">
                 <div class="main_block_header">
                     <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% usemacro student_profile_form_block_title %}</span>
+                    <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
                     <div class="main_block_header_content">
                         <a href="javascript:void(0)" class="navigation" id="0">Required Info</a>
                         &raquo;
@@ -278,10 +295,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{form.older_than_18.label_tag}}</th>
+                            <th>{{form.older_than_21.label_tag}}</th>
                             <td>
                                 <div class="errorspace"></div>
-                                {{form.older_than_18}}
+                                {{form.older_than_21}}
                             </td>
                         </tr>
                         <tr>

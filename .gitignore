@@ -9,11 +9,7 @@ index
 .project
 .pydevproject
 .settings
-media/employer
-media/images
-media/resume_books
-media/resumes
-media/CACHE
+/media
 settings_local.py
 *.DS_Store
 *.psd

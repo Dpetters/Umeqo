@@ -12,7 +12,7 @@ class TopicAdmin(admin.ModelAdmin):
     search_fields = ['name']
     
 class QuestionAdmin(admin.ModelAdmin):
-    fields= ['audience', 'status', 'sort_order', 'question', 'answer', 'slug']
+    fields= ['audience', 'status', 'sort_order', 'topic', 'question', 'answer', 'slug']
     prepopulated_fields = {'slug':('question',)}
     list_display = ['question', 'topic', 'audience', 'sort_order', 'status']
     list_filter = ['topic', 'audience', 'status']

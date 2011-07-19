@@ -9,32 +9,37 @@
         {% csrf_token %}
         <table class="form_table">
             <tr>
-                <th>{{create_campus_org_form.name.label_tag}}</th>
+                <th>{{form.name.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
-                    {{create_campus_org_form.name}}
+                    {{form.name}}
                 </td>
             </tr>
             <tr>
-                <th>{{create_campus_org_form.type.label_tag}}</th>
+                <th>{{form.type.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
-                    {{create_campus_org_form.type}}
+                    {{form.type}}
                 </td>
             </tr>
             <tr>
-                <th>{{create_campus_org_form.website.label_tag}}</th>
+                <th>{{form.website.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
-                    {{create_campus_org_form.website}}
+                    {{form.website}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error_section error">
+                    {{form.non_field_errors}}
+                </td>
+            </tr>
+            <tr>
+                <td class="button_cell" colspan="2">
+                    <input id="create_campus_org_form_submit_button" class="button" type='submit' value='Create'>
+                    <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                 </td>
             </tr>
         </table>
-        <div class="error_section error">
-        </div>
-        <div class="button_wrapper_with_margins">
-            <input id="create_campus_org_form_submit_button" class="button" type='submit' value='Create'>
-            <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-        </div>
     </form>
 </div>

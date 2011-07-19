@@ -6,6 +6,8 @@
    "last_name": "Petters", 
    "last_updated": "2011-07-08 01:22:30", 
    "sat_m": 800, 
+   "graduation_month": "4", 
+   "older_than_21": "Y", 
    "sat_t": 2310, 
    "sat_v": 770, 
    "sat_w": 740, 
@@ -20,7 +22,7 @@
    "first_name": "Dmitrij", 
    "first_major": 12, 
    "subscriptions": [], 
-   "gpa": "4.8", 
+   "gpa": "4.800", 
    "campus_involvement": [
     394
    ], 
@@ -46,7 +48,7 @@
    ], 
    "act": 34, 
    "date_created": "2011-07-07 20:30:03", 
-   "older_than_18": "Y"
+   "older_than_21": "Y"
   }
  }, 
  {
@@ -56,6 +58,8 @@
    "last_name": "Joshi", 
    "last_updated": "2011-07-10 15:30:53", 
    "sat_m": null, 
+   "graduation_month": "4", 
+   "older_than_21": "Y", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
@@ -70,7 +74,7 @@
    "first_name": "Hrishikesh", 
    "first_major": 12, 
    "subscriptions": [], 
-   "gpa": "4.5", 
+   "gpa": "4.500", 
    "campus_involvement": [
     394
    ], 
@@ -93,7 +97,7 @@
    ], 
    "act": null, 
    "date_created": "2011-07-10 15:25:30", 
-   "older_than_18": "Y"
+   "older_than_21": "Y"
   }
  }, 
  {
@@ -103,6 +107,8 @@
    "last_name": "Kao", 
    "last_updated": "2011-07-10 20:10:21", 
    "sat_m": null, 
+   "graduation_month": "4", 
+   "older_than_21": "Y", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
@@ -112,7 +118,7 @@
    "first_name": "Albert", 
    "first_major": 7, 
    "subscriptions": [], 
-   "gpa": "4.8", 
+   "gpa": "4.800", 
    "campus_involvement": [], 
    "languages": [], 
    "profile_created": true, 
@@ -126,7 +132,7 @@
    "industries_of_interest": [], 
    "act": null, 
    "date_created": "2011-07-10 20:05:56", 
-   "older_than_18": "Y"
+   "older_than_21": "Y"
   }
  }, 
  {
@@ -136,6 +142,8 @@
    "last_name": "Hsu", 
    "last_updated": "2011-07-10 20:29:54", 
    "sat_m": 800, 
+   "graduation_month": "4", 
+   "older_than_21": "Y", 
    "sat_t": 2330, 
    "sat_v": 780, 
    "sat_w": 750, 
@@ -145,7 +153,7 @@
    "first_name": "Terence", 
    "first_major": 25, 
    "subscriptions": [], 
-   "gpa": "4.4", 
+   "gpa": "4.400", 
    "campus_involvement": [], 
    "languages": [], 
    "profile_created": true, 
@@ -159,7 +167,7 @@
    "industries_of_interest": [], 
    "act": null, 
    "date_created": "2011-07-10 20:26:02", 
-   "older_than_18": "Y"
+   "older_than_21": "Y"
   }
  }, 
  {

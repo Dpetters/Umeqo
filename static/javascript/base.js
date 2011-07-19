@@ -47,7 +47,7 @@ function place_tiny_ajax_loader(container) {
 };
 // Validation Highlighting, unhighlighting and positioning of errors
 function highlight(element, errorClass) {
-    if ($(element).next(":button.ui-multiselect") != []) {
+    if ($(element).next(":button.ui-multiselect").length != 0) {
         $(element).next().css('border', '1px solid #FF603D');
     }
     $(element).filter("input[type=password]").css('border', '1px solid #FF603D');
@@ -64,7 +64,6 @@ function unhighlight(element, errorClass) {
 };
 
 function place_table_form_errors(form, errors){
-	console.log(errors);
 	for (error in errors){
 		if (error == "non_field_error"){
 			$(form + " .error_section").html(errors[error]);

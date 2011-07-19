@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson
@@ -169,7 +169,7 @@ def home(request, extra_context=None):
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:
-                return redirect('student_edit_profile')
+                return redirect('student_profile')
 
             subscriptions = request.user.student.subscriptions.all()
             if len(subscriptions) > 0:
@@ -298,14 +298,8 @@ def course_info(request, extra_context = None):
     if request.is_ajax():
         if request.GET.has_key('course_id'):
             try:
-                course = Course.objects.get(id = request.GET['course_id'])
-                context = {'name': course.name,
-                           'num': course.num, 
-                           'admin' : course.admin,
-                           'email': course.email,
-                           'website':course.website,
-                           'description': course.description,
-                           'image': course.image.name}
+                context = {}
+                context['course'] = Course.objects.get(id = request.GET['course_id'])
                 context.update(extra_context or {})
                 return context
             except Course.DoesNotExist:
@@ -321,12 +315,8 @@ def campus_org_info(request, extra_context = None):
     if request.is_ajax():
         if request.GET.has_key('campus_org_id'):
             try:
-                campus_org = CampusOrg.objects.get(id=request.GET['campus_org_id'])
-                context = {'name': campus_org.name,
-                           'email': campus_org.email,
-                           'website':campus_org.website,
-                           'description': campus_org.description,
-                           'image': campus_org.image.name}
+                context = {}
+                context['campus_org'] = CampusOrg.objects.get(id=request.GET['campus_org_id'])
                 context.update(extra_context or {})
                 return context
             except CampusOrg.DoesNotExist:

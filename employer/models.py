@@ -5,31 +5,56 @@ from django.dispatch import receiver
 from django.db.models import signals
 
 from student.models import Student
-from countries.models import Country
-from core.models import Industry, CampusOrg, Language, SchoolYear, GraduationYear, Course, EmploymentType
+from core import choices
+from core.models import Industry, EmploymentType, SchoolYear, GraduationYear, Course
 from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
-from core import choices as core_choices
+from student.models import StudentBaseAttributes
+from core import mixins as core_mixins
 
-class ResumeBook(models.Model):
-    recruiter = models.ForeignKey("employer.Recruiter", editable=False)
-    resume_book = models.FileField(upload_to = get_resume_book_filename, blank = True, null=True)
-    name = models.CharField("Resume Book Name", max_length = 42, blank = True, null = True, help_text="Maximum 42 characters.")
-    students = models.ManyToManyField("student.Student", blank = True, null = True)
-    
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+
+class Employer(core_mixins.DateTracking): 
+    name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    description = models.CharField(max_length=500)
+    logo = models.ImageField(upload_to=get_logo_filename)
+    slug = models.CharField(max_length=20, unique=True, help_text="Maximum 20 characters.")
+    offered_job_types = models.ManyToManyField(EmploymentType, blank = True, null=True) 
+    industries = models.ManyToManyField(Industry)
+
+    main_contact = models.CharField("Main Contact", max_length = 50)
+    main_contact_email = models.EmailField("Contact Email")
+    main_contact_phone = PhoneNumberField("Contact Phone #")
 
     def __unicode__(self):
         return self.name
 
+@receiver(signals.post_save, sender=Employer)
+def create_employer_related_models(sender, instance, created, raw, **kwargs):
+    if created:
+        if not EmployerStatistics.objects.filter(employer=instance).exists():
+            EmployerStatistics.objects.create(employer=instance)
 
-class Recruiter(models.Model):
+
+class EmployerStatistics(core_mixins.DateTracking):
+    employer = models.OneToOneField(Employer, unique=True, editable=False)
+    
+    resumes_viewed = models.PositiveIntegerField(default = 0, editable=False, blank = True, null=True)
+
+    class Meta:
+        verbose_name = "Employer Statistics"
+        verbose_name_plural = "Employer Statistics"
+
+    def __unicode__(self):
+        if hasattr(self, "employer"):
+            return "Employer Statistics for %s" % (self.employer,)
+        else:
+            return "Unattached Employer Statistics"
+
+
+class Recruiter(core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
     employer = models.ForeignKey("employer.Employer")
     starred_students = models.ManyToManyField("student.Student")
-    
-    last_updated = models.DateTimeField(editable=False, blank = True, null=True)
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
 
     def __unicode__(self):
         if hasattr(self, "user"):
@@ -46,24 +71,26 @@ def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
             RecruiterStatistics.objects.create(recruiter=instance)
 
 
-class FilteringParameters(models.Model):
+class ResumeBook(core_mixins.DateTracking):
+    recruiter = models.ForeignKey("employer.Recruiter", editable=False)
+    resume_book = models.FileField(upload_to = get_resume_book_filename, blank = True, null=True)
+    name = models.CharField("Resume Book Name", max_length = 42, blank = True, null = True, help_text="Maximum 42 characters.")
+    students = models.ManyToManyField("student.Student", blank = True, null = True)
+
+    def __unicode__(self):
+        return self.name
+
+
+class FilteringParams(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
-        
+
+    majors = models.ManyToManyField(Course, blank = True, null = True)    
     school_years = models.ManyToManyField(SchoolYear, blank = True, null = True)
     graduation_years = models.ManyToManyField(GraduationYear, blank = True, null = True)
-    majors = models.ManyToManyField(Course, blank = True, null = True)
-    gpa = models.DecimalField(max_digits = 5, decimal_places = 3, blank = True, null = True)
-    sat = models.PositiveSmallIntegerField(blank = True, null = True)
-    act = models.PositiveSmallIntegerField(blank = True, null = True)
 
-    previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
-    industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True, related_name="default_filtering_employers")
     employment_types = models.ManyToManyField(EmploymentType, blank = True, null = True)
     
-    campus_involvement = models.ManyToManyField(CampusOrg, blank = True, null = True)
-    languages = models.ManyToManyField(Language, blank = True, null = True)
-    older_than_18 = models.CharField(max_length=1, choices = core_choices.NO_YES_CHOICES, blank = True, null = True)
-    countries_of_citizenship = models.ManyToManyField(Country, blank=True, null=True)
+    older_than_21 = models.CharField(max_length=1, choices = choices.NO_YES_CHOICES, blank = True, null = True)
 
 
 class StudentComment(models.Model):
@@ -73,43 +100,15 @@ class StudentComment(models.Model):
     
     class Meta:
         unique_together = (("recruiter", "student"),)
+
         
-        
-class Employer(models.Model): 
-    name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    description = models.CharField(max_length=500)
-    logo = models.ImageField(upload_to=get_logo_filename)
-    slug = models.CharField(max_length=20, unique=True, help_text="Maximum 20 characters.")
-    
-    industries = models.ManyToManyField(Industry)
-
-    main_contact = models.CharField("Main Contact", max_length = 50)
-    main_contact_email = models.EmailField("Contact Email")
-    main_contact_phone = PhoneNumberField("Contact Phone #")
-
-    last_updated = models.DateTimeField(editable=False, auto_now=True)
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
-    
-    def __unicode__(self):
-        return self.name
-
-@receiver(signals.post_save, sender=Employer)
-def create_employer_related_models(sender, instance, created, raw, **kwargs):
-    if created:
-        if not EmployerStatistics.objects.filter(employer=instance).exists():
-            EmployerStatistics.objects.create(employer=instance)
-
-
-class RecruiterPreferences(models.Model):
+class RecruiterPreferences(core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
     
     email_on_rsvp = models.BooleanField()
     results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
     default_student_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
 
-    last_updated = models.DateTimeField(editable=False, auto_now=True)
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
-    
     class Meta:
         verbose_name = "Recruiter Preferences"
         verbose_name_plural = "Recruiter Preferences"
@@ -119,15 +118,13 @@ class RecruiterPreferences(models.Model):
             return "Recruiter Preferences for %s" % (self.recruiter,)
         else:
             return "Unattached Recruiter Preferences"
-        
-class RecruiterStatistics(models.Model):
+
+
+class RecruiterStatistics(core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
-    
+     
     resumes_viewed = models.PositiveIntegerField(default = 0, editable=False, blank = True, null=True)
 
-    last_updated = models.DateTimeField(editable=False, auto_now=True)
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
-    
     class Meta:
         verbose_name = "Recruiter Statistics"
         verbose_name_plural = "Recruiter Statistics"
@@ -137,22 +134,3 @@ class RecruiterStatistics(models.Model):
             return "Recruiter Statistics for %s" % (self.recruiter,)
         else:
             return "Unattached Recruiter Statistics"
-
-
-class EmployerStatistics(models.Model):
-    employer = models.OneToOneField(Employer, unique=True, editable=False)
-    
-    resumes_viewed = models.PositiveIntegerField(default = 0, editable=False, blank = True, null=True)
-
-    last_updated = models.DateTimeField(editable=False, auto_now=True)
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
-    
-    class Meta:
-        verbose_name = "Employer Statistics"
-        verbose_name_plural = "Employer Statistics"
-
-    def __unicode__(self):
-        if hasattr(self, "employer"):
-            return "Employer Statistics for %s" % (self.employer,)
-        else:
-            return "Unattached Employer Statistics"

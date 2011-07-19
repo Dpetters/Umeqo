@@ -30,6 +30,36 @@
   }
  }, 
  {
+  "pk": 2, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-09-14 19:30:00", 
+   "name": "Fortune 500 Panel", 
+   "datetime_created": "2011-07-12 20:15:02", 
+   "description": "", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "recruiters": [
+    1
+   ], 
+   "audience": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    6
+   ], 
+   "location": "E-160", 
+   "rsvp_message": null, 
+   "is_public": true, 
+   "type": 3, 
+   "slug": "fortune-500-panel", 
+   "end_datetime": "2011-09-14 21:30:00"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "events.attendee", 
   "fields": {

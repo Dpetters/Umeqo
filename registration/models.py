@@ -2,19 +2,18 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import post_save
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from student.models import Student
-from employer.models import Recruiter
+from core import mixins as core_mixins
 from registration.managers import RegistrationManager
 
+
 class InterestedPerson(models.Model):
-    date_created = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
@@ -27,6 +26,7 @@ class InterestedPerson(models.Model):
         
     def __unicode__(self):
         return self.first_name + " " + self.last_name
+
 
 class SessionKey(models.Model):
     session_key = models.CharField('Session Key', max_length=40, editable=False)

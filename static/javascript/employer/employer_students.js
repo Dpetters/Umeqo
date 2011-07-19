@@ -20,7 +20,7 @@ $(document).ready(function() {
     var languages = [];
     var countries_of_citizenship = [];
     var campus_orgs = [];
-	var older_than_18 = $("#id_older_than_18 option:selected").val();
+	var older_than_21 = $("#id_older_than_21 option:selected").val();
 	
 	function handle_students_in_resume_book_student_list_click() {
 		$("#id_student_list").multiselect("widget").find("input[title='" + IN_RESUME_BOOK_STUDENT_LIST + "']").click()
@@ -612,7 +612,7 @@ $(document).ready(function() {
                 'campus_orgs' : campus_orgs.join('~'),
                 'languages' : languages.join('~'),
                 'countries_of_citizenship' : countries_of_citizenship.join('~'),
-                'older_than_18' : older_than_18,
+                'older_than_21' : older_than_21,
                 'ordering': ordering,
                 'results_per_page': results_per_page,
             },
@@ -1066,14 +1066,14 @@ $(document).ready(function() {
         }
     }).multiselectfilter();
     
-    $("#id_older_than_18").multiselect({
+    $("#id_older_than_21").multiselect({
         header:false,
         selectedList: 1,
         multiple: false,
         height: 53,
         minWidth: multiselectYesNoSingleSelectWidth,
         click: function(event, ui) {
-            older_than_18 = ui.value;
+            older_than_21 = ui.value;
             initiate_ajax_call();
         }
     });

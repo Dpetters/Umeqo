@@ -9,13 +9,19 @@ Student Filtering |
 
 {% block metadata %}
 {{block.super}}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_students.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+{% endcompress %}
+
+{% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_students.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_students.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+{% endcompress %}
 
 <script type="text/javascript">
     var query = null;
@@ -173,8 +179,8 @@ Student Filtering |
                         {{student_filtering_form.countries_of_citizenship}}
                     </div>
                     <div class="select_wrapper">
-                        {{student_filtering_form.older_than_18.label_tag}}
-                        {{student_filtering_form.older_than_18}}
+                        {{student_filtering_form.older_than_21.label_tag}}
+                        {{student_filtering_form.older_than_21}}
                     </div>
                 </div>
                 <h3>
