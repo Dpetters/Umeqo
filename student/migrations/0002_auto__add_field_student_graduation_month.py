@@ -8,102 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Event'
-        db.create_table('events_event', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('is_active', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
-            ('end_datetime', self.gf('django.db.models.fields.DateTimeField')()),
-            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.EventType'])),
-            ('start_datetime', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-            ('location', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('rsvp_message', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('last_seen_view_count', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-            ('view_count', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-            ('datetime_created', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(default='event-page', max_length=50, db_index=True)),
-            ('is_public', self.gf('django.db.models.fields.BooleanField')(default=True)),
-        ))
-        db.send_create_signal('events', ['Event'])
-
-        # Adding M2M table for field recruiters on 'Event'
-        db.create_table('events_event_recruiters', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('event', models.ForeignKey(orm['events.event'], null=False)),
-            ('recruiter', models.ForeignKey(orm['employer.recruiter'], null=False))
-        ))
-        db.create_unique('events_event_recruiters', ['event_id', 'recruiter_id'])
-
-        # Adding M2M table for field audience on 'Event'
-        db.create_table('events_event_audience', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('event', models.ForeignKey(orm['events.event'], null=False)),
-            ('schoolyear', models.ForeignKey(orm['core.schoolyear'], null=False))
-        ))
-        db.create_unique('events_event_audience', ['event_id', 'schoolyear_id'])
-
-        # Adding model 'RSVP'
-        db.create_table('events_rsvp', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('student', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['student.Student'])),
-            ('event', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['events.Event'])),
-            ('datetime_created', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        ))
-        db.send_create_signal('events', ['RSVP'])
-
-        # Adding model 'Invitee'
-        db.create_table('events_invitee', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('student', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['student.Student'], null=True)),
-            ('event', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['events.Event'])),
-            ('datetime_created', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        ))
-        db.send_create_signal('events', ['Invitee'])
-
-        # Adding unique constraint on 'Invitee', fields ['student', 'event']
-        db.create_unique('events_invitee', ['student_id', 'event_id'])
-
-        # Adding model 'Attendee'
-        db.create_table('events_attendee', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=200, null=True)),
-            ('student', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['student.Student'], null=True)),
-            ('event', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['events.Event'])),
-            ('datetime_created', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        ))
-        db.send_create_signal('events', ['Attendee'])
-
-        # Adding unique constraint on 'Attendee', fields ['student', 'event']
-        db.create_unique('events_attendee', ['student_id', 'event_id'])
+        # Adding field 'Student.graduation_month'
+        db.add_column('student_student', 'graduation_month', self.gf('django.db.models.fields.CharField')(max_length=2, null=True, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Removing unique constraint on 'Attendee', fields ['student', 'event']
-        db.delete_unique('events_attendee', ['student_id', 'event_id'])
-
-        # Removing unique constraint on 'Invitee', fields ['student', 'event']
-        db.delete_unique('events_invitee', ['student_id', 'event_id'])
-
-        # Deleting model 'Event'
-        db.delete_table('events_event')
-
-        # Removing M2M table for field recruiters on 'Event'
-        db.delete_table('events_event_recruiters')
-
-        # Removing M2M table for field audience on 'Event'
-        db.delete_table('events_event_audience')
-
-        # Deleting model 'RSVP'
-        db.delete_table('events_rsvp')
-
-        # Deleting model 'Invitee'
-        db.delete_table('events_invitee')
-
-        # Deleting model 'Attendee'
-        db.delete_table('events_attendee')
+        # Deleting field 'Student.graduation_month'
+        db.delete_column('student_student', 'graduation_month')
 
 
     models = {
@@ -153,6 +65,7 @@ class Migration(SchemaMigration):
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
+            'thumbnail': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.CampusOrgType']"}),
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },
@@ -177,6 +90,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'num': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'thumbnail': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },
         'core.employmenttype': {
@@ -186,13 +100,6 @@ class Migration(SchemaMigration):
             'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'})
-        },
-        'core.eventtype': {
-            'Meta': {'object_name': 'EventType'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'})
         },
         'core.graduationyear': {
             'Meta': {'object_name': 'GraduationYear'},
@@ -242,58 +149,8 @@ class Migration(SchemaMigration):
             'main_contact_email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'main_contact_phone': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
+            'offered_job_types': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.EmploymentType']", 'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'})
-        },
-        'employer.recruiter': {
-            'Meta': {'object_name': 'Recruiter'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'employer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['employer.Employer']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'starred_students': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['student.Student']", 'symmetrical': 'False'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
-        },
-        'events.attendee': {
-            'Meta': {'unique_together': "(('student', 'event'),)", 'object_name': 'Attendee'},
-            'datetime_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
-            'event': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['events.Event']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True'}),
-            'student': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['student.Student']", 'null': 'True'})
-        },
-        'events.event': {
-            'Meta': {'object_name': 'Event'},
-            'audience': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['core.SchoolYear']", 'null': 'True', 'blank': 'True'}),
-            'datetime_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'end_datetime': ('django.db.models.fields.DateTimeField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'last_seen_view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'location': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
-            'recruiters': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['employer.Recruiter']", 'symmetrical': 'False'}),
-            'rsvp_message': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'default': "'event-page'", 'max_length': '50', 'db_index': 'True'}),
-            'start_datetime': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.EventType']"}),
-            'view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
-        },
-        'events.invitee': {
-            'Meta': {'unique_together': "(('student', 'event'),)", 'object_name': 'Invitee'},
-            'datetime_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'event': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['events.Event']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'student': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['student.Student']", 'null': 'True'})
-        },
-        'events.rsvp': {
-            'Meta': {'object_name': 'RSVP'},
-            'datetime_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'event': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['events.Event']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'student': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['student.Student']"})
         },
         'student.student': {
             'Meta': {'object_name': 'Student'},
@@ -304,6 +161,7 @@ class Migration(SchemaMigration):
             'first_major': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'first_major'", 'null': 'True', 'to': "orm['core.Course']"}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
             'gpa': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '5', 'decimal_places': '3', 'blank': 'True'}),
+            'graduation_month': ('django.db.models.fields.CharField', [], {'max_length': '2', 'null': 'True', 'blank': 'True'}),
             'graduation_year': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.GraduationYear']", 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'industries_of_interest': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'industries_of_interest_of'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['core.Industry']"}),
@@ -325,7 +183,28 @@ class Migration(SchemaMigration):
             'subscriptions': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'subscriptions'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['employer.Employer']"}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'}),
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+        },
+        'student.studentpreferences': {
+            'Meta': {'object_name': 'StudentPreferences'},
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'email_on_invite_to_private_event': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'email_on_invite_to_public_event': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'email_on_new_event': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'student': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['student.Student']", 'unique': 'True'})
+        },
+        'student.studentstatistics': {
+            'Meta': {'object_name': 'StudentStatistics'},
+            'add_to_resumebook_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'event_invite_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'resume_view_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
+            'shown_in_results_count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
+            'student': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['student.Student']", 'unique': 'True'})
         }
     }
 
-    complete_apps = ['events']
+    complete_apps = ['student']

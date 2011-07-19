@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson
@@ -169,7 +169,7 @@ def home(request, extra_context=None):
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:
-                return redirect('student_edit_profile')
+                return redirect('student_profile')
 
             subscriptions = request.user.student.subscriptions.all()
             if len(subscriptions) > 0:

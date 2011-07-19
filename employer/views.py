@@ -26,10 +26,10 @@ from core.models import Industry
 from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, StudentComment
-from employer.forms import DeliverResumeBookForm, RecruiterPreferences, SearchForm, FilteringForm, StudentFilteringForm
+from employer.forms import DeliverResumeBookForm, RecruiterPreferences, SearchForm, DefaultStudentFilteringParamsForm, StudentFilteringForm
 from employer.views_helper import get_paginator, employer_search_helper
 from events.forms import EventForm
-from events.models import Event, Attendee
+from events.models import Event
 from student import enums as student_enums
 from student.models import Student
 from notification import models as notification
@@ -355,7 +355,7 @@ def employer_event_delete(request, id, extra_context = None):
 @user_passes_test(is_recruiter)
 def employer_students_default_filtering(request, extra_context = None):
     
-    form_class=FilteringForm
+    form_class=DefaultStudentFilteringParamsForm
     if request.method == 'POST':
         form = form_class(data=request.POST,
                           instance = request.user.recruiter)

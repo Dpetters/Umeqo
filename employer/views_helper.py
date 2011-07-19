@@ -127,9 +127,9 @@ def get_cached_filtering_results(request):
         if request.POST['industries_of_interest']:
             industries_of_interest = request.POST['industries_of_interest'].split('~')
         
-        older_than_18 = None
-        if request.POST['older_than_18'] != 'N':
-            older_than_18 = request.POST['older_than_18']
+        older_than_21 = None
+        if request.POST['older_than_21'] != 'N':
+            older_than_21 = request.POST['older_than_21']
 
         languages = None
         if request.POST['languages']:
@@ -157,7 +157,7 @@ def get_cached_filtering_results(request):
                                                     employment_types=employment_types,
                                                     previous_employers=previous_employers,
                                                     industries_of_interest=industries_of_interest,
-                                                    older_than_18 = older_than_18,
+                                                    older_than_21 = older_than_21,
                                                     languages=languages,
                                                     countries_of_citizenship=countries_of_citizenship,
                                                     campus_orgs=campus_orgs)
@@ -191,7 +191,7 @@ def filter_students(recruiter,
                     employment_types=None,
                     previous_employers=None,
                     industries_of_interest=None,
-                    older_than_18=None,
+                    older_than_21=None,
                     languages=None,
                     countries_of_citizenship=None,
                     campus_orgs=None):
@@ -235,8 +235,8 @@ def filter_students(recruiter,
         kwargs['previous_employers__id__in'] = previous_employers
     if industries_of_interest:
         kwargs['industries_of_interest__id__in'] = industries_of_interest
-    if older_than_18:
-        kwargs['older_than_18'] = older_than_18
+    if older_than_21:
+        kwargs['older_than_21'] = older_than_21
     if languages:
         kwargs['languages__id__in'] = languages
     if countries_of_citizenship:

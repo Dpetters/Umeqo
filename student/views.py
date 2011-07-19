@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
-from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentEditProfileForm, StudentCreateProfileForm
+from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfileForm
 from student.models import Student
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -114,65 +114,11 @@ def student_registration_complete(request,
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_create_profile(request,
-                           form_class=StudentCreateProfileForm,
-                           template_name='student_create_profile.html',
-                           extra_context=None):
+@render_to("student_profile.html")
+def student_profile(request,
+                     form_class=StudentProfileForm,
+                     extra_context=None):
 
-    if request.user.student.profile_created:
-        if request.is_ajax():
-            data = {'valid':True,
-                    'success_url':reverse("student_edit_profile")}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        return redirect('student_edit_profile')
-        
-    if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-        if form.is_valid():
-            student = form.save(commit=False)
-            if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
-                student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
-            else:
-                student.sat_t = None
-            student.last_updated = datetime.datetime.now()
-            student.profile_created = True
-            student.save()
-            if hasattr(student, 'save_m2m'):
-                student.save_m2m()
-            return process_resume(student, request.is_ajax())
-        else:
-            if request.is_ajax():
-                data = {'valid': False,
-                        'form_errors': form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    else:
-        form = form_class()
-    
-    context = {
-               'resume_must_be_a_pdf_message': messages.resume_must_be_a_pdf,
-               'form': form
-               }
-
-    context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_edit_profile(request,
-                         form_class=StudentEditProfileForm,
-                         template_name='student_edit_profile.html',
-                         extra_context=None):
-
-    if not request.user.student.profile_created:
-        if request.is_ajax():
-            data = {'valid':True,
-                    'success_url':reverse("student_create_profile")}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        return redirect('student_create_profile')
-        
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
@@ -182,32 +128,20 @@ def student_edit_profile(request,
             else:
                 student.sat_t = None
             student.last_updated = datetime.datetime.now()
+            student.profile_created = True
             student.save()
             if request.FILES.has_key('resume'):
                 return process_resume(request.user.student, request.is_ajax())
             else:
-                if request.is_ajax():
-                    data = {'valid':False,
-                            'success_url':reverse("home")}
-                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
                 return redirect(reverse('home') + '?msg=profile_saved')
-        else:
-            if request.is_ajax():
-                data = {'valid':False,
-                        'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = form_class(instance=request.user.student)
 
-    context = {
-               'resume_must_be_a_pdf_message' : messages.resume_must_be_a_pdf,
-               'form' : form
-               }
+    context = { 'form' : form,
+                'edit' : request.user.student.profile_created }
       
     context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    return context
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -256,7 +190,7 @@ def student_preferences(request, preferences_form_class = StudentPreferencesForm
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 """
-@render_to()
+@render_to("student_create_campus_organization.html")
 def student_create_campus_organization(request, form_class=CreateCampusOrganizationForm, extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "student"):
         if request.is_ajax():
@@ -280,9 +214,8 @@ def student_create_campus_organization(request, form_class=CreateCampusOrganizat
                     data['errors'] = errors
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                create_campus_org_form = form_class()
-            context =  {'create_campus_org_form': create_campus_org_form,
-                        'TEMPLATE': "student_create_campus_organization.html" }
+                form = form_class()
+            context =  {'form': form }
             context.update(extra_context or {}) 
             return context
         else:
@@ -368,7 +301,7 @@ def student_invitations(request,
                         extra_context=None):
 
     if request.user.student.profile_created:
-        return redirect('student_edit_profile')
+        return redirect('student_profile')
     
     context = {}
     context.update(extra_context or {})  

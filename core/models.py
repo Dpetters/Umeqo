@@ -7,16 +7,15 @@ from django.dispatch import receiver
 
 from core.model_helpers import get_course_image_filename, get_campus_org_image_filename, get_course_thumbnail_filename, get_campus_org_thumbnail_filename, generate_thumbnail
 from core import enums
+from core import mixins as core_mixins
 
 
-class Topic(models.Model):
+class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
     sort_order = models.IntegerField(default=0, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES)
-    last_updated = models.DateTimeField(auto_now=True, default=datetime.now())
-    date_created = models.DateTimeField(auto_now_add=True, default=datetime.now())
-    
+
     class Meta:
         ordering = ['sort_order', 'name']
 
@@ -24,7 +23,7 @@ class Topic(models.Model):
         return self.name
 
 
-class Question(models.Model):
+class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
     status = models.IntegerField(choices=enums.QUESTION_STATUS_CHOICES, help_text="Only questions with their status set to 'Active' will be displayed." )
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
@@ -32,8 +31,6 @@ class Question(models.Model):
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
-    last_updated = models.DateTimeField(auto_now=True, default=datetime.now())
-    date_created = models.DateTimeField(auto_now_add=True, default=datetime.now())
 
     class Meta:
         ordering = ['sort_order', 'question']
@@ -42,22 +39,18 @@ class Question(models.Model):
         return self.question
         
          
-class CommonInfo(models.Model):
+class CommonInfo(core_mixins.DateTracking):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)
     description = models.TextField(max_length=500, blank=True, null=True, help_text="Maximum 500 characters.")
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         abstract = True
  
  
-class SchoolYear(models.Model):
+class SchoolYear(core_mixins.DateTracking):
     name = models.CharField("School Year", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "School Year"
@@ -67,11 +60,9 @@ class SchoolYear(models.Model):
         return self.name
 
 
-class GraduationYear(models.Model):
+class GraduationYear(core_mixins.DateTracking):
     year = models.PositiveSmallIntegerField("Graduation Year", unique=True)
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         verbose_name = "Graduation Year"
         verbose_name_plural = "Graduation Years"
@@ -80,11 +71,9 @@ class GraduationYear(models.Model):
         return str(self.year)
 
 
-class Language(models.Model):
+class Language(core_mixins.DateTracking):
     name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters")
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-        
+
     def __unicode__(self):
         return self.name
     
@@ -104,12 +93,10 @@ class Course(CommonInfo):
         return "%s (%s)" % (self.name, self.num)
     
 
-class EmploymentType(models.Model):
+class EmploymentType(core_mixins.DateTracking):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
     sort_order = models.IntegerField("sort order", default=0, help_text='EmploymentTypes will be ordered by the sort order. (Smallest at top.)')
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-        
+   
     class Meta:
         verbose_name = "Employment Type"
         verbose_name_plural = "Employment Types"
@@ -119,12 +106,10 @@ class EmploymentType(models.Model):
         return self.name
         
     
-class CampusOrgType(models.Model):
+class CampusOrgType(core_mixins.DateTracking):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
     sort_order = models.IntegerField("sort order", default=0, help_text='CampusOrgTypes will be ordered by the sort order. (Smallest at top.)')
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-        
+ 
     class Meta:
         verbose_name = "On-Campus Organization Type"
         verbose_name_plural = "On-Campus Organization Types"
@@ -155,10 +140,8 @@ def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
         temp_name, content = generate_thumbnail(instance.image)
         instance.thumbnail.save(temp_name, content)
         
-class Industry(models.Model):
+class Industry(core_mixins.DateTracking):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta(CommonInfo.Meta):
         verbose_name_plural = "Industries"
@@ -167,11 +150,9 @@ class Industry(models.Model):
         return self.name
 
 
-class EventType(models.Model):
+class EventType(core_mixins.DateTracking):
     name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
-    last_updated = models.DateTimeField(auto_now = True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         verbose_name = "Event Type"
         verbose_name_plural = "Event Types"
