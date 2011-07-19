@@ -82,7 +82,8 @@ class StudentProfileForm(StudentBaseAttributeForm):
     
     # Work-Related Info
     looking_for = forms.ModelMultipleChoiceField(label="Looking for:", queryset = EmploymentType.objects.all(), required = False)
-   
+    
+    website = forms.URLField(label="Personal Website:", required=False)
     older_than_21 = forms.ChoiceField(label="Older than 21:", choices = SELECT_YES_NO_CHOICES, required = False)
 
     class Meta:
