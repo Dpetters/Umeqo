@@ -81,7 +81,7 @@ class ResumeBook(core_mixins.DateTracking):
         return self.name
 
 
-class DefaultStudentFilteringParams(StudentBaseAttributes, core_mixins.DateTracking):
+class FilteringParams(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
 
     majors = models.ManyToManyField(Course, blank = True, null = True)    
