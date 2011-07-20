@@ -5,7 +5,7 @@ from notification import models as notification
 from haystack.query import SearchQuerySet
 from student.models import Student
 from employer import enums
-from employer.models import ResumeBook, StudentComment, Employer
+from employer.models import ResumeBook, Employer, EmployerStudentComment
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
 
@@ -31,7 +31,7 @@ def get_paginator(request):
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
     for student in students:
-        if student in recruiter.starred_students.all():
+        if student in recruiter.employer.starred_students.all():
             starred_attr_dict[student] = True
         else:
             starred_attr_dict[student] = False
@@ -41,16 +41,16 @@ def get_comments(recruiter, students):
     comments_dict = {}
     for student in students:
         try:
-            comments_dict[student] = StudentComment.objects.get(recruiter=recruiter, student=student).comment
-        except StudentComment.DoesNotExist:
-            StudentComment.objects.create(recruiter=recruiter, student=student, comment="")
+            comments_dict[student] = EmployerStudentComment.objects.get(employer=recruiter.employer, student=student).comment
+        except EmployerStudentComment.DoesNotExist:
+            EmployerStudentComment.objects.create(employer=recruiter.employer, student=student, comment="")
             comments_dict[student] = ""   
     return comments_dict
 
 def get_num_of_events_attended_dict(recruiter, students):
     num_of_events_attended_dict = {}
     for student in students:
-        num_of_events_attended_dict[student] = len(recruiter.event_set.filter(attendee__student=student))
+        num_of_events_attended_dict[student] = len(recruiter.employer.event_set.filter(attendee__student=student))
     return num_of_events_attended_dict
 
 def process_results(recruiter, students):
@@ -197,16 +197,16 @@ def filter_students(recruiter,
                     campus_orgs=None):
 
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
-        students = Student.objects.visible()
+        students = Student.objects.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
-        students = recruiter.starred_students.visible()
+        students = recruiter.starred_students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
         resume_books = ResumeBook.objects.filter(recruiter = recruiter)
         if not resume_books.exists():
             latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
         else:
             latest_resume_book = resume_books.order_by('-date_created')[0]
-        students = latest_resume_book.students.visible()
+        students = latest_resume_book.students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]: # New Default Filtering Matches 
         pass
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[4][1]: # All Default Filtering Matches

@@ -10,7 +10,6 @@ from core.fields import PdfField
 from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages
-from student.models import StudentBaseAttributes
 
 class StudentRegistrationForm(forms.Form):
 
@@ -157,5 +156,5 @@ class StudentPreferencesForm(forms.ModelForm):
     class Meta:
         fields = ("email_on_invite_to_public_event",
                   "email_on_invite_to_private_event",
-                  "email_on_new_event" )
+                  "email_on_new_subscribed_employer_event" )
         model = StudentPreferences

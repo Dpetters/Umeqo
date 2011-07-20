@@ -23,10 +23,11 @@ from reportlab.lib.units import cm
 
 from core.decorators import is_student, is_recruiter, render_to
 from core.models import Industry
+from registration.forms import PasswordChangeForm
 from core import messages
 from employer import enums as employer_enums
-from employer.models import ResumeBook, Employer, StudentComment
-from employer.forms import DeliverResumeBookForm, RecruiterPreferences, SearchForm, FilteringParamsForm, StudentFilteringForm
+from employer.models import ResumeBook, Employer, EmployerStudentComment
+from employer.forms import RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
 from employer.views_helper import get_paginator, employer_search_helper
 from events.forms import EventForm
 from events.models import Event
@@ -58,7 +59,7 @@ def employer_profile(request, employer, extra_context = None):
 @login_required
 @user_passes_test(is_recruiter)
 @render_to("employer_preferences.html")
-def employer_preferences(request, form_class=RecruiterPreferences):
+def employer_preferences(request, form_class=RecruiterPreferencesForm):
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter)
@@ -80,14 +81,24 @@ def employer_preferences(request, form_class=RecruiterPreferences):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
+@render_to("employer_account_settings.html")
 @login_required
-@user_passes_test(is_recruiter)
-@render_to('employer_account_settings.html')
-def employer_account_settings(request, extra_context=None):
-    context = {'action': request.REQUEST.get('action', '')}
-    context.update(extra_context or {})
-    return context
-
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+def employer_account_settings(request, preferences_form_class = RecruiterPreferencesForm, 
+                             change_password_form_class = PasswordChangeForm, extra_context=None):
+    if request.method == "GET":
+        context = {}
+        page_messages = {
+            'password-changed': messages.password_changed,
+        }
+        msg = request.GET.get('msg', None)
+        if msg:
+            context["msg"] = page_messages[msg]
+        context['preferences_form'] = preferences_form_class(instance = request.user.recruiter.recruiterpreferences)
+        context['change_password_form'] = change_password_form_class(request.user)
+        context.update(extra_context or {})
+        return context
+    return HttpResponseForbidden("Request must be a GET")
 
 @login_required
 @user_passes_test(is_recruiter)
@@ -146,9 +157,9 @@ def employer_student_comment(request):
                 student = Student.objects.get(id=request.POST['student_id'])
                 comment = request.POST['comment']
                 try:
-                    student_comment = StudentComment.objects.get(student=student, recruiter=request.user.recruiter)
-                except StudentComment.DoesNotExist:
-                    StudentComment.objects.create(recruiter = request.user.recruiter, student=student, comment=comment)
+                    student_comment = EmployerStudentComment.objects.get(student=student, recruiter=request.user.recruiter)
+                except EmployerStudentComment.DoesNotExist:
+                    EmployerStudentComment.objects.create(recruiter = request.user.recruiter, student=student, comment=comment)
                 student_comment.comment = comment
                 student_comment.save()
                 return HttpResponse()
@@ -231,7 +242,7 @@ def employer_student_event_attendance(request):
     if request.is_ajax():
         if request.GET.has_key('student_id'):
             context={}
-            student= Student.objects.visible().get(id=request.GET['student_id'])
+            student = Student.objects.visible().get(id=request.GET['student_id'])
             context['events'] = request.user.recruiter.event_set.filter(attendee__student=student)
             context['student'] = student
             return context
@@ -355,7 +366,7 @@ def employer_event_delete(request, id, extra_context = None):
 @user_passes_test(is_recruiter)
 def employer_students_default_filtering(request, extra_context = None):
     
-    form_class=FilteringParamsForm
+    form_class=StudentDefaultFilteringParametersForm
     if request.method == 'POST':
         form = form_class(data=request.POST,
                           instance = request.user.recruiter)
@@ -442,7 +453,7 @@ def employer_students(request, extra_context=None):
         context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
                                                                  initial={'ordering': request.user.recruiter.recruiterpreferences.default_student_ordering,                           
                                                                           'results_per_page' : request.user.recruiter.recruiterpreferences.results_per_page})
-        context['student_search_form'] = SearchForm()
+        context['student_search_form'] = StudentSearchForm()
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED
         context['email_delivery_type'] = employer_enums.EMAIL

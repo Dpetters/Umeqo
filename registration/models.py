@@ -13,7 +13,7 @@ from core import mixins as core_mixins
 from registration.managers import RegistrationManager
 
 
-class InterestedPerson(models.Model):
+class InterestedPerson(core_mixins.DateTracking):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
@@ -28,11 +28,9 @@ class InterestedPerson(models.Model):
         return self.first_name + " " + self.last_name
 
 
-class SessionKey(models.Model):
+class SessionKey(core_mixins.DateTracking):
     session_key = models.CharField('Session Key', max_length=40, editable=False)
     user = models.ForeignKey(User, editable=False)
-    
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
     
     class Meta:
         verbose_name = "Session Key"
@@ -60,7 +58,7 @@ class UserAttributes(models.Model):
         verbose_name_plural = "User Attributes"
 
     def __unicode__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return str(self.user)
 
 @receiver(post_save, sender=User)
 def create_related_models(sender, instance, created, raw, **kwargs):

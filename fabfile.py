@@ -145,8 +145,6 @@ def commit_prod_data():
        
 def commit_local_data():
     if not env.host:
-        abort("commit_prod_data should not be called locally.")
-        """
         local("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
         copy_out_local_media()
         for app in settings.LOCAL_DATA_APPS:
@@ -155,7 +153,6 @@ def commit_local_data():
                 local("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json")
             else:
                 local("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
-        """
     else: 
         if env.host == "umeqo.com":
             abort("commit_local_data should not be called on prod.")

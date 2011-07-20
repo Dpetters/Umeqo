@@ -844,6 +844,9 @@ label.required[for=id_body]{
 .no_top_margin {
     margin-top: 0px !important;
 }
+.no_top_border{
+	border-top:0 !important;
+}
 .no_bottom_margin {
     margin-bottom: 0px;
 }

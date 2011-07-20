@@ -186,37 +186,37 @@
  }, 
  {
   "pk": 1, 
-  "model": "employer.studentcomment", 
+  "model": "employer.employerstudentcomment", 
   "fields": {
    "comment": "\n", 
-   "recruiter": 1, 
+   "employer": 1, 
    "student": 1
   }
  }, 
  {
   "pk": 2, 
-  "model": "employer.studentcomment", 
+  "model": "employer.employerstudentcomment", 
   "fields": {
    "comment": "", 
-   "recruiter": 1, 
+   "employer": 1, 
    "student": 2
   }
  }, 
  {
   "pk": 3, 
-  "model": "employer.studentcomment", 
+  "model": "employer.employerstudentcomment", 
   "fields": {
    "comment": "", 
-   "recruiter": 1, 
+   "employer": 1, 
    "student": 3
   }
  }, 
  {
   "pk": 4, 
-  "model": "employer.studentcomment", 
+  "model": "employer.employerstudentcomment", 
   "fields": {
    "comment": "", 
-   "recruiter": 1, 
+   "employer": 1, 
    "student": 4
   }
  }, 

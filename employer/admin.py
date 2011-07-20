@@ -29,7 +29,7 @@ admin.site.register(RecruiterStatistics, RecruiterStatisticsAdmin)
 
 
 class RecruiterPreferencesAdmin(admin.ModelAdmin):
-    fields = ['email_on_rsvp', 'results_per_page', 'default_student_ordering']
+    fields = ['email_on_rsvp_to_public_event','email_on_rsvp_to_private_event', 'default_student_results_per_page', 'default_student_result_ordering']
     list_display = ('recruiter', 'last_updated', 'date_created')
     search_fields = ['recruiter']
     date_hierarchy = 'date_created'

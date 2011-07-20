@@ -10,6 +10,7 @@ from core import choices as core_choices
 from core import mixins as core_mixins
 from student.managers import StudentManager
 
+
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True)
@@ -26,7 +27,8 @@ class StudentBaseAttributes(models.Model):
     
     class Meta:
         abstract = True
-    
+
+
 class Student(StudentBaseAttributes, core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
     profile_created = models.BooleanField(default=False)
@@ -76,7 +78,7 @@ class StudentPreferences(core_mixins.DateTracking):
     
     email_on_invite_to_public_event = models.BooleanField()
     email_on_invite_to_private_event = models.BooleanField()
-    email_on_new_event = models.BooleanField()
+    email_on_new_subscribed_employer_event = models.BooleanField()
 
     class Meta:
         verbose_name = "Student Preferences"

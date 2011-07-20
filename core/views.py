@@ -20,7 +20,7 @@ from core.decorators import render_to
 from core.models import Course, CampusOrg, Language, Topic
 from core.forms import BetaForm, AkismetContactForm
 from core.view_helpers import does_email_exist
-from employer.forms import SearchForm
+from employer.forms import StudentSearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
 
@@ -196,7 +196,7 @@ def home(request, extra_context=None):
             
             context.update({
                 'teststring': 'asdlfkjasldfja sakfasdlfk asdl ashdfa sdlfja sdlf asdlf asldkjf askldf asjdfa sdfasdf',
-                'search_form': SearchForm(),
+                'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
                 'your_events': your_events

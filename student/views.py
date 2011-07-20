@@ -18,6 +18,7 @@ from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
 from core.models import Language
 from core import messages
 
+
 @render_to("student_account_settings.html")
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -31,11 +32,21 @@ def student_account_settings(request, preferences_form_class = StudentPreference
         msg = request.GET.get('msg', None)
         if msg:
             context["msg"] = page_messages[msg]
-        context['preferences_form'] = preferences_form_class(instance = request.user.student.preferences)
+        context['preferences_form'] = preferences_form_class(instance = request.user.student.studentpreferences)
         context['change_password_form'] = change_password_form_class(request.user)
         context.update(extra_context or {})
         return context
     return HttpResponseForbidden("Request must be a GET")
+
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_deactivate_account(request):
+    if request.method == "POST":
+        pass
+    else:
+        pass
+    
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -101,6 +112,7 @@ def student_registration(request,
     return render_to_response(template_name,
                               context,
                               context_instance=RequestContext(request))
+
 
 def student_registration_complete(request,
             template_name='student_registration_complete.html',

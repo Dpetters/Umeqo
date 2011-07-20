@@ -21,6 +21,8 @@ class Employer(core_mixins.DateTracking):
     offered_job_types = models.ManyToManyField(EmploymentType, blank = True, null=True) 
     industries = models.ManyToManyField(Industry)
 
+    starred_students = models.ManyToManyField("student.Student")
+    
     main_contact = models.CharField("Main Contact", max_length = 50)
     main_contact_email = models.EmailField("Contact Email")
     main_contact_phone = PhoneNumberField("Contact Phone #")
@@ -54,7 +56,6 @@ class EmployerStatistics(core_mixins.DateTracking):
 class Recruiter(core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
     employer = models.ForeignKey("employer.Employer")
-    starred_students = models.ManyToManyField("student.Student")
 
     def __unicode__(self):
         if hasattr(self, "user"):
@@ -81,7 +82,7 @@ class ResumeBook(core_mixins.DateTracking):
         return self.name
 
 
-class FilteringParams(StudentBaseAttributes, core_mixins.DateTracking):
+class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
 
     majors = models.ManyToManyField(Course, blank = True, null = True)    
@@ -93,21 +94,22 @@ class FilteringParams(StudentBaseAttributes, core_mixins.DateTracking):
     older_than_21 = models.CharField(max_length=1, choices = choices.NO_YES_CHOICES, blank = True, null = True)
 
 
-class StudentComment(models.Model):
-    recruiter = models.ForeignKey(Recruiter)
+class EmployerStudentComment(core_mixins.DateTracking):
+    employer = models.ForeignKey(Employer)
     student = models.ForeignKey(Student)
     comment = models.CharField(max_length=500)
     
     class Meta:
-        unique_together = (("recruiter", "student"),)
+        unique_together = (("employer", "student"),)
 
         
 class RecruiterPreferences(core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
     
-    email_on_rsvp = models.BooleanField()
-    results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
-    default_student_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
+    email_on_rsvp_to_public_event = models.BooleanField()
+    email_on_rsvp_to_private_event = models.BooleanField()
+    default_student_results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
+    default_student_result_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
 
     class Meta:
         verbose_name = "Recruiter Preferences"
