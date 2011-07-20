@@ -143,8 +143,8 @@ def commit_prod_data():
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                 run("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json")
                 run("git add -A")
-                run('git commit -m "Prod data commit from staging."')
                 with fabric_settings(warn_only=True):
+                    run('git commit -m "Prod data commit from staging."')
                     run("git push")
 
 def commit_local_data():
@@ -171,8 +171,8 @@ def commit_local_data():
                     else:
                         run("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
                 run("git add -A")
-                run('git commit -m "Local data commit from staging."')
                 with fabric_settings(warn_only=True):
+                    run('git commit -m "Local data commit from staging."')
                     run("git push")
 
 def update():
