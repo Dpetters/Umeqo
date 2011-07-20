@@ -226,7 +226,7 @@ Copyright 2011. All Rights Reserved.
                     <span class="main_block_header_title">Hosted by</span>
                 </div>
                 <div class="main_block_content">
-                    {% for recruiter in recruiters %}
+                    {% for employer in employers %}
                         <div class="event_company">
                             <div class="event_company_name">
                                 <a href="{% if not show_admin %}{% url employers_list %}?id={{recruiter.employer.id}}{% else %}#{% endif %}" class="employer">

@@ -176,7 +176,7 @@
   "fields": {
    "last_updated": "2011-07-07 20:30:03", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
+   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
@@ -188,7 +188,7 @@
   "fields": {
    "last_updated": "2011-07-10 15:25:30", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
+   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
@@ -200,7 +200,7 @@
   "fields": {
    "last_updated": "2011-07-10 20:05:56", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
+   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 3, 
    "date_created": "2011-07-10 20:05:56"
@@ -212,7 +212,7 @@
   "fields": {
    "last_updated": "2011-07-10 20:26:02", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
+   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"

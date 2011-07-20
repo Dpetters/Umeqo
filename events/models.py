@@ -13,7 +13,7 @@ class Event(models.Model):
     objects = ActiveManager()
 
     # Required Fields
-    employers = models.ManyToManyField("employer.Recruiter")
+    recruiters = models.ManyToManyField("employer.Recruiter")
     
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
