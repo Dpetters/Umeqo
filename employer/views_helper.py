@@ -50,7 +50,7 @@ def get_comments(recruiter, students):
 def get_num_of_events_attended_dict(recruiter, students):
     num_of_events_attended_dict = {}
     for student in students:
-        num_of_events_attended_dict[student] = len(recruiter.employer.event_set.filter(attendee__student=student))
+        num_of_events_attended_dict[student] = len(recruiter.event_set.filter(attendee__student=student))
     return num_of_events_attended_dict
 
 def process_results(recruiter, students):

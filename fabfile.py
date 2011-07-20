@@ -142,7 +142,11 @@ def commit_prod_data():
                 copy_out_prod_media()
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                 run("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json")
-       
+                run("git add -A")
+                run('git commit -m "Prod data commit from staging."')
+                with fabric_settings(warn_only=True):
+                    run("git push")
+
 def commit_local_data():
     if not env.host:
         local("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
@@ -166,6 +170,10 @@ def commit_local_data():
                         run("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json")
                     else:
                         run("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
+                run("git add -A")
+                run('git commit -m "Local data commit from staging."')
+                with fabric_settings(warn_only=True):
+                    run("git push")
 
 def update():
     if env.host:
