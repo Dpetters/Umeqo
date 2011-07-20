@@ -5,7 +5,88 @@
   "fields": {
    "date_created": "2011-07-19 00:04:01", 
    "session_key": "f1bc1edc3627163f7f61a0b28ca17ff3", 
+   "last_updated": "2011-07-19 08:00:19", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 00:47:33", 
+   "session_key": "0aa4c5d1961ce23fe1fab8f47b43e9a1", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 01:27:22", 
+   "session_key": "ab8c9109f1f587ae1599c3d176e48b38", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 01:30:00", 
+   "session_key": "1d35e1c42e315a607d19c082a73b0343", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 01:32:44", 
+   "session_key": "d70e314f35b14e201b485fabd5069a27", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 01:37:22", 
+   "session_key": "5d97450d31e836b1accffed13bfc7e1b", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 13:14:01", 
+   "session_key": "b8d039d3c98d9ff8a9db72a94f920aa9", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-19 22:24:17", 
+   "session_key": "cfc3a5e2cec91e214e69826e831d51dc", 
+   "last_updated": "2011-07-19 08:00:19", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-20 17:50:30", 
+   "session_key": "f4a3754b7f6fa0d17fe8e10745ef5dd1", 
+   "last_updated": "2011-07-20 17:50:30", 
+   "user": 3
   }
  }
 ]

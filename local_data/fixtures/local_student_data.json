@@ -47,8 +47,7 @@
     40
    ], 
    "act": 34, 
-   "date_created": "2011-07-07 20:30:03", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-07 20:30:03"
   }
  }, 
  {
@@ -96,8 +95,7 @@
     40
    ], 
    "act": null, 
-   "date_created": "2011-07-10 15:25:30", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-10 15:25:30"
   }
  }, 
  {
@@ -131,8 +129,7 @@
    "user": 5, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-07-10 20:05:56", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-10 20:05:56"
   }
  }, 
  {
@@ -166,17 +163,16 @@
    "user": 6, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-07-10 20:26:02", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-10 20:26:02"
   }
  }, 
  {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-07 20:30:03", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
@@ -186,9 +182,9 @@
   "pk": 2, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-10 15:25:30", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
@@ -198,9 +194,9 @@
   "pk": 3, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-10 20:05:56", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 3, 
    "date_created": "2011-07-10 20:05:56"
@@ -210,9 +206,9 @@
   "pk": 4, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-10 20:26:02", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_subscribed_employer_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
