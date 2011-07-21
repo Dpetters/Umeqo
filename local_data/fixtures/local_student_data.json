@@ -4,7 +4,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-07-08 01:22:30", 
+   "last_updated": "2011-07-20 18:04:05", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 

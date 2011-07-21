@@ -88,5 +88,125 @@
    "last_updated": "2011-07-20 17:50:30", 
    "user": 3
   }
+ }, 
+ {
+  "pk": 11, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-20 23:08:15", 
+   "session_key": "0d93a8f12eabc5bbcefeefda388f0ef6", 
+   "last_updated": "2011-07-20 23:08:15", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-20 23:10:00", 
+   "session_key": "62dfed9d9589ff7594dc45cd6f7acc1b", 
+   "last_updated": "2011-07-20 23:10:00", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-21 07:18:10", 
+   "session_key": "d71562650e7e1d31a5c8c10359b4dea0", 
+   "last_updated": "2011-07-21 07:18:10", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 2, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 3, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 4, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 5, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 6, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 7, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 8, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 9, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 10, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 11, 
+   "last_password_change_date": null
+  }
  }
 ]
