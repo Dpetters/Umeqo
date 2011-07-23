@@ -4,7 +4,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-07-20 18:04:05", 
+   "last_updated": "2011-07-23 10:03:38", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -39,7 +39,7 @@
    ], 
    "website": "", 
    "second_major": 25, 
-   "resume": "student/Student/petters_dmitrij_student1@umeqo.com_2011-07-10-17-49-21.pdf", 
+   "resume": "student/Student/petters_dmitrij_student1@umeqo.com_2011-07-23-10-03-38.pdf", 
    "user": 2, 
    "industries_of_interest": [
     15, 
