@@ -228,6 +228,17 @@
   }
  }, 
  {
+  "pk": 5, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-07-23 12:49:12", 
+   "last_updated": "2011-07-23 12:49:12", 
+   "student": 5, 
+   "employer": 5
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "employer.recruiterpreferences", 
   "fields": {
