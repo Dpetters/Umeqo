@@ -140,7 +140,7 @@ $(document).ready( function() {
                                         create_campus_organization_dialog.html(dialog_error_message);
                                     }
                                 	create_campus_organization_dialog.dialog('option', 'position', 'center');
-                                },
+                                }
                             }
                         },
                         type: {
@@ -262,14 +262,14 @@ $(document).ready( function() {
                                         create_language_dialog.html(dialog_error_message);
                 						create_language_dialog.dialog('option', 'position', 'center');
                                     }
-                                },
+                                }
                             }
-                        },
+                        }
                     },
                     messages:{
                         name:{
                             remote: "This language already exists."
-                        },
+                        }
                     }
                 });
             }
@@ -424,7 +424,7 @@ $(document).ready( function() {
         },
         uncheckAll: function(){
         	$("#id_looking_for").trigger("change");
-        },
+        }
     }).multiselectfilter();    
 	
     $("#id_gpa").blur(function(){
@@ -457,7 +457,7 @@ $(document).ready( function() {
         },
         uncheckAll: function(){
         	$("#id_industries_of_interest").trigger("change");
-        },
+        }
     }).multiselectfilter();
 
     $("#id_previous_employers").multiselect({
@@ -481,7 +481,7 @@ $(document).ready( function() {
         },
         uncheckAll: function(){
         	$("#id_previous_employers").trigger("change");
-        },
+        }
     }).multiselectfilter();
 
     $("#id_campus_involvement").multiselect({
