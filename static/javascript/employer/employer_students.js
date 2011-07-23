@@ -117,11 +117,11 @@ $(document).ready(function() {
             },
             success: function (data) {
                 if(data.action==STARRED){
-                   		$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been starred.</p>");
-                        $(container).html(STARRED_IMG);
+                   	$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been starred.</p>");
+                    $(container).html(STARRED_IMG);
 				}else{
-                   		$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been unstarred.</p>");
-                        $(container).html(UNSTARRED_IMG);
+                   	$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been unstarred.</p>");
+                    $(container).html(UNSTARRED_IMG);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -130,7 +130,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
 
     };
@@ -146,7 +146,7 @@ $(document).ready(function() {
 	            url: STUDENTS_ADD_STAR_URL,
 	            dataType: "json",
 	            data: {
-	                'student_ids': student_ids.join('~'),
+	                'student_ids': student_ids.join('~')
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
@@ -169,7 +169,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-	            },
+	            }
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -188,7 +188,7 @@ $(document).ready(function() {
 	            url: STUDENTS_REMOVE_STAR_URL,
 	            dataType: "json",
 	            data: {
-	                'student_ids': student_ids.join('~'),
+	                'student_ids': student_ids.join('~')
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
@@ -211,7 +211,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-	            },
+	            }
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -257,7 +257,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-	            },
+	            }
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -276,7 +276,7 @@ $(document).ready(function() {
                 url: RESUME_BOOK_CURRENT_ADD_STUDENTS_URL,
                 dataType: "json",
                 data: {
-                    'student_ids': student_ids.join('~'),
+                    'student_ids': student_ids.join('~')
                 },
                 beforeSend: function (jqXHR, settings) {
                     $(student_ids).each( function() {
@@ -303,7 +303,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-                },
+                }
             });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -321,7 +321,7 @@ $(document).ready(function() {
                 place_tiny_ajax_loader(container);
             },
             data: {
-                'student_id': student_id,
+                'student_id': student_id
             },
             success: function (data) {
                 initiate_resume_book_summary_update();
@@ -345,7 +345,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     function handle_student_event_attendance_hover(){
@@ -364,7 +364,7 @@ $(document).ready(function() {
 	            dataType: "html",
 	            success: function (data) {
 	                $(".student_event_attendance_bubble").html(data);
-	            },
+	            }
 	        });
 		} else {
         	dropdown.eq(0).remove();
@@ -392,7 +392,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     
@@ -416,7 +416,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     
@@ -519,7 +519,7 @@ $(document).ready(function() {
                     campus_org_info_dialog.html(dialog_error_message);
                 }
                 campus_org_info_dialog.dialog('option', 'position', 'center');
-            },
+            }
         });
     };
 	
@@ -551,7 +551,7 @@ $(document).ready(function() {
                     course_info_dialog.html(dialog_error_message);
                 }
                 course_info_dialog.dialog('option', 'position', 'center');
-            },
+            }
         });
     };
 
@@ -600,7 +600,7 @@ $(document).ready(function() {
                 'countries_of_citizenship' : countries_of_citizenship.join('~'),
                 'older_than_21' : older_than_21,
                 'ordering': ordering,
-                'results_per_page': results_per_page,
+                'results_per_page': results_per_page
             },
             complete: function(jqXHR, textStatus) {
                 clearTimeout(error_dialog_timeout);
@@ -627,7 +627,7 @@ $(document).ready(function() {
                 }else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     
@@ -721,7 +721,6 @@ $(document).ready(function() {
                                         hide_form_submit_loader("#deliver_resume_book_form");
                                     },
                                     error: function(jqXHR, textStatus, errorThrown) {
-                                    	console.log("hi");
                                         if(jqXHR.status==0){
                                              deliver_resume_book_dialog.html(dialog_check_connection_message);
                                         }else{
@@ -751,8 +750,8 @@ $(document).ready(function() {
                     rules: {
                         delivery_type: {
                             required: true
-                        },
-                    },
+                        }
+                    }
                 });
                 $.ajax({
                     type: "POST",
