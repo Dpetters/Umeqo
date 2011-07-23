@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
-from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfileForm
+from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfilePreviewForm, StudentProfileForm
 from student.models import Student
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -183,7 +183,7 @@ def student_profile(request,
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 @render_to("student_profile_preview.html")
 def student_profile_preview(request,
-                            form_class=StudentProfileForm,
+                            form_class=StudentProfilePreviewForm,
                             extra_context=None):
 
     if request.method == 'POST':
@@ -219,6 +219,7 @@ def student_profile_preview(request,
             context.update(extra_context or {})
             return context
         else:
+            print form.errors
             if form.non_field_errors():
                 error_html = form.non_field_errors()[0]
             else:

@@ -41,7 +41,6 @@
 .current_page_link:hover {
     color:#6E97B9;
     cursor:default;
-
 }
 .student_main_info {
     padding-bottom:5px;
@@ -70,6 +69,7 @@
     float:right;
 }
 .resume_book_current_toggle_student, .student_toggle_star{
+	min-width:16px;
     margin-left:7px;
     display:inline-block;
     min-width:14px;

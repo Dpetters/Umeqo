@@ -432,8 +432,10 @@ $(document).ready( function() {
     });
     // Also just do this on load so that the value from Django (2.3 for example)
     // escapes validation and becomes 2.30.
-    $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
-
+    if($("#id_gpa").val()){
+    	$("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
+	}
+	
     $("#id_industries_of_interest").multiselect({
         noneSelectedText: 'select industries',
         classes: 'interested_in_multiselect',
@@ -620,41 +622,52 @@ $(document).ready( function() {
     // Field masks
     $("#id_gpa").mask("9.99",{placeholder:" "});
     
-    $("select, input[type=text]").live('change', load_profile_preview);
+    $("select, input[type=text], input[type=file]").live('change', load_profile_preview);
     
     
     function load_profile_preview(){
-    	if ($("#profile_form").valid()){
-    		var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
-		    $("#profile_form").ajaxSubmit({
-		    	type:"POST",
-		        dataType: "html",
-		        url: PROFILE_PREVIEW_URL,
-		        iframe: false,
-				complete: function(jqXHR, textStatus) {
-					clearTimeout(profile_preview_timeout);
-				},
-		        error: function(jqXHR, textStatus, errorThrown) {
-	                if(jqXHR.status==0) {
-	                    show_error_dialog(page_check_connection_message);
-					}else{
-	                    show_error_dialog(page_error_message);
-	                }
-		        },
-		        success: function (data) { 
-		        	$("#listing_preview").html(data);
-		        	if (student_detailed_info_visible){
-		        		$(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
-		        		$(".student_detailed_info").show();
-		        	}else{
-		        		$(".student_detailed_info").hide();
-		        	}
-		        	$(".student_comment").autoResize({
-					    animateDuration : 0,
-					    extraSpace : 18
-					});
-		        }
-		    });
+    	var required_fields_filled_out = true;
+    	$("label.required").each(function(){
+    		required_fields_filled_out = required_fields_filled_out && $("#" + $(this).attr("for")).val();
+    	});
+    	if(required_fields_filled_out){
+	    	if ($("#profile_form").valid()){
+	    		var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
+			    $("#profile_form").ajaxSubmit({
+			    	type:"POST",
+			        dataType: "html",
+			        url: PROFILE_PREVIEW_URL,
+			        iframe: false,
+					complete: function(jqXHR, textStatus) {
+						clearTimeout(profile_preview_timeout);
+					},
+			        error: function(jqXHR, textStatus, errorThrown) {
+		                if(jqXHR.status==0) {
+		                    show_error_dialog(page_check_connection_message);
+						}else{
+		                    show_error_dialog(page_error_message);
+		                }
+			        },
+			        success: function (data) { 
+			        	$("#listing_preview").html(data);
+			        	if (student_detailed_info_visible){
+			        		$(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
+			        		$(".student_detailed_info").show();
+			        	}else{
+			        		$(".student_detailed_info").hide();
+			        	}
+			        	$(".student_comment").autoResize({
+						    animateDuration : 0,
+						    extraSpace : 18
+						});
+			        }
+			    });
+		    }else{
+		    	$("#listing_preview").html(data);
+		    }
+	    }else{
+	    	clearTimeout(profile_preview_timeout);
+	        $("#listing_preview").html(FILL_OUT_REQUIRED_FIELDS_MESSAGE);
 	    }
     };
     $("#listing_preview").html(STUDENT_PROFILE_PREVIEW_AJAX_LOADER);

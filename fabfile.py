@@ -8,11 +8,12 @@ ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 sys.path.append(ROOT)
 fabric_django.settings_module('settings')
 from django.conf import settings
+from south.models import MigrationHistory
 
 
 __all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
-          "update", "create_media_dirs"]
+          "update", "create_media_dirs", "schemamigrate"]
 
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
@@ -106,6 +107,15 @@ def create_media_dirs():
         if not os.path.exists(model_root):
             os.makedirs(model_root)
     
+def schemamigrate():
+    if not env.host:
+        apps = list(set(app.app_name for app in MigrationHistory.objects.all()))
+        with fabric_settings(warn_only=True):
+            for app in apps:
+                local("python manage.py schemamigration %s --auto" % app)
+    else:
+        abort("Update can only be called locally.")
+        
 def load_prod_data():
     if not env.host:  
         copy_in_prod_media()

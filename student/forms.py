@@ -150,6 +150,8 @@ class StudentProfileForm(StudentBaseAttributeForm):
             raise forms.ValidationError(_(messages.student_profle_form_first_second_majors_diff))
         return self.cleaned_data['second_major']
 
+class StudentProfilePreviewForm(StudentProfileForm):
+    resume = PdfField(label="Resume:", required=False)
 
 class StudentPreferencesForm(forms.ModelForm):
 
