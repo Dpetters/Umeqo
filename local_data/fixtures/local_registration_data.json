@@ -120,13 +120,13 @@
   }
  }, 
  {
-  "pk": 27, 
+  "pk": 30, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-23 14:59:47", 
-   "session_key": "7d4f56dfadaca65d13af3fe0055e6834", 
-   "last_updated": "2011-07-23 14:59:47", 
-   "user": 3
+   "date_created": "2011-07-23 17:06:12", 
+   "session_key": "1741ef705fd4d8c13ea12b1332d3e32a", 
+   "last_updated": "2011-07-23 17:06:12", 
+   "user": 2
   }
  }, 
  {
