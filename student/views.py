@@ -195,7 +195,6 @@ def student_profile_preview(request,
             else:
                 student.sat_t = None
             
-            
             context = {'student':student,
                        'in_resume_book':False,
                        'starred':False,

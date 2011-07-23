@@ -450,9 +450,9 @@ def employer_students(request, extra_context=None):
         if request.method == "POST" and request.POST.has_key('query'):
             context['query'] = request.POST.get('query', '')
 
-        context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
-                                                                 initial={'ordering': request.user.recruiter.recruiterpreferences.default_student_result_ordering,                           
-                                                                          'results_per_page' : request.user.recruiter.recruiterpreferences.default_student_results_per_page})
+        context['student_filtering_form'] = StudentFilteringForm(initial={'recruiter': request.user.recruiter,
+                                                                          'ordering': request.user.recruiter.recruiterpreferences.default_student_result_ordering,                           
+                                                                          'results_per_page': request.user.recruiter.recruiterpreferences.default_student_results_per_page})
         context['student_search_form'] = StudentSearchForm()
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED

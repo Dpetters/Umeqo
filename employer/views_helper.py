@@ -197,7 +197,7 @@ def filter_students(recruiter,
                     campus_orgs=None):
 
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
-        students = Student.objects.all()
+        students = Student.objects.visible()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
         students = recruiter.starred_students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book

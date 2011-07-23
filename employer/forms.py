@@ -55,7 +55,9 @@ class StudentFilteringForm(StudentDefaultFilteringParametersForm):
 
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)
-        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(args[0].get('recruiter', '')))
+        print args
+        print kwargs
+        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(kwargs.get('initial').get('recruiter', '')))
 
 
 class RecruiterPreferencesForm(forms.ModelForm):
