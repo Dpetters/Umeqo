@@ -10,6 +10,7 @@ $(document).ready(function() {
     var page = 1;
     var student_list = $("#id_student_list option:selected").text();
     var ordering = $("#id_ordering option:selected").val();
+    console.log($("#id_results_per_page option:selected").val());
     var results_per_page = $("#id_results_per_page option:selected").val();
     var courses = [];
     var school_years = [];
