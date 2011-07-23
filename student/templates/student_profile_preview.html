@@ -17,7 +17,11 @@
     {% if num_of_events_attended > 0 %}
     <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
     {% endif %}
+    {% if profile_preview %}
+    <a class="student_resume_link" href="javascript:void(0)">View Resume</a>
+    {% else %}
     <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
+    {% endif %}
     <br />
     <a data-student-id="{{student.id}}" class="resume_book_current_toggle_student" href="javascript:void(0)">{% student_resume_book in_resume_book %}</a>
     <span class="student_major">
@@ -29,7 +33,7 @@
         {% endif %}
     </span>
     <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
-        <a class="student_invite_to_event_link" href="#">Invite To Event</a>
+        <a class="student_invite_to_event_link" href="javascript:void(0)">Invite To Event</a>
     </span>
     <p class="student_gpa">
         <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0

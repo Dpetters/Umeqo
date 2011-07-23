@@ -198,7 +198,7 @@ def student_profile_preview(request,
             context = {'student':student,
                        'in_resume_book':False,
                        'starred':False,
-                       'comment':"Recruiters write comments about you for later referral!",
+                       'comment':messages.student_profile_preview_comment,
                        'num_of_events_attended':1,
                        'profile_preview':True}
             

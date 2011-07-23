@@ -2,6 +2,8 @@
 
 {% load macros %}
 {% load text_snippet %}
+{% load student_star %}
+{% load student_resume_book %}
 
 {% block metadata %}
 {{block.super}}
@@ -52,6 +54,15 @@
     var STUDENT_PROFILE_PREVIEW_CHECKBOX_TOOLTIP = "{% text_snippet 'student_profile_preview_checkbox_tooltip' %}";
     var STUDENT_PROFILE_PREVIEW_RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP = "{% text_snippet 'student_profile_preview_resume_book_current_toggle_tooltip' %}";
     var STUDENT_PROFILE_PREVIEW_STAR_TOGGLE_TOOLTIP = "{% text_snippet 'student_profile_preview_star_toggle_tooltip' %}";
+    var STUDENT_PROFILE_PREVIEW_EVENT_ATTENDANCE_TOOLTIP = "{% text_snippet 'student_profile_preview_event_attendance_tooltip' %}";
+    var STUDENT_PROFILE_PREVIEW_VIEW_RESUME_TOOLTIP = "{% text_snippet 'student_profile_preview_view_resume_tooltip' %}";
+    var STUDENT_PROFILE_PREVIEW_INVITE_TO_EVENT_TOOLTIP = "{% text_snippet 'student_profile_preview_invite_to_event_tooltip' %}";
+
+    var REMOVE_FROM_RESUME_BOOK_IMG = "{% student_resume_book 'True' %}";
+    var ADD_TO_RESUME_BOOK_IMG = "{% student_resume_book '' %}";
+    
+    var STARRED_IMG = "{% student_star 'True' %}";
+    var UNSTARRED_IMG = "{% student_star '' %}";
 </script>
 {% endblock %}
 
