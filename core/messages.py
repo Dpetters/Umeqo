@@ -8,19 +8,23 @@ password_changed = 'Password changed successfully.'
 profile_saved = 'Your profile has been saved.'
 
 #Student Profile Form
-student_profile_form_first_name = 'Enter your first name.';
-student_profile_form_last_name = 'Enter your last name.';
-student_profile_form_school_year = "Choose your school year.";
-student_profile_form_graduation_year = 'Choose your graduation year.';
-student_profile_form_first_major = 'Choose your major.';
-student_profile_form_gpa_required = 'Enter your GPA.';
-student_profile_form_gpa_range = 'Your GPA should be between 0 and 5.';
-student_profile_form_resume = "Please select a PDF version of your resume.";
-student_profile_form_website = 'Please enter a valid url.';
-student_profle_form_first_second_majors_diff = "Second major must be different from first.";
-student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to perform actions over multiple students at once.";
-student_profile_preview_star_toggle_tooltip = "If you stand out, a recruiter can star you! All other recruiters at that company will see this.";
-student_profile_preview_resume_book_current_toggle_tooltip = "Recruiters can toggle you in and out of the custom resume book they're building.";
+student_profile_form_first_name = 'Enter your first name.'
+student_profile_form_last_name = 'Enter your last name.'
+student_profile_form_school_year = "Choose your school year."
+student_profile_form_graduation_year = 'Choose your graduation year.'
+student_profile_form_first_major = 'Choose your major.'
+student_profile_form_gpa_required = 'Enter your GPA.'
+student_profile_form_gpa_range = 'Your GPA should be between 0 and 5.'
+student_profile_form_resume = "Please select a PDF version of your resume."
+student_profile_form_website = 'Please enter a valid url.'
+student_profle_form_first_second_majors_diff = "Second major must be different from first."
+student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to perform actions over multiple students at once."
+student_profile_preview_star_toggle_tooltip = "If you stand out, a recruiter can star you! You will appear as such to all the other recruiters at that company."
+student_profile_preview_resume_book_current_toggle_tooltip = "Recruiters can toggle you in and out of the custom resume book they're creating."
+student_profile_preview_comment = "Recruiters write comments about you for later referral!"
+student_profile_preview_event_attendance_tooltip = "A company's recruiters only see this icon on your profile if you attended at least one of their events. Upon hover they see a summary of the events which you attended."
+student_profile_preview_invite_to_event_tooltip = "Recruiters can invite you to both public and private events."
+student_profile_preview_view_resume_tooltip = "Apart from creating resume books, recruiters can also view and download your resume individually."
 
 # Resume
 resume_problem = "There was a problem with your resume. Please try again.";
