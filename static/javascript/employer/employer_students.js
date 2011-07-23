@@ -416,23 +416,6 @@ $(document).ready(function() {
             },
         });
     };
-
-    function handle_student_hide_details_link_click() {
-        var id = $(this).attr('data-student-id');
-        $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
-        $('.student_toggle_detailed_info_link[data-student-id=' + id  + ']').html(SHOW_DETAILS_LINK);
-    };
-    
-    function handle_student_toggle_detailed_info_link_click() {
-        var id = $(this).attr('data-student-id');
-        if ($(this).children('span').attr('class') === "hide_details") {
-            $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
-            $(this).html(SHOW_DETAILS_LINK);
-        } else {
-            $('.student_detailed_info[data-student-id=' + id  + ']').slideDown('slow');
-            $(this).html(HIDE_DETAILS_LINK);
-        }
-    };
     
     function handle_results_menu_toggle_details_button_click() {
         if( $("#results_menu_toggle_details span").html()=="Show All Details") {
@@ -629,10 +612,6 @@ $(document).ready(function() {
                 // Results Menu Styles
                 $('.dropdown_menu_button ul').hide();
 
-                // Hide all extra details except for the first
-                $(".student_detailed_info").hide();
-                $('.student_detailed_info[data-student-id=0]').show();
-                $('.student_toggle_detailed_info_link[data-student-id=0]').html(HIDE_DETAILS_LINK);
 
                 // Bring the opacity back to normal and hide the ajax loader
                 $("#results_block_content").css('opacity', 1);
@@ -739,6 +718,7 @@ $(document).ready(function() {
                                         hide_form_submit_loader("#deliver_resume_book_form");
                                     },
                                     error: function(jqXHR, textStatus, errorThrown) {
+                                    	console.log("hi");
                                         if(jqXHR.status==0){
                                              deliver_resume_book_dialog.html(dialog_check_connection_message);
                                         }else{
@@ -1211,14 +1191,11 @@ $(document).ready(function() {
     $("#resume_book_current_add_students").live('click', handle_resume_book_current_add_students_click);
     $("#resume_book_current_remove_students").live('click', handle_resume_book_current_remove_students_click);
     $("#results_menu_toggle_details").live('click', handle_results_menu_toggle_details_button_click );
-    $(".student_toggle_detailed_info_link").live('click', handle_student_toggle_detailed_info_link_click);
     $(window).resize(set_up_side_block_scrolling);
-    $(".student_hide_details_link").live('click', handle_student_hide_details_link_click);
     $("#search_form_submit_button").click(initiate_search);
     $(".page_link").live('click', handle_page_link_click);
     $('#student_deliver_resume_book_button').click(handle_deliver_resume_book_button_click);
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
-	$(".student_comment").live('blur', function(){ $(this).height(17); }); 
     $('#results_menu_more_actions').live('click', function() { $('#results_menu_more_actions ul').toggle(); });
     $('#results_menu_checkbox_menu_button').live('click', function() { $('#results_menu_checkbox_menu_button ul').toggle(); });
 	$('.student_event_attendance').live('hover', handle_student_event_attendance_hover);

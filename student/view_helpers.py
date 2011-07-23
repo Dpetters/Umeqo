@@ -1,17 +1,17 @@
 import pyPdf, re, os, datetime
 
 from django.conf import settings
-from django.shortcuts import redirect
-from django.http import HttpResponse
-from django.utils import simplejson
-from django.core.urlresolvers import reverse
 
-def process_resume(student, ajax):
+from student.enums import RESUME_PROBLEMS
+
+
+def process_resume(student):
    
     resume_text = ""
     resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
     resume = pyPdf.PdfFileReader(resume_file)
-    for i in range(0, resume.getNumPages()):
+    page_num = resume.getNumPages()
+    for i in range(0, page_num):
         resume_text += resume.getPage(i).extractText() + "\n"
     resume_file.close()
     
@@ -21,18 +21,20 @@ def process_resume(student, ajax):
     # Get rid of stop words
     fullWords = re.findall(r'[a-zA-Z]{3,}', resume_text)
     result = ""
+    count = 0
     for word in fullWords:
         word = word.lower()
         if word not in stopWords:
+            count += 1
             result += " " + word
+    if count > 1000*page_num:
+        return RESUME_PROBLEMS.HACKED
+    if count == 0:
+        return RESUME_PROBLEMS.UNPARSABLE
     
     # Update the student profile and save
     student.keywords = result
     student.last_update = datetime.datetime.now()
     student.save()
     
-    if ajax:
-        data = {'valid':True,
-                'success_url':reverse("home")}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return redirect(reverse('home') + '?msg=profile_saved')
+    return

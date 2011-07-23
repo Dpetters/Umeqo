@@ -41,21 +41,24 @@ $(document).ready( function() {
         dialog.dialog('open');
         return dialog;
     };
-    
-    function open_profile_form_info_dialog(){
-        var dialog = $('<div></div>')
+
+    function open_unparsable_resume_dialog(){
+        var dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            title:"Why More Information is Better",
-            dialogClass: "profile_form_info_dialog",
+            title:"Unparsable Resume",
+            dialogClass: "unparsable_resume_dialog",
             modal:true,
-            width:700,
-            resizable: false
+            width:410,
+            resizable: false,
+            close: function() {
+                $unparsable_resume_dialog.remove();
+            }
         });
         dialog.dialog('open');
         return dialog;
-    };
-    
+	};
+	
     $('#create_campus_organization_link').click( function () {
         create_campus_organization_dialog = open_create_campus_organization_dialog();
         create_campus_organization_dialog.html(dialog_ajax_loader);
@@ -156,6 +159,9 @@ $(document).ready( function() {
             }
         });
     });
+    
+    
+    
     
     $('#create_language_link').click( function () {
         
@@ -269,17 +275,72 @@ $(document).ready( function() {
             }
         });
     });
-
-    $('#profile_form_info_link').click( function () {
-        var $profile_form_info_dialog = open_profile_form_info_dialog();
-
-        $profile_form_info_dialog.html(dialog_ajax_loader);
-        $profile_form_info_dialog.load('/student/profile-form-info/', function () {
-        });
-    });
     
     // Create Profile Form Validation
     var v = $("#profile_form").validate({
+        submitHandler: function (form) {
+            $(form).ajaxSubmit({
+                dataType: 'text',
+                beforeSubmit: function (arr, $form, options) {
+                    show_form_submit_loader("#profile_form");
+                },
+                complete : function(jqXHR, textStatus) {              	
+                	hide_form_submit_loader("#profile_form");
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    if(jqXHR.status==0){
+                        $("#profile_form .error_section").html(form_check_connection_message);
+                    }else{
+                    	show_error_dialog(page_error_message);
+                    }
+                },
+                success: function (data) {
+                	data = $.parseJSON(data);
+                    if(data.valid) {
+                    	window.location.href = HOME_URL + "?msg=profile-saved";
+					} else {
+					  	if(data.unparsable_resume){
+							var $unparsable_resume_dialog = open_unparsable_resume_dialog();
+						    $unparsable_resume_dialog.html(dialog_ajax_loader);
+						    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+						    $.ajax({
+						        dataType: "html",
+						        url: UNPARSABLE_RESUME_URL,
+						        complete: function(jqXHR, textStatus) {
+                					clearTimeout(unparsable_resume_dialog_timeout);
+            					},
+						        error: function(jqXHR, textStatus, errorThrown) {
+						            if(jqXHR.status==0){
+										$unparsable_resume_dialog.html(dialog_check_connection_message);
+									}else{
+						                $unparsable_resume.html(dialog_error_message);
+						            }
+						        },
+						        success: function (data) {  
+						        	$unparsable_resume_dialog.html(data);  
+						        	$(".choose_another_resume_link").live('click', function(){
+						        		$unparsable_resume_dialog.remove();
+							   			accordion.accordion("activate", 0);
+					            		current = 0;
+					            		$("#id_resume").focus();
+						        	});
+						        	$(".save_profile_link").live('click', function(){
+						        		window.location.href = HOME_URL + "?msg=profile-saved";
+						        	});
+						        }
+						    });
+					    }
+					    else{
+					    	if('id_second_major' in data.errors){
+					   			accordion.accordion("activate", 1);
+			            		current = 1;
+			            	}
+							place_table_form_errors("#profile_form", data.errors);
+					    }
+                   }
+                }
+            });
+        },
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_errors_table,
@@ -352,7 +413,16 @@ $(document).ready( function() {
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
-        minWidth:multiselectMinWidth
+        minWidth:multiselectMinWidth,
+        click: function(){
+        	$("#id_looking_for").trigger("change");
+        },
+        checkAll: function(){
+        	$("#id_looking_for").trigger("change");
+        },
+        uncheckAll: function(){
+        	$("#id_looking_for").trigger("change");
+        },
     }).multiselectfilter();    
 	
     $("#id_gpa").blur(function(){
@@ -372,11 +442,18 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
+            $("#id_industries_of_interest").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > industries_of_interest_max ) {
                 place_multiselect_warning_table($("#id_industries_of_interest"), industries_of_interest_max);
                 return false;
             }
-        }
+        },
+        checkAll: function(){
+        	$("#id_industries_of_interest").trigger("change");
+        },
+        uncheckAll: function(){
+        	$("#id_industries_of_interest").trigger("change");
+        },
     }).multiselectfilter();
 
     $("#id_previous_employers").multiselect({
@@ -389,11 +466,18 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
+        	$("#id_previous_employers").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > previous_employers_max ) {
                 place_multiselect_warning_table($("#id_previous_employers"), previous_employers_max);
                 return false;
             }
-        }
+        },
+        checkAll: function(){
+        	$("#id_previous_employers").trigger("change");
+        },
+        uncheckAll: function(){
+        	$("#id_previous_employers").trigger("change");
+        },
     }).multiselectfilter();
 
     $("#id_campus_involvement").multiselect({
@@ -414,11 +498,18 @@ $(document).ready( function() {
         },
         click: function(e, ui) {
             $(".warning").remove();
+            $("#id_campus_involvement").trigger("change");
             if( ui.checked && $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
                 place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
                 return false;
             }
-        }
+        },
+        checkAll: function(){
+        	$("#id_campus_involvement").trigger("change");
+        },
+        uncheckAll: function(){
+        	$("#id_campus_involvement").trigger("change");
+        },
     }).multiselectfilter();
     
     $("#id_languages").multiselect({
@@ -432,6 +523,7 @@ $(document).ready( function() {
         },
         click: function(event, ui) {
             $(".warning").remove();
+            $("#id_languages").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > languages_max ) {
                 place_multiselect_warning_table($("#id_languages"), languages_max);
                 return false;
@@ -444,7 +536,13 @@ $(document).ready( function() {
            		place_errors_table($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
            		return false;
            	}
-        }
+        },
+        checkAll: function(){
+        	$("#id_languages").trigger("change");
+        },
+        uncheckAll: function(){
+        	$("#id_languages").trigger("change");
+        },
     }).multiselectfilter();
 
     $("#id_countries_of_citizenship").multiselect({
@@ -459,11 +557,18 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
+            $("#id_countries_of_citizenship").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > countries_of_citizenship_max ) {
                 place_multiselect_warning_table($("#id_countries_of_citizenship"), countries_of_citizenship_max);
                 return false;
             }
-        }
+        },
+        checkAll: function(){
+        	$("#id_countries_of_citizenship").trigger("change");
+        },
+        uncheckAll: function(){
+        	$("#id_countries_of_citizenship").trigger("change");
+        },
     }).multiselectfilter();
     
     // Set up multipart form navigation
@@ -512,4 +617,45 @@ $(document).ready( function() {
     
     // Field masks
     $("#id_gpa").mask("9.99",{placeholder:" "});
+    
+    $("select, input[type=text]").live('change', load_profile_preview);
+    
+    
+    function load_profile_preview(){
+    	if ($("#profile_form").valid()){
+    		var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
+		    $("#profile_form").ajaxSubmit({
+		    	type:"POST",
+		        dataType: "html",
+		        url: PROFILE_PREVIEW_URL,
+		        iframe: false,
+				complete: function(jqXHR, textStatus) {
+					clearTimeout(profile_preview_timeout);
+				},
+		        error: function(jqXHR, textStatus, errorThrown) {
+	                if(jqXHR.status==0) {
+	                    show_error_dialog(page_check_connection_message);
+					}else{
+	                    show_error_dialog(page_error_message);
+	                }
+		        },
+		        success: function (data) { 
+		        	$("#listing_preview").html(data);
+		        	if (student_detailed_info_visible){
+		        		$(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
+		        		$(".student_detailed_info").show();
+		        	}else{
+		        		$(".student_detailed_info").hide();
+		        	}
+		        	$(".student_comment").autoResize({
+					    animateDuration : 0,
+					    extraSpace : 18
+					});
+		        }
+		    });
+	    }
+    };
+    $("#listing_preview").html(STUDENT_PROFILE_PREVIEW_AJAX_LOADER);
+    var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
+    load_profile_preview();
 });

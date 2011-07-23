@@ -106,11 +106,11 @@ def employer_student_toggle_star(request):
     if request.is_ajax():
         if request.POST.has_key('student_id'):
             student = Student.objects.get(id=request.POST['student_id'])
-            if student in request.user.recruiter.starred_students.all():
-                request.user.recruiter.starred_students.remove(student)
+            if student in request.user.recruiter.employer.starred_students.all():
+                request.user.recruiter.employer.starred_students.remove(student)
                 data = {'action':employer_enums.UNSTARRED}
             else:
-                request.user.recruiter.starred_students.add(student)
+                request.user.recruiter.employer.starred_students.add(student)
                 data = {'action':employer_enums.STARRED}
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
@@ -125,8 +125,8 @@ def employer_students_add_star(request):
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
-                if student not in request.user.recruiter.starred_students.all():
-                    request.user.recruiter.starred_students.add(student)
+                if student not in request.user.recruiter.employer.starred_students.all():
+                    request.user.recruiter.employer.starred_students.add(student)
             return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing")
@@ -140,8 +140,8 @@ def employer_students_remove_star(request):
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
-                if student in request.user.recruiter.starred_students.all():
-                    request.user.recruiter.starred_students.remove(student)
+                if student in request.user.recruiter.employer.starred_students.all():
+                    request.user.recruiter.employer.starred_students.remove(student)
             return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing")
@@ -157,9 +157,9 @@ def employer_student_comment(request):
                 student = Student.objects.get(id=request.POST['student_id'])
                 comment = request.POST['comment']
                 try:
-                    student_comment = EmployerStudentComment.objects.get(student=student, recruiter=request.user.recruiter)
+                    student_comment = EmployerStudentComment.objects.get(student=student, employer=request.user.recruiter.employer)
                 except EmployerStudentComment.DoesNotExist:
-                    EmployerStudentComment.objects.create(recruiter = request.user.recruiter, student=student, comment=comment)
+                    EmployerStudentComment.objects.create(employer = request.user.recruiter.employer, student=student, comment=comment)
                 student_comment.comment = comment
                 student_comment.save()
                 return HttpResponse()

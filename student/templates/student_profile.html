@@ -17,18 +17,26 @@
 </script>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 <!-- Custom -->
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_form.js">
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile.js">
 </script>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_form.css"/>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_preview.js">
+</script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
 <!-- Scripts -->
 <script type="text/javascript">
+    var SHOW_DETAILS_LINK = "{% include 'student_show_details_link.html' %}";    
+    var HIDE_DETAILS_LINK = "{% include 'student_hide_details_link.html' %}";
     var CHECK_CAMPUS_ORGANIZATION_UNIQUENESS_URL = "{% url check_campus_organization_uniqueness %}";
     var CHECK_LANGUAGE_UNIQUENESS_URL = "{% url check_language_uniqueness %}";
     var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_organization %}";
     var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
-    
-    var STATIC_URL = "{{STATIC_URL}}";
 
+    var STATIC_URL = "{{STATIC_URL}}";
+    var HOME_URL = "{% url home %}";
+    var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
+    var PROFILE_PREVIEW_URL = "{% url student_profile_preview %}";
     var STUDENT_PROFILE_FORM_FIRST_NAME = "{% text_snippet 'student_profile_form_first_name' %}";
     var STUDENT_PROFILE_FORM_LAST_NAME = "{% text_snippet 'student_profile_form_last_name' %}";
     var STUDENT_PROFILE_FORM_SCHOOL_YEAR = "{% text_snippet 'student_profile_form_school_year' %}";
@@ -39,6 +47,7 @@
     var STUDENT_PROFILE_FORM_RESUME = "{% text_snippet 'student_profile_form_resume' %}";
     var STUDENT_PROFILE_FORM_WEBSITE = "{% text_snippet 'student_profile_form_website' %}";
     var STUDENT_PROFILE_FORM_FIRST_SECOND_MAJORS_DIFF = "{% text_snippet 'student_profle_form_first_second_majors_diff' %}";
+    var STUDENT_PROFILE_PREVIEW_AJAX_LOADER = "{% include 'student_profile_preview_ajax_loader.html' %}"; 
 </script>
 {% endblock %}
 
@@ -55,6 +64,7 @@ Create Profile |
 {% if not edit %}
 <h1 id="profile_form_title">Welcome to Umeqo!</h1>
 {% endif %}
+
 <form id="profile_form" method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     <ul id="stepForm">
@@ -107,7 +117,7 @@ Create Profile |
                         <tr>
                             <th>{{form.first_major.label_tag}}</th>
                             <td>
-                                <div class="errorspace"></div>
+                                <div class="errorspace">{{form.first_major.error}}</div>
                                 {{form.first_major}}
                             </td>
                         </tr>
@@ -125,20 +135,24 @@ Create Profile |
                                 {{form.resume}}
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2" class="error_section error">
+                                {% if form.errors %}
+                                    {% for field, errors in form.errors.items %}
+                                        {{ errors|escape }}
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="button_cell" colspan="2">
+                                <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
+                                <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
+                                <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Save Profile" value='Save Profile'>
+                                <img id='ajax_form_submit_loader' style="display:none" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif">
+                            </td>
+                        </tr>
                     </table>
-                    <div class="error_section error">
-                        {% if form.errors %}
-                            {% for field, errors in form.errors.items %}
-                                {{ errors|escape }}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                    <div class="button_wrapper_with_margins">
-                        <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
-                        <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
-                        <input class="student_profile_form_submit_button button" class="button" type='submit' alt="Save Profile" value='Save Profile'>
-                        <img id='ajax_form_submit_loader' style="display:none" src="{{ STATIC_URL }}images/icons/user.png">
-                    </div>
                 </div>
                 <div class="profile_side_form_info">
                     <h3>Umeqo makes it easy for employers to discover you!</h3>
@@ -147,7 +161,7 @@ Create Profile |
                         Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
                         </li>
                         <li>
-                            The more you fill out, the the more likely you are to show up in the results and the more attractive your listing will appear. <a href="javascript:void(0)" id="profile_form_info_link">Learn more</a>.
+                            The more you fill out, the the more likely you are to show up in the results. (e.g. If the employer decides that he wants student with an ACT of 26 or above and you left that field blank, you will not appear in the result.)
                         </li>
                         <li id="profile_form_required_third">
                             Submit this page, or click <strong>Next</strong> to provide more information.
@@ -176,28 +190,28 @@ Create Profile |
                     <table class="form_table">
                         <tr>
                             <th>{{form.looking_for.label_tag}}</th>
-                            <td>
+                            <td colspan="3">
                                 <div class="errorspace"></div>
                                 {{form.looking_for}}
                             </td>
                         </tr>
                         <tr>
                             <th>{{form.industries_of_interest.label_tag}}</th>
-                            <td>
+                            <td colspan="3">
                                 <div class="errorspace"></div>
                                 {{form.industries_of_interest}}
                             </td>
                         </tr>
                         <tr>
                             <th>{{form.previous_employers.label_tag}}</th>
-                            <td>
+                            <td colspan="3">
                                 <div class="errorspace"></div>
                                 {{form.previous_employers}}
                             </td>
                         </tr>
                         <tr>
                             <th>{{form.second_major.label_tag}}</th>
-                            <td>
+                            <td colspan="3">
                                 <div class="errorspace"></div>
                                 {{form.second_major}}
                             </td>
@@ -208,8 +222,6 @@ Create Profile |
                                 <div class="errorspace"></div>
                                 {{form.act}}
                             </td>
-                        </tr>
-                        <tr id="sat_m_section">
                             <th>{{form.sat_m.label_tag}}</th>
                             <td>
                                 <div class="errorspace"></div>
@@ -222,8 +234,6 @@ Create Profile |
                                 <div class="errorspace"></div>
                                 {{form.sat_v}}
                             </td>
-                        </tr>
-                        <tr id="sat_w_section">
                             <th>{{form.sat_w.label_tag}}</th>
                             <td>
                                 <div class="errorspace"></div>
@@ -340,4 +350,11 @@ Create Profile |
         </li>
     </ul>
 </form>
+<div id="listing_preview_section_block" class="clearfix">
+    <div id="listing_preview">
+    </div>
+    <div id="listing_preview_info">
+        <h2>Profile Preview</h2>
+    </div>
+</div>
 {% endblock %}

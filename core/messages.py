@@ -19,6 +19,10 @@ student_profile_form_resume = "Please select a PDF version of your resume.";
 student_profile_form_website = 'Please enter a valid url.';
 student_profle_form_first_second_majors_diff = "Second major must be different from first.";
 
+# Resume
+resume_problem = "There was a problem with your resume. Please try again.";
+empty_resume = "We could not extract any keywords out of your resume."
+
 #Login Form
 incorrect_username_password_combo = "This email and password combo is invalid. Note that both are case-sensitive."
 account_suspended = "This account has been suspended. Please direct all inquiries to admin@umeqo.com."

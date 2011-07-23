@@ -160,7 +160,7 @@ def home(request, extra_context=None):
     context = {}
 
     page_messages = {
-        'profile_saved': messages.profile_saved
+        'profile-saved': messages.profile_saved
     }
     msg = request.GET.get('msg',None)
     if msg:
@@ -349,8 +349,8 @@ def check_language_uniqueness(request):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
-@render_to('browser_configuration_not_supported.html')
-def browser_configuration_not_supported(request, extra_context=None):
+@render_to('unsupported_browser.html')
+def unsupported_browser(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
     return context

@@ -55,6 +55,7 @@ function highlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #FF603D');
 };
 function unhighlight(element, errorClass) {
+	$(element).prev().children().hide();
     if ($(element).next(":button.ui-multiselect")) {
         $(element).next().css('border', '1px solid #AAA');
     }
@@ -218,8 +219,10 @@ $(document).ready( function () {
                             beforeSubmit: function (arr, $form, options) {
                                 show_form_submit_loader("#contact_us_form");
                             },
+                            complete : function(jqXHR, textStatus) {
+                            	hide_form_submit_loader("#contact_us_form");
+                            },
                             error: function(jqXHR, textStatus, errorThrown){
-                                hide_form_submit_loader("#contact_us_form");
                                 if(jqXHR.status==0){
                                     $(".contact_us_dialog .error_section").html(form_check_connection_message);
                                 }else{
@@ -228,7 +231,6 @@ $(document).ready( function () {
                                 contact_us_dialog.dialog('option', 'position', 'center');
                             },
                             success: function (data) {
-                                hide_form_submit_loader("#contact_us_form");
                                 if(data.valid) {
                                     var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
                                     success_message += CLOSE_DIALOG_LINK;
@@ -270,6 +272,7 @@ $(document).ready( function () {
     });
     
     $(".close_dialog_link").live('click', function() {
+    	console.log("HELOO");
         $(".dialog").remove();
     });
     
@@ -369,7 +372,6 @@ function sameOrigin(url) {
     function safeMethod(method) {
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
-
     if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
         xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }

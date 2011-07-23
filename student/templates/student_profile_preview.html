@@ -1,0 +1,233 @@
+{% load static %}
+{% load countries_tags %}
+{% load student_star %}
+{% load student_resume_book %}
+
+{% if forloop.first or profile_preview %}
+<div id="first_student_main_info" class="student_main_info" data-student-id="{{student.id}}">
+{% else %}
+<div class="student_main_info" data-student-id="{{student.id}}">
+{% endif %}
+    <input class="student_checkbox" data-student-id="{{student.id}}" type="checkbox"/>        
+    <strong data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</strong>
+    <span class="student_year">
+        ({{student.graduation_year}}
+        {{student.school_year}})
+    </span>
+    {% if num_of_events_attended > 0 %}
+    <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
+    {% endif %}
+    <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}">View Resume</a>
+    <br />
+    <a data-student-id="{{student.id}}" class="resume_book_current_toggle_student" href="javascript:void(0)">{% student_resume_book in_resume_book %}</a>
+    <span class="student_major">
+        <strong>First Major:</strong>
+        {% if student.first_major.display %}
+            <a href="javascript:void(0)" title="Click for Details" class="course_link" data-major-id="{{student.first_major.id}}">{{student.first_major}}</a>
+        {% else %}
+            {{student.first_major}}
+        {% endif %}
+    </span>
+    <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
+        <a class="student_invite_to_event_link" href="#">Invite To Event</a>
+    </span>
+    <p class="student_gpa">
+        <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
+    </p>
+    <br />
+    <a data-student-id="{{student.id}}" class="student_toggle_star" href="javascript:void(0)">{% student_star starred %}</a>
+    <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note">{{comment}}</textarea>
+    <span data-student-id="{{student.id}}" class="student_saved_note hid">Saved</span>
+    <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="javascript:void(0)">{% include 'student_show_details_link.html' %}</a>
+</div>
+<div class="student_detailed_info" data-student-id="{{student.id}}">
+    {% if student.countries_of_citizenship.all or student.second_major or student.website or student.older_than_21 or student.looking_for.all or student.previous_employers.all or student.industries_of_interest.all or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.campus_involvement.all or student.languages.all %}
+        <div class="student_detailed_info_first_col">
+            {% if profile_preview %}
+            {% if countries_of_citizenship %}
+                {% for country in countries_of_citizenship %}
+                    <img title="Citizen of {{country}}" class="student_country_of_citizenship" src="{{ country.iso|iso_flag }}" />
+                {% endfor %}
+            {% endif %}
+            {% else %}
+            {% if student.countries_of_citizenship.all %}
+                {% for country in student.countries_of_citizenship.all %}
+                    <img title="Citizen of {{country}}" class="student_country_of_citizenship" src="{{ country.iso|iso_flag }}" />
+                {% endfor %}
+            {% endif %}
+            {% endif %} 
+        </div>
+        <div class="student_detailed_info_second_col">
+            {% if student.second_major %}
+                <p class="student_second_major">
+                    <strong>Second Major:</strong>
+                    {% if student.second_major.display %}
+                        <a href="javascript:void(0)" class="course_link" data-major-id="{{student.second_major.id}}">{{student.second_major}}</a>
+                    {% else %}
+                        {{student.second_major}}
+                    {% endif %}                                
+                </p>
+            {% endif %}
+
+            {% if student.website %}
+                <p class="student_website">
+                    <strong>Website:</strong>
+                    <a href="{{student.website}}">{{student.website}}</a>
+                </p>
+            {% endif %}
+
+            {% ifnotequal student.older_than_21 "" %}
+                <p class="student_older_than_21">
+                    <strong>Over 18:</strong>
+                    {% ifequal student.older_than_21 "Y" %}Yes{% else %}No{% endifequal %}
+                </p>
+            {% endifnotequal %}
+
+            {% if profile_preview %}
+                {% if looking_for %}    
+                <ul class="student_looking_for">
+                    <p class="student_detailed_info_header">Looking For</p>
+                    {% for employment_type in looking_for %}
+                         <li>{{employment_type}}</li>
+                    {% endfor %}
+                </ul>
+              {% endif %}
+            {% else %}
+                {% if student.looking_for.all %}
+                <ul class="student_looking_for">
+                    <p class="student_detailed_info_header">Looking For</p>
+                    {% for employment_type in student.looking_for.all %}
+                         <li>{{employment_type}}</li>
+                    {% endfor %}
+               {% endif %}
+                </ul>
+            {% endif %}
+
+            {% if profile_preview %}
+                {% if previous_employers %}    
+                <ul class="student_previous_employers">
+                    <p class="student_detailed_info_header">Previous Employers</p>
+                    {% for employer in previous_employers %}
+                        <li>{{employer}}</li>
+                    {% endfor %}    
+                </ul>
+              {% endif %}
+            {% else %}
+                {% if student.previous_employers.all %}
+                    <ul class="student_previous_employers">
+                        <p class="student_detailed_info_header">Previous Employers</p>
+                        {% for employer in student.previous_employers.all %}
+                            <li>{{employer}}</li>
+                        {% endfor %}                    
+                    </ul>
+                {% endif %}
+            {% endif %} 
+ 
+             {% if profile_preview %}
+                {% if industries_of_interest %}    
+                <ul class="student_industries_of_interest">
+                    <p class="student_detailed_info_header">Industries of Interest</p>
+                    {% for industry in industries_of_interest %}
+                        <li>{{industry}}</li>
+                    {% endfor %}    
+                </ul>
+              {% endif %}
+            {% else %}
+                {% if student.industries_of_interest.all %}
+                    <ul class="student_industries_of_interest">
+                        <p class="student_detailed_info_header">Industries of Interest</p>
+                        {% for industry in student.industries_of_interest.all %}
+                            <li>{{industry}}</li>
+                        {% endfor %}                    
+                    </ul>
+                {% endif %}
+            {% endif %} 
+                                 
+        </div>
+        <div class="student_detailed_info_third_col">
+            {% if student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act %}
+                <table class="student_test_scores">
+                    <tr>
+                        <th class="student_detailed_info_header">Test Scores</th>
+                    </tr>
+                    {% if student.sat_t %}
+                    <tr>
+                        <th>SAT Total:</th><td>{{student.sat_t}} / 2400</td>
+                    </tr>
+                    {% endif %}
+                    {% if student.sat_m %}
+                    <tr>
+                        <th>SAT Math:  </th><td>{{student.sat_m}} / 800</td>
+                    </tr>
+                    {% endif %}
+                    {% if student.sat_v %}
+                    <tr>
+                        <th>SAT Verbal:  </th><td>{{student.sat_v}} / 800</td>
+                    </tr>
+                    {% endif %}
+                    {% if student.sat_w %}
+                    <tr>
+                        <th>SAT Writing:  </th><td>{{student.sat_w}} / 800</td>
+                    </tr>
+                    {% endif %}
+                    {% if student.act %}
+                    <tr>
+                        <th>ACT:  </th><td>{{student.act}} / 36</td>
+                    </tr>
+                    {% endif %}
+                </table>
+            {% endif %}
+
+             {% if profile_preview %}
+            {% if student.campus_involvement.all %}
+                <ul class="student_campus_involvement">
+                    <p class="student_detailed_info_header">On-Campus Involvement</p>
+                    {% for campus_org in campus_involvement %}
+                        {% if campus_org.display %}
+                            <li><a href="javascript:void(0)" class="campus_org_link" data-campusorg-id="{{campus_org.id}}">{{campus_org}}</a></li>
+                        {% else %}
+                            <li>{{campus_org}}</li>
+                        {% endif %}
+                    {% endfor %}                    
+                </ul>
+            {% endif %}
+            {% else %}
+            {% if student.campus_involvement.all %}
+                <ul class="student_campus_involvement">
+                    <p class="student_detailed_info_header">On-Campus Involvement</p>
+                    {% for campus_org in student.campus_involvement.all %}
+                        {% if campus_org.display %}
+                            <li><a href="javascript:void(0)" class="campus_org_link" data-campusorg-id="{{campus_org.id}}">{{campus_org}}</a></li>
+                        {% else %}
+                            <li>{{campus_org}}</li>
+                        {% endif %}
+                    {% endfor %}                    
+                </ul>
+            {% endif %}
+            {% endif %} 
+
+             {% if profile_preview %}
+                {% if student.languages %}
+                    <ul class="student_languages">
+                        <p class="student_detailed_info_header">Languages</p>
+                        {% for language in languages %}
+                            <li>{{language}}</li>
+                        {% endfor %}                    
+                    </ul>
+                {% endif %}
+            {% else %}
+                {% if student.languages.all %}
+                    <ul class="student_languages">
+                        <p class="student_detailed_info_header">Languages</p>
+                        {% for language in student.languages.all %}
+                            <li>{{language}}</li>
+                        {% endfor %}                    
+                    </ul>
+                {% endif %}
+            {% endif %} 
+        </div>
+        <p class="student_hide_details_link" data-student-id="{{student.id}}"><a href="javascript:void(0)">{% include 'student_hide_details_link.html' %}</a></p>
+    {% else %}
+        <span>No detailed info available.</span>
+    {% endif %}
+</div>

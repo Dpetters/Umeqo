@@ -143,12 +143,12 @@ class StudentProfileForm(StudentBaseAttributeForm):
             return None
         return act
     
-    def clean(self):
+    def clean_second_major(self):
         first_major = self.cleaned_data.get("first_major")
         second_major = self.cleaned_data.get("second_major")
         if first_major and second_major and first_major == second_major:
             raise forms.ValidationError(_(messages.student_profle_form_first_second_majors_diff))
-        return self.cleaned_data
+        return self.cleaned_data['second_major']
 
 
 class StudentPreferencesForm(forms.ModelForm):
