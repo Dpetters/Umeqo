@@ -4,7 +4,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-07-23 10:03:38", 
+   "last_updated": "2011-07-23 10:10:20", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -20,7 +20,7 @@
     "LV"
    ], 
    "first_name": "Dmitrij", 
-   "first_major": 12, 
+   "first_major": 31, 
    "subscriptions": [], 
    "gpa": "4.800", 
    "campus_involvement": [
@@ -38,7 +38,7 @@
     5
    ], 
    "website": "", 
-   "second_major": 25, 
+   "second_major": 8, 
    "resume": "student/Student/petters_dmitrij_student1@umeqo.com_2011-07-23-10-03-38.pdf", 
    "user": 2, 
    "industries_of_interest": [
@@ -167,6 +167,40 @@
   }
  }, 
  {
+  "pk": 5, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "", 
+   "last_updated": "2011-07-23 10:53:54", 
+   "sat_m": null, 
+   "graduation_month": "4", 
+   "older_than_21": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": "", 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": "", 
+   "first_major": null, 
+   "subscriptions": [], 
+   "gpa": null, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": false, 
+   "school_year": null, 
+   "graduation_year": null, 
+   "previous_employers": [], 
+   "website": "", 
+   "second_major": null, 
+   "resume": "", 
+   "user": 7, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-07-23 10:53:54"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -215,6 +249,18 @@
   }
  }, 
  {
+  "pk": 5, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": false, 
+   "last_updated": "2011-07-23 10:53:54", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 5, 
+   "date_created": "2011-07-23 10:53:54"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
@@ -264,6 +310,19 @@
    "add_to_resumebook_count": 0, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-07-23 10:53:54", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 5, 
+   "date_created": "2011-07-23 10:53:54"
   }
  }
 ]

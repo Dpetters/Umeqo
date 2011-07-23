@@ -130,6 +130,66 @@
   }
  }, 
  {
+  "pk": 15, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-23 10:46:41", 
+   "session_key": "cb3b9b6a91705eb5fe345f1bfcd4b1db", 
+   "last_updated": "2011-07-23 10:46:41", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-23 10:48:13", 
+   "session_key": "183d9e80061c6151a3a1ac65fc87c6dd", 
+   "last_updated": "2011-07-23 10:48:13", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-23 10:53:22", 
+   "session_key": "797e428ba693b925adaf99ba85efcf97", 
+   "last_updated": "2011-07-23 10:53:22", 
+   "user": 7
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-23 10:53:33", 
+   "session_key": "1126133215bb44e19607b0a75316fa86", 
+   "last_updated": "2011-07-23 10:53:33", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-23 10:54:08", 
+   "session_key": "0bc77757a26a8fdfd0842e5b61ef7fd6", 
+   "last_updated": "2011-07-23 10:54:08", 
+   "user": 7
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-23 10:58:42", 
+   "session_key": "0bc77757a26a8fdfd0842e5b61ef7fd6", 
+   "last_updated": "2011-07-23 10:58:42", 
+   "user": 7
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
