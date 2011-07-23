@@ -42,6 +42,8 @@ class Command(LabelCommand):
                                 "erasing arbitrary files, exiting.")
         
         dangling_files = filenames_on_disk - filenames_in_database
+        print "Cleaning up %d files." % len(dangling_files)
+        
         if options['backup_to']:
             move_files(dangling_files, options['backup_to'])
         else:
