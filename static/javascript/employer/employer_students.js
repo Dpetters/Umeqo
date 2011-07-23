@@ -567,7 +567,7 @@ $(document).ready(function() {
     	$("#message_area").html("");
         $("#results_block_content").css('opacity', 0.25);
         $("#results_block_info_section").css('display', 'block');
-        $("#results_block_info").html(long_horizontal_ajax_loader);
+        $("#results_block_info").html(LONG_HORIZONTAL_AJAX_LOADER);
         var error_dialog_timeout = setTimeout( function() {
             $("#results_block_info").prepend(two_line_long_load_message);
         }, LOAD_WAIT_TIME);
