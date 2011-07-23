@@ -153,7 +153,7 @@ $(document).ready( function() {
                     messages:{
                         name:{
                             remote: "This campus organization already exists."
-                        },
+                        }
                     }
                 });
             }
@@ -513,7 +513,7 @@ $(document).ready( function() {
         },
         uncheckAll: function(){
         	$("#id_campus_involvement").trigger("change");
-        },
+        }
     }).multiselectfilter();
     
     $("#id_languages").multiselect({
@@ -546,7 +546,7 @@ $(document).ready( function() {
         },
         uncheckAll: function(){
         	$("#id_languages").trigger("change");
-        },
+        }
     }).multiselectfilter();
 
     $("#id_countries_of_citizenship").multiselect({
@@ -572,7 +572,7 @@ $(document).ready( function() {
         },
         uncheckAll: function(){
         	$("#id_countries_of_citizenship").trigger("change");
-        },
+        }
     }).multiselectfilter();
     
     // Set up multipart form navigation
@@ -623,11 +623,6 @@ $(document).ready( function() {
     $("#id_gpa").mask("9.99",{placeholder:" "});
     
     $("select, input[type=text], input[type=file]").live('change', load_profile_preview);
-    
-    console.log("hiii");
-    console.log(STUDENT_PROFILE_PREVIEW_CHECKBOX_TOOLTIP);
-	console.log(STUDENT_PROFILE_PREVIEW_RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP);
-	console.log(STUDENT_PROFILE_PREVIEW_STAR_TOGGLE_TOOLTIP);
     
     function load_profile_preview(){
     	var required_fields_filled_out = true;
