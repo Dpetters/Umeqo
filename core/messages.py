@@ -18,6 +18,9 @@ student_profile_form_gpa_range = 'Your GPA should be between 0 and 5.';
 student_profile_form_resume = "Please select a PDF version of your resume.";
 student_profile_form_website = 'Please enter a valid url.';
 student_profle_form_first_second_majors_diff = "Second major must be different from first.";
+student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to perform actions over multiple students at once.";
+student_profile_preview_star_toggle_tooltip = "If you stand out, a recruiter can star you! All other recruiters at that company will see this.";
+student_profile_preview_resume_book_current_toggle_tooltip = "Recruiters can toggle you in and out of the custom resume book they're building.";
 
 # Resume
 resume_problem = "There was a problem with your resume. Please try again.";

@@ -95,6 +95,7 @@
 }
 .no_detailed_info{
 	text-align: center;
+	display:block;
 }
 .student_comment {
     border:1px solid #CCC;
