@@ -170,23 +170,13 @@
   }
  }, 
  {
-  "pk": 19, 
+  "pk": 22, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-07-23 10:54:08", 
-   "session_key": "0bc77757a26a8fdfd0842e5b61ef7fd6", 
-   "last_updated": "2011-07-23 10:54:08", 
-   "user": 7
-  }
- }, 
- {
-  "pk": 20, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-07-23 10:58:42", 
-   "session_key": "0bc77757a26a8fdfd0842e5b61ef7fd6", 
-   "last_updated": "2011-07-23 10:58:42", 
-   "user": 7
+   "date_created": "2011-07-23 12:49:06", 
+   "session_key": "493615a1eacc328270e0edb5bb4fb40e", 
+   "last_updated": "2011-07-23 12:49:06", 
+   "user": 3
   }
  }, 
  {

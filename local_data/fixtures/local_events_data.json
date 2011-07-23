@@ -56,6 +56,31 @@
   }
  }, 
  {
+  "pk": 3, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "name": "Infosession", 
+   "datetime_created": "2011-07-23 12:56:55", 
+   "description": "", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "recruiters": [
+    1
+   ], 
+   "audience": [
+    1
+   ], 
+   "location": "", 
+   "rsvp_message": null, 
+   "is_public": true, 
+   "type": 2, 
+   "slug": "infosession", 
+   "end_datetime": "2011-07-26 16:00:00"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "events.attendee", 
   "fields": {
@@ -97,6 +122,17 @@
    "email": "feaf@gmail.com", 
    "student": null, 
    "name": "Hel"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 3, 
+   "datetime_created": "2011-07-23 12:57:14", 
+   "email": "student5@umeqo.com", 
+   "student": 5, 
+   "name": " "
   }
  }
 ]

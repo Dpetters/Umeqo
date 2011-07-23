@@ -4,7 +4,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-07-23 10:10:20", 
+   "last_updated": "2011-07-23 13:30:50", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -55,7 +55,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-07-10 15:30:53", 
+   "last_updated": "2011-07-23 12:58:22", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -103,7 +103,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-07-10 20:10:21", 
+   "last_updated": "2011-07-23 12:58:22", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -137,7 +137,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-07-10 20:29:54", 
+   "last_updated": "2011-07-23 12:58:22", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -171,7 +171,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "", 
-   "last_updated": "2011-07-23 10:53:54", 
+   "last_updated": "2011-07-23 12:58:22", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": null, 
