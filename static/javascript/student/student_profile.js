@@ -371,7 +371,7 @@ $(document).ready( function() {
                 accept: "pdf"
             },
             website:{
-                complete_url: true,
+                complete_url: true
             },
             sat_m: {
                 range: [200, 800],
