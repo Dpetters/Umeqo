@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var window_height_min = 580;
+	
 	var xhr = null;
     var filtering_ajax_request = null;
     var min_gpa = 0;
@@ -773,11 +775,11 @@ $(document).ready(function() {
             }
         });
     };
-
+    var handle_window_scroll = null;
     function set_up_side_block_scrolling() {
         var el = $('#side_block_area');
         var elpos_original = el.offset().top;
-        $(window).scroll( function() {
+        var scroll_side_block = function( ) {
             var elpos = el.offset().top;
             var windowpos = $(window).scrollTop();
             var finaldestination = windowpos;
@@ -791,8 +793,36 @@ $(document).ready(function() {
                     'top' : windowpos-70
                 }, 400, 'easeInOutExpo');
             }
-        });
+        };
+
+		var handle_window_scroll = function() {
+		    if(this.scrollTO) clearTimeout(this.scrollTO);
+		    this.scrollTO = setTimeout(function() {
+		        $(this).trigger('scrollEnd');
+		    }, 100);
+		};
+        
+        $(window).bind('scroll', handle_window_scroll);
+        $(window).bind('scrollEnd', scroll_side_block);
     };
+
+	$(window).resize(function() {
+	    if(this.resizeTO) clearTimeout(this.resizeTO);
+	    this.resizeTO = setTimeout(function() {
+	        $(this).trigger('resizeEnd');
+	    }, 500);
+	});
+	
+	$(window).bind('resizeEnd', function() {
+    	if($(window).height()>window_height_min){ 
+    		set_up_side_block_scrolling();
+    		$(window).trigger('scroll');
+    	}else{
+    		$('#side_block_area').stop(true).css('top', 0);
+    		$(window).unbind('scroll', handle_window_scroll); 
+    	}
+	});
+	    
     $("#id_student_list").multiselect({
         header:false,
         multiple: false,
@@ -1192,7 +1222,7 @@ $(document).ready(function() {
     $("#resume_book_current_add_students").live('click', handle_resume_book_current_add_students_click);
     $("#resume_book_current_remove_students").live('click', handle_resume_book_current_remove_students_click);
     $("#results_menu_toggle_details").live('click', handle_results_menu_toggle_details_button_click );
-    $(window).resize(set_up_side_block_scrolling);
+
     $("#search_form_submit_button").click(initiate_search);
     $(".page_link").live('click', handle_page_link_click);
     $('#student_deliver_resume_book_button').click(handle_deliver_resume_book_button_click);
@@ -1238,8 +1268,9 @@ $(document).ready(function() {
         	save_student_comment(id, $(textarea).val());
         }, 1000);
     });
-
-    set_up_side_block_scrolling();
+	if ($(window).height()>window_height_min){
+    	set_up_side_block_scrolling();
+    }
     initiate_ajax_call();
     initiate_resume_book_summary_update();
 
