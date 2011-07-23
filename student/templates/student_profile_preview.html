@@ -228,6 +228,8 @@
         </div>
         <p class="student_hide_details_link" data-student-id="{{student.id}}"><a href="javascript:void(0)">{% include 'student_hide_details_link.html' %}</a></p>
     {% else %}
-        <span>No detailed info available.</span>
+        <div class="no_detailed_info>
+            <p>No detailed info available.</p>
+        </div>
     {% endif %}
 </div>

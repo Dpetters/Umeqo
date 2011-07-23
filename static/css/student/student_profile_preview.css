@@ -93,6 +93,9 @@
     float:right;
     margin-right:78px;
 }
+.no_detailed_info{
+	text-align: center;
+}
 .student_comment {
     border:1px solid #CCC;
     font-size:12px;
