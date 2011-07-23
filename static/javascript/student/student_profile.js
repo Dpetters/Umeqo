@@ -302,6 +302,7 @@ $(document).ready( function() {
 					  	if(data.unparsable_resume){
 							var $unparsable_resume_dialog = open_unparsable_resume_dialog();
 						    $unparsable_resume_dialog.html(dialog_ajax_loader);
+						    $unparsable_resume_dialog.dialog('option', 'position', 'center');
 						    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 						    $.ajax({
 						        dataType: "html",
@@ -316,8 +317,9 @@ $(document).ready( function() {
 						                $unparsable_resume.html(dialog_error_message);
 						            }
 						        },
-						        success: function (data) {  
-						        	$unparsable_resume_dialog.html(data);  
+						        success: function (data) {
+						        	$unparsable_resume_dialog.html(data);
+						        	$unparsable_resume_dialog.dialog('option', 'position', 'center');
 						        	$(".choose_another_resume_link").live('click', function(){
 						        		$unparsable_resume_dialog.remove();
 							   			accordion.accordion("activate", 0);
