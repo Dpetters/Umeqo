@@ -7,7 +7,7 @@ $(document).ready( function() {
     
     var create_campus_organization_dialog = null;
     var create_language_dialog = null;
-        
+
     function open_create_campus_organization_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
@@ -650,6 +650,11 @@ $(document).ready( function() {
 			        },
 			        success: function (data) { 
 			        	$("#listing_preview").html(data);
+			        	
+    					$(".student_checkbox").tipsy({'gravity':'e', title:STUDENT_PROFILE_PREVIEW_CHECKBOX_TOOLTIP, html:true});
+    					$(".resume_book_current_toggle_student").tipsy({'gravity':'e', title:STUDENT_PROFILE_PREVIEW_RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP, html:true});
+    					$(".star_toggle_student").tipsy({'gravity':'e', title:STUDENT_PROFILE_PREVIEW_STAR_TOGGLE_TOOLTIP, html:true});
+    					
 			        	if (student_detailed_info_visible){
 			        		$(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
 			        		$(".student_detailed_info").show();
