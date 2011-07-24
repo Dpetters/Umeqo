@@ -1273,35 +1273,39 @@ $(document).ready(function() {
     initiate_ajax_call();
     initiate_resume_book_summary_update();
 
-    $('.student_invite_to_event_span').live('hover', function() {
-        var that = this;
-        var children_dropdown = $(this).children('.events_dropdown');
-        if (children_dropdown.length == 0) {
-            $.get(EVENTS_LIST_URL, {student_id: $(this).attr('data-studentid')}, function(events) {
-                var dropdown = $('<div class="events_dropdown"></div>');
-                if (events.length == 0) {
-                    dropdown.html('<span class="nowrap">You have no events!</span>');
-                } else {
-                    $.each(events, function(k,event) {
-                        var ispublic = event.is_public ? 1 : 0;
-                        var link = $('<a data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
-                        var linkText;
-                        if (!ispublic) {
-                            linkText = event.name + ' [private]';
-                        } else {
-                            linkText = event.name + ' [public]';
-                        }
-                        if (event.invited) {
-                            linkText = linkText + ' (invited)';
-                        }
-                        link.html(linkText);
-                        dropdown.append(link);
-                    });
-                }
-                $(that).append(dropdown);
+    $('.student_invite_to_event_span').live('mouseover', function() {
+        console.log($(this));
+        if (!$(this).data('init')) {
+            $(this).data('init', true);
+            var that = this;
+            $(this).hoverIntent(function() {
+                $.get(EVENTS_LIST_URL, {student_id: $(this).attr('data-studentid')}, function(events) {
+                    var dropdown = $('<div class="events_dropdown"></div>');
+                    if (events.length == 0) {
+                        dropdown.html('<span class="nowrap">You have no events!</span>');
+                    } else {
+                        $.each(events, function(k,event) {
+                            var ispublic = event.is_public ? 1 : 0;
+                            var link = $('<a data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                            var linkText;
+                            if (!ispublic) {
+                                linkText = event.name + ' [private]';
+                            } else {
+                                linkText = event.name + ' [public]';
+                            }
+                            if (event.invited) {
+                                linkText = linkText + ' (invited)';
+                            }
+                            link.html(linkText);
+                            dropdown.append(link);
+                        });
+                    }
+                    $(that).append(dropdown);
+                });
+            }, function() {
+                $(this).children('.events_dropdown').remove();
             });
-        } else {
-            children_dropdown.eq(0).remove();
+            $(this).trigger('mouseover');
         }
     });
     $('.student_invite_to_event_span').live('click', function(e) {

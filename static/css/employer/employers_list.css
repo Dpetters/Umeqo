@@ -92,3 +92,6 @@
 #employers_filter_name {
     width: 280px;
 }
+#employers_detail .logo img {
+    max-height: 150px;
+}

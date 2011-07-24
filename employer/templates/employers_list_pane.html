@@ -4,7 +4,7 @@
     {% endfor %}
 </div>
 <h1>{{employer.name}}</h1>
-<div>
+<div class="logo">
     <img src="{{MEDIA_URL}}{{employer.logo}}" />
 </div>
 {% if subbed %}
@@ -12,12 +12,14 @@
 {% else %}
     <a id="employer_subscribe" href="#" class="button">Subscribe</a>
 {% endif %}
-<div class="offered_job_types">
-    <strong>Jobs Available:</strong>
-    {% for offered_job_type in employer.offered_job_types.all %}
-        <div>{{offered_job_type}}</div>
-    {% endfor %}
-</div>
+{% if employer.offered_job_types.all %}
+    <div class="offered_job_types">
+        <strong>Jobs Available:</strong>
+        {% for offered_job_type in employer.offered_job_types.all %}
+            <div>{{offered_job_type}}</div>
+        {% endfor %}
+    </div>
+{% endif %}
 <div class="description">{{employer.description}}</div>
 <h2>Events</h2>
 <ul class="event_list editable_event_list">
