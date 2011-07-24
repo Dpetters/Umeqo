@@ -1,3 +1,6 @@
+#account_settings_block{
+	width:780px;
+}
 #account_settings_block .main_block_content{
     padding:0px;
 }
@@ -31,14 +34,14 @@
 #account_overview_left_side{
 	float:left;
 	width:400px;
-	padding-left:2px;
+	padding-left:10px;
 	padding-top:5px;
+	padding-bottom:5px;
 }
 #preferences_left_side{
 	float:left;
-	width:532px;
-	padding-left:4px;
-	padding-top:5px;
+	width:100%;
+	padding:5px 0;
 }
 #account_overview_left_side h3, #preferences_left_side h3{
 	border-bottom:1px solid #DDD;

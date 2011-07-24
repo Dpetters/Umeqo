@@ -1,6 +1,10 @@
 $(document).ready( function () {
     $("#account_settings_tabs").tabs();
-
+	
+	$("#global_email_checkbox").click(function(){
+		
+	});
+    
     $("#password_change_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
