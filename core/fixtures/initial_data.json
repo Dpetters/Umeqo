@@ -7839,13 +7839,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:33:13", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Sojourn Collegiate Ministry"
   }
@@ -7855,30 +7855,30 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "http://solar-cars.scripts.mit.edu/", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:32:47", 
    "description": "The team draws on a broad range of technical knowledge encompassing all fields of engineering and science. Team membership provides an intense educational experience which teaches practical skills impossible to communicate in the classroom environment, turning students into engineers. In addition to providing real-world design and manufacturing experience, involvement in the team develops project management and business skills. The team also gives students the opportunity to work closely with professors and members of the business community, including those on the board of consultants, when developing the vehicles.", 
    "image": "", 
    "email": "gosolar@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 12, 
-   "display": false, 
-   "name": "Solar Electric Vehicle Team"
+   "display": true, 
+   "name": "Solar Electric Vehicle Team (SEVT)"
   }
  }, 
  {
   "pk": 346, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/saas/www/satyaintroindex.html", 
+   "last_updated": "2011-07-24 19:31:13", 
+   "description": "MIT's South Asian American Students (SAAS) club is one of the largest groups on campus, representing Indians, Pakistanis, Bangladeshis, Sri Lankans, Nepalis, and other South Asians at MIT. SAAS is open to all students interested in getting a taste of South Asian culture. The organization was founded with the purpose of celebrating the diversity of South Asian culture by providing students in America with the opportunity to learn about South Asian heritage. SAAS is committed to not only providing a means for South Asian Americans to delve into their own background, but to also allowing students of any ethnicity to explore South Asian traditions. Their activities include a Garba/Raas (a traditional folk dance get-together), an annual Bhangra competition, social parties, study breaks, discussions, barbeques and sports events, and an annual culture show. The members of SAAS share a common interest in presenting South Asian culture to the MIT community.", 
    "image": "", 
-   "email": "", 
+   "email": "saas@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "South Asian American Students"
   }
  }, 
@@ -7886,15 +7886,15 @@
   "pk": 347, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
+   "website": "http://sealnet.mit.edu/", 
+   "last_updated": "2011-07-24 19:29:36", 
+   "description": "SEALNet's mission is to bring service and to promote the spirit of service leadership among Southeast Asian communities in the US and abroad.  They strive to accomplish this by building and nurturing a community of service leaders who are committed to serve, equipped to lead, enterprising in action, and plugged into a network of like hearted individuals who are passionate about social development.", 
+   "image": "core/CampusOrg/southeast_asian_service_leadership_network_2011-07-24-19-29-36.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/southeast_asian_service_leadership_network_2011-07-24-19-29-36_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Southeast Asian Service Leadership Network"
   }
  }, 
@@ -7902,15 +7902,15 @@
   "pk": 348, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://spain.mit.edu/", 
+   "last_updated": "2011-07-24 19:27:58", 
    "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "image": "core/CampusOrg/spain@mit_2011-07-24-19-27-43.png", 
+   "email": "spaniards-request@mit.edu", 
+   "thumbnail": "core/CampusOrg/spain@mit_2011-07-24-19-27-43_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Spain@MIT"
   }
  }, 
@@ -7919,13 +7919,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:26:26", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Spinning Arts Club"
   }
@@ -7934,15 +7934,15 @@
   "pk": 350, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/pistol/www/", 
+   "last_updated": "2011-07-24 19:26:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Sport Pistol Club"
   }
  }, 
@@ -7950,15 +7950,15 @@
   "pk": 351, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/taekwondo/", 
+   "last_updated": "2011-07-24 19:24:38", 
+   "description": "The MIT Sport Taekwondo Club was founded in 2000 by Master Dan Chuang, Christina Park ('04), Chinedum Osuji ('99) and Conor Madigan (PhD '07) with the goal to establish an active club on the MIT campus that practiced Olympic-style Taekwondo. The club was founded with two very important agendas in mind: to provide continued support and training for those already experienced in Taekwondo, and also to introduce and teach the martial art to those who had never tried it before.\r\n\r\nThe club has since exploded in popularity and competitive success, winning the Overall Collegiate National Championship 4 years later, along with 4 consecutive Ivy/Northeast Collegiate Taekwondo League championships. It has become a thriving community of over 50 teamates, athletes and friends... and it's still growing. In 2009, MIT reclaimed the newly renamed ECTC league title from powerhouse Cornell and topped the season off with another Overall Collegiate National Championship title.", 
    "image": "", 
-   "email": "", 
+   "email": "sport-tkd-info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Sport Taekwondo Club"
   }
  }, 
@@ -7966,15 +7966,15 @@
   "pk": 352, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/sportclays/", 
+   "last_updated": "2011-07-24 19:23:34", 
+   "description": "The MIT Sporting Clays Association is a graduate (undergraduates welcome) funded student group officially recognized by the Association of Student Acitivities. Their mission is to foster the activity of sporting clays (skeet, trap and sporting clays) among the MIT community.", 
    "image": "", 
-   "email": "", 
+   "email": "sportclays-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Sporting Clays Association"
   }
  }, 
@@ -7983,13 +7983,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:21:56", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Stammtisch"
   }
@@ -7998,15 +7998,15 @@
   "pk": 354, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/mit-stand/www/", 
+   "last_updated": "2011-07-24 19:21:15", 
+   "description": "MIT-STAND was established in 2007 in order to further the MIT divestment campaign from Sudan. As of September 21st, MIT announced its divestment in an Interview with the Tech. Members of STAND and Amnesty groups were greatly involved with promulgating this action. Later, MIT provided an official clarification of the former vague divestment statement, again in large part due to student pressure. \r\n\r\nThe objectives of MIT-STAND are currently two-fold: \r\n1.   To increase awareness of genocide in the Sudan among the student community at MIT via featured events on campus \r\n2.   To work with MIT to design a standing Standing Committee on Investment Responsibility [SCIR] within the corporation framework.", 
+   "image": "core/CampusOrg/stand_2011-07-24-19-21-15.png", 
+   "email": "mitstand-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/stand_2011-07-24-19-21-15_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "STAND"
   }
  }, 
@@ -8015,13 +8015,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:17:19", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Stand Up Comedy Club"
   }
@@ -8031,13 +8031,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:16:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Starleague"
   }
@@ -8046,15 +8046,15 @@
   "pk": 357, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://startup.mit.edu/", 
+   "last_updated": "2011-07-24 19:16:42", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 5, 
+   "display": true, 
    "name": "Startup Club"
   }
  }, 
@@ -8062,15 +8062,15 @@
   "pk": 358, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/stela-mit/", 
+   "last_updated": "2011-07-24 19:15:30", 
+   "description": "Established in 2007, STeLA (Science and Technology Leadership Association) is a student organization founded with the objective of developing leadership in, and creating a network of, the next generation in science and technology - scientists, engineers, entrepreneurs, policymakers, etc. - who will direct and deeply influence global society. The organization was launched by graduate students studying science and engineering at universities in the United States with the desire to answer the question, \"how can science and engineering students change the global community.\" The founders recognized the importance of multicultural and interdisciplinary perspectives in addressing contemporary global issues, and became motivated to establish a network where we, the young generation, can exchange ideas on where we can lead the global society and how we individual can contribute to the needs of society's leadership. We then build on that network to take the first steps towards local and global action.", 
    "image": "", 
-   "email": "", 
+   "email": "stela-info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 12, 
+   "display": true, 
    "name": "STeLA@MIT"
   }
  }, 
@@ -8078,15 +8078,15 @@
   "pk": 359, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/stop/www/", 
+   "last_updated": "2011-07-24 19:12:13", 
+   "description": "Founded in the summer of 1999, Stop Our Silence (SOS) is an ASA recognized student organization at MIT that fights to end sexual violence and violence against women. They believe that there is a continuum of violence that begins with sexual harassment, and ends with rape, domestic violence/dating violence, incest, and sexual abuse. SOS focusses on awareness, prevention, and support for the entire MIT community. They tend to focus on awareness related to all forms of rape, against all types of people, and the prevalence of dating violence on college campuses.", 
    "image": "", 
-   "email": "", 
+   "email": "sos-admin@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Stop Our Silence"
   }
  }, 
@@ -8094,15 +8094,15 @@
   "pk": 360, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/sgs/www/", 
+   "last_updated": "2011-07-24 19:10:55", 
+   "description": "The MIT Strategic Games Society (SGS) is an MIT gaming group that meets weekly to play board games, card games, and RPGs (role-playing games), as well as the occasional war game. Some of the most commonly played games are Titan, Power Grid, Battlestar Galactica, St. Petersburg, Agricola, and Puerto Rico, as well as card games like Wizard and Tichu. SGS has a large collection of games available for playing at the club and for members to check out. They are very friendly to newcomers \u2013 prior gaming experience is completely unnecessary, as people are always happy to teach people how to play.", 
    "image": "", 
-   "email": "", 
+   "email": "sgs-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Strategic Games Society"
   }
  }, 
@@ -8111,13 +8111,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:09:10", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Student Ambassadors"
   }
@@ -8126,14 +8126,14 @@
   "pk": 362, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/sctv/www/", 
+   "last_updated": "2011-07-24 19:08:33", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "student-cable@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Student Cable Group"
   }
@@ -8142,14 +8142,14 @@
   "pk": 363, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/shac/", 
+   "last_updated": "2011-07-24 19:06:52", 
+   "description": "The purpose of the Student Health Advisory Council (SHAC) is to improve services at MIT Medical and other health-related services at MIT and to provide a student voice in the administration of those services.", 
    "image": "", 
-   "email": "", 
+   "email": "shac_exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Student Health Advisory Committee"
   }
@@ -8158,15 +8158,15 @@
   "pk": 364, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://sipb.mit.edu/", 
+   "last_updated": "2011-07-24 19:03:28", 
+   "description": "SIPB is MIT's volunteer student computing group, improving computing at MIT since 1969. Today, SIPB projects provide innovative services and special expertise to the MIT community. They have an office just outside the Athena cluster in the student center W20, and you are welcome to come by to ask us for help or to hang around, use our computers, and maybe get involved. You can find out what's abuzz in the SIPB community at Planet SIPB. They host a number of events, which are enumerated on our calendar.", 
+   "image": "core/CampusOrg/student_information_processing_board_2011-07-24-19-03-28.png", 
+   "email": "sipb-chair@mit.edu", 
+   "thumbnail": "core/CampusOrg/student_information_processing_board_2011-07-24-19-03-28_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 12, 
+   "display": true, 
    "name": "Student Information Processing Board"
   }
  }, 
@@ -8174,14 +8174,14 @@
   "pk": 365, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/juggle/www/", 
+   "last_updated": "2011-07-24 19:01:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Student Juggling Club"
   }
@@ -8190,15 +8190,15 @@
   "pk": 366, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
+   "website": "http://stuff.mit.edu/afs/athena/activity/m/msra/", 
+   "last_updated": "2011-07-24 19:00:20", 
+   "description": "MIT Student Research Association (MSRA) aims to create an interdisciplinary research community at MIT consisting of faculty, students, and researchers of different backgrounds. MSRA seeks to connect students with research opportunities and promote regular interactions between faculty and students.", 
+   "image": "core/CampusOrg/student_research_association_2011-07-24-19-00-20.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/student_research_association_2011-07-24-19-00-20_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Student Research Association"
   }
  }, 
