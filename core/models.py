@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.db import models
 from django.db.models import signals
 from notification import models as notification
@@ -13,8 +11,7 @@ from core import mixins as core_mixins
 class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
-    sort_order = models.IntegerField(default=0, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
-    audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES)
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
 
     class Meta:
         ordering = ['sort_order', 'name']
@@ -25,9 +22,9 @@ class Topic(core_mixins.DateTracking):
 
 class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
-    status = models.IntegerField(choices=enums.QUESTION_STATUS_CHOICES, help_text="Only questions with their status set to 'Active' will be displayed." )
+    display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
     audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
-    sort_order = models.IntegerField(default=0, help_text='Questions will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )

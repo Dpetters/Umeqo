@@ -7,15 +7,14 @@ from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, 
 class TopicAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug':('name',)}
-    list_display = ('name', 'sort_order', 'audience')
-    list_filter = ['audience']
+    list_display = ('name', 'sort_order')
     search_fields = ['name']
     
 class QuestionAdmin(admin.ModelAdmin):
-    fields= ['audience', 'status', 'sort_order', 'topic', 'question', 'answer', 'slug']
+    fields= ['audience', 'sort_order', 'topic', 'question', 'answer', 'slug', 'display']
     prepopulated_fields = {'slug':('question',)}
-    list_display = ['question', 'topic', 'audience', 'sort_order', 'status']
-    list_filter = ['topic', 'audience', 'status']
+    list_display = ['question', 'topic', 'audience', 'sort_order', 'display']
+    list_filter = ['topic', 'audience', 'display']
     search_fields = ['question', 'answer']
     
     def save_model(self, request, obj, form, change): #@UnusedVariable

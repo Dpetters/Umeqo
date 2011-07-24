@@ -1,19 +1,15 @@
-ACTIVE = 1
-INACTIVE = 0
-
-QUESTION_STATUS_CHOICES = (
-    (ACTIVE, 'Active'),
-    (INACTIVE, 'Inactive'),
-)
-
 ALL = 0
 ANONYMOUS = 1
-STUDENT = 2
-EMPLOYER = 3
+AUTHENTICATED = 2
+STUDENT = 3
+EMPLOYER = 4
+CAMPUS_ORG = 5
 
 TOPIC_AUDIENCE_CHOICES = (
     (ALL, 'All'),
     (ANONYMOUS, 'Anonymous'),
+    (AUTHENTICATED, 'Authenticated'),
     (STUDENT, 'Student'),
-    (EMPLOYER, 'Employer')
+    (EMPLOYER, 'Employer'),
+    (CAMPUS_ORG, 'Campus Org')
 )

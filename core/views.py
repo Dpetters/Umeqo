@@ -45,23 +45,19 @@ def deactivate_account(request, extra_context = None):
 def faq(request, extra_context = None):
     
     context = {'topics':[]}
-    if hasattr(request.user, "employer"):
-        topics = Topic.objects.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.ALL))
-    elif hasattr(request.user, "student"):
-        topics = Topic.objects.filter(Q(audience=enums.STUDENT) | Q(audience=enums.ALL))
-    else:
-        topics = Topic.objects.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
-        
-    for topic in topics:
-        questions = topic.question_set.filter(status = enums.ACTIVE)
+    
+    for topic in Topic.objects.all():
+        questions = topic.question_set.filter(display = True)           
         if hasattr(request.user, "employer"):
-            questions = topic.question_set.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.ALL))
+            questions = topic.question_set.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
         elif hasattr(request.user, "student"):
-            questions = topic.question_set.filter(Q(audience=enums.STUDENT) | Q(audience=enums.ALL))
+            questions = topic.question_set.filter(Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+        elif hasattr(request.user, "campus_org"):
+            questions = topic.question_set.filter(Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
         else:
             questions = topic.question_set.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
-        
-        context['topics'].append({'name': topic, 'questions':questions})
+        if questions:
+            context['topics'].append({'name': topic, 'questions':questions})
 
     context.update(extra_context or {})  
     return context

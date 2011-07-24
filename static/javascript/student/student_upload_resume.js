@@ -148,7 +148,7 @@ $(document).ready(function(){
             uploadProgress : function(e) {
                 if (e.lengthComputable) {
                     var percentage = Math.round((e.loaded * 100) / e.total);
-                    up.$status.html('Uploaded: ' + percentage + '%');
+                    up.$status.html('Uploading: ' + percentage + '%');
                 }
             },
             uploadLoaded : function(e) {
