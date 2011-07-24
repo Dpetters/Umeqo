@@ -83,6 +83,27 @@ p {
     text-align: left;
 	position:relative;
 }
+#logo_block {
+    position: relative;
+    display: inline-block;
+}
+#logo_beta {
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 4px;
+    text-transform: uppercase;
+    font-size: 18px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+#logo_beta:hover {
+    cursor: pointer;
+}
 #logo_image {
     margin-top: 6px;
     margin-left: 8px;
