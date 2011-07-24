@@ -1,3 +1,7 @@
+#events_list_block {
+    width: 760px;
+    float: right;
+}
 #event_search_form {
     margin: 0 0 5px 3px;
     position: relative;

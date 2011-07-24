@@ -59,7 +59,7 @@ $('#employer_unsubscribe').live('click', function(e) {
 });
 
 function startLoading() {
-    $('#employers_list_form').append('<div id="loading_div"></div>');
+    $('#employers_list_form').prepend('<div id="loading_div"></div>');
 }
 
 function stopLoading() {

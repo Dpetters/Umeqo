@@ -1,0 +1,25 @@
+<div class="side_nav"> 
+    <h3>Browse</h3>
+    <a href="{% url events_list %}">Deadlines and Events</a>
+    <a href="{% url employers_list %}">Employers</a>
+    <h3>Account</h3>
+    <a href="{% url student_profile %}">Edit Profile</a>
+    <a href="{% url student_account_settings %}">Account Settings</a>
+    <a href="{% url logout %}">Logout</a>
+</div>
+<div id="quick_resume_updater_block" class="side_block">
+    <div class="side_block_header">
+        <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume.png" />
+        <span class="side_block_header_title">Resume Updater</span>
+    </div>
+    <div class="side_block_content">
+        <p id="dropbox_status">Drop PDF File Here</p>
+          <div id="dropbox">
+          </div>
+    </div>
+    <div class="side_block_footer">
+        <div class="side_block_footer_link">
+            <a id="view_resume_link" target="_blank" href="{% url student_resume %}">View Current Resume</a>
+        </div>
+    </div>
+</div>
