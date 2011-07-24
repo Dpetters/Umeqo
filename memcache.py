@@ -1,9 +1,4 @@
 #!/usr/bin/env python
-
-"""
- OpenSource
-"""
-
 """
 client module for memcached (memory cache daemon)
 
