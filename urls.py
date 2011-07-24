@@ -19,6 +19,7 @@ if settings.USE_LANDING_PAGE:
         (r'^$', 'core.views.landing_page', {'extra_context': {'login_form': AuthenticationForm}}),
     )
 urlpatterns += patterns('',
+    (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     (r'^messages/', include('messages.urls')),
     (r'^notifications/', include('notification.urls')),
