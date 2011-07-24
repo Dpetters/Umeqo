@@ -171,20 +171,6 @@
  }, 
  {
   "pk": 1, 
-  "model": "employer.resumebook", 
-  "fields": {
-   "last_updated": "2011-07-19 00:03:51", 
-   "name": null, 
-   "students": [
-    1
-   ], 
-   "recruiter": 1, 
-   "resume_book": "employer/ResumeBook/lauren_laver_recruiter1@umeqo.com_2011-07-17-10-39-06.pdf", 
-   "date_created": "2011-07-16 23:07:00"
-  }
- }, 
- {
-  "pk": 1, 
   "model": "employer.employerstudentcomment", 
   "fields": {
    "comment": "", 
