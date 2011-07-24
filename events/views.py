@@ -74,12 +74,13 @@ def event_page(request, id, slug, extra_context=None):
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     invitees = map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
-    rsvps = map(buildRSVP, event.rsvp_set.all().order_by('student__first_name'))
+    rsvps = map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
+    no_rsvps = map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
     checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
     checkins.sort(key=lambda n: 0 if n['account'] else 1)
     emails_dict = {}
     all_responses = []
-    for res in checkins + rsvps:
+    for res in checkins + rsvps + no_rsvps:
         if res['email'] not in emails_dict:
             emails_dict[res['email']] = 1
             all_responses.append(res)
@@ -89,8 +90,10 @@ def event_page(request, id, slug, extra_context=None):
         'event': event,
         'invitees': invitees,
         'rsvps': rsvps,
+        'no_rsvps': no_rsvps,
         'checkins': checkins,
         'all_responses': all_responses,
+        'login_next': page_url,
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'responded': False,

@@ -5,11 +5,6 @@
 .side_block {
     width: 200px;
 }
-
-#notifications_block .main_block_header{
-    line-height: 22px;
-}
-
 #query_field {
     height: 22px;
     vertical-align: middle;

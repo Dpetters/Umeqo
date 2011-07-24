@@ -83,6 +83,27 @@ p {
     text-align: left;
 	position:relative;
 }
+#logo_block {
+    position: relative;
+    display: inline-block;
+}
+#logo_beta {
+    display: inline-block;
+    left:173px;
+    bottom: 33px;
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1px 4px 2px;
+    text-transform: uppercase;
+    font-size: 18px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+#logo_beta:hover {
+    cursor: pointer;
+}
 #logo_image {
     margin-top: 6px;
     margin-left: 8px;
@@ -276,7 +297,7 @@ p {
 .main_block_header_sidelink {
     float: right;
     padding-right: 5px;
-    margin: 3px 5px 0 0;
+    margin: 1px 5px 0 0;
 }
 .side_block_content a:hover {
     color: #000;
@@ -503,16 +524,6 @@ input.button, .button[type=submit] {
 a.button {
     height: 28px;
     line-height: 28px;
-}
-a.button.sub-button {
-    background: #DDD;
-    color: #000;
-    line-height: 21px;
-    height: 23px;
-}
-a.button.sub-button:hover {
-    background: #DFDFDF;
-    color: #222 !important;
 }
 .button.disabled-button {
     color: #888;
@@ -1196,4 +1207,9 @@ a.ui-slider-handle {
 }
 #notifications_pane .empty_notices {
     padding: 10px;
+}
+.private_token {
+    color: #FFF;
+    text-shadow: #222 0 -1px 0;
+    background-color: #B00;
 }

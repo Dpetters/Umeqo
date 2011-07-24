@@ -100,8 +100,8 @@ urlpatterns += patterns('employer.views',
     (r'^employer/(?P<employer>\w+)/$', 'employer_profile', {}, 'employer_profile'),
     (r'^employers/pane/$', 'employers_list_pane', {}, 'employers_list_pane'),
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
-    (r'^employers/ajax$', 'employer_list_ajax', {}, 'employer_list_ajax'),
-    (r'^employers/subscribe$', 'employer_subscribe', {}, 'employer_subscribe')
+    (r'^employers/ajax$', 'employer_list_ajax', {}, 'employers_list_ajax'),
+    (r'^employers/subscribe$', 'employer_subscribe', {}, 'employers_subscribe')
 )
 urlpatterns += patterns('events.views',
     (r'^events/$', 'events_list', {}, 'events_list'),

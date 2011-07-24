@@ -20,16 +20,7 @@ Home |
 {% block content_area %}
 
 <div class="left_side_container">
-    <div class="side_nav"> 
-        <h3>Students</h3>
-        <a href="{% url employer_students %}">Filter and Search</a>
-        <a href="{% url employer_students_default_filtering %}">Automatic Filtering</a>
-        <h3>Events</h3>
-        <a href="{% url employer_event_new %}">New Event</a>
-        <h3>Account</h3>
-        <a href="{% url employer_account_settings %}">Account Settings</a>
-        <a href="{% url logout %}">Logout</a>
-    </div>
+    {% include "employer_side_nav.html" %}
 </div>
 
 <div class="main_block no_top_margin">
@@ -76,7 +67,7 @@ Home |
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Your Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="{% url employer_event_new %}" class="button sub-button">New Event</a>
+            <a href="{% url employer_event_new %}" class="dark_button">New Event</a>
         </div>
     </div>
     <div class="main_block_content">

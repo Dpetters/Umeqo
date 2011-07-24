@@ -33,24 +33,8 @@
 {% endblock %}
 
 {% block content_area %}
-    
-<div class="left_side_container">
-        <div class="side_nav"> 
-            <h3>Browse</h3>
-            <a href="{% url events_list %}">Events and Deadlines</a>
-            <a href="{% url employers_list %}">Employers</a>
-            <h3>Profile</h3>
-            <a href="{% url student_profile %}">Edit Profile</a>
-            <a id="update_resume_link" href="javascript:void(0)">Update Resume</a>
-            <div id="update_resume_div">
-                <p id="dropbox_status">Drop PDF File Here</p>
-                <div id="dropbox"></div>
-                <a id="view_resume_link" target="_blank" href="{% url student_resume %}">View Current Resume</a>
-            </div>
-            <h3>Account</h3>
-            <a href="{% url student_account_settings %}">Account Settings</a>
-            <a href="{% url logout %}">Logout</a>
-        </div>
+    <div class="left_side_container">
+        {% include "student_side_nav.html" %}
     </div>
     <div class="main_block no_top_margin">
         <div class="main_block_header">

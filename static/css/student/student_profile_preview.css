@@ -43,8 +43,7 @@
     cursor:default;
 }
 .student_main_info {
-    padding-bottom:5px;
-    padding-top:8px;
+    padding: 10px 0;
     border-top: 1px solid #CCC;
 }
 .student_main_info p {
