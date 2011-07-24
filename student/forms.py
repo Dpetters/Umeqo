@@ -10,7 +10,6 @@ from core.fields import PdfField
 from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages
-from student.models import StudentBaseAttributes
 
 class StudentRegistrationForm(forms.Form):
 
@@ -144,18 +143,20 @@ class StudentProfileForm(StudentBaseAttributeForm):
             return None
         return act
     
-    def clean(self):
+    def clean_second_major(self):
         first_major = self.cleaned_data.get("first_major")
         second_major = self.cleaned_data.get("second_major")
         if first_major and second_major and first_major == second_major:
             raise forms.ValidationError(_(messages.student_profle_form_first_second_majors_diff))
-        return self.cleaned_data
+        return self.cleaned_data['second_major']
 
+class StudentProfilePreviewForm(StudentProfileForm):
+    resume = PdfField(label="Resume:", required=False)
 
 class StudentPreferencesForm(forms.ModelForm):
 
     class Meta:
         fields = ("email_on_invite_to_public_event",
                   "email_on_invite_to_private_event",
-                  "email_on_new_event" )
+                  "email_on_new_subscribed_employer_event" )
         model = StudentPreferences

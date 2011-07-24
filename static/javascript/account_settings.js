@@ -6,33 +6,31 @@ $(document).ready( function () {
             $(form).ajaxSubmit({
                 dataType: 'json',
                 beforeSubmit: function (arr, $form, options) {
+                	$("#message_area").html("");
                     show_form_submit_loader("#password_change_form");
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                complete: function(jqXHR, textStatus) {
                     hide_form_submit_loader("#password_change_form");
-                    switch(jqXHR.status){
-                        case 0:
-                            $("#password_change_form .error_section").html(form_check_connection_message);
-                            break;
-                        default:
-                            show_error_dialog(page_error_message);
+	            },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if(jqXHR.status==0){
+                        $("#password_change_form .error_section").html(form_check_connection_message);
+                    }else{
+                        show_error_dialog(page_error_message);
                     }
                 },
                 success: function(data) {
-                    hide_form_submit_loader("#login_form");
-                    switch(data.valid) {
-                        case false:
-                        	place_table_form_errors("#login_form", data.errors);
-                            if (data.errors.id_old_password){
-                                $("#id_old_password").val("").css('border', '1px solid red').focus();
-                            }
-                            break;
-                        case true:
-                        	window.location.href = window.location.href + "?msg=password-changed"
-                            break;
-                        default:
-                            show_error_dialog(page_error_message);
-                            break;
+                    if(data.valid) {
+                    	if (get_parameter_by_name('msg') == "password-changed"){
+                    		window.location.reload();
+                    	}else{
+                    		window.location.href = window.location.href + "?msg=password-changed"
+                    	}
+                    }else{
+                    	place_table_form_errors("#login_form", data.errors);
+                        if (data.errors.id_old_password){
+                            $("#id_old_password").val("").css('border', '1px solid red').focus();
+                        }
                     }
                 }
             });

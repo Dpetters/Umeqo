@@ -20,7 +20,7 @@ from core.decorators import render_to
 from core.models import Course, CampusOrg, Language, Topic
 from core.forms import BetaForm, AkismetContactForm
 from core.view_helpers import does_email_exist
-from employer.forms import SearchForm
+from employer.forms import StudentSearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
 
@@ -160,7 +160,7 @@ def home(request, extra_context=None):
     context = {}
 
     page_messages = {
-        'profile_saved': messages.profile_saved
+        'profile-saved': messages.profile_saved
     }
     msg = request.GET.get('msg',None)
     if msg:
@@ -196,7 +196,7 @@ def home(request, extra_context=None):
             
             context.update({
                 'teststring': 'asdlfkjasldfja sakfasdlfk asdl ashdfa sdlfja sdlf asdlf asldkjf askldf asjdfa sdfasdf',
-                'search_form': SearchForm(),
+                'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
                 'your_events': your_events
@@ -349,8 +349,8 @@ def check_language_uniqueness(request):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
-@render_to('browser_configuration_not_supported.html')
-def browser_configuration_not_supported(request, extra_context=None):
+@render_to('unsupported_browser.html')
+def unsupported_browser(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
     return context

@@ -8,11 +8,12 @@ ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 sys.path.append(ROOT)
 fabric_django.settings_module('settings')
 from django.conf import settings
+from south.models import MigrationHistory
 
 
 __all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
-          "update", "create_media_dirs"]
+          "update", "create_media_dirs", "schemamigrate"]
 
 def delete_contents(directory):
     for root, dirs, files in os.walk(directory, topdown=False):
@@ -106,6 +107,15 @@ def create_media_dirs():
         if not os.path.exists(model_root):
             os.makedirs(model_root)
     
+def schemamigrate():
+    if not env.host:
+        apps = list(set(app.app_name for app in MigrationHistory.objects.all()))
+        with fabric_settings(warn_only=True):
+            for app in apps:
+                local("python manage.py schemamigration %s --auto" % app)
+    else:
+        abort("Update can only be called locally.")
+        
 def load_prod_data():
     if not env.host:  
         copy_in_prod_media()
@@ -142,11 +152,13 @@ def commit_prod_data():
                 copy_out_prod_media()
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                 run("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json")
-       
+                run("git add -A")
+                with fabric_settings(warn_only=True):
+                    run('git commit -m "Prod data commit from staging."')
+                    run("git push")
+
 def commit_local_data():
     if not env.host:
-        abort("commit_prod_data should not be called locally.")
-        """
         local("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
         copy_out_local_media()
         for app in settings.LOCAL_DATA_APPS:
@@ -155,7 +167,6 @@ def commit_local_data():
                 local("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json")
             else:
                 local("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
-        """
     else: 
         if env.host == "umeqo.com":
             abort("commit_local_data should not be called on prod.")
@@ -169,6 +180,10 @@ def commit_local_data():
                         run("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json")
                     else:
                         run("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
+                run("git add -A")
+                with fabric_settings(warn_only=True):
+                    run('git commit -m "Local data commit from staging."')
+                    run("git push")
 
 def update():
     if env.host:

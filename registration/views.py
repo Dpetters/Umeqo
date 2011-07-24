@@ -18,12 +18,6 @@ from registration.forms import PasswordChangeForm
 def logout(request, login_url=None, current_app=None, extra_context=None):
     return auth_logout_then_login(request, login_url, current_app, extra_context)
 
-@login_required
-def deactivate_account(request):
-    if request.method == "POST":
-        pass
-    else:
-        pass
 
 @login_required
 def password_change(request,
@@ -36,7 +30,7 @@ def password_change(request,
             form.save()
             request.user.userattributes.last_password_change_date = datetime.now()
             for session_key_object in request.user.sessionkey_set.all():
-                Session.objects.get(session_key=session_key_object.session_key).delete()
+                Session.objects.filter(session_key=session_key_object.session_key).delete()
             request.user.sessionkey_set.all().delete()
             request.user.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, request.user)

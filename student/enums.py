@@ -1,3 +1,8 @@
+def enum(**enums):
+    return type('Enum', (), enums)
+
+RESUME_PROBLEMS = enum(HACKED = 1, UNPARSABLE = 2)
+
 GENERAL = 0
 EVENT = 2
 

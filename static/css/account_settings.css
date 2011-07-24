@@ -28,9 +28,6 @@
 #account_settings_tabs .ui-tabs-nav li.ui-tabs-selected a{
     color:#555;
 }
-.form_table{
-	margin-top:0px;
-}
 #account_overview_left_side{
 	float:left;
 	width:400px;
@@ -50,6 +47,9 @@
 }
 #password_change_form{
 	margin-top:12px;
+}
+#password_change_form .form_table{
+	margin-top:0px;
 }
 #basic_info_table th{
 	width:129px;

@@ -756,7 +756,7 @@ td #ajax_form_submit_loader {
     padding-top: 23px;
     vertical-align:top;
 }
-.form_table input[type=submit] {
+.form_table input[type=submit], .button_cell .button {
     margin-top: 14px;
 }
 .sub_header_message{
@@ -844,6 +844,9 @@ label.required[for=id_body]{
 .no_top_margin {
     margin-top: 0px !important;
 }
+.no_top_border{
+	border-top:0 !important;
+}
 .no_bottom_margin {
     margin-bottom: 0px;
 }
@@ -854,7 +857,7 @@ label.required[for=id_body]{
     clear: both;
 }
 .error_section, td.error_section {
-    margin-top: 10px;
+    padding-top: 10px;
     text-align: center;
 }
 /* Dialogs */

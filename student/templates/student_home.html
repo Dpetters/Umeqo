@@ -36,7 +36,6 @@
             <a href="{% url employers_list %}">Employers</a>
             <h3>Account</h3>
             <a href="{% url student_profile %}">Edit Profile</a>
-            <a href="{% url student_resume %}" target="_blank">Your Resume</a>
             <a href="{% url student_account_settings %}">Account Settings</a>
             <a href="{% url logout %}">Logout</a>
         </div>
@@ -57,7 +56,20 @@
             </div>
         </div>
     </div>
-    <div id="events_and_deadlines_block" class="main_block no_top_margin">
+    <div class="main_block no_top_margin">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
+            <span class="main_block_header_title">Welcome!</span>
+        </div>
+        <div class="main_block_content">
+            <div class="message_block">
+                <p>
+                    This is probably your first time here, so let us tell you a little bit about Umeqo.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="events_and_deadlines_block" class="main_block">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Deadlines and Events</span>

@@ -8,15 +8,19 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 
-from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfileForm
+from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfilePreviewForm, StudentProfileForm
 from student.models import Student
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
 from core.decorators import is_student, render_to
 from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
-from core.models import Language
+from core.models import Language, EmploymentType, Industry, CampusOrg
 from core import messages
+from employer.models import Employer
+from student.enums import RESUME_PROBLEMS
+from countries.models import Country
+
 
 @render_to("student_account_settings.html")
 @login_required
@@ -31,11 +35,21 @@ def student_account_settings(request, preferences_form_class = StudentPreference
         msg = request.GET.get('msg', None)
         if msg:
             context["msg"] = page_messages[msg]
-        context['preferences_form'] = preferences_form_class(instance = request.user.student.preferences)
+        context['preferences_form'] = preferences_form_class(instance = request.user.student.studentpreferences)
         context['change_password_form'] = change_password_form_class(request.user)
         context.update(extra_context or {})
         return context
     return HttpResponseForbidden("Request must be a GET")
+
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+def student_deactivate_account(request):
+    if request.method == "POST":
+        pass
+    else:
+        pass
+    
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
@@ -102,6 +116,7 @@ def student_registration(request,
                               context,
                               context_instance=RequestContext(request))
 
+
 def student_registration_complete(request,
             template_name='student_registration_complete.html',
             extra_context = None):
@@ -130,18 +145,90 @@ def student_profile(request,
             student.last_updated = datetime.datetime.now()
             student.profile_created = True
             student.save()
+            resume_status = None
+            data = {'valid':True} 
             if request.FILES.has_key('resume'):
-                return process_resume(request.user.student, request.is_ajax())
-            else:
-                return redirect(reverse('home') + '?msg=profile_saved')
+                resume_status = process_resume(request.user.student)
+                errors = {}
+                if resume_status == RESUME_PROBLEMS.HACKED:
+                    data = {'valid':False}
+                    errors['id_resume'] = messages.resume_problem
+                    data['errors'] = errors
+                elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
+                    data = {'valid':False}
+                    data['unparsable_resume'] = True
+        else:
+            data = {'valid':False}
+            errors = {}
+            for field in form:
+                if field.errors:
+                    errors[field.auto_id] = field.errors[0]
+            if form.non_field_errors():
+                errors['non_field_error'] = form.non_field_errors()[0]
+            data['errors'] = errors
+        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
-        form = form_class(instance=request.user.student)
+        if request.is_ajax():
+            return HttpResponseForbidden("GET request cannot be ajax.") 
+        else:
+            form = form_class(instance=request.user.student)
+            context = { 'form' : form,
+                        'edit' : request.user.student.profile_created }
+              
+            context.update(extra_context or {})
+            return context
 
-    context = { 'form' : form,
-                'edit' : request.user.student.profile_created }
-      
-    context.update(extra_context or {})
-    return context
+
+@login_required
+@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@render_to("student_profile_preview.html")
+def student_profile_preview(request,
+                            form_class=StudentProfilePreviewForm,
+                            extra_context=None):
+
+    if request.method == 'POST':
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+        if form.is_valid():
+            student = form.save(commit=False)
+            if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
+                student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
+            else:
+                student.sat_t = None
+            
+            context = {'student':student,
+                       'in_resume_book':False,
+                       'starred':False,
+                       'comment':messages.student_profile_preview_comment,
+                       'num_of_events_attended':1,
+                       'profile_preview':True}
+            
+            if request.POST.has_key('multiselect_id_looking_for'):
+                context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('multiselect_id_looking_for'))
+            if request.POST.has_key('multiselect_id_industries_of_interest'):
+                context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('multiselect_id_industries_of_interest'))
+            if request.POST.has_key('multiselect_id_previous_employers'):
+                context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('multiselect_id_previous_employers'))
+            if request.POST.has_key('multiselect_id_campus_involvement'):
+                context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('multiselect_id_campus_involvement'))
+            if request.POST.has_key('multiselect_id_languages'):
+                context['languages'] = Language.objects.filter(id__in=request.POST.getlist('multiselect_id_languages'))
+            if request.POST.has_key('multiselect_id_countries_of_citizenship'):
+                context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('multiselect_id_countries_of_citizenship'))
+                                
+            context.update(extra_context or {})
+            return context
+        else:
+            print form.errors
+            if form.non_field_errors():
+                error_html = form.non_field_errors()[0]
+            else:
+                for field in form:
+                    if field.errors:
+                        error_html = field.errors[0]
+                        break
+            return HttpResponse("<div class='message_section'>%s</div>" % error_html)
+    else:
+        return HttpResponseForbidden("Request must be a GET.") 
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)

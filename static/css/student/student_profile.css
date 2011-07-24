@@ -18,18 +18,50 @@ input[type=text] {
     font-size: 17px;
     margin-right:28px;
 }
+#student_profile_preview_ajax_loader{
+	margin-bottom:30px;
+	margin-top:5px;
+	text-align:center;
+}
+#profile_form .main_block_header_content{
+	margin-right:50px;
+}
 #profile_form_title {
     padding-bottom:15px;
 }
 #required_info_page, #work_info_page, #academic_info_page, #miscellaneous_info_page {
     float:left;
-    padding-top:15px;
+    padding-top:20px;
     padding-left:10px;
 }
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
     height: 1px;
 }
-
+#listing_preview_section_block{
+	margin-top:15px;
+	background:#E6E6E6;
+	padding:8px;
+	border-radius:3px;
+}
+#listing_preview_info{
+	margin-right:700px;
+}
+#listing_preview_info h2{
+	margin-left:66px;
+	margin-top:30px;
+}
+#listing_preview{
+	min-height:81px;
+	background:#FFF;
+	border:1px solid #CCC;
+	border-radius:5px;
+	padding:1px 8px;
+	width:651px;
+	float:right
+}
+#listing_preview .message_section{
+	margin-top:8px;
+}
 .previous_employers_multiselect .ui-multiselect-filter input, .interested_in_multiselect .ui-multiselect-filter input, .campus_involvement_multiselect .ui-multiselect-filter input, .countries_of_citizenship_multiselect .ui-multiselect-filter input, .languages_multiselect .ui-multiselect-filter input{
     width:154px;
 }
@@ -74,6 +106,13 @@ input[type=text] {
 .create_campus_organization_dialog #id_type{
 	width:260px;
 }
+.unparsable_resume_dialog .dialog_content_wrapper{
+	padding:15px;
+}
+.unparsable_resume_dialog a.button{
+     width: 110px;
+}
+
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
     display:none;
@@ -81,6 +120,8 @@ input[type=text] {
 .ui-accordion .ui-accordion-content {
     border-top: 1px solid #CCCCCC;
     padding:0 0 20px 0;
+    margin-bottom:0px;
+    width:inherit;
 }
 /* Multiselect Widget Modifications */
 .ui-multiselect-all {

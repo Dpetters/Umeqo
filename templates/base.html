@@ -1,9 +1,10 @@
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+<!DOCTYPE html>
+<html lang=en xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
 
     <head>
+        <meta charset=UTF-8>
         <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/vnd.microsoft.icon" />
-        <noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"/>
+        <noscript><meta http-equiv="refresh" content="0; url=/unsupported-browser?js=false"/>
         </noscript>
         <title>{% block title %}{% endblock %}Umeqo</title>
         
@@ -11,6 +12,7 @@
         {% load compress %}
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_ui_custom/css/ui-lightness/jquery-ui-1.8.12.custom.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_tipsy/stylesheets/tipsy.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
             {% if user.is_authenticated and user.student or user.recruiter %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
@@ -23,7 +25,7 @@
             var NOTIFICATIONS_URL = "{% url notification_ajax %}";
             var NOTIFICATIONS_COUNT_URL = "{% url get_notice_unseen_count %}";
             var tiny_ajax_loader = "{% include 'tiny_ajax_loader.html' %}";
-            var long_horizontal_ajax_loader = "{% include 'long_horizontal_ajax_loader.html' %}";
+            var LONG_HORIZONTAL_AJAX_LOADER = "{% include 'long_horizontal_ajax_loader.html' %}";
             var dialog_ajax_loader = "{% include 'dialog_ajax_loader.html' %}";
             var CLOSE_DIALOG_LINK = "{% include 'close_dialog_link.html' %}";
         
@@ -46,8 +48,11 @@
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
             <!-- JQuery Form Submission -->
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
+            <!-- JQuery Tipsy -->
+            <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <!-- Custom -->
             <script src="{{ STATIC_URL }}javascript/base.js"></script>
+            
             {% if user.is_authenticated and user.student or user.recruiter %}
                 <script src="{{ STATIC_URL }}javascript/logged_in.js"></script>
             {% else %}
@@ -56,7 +61,7 @@
         {% endcompress %}
         
         <!--[if lte IE 7]>
-        <script src="{{ STATIC_URL }}javascript/browser_not_supported.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}javascript/unsupported-browser.js" type="text/javascript"></script>
         <![endif]-->
         
         {% block metadata %}{% endblock %}

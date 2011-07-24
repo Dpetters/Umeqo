@@ -25,19 +25,18 @@ $(document).ready( function() {
         $.ajax({
             dataType: "html",
             url: STUDENT_DEACTIVATE_ACCOUNT_URL,
-            error: function(jqXHR, textStatus, errorThrown) {
+            complete: function(jqXHR, textStatus) {
                 clearTimeout(deactivate_account_dialog_timeout);
-                switch(jqXHR.status){
-                    case 0:
-                        deactivate_account_dialog.html(dialog_check_connection_message);
-                        break;
-                    default:
-                        deactivate_account_dialog.html(dialog_error_message);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                if(jqXHR.status==0){
+                    deactivate_account_dialog.html(dialog_check_connection_message);
+                }else{
+                    deactivate_account_dialog.html(dialog_error_message);
                 }
+                deactivate_account_dialog.dialog('option', 'position', 'center');
             },
             success: function (data) {
-                clearTimeout(deactivate_account_dialog_timeout);
-
                 deactivate_account_dialog.html(data);
                 deactivate_account_dialog.dialog('option', 'position', 'center');
             }

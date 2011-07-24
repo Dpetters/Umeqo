@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var window_height_min = 580;
+	
 	var xhr = null;
     var filtering_ajax_request = null;
     var min_gpa = 0;
@@ -10,6 +12,7 @@ $(document).ready(function() {
     var page = 1;
     var student_list = $("#id_student_list option:selected").text();
     var ordering = $("#id_ordering option:selected").val();
+    console.log($("#id_results_per_page option:selected").val());
     var results_per_page = $("#id_results_per_page option:selected").val();
     var courses = [];
     var school_years = [];
@@ -114,11 +117,11 @@ $(document).ready(function() {
             },
             success: function (data) {
                 if(data.action==STARRED){
-                   		$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been starred.</p>");
-                        $(container).html(STARRED_IMG);
+                   	$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been starred.</p>");
+                    $(container).html(STARRED_IMG);
 				}else{
-                   		$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been unstarred.</p>");
-                        $(container).html(UNSTARRED_IMG);
+                   	$("#message_area").html("<p>" + $(".student_name[data-student-id=" + student_id + "]").text() + " has been unstarred.</p>");
+                    $(container).html(UNSTARRED_IMG);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -127,7 +130,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
 
     };
@@ -143,7 +146,7 @@ $(document).ready(function() {
 	            url: STUDENTS_ADD_STAR_URL,
 	            dataType: "json",
 	            data: {
-	                'student_ids': student_ids.join('~'),
+	                'student_ids': student_ids.join('~')
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
@@ -166,7 +169,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-	            },
+	            }
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -185,7 +188,7 @@ $(document).ready(function() {
 	            url: STUDENTS_REMOVE_STAR_URL,
 	            dataType: "json",
 	            data: {
-	                'student_ids': student_ids.join('~'),
+	                'student_ids': student_ids.join('~')
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
@@ -208,7 +211,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-	            },
+	            }
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -254,7 +257,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-	            },
+	            }
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -273,7 +276,7 @@ $(document).ready(function() {
                 url: RESUME_BOOK_CURRENT_ADD_STUDENTS_URL,
                 dataType: "json",
                 data: {
-                    'student_ids': student_ids.join('~'),
+                    'student_ids': student_ids.join('~')
                 },
                 beforeSend: function (jqXHR, settings) {
                     $(student_ids).each( function() {
@@ -300,7 +303,7 @@ $(document).ready(function() {
 					}else{
 	                    show_error_dialog(page_error_message);
 	                }
-                },
+                }
             });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -318,7 +321,7 @@ $(document).ready(function() {
                 place_tiny_ajax_loader(container);
             },
             data: {
-                'student_id': student_id,
+                'student_id': student_id
             },
             success: function (data) {
                 initiate_resume_book_summary_update();
@@ -342,7 +345,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     function handle_student_event_attendance_hover(){
@@ -361,7 +364,7 @@ $(document).ready(function() {
 	            dataType: "html",
 	            success: function (data) {
 	                $(".student_event_attendance_bubble").html(data);
-	            },
+	            }
 	        });
 		} else {
         	dropdown.eq(0).remove();
@@ -389,7 +392,7 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     
@@ -413,25 +416,8 @@ $(document).ready(function() {
 				}else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
-    };
-
-    function handle_student_hide_details_link_click() {
-        var id = $(this).attr('data-student-id');
-        $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
-        $('.student_toggle_detailed_info_link[data-student-id=' + id  + ']').html(SHOW_DETAILS_LINK);
-    };
-    
-    function handle_student_toggle_detailed_info_link_click() {
-        var id = $(this).attr('data-student-id');
-        if ($(this).children('span').attr('class') === "hide_details") {
-            $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
-            $(this).html(SHOW_DETAILS_LINK);
-        } else {
-            $('.student_detailed_info[data-student-id=' + id  + ']').slideDown('slow');
-            $(this).html(HIDE_DETAILS_LINK);
-        }
     };
     
     function handle_results_menu_toggle_details_button_click() {
@@ -533,7 +519,7 @@ $(document).ready(function() {
                     campus_org_info_dialog.html(dialog_error_message);
                 }
                 campus_org_info_dialog.dialog('option', 'position', 'center');
-            },
+            }
         });
     };
 	
@@ -565,7 +551,7 @@ $(document).ready(function() {
                     course_info_dialog.html(dialog_error_message);
                 }
                 course_info_dialog.dialog('option', 'position', 'center');
-            },
+            }
         });
     };
 
@@ -584,7 +570,7 @@ $(document).ready(function() {
     	$("#message_area").html("");
         $("#results_block_content").css('opacity', 0.25);
         $("#results_block_info_section").css('display', 'block');
-        $("#results_block_info").html(long_horizontal_ajax_loader);
+        $("#results_block_info").html(LONG_HORIZONTAL_AJAX_LOADER);
         var error_dialog_timeout = setTimeout( function() {
             $("#results_block_info").prepend(two_line_long_load_message);
         }, LOAD_WAIT_TIME);
@@ -614,7 +600,7 @@ $(document).ready(function() {
                 'countries_of_citizenship' : countries_of_citizenship.join('~'),
                 'older_than_21' : older_than_21,
                 'ordering': ordering,
-                'results_per_page': results_per_page,
+                'results_per_page': results_per_page
             },
             complete: function(jqXHR, textStatus) {
                 clearTimeout(error_dialog_timeout);
@@ -629,10 +615,6 @@ $(document).ready(function() {
                 // Results Menu Styles
                 $('.dropdown_menu_button ul').hide();
 
-                // Hide all extra details except for the first
-                $(".student_detailed_info").hide();
-                $('.student_detailed_info[data-student-id=0]').show();
-                $('.student_toggle_detailed_info_link[data-student-id=0]').html(HIDE_DETAILS_LINK);
 
                 // Bring the opacity back to normal and hide the ajax loader
                 $("#results_block_content").css('opacity', 1);
@@ -645,7 +627,7 @@ $(document).ready(function() {
                 }else{
                     show_error_dialog(page_error_message);
                 }
-            },
+            }
         });
     };
     
@@ -768,8 +750,8 @@ $(document).ready(function() {
                     rules: {
                         delivery_type: {
                             required: true
-                        },
-                    },
+                        }
+                    }
                 });
                 $.ajax({
                     type: "POST",
@@ -792,11 +774,11 @@ $(document).ready(function() {
             }
         });
     };
-
+    var handle_window_scroll = null;
     function set_up_side_block_scrolling() {
         var el = $('#side_block_area');
         var elpos_original = el.offset().top;
-        $(window).scroll( function() {
+        var scroll_side_block = function( ) {
             var elpos = el.offset().top;
             var windowpos = $(window).scrollTop();
             var finaldestination = windowpos;
@@ -810,8 +792,36 @@ $(document).ready(function() {
                     'top' : windowpos-70
                 }, 400, 'easeInOutExpo');
             }
-        });
+        };
+
+		var handle_window_scroll = function() {
+		    if(this.scrollTO) clearTimeout(this.scrollTO);
+		    this.scrollTO = setTimeout(function() {
+		        $(this).trigger('scrollEnd');
+		    }, 100);
+		};
+        
+        $(window).bind('scroll', handle_window_scroll);
+        $(window).bind('scrollEnd', scroll_side_block);
     };
+
+	$(window).resize(function() {
+	    if(this.resizeTO) clearTimeout(this.resizeTO);
+	    this.resizeTO = setTimeout(function() {
+	        $(this).trigger('resizeEnd');
+	    }, 500);
+	});
+	
+	$(window).bind('resizeEnd', function() {
+    	if($(window).height()>window_height_min){ 
+    		set_up_side_block_scrolling();
+    		$(window).trigger('scroll');
+    	}else{
+    		$('#side_block_area').stop(true).css('top', 0);
+    		$(window).unbind('scroll', handle_window_scroll); 
+    	}
+	});
+	    
     $("#id_student_list").multiselect({
         header:false,
         multiple: false,
@@ -1211,14 +1221,11 @@ $(document).ready(function() {
     $("#resume_book_current_add_students").live('click', handle_resume_book_current_add_students_click);
     $("#resume_book_current_remove_students").live('click', handle_resume_book_current_remove_students_click);
     $("#results_menu_toggle_details").live('click', handle_results_menu_toggle_details_button_click );
-    $(".student_toggle_detailed_info_link").live('click', handle_student_toggle_detailed_info_link_click);
-    $(window).resize(set_up_side_block_scrolling);
-    $(".student_hide_details_link").live('click', handle_student_hide_details_link_click);
+
     $("#search_form_submit_button").click(initiate_search);
     $(".page_link").live('click', handle_page_link_click);
     $('#student_deliver_resume_book_button').click(handle_deliver_resume_book_button_click);
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
-	$(".student_comment").live('blur', function(){ $(this).height(17); }); 
     $('#results_menu_more_actions').live('click', function() { $('#results_menu_more_actions ul').toggle(); });
     $('#results_menu_checkbox_menu_button').live('click', function() { $('#results_menu_checkbox_menu_button ul').toggle(); });
 	$('.student_event_attendance').live('hover', handle_student_event_attendance_hover);
@@ -1260,8 +1267,9 @@ $(document).ready(function() {
         	save_student_comment(id, $(textarea).val());
         }, 1000);
     });
-
-    set_up_side_block_scrolling();
+	if ($(window).height()>window_height_min){
+    	set_up_side_block_scrolling();
+    }
     initiate_ajax_call();
     initiate_resume_book_summary_update();
 

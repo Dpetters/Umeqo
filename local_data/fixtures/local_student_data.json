@@ -4,7 +4,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-07-08 01:22:30", 
+   "last_updated": "2011-07-23 15:03:28", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -20,7 +20,7 @@
     "LV"
    ], 
    "first_name": "Dmitrij", 
-   "first_major": 12, 
+   "first_major": 31, 
    "subscriptions": [], 
    "gpa": "4.800", 
    "campus_involvement": [
@@ -38,8 +38,8 @@
     5
    ], 
    "website": "", 
-   "second_major": 25, 
-   "resume": "student/Student/petters_dmitrij_student1@umeqo.com_2011-07-10-17-49-21.pdf", 
+   "second_major": 8, 
+   "resume": "student/Student/petters_dmitrij_student1@umeqo.com_2011-07-23-10-03-38.pdf", 
    "user": 2, 
    "industries_of_interest": [
     15, 
@@ -47,8 +47,7 @@
     40
    ], 
    "act": 34, 
-   "date_created": "2011-07-07 20:30:03", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-07 20:30:03"
   }
  }, 
  {
@@ -56,7 +55,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-07-10 15:30:53", 
+   "last_updated": "2011-07-23 15:03:28", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -96,8 +95,7 @@
     40
    ], 
    "act": null, 
-   "date_created": "2011-07-10 15:25:30", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-10 15:25:30"
   }
  }, 
  {
@@ -105,7 +103,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-07-10 20:10:21", 
+   "last_updated": "2011-07-23 15:03:28", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -131,8 +129,7 @@
    "user": 5, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-07-10 20:05:56", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-10 20:05:56"
   }
  }, 
  {
@@ -140,7 +137,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-07-10 20:29:54", 
+   "last_updated": "2011-07-23 15:03:28", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -166,17 +163,50 @@
    "user": 6, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-07-10 20:26:02", 
-   "older_than_21": "Y"
+   "date_created": "2011-07-10 20:26:02"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "Dearing", 
+   "last_updated": "2011-07-23 15:03:28", 
+   "sat_m": null, 
+   "graduation_month": "4", 
+   "older_than_21": "", 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": " zachary dearing campus address hereford boston tel email zdearing mit edu address waverly dallas education massachusetts institute technology june gpa candidate bachelor economics political cambridge relevant coursework principles microeconomics macroeconomics intermediate macroeconomics finance theory accounting statistical economics multivariable calculus episcopal dallas gpa dallas salutatorian national scholar national merit semi finalist goldman sachs financial analyst securities york worked structuring project exploring arbitrage opportunities pricing mortgage backed securities underlying collateral analyzed publicly traded cap undervalued warrant being taken private communication media advisors consulting analyst boutique consulting investment management firm boston staffed due diligence project investment evaluating cable markets southern modeled future revenue streams operating costs growth opportunities based upon trends demographics worked founding partner construct predictive models compendium standard poors development intern technical specialist york developed application manage virtual machines approximately global users application integrating vmware esx servers active directory windows instrumentation management organizing meetings deliverables managing streams application production mccurley orsinger mccurley nelson downing intern administration dallas assisted legal teams preparation investigating witnesses constructing examination questions managed opening accounts thorough evaluating banks handling interactions assisting cash management charged tracking accounts ensure deposit levels maintained maverick financial analyst intern operations hedge fund accounting dallas august parsed information consolidated fund prospectus easier senior traders compiled positions performance data facilitate its quantitative analysis project maintained item fixed asset register supported excel based spreadsheet analysis united states senate washington january june facilitated voting procedure ensuring senators voted informed issue being decided upon provided logistical senators staff assisting needs senate chamber pcs founder owner computer assembly business dallas july september founded total revenue built sold custom computers customers designed website application crm spec custom computers online quotes leadership committee publicity committee member cambridge shared responsibility marketing production mit brass rat committee publicity efforts events combined budget attendance sloan undergraduate management association suma director corporate relations associate cambridge organized mba panel representatives harvard sloan etc secured sponsorship kaplan mit underclassmen giving campaign cambridge october devised innovative fundraising strategy leading fund service trips abroad participation rate interests skills java asp net php javascript html marathon running golf politics architecture chi phi", 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": "Zachary", 
+   "first_major": 14, 
+   "subscriptions": [], 
+   "gpa": "4.700", 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": true, 
+   "school_year": 4, 
+   "graduation_year": 1, 
+   "previous_employers": [], 
+   "website": "", 
+   "second_major": null, 
+   "resume": "student/Student/dearing_zachary_student5@umeqo.com_2011-07-23-14-55-54.pdf", 
+   "user": 7, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-07-23 10:53:54"
   }
  }, 
  {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-07 20:30:03", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
@@ -186,9 +216,9 @@
   "pk": 2, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-10 15:25:30", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
@@ -198,9 +228,9 @@
   "pk": 3, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-10 20:05:56", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 3, 
    "date_created": "2011-07-10 20:05:56"
@@ -210,12 +240,24 @@
   "pk": 4, 
   "model": "student.studentpreferences", 
   "fields": {
+   "email_on_new_subscribed_employer_event": false, 
    "last_updated": "2011-07-10 20:26:02", 
    "email_on_invite_to_private_event": false, 
-   "email_on_new_event": false, 
    "email_on_invite_to_public_event": false, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": false, 
+   "last_updated": "2011-07-23 10:53:54", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 5, 
+   "date_created": "2011-07-23 10:53:54"
   }
  }, 
  {
@@ -268,6 +310,19 @@
    "add_to_resumebook_count": 0, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-07-23 10:53:54", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 5, 
+   "date_created": "2011-07-23 10:53:54"
   }
  }
 ]
