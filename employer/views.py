@@ -440,14 +440,16 @@ def employer_students(request, extra_context=None):
             context['query'] = request.POST.get('query', '')
 
         context['student_filtering_form'] = StudentFilteringForm({'recruiter': request.user.recruiter},
-                                                                 initial={'ordering': request.user.recruiter.recruiterpreferences.default_student_ordering,                           
-                                                                          'results_per_page' : request.user.recruiter.recruiterpreferences.results_per_page})
+            initial={
+                'ordering': request.user.recruiter.recruiterpreferences.default_student_ordering,                           
+                'results_per_page' : request.user.recruiter.recruiterpreferences.results_per_page
+            })
         context['student_search_form'] = SearchForm()
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED
         context['email_delivery_type'] = employer_enums.EMAIL
         context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
-    context['TEMPLATE'] = "employer_students.html"
+    context['TEMPLATE'] = 'employer_students.html'
     context.update(extra_context or {})
     return context
 

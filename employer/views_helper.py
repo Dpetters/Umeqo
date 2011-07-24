@@ -254,7 +254,7 @@ def filter_students(recruiter,
 def search_students(query):
     search_query_set = SearchQuerySet().models(Student).filter(content=query)
     return [result.object for result in search_query_set]
-    
+
 
 def combine_and_order_results(filtering_results, search_results, ordering, query):
     ordered_results = []
