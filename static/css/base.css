@@ -206,7 +206,7 @@ p {
 	min-height:17px;
 }
 #content_area {
-    margin-bottom: 40px;
+    padding-bottom: 40px;
 }
 /*goes for nav-like links next to headers, e.g. "go back to events" */
 #content_area .back_link {
@@ -288,6 +288,7 @@ p {
 }
 .side_nav {
     margin-bottom: 20px;
+    padding-left:12px;
     width: 200px;
 }
 .side_nav h3 {

@@ -12,6 +12,9 @@ if (typeof(XMLHttpRequest.prototype.sendAsBinary) == "undefined")
 
 $(document).ready( function() {
 
+	$("#update_resume_link").click(function(){
+	    $("#update_resume_div").slideToggle();
+	});
     var openEmployerSubscriptionsDialog = function () {
         var $dialog = $('<div></div>')
         .dialog({
@@ -36,7 +39,7 @@ $(document).ready( function() {
     });
 
     if(typeof(FileReader) == "undefined" || typeof(XMLHttpRequest) == "undefined" || !('draggable' in document.createElement('span'))) {
-        $('#dropbox_status').html("Switch to latest version of Firefox or Chrome to use the quick resume updater.")
+        $('#dropbox_status').html("Browser Not Supported")
     } else {
         var up = {
             $dropbox :        null,
@@ -84,10 +87,10 @@ $(document).ready( function() {
                 var files = e.originalEvent.dataTransfer.files;
                 if (files.length > 1) {
                     up.$dropbox.removeClass('uploading').addClass('error');
-                    up.$status.html('Only one file allowed.<br\>Please try again.');
+                    up.$status.html('Only one file allowed.');
                 } else if(files[0].type != "application/pdf") {
                     up.$dropbox.removeClass('uploading').addClass('error');
-                    up.$status.html('Only PDF files are allowed.<br\>Please try again.');
+                    up.$status.html('Only PDF files are allowed.');
                 } else {
                     if(up.uploading == false) {
                         up.processing = files[0];
@@ -108,24 +111,24 @@ $(document).ready( function() {
                 } catch(error) {
                     up.uploading = false;
                     up.$dropbox.removeClass('uploading').addClass('error')
-                    up.$status.html('The file could not be read.<br\>Please try again.');
+                    up.$status.html('The file could not be read.');
                 }
             },
             loadError : function(e) {
                 switch(e.target.error.code) {
                     case e.target.error.NOT_FOUND_ERR:
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('File Not Found.<br\>Please try again.');
+                        up.$status.html('File Not Found.');
                         break;
                     case e.target.error.NOT_READABLE_ERR:
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('File is not readable.<br\>Please try again.');
+                        up.$status.html('File is not readable.');
                         break;
                     case e.target.error.ABORT_ERR:
                         break;
                     default:
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('The file could not be read.<br\>Please try again.');
+                        up.$status.html('The file could not be read.');
                         break;
                 };
             },
@@ -158,7 +161,7 @@ $(document).ready( function() {
                     if (up.xhr.readyState==4){
                         if(up.xhr.status != 200){
                             up.$dropbox.removeClass('uploading').addClass('error');
-                            up.$status.html('Oops, something went wrong!<br\> We\'ve been notified.<br\>Please try again.');
+                            up.$status.html('Error. Please try again.');
                         }
                     }
                 };
@@ -168,19 +171,54 @@ $(document).ready( function() {
             uploadProgress : function(e) {
                 if (e.lengthComputable) {
                     var percentage = Math.round((e.loaded * 100) / e.total);
-                    up.$status.html('Uploaded: '+percentage+'%');
+                    up.$status.html('Uploaded: ' + percentage + '%');
                 }
             },
             uploadLoaded : function(e) {
                 $('#drop-area').html('Uploaded: 100%');
             },
             onload : function (e) {
-                up.uploading = false;
-                currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
-                    up.$dropbox.removeClass('uploading').addClass('success');
-                    up.$status.html('<p>Resume Updated.</p><p>'+ data["num_of_extracted_keywords"]+ ' keywords extracted.');
-                    $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
-                });
+            	data = $.parseJSON(e.currentTarget.responseText);
+	            up.uploading = false;
+            	if(data.valid) {
+	                currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
+	                    up.$dropbox.removeClass('uploading').addClass('success');
+	                    up.$status.html(data["num_of_extracted_keywords"]+ ' keywords extracted.');
+	                    $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
+	                });
+				} else {
+				  	if(data.unparsable_resume){
+		                up.$status.html('0 keywords extracted.');
+				  		currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
+		                    $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
+		                });
+						var $unparsable_resume_dialog = open_unparsable_resume_dialog();
+					    $unparsable_resume_dialog.html(dialog_ajax_loader);
+					    $unparsable_resume_dialog.dialog('option', 'position', 'center');
+					    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+					    $.ajax({
+					        dataType: "html",
+					        url: UNPARSABLE_RESUME_URL + "?home=true",
+					        complete: function(jqXHR, textStatus) {
+            					clearTimeout(unparsable_resume_dialog_timeout);
+        					},
+					        error: function(jqXHR, textStatus, errorThrown) {
+					            if(jqXHR.status==0){
+									$unparsable_resume_dialog.html(dialog_check_connection_message);
+								}else{
+					                $unparsable_resume.html(dialog_error_message);
+					            }
+					        },
+					        success: function (data) {
+					        	$unparsable_resume_dialog.html(data);
+					        	$unparsable_resume_dialog.dialog('option', 'position', 'center');
+					        }
+					    });
+				    } else{
+                        up.$dropbox.removeClass('uploading').addClass('error');
+                        up.$status.html('Error. Please try again.');
+				    }
+				}
             }
         };
         $(up.init);

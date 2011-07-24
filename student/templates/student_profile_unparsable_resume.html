@@ -8,7 +8,11 @@
     <br>
     <p>We suggest using Microsoft Word, OpenOffice or Latex to create your resume and then save it to PDF.</p>
     <div class="button_wrapper_with_margins">
-        <a class="button choose_another_resume_link">Choose Another</a>
+        {% if request.get.home %}
+        <a class="button close_dialog_link">Choose Another</a>
         <a class="button save_profile_link">Save Profile</a>
+        {% else %}
+        <a class="button close_dialog_link">Got it!</a>
+        {% endif %}        
     </div>
 </div>

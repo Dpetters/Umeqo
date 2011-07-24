@@ -13,6 +13,7 @@ def process_resume(student):
     page_num = resume.getNumPages()
     for i in range(0, page_num):
         resume_text += resume.getPage(i).extractText() + "\n"
+
     resume_file.close()
     
     # Words that we want to parse out of the resume keywords
@@ -30,6 +31,9 @@ def process_resume(student):
     if count > 1000*page_num:
         return RESUME_PROBLEMS.HACKED
     if count == 0:
+        student.keywords = result
+        student.last_update = datetime.datetime.now()
+        student.save()
         return RESUME_PROBLEMS.UNPARSABLE
     
     # Update the student profile and save

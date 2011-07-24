@@ -142,21 +142,21 @@ def student_profile(request,
                 student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
             else:
                 student.sat_t = None
-            student.last_updated = datetime.datetime.now()
-            student.profile_created = True
-            student.save()
-            resume_status = None
             data = {'valid':True} 
             if request.FILES.has_key('resume'):
                 resume_status = process_resume(request.user.student)
-                errors = {}
                 if resume_status == RESUME_PROBLEMS.HACKED:
                     data = {'valid':False}
-                    errors['id_resume'] = messages.resume_problem
+                    errors = {'id_resume': messages.resume_problem}
                     data['errors'] = errors
                 elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
                     data = {'valid':False}
                     data['unparsable_resume'] = True
+            if data['valid'] and data['unparsable_resume']:    
+                student.last_updated = datetime.datetime.now()
+                student.profile_created = True
+                student.save()
+
         else:
             data = {'valid':False}
             errors = {}
@@ -218,7 +218,6 @@ def student_profile_preview(request,
             context.update(extra_context or {})
             return context
         else:
-            print form.errors
             if form.non_field_errors():
                 error_html = form.non_field_errors()[0]
             else:
@@ -232,27 +231,33 @@ def student_profile_preview(request,
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_update_resume(request,
-                          form_class=StudentUpdateResumeForm):
-    
+def student_update_resume(request, form_class=StudentUpdateResumeForm):
     if request.is_ajax() and request.method == 'POST':
-        form = form_class(data=request.POST,
-                          files=request.FILES,
-                          instance=request.user.student)
-        old_resume_name = str(request.user.student.resume)
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
-            os.remove(settings.MEDIA_ROOT + old_resume_name)
             form.save()
-            return process_resume(request.user.student, request.is_ajax())
-    return redirect('home')
+            resume_status = process_resume(request.user.student)
+            errors = {}
+            if resume_status == RESUME_PROBLEMS.HACKED:
+                data = {'valid':False}
+                errors['id_resume'] = messages.resume_problem
+                data['errors'] = errors
+            elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
+                data = {'valid':False}
+                data['unparsable_resume'] = True
+            else:
+                data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_update_resume_info(request):
     
     if request.is_ajax():
-        data = {'path_to_new_resume' : str(request.user.student.resume), 
-                'num_of_extracted_keywords' : str(len(request.user.student.keywords.split(" ")))}
+        data = {'path_to_new_resume' : str(request.user.student.resume),
+                'num_of_extracted_keywords' : len(filter(None, request.user.student.keywords.split(" ")))}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     return redirect('home')
 

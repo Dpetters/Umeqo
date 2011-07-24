@@ -5,46 +5,45 @@
 .side_block {
     width: 200px;
 }
-
 #dropbox {
     opacity: 0.5;
-    background-color: #e9e9e9;
-    height: 185px;
-    width: 178px;
-    border: 1px dotted #303030;
+    background-color: #f2f2f2;
+    height: 51px;
+    margin:5px 0px 5px 14px;
+    width: 170px;
+    border: 1px dashed #888;
 }
 #dropbox_status{
     font-weight: bold;
-    height: 0px;
-    position: relative;
-    top: 75px;
+	position:relative;
+	height:0px;
+	top:23px;
 }
-#quick_resume_updater_block #dropbox.hover {
-    border: 1px dashed #303030;
-    opacity: 0.3;
+#update_resume_div #dropbox.hover {
+    border: 1px dashed #000;
+    opacity: 0.4;
 }
-#quick_resume_updater_block #dropbox.uploading {
+#update_resume_div #dropbox.uploading {
     border: 1px solid orange;
 }
-#quick_resume_updater_block #dropbox.success {
+#update_resume_div #dropbox.success {
     border: 1px solid #00EA1B;
 }
-#quick_resume_updater_block #dropbox.error {
+#update_resume_div #dropbox.error {
     border: 1px solid red;
 }
-#quick_resume_updater_block .side_block_content{
-    text-align: center;
-}
-
-#notifications_block .main_block_header{
-    line-height: 22px;
-}
-
 #id_subscribed_employers {
     width: 300px;
 }
 .employer_subscriptions_dialog .ui-dialog-content {
     padding: 25px;
+}
+#update_resume_div{
+	text-align:center;
+	display:none;
+}
+#update_resume_div a{
+	text-align:left;
 }
 #suggested_employers_list_info_block {
     width: 112px;
