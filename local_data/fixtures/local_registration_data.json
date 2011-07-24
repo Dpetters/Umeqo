@@ -270,6 +270,16 @@
   }
  }, 
  {
+  "pk": 39, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-24 13:50:36", 
+   "session_key": "d70c3bcb9d7e7ee182ffbd56fccae6a2", 
+   "last_updated": "2011-07-24 13:50:36", 
+   "user": 1
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
