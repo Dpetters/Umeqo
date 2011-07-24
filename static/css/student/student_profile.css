@@ -106,13 +106,6 @@ input[type=text] {
 .create_campus_organization_dialog #id_type{
 	width:260px;
 }
-.unparsable_resume_dialog .dialog_content_wrapper{
-	padding:15px;
-}
-.unparsable_resume_dialog a.button{
-     width: 110px;
-}
-
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
     display:none;

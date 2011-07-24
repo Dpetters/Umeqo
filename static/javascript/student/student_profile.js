@@ -41,23 +41,6 @@ $(document).ready( function() {
         dialog.dialog('open');
         return dialog;
     };
-
-    function open_unparsable_resume_dialog(){
-        var dialog = $('<div class="dialog"></div>')
-        .dialog({
-            autoOpen: false,
-            title:"Unparsable Resume",
-            dialogClass: "unparsable_resume_dialog",
-            modal:true,
-            width:410,
-            resizable: false,
-            close: function() {
-                $unparsable_resume_dialog.remove();
-            }
-        });
-        dialog.dialog('open');
-        return dialog;
-	};
 	
     $('#create_campus_organization_link').click( function () {
         create_campus_organization_dialog = open_create_campus_organization_dialog();
@@ -275,7 +258,7 @@ $(document).ready( function() {
             }
         });
     });
-    
+
     // Create Profile Form Validation
     var v = $("#profile_form").validate({
         submitHandler: function (form) {

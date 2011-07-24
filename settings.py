@@ -149,7 +149,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
-    'notification.context_processors.notification'
+    'notification.context_processors.notification',
+    'core.context_processors.next'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -210,7 +211,7 @@ CACHES = {
 }
 
 #only allow toolbar from localhost
-#INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1',)
 
 try:
     from settings_local import *

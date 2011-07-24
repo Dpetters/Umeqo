@@ -4,7 +4,7 @@
     margin-bottom: 10px;
 }
 .event_list p {
-    padding: 10px 0;
+    padding: 3px;
 }
 .event_list li {
     clear: both;
@@ -38,16 +38,22 @@
     font-style: normal;
     font-weight: 600;
 }
-.event_list .name .type {
-    font-size: 11px;
-    background-color: #666;
+.event_list .type {
     color: #FFF;
+    text-shadow: #000 0 -1px 0;
+    background-color: #666;
+}
+.event_list .type,
+.event_list .private_token {
+    font-size: 11px;
     display: inline-block;
     padding: 2px 4px;
     vertical-align: top;
     border-radius: 2px;
     -moz-border-radius: 2px;
-    text-shadow: #000 0 -1px 0;
+}
+.event_list .private_token {
+    text-transform: uppercase;
 }
 .event_list .details {
     margin-top: 3px;

@@ -1,6 +1,6 @@
 <li{% ifequal event.upcoming 0 %} class="outdated"{% endifequal %}>
     <div class="name">
-        <span class="type">{{event.type}}</span> <a href="{{event.get_absolute_url}}">{{event.name}}</a>
+        <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
         <div class="datetime">
             {% if event.start_datetime %}
             <span class="start"><strong>{{event.start_datetime|date:"D F j"}}</strong>, {{event.start_datetime|date:"Y"}}

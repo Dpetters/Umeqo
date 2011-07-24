@@ -1,19 +1,26 @@
+#employers_list_block {
+    width: 760px;
+    float: right;
+}
 #employers_list_block .main_block_content {
     padding: 0;
     position: relative;
 }
+#employers_list_form_wrapper {
+    height: 35px;
+    line-height: 35px;
+    background-color: #EEE;
+}
 #employers_list_form {
-    float: right;
     position: relative;
-    padding-right: 20px;
-    margin-right: 5px;
+    margin-left: 5px;
 }
 #employers_listings {
     position: absolute;
-    top: 0;
+    top: 35px;
     left: 0;
     bottom: 0;
-    width: 300px;
+    width: 200px;
     overflow-y: auto;
     background-color: #EEE;
 }
@@ -38,26 +45,35 @@
 #employers_listings .description {
     overflow-x: hidden;
     white-space: nowrap;
-    width: 270px;
+    width: 195px;
     display: inline-block;
     color: #777;
+    text-overflow: ellipsis;
 }
 
 #employers_detail {
-    margin-left: 300px;
+    margin-left: 200px;
     min-height: 200px;
     padding: 10px;
 }
 #employers_detail .industries {
     float: right;
 }
-#employers_detail .industries div {
+#employers_detail .offered_job_types {
+    display: inline-block;
+    border-left: 1px solid #DDD;
+    padding-left: 10px;
+    margin-left: 8px;
+}
+#employers_detail .industries div,
+#employers_detail .offered_job_types div {
     display: inline-block;
     background-color: #EEE;
     border-radius: 2px;
     padding: 4px 6px;
     font-size: 12px;
     font-weight: 600;
+    margin: 0 2px 2px 0;
 }
 #employers_detail h2 {
     margin-top: 10px;
@@ -68,4 +84,11 @@
     margin-bottom: 5px;
     width: 80px;
     text-align: center;
+}
+
+#employers_detail .description {
+    padding: 10px 0;
+}
+#employers_filter_name {
+    width: 280px;
 }

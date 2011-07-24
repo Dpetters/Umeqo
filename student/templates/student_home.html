@@ -17,7 +17,12 @@
 
 <!-- Custom -->
   <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
   <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_home.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+<script>
+    var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
+</script>
 {% endblock %}
 
 {% block message_area %}
@@ -28,38 +33,13 @@
 {% endblock %}
 
 {% block content_area %}
-    
-<div class="left_side_container">
-        <div class="side_nav"> 
-            <h3>Browse</h3>
-            <a href="{% url events_list %}">Deadlines and Events</a>
-            <a href="{% url employers_list %}">Employers</a>
-            <h3>Account</h3>
-            <a href="{% url student_profile %}">Edit Profile</a>
-            <a href="{% url student_account_settings %}">Account Settings</a>
-            <a href="{% url logout %}">Logout</a>
-        </div>
-        <div id="quick_resume_updater_block" class="side_block">
-            <div class="side_block_header">
-                <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/resume.png" />
-                <span class="side_block_header_title">Resume Updater</span>
-            </div>
-            <div class="side_block_content">
-                <p id="dropbox_status">Drop PDF File Here</p>
-                  <div id="dropbox">
-                  </div>
-            </div>
-            <div class="side_block_footer">
-                <div class="side_block_footer_link">
-                    <a id="view_resume_link" target="_blank" href="{% url student_resume %}">View Current Resume</a>
-                </div>
-            </div>
-        </div>
+    <div class="left_side_container">
+        {% include "student_side_nav.html" %}
     </div>
     <div class="main_block no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
-            <span class="main_block_header_title">Welcome!</span>
+            <span class="main_block_header_title">What's New</span>
         </div>
         <div class="main_block_content">
             <div class="message_block">
@@ -72,7 +52,7 @@
     <div id="events_and_deadlines_block" class="main_block">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
-            <span class="main_block_header_title">Deadlines and Events</span>
+            <span class="main_block_header_title">Events and Deadlines</span>
         </div>
         <div class="main_block_content">
             {% if has_subscriptions %}
@@ -93,7 +73,7 @@
                 <div class="message_block">
                     <p>
                         When you <a href="{% url employers_list %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
-                        <a href="{% url events_list %}">Browse the full listing</a> to search and filter for deadlines and events.
+                        <a href="{% url events_list %}">Browse the full listing</a> to search and filter for Events and Deadlines.
                     </p>
                 </div>
             {% endif %}
