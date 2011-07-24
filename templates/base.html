@@ -158,6 +158,7 @@
                             <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                             <a id="reset_password_link" href="/password/reset">Forgot password?</a>
                         </div>
+                        <input type="hidden" name="next" value="{{login_next}}" />
                     </form>
                 </div>
                 {% endif %}
