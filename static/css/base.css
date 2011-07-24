@@ -297,7 +297,7 @@ p {
 .main_block_header_sidelink {
     float: right;
     padding-right: 5px;
-    margin: 3px 5px 0 0;
+    margin: 1px 5px 0 0;
 }
 .side_block_content a:hover {
     color: #000;
@@ -523,16 +523,6 @@ input.button, .button[type=submit] {
 a.button {
     height: 28px;
     line-height: 28px;
-}
-a.button.sub-button {
-    background: #DDD;
-    color: #000;
-    line-height: 21px;
-    height: 23px;
-}
-a.button.sub-button:hover {
-    background: #DFDFDF;
-    color: #222 !important;
 }
 .button.disabled-button {
     color: #888;

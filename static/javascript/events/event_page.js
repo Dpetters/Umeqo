@@ -5,11 +5,8 @@ $(document).ready(function() {
         }, function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
                 if ($('.response').length > 0) {
-                    $('.response').fadeOut(200, function() {
-                        $('.no-response').removeClass('hid');
-                        $('.response').addClass('hid');
-                    });
-                    $('.no-response').fadeIn();
+                    $('.no-response').removeClass('hid');
+                    $('.response').addClass('hid');
                 } else {
                     $('.no-response').removeClass('hid');
                 }
@@ -41,11 +38,8 @@ $(document).ready(function() {
     $('#remove-rsvp-button').live('click', function(e) {
         $.post($(this).attr('href'), function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
-                $('.no-response').fadeOut(200, function() {
-                    $('.response').removeClass('hid');
-                    $('.no-response').addClass('hid');
-                });
-                $('.response').fadeIn();
+                $('.response').removeClass('hid');
+                $('.no-response').addClass('hid');
                 $('#rsvp_div .selected').removeClass('selected');
             }
         }, "json");

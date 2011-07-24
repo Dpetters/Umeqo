@@ -1284,11 +1284,17 @@ $(document).ready(function() {
                 } else {
                     $.each(events, function(k,event) {
                         var ispublic = event.is_public ? 1 : 0;
-                        var link = $('<a data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#">' + event.name + '</a>');
-                        if (event.invited) {
-                            link.addClass('disabled');
-                            link.html(link.html() + ' (invited)');
+                        var link = $('<a data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                        var linkText;
+                        if (!ispublic) {
+                            linkText = event.name + ' [private]';
+                        } else {
+                            linkText = event.name + ' [public]';
                         }
+                        if (event.invited) {
+                            linkText = linkText + ' (invited)';
+                        }
+                        link.html(linkText);
                         dropdown.append(link);
                     });
                 }

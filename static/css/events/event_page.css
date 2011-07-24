@@ -72,10 +72,15 @@
     text-align: center;
 }
 #rsvp_div .help-bubble {
-    right: 150px;
     width: 180px;
     opacity: 0.85;
     top: 0;
+}
+#rsvp_div .help-bubble.public {
+    right: 120px;
+}
+#rsvp_div .help-bubble.private {
+    right: 210px;
 }
 #rsvp_div .help-bubble::after {
     top: 10px;
@@ -103,9 +108,14 @@
     behavior: url(/static/lib/pie/PIE.htc);
     -pie-background: linear-gradient(#888, #666);
 }
-#event_admin h1 .button {
+#event_admin h1 .dark_button {
     float: right;
-    margin-top: -4px;
+    font-size: 12px;
+    font-weight: normal;
+    height: 18px;
+    line-height: 20px;
+    border-color: #444;
+    margin-top: -2px;
 }
 #event_admin p {
     margin-top: 5px;
@@ -131,6 +141,11 @@
     border-width: 1px 1px 0 1px;
     border-color: #CCC;
     cursor: pointer;
+}
+.no-response {
+    position: absolute;
+    top: -20px;
+    right: 0;
 }
 .responses {
     border: 1px solid #CCC;

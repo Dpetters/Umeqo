@@ -41,9 +41,9 @@
         {% endif %}
         </span>
         {% if edit %}
-            <a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink button sub-button">View Event</a>
+            <a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink dark_button">View Event</a>
         {% endif %}
-        <a href="{% url home %}#events" class="main_block_header_sidelink button sub-button">Back to Events</a>
+        <a href="{% url home %}#events" class="main_block_header_sidelink dark_button">Back to Events</a>
     </div>
     <div class="main_block_content">
         <form id="new_event_form" method="POST" action="">
