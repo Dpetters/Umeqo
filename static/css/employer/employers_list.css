@@ -7,8 +7,8 @@
     position: relative;
 }
 #employers_list_form_wrapper {
-    height: 35px;
-    line-height: 35px;
+    height: 40px;
+    line-height: 40px;
     background-color: #EEE;
 }
 #employers_list_form {
@@ -17,7 +17,7 @@
 }
 #employers_listings {
     position: absolute;
-    top: 35px;
+    top: 40px;
     left: 0;
     bottom: 0;
     width: 200px;
