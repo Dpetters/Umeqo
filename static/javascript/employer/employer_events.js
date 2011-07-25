@@ -1,5 +1,5 @@
 $(document).ready( function() {
-
+	
     // Event Description Collapse and Toggle
     $("#old_event_list").hide();
     $("#view_old_events_link").click( function() {
