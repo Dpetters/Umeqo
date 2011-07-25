@@ -4,6 +4,14 @@
 Tutorials |
 {% endblock %}
 
-{% block help_content %}
+{% block metadata %}
+{{block.super}}
+{% load compress %}
+{% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/tutorials.css" />
+{% endcompress %}
+{% endblock %}
 
+{% block help_content %}
+<h1>Coming Soon</h1>
 {% endblock %}

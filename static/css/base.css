@@ -89,14 +89,13 @@ p {
 }
 #logo_beta {
     display: inline-block;
-    left:175px;
-    bottom: 30px;
+    left:173px;
+    bottom: 33px;
     position: absolute;
-    color: white;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 2px 4px;
+    color: #FAFAFA;
+    padding: 1px 4px 2px;
     text-transform: uppercase;
-    font-size: 17.5px;
+    font-size: 14px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -310,8 +309,7 @@ p {
 .side_nav {
     margin-bottom: 20px;
     padding-left:12px;
-    padding-right:10px;
-    width: 180px;
+    width: 182px;
 }
 .side_nav h3 {
     margin-top: 5px;
@@ -332,7 +330,7 @@ p {
 }
 .main_block h1{
 	margin-bottom:15px;
-}
+}	
 .main_block_header {
     padding: 3px 0px;
     line-height: 30px;
@@ -768,14 +766,15 @@ td #ajax_form_submit_loader {
     vertical-align: bottom;
     text-align: right;
 }
-.form_table td p, .form_table th {
-    vertical-align: top;
+.form_table td p, .form_table th{
+    padding-top: 23px;
+    vertical-align:top;
 }
 .form_table input[type=submit], .button_cell .button {
     margin-top: 14px;
 }
 .sub_header_message{
-    padding-left:6px;
+	padding-left:6px;
 }
 .form_table .info {
     width: 300px;
@@ -843,12 +842,13 @@ a:focus {
     height:175px;
     resize: none;
 }
-#contact_us_form th{
-	width:74px;
-}
-label.required[for=id_body]{
+#contact_us_form label{
 	margin-left:2px;
-} 
+}
+#contact_us_form th{
+	width:80px;
+	text-align:left;
+}
 /* General Styles */
 .nounderline {
     text-decoration: none;
@@ -893,19 +893,6 @@ label.required[for=id_body]{
 #dialog_form_error_section {
     margin-top: 10px;
     text-align: center;
-}
-.campus_org_image, .course_image{
-	float: left;
-	margin-right: 12px;
-	margin-bottom: 8px;
-	margin-top: 2px;
-	
-}
-.campus_org_info_dialog .dialog_content_wrapper, .course_info_dialog .dialog_content_wrapper{
-	padding: 10px;
-}
-.campus_org_info_dialog .dialog_content_wrapper p, .course_info_dialog .dialog_content_wrapper p{
-	margin-top: 3px;
 }
 /** JQuery UI Overrides **/
 /* Jquery Widget */

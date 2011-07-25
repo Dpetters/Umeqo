@@ -23,13 +23,17 @@
 </script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_preview.js">
 </script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/campus_info.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_info.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
 <!-- Scripts -->
 <script type="text/javascript">
+    var COURSE_INFO_URL = "{% url course_info %}";
+    var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var SHOW_DETAILS_LINK = "{% include 'student_show_details_link.html' %}";    
     var HIDE_DETAILS_LINK = "{% include 'student_hide_details_link.html' %}";
     var CHECK_CAMPUS_ORGANIZATION_UNIQUENESS_URL = "{% url check_campus_organization_uniqueness %}";
