@@ -1,9 +1,6 @@
 .main_block {
-    width: 760px;
+    width: 780px;
     float: right;
-}
-.side_block {
-    width: 200px;
 }
 #query_field {
     height: 22px;

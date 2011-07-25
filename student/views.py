@@ -142,7 +142,7 @@ def student_profile(request,
                 student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
             else:
                 student.sat_t = None
-            data = {'valid':True} 
+            data = {'valid':True, 'unparsable_resume':False} 
             if request.FILES.has_key('resume'):
                 resume_status = process_resume(request.user.student)
                 if resume_status == RESUME_PROBLEMS.HACKED:
