@@ -185,49 +185,52 @@ def student_profile(request,
 def student_profile_preview(request,
                             form_class=StudentProfilePreviewForm,
                             extra_context=None):
-
-    if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-        if form.is_valid():
-            student = form.save(commit=False)
-            if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
-                student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
+    if request.user.is_authenticated() and hasattr(request.user, "student"):
+        print request.is_ajax()
+        if request.method == 'POST':
+            form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+            if form.is_valid():
+                student = form.save(commit=False)
+                if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
+                    student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
+                else:
+                    student.sat_t = None
+                
+                context = {'student':student,
+                           'in_resume_book':False,
+                           'starred':False,
+                           'comment':messages.student_profile_preview_comment,
+                           'num_of_events_attended':1,
+                           'profile_preview':True}
+                
+                if request.POST.has_key('multiselect_id_looking_for'):
+                    context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('multiselect_id_looking_for'))
+                if request.POST.has_key('multiselect_id_industries_of_interest'):
+                    context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('multiselect_id_industries_of_interest'))
+                if request.POST.has_key('multiselect_id_previous_employers'):
+                    context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('multiselect_id_previous_employers'))
+                if request.POST.has_key('multiselect_id_campus_involvement'):
+                    context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('multiselect_id_campus_involvement'))
+                if request.POST.has_key('multiselect_id_languages'):
+                    context['languages'] = Language.objects.filter(id__in=request.POST.getlist('multiselect_id_languages'))
+                if request.POST.has_key('multiselect_id_countries_of_citizenship'):
+                    context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('multiselect_id_countries_of_citizenship'))
+                                    
+                context.update(extra_context or {})
+                return context
             else:
-                student.sat_t = None
-            
-            context = {'student':student,
-                       'in_resume_book':False,
-                       'starred':False,
-                       'comment':messages.student_profile_preview_comment,
-                       'num_of_events_attended':1,
-                       'profile_preview':True}
-            
-            if request.POST.has_key('multiselect_id_looking_for'):
-                context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('multiselect_id_looking_for'))
-            if request.POST.has_key('multiselect_id_industries_of_interest'):
-                context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('multiselect_id_industries_of_interest'))
-            if request.POST.has_key('multiselect_id_previous_employers'):
-                context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('multiselect_id_previous_employers'))
-            if request.POST.has_key('multiselect_id_campus_involvement'):
-                context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('multiselect_id_campus_involvement'))
-            if request.POST.has_key('multiselect_id_languages'):
-                context['languages'] = Language.objects.filter(id__in=request.POST.getlist('multiselect_id_languages'))
-            if request.POST.has_key('multiselect_id_countries_of_citizenship'):
-                context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('multiselect_id_countries_of_citizenship'))
-                                
-            context.update(extra_context or {})
-            return context
+                if form.non_field_errors():
+                    error_html = form.non_field_errors()[0]
+                else:
+                    for field in form:
+                        if field.errors:
+                            error_html = field.errors[0]
+                            break
+                return HttpResponse("<div class='message_section'>%s</div>" % error_html)
         else:
-            if form.non_field_errors():
-                error_html = form.non_field_errors()[0]
-            else:
-                for field in form:
-                    if field.errors:
-                        error_html = field.errors[0]
-                        break
-            return HttpResponse("<div class='message_section'>%s</div>" % error_html)
+            return HttpResponseForbidden("Request must be a POST.") 
     else:
-        return HttpResponseForbidden("Request must be a GET.") 
+        return HttpResponseForbidden("You must be logged in.")     
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)

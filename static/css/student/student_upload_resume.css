@@ -3,7 +3,7 @@
     background-color: #f2f2f2;
     height: 51px;
     margin:5px 0px 5px 14px;
-    width: 160px;
+    width: 154px;
     border: 1px dashed #888;
 }
 #dropbox_status{
@@ -15,7 +15,7 @@
 #update_resume_div{
 	text-align:center;
 	display:none;
-	width:190px;
+	width:186px;
 }
 #update_resume_div a{
 	text-align:left;

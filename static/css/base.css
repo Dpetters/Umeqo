@@ -92,11 +92,10 @@ p {
     left:173px;
     bottom: 33px;
     position: absolute;
-    color: white;
-    background: rgba(0, 0, 0, 0.3);
+    color: #FAFAFA;
     padding: 1px 4px 2px;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 14px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -310,7 +309,7 @@ p {
 .side_nav {
     margin-bottom: 20px;
     padding-left:12px;
-    width: 200px;
+    width: 182px;
 }
 .side_nav h3 {
     margin-top: 5px;
@@ -840,12 +839,13 @@ a:focus {
     height:175px;
     resize: none;
 }
-#contact_us_form th{
-	width:74px;
-}
-label.required[for=id_body]{
+#contact_us_form label{
 	margin-left:2px;
-} 
+}
+#contact_us_form th{
+	width:80px;
+	text-align:left;
+}
 /* General Styles */
 .nounderline {
     text-decoration: none;
@@ -890,19 +890,6 @@ label.required[for=id_body]{
 #dialog_form_error_section {
     margin-top: 10px;
     text-align: center;
-}
-.campus_org_image, .course_image{
-	float: left;
-	margin-right: 12px;
-	margin-bottom: 8px;
-	margin-top: 2px;
-	
-}
-.campus_org_info_dialog .dialog_content_wrapper, .course_info_dialog .dialog_content_wrapper{
-	padding: 10px;
-}
-.campus_org_info_dialog .dialog_content_wrapper p, .course_info_dialog .dialog_content_wrapper p{
-	margin-top: 3px;
 }
 /** JQuery UI Overrides **/
 /* Jquery Widget */
