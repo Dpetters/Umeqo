@@ -29,8 +29,7 @@
     background: linear-gradient(top, #33bfe4 0%,#179ed3 100%);
     behavior: url(/static/lib/pie/PIE.htc);
     -pie-background: linear-gradient(#33bfe4, #179ed3);
-    color: #333;
-    text-shadow: #EEE 0 1px 0;
+    color: #000;
 }
 #login_button a, #signup_button a {
     border: 1px solid #000;
@@ -58,7 +57,7 @@
     background: linear-gradient(top, #68CAE2 0%,#179ed3 100%);
     behavior: url(/static/lib/pie/PIE.htc);
     -pie-background: linear-gradient(#68CAE2, #179ed3);
-    color: #333;
+    color: #000;
 }
 #login_button a:active {
     behavior: url(/static/lib/pie/PIE.htc);

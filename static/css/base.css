@@ -328,6 +328,9 @@ p {
     display: inline-block;
     width: 100%;
 }
+.main_block h1{
+	margin-bottom:15px;
+}	
 .main_block_header {
     padding: 3px 0px;
     line-height: 30px;
