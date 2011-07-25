@@ -19,6 +19,8 @@ class InterestedPerson(core_mixins.DateTracking):
     email = models.EmailField("Contact E-mail", blank=True, null=True, unique=True)
     summer_plans = models.CharField("Summer plans?",max_length=200, null=True, blank=True)
     ip_address = models.IPAddressField(editable=False, null=True)
+    auto_email = models.BooleanField(default=False)
+    emailed = models.BooleanField(default=False)
     
     class Meta:
         verbose_name = "Interested Person"
