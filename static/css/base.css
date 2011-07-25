@@ -89,14 +89,14 @@ p {
 }
 #logo_beta {
     display: inline-block;
-    left:175px;
-    bottom: 30px;
+    left:173px;
+    bottom: 33px;
     position: absolute;
     color: white;
     background: rgba(0, 0, 0, 0.3);
-    padding: 2px 4px;
+    padding: 1px 4px 2px;
     text-transform: uppercase;
-    font-size: 17.5px;
+    font-size: 18px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -310,8 +310,7 @@ p {
 .side_nav {
     margin-bottom: 20px;
     padding-left:12px;
-    padding-right:10px;
-    width: 180px;
+    width: 200px;
 }
 .side_nav h3 {
     margin-top: 5px;
@@ -329,9 +328,6 @@ p {
     margin-top: 20px;
     display: inline-block;
     width: 100%;
-}
-.main_block h1{
-	margin-bottom:15px;
 }
 .main_block_header {
     padding: 3px 0px;
@@ -768,14 +764,15 @@ td #ajax_form_submit_loader {
     vertical-align: bottom;
     text-align: right;
 }
-.form_table td p, .form_table th {
-    vertical-align: top;
+.form_table td p, .form_table th{
+    padding-top: 23px;
+    vertical-align:top;
 }
 .form_table input[type=submit], .button_cell .button {
     margin-top: 14px;
 }
 .sub_header_message{
-    padding-left:6px;
+	padding-left:6px;
 }
 .form_table .info {
     width: 300px;
