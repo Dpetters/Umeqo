@@ -170,6 +170,18 @@
   }
  }, 
  {
+  "pk": 2, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "last_updated": "2011-07-24 15:08:14", 
+   "name": null, 
+   "students": [], 
+   "recruiter": 1, 
+   "resume_book": "", 
+   "date_created": "2011-07-24 15:08:14"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "employer.employerstudentcomment", 
   "fields": {

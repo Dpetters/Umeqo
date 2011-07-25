@@ -764,15 +764,14 @@ td #ajax_form_submit_loader {
     vertical-align: bottom;
     text-align: right;
 }
-.form_table td p, .form_table th{
-    padding-top: 23px;
-    vertical-align:top;
+.form_table td p, .form_table th {
+    vertical-align: top;
 }
 .form_table input[type=submit], .button_cell .button {
     margin-top: 14px;
 }
 .sub_header_message{
-	padding-left:6px;
+    padding-left:6px;
 }
 .form_table .info {
     width: 300px;

@@ -6,6 +6,13 @@
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_account_settings.js"></script>
 {% endblock %}
 
+{% block content_area %}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+{{block.super}}
+{% endblock %}
+
 {% block account_settings_tab_declarations %}
      <li><a href="#tabs-3" id="subscription_and_billing_link">Subscription &amp; Billing</a></li>
 {% endblock %}
@@ -22,13 +29,13 @@
    </tr>
    <tr>
       <td>RSVP to Public Event</td>
-      <td class="checkbox">
+      <td class="checkbox email_checkbox">
           {{preferences_form.email_on_rsvp_to_public_event}}
       </td>
    </tr>
    <tr>
       <td>RSVP to Private Event</td>
-      <td class="checkbox">
+      <td class="checkbox email_checkbox">
           {{preferences_form.email_on_rsvp_to_private_event}}
       </td>
    </tr>

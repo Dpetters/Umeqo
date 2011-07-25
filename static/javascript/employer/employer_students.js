@@ -1297,7 +1297,7 @@ $(document).ready(function() {
                                 linkText = linkText + ' (invited)';
                             }
                             link.html(linkText);
-                            dropdown.append(link);
+                            formdropdown.append(link);
                         });
                     }
                     $(that).append(dropdown);
