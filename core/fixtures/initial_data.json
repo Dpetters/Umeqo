@@ -7598,15 +7598,15 @@
   "pk": 329, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://sigmachi.mit.edu/", 
+   "last_updated": "2011-07-24 20:04:41", 
+   "description": "Besides being one of the largest international fraternities in North America, Sigma Chi has had a long history of excellence at MIT that began in 1882. Founded in 1882, the Alpha Theta chapter is the oldest continuous Fraternity at MIT with one of the oldest houses as well (some organizations, such as MIT Libraries, simply cite us as the first MIT fraternity). With nearly 125 pledge classes that have gone through Alpha Theta, their alumni are found in all parts of the world and still enjoy coming back to the house for some of our house's events such as our annual Alumni Day.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Sigma Chi"
   }
  }, 
@@ -7614,15 +7614,15 @@
   "pk": 330, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://www.skmit.com/", 
+   "last_updated": "2011-07-24 20:02:32", 
+   "description": "In 1988, the Sigma Kappa - Theta Lambda Chapter - was founded, becoming the third nationally recognized sorority at MIT. As our chapter grew in the nineties, so did our presence on and off campus. Now as 2010 approaches, Sigma Kappa is thriving.  Sigma Kappa is over 120 sisters strong, representing multiple countries, ethnicities, and interests. The sisters are confident, passionate, and grateful women: confident in our abilities, passionate in our pursuits, and grateful to our founders for makings us sisters. They are bringing sisterhood to life.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Sigma Kappa"
   }
  }, 
@@ -7630,15 +7630,15 @@
   "pk": 331, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://spe.mit.edu/", 
+   "last_updated": "2011-07-24 20:00:12", 
+   "description": "SigEp was founded at Richmond College, now the University of Richmond, on November 1, 1901 on the cardinal principles of Virtue, Diligence, and Brotherly Love. Today, over 280,000 men have joined the fraternity and taken a vow to uphold these values. With over 15,000 current undergraduates at more than 260 colleges across the nation, Sigma Phi Epsilon is the nation's largest fraternity.", 
+   "image": "core/CampusOrg/sigma_phi_epsilon_2011-07-24-20-00-12.png", 
+   "email": "spe-president@mit.edu", 
+   "thumbnail": "core/CampusOrg/sigma_phi_epsilon_2011-07-24-20-00-12_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Sigma Phi Epsilon"
   }
  }, 
@@ -7646,15 +7646,15 @@
   "pk": 332, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://mitsss.scripts.mit.edu/home/", 
+   "last_updated": "2011-07-24 19:58:22", 
+   "description": "The Massachusetts Institute of Technology Singapore Students Society (MITSSS) is a MIT-registered student group that seeks to foster friendship and promote cultural exchange between Singaporeans and members of the MIT community.\r\n\r\nTheir events raise awareness of the Singaporean culture;our membership includes people beyond Singaporeans and MIT students. ", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Singapore Students Society"
   }
  }, 
@@ -7663,13 +7663,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:57:18", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Skateboarding Club"
   }
@@ -7678,15 +7678,15 @@
   "pk": 334, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "http://web.mit.edu/suma/", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "The organization's goal is to educate, inform, and connect MIT students to the opportunities in the world of business.", 
-   "image": "", 
+   "website": "http://www.mit-sbc.org/", 
+   "last_updated": "2011-07-24 19:56:58", 
+   "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
+   "image": "core/CampusOrg/sloan_business_club_2011-07-24-19-56-58.png", 
    "email": "sbc-exec@mit.edu", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/sloan_business_club_2011-07-24-19-56-58_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 5, 
-   "display": false, 
+   "display": true, 
    "name": "Sloan Business Club"
   }
  }, 
@@ -7695,13 +7695,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:50:29", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Snowriders"
   }
@@ -7710,15 +7710,15 @@
   "pk": 336, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://socialmedia.mit.edu/", 
+   "last_updated": "2011-07-24 19:49:36", 
+   "description": "The MIT Social Media Club\u2019s purpose is to explore and understand social media; to study its development and dynamics; and to shape the future of social networks by creating a collaborative platform and environment within the MIT community.\r\nAs of today MIT community does not have a student organization that address social media and its development in a comprehensive manner.\r\n\r\nThey think that there is communication gap between students of different departments at MIT about social media and its development and dynamics. Permanent discussion/meeting platform on campus will give endless opportunities for MIT students, faculty and staff to meet in person, exchanges ideas and collaborate on future projects that may shape social media of tomorrow.\r\n\r\nTopics of social media are cross disciplinary in their nature. Such topics may cover entrepreneurship, technology and innovation, public policy, as well as wide array of social sciences. A common ground is needed where MIT students from different background may exchanges their ideas and create cross disciplinary projects.", 
+   "image": "core/CampusOrg/social_media_club_2011-07-24-19-49-36.png", 
+   "email": "socialmedia-core@exchange.mit.edu", 
+   "thumbnail": "core/CampusOrg/social_media_club_2011-07-24-19-49-36_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Social Media Club"
   }
  }, 
@@ -7726,15 +7726,15 @@
   "pk": 337, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/esperanto/www/", 
+   "last_updated": "2011-07-24 19:46:45", 
+   "description": "Societo por Esperanto is the name of MIT's Esperanto club. The club helps students learn and use the language Esperanto. They support Esperanto as a tool for making meaningful contact with people of other languages and cultures and countries. Anyone who has an interest in languages, travel, cultural diversity, world events, world literature, meeting new people regardless of their language or country, joining interest groups with members from around the world, or any or all of the above, is welcome to join.\r\n\r\nThe club offers free Esperanto classes to the MIT community and holds regular meetings to help students practice.  They share information and experiences to help each other stay informed about ways to use the language.  They occasionally show Esperanto videos; host conferences, concerts, and visiting Esperanto-speakers; celebrate international language days; and organize lectures and exhibit to inform the rest of the MIT community about the benefits of learning Esperanto.", 
+   "image": "core/CampusOrg/societo_por_esperanto_2011-07-24-19-46-35.png", 
+   "email": "spe-ak@mit.edu", 
+   "thumbnail": "core/CampusOrg/societo_por_esperanto_2011-07-24-19-46-35_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Societo por Esperanto"
   }
  }, 
@@ -7743,13 +7743,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:44:14", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Society for Creative Anachronism"
   }
@@ -7759,13 +7759,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:42:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Society for Women in Mathematics"
   }
@@ -7774,15 +7774,15 @@
   "pk": 340, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/sase/", 
+   "last_updated": "2011-07-24 19:43:07", 
+   "description": "The Society of Asian Scientists and Engineers is a newly founded club at MIT whose goal is to help the Asian community identify and develop skills that will enable them to be leaders in the workplace. The climb up the corporate ladder, especially for Asians, is hard. Why is there such a disparity between the high percentage of Asians at top colleges and the low percentage of Asians in the executive levels of corporations? SASE aims to promote awareness of this issue and to instill skills that will break this \"bamboo ceiling.\"", 
+   "image": "core/CampusOrg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17.png", 
+   "email": "sase-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Society of Asian Scientists and Engineers"
   }
  }, 
@@ -7790,15 +7790,15 @@
   "pk": 341, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/shpe/www/index.html", 
+   "last_updated": "2011-07-24 19:42:56", 
+   "description": "The Society of Hispanic Professional Engineers (SHPE) was founded in Los Angeles, CA in 1974 by a group of engineers employed by the city of Los Angeles. Their objective was to form a national organization of professional engineers to serve as role models in the Hispanic community. The concept of networking was the key basis for the organization. SHPE quickly established two student chapters to begin the network that would grow to encompass the nation as well as reach countries outside the Unites States.\r\n\r\nThe MIT chapter was established in 1987.  Since then, it has grown to over 60 active and 100 general members. Members do not have to be Hispanic or engineering students to participate.  They offer a broad range of opportunities to our members from networking and job opportunities with industry to assistance in the graduate school application process.  They also seek to help others in our community by mentoring middle school school students through the STEM program and encouraging them to pursue higher education, and through other community service work in the greater Boston area.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Society of Hispanic Professional Engineers"
   }
  }, 
@@ -7806,15 +7806,15 @@
   "pk": 342, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "https://sps.scripts.mit.edu/", 
+   "last_updated": "2011-07-24 19:38:55", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "sps-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Society of Physics Students"
   }
  }, 
@@ -7822,16 +7822,16 @@
   "pk": 343, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://swe.mit.edu/", 
+   "last_updated": "2011-07-24 19:37:08", 
+   "description": "The purpose of MIT SWE is to:\r\n - To educate members about career choices in engineering and promote community between professionals and students, including through alumni\r\n - To inspire younger generations about engineering, encourage the notion of diversity in engineering, and determine and advocate for the needs of women engineers at MIT\r\n - To build community at MIT SWE, bridge a relationship with local and national sections, and record and disseminate the culture, history, and events of MIT SWE", 
+   "image": "core/CampusOrg/society_of_women_engineers_(swe)_2011-07-24-19-37-08.png", 
+   "email": "swe-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/society_of_women_engineers_(swe)_2011-07-24-19-37-08_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
-   "name": "Society of Women Engineers"
+   "display": true, 
+   "name": "Society of Women Engineers (SWE)"
   }
  }, 
  {
