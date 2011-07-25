@@ -21,6 +21,7 @@ Copyright 2011. All Rights Reserved.
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
 {% endcompress %}
+<script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
     var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
     var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
@@ -227,6 +228,7 @@ Copyright 2011. All Rights Reserved.
                 </div>
                 <div class="main_block_content">
                     {{ event.location }}
+                      <div id="cm-example" style="width: 260px; height: 250px"></div>
                 </div>
             </div>
             
