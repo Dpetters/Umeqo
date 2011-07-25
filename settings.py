@@ -150,7 +150,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
     'notification.context_processors.notification',
-    'core.context_processors.next'
+    'core.context_processors.next',
+    'core.context_processors.get_current_path'
 )
 
 MIDDLEWARE_CLASSES = (
