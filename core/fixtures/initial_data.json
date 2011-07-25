@@ -2223,6 +2223,16 @@
   }
  }, 
  {
+  "pk": 15, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-07-17 15:18:01", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:18:01", 
+   "name": "Visual Arts and Publications"
+  }
+ }, 
+ {
   "pk": 2, 
   "model": "core.campusorgtype", 
   "fields": {
@@ -2343,13 +2353,13 @@
   }
  }, 
  {
-  "pk": 15, 
+  "pk": 16, 
   "model": "core.campusorgtype", 
   "fields": {
-   "date_created": "2011-07-17 15:18:01", 
+   "date_created": "2011-07-24 18:56:25", 
    "sort_order": 0, 
-   "last_updated": "2011-07-17 15:18:01", 
-   "name": "Visual Arts and Publications"
+   "last_updated": "2011-07-24 18:56:25", 
+   "name": "Other"
   }
  }, 
  {
@@ -7588,15 +7598,15 @@
   "pk": 329, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://sigmachi.mit.edu/", 
+   "last_updated": "2011-07-24 20:04:41", 
+   "description": "Besides being one of the largest international fraternities in North America, Sigma Chi has had a long history of excellence at MIT that began in 1882. Founded in 1882, the Alpha Theta chapter is the oldest continuous Fraternity at MIT with one of the oldest houses as well (some organizations, such as MIT Libraries, simply cite us as the first MIT fraternity). With nearly 125 pledge classes that have gone through Alpha Theta, their alumni are found in all parts of the world and still enjoy coming back to the house for some of our house's events such as our annual Alumni Day.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Sigma Chi"
   }
  }, 
@@ -7604,15 +7614,15 @@
   "pk": 330, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://www.skmit.com/", 
+   "last_updated": "2011-07-24 20:02:32", 
+   "description": "In 1988, the Sigma Kappa - Theta Lambda Chapter - was founded, becoming the third nationally recognized sorority at MIT. As our chapter grew in the nineties, so did our presence on and off campus. Now as 2010 approaches, Sigma Kappa is thriving.  Sigma Kappa is over 120 sisters strong, representing multiple countries, ethnicities, and interests. The sisters are confident, passionate, and grateful women: confident in our abilities, passionate in our pursuits, and grateful to our founders for makings us sisters. They are bringing sisterhood to life.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Sigma Kappa"
   }
  }, 
@@ -7620,15 +7630,15 @@
   "pk": 331, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://spe.mit.edu/", 
+   "last_updated": "2011-07-24 20:00:12", 
+   "description": "SigEp was founded at Richmond College, now the University of Richmond, on November 1, 1901 on the cardinal principles of Virtue, Diligence, and Brotherly Love. Today, over 280,000 men have joined the fraternity and taken a vow to uphold these values. With over 15,000 current undergraduates at more than 260 colleges across the nation, Sigma Phi Epsilon is the nation's largest fraternity.", 
+   "image": "core/CampusOrg/sigma_phi_epsilon_2011-07-24-20-00-12.png", 
+   "email": "spe-president@mit.edu", 
+   "thumbnail": "core/CampusOrg/sigma_phi_epsilon_2011-07-24-20-00-12_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Sigma Phi Epsilon"
   }
  }, 
@@ -7636,15 +7646,15 @@
   "pk": 332, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://mitsss.scripts.mit.edu/home/", 
+   "last_updated": "2011-07-24 19:58:22", 
+   "description": "The Massachusetts Institute of Technology Singapore Students Society (MITSSS) is a MIT-registered student group that seeks to foster friendship and promote cultural exchange between Singaporeans and members of the MIT community.\r\n\r\nTheir events raise awareness of the Singaporean culture;our membership includes people beyond Singaporeans and MIT students. ", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Singapore Students Society"
   }
  }, 
@@ -7653,13 +7663,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:57:18", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Skateboarding Club"
   }
@@ -7668,15 +7678,15 @@
   "pk": 334, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "http://web.mit.edu/suma/", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "The organization's goal is to educate, inform, and connect MIT students to the opportunities in the world of business.", 
-   "image": "", 
+   "website": "http://www.mit-sbc.org/", 
+   "last_updated": "2011-07-24 19:56:58", 
+   "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
+   "image": "core/CampusOrg/sloan_business_club_2011-07-24-19-56-58.png", 
    "email": "sbc-exec@mit.edu", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/sloan_business_club_2011-07-24-19-56-58_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 5, 
-   "display": false, 
+   "display": true, 
    "name": "Sloan Business Club"
   }
  }, 
@@ -7685,13 +7695,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:50:29", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Snowriders"
   }
@@ -7700,15 +7710,15 @@
   "pk": 336, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://socialmedia.mit.edu/", 
+   "last_updated": "2011-07-24 19:49:36", 
+   "description": "The MIT Social Media Club\u2019s purpose is to explore and understand social media; to study its development and dynamics; and to shape the future of social networks by creating a collaborative platform and environment within the MIT community.\r\nAs of today MIT community does not have a student organization that address social media and its development in a comprehensive manner.\r\n\r\nThey think that there is communication gap between students of different departments at MIT about social media and its development and dynamics. Permanent discussion/meeting platform on campus will give endless opportunities for MIT students, faculty and staff to meet in person, exchanges ideas and collaborate on future projects that may shape social media of tomorrow.\r\n\r\nTopics of social media are cross disciplinary in their nature. Such topics may cover entrepreneurship, technology and innovation, public policy, as well as wide array of social sciences. A common ground is needed where MIT students from different background may exchanges their ideas and create cross disciplinary projects.", 
+   "image": "core/CampusOrg/social_media_club_2011-07-24-19-49-36.png", 
+   "email": "socialmedia-core@exchange.mit.edu", 
+   "thumbnail": "core/CampusOrg/social_media_club_2011-07-24-19-49-36_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Social Media Club"
   }
  }, 
@@ -7716,15 +7726,15 @@
   "pk": 337, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/esperanto/www/", 
+   "last_updated": "2011-07-24 19:46:45", 
+   "description": "Societo por Esperanto is the name of MIT's Esperanto club. The club helps students learn and use the language Esperanto. They support Esperanto as a tool for making meaningful contact with people of other languages and cultures and countries. Anyone who has an interest in languages, travel, cultural diversity, world events, world literature, meeting new people regardless of their language or country, joining interest groups with members from around the world, or any or all of the above, is welcome to join.\r\n\r\nThe club offers free Esperanto classes to the MIT community and holds regular meetings to help students practice.  They share information and experiences to help each other stay informed about ways to use the language.  They occasionally show Esperanto videos; host conferences, concerts, and visiting Esperanto-speakers; celebrate international language days; and organize lectures and exhibit to inform the rest of the MIT community about the benefits of learning Esperanto.", 
+   "image": "core/CampusOrg/societo_por_esperanto_2011-07-24-19-46-35.png", 
+   "email": "spe-ak@mit.edu", 
+   "thumbnail": "core/CampusOrg/societo_por_esperanto_2011-07-24-19-46-35_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Societo por Esperanto"
   }
  }, 
@@ -7733,13 +7743,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:44:14", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Society for Creative Anachronism"
   }
@@ -7749,13 +7759,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:42:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Society for Women in Mathematics"
   }
@@ -7764,15 +7774,15 @@
   "pk": 340, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/sase/", 
+   "last_updated": "2011-07-24 19:43:07", 
+   "description": "The Society of Asian Scientists and Engineers is a newly founded club at MIT whose goal is to help the Asian community identify and develop skills that will enable them to be leaders in the workplace. The climb up the corporate ladder, especially for Asians, is hard. Why is there such a disparity between the high percentage of Asians at top colleges and the low percentage of Asians in the executive levels of corporations? SASE aims to promote awareness of this issue and to instill skills that will break this \"bamboo ceiling.\"", 
+   "image": "core/CampusOrg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17.png", 
+   "email": "sase-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Society of Asian Scientists and Engineers"
   }
  }, 
@@ -7780,15 +7790,15 @@
   "pk": 341, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/shpe/www/index.html", 
+   "last_updated": "2011-07-24 19:42:56", 
+   "description": "The Society of Hispanic Professional Engineers (SHPE) was founded in Los Angeles, CA in 1974 by a group of engineers employed by the city of Los Angeles. Their objective was to form a national organization of professional engineers to serve as role models in the Hispanic community. The concept of networking was the key basis for the organization. SHPE quickly established two student chapters to begin the network that would grow to encompass the nation as well as reach countries outside the Unites States.\r\n\r\nThe MIT chapter was established in 1987.  Since then, it has grown to over 60 active and 100 general members. Members do not have to be Hispanic or engineering students to participate.  They offer a broad range of opportunities to our members from networking and job opportunities with industry to assistance in the graduate school application process.  They also seek to help others in our community by mentoring middle school school students through the STEM program and encouraging them to pursue higher education, and through other community service work in the greater Boston area.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Society of Hispanic Professional Engineers"
   }
  }, 
@@ -7796,15 +7806,15 @@
   "pk": 342, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "https://sps.scripts.mit.edu/", 
+   "last_updated": "2011-07-24 19:38:55", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "sps-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Society of Physics Students"
   }
  }, 
@@ -7812,16 +7822,16 @@
   "pk": 343, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://swe.mit.edu/", 
+   "last_updated": "2011-07-24 19:37:08", 
+   "description": "The purpose of MIT SWE is to:\r\n - To educate members about career choices in engineering and promote community between professionals and students, including through alumni\r\n - To inspire younger generations about engineering, encourage the notion of diversity in engineering, and determine and advocate for the needs of women engineers at MIT\r\n - To build community at MIT SWE, bridge a relationship with local and national sections, and record and disseminate the culture, history, and events of MIT SWE", 
+   "image": "core/CampusOrg/society_of_women_engineers_(swe)_2011-07-24-19-37-08.png", 
+   "email": "swe-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/society_of_women_engineers_(swe)_2011-07-24-19-37-08_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
-   "name": "Society of Women Engineers"
+   "display": true, 
+   "name": "Society of Women Engineers (SWE)"
   }
  }, 
  {
@@ -7829,13 +7839,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:33:13", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Sojourn Collegiate Ministry"
   }
@@ -7845,30 +7855,30 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "http://solar-cars.scripts.mit.edu/", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:32:47", 
    "description": "The team draws on a broad range of technical knowledge encompassing all fields of engineering and science. Team membership provides an intense educational experience which teaches practical skills impossible to communicate in the classroom environment, turning students into engineers. In addition to providing real-world design and manufacturing experience, involvement in the team develops project management and business skills. The team also gives students the opportunity to work closely with professors and members of the business community, including those on the board of consultants, when developing the vehicles.", 
    "image": "", 
    "email": "gosolar@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 12, 
-   "display": false, 
-   "name": "Solar Electric Vehicle Team"
+   "display": true, 
+   "name": "Solar Electric Vehicle Team (SEVT)"
   }
  }, 
  {
   "pk": 346, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/saas/www/satyaintroindex.html", 
+   "last_updated": "2011-07-24 19:31:13", 
+   "description": "MIT's South Asian American Students (SAAS) club is one of the largest groups on campus, representing Indians, Pakistanis, Bangladeshis, Sri Lankans, Nepalis, and other South Asians at MIT. SAAS is open to all students interested in getting a taste of South Asian culture. The organization was founded with the purpose of celebrating the diversity of South Asian culture by providing students in America with the opportunity to learn about South Asian heritage. SAAS is committed to not only providing a means for South Asian Americans to delve into their own background, but to also allowing students of any ethnicity to explore South Asian traditions. Their activities include a Garba/Raas (a traditional folk dance get-together), an annual Bhangra competition, social parties, study breaks, discussions, barbeques and sports events, and an annual culture show. The members of SAAS share a common interest in presenting South Asian culture to the MIT community.", 
    "image": "", 
-   "email": "", 
+   "email": "saas@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "South Asian American Students"
   }
  }, 
@@ -7876,15 +7886,15 @@
   "pk": 347, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
+   "website": "http://sealnet.mit.edu/", 
+   "last_updated": "2011-07-24 19:29:36", 
+   "description": "SEALNet's mission is to bring service and to promote the spirit of service leadership among Southeast Asian communities in the US and abroad.  They strive to accomplish this by building and nurturing a community of service leaders who are committed to serve, equipped to lead, enterprising in action, and plugged into a network of like hearted individuals who are passionate about social development.", 
+   "image": "core/CampusOrg/southeast_asian_service_leadership_network_2011-07-24-19-29-36.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/southeast_asian_service_leadership_network_2011-07-24-19-29-36_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Southeast Asian Service Leadership Network"
   }
  }, 
@@ -7892,15 +7902,15 @@
   "pk": 348, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://spain.mit.edu/", 
+   "last_updated": "2011-07-24 19:27:58", 
    "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "image": "core/CampusOrg/spain@mit_2011-07-24-19-27-43.png", 
+   "email": "spaniards-request@mit.edu", 
+   "thumbnail": "core/CampusOrg/spain@mit_2011-07-24-19-27-43_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Spain@MIT"
   }
  }, 
@@ -7909,13 +7919,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:26:26", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Spinning Arts Club"
   }
@@ -7924,15 +7934,15 @@
   "pk": 350, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/pistol/www/", 
+   "last_updated": "2011-07-24 19:26:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Sport Pistol Club"
   }
  }, 
@@ -7940,15 +7950,15 @@
   "pk": 351, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/taekwondo/", 
+   "last_updated": "2011-07-24 19:24:38", 
+   "description": "The MIT Sport Taekwondo Club was founded in 2000 by Master Dan Chuang, Christina Park ('04), Chinedum Osuji ('99) and Conor Madigan (PhD '07) with the goal to establish an active club on the MIT campus that practiced Olympic-style Taekwondo. The club was founded with two very important agendas in mind: to provide continued support and training for those already experienced in Taekwondo, and also to introduce and teach the martial art to those who had never tried it before.\r\n\r\nThe club has since exploded in popularity and competitive success, winning the Overall Collegiate National Championship 4 years later, along with 4 consecutive Ivy/Northeast Collegiate Taekwondo League championships. It has become a thriving community of over 50 teamates, athletes and friends... and it's still growing. In 2009, MIT reclaimed the newly renamed ECTC league title from powerhouse Cornell and topped the season off with another Overall Collegiate National Championship title.", 
    "image": "", 
-   "email": "", 
+   "email": "sport-tkd-info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Sport Taekwondo Club"
   }
  }, 
@@ -7956,15 +7966,15 @@
   "pk": 352, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/sportclays/", 
+   "last_updated": "2011-07-24 19:23:34", 
+   "description": "The MIT Sporting Clays Association is a graduate (undergraduates welcome) funded student group officially recognized by the Association of Student Acitivities. Their mission is to foster the activity of sporting clays (skeet, trap and sporting clays) among the MIT community.", 
    "image": "", 
-   "email": "", 
+   "email": "sportclays-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Sporting Clays Association"
   }
  }, 
@@ -7973,13 +7983,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:21:56", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Stammtisch"
   }
@@ -7988,15 +7998,15 @@
   "pk": 354, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/mit-stand/www/", 
+   "last_updated": "2011-07-24 19:21:15", 
+   "description": "MIT-STAND was established in 2007 in order to further the MIT divestment campaign from Sudan. As of September 21st, MIT announced its divestment in an Interview with the Tech. Members of STAND and Amnesty groups were greatly involved with promulgating this action. Later, MIT provided an official clarification of the former vague divestment statement, again in large part due to student pressure. \r\n\r\nThe objectives of MIT-STAND are currently two-fold: \r\n1.   To increase awareness of genocide in the Sudan among the student community at MIT via featured events on campus \r\n2.   To work with MIT to design a standing Standing Committee on Investment Responsibility [SCIR] within the corporation framework.", 
+   "image": "core/CampusOrg/stand_2011-07-24-19-21-15.png", 
+   "email": "mitstand-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/stand_2011-07-24-19-21-15_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "STAND"
   }
  }, 
@@ -8005,13 +8015,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:17:19", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Stand Up Comedy Club"
   }
@@ -8021,13 +8031,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:16:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Starleague"
   }
@@ -8036,15 +8046,15 @@
   "pk": 357, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://startup.mit.edu/", 
+   "last_updated": "2011-07-24 19:16:42", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 5, 
+   "display": true, 
    "name": "Startup Club"
   }
  }, 
@@ -8052,15 +8062,15 @@
   "pk": 358, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/stela-mit/", 
+   "last_updated": "2011-07-24 19:15:30", 
+   "description": "Established in 2007, STeLA (Science and Technology Leadership Association) is a student organization founded with the objective of developing leadership in, and creating a network of, the next generation in science and technology - scientists, engineers, entrepreneurs, policymakers, etc. - who will direct and deeply influence global society. The organization was launched by graduate students studying science and engineering at universities in the United States with the desire to answer the question, \"how can science and engineering students change the global community.\" The founders recognized the importance of multicultural and interdisciplinary perspectives in addressing contemporary global issues, and became motivated to establish a network where we, the young generation, can exchange ideas on where we can lead the global society and how we individual can contribute to the needs of society's leadership. We then build on that network to take the first steps towards local and global action.", 
    "image": "", 
-   "email": "", 
+   "email": "stela-info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 12, 
+   "display": true, 
    "name": "STeLA@MIT"
   }
  }, 
@@ -8068,15 +8078,15 @@
   "pk": 359, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/stop/www/", 
+   "last_updated": "2011-07-24 19:12:13", 
+   "description": "Founded in the summer of 1999, Stop Our Silence (SOS) is an ASA recognized student organization at MIT that fights to end sexual violence and violence against women. They believe that there is a continuum of violence that begins with sexual harassment, and ends with rape, domestic violence/dating violence, incest, and sexual abuse. SOS focusses on awareness, prevention, and support for the entire MIT community. They tend to focus on awareness related to all forms of rape, against all types of people, and the prevalence of dating violence on college campuses.", 
    "image": "", 
-   "email": "", 
+   "email": "sos-admin@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Stop Our Silence"
   }
  }, 
@@ -8084,15 +8094,15 @@
   "pk": 360, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/sgs/www/", 
+   "last_updated": "2011-07-24 19:10:55", 
+   "description": "The MIT Strategic Games Society (SGS) is an MIT gaming group that meets weekly to play board games, card games, and RPGs (role-playing games), as well as the occasional war game. Some of the most commonly played games are Titan, Power Grid, Battlestar Galactica, St. Petersburg, Agricola, and Puerto Rico, as well as card games like Wizard and Tichu. SGS has a large collection of games available for playing at the club and for members to check out. They are very friendly to newcomers \u2013 prior gaming experience is completely unnecessary, as people are always happy to teach people how to play.", 
    "image": "", 
-   "email": "", 
+   "email": "sgs-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Strategic Games Society"
   }
  }, 
@@ -8101,13 +8111,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 19:09:10", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Student Ambassadors"
   }
@@ -8116,14 +8126,14 @@
   "pk": 362, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/sctv/www/", 
+   "last_updated": "2011-07-24 19:08:33", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "student-cable@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Student Cable Group"
   }
@@ -8132,14 +8142,14 @@
   "pk": 363, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/shac/", 
+   "last_updated": "2011-07-24 19:06:52", 
+   "description": "The purpose of the Student Health Advisory Council (SHAC) is to improve services at MIT Medical and other health-related services at MIT and to provide a student voice in the administration of those services.", 
    "image": "", 
-   "email": "", 
+   "email": "shac_exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Student Health Advisory Committee"
   }
@@ -8148,15 +8158,15 @@
   "pk": 364, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://sipb.mit.edu/", 
+   "last_updated": "2011-07-24 19:03:28", 
+   "description": "SIPB is MIT's volunteer student computing group, improving computing at MIT since 1969. Today, SIPB projects provide innovative services and special expertise to the MIT community. They have an office just outside the Athena cluster in the student center W20, and you are welcome to come by to ask us for help or to hang around, use our computers, and maybe get involved. You can find out what's abuzz in the SIPB community at Planet SIPB. They host a number of events, which are enumerated on our calendar.", 
+   "image": "core/CampusOrg/student_information_processing_board_2011-07-24-19-03-28.png", 
+   "email": "sipb-chair@mit.edu", 
+   "thumbnail": "core/CampusOrg/student_information_processing_board_2011-07-24-19-03-28_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 12, 
+   "display": true, 
    "name": "Student Information Processing Board"
   }
  }, 
@@ -8164,14 +8174,14 @@
   "pk": 365, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/juggle/www/", 
+   "last_updated": "2011-07-24 19:01:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Student Juggling Club"
   }
@@ -8180,15 +8190,15 @@
   "pk": 366, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
+   "website": "http://stuff.mit.edu/afs/athena/activity/m/msra/", 
+   "last_updated": "2011-07-24 19:00:20", 
+   "description": "MIT Student Research Association (MSRA) aims to create an interdisciplinary research community at MIT consisting of faculty, students, and researchers of different backgrounds. MSRA seeks to connect students with research opportunities and promote regular interactions between faculty and students.", 
+   "image": "core/CampusOrg/student_research_association_2011-07-24-19-00-20.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/student_research_association_2011-07-24-19-00-20_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Student Research Association"
   }
  }, 
@@ -8197,13 +8207,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 18:57:37", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Student-Worker Alliance"
   }
@@ -8213,13 +8223,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 18:56:35", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Students for Bhopal"
   }
@@ -8228,15 +8238,15 @@
   "pk": 369, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/mitsi/www/", 
+   "last_updated": "2011-07-24 18:54:53", 
+   "description": "MIT Students for Israel [MITSI] is both a pro-active advocacy group and an Israeli cultural group that seeks to raise awareness regarding Israel and the Arab-Israeli conflict on the MIT campus.   The main purpose of MIT Students for Israel is to educate the student body about Israel's politics, culture, and history, and to stress the importance of the America-Israel relationship. We believe the best way to accomplish this is through meaningful bonds with our peers, student leaders, and faculty.  Their goal is to raise awareness about Israel through engagement in open dialogue, co-hosting events with other student groups, and making personal connections.  They strive for their events to be widespread on campus and to be accessible to as many students as possible, while at the same time forming invaluable relationships. ", 
+   "image": "core/CampusOrg/students_for_israel_2011-07-24-18-54-09.png", 
+   "email": "mitsi@mit.edu", 
+   "thumbnail": "core/CampusOrg/students_for_israel_2011-07-24-18-54-09_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Students for Israel"
   }
  }, 
@@ -8245,13 +8255,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 18:49:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Students of Color Committee"
   }
@@ -8261,7 +8271,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 18:49:10", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -8276,14 +8286,14 @@
   "pk": 372, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://web.mit.edu/mitswara/www/", 
+   "last_updated": "2011-07-24 18:47:35", 
+   "description": "MIT Swara is a student-run organization dedicated to bringing awareness of South Asian classical and modern music to MIT and surrounding communities. They aim to foster the appreciation of this rich art, promote the scholarship and learning of this music, and provide a channel to showcase the talent of young artists and rasikas (connoisseurs) on campus.\r\n\r\nThey organize a wide range of activities, including student performances and shows, musical jam sessions, listening and discussion sessions, and workshops and lecture demonstrations by master performers and scholars.", 
    "image": "", 
-   "email": "", 
+   "email": "mitswara-board@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Swara"
   }
@@ -8293,13 +8303,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 18:46:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "SwissLinkBoston"
   }
@@ -8308,15 +8318,15 @@
   "pk": 374, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://syncopasian.mit.edu/", 
+   "last_updated": "2011-07-24 18:46:11", 
+   "description": "Syncopasian promotes the awareness of Asian pop culture at MIT and the surrounding community through performances of Asian a cappella music. Unlike other a cappella groups on campus, our repertoire includes songs in not only English, but also Mandarin, Cantonese, Japanese, Korean, and other languages that are East Asian in origin.\r\n\r\nSyncopasian was founded by Kenny Yan ('08) in the Spring of 2008, with 16 original members. Syncopasian today, an ASA-recognized student group, is 17 members strong.", 
+   "image": "core/CampusOrg/syncopasian_2011-07-24-18-46-11.png", 
+   "email": "syncopasian-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/syncopasian_2011-07-24-18-46-11_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Syncopasian"
   }
  }, 
@@ -8325,7 +8335,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 18:43:41", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -8340,15 +8350,15 @@
   "pk": 376, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/tabletennis/", 
+   "last_updated": "2011-07-24 18:42:45", 
+   "description": "The Table Tennis Club is part of the MIT Sports Club Council.  We are devoted to providing an environment in which members can play both competitively and recreationally.\r\nThe club offers quality coaching to its members under the guidance of Coach Liang Liung and Coach Carlos Espinoza-Toro. Both are certified Table Tennis coaches. Coach Liang handles the training of club members while Coach Carlos handles the training of the intercollegiate team. They are assisted by Coach Alex Landsman.\r\n\r\nThe club offers members 14 quality Butterfly Europa Tables that are in very good condition. In addition, a large number of balls and rackets are available for practice although we do encourage members to bring their own rackets to practice. The club also has a 'Robo Pong' robot to help with team practice sessions.\r\n\r\nThe MIT team has done very well at the divisional level over the last couple of years, coming in at 3rd place both years. Team practices are held three times a week and consist of various drills and excercises along with 'one on one' coaching with our team coach Carlos. The club has open practice sessions twice a week which we encourage members to take advantage of. \r\n\r\nEvery Saturday, the club holds an internal tournament which is open to all members. It is held in a Knockout format with the winner receiving a Club Prize (a club T-shirt, Paddle, etc). Each participant gets a certain number of points from each tournament depending on their performance.  At the end of each semester, the person with the most number of points is felicitated.", 
+   "image": "core/CampusOrg/table_tennis_team_2011-07-24-18-42-45.gif", 
+   "email": "tabletennisclub@mit.edu", 
+   "thumbnail": "core/CampusOrg/table_tennis_team_2011-07-24-18-42-45_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Table Tennis Team"
   }
  }, 
@@ -8356,14 +8366,14 @@
   "pk": 377, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "website": "http://web.mit.edu/tkd/", 
+   "last_updated": "2011-07-24 18:38:14", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "mittkd@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Tae Kwon Do Club"
   }
@@ -8372,15 +8382,15 @@
   "pk": 378, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
+   "website": "http://tang.mit.edu/www/government/", 
+   "last_updated": "2011-07-24 16:58:34", 
+   "description": "The Tang Hall Residents' Association is Tang's student government and has been active for more than a decade. The members, composed of continuing graduate students, organize outings, socials, sports activities, orientation, publications and take care of administrative and political issues relating to Tang.", 
    "image": "", 
-   "email": "", 
+   "email": "tang-government@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 7, 
+   "display": true, 
    "name": "Tang Hall Residents' Association"
   }
  }, 
@@ -8388,31 +8398,31 @@
   "pk": 379, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://tango.mit.edu/", 
+   "last_updated": "2011-07-24 16:54:03", 
+   "description": "The MIT Argentine Tango Club (MITATC) was founded in November 2002 by four students who recognized the need for a tango club at MIT. Since then, MITATC has grown to offer multiple avenues for tango appreciation and involvement, while connecting dancers both within and outside MIT. The club aims to foster interest for Argentine tango by exposing members of the MIT community to the art and culture of Tango. MITATC also endeavors to provide an accessible and affordable locale for individuals already interested in tango, where tango is taught, learned, practiced, embraced and enjoyed.", 
+   "image": "core/CampusOrg/tango_(argentine)_club_2011-07-24-16-54-03.png", 
+   "email": "tango@mit.edu", 
+   "thumbnail": "core/CampusOrg/tango_(argentine)_club_2011-07-24-16-54-03_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
-   "name": "Tango Club"
+   "type": 2, 
+   "display": true, 
+   "name": "Tango (Argentine) Club"
   }
  }, 
  {
   "pk": 380, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/tbp/www/", 
+   "last_updated": "2011-07-24 16:52:38", 
+   "description": "Tau Beta Pi (TBP) is the second oldest collegiate honor society in the nation, and the only honor society that represents the entire engineering profession. Founded in 1885 by Professor Edward H. Williams Jr. of Lehigh University, TBP honors those with exemplary character and distinguished scholarship as engineering students and alumni. Both undergraduate and graduate students are invited to become candidates of TBP based on their academic performances, recommendations from faculty, and their contributions to engineering and the society. TBP now consists of 241 collegiate chapters across the United States and Puerto Rico, includes a total initiated membership of almost 501,000. \r\n\r\nThe Mass Beta Chapter of Tau Beta Pi organizes many events on and off the MIT campus to expose those in the Greater Boston community to science/engineering and to introduce MIT students to socially conscious careers. Each year, Tau Beta Pi donates thousands of dollars to the Museum of Science to allow all MIT students enter the museum for free. Tau Beta Pi also organizes the Spring Career Fair that typically occurs during the first week of classes in February to help MIT students and alumni find jobs and internships. Service projects such as SciPro, TBP teach, and Project Fund (TBP Fellowship) are supported by Tau Beta Pi as well.", 
+   "image": "core/CampusOrg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38.png", 
+   "email": "tbp-officers@mit.edu", 
+   "thumbnail": "core/CampusOrg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Tau Beta Pi, Mass Beta Chapter"
   }
  }, 
@@ -8420,15 +8430,15 @@
   "pk": 381, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
+   "website": "http://tep.mit.edu/", 
+   "last_updated": "2011-07-24 16:49:41", 
+   "description": "tEp (Tau Epsilon Phi, Xi Chapter) is one of the 34 Independent Living Groups at MIT. We eat food, live in a house, and weigh a lot if you add the twenty-two of us together.\r\n\r\nOur house has existed at MIT since 1919, and has a long tradition of housing some of the most creative engineers and scientists at MIT. In fact, more than 35% of our members plan to, or have already founded, at least one company. Additionally, more than 30% of our alumni continue on (or are already involved in) graduate studies in a wide variety of fields, with 4% continuing on to become professors.", 
+   "image": "core/CampusOrg/tau_epsilon_phi_2011-07-24-16-49-41.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/tau_epsilon_phi_2011-07-24-16-49-41_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Tau Epsilon Phi"
   }
  }, 
@@ -8437,13 +8447,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-07-24 16:40:08", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Teatro Latino"
   }
@@ -8452,15 +8462,15 @@
   "pk": 383, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://tcc.mit.edu/www/", 
+   "last_updated": "2011-07-24 16:39:41", 
+   "description": "About TCC\r\nThe Tech Catholic Community is almost wholly composed of graduate and undergraduate students at the Massachusetts Institute of Technology in Cambridge, Massachusetts. We are a lively community, filled with youthfullness, curiosity, and the spirit of God's Word.\r\n\r\nWe are a culturally varied, international community \u2014 perhaps more so than any other gathering of people at MIT \u2014 reflecting well the reality of Catholicism as a truly world-wide church. Yet, this community finds unity gathered together to hear God's Word and to celebrate the Eucharist.\r\n\r\nOrganizational Structure\r\nIn keeping with our mission, TCC ministries are divided into four categories: Prayer, Service, Education, and Community. The head of each ministry is reponsible for finding organizers for each activity or project which falls within their domain, as well as for facilitating collaboration between the various ministries.\r\n\r\nThe primary governing body of TCC is the Council, which consists of seven members: the Chair, the four Ministry Coordinators, the Undergraduate Member-At-Large (UMAL), and the Graduate Member-At-Large (GMAL).\r\n\r\nThe Council is supported by the Advisory Board, which consists entirely of MIT faculty and staff, including many alumni of TCC. The Advisory Board provides advice, facilitates contact with MIT and the Archdiocese of Boston, and oversees TCC staff.", 
+   "image": "core/CampusOrg/tech_catholic_community_2011-07-24-16-39-40.png", 
+   "email": "tcc@mit.edu", 
+   "thumbnail": "core/CampusOrg/tech_catholic_community_2011-07-24-16-39-41_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
-   "display": false, 
+   "type": 13, 
+   "display": true, 
    "name": "Tech Catholic Community"
   }
  }, 
@@ -8468,15 +8478,15 @@
   "pk": 384, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://tmrc.mit.edu/", 
+   "last_updated": "2011-07-24 16:37:34", 
+   "description": "The Tech Model Railroad club is an MIT student activity founded during the 1946-1947 school year, making this our 60th year, and making TMRC one of the oldest clubs at MIT. This site contains information on the club, both past and present. There is information about the early days of the club, when we were located in building 20, and the current activities of the club in our current home, building N52, where we've been since 1997. If you'd like to visit the club, we're usually happy to welcome visitors during our regular meetings, and hold an open house twice a year, when you can be sure that lots of trains will be running. MIT students are always welcome to visit and join the club.", 
+   "image": "core/CampusOrg/tech_model_railroad_club_2011-07-24-16-37-34.png", 
+   "email": "tmrc-web@mit.edu", 
+   "thumbnail": "core/CampusOrg/tech_model_railroad_club_2011-07-24-16-37-34_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Tech Model Railroad Club"
   }
  }, 
@@ -8484,15 +8494,15 @@
   "pk": 385, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://www.mit.edu/~tech-squares/", 
+   "last_updated": "2011-07-24 16:34:52", 
+   "description": "Tech Squares is the square and round dance club of MIT, founded in 1967.  Tech Squares dances modern Western square dancing to a professional caller (Ted Lizotte), and round dancing to a professional cuer (Phil Gatchell).  We dance the Plus program, with two squares alternating with two round dances.  We meet every Tuesday 8-10:30pm and sponsor other events as well.  Our dances are open to the public.  We do not have a dress code, so please dress comfortably, knowing that you may be dancing at an accelerated pace! ", 
+   "image": "core/CampusOrg/tech_squares_2011-07-24-16-34-52.png", 
+   "email": "squares@mit.edu", 
+   "thumbnail": "core/CampusOrg/tech_squares_2011-07-24-16-34-52_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Tech Squares"
   }
  }, 
@@ -8500,15 +8510,15 @@
   "pk": 386, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://tech.mit.edu/", 
+   "last_updated": "2011-07-24 16:32:45", 
+   "description": "The Tech is MIT's oldest and largest newspaper. We have provided MIT faculty, staff, and students with continuous news service since 1881. We publish on Tuesdays and Fridays during the regular school year, weekly during the month of January, and monthly during the summer.\r\n\r\nThe Tech is published by the students of the Massachusetts Institute of Technology. Our staff is composed of undergraduate and graduate student volunteers, although a number of alumni lurk around our offices from time to time.", 
+   "image": "core/CampusOrg/tech,_the_2011-07-24-16-32-45.png", 
+   "email": "general@tech.mit.edu", 
+   "thumbnail": "core/CampusOrg/tech,_the_2011-07-24-16-32-45_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 15, 
+   "display": true, 
    "name": "Tech, The"
   }
  }, 
@@ -8516,15 +8526,15 @@
   "pk": 387, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://techfair.mit.edu/", 
+   "last_updated": "2011-07-24 16:29:52", 
+   "description": "TechFair is completely student run, led by passionate and dedicated students at the Massachusetts Institute of Technology. Members of the board are split into seven committees: Corporate Relations, Finance, Human Resources, Information Technology, Logistics, Marketing, and THINK.", 
+   "image": "core/CampusOrg/techfair_2011-07-24-16-29-45.png", 
+   "email": "techfair-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/techfair_2011-07-24-16-29-45_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 12, 
+   "display": true, 
    "name": "TechFair"
   }
  }, 
@@ -8532,15 +8542,15 @@
   "pk": 388, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/techiya/www/", 
+   "last_updated": "2011-07-24 16:25:52", 
+   "description": "Techiya is MIT's only Jewish, Hebrew, and Israeli a cappella group.", 
+   "image": "core/CampusOrg/techiya_2011-07-24-16-25-52.gif", 
+   "email": "techiya-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/techiya_2011-07-24-16-25-52_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Techiya"
   }
  }, 
@@ -8548,15 +8558,15 @@
   "pk": 389, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://techlink.mit.edu/", 
+   "last_updated": "2011-07-24 16:24:28", 
+   "description": "TechLink\u2019s mission is to assist the MIT graduate community connect, collaborate, and innovate.  They host and create events that link students across all disciplines not only with each other, but alumni and professional networks as well.", 
+   "image": "core/CampusOrg/techlink_2011-07-24-16-23-51.png", 
+   "email": "techlink-officers@mit.edu", 
+   "thumbnail": "core/CampusOrg/techlink_2011-07-24-16-23-51_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 12, 
+   "display": true, 
    "name": "TechLink"
   }
  }, 
@@ -8564,15 +8574,15 @@
   "pk": 390, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
+   "website": "http://technique.mit.edu/", 
+   "last_updated": "2011-07-24 16:21:20", 
+   "description": "Every year the staff of Technique publishes a 400 page book, making it the only authoritative annual publication at MIT. Not even the faculty directory surpasses our majesty.\r\n\r\nThe previous version of the website made a big deal of how Technique is 400 pages in size. That\u2019s just how big it is.\r\n\r\nWe also run the yearly 24-hour event A Day in the Life of MIT, where anyone on MIT\u2019s campus can submit a photographic journal of their day to a common website.", 
    "image": "", 
-   "email": "", 
+   "email": "technique@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Technique Yearbook"
   }
  }, 
@@ -8581,7 +8591,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-24 16:19:07", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -8596,15 +8606,15 @@
   "pk": 392, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
+   "website": "http://web.mit.edu/tsmit/www/", 
+   "last_updated": "2011-07-24 16:18:12", 
+   "description": "Thai Students at MIT or TSMIT is officially founded sometime in early 1990's. Since then TSMIT serves to:\r\n - Promote international understanding of the Thai heritage and friendship with the Thai people through intellectual, cultural, and social activities among members and with the community.\r\n - Promote the interaction among Thai students at MIT.\r\n - Become a center of Thai news and spread the news to members and the community.\r\n - Become an information source for new Thai students at MIT.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Thai Students at MIT"
   }
  }, 
@@ -8612,15 +8622,15 @@
   "pk": 393, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
+   "website": "http://toons.mit.edu/", 
+   "last_updated": "2011-07-24 16:14:57", 
+   "description": "The Toons are a coed cross-campus a cappella singing group founded in 1990. We are comprised of Massachusetts Institute of Technology and Wellesley College students who get together, harmonize, and make awesome music! Along with our notorious repertoire of cartoony songs, the Toons sing everything from the 50's to the present; from Sarah McLachlan to Simple Plan. What do you get when you mix Billy Joel with Garbage (the band)? Cross Anita Baker with the Reel Big Fish? Team up Portishead with Pearl Jam? Coax Daisy Duck into the green room with Ginuwine? Sing a \"different\" and \"unique\" version of Gummy Bears? We're not sure either, but the audiences young and old seem to love it.", 
    "image": "", 
-   "email": "", 
+   "email": "toons-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Toons"
   }
  }, 
@@ -8628,15 +8638,15 @@
   "pk": 394, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "description": "", 
+   "website": "http://traders.mit.edu/", 
+   "last_updated": "2011-07-24 16:11:35", 
+   "description": "The purpose of the Traders @ MIT is to prepare its members for a career in financial markets by exploring differences in various trading desks, to teach the fundamentals of financial products, and to give members a head start in learning the skills necessary to become successful traders through talks, hands-on learning activities, and trading simulations utilizing our state-of-the-art trading software.", 
    "image": "", 
-   "email": "", 
+   "email": "traders@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": false, 
+   "type": 5, 
+   "display": true, 
    "name": "Traders at MIT"
   }
  }, 
