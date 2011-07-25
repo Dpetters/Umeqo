@@ -70,10 +70,9 @@ def student_preferences(request, preferences_form_class = StudentPreferencesForm
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-
+@render_to("student_registration.html")
 def student_registration(request,
-                         backend = RegistrationBackend(), 
-                         template_name = 'student_registration.html',
+                         backend = RegistrationBackend(),
                          extra_context = None):
     
     success_url = 'student_registration_complete'
@@ -112,9 +111,7 @@ def student_registration(request,
             }
     
     context.update(extra_context or {}) 
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+    return context
 
 
 def student_registration_complete(request,

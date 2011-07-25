@@ -79,12 +79,16 @@
             <div class="width_container">
                 <ul id="navigation_block">
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
+                        {% ifnotequal current_path "/signup/" %}
                         <li id="signup_button">
                             <a href="{% url student_registration %}">Join Umeqo!</a>
                         </li>
+                        {% endifnotequal %}
+                        {% ifnotequal current_path "/login/" %}
                         <li id="login_button">
                             <a href="javascript:void(0)">Login</a>
                         </li>
+                        {% endifnotequal %}
                     {% endif %}
                     <li>
                         <a id="home" href="{% url home %}">Home</a>

@@ -779,8 +779,11 @@ td #ajax_form_submit_loader {
 .form_table .info {
     width: 300px;
     padding-left: 10px;
-    padding-top: 20px;
+    padding-top: 14px;
     vertical-align: top;
+}
+.form_table .info p {
+    padding-top:0px;
 }
 .form_table.grande p {
     line-height: 24px;
