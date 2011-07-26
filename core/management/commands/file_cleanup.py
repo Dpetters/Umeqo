@@ -34,11 +34,10 @@ class Command(LabelCommand):
                 qs = model.objects.exclude(**kwargs).values_list(filefield, flat=True)
                 filenames_in_database.update(os.path.join(settings.MEDIA_ROOT, name) for name in qs)
         
-        print filenames_on_disk
-        print filenames_in_database
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
 
         if not db_has_unseen_files:
+            print filenames_in_database - filenames_on_disk
             raise CommandError("Database filenames are not a "
                                 "subset of actual filenames on disk. Will not risk "
                                 "erasing arbitrary files, exiting.")
