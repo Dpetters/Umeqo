@@ -3,8 +3,17 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, \
-                        GraduationYear, Industry, Topic, Question, EmploymentType
+                        GraduationYear, Industry, Topic, Question, EmploymentType, \
+                        Location
 
+class LocationAdmin(admin.ModelAdmin):
+    fields = ['name', 'display_name', 'latitude', 'longitude', 'keywords', 'image_url']
+    list_display = ('name', 'display_name', 'latitude', 'longitude', 'image_url')
+    search_fields = ['keywords', 'name']
+
+admin.site.register(Location, LocationAdmin)
+    
+    
 class TopicAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug':('name',)}
