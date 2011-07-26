@@ -23,7 +23,7 @@ def logout(request, login_url=None, current_app=None, extra_context=None):
 
 
 def login(request, template_name="login.html", authentication_form=AuthenticationForm, login_url=None, current_app=None, extra_context=None):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and not request.user.is_superuser:
         return redirect(reverse('home'))
     return auth_login_view(request, template_name=template_name, authentication_form=AuthenticationForm, current_app=current_app, extra_context=extra_context)
 
