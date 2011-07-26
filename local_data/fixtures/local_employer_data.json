@@ -69,7 +69,9 @@
    "main_contact_email": "temp@temp.com", 
    "last_updated": "2011-07-24 13:44:03", 
    "name": "Employer1", 
-   "starred_students": [], 
+   "starred_students": [
+    5
+   ], 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
    "offered_job_types": [], 
@@ -175,7 +177,9 @@
   "fields": {
    "last_updated": "2011-07-24 15:08:14", 
    "name": null, 
-   "students": [], 
+   "students": [
+    5
+   ], 
    "recruiter": 1, 
    "resume_book": "", 
    "date_created": "2011-07-24 15:08:14"
