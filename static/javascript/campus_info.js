@@ -35,7 +35,7 @@ $(document).ready(function() {
 	
 	function campus_org_link_click_handler() {
 	    campus_org_info_dialog = open_campus_org_info_dialog($(this).text());
-	    campus_org_info_dialog.html(dialog_ajax_loader);
+	    campus_org_info_dialog.html(DIALOG_AJAX_LOADER);
 		campus_org_id = $(this).attr('data-campusorg-id');
 	    var campus_org_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 	    $.ajax({
@@ -64,7 +64,7 @@ $(document).ready(function() {
 		
    function course_link_click_handler() {
         course_info_dialog = open_course_info_dialog($(this).text());
-        course_info_dialog.html(dialog_ajax_loader);
+        course_info_dialog.html(DIALOG_AJAX_LOADER);
     	var course_id = $(this).attr('data-major-id');
 	    var course_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 	    $.ajax({

@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType
+from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, \
+                        GraduationYear, Industry, Topic, Question, EmploymentType
 
 class TopicAdmin(admin.ModelAdmin):
 
@@ -17,17 +18,14 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ['topic', 'audience', 'display']
     search_fields = ['question', 'answer']
     
-    def save_model(self, request, obj, form, change): #@UnusedVariable
-        '''
-        Overrided because I want to also set who created this instance.
-        '''
+    def save_model(self, request, obj, form, change):
+        # Overridden because I want to also set who created this instance.
         instance = form.save( commit=False )
         if instance.id is None:
             instance.created_by = request.user
                 
         instance.updated_by = request.user
         instance.save()
-        
         return instance
 
 class CustomUserAdmin(UserAdmin):

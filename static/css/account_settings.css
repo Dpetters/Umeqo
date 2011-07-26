@@ -1,5 +1,6 @@
 #account_settings_block{
 	width:780px;
+	float:right;
 }
 #account_settings_block .main_block_content{
     padding:0px;
@@ -31,19 +32,14 @@
 #account_settings_tabs .ui-tabs-nav li.ui-tabs-selected a{
     color:#555;
 }
-#account_overview_left_side{
+#account_overview, #preferences{
 	float:left;
-	width:400px;
 	padding-left:10px;
 	padding-top:5px;
 	padding-bottom:5px;
 }
-#preferences_left_side{
-	float:left;
-	width:100%;
-	padding:5px 0;
-}
-#account_overview_left_side h3, #preferences_left_side h3{
+#account_overview h3, #preferences h3{
+	width:720px;
 	border-bottom:1px solid #DDD;
 	padding-left:2px;
 	margin: 20px 0px 6px 0px;
@@ -61,8 +57,7 @@
 	width:130px;
 }
 #deactivate_account_link{
-	float:right;
-	margin-right:9px;
+	margin-left:20px;
 	color:#990000 !important;
 }
 #notifications_table{

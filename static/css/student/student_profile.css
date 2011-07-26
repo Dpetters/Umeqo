@@ -47,8 +47,8 @@ input[type=text] {
 	margin-right:700px;
 }
 #listing_preview_info h2{
-	margin-left:66px;
-	margin-top:30px;
+	margin-left:75px;
+	margin-top:32px;
 }
 #listing_preview{
 	min-height:81px;
@@ -92,7 +92,7 @@ input[type=text] {
     position: relative;
     line-height: 20px;
 }
-.create_campus_organization_dialog .dialog_content_wrapper, .create_language_dialog .dialog_content_wrapper{
+.create_campus_org_dialog .dialog_content_wrapper, .create_language_dialog .dialog_content_wrapper{
 	padding: 15px;
 	text-align:center;
 }
@@ -100,12 +100,16 @@ input[type=text] {
 	margin-left:auto;
 	margin-right:auto;
 }
-.create_campus_organization_dialog #id_name, .create_campus_organization_dialog #id_website, .create_language_dialog #id_name {
+#create_language_form input[type=submit], #create_campus_org_form input[type=submit]{
+	width:90px;
+}
+#create_campus_org_form #id_name, #create_campus_org_form #id_website, .#create_campus_org_form #id_name {
     width:250px;
 }
-.create_campus_organization_dialog #id_type{
+#create_campus_org_form #id_type{
 	width:260px;
 }
+
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
     display:none;

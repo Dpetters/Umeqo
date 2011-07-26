@@ -3,27 +3,33 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth import  login as auth_login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import logout as auth_logout_then_login
+from django.contrib.auth.views import logout as auth_logout_then_login_view, login as auth_login_view
 from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseForbidden
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
+from core.decorators import render_to
+from core.forms import EmailAuthenticationForm as AuthenticationForm
 
 
 @login_required
 def logout(request, login_url=None, current_app=None, extra_context=None):
-    return auth_logout_then_login(request, login_url, current_app, extra_context)
+    return auth_logout_then_login_view(request, login_url, current_app, extra_context)
 
 
 @login_required
-def password_change(request,
-                    password_change_form=PasswordChangeForm,
-                    extra_context=None):
-    
+def login(request, template_name="login.html", authentication_form=AuthenticationForm, login_url=None, current_app=None, extra_context=None):
+    if request.user.is_authenticated():
+        return redirect(reverse('home'))
+    return auth_login_view(request, template_name=template_name, authentication_form=AuthenticationForm, current_app=current_app, extra_context=extra_context)
+
+
+@login_required
+def password_change(request, password_change_form=PasswordChangeForm, extra_context=None):
     if request.is_ajax():
         form = password_change_form(user=request.user, data=request.POST)
         if form.is_valid():
@@ -49,24 +55,16 @@ def password_change(request,
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
-def activate_user(request, 
-                  backend = RegistrationBackend(),
-                  template_name='invalid_activation_link.html',
-                  success_url=None, 
-                  extra_context=None, 
-                  **kwargs):
-
-    user = backend.activate(request, **kwargs)
+@render_to('invalid_activation_link.html')
+def activate_user(request, backend = RegistrationBackend(), success_url=None, extra_context=None, **context):
+    user = backend.activate(request, **context)
     if user:
         user.backend = settings.AUTHENTICATION_BACKENDS[0]
         auth_login(request, user)
         if success_url is None:
-            to, args, kwargs = backend.post_activation_redirect(request, user)
-            return redirect(to, *args, **kwargs)
+            to, args, context = backend.post_activation_redirect(request, user)
+            return redirect(to, *args, **context)
         else:
             return redirect(success_url)
-        
-    kwargs.update(extra_context or {})
-    return render_to_response(template_name,
-                              kwargs,
-                              context_instance=RequestContext(request))
+    context.update(extra_context or {})
+    return context

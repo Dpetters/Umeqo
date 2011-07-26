@@ -5,20 +5,20 @@ $(document).ready( function() {
     var previous_employers_max = 12;
     var countries_of_citizenship_max = 3;
     
-    var create_campus_organization_dialog = null;
+    var create_campus_org_dialog = null;
     var create_language_dialog = null;
 
-    function open_create_campus_organization_dialog() {
+    function open_create_campus_org_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
             title:"New Campus Organization",
-            dialogClass: "create_campus_organization_dialog",
+            dialogClass: "create_campus_org_dialog",
             modal:true,
             width:475,
             resizable: false,
             close: function() {
-                create_campus_organization_dialog.remove();
+                create_campus_org_dialog.remove();
             }
         });
         $dialog.dialog('open');
@@ -43,26 +43,26 @@ $(document).ready( function() {
     };
 	
     $('#create_campus_organization_link').click( function () {
-        create_campus_organization_dialog = open_create_campus_organization_dialog();
-        create_campus_organization_dialog.html(dialog_ajax_loader);
+        create_campus_org_dialog = open_create_campus_org_dialog();
+        create_campus_org_dialog.html(DIALOG_AJAX_LOADER);
         
-        var create_campus_organization_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+        var create_campus_org_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             url: CREATE_CAMPUS_ORGANIZATION_URL,
             complete: function(jqXHR, textStatus) {
-                clearTimeout(create_campus_organization_dialog_timeout);
+                clearTimeout(create_campus_org_dialog_timeout);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-					create_campus_organization_dialog.html(dialog_check_connection_message);
+					create_campus_org_dialog.html(dialog_check_connection_message);
 				}else{
-                    create_campus_organization_dialog.html(dialog_error_message);
+                    create_campus_org_dialog.html(dialog_error_message);
                 }
             },
             success: function (data) {             
-                create_campus_organization_dialog.html(data);
-                create_campus_organization_dialog.dialog('option', 'position', 'center');
+                create_campus_org_dialog.html(data);
+                create_campus_org_dialog.dialog('option', 'position', 'center');
                 
                 $("#id_name").focus();
                 
@@ -78,17 +78,17 @@ $(document).ready( function() {
 				            },
                             error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
-                                    $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                    $(".create_campus_org_dialog .error_section").html(form_check_connection_message);
                                 }else{
-                                    create_campus_organization_dialog.html(dialog_error_message);
+                                    create_campus_org_dialog.html(dialog_error_message);
                                 }
-                                create_campus_organization_dialog.dialog('option', 'position', 'center');
+                                create_campus_org_dialog.dialog('option', 'position', 'center');
                             },
                             success: function(data) {
                                 if (data.valid) {
                                     var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
                                     success_message += CLOSE_DIALOG_LINK
-                                    create_campus_organization_dialog.html(success_message);
+                                    create_campus_org_dialog.html(success_message);
 
                                     // Add the new campus organization to the select and update the widget to include it
                                     $("optgroup[label='" + data.type + "s']").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>');
@@ -104,7 +104,7 @@ $(document).ready( function() {
 								}else{
 									place_table_form_errors("#create_campus_org_form", data.errors);
                                 }
-                                create_campus_organization_dialog.dialog('option', 'position', 'center');
+                                create_campus_org_dialog.dialog('option', 'position', 'center');
                             }
                         });
                     },
@@ -118,11 +118,11 @@ $(document).ready( function() {
                                 url: CHECK_CAMPUS_ORGANIZATION_UNIQUENESS_URL,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
-                                        $(".create_campus_organization_dialog .error_section").html(form_check_connection_message);
+                                        $(".create_campus_org_dialog .error_section").html(form_check_connection_message);
                                     }else{
-                                        create_campus_organization_dialog.html(dialog_error_message);
+                                        create_campus_org_dialog.html(dialog_error_message);
                                     }
-                                	create_campus_organization_dialog.dialog('option', 'position', 'center');
+                                	create_campus_org_dialog.dialog('option', 'position', 'center');
                                 }
                             }
                         },
@@ -149,7 +149,7 @@ $(document).ready( function() {
     $('#create_language_link').click( function () {
         
         create_language_dialog = open_create_language_dialog();
-        create_language_dialog.html(dialog_ajax_loader);
+        create_language_dialog.html(DIALOG_AJAX_LOADER);
 
         var create_language_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
@@ -160,9 +160,9 @@ $(document).ready( function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-					create_campus_organization_dialog.html(dialog_check_connection_message);
+					create_campus_org_dialog.html(dialog_check_connection_message);
 				}else{
-                    create_campus_organization_dialog.html(dialog_error_message);
+                    create_campus_org_dialog.html(dialog_error_message);
                 }
             },
             success: function (data) {             
@@ -284,7 +284,7 @@ $(document).ready( function() {
 					} else {
 					  	if(data.unparsable_resume){
 							var $unparsable_resume_dialog = open_unparsable_resume_dialog();
-						    $unparsable_resume_dialog.html(dialog_ajax_loader);
+						    $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
 						    $unparsable_resume_dialog.dialog('option', 'position', 'center');
 						    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 						    $.ajax({

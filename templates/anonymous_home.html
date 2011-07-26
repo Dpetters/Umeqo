@@ -21,15 +21,9 @@ Welcome |
 
 {% block below_header_area %}
 {{ block.super }}
-{% ifequal action "timed-out" %}
-<div class="below_header_message">
-    <p>
-        You timed out and were logged out for the safety of your account.
-    </p>
-</div>
-{% endifequal %}
 
 {% ifequal action "logged-out"  %}
+{{action}}
 <div class="below_header_message">
     <p>
         You were successfully logged out.
@@ -51,7 +45,7 @@ Welcome |
             <li>Create, download, and email resume books</li>
             <li>Plan public and private events, send invitations</li>
         </ul>
-        <p><a href="{% url employer_registration %}" class="large button">Get Started</a></p>
+        <p><a href="{% url employer_registration %}" class="large dark_button">Get Started</a></p>
     </div>
     <div id="studentInfo" class="homeInfo">
         <h2>Students,</h2>
@@ -61,7 +55,7 @@ Welcome |
             <li>Subscribe to employers for event and deadline notifications</li>
             <li>Add events to calendar with a click of a button, print location map</li>
         </ul>
-        <p><a href="{% url student_registration %}" class="large button">Join Now</a></p>
+        <p><a href="{% url student_registration %}" class="large dark_button">Join Now</a></p>
     </div>
     <div style="clear:both"></div>
     

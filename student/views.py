@@ -44,7 +44,7 @@ def student_account_settings(request, preferences_form_class = StudentPreference
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_deactivate_account(request):
+def student_deactivate(request):
     if request.method == "POST":
         pass
     else:
@@ -183,7 +183,6 @@ def student_profile_preview(request,
                             form_class=StudentProfilePreviewForm,
                             extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "student"):
-        print request.is_ajax()
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
             if form.is_valid():

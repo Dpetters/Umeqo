@@ -35,15 +35,16 @@ function show_long_load_message_in_dialog(dialog) {
 
 function show_form_submit_loader(container) {
     container = typeof(container) != 'undefined' ? container : "";
+    console.log(container);
     $(container + " #ajax_form_submit_loader").css("display", "");
 };
 function hide_form_submit_loader() {
     container = typeof(container) != 'undefined' ? container : "";
     $(container + " #ajax_form_submit_loader").css("display", "none");
 };
-function place_tiny_ajax_loader(container) {
+function place_TINY_AJAX_LOADER(container) {
     container = typeof(container) != 'undefined' ? container : "";
-    $(container).html(tiny_ajax_loader);
+    $(container).html(TINY_AJAX_LOADER);
 };
 // Validation Highlighting, unhighlighting and positioning of errors
 function highlight(element, errorClass) {
@@ -193,7 +194,7 @@ $(document).ready( function () {
     $('.open_contact_us_dialog_link').live('click', function () {
 
         contact_us_dialog = open_contact_us_dialog();
-        contact_us_dialog.html(dialog_ajax_loader);
+        contact_us_dialog.html(DIALOG_AJAX_LOADER);
 
         var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({

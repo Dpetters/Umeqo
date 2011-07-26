@@ -38,7 +38,7 @@ Account Settings |
                 {% endblock %}
             </ul>
             <div id="tabs-1" class="clearfix">
-                <div id="account_overview_left_side">
+                <div id="account_overview">
                     <h3 class="no_top_margin">Basic Info</h3>
                     <table id="basic_info_table" class="form_table">
                         <tbody>
@@ -86,18 +86,18 @@ Account Settings |
                                     <th></th>
                                     <td>
                                         <input class="button" type='submit' value='Change Password'>
-                                        <img id='ajax_form_submit_loader' style="display:none" src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                                        <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </form>
-                    {% block account_overview_left_side %}
+                    {% block account_overview %}
                     {% endblock %}
                 </div>
             </div>
             <div id="tabs-2" class="clearfix">
-                <div id="preferences_left_side">
+                <div id="preferences">
                     <h3 class="no_top_margin">Notification Preferences</h3>
                     <p class="sub_header_message">Umeqo provides notifications in the form of emails. They will be sent to <strong>{{user.email}}</strong></p>
                     <p id="global_settings_section">
@@ -111,7 +111,7 @@ Account Settings |
                             {% endblock %}
                         </tbody>              
                     </table>
-                    {% block preferences_left_side %}
+                    {% block preferences %}
                     {% endblock %}
                 </div>
             </div>

@@ -79,7 +79,7 @@ $(document).ready(function() {
                 'student_id':student_id,
             },
             beforeSend: function (jqXHR, settings) {
-                place_tiny_ajax_loader(container);
+                place_TINY_AJAX_LOADER(container);
             },
             success: function (data) {
                 if(data.action==STARRED){
@@ -116,7 +116,7 @@ $(document).ready(function() {
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
-	                    place_tiny_ajax_loader(".student_toggle_star[data-student-id=" + this + "]");
+	                    place_TINY_AJAX_LOADER(".student_toggle_star[data-student-id=" + this + "]");
 	                });
 	            },
 	            success: function (data) {
@@ -158,7 +158,7 @@ $(document).ready(function() {
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
-	                    place_tiny_ajax_loader(".student_toggle_star[data-student-id=" + this + "]");
+	                    place_TINY_AJAX_LOADER(".student_toggle_star[data-student-id=" + this + "]");
 	                });
 	            },
 	            success: function (data) {
@@ -200,7 +200,7 @@ $(document).ready(function() {
 	            },
 	            beforeSend: function (jqXHR, settings) {
 	                $(student_ids).each( function() {
-	                    place_tiny_ajax_loader(".resume_book_current_toggle_student[data-student-id=" + this + "]");
+	                    place_TINY_AJAX_LOADER(".resume_book_current_toggle_student[data-student-id=" + this + "]");
 	                });
 	            },
 	            success: function (data) {
@@ -246,7 +246,7 @@ $(document).ready(function() {
                 },
                 beforeSend: function (jqXHR, settings) {
                     $(student_ids).each( function() {
-                        place_tiny_ajax_loader(".resume_book_current_toggle_student[data-student-id=" + this + "]");
+                        place_TINY_AJAX_LOADER(".resume_book_current_toggle_student[data-student-id=" + this + "]");
                     });
                 },
                 success: function (data) {
@@ -284,7 +284,7 @@ $(document).ready(function() {
             url: RESUME_BOOK_CURRENT_TOGGLE_STUDENT_URL,
             dataType: "json",
             beforeSend: function (arr, $form, options) {
-                place_tiny_ajax_loader(container);
+                place_TINY_AJAX_LOADER(container);
             },
             data: {
                 'student_id': student_id
@@ -319,7 +319,7 @@ $(document).ready(function() {
     	if (dropdown.length == 0){
 			$(this).after('<div class="student_event_attendance_bubble"></div>');
 			$(".student_event_attendance_bubble").css('left', $(this).position().left);
-			place_tiny_ajax_loader('.student_event_attendance_bubble');
+			place_TINY_AJAX_LOADER('.student_event_attendance_bubble');
 			if(xhr && xhr.readystate != 4){ xhr.abort(); }
 			xhr = $.ajax({
 	            type: 'GET',
@@ -561,7 +561,7 @@ $(document).ready(function() {
 	    }
     
         deliver_resume_book_dialog = open_deliver_resume_book_dialog();
-        deliver_resume_book_dialog.html(dialog_ajax_loader);
+        deliver_resume_book_dialog.html(DIALOG_AJAX_LOADER);
 
         var resume_book_created = false;
 

@@ -45,8 +45,8 @@ Home |
             <form id="search_form" method="post" action="/employer/students/">
                 {% csrf_token %}
                 {{search_form.query}}
-                <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
-                <a href="{% url employer_students %}" class="button">Browse Students</a>
+                <input id="search_form_submit_button" class="dark_button" type="submit" value="Search"/>
+                <a href="{% url employer_students %}" class="dark_button">Browse Students</a>
             </form>
         </div>
     </div>
