@@ -430,6 +430,16 @@
   }
  }, 
  {
+  "pk": 67, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-25 23:21:00", 
+   "session_key": "4252549638142bc50f91c5b2c553062b", 
+   "last_updated": "2011-07-25 23:21:00", 
+   "user": 1
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
