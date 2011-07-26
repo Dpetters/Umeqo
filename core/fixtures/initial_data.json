@@ -1001,6 +1001,45 @@
   }
  }, 
  {
+  "pk": 198, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "du Pont Court", 
+   "building_num": null, 
+   "longitude": -71.092086449999996, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.358179939999999
+  }
+ }, 
+ {
+  "pk": 199, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "du Pont Squash Court", 
+   "building_num": null, 
+   "longitude": -71.097926880000003, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.35654487
+  }
+ }, 
+ {
+  "pk": 188, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "du Pont Tennis Courts", 
+   "building_num": null, 
+   "longitude": -71.0967251, 
+   "keywords": " courts", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G12.jpg", 
+   "latitude": 42.356901839999999
+  }
+ }, 
+ {
   "pk": 13, 
   "model": "core.location", 
   "fields": {
@@ -1011,19 +1050,6 @@
    "keywords": " advanced Media Laboratory Media Arts and Sciences, Program in Comparative Media Studies (CMS) Jerome Lemelson Center for Inventive Thinking Center for Bits and Atoms (Workshops) Program in Art, Culture and Technology", 
    "image_url": "http://web.mit.edu/campus-map/objimgs/object-E14.jpg", 
    "latitude": 42.360463590000002
-  }
- }, 
- {
-  "pk": 200, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "EG&G Education Center", 
-   "building_num": "34", 
-   "longitude": -71.091954909999998, 
-   "keywords": " center 34-101 Grier Rooms (34-401A, 34-401B)", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-34.jpg", 
-   "latitude": 42.361147019999997
   }
  }, 
  {
@@ -1115,6 +1141,19 @@
    "keywords": " albany", 
    "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW10.jpg", 
    "latitude": 42.360318650000004
+  }
+ }, 
+ {
+  "pk": 200, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "EG&G Education Center", 
+   "building_num": "34", 
+   "longitude": -71.091954909999998, 
+   "keywords": " center 34-101 Grier Rooms (34-401A, 34-401B)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-34.jpg", 
+   "latitude": 42.361147019999997
   }
  }, 
  {
@@ -1716,45 +1755,6 @@
   }
  }, 
  {
-  "pk": 3, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "MIT Alumni Pool", 
-   "building_num": "57", 
-   "longitude": -71.090133510000001, 
-   "keywords": " alum", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-57.jpg", 
-   "latitude": 42.361146259999998
-  }
- }, 
- {
-  "pk": 211, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "MIT Press", 
-   "building_num": "E39", 
-   "longitude": -71.085477429999997, 
-   "keywords": " e39 MIT Press", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E39.jpg", 
-   "latitude": 42.362100980000001
-  }
- }, 
- {
-  "pk": 201, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "MIT Sloan", 
-   "building_num": "E62", 
-   "longitude": -71.082647750000007, 
-   "keywords": " center The Porter Center for Management Education Sloan School of Management Sloan Executive Education Siteman Dining Hall", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E62.jpg", 
-   "latitude": 42.361351740000003
-  }
- }, 
- {
   "pk": 116, 
   "model": "core.location", 
   "fields": {
@@ -1908,6 +1908,45 @@
    "keywords": " aerospace Astrophysics Division Aerospace Computational Design Lab (ACDL) Man Vehicle Laboratory Space Nanotechnology Laboratory Kavli Institute for Astrophysics and Space Research Space Systems Laboratory Athena Cluster (37-312) Athena Cluster (37-318) Athena Cluster (37-332)", 
    "image_url": "http://web.mit.edu/campus-map/objimgs/object-37.jpg", 
    "latitude": 42.360687339999998
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MIT Alumni Pool", 
+   "building_num": "57", 
+   "longitude": -71.090133510000001, 
+   "keywords": " alum", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-57.jpg", 
+   "latitude": 42.361146259999998
+  }
+ }, 
+ {
+  "pk": 211, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MIT Press", 
+   "building_num": "E39", 
+   "longitude": -71.085477429999997, 
+   "keywords": " e39 MIT Press", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E39.jpg", 
+   "latitude": 42.362100980000001
+  }
+ }, 
+ {
+  "pk": 201, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MIT Sloan", 
+   "building_num": "E62", 
+   "longitude": -71.082647750000007, 
+   "keywords": " center The Porter Center for Management Education Sloan School of Management Sloan Executive Education Siteman Dining Hall", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E62.jpg", 
+   "latitude": 42.361351740000003
   }
  }, 
  {
@@ -2067,19 +2106,6 @@
   }
  }, 
  {
-  "pk": 85, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "PDSI (Physics, DMSE, Spectroscopy, Infrastructure)", 
-   "building_num": "6C", 
-   "longitude": -71.090836390000007, 
-   "keywords": " associates Condensed Matter Theory Group", 
-   "image_url": null, 
-   "latitude": 42.359672510000003
-  }
- }, 
- {
   "pk": 239, 
   "model": "core.location", 
   "fields": {
@@ -2090,6 +2116,19 @@
    "keywords": " hepburn Testing Tank (Tow Tank)", 
    "image_url": "http://web.mit.edu/campus-map/objimgs/object-48.jpg", 
    "latitude": 42.362432560000002
+  }
+ }, 
+ {
+  "pk": 85, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "PDSI (Physics, DMSE, Spectroscopy, Infrastructure)", 
+   "building_num": "6C", 
+   "longitude": -71.090836390000007, 
+   "keywords": " associates Condensed Matter Theory Group", 
+   "image_url": null, 
+   "latitude": 42.359672510000003
   }
  }, 
  {
@@ -2207,6 +2246,19 @@
    "keywords": " autoidlabs 1-190 1-390 Auto-ID Center Parsons Laboratory for Environmental Science and Engineering Civil and Environmental Engineering, Dept. of Deshpande Center for Technological Innovation Forum for Supply Chain Innovation Infrastructure Systems Development Technology and Development Program Engineering, School of Intelligent Transportation Systems Program", 
    "image_url": "http://web.mit.edu/campus-map/objimgs/object-1.jpg", 
    "latitude": 42.358091729999998
+  }
+ }, 
+ {
+  "pk": 184, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "PIKA", 
+   "name": "pika", 
+   "building_num": null, 
+   "longitude": -71.10818999, 
+   "keywords": " chestnut", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-pika.jpg", 
+   "latitude": 42.356535690000001
   }
  }, 
  {
@@ -2886,19 +2938,6 @@
   }
  }, 
  {
-  "pk": 237, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "WW15 Lot (Zone 4: North)", 
-   "building_num": null, 
-   "longitude": -71.108895559999993, 
-   "keywords": " handicapped Handicapped parking", 
-   "image_url": null, 
-   "latitude": 42.355151659999997
-  }
- }, 
- {
   "pk": 246, 
   "model": "core.location", 
   "fields": {
@@ -3016,19 +3055,6 @@
   }
  }, 
  {
-  "pk": 89, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "Westgate (FG)", 
-   "building_num": "W85FG", 
-   "longitude": -71.10360025, 
-   "keywords": " associates", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85FG.jpg", 
-   "latitude": 42.355623029999997
-  }
- }, 
- {
   "pk": 86, 
   "model": "core.location", 
   "fields": {
@@ -3039,6 +3065,19 @@
    "keywords": " associates", 
    "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85.jpg", 
    "latitude": 42.354997750000003
+  }
+ }, 
+ {
+  "pk": 89, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate (FG)", 
+   "building_num": "W85FG", 
+   "longitude": -71.10360025, 
+   "keywords": " associates", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85FG.jpg", 
+   "latitude": 42.355623029999997
   }
  }, 
  {
@@ -3185,6 +3224,19 @@
   }
  }, 
  {
+  "pk": 237, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "WW15 Lot (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.108895559999993, 
+   "keywords": " handicapped Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.355151659999997
+  }
+ }, 
+ {
   "pk": 35, 
   "model": "core.location", 
   "fields": {
@@ -3224,63 +3276,11 @@
   }
  }, 
  {
-  "pk": 198, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "du Pont Court", 
-   "building_num": null, 
-   "longitude": -71.092086449999996, 
-   "keywords": " court", 
-   "image_url": null, 
-   "latitude": 42.358179939999999
-  }
- }, 
- {
-  "pk": 199, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "du Pont Squash Court", 
-   "building_num": null, 
-   "longitude": -71.097926880000003, 
-   "keywords": " court", 
-   "image_url": null, 
-   "latitude": 42.35654487
-  }
- }, 
- {
-  "pk": 188, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": null, 
-   "name": "du Pont Tennis Courts", 
-   "building_num": null, 
-   "longitude": -71.0967251, 
-   "keywords": " courts", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G12.jpg", 
-   "latitude": 42.356901839999999
-  }
- }, 
- {
-  "pk": 184, 
-  "model": "core.location", 
-  "fields": {
-   "display_name": "PIKA", 
-   "name": "pika", 
-   "building_num": null, 
-   "longitude": -71.10818999, 
-   "keywords": " chestnut", 
-   "image_url": "http://web.mit.edu/campus-map/objimgs/object-pika.jpg", 
-   "latitude": 42.356535690000001
-  }
- }, 
- {
   "pk": 1, 
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "0", 
+   "sort_order": "0.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Basics", 
    "slug": "basics"
@@ -3291,7 +3291,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "0", 
+   "sort_order": "0.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Registration", 
    "slug": "registration"
@@ -3302,7 +3302,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "1", 
+   "sort_order": "1.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Account Management", 
    "slug": "account-management"
@@ -3313,7 +3313,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "2", 
+   "sort_order": "2.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Employer Subscriptions", 
    "slug": "employer_subscriptions"
@@ -3324,7 +3324,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "2", 
+   "sort_order": "2.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Student Filtering", 
    "slug": "student-filtering"
@@ -3335,7 +3335,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "3", 
+   "sort_order": "3.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Resumebooks", 
    "slug": "resumebooks"
@@ -3346,7 +3346,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "4", 
+   "sort_order": "4.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Events", 
    "slug": "events"
@@ -3357,7 +3357,7 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "5", 
+   "sort_order": "5.000", 
    "last_updated": "2011-06-28 01:55:42", 
    "name": "Invitations", 
    "slug": "invitations"
@@ -3372,7 +3372,7 @@
    "slug": "what-is-umeqo", 
    "topic": 1, 
    "audience": 0, 
-   "sort_order": "0", 
+   "sort_order": "0.000", 
    "answer": "Umeqo is a new platform for helping students and employers connect during recruiting season.", 
    "date_created": "2011-06-28 01:55:42", 
    "display": false
@@ -5499,6 +5499,16 @@
   }
  }, 
  {
+  "pk": 15, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-07-17 15:18:01", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:18:01", 
+   "name": "Visual Arts and Publications"
+  }
+ }, 
+ {
   "pk": 2, 
   "model": "core.campusorgtype", 
   "fields": {
@@ -5616,16 +5626,6 @@
    "sort_order": 0, 
    "last_updated": "2011-07-17 15:46:54", 
    "name": "Religious"
-  }
- }, 
- {
-  "pk": 15, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-07-17 15:18:01", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 15:18:01", 
-   "name": "Visual Arts and Publications"
   }
  }, 
  {
