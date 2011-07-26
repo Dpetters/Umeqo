@@ -10071,22 +10071,6 @@
   }
  }, 
  {
-  "pk": 279, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "http://mitathletics.com/sports/m-track/index", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "MIT's outdoor track and field team competes against Babson College, Springfield College, the U.S. Coast Guard Academy, Wheaton College, and WPI in the New England Women's and Men's Athletic Conference (NEWMAC).", 
-   "image": "", 
-   "email": "hwtaylor@mit.edu", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 11, 
-   "display": false, 
-   "name": "Track and Field"
-  }
- }, 
- {
   "pk": 280, 
   "model": "core.campusorg", 
   "fields": {
@@ -11908,6 +11892,22 @@
    "type": 2, 
    "display": true, 
    "name": "Toons"
+  }
+ }, 
+ {
+  "pk": 279, 
+  "model": "core.campusorg", 
+  "fields": {
+   "website": "http://mitathletics.com/sports/m-track/index", 
+   "last_updated": "2011-05-03 12:27:41", 
+   "description": "MIT's outdoor track and field team competes against Babson College, Springfield College, the U.S. Coast Guard Academy, Wheaton College, and WPI in the New England Women's and Men's Athletic Conference (NEWMAC).", 
+   "image": "", 
+   "email": "hwtaylor@mit.edu", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 11, 
+   "display": false, 
+   "name": "Track and Field"
   }
  }, 
  {
