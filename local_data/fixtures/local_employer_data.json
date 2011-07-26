@@ -7,14 +7,14 @@
     42
    ], 
    "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-24 13:44:59", 
+   "last_updated": "2011-07-26 00:06:12", 
    "name": "Employer2", 
    "starred_students": [], 
    "main_contact": "Liz Floyd", 
    "main_contact_phone": "543-657-9834", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:06:02", 
-   "logo": "employer/Employer/employer2_2011-07-24-13-44-59.png", 
+   "logo": "employer/Employer/employer2_2011-07-26-00-06-12.png", 
    "slug": "employer2", 
    "description": "temp"
   }
@@ -27,14 +27,14 @@
     28
    ], 
    "main_contact_email": "fake@fake.com", 
-   "last_updated": "2011-07-24 13:44:50", 
+   "last_updated": "2011-07-26 00:06:05", 
    "name": "Employer3", 
    "starred_students": [], 
    "main_contact": "Katelyn o'Hare", 
    "main_contact_phone": "523-987-4567", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:07:34", 
-   "logo": "employer/Employer/employer3_2011-07-24-13-44-50.png", 
+   "logo": "employer/Employer/employer3_2011-07-26-00-06-05.png", 
    "slug": "employer3", 
    "description": "Amazing firm."
   }
@@ -47,14 +47,14 @@
     41
    ], 
    "main_contact_email": "jason@blah.com", 
-   "last_updated": "2011-07-24 13:44:30", 
+   "last_updated": "2011-07-26 00:05:58", 
    "name": "Employer4", 
    "starred_students": [], 
    "main_contact": "Jason Mccoy", 
    "main_contact_phone": "333-333-3333", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:08:02", 
-   "logo": "employer/Employer/employer4_2011-07-24-13-44-29.png", 
+   "logo": "employer/Employer/employer4_2011-07-26-00-05-58.png", 
    "slug": "employer4", 
    "description": "Sample"
   }
@@ -67,7 +67,7 @@
     40
    ], 
    "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-24 13:44:03", 
+   "last_updated": "2011-07-26 00:05:52", 
    "name": "Employer1", 
    "starred_students": [
     5
@@ -76,7 +76,7 @@
    "main_contact_phone": "999-999-9999", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:09:24", 
-   "logo": "employer/Employer/employer1_2011-07-24-13-44-03.png", 
+   "logo": "employer/Employer/employer1_2011-07-26-00-05-52.png", 
    "slug": "employer1", 
    "description": "temp"
   }
