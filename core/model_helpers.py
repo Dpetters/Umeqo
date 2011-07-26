@@ -32,6 +32,6 @@ def generate_thumbnail(image):
     size = (int(ratio * width), int(ratio * height))
     image.thumbnail(size, Image.ANTIALIAS)
     extension = image_path[image_path.find('.'):]
-    thumbnail_full_path = "%s%s_tmp%s" % (os.path.dirname(image_path), os.path.basename(image_path).split(".")[0], extension)
+    thumbnail_full_path = "%s/%s_tmp%s" % (os.path.dirname(image_path), os.path.basename(image_path).split(".")[0], extension)
     image.save(thumbnail_full_path)
     return thumbnail_full_path, File(file(thumbnail_full_path, "rb"))
