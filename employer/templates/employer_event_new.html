@@ -43,7 +43,7 @@
         {% if edit %}
             <a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink dark_button">View Event</a>
         {% endif %}
-        <a href="{% url home %}#events" class="main_block_header_sidelink dark_button">Back to Events</a>
+        <a href="{% url home %}#events" class="main_block_header_sidelink button">Back to Events</a>
     </div>
     <div class="main_block_content">
         <form id="new_event_form" method="POST" action="">
@@ -109,7 +109,7 @@
                     <tr>
                         <th></th>
                         <td>
-                            <input id="new_event_form_submit_button" class="button" type='submit' value='{% if edit %}Save Event{% else %}Create Event{% endif %}'>
+                            <input id="new_event_form_submit_button" class="dark_button" type='submit' value='{% if edit %}Save Event{% else %}Create Event{% endif %}'>
                         </td>
                     </tr>
                 </table>

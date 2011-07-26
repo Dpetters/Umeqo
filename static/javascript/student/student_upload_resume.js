@@ -170,7 +170,7 @@ $(document).ready(function(){
 		                    $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
 		                });
 						var $unparsable_resume_dialog = open_unparsable_resume_dialog();
-					    $unparsable_resume_dialog.html(dialog_ajax_loader);
+					    $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
 					    $unparsable_resume_dialog.dialog('option', 'position', 'center');
 					    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 					    $.ajax({

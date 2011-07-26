@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
     $('#deactivate_account_link').click( function () {
         deactivate_account_dialog = open_deactivate_account_dialog();
-        deactivate_account_dialog.html(dialog_ajax_loader);
+        deactivate_account_dialog.html(DIALOG_AJAX_LOADER);
 
         var deactivate_account_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({

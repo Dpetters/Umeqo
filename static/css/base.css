@@ -13,11 +13,12 @@ img {
 h1 {
     font-family: 'Lato', 'Arial', serif;
     font-size: 35px;
+    color:#333;
 }
 h2 {
     font-size: 20px;
     text-shadow: #FFF 0 1px 0;
-    color: #333;
+    color: #444;
 }
 h3 {
     color: #555;
@@ -538,7 +539,7 @@ a.button {
 .button span, .button img {
     vertical-align: middle;
 }
-.button.large {
+.dark_button.large, .button.large {
     line-height: 34px;
     height: 34px;
     text-decoration: none;
@@ -738,6 +739,7 @@ input[type=text], input[type=password] {
     position: relative;
 }
 #ajax_form_submit_loader {
+    display:none;
     margin-left: 5px;
     margin-top: 5px;
     position: absolute;
@@ -852,6 +854,9 @@ a:focus {
 	width:80px;
 	text-align:left;
 }
+#contact_us_form input[type=submit]{
+	width:100px;
+}
 /* General Styles */
 .nounderline {
     text-decoration: none;
@@ -875,7 +880,7 @@ a:focus {
     clear: both;
 }
 .error_section, td.error_section {
-    padding-top: 10px;
+    padding-top: 4px;
     text-align: center;
 }
 /* Dialogs */

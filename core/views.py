@@ -150,18 +150,14 @@ def landing_page(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-
+@render_to()
 def home(request, extra_context=None):
-    
     context = {}
-
-    page_messages = {
-        'profile-saved': messages.profile_saved
-    }
+    page_messages = { 'profile-saved': messages.profile_saved }
     msg = request.GET.get('msg',None)
     if msg:
         context.update(msg = page_messages[msg])
-
+        
     if request.user.is_authenticated():
         if hasattr(request.user, "student"):
             if not request.user.student.profile_created:
@@ -179,49 +175,37 @@ def home(request, extra_context=None):
                 })
             else:
                 context['has_subscriptions'] = False
-
-            
             context.update(extra_context or {}) 
-            return render_to_response('student_home.html', context,
-                    context_instance=RequestContext(request))
-            
+            context.update({'TEMPLATE':'student_home.html'})
+            return context
         elif hasattr(request.user, "recruiter"):
-            
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
             your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
-            
             context.update({
-                'teststring': 'asdlfkjasldfja sakfasdlfk asdl ashdfa sdlfja sdlf asdlf asldkjf askldf asjdfa sdfasdf',
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
                 'your_events': your_events
             });
-            
             context.update(extra_context or {})
-            return render_to_response('employer_home.html', context, 
-                    context_instance=RequestContext(request))
-    
+            context.update({'TEMPLATE':'employer_home.html'})
+            return context
     request.session.set_test_cookie()
-    
     context.update({
         'login_form': AuthenticationForm,
-        'action': request.REQUEST.get('action', '')
+        'action': request.REQUEST.get('action', ''),
+        'TEMPLATE': 'anonymous_home.html'
     })
-
+    print context
     event_kwargs = {}
     event_kwargs['end_datetime__gt'] = datetime.now()
     events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")
     context['events'] = list(events)[:3]
-    
     context.update(extra_context or {})
-    return render_to_response('anonymous_home.html', context,
-            context_instance=RequestContext(request))
+    return context
 
 
-@login_required
 def check_website(request):
-    
     if request.is_ajax():
         url_validator =  URLValidator(verify_exists = False)
         website = request.GET.get("website", "")
@@ -234,7 +218,6 @@ def check_website(request):
 
 
 def check_password(request):
-    
     if request.is_ajax():
         if request.user.check_password(request.GET.get("password")):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
@@ -244,7 +227,6 @@ def check_password(request):
 
 
 def check_username_existence(request):
-    
     if request.is_ajax():
         username = request.GET.get("username", "")
         try:
@@ -259,6 +241,7 @@ def check_username_existence(request):
                     return HttpResponse(simplejson.dumps(False), mimetype="application/json")
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
  
 def check_email_existence(request):
     if request.is_ajax():
@@ -267,7 +250,6 @@ def check_email_existence(request):
 
 
 def check_email_availability(request):
-    
     if request.is_ajax():
         try:
             User.objects.get(email=request.GET.get("email", ""))
@@ -276,9 +258,9 @@ def check_email_availability(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 def check_event_name_uniqueness(request):
-
     if request.is_ajax():
         try:
             Event.objects.get(name=request.GET.get("name", ""))
@@ -351,6 +333,7 @@ def unsupported_browser(request, extra_context=None):
     context.update(extra_context or {})
     return context
 
+@login_required
 def get_notice_unseen_count(request):
     count = Notice.objects.unseen_count_for(request.user, on_site=True)
     return HttpResponse(simplejson.dumps({'count': count}), mimetype="application/json")

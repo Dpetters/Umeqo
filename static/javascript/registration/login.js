@@ -21,6 +21,6 @@ $(document).ready(function() {
         }
     });
     if (VALIDATE_ON_LOAD) {
-        $('#login_main_form').valid();
+        //$('#login_main_form').valid();
     }
 });

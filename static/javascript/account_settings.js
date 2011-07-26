@@ -2,7 +2,7 @@ $(document).ready( function () {
     $("#account_settings_tabs").tabs();
 	
 	$("#global_email_checkbox").click(function(){
-		
+		$("#notifications_table input[type=checkbox]").attr('checked', true);
 	});
     
     $("#password_change_form").validate({

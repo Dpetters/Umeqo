@@ -136,7 +136,7 @@ Copyright 2011. All Rights Reserved.
                             <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not attending</a>
                         </div>
                         <div class="response{% if responded %} hid{% endif %}">
-                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: Attending</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="dark_button">RSVP: Attending</a>
                         </div>
                         {% if show_admin %}
                             <span class="help-bubble public">Students can click to RSVP.</span>
