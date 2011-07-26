@@ -90,11 +90,11 @@ class CampusOrgAdmin(admin.ModelAdmin):
                 msg = (_('The %(name)s "%(obj)s" was changed successfully.') %
                        {'name': force_unicode(obj._meta.verbose_name),
                         'obj': force_unicode(obj)})
-                next = obj.__class__.objects.filter(id__gt=obj.id).order_by('id')[:1]
+                next = obj.__class__.objects.filter(id__gt=obj.id).order_by('name')[:1]
                 if next:
                     self.message_user(request, msg)
                     return HttpResponseRedirect("../%s/" % next[0].pk)
-            return super(CampusOrg, self).response_change(request, obj)
+            return super(CampusOrgAdmin, self).response_change(request, obj)
 
 class CourseAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -112,7 +112,7 @@ class CourseAdmin(admin.ModelAdmin):
             msg = (_('The %(name)s "%(obj)s" was changed successfully.') %
                    {'name': force_unicode(obj._meta.verbose_name),
                     'obj': force_unicode(obj)})
-            next = obj.__class__.objects.filter(id__gt=obj.id).order_by('id')[:1]
+            next = obj.__class__.objects.filter(id__gt=obj.id).order_by('name')[:1]
             if next:
                 self.message_user(request, msg)
                 return HttpResponseRedirect("../%s/" % next[0].pk)
