@@ -127,7 +127,7 @@ def commit_local_data():
             abort("commit_local_data should not be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
-                run("python manage.py file_cleanup student.Student")
+                run("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
                 run("python copy_media.py local out")
                 for app in settings.LOCAL_DATA_APPS:
                     # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
