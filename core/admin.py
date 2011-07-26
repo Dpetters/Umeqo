@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.utils.encoding import force_unicode
+from django.utils.translation import ugettext_lazy as _
 
 from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, \
                         GraduationYear, Industry, Topic, Question, EmploymentType, \
@@ -79,6 +82,19 @@ class CampusOrgAdmin(admin.ModelAdmin):
     search_fields = ['name']
     date_hierarchy = 'last_updated'
 
+    def response_change(self, request, obj):
+            """
+            Determines the HttpResponse for the change_view stage.
+            """
+            if request.POST.has_key("_viewnext"):
+                msg = (_('The %(name)s "%(obj)s" was changed successfully.') %
+                       {'name': force_unicode(obj._meta.verbose_name),
+                        'obj': force_unicode(obj)})
+                next = obj.__class__.objects.filter(id__gt=obj.id).order_by('id')[:1]
+                if next:
+                    self.message_user(request, msg)
+                    return HttpResponseRedirect("../%s/" % next[0].pk)
+            return super(CampusOrg, self).response_change(request, obj)
 
 class CourseAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -87,7 +103,21 @@ class CourseAdmin(admin.ModelAdmin):
     ]
     list_display = ('name', 'num', 'display', 'sort_order')
     search_fields = ['name']
-
+    
+    def response_change(self, request, obj):
+        """
+        Determines the HttpResponse for the change_view stage.
+        """
+        if request.POST.has_key("_viewnext"):
+            msg = (_('The %(name)s "%(obj)s" was changed successfully.') %
+                   {'name': force_unicode(obj._meta.verbose_name),
+                    'obj': force_unicode(obj)})
+            next = obj.__class__.objects.filter(id__gt=obj.id).order_by('id')[:1]
+            if next:
+                self.message_user(request, msg)
+                return HttpResponseRedirect("../%s/" % next[0].pk)
+        return super(CourseAdmin, self).response_change(request, obj)
+        
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(SchoolYear, SchoolYearAdmin)
