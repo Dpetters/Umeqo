@@ -8,6 +8,27 @@ from core import enums
 from core import mixins as core_mixins
 
 
+class Location(models.Model):
+    name = models.CharField(max_length=200)
+    display_name = models.CharField(max_length=200, blank=True, null=True)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    keywords = models.TextField(blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True, verify_exists=False)
+    building_num = models.CharField(max_length = 10, blank=True, null=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __unicode__(self):
+        if self.display_name:
+            return self.display_name
+        elif self.building_num:
+            return "%s (Building %s)" % (self.name, self.building_num)
+        else:
+            return self.name     
+
+
 class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)

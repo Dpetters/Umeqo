@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var cloudmade = new CM.Tiles.CloudMade.Web({key: '5107685de1ba4ebcbcfccc6335bd1eec'});
     var map = new CM.Map('cm-example', cloudmade);
-    map.setCenter(new CM.LatLng(42.35967402, -71.092013719999997), 15);
+    map.setCenter(new CM.LatLng(42.35995437, -71.08686692), 18);
  
     function rsvp(isAttending) {
         $.post($(this).attr('href'), {
