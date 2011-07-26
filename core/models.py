@@ -104,11 +104,12 @@ class Course(CommonInfo):
     sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     
+    def __unicode__(self):
+        return "%s (%s)" % (self.name, self.num)
+    
     class Meta:
         ordering = ['sort_order']
         
-    def __unicode__(self):
-        return "%s (%s)" % (self.name, self.num)
     
 
 class EmploymentType(core_mixins.DateTracking):
@@ -146,7 +147,8 @@ class CampusOrg(CommonInfo):
     class Meta(CommonInfo.Meta):
         verbose_name = "On-Campus Organization"
         verbose_name_plural = "On-Campus Organizations"
-
+        ordering = ['name']
+        
     def __unicode__(self):
         return self.name
 
