@@ -480,6 +480,46 @@
   }
  }, 
  {
+  "pk": 73, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-26 07:29:47", 
+   "session_key": "dbe520f3221108a71a0fd234c7e94fcc", 
+   "last_updated": "2011-07-26 07:29:47", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 74, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-26 07:30:41", 
+   "session_key": "1449d3c49ce5c8473bf85022f798cfee", 
+   "last_updated": "2011-07-26 07:30:41", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 75, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-26 17:52:20", 
+   "session_key": "8a7bd6fec260c35a7ed70547b5deaef9", 
+   "last_updated": "2011-07-26 17:52:20", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 78, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-26 19:51:58", 
+   "session_key": "f876ec4f465304be7a707b5b6e7c0389", 
+   "last_updated": "2011-07-26 19:51:58", 
+   "user": 1
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {

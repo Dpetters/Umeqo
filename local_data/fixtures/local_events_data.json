@@ -31,10 +31,10 @@
   "pk": 2, 
   "model": "events.event", 
   "fields": {
-   "view_count": 7, 
+   "view_count": 8, 
    "start_datetime": "2011-09-14 19:30:00", 
    "name": "Fortune 500 Panel", 
-   "datetime_created": "2011-07-26 00:17:56", 
+   "datetime_created": "2011-07-26 13:53:57", 
    "description": "", 
    "is_active": true, 
    "last_seen_view_count": 0, 
