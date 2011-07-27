@@ -1,28 +1,28 @@
 $(document).ready(function(){
 	
-    $('#deactivate_account_link').click( function () {
-        deactivate_account_dialog = open_deactivate_account_dialog();
-        deactivate_account_dialog.html(DIALOG_AJAX_LOADER);
+    $('#account_deactivate_link').click( function () {
+        account_deactivate_dialog = open_account_deactivate_dialog();
+        account_deactivate_dialog.html(DIALOG_AJAX_LOADER);
 
-        var deactivate_account_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+        var account_deactivate_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
-            url: EMPLOYER_DEACTIVATE_ACCOUNT_URL,
+            url: EMPLOYER_account_deactivate_URL,
             error: function(jqXHR, textStatus, errorThrown) {
-                clearTimeout(deactivate_account_dialog_timeout);
+                clearTimeout(account_deactivate_dialog_timeout);
                 switch(jqXHR.status){
                     case 0:
-                        deactivate_account_dialog.html(dialog_check_connection_message);
+                        account_deactivate_dialog.html(dialog_check_connection_message);
                         break;
                     default:
-                        deactivate_account_dialog.html(dialog_error_message);
+                        account_deactivate_dialog.html(dialog_error_message);
                 }
             },
             success: function (data) {
-                clearTimeout(deactivate_account_dialog_timeout);
+                clearTimeout(account_deactivate_dialog_timeout);
 
-                deactivate_account_dialog.html(data);
-                deactivate_account_dialog.dialog('option', 'position', 'center');
+                account_deactivate_dialog.html(data);
+                account_deactivate_dialog.dialog('option', 'position', 'center');
             }
         });
     });

@@ -36,6 +36,12 @@ $(document).ready( function() {
         }
     };
     
+    $( "#id_location" ).autocomplete({
+		source: GET_LOCATION_SUGGESTIONS_URL,
+		minLength: 2,
+		delay:0
+	});
+		
     var messages = {
         name: {
             required: "Name is required.",

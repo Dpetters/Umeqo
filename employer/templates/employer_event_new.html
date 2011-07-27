@@ -8,6 +8,8 @@
 
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
+    var GET_LOCATION_SUGGESTIONS_URL = "{% url get_location_suggestions %}";
+    
     {% if edit %}
         var EDIT_FORM = true;
     {% else %}

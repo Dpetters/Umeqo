@@ -35,16 +35,18 @@ function show_long_load_message_in_dialog(dialog) {
 
 function show_form_submit_loader(container) {
     container = typeof(container) != 'undefined' ? container : "";
-    console.log(container);
-    $(container + " #ajax_form_submit_loader").css("display", "");
+    if (container)
+    	$(container + " #ajax_form_submit_loader").show();
 };
 function hide_form_submit_loader() {
     container = typeof(container) != 'undefined' ? container : "";
-    $(container + " #ajax_form_submit_loader").css("display", "none");
+    if (container)
+    	$(container + " #ajax_form_submit_loader").hide();
 };
 function place_TINY_AJAX_LOADER(container) {
     container = typeof(container) != 'undefined' ? container : "";
-    $(container).html(TINY_AJAX_LOADER);
+    if (container)
+    	$(container).html(TINY_AJAX_LOADER);
 };
 // Validation Highlighting, unhighlighting and positioning of errors
 function highlight(element, errorClass) {

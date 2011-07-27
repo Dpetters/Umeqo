@@ -23,10 +23,16 @@ Welcome |
 {{ block.super }}
 
 {% ifequal action "logged-out"  %}
-{{action}}
 <div class="below_header_message">
     <p>
         You were successfully logged out.
+    </p>
+</div>
+{% endifequal %}
+{% ifequal action "account-deactivated"  %}
+<div class="below_header_message">
+    <p>
+        Thank you for trying out Umeqo!
     </p>
 </div>
 {% endifequal %}

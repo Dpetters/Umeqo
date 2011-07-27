@@ -1,0 +1,14 @@
+.account_deactivate_dialog .dialog_content_wrapper{
+	padding:15px;
+}
+
+#id_suggestion{
+	height:40px;
+	width:370px;
+	margin-top:3px;
+    resize: none;
+}
+#student_deactivate_account_link{
+	position:relative;
+	top:7px;
+}

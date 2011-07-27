@@ -11,6 +11,11 @@ from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages
 
+
+class StudentDeactivateAccountForm(forms.Form):
+    suggestion = forms.CharField(label="If you still wish to deactivate, please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
+
+    
 class StudentRegistrationForm(forms.Form):
 
     email = forms.EmailField(label="MIT email:")
@@ -60,6 +65,7 @@ class StudentBaseAttributeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(StudentBaseAttributeForm, self).__init__(*args, **kwargs)
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
+
 
 class StudentProfileForm(StudentBaseAttributeForm):
     # Required Info

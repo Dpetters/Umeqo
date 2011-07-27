@@ -13,11 +13,12 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models import Q
 
+from haystack.query import SearchQuerySet
 from notification.models import Notice
 from registration.models import InterestedPerson
 from core import enums, messages
 from core.decorators import render_to
-from core.models import Course, CampusOrg, Language, Topic
+from core.models import Course, CampusOrg, Language, Topic, Location
 from core.forms import BetaForm, AkismetContactForm
 from core.view_helpers import does_email_exist
 from employer.forms import StudentSearchForm
@@ -31,13 +32,13 @@ def help_center(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-def deactivate_account(request, extra_context = None):
+def account_deactivate(request, extra_context = None):
     
     context = {}
     if hasattr(request.user, "student"):
-        context['TEMPLATE'] = "student_deactivate_account.html"
+        context['TEMPLATE'] = "student_account_deactivate.html"
     elif hasattr(request.user, "employer"):
-        context['TEMPLATE'] = "student_deactivate_account.html"        
+        context['TEMPLATE'] = "student_account_deactivate.html"        
     context.update(extra_context or {})
     return context
 
@@ -69,11 +70,9 @@ def tutorials(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-def contact_us_dialog(request, extra_context=None):
 
-    form_class = AkismetContactForm
-    fail_silently = False;
-
+@render_to('contact_us_dialog.html')
+def contact_us_dialog(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, request=request)
@@ -100,10 +99,22 @@ def contact_us_dialog(request, extra_context=None):
                 'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
                 }
         context.update(extra_context or {}) 
-        return render_to_response('contact_us_dialog.html',
-                                  context,
-                                  context_instance=RequestContext(request))
+        return context
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+
+@login_required
+def get_location_suggestions(request):
+    if request.is_ajax():
+        if request.method == "GET":
+            if request.GET.has_key('term'):
+                search_query_set = SearchQuerySet().models(Location).all()[:10]#models(Location).filter(content=request.GET.has_key('term'))
+                return HttpResponse(simplejson.dumps([result.object.name for result in search_query_set]), mimetype="application/json")
+            else:
+                return HttpResponseBadRequest("term is missing.")
+        return HttpResponseForbidden("Request must be a GET")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
@@ -196,7 +207,6 @@ def home(request, extra_context=None):
         'action': request.REQUEST.get('action', ''),
         'TEMPLATE': 'anonymous_home.html'
     })
-    print context
     event_kwargs = {}
     event_kwargs['end_datetime__gt'] = datetime.now()
     events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")
