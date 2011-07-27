@@ -10,8 +10,8 @@ from core.models import CampusOrgType, CampusOrg, Course, Language, SchoolYear, 
                         Location
 
 class LocationAdmin(admin.ModelAdmin):
-    fields = ['name', 'display_name', 'latitude', 'longitude', 'keywords', 'image_url']
-    list_display = ('name', 'display_name', 'latitude', 'longitude', 'image_url')
+    fields = ['name', 'display_name', 'building_num', 'latitude', 'longitude', 'keywords', 'image_url']
+    list_display = ('name', 'display_name', 'building_num', 'latitude', 'longitude', 'image_url')
     search_fields = ['keywords', 'name']
 
 admin.site.register(Location, LocationAdmin)

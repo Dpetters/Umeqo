@@ -22,11 +22,13 @@ class Location(models.Model):
 
     def __unicode__(self):
         if self.display_name:
+            if self.building_num:
+                return "%s (Building %s)" % (self.display_name, self.building_num)
             return self.display_name
-        elif self.building_num:
-            return "%s (Building %s)" % (self.name, self.building_num)
         else:
-            return self.name     
+            if self.building_num:
+                return "%s (Building %s)" % (self.name, self.building_num)
+            return self.name    
 
 
 class Topic(core_mixins.DateTracking):

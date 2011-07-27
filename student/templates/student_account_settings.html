@@ -4,6 +4,9 @@
 {{block.super}}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_account_settings.css" />
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_account_settings.js"></script>
+<script>
+    var STUDENT_ACCOUNT_DEACTIVATE_URL = "{% url student_account_deactivate %}";
+</script>
 {% endblock %}
 
 {% block content_area %}
@@ -16,7 +19,7 @@
 {% block account_overview %}
 <h3>Deactivate Account</h3>
 <p class="sub_header_message">By deactivating you remove your listing and all stored data off of the site.</p>
-<p class="sub_header_message">Your account can be restored by logging back in. <a id="deactivate_account_link" href="javascript:void(0)">Deactivate Account</a></p>
+<p class="sub_header_message">Your account can be restored by logging back in. <a id="account_deactivate_link" href="javascript:void(0)">Deactivate Account</a></p>
 {% endblock %}
  
  

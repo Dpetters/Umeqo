@@ -1,44 +1,69 @@
 $(document).ready( function() {
 
-    function open_deactivate_account_dialog() {
+    function open_account_deactivate_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
             title:"Deactivate Account",
-            dialogClass: "deactivate_account_dialog",
+            dialogClass: "account_deactivate_dialog",
             modal:true,
-            width:475,
+            width:418,
             resizable: false,
             close: function() {
-                deactivate_account_dialog.remove();
+                account_deactivate_dialog.remove();
             }
         });
         $dialog.dialog('open');
         return $dialog;
     };
 
-    $('#deactivate_account_link').click( function () {
-        deactivate_account_dialog = open_deactivate_account_dialog();
-        deactivate_account_dialog.html(DIALOG_AJAX_LOADER);
+    $('#account_deactivate_link').click( function () {
+        account_deactivate_dialog = open_account_deactivate_dialog();
+        account_deactivate_dialog.html(DIALOG_AJAX_LOADER);
 
-        var deactivate_account_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+        var account_deactivate_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
-            url: STUDENT_DEACTIVATE_ACCOUNT_URL,
+            url: STUDENT_ACCOUNT_DEACTIVATE_URL,
             complete: function(jqXHR, textStatus) {
-                clearTimeout(deactivate_account_dialog_timeout);
+                clearTimeout(account_deactivate_dialog_timeout);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-                    deactivate_account_dialog.html(dialog_check_connection_message);
+                    account_deactivate_dialog.html(dialog_check_connection_message);
                 }else{
-                    deactivate_account_dialog.html(dialog_error_message);
+                    account_deactivate_dialog.html(dialog_error_message);
                 }
-                deactivate_account_dialog.dialog('option', 'position', 'center');
+                account_deactivate_dialog.dialog('option', 'position', 'center');
             },
             success: function (data) {
-                deactivate_account_dialog.html(data);
-                deactivate_account_dialog.dialog('option', 'position', 'center');
+                account_deactivate_dialog.html(data);
+                account_deactivate_dialog.dialog('option', 'position', 'center');
+                $("#student_deactivate_account_link").click(function(){
+                	$.ajax({
+                		type:"POST",
+			            dataType: "json",
+			            data:{'suggestion':$("#id_suggestion").val()},
+			            url: STUDENT_ACCOUNT_DEACTIVATE_URL,
+                        beforeSend: function (arr, $form, options) {
+                            show_form_submit_loader("#student_account_deactivate_form");
+                        },
+                        complete : function(jqXHR, textStatus) {
+                        	hide_form_submit_loader("#student_account_deactivate_form");
+                        },
+			            error: function(jqXHR, textStatus, errorThrown) {
+			                if(jqXHR.status==0){
+			                    account_deactivate_dialog.html(dialog_check_connection_message);
+			                }else{
+			                    account_deactivate_dialog.html(dialog_error_message);
+			                }
+			                account_deactivate_dialog.dialog('option', 'position', 'center');
+			            },
+			            success: function (data) {
+			                window.location.href = "/?action=account-deactivated";
+			            }
+			        });
+			    });
             }
         });
     });

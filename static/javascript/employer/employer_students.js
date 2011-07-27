@@ -368,10 +368,10 @@ $(document).ready(function() {
             url: RESUME_BOOK_CURRENT_SUMMARY_URL,
             dataType: "html",
             beforeSend: function(arr, $form, options) {
-                $("#students_in_resume_book_student_list_link_section #ajax_form_submit_loader").show();
+                show_form_submit_loader("#students_in_resume_book_student_list_link_section");
             },
             complete: function(jqXHR, textStatus) {
-                $("#students_in_resume_book_student_list_link_section #ajax_form_submit_loader").hide();
+                hide_form_submit_loader("#students_in_resume_book_student_list_link_section");
             },
             success: function (data) {
                 $("#students_in_resume_book_student_list_link").html(data);

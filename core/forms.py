@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
+from django.contrib.auth import authenticate
 from django.contrib.sites.models import Site
 
 from registration.models import InterestedPerson
@@ -11,6 +12,22 @@ from core import messages
 
 class EmailAuthenticationForm(AuthenticationForm):
     username = forms.CharField(label='Email', max_length=30)
+    
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        if username and password:
+            self.user_cache = authenticate(username=username, password=password)
+            if self.user_cache is None:
+                raise forms.ValidationError(_("Please enter a correct username and password. Note that both fields are case-sensitive."))
+            elif not self.user_cache.userattributes.is_verified:
+                raise forms.ValidationError(_("This account is disabled."))
+            if not self.user_cache.is_active:
+                self.user_cache.is_active = True
+                self.user_cache.save()
+        self.check_for_test_cookie()
+        return self.cleaned_data
 
 class ContactForm(forms.Form):
     """

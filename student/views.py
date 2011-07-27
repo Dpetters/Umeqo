@@ -1,14 +1,16 @@
-import os, datetime
+import datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
+from django.contrib.sessions.models import Session
 from django.utils import simplejson
-from django.core.urlresolvers import reverse
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
-from student.forms import StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfilePreviewForm, StudentProfileForm
+from student.forms import StudentDeactivateAccountForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfilePreviewForm, StudentProfileForm
 from student.models import Student
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -44,12 +46,33 @@ def student_account_settings(request, preferences_form_class = StudentPreference
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_deactivate(request):
-    if request.method == "POST":
-        pass
+@render_to("student_account_deactivate.html")
+def student_account_deactivate(request, form_class=StudentDeactivateAccountForm):
+    if request.is_ajax():
+        if request.method == "POST":
+            form = form_class(data = request.POST)
+            if form.is_valid():
+                request.user.is_active = False
+                request.user.save()
+                for session_key_object in request.user.sessionkey_set.all():
+                    Session.objects.filter(session_key=session_key_object.session_key).delete()
+                request.user.sessionkey_set.all().delete()
+                if form.cleaned_data.has_key('suggestion'):
+                    recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
+                    subject = "%s %s (%s) Account Deactivation" % (request.user.student.first_name, request.user.student.last_name, request.user.username) 
+                    body = render_to_string('student_account_deactivate_email_body.txt', {'first_name':request.user.student.first_name, \
+                                                                                          'last_name':request.user.student.last_name, \
+                                                                                          'email':request.user.email, \
+                                                                                          'suggestion':form.cleaned_data['suggestion']})
+                    message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+                    message.send()
+                return HttpResponse()
+        else:
+            context = {}
+            context['form'] = form_class()
+            return context
     else:
-        pass
-    
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)

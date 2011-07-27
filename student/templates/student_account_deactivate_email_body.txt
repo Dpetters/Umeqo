@@ -1,0 +1,4 @@
+{{first_name}} {{last_name}} ({{email}}) deactivated his account{% if suggestion %} and offered the following advice -
+
+{{suggestion}}
+{% else %}. {% endif %}
