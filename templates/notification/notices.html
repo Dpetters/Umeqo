@@ -1,14 +1,39 @@
-<h2>Notifications</h2>
-<ul>
-    {% for notice in notices %}
-        <li{% if notice.is_unseen %} class="unread"{% endif %}>
-            <div class="details">
-                <span class="timestamp">{{ notice.added|timesince }} ago</span>
-                <span class="type">{{ notice.notice_type.display }}</span>
-            </div>
-            <span class="message">{{ notice.message|safe }}</span>
-        </li>
-    {% empty %}
-        <li class="empty_notices">There are no notifications at this time.</li>
-    {% endfor %}
-</ul
+{% extends "base.html" %}
+
+{% block title %}
+    Notifications |
+{% endblock %}
+
+{% block metadata %}
+    {{block.super}}
+    {% load compress %}
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/notifications.css" />
+    {% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+
+<div id="notifications_block" class="main_block">
+    <div class="main_block_content notifications_list">
+        <h1>Notifications</h1>
+        <ul id="notifications_list">
+            {% for notice in notices %}
+                <li{% if notice.is_unseen %} class="unread"{% endif %}>
+                    <div class="details">
+                        <span class="timestamp">{{ notice.added|timesince }} ago</span>
+                        <span class="type">{{ notice.notice_type.display }}</span>
+                    </div>
+                    <span class="message">{{ notice.message|safe }}</span>
+                </li>
+            {% empty %}
+                <li class="empty_notices">There are no notifications at this time.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

@@ -347,3 +347,9 @@ def unsupported_browser(request, extra_context=None):
 def get_notice_unseen_count(request):
     count = Notice.objects.unseen_count_for(request.user, on_site=True)
     return HttpResponse(simplejson.dumps({'count': count}), mimetype="application/json")
+
+@login_required
+@render_to('notification/notices_ajax.html')
+def notification_ajax(request):
+    notices = Notice.objects.notices_for(request.user, on_site=True)[:5]
+    return {'notices': notices}

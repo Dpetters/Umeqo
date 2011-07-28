@@ -1205,7 +1205,7 @@ $(document).ready(function() {
                                 linkText = linkText + ' (invited)';
                             }
                             link.html(linkText);
-                            formdropdown.append(link);
+                            dropdown.append(link);
                         });
                     }
                     $(that).append(dropdown);

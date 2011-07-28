@@ -1,0 +1,15 @@
+<a class="see_all" href="{% url notification_notices %}">View all &raquo;</a>
+<h2>Notifications</h2>
+<ul>
+    {% for notice in notices %}
+        <li{% if notice.is_unseen %} class="unread"{% endif %}>
+            <div class="details">
+                <span class="timestamp">{{ notice.added|timesince }} ago</span>
+                <span class="type">{{ notice.notice_type.display }}</span>
+            </div>
+            <span class="message">{{ notice.message|safe }}</span>
+        </li>
+    {% empty %}
+        <li class="empty_notices">There are no notifications at this time.</li>
+    {% endfor %}
+</ul
