@@ -30,23 +30,23 @@ function show_error_dialog(message){
 };    
 
 function show_long_load_message_in_dialog(dialog) {
-	$("#dialog_loader p").html(single_line_long_load_message);
+    $("#dialog_loader p").html(single_line_long_load_message);
 };
 
 function show_form_submit_loader(container) {
     container = typeof(container) != 'undefined' ? container : "";
     if (container)
-    	$(container + " #ajax_form_submit_loader").show();
+        $(container + " #ajax_form_submit_loader").show();
 };
 function hide_form_submit_loader() {
     container = typeof(container) != 'undefined' ? container : "";
     if (container)
-    	$(container + " #ajax_form_submit_loader").hide();
+        $(container + " #ajax_form_submit_loader").hide();
 };
 function place_TINY_AJAX_LOADER(container) {
     container = typeof(container) != 'undefined' ? container : "";
     if (container)
-    	$(container).html(TINY_AJAX_LOADER);
+        $(container).html(TINY_AJAX_LOADER);
 };
 // Validation Highlighting, unhighlighting and positioning of errors
 function highlight(element, errorClass) {
@@ -58,7 +58,7 @@ function highlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #FF603D');
 };
 function unhighlight(element, errorClass) {
-	$(element).prev().children().hide();
+    $(element).prev().children().hide();
     if ($(element).next(":button.ui-multiselect")) {
         $(element).next().css('border', '1px solid #AAA');
     }
@@ -68,14 +68,14 @@ function unhighlight(element, errorClass) {
 };
 
 function place_table_form_errors(form, errors){
-	for (error in errors){
-		if (error == "non_field_error"){
-			$(form + " .error_section").html(errors[error]);
-		}
-		else{
-			place_errors_table($("<label class='error' for='" + error + "'>" + errors[error] + "</label>"), $("#"+error));
-		}
-	};
+    for (error in errors){
+        if (error == "non_field_error"){
+            $(form + " .error_section").html(errors[error]);
+        }
+        else{
+            place_errors_table($("<label class='error' for='" + error + "'>" + errors[error] + "</label>"), $("#"+error));
+        }
+    };
 };
 /*
  * Places field errors which got returned from an ajax submit in a table forms
@@ -205,8 +205,8 @@ $(document).ready( function () {
             error: function(jqXHR, textStatus, errorThrown) {
                 clearTimeout(contact_us_dialog_timeout);
                 if(jqXHR.status==0){
-					contact_us_dialog.html(dialog_check_connection_message);
-				}else{
+                    contact_us_dialog.html(dialog_check_connection_message);
+                }else{
                     contact_us_dialog.html(dialog_error_message);
                 }
             },
@@ -223,7 +223,7 @@ $(document).ready( function () {
                                 show_form_submit_loader("#contact_us_form");
                             },
                             complete : function(jqXHR, textStatus) {
-                            	hide_form_submit_loader("#contact_us_form");
+                                hide_form_submit_loader("#contact_us_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
@@ -238,8 +238,8 @@ $(document).ready( function () {
                                     var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
                                     success_message += CLOSE_DIALOG_LINK;
                                     contact_us_dialog.html(success_message);
-								} else {
-									console.log(data);
+                                } else {
+                                    console.log(data);
                                     place_table_form_errors("#contact_us_form", data.errors);
                                 }
                                 contact_us_dialog.dialog('option', 'position', 'center');
@@ -275,7 +275,7 @@ $(document).ready( function () {
     });
     
     $(".close_dialog_link").live('click', function() {
-    	console.log("HELOO");
+        console.log("HELOO");
         $(".dialog").remove();
     });
     
@@ -300,17 +300,17 @@ $(document).ready( function () {
 
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("multiemail", function(value, element, param) {
- 		if (this.optional(element)) // return true on optional element 
- 			return true; 
-		var emails = value.split( new RegExp( "\\s*[;, \\n]\\s*", "gi" ) );
+         if (this.optional(element)) // return true on optional element 
+             return true; 
+        var emails = value.split( new RegExp( "\\s*[;, \\n]\\s*", "gi" ) );
         valid = true; 
- 		for(var i in emails) {
-        	value = emails[i];
-        	if(value)
-        		valid=valid && jQuery.validator.methods.email.call(this, value, element);
+         for(var i in emails) {
+            value = emails[i];
+            if(value)
+                valid=valid && jQuery.validator.methods.email.call(this, value, element);
         } 
         return valid;
-	}, "One of the emails you entered is invalid.");
+    }, "One of the emails you entered is invalid.");
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;

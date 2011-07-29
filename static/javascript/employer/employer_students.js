@@ -1182,7 +1182,6 @@ $(document).ready(function() {
     initiate_resume_book_summary_update();
 
     $('.student_invite_to_event_span').live('mouseover', function() {
-        console.log($(this));
         if (!$(this).data('init')) {
             $(this).data('init', true);
             var that = this;
@@ -1205,7 +1204,7 @@ $(document).ready(function() {
                                 linkText = linkText + ' (invited)';
                             }
                             link.html(linkText);
-                            formdropdown.append(link);
+                            dropdown.append(link);
                         });
                     }
                     $(that).append(dropdown);

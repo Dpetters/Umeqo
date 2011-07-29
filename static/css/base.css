@@ -1172,43 +1172,47 @@ a.ui-slider-handle {
     box-shadow: 0px 1px 1px 2px rgba(0,0,0,0.1);
     display: none;
 }
-#notifications_pane h2 {
+.notifications_list .see_all {
+    float: right;
+    line-height: 40px;
+    margin-right: 5px;
+    display: inline-block;
+}
+.notifications_list h2 {
     padding: 10px;
 }
-#notifications_pane ul {
+.notifications_list ul {
     list-style: none;
-    max-height: 318px;
-    overflow-y: auto;
 }
-#notifications_pane li {
+.notifications_list li {
     border-top: 1px solid #CCC;
     background-color: #EEE;
     padding: 10px;
 }
-#notifications_pane li.unread {
+.notifications_list li.unread {
     background-color: #FFF;
 }
-#notifications_pane a {
+.notifications_list a {
     text-decoration: none;
     display: block;
 }
-#notifications_pane .type {
+.notifications_list .type {
     font-weight: 600;
     margin-right: 5px;
     color: #777;
 }
-#notifications_pane .details {
+.notifications_list .details {
     margin-bottom: 3px;
     padding: 2px 0;
 }
-#notifications_pane .timestamp {
+.notifications_list .timestamp {
     float: right;
     color: #888;
 }
-#notifications_pane .message {
+.notifications_list .message {
     color: #444;
 }
-#notifications_pane .empty_notices {
+.notifications_list .empty_notices {
     padding: 10px;
 }
 .private_token {

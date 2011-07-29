@@ -45,8 +45,9 @@ urlpatterns += patterns('core.views',
     (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website'),
-    (r'^get-location-suggestions/$', 'get_location_suggestions', {}, 'get_location_suggestions'),
+    (r'^get-location-guess/$', 'get_location_guess', {}, 'get_location_guess'),
     (r'^notification/count$', 'get_notice_unseen_count', {}, 'get_notice_unseen_count'),
+    (r'^notification/ajax$', 'notification_ajax', {}, 'notification_ajax'),
 )
 
 urlpatterns += patterns('registration.views',
@@ -116,6 +117,3 @@ urlpatterns += patterns('events.views',
     (r'^events/i/$', 'event_invite', {}, 'event_invite'),
 )
 urlpatterns += staticfiles_urlpatterns()
-urlpatterns += patterns('notification.views',
-    (r'^notification/ajax$', 'notices', {}, 'notification_ajax'),
-)
