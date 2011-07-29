@@ -27,9 +27,12 @@ Copyright 2011. All Rights Reserved.
     var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     var CHECKIN_URL = "{% url event_checkin id=event.id %}";
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
+    var EVENT_LOCATION = "{{ event.location }}";
+    var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
 </script>
 {% compress js %}
     <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -228,7 +231,7 @@ Copyright 2011. All Rights Reserved.
                 </div>
                 <div class="main_block_content">
                     {{ event.location }}
-                      <div id="cm-example" style="width: 260px; height: 250px"></div>
+                      <div id="map" style="width: 260px; height: 250px"></div>
                 </div>
             </div>
             
