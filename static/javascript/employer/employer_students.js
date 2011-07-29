@@ -1182,7 +1182,6 @@ $(document).ready(function() {
     initiate_resume_book_summary_update();
 
     $('.student_invite_to_event_span').live('mouseover', function() {
-        console.log($(this));
         if (!$(this).data('init')) {
             $(this).data('init', true);
             var that = this;

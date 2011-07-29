@@ -104,14 +104,22 @@ def contact_us_dialog(request, form_class = AkismetContactForm, fail_silently = 
 
 
 @login_required
-def get_location_suggestions(request):
+def get_location_guess(request):
     if request.is_ajax():
         if request.method == "GET":
-            if request.GET.has_key('term'):
-                search_query_set = SearchQuerySet().models(Location).all()[:10]#models(Location).filter(content=request.GET.has_key('term'))
-                return HttpResponse(simplejson.dumps([result.object.name for result in search_query_set]), mimetype="application/json")
+            if request.GET.has_key('query'):
+                search_query_set = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
+                if not search_query_set:
+                    data = {'valid':False}
+                    data['query'] = request.GET['query']
+                else:
+                    location = search_query_set[0].object
+                    data = {'valid':True,
+                            'latitude':location.latitude,
+                            'longitude':location.longitude}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                return HttpResponseBadRequest("term is missing.")
+                return HttpResponseBadRequest("Term got which to find suggestions is missing.")
         return HttpResponseForbidden("Request must be a GET")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
