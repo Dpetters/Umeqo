@@ -47,7 +47,6 @@ urlpatterns += patterns('core.views',
     (r'^check-website/$', 'check_website', {}, 'check_website'),
     (r'^get-location-suggestions/$', 'get_location_suggestions', {}, 'get_location_suggestions'),
     (r'^notification/count$', 'get_notice_unseen_count', {}, 'get_notice_unseen_count'),
-    (r'^notification/ajax$', 'notification_ajax', {}, 'notification_ajax'),
 )
 
 urlpatterns += patterns('registration.views',
