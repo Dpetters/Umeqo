@@ -17,11 +17,11 @@ Copyright 2011. All Rights Reserved.
 <meta property="og:image" content="{{company_logo}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
 {% endcompress %}
-<script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
     var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
     var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
@@ -32,7 +32,6 @@ Copyright 2011. All Rights Reserved.
 </script>
 {% compress js %}
     <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endcompress %}
 {% endblock %}
 
