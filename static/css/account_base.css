@@ -1,15 +1,15 @@
-#account_settings_block{
+#preferences_form_block{
 	width:780px;
 	float:right;
 }
-#account_settings_block .main_block_content{
+#preferences_form_block .main_block_content{
     padding:0px;
 }
-#account_settings_tabs{
+#preferences_form_tabs{
     padding:0px;
     border:none;
 }
-#account_settings_tabs ul.ui-tabs-nav{
+#preferences_form_tabs ul.ui-tabs-nav{
     border:none;
     behavior: url(/static/lib/pie/PIE.htc);
 	background: #f7f7f7; /* Old browsers */
@@ -22,14 +22,14 @@
     padding-left:10px;
     padding-top : 5px;
 }
-#account_settings_tabs .ui-tabs-nav li{
+#preferences_form_tabs .ui-tabs-nav li{
     text-shadow:0 1px 0 #FFF;
 }
-#account_settings_tabs .ui-tabs-nav li.ui-tabs-selected{
+#preferences_form_tabs .ui-tabs-nav li.ui-tabs-selected{
     background:#FFF;
     padding-bottom:0px;
 }
-#account_settings_tabs .ui-tabs-nav li.ui-tabs-selected a{
+#preferences_form_tabs .ui-tabs-nav li.ui-tabs-selected a{
     color:#555;
 }
 #account_overview, #preferences{
@@ -57,29 +57,38 @@
 	width:130px;
 }
 #account_deactivate_link{
-	margin-left:20px;
+	margin-left:18px;
 	color:#990000 !important;
 }
-#notifications_table{
+#preferences_saved_message{
+	bottom:26px;
+	right:5px;
+	position:relative;
+	float:right;
+	font-weight:bold;
+	font-size:15px;
+}
+#notification_preferences_table{
+	margin-top:0px;
 	border-collapse: collapse;
 	width:100%;
 	font-size: 12px;
 }
-#notifications_table th{
+#notification_preferences_table th{
 	border-bottom: 1px solid #DDD;
 	padding: 15px 0 5px;
 	text-align: left;
 	text-transform: uppercase;
 }
-#notifications_table td{
+#notification_preferences_table td{
 	border-bottom: 1px solid #DDD;
 	padding: 2px 0;
 }
-#notifications_table td.checkbox{
+#notification_preferences_table td.checkbox{
 	width:1%;
 	text-align:center;
 }
-#notifications_table td.checkbox input{
+#notification_preferences_table td.checkbox input{
 	margin-top:3px;
 }
 #global_settings_section{

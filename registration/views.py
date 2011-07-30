@@ -21,7 +21,6 @@ def logout(request, login_url=None, current_app=None, extra_context=None):
     return auth_logout_then_login_view(request, login_url, current_app, extra_context)
 
 
-
 def login(request, template_name="login.html", authentication_form=AuthenticationForm, login_url=None, current_app=None, extra_context=None):
     if request.user.is_authenticated() and not request.user.is_superuser:
         return redirect(reverse('home'))

@@ -9,10 +9,10 @@ Account Settings |
 {{block.super}}
 {% load compress %}
 {% compress css %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/account_settings.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/account_base.css" />
 {% endcompress %}
 {% compress js %}
-    <script src="{{ STATIC_URL }}javascript/account_settings.js"></script>
+    <script src="{{ STATIC_URL }}javascript/account_base.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -24,17 +24,17 @@ Account Settings |
 {% endblock %}
 
 {% block content_area %}
-<div id="account_settings_block" class="main_block no_top_margin">
+<div id="preferences_form_block" class="main_block no_top_margin">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/switch.png"/>
         <span class="main_block_header_title">Account Settings</span>
     </div>
     <div class="main_block_content">
-        <div id="account_settings_tabs">
+        <div id="preferences_form_tabs">
             <ul>
                 <li><a href="#tabs-1">Account Overview</a></li>
                 <li><a href="#tabs-2">Preferences</a></li>
-                {% block account_settings_tab_declarations %}
+                {% block preferences_form_tab_declarations %}
                 {% endblock %}
             </ul>
             <div id="tabs-1" class="clearfix">
@@ -105,17 +105,25 @@ Account Settings |
                         <label for="global_email_checkbox">Email Me:</label>
                         <input type="checkbox" id="global_email_checkbox" />
                     </p>
-                    <table id="notifications_table">
-                        <tbody>
-                            {% block notifications_table_rows %}
-                            {% endblock %}
-                        </tbody>              
-                    </table>
                     {% block preferences %}
                     {% endblock %}
+                                <tr>
+                                    <td colspan="2" class="error_section error">
+                                        {{preferences_form.non_field_errors}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="button_cell" colspan="2">
+                                        <input class="button" type='submit' value='Save Preferences'>
+                                        <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
-            {% block account_settings_tab_definitions %}
+            {% block preferences_form_tab_definitions %}
             {% endblock %}
         </div>
     </div>

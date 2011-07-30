@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.sessions.models import Session
+from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -24,11 +25,11 @@ from student.enums import RESUME_PROBLEMS
 from countries.models import Country
 
 
-@render_to("student_account_settings.html")
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_account_settings(request, preferences_form_class = StudentPreferencesForm, 
-                             change_password_form_class = PasswordChangeForm, extra_context=None):
+@render_to("student_account.html")
+def student_account(request, preferences_form_class = StudentPreferencesForm, 
+                    change_password_form_class = PasswordChangeForm, extra_context=None):
     if request.method == "GET":
         context = {}
         page_messages = {
@@ -60,10 +61,11 @@ def student_account_deactivate(request, form_class=StudentDeactivateAccountForm)
                 if form.cleaned_data.has_key('suggestion'):
                     recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
                     subject = "%s %s (%s) Account Deactivation" % (request.user.student.first_name, request.user.student.last_name, request.user.username) 
-                    body = render_to_string('student_account_deactivate_email_body.txt', {'first_name':request.user.student.first_name, \
-                                                                                          'last_name':request.user.student.last_name, \
-                                                                                          'email':request.user.email, \
-                                                                                          'suggestion':form.cleaned_data['suggestion']})
+                    body = render_to_string('student_account_deactivate_email_body.txt', \
+                                            {'first_name':request.user.student.first_name, \
+                                            'last_name':request.user.student.last_name, \
+                                            'email':request.user.email, \
+                                            'suggestion':form.cleaned_data['suggestion']})
                     message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
                     message.send()
                 return HttpResponse()
@@ -74,12 +76,15 @@ def student_account_deactivate(request, form_class=StudentDeactivateAccountForm)
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
+
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
+def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, 
+                                extra_context = None):
     if request.is_ajax():
         if request.method == "POST":
-            form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
+            form = preferences_form_class(data = request.POST, \
+                                          instance = request.user.student.studentpreferences)
             if form.is_valid():
                 request.user.student.student_preferences = form.save()
                 data = {'valid':True}
@@ -92,6 +97,7 @@ def student_preferences(request, preferences_form_class = StudentPreferencesForm
             return HttpResponseForbidden("Request must be a POST.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 @render_to("student_registration.html")
 def student_registration(request,
@@ -283,28 +289,7 @@ def student_update_resume_info(request):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     return redirect('home')
 
-"""
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
-    if request.is_ajax():
-        if request.method == "POST":
-            form = preferences_form_class(data = request.data, instance = request.user.student.studentpreferences)
-            if form.is_valid():
-                request.user.student.student_preferences = form.save()
-                if hasattr(student_preferences, 'save_m2m'):
-                    request.user.student.student_preferences.save_m2m()
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
-            else:
-                data = {'valid':False,
-                        'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            return HttpResponseForbidden("Request must be a POST.")
-    else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-"""
-@render_to("student_create_campus_organization.html")
+
 def student_create_campus_organization(request, form_class=CreateCampusOrganizationForm, extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "student"):
         if request.is_ajax():
