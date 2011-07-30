@@ -7,7 +7,6 @@ $(document).ready(function() {
       center: mit_location,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    console.log("hi");
 	map = new google.maps.Map(document.getElementById("map"), map_options);
 
 
@@ -47,7 +46,6 @@ $(document).ready(function() {
 	  		}
 	  	});
 	};
-	console.log("hi");
 	$.ajax({
         type: 'GET',
         url: GET_LOCATION_GUESS_URL,

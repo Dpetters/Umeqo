@@ -5,7 +5,9 @@ from django.template.defaultfilters import slugify
 from core.models import EventType
 from core.managers import ActiveManager
 from student.models import Student
-    
+from notification import models as notification
+from employer.models import Employer
+
 class Event(models.Model):
     
     #replaces default objects with a manager that filters out inactive events
@@ -52,6 +54,19 @@ class Event(models.Model):
         return ('event_page', (), {
             'id': self.id,
             'slug': self.slug,
+        })
+
+@receiver(signals.post_save, sender=Event)
+def send_new_event_notifications(sender, instance, created, raw, **kwargs):
+    if created:
+        employers = Employer.objects.filter(recruiter=instance.recruiters.all())
+        subscribers = Student.objects.filter(subscriptions__in=employers)
+        to_users = map(lambda n: n.user, subscribers)
+        employer_names = ", ".join(map(lambda n: n.name, employers))
+        has_word = "has" if len(employers)==1 else "have"
+        notification.send(to_users, 'new_event', {
+            'message': '<strong>%s</strong> %s a new event: "%s"' % (employer_names, has_word, instance.name),
+            'permalink': instance.get_absolute_url(),
         })
 
 @receiver(signals.pre_save, sender=Event)

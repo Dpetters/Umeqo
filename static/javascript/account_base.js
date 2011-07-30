@@ -1,10 +1,37 @@
 $(document).ready( function () {
-    $("#account_settings_tabs").tabs();
+    $("#preferences_form_tabs").tabs();
 	
 	$("#global_email_checkbox").click(function(){
-		$("#notifications_table input[type=checkbox]").attr('checked', true);
+        if (this.checked)
+			$("#notification_preferences_table input[type=checkbox]").attr('checked', true);
+		else
+			$("#notification_preferences_table input[type=checkbox]").attr('checked', false);
 	});
-    
+	
+	$("#preferences_form").submit(function(){
+		$(this).ajaxSubmit({
+            dataType: 'json',
+            beforeSubmit: function (arr, $form, options) {
+                $("#message_area").html("");
+                show_form_submit_loader("#preferences_form");
+            },
+            complete: function(jqXHR, textStatus) {
+                hide_form_submit_loader("#preferences_form");
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                if(jqXHR.status==0){
+                    $("#preferences_form .error_section").html(form_check_connection_message);
+                }else{
+                    show_error_dialog(page_error_message);
+                }
+            },
+            success: function(data) {
+				$("#message_area").html("<p>Preferences Saved.</p>");
+            }
+        });
+        return false;
+	});
+	
     $("#password_change_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({

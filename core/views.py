@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -8,7 +7,7 @@ from django.utils import simplejson
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models import Q
@@ -41,6 +40,7 @@ def account_deactivate(request, extra_context = None):
         context['TEMPLATE'] = "student_account_deactivate.html"        
     context.update(extra_context or {})
     return context
+
 
 @render_to('faq.html')
 def faq(request, extra_context = None):
