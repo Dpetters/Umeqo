@@ -154,10 +154,20 @@ $(document).ready( function() {
             });
         }
     });
+
+	var config = {
+		toolbar:
+		[
+			['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink'],
+			['UIColor']
+		]
+	};
+
+    $("#id_description").ckeditor(config);
     
     $('#id_type').change();
 
-    var event_form_validator = $("#new_event_form").validate({
+    var event_form_validator = $("#event_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_errors_table,
@@ -171,10 +181,10 @@ $(document).ready( function() {
                 error: function(jqXHR, textStatus, errorThrown) {
                     switch(jqXHR.status){
                         case 500:
-                            $("#new_event_form_block .main_block_content").html(status_500_message);
+                            $("#event_form_block .main_block_content").html(status_500_message);
                             break;
                         default:
-                            $("#new_event_form_block .main_block_content").html(check_connection_message);    
+                            $("#event_form_block .main_block_content").html(check_connection_message);    
                     }
                 },
             }
@@ -182,8 +192,8 @@ $(document).ready( function() {
     }
 
     $("#id_audience").multiselect({
-        noneSelectedText: 'select school years',
-        minWidth: 204,
+        noneSelectedText: 'select audience',
+        minWidth: 220,
         height:146
     });
     
