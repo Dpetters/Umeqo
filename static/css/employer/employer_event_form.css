@@ -1,17 +1,76 @@
+h1{
+	display:inline-block;
+}
+#event_form_left_col{
+	width:575px;
+}
 #map{
-	height:200px;
+	float:right;
+	height:180px;
+	width:180px;
 }
-#new_event_form_block .main_block_header {
-    text-align:center;
+#event_name_section{
+	width:500px;
+	margin-top:10px;
 }
-#new_event_form_block .main_block_content {
-    padding: 20px;
+#id_name{
+	font-size:32px;
+	width:100%;
+	display:block;
 }
-#new_event_form select {
-    width:204px;
+.datetime_wrapper{
+	padding-left:12px;
 }
-#new_event_form input[type=text], input[type=password] {
-    width:200px;
+#event_location{
+	margin-top:15px;
+}
+#event_location .main_block_content{
+	padding:0px;
+}
+#event_name_section .errorspace, #event_type_section .errorspace, #event_description_section .errorspace{
+	display:inline-block;
+}
+#event_type_section{
+	margin-top:10px;
+}
+#id_type{
+	font-size:20px;
+	width:350px;
+	display:inline-block;
+}
+label[for=id_privacy_0], label[for=id_privacy_1]{
+	position:relative;
+	bottom:3px;
+	font-size:20px;
+	margin-left:10px;
+}
+#event_description_section{
+	margin-top:10px;
+}
+#id_description{
+	display:block;
+	height:220px;
+}
+.right_side_container{
+	width:379px;
+}
+#event_datetime .main_block_content{
+	padding:0px;
+}
+.step{
+	font-size:16px;
+	color:#666;
+	font-weight:bold;
+	display:inline-block;
+	margin-bottom:3px;
+}
+#id_location{
+	width:191px;
+	border-right:none;
+	border-top:none;
+	border-bottom:1px solid #DDD;
+	border-left:none;
+	border-radius:0px;
 }
 #new_event_form #id_days, #new_event_form #id_hours, #new_event_form #id_minutes {
     width:65px;
@@ -34,6 +93,10 @@
     height: 80px;
     margin-top:3px;
 }
+.button_wrapper_with_margins{
+	text-align:right;
+	padding-right:10px;
+}
 #datepicker, .ui-datepicker-calendar .ui-state-default {
     border:1px solid #808080
 }
@@ -53,10 +116,17 @@
     border-bottom:1px solid #808080;
     border-top:1px solid #808080;
 }
-.new_event_form_col {
-    width: 50%;
+.right_event_form_col, .left_event_form_col {
+	padding-left: 37px;
     display: inline-block;
     float: left;
+}
+.left_event_form_col{
+	margin-top:15px;
+}
+#location_suggestions{
+	height:155px;
+	width:199px;
 }
 div.description {
     clear: both;
@@ -72,11 +142,10 @@ div.description {
     font-weight: 600;
 }
 #event_scheduler {
-    height: 200px;
-    padding: 5px;
+    height: 300px;
     overflow-y: scroll;
     position: relative;
-    width: 350px;
+    width: 380px;
 }
 #event_scheduler table {
     width: 100%;
