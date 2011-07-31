@@ -1,0 +1,64 @@
+{% extends "account_base.html" %}
+
+{% block metadata %}
+{{block.super}}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_account.js"></script>
+{% endblock %}
+
+{% block content_area %}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+{{block.super}}
+{% endblock %}
+
+{% block preferences_form_tab_declarations %}
+     <li><a href="#tabs-3" id="subscription_and_billing_link">Subscription &amp; Billing</a></li>
+{% endblock %}
+            
+{% block preferences_form_tab_definitions %}
+    <div id="tabs-3" class="clearfix">
+    </div>
+{% endblock %}
+
+{% block preferences %}
+<form id="preferences_form" method="POST" action="{% url employer_account_preferences %}">
+{% csrf_token %}
+    <table id="notification_preferences_table" class="form_table">
+        <tbody>  
+        <tr>
+           <th>Events</th>
+           <th>Email</th>
+       </tr>
+       <tr>
+          <td>RSVP to Public Event</td>
+          <td class="checkbox email_checkbox">
+              {{preferences_form.email_on_rsvp_to_public_event}}
+          </td>
+       </tr>
+       <tr>
+          <td>RSVP to Private Event</td>
+          <td class="checkbox email_checkbox">
+              {{preferences_form.email_on_rsvp_to_private_event}}
+          </td>
+       </tr>
+           </tbody>              
+    </table>
+    <h3>Search &amp; Filtering Preferences</h3>
+    <p class="sub_header_message">The values chosen here will be set as defaults on the student Search and Filteringing page.</p>
+    <table id="search_and_filtering_table" class="form_table">
+        <tbody>
+            <tr>
+                <th class="no_top_border">{{preferences_form.default_student_results_per_page.label_tag}}</th>
+                <td class="no_top_border">
+                    {{preferences_form.default_student_results_per_page}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{preferences_form.default_student_result_ordering.label_tag}}</th>
+                <td>
+                    {{preferences_form.default_student_result_ordering}}
+                </td>
+            </tr>
+{% endblock %}

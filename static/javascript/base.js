@@ -34,12 +34,12 @@ function show_long_load_message_in_dialog(dialog) {
 };
 
 function show_form_submit_loader(container) {
-    container = typeof(container) != 'undefined' ? container : "";
+    var container = typeof(container) != 'undefined' ? container : "";
     if (container)
         $(container + " #ajax_form_submit_loader").show();
 };
-function hide_form_submit_loader() {
-    container = typeof(container) != 'undefined' ? container : "";
+function hide_form_submit_loader(container) {
+    var container = typeof(container) != 'undefined' ? container : "";
     if (container)
         $(container + " #ajax_form_submit_loader").hide();
 };
@@ -239,7 +239,6 @@ $(document).ready( function () {
                                     success_message += CLOSE_DIALOG_LINK;
                                     contact_us_dialog.html(success_message);
                                 } else {
-                                    console.log(data);
                                     place_table_form_errors("#contact_us_form", data.errors);
                                 }
                                 contact_us_dialog.dialog('option', 'position', 'center');
@@ -275,7 +274,6 @@ $(document).ready( function () {
     });
     
     $(".close_dialog_link").live('click', function() {
-        console.log("HELOO");
         $(".dialog").remove();
     });
     

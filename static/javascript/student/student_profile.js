@@ -485,7 +485,6 @@ $(document).ready( function() {
         },
         click: function(e, ui) {
             $(".warning").remove();
-            console.log("triggered");
             $("#id_campus_involvement").trigger("change");
             if( ui.checked && $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
                 place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);

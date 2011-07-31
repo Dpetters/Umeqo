@@ -32,6 +32,9 @@ p {
 .content p {
     padding: 5px 0;
 }
+.saved_message {
+	color:#888;
+}
 #above_header_area {
     min-width: 986px;
 }
@@ -751,6 +754,7 @@ td #ajax_form_submit_loader {
 }
 .form_table .button_cell{
     text-align: center;
+    border-bottom:none !important;
 }
 .button_wrapper_with_margins {
     margin-top: 20px;
@@ -884,6 +888,7 @@ a:focus {
 .error_section, td.error_section {
     padding-top: 4px;
     text-align: center;
+    border-bottom: none !important;
 }
 /* Dialogs */
 #dialog_loader {

@@ -12,7 +12,6 @@ $(document).ready(function() {
     var page = 1;
     var student_list = $("#id_student_list option:selected").text();
     var ordering = $("#id_ordering option:selected").val();
-    console.log($("#id_results_per_page option:selected").val());
     var results_per_page = $("#id_results_per_page option:selected").val();
     var courses = [];
     var school_years = [];
@@ -347,9 +346,9 @@ $(document).ready(function() {
                 'comment': comment,
             },
             success: function (data) {
-            	$(".student_saved_note[data-student-id=" + student_id + "]").removeClass('hid');
+            	$(".saved_message[data-student-id=" + student_id + "]").removeClass('hid');
             	window.setTimeout(function(){
-            		$(".student_saved_note[data-student-id=" + student_id + "]").addClass('hid');
+            		$(".saved_message[data-student-id=" + student_id + "]").addClass('hid');
             	}, 3000);
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -531,7 +530,6 @@ $(document).ready(function() {
                 $("#results_block_info_section").css('display', 'none');
             },
             error: function(jqXHR, textStatus, errorThrown) {
-            	console.log(jqXHR);
                 if(jqXHR.status==0){
                     show_error_dialog(page_check_connection_message);
                 }else{

@@ -12,7 +12,7 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
@@ -33,7 +33,6 @@ from events.forms import EventForm
 from events.models import Event
 from student import enums as student_enums
 from student.models import Student
-from notification import models as notification
 
 
 @render_to('employer_registration.html')
@@ -44,25 +43,31 @@ def employer_registration(request, extra_context = None):
 
 
 @login_required
-@user_passes_test(is_recruiter)
-@render_to('employer_profile.html')
-def employer_profile(request, employer, extra_context = None):
-    if employer == str(request.user.recruiter.employer):
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+@render_to("employer_account.html")
+def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
+                    change_password_form_class = PasswordChangeForm, extra_context=None):
+    if request.method == "GET":
         context = {}
+        page_messages = {
+            'password-changed': messages.password_changed,
+        }
+        msg = request.GET.get('msg', None)
+        if msg:
+            context["msg"] = page_messages[msg]
+        context['preferences_form'] = preferences_form_class(instance = request.user.recruiter.recruiterpreferences)
+        context['change_password_form'] = change_password_form_class(request.user)
         context.update(extra_context or {})
         return context
-    else:
-        redirectUrl = reverse('employer_profile', kwargs={'employer': request.user.recruiter.employer})
-        return redirect(redirectUrl)
+    return HttpResponseForbidden("Request must be a GET")
 
 
 @login_required
 @user_passes_test(is_recruiter)
-@render_to("employer_preferences.html")
-def employer_preferences(request, form_class=RecruiterPreferencesForm):
+def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     if request.is_ajax():
         if request.method == 'POST':
-            form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter)
+            form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
             if form.is_valid():
                 request.user.recruiter.recruiter_preferencess = form.save()
                 data = {'valid':True}
@@ -80,25 +85,6 @@ def employer_preferences(request, form_class=RecruiterPreferencesForm):
             return HttpResponseForbidden("Request must be a POST.")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-
-@render_to("employer_account_settings.html")
-@login_required
-@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
-def employer_account_settings(request, preferences_form_class = RecruiterPreferencesForm, 
-                             change_password_form_class = PasswordChangeForm, extra_context=None):
-    if request.method == "GET":
-        context = {}
-        page_messages = {
-            'password-changed': messages.password_changed,
-        }
-        msg = request.GET.get('msg', None)
-        if msg:
-            context["msg"] = page_messages[msg]
-        context['preferences_form'] = preferences_form_class(instance = request.user.recruiter.recruiterpreferences)
-        context['change_password_form'] = change_password_form_class(request.user)
-        context.update(extra_context or {})
-        return context
-    return HttpResponseForbidden("Request must be a GET")
 
 @login_required
 @user_passes_test(is_recruiter)
@@ -265,83 +251,43 @@ def employer_employer_events(request, extra_context=None):
 @user_passes_test(is_recruiter)
 def employer_resume_books(request, extra_context=None):
     pass
+    
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_event_new(request, extra_context=None):
+@render_to("employer_event_form.html")
+def employer_event_form(request, id=None, extra_context=None):
     if request.method == 'POST':
-        form = EventForm(data=request.POST)
+        if id:
+            try:
+                event = Event.objects.get(pk=id)
+            except Event.DoesNotExist:
+                return HttpResponseNotFound("Event with id %s not found." % id)
+            form = EventForm(request.POST,instance=event)
+        else:
+            form = EventForm(data=request.POST)
         if form.is_valid():
             event_obj = form.save()
             event_obj.recruiters.add(request.user.recruiter)
             event_obj.save()
-            if hasattr(form, 'save_m2m'):
-                form.save_m2m()
-            # Send notificaions.
-            employers = Employer.objects.filter(recruiter=event_obj.recruiters.all())
-            subscribers = Student.objects.filter(subscriptions__in=employers)
-            to_users = map(lambda n: n.user, subscribers)
-            
-            notification.send(to_users, 'new_event', {
-                'employer_names': employer_names,
-                'event': event_obj,
-                'permalink': event_obj.get_absolute_url(),
-            })
-
-            return HttpResponseRedirect(reverse('event_page', kwargs = {
-                'id':event_obj.id,
-                'slug':event_obj.slug
-            }))
+            return HttpResponseRedirect(reverse('event_page', kwargs = {'id':event_obj.id, 'slug':event_obj.slug}))
     else:
-        form = EventForm()
-
-    hours = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
-
-    context = {
-        'form': form,
-        'hours': hours
-    }
-    
-    context.update(extra_context or {})
-    return render_to_response('employer_event_new.html', context,
-            context_instance = RequestContext(request))
-
-
-@login_required
-@user_passes_test(is_recruiter)
-def employer_event_edit(request, id=None, extra_context=None):
-    event = Event.objects.get(pk=id)
-    if not request.user.recruiter in event.recruiters.all():
-        return HttpResponseForbidden('not your event!')
-    if request.method=='POST':
-        form = EventForm(request.POST,instance=event)
-        if form.is_valid():
-            event_obj = form.save()
-            event_obj.recruiters.clear()
-            event_obj.recruiters.add(request.user.recruiter)
-            event_obj.save()
-            if hasattr(form, 'save_m2m'):
-                form.save_m2m()
-            return HttpResponseRedirect(reverse('event_page',kwargs={'id':event_obj.id,'slug':event_obj.slug}))
-    else:
-        form = EventForm(instance=event)
-
-    hours = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
-    
-    context = {
-        'form': form,
-        'edit': True,
-        'event': {
-            'id': event.id,
-            'name': event.name,
-            'slug': event.slug
-        },
-        'hours': hours
-    }
-
-    context.update(extra_context or {})
-    return render_to_response('employer_event_new.html', context,
-            context_instance = RequestContext(request) )
+        context = {}
+        if id:
+            try:
+                event = Event.objects.get(pk=id)
+                form = EventForm(instance=event)
+                context['edit'] = True
+                context['event'] = {'id': event.id,
+                                    'name': event.name,
+                                    'slug': event.slug}
+            except Event.DoesNotExist:
+                return HttpResponseNotFound("Event with id %s not found." % id)
+        else:
+            form = EventForm()
+        context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
+        context['form'] = form
+    return context
 
 
 @login_required
