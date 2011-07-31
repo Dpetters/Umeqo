@@ -154,13 +154,34 @@ $(document).ready( function() {
 
     $("#id_type").change( function() {
     	var event_type = $("#id_type option:selected").text()
-        if(event_type === "Rolling Deadline") {
-        	
-        } else if (event_type === "Hard Deadline") {
-        	
-        }
         if (event_type === "Hard Deadline" || event_type === "Rolling Deadline"){
-        	$("#event_name_section .step").html("Step 1 - Pick Deadline Name (required)")
+        	$("#id_start_datetime_0").hover( function(){
+        		 console.log("hi");
+			     $(this).css('cursor', 'default');
+			});
+        	$("#id_name").attr("placeholder", "Enter deadline name");
+        	$("#start_datetime_wrapper").css("opacity", .2);
+        	$("#start_datetime_wrapper :input").attr('disabled', true);
+        	$("#start_datetime_wrapper :select").attr('disabled', 'disabled');
+        	$("#event_location_section").css("opacity", .2);
+        	$("#start_location_section :input").attr('disabled', true);
+        	$("#event_name_section .step").html("Step 1 - Pick Deadline Name (required)");
+        	$("#event_description_section .step").html("Step 3 - Describe Event (required)");
+        } else {
+        	$("#start_datetime_wrapper").css("opacity", 1);
+        	$("#event_location_section").css("opacity", 1);
+        }
+        if(event_type === "Rolling Deadline") {
+        	$("#event_form_header").html("New Rolling Headline");
+        	$("#event_datetime_block").css("opacity", .2);
+        	$("#start_datetime_block :input").attr('disabled', true);
+        } else{
+            $("#event_datetime_block").css("opacity", 1); 
+            $('#event_datetime_block :input').removeAttr('disabled');
+        	if (event_type === "Hard Deadline") {
+        		$("#event_datetime_block .main_block_header_title").html("Step 5 - Pick Date & Time (required)");
+        		$("#event_form_header").html("New Hard Headline");
+        	}
         }
     });
 
