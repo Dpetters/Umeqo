@@ -150,6 +150,16 @@
   }
  }, 
  {
+  "pk": 93, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-07-31 11:35:16", 
+   "session_key": "6af64842f5c9e95b5b709cb6ede87dc6", 
+   "last_updated": "2011-07-31 11:35:16", 
+   "user": 1
+  }
+ }, 
+ {
   "pk": 36, 
   "model": "registration.sessionkey", 
   "fields": {
