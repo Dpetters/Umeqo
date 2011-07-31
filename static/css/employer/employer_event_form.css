@@ -1,4 +1,4 @@
-h1{
+#event_form_header{
 	display:inline-block;
 }
 #event_form_left_col{
@@ -64,10 +64,10 @@ label[for=id_is_public_0], label[for=id_is_public_1]{
 .right_side_container{
 	width:379px;
 }
-#event_datetime{
-	margin-right:38px;
+#event_datetime_block{
+	margin-top:37px;
 }
-#event_datetime .main_block_content{
+#event_datetime_block .main_block_content{
 	padding:0px;
 }
 .step{
@@ -172,7 +172,7 @@ div.description {
     color: #666;
     font-size: 11px;
 }
-#event_additional_info_section .main_block_content{
+#event_additional_info_block .main_block_content{
 	padding-top:0px;
 }
 #event_scheduler td {

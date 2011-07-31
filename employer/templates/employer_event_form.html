@@ -35,7 +35,7 @@
 
 {% block content_area %}
     <div>
-        <h1>
+        <h1 id="event_form_header">
         {% if edit %}
         Edit Event
         {% else %}
@@ -48,16 +48,16 @@
         <a href="{% url home %}#events" class="main_block_header_sidelink button">Back to Events</a>
     </div>
     <div class="right_side_container">
-        <div id="event_datetime" class="main_block">
+        <div id="event_datetime_block" class="main_block">
             <div class="main_block_header">
                 <span class="main_block_header_title">Step 5 - Pick Date & Time (required)</span>
             </div>
             <div class="main_block_content">
-                <div class="datetime_wrapper">
+                <div id="start_datetime_wrapper" class="datetime_wrapper">
                     <div class="errorspace"></div>
                     {{form.start_datetime.label_tag}}{{form.start_datetime}}
                 </div>
-                <div class="datetime_wrapper">
+                <div id="end_datetime_wrapper" class="datetime_wrapper">
                     <div class="errorspace"></div>
                     {{form.end_datetime.label_tag}}{{form.end_datetime}}
                 </div>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div id="event_additional_info_section" class="main_block">
+        <div id="event_additional_info_block" class="main_block">
             <div class="main_block_header">
                 <span class="main_block_header_title">Step 6 - Additional Info (optional)</span>
             </div>
