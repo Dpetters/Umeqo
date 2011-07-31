@@ -281,10 +281,10 @@ def employer_event_new(request, extra_context=None):
             employers = Employer.objects.filter(recruiter=event_obj.recruiters.all())
             subscribers = Student.objects.filter(subscriptions__in=employers)
             to_users = map(lambda n: n.user, subscribers)
-            employer_names = ", ".join(map(lambda n: n.name, employers))
-            has_word = "has" if len(employers)==1 else "have"
+            
             notification.send(to_users, 'new_event', {
-                'message': '<strong>%s</strong> %s a new event: "%s"' % (employer_names, has_word, event_obj.name),
+                'employer_names': employer_names,
+                'event': event_obj,
                 'permalink': event_obj.get_absolute_url(),
             })
 

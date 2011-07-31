@@ -1193,7 +1193,7 @@ $(document).ready(function() {
                     } else {
                         $.each(events, function(k,event) {
                             var ispublic = event.is_public ? 1 : 0;
-                            var link = $('<a data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                            var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
                             var linkText;
                             if (!ispublic) {
                                 linkText = event.name + ' [private]';
@@ -1224,7 +1224,7 @@ $(document).ready(function() {
             return false;
         }
         var student_name = $(this).closest('span').attr('data-studentname');
-        var event_name = $(this).html();
+        var event_name = $(this).attr('data-eventname');
         var event_id = $(this).attr('data-eventid');
         var is_public = $(this).attr('data-ispublic') == 1;
         var student_id = $(this).closest('span').attr('data-studentid');

@@ -139,6 +139,7 @@ class Notice(models.Model):
     recipient = models.ForeignKey(User, related_name='recieved_notices', verbose_name=_('recipient'))
     sender = models.ForeignKey(User, null=True, related_name='sent_notices', verbose_name=_('sender'))
     message = models.TextField(_('message'))
+    message_full = models.TextField(_('message_full'))
     notice_type = models.ForeignKey(NoticeType, verbose_name=_('notice type'))
     added = models.DateTimeField(_('added'), default=datetime.datetime.now)
     unseen = models.BooleanField(_('unseen'), default=True)
@@ -232,6 +233,9 @@ def get_formatted_messages(formats, label, context):
     Returns a dictionary with the format identifier as the key. The values are
     are fully rendered templates with the given context.
     """
+    import pprint
+    print 'CONTEXT:'
+    print pprint.pformat(context)
     format_templates = {}
     for format in formats:
         # conditionally turn off autoescaping for .txt extensions in format
@@ -316,7 +320,7 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
             'message': messages['full.txt'],
         }, context)
 
-        notice = Notice.objects.create(recipient=user, message=messages['notice.html'],
+        notice = Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
             notice_type=notice_type, on_site=on_site, sender=sender)
         if should_send(user, notice_type, "1") and user.email and user.is_active: # Email
             recipients.append(user.email)

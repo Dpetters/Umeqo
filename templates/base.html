@@ -44,17 +44,11 @@
             var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
         </script>
         {% compress js %}
-            <!-- JQuery -->
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
-            <!-- JQuery UI -->
             <script src="{{ STATIC_URL }}lib/jquery_ui_custom/jquery-ui-1.8.12.custom.min.js"></script>
-            <!-- JQuery Form Validation -->
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
-            <!-- JQuery Form Submission -->
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
-            <!-- JQuery Tipsy -->
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
-            <!-- Custom -->
             <script src="{{ STATIC_URL }}javascript/base.js"></script>
             
             {% if user.is_authenticated and user.student or user.recruiter %}

@@ -1194,7 +1194,6 @@ a.ui-slider-handle {
 }
 .notifications_list a {
     text-decoration: none;
-    display: block;
 }
 .notifications_list .type {
     font-weight: 600;

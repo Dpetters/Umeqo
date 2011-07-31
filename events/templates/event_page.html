@@ -32,8 +32,8 @@ Copyright 2011. All Rights Reserved.
 </script>
 {% compress js %}
     <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-{% endcompress %}
+{% endcompress %}    
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}
 
 {% block above_header_area %}
@@ -93,7 +93,7 @@ Copyright 2011. All Rights Reserved.
                         {% include "events_response_token.html" with student=student %}
                     {% empty %}
                     <div id="event_response_empty">
-                        Nobody has RSVP'd <strong>Attending</strong> yet.
+                        Nobody has RSVP'd <strong>Attending</strong> yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
                     </div>
                     {% endfor %}
                 </div>
@@ -129,7 +129,7 @@ Copyright 2011. All Rights Reserved.
         {% endif %}
         
         <div id="event_actions">
-            <div id="rsvp_div">
+            <div id="rsvp_div" class="{% if event.is_public %}public{% else %}private{% endif %}">
                 {% if is_past %}
                     <a href="javascript:void(0)" id="rsvp-yes-button" class="button disabled-button" title="RSVP disabled.">Event already passed!</a>
                 {% else %}{% if can_rsvp or show_admin %}
@@ -139,7 +139,7 @@ Copyright 2011. All Rights Reserved.
                             <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not attending</a>
                         </div>
                         <div class="response{% if responded %} hid{% endif %}">
-                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="dark_button">RSVP: Attending</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: Attending</a>
                         </div>
                         {% if show_admin %}
                             <span class="help-bubble public">Students can click to RSVP.</span>

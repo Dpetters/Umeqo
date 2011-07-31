@@ -142,7 +142,7 @@
     border-color: #CCC;
     cursor: pointer;
 }
-.no-response {
+.private .no-response {
     position: absolute;
     top: -20px;
     right: 0;

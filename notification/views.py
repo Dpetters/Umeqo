@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.syndication.views import feed
 
+from core.decorators import render_to
 from notification.models import *
 from notification.decorators import basic_auth_required, simple_basic_auth_callback
 from notification.feeds import NoticeUserFeed
@@ -187,3 +188,10 @@ def mark_all_seen(request):
         notice.unseen = False
         notice.save()
     return HttpResponseRedirect(reverse("notification_notices"))
+
+
+@login_required
+@render_to('notification/notices_ajax.html')
+def notification_ajax(request):
+    notices = Notice.objects.notices_for(request.user, on_site=True)[:5]
+    return {'notices': notices}

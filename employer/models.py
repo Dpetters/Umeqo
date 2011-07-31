@@ -1,16 +1,16 @@
-from django.db import models
 from django.contrib.localflavor.us.models import PhoneNumberField
 from django.contrib.auth.models import User
-from django.dispatch import receiver
+from django.core.urlresolvers import reverse
+from django.db import models
 from django.db.models import signals
+from django.dispatch import receiver
 
-from student.models import Student
-from core import choices
+from core import choices, mixins as core_mixins
 from core.models import Industry, EmploymentType, SchoolYear, GraduationYear, Course
 from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
-from student.models import StudentBaseAttributes
-from core import mixins as core_mixins
+from student.models import Student, StudentBaseAttributes
+
 
 
 class Employer(core_mixins.DateTracking): 
@@ -29,6 +29,9 @@ class Employer(core_mixins.DateTracking):
 
     def __unicode__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('employers_list') + '?id=' + self.id
 
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
