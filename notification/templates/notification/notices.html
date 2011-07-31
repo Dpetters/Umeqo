@@ -10,6 +10,9 @@
     {% compress css %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/notifications.css" />
     {% endcompress %}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}javascript/notifications.js"></script>
+    {% endcompress %}
 {% endblock %}
 
 {% block content_area %}
@@ -31,7 +34,7 @@
                         <span class="timestamp">{{ notice.added|timesince }} ago</span>
                         <span class="type">{{ notice.notice_type.display }}</span>
                     </div>
-                    <span class="message">{{ notice.message_full|safe }}</span>
+                    <span class="message_quote">{{ notice.message_full|safe }}</span>
                 </li>
             {% empty %}
                 <li class="empty_notices">There are no notifications at this time.</li>

@@ -9,7 +9,6 @@
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    
     {% if edit %}
         var EDIT_FORM = true;
     {% else %}
@@ -27,8 +26,8 @@
 <script type="text/javascript" src="{{ STATIC_URL}}lib/ckeditor/adapters/jquery.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script src="{{ STATIC_URL }}javascript/employer/employer_event_form.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endcompress %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <!--datetime_field media-->
 {{form.media}}
