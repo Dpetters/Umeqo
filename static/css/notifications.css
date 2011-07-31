@@ -4,4 +4,11 @@
 }
 #notifications_list {
     list-style: none;
+    border-bottom: 1px solid #CCC;
+}
+.invite_message {
+    padding: 5px;
+    border-left: 5px solid #AAA;
+    margin-top: 3px;
+    color: #444;
 }

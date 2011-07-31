@@ -1,11 +1,3 @@
-PUBLIC = "pu"
-PRIVATE = "pr"
-
-EVENT_PRIVACY_CHOICES = (
-    (PUBLIC, "Public"),
-    (PRIVATE, "Private")
-)
-
 TIME_CHOICES = (
 ('00:00','12:00 AM'),
 ('00:30','12:30 AM'),

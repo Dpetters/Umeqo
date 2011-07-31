@@ -4,10 +4,10 @@ from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from core.models import EventType
 from core.managers import ActiveManager
+from core.view_helpers import english_join
 from student.models import Student
 from notification import models as notification
 from employer.models import Employer
-from events.choices import EVENT_PRIVACY_CHOICES
 
 class Event(models.Model):
     
@@ -38,7 +38,7 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
     
-    privacy = models.CharField(max_length=2, choices = EVENT_PRIVACY_CHOICES)
+    is_public = models.BooleanField()
 
     def __unicode__(self):
         return self.name
@@ -63,12 +63,31 @@ def send_new_event_notifications(sender, instance, created, raw, **kwargs):
         employers = Employer.objects.filter(recruiter=instance.recruiters.all())
         subscribers = Student.objects.filter(subscriptions__in=employers)
         to_users = map(lambda n: n.user, subscribers)
-        employer_names = ", ".join(map(lambda n: n.name, employers))
-        has_word = "has" if len(employers)==1 else "have"
-        notification.send(to_users, 'new_event', {
-            'message': '<strong>%s</strong> %s a new event: "%s"' % (employer_names, has_word, instance.name),
-            'permalink': instance.get_absolute_url(),
-        })
+        
+        # Batch the sending by unique groups of subscriptions.
+        # This way someone subscribed to A, B, and C gets only one email.
+        subscribers_by_user = {}
+        employername_table = {}
+        for employer in employers:
+            employername_table[str(employer.id)] = employer.name
+            for to_user in to_users:
+                if to_user.id in subscribers_by_user:
+                    subscribers_by_user[to_user.id].append(employer.id)
+                else:
+                    subscribers_by_user[to_user.id] = [employer.id]
+        subscription_batches = {}
+        for userid,employerids in subscribers_by_user.items():
+            key = ':'.join(map(lambda n: str(n), employerids))
+            subscription_batches[key] = userid
+        for key,userids in subscription_batches.items():
+            employer_names = map(lambda n: employername_table[n], key.split(':'))
+            has_word = "has" if len(employer_names)==1 else "have"
+            employer_names = english_join(employer_names)
+            notification.send(to_users, 'new_event', {
+                'employer_names': employer_names,
+                'has_word': has_word,
+                'event': instance,
+            })
 
 @receiver(signals.pre_save, sender=Event)
 def save_slug(sender, instance, **kwargs):

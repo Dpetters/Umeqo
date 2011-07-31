@@ -9,7 +9,6 @@
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    
     {% if edit %}
         var EDIT_FORM = true;
     {% else %}
@@ -27,76 +26,98 @@
 <script type="text/javascript" src="{{ STATIC_URL}}lib/ckeditor/adapters/jquery.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script src="{{ STATIC_URL }}javascript/employer/employer_event_form.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endcompress %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <!--datetime_field media-->
 {{form.media}}
 {% endblock %}
 
 {% block content_area %}
-<div>
-    <h1>
-    {% if edit %}
-    Edit Event
-    {% else %}
-    New Event
-    {% endif %}
-    </h1>
-    {% if edit %}
-        <a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink dark_button">View Event</a>
-    {% endif %}
-    <a href="{% url home %}#events" class="main_block_header_sidelink button">Back to Events</a>
-</div>
-<div class="right_side_container">
-    <div id="event_datetime" class="main_block">
-        <div class="main_block_header">
-            <span class="main_block_header_title">Step 5 - Pick Date & Time</span>
+    <div>
+        <h1>
+        {% if edit %}
+        Edit Event
+        {% else %}
+        New Event
+        {% endif %}
+        </h1>
+        {% if edit %}
+            <a href="{% url event_page id=event.id,slug=event.slug %}" class="main_block_header_sidelink dark_button">View Event</a>
+        {% endif %}
+        <a href="{% url home %}#events" class="main_block_header_sidelink button">Back to Events</a>
+    </div>
+    <div class="right_side_container">
+        <div id="event_datetime" class="main_block">
+            <div class="main_block_header">
+                <span class="main_block_header_title">Step 5 - Pick Date & Time (required)</span>
+            </div>
+            <div class="main_block_content">
+                <div class="datetime_wrapper">
+                    <div class="errorspace"></div>
+                    {{form.start_datetime.label_tag}}{{form.start_datetime}}
+                </div>
+                <div class="datetime_wrapper">
+                    <div class="errorspace"></div>
+                    {{form.end_datetime.label_tag}}{{form.end_datetime}}
+                </div>
+                <div id="event_scheduler_day">
+                    Showing schedule for <span>9/23/2011</span>:
+                </div>
+                <div id="event_scheduler">
+                    <table>
+                        {% for hour in hours %}
+                        <tr>
+                            <th rowspan="2">{{ hour }}</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <div id="event1" class="event_block gray">
+                        Sample Employer A
+                    </div>
+                    <div id="event2" class="event_block gray">
+                        Sample Employer B
+                    </div>
+                    <div id="event3" class="event_block gray">
+                        Sample Employer C
+                    </div>
+                    <div id="yourevent" class="event_block green">
+                        {{ event.name }}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="main_block_content">
-            <div class="datetime_wrapper">
+        <div id="event_additional_info_section" class="main_block">
+            <div class="main_block_header">
+                <span class="main_block_header_title">Step 6 - Additional Info (optional)</span>
+            </div>
+            <div class="main_block_content">
                 <div class="errorspace"></div>
-                {{form.start_datetime.label_tag}}{{form.start_datetime}}
-            </div>
-            <div class="datetime_wrapper">
-                <div class="errorspace"></div>
-                {{form.end_datetime.label_tag}}{{form.end_datetime}}
-            </div>
-            <div id="event_scheduler_day">
-                Showing schedule for <span>9/23/2011</span>:
-            </div>
-            <div id="event_scheduler">
-                <table>
-                    {% for hour in hours %}
-                    <tr>
-                        <th rowspan="2">{{ hour }}</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                <div id="event1" class="event_block gray">
-                    Sample Employer A
-                </div>
-                <div id="event2" class="event_block gray">
-                    Sample Employer B
-                </div>
-                <div id="event3" class="event_block gray">
-                    Sample Employer C
-                </div>
-                <div id="yourevent" class="event_block green">
-                    {{ event.name }}
-                </div>
+                {{form.audience.label_tag}}{{form.audience}}
             </div>
         </div>
     </div>
-    <div id="event_location" class="main_block">
-        <div class="main_block_header">
-            <span class="main_block_header_title">Step 6 - Pick Venue</span>
+    <div id="event_form_left_col">
+        <form id="event_form" method="POST" action=".">
+        <div id="event_name_section">
+            <span class="step">Step 1 - Pick Event Name (required)</span>
+            <div class="errorspace"></div>
+            {{form.name}}
         </div>
-        <div class="main_block_content">
+        <div id="event_type_section">
+            <span class="step">Step 2 - Select Event Type (required)</span>
+            <div class="errorspace"></div>
+            <br>
+            {{form.type}}
+            {{form.is_public}}
+        </div>
+        <div id="event_location_section">
+            <span class="step">Step 3 - Pick Location (required)</span>
+            <div class="errorspace"></div>
             <div id="map"></div>
             <div>
                 {{form.location}}
@@ -104,37 +125,15 @@
                 </div>
             </div>
         </div>
+        <div id="event_description_section">
+            <span class="step">Step 4 - Describe Event (required)</span>
+            <div class="errorspace"></div>
+            {{form.description}}
+        </div>
+        
+        <div class="button_wrapper_with_margins">
+            <input class="dark_button" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
+        </div>
     </div>
-</div>
-<div id="event_form_left_col">
-    <form id="event_form" method="POST" action=".">
-    <div id="event_name_section">
-        <span class="step">Step 1</span>
-        <div class="errorspace"></div>
-        {{form.name}}
-    </div>
-    <div id="event_type_section">
-        <span class="step">Step 2</span>
-        <div class="errorspace"></div>
-        <br>
-        {{form.type}}
-        {{form.privacy}}
-    </div>
-    <div id="event_type_section">
-        <span class="step">Step 3</span>
-        <div class="errorspace"></div>
-        <br>
-        {{form.audience}}
-    </div>
-    <div id="event_description_section">
-        <span class="step">Step 4</span>
-        <div class="errorspace"></div>
-        {{form.description}}
-    </div>
-    
-    <div class="button_wrapper_with_margins">
-        <input class="dark_button" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
-    </div>
-</div>
 </form>
 {% endblock %}

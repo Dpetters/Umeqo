@@ -258,11 +258,11 @@ def event_invite(request):
             notice_type = 'private_invite'
         notification.send([student.user], notice_type, {
             'name': student.user.first_name,
-            'recruiter': request.user.first_name + ' ' + request.user.last_name,
-            'employer': employer.name,
-            'event': event.name,
+            'recruiter': request.user,
+            'employer': employer,
+            'event': event,
             'invite_message': message,
-            'permalink': event.get_absolute_url(),
+            'time_added': datetime.now(),
             'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
         })
         data = {
