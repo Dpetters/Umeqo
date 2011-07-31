@@ -1,4 +1,6 @@
-
+#event_page_block {
+    border: 0;
+}
 #event_page_block .main_block_header {
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
