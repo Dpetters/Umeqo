@@ -1,4 +1,7 @@
 from django import forms
+from django.forms.widgets import RadioFieldRenderer
+from django.utils.encoding import force_unicode
+from django.utils.safestring import mark_safe
 
 from events.models import Event, EventType
 from events.choices import TIME_CHOICES
@@ -29,20 +32,19 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
             'all': ('css/datetime_field.css',),
         }
 
-
+class RadioSelectTableRenderer( RadioFieldRenderer):
+    def render( self ):
+        """Outputs a series of <td></td> fields for this set of radio fields."""
+        return( mark_safe( u''.join( [ u'<td>%s</td>' % force_unicode(w) for w in self ] )))
+    
 class EventForm(forms.ModelForm):
-    name = forms.CharField(label="Name:", widget=forms.TextInput(attrs={'placeholder':'Pick Event Name'}))
-    location = forms.CharField(label="Location:", widget=forms.TextInput(attrs={'placeholder':'Enter address, classroom #, etc..'}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name'}))
+    location = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter classroom #, address, etc..'}))
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), empty_label="select event type",label="Type:")
+    is_public = forms.TypedChoiceField(coerce=lambda x: bool(int(x)), choices=((0, 'Public'), (1, 'Private')), widget=forms.RadioSelect(renderer=RadioSelectTableRenderer))
     start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(),required=False,label="Start Date/Time:")
     end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(),label="End Date/Time:")
     
-    def __init__(self, *args, **kwargs):
-        super(EventForm,self).__init__(*args,**kwargs)
-        self.fields['location'].label += ':'
-        self.fields['audience'].label += ':'
-        self.fields['description'].label += ':'
-
     class Meta:
         fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description', 'is_public',)
         model = Event

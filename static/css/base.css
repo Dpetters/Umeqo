@@ -35,9 +35,6 @@ p {
 .saved_message {
 	color:#888;
 }
-#above_header_area {
-    min-width: 986px;
-}
 #message_area{
 	text-align:center;
 }

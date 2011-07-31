@@ -24,13 +24,11 @@ $(document).ready( function() {
         if (!geocoder){
  			geocoder = new google.maps.Geocoder();        
         }
-
         var geocoderRequest = {
         	address: address,
         	location: mit_location,
         	region: "US"
         }
-        
   		geocoder.geocode(geocoderRequest, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
@@ -77,9 +75,9 @@ $(document).ready( function() {
     $('#id_location').keydown( function() {
         if (typeof timeoutID!='undefined')
             window.clearTimeout(timeoutID);
-        timeoutID = window.setTimeout(get_location_guess, 1000);
+        timeoutID = window.setTimeout(get_location_guess, 500);
     });
-  
+
     var event_rules = {
         name:{
             required: true
@@ -87,30 +85,43 @@ $(document).ready( function() {
         start_datetime_0:{
             required: {
                 depends: function(element) {
-                    return $("#id_type option:selected").text() != "Deadline";
+                	var event_type = $("#id_type option:selected").text();
+                    return event_type != "Hard Deadline" || event_type != "Rolling Deadline" ;
                 }
             },
         },
         start_datetime_1:{
             required: {
                 depends: function(element) {
-                    return $("#id_type option:selected").text() != "Deadline";
+                	var event_type = $("#id_type option:selected").text();
+                    return event_type != "Hard Deadline" || event_type != "Rolling Deadline" ;
                 }
             },
         },
         end_datetime_0:{
-            required: true,
+            required: {
+                depends: function(element) {
+                	var event_type = $("#id_type option:selected").text();
+                    return event_type != "Rolling Deadline" ;
+            	}
+            },
         },
         end_datetime_1:{
-            required: true,
+            required: {
+                depends: function(element) {
+                	var event_type = $("#id_type option:selected").text();
+                    return event_type != "Rolling Deadline" ;
+            	}
+            },
         },
         type:{
             required:true,
         }, 
         location:{
-            required:{
+            required: {
                 depends: function(element) {
-                    return $("#id_type option:selected").text() != "Deadline";
+                	var event_type = $("#id_type option:selected").text();
+                    return event_type != "Hard Deadline" || event_type != "Rolling Deadline" ;
                 }
             },
         }
@@ -141,17 +152,15 @@ $(document).ready( function() {
         }
     }
 
-    $("label[for=id_description]").css('padding-left', '0px');
-
     $("#id_type").change( function() {
-        if($("#id_type option:selected").text() === "Deadline") {
-            $("label[for=   ]").text("Deadline Name");
-            $("label[for=id_description]").text("Deadline Description");
-            $('.event_only_field').hide();
-        } else {
-            $('.event_only_field').each( function() {
-                $(this).show();
-            });
+    	var event_type = $("#id_type option:selected").text()
+        if(event_type === "Rolling Deadline") {
+        	
+        } else if (event_type === "Hard Deadline") {
+        	
+        }
+        if (event_type === "Hard Deadline" || event_type === "Rolling Deadline"){
+        	$("#event_name_section .step").html("Step 1 - Pick Deadline Name (required)")
         }
     });
 
@@ -162,7 +171,6 @@ $(document).ready( function() {
 			['UIColor']
 		]
 	};
-
     $("#id_description").ckeditor(config);
     
     $('#id_type').change();
@@ -192,7 +200,7 @@ $(document).ready( function() {
     }
 
     $("#id_audience").multiselect({
-        noneSelectedText: 'select audience',
+        noneSelectedText: 'select school years',
         minWidth: 220,
         height:146
     });
