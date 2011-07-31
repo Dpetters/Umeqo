@@ -6,7 +6,6 @@
    "view_count": 2, 
    "start_datetime": "2011-07-09 13:00:00", 
    "name": "Quora Hackathon", 
-   "privacy": "pu", 
    "datetime_created": "2011-07-09 17:12:53", 
    "description": "In the Bay Area for the summer?  Feel there is not enough hacking in your life?  Enjoyed the awesome Hackleberry Finn?  Then come to Fear and Hacking in Palo Alto, SIPB's second Bay Area Hackathon!", 
    "is_active": true, 
@@ -22,6 +21,7 @@
    ], 
    "location": "Palo Alto, CA", 
    "rsvp_message": null, 
+   "is_public": false, 
    "type": 6, 
    "slug": "quora-hackathon", 
    "end_datetime": "2011-07-10 12:00:00"
@@ -34,7 +34,6 @@
    "view_count": 9, 
    "start_datetime": "2011-09-14 19:30:00", 
    "name": "Fortune 500 Panel", 
-   "privacy": "pu", 
    "datetime_created": "2011-07-27 19:48:47", 
    "description": "", 
    "is_active": true, 
@@ -50,6 +49,7 @@
    ], 
    "location": "E-160", 
    "rsvp_message": null, 
+   "is_public": false, 
    "type": 3, 
    "slug": "fortune-500-panel", 
    "end_datetime": "2011-09-14 21:30:00"
@@ -62,7 +62,6 @@
    "view_count": 1, 
    "start_datetime": null, 
    "name": "Infosession", 
-   "privacy": "pu", 
    "datetime_created": "2011-07-24 23:39:00", 
    "description": "", 
    "is_active": true, 
@@ -75,6 +74,7 @@
    ], 
    "location": "", 
    "rsvp_message": null, 
+   "is_public": false, 
    "type": 2, 
    "slug": "infosession", 
    "end_datetime": "2011-07-26 16:00:00"
@@ -87,7 +87,6 @@
    "view_count": 3, 
    "start_datetime": "2011-07-29 06:00:00", 
    "name": "Fun Talk", 
-   "privacy": "pu", 
    "datetime_created": "2011-07-28 16:19:46", 
    "description": "", 
    "is_active": true, 
@@ -100,6 +99,7 @@
    ], 
    "location": "158 Mass. Ave. Lot (Zone 4: North)", 
    "rsvp_message": null, 
+   "is_public": false, 
    "type": 5, 
    "slug": "fun-talk", 
    "end_datetime": "2011-07-29 13:30:00"
