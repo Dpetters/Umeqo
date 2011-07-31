@@ -10,11 +10,18 @@
     {% compress css %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/notifications.css" />
     {% endcompress %}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}javascript/notifications.js"></script>
+    {% endcompress %}
 {% endblock %}
 
 {% block content_area %}
 <div class="left_side_container">
-    {% include "employer_side_nav.html" %}
+    {% if user.student %}
+        {% include "student_side_nav.html" %}
+    {% else %}
+        {% include "employer_side_nav.html" %}
+    {% endif %}
 </div>
 
 <div id="notifications_block" class="main_block">
@@ -22,12 +29,12 @@
         <h1>Notifications</h1>
         <ul id="notifications_list">
             {% for notice in notices %}
-                <li{% if notice.is_unseen %} class="unread"{% endif %}>
+                <li id="n-{{ notice.id }}" {% if notice.is_unseen %} class="unread"{% endif %}>
                     <div class="details">
                         <span class="timestamp">{{ notice.added|timesince }} ago</span>
                         <span class="type">{{ notice.notice_type.display }}</span>
                     </div>
-                    <span class="message">{{ notice.message|safe }}</span>
+                    <span class="message_quote">{{ notice.message_full|safe }}</span>
                 </li>
             {% empty %}
                 <li class="empty_notices">There are no notifications at this time.</li>

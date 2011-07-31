@@ -1199,7 +1199,6 @@ a.ui-slider-handle {
 }
 .notifications_list a {
     text-decoration: none;
-    display: block;
 }
 .notifications_list .type {
     font-weight: 600;
@@ -1214,7 +1213,7 @@ a.ui-slider-handle {
     float: right;
     color: #888;
 }
-.notifications_list .message {
+.notifications_list .message_quote {
     color: #444;
 }
 .notifications_list .empty_notices {

@@ -1,6 +1,6 @@
 Hey {{name}},
 
-{{recruiter}} ({{employer}}) has sent you a invite to the public event "{{event}}":
+{{recruiter}} ({{employer}}) has sent you an invite to the public event "{{event}}":
 
 {% load core_extras %}{{invite_message|wordwrapwithindent:80}}
 

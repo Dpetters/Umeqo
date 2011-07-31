@@ -251,7 +251,7 @@ def employer_employer_events(request, extra_context=None):
 @user_passes_test(is_recruiter)
 def employer_resume_books(request, extra_context=None):
     pass
-
+    
 
 @login_required
 @user_passes_test(is_recruiter)

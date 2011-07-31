@@ -7,7 +7,7 @@
                 <span class="timestamp">{{ notice.added|timesince }} ago</span>
                 <span class="type">{{ notice.notice_type.display }}</span>
             </div>
-            <span class="message">{{ notice.message|safe }}</span>
+            <a href="{% url notification_notices %}#{{ notice.id }}"><span class="message">{{ notice.message|safe }}</span></a>
         </li>
     {% empty %}
         <li class="empty_notices">There are no notifications at this time.</li>

@@ -17,11 +17,11 @@ Copyright 2011. All Rights Reserved.
 <meta property="og:image" content="{{company_logo}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
 {% endcompress %}
+<script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
     var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
     var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
@@ -32,7 +32,8 @@ Copyright 2011. All Rights Reserved.
 </script>
 {% compress js %}
     <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
-{% endcompress %}
+{% endcompress %}    
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}
 
 {% block above_header_area %}
@@ -40,221 +41,227 @@ Copyright 2011. All Rights Reserved.
 {% endblock %}
 
 {% block content_area %}
-{% if show_admin %}
-<div id="event_admin">
-    <h1>Event Admin (visible only to you) <a href="{% url employer_event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
-    <div id="event_admin_side">
-        <table id="event_numbers">
-            <tr>
-                <td class="number">{{rsvps|length}}</td>
-                <td class="number_label">attending</td>
-            </tr>
-            <tr>
-                <td class="number">{{event.view_count}}</td>
-                <td class="number_label">pageview{{event.view_count|pluralize}}</td>
-            </tr>
-        </table>
-        <div id="event_checkin">
-            <h3>Check-in Mode</h3>
-            <a id="event_checkin_link" href="#">
-                <span class="text">Enable</span>
-                <span class="filler"></span>
-            </a>
-        </div>
-    </div>
-    <div id="event_admin_main">
-         <div id="event_tabs">
-            {% if event.is_public %}
-                <h2 class="current">RSVP'd Attending</h2>
-            {% else %}
-                <h2 class="current">Invited</h2>
-                <h2>Attending</h2>
-                <h2>Not Attending</h2>
-            {% endif %}
-                <h2>Checked-in</h2>
-                <h2>All</h2>
-        </div>
-        {% if not event.is_public %}
-            <div id="event_invites" class="responses">
-                {% for student in invitees %}
-                    {% include "events_response_token.html" with student=student %}
-                {% empty %}
-                <div id="event_response_empty">
-                    There are no invites yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
-                </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-        <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">
-            {% for student in rsvps %}
-                {% include "events_response_token.html" with student=student %}
-            {% empty %}
-            <div id="event_response_empty">
-                Nobody has RSVP'd <strong>Attending</strong> yet.
-            </div>
-            {% endfor %}
-        </div>
-        {% if not event.is_public %}
-            <div id="event_no_rsvps" class="hid responses">
-                {% for student in no_rsvps %}
-                    {% include "events_response_token.html" with student=student %}
-                {% empty %}
-                <div id="event_response_empty">
-                    Nobody has RSVP'd <strong>Not Attending</strong> yet.
-                </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-        <div id="event_checkins" class="hid responses">
-            {% for student in checkins %}
-                {% include "events_response_token.html" with student=student %}
-            {% empty %}
-            <div id="event_response_empty">There are no check-ins yet.</div>
-            {% endfor %}
-        </div>
-        <div id="event_all" class="hid responses">
-            {% for student in all_responses %}
-                {% include "events_response_token.html" with student=student %}
-            {% empty %}
-            <div id="event_response_empty">There are no check-ins or RSVPs yet.</div>
-            {% endfor %}
-        </div>
-        <p>*Grayed out students do not have an Umeqo account.</p>
-    </div>
-    <div class="clearfix"></div>
-</div>
-{% endif %}
-
-<div id="event_actions">
-    <div id="rsvp_div">
-        {% if is_past %}
-            <a href="javascript:void(0)" id="rsvp-yes-button" class="button disabled-button" title="RSVP disabled.">Event already passed!</a>
-        {% else %}{% if can_rsvp or show_admin %}
-            {% if event.is_public %}
-                <div class="no-response{% if not responded %} hid{% endif %}">
-                    <span id="attending-span">Attending</span>
-                    <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not attending</a>
-                </div>
-                <div class="response{% if responded %} hid{% endif %}">
-                    <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="dark_button">RSVP: Attending</a>
-                </div>
-                {% if show_admin %}
-                    <span class="help-bubble public">Students can click to RSVP.</span>
-                {% endif %}
-            {% else %}
-                <strong>RSVP:</strong>
-                {% spaceless %}
-                    <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Attending</a>
-                    <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not Attending</a>
-                {% endspaceless %}
-                <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
-                {% if show_admin %}
-                    <span class="help-bubble private">Students can click to RSVP.</span>
-                {% endif %}
-            {% endif %}
-        {% endif %}{% endif %}
-        {% if not user.is_authenticated %}
-            <a href="/login/" id="rsvp-yes-button" class="button" title="RSVP requires login.">
-                Login to RSVP.
-            </a>
-        {% endif %}
-    </div>
-    <a title="Add to Google Calendar" class="google-button" href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{google_description|urlencode}}&location={{event.location|urlencode}}">
-        <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
-    </a>
-</div>
-
-<h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">private</span>{% endif %}</h1>
-<div id="event_time">
-    {% if event.start_datetime %}
-    <span class="start">{{event.start_datetime|date:"D, F j"}}
-    {% endif %}
-    <span class="end">
-        {% ifequal event.start_datetime.day event.end_datetime.day %}
-        {% ifequal event.start_datetime.month event.end_datetime.month %}
-        {% ifequal event.start_datetime.year event.end_datetime.year %}
-            from {{event.start_datetime|date:"h:i A"}}</span> -
-            {{event.end_datetime|date:"h:i A"}}
-        {% endifequal %}{% endifequal %}
-        {% else %}
-            {% if event.start_datetime %}</span> - {% endif %}
-            {{event.end_datetime|date:"D, F j h:i A"}}
-        {% endifequal %}
-    </span>
-</div>
-
-{% if event.is_public %}
-    <div id="event_external_buttons">
-        <div class="external_button">
-            <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script><script type="in/share" data-counter="right"></script>
-        </div>
-        <div class="external_button">
-            <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="umeqo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-        </div>
-        <div class="external_button">
-            <g:plusone size="medium"></g:plusone>
-        </div>
-        <div class="external_button">
-            <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
-        </div>
-    </div>
-{% endif %}
-
-
-<div id="event_description" class="main_block">
-    <div class="main_block_header">
-        <span class="main_block_header_title">Event Details</span>
-    </div>
+<div id="event_page_block" class="main_block">
     <div class="main_block_content">
-        {% if audience %}
-        <div id="event_audience">
-            <span class="label">Audience:</span>
-            {% for a in audience %}
-                {{a}}{% if not forloop.last %},{% endif %}
-            {% endfor %}
-            </ul>
+        {% if show_admin %}
+        <div id="event_admin">
+            <h1>Event Admin (visible only to you) <a href="{% url employer_event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
+            <div id="event_admin_side">
+                <table id="event_numbers">
+                    <tr>
+                        <td class="number">{{rsvps|length}}</td>
+                        <td class="number_label">attending</td>
+                    </tr>
+                    <tr>
+                        <td class="number">{{event.view_count}}</td>
+                        <td class="number_label">pageview{{event.view_count|pluralize}}</td>
+                    </tr>
+                </table>
+                <div id="event_checkin">
+                    <h3>Check-in Mode</h3>
+                    <a id="event_checkin_link" href="#">
+                        <span class="text">Enable</span>
+                        <span class="filler"></span>
+                    </a>
+                </div>
+            </div>
+            <div id="event_admin_main">
+                 <div id="event_tabs">
+                    {% if event.is_public %}
+                        <h2 class="current">RSVP'd Attending</h2>
+                    {% else %}
+                        <h2 class="current">Invited</h2>
+                        <h2>Attending</h2>
+                        <h2>Not Attending</h2>
+                    {% endif %}
+                        <h2>Checked-in</h2>
+                        <h2>All</h2>
+                </div>
+                {% if not event.is_public %}
+                    <div id="event_invites" class="responses">
+                        {% for student in invitees %}
+                            {% include "events_response_token.html" with student=student %}
+                        {% empty %}
+                        <div id="event_response_empty">
+                            There are no invites yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">
+                    {% for student in rsvps %}
+                        {% include "events_response_token.html" with student=student %}
+                    {% empty %}
+                    <div id="event_response_empty">
+                        Nobody has RSVP'd <strong>Attending</strong> yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if not event.is_public %}
+                    <div id="event_no_rsvps" class="hid responses">
+                        {% for student in no_rsvps %}
+                            {% include "events_response_token.html" with student=student %}
+                        {% empty %}
+                        <div id="event_response_empty">
+                            Nobody has RSVP'd <strong>Not Attending</strong> yet.
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="event_checkins" class="hid responses">
+                    {% for student in checkins %}
+                        {% include "events_response_token.html" with student=student %}
+                    {% empty %}
+                    <div id="event_response_empty">There are no check-ins yet.</div>
+                    {% endfor %}
+                </div>
+                <div id="event_all" class="hid responses">
+                    {% for student in all_responses %}
+                        {% include "events_response_token.html" with student=student %}
+                    {% empty %}
+                    <div id="event_response_empty">There are no check-ins or RSVPs yet.</div>
+                    {% endfor %}
+                </div>
+                <p>*Grayed out students do not have an Umeqo account.</p>
+            </div>
             <div class="clearfix"></div>
         </div>
         {% endif %}
-        {% if event.description %}{{event.description|linebreaks}}{% else %}No description provided.{% endif %}
-    </div>
-</div>
-
-<div id="event_side">
-
-    <div id="event_where" class="main_block">
-        <div class="main_block_header">
-            <span class="main_block_header_title">Where</span>
+        
+        <div id="event_actions">
+            <div id="rsvp_div" class="{% if event.is_public %}public{% else %}private{% endif %}">
+                {% if is_past %}
+                    <a href="javascript:void(0)" id="rsvp-yes-button" class="button disabled-button" title="RSVP disabled.">Event already passed!</a>
+                {% else %}{% if can_rsvp or show_admin %}
+                    {% if event.is_public %}
+                        <div class="no-response{% if not responded %} hid{% endif %}">
+                            <span id="attending-span">Attending</span>
+                            <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not attending</a>
+                        </div>
+                        <div class="response{% if responded %} hid{% endif %}">
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: Attending</a>
+                        </div>
+                        {% if show_admin %}
+                            <span class="help-bubble public">Students can click to RSVP.</span>
+                        {% endif %}
+                    {% else %}
+                        <strong>RSVP:</strong>
+                        {% spaceless %}
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Attending</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not Attending</a>
+                        {% endspaceless %}
+                        <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
+                        {% if show_admin %}
+                            <span class="help-bubble private">Students can click to RSVP.</span>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}{% endif %}
+                {% if not user.is_authenticated %}
+                    <a href="/login/" id="rsvp-yes-button" class="button" title="RSVP requires login.">
+                        Login to RSVP.
+                    </a>
+                {% endif %}
+            </div>
+            <a title="Add to Google Calendar" class="google-button" href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&details={{google_description|urlencode}}&location={{event.location|urlencode}}">
+                <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
+            </a>
         </div>
-        <div class="main_block_content">
-              <h2>{{ event.location }}</h2>
-              <div id="map"></div>
+        
+        <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">private</span>{% endif %}</h1>
+        <div id="event_time">
+            {% if event.start_datetime %}
+            <span class="start">{{event.start_datetime|date:"D, F j"}}
+            {% endif %}
+            <span class="end">
+                {% ifequal event.start_datetime.day event.end_datetime.day %}
+                {% ifequal event.start_datetime.month event.end_datetime.month %}
+                {% ifequal event.start_datetime.year event.end_datetime.year %}
+                    from {{event.start_datetime|date:"h:i A"}}</span> -
+                    {{event.end_datetime|date:"h:i A"}}
+                {% endifequal %}{% endifequal %}
+                {% else %}
+                    {% if event.start_datetime %}</span> - {% endif %}
+                    {{event.end_datetime|date:"D, F j h:i A"}}
+                {% endifequal %}
+            </span>
         </div>
-    </div>
-    
-    <div id="event_who" class="main_block">
-        <div class="main_block_header">
-            <span class="main_block_header_title">Hosted by</span>
-        </div>
-        <div class="main_block_content">
-            {% for recruiter in recruiters %}
-                <div class="event_company">
-                    <div class="event_company_name">
-                        <a href="{% if not show_admin %}{% url employers_list %}?id={{recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
-                            {{recruiter.employer.name}}
-                        </a>
-                    </div>
-                    <div class="event_company_description">
-                        {{ recruiter.employer.description }}
-                    </div>
-                    <div class="industries">
-                        {% for industry in recruiter.employer.industries.all %}
-                            <div>{{ industry }}</div>
-                        {% endfor %}
-                    </div>
+        
+        {% if event.is_public %}
+            <div id="event_external_buttons">
+                <div class="external_button">
+                    <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script><script type="in/share" data-counter="right"></script>
                 </div>
-            {% endfor %}
+                <div class="external_button">
+                    <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="umeqo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                </div>
+                <div class="external_button">
+                    <g:plusone size="medium"></g:plusone>
+                </div>
+                <div class="external_button">
+                    <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+                </div>
+            </div>
+        {% endif %}
+        
+        
+        <div id="event_description" class="main_block">
+            <div class="main_block_header">
+                <span class="main_block_header_title">Event Details</span>
+            </div>
+            <div class="main_block_content">
+                {% if audience %}
+                <div id="event_audience">
+                    <span class="label">Audience:</span>
+                    {% for a in audience %}
+                        {{a}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                {% endif %}
+                {% if event.description %}{{event.description|linebreaks}}{% else %}No description provided.{% endif %}
+            </div>
         </div>
+        
+        <div id="event_side">
+
+            <div id="event_where" class="main_block">
+                <div class="main_block_header">
+                    <span class="main_block_header_title">Where</span>
+                </div>
+                <div class="main_block_content">
+                    {{ event.location }}
+                      <div id="map" style="width: 260px; height: 250px"></div>
+                </div>
+            </div>
+            
+            <div id="event_who" class="main_block">
+                <div class="main_block_header">
+                    <span class="main_block_header_title">Hosted by</span>
+                </div>
+                <div class="main_block_content">
+                    {% for recruiter in recruiters %}
+                        <div class="event_company">
+                            <div class="event_company_name">
+                                <a href="{% if not show_admin %}{% url employers_list %}?id={{recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
+                                    {{recruiter.employer.name}}
+                                </a>
+                            </div>
+                            <div class="event_company_description">
+                                {{ recruiter.employer.description }}
+                            </div>
+                            <div class="industries">
+                                {% for industry in recruiter.employer.industries.all %}
+                                    <div>{{ industry }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+        </div>
+        
     </div>
 </div>
 <div id="fb-root"></div>
