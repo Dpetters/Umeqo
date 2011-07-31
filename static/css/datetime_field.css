@@ -1,12 +1,12 @@
 #content_area input[type=text].datefield {
-    width: 86px;
-    background: url('/static/images/icons/calendar-select.png') 72px center no-repeat;
+    width: 95px;
+    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
 }
 #content_area input[type=text].datefield:hover {
     cursor: pointer;
 }
 #content_area select.timefield {
-    width: 100px;
+    width: 108px;
     margin-left: 5px;
 }
 .ui-datepicker-header {

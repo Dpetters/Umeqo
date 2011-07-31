@@ -7,6 +7,6 @@ class EventIndex(indexes.RealTimeSearchIndex):
     end_datetime = indexes.DateTimeField(model_attr='end_datetime')
     type = indexes.CharField(model_attr='type')
     content_auto = indexes.EdgeNgramField(use_template=True)
-    privacy = indexes.BooleanField(model_attr='privacy')
+    is_public = indexes.BooleanField(model_attr='is_public')
 
 site.register(Event, EventIndex)

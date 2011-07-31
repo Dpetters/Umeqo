@@ -67,11 +67,9 @@
     40
    ], 
    "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-26 00:05:52", 
+   "last_updated": "2011-07-28 16:17:53", 
    "name": "Employer1", 
-   "starred_students": [
-    5
-   ], 
+   "starred_students": [], 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
    "offered_job_types": [], 
@@ -245,12 +243,12 @@
   "model": "employer.recruiterpreferences", 
   "fields": {
    "email_on_rsvp_to_public_event": false, 
-   "last_updated": "2011-07-08 00:11:22", 
+   "last_updated": "2011-07-29 23:39:45", 
    "recruiter": 1, 
    "email_on_rsvp_to_private_event": false, 
    "date_created": "2011-07-08 00:11:22", 
    "default_student_result_ordering": "relevancy", 
-   "default_student_results_per_page": 10
+   "default_student_results_per_page": 100
   }
  }, 
  {
