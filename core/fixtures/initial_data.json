@@ -6891,14 +6891,14 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/cccs/www/", 
-   "last_updated": "2011-07-28 01:02:05", 
+   "last_updated": "2011-07-31 01:01:29", 
    "description": "MIT Chinese Choral Society (CCCS) was founded in 1992 by a group of students and scholars at MIT who share a common interest in choral music as well as the Chinese culture and tradition. Through their weekly practices and frequent social functions, the clubs' members have developed close friendships and bonds which have matured each of our lives.", 
    "image": "", 
    "email": "cccs-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
-   "display": false, 
+   "display": true, 
    "name": "Chinese Choral Society"
   }
  }, 
@@ -6906,15 +6906,15 @@
   "pk": 86, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
-   "description": "", 
+   "website": "http://web.mit.edu/~tachen/www/about_instr.html", 
+   "last_updated": "2011-07-31 01:01:32", 
+   "description": "MIT Chinese Ensemble (MITCE) was initiated to introduce and provide an oppor-\r\ntunity for the MIT community to become enriched in traditional Chinese music through\r\nperformances and recitals. They allow members to pursue their passion and\r\nimprove their skills in playing Chinese instruments during practices. MITCE practices approximately 2 hours every week.", 
    "image": "", 
-   "email": "", 
+   "email": "mitce-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Chinese Ensemble"
   }
  }, 
@@ -6923,7 +6923,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
+   "last_updated": "2011-07-31 01:01:34", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -6938,48 +6938,16 @@
   "pk": 88, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
-   "description": "", 
+   "website": "http://cssa.mit.edu/", 
+   "last_updated": "2011-07-31 01:01:37", 
+   "description": "MIT Chinese Student and Scholar Association (MIT CSSA) is an official MIT-recognized non-profit organization. They have more than 1000 official members, mostly from China, including 600 graduate students, and around 100 undergraduate students, 150 post-docs and visiting scholars, and 150 MIT alumnus/affiliates. Their email list contains more than 5000 members in the greater Boston area. The main mission of their organization is to serve the needs of their members, spread Chinese culture, and facilitate communication within the large Chinese community both on and off MIT campus.\r\n\r\nTo achieve their mission, MIT CSSA regularly organizes social activities, such as dancing parties and outings, conducts information seminars on a variety of topics, including insurance, immigration, and career development, and promotes Chinese culture with various history, music, and sports groups. Besides these activities, they also organize several large-scaled events, including their annual Mid-Autumn Harbor Cruise and their Chinese New Year cultural performance, which are attended by the entire Chinese community.", 
    "image": "", 
-   "email": "", 
+   "email": "cssa-info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Chinese Students Club"
-  }
- }, 
- {
-  "pk": 89, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": false, 
-   "name": "Chinese Yo-Yo Club"
-  }
- }, 
- {
-  "pk": 90, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": false, 
-   "name": "Chombo"
   }
  }, 
  {
@@ -6987,15 +6955,15 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
+   "last_updated": "2011-07-31 01:04:35", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
-   "name": "Chorallaries of MIT, The"
+   "name": "Chorallaries"
   }
  }, 
  {
@@ -7003,13 +6971,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
+   "last_updated": "2011-07-31 01:06:49", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Christian Music Fellowship Ensemble"
   }
@@ -7018,15 +6986,15 @@
   "pk": 93, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
-   "description": "", 
+   "website": "http://christians.scripts.mit.edu/home/home", 
+   "last_updated": "2011-07-31 01:08:59", 
+   "description": "Christians on Campus is a MIT-recognized student group of MIT. They love the Lord Jesus and endeavor to give Him the \"first place in all things\" (Col. 1:18). They meet together on campus, in homes, and in other settings to encourage one another, receive nourishment from the Bible and grow in Christ. They also have found that with an open and exercised spirit, all the mysteries of the Bible can become their daily reality. They desire and seek that all their fellow students would come to know Christ as God and Savior. Christians on Campus also endeavors to help all Christians to build the Church, the Body of Christ, according to the Lord's desire as revealed in the Holy Word. They hold the faith which is common to all believers regarding their salvation. They receive all believers in Christ and encourage all others to believe into Christ.", 
    "image": "", 
-   "email": "", 
+   "email": "christiansoncampus-info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": false, 
+   "type": 13, 
+   "display": true, 
    "name": "Christians on Campus"
   }
  }, 
@@ -7035,13 +7003,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
+   "last_updated": "2011-07-31 01:10:20", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
+   "type": 3, 
    "display": false, 
    "name": "Clean Energy Prize"
   }
@@ -7050,14 +7018,14 @@
   "pk": 95, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
+   "website": "http://scripts.mit.edu/~argentina/blog/", 
+   "last_updated": "2011-07-31 01:12:15", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Club Argentino"
   }
@@ -7066,14 +7034,14 @@
   "pk": 96, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
+   "website": "http://scripts.mit.edu/~francophone/www/", 
+   "last_updated": "2011-07-31 01:14:33", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Club Francophone"
   }
@@ -7082,15 +7050,15 @@
   "pk": 97, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:37", 
-   "description": "", 
+   "website": "http://web.mit.edu/clubsports/", 
+   "last_updated": "2011-07-31 01:17:23", 
+   "description": "The Club Sports Council (CSC) comprises MIT students (Officers) elected by the student leaders of all club sports. The purpose of the CSC is to represent all club sports in all administrative matters, including but not limited to representation within the MIT Department of Athletics, Physical Education, and Recreation (DAPER) and the MIT Association of Student Activities (ASA). Among other things, the CSC distributes and oversees 30 plus club sports budgets, approves club sports space allocations, approves club sports instructors, and generally advocates for student interests as they relate to club sports.", 
    "image": "", 
-   "email": "", 
+   "email": "csc-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Club Sports Council"
   }
  }, 
@@ -7098,15 +7066,15 @@
   "pk": 98, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/clubchem/www/", 
+   "last_updated": "2011-07-31 01:19:24", 
+   "description": "ClubChem is an organization dedicated to the MIT undergraduate chemistry community and friends. They hold weekly study breaks, organize dinners with professors, design and distribute Course 5 merchandise, and plan other events with the goals of bringing together MIT's chemistry students and interfacing with the rest of the undergraduate community. ", 
+   "image": "core/CampusOrg/clubchem_2011-07-31-01-19-24.png", 
+   "email": "clubchem-webmaster@mit.edu", 
+   "thumbnail": "core/CampusOrg/clubchem_2011-07-31-01-19-24_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Clubchem"
   }
  }, 
@@ -7114,15 +7082,15 @@
   "pk": 99, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://fightcancer.mit.edu/", 
+   "last_updated": "2011-07-31 01:20:37", 
+   "description": "The Colleges Against Cancer chapter at MIT is sponsored by the American Cancer Society and works to fight cancer through grassroots advocacy, prevention and early detection education, Relay For Life, and activities honoring cancer survivors. MIT CAC is part of a network of more than 175 other colleges and universities nationwide.", 
    "image": "", 
-   "email": "", 
+   "email": "cac-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Colleges Against Cancer"
   }
  }, 
@@ -7131,46 +7099,30 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 01:22:38", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Colombian Association of MIT"
-  }
- }, 
- {
-  "pk": 101, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Community Badminton"
   }
  }, 
  {
   "pk": 102, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
+   "website": "http://web.mit.edu/mitcrc/", 
+   "last_updated": "2011-07-31 01:25:39", 
+   "description": "The purpose of this club is to channel the energy and enthusiasm elicited by robotics through the rigorous process of engineering design. Members will apply engineering knowledge and principles in a structured approach to the design and construction of competitive robots.", 
+   "image": "core/CampusOrg/competitive_robotics_club_2011-07-31-01-24-43.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/competitive_robotics_club_2011-07-31-01-24-43_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Competitive Robotics Club"
   }
  }, 
@@ -7178,15 +7130,15 @@
   "pk": 103, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://band.mit.edu/", 
+   "last_updated": "2011-07-31 01:41:42", 
+   "description": "The MIT Concert Band was founded by students in the fall of 1948 and was directed for fifty-one years by Conductor Laureate John D. Corley. Mr. Corley made the band widely known for its performance and commissioning of original compositions for winds. In December of 1953, the MIT Concert Band became one of the first ensembles to devote itself entirely to original works for winds in the belief that the wind band is an important and unique means of musical expression and that its repertoire is deserving of performance. In addition to performing works of well-known twentieth-century composers such as Hindemith, Copland, and Schoenberg, the Band has commissioned over 60 pieces for this unique musical genre.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 15, 
+   "display": true, 
    "name": "Concert Band"
   }
  }, 
@@ -7194,15 +7146,15 @@
   "pk": 104, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/21m401/www/", 
+   "last_updated": "2011-07-31 01:46:07", 
+   "description": "The MIT Concert Choir is a choral group, open by audition to both graduate and undergraduate students, and to members of the MIT community. The Concert Choir works to create an environment where student singers can learn, perform, and contribute to the MIT musical community. By bringing together singers in a social, academic, and performance atmosphere, they hope to expose the MIT community to a wide range of choral music literature and history. \r\n\r\nAs MIT's large student chorus, the Concert Choir performs major works from the standard repertoire each semester, as well as a variety of shorter and lesser-known pieces. The Choir has a rich history originating with the all-male Glee Club in 1884 and continuing with the MIT Choral Society from 1923 until the formation of the Concert Choir under John Oliver in 1989. William Cutter, who came to MIT in 1990 as John Oliver's assistant and rehearsal pianist, assumed the direction of MIT's choral program upon Mr. Oliver's departure in 1996.\r\n\r\nIn recent years, the Concert Choir has toured in Budapest, Vienna, and Lausanne, and performed in numerous collaborations with the smaller MIT Chamber Chorus, the MIT Symphony Orchestra, the MIT Wind Ensemble, the choirs of Brown, Tufts and Brandeis Universities, and the orchestras of Tufts University and Wellesley College. In 2002, the MIT Concert Choir was invited to perform with the Boston Pops under Keith Lockhart for MIT's Tech Night at the Pops. Often featuring the finest guest soloists along with student soloists, the student singers of the group regularly expose the MIT community to a wide range of choral music literature.", 
+   "image": "core/CampusOrg/concert_choir_students_2011-07-31-01-46-07.png", 
+   "email": "concert-choir-admin@mit.edu", 
+   "thumbnail": "core/CampusOrg/concert_choir_students_2011-07-31-01-46-07_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Concert Choir Students"
   }
  }, 
@@ -7210,15 +7162,15 @@
   "pk": 105, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "https://sites.google.com/site/ccmatmit/", 
+   "last_updated": "2011-07-31 01:49:22", 
+   "description": "The Consulting Club at MIT (CCM) aims to facilitate a seamless transition from graduate school to a successful career in management consulting. \r\n\r\nCCM consists of a vibrant community of 500 student members and 60 alumni members. Check out these upcoming and recent great events we have organized", 
+   "image": "core/CampusOrg/consulting_group_2011-07-31-01-49-21.png", 
+   "email": "ccm-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/consulting_group_2011-07-31-01-49-22_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 5, 
+   "display": true, 
    "name": "Consulting Group"
   }
  }, 
@@ -7226,15 +7178,15 @@
   "pk": 106, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://mit.edu/mitcc/", 
+   "last_updated": "2011-07-31 01:51:23", 
+   "description": "MIT Cricket Club is a group of cricket enthusiasts from MIT, Cambridge MA. Majority of the club members are students of MIT, or friends of MIT students/affiliates. The club was formed recently and teams from the club have participated in Boston hard tennis ball cricket tournaments.", 
+   "image": "core/CampusOrg/cricket_club_2011-07-31-01-51-23.png", 
+   "email": "cricket@mit.edu", 
+   "thumbnail": "core/CampusOrg/cricket_club_2011-07-31-01-51-23_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Cricket Club"
   }
  }, 
@@ -7242,47 +7194,31 @@
   "pk": 107, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/crossp/www/", 
+   "last_updated": "2011-07-31 01:56:34", 
+   "description": "The Cross Products are the most \"normal\" co-ed Christian a cappella group at MIT.  They exist to glorify God through music and our lives, and to tell others about the ways that He has changed us. They are each products of the cross of Jesus Christ. The name \"cross products\" stems from as Christians they consider their selves products of the cross of Jesus Christ. \r\n\r\nOne part of their vision is to reflect God's heart for all people. Last Spring Break they sang and volunteered at schools, churches, nursing homes, and homeless shelters in the Seattle area.\r\n\r\nThe Cross Products began singing at MIT in the fall of 1988. The group was formed to communicate the good news of Jesus Christ to people through music, skits, and spoken word, and to complement the other a cappella groups in existence at MIT as a Christian alternative.\r\n\r\n", 
+   "image": "core/CampusOrg/cross_products_2011-07-31-01-56-34.png", 
+   "email": "xprod@mit.edu", 
+   "thumbnail": "core/CampusOrg/cross_products_2011-07-31-01-56-34_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Cross Products"
-  }
- }, 
- {
-  "pk": 108, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "CSAIL Student Social Committee"
   }
  }, 
  {
   "pk": 109, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/curling/www/", 
+   "last_updated": "2011-07-31 01:58:05", 
+   "description": "The MIT curling club is an ASA-recognized student group that...well...goes curling.", 
    "image": "", 
-   "email": "", 
+   "email": "curling-owner@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Curling Club"
   }
  }, 
@@ -7290,47 +7226,31 @@
   "pk": 110, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://cycling.mit.edu/www/", 
+   "last_updated": "2011-07-31 02:02:13", 
+   "description": "The MIT cycling club is an organization dedicated to encouraging the enjoyment of all types of cycling in the MIT community. They welcome members of the the MIT community and friends to most of their club events such as group rides, classes, and community service. In addition to the club events, MIT cycling is the home of the four racing teams covering the four collegiate bicycle racing disciplines, Track, Road, Cyclocross, and Mountain. The team races in the USAC organized Eastern Collegiate Cycling Conference (ECCC).", 
+   "image": "core/CampusOrg/cycling_club_2011-07-31-02-00-40.png", 
+   "email": "cycling-club@mit.edu", 
+   "thumbnail": "core/CampusOrg/cycling_club_2011-07-31-02-00-40_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Cycling Club"
-  }
- }, 
- {
-  "pk": 111, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Dance Mix Coalition"
   }
  }, 
  {
   "pk": 112, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://dancetroupe.mit.edu/", 
+   "last_updated": "2011-07-31 02:05:15", 
+   "description": "Founded in 1994, the mit Dance Troupe is the largest dance organization at the Massachusetts Institute of Technology. They are a student-run group dedicated to bringing a variety of dance style to everyone in the mit community, regardless of level. Every semester, they offer various dance classes to their members and produce one full length concert. Their concerts are some of the most highly anticipated and well-attended events on campus.", 
+   "image": "core/CampusOrg/dancetroupe_2011-07-31-02-05-15.png", 
+   "email": "dt-officers@mit.edu", 
+   "thumbnail": "core/CampusOrg/dancetroupe_2011-07-31-02-05-15_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "DanceTroupe"
   }
  }, 
@@ -7338,63 +7258,31 @@
   "pk": 113, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/debate/www/", 
+   "last_updated": "2011-07-31 02:07:31", 
+   "description": "The MIT Debate Team is a member institution of the American Parliamentary Debate Association, and compete regularly on the circuit.", 
    "image": "", 
-   "email": "", 
+   "email": "debate-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Debate Team"
-  }
- }, 
- {
-  "pk": 114, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "DomeView"
-  }
- }, 
- {
-  "pk": 115, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Dorm Electricity Competition"
   }
  }, 
  {
   "pk": 116, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/dormcon/", 
+   "last_updated": "2011-07-31 02:10:42", 
+   "description": "The Dormitory Council (DormCon) is MIT's student government body that represents all undergraduate dormitory residents. Representatives from each dormitory (usually the dorms' presidents) comprise DormCon and meet every two weeks to discuss and propose policies and programs that effect and benefit the entire dormitory system. Meetings are open to the general public; relevant student and administrative guests are invited regularly to discuss pertinent issues.\r\n\r\nDormCon exists to preserve and develop dormitory culture both individually and as a system. DormCon is the unified voice of opinions and concerns of dormitory residences; moreover, it works and strives to create a community where all undergraduate dormitory residents are comfortable and feel welcome.", 
    "image": "", 
-   "email": "", 
+   "email": "dormcon-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 10, 
+   "display": true, 
    "name": "Dormitory Council"
   }
  }, 
@@ -7402,47 +7290,31 @@
   "pk": 117, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://dramashop.mit.edu/", 
+   "last_updated": "2011-07-31 02:12:39", 
+   "description": "MIT Dramashop is a co-curricular student theater group open to all members of the MIT community. They offer many opportunities for people interested in acting, directing, stage managing, writing, and designing or building sets, lights, sound, and costumes.", 
+   "image": "core/CampusOrg/dramashop_2011-07-31-02-12-28.png", 
+   "email": "ds_officers@mit.edu", 
+   "thumbnail": "core/CampusOrg/dramashop_2011-07-31-02-12-28_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Dramashop"
-  }
- }, 
- {
-  "pk": 118, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Dream Team"
   }
  }, 
  {
   "pk": 119, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/dusp/dsc/", 
+   "last_updated": "2011-07-31 02:13:40", 
+   "description": "The DUSP Student Council, or the DSC, is an organization representing the students of the Department of Urban Studies and Planning. The DSC serves as the primary liaison between students, staff, and faculty, and works to improve student life within the department.", 
    "image": "", 
-   "email": "", 
+   "email": "dsc@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 10, 
+   "display": true, 
    "name": "DUSP Student Council"
   }
  }, 
@@ -7450,15 +7322,15 @@
   "pk": 120, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/e33/www/", 
+   "last_updated": "2011-07-31 02:16:45", 
+   "description": "E33 Productions is a student run company offering a range of technical theater services. ", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "E33 Productions"
   }
  }, 
@@ -7466,15 +7338,15 @@
   "pk": 121, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://eastgate.mit.edu/eca.php", 
+   "last_updated": "2011-07-31 02:18:22", 
+   "description": "The Eastgate Community Association (ECA) is the organization that plans Eastgate social events and activities, and represents Eastgate in the greater MIT community.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 10, 
+   "display": true, 
    "name": "Eastgate Community Association"
   }
  }, 
@@ -7482,48 +7354,32 @@
   "pk": 122, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/easyrider/", 
+   "last_updated": "2011-07-31 02:19:59", 
+   "description": "Easyrider, the MIT motorcycle club, was founded in the Spring of 1998 to foster the interaction of motorcyclists at MIT. They promote safety, community, and support for the advantages of two wheeled transportation. They have 114 members from MIT and the Boston area. Together they go on rides in the area and have various social events where they exchange tips & tricks about motorcycling and enjoy biker life.", 
    "image": "", 
-   "email": "", 
+   "email": "easyrider-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Easy Rider-The MIT Motorcycle Club"
+   "type": 8, 
+   "display": true, 
+   "name": "Easy Rider"
   }
  }, 
  {
   "pk": 123, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://www.talentforum.org/", 
+   "last_updated": "2011-07-31 02:21:58", 
+   "description": "MIT Economics and Talent Forum (MIT ETF), previously known as \"MIT Talent Forum\", was founded in 2001. It is a non-profit organization established by a group of dedicated and enthusiastic Asian students at the Massachusetts Institute of Technology (MIT) and working professionals in Great Boston area. Since founded in 2001, MIT Economics and Talent Forum has been assisting the enterprises and organizations in the U.S. and Asia-Pacific regions, as well as overseas Asian students and working professionals through hosting a series of annual conferences, career fairs, business visits, seminar series and consultant services.", 
    "image": "", 
-   "email": "", 
+   "email": "talentforum_info@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Economics and Talent Forum"
-  }
- }, 
- {
-  "pk": 124, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Ecuadorian Student Association"
   }
  }, 
  {
@@ -7531,13 +7387,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 02:23:02", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "Edgerton House Association"
   }
@@ -7546,15 +7402,15 @@
   "pk": 126, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://esp.mit.edu/", 
+   "last_updated": "2011-07-31 02:31:42", 
+   "description": "The MIT Educational Studies Program is a group that organizes classes taught by college students, for middle- and high-school students. Their motto is \u201cTeach Anything, Learn Anything\u201d; their goal is to instill excitement for both learning and teaching.", 
+   "image": "core/CampusOrg/educational_studies_program_2011-07-31-02-27-09.png", 
+   "email": "esp@mit.edu", 
+   "thumbnail": "core/CampusOrg/educational_studies_program_2011-07-31-02-27-09_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Educational Studies Program"
   }
  }, 
@@ -7563,11 +7419,11 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 02:31:48", 
    "description": "", 
    "image": "", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/educational_technologies_group_2011-07-31-02-31-26_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
    "display": false, 
@@ -12717,8 +12573,8 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "name": "Deadline"
+   "last_updated": "2011-07-31 11:30:28", 
+   "name": "Hard Deadline"
   }
  }, 
  {
@@ -12782,6 +12638,15 @@
    "date_created": "2011-05-03 12:27:43", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Networking"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-07-31 11:30:37", 
+   "last_updated": "2011-07-31 11:30:37", 
+   "name": "Rolling Deadline"
   }
  }
 ]
