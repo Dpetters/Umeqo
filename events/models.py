@@ -7,7 +7,6 @@ from core.managers import ActiveManager
 from student.models import Student
 from notification import models as notification
 from employer.models import Employer
-from events.choices import EVENT_PRIVACY_CHOICES
 
 class Event(models.Model):
     
@@ -38,7 +37,7 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
     
-    privacy = models.CharField(max_length=2, choices = EVENT_PRIVACY_CHOICES)
+    is_public = models.BooleanField()
 
     def __unicode__(self):
         return self.name
