@@ -46,6 +46,7 @@ urlpatterns += patterns('core.views',
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website'),
     (r'^get-location-guess/$', 'get_location_guess', {}, 'get_location_guess'),
+    (r'^get-location-suggestions/$', 'get_location_suggestions', {}, 'get_location_suggestions'),
     (r'^notification/count$', 'get_notice_unseen_count', {}, 'get_notice_unseen_count'),
 )
 

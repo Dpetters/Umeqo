@@ -10,6 +10,7 @@ index
 .pydevproject
 .settings
 /media
+/local_static
 settings_local.py
 *.DS_Store
 *.psd

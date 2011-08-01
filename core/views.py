@@ -109,7 +109,7 @@ def get_location_guess(request):
         if request.method == "GET":
             if request.GET.has_key('query'):
                 search_query_set = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
-                if not search_query_set:
+                if not search_query_set or len(search_query_set)> 0:
                     data = {'valid':False}
                     data['query'] = request.GET['query']
                 else:
@@ -122,6 +122,22 @@ def get_location_guess(request):
                 return HttpResponseBadRequest("Term got which to find suggestions is missing.")
         return HttpResponseForbidden("Request must be a GET")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+
+@login_required
+@render_to("location_suggestions.html")
+def get_location_suggestions(request):
+    if request.is_ajax():
+        if request.method == "GET":
+            if request.GET.has_key('query'):
+                locations = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
+                context = {'locations': locations[:8]}
+                return context
+            else:
+                return HttpResponseBadRequest("Term got which to find suggestions is missing.")
+        return HttpResponseForbidden("Request must be a GET")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
 
 
 @render_to('landing_page.html')
