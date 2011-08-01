@@ -8,7 +8,6 @@
 	float:right;
 	height:210px;
 	width:220px;
-	margin-top:28px;
 }
 label[for=id_end_datetime_0]{
 	margin-left:5px;
@@ -17,30 +16,63 @@ label[for=id_end_datetime_0]{
 	width:500px;
 	margin-top:10px;
 }
-#id_name{
+.location_suggestion{
+	padding: 1px 6px;
+	background:#EEE;
+	margin-bottom:1px;
+}
+.location_suggestion:hover{
+	color:#555;
+	background:#E9E9E9;
+}
+#event_form #id_name{
 	font-size:32px;
 	width:564px;
 	display:block;
 }
-label[for=id_start_datetime_0], label[for=id_end_datetime_0]{
+label[for=id_start_datetime_0].required, label[for=id_end_datetime_0].required{
 	font-size:16px;
+	float:left;
+	margin-top: 23px;
 }
 .datetime_wrapper{
 	padding-left:12px;
 }
-#event_location{
+label[for=id_rsvp_message]{
+	font-size:14px;
+}
+label[for=id_rsvp_message].error{
+
+}
+label[for=id_audience]{
+	float:left;
+	margin-top:24px;
+	font-size:16px;
+}
+label[for=id_audience].error{
+
+}
+#id_rsvp_message{
+	width:348px;
+	height:40px;
+}
+#event_form #event_location{
 	margin-top:15px;
 }
-#event_location .main_block_content{
+#event_form #event_location .main_block_content{
 	padding:0px;
 }
 #event_name_section .errorspace, #event_type_section .errorspace, #event_location_section .errorspace, #event_description_section .errorspace{
 	display:inline-block;
+	width:150px;
+	position:relative;
+	top:2px;
+	left:5px;
 }
 #event_type_section{
 	margin-top:15px;
 }
-#id_type{
+#event_form #id_type{
 	font-size:20px;
 	width:350px;
 	display:inline-block;
@@ -65,7 +97,7 @@ label[for=id_is_public_0], label[for=id_is_public_1]{
 	width:379px;
 }
 #event_datetime_block{
-	margin-top:37px;
+	margin-top:27px;
 }
 #event_datetime_block .main_block_content{
 	padding:0px;

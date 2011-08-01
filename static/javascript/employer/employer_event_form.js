@@ -58,7 +58,17 @@ $(document).ready( function() {
                 if (data.valid){
                 	center_map_coord(data.latitude, data.longitude);
                 }else{
-                	center_map_address(data.query);
+                	xhr = $.ajax({
+			            type: 'GET',
+			            url: GET_LOCATION_SUGGESTIONS_URL,
+			            dataType: "html",
+			            data: {
+			                'query': $("#id_location").val(),
+			            },
+			            success: function (data) {
+			                $("#location_suggestions").html(data);
+			            },
+			        });
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -72,10 +82,12 @@ $(document).ready( function() {
     }
     
     var timeoutID;
-    $('#id_location').keydown( function() {
-        if (typeof timeoutID!='undefined')
-            window.clearTimeout(timeoutID);
-        timeoutID = window.setTimeout(get_location_guess, 500);
+    $('#id_location').keydown( function(e) {
+    	if(e.which != 9){
+	        if (typeof timeoutID!='undefined')
+	            window.clearTimeout(timeoutID);
+	        timeoutID = window.setTimeout(get_location_guess, 500);
+       }
     });
 
     var event_rules = {
@@ -85,7 +97,10 @@ $(document).ready( function() {
         start_datetime_0:{
             required: {
                 depends: function(element) {
+                	console.log(1);
                 	var event_type = $("#id_type option:selected").text();
+                	console.log(event_type);
+                	console.log(event_type != "Hard Deadline" || event_type != "Rolling Deadline");
                     return event_type != "Hard Deadline" || event_type != "Rolling Deadline" ;
                 }
             },
@@ -113,6 +128,9 @@ $(document).ready( function() {
                     return event_type != "Rolling Deadline" ;
             	}
             },
+        },
+        description:{
+        	required:true,
         },
         type:{
             required:true,
@@ -222,7 +240,7 @@ $(document).ready( function() {
 
     $("#id_audience").multiselect({
         noneSelectedText: 'select school years',
-        minWidth: 220,
+        minWidth: 200,
         height:146
     });
     

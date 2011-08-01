@@ -449,10 +449,9 @@ p {
 
     outline: none;
 }
-.dark_button:hover{
-    border: 1px solid #4E6D84;
-    box-shadow: #4E6D84 0 0 2px;
-    color:#FFF;
+.dark_button:hover, .dark_button:focus{
+    border: 1px solid #466175;
+    box-shadow: #466175 0 0 2px;
 }
 .dark_button:active{
     background: #4E6D84;
@@ -551,7 +550,7 @@ a.button {
 .button::-moz-focus-inner {
     border: 0;
 }
-.button:hover, .ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover {
+.button:focus, .button:hover, .ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover {
     background: #FFF;
     background: -moz-linear-gradient(top, #FFF 0%, #DDD 100%);
     background: -webkit-linear-gradient(top, #FFF 0%,#DDD 100%);
