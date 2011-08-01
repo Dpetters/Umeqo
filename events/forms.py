@@ -6,6 +6,7 @@ from django.utils.safestring import mark_safe
 from events.models import Event, EventType
 from events.choices import TIME_CHOICES
 from core.forms_helper import decorate_bound_field
+from core.models import SchoolYear
 
 decorate_bound_field()
 
@@ -15,10 +16,10 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
     A Widget that splits datetime input into two <input type="text"> boxes.
     """
 
-    def __init__(self, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None, initial=None):
+    def __init__(self, attrs, dateAttrs={'class':'datefield'}, timeAttrs={'class':'timefield'}, date_format=None, time_format=None, initial=None):
         widgets = (forms.DateInput(attrs=dateAttrs, format="%m/%d/%Y"),
                    forms.Select(attrs=timeAttrs, choices=TIME_CHOICES))
-        super(ImprovedSplitDateTimeWidget, self).__init__(widgets, {})
+        super(ImprovedSplitDateTimeWidget, self).__init__(widgets, attrs)
 
     def decompress(self, value):
         if value:
@@ -38,13 +39,16 @@ class RadioSelectTableRenderer( RadioFieldRenderer):
         return( mark_safe( u''.join( [ u'<td>%s</td>' % force_unicode(w) for w in self ] )))
     
 class EventForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name'}))
-    location = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter classroom #, address, etc..'}))
-    type = forms.ModelChoiceField(queryset = EventType.objects.all(), empty_label="select event type",label="Type:")
-    is_public = forms.TypedChoiceField(coerce=lambda x: bool(int(x)), choices=((0, 'Public'), (1, 'Private')), widget=forms.RadioSelect(renderer=RadioSelectTableRenderer))
-    start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(),required=False,label="Start Date/Time:")
-    end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(),label="End Date/Time:")
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name', 'tabindex':1}))
+    type = forms.ModelChoiceField(queryset = EventType.objects.all(), widget=forms.Select(attrs={'tabindex':2}), empty_label="select event type", label="Type:")
+    is_public = forms.TypedChoiceField(coerce=lambda x: bool(int(x)), initial=0, choices=((0, 'Public'), (1, 'Private')), widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':3}))
+    location = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter classroom #, address, etc..', 'tabindex':4}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'tabindex':5}))
+    start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':6}),required=False, label="Start Date/Time:")
+    end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':7}),label="End Date/Time:")
+    audience = forms.ModelChoiceField(label="Intended Audience:", widget=forms.Select(attrs={'tabindex':8}), queryset = SchoolYear.objects.all(), empty_label="select school years", required=False)
+    rsvp_message = forms.CharField(label="RSVP Message:", widget=forms.Textarea(attrs={'tabindex':8, 'placeholder':'Tell those who RSVP what to wear, bring, etc..'}), required=False)
     
     class Meta:
-        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description', 'is_public',)
+        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description', 'rsvp_message', 'is_public',)
         model = Event

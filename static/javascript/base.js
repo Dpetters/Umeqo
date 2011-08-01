@@ -92,6 +92,7 @@ function place_errors_table(error, element) {
     } else if (element.prev().prev().html()=="" || !element.prev().prev().children(":eq(0)").is(":visible")){
         element.prev().prev().html(error);
     }
+    console.log(element);
     if ($(element).position().left == 0) {
         if ($(element).next(":button.ui-multiselect").length!=0) {
             var offset = element.next().position().left-element.parent().position().left;

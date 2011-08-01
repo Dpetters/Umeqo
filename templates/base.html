@@ -77,24 +77,24 @@
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
                         {% ifnotequal current_path "/signup/" %}
                         <li id="signup_button">
-                            <a href="{% url student_registration %}">Join Umeqo!</a>
+                            <a tabindex="-1" href="{% url student_registration %}">Join Umeqo!</a>
                         </li>
                         {% endifnotequal %}
                         {% ifnotequal current_path "/login/" %}
                         <li id="login_button">
-                            <a href="javascript:void(0)">Login</a>
+                            <a tabindex="-1" href="javascript:void(0)">Login</a>
                         </li>
                         {% endifnotequal %}
                     {% endif %}
                     <li>
-                        <a id="home" href="{% url home %}">Home</a>
+                        <a id="home" href="{% url home %}" tabindex="-1">Home</a>
                     </li>
                     {% if user.is_authenticated and user.student or user.recruiter %}
                         <li>
-                            <a id="help" href="{% url help_center %}">Help</a>
+                            <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
                         </li>
                         <li>
-                            <a id="account" href="javascript:void(0)">Account <span class="arrow">&#9660;</span></a>
+                            <a id="account" href="javascript:void(0)" tabindex="-1">Account <span class="arrow">&#9660;</span></a>
                             <ul id="account_dropdown">
                                 <li class="info">{{user}}</li>
                             {% if user.student %}
@@ -108,13 +108,13 @@
                         </li>
                     {% else %}
                         <li>
-                            <a id="about" href="{% url about %}">About</a>
+                            <a id="about" href="{% url about %}" tabindex="-1">About</a>
                         </li>
                         <li>
-                            <a id="help_center" href="{% url help_center %}">Help</a>
+                            <a id="help_center" href="{% url help_center %}" tabindex="-1">Help</a>
                         </li>
                         <li>
-                            <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact</a>
+                            <a class="open_contact_us_dialog_link" href="javascript:void(0)" tabindex="-1">Contact</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -129,7 +129,7 @@
                 {% endif %}
                 <div id="logo_block">
                     <div id="logo_beta">beta</div>
-                    <a href="/"><img id="logo_image" src="{{ STATIC_URL }}images/logo.png" /></a>
+                    <a tabindex="-1" href="/"><img id="logo_image" src="{{ STATIC_URL }}images/logo.png" /></a>
                 </div>
             </div>
         </div>
@@ -177,10 +177,10 @@
             </div>
             <div id="footer_area">
                 <div id="footer_navigation_block">
-                    <a id="home" href="{% url home %}" title="home">Home</a>
-                    <a id="about" href="{% url about %}" title="about">About</a>
-                    <a id="help" href="{% url help_center %}" title="help">Help</a>
-                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact">Contact Us</a>
+                    <a id="home" href="{% url home %}" title="home" tabindex="-1">Home</a>
+                    <a id="about" href="{% url about %}" title="about" tabindex="-1">About</a>
+                    <a id="help" href="{% url help_center %}" title="help" tabindex="-1">Help</a>
+                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact" tabindex="-1">Contact Us</a>
                 </div>
                 <p id="footer_info_block">
                     &copy; 2011 Umeqo. All Rights Reserved.
