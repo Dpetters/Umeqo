@@ -7419,13 +7419,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-07-31 02:31:48", 
+   "last_updated": "2011-07-31 15:20:05", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "core/CampusOrg/educational_technologies_group_2011-07-31-02-31-26_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Educational Technologies Group"
   }
@@ -7435,13 +7435,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 15:23:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "EE-CS Graduate Students Association"
   }
@@ -7451,13 +7451,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 15:23:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Egyptian Association"
   }
@@ -7466,15 +7466,15 @@
   "pk": 130, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/evt/", 
+   "last_updated": "2011-07-31 15:26:49", 
+   "description": "The MIT Electric Vehicle Team (EVT) is a group of over 30 active undergraduate and graduate students at MIT who are dedicated to the research, design, and operation of electric vehicles (EVs). The team has completed one EV conversion and started a second conversion in June 2009. In addition, the team is active in education and community outreach. EVT is supported by the Sloan Automotive Laboratory, Electrochemical Energy Laboratory, and Edgerton Center at MIT.", 
+   "image": "core/CampusOrg/electric_vehicle_team_2011-07-31-15-26-49.png", 
+   "email": "evt-contact@mit.edu", 
+   "thumbnail": "core/CampusOrg/electric_vehicle_team_2011-07-31-15-26-49_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Electric Vehicle Team"
   }
  }, 
@@ -7483,7 +7483,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 15:26:55", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -7499,7 +7499,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 15:27:00", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -7514,15 +7514,15 @@
   "pk": 134, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://ems.mit.edu/", 
+   "last_updated": "2011-07-31 15:29:39", 
+   "description": "MIT-EMS is an ASA-approved student group, dedicated to providing emergency medical support resources to the MIT Community. In addition to operating MIT's ambulance at the Basic Life Support (BLS) level, they also train undergraduate and graduate students, as well as MIT faculty and staff, in emergency medical skills.", 
+   "image": "core/CampusOrg/ems_2011-07-31-15-29-39.png", 
+   "email": "ems-webmaster@mit.edu", 
+   "thumbnail": "core/CampusOrg/ems_2011-07-31-15-29-39_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "EMS"
   }
  }, 
@@ -7530,15 +7530,15 @@
   "pk": 135, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
+   "website": "http://www.mitenergyclub.org/", 
+   "last_updated": "2011-07-31 15:32:50", 
+   "description": "A student club deeply grounded into MIT\u2019s tradition of interdisciplinary work, the MIT Energy Club was founded in 2004 in order to create and integrated, well-educated MIT energy community across campus through events and initiatives focused on fact-based energy analysis.", 
+   "image": "core/CampusOrg/energy_club_2011-07-31-15-32-50.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/energy_club_2011-07-31-15-32-50_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Energy Club"
   }
  }, 
@@ -7547,31 +7547,15 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 15:32:57", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Engineers Without Borders"
-  }
- }, 
- {
-  "pk": 137, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Entrepreneurs Club"
   }
  }, 
  {
@@ -7579,14 +7563,14 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/thetans/www/", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 17:57:27", 
    "description": "Epsilon Theta is a co-ed MIT fraternity made up of about twenty men and women. Living together as a family of brothers and sisters, we consider ourselves a \"fraternity\" in the true sense of the word. Our big yellow house in Brookline is surrounded by tree-filled parks and a quiet residential community. Here we come home to unwind after a day of attending classes and working on campus. Epsilon Theta is a great place to study, play games, and build friendships.", 
    "image": "", 
    "email": "et-www@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 7, 
-   "display": false, 
+   "type": 6, 
+   "display": true, 
    "name": "Epsilon Theta"
   }
  }, 
@@ -7594,15 +7578,15 @@
   "pk": 139, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/equestrian/www/", 
+   "last_updated": "2011-07-31 17:58:16", 
+   "description": "The Equestrian Team provides opportunities for MIT affiliates to ride during the school year. The team has weekly lessons at a local barn and participates in intercollegiate shows. The team currently shows in the Intercollegiate Dressage Association (IDA) and is looking to start competing in huntseat through the Intercollegiate Horse Show Association (IHSA).", 
    "image": "", 
-   "email": "", 
+   "email": "equestrian@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 11, 
+   "display": true, 
    "name": "Equestrian Club"
   }
  }, 
@@ -7611,7 +7595,7 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 17:58:54", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -7626,15 +7610,15 @@
   "pk": 141, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://hkn.mit.edu/", 
+   "last_updated": "2011-07-31 18:00:54", 
+   "description": "Eta Kappa Nu is the national honor society for Electrical Engineering and Computer science. Eta Kappa Nu was founded in 1904 at the University of Illinois at Urbana-Champagne. Currently, HKN has over 200 chapters in the United States, Europe, and Asia. Eligibility depends mostly on scholarship, personal character, voluntary services, and distinguished accomplishments. For undergraduates, the most important qualification is scholarship during the first years in college.\r\n\r\nAt MIT, HKN is primarily interested in improving course VI by providing students with many helpful resources. These resources include the Underground guide to course VI and VI-A, the HKN tutoring program, the Big Sib program, and many social events.", 
+   "image": "core/CampusOrg/eta_kappa_nu_2011-07-31-18-00-54.png", 
+   "email": "hkn-officers@mit.edu", 
+   "thumbnail": "core/CampusOrg/eta_kappa_nu_2011-07-31-18-00-54_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Eta Kappa Nu"
   }
  }, 
@@ -7642,15 +7626,15 @@
   "pk": 142, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://euroclub.mit.edu/", 
+   "last_updated": "2011-07-31 18:05:37", 
+   "description": "Their club is one of the largest, most diverse and most active student activities at MIT. They currently have about 300 full members and more than 2800 associate members. Most of them are Europeans, but they also come from pretty much all other parts of the world. While the larger part of their members are graduate students and visiting scholars on a graduate level, it would not be fair to say they are just a graduate student group, because many of them are PostDocs, Visiting Scientists and also undergrads.\r\n\r\nThey have a tradition of organizing a variety of events. Some have become a tradition in themselves. For example, in the Fall, they go on a three-day hiking and foliage trip to New Hampshire or Vermont. They also have a downhill ski weekend in January and a cross-country ski trip in February. In March they pay a visit to the Big Apple (New York). On Memorial Day weekend in May, they drive to Maine or upstate New York for white-water rafting. And they always gather in front of the Charles River on July 4th for a picnic day with the most impressive firework background New England has to offer.", 
    "image": "", 
-   "email": "", 
+   "email": "contact@euroclub.mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "European Club"
   }
  }, 
@@ -7658,15 +7642,15 @@
   "pk": 143, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/falundafa/www/home.html", 
+   "last_updated": "2011-07-31 20:13:51", 
+   "description": "MIT Falun Dafa Club is an MIT recognized organization dedicated to traditional self-cultivation practice to improve mind and body.", 
    "image": "", 
-   "email": "", 
+   "email": "falundafa-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Falun Dafa Club"
   }
  }, 
@@ -7674,14 +7658,14 @@
   "pk": 144, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "website": "http://web.mit.edu/skatingclub/www/", 
+   "last_updated": "2011-07-31 20:13:54", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "skating-admin@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Figure Skating Club"
   }
@@ -7691,46 +7675,30 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 20:14:35", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Filipino Students Association"
-  }
- }, 
- {
-  "pk": 146, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "Film Cooperative"
   }
  }, 
  {
   "pk": 147, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/flamenco/", 
+   "last_updated": "2011-07-31 20:15:48", 
+   "description": "Flamenco @ MIT is a fairly newly established (Fall'08) student group among the body of Massachusetts Institute of Technology. They are a group of students passionate about the art the flamenco and are excited to share it. They have already hosted a number of events and hope to hold many more in the future that will bring the Bostonian flamenco community together and introduce flamenco to those who are not familiar with it at MIT and in the greater Boston area. ", 
    "image": "", 
-   "email": "", 
+   "email": "flamenco@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Flamenco @ MIT"
   }
  }, 
@@ -7738,31 +7706,31 @@
   "pk": 148, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "website": "http://web.mit.edu/unihoc/www/", 
+   "last_updated": "2011-07-31 20:16:46", 
    "description": "", 
    "image": "", 
-   "email": "", 
+   "email": "unihoc-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
-   "name": "Floorball"
+   "name": "Floorball (Unihoc)"
   }
  }, 
  {
   "pk": 149, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
-   "image": "", 
+   "website": "http://mitflying.scripts.mit.edu/www/", 
+   "last_updated": "2011-07-31 20:20:04", 
+   "description": "The MIT Flying Club\u2019s primary purpose is to motivate, encourage, and facilitate an affordable, hands-on experience in flying. Originally formed in the late 1920s, the MIT Flying Club (MITFC) was reborn in the Fall of 2005 to provide members the opportunity to meet and interact with others who are interested in aviation.\r\n\r\nThroughout the academic year, MITFC holds a variety of informal gatherings where members can meet to discuss aviation, listen to lectures, and watch movies. In addition, MITFC maintains a library of navigational and instructional materials. Several textbooks, a headset, U.S. sectionals, and airport facility directories are available for members to borrow. While based at MIT, club membership is open to everyone.\r\n\r\nA \u201cloggable\u201d flight simulator is being readied for use by the end of the semester. In addition, MITFC will be holding a flying trip to Cape Cod this April. For more information about the club\u2019s upcoming events, and how to get into powered and unpowered flight, download the Powerpoint Presentation.\r\n\r\nThe MIT Flying Club is organized by the MIT Flying Club Executive Board.", 
+   "image": "core/CampusOrg/flying_club_2011-07-31-20-20-04.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "core/CampusOrg/flying_club_2011-07-31-20-20-04_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Flying Club"
   }
  }, 
@@ -7770,15 +7738,15 @@
   "pk": 150, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://web.mit.edu/fdc/", 
+   "last_updated": "2011-07-31 20:20:57", 
+   "description": "The MIT Folk Dance Club sponsors three nights of dancing each week throughout the year, all of which are open to the MIT community and the general public.", 
    "image": "", 
-   "email": "", 
+   "email": "fdc-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Folk Dance Club"
   }
  }, 
@@ -7786,15 +7754,15 @@
   "pk": 151, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
-   "description": "", 
+   "website": "http://food-ag.mit.edu/", 
+   "last_updated": "2011-07-31 20:22:43", 
+   "description": "The MIT Food and Agriculture Collaborative brings together students \u2013 and other MIT community members \u2013 to coordinate and support work in the areas of food and agriculture.\r\n\r\nThey have developed an understanding of what work is being done across campus related to food and agriculture, mapped MIT\u2019s agricultural ecosystem, and are pulling together MIT\u2019s \u201cagricultural intelligence\u201d.\r\n\r\nThe issues members are focusing on range from how the global supply chains of traditional agribusiness firms can be more sustainable to the development of local urban food systems.\r\n\r\nMembers are actively engaged in advocating for and supporting the development of a more sustainable food system on our own campus. They also work to enhance MIT\u2019s role in contributing to the broader discourse on agricultural sustainability across the global system.", 
    "image": "", 
-   "email": "", 
+   "email": "food-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Food and Agriculture Collaborative"
   }
  }, 
@@ -7803,13 +7771,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 20:24:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Footnotes"
   }
@@ -7819,13 +7787,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:38", 
+   "last_updated": "2011-07-31 20:24:25", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
+   "type": 5, 
    "display": false, 
    "name": "Four Consulting"
   }
@@ -7834,15 +7802,15 @@
   "pk": 154, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://freeculture.mit.edu/", 
+   "last_updated": "2011-07-31 20:26:03", 
+   "description": "MIT Free Culture is a MIT student group dedicated to freedom on the internet and in the digital world. Their projects educate the MIT community and sometimes the world about fair use, free software, and open access. They educate ourselves too by regular discussions with local experts.", 
    "image": "", 
-   "email": "", 
+   "email": "freeculture@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Free Culture"
   }
  }, 
@@ -7851,46 +7819,30 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-07-31 20:41:38", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Game Development Club"
-  }
- }, 
- {
-  "pk": 156, 
-  "model": "core.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "GaMIT"
   }
  }, 
  {
   "pk": 157, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/geoclub/www/", 
+   "last_updated": "2011-07-31 20:41:40", 
+   "description": "The MIT Geology Club is a group of students, primarily but not exclusively from the Earth, Atmospheric, and Planetary Sciences Department (Course 12) who love, well, geology! They love talking about rocks, looking at rocks, and studying rocks in the context of gaining some understanding of how the earth and the solar system work. But they are not limited to classical geology by any means! They have members interested in geobiology, planetary geology, astrobiology, volcanology, petrology, geomorphology, sedimentology, paleontology and various other -ologies.", 
    "image": "", 
-   "email": "", 
+   "email": "geoclub@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Geology Club"
   }
  }, 
@@ -7898,31 +7850,31 @@
   "pk": 158, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/gsp/www/", 
+   "last_updated": "2011-07-31 20:41:41", 
+   "description": "Formed on 29 February 1988, the MIT Gilbert & Sullivan Players is a volunteer group of students and non-students at the Massachusetts Institute of Technology (Cambridge, MA) that performs the works of Sir William S. Gilbert and/or Sir Arthur Sullivan. MITG&SP occasionally performs other works, usually with some connection to Gilbert and Sullivan or the Victorian era.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Gilbert and Sullivan"
+   "type": 2, 
+   "display": true, 
+   "name": "Gilbert & Sullivan Players"
   }
  }, 
  {
   "pk": 159, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://mitgcc.mit.edu/", 
+   "last_updated": "2011-07-31 20:41:43", 
+   "description": "The MIT Chapter of Global China Connection was founded in the fall of 2010 by a group of students interested in international professional and business development. MIT GCC will provide future leaders and the international community with a platform to engage each other on topics of global trade, international relations, sustainable development, and cultural exchanges.\r\n\r\nAs China develops a large presence in the international arena, it is crucial to prepare MIT students for professional exchange with the international community. MIT GCC promotes greater awareness and understanding of these issues in the MIT community by means such as publications, general body meetings, professional seminars, delegation visits, international workshops, mentorship, service events, and other educational activities. As one of over 50 chapters established worldwide, MIT GCC is dedicated propelling this mission forward.", 
+   "image": "core/CampusOrg/global_china_connection_2011-07-31-20-32-37.png", 
+   "email": "gcc@mit.edu", 
+   "thumbnail": "core/CampusOrg/global_china_connection_2011-07-31-20-32-37_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 5, 
+   "display": true, 
    "name": "Global China Connection"
   }
  }, 
@@ -7930,15 +7882,15 @@
   "pk": 160, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://gpi.mit.edu/", 
+   "last_updated": "2011-07-31 20:41:44", 
+   "description": "The Global Poverty Initiative is a completely student-run organization dedicated to fighting poverty. They use our three teams (education, action, and outreach) to inform the MIT community about poverty issues and what is being done at MIT, to send students abroad to interact with community partners, and to connect students to organizations and non-profits all over the world. They have also teamed up with Komaza to publish the beautiful international development magazine. ", 
+   "image": "core/CampusOrg/global_poverty_initiative_2011-07-31-20-36-10.png", 
+   "email": "gpi-exec@mit.edu", 
+   "thumbnail": "core/CampusOrg/global_poverty_initiative_2011-07-31-20-36-10_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "Global Poverty Initiative"
   }
  }, 
@@ -7946,15 +7898,15 @@
   "pk": 161, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://www.mitgsw.org/", 
+   "last_updated": "2011-07-31 20:41:48", 
+   "description": "The annual MIT Global Startup Workshop (GSW) brings together entrepreneurial leaders, financiers, students, professors, government agents and private parties to build a global support network for entrepreneurship. They bridge boundaries across different sectors to stimulate discussion, generate ideas and share best entrepreneurial practices. Since 1998 our non-profit, student run organization has held 14 international workshops, spanning 6 continents and attracted participants from 70 nations.\r\n", 
+   "image": "core/CampusOrg/global_startup_workshop_2011-07-31-20-40-21.png", 
+   "email": "gsw-contact@mit.edu", 
+   "thumbnail": "core/CampusOrg/global_startup_workshop_2011-07-31-20-40-21_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 5, 
+   "display": true, 
    "name": "Global Startup Workshop"
   }
  }, 
@@ -7962,15 +7914,15 @@
   "pk": 162, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/go/", 
+   "last_updated": "2011-07-31 20:41:51", 
+   "description": "The MIT Go Club provides a friendly arena for members to play with and learn from each other and aims to introduce the game to beginners. They meet once a week throughout the school year and host many events, including tournaments and study breaks. They also teach many high school and middle school students through MIT ESP's programs. They would appreciate any experienced player willing to give lectures.", 
    "image": "", 
-   "email": "", 
+   "email": "mitgoclub@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Go Club"
   }
  }, 
@@ -7979,13 +7931,13 @@
   "model": "core.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-07-31 20:42:07", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Golf Club"
   }
@@ -7994,15 +7946,15 @@
   "pk": 164, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/mitgoscho/", 
+   "last_updated": "2011-07-31 20:43:09", 
+   "description": "The MIT Gospel Choir exists to spread the gospel of Jesus Christ through song. They hold concerts at MIT at the end of each term and also sing at other events and churches during the semester.", 
    "image": "", 
-   "email": "", 
+   "email": "gospel-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Gospel Choir"
   }
  }, 
@@ -8010,15 +7962,15 @@
   "pk": 165, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://web.mit.edu/mitgcf/www/", 
+   "last_updated": "2011-07-31 20:47:30", 
+   "description": "The MIT Graduate Christian Fellowship (GCF) is an MIT recognized student group consisting of Christians who desire  to know, love and obey God better, and to reflect the love and presence of Jesus Christ.\r\n\r\nGCF, along with the Asian (ACF), Black (BCF), Sloan (SCF), and the United (UCF) Christian Fellowships, are affiliated with InterVarsity Christian Fellowship, USA (IVCF).\r\n\r\nThey are also a part of United Christian Organization (UCO), an umbrella group of 16 Christian fellowships at MIT that are united in vision to serve and glorify God.", 
+   "image": "core/CampusOrg/graduate_christian_fellowship_2011-07-31-20-45-46.png", 
+   "email": "mit-gcf-info@mit.edu", 
+   "thumbnail": "core/CampusOrg/graduate_christian_fellowship_2011-07-31-20-45-46_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 13, 
+   "display": true, 
    "name": "Graduate Christian Fellowship"
   }
  }, 
@@ -8026,15 +7978,15 @@
   "pk": 166, 
   "model": "core.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://econ-www.mit.edu/graduate/gea", 
+   "last_updated": "2011-07-31 20:47:32", 
+   "description": "The goal of the Graduate Economics Association (GEA) is to provide the graduate students with outlets for social interaction and to act as a liasion between the students and faculty.", 
    "image": "", 
-   "email": "", 
+   "email": "gea-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Graduate Economics Association"
   }
  }, 
