@@ -1,3 +1,3 @@
 {% for location in locations %}
-    <p class="location_suggestion">{{location.object}}</p>
+    <p class="location_suggestion" data-latitude="{{location.object.latitude}}" data-longitude="{{location.object.longitude}}">{{location.object}}</p>
 {% endfor %}

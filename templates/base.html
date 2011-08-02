@@ -32,7 +32,8 @@
             var UNSUPPORTED_BROWSER_URL = "{% url unsupported_browser %}";
             var NOTIFICATIONS_URL = "{% url notification_ajax %}";
             var NOTIFICATIONS_COUNT_URL = "{% url get_notice_unseen_count %}";
-        
+            var CONTACT_US_URL = "{% url contact_us %}";
+            
             var page_error_message = "{% include 'page_error_message.html' %}";
             var dialog_error_message = "{% include 'dialog_error_message.html' %}";
         
@@ -58,10 +59,9 @@
             {% endif %}
         {% endcompress %}
         
-        <!--[if lte IE 8]>
-        <script src="{{ STATIC_URL }}javascript/unsupported-browser.js" type="text/javascript"></script>
+        <!--[if lt IE 8]>
+        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
         <![endif]-->
-        
         {% block metadata %}{% endblock %}
         
 

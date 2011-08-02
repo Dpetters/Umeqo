@@ -27,7 +27,8 @@ Copyright 2011. All Rights Reserved.
     var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     var CHECKIN_URL = "{% url event_checkin id=event.id %}";
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
-    var EVENT_LOCATION = "{{ event.location }}";
+    var EVENT_LATITUDE = "{{ event.latitude }}";
+    var EVENT_LONGITUDE = "{{ event.longitude }}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
 </script>
 {% compress js %}
@@ -231,7 +232,9 @@ Copyright 2011. All Rights Reserved.
                 </div>
                 <div class="main_block_content">
                     {{ event.location }}
+                    {% if event.latitude and event.longitude %}
                       <div id="map" style="width: 260px; height: 250px"></div>
+                    {% endif %}
                 </div>
             </div>
             

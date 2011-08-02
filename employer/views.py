@@ -257,36 +257,35 @@ def employer_resume_books(request, extra_context=None):
 @user_passes_test(is_recruiter)
 @render_to("employer_event_form.html")
 def employer_event_form(request, id=None, extra_context=None):
+    context = {}
+    if id:
+        context['edit'] = True
+        try:
+            event = Event.objects.get(pk=id)
+        except Event.DoesNotExist:
+            return HttpResponseNotFound("Event with id %s not found." % id)
     if request.method == 'POST':
         if id:
-            try:
-                event = Event.objects.get(pk=id)
-            except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % id)
-            form = EventForm(request.POST,instance=event)
+            form = EventForm(data=request.POST, instance=event)
         else:
             form = EventForm(data=request.POST)
         if form.is_valid():
-            event_obj = form.save()
-            event_obj.recruiters.add(request.user.recruiter)
+            event_obj = form.save(commit=False)
+            if id:
+                if not event_obj.recruiters.filter(id=request.user.recruiter.id).exists():
+                    event_obj.recruiters.add(request.user.recruiter)             
+            else:
+                event_obj.owner = request.user.recruiter
             event_obj.save()
             return HttpResponseRedirect(reverse('event_page', kwargs = {'id':event_obj.id, 'slug':event_obj.slug}))
     else:
-        context = {}
         if id:
-            try:
-                event = Event.objects.get(pk=id)
-                form = EventForm(instance=event)
-                context['edit'] = True
-                context['event'] = {'id': event.id,
-                                    'name': event.name,
-                                    'slug': event.slug}
-            except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % id)
+            form = EventForm(instance=event)
+            context['event'] = {'id': event.id, 'name': event.name, 'slug': event.slug}
         else:
             form = EventForm()
-        context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
-        context['form'] = form
+    context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
+    context['form'] = form
     return context
 
 

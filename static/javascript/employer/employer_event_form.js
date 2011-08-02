@@ -1,10 +1,16 @@
 $(document).ready( function() {
     var mit_location = new google.maps.LatLng(42.35967402, -71.09201372);
-    var xhr, map, geocoder, marker;
+    xhr = null;
+    map = null;
+    geocoder= null;
+    marker=null;
     var map_options = {
       zoom: 14,
       center: mit_location,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      streetViewControl:false,
+      mapTypeControl:false
+      
     };
 	map = new google.maps.Map(document.getElementById("map"), map_options);
 
@@ -42,8 +48,19 @@ $(document).ready( function() {
 	  		}
 	  	});
 	};
-
+	
+	$(".location_suggestion").live('click', function(){
+		$(".location_suggestion").removeClass("selected");
+		$(this).addClass("selected");
+		$("#id_location").val($(this).text());
+		center_map_coord($(this).attr("data-latitude"), $(this).attr("data-longitude")); 
+	});
+    
     function get_location_guess(){
+    	if (marker){
+    		marker.setMap(null);
+    		marker = null;
+    	}
     	if (xhr){
     		xhr.abort();
     	}
@@ -54,28 +71,42 @@ $(document).ready( function() {
             data: {
                 'query': $("#id_location").val(),
             },
+            beforeSend: function(jqXHR, settings){
+            	$("#location_suggestions").html(MEDIUM_AJAX_LOADER);
+            },
             success: function (data) {
+            	console.log(data);
+            	var query = $("#id_location").val();
                 if (data.valid){
                 	center_map_coord(data.latitude, data.longitude);
+                	$("#location_suggestions").html("");
                 }else{
                 	xhr = $.ajax({
 			            type: 'GET',
 			            url: GET_LOCATION_SUGGESTIONS_URL,
 			            dataType: "html",
 			            data: {
-			                'query': $("#id_location").val(),
+			                'query': query,
 			            },
 			            success: function (data) {
-			                $("#location_suggestions").html(data);
+			            	if(data){
+			                	$("#location_suggestions").html(data);
+			            	} else {
+			            		$("#location_suggestions").html("");
+			            		center_map_address(query);
+			            	}
 			            },
 			        });
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-                    show_error_dialog(page_check_connection_message);
-                }else{
-                    show_error_dialog(page_error_message);
+            	if (errorThrown != "abort")
+            	{
+	                if(jqXHR.status==0){
+	                    show_error_dialog(page_check_connection_message);
+	                }else{
+	                    show_error_dialog(page_error_message);
+	                }
                 }
             }
         });
@@ -86,7 +117,7 @@ $(document).ready( function() {
     	if(e.which != 9){
 	        if (typeof timeoutID!='undefined')
 	            window.clearTimeout(timeoutID);
-	        timeoutID = window.setTimeout(get_location_guess, 500);
+	        timeoutID = window.setTimeout(get_location_guess, 100);
        }
     });
 
@@ -97,10 +128,7 @@ $(document).ready( function() {
         start_datetime_0:{
             required: {
                 depends: function(element) {
-                	console.log(1);
                 	var event_type = $("#id_type option:selected").text();
-                	console.log(event_type);
-                	console.log(event_type != "Hard Deadline" || event_type != "Rolling Deadline");
                     return event_type != "Hard Deadline" || event_type != "Rolling Deadline" ;
                 }
             },
@@ -169,37 +197,35 @@ $(document).ready( function() {
             required: 'Location is required.'
         }
     }
-
+	
     $("#id_type").change( function() {
     	var event_type = $("#id_type option:selected").text()
         if (event_type === "Hard Deadline" || event_type === "Rolling Deadline"){
-        	$("#id_start_datetime_0").hover( function(){
-        		 console.log("hi");
-			     $(this).css('cursor', 'default');
-			});
+        	$("#event_form_header").html("New Deadline");
+        	
         	$("#id_name").attr("placeholder", "Enter deadline name");
-        	$("#start_datetime_wrapper").css("opacity", .2);
-        	$("#start_datetime_wrapper :input").attr('disabled', true);
-        	$("#start_datetime_wrapper :select").attr('disabled', 'disabled');
+			
         	$("#event_location_section").css("opacity", .2);
-        	$("#start_location_section :input").attr('disabled', true);
-        	$("#event_name_section .step").html("Step 1 - Pick Deadline Name (required)");
-        	$("#event_description_section .step").html("Step 3 - Describe Event (required)");
+        	$("#event_location_section input").attr('disabled', 'disabled');
+	        
+	        if(event_type === "Rolling Deadline") {
+	        	$("#event_datetime_block").css("opacity", .2);
+	        	$("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
+	        } else if(event_type === "Hard Deadline"){
+	      		$("#event_datetime_block").css("opacity", 1);
+	        	$("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
+	      		$("#start_datetime_wrapper").css("opacity", .2);
+	        	$("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
+	        	//$("#id_start_datetime_0").bind('hover', cursor_display);
+	        }
         } else {
+        	$("#event_form_header").html("New Event");
+        	//$("#id_start_datetime_0").unbind('hover', cursor_display);
+        	$("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
         	$("#start_datetime_wrapper").css("opacity", 1);
+        	
+        	$("#event_location_section input").removeAttr('disabled');
         	$("#event_location_section").css("opacity", 1);
-        }
-        if(event_type === "Rolling Deadline") {
-        	$("#event_form_header").html("New Rolling Headline");
-        	$("#event_datetime_block").css("opacity", .2);
-        	$("#start_datetime_block :input").attr('disabled', true);
-        } else{
-            $("#event_datetime_block").css("opacity", 1); 
-            $('#event_datetime_block :input').removeAttr('disabled');
-        	if (event_type === "Hard Deadline") {
-        		$("#event_datetime_block .main_block_header_title").html("Step 5 - Pick Date & Time (required)");
-        		$("#event_form_header").html("New Hard Headline");
-        	}
         }
     });
 
@@ -213,7 +239,14 @@ $(document).ready( function() {
     $("#id_description").ckeditor(config);
     
     $('#id_type').change();
-
+    
+	$("#event_form").submit(function(){
+		if (marker && marker.map){
+			$("#id_latitude").val(marker.position.lat());
+			$("#id_longitude").val(marker.position.lng());			
+		}
+	});
+	
     var event_form_validator = $("#event_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
@@ -226,18 +259,16 @@ $(document).ready( function() {
             remote: {
                 url: CHECK_NAME_AVAILABILITY_URL,
                 error: function(jqXHR, textStatus, errorThrown) {
-                    switch(jqXHR.status){
-                        case 500:
-                            $("#event_form_block .main_block_content").html(status_500_message);
-                            break;
-                        default:
-                            $("#event_form_block .main_block_content").html(check_connection_message);    
-                    }
-                },
+                    if(jqXHR.status==0){
+	                    show_error_dialog(page_check_connection_message);
+                    }else{
+	                    show_error_dialog(page_error_message);
+	                }
+                }
             }
         });
     }
-
+	console.log("hi");
     $("#id_audience").multiselect({
         noneSelectedText: 'select school years',
         minWidth: 200,
