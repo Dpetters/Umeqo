@@ -172,7 +172,7 @@ Copyright 2011. All Rights Reserved.
             </a>
         </div>
         
-        <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">private</span>{% endif %}</h1>
+        <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
         <div id="event_time">
             {% if event.start_datetime %}
             <span class="start">{{event.start_datetime|date:"D, F j"}}
