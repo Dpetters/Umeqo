@@ -52,9 +52,6 @@
     border-radius: 2px;
     -moz-border-radius: 2px;
 }
-.event_list .private_token {
-    text-transform: uppercase;
-}
 .event_list .details {
     margin-top: 3px;
     color: #666;

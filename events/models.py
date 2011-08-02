@@ -35,7 +35,7 @@ class Event(models.Model):
     rsvp_message = models.TextField(blank=True,null=True)
 
     # Statistics fields for "X new views"
-    last_seen_view_count = models.PositiveIntegerField(default=0)    
+    last_seen_view_count = models.PositiveIntegerField(default=0)  
     view_count = models.PositiveIntegerField(default=0)
     
     datetime_created = models.DateTimeField(auto_now=True)

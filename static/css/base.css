@@ -448,7 +448,7 @@ p {
     text-decoration: none;
     height: 30px;
     vertical-align: middle;
-
+    text-shadow: #000 0 -1px 0;
     outline: none;
 }
 .dark_button:hover, .dark_button:focus{
