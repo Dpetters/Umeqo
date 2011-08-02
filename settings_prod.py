@@ -2,7 +2,7 @@ import socket
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-COMPRESS = True
+COMPRESS = False
 
 def is_prod():
     return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
