@@ -30,7 +30,7 @@ urlpatterns += patterns('',
 )
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
-    (r'^contact-us-dialog/$', 'contact_us_dialog', {}, 'contact_us_dialog'),
+    (r'^contact-us/$', 'contact_us', {}, 'contact_us'),
     (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),
     (r'^help/faq/$', 'faq', {'extra_context': {'login_form': AuthenticationForm}}, 'faq'),
     (r'^help/tutorials/$', 'tutorials', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),

@@ -5,9 +5,10 @@
 <div class="dialog_content_wrapper">
     <div class="dialog_info_section">
         <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
+        <p>If you would like to email us instead, visit the <a href="{% url help_center %}">Help Center</a> to find the appropriate contact address.</p>
     </div>
     
-    <form id="contact_us_form" method='POST' action="/contact-us-dialog/">
+    <form id="contact_us_form" method='POST' action=".">
         {% csrf_token %}
         <table class="form_table">
             <tr>

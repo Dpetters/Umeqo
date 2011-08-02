@@ -42,13 +42,15 @@ class EventForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name', 'tabindex':1}))
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), widget=forms.Select(attrs={'tabindex':2}), empty_label="select event type", label="Type:")
     is_public = forms.TypedChoiceField(coerce=lambda x: bool(int(x)), initial=0, choices=((0, 'Public'), (1, 'Private')), widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':3}))
-    location = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter classroom #, address, etc..', 'tabindex':4}))
+    location = forms.CharField(widget=forms.TextInput(attrs={'autocomplete':'off', 'placeholder':'Enter classroom #, address, etc..', 'tabindex':4}))
+    latitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
+    longitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
     description = forms.CharField(widget=forms.Textarea(attrs={'tabindex':5}))
     start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':6}),required=False, label="Start Date/Time:")
     end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':7}),label="End Date/Time:")
     audience = forms.ModelChoiceField(label="Intended Audience:", widget=forms.Select(attrs={'tabindex':8}), queryset = SchoolYear.objects.all(), empty_label="select school years", required=False)
-    rsvp_message = forms.CharField(label="RSVP Message:", widget=forms.Textarea(attrs={'tabindex':8, 'placeholder':'Tell those who RSVP what to wear, bring, etc..'}), required=False)
+    rsvp_message = forms.CharField(label="RSVP Message:", widget=forms.Textarea(attrs={'tabindex':8, 'placeholder':'Tell RSVPs what to wear, bring, etc..'}), required=False)
     
     class Meta:
-        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'audience', 'description', 'rsvp_message', 'is_public',)
+        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'latitude', 'longitude', 'audience', 'description', 'rsvp_message', 'is_public',)
         model = Event
