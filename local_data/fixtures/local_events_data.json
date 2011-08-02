@@ -10,7 +10,9 @@
    "description": "In the Bay Area for the summer?  Feel there is not enough hacking in your life?  Enjoyed the awesome Hackleberry Finn?  Then come to Fear and Hacking in Palo Alto, SIPB's second Bay Area Hackathon!", 
    "is_active": true, 
    "last_seen_view_count": 0, 
+   "longitude": null, 
    "recruiters": [], 
+   "latitude": null, 
    "audience": [
     1, 
     2, 
@@ -19,12 +21,13 @@
     5, 
     6
    ], 
-   "location": "Palo Alto, CA", 
+   "end_datetime": "2011-07-10 12:00:00", 
    "rsvp_message": null, 
+   "owner": 1, 
    "is_public": false, 
    "type": 6, 
    "slug": "quora-hackathon", 
-   "end_datetime": "2011-07-10 12:00:00"
+   "location": "Palo Alto, CA"
   }
  }, 
  {
@@ -34,11 +37,15 @@
    "view_count": 9, 
    "start_datetime": "2011-09-14 19:30:00", 
    "name": "Fortune 500 Panel", 
-   "datetime_created": "2011-07-27 19:48:47", 
-   "description": "", 
+   "datetime_created": "2011-08-01 23:58:27", 
+   "description": "<p>\r\n\tstudent house</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "recruiters": [], 
+   "longitude": -71.098349690000006, 
+   "recruiters": [
+    1
+   ], 
+   "latitude": 42.350392990000003, 
    "audience": [
     1, 
     2, 
@@ -47,12 +54,13 @@
     5, 
     6
    ], 
-   "location": "E-160", 
-   "rsvp_message": null, 
+   "end_datetime": "2011-09-14 21:30:00", 
+   "rsvp_message": "", 
+   "owner": 1, 
    "is_public": false, 
    "type": 3, 
    "slug": "fortune-500-panel", 
-   "end_datetime": "2011-09-14 21:30:00"
+   "location": "Student House"
   }
  }, 
  {
@@ -66,18 +74,21 @@
    "description": "", 
    "is_active": true, 
    "last_seen_view_count": 0, 
+   "longitude": null, 
    "recruiters": [
     1
    ], 
+   "latitude": null, 
    "audience": [
     1
    ], 
-   "location": "", 
+   "end_datetime": "2011-07-26 16:00:00", 
    "rsvp_message": null, 
+   "owner": 1, 
    "is_public": false, 
    "type": 2, 
    "slug": "infosession", 
-   "end_datetime": "2011-07-26 16:00:00"
+   "location": ""
   }
  }, 
  {
@@ -91,18 +102,21 @@
    "description": "", 
    "is_active": true, 
    "last_seen_view_count": 0, 
+   "longitude": null, 
    "recruiters": [
     1
    ], 
+   "latitude": null, 
    "audience": [
     2
    ], 
-   "location": "158 Mass. Ave. Lot (Zone 4: North)", 
+   "end_datetime": "2011-07-29 13:30:00", 
    "rsvp_message": null, 
+   "owner": 1, 
    "is_public": false, 
    "type": 5, 
    "slug": "fun-talk", 
-   "end_datetime": "2011-07-29 13:30:00"
+   "location": "158 Mass. Ave. Lot (Zone 4: North)"
   }
  }, 
  {
