@@ -1,73 +1,17 @@
 $(document).ready(function() {
+	if (EVENT_LATITUDE && EVENT_LONGITUDE){
+	    var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);
+	    var map_options = {
+	      zoom: 16,
+	      center: location,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+		var map = new google.maps.Map(document.getElementById("map"), map_options);
+	    var marker = new google.maps.Marker({ map: map }); 
+    	marker.setPosition(location);
+	}
 
-    var mit_location = new google.maps.LatLng(42.35967402, -71.09201372);
-    var xhr, map, geocoder, marker;
-    var map_options = {
-      zoom: 14,
-      center: mit_location,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-	map = new google.maps.Map(document.getElementById("map"), map_options);
 
-
-	function center_map_coord(latitude, longitude){
-		var location = new google.maps.LatLng(latitude, longitude);
-	    map.setCenter(location)
-	    map.setZoom(16);
-        if (!marker) {
-        	marker = new google.maps.Marker({ 
-        		map: map
-         	});
-		}
-		marker.setPosition(location)
-  	}
-
-  	function center_map_address(address){
-        if (!geocoder){
- 			geocoder = new google.maps.Geocoder();        
-        }
-
-        var geocoderRequest = {
-        	address: address,
-        	location: mit_location,
-        	region: "US"
-        }
-        
-  		geocoder.geocode(geocoderRequest, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                map.setZoom(16);
-                if (!marker) {
-                	marker = new google.maps.Marker({ 
-                		map: map
-                 	}); 
-				}
-    			marker.setPosition(results[0].geometry.location)
-	  		}
-	  	});
-	};
-	$.ajax({
-        type: 'GET',
-        url: GET_LOCATION_GUESS_URL,
-        dataType: "json",
-        data: {
-            'query': EVENT_LOCATION,
-        },
-        success: function (data) {
-            if (data.valid){
-            	center_map_coord(data.latitude, data.longitude);
-            }else{
-            	center_map_address(data.query);
-            }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            if(jqXHR.status==0){
-                show_error_dialog(page_check_connection_message);
-            }else{
-                show_error_dialog(page_error_message);
-            }
-        }
-    });
     
     function rsvp(isAttending) {
         $.post($(this).attr('href'), {

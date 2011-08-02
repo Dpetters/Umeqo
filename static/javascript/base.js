@@ -59,7 +59,7 @@ function highlight(element, errorClass) {
 };
 function unhighlight(element, errorClass) {
     $(element).prev().children().hide();
-    if ($(element).next(":button.ui-multiselect")) {
+    if ($(element).next(":button.ui-multiselect").length != 0) {
         $(element).next().css('border', '1px solid #AAA');
     }
     $(element).filter("input[type=password]").css('border', '1px solid #AAA');
@@ -86,21 +86,20 @@ function place_errors_ajax_table(errors, element){
     place_errors_table($(error), element);
 };
 
-function place_errors_table(error, element) {
-    if (element.prev().get(0).tagName=='DIV') {
-        element.prev().html(error);
-    } else if (element.prev().prev().html()=="" || !element.prev().prev().children(":eq(0)").is(":visible")){
-        element.prev().prev().html(error);
+function place_errors_table($error, $element) {
+    if ($element.prev().get(0).tagName=='DIV') {
+        $element.prev().html($error);
+    } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
+        $element.prev().prev().html($error);
     }
-    console.log(element);
-    if ($(element).position().left == 0) {
-        if ($(element).next(":button.ui-multiselect").length!=0) {
-            var offset = element.next().position().left-element.parent().position().left;
+    if ($element.position().left == 0) {
+        if ($element.next(":button.ui-multiselect").length!=0) {
+            var offset = $element.next().position().left-$element.parent().position().left;
         }
-    } else if (element.prev().prev().get(0) && element.prev().prev().get(0).tagName!='DIV'){
-        var offset = element.position().left-element.parent().position().left;
+    } else if ($element.prev().prev().get(0) && $element.prev().prev().get(0).tagName!='DIV'){
+        var offset = $element.position().left - $element.parent().position().left;
     }
-    error.css({
+    $error.css({
         "padding-left": offset,
         "float": "left",
         "position": "absolute",
@@ -202,7 +201,7 @@ $(document).ready( function () {
         var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
-            url: '/contact-us-dialog/',
+            url: CONTACT_US_URL,
             error: function(jqXHR, textStatus, errorThrown) {
                 clearTimeout(contact_us_dialog_timeout);
                 if(jqXHR.status==0){
@@ -227,7 +226,7 @@ $(document).ready( function () {
                                 hide_form_submit_loader("#contact_us_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
-                                if(jqXHR.status==0){
+                                if(jqXHR.status==0 && errorThrown != "abort"){
                                     $(".contact_us_dialog .error_section").html(form_check_connection_message);
                                 }else{
                                     contact_us_dialog.html(dialog_error_message);
@@ -266,11 +265,26 @@ $(document).ready( function () {
         });
     });
     
+	$(window).scroll(function() {
+	    if(this.scrollTO) clearTimeout(this.scrollTO);
+	    this.scrollTO = setTimeout(function() {
+	        $(this).trigger('scrollEnd');
+	    }, 100);
+	});
+	
+	$(window).resize(function() {
+	    if(this.resizeTO) clearTimeout(this.resizeTO);
+	    this.resizeTO = setTimeout(function() {
+	        $(this).trigger('resizeEnd');
+	    }, 100);
+	});
+	    
+	    
     // Make sure dialogs are always position in the center
-    $(window).resize( function() {
+    $(window).bind('resizeEnd',  function() {
         $(".dialog").dialog('option', 'position', 'center');
     });
-    $(window).scroll( function() {
+    $(window).bind('scrollEnd', function() {
         $(".dialog").dialog('option', 'position', 'center');
     });
     

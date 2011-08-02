@@ -71,14 +71,15 @@ def tutorials(request, extra_context = None):
     return context
 
 
-@render_to('contact_us_dialog.html')
-def contact_us_dialog(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
+@render_to('contact_us.html')
+def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, request=request)
             if form.is_valid():
                 form.save(fail_silently=fail_silently)
-                return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
                 data = {'valid':False}
                 errors = {}
@@ -109,7 +110,9 @@ def get_location_guess(request):
         if request.method == "GET":
             if request.GET.has_key('query'):
                 search_query_set = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
-                if not search_query_set or len(search_query_set)> 0:
+                print search_query_set
+                print len(search_query_set)
+                if not search_query_set or len(search_query_set) > 1:
                     data = {'valid':False}
                     data['query'] = request.GET['query']
                 else:

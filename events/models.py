@@ -16,7 +16,8 @@ class Event(models.Model):
     objects = ActiveManager()
 
     # Required Fields
-    recruiters = models.ManyToManyField("employer.Recruiter")
+    owner = models.ForeignKey("employer.Recruiter")
+    recruiters = models.ManyToManyField("employer.Recruiter", null=True, blank=True, related_name="modified_events")
     
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
@@ -25,7 +26,9 @@ class Event(models.Model):
     # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    
     # Optional Fields
     audience = models.ManyToManyField("core.SchoolYear", blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -47,6 +50,8 @@ class Event(models.Model):
         super(Event, self).__init__(*args, **kwargs)
     
     def save(self, *args, **kwargs):
+        print args
+        print kwargs
         self.full_clean()
         super(Event, self).save(*args, **kwargs)
 

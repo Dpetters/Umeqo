@@ -310,7 +310,6 @@ p {
     padding-bottom: 15px;
 }
 .side_nav {
-    margin-bottom: 20px;
     padding-left:12px;
     width: 182px;
 }
@@ -330,6 +329,9 @@ p {
     margin-top: 20px;
     display: inline-block;
     width: 100%;
+}
+.main_block::first-child{
+	margin-top:0px;
 }
 .main_block h1{
 	margin-bottom:15px;
@@ -713,6 +715,9 @@ label {
 label.error{
 	padding-right:0px;
 }
+label:not(.required) {
+	padding-right:8px;
+}
 input[type=text], input[type=password], select, textarea {
     behavior: url(/static/lib/pie/PIE.htc);
     -moz-border-radius: 3px;
@@ -756,7 +761,11 @@ td #ajax_form_submit_loader {
     margin-top: 20px;
     text-align: center;
 }
-.required:not([type=file])::after {
+.back_to_link{
+	float:right;
+	margin-top:5px;
+}
+.required:not([type=file]):after {
     content: '*';
     color: #FF7B7B;
 }
