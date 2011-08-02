@@ -20,7 +20,7 @@ Student Registration |
 <div id="student_registration_block" class="main_block">
     <h1>Student Registration</h1>
     <div class="main_block_content">
-        <form id="student_registration_form" method='POST' action="" autocomplete="off">
+        <form id="student_registration_form" method="POST" action="" autocomplete="off">
             {% csrf_token %}
             <table class="form_table grande">
                 <tr>
@@ -43,8 +43,8 @@ Student Registration |
                 <tr>
                     <th></th>
                     <td>
-                        <input id="student_registration_form_submit_button" class="button" type='submit' value='Create my account'>
-                        <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                        <input id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
+                        <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
                     </td>
                 </tr>
             </table>

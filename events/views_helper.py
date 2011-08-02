@@ -4,7 +4,7 @@ from haystack.query import SearchQuerySet
 
 def event_search_helper(request):
     query = request.GET.get('q','')
-    search_results = SearchQuerySet().models(Event).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
+    search_results = SearchQuerySet().models(Event).filter(is_public=True).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
     if query!="":
         for q in query.split(' '):
             if q.strip() != "":
