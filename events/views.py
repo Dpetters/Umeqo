@@ -15,7 +15,7 @@ from django.views.decorators.http import require_http_methods
 from notification import models as notification
 
 from core.decorators import is_recruiter, is_student, render_to
-from events.models import Attendee, Event, RSVP, Invitee
+from events.models import Attendee, Event, EventType, Invitee, RSVP
 from events.views_helper import event_search_helper
 from student.models import Student
 
@@ -86,6 +86,11 @@ def event_page(request, id, slug, extra_context=None):
             all_responses.append(res)
     all_responses.sort(key=lambda n: n['datetime_created'])
     all_responses.sort(key=lambda n: 0 if n['account'] else 1)
+    is_deadline = (event.type == EventType.objects.filter(name='Deadline').get())
+    if is_deadline:
+        attending_text = 'Participating'
+    else:
+        attending_text = 'Attending'
     context = {
         'event': event,
         'invitees': invitees,
@@ -101,6 +106,8 @@ def event_page(request, id, slug, extra_context=None):
         'can_rsvp': False,
         'show_admin': False,
         'is_past': is_past,
+        'attending_text': attending_text,
+        'is_deadline': is_deadline,
         'recruiters': event.recruiters.all(),
         'google_description': google_description
     }

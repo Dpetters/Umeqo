@@ -27,8 +27,8 @@ Copyright 2011. All Rights Reserved.
     var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
     var CHECKIN_URL = "{% url event_checkin id=event.id %}";
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
-    var EVENT_LATITUDE = "{{ event.latitude }}";
-    var EVENT_LONGITUDE = "{{ event.longitude }}";
+    var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
+    var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
 </script>
 {% compress js %}
@@ -58,25 +58,29 @@ Copyright 2011. All Rights Reserved.
                         <td class="number_label">pageview{{event.view_count|pluralize}}</td>
                     </tr>
                 </table>
-                <div id="event_checkin">
-                    <h3>Check-in Mode</h3>
-                    <a id="event_checkin_link" href="#">
-                        <span class="text">Enable</span>
-                        <span class="filler"></span>
-                    </a>
-                </div>
+                {% if is_attending %}
+                    <div id="event_checkin">
+                        <h3>Check-in Mode</h3>
+                        <a id="event_checkin_link" href="#">
+                            <span class="text">Enable</span>
+                            <span class="filler"></span>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
             <div id="event_admin_main">
                  <div id="event_tabs">
                     {% if event.is_public %}
-                        <h2 class="current">RSVP'd Attending</h2>
+                        <h2 class="current">RSVP'd {{attending_text}}</h2>
                     {% else %}
                         <h2 class="current">Invited</h2>
-                        <h2>Attending</h2>
-                        <h2>Not Attending</h2>
+                        <h2>{{attending_text}}</h2>
+                        <h2>Not {{attending_text}}</h2>
                     {% endif %}
+                    {% if not is_deadline %}
                         <h2>Checked-in</h2>
                         <h2>All</h2>
+                    {% endif %}
                 </div>
                 {% if not event.is_public %}
                     <div id="event_invites" class="responses">
@@ -94,7 +98,7 @@ Copyright 2011. All Rights Reserved.
                         {% include "events_response_token.html" with student=student %}
                     {% empty %}
                     <div id="event_response_empty">
-                        Nobody has RSVP'd <strong>Attending</strong> yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
+                        Nobody has RSVP'd <strong>{{attending_text}}</strong> yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
                     </div>
                     {% endfor %}
                 </div>
@@ -104,7 +108,7 @@ Copyright 2011. All Rights Reserved.
                             {% include "events_response_token.html" with student=student %}
                         {% empty %}
                         <div id="event_response_empty">
-                            Nobody has RSVP'd <strong>Not Attending</strong> yet.
+                            Nobody has RSVP'd <strong>Not {{attending_text}}</strong> yet.
                         </div>
                         {% endfor %}
                     </div>
@@ -136,11 +140,11 @@ Copyright 2011. All Rights Reserved.
                 {% else %}{% if can_rsvp or show_admin %}
                     {% if event.is_public %}
                         <div class="no-response{% if not responded %} hid{% endif %}">
-                            <span id="attending-span">Attending</span>
-                            <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not attending</a>
+                            <span id="attending-span">{{attending_text}}</span>
+                            <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
                         </div>
                         <div class="response{% if responded %} hid{% endif %}">
-                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: Attending</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: {{attending_text}}</a>
                         </div>
                         {% if show_admin %}
                             <span class="help-bubble public">Students can click to RSVP.</span>
@@ -148,8 +152,8 @@ Copyright 2011. All Rights Reserved.
                     {% else %}
                         <strong>RSVP:</strong>
                         {% spaceless %}
-                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Attending</a>
-                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not Attending</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">{{attending_text}}</a>
+                            <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not {{attending_text}}</a>
                         {% endspaceless %}
                         <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
                         {% if show_admin %}

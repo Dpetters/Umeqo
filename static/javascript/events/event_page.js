@@ -1,15 +1,15 @@
 $(document).ready(function() {
-	if (EVENT_LATITUDE && EVENT_LONGITUDE){
-	    var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);
-	    var map_options = {
-	      zoom: 16,
-	      center: location,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
-		var map = new google.maps.Map(document.getElementById("map"), map_options);
-	    var marker = new google.maps.Marker({ map: map }); 
-    	marker.setPosition(location);
-	}
+    if (EVENT_LATITUDE && EVENT_LONGITUDE){
+        var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);
+        var map_options = {
+          zoom: 16,
+          center: location,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"), map_options);
+        var marker = new google.maps.Marker({ map: map }); 
+        marker.setPosition(location);
+    }
 
 
     
