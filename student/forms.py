@@ -1,8 +1,9 @@
 from django import forms
 
 from student.models import Student, StudentPreferences
-from core.forms_helper import campus_org_types_as_choices
-from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, CampusOrg, Language
+from campus_org.form_helpers import campus_org_types_as_choices
+from campus_org.models import CampusOrg
+from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
 from core.view_helpers import does_email_exist
 from employer.models import Employer
 from django.utils.translation import ugettext as _

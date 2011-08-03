@@ -36,6 +36,7 @@ label[for=id_is_public_0], label[for=id_is_public_1]{
 	margin-left:7px;
 }
 #location_suggestions{
+	margin-top:1px;
 	height:176px;
 	width:310px;
 }

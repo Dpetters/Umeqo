@@ -1,4 +1,3 @@
-from core.models import CampusOrg, Language, CampusOrgType
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,6 +8,8 @@ from django.contrib.sites.models import Site
 
 from registration.models import InterestedPerson
 from core import messages
+from core.models import Language
+
 
 class EmailAuthenticationForm(AuthenticationForm):
     username = forms.CharField(label='Email', max_length=30)
@@ -250,18 +251,6 @@ class BetaForm(forms.ModelForm):
     class Meta:
         fields = ('first_name','last_name','email','summer_plans')
         model = InterestedPerson
-
-
-class CreateCampusOrganizationForm(forms.ModelForm):
-    name = forms.CharField(label="Name:", max_length=42)
-    type = forms.ModelChoiceField(label="Type:", queryset = CampusOrgType.objects.all())
-    website = forms.URLField(label="Website:", required = False)
-    
-    class Meta:
-        fields = ('name',
-                  'type',
-                  'website')
-        model = CampusOrg
 
         
 class CreateLanguageForm(forms.ModelForm):

@@ -1,125 +1,131 @@
 $(document).ready( function() {
-    var mit_location = new google.maps.LatLng(42.35967402, -71.09201372);
-    xhr = null;
-    map = null;
-    geocoder= null;
-    marker=null;
-    var map_options = {
-      zoom: 14,
-      center: mit_location,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      streetViewControl:false,
-      mapTypeControl:false
-      
-    };
-	map = new google.maps.Map(document.getElementById("map"), map_options);
-
-	function center_map_coord(latitude, longitude){
-		var location = new google.maps.LatLng(latitude, longitude);
-	    map.setCenter(location)
-	    map.setZoom(16);
-        if (!marker) {
-        	marker = new google.maps.Marker({ 
-        		map: map
-         	});
-		}
-		marker.setPosition(location)
-  	}
-
-  	function center_map_address(address){
-        if (!geocoder){
- 			geocoder = new google.maps.Geocoder();        
-        }
-        var geocoderRequest = {
-        	address: address,
-        	location: mit_location,
-        	region: "US"
-        }
-  		geocoder.geocode(geocoderRequest, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                map.setZoom(16);
-                if (!marker) {
-                	marker = new google.maps.Marker({ 
-                		map: map
-                 	}); 
-				}
-    			marker.setPosition(results[0].geometry.location)
-	  		}
-	  	});
-	};
+	var xhr, map, geocodes, marker, map_options, mit_location;
 	
-	$(".location_suggestion").live('click', function(){
-		$(".location_suggestion").removeClass("selected");
-		$(this).addClass("selected");
-		$("#id_location").val($(this).text());
-		center_map_coord($(this).attr("data-latitude"), $(this).attr("data-longitude")); 
-	});
-    
-    function get_location_guess(){
-    	if (marker){
-    		marker.setMap(null);
-    		marker = null;
-    	}
-    	if (xhr){
-    		xhr.abort();
-    	}
-		xhr = $.ajax({
-            type: 'GET',
-            url: GET_LOCATION_GUESS_URL,
-            dataType: "json",
-            data: {
-                'query': $("#id_location").val(),
-            },
-            beforeSend: function(jqXHR, settings){
-            	$("#location_suggestions").html(MEDIUM_AJAX_LOADER);
-            },
-            success: function (data) {
-            	console.log(data);
-            	var query = $("#id_location").val();
-                if (data.valid){
-                	center_map_coord(data.latitude, data.longitude);
-                	$("#location_suggestions").html("");
-                }else{
-                	xhr = $.ajax({
-			            type: 'GET',
-			            url: GET_LOCATION_SUGGESTIONS_URL,
-			            dataType: "html",
-			            data: {
-			                'query': query,
-			            },
-			            success: function (data) {
-			            	if(data){
-			                	$("#location_suggestions").html(data);
-			            	} else {
-			            		$("#location_suggestions").html("");
-			            		center_map_address(query);
-			            	}
-			            },
-			        });
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-            	if (errorThrown != "abort")
-            	{
-	                if(jqXHR.status==0){
-	                    show_error_dialog(page_check_connection_message);
-	                }else{
-	                    show_error_dialog(page_error_message);
-	                }
-                }
-            }
-        });
-    }
-    
-    var timeoutID;
-    $('#id_location').keydown( function(e) {
-    	if(e.which != 9){
-	        if (typeof timeoutID!='undefined')
-	            window.clearTimeout(timeoutID);
-	        timeoutID = window.setTimeout(get_location_guess, 100);
-       }
-    });
+	if (typeof(google) !== "undefined"){
+		mit_location = new google.maps.LatLng(42.35967402, -71.09201372);
+	    
+	    map_options = {
+	      zoom: 14,
+	      center: mit_location,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	      streetViewControl:false,
+	      mapTypeControl:false
+	      
+	    };
+		map = new google.maps.Map(document.getElementById("map"), map_options);
+	
+		function center_map_coord(latitude, longitude){
+			var location = new google.maps.LatLng(latitude, longitude);
+		    map.setCenter(location)
+		    map.setZoom(16);
+	        if (typeof(marker)==="undefined") {
+	        	marker = new google.maps.Marker({ 
+	        		map: map
+	         	});
+			}
+			marker.setPosition(location)
+	  	}
+	
+	  	function center_map_address(address){
+	        if (typeof(geocoder)==="undefined"){
+	 			geocoder = new google.maps.Geocoder();        
+	        }
+	        var geocoderRequest = {
+	        	address: address,
+	        	location: mit_location,
+	        	region: "US"
+	        }
+	  		geocoder.geocode(geocoderRequest, function(results, status) {
+	            if (status == google.maps.GeocoderStatus.OK) {
+	                map.setCenter(results[0].geometry.location);
+	                map.setZoom(16);
+	                if (typeof(marker)==="undefined") {
+	                	marker = new google.maps.Marker({ 
+	                		map: map
+	                 	}); 
+					}
+	    			marker.setPosition(results[0].geometry.location)
+		  		}
+		  	});
+		};
+		
+		$(".location_suggestion").live('click', function(){
+			$(".location_suggestion").removeClass("selected");
+			$(this).addClass("selected");
+			$("#id_location").val($(this).text());
+			center_map_coord($(this).attr("data-latitude"), $(this).attr("data-longitude")); 
+		});
+	    
+	    function get_location_guess(){
+	    	if (typeof(marker) !== "undefined" && marker){
+	    		marker.setMap(null);
+	    		marker = null;
+	    	}
+	    	if (xhr){
+	    		xhr.abort();
+	    		$("#location_suggestions").html("");
+	    	}
+	    	if ($('#id_location').val() != ""){
+				xhr = $.ajax({
+		            type: 'GET',
+		            url: GET_LOCATION_GUESS_URL,
+		            dataType: "json",
+		            data: {
+		                'query': $("#id_location").val(),
+		            },
+		            beforeSend: function(jqXHR, settings){
+		            	$("#location_suggestions").html(MEDIUM_AJAX_LOADER);
+		            },
+		            success: function (data) {
+		            	console.log(data);
+		            	var query = $("#id_location").val();
+		                if (data.valid){
+		                	center_map_coord(data.latitude, data.longitude);
+		                	$("#location_suggestions").html("");
+		                }else{
+		                	xhr = $.ajax({
+					            type: 'GET',
+					            url: GET_LOCATION_SUGGESTIONS_URL,
+					            dataType: "html",
+					            data: {
+					                'query': query,
+					            },
+					            success: function (data) {
+					            	if(data){
+					                	$("#location_suggestions").html(data);
+					            	} else {
+					            		$("#location_suggestions").html("");
+					            		center_map_address(query);
+					            	}
+					            },
+					        });
+		                }
+		            },
+		            error: function(jqXHR, textStatus, errorThrown) {
+		            	if (errorThrown != "abort")
+		            	{
+			                if(jqXHR.status==0){
+			                    show_error_dialog(page_check_connection_message);
+			                }else{
+			                    show_error_dialog(page_error_message);
+			                }
+		                }
+		            }
+		        });
+		     } else {
+		     	$("#location_suggestions").html("");
+		     }
+	    }
+	    
+	    var timeoutID;
+	    $('#id_location').keydown( function(e) {
+	    	if(e.which != 9){
+		        if (typeof timeoutID!='undefined')
+		            window.clearTimeout(timeoutID);
+		        timeoutID = window.setTimeout(get_location_guess, 100);
+	       }
+	    });
+	}
 
     var event_rules = {
         name:{

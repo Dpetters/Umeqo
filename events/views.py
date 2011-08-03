@@ -7,14 +7,18 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
-from notification import models as notification
 
-from core.decorators import is_recruiter, is_student, render_to
+from notification import models as notification
+from core.models import Edit
+from events.forms import EventForm
+#from employer.forms import EmployerEventForm
+#from campus_org.forms import CampusOrgEventForm
+from core.decorators import is_recruiter, is_student, is_campus_org, render_to
 from events.models import Attendee, Event, EventType, Invitee, RSVP
 from events.views_helper import event_search_helper
 from student.models import Student
@@ -125,6 +129,84 @@ def event_page(request, id, slug, extra_context=None):
     context.update(extra_context or {})
     return render_to_response('event_page.html',context,context_instance=RequestContext(request))
 
+
+@login_required
+@render_to()
+def event_new(request, form_class=None, extra_context=None):
+    context = {}
+    if is_recruiter(request.user):
+        form_class = EventForm
+        context['TEMPLATE'] = "event_form.html"
+    elif is_campus_org(request.user):
+        form_class = CampusOrgEventForm
+        context['TEMPLATE'] = "campus_org_event_form.html"
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.owner = request.user
+            event.save()
+            return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
+    else:
+        form = form_class()
+    context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
+    context['form'] = form
+    return context
+    
+
+@login_required
+@render_to()
+def event_edit(request, id=None, extra_context=None):
+    try:
+        context = {}
+        event = Event.objects.get(pk=id)
+        if is_recruiter(event.owner):
+            form_class = EventForm
+            context['TEMPLATE'] = "event_form.html"
+            if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
+                return HttpResponseForbidden('You are not allowed to edit this event.')                
+        elif is_campus_org(event.owner):
+            form_class = CampusOrgEventForm
+            context['TEMPLATE'] = "campus_org_event_form.html"
+            if not is_campus_org(request.user) or request.user.campus_org != event.owner.campus_org:
+                return HttpResponseForbidden('You are not allowed to edit this event.') 
+        if request.method == 'POST':
+            form = form_class(data=request.POST, instance=event)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.recruiters.add(Edit.objects.create(user=request.user))
+                event.save()
+                form.save_m2m()
+                return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
+        else:
+            form = form_class(instance=event)
+        context['edit'] = True
+        context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
+        context['form'] = form
+        return context
+    except Event.DoesNotExist:
+        return HttpResponseNotFound("Event with id %s not found." % id)
+
+
+@login_required
+def event_delete(request, id, extra_context = None):
+    if request.is_ajax():
+        try:
+            event = Event.objects.get(pk=id)
+            if is_recruiter(event.owner):
+                if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
+                    return HttpResponseForbidden('You are not allowed to delete this event.')                
+            elif is_campus_org(event.owner):
+                if not is_campus_org(request.user) or request.user.campus_org != event.owner.campus_org:
+                    return HttpResponseForbidden('You are not allowed to delete this event.') 
+            event.is_active = False
+            event.save()
+            return HttpResponse()
+        except Event.DoesNotExist:
+            return HttpResponseNotFound("Event with id %s not found." % id)
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+
 @login_required
 @require_http_methods(["GET", "POST"])
 def event_rsvp(request, id):
@@ -223,7 +305,7 @@ def event_search(request, extra_context=None):
 @login_required
 @user_passes_test(is_recruiter)
 def events_by_employer(request):
-    events = Event.objects.filter(recruiters=request.user.recruiter).filter(end_datetime__gte=datetime.now())
+    upcoming_events = request.user.recruiter.employer.event_set.active().filter(end_datetime__gte=datetime.now())
     student_id = request.GET.get('student_id', None)
     if not student_id or not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()
@@ -238,7 +320,7 @@ def events_by_employer(request):
             'is_public': event.is_public,
             'invited': invited,
         }
-    events = map(eventMap, events)
+    events = map(eventMap, upcoming_events)
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
 
 @login_required

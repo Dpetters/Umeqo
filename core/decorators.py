@@ -1,6 +1,9 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+def is_campus_org(user):
+    return hasattr(user, "campus_org")
+    
 def is_student(user):
     return hasattr(user, "student")
     

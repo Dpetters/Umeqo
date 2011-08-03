@@ -4,7 +4,8 @@ from django.dispatch import receiver
 from django.db.models import signals
 
 from countries.models import Country
-from core.models import CampusOrg, SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
+from campus_org.models import CampusOrg
+from core.models import SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
 from core.model_helpers import get_resume_filename
 from core import choices as core_choices
 from core import mixins as core_mixins

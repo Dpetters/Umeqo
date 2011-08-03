@@ -46,7 +46,7 @@ Copyright 2011. All Rights Reserved.
     <div class="main_block_content">
         {% if show_admin %}
         <div id="event_admin">
-            <h1>Event Admin (visible only to you) <a href="{% url employer_event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
+            <h1>Event Admin (visible only to you) <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
             <div id="event_admin_side">
                 <table id="event_numbers">
                     <tr>
@@ -224,7 +224,7 @@ Copyright 2011. All Rights Reserved.
                     <div class="clearfix"></div>
                 </div>
                 {% endif %}
-                {% if event.description %}{{event.description|linebreaks}}{% else %}No description provided.{% endif %}
+                {% if event.description %}{{event.description|safe}}{% else %}No description provided.{% endif %}
             </div>
         </div>
         

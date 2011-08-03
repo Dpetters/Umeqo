@@ -2,6 +2,10 @@ from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
+from core import mixins as core_mixins
+
+from core.decorators import is_recruiter
 from core.models import EventType
 from core.managers import ActiveManager
 from core.view_helpers import english_join
@@ -9,19 +13,19 @@ from student.models import Student
 from notification import models as notification
 from employer.models import Employer
 
-class Event(models.Model):
-    
-    #replaces default objects with a manager that filters out inactive events
-    is_active = models.BooleanField(default=True,editable=False)
-    objects = ActiveManager()
-
+class Event(core_mixins.DateCreatedTracking):
     # Required Fields
-    owner = models.ForeignKey("employer.Recruiter")
-    recruiters = models.ManyToManyField("employer.Recruiter", null=True, blank=True, related_name="modified_events")
-    
+    owner = models.ForeignKey(User)
     name = models.CharField(max_length=42, unique=True)
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)
+    
+    # Won't be used immediately, but might prove useful later to show who
+    # modified the event and when they did so.
+    edits = models.ManyToManyField("core.Edit", null=True, blank=True)
+    
+    # Events Created by Campus Orgs will need to know which Employers are coming
+    attending_employers = models.ManyToManyField("employer.Employer", null=True, blank=True)
 
     # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
@@ -38,11 +42,14 @@ class Event(models.Model):
     last_seen_view_count = models.PositiveIntegerField(default=0)  
     view_count = models.PositiveIntegerField(default=0)
     
-    datetime_created = models.DateTimeField(auto_now=True)
     slug = models.SlugField(default="event-page")
     
     is_public = models.BooleanField()
-
+    is_active = models.BooleanField(default=True, editable=False)
+    
+    # manager which returns only active events
+    objects = ActiveManager()
+    
     def __unicode__(self):
         return self.name
     
@@ -65,34 +72,35 @@ class Event(models.Model):
 @receiver(signals.post_save, sender=Event)
 def send_new_event_notifications(sender, instance, created, raw, **kwargs):
     if created:
-        employers = Employer.objects.filter(recruiter=instance.recruiters.all())
-        subscribers = Student.objects.filter(subscriptions__in=employers)
-        to_users = map(lambda n: n.user, subscribers)
-        
-        # Batch the sending by unique groups of subscriptions.
-        # This way someone subscribed to A, B, and C gets only one email.
-        subscribers_by_user = {}
-        employername_table = {}
-        for employer in employers:
-            employername_table[str(employer.id)] = employer.name
-            for to_user in to_users:
-                if to_user.id in subscribers_by_user:
-                    subscribers_by_user[to_user.id].append(employer.id)
-                else:
-                    subscribers_by_user[to_user.id] = [employer.id]
-        subscription_batches = {}
-        for userid,employerids in subscribers_by_user.items():
-            key = ':'.join(map(lambda n: str(n), employerids))
-            subscription_batches[key] = userid
-        for key,userids in subscription_batches.items():
-            employer_names = map(lambda n: employername_table[n], key.split(':'))
-            has_word = "has" if len(employer_names)==1 else "have"
-            employer_names = english_join(employer_names)
-            notification.send(to_users, 'new_event', {
-                'employer_names': employer_names,
-                'has_word': has_word,
-                'event': instance,
-            })
+        if is_recruiter(instance.owner):
+            employers = [instance.owner.recruiter.employer]
+            subscribers = Student.objects.filter(subscriptions__in=employers)
+            to_users = map(lambda n: n.user, subscribers)
+            
+            # Batch the sending by unique groups of subscriptions.
+            # This way someone subscribed to A, B, and C gets only one email.
+            subscribers_by_user = {}
+            employername_table = {}
+            for employer in employers:
+                employername_table[str(employer.id)] = employer.name
+                for to_user in to_users:
+                    if to_user.id in subscribers_by_user:
+                        subscribers_by_user[to_user.id].append(employer.id)
+                    else:
+                        subscribers_by_user[to_user.id] = [employer.id]
+            subscription_batches = {}
+            for userid,employerids in subscribers_by_user.items():
+                key = ':'.join(map(lambda n: str(n), employerids))
+                subscription_batches[key] = userid
+            for key,userids in subscription_batches.items():
+                employer_names = map(lambda n: employername_table[n], key.split(':'))
+                has_word = "has" if len(employer_names)==1 else "have"
+                employer_names = english_join(employer_names)
+                notification.send(to_users, 'new_event', {
+                    'employer_names': employer_names,
+                    'has_word': has_word,
+                    'event': instance,
+                })
 
 @receiver(signals.pre_save, sender=Event)
 def save_slug(sender, instance, **kwargs):

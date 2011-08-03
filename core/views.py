@@ -16,13 +16,14 @@ from haystack.query import SearchQuerySet
 from notification.models import Notice
 from registration.models import InterestedPerson
 from core import enums, messages
-from core.decorators import render_to
-from core.models import Course, CampusOrg, Language, Topic, Location
+from core.decorators import render_to, is_student, is_recruiter
+from core.models import Course, Language, Topic, Location
 from core.forms import BetaForm, AkismetContactForm
 from core.view_helpers import does_email_exist
 from employer.forms import StudentSearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
+
 
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
@@ -197,7 +198,7 @@ def home(request, extra_context=None):
         context.update(msg = page_messages[msg])
         
     if request.user.is_authenticated():
-        if hasattr(request.user, "student"):
+        if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
 
@@ -205,7 +206,7 @@ def home(request, extra_context=None):
             if len(subscriptions) > 0:
                 context['has_subscriptions'] = True
                 recruiters = Recruiter.objects.filter(employer__in=subscriptions)
-                sub_events = Event.objects.filter(recruiters__in=recruiters).filter(end_datetime__gt=datetime.now())
+                sub_events = Event.objects.filter(owner__in=[recruiter.user for recruiter in recruiters]).filter(end_datetime__gt=datetime.now())
                 sub_events = sub_events.order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,
@@ -216,9 +217,9 @@ def home(request, extra_context=None):
             context.update(extra_context or {}) 
             context.update({'TEMPLATE':'student_home.html'})
             return context
-        elif hasattr(request.user, "recruiter"):
+        elif is_recruiter(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = request.user.recruiter.event_set.order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
+            your_events = Event.objects.filter(owner=request.user).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             context.update({
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
@@ -322,34 +323,6 @@ def course_info(request, extra_context = None):
         else:
             return HttpResponseBadRequest("Course ID is missing.")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
-
-
-@login_required
-@render_to('campus_org_info.html')
-def campus_org_info(request, extra_context = None):
-    if request.is_ajax():
-        if request.GET.has_key('campus_org_id'):
-            try:
-                context = {}
-                context['campus_org'] = CampusOrg.objects.get(id=request.GET['campus_org_id'])
-                context.update(extra_context or {})
-                return context
-            except CampusOrg.DoesNotExist:
-                return HttpResponseBadRequest("Campus Org ID doesn't match any existing campus org's ID.")        
-        else:
-            return HttpResponseBadRequest("Campus Org ID is missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
-
-@login_required
-def check_campus_organization_uniqueness(request):
-    if request.is_ajax():
-        try:
-            CampusOrg.objects.get(name=request.GET.get("name"))
-            return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-        except CampusOrg.DoesNotExist:
-            return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required

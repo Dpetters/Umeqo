@@ -8,3 +8,9 @@ class DateTracking(models.Model):
 
     class Meta:
         abstract = True
+
+class DateCreatedTracking(models.Model):
+    date_created = models.DateTimeField(editable=False, auto_now_add=True, default=datetime.datetime.now())
+
+    class Meta:
+        abstract = True

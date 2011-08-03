@@ -17,8 +17,10 @@ from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
 from core.decorators import is_student, render_to
-from core.forms import CreateCampusOrganizationForm, CreateLanguageForm
-from core.models import Language, EmploymentType, Industry, CampusOrg
+from core.forms import CreateLanguageForm
+from campus_org.forms import CreateCampusOrganizationForm
+from core.models import Language, EmploymentType, Industry
+from campus_org.models import CampusOrg
 from core import messages
 from employer.models import Employer
 from student.enums import RESUME_PROBLEMS
