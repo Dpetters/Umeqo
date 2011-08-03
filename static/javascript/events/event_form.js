@@ -236,15 +236,6 @@ $(document).ready( function() {
         }
     });
 
-	var config = {
-		toolbar:
-		[
-			['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink'],
-			['UIColor']
-		]
-	};
-    $("#id_description").ckeditor(config);
-    
     $('#id_type').change();
     
 	$("#event_form").submit(function(){

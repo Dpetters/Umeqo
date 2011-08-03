@@ -6,6 +6,7 @@ from core.form_helpers import decorate_bound_field
 from core.models import SchoolYear
 from core.renderers import RadioSelectTableRenderer
 from core.widgets import ImprovedSplitDateTimeWidget
+from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
         
@@ -17,7 +18,7 @@ class EventForm(forms.ModelForm):
     location = forms.CharField(widget=forms.TextInput(attrs={'autocomplete':'off', 'placeholder':'Enter classroom #, address, etc..', 'tabindex':4}), required=False)
     latitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
     longitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
-    description = forms.CharField(widget=forms.Textarea(attrs={'tabindex':5}))
+    description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
     start_datetime = forms.DateTimeField(label="Start Date/Time:", widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':6}), required=False)
     end_datetime = forms.DateTimeField(label="End Date/Time:", widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':7}))
     audience = forms.ModelMultipleChoiceField(label="Intended Audience:", widget=forms.SelectMultiple(attrs={'tabindex':8}), queryset = SchoolYear.objects.all(), required=False)

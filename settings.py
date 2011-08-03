@@ -78,15 +78,31 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Basic',
+        'width': 586,
+        'resize_maxWidth' : 586,
+        'resize_minWidth' : 586,
+        'resize_minHeight' : 300,
+        'height': 210,
+        'skin':'kama',
+        'toolbarCanCollapse': False,
+    },
+}
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'
+
+CKEDITOR_UPLOAD_PATH = "%sckeditor" % MEDIA_ROOT
 
 LOCAL_FIXTURES_ROOT = ROOT + "/local_data/fixtures/"
 
 LOCAL_MEDIA_ROOT = ROOT + "/local_data/media/"
 
 PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
+
+CKEDITOR_PATH = "ckeditor/"
 
 STUDENT_STUDENT_MODEL = "student.Student"
 STUDENT_STUDENT_PATH = "student/Student/"
@@ -107,7 +123,7 @@ LOCAL_DATA_MODELS = "%s %s %s" % (STUDENT_STUDENT_MODEL, EMPLOYER_EMPLOYER_MODEL
 
 PROD_DATA_MODELS = "%s %s" % (CAMPUS_ORG_CAMPUS_ORG_MODEL, CORE_COURSE_MODEL,)
 
-MEDIA_MODEL_PATHS = "%s %s %s %s %s" % (STUDENT_STUDENT_PATH, EMPLOYER_EMPLOYER_PATH, EMPLOYER_RESUME_BOOK_PATH, CAMPUS_ORG_CAMPUS_ORG_PATH, CORE_COURSE_PATH)
+MEDIA_MODEL_PATHS = "%s %s %s %s %s %s" % (CKEDITOR_PATH, STUDENT_STUDENT_PATH, EMPLOYER_EMPLOYER_PATH, EMPLOYER_RESUME_BOOK_PATH, CAMPUS_ORG_CAMPUS_ORG_PATH, CORE_COURSE_PATH)
 
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
@@ -182,6 +198,8 @@ SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
+CKEDITOR_MEDIA_PREFIX = "/media/ckeditor/"
+
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.auth',
@@ -203,6 +221,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'campus_org',
+    'ckeditor'
 )
 
 
