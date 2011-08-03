@@ -95,7 +95,7 @@ def load_local_data():
                     abort("load_local_data should not be called on prod.")
                 run("python copy_media.py local in")
                 for app in settings.LOCAL_DATA_APPS:
-                    run("python manage.py loaddata  /var/www/umeqo/local_data/fixtures/local_" + app + "_data.json")
+                    run("python manage.py loaddata  /var/www/umeqo/local_data/fixtures/local_%s_data.json" % (app))
 
 def commit_prod_data():
     if not env.host:
@@ -107,7 +107,8 @@ def commit_prod_data():
                     run("python manage.py file_cleanup %s" % (settings.PROD_DATA_MODELS,))
                 run("python copy_media.py prod out")
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
-                run("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json")
+                for app in settings.PROD_DATA_APPS:
+                    run("python manage.py dumpdata %s --indent=1 > ./core/fixtures/initial_data.json" % (app))
                 run("git add -A")
                 with fabric_settings(warn_only=True):
                     run('git commit -m "Prod data commit from staging."')
