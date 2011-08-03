@@ -18,7 +18,7 @@ $(document).ready( function() {
 			var location = new google.maps.LatLng(latitude, longitude);
 		    map.setCenter(location)
 		    map.setZoom(16);
-	        if (typeof(marker)==="undefined") {
+	        if (typeof(marker)==="undefined" || !marker) {
 	        	marker = new google.maps.Marker({ 
 	        		map: map
 	         	});
@@ -39,7 +39,7 @@ $(document).ready( function() {
 	            if (status == google.maps.GeocoderStatus.OK) {
 	                map.setCenter(results[0].geometry.location);
 	                map.setZoom(16);
-	                if (typeof(marker)==="undefined") {
+	                if (typeof(marker)==="undefined" || !marker) {
 	                	marker = new google.maps.Marker({ 
 	                		map: map
 	                 	}); 
