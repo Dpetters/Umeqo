@@ -341,9 +341,10 @@ def employer_students(request, extra_context=None):
 
         if request.method == "POST" and request.POST.has_key('query'):
             context['query'] = request.POST.get('query', '')
-
+        
+        # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
-                'recruiter': request.user.recruiter,
+                'employer_id': request.user.recruiter.employer.id,
                 'ordering': request.user.recruiter.recruiterpreferences.default_student_result_ordering,                           
                 'results_per_page': request.user.recruiter.recruiterpreferences.default_student_results_per_page
         })

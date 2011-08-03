@@ -196,7 +196,6 @@ def home(request, extra_context=None):
     msg = request.GET.get('msg',None)
     if msg:
         context.update(msg = page_messages[msg])
-        
     if request.user.is_authenticated():
         if is_student(request.user):
             if not request.user.student.profile_created:

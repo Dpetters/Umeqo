@@ -11,7 +11,7 @@ admin.site.register(ResumeBook, ResumeBookAdmin)
 
 
 class RecruiterAdmin(admin.ModelAdmin):
-    fields = ['user', 'employer']
+    fields = ['user', 'employer', 'is_master']
     list_display = ('user', 'employer', 'last_updated', 'date_created')
     search_fields = ['employer']
     date_hierarchy = 'date_created'

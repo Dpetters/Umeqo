@@ -1,3 +1,8 @@
+PUBLIC_PRIVATE_BOOLEAN_CHOICES = (
+(True, 'Public'),
+(False, 'Private')
+)
+
 TIME_CHOICES = (
 ('00:00','12:00 AM'),
 ('00:30','12:30 AM'),

@@ -2,19 +2,19 @@ from django import forms
 
 from events.models import Event, EventType
 
-from core.form_helpers import decorate_bound_field
+from core.form_helpers import decorate_bound_field, boolean_coerce
 from core.models import SchoolYear
 from core.renderers import RadioSelectTableRenderer
 from core.widgets import ImprovedSplitDateTimeWidget
+from events.choices import PUBLIC_PRIVATE_BOOLEAN_CHOICES
 from ckeditor.widgets import CKEditorWidget
 
-decorate_bound_field()
-        
-
+decorate_bound_field()
+               
 class EventForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name', 'tabindex':1}))
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), widget=forms.Select(attrs={'tabindex':2}), empty_label="select event type")
-    is_public = forms.TypedChoiceField(coerce=lambda x: bool(int(x)), initial=0, choices=((0, 'Public'), (1, 'Private')), widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':3}))
+    is_public = forms.TypedChoiceField(coerce=boolean_coerce, choices=PUBLIC_PRIVATE_BOOLEAN_CHOICES, initial=True, widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':3}))
     location = forms.CharField(widget=forms.TextInput(attrs={'autocomplete':'off', 'placeholder':'Enter classroom #, address, etc..', 'tabindex':4}), required=False)
     latitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
     longitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
