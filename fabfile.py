@@ -103,7 +103,8 @@ def commit_prod_data():
     else: 
         with cd(env.directory):
             with prefix(env.activate):
-                run("python manage.py file_cleanup %s" % (settings.PROD_DATA_MODELS,))
+                with fabric_settings(warn_only=True):
+                    run("python manage.py file_cleanup %s" % (settings.PROD_DATA_MODELS,))
                 run("python copy_media.py prod out")
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                 run("python manage.py dumpdata core --indent=1 > ./core/fixtures/initial_data.json")
@@ -127,7 +128,8 @@ def commit_local_data():
             abort("commit_local_data should not be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
-                run("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
+                with fabric_settings(warn_only=True):
+                    run("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
                 run("python copy_media.py local out")
                 for app in settings.LOCAL_DATA_APPS:
                     # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
