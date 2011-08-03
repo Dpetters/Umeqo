@@ -1,5 +1,13 @@
 from django.utils.html import escape
 
+def boolean_coerce(value):
+    # value is received as a unicode string
+    if str(value).lower() in ( '1', 'true' ):
+        return True
+    elif str(value).lower() in ( '0', 'false' ):
+        return False
+    return None
+
 def add_required_label_tag(original_function):
     """Adds the 'required' CSS class and an asterisks to required field labels."""
     def required_label_tag(self, contents=None, attrs=None):

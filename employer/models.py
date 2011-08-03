@@ -12,7 +12,6 @@ from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 
 
-
 class Employer(core_mixins.DateTracking): 
     name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
     description = models.CharField(max_length=500)
@@ -59,6 +58,8 @@ class EmployerStatistics(core_mixins.DateTracking):
 class Recruiter(core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
     employer = models.ForeignKey("employer.Employer")
+    
+    is_master = models.BooleanField(default=False)
 
     def __unicode__(self):
         if hasattr(self, "user"):
