@@ -207,6 +207,8 @@ $(document).ready( function() {
     $("#id_type").change( function() {
     	var event_type = $("#id_type option:selected").text()
         if (event_type === "Hard Deadline" || event_type === "Rolling Deadline"){
+            $('label[for=id_start_datetime_0]').removeClass('required');
+    
         	$("#event_form_header").html("New Deadline");
         	
         	$("#id_name").attr("placeholder", "Enter deadline name");
@@ -222,11 +224,10 @@ $(document).ready( function() {
 	        	$("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
 	      		$("#start_datetime_wrapper").css("opacity", .2);
 	        	$("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
-	        	//$("#id_start_datetime_0").bind('hover', cursor_display);
 	        }
         } else {
+            $('label[for=id_start_datetime_0]').addClass('required');
         	$("#event_form_header").html("New Event");
-        	//$("#id_start_datetime_0").unbind('hover', cursor_display);
         	$("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
         	$("#start_datetime_wrapper").css("opacity", 1);
         	
@@ -274,14 +275,12 @@ $(document).ready( function() {
             }
         });
     }
-	console.log("hi");
+    
     $("#id_audience").multiselect({
         noneSelectedText: 'select school years',
         minWidth: 200,
         height:146
     });
-    
-    $('label[for=id_start_datetime_0]').addClass('required');
     
     $('.datefield').datepicker({
         minDate: 0

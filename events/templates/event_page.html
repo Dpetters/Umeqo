@@ -58,7 +58,7 @@ Copyright 2011. All Rights Reserved.
                         <td class="number_label">pageview{{event.view_count|pluralize}}</td>
                     </tr>
                 </table>
-                {% if is_attending %}
+                {% if not is_deadline %}
                     <div id="event_checkin">
                         <h3>Check-in Mode</h3>
                         <a id="event_checkin_link" href="#">
