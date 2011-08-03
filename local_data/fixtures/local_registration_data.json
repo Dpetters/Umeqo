@@ -570,6 +570,26 @@
   }
  }, 
  {
+  "pk": 110, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-03 02:30:20", 
+   "session_key": "00d28144cafa3805876c407dc17a3a1f", 
+   "last_updated": "2011-08-03 02:30:20", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 111, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-03 02:40:55", 
+   "session_key": "1a03412314b875b4f7223e1444eeae7f", 
+   "last_updated": "2011-08-03 02:40:55", 
+   "user": 3
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
