@@ -35,7 +35,7 @@
   "pk": 2, 
   "model": "events.event", 
   "fields": {
-   "view_count": 9, 
+   "view_count": 10, 
    "start_datetime": "2011-11-02 19:30:00", 
    "audience": [
     1, 
@@ -48,12 +48,14 @@
    "attending_employers": [], 
    "name": "Fortune 500 Panel", 
    "is_public": false, 
-   "description": "If you are interested in the ins-and-outs of Fortune 500 companies, then join us for a panel-style discussion! ", 
+   "description": "<p>\r\n\tIf you are interested in the ins-and-outs of Fortune 500 companies, then join us for a panel-style discussion!</p>\r\n<ul>\r\n\t<li>\r\n\t\tThere will be free food.</li>\r\n\t<li>\r\n\t\tYou will get lots of swag.</li>\r\n\t<li>\r\n\t\tWe will collect your resumes.</li>\r\n</ul>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
    "longitude": -71.098349690000006, 
    "latitude": 42.350392990000003, 
-   "edits": [], 
+   "edits": [
+    1
+   ], 
    "end_datetime": "2011-11-02 21:30:00", 
    "rsvp_message": "", 
    "owner": 3, 
@@ -61,6 +63,16 @@
    "type": 3, 
    "slug": "fortune-500-panel", 
    "location": "Student House"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 2, 
+   "student": 1, 
+   "datetime_created": "2011-08-03 02:52:12"
   }
  }, 
  {
