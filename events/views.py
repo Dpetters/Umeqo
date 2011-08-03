@@ -160,6 +160,7 @@ def event_edit(request, id=None, extra_context=None):
     try:
         context = {}
         event = Event.objects.get(pk=id)
+        context['event'] = event
         if is_recruiter(event.owner):
             form_class = EventForm
             context['TEMPLATE'] = "event_form.html"
