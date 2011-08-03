@@ -48,7 +48,7 @@ class EventForm(forms.ModelForm):
     description = forms.CharField(widget=forms.Textarea(attrs={'tabindex':5}))
     start_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':6}),required=False, label="Start Date/Time:")
     end_datetime = forms.DateTimeField(widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':7}),label="End Date/Time:")
-    audience = forms.ModelChoiceField(label="Intended Audience:", widget=forms.Select(attrs={'tabindex':8}), queryset = SchoolYear.objects.all(), empty_label="select school years", required=False)
+    audience = forms.ModelMultipleChoiceField(label="Intended Audience:", widget=forms.SelectMultiple(attrs={'tabindex':8}), queryset = SchoolYear.objects.all(), required=False)
     rsvp_message = forms.CharField(label="RSVP Message:", widget=forms.Textarea(attrs={'tabindex':8, 'placeholder':'Tell RSVPs what to wear, bring, etc..'}), required=False)
     
     class Meta:
