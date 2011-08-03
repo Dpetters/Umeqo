@@ -3584,6 +3584,14 @@
  }, 
  {
   "pk": 1, 
+  "model": "core.edit", 
+  "fields": {
+   "date_created": "2011-08-03 02:48:29", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 1, 
   "model": "core.graduationyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
