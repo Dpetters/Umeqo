@@ -71,15 +71,15 @@ label[for=id_is_public_0], label[for=id_is_public_1]{
 #event_datetime_block .main_block_content{
 	padding:0px;
 }
-label[for=id_start_datetime_0].required, label[for=id_end_datetime_0].required{
+label[for=id_start_datetime_0], label[for=id_end_datetime_0]{
 	float:left;
 	font-size:14px;
 	margin-top: 23px;
 }
-label[for=id_start_datetime_0].required{
+label[for=id_start_datetime_0]{
 	margin-left:20px;
 }
-label[for=id_end_datetime_0].required{
+label[for=id_end_datetime_0]{
 	margin-left:26px;
 }
 #new_event_form #id_days, #new_event_form #id_hours, #new_event_form #id_minutes {

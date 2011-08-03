@@ -90,7 +90,7 @@ def event_page(request, id, slug, extra_context=None):
             all_responses.append(res)
     all_responses.sort(key=lambda n: n['datetime_created'])
     all_responses.sort(key=lambda n: 0 if n['account'] else 1)
-    is_deadline = (event.type == EventType.objects.filter(name='Deadline').get())
+    is_deadline = (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline'))
     if is_deadline:
         attending_text = 'Participating'
     else:
@@ -112,7 +112,6 @@ def event_page(request, id, slug, extra_context=None):
         'is_past': is_past,
         'attending_text': attending_text,
         'is_deadline': is_deadline,
-        'recruiters': event.recruiters.all(),
         'google_description': google_description
     }
     if len(event.audience.all())>0:
@@ -152,7 +151,7 @@ def event_new(request, form_class=None, extra_context=None):
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
     return context
-    
+
 
 @login_required
 @render_to()
@@ -172,10 +171,11 @@ def event_edit(request, id=None, extra_context=None):
             if not is_campus_org(request.user) or request.user.campus_org != event.owner.campus_org:
                 return HttpResponseForbidden('You are not allowed to edit this event.') 
         if request.method == 'POST':
-            form = form_class(data=request.POST, instance=event)
+            form = form_class(request.POST, instance=event)
+            print form.errors
             if form.is_valid():
                 event = form.save(commit=False)
-                event.recruiters.add(Edit.objects.create(user=request.user))
+                event.edits.add(Edit.objects.create(user=request.user))
                 event.save()
                 form.save_m2m()
                 return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
