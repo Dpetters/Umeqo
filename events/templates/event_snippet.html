@@ -33,7 +33,7 @@
         </div>
         {% endif %}
         {% if event.description %}
-        <div>{{event.description|linebreaks}}</div>
+        <div>{{event.description|safe}}</div>
         {% endif %}
     </div>
 </li>

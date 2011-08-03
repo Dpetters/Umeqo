@@ -27,6 +27,7 @@ urlpatterns += patterns('',
     (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_confirm.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset_confirm'),
     (r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset_complete'),
     (r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, 'auth_password_reset_done'),
+    (r'^ckeditor/', include('ckeditor.urls')),
 )
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
@@ -120,4 +121,5 @@ urlpatterns += patterns('events.views',
     (r'^events/edit/(?P<id>\d+)$', 'event_edit', {}, 'event_edit'),
     (r'^events/delete/(?P<id>\d+)$', 'event_delete', {}, 'event_delete'),
 )
+
 urlpatterns += staticfiles_urlpatterns()
