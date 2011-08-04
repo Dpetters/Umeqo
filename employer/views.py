@@ -229,7 +229,7 @@ def employer_student_event_attendance(request):
         if request.GET.has_key('student_id'):
             context={}
             student = Student.objects.visible().get(id=request.GET['student_id'])
-            context['events'] = request.user.recruiter.event_set.filter(attendee__student=student)
+            context['events'] = request.user.event_set.filter(attendee__student=student)
             context['student'] = student
             return context
         else:
@@ -507,7 +507,7 @@ def employers_list(request, extra_content=None):
         
         now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
         events = reduce(
-            lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+            lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
             employer.recruiter_set.all(),
             []
         )
