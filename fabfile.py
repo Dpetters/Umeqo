@@ -55,7 +55,8 @@ def create_database():
             with prefix(env.activate):
                 run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
                 run("python manage.py syncdb --noinput --migrate")
-
+                run("python copy_media.py prod in")
+                
 def create_media_dirs():
     for model_path in settings.MEDIA_MODEL_PATHS.split(" "):
         model_root = settings.MEDIA_ROOT + model_path
@@ -108,7 +109,10 @@ def commit_prod_data():
                 run("python copy_media.py prod out")
                 run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                 for app in settings.PROD_DATA_APPS:
-                    run("python manage.py dumpdata %s --indent=1 > ./core/fixtures/initial_data.json" % (app))
+                    if app =="sites":
+                        run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
+                    else:
+                        run("python manage.py dumpdata %s --indent=1 > ./%s/fixtures/initial_data.json" % (app, app))
                 run("git add -A")
                 with fabric_settings(warn_only=True):
                     run('git commit -m "Prod data commit from staging."')
