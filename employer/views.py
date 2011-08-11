@@ -11,8 +11,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
@@ -27,10 +26,8 @@ from registration.forms import PasswordChangeForm
 from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
-from employer.forms import RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
+from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
 from employer.views_helper import get_paginator, employer_search_helper
-from events.forms import EventForm
-from events.models import Event
 from student import enums as student_enums
 from student.models import Student
 
@@ -86,6 +83,33 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
+@login_required
+@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+@render_to("employer_profile.html")
+def employer_profile(request,
+                     form_class=EmployerProfileForm,
+                     extra_context=None):
+
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=request.user.recruiter.employer)
+        if form.is_valid():
+            data = {'valid':True}
+            form.save()
+        else:
+            data = {'valid':False}
+            errors = {}
+            for field in form:
+                if field.errors:
+                    errors[field.auto_id] = field.errors[0]
+            if form.non_field_errors():
+                errors['non_field_error'] = form.non_field_errors()[0]
+            data['errors'] = errors
+        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+    else:
+        context = { 'form' : form_class(instance=request.user.recruiter.employer) }
+        context.update(extra_context or {})
+        return context
+        
 @login_required
 @user_passes_test(is_recruiter)
 def employer_student_toggle_star(request):
@@ -533,7 +557,7 @@ def employers_list_pane(request, extra_content=None):
         
         now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
         events = reduce(
-            lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+            lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
             employer.recruiter_set.all(),
             []
         )

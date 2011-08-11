@@ -180,11 +180,9 @@ def student_profile(request,
                 elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
                     data = {'valid':False}
                     data['unparsable_resume'] = True
-            if data['valid'] and data['unparsable_resume']:    
-                student.last_updated = datetime.datetime.now()
+            if data['valid'] and data['unparsable_resume']:
                 student.profile_created = True
                 student.save()
-
         else:
             data = {'valid':False}
             errors = {}
@@ -196,15 +194,12 @@ def student_profile(request,
             data['errors'] = errors
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
-        if request.is_ajax():
-            return HttpResponseForbidden("GET request cannot be ajax.") 
-        else:
-            form = form_class(instance=request.user.student)
-            context = { 'form' : form,
-                        'edit' : request.user.student.profile_created }
-              
-            context.update(extra_context or {})
-            return context
+        form = form_class(instance=request.user.student)
+        context = { 'form' : form,
+                    'edit' : request.user.student.profile_created }
+          
+        context.update(extra_context or {})
+        return context
 
 
 @login_required

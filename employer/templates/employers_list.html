@@ -20,27 +20,22 @@ Employers |
 {% endblock %}
 
 {% block content_area %}
-<div class="left_side_container">
-    {% include "student_side_nav.html" %}
-</div>
-<div id="employers_list_block" class="main_block no_top_margin">
-    <div class="main_block_header">
-        <span class="main_block_header_title">Employers Listing</span>
-    </div>
+<h1>Employers Listing</h1>
+<div id="employers_list_block" class="main_block">
     <div class="main_block_content">
         <div id="employers_list_form_wrapper">
             <form id="employers_list_form">
-                <input type="checkbox" name="h" value="1" id="employers_filter_has_events" />
-                <label for="employers_filter_has_events">Has events</label>
-                <input type="checkbox" name="s" value="1" id="employers_filter_in_subscriptions" />
-                <label for="employers_filter_in_subscriptions">Subscribed</label>
+                <input type="text" name="q" id="employers_filter_name" value="{{ query }}"/>
                 <select name="i" id="employers_filter_industry">
                     <option value="">Filter by industry</option>
                     {% for industry in industries %}
                         <option value="{{industry.id}}">{{industry}}</option>
                     {% endfor %}
                 </select>
-                <input type="text" name="q" id="employers_filter_name" value="{{ query }}"/>
+                <input type="checkbox" name="h" value="1" id="employers_filter_has_events" />
+                <label for="employers_filter_has_events">Has events</label>
+                <input type="checkbox" name="s" value="1" id="employers_filter_in_subscriptions" />
+                <label for="employers_filter_in_subscriptions">Subscribed</label>
             </form>
         </div>
         <div id="employers_listings">

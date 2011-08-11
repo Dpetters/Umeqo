@@ -18,21 +18,22 @@ Help |
 {% block content_area %}
 <div class="left_side_container">
     <div class="side_nav">
-        <h3>Help Center</h3>
-        <a href="{% url help_center %}">Contact Info</a>
+        <h3>Help</h3>
+        <a href="{% url help_center %}">Help Center</a>
         <a href="{% url faq %}">FAQ</a>
         <a href="{% url tutorials %}">Tutorials</a>
     </div>
     {% if request.user.student %}
         {% include "student_side_nav.html" %}
-    {% else %}
+    {% endif %}
+    {% if request.user.recruiter %}
         {% include "employer_side_nav.html" %}    
     {% endif %}
 </div>
 
 <div id="help_content">
     {% block help_content %}
-    <h1>Contact Info</h1>
+    <h1>Help Center</h1>
     {% endblock %}
 </div>
 {% endblock %}

@@ -11,7 +11,7 @@ from core.managers import ActiveManager
 from core.view_helpers import english_join
 from student.models import Student
 from notification import models as notification
-from employer.models import Employer
+
 
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
@@ -65,7 +65,7 @@ class Event(core_mixins.DateCreatedTracking):
 
 @receiver(signals.post_save, sender=Event)
 def send_new_event_notifications(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         if is_recruiter(instance.owner):
             employers = [instance.owner.recruiter.employer]
             subscribers = Student.objects.filter(subscriptions__in=employers)

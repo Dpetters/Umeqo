@@ -1,6 +1,5 @@
 #employers_list_block {
-    width: 780px;
-    float: right;
+    margin-top: 10px;
 }
 #employers_list_block .main_block_content {
     padding: 0;
@@ -90,7 +89,7 @@
     padding: 10px 0;
 }
 #employers_filter_name {
-    width: 280px;
+    width: 180px;
 }
 #employers_detail .logo img {
     max-height: 150px;
