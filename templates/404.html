@@ -3,3 +3,8 @@
 {% block title %}
 Page Not Found |
 {% endblock %}
+
+{% block content_area %}
+    <h1>Page could not be found.</h1>
+    <p>The page you requested could not be found! Try <a href="{% url login %}">logging in</a> or <a href="/">returning to the home page</a>.</p>
+{% endblock %}
