@@ -1,4 +1,4 @@
-import os, shutil, sys
+import os, sys
 from fabric.api import env, sudo, cd, run, local, settings as fabric_settings
 from fabric.context_managers import prefix
 from fabric.contrib import django as fabric_django
@@ -13,7 +13,7 @@ from south.models import MigrationHistory
 
 __all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
-          "update", "create_media_dirs", "schemamigrate"]
+          "update", "create_media_dirs", "schemamigrate", "runserver"]
 
 def staging():
     env.hosts = ['root@staging.umeqo.com']
@@ -118,6 +118,14 @@ def commit_prod_data():
                     run('git commit -m "Prod data commit from staging."')
                     run("git push")
 
+def runserver():
+    if not env.host:
+        if not os.path.exists(settings.CKEDITOR_UPLOAD_PATH):
+            os.makedirs(settings.CKEDITOR_UPLOAD_PATH)
+        local("python manage.py runserver")
+    else: 
+        abort("commit_local_data should not be called on prod.")
+            
 def commit_local_data():
     if not env.host:
         local("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
