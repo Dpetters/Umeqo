@@ -533,7 +533,7 @@ def employers_list_pane(request, extra_content=None):
         
         now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
         events = reduce(
-            lambda a,b: [a.extend(b.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+            lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
             employer.recruiter_set.all(),
             []
         )
