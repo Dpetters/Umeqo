@@ -1,13 +1,40 @@
 from django import forms
-
+from django.contrib.localflavor.us.forms import USPhoneNumberField
 from core.choices import NO_YES_CHOICES
+from core.models import Industry, EmploymentType
 from student.form_helpers import student_lists_as_choices
 from student.forms import StudentBaseAttributeForm
-
-from employer.models import RecruiterPreferences, StudentFilteringParameters
+from employer.models import RecruiterPreferences, StudentFilteringParameters, Employer
 from employer import enums as employer_enums
+from ckeditor.widgets import CKEditorWidget
 
-
+class EmployerProfileForm(forms.Form):
+    # Required Fields
+    name = forms.CharField(label="Name:", max_length = 32)
+    slug = forms.SlugField(label="Slug:", max_length = 20)
+    industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
+    description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
+    main_contact = forms.CharField("Main Contact:")
+    main_contact_email = forms.EmailField("Main Contact Email:")
+    
+    # Optional Fields
+    main_contact_phone = USPhoneNumberField("Main Contact Phone #:", required=False)
+    offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset = EmploymentType.objects.all(), required=False)
+    website = forms.URLField(label="Personal Website:", required=False)
+    
+    class Meta:
+        fields = ( 'name',
+                   'slug',
+                   'industries',
+                   'description',
+                   'main_contact',
+                   'main_contact_email',
+                   'main_contact_phone',
+                   'offered_job_types',
+                   'website',
+                    )
+        model = Employer
+        
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
     name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
