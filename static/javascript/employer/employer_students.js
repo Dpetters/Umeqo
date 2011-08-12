@@ -1135,19 +1135,6 @@ $(document).ready(function() {
     $('#results_menu_more_actions').live('click', function() { $('#results_menu_more_actions ul').toggle(); });
     $('#results_menu_checkbox_menu_button').live('click', function() { $('#results_menu_checkbox_menu_button ul').toggle(); });
 	$('.student_event_attendance').live('hover', handle_student_event_attendance_hover);
-	
-    $('.dropdown_menu_button').live('click', function() {
-        if ($(this).hasClass('pressed'))
-            $(this).removeClass('pressed');
-        else
-            $(this).addClass('pressed');
-    });
-    $('body').live('click', function(event) {
-        if (!$(event.target).closest('.dropdown_menu_button').length && !$(event.target).closest('.dropdown menu_button ul').length) {
-            $('.dropdown_menu_button ul').hide();
-            $('.dropdown_menu_button').removeClass('pressed');
-        };
-    });
 
     // Make the filtering block an accordion
     a = $("#filtering_accordion").accordion({

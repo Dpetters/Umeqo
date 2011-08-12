@@ -295,7 +295,36 @@ $(document).ready( function () {
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
     });
-
+    $('.ui-widget-content a, a, .dropdown_menu_button, .menu_button', ".dropdown_menu_button ul li").live({
+    	mouseenter:
+    		function() {
+        		$(this).addClass('hover');
+    		},
+    	mouseleave:
+    		function(){
+        		if ($(this).hasClass('hover'))
+            	$(this).removeClass('hover');
+    		}
+    });
+    $('.dropdown_menu_button').live('click', function() {
+        if ($(this).hasClass('pressed'))
+            $(this).removeClass('pressed');
+        else
+            $(this).addClass('pressed');
+    });
+    $('body').live('click', function(event) {
+        if (!$(event.target).closest('.dropdown_menu_button').length && !$(event.target).closest('.dropdown menu_button ul').length) {
+            $('.dropdown_menu_button ul').hide();
+            $('.dropdown_menu_button').removeClass('pressed');
+        };
+    });
+    $('.menu_button').live('mousedown', function() {
+        $(this).addClass('active');
+    });
+    $('.menu_button').live('mouseup', function(){
+    	if ($(this).hasClass('active'))
+            $(this).removeClass('active');
+    });
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
         if (val.length == 0) { return true; }

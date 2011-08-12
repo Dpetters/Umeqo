@@ -29,9 +29,6 @@
     background:#FFF;
     padding-bottom:0px;
 }
-#preferences_form_tabs .ui-tabs-nav li.ui-tabs-selected a{
-    color:#555;
-}
 #account_overview, #preferences{
 	float:left;
 	padding-left:10px;

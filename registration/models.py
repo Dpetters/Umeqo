@@ -13,6 +13,10 @@ from core import mixins as core_mixins
 from registration.managers import RegistrationManager
 
 
+class InviteCode(core_mixins.DateTracking):
+    code = models.CharField(max_length=10)
+    
+    
 class InterestedPerson(core_mixins.DateTracking):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)

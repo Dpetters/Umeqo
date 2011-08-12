@@ -53,11 +53,11 @@
 <form id="event_form" method="POST" action="">
     {% csrf_token %}
     <div class="right_side_container">
-        <div id="event_datetime_block" class="main_block">
-            <div class="main_block_header">
-                <span class="main_block_header_title">Date & Time</span>
+        <div id="event_datetime_block" class="side_block">
+            <div class="side_block_header">
+                <span class="no_icon_side_block_header_title">Date & Time</span>
             </div>
-            <div class="main_block_content">
+            <div class="side_block_content">
                 <div id="start_datetime_wrapper">
                     {{form.start_datetime.label_tag}}
                     <div>
@@ -102,11 +102,11 @@
                 </div>
             </div>
         </div>
-        <div id="event_additional_info_block" class="main_block">
-            <div class="main_block_header">
-                <span class="main_block_header_title">Additional Info (optional)</span>
+        <div id="event_additional_info_block" class="side_block">
+            <div class="side_block_header">
+                <span class="no_icon_side_block_header_title">Additional Info (optional)</span>
             </div>
-            <div class="main_block_content">
+            <div class="side_block_content">
                 {{form.audience.label_tag}}
                 <div>
                     <div class="errorspace">{{form.audience.error}}</div>
@@ -120,20 +120,20 @@
     </div>
     <div id="event_form_left_col">
         <div id="event_name_section">
-            <span class="step">Title</span>
+            <span class="div_form_above_field_label">Title</span>
             <div class="errorspace"></div>
             <br>
             {{form.name}}
         </div>
         <div id="event_type_section">
-            <span class="step">Type</span>
+            <span class="div_form_above_field_label">Type</span>
             <div class="errorspace"></div>
             <br>
             {{form.type}}
             {{form.is_public}}
         </div>
         <div id="event_location_section">
-            <span class="step">Location</span>
+            <span class="div_form_above_field_label">Location</span>
             <div class="errorspace"></div>
             <br>
             {{form.location}}
@@ -144,7 +144,7 @@
             </div>
         </div>
         <div id="event_description_section">
-            <span class="step">Description</span>
+            <span class="div_form_above_field_label">Description</span>
             <div class="errorspace"></div>
             {{form.description}}
         </div>

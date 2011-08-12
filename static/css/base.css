@@ -5,7 +5,7 @@
 html, body {
     font-size: 13px;
     font-family: Arial, sans-serif;
-    color: #000;
+    color: #303030;
 }
 img {
     border: none;
@@ -45,7 +45,7 @@ p {
     bottom:18px;
     color: white;
     font-weight: bold;
-    padding: 2px 11px 1px;
+    padding: 3px 11px 2px;
     position: relative;
 }
 .below_header_message {
@@ -388,7 +388,10 @@ p {
 .side_block_header_title {
     font-size: 18px;
     margin-left: 5px;
-    line-height: 27px;
+    line-height: 29px;
+}
+.no_icon_side_block_header_title{
+	margin-left:8px;
 }
 .side_block_content {
     padding: 10px;
@@ -626,47 +629,51 @@ a.button {
     color: #FFF;
     text-shadow: #000 0 -1px 0;
 }
-
-.dropdown_menu_button{
-    position: relative;
-}
-.menu_button {
+.menu_button, .dropdown_menu_button {
     behavior: url(/static/lib/pie/PIE.htc);
     background-image:-moz-linear-gradient(center top , #F9F9F9, #E3E3E3);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F9F9F9), to(#E3E3E3));
     -pie-background: linear-gradient(#898989, #737373);
     cursor: pointer;
-    padding: 5px 4px 2px 5px;
+    padding: 0px 5px;
+    height:23px;
+    line-height:23px;
     display: inline-block;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border: 1px solid #BBBBBB;
     margin-left: 1px;
+    font-weight:bold;
 }
-.menu_button:hover {
+.dropdown_menu_button{
+	font-weight:normal;
+    position: relative;
+}
+.menu_button.hover, .dropdown_menu_button.hover  {
     border: 1px solid #888;
 }
-.menu_button:active, .menu_button.pressed {
+.menu_button.active{
     background:#E3E3E3;
 }
-.menu_button.pressed {
-    border: 1px solid #666;
+.dropdown_menu_button.pressed{
+    background: none repeat scroll 0 0 #888888;
+    border-color:#666;
     border-radius: 3px 3px 0px 0px;
     -webkit-border-radius: 3px 3px 0px 0px;
     -moz-border-radius: 3px 3px 0px 0px;
 }
-.menu_button span {
-    position: relative;
-    bottom: 2px;
-    font-weight: bold;
+.dropdown_menu_button.pressed span{
+    color:#FFF;
+    text-shadow: 0 -1px 0 #000;
 }
-.menu_button ul{
+.dropdown_menu_button ul{
+	box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
     behavior: url(/static/lib/pie/PIE.htc);
     list-style: none;
     padding: 2px;
     background: #FFF;
-    min-width: 99px;
+    min-width: 98px;
     display: block;
     position: absolute;
     left: -1px;
@@ -677,16 +684,15 @@ a.button {
     border: 1px solid #888;
     z-index: 100;
 }
-.menu_button ul li {
+.dropdown_menu_button ul li {
     line-height: 18px;
     padding: 1px 3px;
     font-size: 12px;
     border: 1px solid #FFF;
 }
-.menu_button ul li:hover {
-    background: none repeat scroll 0 0 #FDF5CE;
-	border: 1px solid #FBCB09;
-	color: #C77405;
+.dropdown_menu_button ul li.hover {
+	background:url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
+	border:1px solid #E9E9E9;
 }
 /* Forms */
 .errorspace {
@@ -717,6 +723,11 @@ label.error{
 }
 label:not(.required) {
 	padding-right:8px;
+}
+.div_form_above_field_label{
+	font-size:18px;
+	display:inline-block;
+	margin-bottom:3px;
 }
 input[type=text], input[type=password], select, textarea {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -783,14 +794,11 @@ td #ajax_form_submit_loader {
     padding-top: 23px;
     vertical-align:top;
 }
-.form_table input[type=submit], .button_cell .button, .button_cell .dark_button {
-    margin-top: 14px;
-}
 .sub_header_message{
 	padding-left:6px;
 }
 .form_table .info {
-    width: 300px;
+    width: 312px;
     padding-left: 10px;
     padding-top: 14px;
     vertical-align: top;
@@ -801,10 +809,10 @@ td #ajax_form_submit_loader {
 .form_table.grande p {
     line-height: 24px;
     font-size: 15px;
-    width: 310px;
 }
 .form_table.grande {
-    width: auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 .form_table.grande input[type=text], .form_table.grande input[type=password] {
     font-size: 20px;
@@ -835,14 +843,17 @@ a {
     color: #6e97b9;
     outline: none;
 }
-a:hover {
+a.hover {
     color: #557389;
 }
 a:focus {
     outline: none;
 }
 .ui-widget-content a {
-    color: #6e97b9;
+    color: #6e97b9 !important;
+}
+.ui-widget-content a.hover{
+    color: #557389 !important;
 }
 /* Contact Form Dialog */
 .contact_us_dialog .dialog_content_wrapper {
@@ -894,6 +905,10 @@ a:focus {
     padding-top: 4px;
     text-align: center;
     border-bottom: none !important;
+}
+form.grande .error_section, td.error_section{
+	padding-top:0px;
+	text-align:left;
 }
 /* Dialogs */
 #dialog_loader {

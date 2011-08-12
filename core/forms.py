@@ -20,6 +20,8 @@ class EmailAuthenticationForm(AuthenticationForm):
 
         if username and password:
             self.user_cache = authenticate(username=username, password=password)
+            if self.user_cache.is_staff:
+                return forms.ValidationError(_("Staff users cannot login. They can only access the admin pages."))
             if self.user_cache is None:
                 raise forms.ValidationError(_("Please enter a correct username and password. Note that both fields are case-sensitive."))
             elif not self.user_cache.userattributes.is_verified:
@@ -29,6 +31,9 @@ class EmailAuthenticationForm(AuthenticationForm):
                 self.user_cache.save()
         self.check_for_test_cookie()
         return self.cleaned_data
+
+class BetaAuthenticationForm(EmailAuthenticationForm):
+    signup_code = forms.IntegerField(label="Sign Up Code:")
 
 class ContactForm(forms.Form):
     """

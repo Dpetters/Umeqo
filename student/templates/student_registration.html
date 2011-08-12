@@ -6,9 +6,14 @@ Student Registration |
 
 {% block metadata %}
 {{ block.super }}
+
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration.css" />
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_registration.js">
-</script>
+{% endcompress %}
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_registration.js"></script>
+{% endcompress %}
 
 <script type="text/javascript">
     var EMAIL_ALREADY_REGISTERED_MESSAGE = "{{email_already_registered_message}}";
@@ -29,8 +34,10 @@ Student Registration |
                         <div class="errorspace">{{form.email.errors}}</div>
                         {{form.email}}
                     </td>
-                    <td class="info" rowspan="4">
-                        <p>Creating an account is simple - all we need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
+                    <td class="info" rowspan="2">
+                        <p>Creating an account is simple - all you need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
+                        <br>
+                        <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="/signup/employer/">here</a>.</p>
                     </td>
                 </tr>
                 <tr>
@@ -40,9 +47,15 @@ Student Registration |
                         {{form.password1}}
                     </td>
                 </tr>
+	            <tr>
+                    <th></th>
+	                <td colspan="2" class="error_section error">
+	                    {{form.non_field_errors}}
+	                </td>
+	            </tr>
                 <tr>
                     <th></th>
-                    <td>
+                    <td colspan="2">
                         <input id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
                         <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
                     </td>
