@@ -3,7 +3,7 @@ $(document).ready( function() {
     password_reset_form_validator = $("#password_reset_confirm_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors_table,
+        errorPlacement: place_table_form_field_error,
         rules: {
             new_password1: {
                 required: true,

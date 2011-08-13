@@ -2,7 +2,7 @@ $(document).ready(function() {
     var login_main_form_validator = $('#login_main_form').validate({
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors_table,
+        errorPlacement: place_table_form_field_error,
         rules: {
             username: {
                 required: true,

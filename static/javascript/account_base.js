@@ -68,7 +68,7 @@ $(document).ready( function () {
         },
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors_table,
+        errorPlacement: place_table_form_field_error,
         rules: {
             old_password: {
                 required: true,

@@ -22,47 +22,45 @@ Student Registration |
 {% endblock %}
 
 {% block content_area %}
-<div id="student_registration_block" class="main_block">
+<div id="student_registration_block" class="simple_block">
     <h1>Student Registration</h1>
-    <div class="main_block_content">
-        <form id="student_registration_form" method="POST" action="" autocomplete="off">
-            {% csrf_token %}
-            <table class="form_table grande">
-                <tr>
-                    <th>{{form.email.label_tag}}</th>
-                    <td>
-                        <div class="errorspace">{{form.email.errors}}</div>
-                        {{form.email}}
-                    </td>
-                    <td class="info" rowspan="2">
-                        <p>Creating an account is simple - all you need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
-                        <br>
-                        <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="/signup/employer/">here</a>.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th>{{form.password1.label_tag}}</th>
-                    <td>
-                        <div class="errorspace">{{form.password1.errors}}</div>
-                        {{form.password1}}
-                    </td>
-                </tr>
-	            <tr>
-                    <th></th>
-	                <td class="error_section error">
-	                    {{form.non_field_errors}}
-	                </td>
-	                <td></td>
-	            </tr>
-                <tr>
-                    <th></th>
-                    <td colspan="2">
-                        <input id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
-                        <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+    <form id="student_registration_form" method="POST" action="" autocomplete="off">
+        {% csrf_token %}
+        <table class="form_table grande">
+            <tr>
+                <th>{{form.email.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.email.errors}}</div>
+                    {{form.email}}
+                </td>
+                <td class="info" rowspan="2">
+                    <p>Creating an account is simple - all you need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
+                    <br>
+                    <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="/signup/employer/">here</a>.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.password1.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.password1.errors}}</div>
+                    {{form.password1}}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="error_section error">
+                    {{form.non_field_errors}}
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td colspan="2">
+                    <input id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
+                    <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 {% endblock %}

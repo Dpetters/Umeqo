@@ -15,12 +15,16 @@
                     {{create_language_form.name}}
                 </td>
             </tr>
+            <tr>
+                <td colspan="2" class="error_section error">
+                </td>
+            </tr>
+            <tr>
+            	<td colspan="2" class="button_cell">
+            		<input class="button" type='submit' value='Create'>
+            		<img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+            	</td>
+            </tr>
         </table>
-        <div class="error_section error">
-        </div>
-        <div class="button_wrapper_with_margins">
-            <input class="button" type='submit' value='Create'>
-            <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-        </div>
     </form>
 </div>

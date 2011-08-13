@@ -35,6 +35,9 @@ p {
 .saved_message {
 	color:#888;
 }
+.centered{
+	text-align:center;
+}
 #message_area{
 	text-align:center;
 }
@@ -231,25 +234,23 @@ p {
 #content_area {
     padding-bottom: 40px;
 }
-/*goes for nav-like links next to headers, e.g. "go back to events" */
+/* For nav-like links next to headers, e.g. "go back to events" 
+*/
 #content_area .back_link {
     font-size: 12px;
     vertical-align: middle;
 }
-.message_block {
+.simple_block {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.message_block_title {
-    text-shadow: 0px 1px #FFF;
+.simple_block h1{
+	margin-bottom:25px;
 }
 .message_section {
     padding-top: 20px;
     text-align: center;
-    line-height: 20px;
-}
-.message_section p{
     line-height: 20px;
 }
 .main_block, .side_block {
@@ -922,16 +923,12 @@ a:focus {
 .anchor {
     clear: both;
 }
-.form_table .error_section {
-    padding: 3px 0px;
-    text-align: center;
-    border-bottom: none !important;
+.error_section {
+    padding: 8px 0px;
 }
-.form_table.grande .error_section{
+.form_table.grande td.error_section{
 	padding:5px 0px;
-	text-align:left;
 }
-/* Dialogs */
 #dialog_loader {
     margin-top: 30px;
     text-align: center;
@@ -942,13 +939,6 @@ a:focus {
 }
 .dialog_info_section {
     margin-bottom: 10px;
-}
-.dialog_side_info_section {
-    float: right;
-}
-#dialog_form_error_section {
-    margin-top: 10px;
-    text-align: center;
 }
 /** JQuery UI Overrides **/
 /* Jquery Widget */

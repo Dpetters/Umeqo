@@ -110,7 +110,7 @@ $(document).ready( function() {
                     },
                     highlight: highlight,
                     unhighlight: unhighlight,
-                    errorPlacement: place_errors_table,
+                    errorPlacement: place_table_form_field_error,
                     rules: {
                         name: {
                             required: true,
@@ -224,8 +224,7 @@ $(document).ready( function() {
                                         create_language_dialog.dialog('destroy');
                                     });
 								} else {
-									console.log(data.errors);
-									//place_table_form_errors("#create_language_form", data.errors);
+									place_table_form_errors("#create_language_form", data.errors);
                                 }
                                 create_language_dialog.dialog('option', 'position', 'center');
                             }
@@ -233,7 +232,7 @@ $(document).ready( function() {
                     },
                     highlight: highlight,
                     unhighlight: unhighlight,
-                    errorPlacement: place_errors_table,
+                    errorPlacement: place_table_form_field_error,
                     rules: {
                         name: {
                             required: true,
@@ -330,7 +329,7 @@ $(document).ready( function() {
         },
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors_table,
+        errorPlacement: place_table_form_field_error,
         rules: {
             first_name: {
                 required: true
@@ -522,7 +521,7 @@ $(document).ready( function() {
             	 	return true;
            	}).length;
            	if (num > 1){
-           		place_errors_table($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
+           		place_table_form_field_error($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
            		return false;
            	}
         },

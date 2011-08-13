@@ -156,6 +156,8 @@ class StudentProfileForm(StudentBaseAttributeForm):
         if first_major and second_major and first_major == second_major:
             raise forms.ValidationError(_(messages.student_profle_form_first_second_majors_diff))
         return self.cleaned_data['second_major']
+    def clean(self):
+        raise forms.ValidationError("Test non-field-error")
 
 class StudentProfilePreviewForm(StudentProfileForm):
     resume = PdfField(label="Resume:", required=False)

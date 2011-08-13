@@ -42,7 +42,7 @@
             <span class="main_block_header_title">What's New</span>
         </div>
         <div class="main_block_content">
-            <div class="message_block">
+            <div class="simple_block">
                 <p>
                     This is probably your first time here, so let us tell you a little bit about Umeqo.
                 </p>
@@ -63,14 +63,14 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <div class="message_block">
+                    <div class="simple_block">
                             <p>You have no upcoming events from the employers that you are subscribed to!</p>
                             <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers_list %}">subscribing to some more employers</a>.
                         </p>
                     </div>
                 {% endif %}
             {% else %}
-                <div class="message_block">
+                <div class="simple_block">
                     <p>
                         When you <a href="{% url employers_list %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
                         <a href="{% url events_list %}">Browse the full listing</a> to Search and Filtering for Events and Deadlines.

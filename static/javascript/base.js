@@ -62,34 +62,31 @@ function unhighlight(element, errorClass) {
     $(element).filter("input[type=text]").css('border', '1px solid #AAA');
     $(element).filter("select").css('border', '1px solid #AAA');
 };
-
-function place_table_form_errors(form, errors){
-    for (field in errors){
-        if (field == "non_field_error"){
-            $(form + " .error_section").html(errors[field]);
-        }
-        else{
-            place_errors_table($("<label class='error' for='" + field + "'>" + errors[field] + "</label>"), $("#"+field));
-        }
-    };
-};
-/*
- * Places field errors which got returned from an ajax submit in a table forms
- * Currently we show on field error at a time
- */
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
 	if(jqXHR.status==0){
 		$("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
 	}else{
 		$("#message_area").html("<p>" + ERROR_MESSAGE + "</p>");
     }
-}
-function place_errors_ajax_table(errors, element){
-    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-    place_errors_table($(error), element);
 };
-
-function place_errors_table($error, $element) {
+function place_table_form_errors(form, errors){
+    for (field in errors){
+        if (field == "non_field_error"){
+            $(form + " .error_section").html(errors[field]);
+        }
+        else{
+            place_table_form_field_error($("<label class='error' for='" + field + "'>" + errors[field] + "</label>"), $("#"+field));
+        }
+    };
+};
+/* The reason the parameters here are jquery objects is because that's the form in which
+ * the jquery form validation plugin passes them. Therefore, even though it's ugly, you
+ * should not change the parameters to be non-jquery objects.
+ */
+function place_table_form_field_error($error, $element) {
+	console.log($element);
+	console.log($element.prev());
+	console.log($element.prev().get(0));
     if ($element.prev().get(0).tagName=='DIV') {
         $element.prev().html($error);
     } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
@@ -108,11 +105,11 @@ function place_errors_table($error, $element) {
         "position": "absolute",
         "bottom": 0
     });
-}
+};
 // Shows max number that one can select on that multiselect
 function place_multiselect_warning_table(element, max) {
     var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
-    place_errors_table($(warning), element)
+    place_table_form_field_error($(warning), element)
 };
 // Pick out url GET parameters by name
 function get_parameter_by_name(name) {
@@ -248,7 +245,7 @@ $(document).ready( function () {
                     },
                     highlight: highlight,
                     unhighlight: unhighlight,
-                    errorPlacement: place_errors_table,
+                    errorPlacement: place_table_form_field_error,
                     rules: {
                         name: {
                             required: true
