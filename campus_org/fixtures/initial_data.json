@@ -4,7 +4,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://www.mit100k.org/", 
-   "last_updated": "2011-07-27 01:26:53", 
+   "last_updated": "2011-08-13 14:19:06", 
    "description": "The MIT $100K Entrepreneurship Competition is a year-long educational experience designed to encourage students and researchers in the MIT community to act on their talent, ideas and energy to produce tomorrow\u2019s leading firms.", 
    "image": "campus_org/CampusOrg/100k_competititon_2011-07-27-01-26-53.png", 
    "email": "", 
@@ -84,7 +84,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://africans.mit.edu/", 
-   "last_updated": "2011-07-27 01:38:26", 
+   "last_updated": "2011-08-13 14:21:41", 
    "description": "An organization bringing African culture to the MIT community, fostering a community of students with an interest in African culture and issue.  MIT Africans are an organization and a community promoting African culture on the MIT campus. To achieve these purposes, we host events that showcase the diversity and depth of African culture, both historical and contemporary. Furthermore, we provide a setting for all those interested in African culture to meet and engage in discussion. ", 
    "image": "", 
    "email": "", 
