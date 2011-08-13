@@ -10,7 +10,7 @@ def get_resume_filename(instance, filename):
 
 def get_campus_org_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    return "%s%s_%s%s" % (settings.CORE_CAMPUS_ORG_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
+    return "%s%s_%s%s" % (settings.CAMPUS_ORG_CAMPUS_ORG_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def get_course_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
@@ -18,7 +18,7 @@ def get_course_image_filename(instance, filename):
 
 def get_campus_org_thumbnail_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    return "%s%s_%s_thumbnail%s" % (settings.CORE_CAMPUS_ORG_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
+    return "%s%s_%s_thumbnail%s" % (settings.CAMPUS_ORG_CAMPUS_ORG_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def get_course_thumbnail_filename(instance, filename):
     extension = filename[filename.find('.'):]
