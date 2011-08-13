@@ -3641,8 +3641,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "English (Basic)"
+   "name_and_level": "English (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "English"
   }
  }, 
  {
@@ -3650,8 +3651,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "English (Proficient)"
+   "name_and_level": "English (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "English"
   }
  }, 
  {
@@ -3659,8 +3661,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "English (Fluent)"
+   "name_and_level": "English (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "English"
   }
  }, 
  {
@@ -3668,8 +3671,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:55:49", 
-   "last_updated": "2011-07-04 18:55:49", 
-   "name": "American Sign Language (Basic)"
+   "name_and_level": "American Sign Language (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "American"
   }
  }, 
  {
@@ -3677,8 +3681,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:56:53", 
-   "last_updated": "2011-07-04 18:56:53", 
-   "name": "American Sign Language (Proficient)"
+   "name_and_level": "American Sign Language (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "American"
   }
  }, 
  {
@@ -3686,8 +3691,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:08", 
-   "last_updated": "2011-07-04 18:57:08", 
-   "name": "American Sign Language (Fluent)"
+   "name_and_level": "American Sign Language (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "American"
   }
  }, 
  {
@@ -3695,8 +3701,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:16", 
-   "last_updated": "2011-07-04 18:57:16", 
-   "name": "Arabic (Basic)"
+   "name_and_level": "Arabic (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Arabic"
   }
  }, 
  {
@@ -3704,8 +3711,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:28", 
-   "last_updated": "2011-07-04 18:57:28", 
-   "name": "Arabic (Proficient)"
+   "name_and_level": "Arabic (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Arabic"
   }
  }, 
  {
@@ -3713,8 +3721,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:33", 
-   "last_updated": "2011-07-04 18:57:33", 
-   "name": "Arabic (Fluent)"
+   "name_and_level": "Arabic (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Arabic"
   }
  }, 
  {
@@ -3722,8 +3731,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:40", 
-   "last_updated": "2011-07-04 18:57:40", 
-   "name": "Bengali (Basic)"
+   "name_and_level": "Bengali (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bengali"
   }
  }, 
  {
@@ -3731,8 +3741,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:48", 
-   "last_updated": "2011-07-04 18:57:48", 
-   "name": "Bengali (Proficient)"
+   "name_and_level": "Bengali (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bengali"
   }
  }, 
  {
@@ -3740,8 +3751,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:57:53", 
-   "last_updated": "2011-07-04 18:57:53", 
-   "name": "Bengali (Fluent)"
+   "name_and_level": "Bengali (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bengali"
   }
  }, 
  {
@@ -3749,8 +3761,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:58:07", 
-   "last_updated": "2011-07-04 18:58:07", 
-   "name": "Bulgarian (Basic)"
+   "name_and_level": "Bulgarian (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bulgarian"
   }
  }, 
  {
@@ -3758,8 +3771,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:58:15", 
-   "last_updated": "2011-07-04 18:58:15", 
-   "name": "Bulgarian (Proficient)"
+   "name_and_level": "Bulgarian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bulgarian"
   }
  }, 
  {
@@ -3767,8 +3781,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:58:21", 
-   "last_updated": "2011-07-04 18:58:21", 
-   "name": "Bulgarian (Fluent)"
+   "name_and_level": "Bulgarian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bulgarian"
   }
  }, 
  {
@@ -3776,8 +3791,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:59:46", 
-   "last_updated": "2011-07-04 18:59:46", 
-   "name": "Cantonese (Basic)"
+   "name_and_level": "Cantonese (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Cantonese"
   }
  }, 
  {
@@ -3785,8 +3801,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 18:59:53", 
-   "last_updated": "2011-07-04 18:59:53", 
-   "name": "Cantonese (Proficient)"
+   "name_and_level": "Cantonese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Cantonese"
   }
  }, 
  {
@@ -3794,8 +3811,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:00:10", 
-   "last_updated": "2011-07-04 19:00:10", 
-   "name": "Cantonese (Fluent)"
+   "name_and_level": "Cantonese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Cantonese"
   }
  }, 
  {
@@ -3803,8 +3821,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:00:15", 
-   "last_updated": "2011-07-04 19:00:15", 
-   "name": "Chinese (Basic)"
+   "name_and_level": "Chinese (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Chinese"
   }
  }, 
  {
@@ -3812,8 +3831,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:00:32", 
-   "last_updated": "2011-07-04 19:00:32", 
-   "name": "Chinese (Proficient)"
+   "name_and_level": "Chinese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Chinese"
   }
  }, 
  {
@@ -3821,8 +3841,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:00:38", 
-   "last_updated": "2011-07-04 19:00:38", 
-   "name": "Chinese (Fluent)"
+   "name_and_level": "Chinese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Chinese"
   }
  }, 
  {
@@ -3830,8 +3851,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:00:46", 
-   "last_updated": "2011-07-04 19:00:46", 
-   "name": "Croatian (Basic)"
+   "name_and_level": "Croatian (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Croatian"
   }
  }, 
  {
@@ -3839,8 +3861,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:00:54", 
-   "last_updated": "2011-07-04 19:00:54", 
-   "name": "Croatian (Proficient)"
+   "name_and_level": "Croatian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Croatian"
   }
  }, 
  {
@@ -3848,8 +3871,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:00", 
-   "last_updated": "2011-07-04 19:01:00", 
-   "name": "Croatian (Fluent)"
+   "name_and_level": "Croatian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Croatian"
   }
  }, 
  {
@@ -3857,8 +3881,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:08", 
-   "last_updated": "2011-07-04 19:01:08", 
-   "name": "Czech (Basic)"
+   "name_and_level": "Czech (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Czech"
   }
  }, 
  {
@@ -3866,8 +3891,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:16", 
-   "last_updated": "2011-07-04 19:01:16", 
-   "name": "Czech (Proficient)"
+   "name_and_level": "Czech (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Czech"
   }
  }, 
  {
@@ -3875,8 +3901,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:31", 
-   "last_updated": "2011-07-04 19:01:31", 
-   "name": "Czech (Fluent)"
+   "name_and_level": "Czech (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Czech"
   }
  }, 
  {
@@ -3884,8 +3911,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:38", 
-   "last_updated": "2011-07-04 19:01:38", 
-   "name": "Danish (Basic)"
+   "name_and_level": "Danish (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Danish"
   }
  }, 
  {
@@ -3893,8 +3921,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:44", 
-   "last_updated": "2011-07-04 19:01:44", 
-   "name": "Danish (Proficient)"
+   "name_and_level": "Danish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Danish"
   }
  }, 
  {
@@ -3902,8 +3931,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:51", 
-   "last_updated": "2011-07-04 19:01:51", 
-   "name": "Danish (Fluent)"
+   "name_and_level": "Danish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Danish"
   }
  }, 
  {
@@ -3911,8 +3941,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:01:57", 
-   "last_updated": "2011-07-04 19:01:57", 
-   "name": "Dutch (Basic)"
+   "name_and_level": "Dutch (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Dutch"
   }
  }, 
  {
@@ -3920,8 +3951,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:03", 
-   "last_updated": "2011-07-04 19:02:03", 
-   "name": "Dutch (Proficient)"
+   "name_and_level": "Dutch (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Dutch"
   }
  }, 
  {
@@ -3929,8 +3961,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:08", 
-   "last_updated": "2011-07-04 19:02:08", 
-   "name": "Dutch (Fluent)"
+   "name_and_level": "Dutch (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Dutch"
   }
  }, 
  {
@@ -3938,8 +3971,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:15", 
-   "last_updated": "2011-07-04 19:02:15", 
-   "name": "Estonian (Basic)"
+   "name_and_level": "Estonian (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Estonian"
   }
  }, 
  {
@@ -3947,8 +3981,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:34", 
-   "last_updated": "2011-07-04 19:02:34", 
-   "name": "Estonian (Proficient)"
+   "name_and_level": "Estonian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Estonian"
   }
  }, 
  {
@@ -3956,8 +3991,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:41", 
-   "last_updated": "2011-07-04 19:02:41", 
-   "name": "Estonian (Fluent)"
+   "name_and_level": "Estonian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Estonian"
   }
  }, 
  {
@@ -3965,8 +4001,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:46", 
-   "last_updated": "2011-07-04 19:02:46", 
-   "name": "Farsi (Basic)"
+   "name_and_level": "Farsi (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Farsi"
   }
  }, 
  {
@@ -3974,8 +4011,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:52", 
-   "last_updated": "2011-07-04 19:02:52", 
-   "name": "Farsi (Proficient)"
+   "name_and_level": "Farsi (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Farsi"
   }
  }, 
  {
@@ -3983,8 +4021,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:02:56", 
-   "last_updated": "2011-07-04 19:02:56", 
-   "name": "Farsi (Fluent)"
+   "name_and_level": "Farsi (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Farsi"
   }
  }, 
  {
@@ -3992,8 +4031,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:03:27", 
-   "last_updated": "2011-07-04 19:03:27", 
-   "name": "Finnish (Basic)"
+   "name_and_level": "Finnish (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Finnish"
   }
  }, 
  {
@@ -4001,8 +4041,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:03:34", 
-   "last_updated": "2011-07-04 19:03:34", 
-   "name": "Finnish (Proficient)"
+   "name_and_level": "Finnish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Finnish"
   }
  }, 
  {
@@ -4010,8 +4051,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:03:39", 
-   "last_updated": "2011-07-04 19:03:39", 
-   "name": "Finnish (Fluent)"
+   "name_and_level": "Finnish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Finnish"
   }
  }, 
  {
@@ -4019,8 +4061,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:03:44", 
-   "last_updated": "2011-07-04 19:03:44", 
-   "name": "French (Basic)"
+   "name_and_level": "French (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "French"
   }
  }, 
  {
@@ -4028,8 +4071,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:03:49", 
-   "last_updated": "2011-07-04 19:03:49", 
-   "name": "French (Proficient)"
+   "name_and_level": "French (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "French"
   }
  }, 
  {
@@ -4037,8 +4081,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:03:54", 
-   "last_updated": "2011-07-04 19:03:54", 
-   "name": "French (Fluent)"
+   "name_and_level": "French (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "French"
   }
  }, 
  {
@@ -4046,8 +4091,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:01", 
-   "last_updated": "2011-07-04 19:04:01", 
-   "name": "German (Basic)"
+   "name_and_level": "German (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "German"
   }
  }, 
  {
@@ -4055,8 +4101,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:07", 
-   "last_updated": "2011-07-04 19:04:07", 
-   "name": "German (Proficient)"
+   "name_and_level": "German (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "German"
   }
  }, 
  {
@@ -4064,8 +4111,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:14", 
-   "last_updated": "2011-07-04 19:04:14", 
-   "name": "German (Fluent)"
+   "name_and_level": "German (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "German"
   }
  }, 
  {
@@ -4073,8 +4121,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:19", 
-   "last_updated": "2011-07-04 19:04:19", 
-   "name": "Greek (Basic)"
+   "name_and_level": "Greek (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Greek"
   }
  }, 
  {
@@ -4082,8 +4131,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:28", 
-   "last_updated": "2011-07-04 19:04:28", 
-   "name": "Greek (Proficient)"
+   "name_and_level": "Greek (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Greek"
   }
  }, 
  {
@@ -4091,8 +4141,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:37", 
-   "last_updated": "2011-07-04 19:04:37", 
-   "name": "Greek (Fluent)"
+   "name_and_level": "Greek (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Greek"
   }
  }, 
  {
@@ -4100,8 +4151,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:04:44", 
-   "last_updated": "2011-07-04 19:04:44", 
-   "name": "Hebrew (Basic)"
+   "name_and_level": "Hebrew (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hebrew"
   }
  }, 
  {
@@ -4109,8 +4161,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:05:22", 
-   "last_updated": "2011-07-04 19:05:22", 
-   "name": "Hebrew (Proficient)"
+   "name_and_level": "Hebrew (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hebrew"
   }
  }, 
  {
@@ -4118,8 +4171,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:05:34", 
-   "last_updated": "2011-07-04 19:05:34", 
-   "name": "Hebrew (Fluent)"
+   "name_and_level": "Hebrew (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hebrew"
   }
  }, 
  {
@@ -4127,8 +4181,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:05:56", 
-   "last_updated": "2011-07-04 19:05:56", 
-   "name": "Hindi (Basic)"
+   "name_and_level": "Hindi (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hindi"
   }
  }, 
  {
@@ -4136,8 +4191,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:06:01", 
-   "last_updated": "2011-07-04 19:06:01", 
-   "name": "Hindi (Proficient)"
+   "name_and_level": "Hindi (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hindi"
   }
  }, 
  {
@@ -4145,8 +4201,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:06:07", 
-   "last_updated": "2011-07-04 19:06:07", 
-   "name": "Hindi (Fluent)"
+   "name_and_level": "Hindi (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hindi"
   }
  }, 
  {
@@ -4154,8 +4211,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:06:52", 
-   "last_updated": "2011-07-04 19:06:52", 
-   "name": "Hungarian (Basic)"
+   "name_and_level": "Hungarian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hungarian"
   }
  }, 
  {
@@ -4163,8 +4221,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:06:59", 
-   "last_updated": "2011-07-04 19:06:59", 
-   "name": "Hungarian (Proficient)"
+   "name_and_level": "Hungarian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hungarian"
   }
  }, 
  {
@@ -4172,8 +4231,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:07:09", 
-   "last_updated": "2011-07-04 19:07:09", 
-   "name": "Hungarian (Fluent)"
+   "name_and_level": "Hungarian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hungarian"
   }
  }, 
  {
@@ -4181,8 +4241,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:07:14", 
-   "last_updated": "2011-07-04 19:07:14", 
-   "name": "Icelandic (Basic)"
+   "name_and_level": "Icelandic (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Icelandic"
   }
  }, 
  {
@@ -4190,8 +4251,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:07:21", 
-   "last_updated": "2011-07-04 19:07:21", 
-   "name": "Icelandic (Proficient)"
+   "name_and_level": "Icelandic (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Icelandic"
   }
  }, 
  {
@@ -4199,8 +4261,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:07:26", 
-   "last_updated": "2011-07-04 19:07:26", 
-   "name": "Icelandic (Fluent)"
+   "name_and_level": "Icelandic (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Icelandic"
   }
  }, 
  {
@@ -4208,8 +4271,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:03", 
-   "last_updated": "2011-07-04 19:08:03", 
-   "name": "Italian (Basic)"
+   "name_and_level": "Italian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Italian"
   }
  }, 
  {
@@ -4217,8 +4281,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:08", 
-   "last_updated": "2011-07-04 19:08:08", 
-   "name": "Italian (Proficient)"
+   "name_and_level": "Italian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Italian"
   }
  }, 
  {
@@ -4226,8 +4291,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:14", 
-   "last_updated": "2011-07-04 19:08:14", 
-   "name": "Italian (Fluent)"
+   "name_and_level": "Italian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Italian"
   }
  }, 
  {
@@ -4235,8 +4301,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:22", 
-   "last_updated": "2011-07-04 19:08:22", 
-   "name": "Japanese (Basic)"
+   "name_and_level": "Japanese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Japanese"
   }
  }, 
  {
@@ -4244,8 +4311,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:27", 
-   "last_updated": "2011-07-04 19:08:27", 
-   "name": "Japanese (Proficient)"
+   "name_and_level": "Japanese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Japanese"
   }
  }, 
  {
@@ -4253,8 +4321,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:33", 
-   "last_updated": "2011-07-04 19:08:33", 
-   "name": "Japanese (Fluent)"
+   "name_and_level": "Japanese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Japanese"
   }
  }, 
  {
@@ -4262,8 +4331,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:49", 
-   "last_updated": "2011-07-04 19:08:49", 
-   "name": "Korean (Basic)"
+   "name_and_level": "Korean (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Korean"
   }
  }, 
  {
@@ -4271,8 +4341,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:08:54", 
-   "last_updated": "2011-07-04 19:08:54", 
-   "name": "Korean (Proficient)"
+   "name_and_level": "Korean (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Korean"
   }
  }, 
  {
@@ -4280,8 +4351,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:09:01", 
-   "last_updated": "2011-07-04 19:09:01", 
-   "name": "Korean (Fluent)"
+   "name_and_level": "Korean (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Korean"
   }
  }, 
  {
@@ -4289,8 +4361,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:09:08", 
-   "last_updated": "2011-07-04 19:09:08", 
-   "name": "Latvian (Basic)"
+   "name_and_level": "Latvian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Latvian"
   }
  }, 
  {
@@ -4298,8 +4371,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:09:17", 
-   "last_updated": "2011-07-04 19:09:17", 
-   "name": "Latvian (Proficient)"
+   "name_and_level": "Latvian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Latvian"
   }
  }, 
  {
@@ -4307,8 +4381,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:09:26", 
-   "last_updated": "2011-07-04 19:09:26", 
-   "name": "Latvian (Fluent)"
+   "name_and_level": "Latvian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Latvian"
   }
  }, 
  {
@@ -4316,8 +4391,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:09:36", 
-   "last_updated": "2011-07-04 19:09:36", 
-   "name": "Lithuanian (Basic)"
+   "name_and_level": "Lithuanian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Lithuanian"
   }
  }, 
  {
@@ -4325,8 +4401,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:09:46", 
-   "last_updated": "2011-07-04 19:09:46", 
-   "name": "Lithuanian (Proficient)"
+   "name_and_level": "Lithuanian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Lithuanian"
   }
  }, 
  {
@@ -4334,8 +4411,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:10:06", 
-   "last_updated": "2011-07-04 19:10:06", 
-   "name": "Lithuanian (Fluent)"
+   "name_and_level": "Lithuanian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Lithuanian"
   }
  }, 
  {
@@ -4343,8 +4421,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:10:13", 
-   "last_updated": "2011-07-04 19:10:13", 
-   "name": "Mandarin (Basic)"
+   "name_and_level": "Mandarin (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Mandarin"
   }
  }, 
  {
@@ -4352,8 +4431,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:10:19", 
-   "last_updated": "2011-07-04 19:10:19", 
-   "name": "Mandarin (Proficient)"
+   "name_and_level": "Mandarin (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Mandarin"
   }
  }, 
  {
@@ -4361,8 +4441,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:10:44", 
-   "last_updated": "2011-07-04 19:10:44", 
-   "name": "Mandarin (Fluent)"
+   "name_and_level": "Mandarin (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Mandarin"
   }
  }, 
  {
@@ -4370,8 +4451,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:00", 
-   "last_updated": "2011-07-04 19:11:00", 
-   "name": "Norwegian (Basic)"
+   "name_and_level": "Norwegian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Norwegian"
   }
  }, 
  {
@@ -4379,8 +4461,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:07", 
-   "last_updated": "2011-07-04 19:11:07", 
-   "name": "Norwegian (Proficient)"
+   "name_and_level": "Norwegian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Norwegian"
   }
  }, 
  {
@@ -4388,8 +4471,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:12", 
-   "last_updated": "2011-07-04 19:11:12", 
-   "name": "Norwegian (Fluent)"
+   "name_and_level": "Norwegian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Norwegian"
   }
  }, 
  {
@@ -4397,8 +4481,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:21", 
-   "last_updated": "2011-07-04 19:11:21", 
-   "name": "Polish (Basic)"
+   "name_and_level": "Polish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Polish"
   }
  }, 
  {
@@ -4406,8 +4491,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:31", 
-   "last_updated": "2011-07-04 19:11:31", 
-   "name": "Polish (Proficient)"
+   "name_and_level": "Polish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Polish"
   }
  }, 
  {
@@ -4415,8 +4501,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:36", 
-   "last_updated": "2011-07-04 19:11:36", 
-   "name": "Polish (Fluent)"
+   "name_and_level": "Polish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Polish"
   }
  }, 
  {
@@ -4424,8 +4511,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:11:50", 
-   "last_updated": "2011-07-04 19:11:50", 
-   "name": "Portuguese (Basic)"
+   "name_and_level": "Portuguese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Portuguese"
   }
  }, 
  {
@@ -4433,8 +4521,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:08", 
-   "last_updated": "2011-07-04 19:12:08", 
-   "name": "Portuguese (Proficient)"
+   "name_and_level": "Portuguese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Portuguese"
   }
  }, 
  {
@@ -4442,8 +4531,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:14", 
-   "last_updated": "2011-07-04 19:12:14", 
-   "name": "Portuguese (Fluent)"
+   "name_and_level": "Portuguese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Portuguese"
   }
  }, 
  {
@@ -4451,8 +4541,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:23", 
-   "last_updated": "2011-07-04 19:12:23", 
-   "name": "Romanian (Basic)"
+   "name_and_level": "Romanian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Romanian"
   }
  }, 
  {
@@ -4460,8 +4551,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:35", 
-   "last_updated": "2011-07-04 19:12:35", 
-   "name": "Romanian (Proficient)"
+   "name_and_level": "Romanian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Romanian"
   }
  }, 
  {
@@ -4469,8 +4561,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:42", 
-   "last_updated": "2011-07-04 19:12:42", 
-   "name": "Romanian (Fluent)"
+   "name_and_level": "Romanian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Romanian"
   }
  }, 
  {
@@ -4478,8 +4571,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:50", 
-   "last_updated": "2011-07-04 19:12:50", 
-   "name": "Russian (Basic)"
+   "name_and_level": "Russian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Russian"
   }
  }, 
  {
@@ -4487,8 +4581,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:54", 
-   "last_updated": "2011-07-04 19:12:54", 
-   "name": "Russian (Proficient)"
+   "name_and_level": "Russian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Russian"
   }
  }, 
  {
@@ -4496,8 +4591,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:12:59", 
-   "last_updated": "2011-07-04 19:12:59", 
-   "name": "Russian (Fluent)"
+   "name_and_level": "Russian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Russian"
   }
  }, 
  {
@@ -4505,8 +4601,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:09", 
-   "last_updated": "2011-07-04 19:13:09", 
-   "name": "Slovak (Basic)"
+   "name_and_level": "Slovak (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Slovak"
   }
  }, 
  {
@@ -4514,8 +4611,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:17", 
-   "last_updated": "2011-07-04 19:13:17", 
-   "name": "Slovak (Proficient)"
+   "name_and_level": "Slovak (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Slovak"
   }
  }, 
  {
@@ -4523,8 +4621,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:23", 
-   "last_updated": "2011-07-04 19:13:23", 
-   "name": "Slovak (Fluent)"
+   "name_and_level": "Slovak (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Slovak"
   }
  }, 
  {
@@ -4532,8 +4631,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:30", 
-   "last_updated": "2011-07-04 19:13:30", 
-   "name": "Spanish (Basic)"
+   "name_and_level": "Spanish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Spanish"
   }
  }, 
  {
@@ -4541,8 +4641,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:36", 
-   "last_updated": "2011-07-04 19:13:36", 
-   "name": "Spanish (Proficient)"
+   "name_and_level": "Spanish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Spanish"
   }
  }, 
  {
@@ -4550,8 +4651,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:42", 
-   "last_updated": "2011-07-04 19:13:42", 
-   "name": "Spanish (Fluent)"
+   "name_and_level": "Spanish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Spanish"
   }
  }, 
  {
@@ -4559,8 +4661,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:49", 
-   "last_updated": "2011-07-04 19:13:49", 
-   "name": "Swedish (Basic)"
+   "name_and_level": "Swedish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Swedish"
   }
  }, 
  {
@@ -4568,8 +4671,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:13:55", 
-   "last_updated": "2011-07-04 19:13:55", 
-   "name": "Swedish (Proficient)"
+   "name_and_level": "Swedish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Swedish"
   }
  }, 
  {
@@ -4577,8 +4681,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:14:01", 
-   "last_updated": "2011-07-04 19:14:01", 
-   "name": "Swedish (Fluent)"
+   "name_and_level": "Swedish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Swedish"
   }
  }, 
  {
@@ -4586,8 +4691,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:14:07", 
-   "last_updated": "2011-07-04 19:14:07", 
-   "name": "Taiwanese (Basic)"
+   "name_and_level": "Taiwanese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Taiwanese"
   }
  }, 
  {
@@ -4595,8 +4701,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:17:23", 
-   "last_updated": "2011-07-04 19:17:23", 
-   "name": "Taiwanese (Proficient)"
+   "name_and_level": "Taiwanese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Taiwanese"
   }
  }, 
  {
@@ -4604,8 +4711,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:17:31", 
-   "last_updated": "2011-07-04 19:17:31", 
-   "name": "Taiwanese (Fluent)"
+   "name_and_level": "Taiwanese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Taiwanese"
   }
  }, 
  {
@@ -4613,8 +4721,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:17:37", 
-   "last_updated": "2011-07-04 19:17:37", 
-   "name": "Thai (Basic)"
+   "name_and_level": "Thai (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Thai"
   }
  }, 
  {
@@ -4622,8 +4731,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:17:59", 
-   "last_updated": "2011-07-04 19:17:59", 
-   "name": "Thai (Proficient)"
+   "name_and_level": "Thai (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Thai"
   }
  }, 
  {
@@ -4631,8 +4741,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:03", 
-   "last_updated": "2011-07-04 19:18:03", 
-   "name": "Thai (Fluent)"
+   "name_and_level": "Thai (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Thai"
   }
  }, 
  {
@@ -4640,8 +4751,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:09", 
-   "last_updated": "2011-07-04 19:18:09", 
-   "name": "Turkish (Basic)"
+   "name_and_level": "Turkish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Turkish"
   }
  }, 
  {
@@ -4649,8 +4761,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:15", 
-   "last_updated": "2011-07-04 19:18:15", 
-   "name": "Turkish (Proficient)"
+   "name_and_level": "Turkish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Turkish"
   }
  }, 
  {
@@ -4658,8 +4771,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:20", 
-   "last_updated": "2011-07-04 19:18:20", 
-   "name": "Turkish (Fluent)"
+   "name_and_level": "Turkish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Turkish"
   }
  }, 
  {
@@ -4667,8 +4781,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:30", 
-   "last_updated": "2011-07-04 19:18:30", 
-   "name": "Urdu (Basic)"
+   "name_and_level": "Urdu (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Urdu"
   }
  }, 
  {
@@ -4676,8 +4791,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:35", 
-   "last_updated": "2011-07-04 19:18:35", 
-   "name": "Urdu (Proficient)"
+   "name_and_level": "Urdu (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Urdu"
   }
  }, 
  {
@@ -4685,8 +4801,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:43", 
-   "last_updated": "2011-07-04 19:18:43", 
-   "name": "Urdu (Fluent)"
+   "name_and_level": "Urdu (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Urdu"
   }
  }, 
  {
@@ -4694,8 +4811,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:50", 
-   "last_updated": "2011-07-04 19:18:50", 
-   "name": "Vietnamese (Basic)"
+   "name_and_level": "Vietnamese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Vietnamese"
   }
  }, 
  {
@@ -4703,8 +4821,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:18:57", 
-   "last_updated": "2011-07-04 19:18:57", 
-   "name": "Vietnamese (Proficient)"
+   "name_and_level": "Vietnamese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Vietnamese"
   }
  }, 
  {
@@ -4712,8 +4831,9 @@
   "model": "core.language", 
   "fields": {
    "date_created": "2011-07-04 19:19:05", 
-   "last_updated": "2011-07-04 19:19:05", 
-   "name": "Vietnamese (Fluent)"
+   "name_and_level": "Vietnamese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Vietnamese"
   }
  }, 
  {
