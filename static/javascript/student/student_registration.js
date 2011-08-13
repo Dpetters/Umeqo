@@ -1,4 +1,5 @@
 $(document).ready( function() {
+    var registration_xhr = null;
     $.validator.addMethod('isMITEmail', function(value, element) {
         // For testing, allow umeqo.com emails as well.
         return (value.length - "mit.edu".length) == value.indexOf("mit.edu") ||
@@ -10,21 +11,13 @@ $(document).ready( function() {
             $(form).ajaxSubmit({
                 dataType: 'json',
                 beforeSubmit: function (arr, $form, options) {
+                	$("#student_registration_form input[type=submit]").attr('disabled', 'disabled');
                     show_form_submit_loader("#student_registration_form");
                     $("#student_registration_form .error_section").html("");
                 },
                 complete : function(jqXHR, textStatus) {
+                	$("#student_registration_form input[type=submit]").removeAttr('disabled');
                     hide_form_submit_loader("#student_registration_form");
-                },
-                error: function(jqXHR, textStatus, errorThrown){
-    	            if(jqXHR.status==0 && errorThrown != "abort"){
-                        if (errorThrown.slice(0, 12-errorThrown.length)=="Invalid JSON"){
-                            $("#student_registration_block .main_block_content").html(page_error_message);
-                        }
-                        $("#student_registration_form .error_section").html(form_check_connection_message);
-                    }else{
-						
-                    }
                 },
                 success: function(data) {
                     if(data.valid){
@@ -36,7 +29,8 @@ $(document).ready( function() {
                             place_errors_ajax_table(data.form_errors.email, element);
                         }
                     }
-                }
+                },
+                error: errors_in_message_area_handler
             });
         },
         highlight: highlight,
@@ -50,18 +44,7 @@ $(document).ready( function() {
                 remote: {
                     dataType: 'json',
                     url:"/check-email-availability/",
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        switch(jqXHR.status){
-                            case 0:
-                                if (errorThrown.slice(0, 12-errorThrown.length)=="Invalid JSON"){
-                                    $("#student_registration_block .main_block_content").html(page_error_message);
-                                }
-                                $("#student_registration_form .error_section").html(form_check_connection_message);
-                                break;
-                            default:
-                                $("#student_registration_block .main_block_content").html(page_error_message);
-                        }
-                    },
+                    error: errors_in_message_area_handler
                 },
             },
             password1: {

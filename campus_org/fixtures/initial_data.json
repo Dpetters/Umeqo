@@ -2355,47 +2355,31 @@
   "pk": 167, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/hillel/www/", 
+   "last_updated": "2011-08-13 04:21:55", 
+   "description": "Hillel is a home away from home for MIT's Jewish students. Located in the Religious Activities Center (W11), Hillel has a Jewish library, two kosher kitchens and three dining rooms. These rooms are used at certain times each week for classes, worship, or meetings. The Hillel student body is composed of people from all over the country and the world.\r\n\r\nSocial events, community service, and Jewish learning opportunities are highlights of the Hillel program throughout the year. Hillel's test tube menorah and (now-retired) award-winning student designed sukkah are two examples of the unique community on campus. Hillel's reach expands into the dormitories, fraternities, sororities, with events often being hosted by different Jewish networked-groups. Since graduate students comprise more than half of the MIT student population, Grad Hillel schedules its own diverse events. Our annual Latke-Hamentaschen Debate and nationally-reported-upon Hummus Experience gather students from across campus life. Hillel's Independent Activities Period program, during MIT's four week January term devoted to alternative learning, offers many unique events and classes.\r\n\r\nOther groups such as MIT Students for Israel, the Jewish a cappella ensemble Techiya, and Sloan Jewish Student Organization are active on campus. Hillel also sponsors Art exhibits, a monthly dinner with professors, and a speaker series. Greater Boston is an academic and cultural center attracting thousands of Jewish students to area colleges. MIT students have many opportunities to interact with other students and participate in greater Boston Jewish life.", 
    "image": "", 
-   "email": "", 
+   "email": "hillel@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 13, 
+   "display": true, 
    "name": "Graduate Hillel"
-  }
- }, 
- {
-  "pk": 168, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Graduate Soccer Club"
   }
  }, 
  {
   "pk": 169, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://gsc.mit.edu/", 
+   "last_updated": "2011-08-13 04:24:46", 
+   "description": "The GSC exists to enhance the overall graduate experience at MIT by promoting the general welfare and concerns of the graduate student body, creating new programs and initiatives to provide opportunities for growth and interaction, and communicating with the MIT Administration and Faculty on behalf of graduate students.", 
    "image": "", 
-   "email": "", 
+   "email": "changemit@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 10, 
+   "display": true, 
    "name": "Graduate Student Council"
   }
  }, 
@@ -2403,16 +2387,16 @@
   "pk": 170, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "https://sites.google.com/site/gwamitweb/", 
+   "last_updated": "2011-08-13 04:27:05", 
+   "description": "Graduate Women at MIT is student-led organization with representatives across MIT. As a subcommittee of the Graduate Student Council, we provide a unified voice for MIT's graduate women.  We welcome all members of the MIT community, including men.", 
    "image": "", 
-   "email": "", 
+   "email": "gwamit-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Graduate Women at MIT"
+   "type": 4, 
+   "display": true, 
+   "name": "Graduate Women at MIT (GWAMIT)"
   }
  }, 
  {
@@ -2420,13 +2404,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-13 04:35:01", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Graduate Women of Course 6"
   }
@@ -2435,14 +2419,14 @@
   "pk": 172, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "website": "http://web.mit.edu/greekiv/staff/", 
+   "last_updated": "2011-08-13 04:45:23", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
    "name": "Greek Intervarsity"
   }
@@ -2467,15 +2451,15 @@
   "pk": 174, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://mit.edu/hapa/", 
+   "last_updated": "2011-08-13 04:52:15", 
+   "description": "Hapa is a group of mixed-ethnicity students at MIT that is interested in issues affecting people with mixed backgrounds. Our events serve to benefit others with mixed backgrounds or simply to have fun and connect with other students through a common understanding.\r\n\r\nHapa is the Hawaiian word for \"half\" and was initially a derogatory term used to describe someone who was half Hawaiian. The phrase \"hapa haole\" was commonly used, meaning half white. The term hapa was initially adapted by people of Japanese-White mixed heritage to describe themselves, and is now used to describe anyone of mixed heritage with partially Asian or Pacific Islander ancestry.", 
    "image": "", 
-   "email": "", 
+   "email": "hapa@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Hapa"
   }
  }, 
@@ -6574,5 +6558,5 @@
    "display": false, 
    "name": "Yan Xin Life Science and Tech Association"
   }
- } 
+ }
 ]

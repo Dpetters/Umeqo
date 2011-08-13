@@ -183,7 +183,7 @@ $(document).ready(function(){
 					            if(jqXHR.status==0){
 									$unparsable_resume_dialog.html(dialog_check_connection_message);
 								}else{
-					                $unparsable_resume.html(dialog_error_message);
+					                $unparsable_resume.html(ERROR_MESSAGE_DIALOG);
 					            }
 					        },
 					        success: function (data) {

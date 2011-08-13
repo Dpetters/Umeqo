@@ -3,80 +3,84 @@
   "pk": 2, 
   "model": "employer.employer", 
   "fields": {
+   "website": null, 
+   "main_contact_email": "temp@temp.com", 
+   "last_updated": "2011-07-26 00:06:12", 
+   "description": "temp", 
+   "starred_students": [], 
    "industries": [
     42
    ], 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-26 00:06:12", 
-   "name": "Employer2", 
-   "starred_students": [], 
    "main_contact": "Liz Floyd", 
    "main_contact_phone": "543-657-9834", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:06:02", 
    "logo": "employer/Employer/employer2_2011-07-26-00-06-12.png", 
    "slug": "employer2", 
-   "description": "temp"
+   "name": "Employer2"
   }
  }, 
  {
   "pk": 3, 
   "model": "employer.employer", 
   "fields": {
+   "website": null, 
+   "main_contact_email": "fake@fake.com", 
+   "last_updated": "2011-07-26 00:06:05", 
+   "description": "Amazing firm.", 
+   "starred_students": [], 
    "industries": [
     28
    ], 
-   "main_contact_email": "fake@fake.com", 
-   "last_updated": "2011-07-26 00:06:05", 
-   "name": "Employer3", 
-   "starred_students": [], 
    "main_contact": "Katelyn o'Hare", 
    "main_contact_phone": "523-987-4567", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:07:34", 
    "logo": "employer/Employer/employer3_2011-07-26-00-06-05.png", 
    "slug": "employer3", 
-   "description": "Amazing firm."
+   "name": "Employer3"
   }
  }, 
  {
   "pk": 4, 
   "model": "employer.employer", 
   "fields": {
+   "website": null, 
+   "main_contact_email": "jason@blah.com", 
+   "last_updated": "2011-07-26 00:05:58", 
+   "description": "Sample", 
+   "starred_students": [], 
    "industries": [
     41
    ], 
-   "main_contact_email": "jason@blah.com", 
-   "last_updated": "2011-07-26 00:05:58", 
-   "name": "Employer4", 
-   "starred_students": [], 
    "main_contact": "Jason Mccoy", 
    "main_contact_phone": "333-333-3333", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:08:02", 
    "logo": "employer/Employer/employer4_2011-07-26-00-05-58.png", 
    "slug": "employer4", 
-   "description": "Sample"
+   "name": "Employer4"
   }
  }, 
  {
   "pk": 5, 
   "model": "employer.employer", 
   "fields": {
+   "website": null, 
+   "main_contact_email": "temp@temp.com", 
+   "last_updated": "2011-07-28 16:17:53", 
+   "description": "temp", 
+   "starred_students": [], 
    "industries": [
     40
    ], 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-28 16:17:53", 
-   "name": "Employer1", 
-   "starred_students": [], 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:09:24", 
    "logo": "employer/Employer/employer1_2011-07-26-00-05-52.png", 
    "slug": "employer1", 
-   "description": "temp"
+   "name": "Employer1"
   }
  }, 
  {
@@ -178,13 +182,13 @@
   "pk": 2, 
   "model": "employer.resumebook", 
   "fields": {
-   "last_updated": "2011-07-24 15:08:14", 
+   "last_updated": "2011-08-08 23:54:02", 
    "name": null, 
    "students": [
     5
    ], 
    "recruiter": 1, 
-   "resume_book": "", 
+   "resume_book": "employer/ResumeBook/lauren_laver_recruiter1@umeqo.com_2011-08-08-23-54-02.pdf", 
    "date_created": "2011-07-24 15:08:14"
   }
  }, 

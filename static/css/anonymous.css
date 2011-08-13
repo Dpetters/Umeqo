@@ -88,9 +88,9 @@
     border-radius: 3px;
     position: absolute;
     top: 6px;
-    right: 95px;
+    right: 22px;
     background: white;
-    padding: 10px;
+    padding: 10px 6px 9px 13px;
     border: 2px solid #CCC;
     -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);

@@ -89,15 +89,8 @@ $(document).ready(function() {
                     $(container).html(UNSTARRED_IMG);
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0) {
-                    show_error_dialog(page_check_connection_message);
-				}else{
-                    show_error_dialog(page_error_message);
-                }
-            }
+            error: errors_in_message_area_handler
         });
-
     };
     function handle_students_add_star_click(e) {
         student_ids = []
@@ -128,13 +121,7 @@ $(document).ready(function() {
                 	    $("#message_area").html("<p>" + student_ids.length + " students starred.</p>");
                     }
 	            },
-	            error: function(jqXHR, textStatus, errorThrown) {
-	                if(jqXHR.status==0) {
-	                    show_error_dialog(page_check_connection_message);
-					}else{
-	                    show_error_dialog(page_error_message);
-	                }
-	            }
+            	error: errors_in_message_area_handler
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -170,13 +157,7 @@ $(document).ready(function() {
                 	    $("#message_area").html("<p>" + student_ids.length + " students unstarred.</p>");
                     }
 	            },
-	            error: function(jqXHR, textStatus, errorThrown) {
-	                if(jqXHR.status==0) {
-	                    show_error_dialog(page_check_connection_message);
-					}else{
-	                    show_error_dialog(page_error_message);
-	                }
-	            }
+            	error: errors_in_message_area_handler
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -216,13 +197,7 @@ $(document).ready(function() {
                 	    $("#message_area").html("<p>" + student_ids.length + " students removed from resume book.</p>");
                     }
 	            },
-	            error: function(jqXHR, textStatus, errorThrown) {
-	                if(jqXHR.status==0) {
-	                    show_error_dialog(page_check_connection_message);
-					}else{
-	                    show_error_dialog(page_error_message);
-	                }
-	            }
+            	error: errors_in_message_area_handler
 	        });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -262,13 +237,7 @@ $(document).ready(function() {
                 	    $("#message_area").html("<p>" + student_ids.length + " students added to resume book.</p>");
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
-	                if(jqXHR.status==0) {
-	                    show_error_dialog(page_check_connection_message);
-					}else{
-	                    show_error_dialog(page_error_message);
-	                }
-                }
+            	error: errors_in_message_area_handler
             });
         } else {
         	$("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
@@ -304,13 +273,7 @@ $(document).ready(function() {
                         $(container).html(ADD_TO_RESUME_BOOK_IMG);
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0) {
-                    show_error_dialog(page_check_connection_message);
-				}else{
-                    show_error_dialog(page_error_message);
-                }
-            }
+            error: errors_in_message_area_handler
         });
     };
     function handle_student_event_attendance_hover(){
@@ -329,7 +292,8 @@ $(document).ready(function() {
 	            dataType: "html",
 	            success: function (data) {
 	                $(".student_event_attendance_bubble").html(data);
-	            }
+	            },
+	            error: errors_in_message_area_handler
 	        });
 		} else {
         	dropdown.eq(0).remove();
@@ -351,13 +315,7 @@ $(document).ready(function() {
             		$(".saved_message[data-student-id=" + student_id + "]").addClass('hid');
             	}, 3000);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0) {
-                    show_error_dialog(page_check_connection_message);
-				}else{
-                    show_error_dialog(page_error_message);
-                }
-            }
+            error: errors_in_message_area_handler
         });
     };
     
@@ -375,13 +333,7 @@ $(document).ready(function() {
             success: function (data) {
                 $("#students_in_resume_book_student_list_link").html(data);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0) {
-                    show_error_dialog(page_check_connection_message);
-				}else{
-                    show_error_dialog(page_error_message);
-                }
-            }
+            error: errors_in_message_area_handler
         });
     };
     
@@ -529,13 +481,7 @@ $(document).ready(function() {
                 $("#results_block_content").css('opacity', 1);
                 $("#results_block_info_section").css('display', 'none');
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-                    show_error_dialog(page_check_connection_message);
-                }else{
-                    show_error_dialog(page_error_message);
-                }
-            }
+            error: errors_in_message_area_handler
         });
     };
     
@@ -546,9 +492,9 @@ $(document).ready(function() {
 	            url: RESUME_BOOK_CURRENT_DELIVERED_URL,
 	            error: function(jqXHR, textStatus, errorThrown) {
 	                if(jqXHR.status==0){
-	                    deliver_resume_book_dialog.html(dialog_check_connection_message);
+	                    deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 	                }else{
-	                    deliver_resume_book_dialog.html(dialog_error_message);
+	                    deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
 	                }
 	            },
 	            success: function (data) {
@@ -572,9 +518,9 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-                    deliver_resume_book_dialog.html(dialog_check_connection_message);
+                    deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                 }else{
-                    deliver_resume_book_dialog.html(dialog_error_message);
+                    deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {
@@ -632,7 +578,7 @@ $(document).ready(function() {
                                         if(jqXHR.status==0){
                                              deliver_resume_book_dialog.html(dialog_check_connection_message);
                                         }else{
-                                             deliver_resume_book_dialog.html(dialog_error_message);
+                                             deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
                                         }
                                         deliver_resume_book_dialog.dialog('option', 'position', 'center');
                                     },
@@ -669,7 +615,7 @@ $(document).ready(function() {
                         if(jqXHR.status==0){
                              deliver_resume_book_dialog.html(dialog_check_connection_message);
 						}else{
-                             deliver_resume_book_dialog.html(dialog_error_message);
+                             deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
                         }
                     },
                     success: function (data) {

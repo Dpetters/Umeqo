@@ -329,9 +329,9 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
                 form = form_class(data=request.POST)
                 if form.is_valid():
                     new_language_name = form.cleaned_data['name']
-                    basic = Language.objects.create(name=new_language_name + " (Basic)")
-                    proficient = Language.objects.create(name=new_language_name + " (Proficient)")
-                    fluent = Language.objects.create(name=new_language_name + " (Fluent)")
+                    basic = Language.objects.create(name_and_level=new_language_name + " (Basic)", name=new_language_name)
+                    proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
+                    fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
                     data = {"valid":True, 
                             "name":new_language_name, 
                             "fluent_id":fluent.id, 
@@ -340,6 +340,8 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
                 else:
                     data = {'valid':False}
+                    data['errors'] = form.errors
+                    """
                     errors = {}
                     for field in form:
                         if field.errors:
@@ -347,6 +349,7 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
                     if form.non_field_errors():
                         errors['non_field_error'] = form.non_field_errors()[0]
                     data['errors'] = errors
+                    """
                     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
                 create_language_form = form_class()

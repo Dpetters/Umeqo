@@ -26,8 +26,10 @@ student_profile_preview_event_attendance_tooltip = "A company's recruiters only 
 student_profile_preview_invite_to_event_tooltip = "Recruiters can invite you to both public and private events."
 student_profile_preview_view_resume_tooltip = "Apart from creating resume books, recruiters can also view and download your resume individually."
 
+language_already_exists = "This language already exists."
+
 # Resume
-resume_problem = "There was a problem with your resume. Please try again.";
+resume_problem = "There was a problem with your resume. Please try again."
 empty_resume = "We could not extract any keywords out of your resume."
 
 #Login Form
