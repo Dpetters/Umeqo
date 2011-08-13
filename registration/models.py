@@ -13,6 +13,15 @@ from core import mixins as core_mixins
 from registration.managers import RegistrationManager
 
 
+class Invite(core_mixins.DateTracking):
+    id = models.CharField(max_length=12, primary_key=True)
+    owner = models.ForeignKey(User, related_name="owned_invite_set")
+    acceptor = models.ForeignKey(User, related_name="accepted_invite_set", null=True, blank=True, unique=True)
+    
+    def __unicode__(self):
+        return self.code
+    
+    
 class InterestedPerson(core_mixins.DateTracking):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)

@@ -2,9 +2,10 @@
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_upload_resume.js"></script>
   
 <div class="side_nav"> 
-    <h3>Browse</h3>
-    <a href="{% url events_list %}">Events and Deadlines</a>
-    <a href="{% url employers_list %}">Employers</a>
+    <h3>Events</h3>
+    <a href="{% url events_list %}">Browse Events</a>
+    <h3>Employers</h3>
+    <a href="{% url employers_list %}">Browse Employers</a>
     <h3>Profile</h3>
     <a href="{% url student_profile %}">Edit Profile</a>
     <a id="update_resume_link" href="javascript:void(0)">Update Resume</a>

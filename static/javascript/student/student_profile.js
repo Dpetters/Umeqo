@@ -57,7 +57,7 @@ $(document).ready( function() {
                 if(jqXHR.status==0){
 					create_campus_org_dialog.html(dialog_check_connection_message);
 				}else{
-                    create_campus_org_dialog.html(dialog_error_message);
+                    create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {             
@@ -80,7 +80,7 @@ $(document).ready( function() {
                                 if(jqXHR.status==0){
                                     $(".create_campus_org_dialog .error_section").html(form_check_connection_message);
                                 }else{
-                                    create_campus_org_dialog.html(dialog_error_message);
+                                    create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                                 }
                                 create_campus_org_dialog.dialog('option', 'position', 'center');
                             },
@@ -115,12 +115,12 @@ $(document).ready( function() {
                         name: {
                             required: true,
                             remote: {
-                                url: CHECK_CAMPUS_ORGANIZATION_UNIQUENESS_URL,
+                                url: CHECK_CAMPUS_ORG_UNIQUENESS_URL,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
                                         $(".create_campus_org_dialog .error_section").html(form_check_connection_message);
                                     }else{
-                                        create_campus_org_dialog.html(dialog_error_message);
+                                        create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                                     }
                                 	create_campus_org_dialog.dialog('option', 'position', 'center');
                                 }
@@ -162,7 +162,7 @@ $(document).ready( function() {
                 if(jqXHR.status==0){
 					create_campus_org_dialog.html(dialog_check_connection_message);
 				}else{
-                    create_campus_org_dialog.html(dialog_error_message);
+                    create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {             
@@ -185,7 +185,7 @@ $(document).ready( function() {
                                 if(jqXHR.status==0){
                                     $(".create_language_dialog .error_section").html(form_check_connection_message);
                                 }else{
-                                    create_language_dialog.html(dialog_error_message);
+                                    create_language_dialog.html(ERROR_MESSAGE_DIALOG);
                                 }
                 				create_language_dialog.dialog('option', 'position', 'center');
                             },
@@ -224,7 +224,8 @@ $(document).ready( function() {
                                         create_language_dialog.dialog('destroy');
                                     });
 								} else {
-									place_table_form_errors("#create_language_form", data.errors);
+									console.log(data.errors);
+									//place_table_form_errors("#create_language_form", data.errors);
                                 }
                                 create_language_dialog.dialog('option', 'position', 'center');
                             }
@@ -236,22 +237,23 @@ $(document).ready( function() {
                     rules: {
                         name: {
                             required: true,
+                            /*
                             remote: {
                                 url:CHECK_LANGUAGE_UNIQUENESS_URL,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
                                         $(".create_language_dialog .error_section").html(form_check_connection_message);
                                     }else{
-                                        create_language_dialog.html(dialog_error_message);
+                                        create_language_dialog.html(ERROR_MESSAGE_DIALOG);
                 						create_language_dialog.dialog('option', 'position', 'center');
                                     }
                                 }
-                            }
+                            }*/
                         }
                     },
                     messages:{
                         name:{
-                            remote: "This language already exists."
+                            remote: LANGUAGE_ALREADY_EXISTS
                         }
                     }
                 });
@@ -297,7 +299,7 @@ $(document).ready( function() {
 						            if(jqXHR.status==0){
 										$unparsable_resume_dialog.html(dialog_check_connection_message);
 									}else{
-						                $unparsable_resume.html(dialog_error_message);
+						                $unparsable_resume.html(ERROR_MESSAGE_DIALOG);
 						            }
 						        },
 						        success: function (data) {

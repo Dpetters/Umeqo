@@ -32,7 +32,7 @@ $(document).ready( function() {
                 if(jqXHR.status==0){
                     account_deactivate_dialog.html(dialog_check_connection_message);
                 }else{
-                    account_deactivate_dialog.html(dialog_error_message);
+                    account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
                 account_deactivate_dialog.dialog('option', 'position', 'center');
             },
@@ -55,7 +55,7 @@ $(document).ready( function() {
 			                if(jqXHR.status==0){
 			                    account_deactivate_dialog.html(dialog_check_connection_message);
 			                }else{
-			                    account_deactivate_dialog.html(dialog_error_message);
+			                    account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
 			                }
 			                account_deactivate_dialog.dialog('option', 'position', 'center');
 			            },

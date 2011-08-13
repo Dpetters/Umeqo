@@ -15,7 +15,7 @@ $(document).ready(function(){
                         account_deactivate_dialog.html(dialog_check_connection_message);
                         break;
                     default:
-                        account_deactivate_dialog.html(dialog_error_message);
+                        account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {

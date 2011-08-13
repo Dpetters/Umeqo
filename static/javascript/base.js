@@ -24,10 +24,6 @@ function create_error_dialog() {
         error_dialog.dialog('open');
         return error_dialog;
 };
-function show_error_dialog(message){
-     error_dialog = create_error_dialog();
-     error_dialog.html(message);
-};    
 
 function show_long_load_message_in_dialog(dialog) {
     $("#dialog_loader p").html(single_line_long_load_message);
@@ -68,12 +64,12 @@ function unhighlight(element, errorClass) {
 };
 
 function place_table_form_errors(form, errors){
-    for (error in errors){
-        if (error == "non_field_error"){
-            $(form + " .error_section").html(errors[error]);
+    for (field in errors){
+        if (field == "non_field_error"){
+            $(form + " .error_section").html(errors[field]);
         }
         else{
-            place_errors_table($("<label class='error' for='" + error + "'>" + errors[error] + "</label>"), $("#"+error));
+            place_errors_table($("<label class='error' for='" + field + "'>" + errors[field] + "</label>"), $("#"+field));
         }
     };
 };
@@ -81,6 +77,13 @@ function place_table_form_errors(form, errors){
  * Places field errors which got returned from an ajax submit in a table forms
  * Currently we show on field error at a time
  */
+function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
+	if(jqXHR.status==0){
+		$("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
+	}else{
+		$("#message_area").html("<p>" + ERROR_MESSAGE + "</p>");
+    }
+}
 function place_errors_ajax_table(errors, element){
     var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
     place_errors_table($(error), element);
@@ -203,11 +206,10 @@ $(document).ready( function () {
             dataType: "html",
             url: CONTACT_US_URL,
             error: function(jqXHR, textStatus, errorThrown) {
-                clearTimeout(contact_us_dialog_timeout);
-                if(jqXHR.status==0){
-                    contact_us_dialog.html(dialog_check_connection_message);
-                }else{
-                    contact_us_dialog.html(dialog_error_message);
+            	if(jqXHR.status==0){
+            		contact_us_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+            	}else{
+					contact_us_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {
@@ -226,12 +228,11 @@ $(document).ready( function () {
                                 hide_form_submit_loader("#contact_us_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
-                                if(jqXHR.status==0 && errorThrown != "abort"){
-                                    $(".contact_us_dialog .error_section").html(form_check_connection_message);
-                                }else{
-                                    contact_us_dialog.html(dialog_error_message);
-                                }
-                                contact_us_dialog.dialog('option', 'position', 'center');
+		                    	if(jqXHR.status==0){
+		    	            		$(".contact_us_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
+		                    	}else{
+									$(".contact_us_dialog .error_section").html(ERROR_MESSAGE);
+								}
                             },
                             success: function (data) {
                                 if(data.valid) {
@@ -295,7 +296,36 @@ $(document).ready( function () {
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
     });
-
+    $('.ui-widget-content a, a, .dropdown_menu_button, .menu_button', ".dropdown_menu_button ul li").live({
+    	mouseenter:
+    		function() {
+        		$(this).addClass('hover');
+    		},
+    	mouseleave:
+    		function(){
+        		if ($(this).hasClass('hover'))
+            	$(this).removeClass('hover');
+    		}
+    });
+    $('.dropdown_menu_button').live('click', function() {
+        if ($(this).hasClass('pressed'))
+            $(this).removeClass('pressed');
+        else
+            $(this).addClass('pressed');
+    });
+    $('body').live('click', function(event) {
+        if (!$(event.target).closest('.dropdown_menu_button').length && !$(event.target).closest('.dropdown menu_button ul').length) {
+            $('.dropdown_menu_button ul').hide();
+            $('.dropdown_menu_button').removeClass('pressed');
+        };
+    });
+    $('.menu_button').live('mousedown', function() {
+        $(this).addClass('active');
+    });
+    $('.menu_button').live('mouseup', function(){
+    	if ($(this).hasClass('active'))
+            $(this).removeClass('active');
+    });
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
         if (val.length == 0) { return true; }

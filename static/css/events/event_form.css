@@ -1,14 +1,6 @@
 #event_form_header{
 	display:inline-block;
 }
-.step{
-	font-size:16px;
-	color:#444;
-	font-weight:bold;
-	display:inline-block;
-	margin-bottom:3px;
-	text-transform: uppercase;
-}
 #event_form_left_col{
 	width:575px;
 }
@@ -68,7 +60,7 @@ label[for=id_is_public_0], label[for=id_is_public_1]{
 .right_side_container{
 	width:379px;
 }
-#event_datetime_block .main_block_content{
+#event_datetime_block .side_block_content{
 	padding:0px;
 }
 label[for=id_start_datetime_0], label[for=id_end_datetime_0]{
@@ -137,7 +129,7 @@ label[for=id_end_datetime_0]{
 #event_scheduler_day span {
     font-weight: 600;
 }
-#event_additional_info_block .main_block_content{
+#event_additional_info_block .side_block_content{
 	padding-top:0px;
 }
 #event_scheduler td {
