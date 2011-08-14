@@ -1,11 +1,12 @@
 from django.db import models
-from django.db.models import signals
 from notification import models as notification
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 from core.model_helpers import get_course_image_filename, get_course_thumbnail_filename
 from core import enums
 from core import mixins as core_mixins
+from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
 
 
 class CampusOrgType(core_mixins.DateTracking):
@@ -129,7 +130,9 @@ class Course(CommonInfo):
     class Meta:
         ordering = ['sort_order']
         
-    
+post_save.connect(create_thumbnail, sender=Course)
+post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
+
 
 class EmploymentType(core_mixins.DateTracking):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
@@ -169,4 +172,4 @@ def create_notice_types(app, created_models, verbosity, **kwargs):
     notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
     notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')
 
-signals.post_syncdb.connect(create_notice_types, sender=notification)
+#signals.post_syncdb.connect(create_notice_types, sender=notification)
