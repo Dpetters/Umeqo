@@ -108,10 +108,11 @@ class GraduationYear(core_mixins.DateTracking):
 
 
 class Language(core_mixins.DateTracking):
-    name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters")
+    name_and_level = models.CharField(max_length=42, help_text="Maximum 42 characters")
+    name = models.CharField(max_length=42, help_text="Maximum 42 characters")
 
     def __unicode__(self):
-        return self.name
+        return self.name_and_level
     
     
 class Course(CommonInfo):

@@ -698,9 +698,13 @@ a.button {
 .errorspace {
     color: #FF7B7B;
     position: relative;
-    height: 20px;
+    min-height: 20px;
     font-size: 12px;
     text-align: left;
+}
+.errorlist{
+	font-weight:bold;
+	list-style:none;
 }
 .asterisk, .error {
     color: #FF7B7B;
@@ -790,9 +794,9 @@ td #ajax_form_submit_loader {
     vertical-align: bottom;
     text-align: right;
 }
-.form_table td p, .form_table th{
-    padding-top: 23px;
-    vertical-align:top;
+.form_table th label{
+	margin-bottom:7px;
+	display:block;
 }
 .sub_header_message{
 	padding-left:6px;
@@ -814,6 +818,9 @@ td #ajax_form_submit_loader {
     margin-left:auto;
     margin-right:auto;
 }
+.form_table.grande th label{
+    margin-bottom:6px;
+}
 .form_table.grande input[type=text], .form_table.grande input[type=password] {
     font-size: 20px;
     padding: 5px;
@@ -823,21 +830,19 @@ td #ajax_form_submit_loader {
     line-height: 30px;
     font-size: 16px;
 }
-.form_table.grande label.error,
-.form_table .errorlist li {
-    font-size: 14px;
+.form_table.grande .errorspace {
+    width:262px;
+}
+.form_table.grande .errorspace ul, .form_table.grande .errorspace label {
+	font-size: 14px;
     line-height: 18px;
 }
+
 .form_table.grande input[type=submit] {
     font-size: 16px;
     line-height: 40px;
     height: 40px;
     padding: 0 10px;
-}
-.form_table.grande .errorlist {
-    list-style: none;
-    width: 250px;
-    color: #FF7B7B;
 }
 a {
     color: #6e97b9;
@@ -876,8 +881,24 @@ a:focus {
 	width:80px;
 	text-align:left;
 }
+#contact_us_form #id_name, #contact_us_form #id_email{
+	width:152px;
+}
 #contact_us_form input[type=submit]{
 	width:100px;
+}
+#contact_us_form #email_contacts{
+	vertical-align:top;
+	border-left: 1px solid #DDD;
+	margin-top:15px;
+	padding-left:23px;
+	width:218px;
+}
+#contact_us_form #email_contacts h3{
+	margin-bottom:5px;
+}
+#contact_us_form #email_contacts p{
+	padding-top:0px;
 }
 /* General Styles */
 .nounderline {
@@ -901,13 +922,13 @@ a:focus {
 .anchor {
     clear: both;
 }
-.error_section, td.error_section {
-    padding-top: 4px;
+.form_table .error_section {
+    padding: 3px 0px;
     text-align: center;
     border-bottom: none !important;
 }
-form.grande .error_section, td.error_section{
-	padding-top:0px;
+.form_table.grande .error_section{
+	padding:5px 0px;
 	text-align:left;
 }
 /* Dialogs */

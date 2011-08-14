@@ -4,8 +4,7 @@
 
 <div class="dialog_content_wrapper">
     <div class="dialog_info_section">
-        <p>Ask us questions, let us know how we can improve, or even report bugs. We'll get back to you ASAP.</p>
-        <p>If you would like to email us instead, visit the <a href="{% url help_center %}">Help Center</a> to find the appropriate contact address.</p>
+        <p>You can either contact us directly or though one of the emails listed below. We'll get back to you ASAP.</p>
     </div>
     
     <form id="contact_us_form" method='POST' action=".">
@@ -17,28 +16,35 @@
                     <div class="errorspace">{{form.name.errors}}</div>
                     {{form.name}}
                 </td>
-            </tr>
+				<td rowspan="2">
+					<div id="email_contacts">
+						<h3>Email Contacts</h3>
+						<p><b>Customer Support:</b>  help@umeqo.com</p>
+						<p><b>Employer Sign-Up:</b>  sales@umeqo.com</p>
+						<p><b>General Inquries:</b>  team@umeqo.com</p>
+					</div>
+				</td>
             <tr>
                 <th>{{form.email.label_tag}}</th>
-                <td>
+                <td colspan="2">
                     <div class="errorspace">{{form.email.errors}}</div>
                     {{form.email}}
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="3">
                     <div class="errorspace">{{form.body.errors}}</div>
                     {{form.body.label_tag}}
                     {{form.body}}
                 </td>
             </tr>
             <tr>
-                <td colspan="2" class="error_section error">
+                <td colspan="3" class="error_section error">
                     {{form.non_field_errors}}
                 </td>
             </tr>
             <tr>
-                <td class="button_cell" colspan="2">
+                <td class="button_cell" colspan="3">
                     <input id="contact_us_form_submit_button" class="button" type='submit' value='Submit'>
                     <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                 </td>

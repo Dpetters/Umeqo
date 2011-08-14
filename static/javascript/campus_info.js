@@ -54,7 +54,7 @@ $(document).ready(function() {
 	            if(jqXHR.status==0){
 	                campus_org_info_dialog.html(dialog_check_connection_message);
 	            }else{
-	                campus_org_info_dialog.html(dialog_error_message);
+	                campus_org_info_dialog.html(ERROR_MESSAGE_DIALOG);
 	            }
 	            campus_org_info_dialog.dialog('option', 'position', 'center');
 	            }
@@ -83,7 +83,7 @@ $(document).ready(function() {
 	            if(jqXHR.status==0){
 	            	course_info_dialog.html(dialog_check_connection_message);
 	            }else{
-	                course_info_dialog.html(dialog_error_message);
+	                course_info_dialog.html(ERROR_MESSAGE_DIALOG);
 	            }
 	            course_info_dialog.dialog('option', 'position', 'center');
 	        }

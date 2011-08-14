@@ -13,18 +13,18 @@ from core.models import Language
 
 class EmailAuthenticationForm(AuthenticationForm):
     username = forms.CharField(label='Email', max_length=30)
-    
+
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 
         if username and password:
             self.user_cache = authenticate(username=username, password=password)
-            if self.user_cache.is_staff:
-                return forms.ValidationError(_("Staff users cannot login. They can only access the admin pages."))
             if self.user_cache is None:
                 raise forms.ValidationError(_("Please enter a correct username and password. Note that both fields are case-sensitive."))
-            elif not self.user_cache.userattributes.is_verified:
+            if self.user_cache.is_staff:
+                return forms.ValidationError(_("Staff users cannot login. They can only access the admin pages."))
+            if not self.user_cache.userattributes.is_verified:
                 raise forms.ValidationError(_("This account is disabled."))
             if not self.user_cache.is_active:
                 self.user_cache.is_active = True
@@ -262,6 +262,11 @@ class CreateLanguageForm(forms.ModelForm):
     
     name = forms.CharField(label="Language:", max_length=42)
     
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if Language.objects.filter(name=name).exists():
+            raise forms.ValidationError(_(messages.language_already_exists))
+        return name
     class Meta:
         fields = ('name',)
         model = Language
