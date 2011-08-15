@@ -39,24 +39,23 @@ $(document).ready(function() {
 		campus_org_id = $(this).attr('data-campusorg-id');
 	    var campus_org_info_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 	    $.ajax({
-	        type: 'GET',
-	        url: CAMPUS_ORG_INFO_URL,
-	        dataType: "html",
-	        data: { 'campus_org_id': campus_org_id },
-	        complete: function(jqXHR, textStatus) {
-	            clearTimeout(campus_org_info_dialog_timeout);
-	        },
-	        success: function (data) {
-	            campus_org_info_dialog.html(data);
-	            campus_org_info_dialog.dialog('option', 'position', 'center');
-	        },
-	        error: function(jqXHR, textStatus, errorThrown) {
-	            if(jqXHR.status==0){
-	                campus_org_info_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-	            }else{
-	                campus_org_info_dialog.html(ERROR_MESSAGE_DIALOG);
-	            }
-	            campus_org_info_dialog.dialog('option', 'position', 'center');
+		        type: 'GET',
+		        url: CAMPUS_ORG_INFO_URL,
+		        dataType: "html",
+		        data: { 'campus_org_id': campus_org_id },
+		        complete: function(jqXHR, textStatus) {
+		            clearTimeout(campus_org_info_dialog_timeout);
+		            campus_org_info_dialog.dialog('option', 'position', 'center');
+		        },
+		        success: function (data) {
+		            campus_org_info_dialog.html(data);
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) {
+		            if(jqXHR.status==0){
+		                campus_org_info_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+		            }else{
+		                campus_org_info_dialog.html(ERROR_MESSAGE_DIALOG);
+		            }
 	            }
 	        });
 	    };

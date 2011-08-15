@@ -27,6 +27,7 @@ $(document).ready( function() {
             url: STUDENT_ACCOUNT_DEACTIVATE_URL,
             complete: function(jqXHR, textStatus) {
                 clearTimeout(account_deactivate_dialog_timeout);
+                account_deactivate_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
@@ -34,11 +35,9 @@ $(document).ready( function() {
                 }else{
                     account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
-                account_deactivate_dialog.dialog('option', 'position', 'center');
             },
             success: function (data) {
                 account_deactivate_dialog.html(data);
-                account_deactivate_dialog.dialog('option', 'position', 'center');
                 $("#student_deactivate_account_link").click(function(){
                 	$.ajax({
                 		type:"POST",
@@ -50,6 +49,7 @@ $(document).ready( function() {
                         },
                         complete : function(jqXHR, textStatus) {
                         	hide_form_submit_loader("#student_account_deactivate_form");
+                    		account_deactivate_dialog.dialog('option', 'position', 'center');
                         },
 			            error: function(jqXHR, textStatus, errorThrown) {
 			                if(jqXHR.status==0){
@@ -57,7 +57,6 @@ $(document).ready( function() {
 			                }else{
 			                    account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
 			                }
-			                account_deactivate_dialog.dialog('option', 'position', 'center');
 			            },
 			            success: function (data) {
 			                window.location.href = "/?action=account-deactivated";

@@ -24,6 +24,10 @@ $('.open_contact_us_dialog_link').live('click', function () {
     $.ajax({
         dataType: "html",
         url: CONTACT_US_URL,
+        complete : function(jqXHR, textStatus) {
+            clearTimeout(contact_us_dialog_timeout);
+            contact_us_dialog.dialog('option', 'position', 'center');
+        },
         error: function(jqXHR, textStatus, errorThrown) {
         	if(jqXHR.status==0){
         		contact_us_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
@@ -32,9 +36,7 @@ $('.open_contact_us_dialog_link').live('click', function () {
             }
         },
         success: function (data) {
-            clearTimeout(contact_us_dialog_timeout);
             contact_us_dialog.html(data);
-            contact_us_dialog.dialog('option', 'position', 'center');
             contact_us_form_validator = $("#contact_us_form").validate({
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({

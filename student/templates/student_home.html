@@ -6,23 +6,18 @@
 
 {% block metadata %}
 {{block.super}}
-<!-- JQuery MultiSelect Widget -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
-
-<!-- JQuery MultiSelect Widget Filtering Plugin -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-
-<!-- Custom -->
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
-  <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_home.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
+{% endcompress %}
 <script>
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
 </script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block message_area %}

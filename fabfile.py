@@ -124,7 +124,7 @@ def runserver():
             os.makedirs(settings.CKEDITOR_UPLOAD_PATH)
         local("python manage.py runserver")
     else: 
-        abort("commit_local_data should not be called on prod.")
+        abort("runserver can only be called locally.")
             
 def commit_local_data():
     if not env.host:
@@ -165,15 +165,13 @@ def update():
                 run("git pull")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
-                """
                 with fabric_settings(warn_only=True):
-                    result = run("python manage.py test")
+                    result = run("python manage.py test --setting=settings_test")
                 if result.failed:
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
                     create_media_dirs()
                     run("echo 'yes'|python manage.py collectstatic")
-                """
                 restart()       
     else:
         abort("update cannot be called locally.")

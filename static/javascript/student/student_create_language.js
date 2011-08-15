@@ -29,6 +29,7 @@ $(document).ready( function() {
             url: CREATE_LANGUAGE_URL,
             complete: function(jqXHR, textStatus) {
                 clearTimeout(create_language_dialog_timeout);
+                create_language_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
@@ -39,7 +40,6 @@ $(document).ready( function() {
             },
             success: function (data) {             
                 create_language_dialog.html(data);
-                create_language_dialog.dialog('option', 'position', 'center');
 
                 $("#id_name").focus();
                 
@@ -101,7 +101,6 @@ $(document).ready( function() {
 								} else {
 									place_table_form_errors("#create_language_form", data.errors);
                                 }
-                                create_language_dialog.dialog('option', 'position', 'center');
                             }
                         });
                     },
@@ -115,10 +114,9 @@ $(document).ready( function() {
                                 url:CHECK_LANGUAGE_UNIQUENESS_URL,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
-                                        $(".create_language_dialog .error_section").html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                        $(".create_language_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
                                     }else{
-                                        create_language_dialog.html(ERROR_MESSAGE_DIALOG);
-                						create_language_dialog.dialog('option', 'position', 'center');
+                                        $(".create_language_dialog .error_section").html(ERROR_MESSAGE);
                                     }
                                 }
                             }
