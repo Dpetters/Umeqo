@@ -4,7 +4,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://www.mit100k.org/", 
-   "last_updated": "2011-07-27 01:26:53", 
+   "last_updated": "2011-08-13 14:19:06", 
    "description": "The MIT $100K Entrepreneurship Competition is a year-long educational experience designed to encourage students and researchers in the MIT community to act on their talent, ideas and energy to produce tomorrow\u2019s leading firms.", 
    "image": "campus_org/CampusOrg/100k_competititon_2011-07-27-01-26-53.png", 
    "email": "", 
@@ -84,7 +84,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://africans.mit.edu/", 
-   "last_updated": "2011-07-27 01:38:26", 
+   "last_updated": "2011-08-13 14:21:41", 
    "description": "An organization bringing African culture to the MIT community, fostering a community of students with an interest in African culture and issue.  MIT Africans are an organization and a community promoting African culture on the MIT campus. To achieve these purposes, we host events that showcase the diversity and depth of African culture, both historical and contemporary. Furthermore, we provide a setting for all those interested in African culture to meet and engage in discussion. ", 
    "image": "", 
    "email": "", 
@@ -2467,15 +2467,15 @@
   "pk": 175, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://mit.edu/hmmt/www/", 
+   "last_updated": "2011-08-13 13:06:11", 
+   "description": "The Harvard-MIT Mathematics Tournament (HMMT) is an annual math tournament for high school students, held at MIT and at Harvard in alternate years. With 900 participants, HMMT is one of the largest math contests in the United States. It is run exclusively by MIT and Harvard students. Most of us participated in math contests in high school, and we try to incorporate what we liked best about those competitions into HMMT. We hope this will make the contest both challenging and entertaining for all the participants.", 
    "image": "", 
-   "email": "", 
+   "email": "hmmt-request@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 3, 
+   "display": true, 
    "name": "Harvard-MIT Mathematics Tournament"
   }
  }, 
@@ -2483,15 +2483,15 @@
   "pk": 176, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://hawaii.scripts.mit.edu/", 
+   "last_updated": "2011-08-13 13:07:05", 
+   "description": "The MIT Hawaii Club is made up of a diverse group of people whose goal is to spread the Aloha Spirit 5000 miles from home. We are mostly undergradute students, with a handful of graduates, from Hawai\u2018i, but no one is excluded from the Hawaii Club--anyone who wants to become a member can join!\r\n\r\nThe purpose of the club is to give students with an interest in Hawai\u2018i an opportunity to experience traditional and contemporary Hawaiian dance, food, culture, and language. Being thousands of miles away from family and friends is extremely difficult, but the MIT Hawaii Club provides students with the 'ohana (family), support, advice, and friendship of the older, \"wiser\" MIT students.", 
    "image": "", 
-   "email": "", 
+   "email": "hi-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Hawaii Club"
   }
  }, 
@@ -2499,15 +2499,15 @@
   "pk": 177, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://mit.edu/healthcare/", 
+   "last_updated": "2011-08-13 13:08:34", 
+   "description": "The MIT Healthcare Club aims to foster a community of people doing work related to healthcare. We engage in fact-based education, facilitate collaboration within the MIT community and help connect MIT students to external healthcare institutions. We strive to serve as a forum for discussion of all topics related to healthcare, especially those that involve multiple disciplines. ", 
    "image": "", 
-   "email": "", 
+   "email": "healthcare-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Healthcare Group"
   }
  }, 
@@ -2515,62 +2515,46 @@
   "pk": 178, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/hellenic/www/", 
+   "last_updated": "2011-08-13 13:09:34", 
+   "description": "The Hellenic Students' Association (HSA) is one of the many International Student Associations (ISAs) of MIT. The association is comprised of approximately 120 members, all of which are MIT students of Greek or Cypriot origin. The main goal of the association is to promote fellowship among members of the Greek/Cypriot student community by organizing cultural, social and educational activities. Furthermore, the HSA welcomes and helps out the newly admitted students and serves as the representative of the Greek/Cypriot student body of MIT as a whole. ", 
    "image": "", 
-   "email": "", 
+   "email": "hellenic-webmaster@media.mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Hellenic Students' Association"
+   "type": 4, 
+   "display": true, 
+   "name": "Hellenic Students' Association (HSA)"
   }
  }, 
  {
   "pk": 179, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://hfes.scripts.mit.edu/web/", 
+   "last_updated": "2011-08-13 13:11:59", 
+   "description": "The MIT Student Chapter of the Human Factors and Ergonomics Society (HFES) is a group of MIT students and scholars interested in the field of human factors and ergonomics who organize events and activities for the benefit of the students, the human factors community, and HFES. The student chapter operates under the auspices of HFES and receives support from HFES for its activities.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "HFES Student Chapter"
-  }
- }, 
- {
-  "pk": 180, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Hillel"
   }
  }, 
  {
   "pk": 181, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "website": "http://web.mit.edu/hsc/www/", 
+   "last_updated": "2011-08-13 13:13:18", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Hindu Students Council"
   }
@@ -2579,15 +2563,15 @@
   "pk": 182, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/hippocratic/www/", 
+   "last_updated": "2011-08-13 13:14:38", 
+   "description": "The Hippocratic Society is an undergraduate organization which seeks to expand the horizons of those sectors of society which have an interest in medicine by addressing related issues in social, political, legal, and ethical fields. With this focus, we hope to explore the relationship between medicine and a range of other disciplines, from law and public policy to anthropology. We offer our audience an opportunity to broaden their perspectives by actively considering imminent issues in medicine.\r\n\r\nIn collaboration with the Harvard Hippocratic Society, we realize our objectives by organizing formal conferences and symposia, as well as by hosting informal small-group discussions, both of which provide dynamic forums for participation, discussion, and learning. Additionally, we produce a biannual Journal of the Hippocratic Society, a multidisciplinary publication that likewise highlights the inter-dependence of medicine and other fields. Thus, we seek to raise awareness of key issues that are becoming increasingly consequential to society.\r\n", 
    "image": "", 
-   "email": "", 
+   "email": "hippocratic-officers@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "Hippocratic Society"
   }
  }, 
@@ -2596,13 +2580,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-13 13:15:20", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Hong Kong Student Society"
   }
@@ -2612,13 +2596,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-13 13:15:31", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Hong Kong Students Bible Study Group"
   }
@@ -2627,15 +2611,15 @@
   "pk": 185, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/mdoss/www/HMC/HMC_official.htm", 
+   "last_updated": "2011-08-13 13:16:21", 
+   "description": "The Horizon Music Club is a an electronic music appreciation group at the Massachusetts Institute of Technology. The group focuses on increasing general awareness of electronic music and strives to build a unique electronic music culture on campus. Mark Doss (MIT 2011) and Stanislav Nikolov (MIT 2011) cofounded the group in late 2008 after realizing that the electronic music scene around MIT needed a spark to get going. If you're an enthusiast of any type of electronic music (Trance, House, Drum and Base, Electro, Psytrance, Progressive, Chillout, etc.) we welcome you to join our ranks and help foster the growth of this new student group!", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Horizon Music Club"
   }
  }, 
@@ -2643,15 +2627,15 @@
   "pk": 186, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/hov/www/", 
+   "last_updated": "2011-08-13 13:17:20", 
+   "description": "House of Volunteers (HoV) is a registered student group at MIT consisting of students and young professionals. We are recognized by the MIT Association of Student Activities (ASA), and are funded by the MIT Graduate Student Council, alumni contributions and other external sources.\r\n\r\nHoV provides students in the MIT community the opportunity to engage in activities in the \"real world\". These activities make a real difference, and are conducted in partnership with young professionals, and graduates of other institutions of higher learning.\r\n\r\nHoV focuses of devising low-cost, high-impact solutions to empower the education sector in underdeveloped communities around the world. HoV encourages volunteerism and creativity amongst students and youth in these communities through active partnership during all stages of implementation of a project.", 
    "image": "", 
-   "email": "", 
+   "email": "hov-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 9, 
+   "display": true, 
    "name": "House of Volunteers"
   }
  }, 
@@ -2659,15 +2643,15 @@
   "pk": 187, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/htgamit/www/", 
+   "last_updated": "2011-08-13 13:19:38", 
+   "description": "(HowToGAMIT) is the only student-produced handbook that fully details MIT's culture, community, and environs. It is a down-to-earth guide to help you get oriented and to find the nooks and crannies that will make your time at MIT as engaging and enjoyable as it can be.\r\n\r\nHowToGAMIT contains information on just about everything you need to know to jump-start your MIT experience and much more besides. It has info about student resources and avenues for help or guidance that will save your time, not to mention your sanity. In addition, it is the place to look up obscure and esoteric cultural references (both contemporary and historical) that you are too embarrassed to ask anyone about.", 
    "image": "", 
-   "email": "", 
+   "email": "htgamit-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "How to Get Around MIT"
   }
  }, 
@@ -2688,75 +2672,27 @@
   }
  }, 
  {
-  "pk": 189, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "IAP Web Programming Competition"
-  }
- }, 
- {
   "pk": 190, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/imobilare/www/", 
+   "last_updated": "2011-08-13 13:21:13", 
+   "description": "Founded in 1998, Imobilare is bboy crew and an ASA-recognized student group at MIT that promotes bboying, providing opportunities for students to learn how breakdance and improve their bboying skills. \r\n\r\nImobilare hosts regular breakdance practices at MIT, and the group performs at events on campus and all over the Boston area. We have been featured in the Boston Globe numerous times and continue to establish a growing footprint within the local bboy community. \r\n\r\nEvery year, Imobilare organizes and hosts Breakonomics, one of the biggest breakdance competitions in the Boston area, drawing in bboy crews from all over the country to come and compete. This highly publicized event has featured world-renown attendees such as Kid David, Jazzy J, and Boppin Andre to serve as judges. ", 
    "image": "", 
-   "email": "", 
+   "email": "imobilare-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Imobilare"
-  }
- }, 
- {
-  "pk": 191, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "India School Fund - MIT Chapter"
-  }
- }, 
- {
-  "pk": 192, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Informs"
   }
  }, 
  {
   "pk": 193, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "website": "http://www.innoworks.org/newinno/mit.php?chapter=5&length=1000", 
+   "last_updated": "2011-08-13 13:22:30", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2771,15 +2707,15 @@
   "pk": 194, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://ifc.mit.edu/", 
+   "last_updated": "2011-08-13 13:24:24", 
+   "description": "The purpose of the Interfraternity Council is to assist in providing a total educational experience for the fraternity community by emphasizing and acting as a resource to support community participation and responsibility. The role of the Interfraternity Council executive board is to create proper programming and protocol in order to ensure that our purpose as an organization comes to fruition.\r\nOne of our main goals is to promote interfraternal relations and we do this by creating programming such Greek Week in the spring and the President-Faculty Dinner in the fall. Outside of our IFC Meetings, which mainly involve presidents from every fraternity, we also have a Delegate's Council where we talk about organizational commonalities amongst the fraternities which each person can use to improve their own fraternity.\r\n\r\nAs an organization, we are very structured and have various documents that outline our goals and rules. We have our Constitution that outlines the reason behind our existence as an organization and three main documents that are followed by all our constituents: the Judicial Committee Bylaws, the Recruitment Rules, and the Risk Management Policy.", 
    "image": "", 
-   "email": "", 
+   "email": "ifc-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 10, 
+   "display": true, 
    "name": "Interfraternity Council"
   }
  }, 
@@ -2787,15 +2723,15 @@
   "pk": 195, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://internationaldevelopmentconsulti.weebly.com/", 
+   "last_updated": "2011-08-13 13:26:51", 
+   "description": "MIT International Development Consulting (IDC) is an established non-profit, student-run group at the Massachusetts Institute of Technology. We serve as trusted advisers to global NGOs and NPOs on three continents by delivering customized solutions and implementation assistance to ensure that our clients attain greater efficiency and sustainability in their development efforts.", 
    "image": "", 
-   "email": "", 
+   "email": "idc-exec@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "International Development Consulting"
   }
  }, 
@@ -2803,32 +2739,16 @@
   "pk": 196, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://isa.mit.edu/", 
+   "last_updated": "2011-08-13 13:28:21", 
+   "description": "The International Student\u2019s Association at MIT works for and with MIT\u2019s international students, striving to promote cultural diversity on campus. We are currently registered under the Graduate Student Council (GSC) but our activities are intended for the undergraduate community as well.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "International Students Association"
-  }
- }, 
- {
-  "pk": 197, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Intervarsity"
   }
  }, 
  {
@@ -2836,13 +2756,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-13 13:29:13", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Irish Association of MIT"
   }
@@ -2851,15 +2771,15 @@
   "pk": 199, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
+   "website": "http://web.mit.edu/israelim/", 
+   "last_updated": "2011-08-13 13:31:27", 
+   "description": "MIT Israeli Association is composed of undergrads, grads, sloanies, PhDs, faculty, affiliates and family members. This association was created as an initiative of 2 undergraduate students who simply missed home. Our longing ended up as this: The MIT Israeli Association, which now includes more than 80 members from MIT, Harvard, BU, Brandeis, UMass, the Boston area etc. Recognized by the ASA, we are a part of the MIT community. Our main goal is to make us all feel at home. This means helping new students settle in, celebrate holidays the Israeli way, watching Israeli football and going to Israeli performances together. As we evolve, we are planning on connecting between graduating students and job openings back home, expand the connection between universities in Israel and MIT, and serve as the contact organization for any Israel related issues.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
+   "type": 4, 
+   "display": true, 
    "name": "Israeli Association, The"
   }
  }, 
@@ -2867,32 +2787,16 @@
   "pk": 200, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "website": "http://web.mit.edu/~isshinryu/www/", 
+   "last_updated": "2011-08-13 13:32:03", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Isshinryu Karate-do"
-  }
- }, 
- {
-  "pk": 201, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
-   "display": false, 
-   "name": "Ivory Tower Research Group"
   }
  }, 
  {
@@ -2900,13 +2804,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-13 13:32:28", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Japanese Association"
   }
@@ -2916,13 +2820,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-13 13:32:37", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Japanese Society of Undergraduates"
   }
