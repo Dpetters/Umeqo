@@ -6,19 +6,17 @@ Home |
 
 {% block metadata %}
 {{block.super}}
-<!-- Custom -->
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_home.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+{% endcompress %}
+{% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_home.js"></script>
-
-<!--[if lt IE 9]>
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/employer/employer_home_ie.css" />
-<![endif]-->
-
+{% endcompress %}
 {% endblock %}
 
 {% block content_area %}
-
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
 </div>

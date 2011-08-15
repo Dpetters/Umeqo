@@ -515,6 +515,7 @@ $(document).ready(function() {
             url: RESUME_BOOK_CURRENT_DELIVER_URL,
             complete: function(jqXHR, textStatus) {
                 clearTimeout(deliver_resume_book_dialog_timeout);
+                deliver_resume_book_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
@@ -525,7 +526,6 @@ $(document).ready(function() {
             },
             success: function (data) {
                 deliver_resume_book_dialog.html(data);
-                deliver_resume_book_dialog.dialog('option', 'position', 'center');
 
                 $("label[for=id_emails]").addClass('required');
 				
@@ -572,6 +572,7 @@ $(document).ready(function() {
                                         show_form_submit_loader("#deliver_resume_book_form");
                                     },
                                     complete: function(jqXHR, textStatus) {
+                                        deliver_resume_book_dialog.dialog('option', 'position', 'center');
                                         hide_form_submit_loader("#deliver_resume_book_form");
                                     },
                                     error: function(jqXHR, textStatus, errorThrown) {
@@ -580,11 +581,9 @@ $(document).ready(function() {
                                         }else{
                                              deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
                                         }
-                                        deliver_resume_book_dialog.dialog('option', 'position', 'center');
                                     },
                                     success: function(data) {
 										deliver_resume_book_dialog.html(data);
-                                        deliver_resume_book_dialog.dialog('option', 'position', 'center');
                                     }
                                 });
                             } else {

@@ -28,6 +28,7 @@ $('#create_campus_organization_link').click( function () {
             url: CREATE_CAMPUS_ORGANIZATION_URL,
             complete: function(jqXHR, textStatus) {
                 clearTimeout(create_campus_org_dialog_timeout);
+                create_campus_org_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
@@ -38,7 +39,6 @@ $('#create_campus_organization_link').click( function () {
             },
             success: function (data) {             
                 create_campus_org_dialog.html(data);
-                create_campus_org_dialog.dialog('option', 'position', 'center');
                 
                 $("#id_name").focus();
                 
