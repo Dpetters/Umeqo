@@ -31,7 +31,7 @@
             {% for notice in notices %}
                 <li id="n-{{ notice.id }}" {% if notice.is_unseen %} class="unread"{% endif %}>
                     <div class="details">
-                        <span class="timestamp">{{ notice.added|timesince }} ago</span>
+                        <span class="timestamp light">{{ notice.added|timesince }} ago</span>
                         <span class="type">{{ notice.notice_type.display }}</span>
                     </div>
                     <span class="message_quote">{{ notice.message_full|safe }}</span>

@@ -222,7 +222,6 @@ class ContactForm(forms.Form):
         msg = EmailMultiAlternatives(dictionary['subject'], dictionary['message'], dictionary['from_email'], dictionary['recipient_list'])
         msg.attach_alternative(dictionary['message'], 'text/html')
         msg.send() 
-        #send_mail(fail_silently=fail_silently, **self.get_message_dict())
 
 
 class AkismetContactForm(ContactForm):

@@ -102,15 +102,11 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 
 
 @render_to("student_registration.html")
-def student_registration(request,
-                         backend = RegistrationBackend(),
-                         extra_context = None):
+def student_registration(request, backend = RegistrationBackend(), extra_context = None):
     
     success_url = 'student_registration_complete'
-    disallowed_url = 'student_registration_disallowed'
-    
     if not backend.registration_allowed(request):
-        return redirect(disallowed_url)
+        return redirect('student_registration_disallowed')
     
     if request.method == 'POST':
         form = StudentRegistrationForm(data=request.POST)
@@ -129,18 +125,12 @@ def student_registration(request,
             return redirect(success_url)
         else:
             if request.is_ajax():
-                data = {'valid':False,
-                        'form_errors':form.errors}
+                data = {'valid':False, 'errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         form = StudentRegistrationForm()
-
-    context = {
-            'form':form,
-            'email_already_registered_message': messages.email_already_registered,
-            'passwords_dont_match_message': messages.passwords_dont_match
-            }
     
+    context = { 'form':form, 'debug':settings.DEBUG }
     context.update(extra_context or {}) 
     return context
 
@@ -184,19 +174,14 @@ def student_profile(request,
                 student.profile_created = True
                 student.save()
         else:
-            data = {'valid':False}
-            errors = {}
-            for field in form:
-                if field.errors:
-                    errors[field.auto_id] = field.errors[0]
-            if form.non_field_errors():
-                errors['non_field_error'] = form.non_field_errors()[0]
-            data['errors'] = errors
+            data = {'valid':False,
+                    'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
         form = form_class(instance=request.user.student)
         context = { 'form' : form,
                     'edit' : request.user.student.profile_created }
+    
           
         context.update(extra_context or {})
         return context
@@ -286,80 +271,74 @@ def student_update_resume_info(request):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     return redirect('home')
 
-
-def student_create_campus_organization(request, form_class=CreateCampusOrganizationForm, extra_context=None):
+@render_to("student_create_campus_org.html")
+def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "student"):
-        if request.is_ajax():
-            if request.method == 'POST':
-                form = form_class(data=request.POST)
-                if form.is_valid():
-                    new_campus_organization = form.save()
-                    data = {"valid":True,
-                            "type": new_campus_organization.type.name,
-                            "name": new_campus_organization.name,
-                            "id": new_campus_organization.id}
-                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                else:
-                    data = {'valid':False}
-                    errors = {}
-                    for field in form:
-                        if field.errors:
-                            errors[field.auto_id] = field.errors[0]
-                    if form.non_field_errors():
-                        errors['non_field_error'] = form.non_field_errors()[0]
-                    data['errors'] = errors
-                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                new_campus_org = form.save()
+                recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
+                subject = "New Campus Org: %s" % (new_campus_org) 
+                body = render_to_string('student_new_campus_org_email_body.txt', \
+                                        {'first_name':request.user.student.first_name, \
+                                        'last_name':request.user.student.last_name, \
+                                        'email':request.user.email, \
+                                        'new_campus_org':new_campus_org})
+                message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+                message.send()
+                data = {"valid":True,
+                        "type": new_campus_org.type.name,
+                        "name": new_campus_org.name,
+                        "id": new_campus_org.id}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                form = form_class()
-            context =  {'form': form }
-            context.update(extra_context or {}) 
-            return context
+                data = {'valid':False, 'errors': form.errors }
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            form = form_class()
+        context =  {'form': form }
+        context.update(extra_context or {}) 
+        return context
     else:
         return HttpResponseForbidden("You must be logged in.")        
 
 
-@render_to()
+@render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
-    
     if request.user.is_authenticated() and hasattr(request.user, "student"):
-        if request.is_ajax():
-            if request.method == 'POST':
-                form = form_class(data=request.POST)
-                if form.is_valid():
-                    new_language_name = form.cleaned_data['name']
-                    basic = Language.objects.create(name_and_level=new_language_name + " (Basic)", name=new_language_name)
-                    proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
-                    fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
-                    data = {"valid":True, 
-                            "name":new_language_name, 
-                            "fluent_id":fluent.id, 
-                            "proficient_id":proficient.id, 
-                            "basic_id":basic.id}  
-                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                else:
-                    data = {'valid':False}
-                    data['errors'] = form.errors
-                    """
-                    errors = {}
-                    for field in form:
-                        if field.errors:
-                            errors[field.auto_id] = field.errors[0]
-                    if form.non_field_errors():
-                        errors['non_field_error'] = form.non_field_errors()[0]
-                    data['errors'] = errors
-                    """
-                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                new_language_name = form.cleaned_data['name']
+                basic = Language.objects.create(name_and_level=new_language_name + " (Basic)", name=new_language_name)
+                proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
+                fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
+                recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
+                subject = "New Language: %s" % (new_language_name) 
+                body = render_to_string('student_new_language_email_body.txt', \
+                                        {'first_name':request.user.student.first_name, \
+                                        'last_name':request.user.student.last_name, \
+                                        'email':request.user.email, \
+                                        'new_language':new_language_name})
+                message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+                message.send()
+                data = {"valid":True, 
+                        "name":new_language_name, 
+                        "fluent_id":fluent.id, 
+                        "proficient_id":proficient.id, 
+                        "basic_id":basic.id}  
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                create_language_form = form_class()
-                
-            context =  { 'create_language_form': create_language_form,
-                        'TEMPLATE': "student_create_language.html" }
-            context.update(extra_context or {})
-            return context
+                data = {'valid':False}
+                data['errors'] = form.errors
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            form = form_class()
+            
+        context =  { 'form': form }
+        context.update(extra_context or {})
+        return context
     else:
         return HttpResponseForbidden("You must be logged in.")     
 

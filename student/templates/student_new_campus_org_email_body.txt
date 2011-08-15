@@ -1,0 +1,7 @@
+{{first_name}} {{last_name}} ({{email}}) created a new campus organization -
+
+Name: {{new_campus_org}}
+Type: {{new_campus_org.type}}
+{% if new_campus_org.website %}Website: {{new_campus_org.website}}{% endif %}
+
+Please validate.

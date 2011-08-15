@@ -1,6 +1,5 @@
 $(document).ready( function() {
-    
-    password_reset_form_validator = $("#password_reset_confirm_form").validate({
+	$("#choose_new_password_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_table_form_field_error,
@@ -16,7 +15,7 @@ $(document).ready( function() {
         },
         messages:{
             new_password2:{
-                equalTo: "The passwords you entered don't match."
+                equalTo: PASSWORDS_DONT_MATCH_MESSAGE
             }
         }
     });

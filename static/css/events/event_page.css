@@ -70,21 +70,6 @@
     position: relative;
     text-align: center;
 }
-#rsvp_div .help-bubble {
-    width: 180px;
-    opacity: 0.85;
-    top: 0;
-}
-#rsvp_div .help-bubble.public {
-    right: 140px;
-}
-#rsvp_div .help-bubble.private {
-    right: 210px;
-}
-#rsvp_div .help-bubble::after {
-    top: 10px;
-}
-
 #event_admin {
     padding: 5px;
     margin-bottom: 20px;

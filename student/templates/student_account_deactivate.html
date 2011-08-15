@@ -1,13 +1,11 @@
 <div class="dialog_content_wrapper">
-    <div class="dialog_info_section">
-        <h3>There are firms out there that need you! Note that -</h3>
-        <ul>
-            <li>Recruiter will no longer be able to invite you to any events.</li>
-            <li>You will no longer show up in any filtering or search results.</li>
-            <li>You will be removed from any resume books you are currently in.</li>
-            <li>Your event check-in data will be now limited to just your email.</li>
-        </ul>
-    </div>
+    <h3>There are firms out there that need you! Note that -</h3>
+    <ul>
+        <li>Recruiter will no longer be able to invite you to any events.</li>
+        <li>You will no longer show up in any filtering or search results.</li>
+        <li>You will be removed from any resume books you are currently in.</li>
+        <li>Your event check-in data will be now limited to just your email.</li>
+    </ul>
     <form id="student_account_deactivate_form" method='POST' action="{% url student_account_deactivate %}">
         {% csrf_token %}
         <table class="form_table">

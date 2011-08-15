@@ -576,7 +576,7 @@ $(document).ready(function() {
                                     },
                                     error: function(jqXHR, textStatus, errorThrown) {
                                         if(jqXHR.status==0){
-                                             deliver_resume_book_dialog.html(dialog_check_connection_message);
+                                             deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                                         }else{
                                              deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
                                         }
@@ -613,7 +613,7 @@ $(document).ready(function() {
                     url: RESUME_BOOK_CURRENT_CREATE_URL,
                     error: function(jqXHR, textStatus, errorThrown) {
                         if(jqXHR.status==0){
-                             deliver_resume_book_dialog.html(dialog_check_connection_message);
+                             deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 						}else{
                              deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
                         }

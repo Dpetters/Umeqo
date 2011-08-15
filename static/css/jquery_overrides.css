@@ -1,0 +1,179 @@
+.ui-widget-content{
+    background:#FFF;
+}
+.ui-widget-content a {
+    color: #6e97b9 !important;
+}
+.ui-widget-content a.hover{
+    color: #557389 !important;
+}
+.ui-tabs-nav .ui-state-active{
+    background:#FFF;
+}
+.ui-accordion .ui-accordion-content {
+    padding: 10px 0px 3px 4px;
+    overflow: visible;
+}
+.ui-accordion .ui-accordion-header {
+    border-bottom: 1px solid #CCCCCC;
+}
+.ui-dialog {
+    behavior: url(/static/lib/pie/PIE.htc);
+    box-shadow: 0px 0px 20px #606060;
+    -moz-box-shadow: 0px 0px 20px #606060;
+    -webkit-box-shadow: 0px 0px 20px #606060;
+    border: 1px solid #505050;
+    overflow:visible;
+}
+.ui-dialog .ui-dialog-content{
+	padding: 0px;
+	overflow:visible;
+}
+.ui-dialog .ui-dialog-titlebar {
+    border-radius: 3px;
+}
+.ui-dialog .ui-dialog-title {
+    font-size: 15px;
+    text-shadow: #FFF 0 1px 0;
+}
+.ui-dialog-content h2 {
+    margin: 5px 0 3px;
+    font-size: 18px;
+    color: #555;
+}
+.ui-dialog-content ul {
+    list-style:inside;
+}
+.ui-tabs-nav .ui-state-default {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background-image:-moz-linear-gradient(#F0F0F0, #E6E6E6);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#E6E6E6));
+    -pie-background: linear-gradient(#F0F0F0, #E6E6E6);
+    -webkit-border-radius: 3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;
+    -moz-border-radius: 3px 3px 0px 0px;
+    border: 1px solid #BBBBBB;
+}
+.ui-tabs-nav .ui-state-hover {
+    border: 1px solid #A0A0A0;
+}
+.ui-tabs-nav .ui-state-active {
+    background:#DDD;
+    border: 1px solid #BBB !important;
+}
+.ui-slider {
+    border: 1px solid #808080;
+}
+.ui-slider .ui-slider-handle {
+    border: 1px solid #808080;
+    top:-0.35em;
+}
+a.ui-slider-handle {
+    padding: 1px 2px;
+}
+.ui-multiselect {
+    behavior: url(/static/lib/pie/PIE.htc);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.ui-multiselect-menu {
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 2px 2px;
+}
+.ui-multiselect-menu, .ui-autocomplete {
+    border: 1px solid #808080;
+}
+.ui-multiselect-menu label.ui-state-hover {
+    color: #000;
+    cursor: pointer;
+    font-weight: normal;
+}
+.ui-multiselect-checkboxes {
+    overflow-y: auto;
+}
+.ui-multiselect-checkboxes label {
+    color: #888;
+    padding: 4px;
+    vertical-align: middle;
+}
+.ui-multiselect-checkboxes label, select[multiple=multiple] {
+    font-size: 11px;
+}
+button.ui-multiselect[type=button] {
+    background: #FFF;
+    color: #333;
+    text-shadow: #FFF 0 1px 0;
+    border: 1px solid #AAA;
+    font-weight: normal;
+    padding: 4px 5px;
+}
+button.ui-multiselect[type="button"].ui-state-active:hover,
+button.ui-multiselect[type="button"].ui-state-active {
+    background-color: #888;
+    color: #FFF;
+    text-shadow: #000 0 -1px 0;
+    border-color: #666;
+    -moz-border-radius: 3px 3px 0px 0px;
+    -webkit-border-radius: 3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;
+}
+button.ui-multiselect[type=button]:hover {
+    cursor: pointer;
+    background: #E9E9E9;
+}
+.ui-multiselect-filter{
+    padding-left: 4px;
+}
+.ui-multiselect-single .ui-multiselect-checkboxes label {
+    padding: 3px !important;
+}
+.ui-multiselect-menu input[type=checkbox] {
+    margin-right: 4px;
+    top: 2px;
+}
+.ui-multiselect-none span, .ui-multiselect-all span {
+    font-size: 11px;
+}
+#content_area .ui-multiselect-menu li {
+    font-size: 14px;
+    padding: 0 4px 0 0;
+}
+.ui-multiselect-menu label {
+    font-weight: normal;
+}
+.ui-multiselect-header {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.ui-multiselect-filter input {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    font-size: 11px;
+}
+.ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
+    height: 19px;
+    line-height: 17px;
+    padding: 0 4px 0;
+}
+.ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover {
+    text-decoration: none;
+}
+.ui-multiselect-menu  .ui-multiselect-hasfilter ul {
+    top: 0px;
+}
+.ui-multiselect-menu  .ui-multiselect-close {
+    position: relative;
+    top: 2px;
+    right: 2px;
+}
+.ui-multiselect-all, .ui-multiselect-none {
+    padding: 0 6px 0 3px;
+}
+.ui-multiselect-menu .ui-multiselect-none span.ui-icon {
+    position: relative;
+    left: -3px;
+    top: 1px;
+}
+.ui-multiselect-none a:hover, .ui-multiselect-none span:hover {
+    text-decoration: none;
+}

@@ -41,7 +41,7 @@
     <br />
     <a data-student-id="{{student.id}}" class="student_toggle_star" href="javascript:void(0)" tabindex="-1">{% student_star starred %}</a>
     <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note" tabindex="-1">{{comment}}</textarea>
-    <span data-student-id="{{student.id}}" class="saved_message hid">Saved</span>
+    <span data-student-id="{{student.id}}" class="saved_message light hid">Saved</span>
     <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="javascript:void(0)" tabindex="-1">{% include 'student_show_details_link.html' %}</a>
 </div>
 <div class="student_detailed_info" data-student-id="{{student.id}}">

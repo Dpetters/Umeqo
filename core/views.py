@@ -74,35 +74,26 @@ def tutorials(request, extra_context = None):
 
 @render_to('contact_us.html')
 def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST, request=request)
-            if form.is_valid():
-                form.save(fail_silently=fail_silently)
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-            else:
-                data = {'valid':False}
-                errors = {}
-                for field in form:
-                    if field.errors:
-                        errors[field.auto_id] = field.errors[0]
-                if form.non_field_errors():
-                    errors['non_field_error'] = form.non_field_errors()[0]
-                data['errors'] = errors
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if request.method == 'POST':
+        form = form_class(data=request.POST, request=request)
+        if form.is_valid():
+            form.save(fail_silently=fail_silently)
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            if request.user.is_authenticated():
-                form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
-            else:
-                form = form_class(request=request)                
-        context = {
-                'form': form,
-                'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
-                }
-        context.update(extra_context or {}) 
-        return context
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            data = {'valid':False, 'errors':form.errors}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        if request.user.is_authenticated():
+            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+        else:
+            form = form_class(request=request)                
+    context = {
+            'form': form,
+            'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
+            }
+    context.update(extra_context or {}) 
+    return context
 
 
 @login_required
@@ -111,8 +102,6 @@ def get_location_guess(request):
         if request.method == "GET":
             if request.GET.has_key('query'):
                 search_query_set = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
-                print search_query_set
-                print len(search_query_set)
                 if not search_query_set or len(search_query_set) > 1:
                     data = {'valid':False}
                     data['query'] = request.GET['query']
@@ -328,10 +317,9 @@ def course_info(request, extra_context = None):
 def check_language_uniqueness(request):
     
     if request.is_ajax():
-        try:
-            Language.objects.get(name=request.GET.get("name", "") + " (Fluent)")
+        if Language.objects.filter(name=request.GET.get("name", "")).exists():
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-        except Language.DoesNotExist:
+        else:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 

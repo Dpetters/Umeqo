@@ -12,10 +12,16 @@
         
         <link href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
         {% load compress %}
+
         {% compress css %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/blocks.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/side_nav.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/contact_us.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_ui_custom/css/ui-lightness/jquery-ui-1.8.12.custom.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_tipsy/stylesheets/tipsy.css" />
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery_overrides.css" />
             {% if user.is_authenticated and user.student or user.recruiter %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             {% else %}
@@ -50,6 +56,7 @@
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}javascript/base.js"></script>
+            <script src="{{ STATIC_URL }}javascript/contact_us_dialog.js"></script>
             
             {% if user.is_authenticated and user.student or user.recruiter %}
                 <script src="{{ STATIC_URL }}javascript/logged_in.js"></script>
@@ -148,7 +155,7 @@
                         </div>
                         <div class="error_section error">
                         </div>
-                        <div id="button_wrapper_no_margins">
+                        <div>
                             <button id="login_form_submit_button" class="button" type='submit'>
                                 Login
                             </button>

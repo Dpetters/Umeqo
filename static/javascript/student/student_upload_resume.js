@@ -181,9 +181,9 @@ $(document).ready(function(){
         					},
 					        error: function(jqXHR, textStatus, errorThrown) {
 					            if(jqXHR.status==0){
-									$unparsable_resume_dialog.html(dialog_check_connection_message);
+									$unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 								}else{
-					                $unparsable_resume.html(ERROR_MESSAGE_DIALOG);
+					                $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
 					            }
 					        },
 					        success: function (data) {

@@ -30,7 +30,7 @@ $(document).ready( function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-                    account_deactivate_dialog.html(dialog_check_connection_message);
+                    account_deactivate_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                 }else{
                     account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
@@ -53,7 +53,7 @@ $(document).ready( function() {
                         },
 			            error: function(jqXHR, textStatus, errorThrown) {
 			                if(jqXHR.status==0){
-			                    account_deactivate_dialog.html(dialog_check_connection_message);
+			                    account_deactivate_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 			                }else{
 			                    account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
 			                }

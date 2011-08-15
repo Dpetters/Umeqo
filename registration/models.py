@@ -180,7 +180,6 @@ class RegistrationProfile(models.Model):
         # Email subject *must not* contain newlines
         subject = ''.join(subject.splitlines())
         
-        message = render_to_string('activation_email.txt',
-                                   ctx_dict)
+        message = render_to_string('activation_email.txt', ctx_dict)
         
         self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)

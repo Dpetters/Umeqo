@@ -7,6 +7,7 @@ Student Registration |
 {% block metadata %}
 {{ block.super }}
 
+{% load text_snippet %}
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration.css" />
@@ -16,8 +17,15 @@ Student Registration |
 {% endcompress %}
 
 <script type="text/javascript">
-    var EMAIL_ALREADY_REGISTERED_MESSAGE = "{{email_already_registered_message}}";
-    var PASSWORDS_DONT_MATCH_MESSAGE = "{{passwords_dont_match_message}}";
+	var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+    
+    var EMAIL_REQUIRED_MESSAGE = "{% text_snippet 'email_required' %}";
+    var INVALID_EMAIL_MESSAGE = "{% text_snippet 'invalid_email' %}";
+    var MUST_BE_MIT_EMAIL_MESSAGE = "{% text_snippet 'must_be_mit_email' %}";
+    var EMAIL_ALREADY_REGISTERED_MESSAGE = "{% text_snippet 'email_already_registered' %}";
+	var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required' %}";
+    
+    var DEBUG = "{{debug}}";    
 </script>
 {% endblock %}
 
@@ -56,7 +64,7 @@ Student Registration |
             <tr>
                 <th></th>
                 <td colspan="2">
-                    <input id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
+                    <input tabindex="3" id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
                     <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
                 </td>
             </tr>

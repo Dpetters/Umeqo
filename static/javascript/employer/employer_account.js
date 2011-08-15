@@ -12,7 +12,7 @@ $(document).ready(function(){
                 clearTimeout(account_deactivate_dialog_timeout);
                 switch(jqXHR.status){
                     case 0:
-                        account_deactivate_dialog.html(dialog_check_connection_message);
+                        account_deactivate_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                         break;
                     default:
                         account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);

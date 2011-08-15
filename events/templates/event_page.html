@@ -146,9 +146,6 @@ Copyright 2011. All Rights Reserved.
                         <div class="response{% if responded %} hid{% endif %}">
                             <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: {{attending_text}}</a>
                         </div>
-                        {% if show_admin %}
-                            <span class="help-bubble public">Students can click to RSVP.</span>
-                        {% endif %}
                     {% else %}
                         <strong>RSVP:</strong>
                         {% spaceless %}
@@ -156,9 +153,6 @@ Copyright 2011. All Rights Reserved.
                             <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not {{attending_text}}</a>
                         {% endspaceless %}
                         <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
-                        {% if show_admin %}
-                            <span class="help-bubble private">Students can click to RSVP.</span>
-                        {% endif %}
                     {% endif %}
                 {% endif %}{% endif %}
                 {% if not user.is_authenticated %}

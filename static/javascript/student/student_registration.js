@@ -1,11 +1,4 @@
 $(document).ready( function() {
-    var registration_xhr = null;
-    $.validator.addMethod('isMITEmail', function(value, element) {
-        // For testing, allow umeqo.com emails as well.
-        return (value.length - "mit.edu".length) == value.indexOf("mit.edu") ||
-                (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
-
-    });
     $("#student_registration_form").validate({
         submitHandler: function(form) {
             $(form).ajaxSubmit({
@@ -16,17 +9,16 @@ $(document).ready( function() {
                     $("#student_registration_form .error_section").html("");
                 },
                 complete : function(jqXHR, textStatus) {
-                	$("#student_registration_form input[type=submit]").removeAttr('disabled');
+                	$("#student_registration_form input[type=submit]").removeAttr('disabled').focusout();
                     hide_form_submit_loader("#student_registration_form");
                 },
                 success: function(data) {
                     if(data.valid){
            				window.location = data.success_url + "?email=" + data.email;
                     }else{
-                        if (data.form_errors.email){
-                            var element = $("#id_email");
-                            element.css('border', '1px solid red').focus().val("");
-                            place_errors_ajax_table(data.form_errors.email, element);
+                        place_table_form_errors("#student_registration_form", data.errors);
+                        if (data.errors.email){
+                            $("#id_email").val("").focus();
                         }
                     }
                 },
@@ -43,7 +35,7 @@ $(document).ready( function() {
                 isMITEmail: true,
                 remote: {
                     dataType: 'json',
-                    url:"/check-email-availability/",
+                    url: CHECK_EMAIL_AVAILABILITY_URL,
                     error: errors_in_message_area_handler
                 },
             },
@@ -54,14 +46,22 @@ $(document).ready( function() {
         },
         messages:{
             email:{
-                required: "What's your email?",
-                email: "Doesn't look like a valid email.",
-                isMITEmail: 'Must be an MIT email.',
+                required: EMAIL_REQUIRED_MESSAGE,
+                email: INVALID_EMAIL_MESSAGE,
+                isMITEmail: MUST_BE_MIT_EMAIL_MESSAGE,
                 remote: EMAIL_ALREADY_REGISTERED_MESSAGE
             },
             password1: {
-                required: 'You need a password!'
+                required: PASSWORD_REQUIRED_MESSAGE
             }
         }
+    });
+    
+    $.validator.addMethod('isMITEmail', function(value, element) {
+        // If testing, allow umeqo.com emails as well.
+        if (DEBUG)
+       		return (value.length - "mit.edu".length) == value.indexOf("mit.edu") || (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
+		else
+			return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
     });
 });

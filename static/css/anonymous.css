@@ -1,13 +1,3 @@
-.right_side_container{
-    width: 235px;
-}
-
-#login_form .error_section{
-    margin-bottom: 5px;
-    margin-top: 0px;
-    text-align: left;
-}
-
 #login_button a {
 	background: #555555; /* Old browsers */
 	background: -moz-linear-gradient(top, #555555 0%, #333333 100%); /* FF3.6+ */
@@ -37,7 +27,7 @@
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
 }
-#login_button a:hover {
+#login_button a.hover, #login_button a.focus {
 	background: #707070; /* Old browsers */
 	background: -moz-linear-gradient(top, #707070 0%, #333333 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#707070), color-stop(100%,#333333)); /* Chrome,Safari4+ */
@@ -48,7 +38,7 @@
 	background: linear-gradient(top, #707070 0%,#333333 100%); /* W3C */
     color: #33BFE4;
 }
-#signup_button a:hover {
+#signup_button a.hover, #signup_button a.focus {
 	background: #68cae2; /* Old browsers */
 	background: -moz-linear-gradient(top, #68cae2 0%, #179ed3 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#68cae2), color-stop(100%,#179ed3)); /* Chrome,Safari4+ */
@@ -59,7 +49,7 @@
 	background: linear-gradient(top, #68cae2 0%,#179ed3 100%); /* W3C */
     color: #000;
 }
-#login_button a:active {
+#login_button a.active {
 	background: #333333; /* Old browsers */
 	background: -moz-linear-gradient(top, #333333 0%, #555555 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333333), color-stop(100%,#555555)); /* Chrome,Safari4+ */
@@ -71,7 +61,7 @@
     color: #33BFE4;
     text-shadow: #000 0 -1px 0;
 }
-#signup_button a:active {
+#signup_button a.active {
 	background: #179ed3; /* Old browsers */
 	background: -moz-linear-gradient(top, #179ed3 0%, #68cae2 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#179ed3), color-stop(100%,#68cae2)); /* Chrome,Safari4+ */
@@ -90,7 +80,7 @@
     top: 6px;
     right: 22px;
     background: white;
-    padding: 10px 6px 9px 13px;
+    padding: 10px 5px 9px 12px;
     border: 2px solid #CCC;
     -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
@@ -115,6 +105,9 @@
 #login_form input {
     margin: 3px 0;
     padding: 5px;
+}
+#login_form #id_password {
+	margin-bottom:0px;
 }
 #login_form .errorspace {
     position: absolute;
@@ -148,16 +141,9 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
 #reset_password_link{
-    float: right;
-    margin: 6px 8px 0 0;
+	margin-left:7px;
 }
-.grande #reset_password_link{
-	font-size:16px;
-	margin:20px 52px 0 0;
-}
-
 .fade_input_label {
     position: relative;
 }
