@@ -29,6 +29,10 @@ p {
     line-height: 17px;
     color: #666;
 }
+.grande p {
+    font-size: 14px;
+    margin: 20px 0;
+}
 .content p {
     padding: 5px 0;
 }
@@ -38,26 +42,8 @@ p {
 .centered{
 	text-align:center !important;
 }
-.errorspace {
-    color: #FF7B7B;
-    position: relative;
-    min-height: 20px;
-    font-size: 12px;
-    text-align: left;
-    font-weight:bold;
-}
-.errorlist{
-	list-style:none;
-}
-.asterisk, .error {
-    color: #FF7B7B;
-    border: 0;
-}
 .ready {
 	color: #00B20E;
-}
-.warning {
-    color: #222;
 }
 label {
     padding-right: 5px;
@@ -66,9 +52,6 @@ label {
 }
 label:not(.required) {
 	padding-right:8px;
-}
-.errorspace label{
-	padding-right:0px;
 }
 #message_area{
 	text-align:center;
@@ -349,20 +332,6 @@ input[type=text], input[type=password] {
     line-height: 30px;
     font-size: 16px;
 }
-.form_table.grande .errorspace {
-    width:262px;
-}
-.form_table.grande .errorspace ul, .form_table.grande .errorspace label {
-	font-size: 14px;
-    line-height: 18px;
-}
-
-.form_table.grande input[type=submit] {
-    font-size: 16px;
-    line-height: 40px;
-    height: 40px;
-    padding: 0 10px;
-}
 a {
     color: #6e97b9;
     outline: none;
@@ -384,12 +353,6 @@ a.hover {
 }
 .anchor {
     clear: both;
-}
-.error_section {
-    padding: 8px 0px;
-}
-.form_table.grande td.error_section{
-	padding:5px 0px;
 }
 #dialog_loader {
     margin-top: 30px;
@@ -422,8 +385,4 @@ a.hover {
     color: #FFF;
     text-shadow: #222 0 -1px 0;
     background-color: #B00;
-}
-.error-msg {
-    font-size: 14px;
-    margin: 20px 0;
 }

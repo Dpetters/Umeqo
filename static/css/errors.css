@@ -1,0 +1,48 @@
+/*
+ * Basic things to know:
+ * The little spaces above fields are errorspaces.
+ * The section beneath the form where all the 
+ * non-field errors gois the error_section.
+ * When ajax form validation isn't used, <ul class="errorlist">
+ * is put into the errorspaces and error_sections.
+ * When ajax is used, <label class="error"> are put in.
+ * Both are handled similarly.
+ */
+.warning {
+    color: #222;
+}
+.asterisk, .error {
+    color: #FF7B7B;
+}
+.errorspace, .error_section{
+	position:relative;
+}
+.errorspace {
+    min-height: 20px;
+    font-size: 12px;
+    font-weight:bold;
+}
+.error_section {
+    padding: 8px 0px;
+}
+.form_table.grande td.error_section{
+	padding:5px 0px;
+}
+.form_table.grande .errorspace, .form_table .error_section {
+    width:262px;
+}
+.errorspace label, .errorlist{
+    color: #FF7B7B;
+	position:absolute;
+	bottom:0px;
+}
+.errorspace label{
+	padding-right:0px;
+}
+.errorlist{
+	list-style:none;
+}
+.form_table.grande .errorlist, .form_table.grande .errorspace label {
+	font-size: 14px;
+    line-height: 18px;
+}

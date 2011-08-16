@@ -6,17 +6,25 @@ Login |
 
 {% block metadata %}
 {{ block.super }}
+{% load text_snippet %}
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/registration/login.css" />
+{% endcompress %}
 <script>
-    var VALIDATE_ON_LOAD = {% if form.errors %}true{% else %}false{% endif %};
+	var EMAIL_REQUIRED_MESSAGE = "{% text_snippet 'email_required' %}";
+	var INVALID_EMAIL_MESSAGE = "{% text_snippet 'invalid_email' %}";
+	var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required'}";
 </script>
+{% compress js %}
 <script src="{{ STATIC_URL }}javascript/registration/login.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block content_area %}
-<div id="login_block" class="simple_block">
+<div class="simple_block">
     <h1>Login to Umeqo</h1>
-    <form id="login_main_form" method='POST' action="">
+    <form id="login_form" method='POST' action="" autocomplete="off">
         {% csrf_token %}
         <table class="form_table grande">
             {% for field in form %}
@@ -33,14 +41,13 @@ Login |
                 <td class="error_section error">
                     {{form.non_field_errors}}
                 </td>
-                <td></td>
             </tr>
             <tr>
                 <th></th>
                 <td>
-                    <input id="student_registration_form_submit_button" class="button" type='submit' value='Login'>
+                    <input class="button" type='submit' value='Login'>
                     <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-                    <a id="reset_password_link" href="/password/reset/">Forgot password?</a>
+                    <a id="reset_password_link" href="{% url password_reset %}">Forgot password?</a>
                 </td>
             </tr>
         </table>

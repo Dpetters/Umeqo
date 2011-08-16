@@ -79,17 +79,12 @@ function place_table_form_field_error($error, $element) {
     } else if ($element.prev().prev().get(0) && $element.prev().prev().get(0).tagName!='DIV'){
         var offset = $element.position().left - $element.parent().position().left;
     }
-    $error.css({
-        "padding-left": offset,
-        "float": "left",
-        "position": "absolute",
-        "bottom": 0
-    });
+    $error.css("padding-left", offset);
 };
 // Shows max number that one can select on that multiselect
 function place_multiselect_warning_table(element, max) {
     var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
-    place_table_form_field_error($(warning), element)
+    place_table_form_field_error($(warning), element);
 };
 // Pick out url GET parameters by name
 function get_parameter_by_name(name) {

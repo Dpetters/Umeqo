@@ -12,8 +12,7 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
 from pyPdf import PdfFileWriter, PdfFileReader
@@ -62,48 +61,30 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 @login_required
 @user_passes_test(is_recruiter)
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
-            if form.is_valid():
-                request.user.recruiter.recruiter_preferencess = form.save()
-                data = {'valid':True}
-            else:
-                data = {'valid':False}
-                errors = {}
-                for field in form:
-                    if field.errors:
-                        errors[field.auto_id] = field.errors[0]
-                if form.non_field_errors():
-                    errors['non_field_error'] = form.non_field_errors()[0]
-                data['errors'] = errors
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
+        if form.is_valid():
+            request.user.recruiter.recruiter_preferencess = form.save()
+            data = {'valid':True}
         else:
-            return HttpResponseForbidden("Request must be a POST.")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            data = {'valid':False, 'errors': form.errors }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 @render_to("employer_profile.html")
-def employer_profile(request,
-                     form_class=EmployerProfileForm,
-                     extra_context=None):
+def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
 
     if request.method == 'POST':
         form = form_class(data=request.POST, instance=request.user.recruiter.employer)
         if form.is_valid():
-            data = {'valid':True}
             form.save()
+            data = {'valid':True}
         else:
-            data = {'valid':False}
-            errors = {}
-            for field in form:
-                if field.errors:
-                    errors[field.auto_id] = field.errors[0]
-            if form.non_field_errors():
-                errors['non_field_error'] = form.non_field_errors()[0]
-            data['errors'] = errors
+            data = { 'valid':False, 'errors':form.errors }
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
         context = { 'form' : form_class(instance=request.user.recruiter.employer) }
@@ -113,7 +94,7 @@ def employer_profile(request,
 @login_required
 @user_passes_test(is_recruiter)
 def employer_student_toggle_star(request):
-    if request.is_ajax():
+    if request.method == "POST":
         if request.POST.has_key('student_id'):
             student = Student.objects.get(id=request.POST['student_id'])
             if student in request.user.recruiter.employer.starred_students.all():
@@ -125,13 +106,14 @@ def employer_student_toggle_star(request):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             return HttpResponseBadRequest("Student ID is missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 def employer_students_add_star(request):    
-    if request.is_ajax():
+    if request.method == "POST":
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
@@ -140,13 +122,14 @@ def employer_students_add_star(request):
             return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 def employer_students_remove_star(request):
-    if request.is_ajax():
+    if request.method == "POST":
         if request.POST.has_key('student_ids'):
             for id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=id)  
@@ -155,13 +138,14 @@ def employer_students_remove_star(request):
             return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 def employer_student_comment(request):
-    if request.is_ajax():
+    if request.method == "POST":
         if request.POST.has_key('student_id'):
             if request.POST.has_key('comment'):
                 student = Student.objects.get(id=request.POST['student_id'])
@@ -177,13 +161,14 @@ def employer_student_comment(request):
                 return HttpResponseBadRequest("Comment is missing.")
         else:
             return HttpResponseBadRequest("Student ID is missing.")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 def employer_resume_book_current_toggle_student(request):
-    if request.is_ajax():
+    if request.method == "POST":
         if request.POST.has_key('student_id'):
             student = Student.objects.get(id=request.POST['student_id'])
             resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
@@ -200,13 +185,14 @@ def employer_resume_book_current_toggle_student(request):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             return HttpResponseBadRequest("Student ID is missing.")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 def employer_resume_book_current_add_students(request):
-    if request.is_ajax():
+    if request.method == "POST"():
         if request.POST.has_key('student_ids'):
             resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
             if not resume_books.exists():
@@ -221,13 +207,13 @@ def employer_resume_book_current_add_students(request):
             return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing.")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
-
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 @login_required
 @user_passes_test(is_recruiter)
 def employer_resume_book_current_remove_students(request):
-    if request.is_ajax():
+    if request.method == "POST":
         if request.POST.has_key('student_ids'):
             resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
             if not resume_books.exists():
@@ -242,14 +228,15 @@ def employer_resume_book_current_remove_students(request):
             return HttpResponse()
         else:
             return HttpResponseBadRequest("Student IDs are missing.")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+    else:
+        return HttpResponseForbidden("Request must be a POST.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
-    if request.is_ajax():
+    if request.method == "GET":
         if request.GET.has_key('student_id'):
             context={}
             student = Student.objects.visible().get(id=request.GET['student_id'])
@@ -258,14 +245,14 @@ def employer_student_event_attendance(request):
             return context
         else:
             return HttpResponseBadRequest("Student ID is missing.")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest.")
+    else:
+        return HttpResponseForbidden("Request must be a GET.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 @render_to('employer_events.html')
 def employer_employer_events(request, extra_context=None):
-    
     context = {'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.now()).order_by("start_datetime") }
     context.update(extra_context or {})
     return context
@@ -277,22 +264,20 @@ def employer_resume_books(request, extra_context=None):
     pass
 
 
-@render_to('employer_students_default_filtering.html')
 @login_required
 @user_passes_test(is_recruiter)
-def employer_students_default_filtering(request, extra_context = None):
-    
-    form_class=StudentDefaultFilteringParametersForm
+@render_to('employer_students_default_filtering.html')
+def employer_students_default_filtering(request, form_class=StudentDefaultFilteringParametersForm, extra_context = None):
     if request.method == 'POST':
-        form = form_class(data=request.POST,
-                          instance = request.user.recruiter)
+        form = form_class(data=request.POST, instance = request.user.recruiter)
         if form.is_valid():
             form.save()
             request.user.recruiter.automatic_filtering_setup_completed = True
             request.user.recruiter.save()
+        else:
+            return form.errors
     else:
         form = form_class(instance=request.user.recruiter)
-    
     context = {'form':form}
     context.update(extra_context or {}) 
     return context
@@ -382,9 +367,9 @@ def employer_students(request, extra_context=None):
     return context
 
 
-@render_to('employer_resume_book_current_summary.html')
 @login_required
 @user_passes_test(is_recruiter)
+@render_to('employer_resume_book_current_summary.html')
 def employer_resume_book_current_summary(request, extra_context=None):
     if request.is_ajax():
         context = {}
@@ -399,10 +384,10 @@ def employer_resume_book_current_summary(request, extra_context=None):
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
-@render_to('employer_resume_book_current_deliver.html')
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_book_current_deliver(request, form_class= DeliverResumeBookForm, extra_context=None):
+@render_to('employer_resume_book_current_deliver.html')
+def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
     if request.is_ajax():
         context = {}
         if request.method == 'GET':
@@ -421,63 +406,60 @@ def employer_resume_book_current_deliver(request, form_class= DeliverResumeBookF
 @login_required
 @user_passes_test(is_recruiter)
 def employer_resume_book_current_create(request):
-    if request.is_ajax():
-        if request.method == 'POST':
-            current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-            report_buffer = cStringIO.StringIO() 
-            c = Canvas(report_buffer)  
-            c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
-            c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
-            c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
-            c.drawString(16*cm, 29*cm, "Created using Umeqo")
-            page_num = 0
-            for student in current_resume_book.students.all():
-                page_num += 1
-                c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
-                c.drawString(16*cm, (22-page_num)*cm, str(page_num))
-            c.showPage()
-            c.save()
-            output = PdfFileWriter()
-            output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
-            for student in current_resume_book.students.all():
-                output.addPage(PdfFileReader(file("%s%s" % (settings.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
-            resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
-            current_resume_book.resume_book_name = resume_book_name
-            file_name = "%s%s%s.tmp" % (settings.MEDIA_ROOT, settings.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
-            outputStream = file(file_name, "wb")
-            output.write(outputStream)
-            outputStream.close()
-            resume_book_contents = file(file_name, "rb")
-            current_resume_book.resume_book.save(file_name, File(resume_book_contents))
-            resume_book_contents.close()
-            return HttpResponse()
+    if request.method == 'POST':
+        current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+        report_buffer = cStringIO.StringIO() 
+        c = Canvas(report_buffer)  
+        c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
+        c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
+        c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
+        c.drawString(16*cm, 29*cm, "Created using Umeqo")
+        page_num = 0
+        for student in current_resume_book.students.all():
+            page_num += 1
+            c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
+            c.drawString(16*cm, (22-page_num)*cm, str(page_num))
+        c.showPage()
+        c.save()
+        output = PdfFileWriter()
+        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
+        for student in current_resume_book.students.all():
+            output.addPage(PdfFileReader(file("%s%s" % (settings.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
+        resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
+        current_resume_book.resume_book_name = resume_book_name
+        file_name = "%s%s%s.tmp" % (settings.MEDIA_ROOT, settings.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
+        outputStream = file(file_name, "wb")
+        output.write(outputStream)
+        outputStream.close()
+        resume_book_contents = file(file_name, "rb")
+        current_resume_book.resume_book.save(file_name, File(resume_book_contents))
+        resume_book_contents.close()
+        return HttpResponse()
+    else:
         return HttpResponseBadRequest("Request must be a POST")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
 @user_passes_test(is_recruiter)
 @render_to("employer_resume_book_current_delivered.html")
 def employer_resume_book_current_email(request, extra_context=None):
-    if request.is_ajax():
-        if request.method == 'POST':
-            if request.POST.has_key('emails'):
-                current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-                reg = re.compile(r"\s*[;, \n]\s*")
-                recipients = reg.split(request.POST['emails'])
-                subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
-                body = render_to_string('resume_book_email_body.txt', {})
-                message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-                message.attach_file("%s%s" % (settings.MEDIA_ROOT, current_resume_book.resume_book.name))
-                message.send()
-                context = {}
-                context.update(extra_context or {}) 
-                return context
-            else:
-                return HttpResponseBadRequest("Missing recipient email.")
+    if request.method == 'POST':
+        if request.POST.has_key('emails'):
+            current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+            reg = re.compile(r"\s*[;, \n]\s*")
+            recipients = reg.split(request.POST['emails'])
+            subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
+            body = render_to_string('resume_book_email_body.txt', {})
+            message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+            message.attach_file("%s%s" % (settings.MEDIA_ROOT, current_resume_book.resume_book.name))
+            message.send()
+            context = {}
+            context.update(extra_context or {}) 
+            return context
         else:
-            return HttpResponseBadRequest("Request must be a POST")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            return HttpResponseBadRequest("Missing recipient email.")
+    else:
+        return HttpResponseBadRequest("Request must be a POST")
 
 
 @login_required
@@ -497,9 +479,9 @@ def employer_resume_book_current_download(request):
         return HttpResponseBadRequest("Request must be a GET")
 
 
-@render_to('employer_invitations.html')
 @login_required
 @user_passes_test(is_recruiter)
+@render_to('employer_invitations.html')
 def employer_invitations(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
@@ -508,6 +490,7 @@ def employer_invitations(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_student)
+@render_to('employers_list.html')
 def employers_list(request, extra_content=None):
     query = request.GET.get('q', '')
     employers = employer_search_helper(request)
@@ -545,11 +528,12 @@ def employers_list(request, extra_content=None):
             'employer_id': employer_id,
             'subbed': subbed
         })
-    return render_to_response('employers_list.html', context, context_instance=RequestContext(request))
+    return context
 
 
 @login_required
 @user_passes_test(is_student)
+@render_to('employers_list_pane.html')
 def employers_list_pane(request, extra_content=None):
     employer_id = request.GET.get('id',None)
     if employer_id and Employer.objects.filter(id=employer_id).exists():
@@ -571,7 +555,7 @@ def employers_list_pane(request, extra_content=None):
             'events': events,
             'subbed': subbed
         }
-        return render_to_response('employers_list_pane.html', context, context_instance=RequestContext(request))
+        return context
     return HttpResponseBadRequest("Bad request.")
 
 

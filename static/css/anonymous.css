@@ -73,7 +73,7 @@
     color: #333;
 }
 
-#loginWrapper {
+#login_wrapper {
     -moz-border-radius: 3px;
     border-radius: 3px;
     position: absolute;
@@ -87,7 +87,7 @@
     width: 200px;
     z-index: 100;
 }
-#loginWrapper::before {
+#login_wrapper::before {
     content: ' ';  
     position: absolute;  
     width: 0;  
@@ -102,21 +102,21 @@
     -ms-transform: rotate(-225deg);
     transform: rotate(-225deg);
 }
-#login_form input {
+#login_wrapper #login_form input {
     margin: 3px 0;
     padding: 5px;
 }
-#login_form #id_password {
+#login_wrapper #login_form #id_password {
 	margin-bottom:0px;
 }
-#login_form .errorspace {
+#login_wrapper #login_form .errorspace {
     position: absolute;
     left: -147px;
     height: 20px;
     width: 150px;
     margin-top: 18px;
 }
-#login_form .errorspace label {
+#login_wrapper #login_form .errorspace label {
     background-color: rgba(255,255,255,0.9);
     padding: 5px 6px;
     border: 1px solid #DDD;
@@ -126,7 +126,7 @@
     position: relative;
     float: right;
 }
-#login_form .errorspace label::after {
+#login_wrapper #login_form .errorspace label::after {
     content: ' ';
     position: absolute;
     top: 7px;
@@ -141,20 +141,23 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-#reset_password_link{
+#login_wrapper #reset_password_link{
 	margin-left:7px;
 }
-.fade_input_label {
+#login_wrapper .error_section{
+	padding:5px 0px;
+}
+#login_wrapper .fade_input_label {
     position: relative;
 }
-.fade_input_label label {
+#login_wrapper.fade_input_label label {
     position: absolute;
     left: 5px;
     top: 10px;
     font-weight: normal;
     color: #AAA;
 }
-.fade_input_label input {
+#login_wrapper .fade_input_label input {
     position: relative;
     background: transparent;
 }
