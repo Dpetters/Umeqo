@@ -4,6 +4,8 @@ ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+REGISTRATION_OPEN = True
+
 ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 
 # Haystack Settings

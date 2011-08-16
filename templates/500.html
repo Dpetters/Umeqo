@@ -5,6 +5,21 @@ Server Error |
 {% endblock %}
 
 {% block content_area %}
-    <h1>A server error has occurred.</h1>
-    <p class="error-msg">Oops, something bad happened. We've been notified and will fix it as soon as humanly possible. May we suggest <a href="/">returning to the home page</a>?</p>
+{% if user.is_authenticated %}
+<div class="left_side_container">
+{% if user.student %}
+	{% include 'student_side_nav.html' %}
+{% endif %}
+{% if user.recruiter %}
+	{% include 'employer_side_nav.html' %}
+{% endif %}
+</div>
+{% endif %}
+<div class="simple_block grande">
+ 	<h1>500 - Server Error</h1>
+ 	<div class="message_section">
+    	<p>Oops, something bad happened. We've been notified and will fix it ASAP.</p>
+    	<p>May we suggest {% if user.is_authenticated %} starting at one of the links on the left or{% endif %} returning to the <a href="/">home page</a>?</p>
+ 	</div>
+</div>
 {% endblock %}

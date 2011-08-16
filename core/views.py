@@ -334,3 +334,27 @@ def unsupported_browser(request, extra_context=None):
 def get_notice_unseen_count(request):
     count = Notice.objects.unseen_count_for(request.user, on_site=True)
     return HttpResponse(simplejson.dumps({'count': count}), mimetype="application/json")
+
+@render_to('500.html')
+def handle_500(request, extra_context = None):
+    context = {}
+    if not request.user.is_authenticated():
+        context = {'login_form': AuthenticationForm}
+    context.update(extra_context or {})
+    return context
+
+@render_to('404.html')
+def handle_404(request, extra_context = None):
+    context = {}
+    if not request.user.is_authenticated():
+        context = {'login_form': AuthenticationForm}
+    context.update(extra_context or {})
+    return context
+
+@render_to('403.html')
+def handle_403(request, extra_context = None):
+    context = {}
+    if not request.user.is_authenticated():
+        context = {'login_form': AuthenticationForm}
+    context.update(extra_context or {})
+    return context

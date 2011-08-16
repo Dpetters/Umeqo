@@ -15,6 +15,7 @@
 
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/errors.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/blocks.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/side_nav.css" />
@@ -69,7 +70,6 @@
         <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
         <![endif]-->
         {% block metadata %}{% endblock %}
-        
 
     </head>
     <body>
@@ -81,11 +81,13 @@
             <div class="width_container">
                 <ul id="navigation_block">
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
-                        {% ifnotequal current_path "/signup/" %}
-                        <li id="signup_button">
-                            <a tabindex="-1" href="{% url student_registration %}">Join Umeqo!</a>
-                        </li>
-                        {% endifnotequal %}
+                        {% if registration_open %}
+	                        {% ifnotequal current_path "/signup/"%}
+	                        <li id="signup_button">
+	                            <a tabindex="-1" href="{% url student_registration %}">Join Umeqo!</a>
+	                        </li>
+	                        {% endifnotequal %}
+                        {% endif %}
                         {% ifnotequal current_path "/login/" %}
                         <li id="login_button">
                             <a tabindex="-1" href="javascript:void(0)">Login</a>
@@ -140,7 +142,7 @@
         <div id="below_header_area">
             <div class="width_container">
                 {% if not user.is_authenticated or not user.student and not user.recruiter %}
-                <div id="loginWrapper">
+                <div id="login_wrapper">
                     <form id="login_form" action="/login/" method='POST'>
                         {% csrf_token %}
                         <div class="errorspace"></div>
@@ -156,7 +158,7 @@
                         <div class="error_section error">
                         </div>
                         <div>
-                            <button id="login_form_submit_button" class="button" type='submit'>
+                            <button class="button" type='submit'>
                                 Login
                             </button>
                             <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>

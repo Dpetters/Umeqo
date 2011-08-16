@@ -106,7 +106,7 @@ def student_registration(request, backend = RegistrationBackend(), extra_context
     
     success_url = 'student_registration_complete'
     if not backend.registration_allowed(request):
-        return redirect('student_registration_disallowed')
+        return redirect('student_registration_closed')
     
     if request.method == 'POST':
         form = StudentRegistrationForm(data=request.POST)

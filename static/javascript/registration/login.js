@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var login_main_form_validator = $('#login_main_form').validate({
+    $('#login_form').validate({
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_table_form_errors,
@@ -14,13 +14,15 @@ $(document).ready(function() {
         },
         messages: {
             username: {
-                required: 'Enter your email.',
-                email: 'Invalid email.'
+                required: EMAIL_REQUIRED_MESSAGE,
+                email: INVALID_EMAIL_MESSAGE
             },
-            password: 'Enter a password.',
+            password: PASSWORD_REQUIRED_MESSAGE
         }
     });
-    if (VALIDATE_ON_LOAD) {
-        //$('#login_main_form').valid();
+    /*
+    if (ERRORS) {
+        place_table_form_errors("#login_form", ERRORS);
     }
+    */
 });
