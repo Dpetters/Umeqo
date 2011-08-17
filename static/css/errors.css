@@ -37,8 +37,7 @@
 	bottom:0px;
 }
 .error_section label, .error_section .errorlist{
-	position:none;
-	bottom:none;
+	position:static;
 }
 .errorspace label{
 	padding-right:0px;
