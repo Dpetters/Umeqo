@@ -4,13 +4,11 @@
 	margin-top:10px;
 }
 #search_and_filtering_table th{
-	border-top: 1px solid #DDD;
 	padding: 10px 0px;
 	text-align: left;
 	text-transform: uppercase;
 }
 #search_and_filtering_table td{
-	border-top: 1px solid #DDD;
 	width:1%;
 }
 #id_default_student_results_per_page, #id_default_student_result_ordering{

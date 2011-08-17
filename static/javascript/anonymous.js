@@ -9,5 +9,4 @@ $(document).ready( function () {
             $('#login_wrapper').hide();
         }
     });
-    $('#login_wrapper').hide();
 });

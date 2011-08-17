@@ -170,7 +170,6 @@ input[type="text"] {
 	border-radius: 2px;
     width: 216px;
     height: 30px;
-    line-height:30px;
     vertical-align: middle;
     -webkit-transition: box-shadow 0.5s ease;
     -moz-transition: box-shadow 0.5s ease;

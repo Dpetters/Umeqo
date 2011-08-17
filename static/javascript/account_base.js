@@ -84,7 +84,7 @@ $(document).ready( function () {
         },
         messages:{
             new_password2:{
-                equalTo: "The passwords you entered don't match."
+                equalTo: PASSWORDS_DONT_MATCH
             }
         }
     });

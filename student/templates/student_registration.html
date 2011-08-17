@@ -30,7 +30,7 @@ Student Registration |
 {% endblock %}
 
 {% block content_area %}
-<div id="student_registration_block" class="simple_block">
+<div class="simple_block centered">
     <h1>Student Registration</h1>
     <form id="student_registration_form" method="POST" action="" autocomplete="off">
         {% csrf_token %}
@@ -44,7 +44,7 @@ Student Registration |
                 <td class="info" rowspan="2">
                     <p>Creating an account is simple - all you need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
                     <br>
-                    <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="/signup/employer/">here</a>.</p>
+                    <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="{% url employer_registration %}">here</a>.</p>
                 </td>
             </tr>
             <tr>
@@ -64,7 +64,7 @@ Student Registration |
             <tr>
                 <th></th>
                 <td colspan="2">
-                    <input tabindex="3" id="student_registration_form_submit_button" class="button" type="submit" value="Create my account" />
+                    <input tabindex="3" class="button" type="submit" value="Create my account" />
                     <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
                 </td>
             </tr>

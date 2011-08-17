@@ -25,12 +25,10 @@
 }
 .error_section {
     padding: 8px 0px;
+    border-bottom:none !important;
 }
 .form_table.grande td.error_section{
 	padding:5px 0px;
-}
-.form_table.grande .errorspace, .form_table .error_section {
-    width:262px;
 }
 .errorspace label, .errorlist{
     color: #FF7B7B;

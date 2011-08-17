@@ -187,6 +187,8 @@ input.button{
     cursor: pointer;
     padding: 0px 5px;
     height:23px;
+    /* Chrome needs the line-height here */
+    line-height:23px;
     display: inline-block;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -222,14 +224,14 @@ input.button{
     list-style: none;
     padding: 2px;
     background: #FFF;
-    min-width: 98px;
+    min-width: 100px;
     display: block;
     position: absolute;
     left: -1px;
     top: 23px;
     border-radius: 0px 0px 3px 3px;
     -moz-border-radius: 0px 0px 3px 3px;
-    -webkit-border-radius: 3px;
+    -webkit-border-radius: 0px 0px 3px 3px;
     border: 1px solid #888;
     z-index: 100;
 }

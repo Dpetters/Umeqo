@@ -11,7 +11,6 @@
         <table class="form_table">
             <tr>
                 <td>
-                    <div class="errorspace">{{form.suggestion.errors}}</div>
                     {{form.suggestion.label_tag}}
                     {{form.suggestion}}
                 </td>
@@ -23,7 +22,7 @@
             </tr>
             <tr>
                 <td class="button_cell">
-                    <a href="javascript:void(0)" class="dark_button close_dialog_link">Cancel</a>
+                    <a href="javascript:void(0)" class="button close_dialog_link">Cancel</a>
                     <a href="javascript:void(0)" type="submit" id="student_deactivate_account_link">Deactivate<a/>
                     <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
                 </td>

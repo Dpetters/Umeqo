@@ -60,7 +60,7 @@ label:not(.required) {
 	display:inline;
     background:#7AA7CC;
     border-radius: 3px 3px 0px 0px;
-    bottom:18px;
+    bottom:19px;
     color: white;
     font-weight: bold;
     padding: 3px 11px 2px;
@@ -258,7 +258,7 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
     color: #000;
 }
 input[type=text], input[type=password] {
-    width: 180px;
+    width: 190px;
 }
 .field_wrapper {
     position: relative;
@@ -350,8 +350,14 @@ a.hover {
 .no_top_margin {
     margin-top: 0px !important;
 }
+.no_top_padding{
+	padding-top:0px !important;
+}
 .no_top_border{
 	border-top:0 !important;
+}
+.no_bottom_border{
+	border-bottom:0 !important;
 }
 .anchor {
     clear: both;

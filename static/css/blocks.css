@@ -1,5 +1,4 @@
 .simple_block {
-    text-align: center;
     padding-top: 25px;
     padding-bottom: 25px;
 }
@@ -13,6 +12,7 @@
 }
 .main_block.with_side_nav{
 	width:780px;
+	float:right;
 }
 .main_block h1{
 	margin-bottom:15px;
@@ -71,7 +71,7 @@
     padding-right: 5px;
     margin: 1px 5px 0 0;
 }
-side_block {
+.side_block {
     margin-bottom: 16px;
 }
 .side_block_header_icon {
@@ -82,7 +82,7 @@ side_block {
     margin-left: 5px;
     line-height: 29px;
 }
-.no_icon_side_block_header_title{
+.no_icon{
 	margin-left:8px;
 }
 .side_block_content {

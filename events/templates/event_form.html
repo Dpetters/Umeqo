@@ -46,7 +46,7 @@
     {% endif %}
     </h1>
     {% if edit %}
-        <a href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1" class="main_block_header_sidelink dark_button">View Event</a>
+        <a href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1" class="main_block_header_sidelink">View Event</a>
     {% endif %}
     <a class="back_to_link" href="{% url home %}#events" tabindex="-1">Back to Events &raquo;</a>
 </div>
@@ -55,7 +55,7 @@
     <div class="right_side_container">
         <div id="event_datetime_block" class="side_block">
             <div class="side_block_header">
-                <span class="no_icon_side_block_header_title">Date & Time</span>
+                <span class="no_icon side_block_header_title">Date & Time</span>
             </div>
             <div class="side_block_content">
                 <div id="start_datetime_wrapper">
@@ -104,7 +104,7 @@
         </div>
         <div id="event_additional_info_block" class="side_block">
             <div class="side_block_header">
-                <span class="no_icon_side_block_header_title">Additional Info (optional)</span>
+                <span class="no_icon side_block_header_title">Additional Info (optional)</span>
             </div>
             <div class="side_block_content">
                 {{form.audience.label_tag}}
@@ -150,7 +150,7 @@
         </div>
         
         <div class="button_wrapper_with_margins">
-            <input tabindex="8" class="dark_button" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
+            <input tabindex="8" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
         </div>
     </div>
 </form>

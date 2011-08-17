@@ -73,8 +73,10 @@
 	text-align: left;
 	text-transform: uppercase;
 }
-#notification_preferences_table td{
+#preferences_form tr{
 	border-bottom: 1px solid #DDD;
+}
+#notification_preferences_table td{
 	padding: 2px 0;
 }
 #notification_preferences_table td.checkbox{
@@ -90,7 +92,7 @@
 	border-radius:5px;
 	margin-top:15px;
 	margin-top:9px;
-	background:#F6F6F6;
+	background:#EEE;
 	padding:6px;
 }
 #global_settings_section span{
