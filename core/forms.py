@@ -12,8 +12,13 @@ from core.models import Language
 
 
 class EmailAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(label='Email', max_length=30)
-
+    pass
+    
+    def __init__(self, *args, **kwargs):
+        super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].label = "Email:"
+        self.fields['password'].label = "Password:"
+        
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')

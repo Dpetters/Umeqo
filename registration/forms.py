@@ -3,6 +3,8 @@ from django.contrib.auth.forms import PasswordResetForm as AuthPasswordResetForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from core import messages
+
 class PasswordResetForm(AuthPasswordResetForm):
     email = forms.EmailField(label=_("Email:"), max_length=75, required=True)
 
@@ -16,7 +18,7 @@ class PasswordResetForm(AuthPasswordResetForm):
                                 is_active=True
                             )
         if len(self.users_cache) == 0:
-            raise forms.ValidationError(_("This email has no associated account."))
+            raise forms.ValidationError(_(messages.email_not_registered))
         return email
      
 class SetPasswordForm(AuthSetPasswordForm):

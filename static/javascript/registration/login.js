@@ -20,9 +20,4 @@ $(document).ready(function() {
             password: PASSWORD_REQUIRED_MESSAGE
         }
     });
-    /*
-    if (ERRORS) {
-        place_table_form_errors("#login_form", ERRORS);
-    }
-    */
 });

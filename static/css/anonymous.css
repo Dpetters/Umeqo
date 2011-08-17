@@ -86,6 +86,7 @@
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     width: 200px;
     z-index: 100;
+    display:none;
 }
 #login_wrapper::before {
     content: ' ';  

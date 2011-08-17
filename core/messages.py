@@ -44,6 +44,7 @@ contact_us_message_spam = "Our system thinks your message is spam. If you think 
 
 # Password Reset Form
 passwords_dont_match = "The two passwords don't match."
+email_not_registered = "This email is not registered."
 
 # Student Registration
 email_required = "What's your email?"
