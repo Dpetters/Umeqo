@@ -147,17 +147,3 @@
 #login_wrapper .error_section{
 	padding:5px 0px;
 }
-#login_wrapper .fade_input_label {
-    position: relative;
-}
-#login_wrapper.fade_input_label label {
-    position: absolute;
-    left: 5px;
-    top: 10px;
-    font-weight: normal;
-    color: #AAA;
-}
-#login_wrapper .fade_input_label input {
-    position: relative;
-    background: transparent;
-}

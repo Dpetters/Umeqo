@@ -19,7 +19,7 @@ Forbidden |
  	<h1>403 - Forbidden</h1>
  	<div class="message_section">
     	<p>We're sorry, but you are not authorized to view the page you requested.</p>
-    	<p>Try {% if not user.is_authenticated %}<a href="{% url login %}">logging in</a>{% else %} starting at one of the links on the left{% endif %} or returning to the <a href="/">home page</a>.</p>
+    	<p>Try {% if not user.is_authenticated %}<a class="login_link" href="javascript:void(0)">logging in</a>{% else %} starting at one of the links on the left{% endif %} or returning to the <a href="/">home page</a>.</p>
  	</div>
 </div>
 {% endblock %}
