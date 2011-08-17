@@ -170,7 +170,13 @@ label[for=id_end_datetime_0]{
     z-index: 2;
 }
 .green:hover {
-    cursor: pointer;;
+    cursor: pointer;
+}
+.clipTop {
+    border-top: 2px solid transparent;
+}
+.clipBottom {
+    border-bottom: 2px solid transparent;
 }
 #event1 {
     top: 421px;

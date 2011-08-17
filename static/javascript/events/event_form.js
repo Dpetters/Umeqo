@@ -414,11 +414,14 @@ $(document).ready( function() {
             var start_date = thisEventInfo.start_date;
             var end_date = thisEventInfo.end_date;
             
+            var clipTop = false;
+            var clipBottom = false;
             //Defaults to Infinity.
             var top = Infinity;
             // If event starts before displayed schedule, start from top.
             if (start_date - schedule_date < 0) {
                 top = 0;
+                clipTop = true;
             // If event starts on displayed schedule, start from proper place.
             } else if (start_date - schedule_date == 0) {
                 top = thisEventInfo.top;
@@ -429,6 +432,7 @@ $(document).ready( function() {
             // If event ends after displayed schedule, end at bottom.
             if (end_date - schedule_date > 0) {
                 height = (1 + 32*24) - top;
+                clipBottom = true;
             // If event ends on displayed schedule, end at proper place.
             } else if (end_date - schedule_date == 0) {
                 height = thisEventInfo.height;
@@ -443,6 +447,12 @@ $(document).ready( function() {
                 }
                 var thisEvent = $('<div>' + name + '</div>').addClass('event_block').addClass('green');
                 thisEvent.css('top', top).css('height', height - 8);
+                if (clipTop) {
+                    thisEvent.addClass('clipTop');
+                }
+                if (clipBottom) {
+                    thisEvent.addClass('clipBottom');
+                }
                 $('#event_scheduler').append(thisEvent);
                 thisEvent.click(function() {
                     $('#id_name').focus();
