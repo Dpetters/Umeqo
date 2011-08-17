@@ -1,7 +1,0 @@
-{
-    "name" : "",
-    "type" : "",
-    "email" : "",
-    "website" : "",
-    "description" : ""
-}

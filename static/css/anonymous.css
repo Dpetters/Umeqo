@@ -142,7 +142,7 @@
     transform: rotate(45deg);
 }
 #login_wrapper #reset_password_link{
-	margin-left:7px;
+	margin-left:4px;
 }
 #login_wrapper .error_section{
 	padding:5px 0px;
