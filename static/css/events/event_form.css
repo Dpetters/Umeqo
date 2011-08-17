@@ -152,16 +152,22 @@ label[for=id_end_datetime_0]{
     min-height: 8px;
     color: #FFF;
     padding: 4px 0 0 4px;
+    box-shadow: rgba(0,0,0,0.4) 2px 2px 2px 0;
 }
 .gray {
     background-color: #CCC;
     border: 2px dashed #666;
     right: 125px;
+    z-index: 1;
+}
+.gray:hover {
+    z-index: 3;
 }
 .green {
     background-color: #B08B59;
     border: 2px dashed #000;
     left: 192px;
+    z-index: 2;
 }
 .green:hover {
     cursor: pointer;;
@@ -213,6 +219,9 @@ label[for=id_rsvp_message]{
   border-radius: 2px;
   text-decoration: none;
   color: #BBB;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 #event_scheduler_nav_back.active,
 #event_scheduler_nav_forward.active {
