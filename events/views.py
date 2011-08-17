@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -147,7 +147,10 @@ def event_new(request, form_class=None, extra_context=None):
             event.save()
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
-        form = form_class()
+        form = form_class(initial={
+            'start_datetime': datetime.now(),
+            'end_datetime': datetime.now() + timedelta(hours=1),
+        })
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
     return context
@@ -184,6 +187,7 @@ def event_edit(request, id=None, extra_context=None):
         context['edit'] = True
         context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
         context['form'] = form
+        context['event_scheduler_date'] = event.start_datetime.strftime('%m/%d/%Y')
         return context
     except Event.DoesNotExist:
         return HttpResponseNotFound("Event with id %s not found." % id)
@@ -207,6 +211,32 @@ def event_delete(request, id, extra_context = None):
             return HttpResponseNotFound("Event with id %s not found." % id)
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
+@login_required
+def event_schedule(request):
+    if request.is_ajax():
+        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')))
+        return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+
+def get_event_schedule(event_date_string):
+    event_date = datetime.strptime(event_date_string, '%m/%d/%Y')
+    event_date_tmrw = event_date + timedelta(days=1)
+    events = Event.objects.all().filter(start_datetime__gt=event_date).filter(start_datetime__lt=event_date_tmrw)
+    def buildScheduleItem(event):
+        name = event.name
+        start = event.start_datetime
+        start_hour = start.hour + start.minute/60.0
+        end = event.end_datetime
+        if event.end_datetime > event_date_tmrw:
+            end_hour = 24
+        else:
+            end_hour = end.hour + end.minute/60.0
+        start_px, end_px = map(lambda t: int(1 + 32*t), (start_hour, end_hour))
+        return name, start_px, (end_px - start_px)
+    schedule = map(buildScheduleItem, events)
+    return schedule
 
 @login_required
 @require_http_methods(["GET", "POST"])

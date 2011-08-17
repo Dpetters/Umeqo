@@ -119,6 +119,7 @@ urlpatterns += patterns('events.views',
     (r'^events/i/$', 'event_invite', {}, 'event_invite'),
     (r'^events/new/$', 'event_new', {}, 'event_new'),
     (r'^events/edit/(?P<id>\d+)$', 'event_edit', {}, 'event_edit'),
+    (r'^events/schedule/$', 'event_schedule', {}, 'event_schedule'),
     (r'^events/delete/(?P<id>\d+)$', 'event_delete', {}, 'event_delete'),
 )
 
