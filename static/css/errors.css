@@ -2,11 +2,12 @@
  * Basic things to know:
  * The little spaces above fields are errorspaces.
  * The section beneath the form where all the 
- * non-field errors gois the error_section.
+ * non-field errors go is the error_section.
  * When ajax form validation isn't used, <ul class="errorlist">
  * is put into the errorspaces and error_sections.
  * When ajax is used, <label class="error"> are put in.
- * Both are handled similarly.
+ * Both are styled similarly. For now we assume that errorlist
+ * will always have one error.
  */
 .warning {
     color: #222;
