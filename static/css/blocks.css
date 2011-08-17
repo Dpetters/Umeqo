@@ -9,10 +9,10 @@
 .main_block {
     margin-top: 20px;
     display: inline-block;
-    width: 100%;
+    width:100%
 }
-.main_block::first-child{
-	margin-top:0px;
+.main_block.with_side_nav{
+	width:780px;
 }
 .main_block h1{
 	margin-bottom:15px;

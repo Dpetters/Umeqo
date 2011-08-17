@@ -9,7 +9,6 @@
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 {% endcompress %}
 <script>
@@ -31,7 +30,7 @@
     <div class="left_side_container">
         {% include "student_side_nav.html" %}
     </div>
-    <div class="main_block no_top_margin">
+    <div class="main_block with_side_nav no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
             <span class="main_block_header_title">What's New</span>
@@ -44,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div id="events_and_deadlines_block" class="main_block">
+    <div class="main_block with_side_nav">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Events and Deadlines</span>
