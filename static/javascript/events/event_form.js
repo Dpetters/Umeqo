@@ -77,7 +77,6 @@ $(document).ready( function() {
                         $("#location_suggestions").html(MEDIUM_AJAX_LOADER);
                     },
                     success: function (data) {
-                        console.log(data);
                         var query = $("#id_location").val();
                         if (data.valid){
                             center_map_coord(data.latitude, data.longitude);
@@ -301,8 +300,6 @@ $(document).ready( function() {
             day = '0' + day;
         }
         var date = month + '/' + day + '/' + datetime.getFullYear();
-        console.log('nodeName: ' + $('#' + field_id)[0].nodeName);
-        console.log('date: ' + date);
         if ($('#' + field_id)[0].nodeName == 'SPAN') {
             $('#' + field_id).html(date);
         } else {
@@ -374,12 +371,18 @@ $(document).ready( function() {
         }
         var end_px = 1 + 32*end_hour;
         
-        return [start_date, name, start_px, end_px - start_px];
+        return {
+            'start_date': start_date,
+            'end_date': end_date,
+            'name': name,
+            'top': start_px,
+            'height': end_px - start_px
+        };
     }
-    function getEventDate() {
-        var event_date_parts = $('#event_scheduler_day_text').html().split('/');
-        var event_date = new Date(event_date_parts[2] + '-' + event_date_parts[0] + '-' + event_date_parts[1]);
-        return event_date;
+    function getSchedulerDate() {
+        var schedule_date_parts = $('#event_scheduler_day_text').html().split('/');
+        var schedule_date = new Date(schedule_date_parts[2] + '-' + schedule_date_parts[0] + '-' + schedule_date_parts[1]);
+        return schedule_date;
     }
     function setEventDate(datetime) {
         setDate(datetime, 'event_scheduler_day_text');
@@ -406,17 +409,39 @@ $(document).ready( function() {
             });
             
             var thisEventInfo = getCurrentEventItem();
-            var start_date = thisEventInfo[0];
             
-            var event_date = removeTime(getEventDate());
-            if (start_date - event_date == 0) {
-                var title = thisEventInfo[1];
-                var top = thisEventInfo[2];
-                var height = thisEventInfo[3];
-                if (title == '') {
-                    title = 'New Event';
+            var schedule_date = removeTime(getSchedulerDate());
+            var start_date = thisEventInfo.start_date;
+            var end_date = thisEventInfo.end_date;
+            
+            //Defaults to Infinity.
+            var top = Infinity;
+            // If event starts before displayed schedule, start from top.
+            if (start_date - schedule_date < 0) {
+                top = 0;
+            // If event starts on displayed schedule, start from proper place.
+            } else if (start_date - schedule_date == 0) {
+                top = thisEventInfo.top;
+            }
+            
+            //Height defaults to Infinity.
+            var height = Infinity;
+            // If event ends after displayed schedule, end at bottom.
+            if (end_date - schedule_date > 0) {
+                height = (1 + 32*24) - top;
+            // If event ends on displayed schedule, end at proper place.
+            } else if (end_date - schedule_date == 0) {
+                height = thisEventInfo.height;
+            }
+            console.log('top: ' + top);
+            console.log('height: ' + height);
+            
+            if (top != Infinity && height != Infinity) {
+                var name = thisEventInfo.name;
+                if (name == '') {
+                    name = 'New Event';
                 }
-                var thisEvent = $('<div>' + title + '</div>').addClass('event_block').addClass('green');
+                var thisEvent = $('<div>' + name + '</div>').addClass('event_block').addClass('green');
                 thisEvent.css('top', top).css('height', height - 8);
                 $('#event_scheduler').append(thisEvent);
                 thisEvent.click(function() {
@@ -437,12 +462,12 @@ $(document).ready( function() {
         });
     }
     $('#event_scheduler_day_text').html($('#id_start_datetime_0').val());
-    renderScheduler();
     $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1').change(renderScheduler);
+    renderScheduler();
     
     $('#event_scheduler_nav_back').click(function(e) {
         if ($(this).hasClass('active')) {
-            var date = getEventDate();
+            var date = getSchedulerDate();
             date.setDate(date.getDate() - 1);
             setEventDate(date);
             renderScheduler();
@@ -451,7 +476,7 @@ $(document).ready( function() {
     });
     $('#event_scheduler_nav_forward').click(function(e) {
         if ($(this).hasClass('active')) {
-            var date = getEventDate();
+            var date = getSchedulerDate();
             date.setDate(date.getDate() + 1);
             setEventDate(date);
             renderScheduler();
