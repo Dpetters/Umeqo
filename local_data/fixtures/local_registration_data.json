@@ -370,16 +370,6 @@
   }
  }, 
  {
-  "pk": 82, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-07-27 19:48:39", 
-   "session_key": "3c1f8ba4ce086e9db2144b2a885baac1", 
-   "last_updated": "2011-07-27 19:48:39", 
-   "user": 2
-  }
- }, 
- {
   "pk": 83, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -620,26 +610,6 @@
   }
  }, 
  {
-  "pk": 113, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-03 20:15:00", 
-   "session_key": "e1a9f624fc3739e8f3b6c38c8056edde", 
-   "last_updated": "2011-08-03 20:15:00", 
-   "user": 2
-  }
- }, 
- {
-  "pk": 114, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-03 20:17:52", 
-   "session_key": "9f9df27cc42843e46dc7952fad3d9c65", 
-   "last_updated": "2011-08-03 20:17:52", 
-   "user": 2
-  }
- }, 
- {
   "pk": 115, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -690,36 +660,6 @@
   }
  }, 
  {
-  "pk": 121, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-08 23:54:21", 
-   "session_key": "dccdc67a63354d0a0dabf087e7e2c1a6", 
-   "last_updated": "2011-08-08 23:54:21", 
-   "user": 2
-  }
- }, 
- {
-  "pk": 124, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-08 23:58:57", 
-   "session_key": "0858911b8f1cb7761c8bd13b1feb96b0", 
-   "last_updated": "2011-08-08 23:58:57", 
-   "user": 2
-  }
- }, 
- {
-  "pk": 126, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-09 20:57:06", 
-   "session_key": "e5ab1ed2502249d5d540acf0ae8fd61a", 
-   "last_updated": "2011-08-09 20:57:06", 
-   "user": 2
-  }
- }, 
- {
   "pk": 127, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -727,16 +667,6 @@
    "session_key": "99167da7afbe8e609f7ea9fac5d86bd5", 
    "last_updated": "2011-08-11 00:40:42", 
    "user": 1
-  }
- }, 
- {
-  "pk": 128, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-11 02:20:19", 
-   "session_key": "66d5535c204f68ddbd5669ff2edc0d75", 
-   "last_updated": "2011-08-11 02:20:19", 
-   "user": 2
   }
  }, 
  {
@@ -787,16 +717,6 @@
    "session_key": "cde323fb56b1ff88c487474aca81e07a", 
    "last_updated": "2011-08-15 00:44:47", 
    "user": 1
-  }
- }, 
- {
-  "pk": 135, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-15 15:24:01", 
-   "session_key": "2cbef61564be591b0fc2b224457e2c6d", 
-   "last_updated": "2011-08-15 15:24:01", 
-   "user": 2
   }
  }, 
  {

@@ -206,10 +206,10 @@
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
-   "email_on_new_subscribed_employer_event": false, 
-   "last_updated": "2011-07-07 20:30:03", 
-   "email_on_invite_to_private_event": false, 
-   "email_on_invite_to_public_event": false, 
+   "email_on_new_subscribed_employer_event": true, 
+   "last_updated": "2011-08-16 23:29:42", 
+   "email_on_invite_to_private_event": true, 
+   "email_on_invite_to_public_event": true, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
   }
