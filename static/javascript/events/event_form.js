@@ -215,13 +215,13 @@ $(document).ready( function() {
             $("#event_location_section").css("opacity", .2);
             $("#event_location_section input").attr('disabled', 'disabled');
             
-            if(event_type === "Rolling Deadline") {
+            if (event_type === "Rolling Deadline") {
                 $("#event_datetime_block").css("opacity", .2);
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
             } else if(event_type === "Hard Deadline"){
-                  $("#event_datetime_block").css("opacity", 1);
+                $("#event_datetime_block").css("opacity", 1);
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
-                  $("#start_datetime_wrapper").css("opacity", .2);
+                $("#start_datetime_wrapper").css("opacity", .2);
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
             }
         } else {
@@ -343,7 +343,7 @@ $(document).ready( function() {
     
     // Event scheduler.
     function syncSchedule() {
-        $('#event_scheduler_day_text').html($('#id_start_datetime_0').val());
+        $('#event_scheduler_day_text').val($('#id_start_datetime_0').val());
         renderScheduler();
     }
     function removeTime(datetime) {
@@ -380,7 +380,7 @@ $(document).ready( function() {
         };
     }
     function getSchedulerDate() {
-        var schedule_date_parts = $('#event_scheduler_day_text').html().split('/');
+        var schedule_date_parts = $('#event_scheduler_day_text').val().split('/');
         var schedule_date = new Date(schedule_date_parts[2] + '-' + schedule_date_parts[0] + '-' + schedule_date_parts[1]);
         return schedule_date;
     }
@@ -390,7 +390,7 @@ $(document).ready( function() {
     function renderScheduler() {
         $('#event_scheduler_nav_back').removeClass('active');
         $('#event_scheduler_nav_forward').removeClass('active');
-        var event_date_text = $('#event_scheduler_day_text').html();
+        var event_date_text = $('#event_scheduler_day_text').val();
         $('.event_block').remove();
         $.get(EVENT_SCHEDULE_URL, {
             event_date: event_date_text
@@ -437,8 +437,6 @@ $(document).ready( function() {
             } else if (end_date - schedule_date == 0) {
                 height = thisEventInfo.height;
             }
-            console.log('top: ' + top);
-            console.log('height: ' + height);
             
             if (top != Infinity && height != Infinity) {
                 var name = thisEventInfo.name;
@@ -471,8 +469,8 @@ $(document).ready( function() {
             $('#event_scheduler_nav_forward').addClass('active');
         });
     }
-    $('#event_scheduler_day_text').html($('#id_start_datetime_0').val());
-    $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1').change(renderScheduler);
+    $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker();
+    $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1, #event_scheduler_day_text').change(renderScheduler);
     renderScheduler();
     
     $('#event_scheduler_nav_back').click(function(e) {
