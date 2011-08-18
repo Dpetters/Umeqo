@@ -1,4 +1,4 @@
-import ldap
+#import ldap
 
 from django import forms
 from django.conf import settings

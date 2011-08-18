@@ -1,104 +1,101 @@
-#event_form_header{
-    display:inline-block;
+#event_form_header {
+    display: inline-block;
 }
-#event_form_left_col{
-    width:575px;
+#event_form_left_col {
+    width: 575px;
 }
-#event_name_section .errorspace, #event_type_section .errorspace, #event_location_section .errorspace, #event_description_section .errorspace{
-    display:inline-block;
-    width:150px;
-    position:relative;
-    top:2px;
-    left:5px;
+#event_name_section .errorspace, #event_type_section .errorspace, #event_location_section .errorspace, #event_description_section .errorspace {
+    display: inline-block;
+    width: 150px;
+    position: relative;
+    top: 2px;
+    left: 5px;
 }
-#event_name_section, #event_type_section, #event_location_section, #event_description_section{
-    margin-top:15px;
+#event_name_section, #event_type_section, #event_location_section, #event_description_section {
+    margin-top: 15px;
 }
-#event_form #id_name, #event_form #id_location{
-    font-size:16px;
-    width:300px;
+#event_form #id_name, #event_form #id_location {
+    font-size: 16px;
+    width: 300px;
 }
-#event_form #id_type{
-    font-size:14px;
-    width:310px;
-    display:inline-block;
+#event_form #id_type {
+    width: 310px;
+    display: inline-block;
 }
-label[for=id_is_public_0], label[for=id_is_public_1]{
-    font-size:14px;
-    margin-left:7px;
+label[for=id_is_public_0], label[for=id_is_public_1] {
+    margin-left: 7px;
 }
-#location_suggestions{
-    margin-top:1px;
-    height:176px;
-    width:310px;
+#location_suggestions {
+    margin-top: 1px;
+    height: 176px;
+    width: 310px;
 }
-#location_suggestions img{
-    margin-left:140px;
-    margin-top:55px;
+#location_suggestions img {
+    margin-left: 140px;
+    margin-top: 55px;
 }
-.location_suggestion{
+.location_suggestion {
     padding: 2px 7px;
-    background:#F2F2F2;
-    margin-top:1px;
-    cursor:pointer;
+    background: #F2F2F2;
+    margin-top: 1px;
+    cursor: pointer;
 }
-.location_suggestion:hover, .location_suggestion.selected{
-    color:#444;
-    background:#E9E9E9;
+.location_suggestion: hover, .location_suggestion.selected {
+    color: #444;
+    background: #E9E9E9;
 }
-#map{
-    float:right;
-    height:204px;
-    width:234px;
+#map {
+    float: right;
+    height: 204px;
+    width: 234px;
 }
-#new_event_form #id_description{
-    height:320px;
+#new_event_form #id_description {
+    height: 320px;
     width: 400px;
-    margin-top:3px;
+    margin-top: 3px;
 }
 
-.right_side_container{
-    width:379px;
+.right_side_container {
+    width: 379px;
 }
-#event_datetime_block .side_block_content{
-    padding:0px;
+#event_datetime_block .side_block_content {
+    padding: 0px;
 }
 label[for=id_start_datetime_0], label[for=id_end_datetime_0]{
-    float:left;
-    font-size:14px;
+    float: left;
     margin-top: 23px;
 }
 label[for=id_start_datetime_0]{
-    margin-left:20px;
+    margin-left: 20px;
 }
 label[for=id_end_datetime_0]{
-    margin-left:26px;
+    margin-left: 26px;
 }
 #new_event_form #id_days, #new_event_form #id_hours, #new_event_form #id_minutes {
-    width:65px;
-    margin-right:5px;
+    width: 65px;
+    margin-right: 5px;
 }
 .duration_field_label {
-    border:none;
+    border: none;
 }
 #datepicker, .ui-datepicker-calendar .ui-state-default {
-    border:1px solid #808080
+    border: 1px solid #808080
 }
 #datepicker, .ui-datepicker-calendar .ui-state-active {
-    border:1px solid black;
-    background:#606060;
-    color:white;
+    border: 1px solid black;
+    background: #606060;
+    color: white;
 }
 #datepicker .ui-datepicker-current {
-    font-weight:bold;
-    border:1px solid #808080;
-    color:black;
+    font-weight: bold;
+    border: 1px solid #808080;
+    color: black;
 }
 #pickerplug .ui-icon-closethick {
-    cursor:pointer;
-    border-right:1px solid #808080;
-    border-bottom:1px solid #808080;
-    border-top:1px solid #808080;
+    cursor: pointer;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    border-top: 1px solid #808080;
 }
 #event_scheduler {
     height: 306px;
@@ -124,30 +121,30 @@ label[for=id_end_datetime_0]{
 }
 #event_scheduler_day {
     padding: 10px 18px;
-    margin-top:8px;
+    margin-top: 8px;
 }
 #event_scheduler_day span {
     font-weight: 600;
 }
-#event_additional_info_block .side_block_content{
-    padding-top:0px;
+#event_additional_info_block .side_block_content {
+    padding-top: 0px;
 }
 #event_scheduler td {
     height: 15px;
 }
-#event_scheduler tr:nth-child(odd) td {
+#event_scheduler tr: nth-child(odd) td {
     border-style: solid;
     border-width: 1px;
     border-color: #DDD #EEE #EEE;
 }
-#event_scheduler tr:nth-child(even) td {
+#event_scheduler tr: nth-child(even) td {
     border-style: solid;
     border-width: 1px;
     border-color: #EEE #EEE #DDD;
 }
 .event_block {
     position: absolute;
-    left: 60px;
+    left: 10px;
     right: 13px;
     min-height: 8px;
     color: #FFF;
@@ -157,19 +154,20 @@ label[for=id_end_datetime_0]{
 .gray {
     background-color: #CCC;
     border: 2px dashed #666;
-    right: 125px;
+    right: 170px;
     z-index: 1;
 }
-.gray:hover {
+.gray: hover {
     z-index: 3;
 }
 .green {
     background-color: #B08B59;
     border: 2px dashed #000;
-    left: 192px;
+    left: 150px;
+    right: 40px;
     z-index: 2;
 }
-.green:hover {
+.green: hover {
     cursor: pointer;
 }
 .clipTop {
@@ -194,21 +192,30 @@ label[for=id_end_datetime_0]{
     top: 549px;
     height: 29px;
 }
+#id_audience {
+    width: 210px;
+}
 label[for=id_audience]{
-    float:left;
-    margin-top:24px;
+    float: left;
+    margin-top: 24px;
 }
 label[for=id_rsvp_message]{
-    padding-left:13px;
-    vertical-align:top;
+    padding-left: 13px;
+    vertical-align: top;
 }
-#id_rsvp_message{
-    width:231px;
-    height:36px;
+#id_rsvp_message {
+    width: 231px;
+    height: 36px;
 }
-.button_wrapper_with_margins{
-    text-align:right;
-    padding-right:10px;
+.button_wrapper_with_margins {
+    text-align: left;
+    padding-right: 10px;
+}
+#view_event_button {
+    line-height: 20px;
+    height: 20px;
+    float: right;
+    margin-left: 10px;
 }
 #event_scheduler_nav {
   float: right;
@@ -229,18 +236,18 @@ label[for=id_rsvp_message]{
   -moz-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
-#event_scheduler_nav_back.active,
-#event_scheduler_nav_forward.active {
+#event_scheduler_nav_back.enabled,
+#event_scheduler_nav_forward.enabled {
   color: #000;
 }
-#event_scheduler_nav_back:hover,
-#event_scheduler_nav_forward:hover {
+#event_scheduler_nav_back: hover,
+#event_scheduler_nav_forward: hover {
   background: #EEE;
   cursor: default;
   color: #BBB;
 }
-#event_scheduler_nav_back.active:hover,
-#event_scheduler_nav_forward.active:hover {
+#event_scheduler_nav_back.enabled: hover,
+#event_scheduler_nav_forward.enabled: hover {
   background: #F2F2F2;
   color: #222;
   cursor: pointer;
