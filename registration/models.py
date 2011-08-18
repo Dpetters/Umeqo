@@ -11,15 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from core import mixins as core_mixins
 from registration.managers import RegistrationManager
-
-
-class Invite(core_mixins.DateTracking):
-    id = models.CharField(max_length=12, primary_key=True)
-    owner = models.ForeignKey(User, related_name="owned_invite_set")
-    acceptor = models.ForeignKey(User, related_name="accepted_invite_set", null=True, blank=True, unique=True)
-    
-    def __unicode__(self):
-        return self.code
     
     
 class InterestedPerson(core_mixins.DateTracking):
@@ -29,6 +20,7 @@ class InterestedPerson(core_mixins.DateTracking):
     summer_plans = models.CharField("Summer plans?",max_length=200, null=True, blank=True)
     ip_address = models.IPAddressField(editable=False, null=True)
     auto_email = models.BooleanField(default=False)
+    final = models.BooleanField(default=False)
     emailed = models.BooleanField(default=False)
     
     class Meta:

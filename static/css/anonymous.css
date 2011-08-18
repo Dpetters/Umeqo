@@ -78,13 +78,13 @@
     border-radius: 3px;
     position: absolute;
     top: 6px;
-    right: 22px;
+    right: 12px;
     background: white;
     padding: 10px 5px 9px 12px;
     border: 2px solid #CCC;
     -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-    width: 200px;
+    width: 208px;
     z-index: 100;
     display:none;
 }
