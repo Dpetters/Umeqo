@@ -1,78 +1,78 @@
 #event_form_header{
-	display:inline-block;
+    display:inline-block;
 }
 #event_form_left_col{
-	width:575px;
+    width:575px;
 }
 #event_name_section .errorspace, #event_type_section .errorspace, #event_location_section .errorspace, #event_description_section .errorspace{
-	display:inline-block;
-	width:150px;
-	position:relative;
-	top:2px;
-	left:5px;
+    display:inline-block;
+    width:150px;
+    position:relative;
+    top:2px;
+    left:5px;
 }
 #event_name_section, #event_type_section, #event_location_section, #event_description_section{
-	margin-top:15px;
+    margin-top:15px;
 }
 #event_form #id_name, #event_form #id_location{
-	font-size:16px;
-	width:300px;
+    font-size:16px;
+    width:300px;
 }
 #event_form #id_type{
-	font-size:14px;
-	width:310px;
-	display:inline-block;
+    font-size:14px;
+    width:310px;
+    display:inline-block;
 }
 label[for=id_is_public_0], label[for=id_is_public_1]{
-	font-size:14px;
-	margin-left:7px;
+    font-size:14px;
+    margin-left:7px;
 }
 #location_suggestions{
-	margin-top:1px;
-	height:176px;
-	width:310px;
+    margin-top:1px;
+    height:176px;
+    width:310px;
 }
 #location_suggestions img{
-	margin-left:140px;
-	margin-top:55px;
+    margin-left:140px;
+    margin-top:55px;
 }
 .location_suggestion{
-	padding: 2px 7px;
-	background:#F2F2F2;
-	margin-top:1px;
-	cursor:pointer;
+    padding: 2px 7px;
+    background:#F2F2F2;
+    margin-top:1px;
+    cursor:pointer;
 }
 .location_suggestion:hover, .location_suggestion.selected{
-	color:#444;
-	background:#E9E9E9;
+    color:#444;
+    background:#E9E9E9;
 }
 #map{
-	float:right;
-	height:204px;
-	width:234px;
+    float:right;
+    height:204px;
+    width:234px;
 }
 #new_event_form #id_description{
-	height:320px;
+    height:320px;
     width: 400px;
     margin-top:3px;
 }
 
 .right_side_container{
-	width:379px;
+    width:379px;
 }
 #event_datetime_block .side_block_content{
-	padding:0px;
+    padding:0px;
 }
 label[for=id_start_datetime_0], label[for=id_end_datetime_0]{
-	float:left;
-	font-size:14px;
-	margin-top: 23px;
+    float:left;
+    font-size:14px;
+    margin-top: 23px;
 }
 label[for=id_start_datetime_0]{
-	margin-left:20px;
+    margin-left:20px;
 }
 label[for=id_end_datetime_0]{
-	margin-left:26px;
+    margin-left:26px;
 }
 #new_event_form #id_days, #new_event_form #id_hours, #new_event_form #id_minutes {
     width:65px;
@@ -130,7 +130,7 @@ label[for=id_end_datetime_0]{
     font-weight: 600;
 }
 #event_additional_info_block .side_block_content{
-	padding-top:0px;
+    padding-top:0px;
 }
 #event_scheduler td {
     height: 15px;
@@ -152,14 +152,31 @@ label[for=id_end_datetime_0]{
     min-height: 8px;
     color: #FFF;
     padding: 4px 0 0 4px;
+    box-shadow: rgba(0,0,0,0.4) 2px 2px 2px 0;
 }
 .gray {
     background-color: #CCC;
     border: 2px dashed #666;
+    right: 125px;
+    z-index: 1;
+}
+.gray:hover {
+    z-index: 3;
 }
 .green {
     background-color: #B08B59;
     border: 2px dashed #000;
+    left: 192px;
+    z-index: 2;
+}
+.green:hover {
+    cursor: pointer;
+}
+.clipTop {
+    border-top: 2px solid transparent;
+}
+.clipBottom {
+    border-bottom: 2px solid transparent;
 }
 #event1 {
     top: 421px;
@@ -178,18 +195,53 @@ label[for=id_end_datetime_0]{
     height: 29px;
 }
 label[for=id_audience]{
-	float:left;
-	margin-top:24px;
+    float:left;
+    margin-top:24px;
 }
 label[for=id_rsvp_message]{
-	padding-left:13px;
-	vertical-align:top;
+    padding-left:13px;
+    vertical-align:top;
 }
 #id_rsvp_message{
-	width:231px;
-	height:36px;
+    width:231px;
+    height:36px;
 }
 .button_wrapper_with_margins{
-	text-align:right;
-	padding-right:10px;
+    text-align:right;
+    padding-right:10px;
+}
+#event_scheduler_nav {
+  float: right;
+}
+#event_scheduler_nav_back,
+#event_scheduler_nav_forward {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 5px;
+  background: #EEE;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  text-decoration: none;
+  color: #BBB;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+#event_scheduler_nav_back.active,
+#event_scheduler_nav_forward.active {
+  color: #000;
+}
+#event_scheduler_nav_back:hover,
+#event_scheduler_nav_forward:hover {
+  background: #EEE;
+  cursor: default;
+  color: #BBB;
+}
+#event_scheduler_nav_back.active:hover,
+#event_scheduler_nav_forward.active:hover {
+  background: #F2F2F2;
+  color: #222;
+  cursor: pointer;
 }

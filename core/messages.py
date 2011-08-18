@@ -35,7 +35,8 @@ empty_resume = "We could not extract any keywords out of your resume."
 
 #Login Form
 incorrect_username_password_combo = "The username and password combo that you entered is invalid. Please note that both fields are case-sensitive."
-account_suspended = "This account has been suspended. Please direct all inquiries to admin@umeqo.com."
+staff_member_login_not_allowed = "Staff users cannot login. They can only access the admin pages."
+account_suspended = "This account has been suspended. Please direct all inquiries to help@umeqo.com."
 enable_cookies = "Your browser doesn't seem to have cookies enabled. Cookies are required to login."
 
 # Contact Form
@@ -46,6 +47,9 @@ contact_us_message_spam = "Our system thinks your message is spam. If you think 
 passwords_dont_match = "The two passwords don't match."
 email_not_registered = "This email is not registered."
 
+# Password Change Form
+incorrect_old_password = "Your old password was entered incorrectly."
+
 # Student Registration
 email_required = "What's your email?"
 invalid_email = "Doesn't look like a valid email"
@@ -54,3 +58,4 @@ email_already_registered = "This email is already registered."
 password_required = "You need a password!"
 must_be_mit_student = "You must be a student to sign up."
 ldap_server_error = "Can't contact LDAP server. Try again in a few min."
+invalid_invite_code = "The invite code you entered is invalid."

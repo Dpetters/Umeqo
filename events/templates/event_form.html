@@ -18,6 +18,8 @@
     {% else %}
         var EDIT_FORM = false;
     {% endif %}
+    
+    var EVENT_SCHEDULE_URL = "{% url event_schedule %}";
 </script>
 
 {% load compress %}
@@ -55,7 +57,7 @@
     <div class="right_side_container">
         <div id="event_datetime_block" class="side_block">
             <div class="side_block_header">
-                <span class="no_icon side_block_header_title">Date & Time</span>
+                <span class="no_icon_side_block_header_title">Date &amp; Time</span>
             </div>
             <div class="side_block_content">
                 <div id="start_datetime_wrapper">
@@ -73,13 +75,17 @@
                     </div>
                 </div>
                 <div id="event_scheduler_day">
-                    Showing schedule for <span>9/23/2011</span>:
+                    Showing schedule for <input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield" />:
+                    <div id="event_scheduler_nav">
+                        <a id="event_scheduler_nav_back" class="active" href="#">&laquo;</a>
+                        <a id="event_scheduler_nav_forward" class="active" href="#">&raquo;</a>
+                    </div>
                 </div>
                 <div id="event_scheduler">
                     <table tabindex="-1">
                         {% for hour in hours %}
                         <tr>
-                            <th rowspan="2">{{ hour }}</th>
+                            <th rowspan="2">{{hour}}</th>
                             <td></td>
                         </tr>
                         <tr>
@@ -87,18 +93,6 @@
                         </tr>
                         {% endfor %}
                     </table>
-                    <div id="event1" class="event_block gray">
-                        Sample Employer A
-                    </div>
-                    <div id="event2" class="event_block gray">
-                        Sample Employer B
-                    </div>
-                    <div id="event3" class="event_block gray">
-                        Sample Employer C
-                    </div>
-                    <div id="yourevent" class="event_block green">
-                        {{ event.name }}
-                    </div>
                 </div>
             </div>
         </div>

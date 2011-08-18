@@ -36,7 +36,8 @@ def restart():
 
 def migrate():
     if not env.host:
-        local("find */migrations -name '*.pyc' | xargs rm")
+        with fabric_settings(warn_only=True):
+            local("find */migrations -name '*.pyc' | xargs rm")
         local("python manage.py migrate --all")
     else:
         abort("migrate can only be called locally.")

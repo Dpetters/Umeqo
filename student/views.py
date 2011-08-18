@@ -261,6 +261,7 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_update_resume_info(request):
@@ -270,6 +271,7 @@ def student_update_resume_info(request):
                 'num_of_extracted_keywords' : len(filter(None, request.user.student.keywords.split(" ")))}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     return redirect('home')
+
 
 @render_to("student_create_campus_org.html")
 def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, extra_context=None):
@@ -395,42 +397,3 @@ def student_resume(request):
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s.pdf' % (request.user.last_name.lower(), request.user.first_name.lower())
     return response
-"""
-def compute_suggested_employers_list(student, exclude = None):
-    suggested_employers = []
-    if exclude:
-        for industry in student.industries_of_interest.all():
-            for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]).exclude(company_name__in=[n for n in exclude]):
-                suggested_employers.append(employer.name)
-    
-        for employer in student.previous_employers.all():
-            for industry in employer.industry.all():
-                for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]).exclude(    name__in=[n for n in exclude]):
-                    suggested_employers.append(employer.name)
-    else:
-        for industry in student.industries_of_interest.all():
-            for employer in industry.employer_set.all().exclude(id__in=[o.id for o in student.subscribed_employers.all()]):
-                suggested_employers.append(employer.name)
-    
-        for employer in student.previous_employers.all():
-            for industry in employer.industry.all():
-                for employer in industry.employer_set.all().exclude(    name__in=[o for o in suggested_employers]):
-                    suggested_employers.append(employer.name)
-    
-    random.shuffle(suggested_employers)
-
-    if len(suggested_employers) > 5:
-        suggested_employers = suggested_employers[:6]
-    elif len(suggested_employers) > 4:
-        suggested_employers = suggested_employers[:5]
-    elif len(suggested_employers) > 3:
-        suggested_employers = suggested_employers[:4]
-    elif len(suggested_employers) > 2:
-        suggested_employers = suggested_employers[:3]
-    elif len(suggested_employers) > 1:
-        suggested_employers = suggested_employers[:2]
-    elif len(suggested_employers) > 0:
-        suggested_employers = suggested_employers[:1]
-        
-    return suggested_employers
-"""

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.core.mail import EmailMessage
 
-from student.models import Student, StudentPreferences
+from student.models import Student, StudentPreferences, StudentInvite
 from campus_org.form_helpers import campus_org_types_as_choices
 from campus_org.models import CampusOrg
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
@@ -69,6 +69,17 @@ class StudentRegistrationForm(forms.Form):
             if result == []:
                 raise forms.ValidationError(_(messages.must_be_mit_student))
         return self.cleaned_data['email']
+
+
+class BetaStudentRegistrationForm(StudentRegistrationForm):
+    invite_code = forms.CharField(label="Invite Code:")
+    
+    def clean_signup_code(self):
+        try:
+            StudentInvite.objects.get(id=self.cleaned_data['invite_code'])
+        except StudentInvite.DoesNotExist:
+            raise forms.ValidationError(messages.invalid_invite_code)
+        return self.cleaned_data['invite_code']
 
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
