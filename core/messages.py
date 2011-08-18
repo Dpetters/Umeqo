@@ -26,6 +26,7 @@ student_profile_preview_event_attendance_tooltip = "A company's recruiters only 
 student_profile_preview_invite_to_event_tooltip = "Recruiters can invite you to both public and private events."
 student_profile_preview_view_resume_tooltip = "Apart from creating resume books, recruiters can also view and download your resume individually."
 
+campus_org_already_exists = "This campus organization already exists."
 language_already_exists = "This language already exists."
 
 # Resume
@@ -39,10 +40,17 @@ enable_cookies = "Your browser doesn't seem to have cookies enabled. Cookies are
 
 # Contact Form
 thank_you_for_contacting_us = "We have received your message. Thank you for contacting us!"
-contact_us_message_spam = "Our system thinks your message is spam. If you think this is a mistake, email us instead at support@umeqo.com."
+contact_us_message_spam = "Our system thinks your message is spam. If you think this is a mistake, email us instead."
+
+# Password Reset Form
+passwords_dont_match = "The two passwords don't match."
+email_not_registered = "This email is not registered."
 
 # Student Registration
-use_an_mit_email_address = "Please use an mit.edu address."
+email_required = "What's your email?"
+invalid_email = "Doesn't look like a valid email"
+must_be_mit_email = "Must be an MIT email."
 email_already_registered = "This email is already registered."
-passwords_dont_match = "The passwords you entered don't match."
-not_an_mit_student = "Please enter a valid MIT student's email address."
+password_required = "You need a password!"
+must_be_mit_student = "You must be a student to sign up."
+ldap_server_error = "Can't contact LDAP server. Try again in a few min."

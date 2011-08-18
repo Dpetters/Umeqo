@@ -1,18 +1,16 @@
 <div class="dialog_content_wrapper">
-    <div class="dialog_info_section">
-        <h3>Oh no! We could not parse your resume for keywords.</h3>
-    </div>
+    <h3>Oh no! We could not parse your resume for keywords.</h3>
     <p>This is most likely because you either scanned it into PDF form or created it using some type of graphical software.</p>
     <br>
     <p>If you keep this resume, you will only show up in search results if a recruiter searches by your name (first or last).</p>
     <br>
     <p>We suggest using Microsoft Word, OpenOffice or Latex to create your resume and then save it to PDF.</p>
     <div class="button_wrapper_with_margins">
-        {% if request.get.home %}
+        {% ifequal request.GET.home "true" %}
+        <a class="button close_dialog_link">Got it!</a>
+        {% else %}
         <a class="button close_dialog_link">Choose Another</a>
         <a class="button save_profile_link">Save Profile</a>
-        {% else %}
-        <a class="button close_dialog_link">Got it!</a>
-        {% endif %}        
+        {% endifequal %}        
     </div>
 </div>

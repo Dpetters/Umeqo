@@ -1,0 +1,90 @@
+.simple_block {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.simple_block h1{
+	margin-bottom:9px;
+}
+.main_block {
+    margin-top: 20px;
+    display: inline-block;
+    width:100%
+}
+.main_block.with_side_nav{
+	width:780px;
+	float:right;
+}
+.main_block h1{
+	margin-bottom:15px;
+}	
+.main_block_header {
+    padding: 3px 0px;
+    line-height: 30px;
+}
+.main_block_header_icon {
+    margin-left: 10px;
+    position: relative;
+    bottom: 1px;
+}
+.main_block_header_title {
+    font-size: 18px;
+    text-shadow: #FFF 0 1px 0;
+}
+.main_block_content {
+    padding: 10px;
+}
+.main_block, .side_block {
+    behavior: url(/static/lib/pie/PIE.htc);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #DDD !important;
+}
+.main_block_header, .side_block_header {
+    behavior: url(/static/lib/pie/PIE.htc);
+    background: #F0F0F0;
+    background: -moz-linear-gradient(#F0F0F0, #E6E6E6);
+    background: -webkit-gradient(#F0F0F0, #E6E6E6);
+    background: -webkit-linear-gradient(#F0F0F0, #E6E6E6);
+    background: -o-linear-gradient(#F0F0F0, #E6E6E6);
+    background: linear-gradient(#F0F0F0, #E6E6E6);
+    -pie-background: linear-gradient(#F0F0F0, #E6E6E6);
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #DDD;
+}
+.main_block_header_icon , .side_block_header_icon {
+    vertical-align: middle;
+}
+.main_block_header_title, .side_block_header_title {
+    text-shadow: 0px 1px white;
+    vertical-align: middle;
+    color:#444;
+    margin-left: 7px;
+    display: inline-block;
+}
+.main_block_header_content, .side_block_header_content {
+    float: right;
+    margin-right: 5px;
+}
+.main_block_header_sidelink {
+    float: right;
+    padding-right: 5px;
+    margin: 1px 5px 0 0;
+}
+.side_block {
+    margin-bottom: 16px;
+}
+.side_block_header_icon {
+    margin-left: 8px;
+}
+.side_block_header_title {
+    font-size: 18px;
+    margin-left: 5px;
+    line-height: 29px;
+}
+.no_icon{
+	margin-left:8px;
+}
+.side_block_content {
+    padding: 10px;
+}

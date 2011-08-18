@@ -6,30 +6,28 @@ Home |
 
 {% block metadata %}
 {{block.super}}
-<!-- Custom -->
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_home.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+{% endcompress %}
+{% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/employer/employer_home.js"></script>
-
-<!--[if lt IE 9]>
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/employer/employer_home_ie.css" />
-<![endif]-->
-
+{% endcompress %}
 {% endblock %}
 
 {% block content_area %}
-
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
 </div>
 
-<div class="main_block no_top_margin">
+<div class="main_block no_top_margin with_side_nav">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
         <span class="main_block_header_title">Welcome!</span>
     </div>
     <div class="main_block_content">
-        <div class="message_block">
+        <div class="simple_block">
             <p>
                 This is probably your first time here, so let us tell you a little bit about Umeqo.
             </p>
@@ -37,7 +35,7 @@ Home |
     </div>
 </div>
 
-<div class="main_block">
+<div class="main_block with_side_nav">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
         <span class="main_block_header_title">Browse Students</span>
@@ -51,7 +49,7 @@ Home |
         </div>
     </div>
     <div class="main_block_content">
-        <div class="message_block">
+        <div class="simple_block">
             <p>
                 Search for students above, or let us find them for you by providing your company's default filtering parameters.
             </p>
@@ -62,7 +60,7 @@ Home |
         </div>
     </div>
 </div>
-<div id="events_and_deadlines_block" class="main_block">
+<div class="main_block with_side_nav">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Your Events and Deadlines</span>
@@ -80,7 +78,7 @@ Home |
             {% include "event_snippet.html" with edit='True' %}
         {% endfor %}
         </ul>
-        <div id="no_events_block" class="message_block" {% if your_events %}style="display:none"{% endif %}>
+        <div id="no_events_block" class="simple_block" {% if your_events %}style="display:none"{% endif %}>
             <p>
                 You can post your company's events and deadlines for students to view and add to their calendars.
             </p>

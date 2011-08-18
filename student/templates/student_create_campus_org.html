@@ -1,0 +1,31 @@
+<div class="dialog_content_wrapper">
+    <h3>Create the campus organization by filling out the fields below.</h3>
+    <p>
+        <strong>Note:</strong> Its authenticity will be checked by site administrators.
+    </p>
+    <form id="create_campus_org_form" method='POST' action="{% url student_create_campus_org %}">
+        {% csrf_token %}
+        <table class="form_table">
+            {% for field in form %}
+                <tr>
+                    <th>{{ field.label_tag }}</th>
+                    <td>
+                        <div class="errorspace">{{ field.errors }}</div>
+                        {{ field }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" class="error_section error">
+                    {{form.non_field_errors}}
+                </td>
+            </tr>
+            <tr>
+                <td class="button_cell" colspan="2">
+                    <input id="create_campus_org_form_submit_button" class="button" type='submit' value='Create'>
+                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

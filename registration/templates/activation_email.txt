@@ -1,4 +1,4 @@
-Thanks for signing up at Umeqo!
+Thank you for signing up for Umeqo!
 
 Activate your account by visiting this link:
 http://{{site}}/activation/{{activation_key}}/

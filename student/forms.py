@@ -1,4 +1,9 @@
+import ldap
+
 from django import forms
+from django.conf import settings
+from django.utils.translation import ugettext as _
+from django.core.mail import EmailMessage
 
 from student.models import Student, StudentPreferences
 from campus_org.form_helpers import campus_org_types_as_choices
@@ -6,7 +11,6 @@ from campus_org.models import CampusOrg
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
 from core.view_helpers import does_email_exist
 from employer.models import Employer
-from django.utils.translation import ugettext as _
 from core.fields import PdfField
 from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
@@ -19,8 +23,8 @@ class StudentDeactivateAccountForm(forms.Form):
     
 class StudentRegistrationForm(forms.Form):
 
-    email = forms.EmailField(label="MIT email:")
-    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False))
+    email = forms.EmailField(label="MIT email:", widget=forms.TextInput(attrs={'tabindex':1}))
+    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
     
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -28,19 +32,44 @@ class StudentRegistrationForm(forms.Form):
         if does_email_exist(email):
             raise forms.ValidationError(_(messages.email_already_registered))
         
-        if email[-len("mit.edu"):] != "mit.edu":
-            raise forms.ValidationError(_(messages.use_an_mit_email_address))
-        """
-        con = ldap.open('ldap.mit.edu')
-        con.simple_bind_s("", "")
-        dn = "dc=mit,dc=edu"
-        fields = ['cn', 'sn', 'givenName', 'mail', ]
-        username = email.split("@")[0]
-        result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
-        if result == []:
-            raise forms.ValidationError(_(messages.not_an_mit_student))
-        """
+        if settings.DEBUG:
+            if email[-len("mit.edu"):] != "mit.edu" and email[-len("umeqo.com"):] != "umeqo.com":
+                raise forms.ValidationError(_(messages.must_be_mit_email))
+        elif email[-len("mit.edu"):] != "mit.edu":
+            raise forms.ValidationError(_(messages.must_be_mit_email))
+        
+        # General idea of what the ldap code below is doing:
+        # --Connected to the Internet
+        # ----LDAP Up
+        # ------Run Student Check, Allow Registration
+        # ----LDAP Down
+        # ------Send Email Alerting Us
+        # ------Do Not Allow Registration
+        # --Not Connected to the Internet
+        # ----Allow registration
+        if email[-len("umeqo.com"):] != "umeqo.com":
+            result = [None]
+            try:
+                con = ldap.open('ldap.mit.edu')
+                con.simple_bind_s("", "")
+                dn = "dc=mit,dc=edu"
+                fields = ['cn', 'sn', 'givenName', 'mail', ]
+                username = email.split("@")[0]
+                result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
+            except Exception, e:
+                print "%s" % e
+                try:
+                    recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
+                    subject = "URGENT: LDAP Server is down. EOM"
+                    message = EmailMessage(subject, "", settings.DEFAULT_FROM_EMAIL, recipients)
+                    message.send()
+                    raise forms.ValidationError(_(messages.ldap_server_error))
+                except:
+                    pass
+            if result == []:
+                raise forms.ValidationError(_(messages.must_be_mit_student))
         return self.cleaned_data['email']
+
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     
@@ -156,6 +185,11 @@ class StudentProfileForm(StudentBaseAttributeForm):
         if first_major and second_major and first_major == second_major:
             raise forms.ValidationError(_(messages.student_profle_form_first_second_majors_diff))
         return self.cleaned_data['second_major']
+    """
+    def clean(self):
+        pass
+        #raise forms.ValidationError("Test non-field-error")
+    """
 
 class StudentProfilePreviewForm(StudentProfileForm):
     resume = PdfField(label="Resume:", required=False)

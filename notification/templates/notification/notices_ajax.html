@@ -4,7 +4,7 @@
     {% for notice in notices %}
         <li{% if notice.is_unseen %} class="unread"{% endif %}>
             <div class="details">
-                <span class="timestamp">{{ notice.added|timesince }} ago</span>
+                <span class="timestamp light">{{ notice.added|timesince }} ago</span>
                 <span class="type">{{ notice.notice_type.display }}</span>
             </div>
             <a href="{% url notification_notices %}#{{ notice.id }}"><span class="message">{{ notice.message|safe }}</span></a>

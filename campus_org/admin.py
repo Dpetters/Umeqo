@@ -16,7 +16,7 @@ class CampusOrgAdmin(admin.ModelAdmin):
     search_fields = ['name']
     date_hierarchy = 'last_updated'
 
-def response_change(self, request, obj):
+    def response_change(self, request, obj):
         """
         Determines the HttpResponse for the change_view stage.
         """

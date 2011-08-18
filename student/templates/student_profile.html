@@ -7,38 +7,23 @@
 
 {% block metadata %}
 {{block.super}}
-<!-- JQuery Masker Input -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js">
-</script>
-<!-- JQuery Multiselect Widget -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js">
-</script>
+{% load compress %}
+{% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-<!-- Filtering plugin for Multiselect Widget -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js">
-</script>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-<!-- Custom -->
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile.js">
-</script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_preview.js">
-</script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/campus_info.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_info.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
-<!-- Scripts -->
+{% endcompress %}
 <script type="text/javascript">
     var COURSE_INFO_URL = "{% url course_info %}";
     var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
-    var SHOW_DETAILS_LINK = "{% include 'student_show_details_link.html' %}";    
+    var SHOW_DETAILS_LINK = "{% include 'student_profile_show_details_link.html' %}";    
     var HIDE_DETAILS_LINK = "{% include 'student_hide_details_link.html' %}";
     var CHECK_CAMPUS_ORG_UNIQUENESS_URL = "{% url check_campus_org_uniqueness %}";
     var CHECK_LANGUAGE_UNIQUENESS_URL = "{% url check_language_uniqueness %}";
-    var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_organization %}";
+    var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_org %}";
     var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
 
     var STATIC_URL = "{{STATIC_URL}}";
@@ -65,13 +50,25 @@
     var STUDENT_PROFILE_PREVIEW_INVITE_TO_EVENT_TOOLTIP = "{% text_snippet 'student_profile_preview_invite_to_event_tooltip' %}";
 	
 	var LANGUAGE_ALREADY_EXISTS = "{% text_snippet 'language_already_exists' %}";
-	
+	var CAMPUS_ORG_ALREADY_EXISTS = "{% text_snippet 'campus_org_already_exists' %}";
     var REMOVE_FROM_RESUME_BOOK_IMG = "{% student_resume_book 'True' %}";
     var ADD_TO_RESUME_BOOK_IMG = "{% student_resume_book '' %}";
     
     var STARRED_IMG = "{% student_star 'True' %}";
     var UNSTARRED_IMG = "{% student_star '' %}";
 </script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_create_campus_org.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_create_language.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_preview.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/campus_info.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block title %}
@@ -159,12 +156,8 @@ Create Profile |
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="error_section error">
-                                {% if form.errors %}
-                                    {% for field, errors in form.errors.items %}
-                                        {{ errors|escape }}
-                                    {% endfor %}
-                                {% endif %}
+                        	<th></th>
+                            <td class="error_section error">
                             </td>
                         </tr>
                         <tr>
@@ -177,7 +170,7 @@ Create Profile |
                         </tr>
                     </table>
                 </div>
-                <div class="profile_side_form_info">
+                <div class="profile_form_side_info">
                     <h3>Umeqo makes it easy for employers to discover you!</h3>
                     <ul>
                         <li>
@@ -264,12 +257,8 @@ Create Profile |
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4" class="error_section error">
-                                {% if form.errors %}
-                                    {% for field, errors in form.errors.items %}
-                                        {{ errors|escape }}
-                                    {% endfor %}
-                                {% endif %}
+                        	<th></th>
+                            <td colspan="3" class="error_section error">
                             </td>
                         </tr>
                         <tr>
@@ -282,7 +271,7 @@ Create Profile |
                         </tr>
                     </table>
                 </div>
-                <div class="profile_side_form_info">
+                <div class="profile_form_side_info">
                     <h3>Give us a hint of your academics and work experience.</h3>
                     <ul>
                         <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
@@ -346,12 +335,8 @@ Create Profile |
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="error_section error">
-                                {% if form.errors %}
-                                    {% for field, errors in form.errors.items %}
-                                        {{ errors|escape }}
-                                    {% endfor %}
-                                {% endif %}
+                        	<th></th>
+                            <td class="error_section error">
                             </td>
                         </tr>
                         <tr>
@@ -364,7 +349,7 @@ Create Profile |
                         </tr>
                     </table>
                 </div>
-                <div class="profile_side_form_info">
+                <div class="profile_form_side_info">
                     <h3>Almost there - for real this time.</h3>
                     <ul>
                         <li>

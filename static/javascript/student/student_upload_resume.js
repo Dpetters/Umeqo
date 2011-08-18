@@ -171,24 +171,23 @@ $(document).ready(function(){
 		                });
 						var $unparsable_resume_dialog = open_unparsable_resume_dialog();
 					    $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
-					    $unparsable_resume_dialog.dialog('option', 'position', 'center');
 					    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
 					    $.ajax({
 					        dataType: "html",
 					        url: UNPARSABLE_RESUME_URL + "?home=true",
 					        complete: function(jqXHR, textStatus) {
             					clearTimeout(unparsable_resume_dialog_timeout);
+            					$unparsable_resume_dialog.dialog('option', 'position', 'center');
         					},
 					        error: function(jqXHR, textStatus, errorThrown) {
 					            if(jqXHR.status==0){
-									$unparsable_resume_dialog.html(dialog_check_connection_message);
+									$unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 								}else{
-					                $unparsable_resume.html(ERROR_MESSAGE_DIALOG);
+					                $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
 					            }
 					        },
 					        success: function (data) {
 					        	$unparsable_resume_dialog.html(data);
-					        	$unparsable_resume_dialog.dialog('option', 'position', 'center');
 					        }
 					    });
 				    } else{

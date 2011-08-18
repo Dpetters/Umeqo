@@ -72,7 +72,7 @@ class RegistrationBackend(object):
 
         username, email, password = kwargs['username'], kwargs['email'], kwargs['password1']
 
-        if Site._meta.installed: #@UndefinedVariable
+        if Site._meta.installed:
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)

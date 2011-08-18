@@ -5,10 +5,10 @@ function open_unparsable_resume_dialog(){
         title:"Unparsable Resume",
         dialogClass: "unparsable_resume_dialog",
         modal:true,
-        width:410,
+        width:426,
         resizable: false,
         close: function() {
-            $unparsable_resume_dialog.remove();
+            $(".unparsable_resume_dialog").remove();
         }
     });
     dialog.dialog('open');

@@ -3,11 +3,9 @@
 </script>
 
 <div class="dialog_content_wrapper">
-    <div class="dialog_info_section">
-        <p>You can either contact us directly or though one of the emails listed below. We'll get back to you ASAP.</p>
-    </div>
+    <p>You can contact us directly or though one of the emails listed below. We'll get back to you ASAP.</p>
     
-    <form id="contact_us_form" method='POST' action=".">
+    <form id="contact_us_form" method='POST'>
         {% csrf_token %}
         <table class="form_table">
             <tr>
@@ -39,7 +37,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" class="error_section error">
+                <td colspan="3" class="centered error_section error">
                     {{form.non_field_errors}}
                 </td>
             </tr>

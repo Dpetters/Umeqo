@@ -4,17 +4,9 @@
 Confirm Your Email |
 {% endblock %}
 
-{% block metadata %}
-{{ block.super }}
-<!-- Custom -->
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_registration_complete.js">
-</script>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_complete.css" />
-{% endblock %}
-
 {% block content_area %}
-<div id="registration_complete_block" class="message_block">
-    <h1 id="registration_complete_block_title" class="message_block_title">Almost there!</h1>
+<div class="simple_block centered">
+    <h1>Almost there!</h1>
     <p class="message_section">
     A confirmation email has been sent to
     {% if email %}

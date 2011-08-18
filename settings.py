@@ -4,6 +4,8 @@ ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+REGISTRATION_OPEN = True
+
 ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
 
 # Haystack Settings
@@ -169,7 +171,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     'notification.context_processors.notification',
     'core.context_processors.next',
-    'core.context_processors.get_current_path'
+    'core.context_processors.get_current_path',
+    'core.context_processors.registration'
 )
 
 MIDDLEWARE_CLASSES = (

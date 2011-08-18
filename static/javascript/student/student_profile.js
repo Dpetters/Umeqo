@@ -5,279 +5,18 @@ $(document).ready( function() {
     var previous_employers_max = 12;
     var countries_of_citizenship_max = 3;
     
-    var create_campus_org_dialog = null;
-    var create_language_dialog = null;
-
-    function open_create_campus_org_dialog() {
-        var $dialog = $('<div class="dialog"></div>')
-        .dialog({
-            autoOpen: false,
-            title:"New Campus Organization",
-            dialogClass: "create_campus_org_dialog",
-            modal:true,
-            width:475,
-            resizable: false,
-            close: function() {
-                create_campus_org_dialog.remove();
-            }
-        });
-        $dialog.dialog('open');
-        return $dialog;
-    };
-    
-    function open_create_language_dialog() {
-        var dialog = $('<div class="dialog"></div>')
-        .dialog({
-            autoOpen: false,
-            title:"New Language",
-            dialogClass: "create_language_dialog",
-            modal:true,
-            width:475,
-            resizable: false,
-            close: function() {
-                create_language_dialog.remove();
-            }
-        });
-        dialog.dialog('open');
-        return dialog;
-    };
-	
-    $('#create_campus_organization_link').click( function () {
-        create_campus_org_dialog = open_create_campus_org_dialog();
-        create_campus_org_dialog.html(DIALOG_AJAX_LOADER);
-        
-        var create_campus_org_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-        $.ajax({
-            dataType: "html",
-            url: CREATE_CAMPUS_ORGANIZATION_URL,
-            complete: function(jqXHR, textStatus) {
-                clearTimeout(create_campus_org_dialog_timeout);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-					create_campus_org_dialog.html(dialog_check_connection_message);
-				}else{
-                    create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
-                }
-            },
-            success: function (data) {             
-                create_campus_org_dialog.html(data);
-                create_campus_org_dialog.dialog('option', 'position', 'center');
-                
-                $("#id_name").focus();
-                
-                var create_campus_org_form_validator = $("#create_campus_org_form").validate({
-                    submitHandler: function(form) {
-                        $(form).ajaxSubmit({
-                            dataType: 'json',
-                            beforeSubmit: function (arr, $form, options) {
-                                show_form_submit_loader("#create_campus_org_form");
-                            },
-                            complete: function(jqXHR, textStatus) {
-                                hide_form_submit_loader("#create_campus_org_form");
-				            },
-                            error: function(jqXHR, textStatus, errorThrown){
-                                if(jqXHR.status==0){
-                                    $(".create_campus_org_dialog .error_section").html(form_check_connection_message);
-                                }else{
-                                    create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
-                                }
-                                create_campus_org_dialog.dialog('option', 'position', 'center');
-                            },
-                            success: function(data) {
-                                if (data.valid) {
-                                    var success_message = "<br><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><br /><p><a class='select_new_campus_organization_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
-                                    success_message += CLOSE_DIALOG_LINK
-                                    create_campus_org_dialog.html(success_message);
-
-                                    // Add the new campus organization to the select and update the widget to include it
-                                    $("optgroup[label='" + data.type + "s']").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>');
-                                    $("#id_campus_involvement").multiselect("refresh");
-                                    $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-
-                                    // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
-                                    $(".select_new_campus_organization_link").click( function() {
-                                        $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
-                                        $("#id_campus_involvement").multiselect("refresh");
-                                        $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-                                    });
-								}else{
-									place_table_form_errors("#create_campus_org_form", data.errors);
-                                }
-                                create_campus_org_dialog.dialog('option', 'position', 'center');
-                            }
-                        });
-                    },
-                    highlight: highlight,
-                    unhighlight: unhighlight,
-                    errorPlacement: place_errors_table,
-                    rules: {
-                        name: {
-                            required: true,
-                            remote: {
-                                url: CHECK_CAMPUS_ORG_UNIQUENESS_URL,
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    if(jqXHR.status==0){
-                                        $(".create_campus_org_dialog .error_section").html(form_check_connection_message);
-                                    }else{
-                                        create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
-                                    }
-                                	create_campus_org_dialog.dialog('option', 'position', 'center');
-                                }
-                            }
-                        },
-                        type: {
-                            required: true
-                        },
-                        website: {
-                            complete_url: true
-                        }
-                    },
-                    messages:{
-                        name:{
-                            remote: "This campus organization already exists."
-                        }
-                    }
-                });
-            }
-        });
-    });
-    
-    
-    
-    
-    $('#create_language_link').click( function () {
-        
-        create_language_dialog = open_create_language_dialog();
-        create_language_dialog.html(DIALOG_AJAX_LOADER);
-
-        var create_language_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-        $.ajax({
-            dataType: "html",
-            url: CREATE_LANGUAGE_URL,
-            complete: function(jqXHR, textStatus) {
-                clearTimeout(create_language_dialog_timeout);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-					create_campus_org_dialog.html(dialog_check_connection_message);
-				}else{
-                    create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
-                }
-            },
-            success: function (data) {             
-                create_language_dialog.html(data);
-                create_language_dialog.dialog('option', 'position', 'center');
-
-                $("#id_name").focus();
-                
-                var create_language_form_validator = $("#create_language_form").validate({
-                    submitHandler: function(form) {
-                        $(form).ajaxSubmit({
-                            dataType: 'json',
-                            beforeSubmit: function (arr, $form, options) {
-                                show_form_submit_loader("#create_language_form");
-                            },
-				            complete: function(jqXHR, textStatus) {
-                                hide_form_submit_loader("#create_language_form");
-				            },
-                            error: function(jqXHR, textStatus, errorThrown){
-                                if(jqXHR.status==0){
-                                    $(".create_language_dialog .error_section").html(form_check_connection_message);
-                                }else{
-                                    create_language_dialog.html(ERROR_MESSAGE_DIALOG);
-                                }
-                				create_language_dialog.dialog('option', 'position', 'center');
-                            },
-                            success: function(data) {
-                                if(data.valid) {
-                                    var success_message = "<div class='message_section'><p>The language \"" + data.name + "\" has been created successfully!</p>";
-                                    success_message += "<p><a class='select_basic_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Basic)\" to your Languages & Close Dialog</a></p>";
-                                    success_message += "<p><a class='select_proficient_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Proficient)\" to your Languages & Close Dialog</a></p>";
-                                    success_message += "<p><a class='select_fluent_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Fluent)\" to your Language & Close Dialog</a></p>";
-                                    success_message += CLOSE_DIALOG_LINK;
-                                    create_language_dialog.html(success_message);
-
-                                    // Add the new campus organization to the select and update the widget to include it
-                                    $("#id_languages").append('<option name="' + data.name + ' (Basic)" value="' + data.basic_id + '">' + data.name + ' (Basic)</option>');
-                                    $("#id_languages").append('<option name="' + data.name + ' (Proficient)" value="' + data.proficient_id + '">' + data.name + ' (Proficient)</option>');
-                                    $("#id_languages").append('<option name="' + data.name + ' (Fluent)" value="' + data.fluent_id + '">' + data.name +  ' (Fluent)</option>');
-                                    $("#id_languages").multiselect("refresh");
-                                    $("#id_languages").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-
-                                    // Marks the basic version of the language as selected on the actual select field, updates the widget, and then closes the dialog
-                                    $(".select_basic_language_link").click( function() {
-                                        $("#id_languages").find('option[name="' + data.name + ' (Basic)"]').attr('selected', true);
-                                        $("#id_languages").multiselect("refresh");
-                                        create_language_dialog.dialog('destroy');
-                                    });
-                                    // Marks the proficient version of the language as selected on the actual select field, updates the widget, and then closes the dialog
-                                    $(".select_proficient_language_link").click( function() {
-                                        $("#id_languages").find('option[name="' + data.name + ' (Proficient)"]').attr('selected', true);
-                                        $("#id_languages").multiselect("refresh");
-                                        create_language_dialog.dialog('destroy');
-                                    });
-                                    // Marks the fluent version of the language as selected on the actual select field, updates the widget, and then closes the dialog
-                                    $(".select_fluent_language_link").click( function() {
-                                        $("#id_languages").find('option[name="' + data.name + ' (Fluent)"]').attr('selected', true);
-                                        $("#id_languages").multiselect("refresh");
-                                        create_language_dialog.dialog('destroy');
-                                    });
-								} else {
-									console.log(data.errors);
-									//place_table_form_errors("#create_language_form", data.errors);
-                                }
-                                create_language_dialog.dialog('option', 'position', 'center');
-                            }
-                        });
-                    },
-                    highlight: highlight,
-                    unhighlight: unhighlight,
-                    errorPlacement: place_errors_table,
-                    rules: {
-                        name: {
-                            required: true,
-                            /*
-                            remote: {
-                                url:CHECK_LANGUAGE_UNIQUENESS_URL,
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    if(jqXHR.status==0){
-                                        $(".create_language_dialog .error_section").html(form_check_connection_message);
-                                    }else{
-                                        create_language_dialog.html(ERROR_MESSAGE_DIALOG);
-                						create_language_dialog.dialog('option', 'position', 'center');
-                                    }
-                                }
-                            }*/
-                        }
-                    },
-                    messages:{
-                        name:{
-                            remote: LANGUAGE_ALREADY_EXISTS
-                        }
-                    }
-                });
-            }
-        });
-    });
-
-    // Create Profile Form Validation
     var v = $("#profile_form").validate({
         submitHandler: function (form) {
             $(form).ajaxSubmit({
                 dataType: 'text',
                 beforeSubmit: function (arr, $form, options) {
+                	$("#profile_form input[type=submit]").attr("disabled", "disabled");
                     show_form_submit_loader("#profile_form");
+                    $("#profile_form .error_section").html("");
                 },
-                complete : function(jqXHR, textStatus) {              	
+                complete : function(jqXHR, textStatus) {
+                	$("#profile_form input[type=submit]").removeAttr("disabled");
                 	hide_form_submit_loader("#profile_form");
-                },
-                error: function(jqXHR, textStatus, errorThrown){
-                    if(jqXHR.status==0){
-                        $("#profile_form .error_section").html(form_check_connection_message);
-                    }else{
-                    	show_error_dialog(page_error_message);
-                    }
                 },
                 success: function (data) {
                 	data = $.parseJSON(data);
@@ -297,9 +36,9 @@ $(document).ready( function() {
             					},
 						        error: function(jqXHR, textStatus, errorThrown) {
 						            if(jqXHR.status==0){
-										$unparsable_resume_dialog.html(dialog_check_connection_message);
+										$unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 									}else{
-						                $unparsable_resume.html(ERROR_MESSAGE_DIALOG);
+						                $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
 						            }
 						        },
 						        success: function (data) {
@@ -316,21 +55,21 @@ $(document).ready( function() {
 						        	});
 						        }
 						    });
-					    }
-					    else{
-					    	if('id_second_major' in data.errors){
+					   } else{
+					    	if('second_major' in data.errors){
 					   			accordion.accordion("activate", 1);
 			            		current = 1;
 			            	}
 							place_table_form_errors("#profile_form", data.errors);
 					    }
-                   }
-                }
+					}
+                },
+                error: errors_in_message_area_handler
             });
         },
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_errors_table,
+        errorPlacement: place_table_form_field_error,
         rules: {
             first_name: {
                 required: true
@@ -522,7 +261,7 @@ $(document).ready( function() {
             	 	return true;
            	}).length;
            	if (num > 1){
-           		place_errors_table($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
+           		place_table_form_field_error($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
            		return false;
            	}
         },
@@ -607,7 +346,7 @@ $(document).ready( function() {
     // Field masks
     $("#id_gpa").mask("9.99",{placeholder:" "});
     
-    $("select, input[type=text], input[type=file]").live('change', load_profile_preview);
+    $("#student_profile select, #student_profile input[type=text], #student_profile input[type=file]").live('change', load_profile_preview);
     
     function load_profile_preview(){
     	var required_fields_filled_out = true;
@@ -625,13 +364,7 @@ $(document).ready( function() {
 					complete: function(jqXHR, textStatus) {
 						clearTimeout(profile_preview_timeout);
 					},
-			        error: function(jqXHR, textStatus, errorThrown) {
-		                if(jqXHR.status==0) {
-		                    show_error_dialog(page_check_connection_message);
-						}else{
-		                    show_error_dialog(page_error_message);
-		                }
-			        },
+                	error: errors_in_message_area_handler,
 			        success: function (data) { 
 			        	$("#listing_preview").html(data);
     					$(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:STUDENT_PROFILE_PREVIEW_CHECKBOX_TOOLTIP, html:true});

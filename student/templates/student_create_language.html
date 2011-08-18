@@ -1,26 +1,30 @@
 <div class="dialog_content_wrapper">
-    <div class="dialog_info_section">
-        <h3>Create the language by filling out the fields below.</h3>
-        <p>
-            <strong>Note:</strong> Its authenticity will be checked by site administrators.
-        </p>
-    </div>
-    <form id="create_language_form" method='POST' action="/student/create-language/">
+    <h3>Create the language by filling out the fields below.</h3>
+    <p>
+        <strong>Note:</strong> Its authenticity will be checked by site administrators.
+    </p>
+    <form id="create_language_form" method='POST' action="{% url student_create_language %}">
         {% csrf_token %}
         <table class="form_table">
+            {% for field in form %}
+                <tr>
+                    <th>{{ field.label_tag }}</th>
+                    <td>
+                        <div class="errorspace">{{ field.errors }}</div>
+                        {{ field }}
+                    </td>
+                </tr>
+            {% endfor %}
             <tr>
-                <th>{{create_language_form.name.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{create_language_form.name}}
+                <td colspan="2" class="error_section error">
                 </td>
             </tr>
+            <tr>
+            	<td colspan="2" class="button_cell">
+            		<input class="button" type='submit' value='Create'>
+            		<img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+            	</td>
+            </tr>
         </table>
-        <div class="error_section error">
-        </div>
-        <div class="button_wrapper_with_margins">
-            <input class="button" type='submit' value='Create'>
-            <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-        </div>
     </form>
 </div>

@@ -8,23 +8,6 @@ var multiselectSingleSelectWidth = 202;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
 
-function create_error_dialog() {
-    var error_dialog = $('<div class="dialog"></div>')
-        .dialog({
-            autoOpen: false,
-            title: "Server Error",
-            dialogClass: "error_dialog",
-            resizable: false,
-            modal: true,
-            width: 500,
-            close: function() {
-                error_dialog.remove();
-            }
-        });
-        error_dialog.dialog('open');
-        return error_dialog;
-};
-
 function show_long_load_message_in_dialog(dialog) {
     $("#dialog_loader p").html(single_line_long_load_message);
 };
@@ -62,34 +45,28 @@ function unhighlight(element, errorClass) {
     $(element).filter("input[type=text]").css('border', '1px solid #AAA');
     $(element).filter("select").css('border', '1px solid #AAA');
 };
-
-function place_table_form_errors(form, errors){
-    for (field in errors){
-        if (field == "non_field_error"){
-            $(form + " .error_section").html(errors[field]);
-        }
-        else{
-            place_errors_table($("<label class='error' for='" + field + "'>" + errors[field] + "</label>"), $("#"+field));
-        }
-    };
-};
-/*
- * Places field errors which got returned from an ajax submit in a table forms
- * Currently we show on field error at a time
- */
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
 	if(jqXHR.status==0){
 		$("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
 	}else{
 		$("#message_area").html("<p>" + ERROR_MESSAGE + "</p>");
     }
-}
-function place_errors_ajax_table(errors, element){
-    var error = "<label class='error' for='" + element.text() + "'>" + errors[0] + "</label>";
-    place_errors_table($(error), element);
 };
-
-function place_errors_table($error, $element) {
+function place_table_form_errors(form, errors){
+    for (field in errors){
+        if (field == "__all__"){
+            $(form + " .error_section").html(errors[field][0]);
+        }
+        else{
+            place_table_form_field_error($("<label for='" + field + "'>" + errors[field] + "</label>"), $("#id_"+field));
+        }
+    };
+};
+/* The reason the parameters here are jquery objects is because that's the form in which
+ * the jquery form validation plugin passes them. Therefore, even though it's ugly, you
+ * should not change the parameters to be non-jquery objects.
+ */
+function place_table_form_field_error($error, $element) {
     if ($element.prev().get(0).tagName=='DIV') {
         $element.prev().html($error);
     } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
@@ -102,17 +79,12 @@ function place_errors_table($error, $element) {
     } else if ($element.prev().prev().get(0) && $element.prev().prev().get(0).tagName!='DIV'){
         var offset = $element.position().left - $element.parent().position().left;
     }
-    $error.css({
-        "padding-left": offset,
-        "float": "left",
-        "position": "absolute",
-        "bottom": 0
-    });
-}
+    $error.css("padding-left", offset);
+};
 // Shows max number that one can select on that multiselect
 function place_multiselect_warning_table(element, max) {
     var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
-    place_errors_table($(warning), element)
+    place_table_form_field_error($(warning), element);
 };
 // Pick out url GET parameters by name
 function get_parameter_by_name(name) {
@@ -172,100 +144,12 @@ function formatNumber(num,dec,thou,pnt,curr1,curr2,n1,n2)
   return r;
 }
 
-// Get max of array
 Array.max = function (array) {
     return Math.max.apply(Math, array);
 };
     
 $(document).ready( function () {
-    
-    /* Contact Dialog */
-    var open_contact_us_dialog = function () {
-        var contact_us_dialog = $('<div class="dialog"></div>')
-        .dialog({
-            autoOpen: false,
-            title: "Contact Us",
-            dialogClass: "contact_us_dialog",
-            resizable: false,
-            modal: true,
-            width: 600,
-            close: function() {
-                contact_us_dialog.remove();
-            }
-        });
-        contact_us_dialog.dialog('open');
-        return contact_us_dialog;
-    };
-    $('.open_contact_us_dialog_link').live('click', function () {
-
-        contact_us_dialog = open_contact_us_dialog();
-        contact_us_dialog.html(DIALOG_AJAX_LOADER);
-
-        var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-        $.ajax({
-            dataType: "html",
-            url: CONTACT_US_URL,
-            error: function(jqXHR, textStatus, errorThrown) {
-            	if(jqXHR.status==0){
-            		contact_us_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-            	}else{
-					contact_us_dialog.html(ERROR_MESSAGE_DIALOG);
-                }
-            },
-            success: function (data) {
-                clearTimeout(contact_us_dialog_timeout);
-                contact_us_dialog.html(data);
-                contact_us_dialog.dialog('option', 'position', 'center');
-                
-                contact_us_form_validator = $("#contact_us_form").validate({
-                    submitHandler: function (form) {
-                        $(form).ajaxSubmit({
-                            dataType: 'json',
-                            beforeSubmit: function (arr, $form, options) {
-                                show_form_submit_loader("#contact_us_form");
-                            },
-                            complete : function(jqXHR, textStatus) {
-                                hide_form_submit_loader("#contact_us_form");
-                            },
-                            error: function(jqXHR, textStatus, errorThrown){
-		                    	if(jqXHR.status==0){
-		    	            		$(".contact_us_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
-		                    	}else{
-									$(".contact_us_dialog .error_section").html(ERROR_MESSAGE);
-								}
-                            },
-                            success: function (data) {
-                                if(data.valid) {
-                                    var success_message = "<div class='message_section'><p>" + THANK_YOU_FOR_CONTACTING_US_MESSAGE + "</p></div>";
-                                    success_message += CLOSE_DIALOG_LINK;
-                                    contact_us_dialog.html(success_message);
-                                } else {
-                                    place_table_form_errors("#contact_us_form", data.errors);
-                                }
-                                contact_us_dialog.dialog('option', 'position', 'center');
-                            }
-                        });
-                    },
-                    highlight: highlight,
-                    unhighlight: unhighlight,
-                    errorPlacement: place_errors_table,
-                    rules: {
-                        name: {
-                            required: true
-                        },
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        body: {
-                            required: true
-                        }
-                    }
-                });
-            }
-        });
-    });
-    
+	
 	$(window).scroll(function() {
 	    if(this.scrollTO) clearTimeout(this.scrollTO);
 	    this.scrollTO = setTimeout(function() {
@@ -296,16 +180,28 @@ $(document).ready( function () {
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
     });
-    $('.ui-widget-content a, a, .dropdown_menu_button, .menu_button', ".dropdown_menu_button ul li").live({
+    $("a, .button, .dark_button, .dropdown_menu_button, .dropdown_menu_button ul li, .menu_button, .current_page_link, .page_link, .disabled_page_link, #logo_beta, #notifications_count").live({
     	mouseenter:
     		function() {
         		$(this).addClass('hover');
     		},
     	mouseleave:
     		function(){
-        		if ($(this).hasClass('hover'))
-            	$(this).removeClass('hover');
+            	$(this).removeClass('active hover');
     		}
+    });
+    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
+    	$(this).addClass("focus");
+    });
+    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
+    	$(this).removeClass("focus");
+    });
+    $('.button, .menu_button, .dark_button, #notifications_count').live('mousedown', function() {
+        $(this).removeClass("hover").addClass('active');
+    });
+    $('.button, .menu_button, .dark_button, #notifications_count').live('mouseup', function(){
+    	if ($(this).hasClass('active'))
+            $(this).removeClass('active');
     });
     $('.dropdown_menu_button').live('click', function() {
         if ($(this).hasClass('pressed'))
@@ -318,13 +214,6 @@ $(document).ready( function () {
             $('.dropdown_menu_button ul').hide();
             $('.dropdown_menu_button').removeClass('pressed');
         };
-    });
-    $('.menu_button').live('mousedown', function() {
-        $(this).addClass('active');
-    });
-    $('.menu_button').live('mouseup', function(){
-    	if ($(this).hasClass('active'))
-            $(this).removeClass('active');
     });
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
@@ -339,7 +228,7 @@ $(document).ready( function () {
         // http://docs.jquery.com/Plugins/Validation/Methods/url
         // contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
         return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&amp;'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
-    })
+    }, "The url you entered is invalid.")
 
     /* JQuery Validator Additions */
     jQuery.validator.addMethod("multiemail", function(value, element, param) {

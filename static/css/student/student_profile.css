@@ -1,4 +1,3 @@
-/* Profile Form Fields */
 input[type=text] {
     width:180px;
 }
@@ -29,9 +28,9 @@ input[type=text] {
 #profile_form_title {
     padding-bottom:15px;
 }
-#required_info_page, #work_info_page, #academic_info_page, #miscellaneous_info_page {
+#required_info_page, #academic_info_page, #miscellaneous_info_page {
     float:left;
-    padding-top:20px;
+    padding-top:4px;
     padding-left:10px;
 }
 #id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
@@ -68,30 +67,27 @@ input[type=text] {
 .previous_employers_multiselect .ui-multiselect-all, .interested_in_multiselect .ui-multiselect-all, .campus_involvement_multiselect .ui-multiselect-all, .countries_of_citizenship_multiselect .ui-multiselect-all, .languages_multiselect .ui-multiselect-all{
     display:none;
 }
-.button_wrapper_with_margins{
-    margin-top:17px;
-}
-/* Form Info */
-.profile_side_form_info {
+.profile_form_side_info {
     margin-top: 20px;
-    margin-left:30px;
+    margin-left:25px;
     width: 475px;
     float: left;
 }
-.profile_side_form_info h3 {
+.profile_form_side_info h3 {
     margin-bottom: 10px;
     position:relative;
     left: 5px;
     font-size:18px;
     text-shadow:#FFF 0 1px 0;
 }
-.profile_side_form_info li {
+.profile_form_side_info li {
     left: 15px;
     list-style: disc outside none;
     margin: 15px 15px 0 10px;
     position: relative;
     line-height: 20px;
 }
+/* Dialogs */
 .create_campus_org_dialog .dialog_content_wrapper, .create_language_dialog .dialog_content_wrapper{
 	padding: 15px;
 	text-align:center;
@@ -100,16 +96,18 @@ input[type=text] {
 	margin-left:auto;
 	margin-right:auto;
 }
+.create_campus_org_dialog .message_section p, .create_language_dialog .message_section p{
+	line-height:21px;
+}
 #create_language_form input[type=submit], #create_campus_org_form input[type=submit]{
 	width:90px;
 }
-#create_campus_org_form #id_name, #create_campus_org_form #id_website, .#create_campus_org_form #id_name {
+#create_campus_org_form #id_name, #create_campus_org_form #id_website, #create_language_form #id_name {
     width:250px;
 }
 #create_campus_org_form #id_type{
 	width:260px;
 }
-
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
     display:none;
@@ -120,13 +118,7 @@ input[type=text] {
     margin-bottom:0px;
     width:inherit;
 }
-/* Multiselect Widget Modifications */
-.ui-multiselect-all {
-    display: none;
-}
-.profile_form_info_dialog .ui-dialog-content {
-    padding:10px 15px;
-}
+/* Form Fields */
 #id_first_major, #id_second_major{
 	width:318px;
 }

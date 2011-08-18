@@ -1,10 +1,4 @@
-#student_registration_block {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    border: 0;
-}
-
 #recruiter_signup_link{
 	text-align:right;
+	margin-right:7px;
 }

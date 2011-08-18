@@ -1,0 +1,5 @@
+{{first_name}} {{last_name}} ({{email}}) created a new language -
+
+Name: {{new_language}}
+
+Please validate.

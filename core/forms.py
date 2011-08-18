@@ -12,8 +12,13 @@ from core.models import Language
 
 
 class EmailAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(label='Email', max_length=30)
-
+    pass
+    
+    def __init__(self, *args, **kwargs):
+        super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].label = "Email:"
+        self.fields['password'].label = "Password:"
+        
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -222,7 +227,6 @@ class ContactForm(forms.Form):
         msg = EmailMultiAlternatives(dictionary['subject'], dictionary['message'], dictionary['from_email'], dictionary['recipient_list'])
         msg.attach_alternative(dictionary['message'], 'text/html')
         msg.send() 
-        #send_mail(fail_silently=fail_silently, **self.get_message_dict())
 
 
 class AkismetContactForm(ContactForm):

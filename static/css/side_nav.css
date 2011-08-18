@@ -1,0 +1,17 @@
+.side_nav {
+    padding-left:12px;
+    width: 182px;
+    padding-right:10px;
+}
+.side_nav h3 {
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+.side_nav a {
+    display: block;
+    text-decoration: none;
+    padding: 4px 0 4px 15px;
+}
+.side_nav a.hover {
+    background-color: #EEE;
+}

@@ -6,23 +6,17 @@
 
 {% block metadata %}
 {{block.super}}
-<!-- JQuery MultiSelect Widget -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
-
-<!-- JQuery MultiSelect Widget Filtering Plugin -->
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-
-<!-- Custom -->
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
-  <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_home.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
+{% endcompress %}
 <script>
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
 </script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block message_area %}
@@ -36,20 +30,20 @@
     <div class="left_side_container">
         {% include "student_side_nav.html" %}
     </div>
-    <div class="main_block no_top_margin">
+    <div class="main_block with_side_nav no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
             <span class="main_block_header_title">What's New</span>
         </div>
         <div class="main_block_content">
-            <div class="message_block">
+            <div class="simple_block">
                 <p>
                     This is probably your first time here, so let us tell you a little bit about Umeqo.
                 </p>
             </div>
         </div>
     </div>
-    <div id="events_and_deadlines_block" class="main_block">
+    <div class="main_block with_side_nav">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
             <span class="main_block_header_title">Events and Deadlines</span>
@@ -63,14 +57,14 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <div class="message_block">
+                    <div class="simple_block">
                             <p>You have no upcoming events from the employers that you are subscribed to!</p>
                             <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers_list %}">subscribing to some more employers</a>.
                         </p>
                     </div>
                 {% endif %}
             {% else %}
-                <div class="message_block">
+                <div class="simple_block">
                     <p>
                         When you <a href="{% url employers_list %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
                         <a href="{% url events_list %}">Browse the full listing</a> to Search and Filtering for Events and Deadlines.
