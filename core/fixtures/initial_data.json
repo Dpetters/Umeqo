@@ -1,0 +1,6148 @@
+[
+ {
+  "pk": 1, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:46:46", 
+   "name": "Academic"
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:46:54", 
+   "name": "Religious"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:07:00", 
+   "name": "Technology"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:07:11", 
+   "name": "Sports"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:48:22", 
+   "name": "Governance"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:52:44", 
+   "name": "Service and Advocacy"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:51:39", 
+   "name": "Hobbies"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Living Group"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:06:44", 
+   "name": "Fraternity/Sorority"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:06:51", 
+   "name": "Business/Finance "
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:47:15", 
+   "name": "Cultural and Gender"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Competition"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:51:55", 
+   "name": "Music, Dance, and Theater"
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-07-17 15:18:01", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:18:01", 
+   "name": "Visual Arts and Publications"
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-07-24 18:56:25", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-24 18:56:25", 
+   "name": "Other"
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "1 Cambridge Center", 
+   "building_num": "NE18", 
+   "longitude": -71.085173260000005, 
+   "keywords": " architecture Technology Licensing Office (TLO) House_n: The MIT Home of the Future Project Media Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE18.jpg", 
+   "latitude": 42.362647250000002
+  }
+ }, 
+ {
+  "pk": 71, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "139 Massachusetts Avenue Visitor Lot", 
+   "building_num": null, 
+   "longitude": -71.094755480000003, 
+   "keywords": " arranged Pay MIT visitor parking MIT pre-arranged visitor parking", 
+   "image_url": null, 
+   "latitude": 42.360464489999998
+  }
+ }, 
+ {
+  "pk": 223, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "158 Mass. Ave. Lot (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.096046470000005, 
+   "keywords": " gated Gated parking Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.360471449999999
+  }
+ }, 
+ {
+  "pk": 154, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "5 Cambridge Center", 
+   "building_num": "NE25", 
+   "longitude": -71.087506289999993, 
+   "keywords": " biomedical Singapore-MIT GAMBIT Game Lab Whitehead Institute for Biomedical Research Information Systems Research, Center for Social and Economic Explorations of Information Technology", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE25.jpg", 
+   "latitude": 42.362807429999997
+  }
+ }, 
+ {
+  "pk": 153, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "500 Technology Square", 
+   "building_num": "NE47", 
+   "longitude": -71.092580979999994, 
+   "keywords": " biomedical Biomedical Engineering, Center for Institute for Soldier Nanotechnologies", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE47.jpg", 
+   "latitude": 42.363464620000002
+  }
+ }, 
+ {
+  "pk": 59, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "600 Technology Square", 
+   "building_num": "NE49", 
+   "longitude": -71.093115049999994, 
+   "keywords": " accounts Audit Division Budget, Finance and Treasury Controller and Accounting Services HR-Payroll Service Center Facilities, Department of Procurement Office Property Office Space Accounting Space Administration Travel Utilities", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE49.jpg", 
+   "latitude": 42.363391249999999
+  }
+ }, 
+ {
+  "pk": 70, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "65 Waverly St. Lot", 
+   "building_num": null, 
+   "longitude": -71.103861600000002, 
+   "keywords": " arranged MIT pre-arranged visitor parking", 
+   "image_url": null, 
+   "latitude": 42.357026269999999
+  }
+ }, 
+ {
+  "pk": 178, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "7 Cambridge Center Garage", 
+   "building_num": null, 
+   "longitude": -71.088633439999995, 
+   "keywords": " cambridge Pay public parking (non-MIT)", 
+   "image_url": null, 
+   "latitude": 42.363560550000003
+  }
+ }, 
+ {
+  "pk": 226, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "70 Pacific NW86 Lot (Zone 2: Northwest)", 
+   "building_num": null, 
+   "longitude": -71.101972950000004, 
+   "keywords": " gated Gated parking Student parking Handicapped parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.35926027
+  }
+ }, 
+ {
+  "pk": 121, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "700 Technology Square", 
+   "building_num": "NE48", 
+   "longitude": -71.092724349999997, 
+   "keywords": " academic Office of Educational Innovation and Technology (OEIT) Academic Media Production Services (AMPS) MIT Federal Credit Union Council on Educational Technology", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE48.jpg", 
+   "latitude": 42.364032350000002
+  }
+ }, 
+ {
+  "pk": 242, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "77 Massachusetts Ave.", 
+   "building_num": null, 
+   "longitude": -71.093402609999998, 
+   "keywords": " ihtfp Massachusetts Institute of Technology", 
+   "image_url": null, 
+   "latitude": 42.359098160000002
+  }
+ }, 
+ {
+  "pk": 245, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "84 Massachusetts Ave.", 
+   "building_num": null, 
+   "longitude": -71.093692540000006, 
+   "keywords": " l9", 
+   "image_url": null, 
+   "latitude": 42.358912240000002
+  }
+ }, 
+ {
+  "pk": 92, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Albany Garage", 
+   "building_num": "N4", 
+   "longitude": -71.092780360000006, 
+   "keywords": " albany", 
+   "image_url": null, 
+   "latitude": 42.362034280000003
+  }
+ }, 
+ {
+  "pk": 93, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Albany St Generator Shelter", 
+   "building_num": "NW20", 
+   "longitude": -71.098475660000005, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW20.jpg", 
+   "latitude": 42.359295690000003
+  }
+ }, 
+ {
+  "pk": 94, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Albany St. Garage (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.092783510000004, 
+   "keywords": " albany Gated parking Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.36203312
+  }
+ }, 
+ {
+  "pk": 56, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Alpha Chi Omega", 
+   "name": "Alpha Chi Omega (ACO)", 
+   "building_num": null, 
+   "longitude": -71.09395232, 
+   "keywords": " aco", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-ACO.jpg", 
+   "latitude": 42.34852617
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Alpha Delta Phi", 
+   "name": "Alpha Delta Phi (ADP)", 
+   "building_num": null, 
+   "longitude": -71.09904195, 
+   "keywords": " adp", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-ADP.jpg", 
+   "latitude": 42.362909610000003
+  }
+ }, 
+ {
+  "pk": 115, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Alpha Epsilon Pi", 
+   "name": "Alpha Epsilon Pi (AEPi)", 
+   "building_num": null, 
+   "longitude": -71.100569440000001, 
+   "keywords": " aepi", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-AEPi.jpg", 
+   "latitude": 42.350569880000002
+  }
+ }, 
+ {
+  "pk": 81, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Alpha Phi", 
+   "name": "Alpha Phi (AP)", 
+   "building_num": null, 
+   "longitude": -71.093791039999999, 
+   "keywords": " ap", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-AP.jpg", 
+   "latitude": 42.349402480000002
+  }
+ }, 
+ {
+  "pk": 61, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Amherst Alley", 
+   "building_num": null, 
+   "longitude": -71.098428229999996, 
+   "keywords": " amherst", 
+   "image_url": null, 
+   "latitude": 42.356154979999999
+  }
+ }, 
+ {
+  "pk": 62, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Amherst St. E51 Lot (Zone 16)", 
+   "building_num": null, 
+   "longitude": -71.084884439999996, 
+   "keywords": " amherst Student parking", 
+   "image_url": null, 
+   "latitude": 42.360593809999997
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Arthur D Little Building", 
+   "building_num": "E60", 
+   "longitude": -71.082175669999998, 
+   "keywords": " arthur Innovation in Product Development, Center for System Dynamics Group", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E60.jpg", 
+   "latitude": 42.361177300000001
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Ashdown House", 
+   "building_num": "NW35", 
+   "longitude": -71.101439299999996, 
+   "keywords": " ashdown Thirsty Ear Pub Ashdown Dining", 
+   "image_url": null, 
+   "latitude": 42.358797860000003
+  }
+ }, 
+ {
+  "pk": 124, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "B.U. Bridge", 
+   "building_num": null, 
+   "longitude": -71.110593660000006, 
+   "keywords": " bridge", 
+   "image_url": null, 
+   "latitude": 42.35299491
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Baker House", 
+   "building_num": "W7", 
+   "longitude": -71.095792180000004, 
+   "keywords": " alvar Baker Dining", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W7.jpg", 
+   "latitude": 42.356697830000002
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Barry Astroturf Field", 
+   "building_num": null, 
+   "longitude": -71.096775739999998, 
+   "keywords": " astroturf", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G11.jpg", 
+   "latitude": 42.357474670000002
+  }
+ }, 
+ {
+  "pk": 125, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Beta Theta Pi", 
+   "name": "Beta Theta Pi (BTP)", 
+   "building_num": null, 
+   "longitude": -71.098732290000001, 
+   "keywords": " btp", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-BTP.jpg", 
+   "latitude": 42.350423429999999
+  }
+ }, 
+ {
+  "pk": 110, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Beta Theta Pi Annex", 
+   "name": "Beta Theta Pi Annex (BTP)", 
+   "building_num": null, 
+   "longitude": -71.098703520000001, 
+   "keywords": " annex", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-BTP-A.jpg", 
+   "latitude": 42.349974410000002
+  }
+ }, 
+ {
+  "pk": 159, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Bexley Hall", 
+   "building_num": "W13", 
+   "longitude": -71.093697180000007, 
+   "keywords": " bexley", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W13.jpg", 
+   "latitude": 42.358533899999998
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Brain and Cognitive Sciences", 
+   "building_num": "46", 
+   "longitude": -71.09164294, 
+   "keywords": " auditorium Singleton Auditorium (46-3002) Hungry Mind Cafe Martinos Imaging Center at the McGovern Institute for Brain Research Biological and Computational Learning, Center for Brain and Cognitive Sciences, Dept. of McGovern Institute for Brain Research Moore Lab Picower Institute for Learning and Memory Seung Laboratory Sur Laboratory Sinha Laboratory Motorcycle parking", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-46.jpg", 
+   "latitude": 42.36232777
+  }
+ }, 
+ {
+  "pk": 151, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Brigg's Field", 
+   "building_num": null, 
+   "longitude": -71.100071009999994, 
+   "keywords": " brigg", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G15.jpg", 
+   "latitude": 42.356555540000002
+  }
+ }, 
+ {
+  "pk": 157, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Broad Institute", 
+   "building_num": "NE30", 
+   "longitude": -71.088746150000006, 
+   "keywords": " broad Broad Institute", 
+   "image_url": null, 
+   "latitude": 42.363027870000003
+  }
+ }, 
+ {
+  "pk": 155, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Brown Building", 
+   "building_num": "39", 
+   "longitude": -71.0927291, 
+   "keywords": " brown MEMS @ MIT Microsystems Technology Laboratories (MTL) NanoStructures Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-39.jpg", 
+   "latitude": 42.360857160000002
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 12", 
+   "building_num": "12", 
+   "longitude": -71.091561740000003, 
+   "keywords": " across Faculty Support, Office of Writing and Communication Center Materials Processing Center Microphotonics Center Undergraduate Practice Opportunities Program (UPOP) Writing Across the Curriculum Global Education Office Career Development Center Conference Services DUE Desktop Support Insurance MIT Undergraduate Research Journal (MURJ) Writing Across the Curriculum at MIT Athena Cluster (12-182)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-12.jpg", 
+   "latitude": 42.360202190000003
+  }
+ }, 
+ {
+  "pk": 68, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 2", 
+   "building_num": "2", 
+   "longitude": -71.090185860000005, 
+   "keywords": " athena Fluid Dynamics Laboratory (math) Mathematics, Dept. of Athena Cluster (2-032) Athena Cluster (2-225)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-2.jpg", 
+   "latitude": 42.358814109999997
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 24", 
+   "building_num": "24", 
+   "longitude": -71.092014520000006, 
+   "keywords": " advanced Center for Nanofluids Technology Advanced Nuclear Energy Systems (CANES), Center for Nuclear Science and Engineering, Dept. of Experimental Study Group (ESG)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-24.jpg", 
+   "latitude": 42.36066546
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 41", 
+   "building_num": "41", 
+   "longitude": -71.094158770000007, 
+   "keywords": " advancement Fuel Cell Laboratory Lean Advancement Initiative", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-41.jpg", 
+   "latitude": 42.360764289999999
+  }
+ }, 
+ {
+  "pk": 77, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 6B", 
+   "building_num": "6B", 
+   "longitude": -71.090674840000005, 
+   "keywords": " access", 
+   "image_url": null, 
+   "latitude": 42.359410910000001
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 8", 
+   "building_num": "8", 
+   "longitude": -71.090861520000004, 
+   "keywords": " administrative Cambridge-MIT Institute (CMI) Council on Primary and Secondary Education H.H. Uhlig Corrosion Laboratory Materials Research in Archaeology and Ethnology, Center for Materials Science and Engineering, Dept. of NanoMechanical Technology Laboratory Singapore-MIT Alliance (SMA) Suresh Group Administrative Services Organization (ASO) Physics Undergraduate/Marble Room: (8-329) Physics Graduate Lounge: (8-312)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-8.jpg", 
+   "latitude": 42.359993209999999
+  }
+ }, 
+ {
+  "pk": 168, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building 9", 
+   "building_num": "9", 
+   "longitude": -71.093568419999997, 
+   "keywords": " cable Urban Studies and Planning, Dept. of (DUSP) Center for Educational Computing Initiatives (CECI) Environmental Technology & Public Policy Program Special Program in Urban and Regional Studies (SPURS) Special Interest Group in Urban Settlements (SIGUS) Cable Television, MIT", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-9.jpg", 
+   "latitude": 42.359749129999997
+  }
+ }, 
+ {
+  "pk": 106, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building E34", 
+   "building_num": "E34", 
+   "longitude": -71.085952629999994, 
+   "keywords": " administration D-Lab Sloan Finance and Administration Sloan Human Resources", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E34.jpg", 
+   "latitude": 42.36144968
+  }
+ }, 
+ {
+  "pk": 169, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building E48", 
+   "building_num": "E48", 
+   "longitude": -71.084347550000004, 
+   "keywords": " cofhe Consortium on Financing Higher Education (COFHE) MIT Investment Management Company Sloan Executive Education Sloan Executive MBA Program Sloan Management Review News@MIT Sloan Sloan Office of Communications", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E48.jpg", 
+   "latitude": 42.361923769999997
+  }
+ }, 
+ {
+  "pk": 102, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building N16A", 
+   "building_num": "N16A", 
+   "longitude": -71.094367469999995, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N16A.jpg", 
+   "latitude": 42.361241530000001
+  }
+ }, 
+ {
+  "pk": 206, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building N51", 
+   "building_num": "N51", 
+   "longitude": -71.097627709999998, 
+   "keywords": " donald MIT Museum Digital Design and Fabrication Group", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N51.jpg", 
+   "latitude": 42.362284320000001
+  }
+ }, 
+ {
+  "pk": 107, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building N57", 
+   "building_num": "N57", 
+   "longitude": -71.098829640000005, 
+   "keywords": " annex Library Storage Annex (LSA)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N57.jpg", 
+   "latitude": 42.363011360000002
+  }
+ }, 
+ {
+  "pk": 158, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building NE125", 
+   "building_num": "NE125", 
+   "longitude": -71.086911259999994, 
+   "keywords": " broad Broad Institute", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE125.jpg", 
+   "latitude": 42.368100259999999
+  }
+ }, 
+ {
+  "pk": 104, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building NW12", 
+   "building_num": "NW12", 
+   "longitude": -71.096858299999994, 
+   "keywords": " albany Nuclear Reactor Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW12.jpg", 
+   "latitude": 42.36010452
+  }
+ }, 
+ {
+  "pk": 101, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building NW13", 
+   "building_num": "NW13", 
+   "longitude": -71.09736187, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW13.jpg", 
+   "latitude": 42.359884899999997
+  }
+ }, 
+ {
+  "pk": 208, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building NW95", 
+   "building_num": "NW95", 
+   "longitude": -71.10425918, 
+   "keywords": " emily", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW95.jpg", 
+   "latitude": 42.360167500000003
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building W11", 
+   "building_num": "W11", 
+   "longitude": -71.093535770000003, 
+   "keywords": " activities Kosher Shabbat Dinner Kosher Dining Chaplains, MIT Board of Religious Activities Center", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W11.jpg", 
+   "latitude": 42.358261089999999
+  }
+ }, 
+ {
+  "pk": 250, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building W2", 
+   "building_num": "W2", 
+   "longitude": -71.093839160000002, 
+   "keywords": " memorial", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W2.jpg", 
+   "latitude": 42.35725644
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building W92", 
+   "building_num": "W92", 
+   "longitude": -71.104616899999996, 
+   "keywords": " administrative Student & Administrative Information Systems (SAIS) Information Services & Technology (IS&T) Student Services Information Technology", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W92.jpg", 
+   "latitude": 42.354920419999999
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building W98", 
+   "building_num": "W98", 
+   "longitude": -71.106645139999998, 
+   "keywords": " alum Zigo Cafe Resource Development Alumni Association Enterprise Forum Office of Corporate Relations Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.353955409999998
+  }
+ }, 
+ {
+  "pk": 146, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Building WW15", 
+   "building_num": "WW15", 
+   "longitude": -71.109469720000007, 
+   "keywords": " brookline MIT Warehouse and Equipment Exchange MIT Student Furniture Exchange Mail Services", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-WW15.jpg", 
+   "latitude": 42.355361360000003
+  }
+ }, 
+ {
+  "pk": 78, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Burton-Conner House", 
+   "building_num": "W51", 
+   "longitude": -71.098124330000005, 
+   "keywords": " albright Burton 1 Burton 2 Burton Third Bombers Burton 4 Burton 5 Conner 2 Conner 3 Conner 4 Conner 5", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W51.jpg", 
+   "latitude": 42.355969399999999
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Bush Building", 
+   "building_num": "13", 
+   "longitude": -71.092547850000003, 
+   "keywords": " activities Chemical Beam Epitaxy Group Electroceramics Group Materials Science and Engineering (CMSE), Center for Lobby 13", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-13.jpg", 
+   "latitude": 42.359944249999998
+  }
+ }, 
+ {
+  "pk": 192, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Campus Police", 
+   "building_num": "W89", 
+   "longitude": -71.104673289999994, 
+   "keywords": " campus MIT Police", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W89.jpg", 
+   "latitude": 42.355538580000001
+  }
+ }, 
+ {
+  "pk": 126, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Carr Indoor Tennis Facility", 
+   "building_num": "W53", 
+   "longitude": -71.097804370000006, 
+   "keywords": " bubble", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W53.jpg", 
+   "latitude": 42.356923330000001
+  }
+ }, 
+ {
+  "pk": 117, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Carr Indoor Tennis Facility (Office)", 
+   "building_num": "W53A", 
+   "longitude": -71.097351459999999, 
+   "keywords": " assoc", 
+   "image_url": null, 
+   "latitude": 42.356977909999998
+  }
+ }, 
+ {
+  "pk": 167, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Chapel", 
+   "building_num": "W15", 
+   "longitude": -71.094124949999994, 
+   "keywords": " chapel", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W15.jpg", 
+   "latitude": 42.358326869999999
+  }
+ }, 
+ {
+  "pk": 128, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Chi Phi", 
+   "name": "Chi Phi (CP)", 
+   "building_num": null, 
+   "longitude": -71.086145979999998, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-CP.jpg", 
+   "latitude": 42.350201650000002
+  }
+ }, 
+ {
+  "pk": 176, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Compton Court", 
+   "building_num": null, 
+   "longitude": -71.091052239999996, 
+   "keywords": " compton", 
+   "image_url": null, 
+   "latitude": 42.361140460000001
+  }
+ }, 
+ {
+  "pk": 47, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Compton Laboratories", 
+   "building_num": "26", 
+   "longitude": -71.091151310000001, 
+   "keywords": " atoms 26-100 Electromagnetic Theory and Applications, Center for Laboratory for Nuclear Science Ultracold Atoms, MIT-Harvard Center for Study Abroad and Distinguished Fellowships", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-26.jpg", 
+   "latitude": 42.360859019999999
+  }
+ }, 
+ {
+  "pk": 105, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Cooling Tower & Oil Reserve", 
+   "building_num": "N16", 
+   "longitude": -71.094053849999995, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N16.jpg", 
+   "latitude": 42.361287169999997
+  }
+ }, 
+ {
+  "pk": 171, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Courtyard E25/E23", 
+   "building_num": null, 
+   "longitude": -71.087212460000003, 
+   "keywords": " courtyard", 
+   "image_url": null, 
+   "latitude": 42.361489200000001
+  }
+ }, 
+ {
+  "pk": 173, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Courtyard E52/E53", 
+   "building_num": null, 
+   "longitude": -71.084210339999998, 
+   "keywords": " courtyard", 
+   "image_url": null, 
+   "latitude": 42.361141179999997
+  }
+ }, 
+ {
+  "pk": 172, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Courtyard E62", 
+   "building_num": null, 
+   "longitude": -71.08297202, 
+   "keywords": " courtyard", 
+   "image_url": null, 
+   "latitude": 42.361605990000001
+  }
+ }, 
+ {
+  "pk": 170, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Cyclotron", 
+   "building_num": "44", 
+   "longitude": -71.092467209999995, 
+   "keywords": " cyclotron", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-44.jpg", 
+   "latitude": 42.361607739999997
+  }
+ }, 
+ {
+  "pk": 204, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Delta Kappa Epsilon", 
+   "name": "Delta Kappa Epsilon (DKE)", 
+   "building_num": null, 
+   "longitude": -71.097007020000007, 
+   "keywords": " delta", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-DKE.jpg", 
+   "latitude": 42.356185099999998
+  }
+ }, 
+ {
+  "pk": 205, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Delta Psi", 
+   "name": "Delta Psi (DP), Number Six", 
+   "building_num": null, 
+   "longitude": -71.098777720000001, 
+   "keywords": " delta", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-DP.jpg", 
+   "latitude": 42.355684080000003
+  }
+ }, 
+ {
+  "pk": 132, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Delta Tau Delta", 
+   "name": "Delta Tau Delta (DTD)", 
+   "building_num": null, 
+   "longitude": -71.086357770000006, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-DTD.jpg", 
+   "latitude": 42.351960230000003
+  }
+ }, 
+ {
+  "pk": 135, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Delta Upsilon", 
+   "name": "Delta Upsilon (DU)", 
+   "building_num": null, 
+   "longitude": -71.090893449999996, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-DU.jpg", 
+   "latitude": 42.350733750000003
+  }
+ }, 
+ {
+  "pk": 48, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Dorrance Building", 
+   "building_num": "16", 
+   "longitude": -71.090590750000004, 
+   "keywords": " anthropology Anthropology, Dept. of Biotechnology Process Engineering Center (BPEC) HyperStudio Biological Engineering, Department of Comparative Medicine, Division of Earth System Initiative Language Learning and Resource Center (LLARC) Concourse Program Center for Work, Family, and Personal Life Terrascope Work, Family, and Personal Life, The Center for", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-16.jpg", 
+   "latitude": 42.360435449999997
+  }
+ }, 
+ {
+  "pk": 207, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Draper Laboratory", 
+   "building_num": null, 
+   "longitude": -71.090600899999998, 
+   "keywords": " draper", 
+   "image_url": null, 
+   "latitude": 42.364561739999999
+  }
+ }, 
+ {
+  "pk": 53, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Dreyfus Building", 
+   "building_num": "18", 
+   "longitude": -71.089813509999999, 
+   "keywords": " ames Chemistry, Dept. of Spectrometry Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-18.jpg", 
+   "latitude": 42.360062239999998
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Du Pont Athletic Center", 
+   "building_num": "W32", 
+   "longitude": -71.095073339999999, 
+   "keywords": " athletic", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W32.jpg", 
+   "latitude": 42.359388959999997
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Du Pont Athletic Gymnasium", 
+   "building_num": "W31", 
+   "longitude": -71.095168240000007, 
+   "keywords": " athletic Real Estate, Center for Hobby Shop Student Life, Division of (DSL) Urban Studies and Planning, Dept. of", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W31.jpg", 
+   "latitude": 42.359637749999997
+  }
+ }, 
+ {
+  "pk": 198, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "du Pont Court", 
+   "building_num": null, 
+   "longitude": -71.092086449999996, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.358179939999999
+  }
+ }, 
+ {
+  "pk": 199, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "du Pont Squash Court", 
+   "building_num": null, 
+   "longitude": -71.097926880000003, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.35654487
+  }
+ }, 
+ {
+  "pk": 188, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "du Pont Tennis Courts", 
+   "building_num": null, 
+   "longitude": -71.0967251, 
+   "keywords": " courts", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G12.jpg", 
+   "latitude": 42.356901839999999
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "E14", 
+   "building_num": "E14", 
+   "longitude": -71.087332480000001, 
+   "keywords": " advanced Media Laboratory Media Arts and Sciences, Program in Comparative Media Studies (CMS) Jerome Lemelson Center for Inventive Thinking Center for Bits and Atoms (Workshops) Program in Art, Culture and Technology", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E14.jpg", 
+   "latitude": 42.360463590000002
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "East Campus", 
+   "building_num": "62", 
+   "longitude": -71.088682899999995, 
+   "keywords": " activities 1st West (Stickmen) 2nd West (Pi Tau Zeta) 3rd West 41st West 5th West", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-62.jpg", 
+   "latitude": 42.360229199999999
+  }
+ }, 
+ {
+  "pk": 174, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "East Campus Courtyard", 
+   "building_num": null, 
+   "longitude": -71.088360940000001, 
+   "keywords": " courtyard", 
+   "image_url": null, 
+   "latitude": 42.36023857
+  }
+ }, 
+ {
+  "pk": 145, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Eastgate (Family Housing)", 
+   "building_num": "E55", 
+   "longitude": -71.08390876, 
+   "keywords": " brannen", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E55.jpg", 
+   "latitude": 42.36173608
+  }
+ }, 
+ {
+  "pk": 210, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Eastgate Resident Lot", 
+   "building_num": null, 
+   "longitude": -71.083760710000007, 
+   "keywords": " eastgate Family parking Student Parking", 
+   "image_url": null, 
+   "latitude": 42.361504269999998
+  }
+ }, 
+ {
+  "pk": 196, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Eastman Court", 
+   "building_num": null, 
+   "longitude": -71.090001000000001, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.359551670000002
+  }
+ }, 
+ {
+  "pk": 165, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Eastman Laboratories", 
+   "building_num": "6", 
+   "longitude": -71.090450759999996, 
+   "keywords": " coolidge 6-120 Materials Science and Engineering, Dept. of Spectroscopy Laboratory Science, School of", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-6.jpg", 
+   "latitude": 42.359539929999997
+  }
+ }, 
+ {
+  "pk": 103, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Edgerton House", 
+   "building_num": "NW10", 
+   "longitude": -71.098133140000002, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW10.jpg", 
+   "latitude": 42.360318650000004
+  }
+ }, 
+ {
+  "pk": 200, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "EG&G Education Center", 
+   "building_num": "34", 
+   "longitude": -71.091954909999998, 
+   "keywords": " center 34-101 Grier Rooms (34-401A, 34-401B)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-34.jpg", 
+   "latitude": 42.361147019999997
+  }
+ }, 
+ {
+  "pk": 147, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Epsilon Theta", 
+   "name": "Epsilon Theta (ET)", 
+   "building_num": null, 
+   "longitude": -71.116311969999998, 
+   "keywords": " brookline", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-ET.jpg", 
+   "latitude": 42.346591979999999
+  }
+ }, 
+ {
+  "pk": 209, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Fairchild Building (36)", 
+   "building_num": "36", 
+   "longitude": -71.091658129999999, 
+   "keywords": " electronics Laboratory for Human and Machine Haptics Research Laboratory of Electronics (RLE)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-36.jpg", 
+   "latitude": 42.361437700000003
+  }
+ }, 
+ {
+  "pk": 69, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Fairchild Building (38)", 
+   "building_num": "38", 
+   "longitude": -71.092348099999995, 
+   "keywords": " athena Electrical Engineering and Computer Science (EECS), Dept. of Larch Scanning Electron Beam Lithography (SEBL) Central Machine Shop Athena Cluster (38-370)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-38.jpg", 
+   "latitude": 42.361074790000004
+  }
+ }, 
+ {
+  "pk": 156, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Fariborz Maseeh Hall", 
+   "building_num": "W1", 
+   "longitude": -71.093510710000004, 
+   "keywords": " ball", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W1.jpg", 
+   "latitude": 42.357617619999999
+  }
+ }, 
+ {
+  "pk": 133, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Fenway House", 
+   "name": "Fenway House (FH)", 
+   "building_num": null, 
+   "longitude": -71.090180759999996, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-FH.jpg", 
+   "latitude": 42.345453620000001
+  }
+ }, 
+ {
+  "pk": 52, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Ford Building (E18)", 
+   "building_num": "E18", 
+   "longitude": -71.087792809999996, 
+   "keywords": " ames Clinical Research Center (CRC) Repair and Maintenance", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E18.jpg", 
+   "latitude": 42.36176699
+  }
+ }, 
+ {
+  "pk": 29, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Ford Building (E19)", 
+   "building_num": "E19", 
+   "longitude": -71.087952439999995, 
+   "keywords": " association Energy and Environmental Policy Research (CEEPR), Center for Sponsored Programs, Office of (OSP) Benefits Office Leadership Giving, Office of MIT Energy Initiative Knight Science Journalism Fellowships Community Giving at MIT Human Resources Information Services & Technology (IS&T) Customer Support Usability Lab Jobs available at MIT (staff and faculty) Organization and Employee Development Quarter Century Club, MIT Communications and Donor Relations Retirees, Association of MIT Community Services Office, MIT Office of Sponsored Programs (OSP) Telephone Support Services Biomedical Innovation, Center for", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E19.jpg", 
+   "latitude": 42.362129029999998
+  }
+ }, 
+ {
+  "pk": 219, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Ford Lot (Zone 9)", 
+   "building_num": null, 
+   "longitude": -71.087612329999999, 
+   "keywords": " ford Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.362232970000001
+  }
+ }, 
+ {
+  "pk": 100, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Francis Bitter Magnet Lab (NW14)", 
+   "building_num": "NW14", 
+   "longitude": -71.097898839999999, 
+   "keywords": " albany Francis Bitter Magnet Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW14.jpg", 
+   "latitude": 42.359632079999997
+  }
+ }, 
+ {
+  "pk": 99, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Francis Bitter Magnet Lab (NW15)", 
+   "building_num": "NW15", 
+   "longitude": -71.098256599999999, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW15.jpg", 
+   "latitude": 42.359349039999998
+  }
+ }, 
+ {
+  "pk": 161, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Gray House", 
+   "building_num": "E1", 
+   "longitude": -71.086964289999997, 
+   "keywords": " bosworth", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E1.jpg", 
+   "latitude": 42.35960249
+  }
+ }, 
+ {
+  "pk": 28, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Green Building", 
+   "building_num": "54", 
+   "longitude": -71.089326139999997, 
+   "keywords": " atmospheric 54-100 Earth, Atmospheric, and Planetary Sciences (EAPS), Dept. of Electron Microprobe Laboratory Experimental Petrology Laboratory Global Change Science, Center for Hurricane Lab Program in Atmospheres, Oceans, and Climate WHOI Joint Program in Oceanography, MIT Earth, Atmospheric and Planetary Sciences (EAPS), Dept. of Earth Resources Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-54.jpg", 
+   "latitude": 42.36032385
+  }
+ }, 
+ {
+  "pk": 120, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Green Hall", 
+   "building_num": "W5", 
+   "longitude": -71.095101040000003, 
+   "keywords": " alpha Kappa Alpha Theta", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W5.jpg", 
+   "latitude": 42.356918950000001
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Guggenheim Laboratory", 
+   "building_num": "33", 
+   "longitude": -71.093742160000005, 
+   "keywords": " advanced Aeronautics and Astronautics, Dept. of Global Airline Industry Program International Center for Air Transportation (ICAT) Technology Laboratory for Advanced Materials and Structures (TELAMS) Communications and Networking Research Group", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-33.jpg", 
+   "latitude": 42.36017974
+  }
+ }, 
+ {
+  "pk": 123, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Harvard Bridge", 
+   "building_num": null, 
+   "longitude": -71.091283200000007, 
+   "keywords": " bridge", 
+   "image_url": null, 
+   "latitude": 42.354502449999998
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hayden Memorial Library", 
+   "building_num": "14", 
+   "longitude": -71.089281189999994, 
+   "keywords": " administrative Killian Hall Lewis Music Library Maihuagen Gallery Libraries Administrative Offices & Office of the Director Digital Instruction Resource Center (DIRC) Document Services Humanities Library Hayden Reserve Book Room Hayden Memorial Library Science Library Communications Forum, MIT DSpace Foreign Languages and Literatures, Dept. of Guarente Lab Libraries Literature, Dept. of Women's and Gender Studies Writing and Humanistic Studies, Program in Foreign Languages and Literatures Humanities, Arts, and Social Sciences Program Office School of Humanities, Arts, and Social Sciences Institute Archives and Special Collections (14N) Libraries (14S, 14E) Killian Hall (14W) Specifications for Thesis Preparation Athena Cluster (14S-100, Hayden Humanities Library)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-14.jpg", 
+   "latitude": 42.359181579999998
+  }
+ }, 
+ {
+  "pk": 113, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hayward Lot Annex (Zone 10)", 
+   "building_num": null, 
+   "longitude": -71.085016260000003, 
+   "keywords": " annex Gated parking", 
+   "image_url": null, 
+   "latitude": 42.361569950000003
+  }
+ }, 
+ {
+  "pk": 45, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hayward St. Lot (Zone 14)", 
+   "building_num": null, 
+   "longitude": -71.085693070000005, 
+   "keywords": " attended Clover (food truck) Jerusalem Cafe (food truck) Goosebeary's (food truck) Jose's Mexican Food (food truck) MIT pre-arranged visitor parking Attended parking Handicapped parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.361433439999999
+  }
+ }, 
+ {
+  "pk": 189, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Health Services", 
+   "building_num": "E23", 
+   "longitude": -71.08663215, 
+   "keywords": " classes Health Education Medical Department Mental Health Student Health Plan, MIT", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E23.jpg", 
+   "latitude": 42.361022120000001
+  }
+ }, 
+ {
+  "pk": 185, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Heinz Building", 
+   "building_num": "W59", 
+   "longitude": -71.099550899999997, 
+   "keywords": " catering Campus Dining, Office of Housing Office Residential Life Programs", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W59.jpg", 
+   "latitude": 42.358105469999998
+  }
+ }, 
+ {
+  "pk": 216, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Henry Steinbrenner Stadium & Track", 
+   "building_num": null, 
+   "longitude": -71.097776640000006, 
+   "keywords": " field Robert's Field", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G10.jpg", 
+   "latitude": 42.3579364
+  }
+ }, 
+ {
+  "pk": 57, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hermann Building", 
+   "building_num": "E53", 
+   "longitude": -71.083592269999997, 
+   "keywords": " action Dewey Library Computational Research in Economics and Management, Center for Collective Intelligence (CCI), Center for Global System for Sustainable Development Productivity from Information Technology Sloan School of Management Management Science Area Management Science Area at the Sloan School Political Science, Dept. of Abdul Latif Jameel Poverty Action Lab (J-PAL)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E53.jpg", 
+   "latitude": 42.361188169999998
+  }
+ }, 
+ {
+  "pk": 231, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hermann Garage (Zone 6: Sloan and E51 Zone)", 
+   "building_num": null, 
+   "longitude": -71.08393744, 
+   "keywords": " garage", 
+   "image_url": null, 
+   "latitude": 42.361100669999999
+  }
+ }, 
+ {
+  "pk": 190, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "High Voltage Research Lab", 
+   "building_num": "N10", 
+   "longitude": -71.09545095, 
+   "keywords": " carleton", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N10.jpg", 
+   "latitude": 42.360863289999998
+  }
+ }, 
+ {
+  "pk": 238, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hill Building", 
+   "building_num": "NE80", 
+   "longitude": -71.090294670000006, 
+   "keywords": " hampshire", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE80.jpg", 
+   "latitude": 42.365513579999998
+  }
+ }, 
+ {
+  "pk": 60, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Homberg Building", 
+   "building_num": "11", 
+   "longitude": -71.092771580000004, 
+   "keywords": " accounts Postdoctoral Scholars Copy Technology Centers Government and Community Relations Institutional Research News Office Student employment Student Financial Services (SFS) Financial Aid Tech Talk", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-11.jpg", 
+   "latitude": 42.359522740000003
+  }
+ }, 
+ {
+  "pk": 234, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Hyatt Regency Hotel", 
+   "building_num": null, 
+   "longitude": -71.105586689999996, 
+   "keywords": " hyatt", 
+   "image_url": null, 
+   "latitude": 42.354188399999998
+  }
+ }, 
+ {
+  "pk": 213, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Indoor Tennis Facility", 
+   "building_num": null, 
+   "longitude": -71.097783480000004, 
+   "keywords": " facility", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-G14.jpg", 
+   "latitude": 42.356925769999997
+  }
+ }, 
+ {
+  "pk": 241, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Information Services & Technology Operations", 
+   "building_num": "W91", 
+   "longitude": -71.104426110000006, 
+   "keywords": " is Information Services & Technology (IS&T)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W91.jpg", 
+   "latitude": 42.354323559999997
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Johnson Athletics Center", 
+   "building_num": "W34", 
+   "longitude": -71.096529930000003, 
+   "keywords": " athletics Motorcycle parking", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W34.jpg", 
+   "latitude": 42.358595710000003
+  }
+ }, 
+ {
+  "pk": 244, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Kappa Sigma", 
+   "name": "Kappa Sigma (KS)", 
+   "building_num": null, 
+   "longitude": -71.097373770000004, 
+   "keywords": " ks", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-KS.jpg", 
+   "latitude": 42.356118770000002
+  }
+ }, 
+ {
+  "pk": 225, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kendall Square Lot (Zone 12)", 
+   "building_num": null, 
+   "longitude": -71.086531550000004, 
+   "keywords": " gated Gated parking Handicapped parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.36209942
+  }
+ }, 
+ {
+  "pk": 243, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kendall Square T", 
+   "building_num": null, 
+   "longitude": -71.086196720000004, 
+   "keywords": " kendall", 
+   "image_url": null, 
+   "latitude": 42.362201929999998
+  }
+ }, 
+ {
+  "pk": 197, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Killian Court", 
+   "building_num": null, 
+   "longitude": -71.091646170000004, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.359067920000001
+  }
+ }, 
+ {
+  "pk": 50, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Koch Biology Building", 
+   "building_num": "68", 
+   "longitude": -71.088632110000006, 
+   "keywords": " ames Bio Cafe Department of Biology BioMicro Center Garrity Lab Jonathan King Lab Keating Lab Sauer Lab Transgenic Facility Biology, Dept. of", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-68.jpg", 
+   "latitude": 42.36163372
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kresge Auditorium", 
+   "building_num": "W16", 
+   "longitude": -71.095057269999998, 
+   "keywords": " activities Little Kresge Kresge Auditorium", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W16.jpg", 
+   "latitude": 42.35813409
+  }
+ }, 
+ {
+  "pk": 152, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kresge BBQ Pits", 
+   "building_num": null, 
+   "longitude": -71.095185240000006, 
+   "keywords": " bbq", 
+   "image_url": null, 
+   "latitude": 42.357741849999996
+  }
+ }, 
+ {
+  "pk": 228, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kresge Lawn", 
+   "building_num": null, 
+   "longitude": -71.095553390000006, 
+   "keywords": " g51", 
+   "image_url": null, 
+   "latitude": 42.358218669999999
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kresge Lot (Zone 11: Kresge)", 
+   "building_num": null, 
+   "longitude": -71.09587295, 
+   "keywords": " attended Attended parking Gated parking (evenings) Handicapped parking MIT pre-arranged visitor parking", 
+   "image_url": null, 
+   "latitude": 42.357788339999999
+  }
+ }, 
+ {
+  "pk": 229, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Kresge Oval", 
+   "building_num": null, 
+   "longitude": -71.094556589999996, 
+   "keywords": " g8", 
+   "image_url": null, 
+   "latitude": 42.358325180000001
+  }
+ }, 
+ {
+  "pk": 118, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Lambda Chi Alpha", 
+   "name": "Lambda Chi Alpha (LCA)", 
+   "building_num": null, 
+   "longitude": -71.097492880000004, 
+   "keywords": " alpha", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-LCA.jpg", 
+   "latitude": 42.350341360000002
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Landau Building", 
+   "building_num": "66", 
+   "longitude": -71.089017940000005, 
+   "keywords": " airquality Airborne Organics, Center on Chemical Engineering, Dept. of Combustion and Fuels Research Group Athena Cluster (66-080)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-66.jpg", 
+   "latitude": 42.360921500000003
+  }
+ }, 
+ {
+  "pk": 232, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Landsdowne St. Garage", 
+   "building_num": null, 
+   "longitude": -71.100275809999999, 
+   "keywords": " garage Pay public parking (non-MIT)", 
+   "image_url": null, 
+   "latitude": 42.360162379999998
+  }
+ }, 
+ {
+  "pk": 235, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Le Meridien Hotel", 
+   "building_num": null, 
+   "longitude": -71.100225260000002, 
+   "keywords": " hotels", 
+   "image_url": null, 
+   "latitude": 42.361970339999999
+  }
+ }, 
+ {
+  "pk": 122, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Longfellow Bridge", 
+   "building_num": null, 
+   "longitude": -71.076025290000004, 
+   "keywords": " bridge", 
+   "image_url": null, 
+   "latitude": 42.361548280000001
+  }
+ }, 
+ {
+  "pk": 194, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Lowell Court", 
+   "building_num": null, 
+   "longitude": -71.090458960000007, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.358724129999999
+  }
+ }, 
+ {
+  "pk": 116, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MacGregor House", 
+   "building_num": "W61", 
+   "longitude": -71.099546369999999, 
+   "keywords": " architects MacGregor Convenience", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W61.jpg", 
+   "latitude": 42.355461910000002
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Maclaurin Buildings (10)", 
+   "building_num": "10", 
+   "longitude": -71.092013719999997, 
+   "keywords": " activities 10-250 Bush Room (10-105) Barker Library Admissions Office Admissions, Undergraduate Aga Khan Program for Islamic Architecture History, Theory and Criticism of Architecture and Art Laboratory for Electromagnetic and Electronic Systems (LEES) Special Program for Urban and Regional Studies of Developing Areas (SPURS) Chancellor, Office of the Compton Gallery Lemelson-MIT Program Building Services Giving to MIT Lobby 10 Ombuds Office Urban Studies and Planning, Dept. of Venture Mentoring Service Women's League, MIT City Design and Development Athena Cluster (10-500, Barker Library) Athena Cluster (10-600, Barker Library)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-10.jpg", 
+   "latitude": 42.35967402
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Maclaurin Buildings (3)", 
+   "building_num": "3", 
+   "longitude": -71.092398880000005, 
+   "keywords": " alum 3-133 3-270 3-370 Micro Power and Nanoengineering Research Group Reacting Gas Dynamics Laboratory Bioinstrumentation Engineering And Microanalysis (BEAM group) BioInstrumentation Laboratory Cadlab, MIT d'Arbeloff Laboratory for Information Systems and Technology Hatsopoulos Microfluids Laboratory (Fluid Mechanics Laboratory) History, Theory and Criticism of Architecture and Art International Consortium for Medical Imaging Technology Marine Hydrodynamics Lab Mechanical Engineering, Dept. of Mechatronics Research Laboratory Nonlinear Systems Laboratory Precision Engineering Research Group Program in Polymer Science and Technology (PPST) Admissions, Graduate Educational Council Dean for Graduate Education Executive Vice President, Office of Graduate Student News President of MIT Provost, Office of the Registration Vice President for Research", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-3.jpg", 
+   "latitude": 42.359003399999999
+  }
+ }, 
+ {
+  "pk": 63, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Maclaurin Buildings (4)", 
+   "building_num": "4", 
+   "longitude": -71.091084730000006, 
+   "keywords": " arts Cafe 4 4-270 4-370 Edgerton Center Physics, Dept. of (Headquarters: 4-304) Pappalardo Community Room (4-349) Music and Theater Arts Audio Visual Service Dean for Undergraduate Education Foundation Relations & Academic Development Support (FRADS) Glass Lab International Film Club Minority Education, Office of Public Service Center Registration Service Learning Student Life, Division of (DSL) Athena Cluster (4-167)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-4.jpg", 
+   "latitude": 42.359445710000003
+  }
+ }, 
+ {
+  "pk": 74, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Main Lot (Zone 8)", 
+   "building_num": null, 
+   "longitude": -71.092662419999996, 
+   "keywords": " arranged Gated parking Handicapped parking MIT pre-arranged visitor parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.358824980000001
+  }
+ }, 
+ {
+  "pk": 179, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Marriott Hotel", 
+   "building_num": null, 
+   "longitude": -71.086636080000005, 
+   "keywords": " cambridge", 
+   "image_url": null, 
+   "latitude": 42.36314935
+  }
+ }, 
+ {
+  "pk": 230, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Marriott Parking Garage", 
+   "building_num": null, 
+   "longitude": -71.087124590000002, 
+   "keywords": " garage Pay public parking (non-MIT)", 
+   "image_url": null, 
+   "latitude": 42.363512739999997
+  }
+ }, 
+ {
+  "pk": 181, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Marriott/Residence Inn", 
+   "building_num": null, 
+   "longitude": -71.088144220000004, 
+   "keywords": " cambridge", 
+   "image_url": null, 
+   "latitude": 42.363904509999998
+  }
+ }, 
+ {
+  "pk": 247, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Mass Ave Lot", 
+   "building_num": null, 
+   "longitude": -71.09656631, 
+   "keywords": " lot", 
+   "image_url": null, 
+   "latitude": 42.360387299999999
+  }
+ }, 
+ {
+  "pk": 65, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "McCormick Hall", 
+   "building_num": "W4", 
+   "longitude": -71.094422420000001, 
+   "keywords": " anderson McCormick Dining", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W4.jpg", 
+   "latitude": 42.357183239999998
+  }
+ }, 
+ {
+  "pk": 193, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "McDermott Court", 
+   "building_num": null, 
+   "longitude": -71.088798870000005, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.359782279999997
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "McNair Building", 
+   "building_num": "37", 
+   "longitude": -71.093239960000005, 
+   "keywords": " aerospace Astrophysics Division Aerospace Computational Design Lab (ACDL) Man Vehicle Laboratory Space Nanotechnology Laboratory Kavli Institute for Astrophysics and Space Research Space Systems Laboratory Athena Cluster (37-312) Athena Cluster (37-318) Athena Cluster (37-332)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-37.jpg", 
+   "latitude": 42.360687339999998
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MIT Alumni Pool", 
+   "building_num": "57", 
+   "longitude": -71.090133510000001, 
+   "keywords": " alum", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-57.jpg", 
+   "latitude": 42.361146259999998
+  }
+ }, 
+ {
+  "pk": 211, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MIT Press", 
+   "building_num": "E39", 
+   "longitude": -71.085477429999997, 
+   "keywords": " e39 MIT Press", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E39.jpg", 
+   "latitude": 42.362100980000001
+  }
+ }, 
+ {
+  "pk": 201, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "MIT Sloan", 
+   "building_num": "E62", 
+   "longitude": -71.082647750000007, 
+   "keywords": " center The Porter Center for Management Education Sloan School of Management Sloan Executive Education Siteman Dining Hall", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E62.jpg", 
+   "latitude": 42.361351740000003
+  }
+ }, 
+ {
+  "pk": 58, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Muckley Building", 
+   "building_num": "E40", 
+   "longitude": -71.084853010000003, 
+   "keywords": " alliance Age Lab Alliance for Global Sustainability Engineering Systems Division (ESD) International Motor Vehicle Program Laboratory For Energy and the Environment (LFEE) Leaders for Global Operations Operations Research Center Science and Policy of Global Change, Joint Program on the System Design and Management Program (SDM) Technology, Management and Policy Program (TPP) Technology, Policy and Industrial Development, Center for Center for Transportation & Logistics (CTL) Logistics, Master of Engineering in (MLOG) Computation for Design and Optimization Entrepreneurship Center MIT International Science and Technology Initiatives (MISTI) International Studies, Center for Political Economy & Technology Policy Security Studies Program Program on Human Rights & Justice", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E40.jpg", 
+   "latitude": 42.361163189999999
+  }
+ }, 
+ {
+  "pk": 54, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Mudd Building", 
+   "building_num": "E17", 
+   "longitude": -71.087886249999997, 
+   "keywords": " ames Athena User Accounts IS&T Computing Help Desk / Service Desk Biopolymers Laboratory Picower Institute for Learning and Memory Histology Facility Human Genomics Laboratory Hynes Lab, The", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E17.jpg", 
+   "latitude": 42.36148438
+  }
+ }, 
+ {
+  "pk": 112, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "N10 Annex Lot (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.093663620000001, 
+   "keywords": " annex Gated parking Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.36159498
+  }
+ }, 
+ {
+  "pk": 222, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "N10 Lot (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.094863610000004, 
+   "keywords": " gated Gated Parking Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.361005509999998
+  }
+ }, 
+ {
+  "pk": 212, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "N42", 
+   "building_num": "N42", 
+   "longitude": -71.096690679999995, 
+   "keywords": " e", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N42.jpg", 
+   "latitude": 42.361675720000001
+  }
+ }, 
+ {
+  "pk": 67, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "N52", 
+   "building_num": "N52", 
+   "longitude": -71.097188239999994, 
+   "keywords": " assessment Environment Health and Safety Office Environmental Management Program Ergonomics Program Hazard Assessment and Control Program Industrial Hygiene Program Safety Program", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N52.jpg", 
+   "latitude": 42.362272730000001
+  }
+ }, 
+ {
+  "pk": 90, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "New House", 
+   "building_num": "W70", 
+   "longitude": -71.100544880000001, 
+   "keywords": " associates New House 4 New House 5 La Maison Fran&ccedil;aise iHouse Deutsches Haus La Casa Chocolate City", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W70.jpg", 
+   "latitude": 42.355159690000001
+  }
+ }, 
+ {
+  "pk": 91, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Next House", 
+   "building_num": "W71", 
+   "longitude": -71.101916529999997, 
+   "keywords": " associates Next House Dining", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W71.jpg", 
+   "latitude": 42.354717379999997
+  }
+ }, 
+ {
+  "pk": 195, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "North Court", 
+   "building_num": null, 
+   "longitude": -71.089181999999994, 
+   "keywords": " court", 
+   "image_url": null, 
+   "latitude": 42.361929979999999
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Northeast Lot", 
+   "building_num": null, 
+   "longitude": -71.092137190000003, 
+   "keywords": " are Closed for construction into late winter; spaces are available in the Stata Garage", 
+   "image_url": null, 
+   "latitude": 42.361785869999999
+  }
+ }, 
+ {
+  "pk": 131, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Nu Delta", 
+   "name": "Nu Delta (ND)", 
+   "building_num": null, 
+   "longitude": -71.087853480000007, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-ND.jpg", 
+   "latitude": 42.351546630000001
+  }
+ }, 
+ {
+  "pk": 149, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "One Broadway", 
+   "building_num": "E70", 
+   "longitude": -71.083463199999997, 
+   "keywords": " broadway Laboratory for Financial Engineering Workplace Center, MIT OpenCourseWare (OCW)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E70.jpg", 
+   "latitude": 42.362749229999999
+  }
+ }, 
+ {
+  "pk": 239, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Parsons Laboratory", 
+   "building_num": "48", 
+   "longitude": -71.090664489999995, 
+   "keywords": " hepburn Testing Tank (Tow Tank)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-48.jpg", 
+   "latitude": 42.362432560000002
+  }
+ }, 
+ {
+  "pk": 85, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "PDSI (Physics, DMSE, Spectroscopy, Infrastructure)", 
+   "building_num": "6C", 
+   "longitude": -71.090836390000007, 
+   "keywords": " associates Condensed Matter Theory Group", 
+   "image_url": null, 
+   "latitude": 42.359672510000003
+  }
+ }, 
+ {
+  "pk": 160, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Phi Beta Epsilon", 
+   "name": "Phi Beta Epsilon (PBE)", 
+   "building_num": null, 
+   "longitude": -71.096875679999997, 
+   "keywords": " beta", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-PBE.jpg", 
+   "latitude": 42.356289680000003
+  }
+ }, 
+ {
+  "pk": 136, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Phi Delta Theta", 
+   "name": "Phi Delta Theta (PDT)", 
+   "building_num": null, 
+   "longitude": -71.097376409999995, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-PDT.jpg", 
+   "latitude": 42.35032786
+  }
+ }, 
+ {
+  "pk": 144, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Phi Kappa Sigma", 
+   "name": "Phi Kappa Sigma (PKS)", 
+   "building_num": null, 
+   "longitude": -71.091066420000004, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-PKS.jpg", 
+   "latitude": 42.350679599999999
+  }
+ }, 
+ {
+  "pk": 127, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Phi Kappa Theta", 
+   "name": "Phi Kappa Theta (PKT)", 
+   "building_num": null, 
+   "longitude": -71.082285780000007, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-PKT.jpg", 
+   "latitude": 42.35123231
+  }
+ }, 
+ {
+  "pk": 142, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Phi Sigma Kappa", 
+   "name": "Phi Sigma Kappa (PSK)", 
+   "building_num": null, 
+   "longitude": -71.094209280000001, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-PSK.jpg", 
+   "latitude": 42.349359839999998
+  }
+ }, 
+ {
+  "pk": 111, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Phi Sigma Kappa Annex", 
+   "name": "Phi Sigma Kappa Annex (PSK)", 
+   "building_num": null, 
+   "longitude": -71.094105189999993, 
+   "keywords": " annex", 
+   "image_url": null, 
+   "latitude": 42.349380609999997
+  }
+ }, 
+ {
+  "pk": 129, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Pi Lambda Phi", 
+   "name": "Pi Lambda Phi (PLP)", 
+   "building_num": null, 
+   "longitude": -71.087428169999995, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-PLP.jpg", 
+   "latitude": 42.351682889999999
+  }
+ }, 
+ {
+  "pk": 66, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Pierce Boathouse", 
+   "building_num": "W8", 
+   "longitude": -71.096827200000007, 
+   "keywords": " anderson", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W8.jpg", 
+   "latitude": 42.355312419999997
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Pierce Laboratory", 
+   "building_num": "1", 
+   "longitude": -71.092356789999997, 
+   "keywords": " autoidlabs 1-190 1-390 Auto-ID Center Parsons Laboratory for Environmental Science and Engineering Civil and Environmental Engineering, Dept. of Deshpande Center for Technological Innovation Forum for Supply Chain Innovation Infrastructure Systems Development Technology and Development Program Engineering, School of Intelligent Transportation Systems Program", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-1.jpg", 
+   "latitude": 42.358091729999998
+  }
+ }, 
+ {
+  "pk": 184, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "PIKA", 
+   "name": "pika", 
+   "building_num": null, 
+   "longitude": -71.10818999, 
+   "keywords": " chestnut", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-pika.jpg", 
+   "latitude": 42.356535690000001
+  }
+ }, 
+ {
+  "pk": 202, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Plasma Fusion Center Lot (Zone 2: Northwest)", 
+   "building_num": null, 
+   "longitude": -71.099211350000004, 
+   "keywords": " center Handicapped parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.359685310000003
+  }
+ }, 
+ {
+  "pk": 96, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Plasma Science & Fusion Center (NW16)", 
+   "building_num": "NW16", 
+   "longitude": -71.098727769999996, 
+   "keywords": " albany Plasma Science and Fusion Center", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW16.jpg", 
+   "latitude": 42.36003917
+  }
+ }, 
+ {
+  "pk": 49, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Plasma Science & Fusion Center (NW17)", 
+   "building_num": "NW17", 
+   "longitude": -71.099142430000001, 
+   "keywords": " architectural", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW17.jpg", 
+   "latitude": 42.359856379999997
+  }
+ }, 
+ {
+  "pk": 97, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Plasma Science & Fusion Center (NW21)", 
+   "building_num": "NW21", 
+   "longitude": -71.099146279999999, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW21.jpg", 
+   "latitude": 42.359063589999998
+  }
+ }, 
+ {
+  "pk": 98, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Plasma Science & Fusion Center (NW22)", 
+   "building_num": "NW22", 
+   "longitude": -71.099723130000001, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW22.jpg", 
+   "latitude": 42.359638619999998
+  }
+ }, 
+ {
+  "pk": 162, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Power Plant", 
+   "building_num": "42", 
+   "longitude": -71.093506989999995, 
+   "keywords": " bosworth Cogeneration Facility", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-42.jpg", 
+   "latitude": 42.361111350000002
+  }
+ }, 
+ {
+  "pk": 108, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Power Plant Annex", 
+   "building_num": "43", 
+   "longitude": -71.093209490000007, 
+   "keywords": " annex", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-43.jpg", 
+   "latitude": 42.361146679999997
+  }
+ }, 
+ {
+  "pk": 79, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Pratt School", 
+   "building_num": "5", 
+   "longitude": -71.092923220000003, 
+   "keywords": " autonomous Autonomous Marine Sensing Systems, Laboratory for Undersea Remote Sensing, MIT Laboratory for Building Technology Program Impact and Crashworthiness Laboratory Ocean Engineering Design Laboratory Ocean Engineering Fabrication Laboratory Ocean Engineering, Center for Ship and Platform Flows, Laboratory for Solid Mechanics & Materials Laboratory Teaching and Learning Laboratory Classroom Management and Scheduling Student Support Services (S3) Hart Nautical Gallery International Students Office Center for Ocean Engineering Registrar's Office Schedules Office Transcripts Student Information Policy", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-5.jpg", 
+   "latitude": 42.358714519999999
+  }
+ }, 
+ {
+  "pk": 240, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Random Hall", 
+   "building_num": "NW61", 
+   "longitude": -71.098285820000001, 
+   "keywords": " hall", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW61.jpg", 
+   "latitude": 42.361844560000002
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Ray and Maria Stata Center", 
+   "building_num": "32", 
+   "longitude": -71.090567859999993, 
+   "keywords": " activities Dreyfoos Tower Gates Tower Computer Science and Artificial Intelligence Laboratory (CSAIL) Forbes family cafe Kirsch Auditorium Faculty Lunch R and D (Pub) iCampus Laboratory for Information and Decision Systems (LIDS) Linguistics, Dept. of Philosophy, Dept. of World Wide Web Consortium (W3C) Information Intersection MIT Activities Committee (MITAC)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-32.jpg", 
+   "latitude": 42.361612839999999
+  }
+ }, 
+ {
+  "pk": 191, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Rinaldi Tile", 
+   "building_num": "E33", 
+   "longitude": -71.085984310000001, 
+   "keywords": " carleton", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E33.jpg", 
+   "latitude": 42.361290199999999
+  }
+ }, 
+ {
+  "pk": 64, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Rockwell Cage", 
+   "building_num": "W33", 
+   "longitude": -71.095971930000005, 
+   "keywords": " anderson", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W33.jpg", 
+   "latitude": 42.359201749999997
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Rogers Building", 
+   "building_num": "7", 
+   "longitude": -71.093178679999994, 
+   "keywords": " architecture Lobby 7 Information Center (Visitor Center) Rotch Library Rotch Visual Collections Steam Cafe Bosworth's Cafe Architecture, Dept. of Design and Computation Public Disputes Program (MIT/Harvard) Reflective Community Practice, Center for Rohsenow Heat and Mass Transfer Laboratory Undergraduate Research Opportunities Program (UROP) Urban Studies and Planning, Dept. of Undergraduate Advising and Academic Programming Faculty Support, Office of Adaptive Technology for Information and Computing (ATIC) Architecture and Planning, School of Campus Committee on Race Relations Corporation, The MIT Disability Services Office Office of the General Counsel Athena Cluster (7-238, Rotch Library)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-7.jpg", 
+   "latitude": 42.359289519999997
+  }
+ }, 
+ {
+  "pk": 76, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Rotch Library Extension", 
+   "building_num": "7A", 
+   "longitude": -71.093193200000002, 
+   "keywords": " access Rotch Library Extension", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-7A.jpg", 
+   "latitude": 42.35949677
+  }
+ }, 
+ {
+  "pk": 187, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Saxon Tennis Courts", 
+   "building_num": null, 
+   "longitude": -71.087761950000001, 
+   "keywords": " courts", 
+   "image_url": null, 
+   "latitude": 42.359477130000002
+  }
+ }, 
+ {
+  "pk": 51, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Senior House", 
+   "building_num": "E2", 
+   "longitude": -71.086866920000006, 
+   "keywords": " ames", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E2.jpg", 
+   "latitude": 42.359954369999997
+  }
+ }, 
+ {
+  "pk": 83, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Sidney Pacific", 
+   "building_num": "NW86", 
+   "longitude": -71.102218739999998, 
+   "keywords": " associates Pacific St. Cafe", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW86.jpg", 
+   "latitude": 42.359720410000001
+  }
+ }, 
+ {
+  "pk": 119, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Alpha Epsilon Phi", 
+   "name": "Sigma Alpha Epsilon (SAE)", 
+   "building_num": null, 
+   "longitude": -71.101001830000001, 
+   "keywords": " alpha", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SAE.jpg", 
+   "latitude": 42.350591180000002
+  }
+ }, 
+ {
+  "pk": 140, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Sigma Chi", 
+   "name": "Sigma Chi (SC)", 
+   "building_num": null, 
+   "longitude": -71.091160329999994, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SC.jpg", 
+   "latitude": 42.350657380000001
+  }
+ }, 
+ {
+  "pk": 138, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Sigma Kappa", 
+   "name": "Sigma Kappa (SK)", 
+   "building_num": null, 
+   "longitude": -71.094060650000003, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SK.jpg", 
+   "latitude": 42.348527230000002
+  }
+ }, 
+ {
+  "pk": 137, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Sigma Nu", 
+   "name": "Sigma Nu (SN)", 
+   "building_num": null, 
+   "longitude": -71.090126650000002, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SN.jpg", 
+   "latitude": 42.345695679999999
+  }
+ }, 
+ {
+  "pk": 130, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Sigma Phi Epsilon", 
+   "name": "Sigma Phi Epsilon (SPE)", 
+   "building_num": null, 
+   "longitude": -71.090612919999998, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SPE.jpg", 
+   "latitude": 42.350796279999997
+  }
+ }, 
+ {
+  "pk": 109, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Sigma Phi Epsilon Annex", 
+   "name": "Sigma Phi Epsilon Annex (SPE)", 
+   "building_num": null, 
+   "longitude": -71.090443719999996, 
+   "keywords": " annex", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SPE-A.jpg", 
+   "latitude": 42.350360600000002
+  }
+ }, 
+ {
+  "pk": 177, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Simmons Hall", 
+   "building_num": "W79", 
+   "longitude": -71.101520789999995, 
+   "keywords": " cafes Simmons Dining Simmons Late Night Cafe", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W79.jpg", 
+   "latitude": 42.357108629999999
+  }
+ }, 
+ {
+  "pk": 164, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Sloan Building", 
+   "building_num": "E52", 
+   "longitude": -71.083676679999996, 
+   "keywords": " centers Sloan School of Management (Deans Office) Faculty Club Economics, Dept. of Institute for Work and Employment Research Copy Technology Centers", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E52.jpg", 
+   "latitude": 42.360735910000002
+  }
+ }, 
+ {
+  "pk": 26, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Sloan Laboratories", 
+   "building_num": "31", 
+   "longitude": -71.093060640000004, 
+   "keywords": " automotive Center for 21st-Century Energy Electrochemical Energy Laboratory Partnership for AiR Transportation Noise and Emissions Reduction Gas Turbine Laboratory Sloan Automotive Laboratory", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-31.jpg", 
+   "latitude": 42.360374399999998
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Sloan Laboratory", 
+   "building_num": "35", 
+   "longitude": -71.094027400000002, 
+   "keywords": " advanced 35-225 Park Center for Complex Systems Auto-ID Center Laboratory for Manufacturing and Productivity Computation for Design and Optimization Program Three Dimensional Printing Project MIT Professional Education MIT Professional Education - Short Programs MIT Advanced Study Program Career Reengineering Program MIT World", 
+   "image_url": null, 
+   "latitude": 42.360382299999998
+  }
+ }, 
+ {
+  "pk": 217, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Stata Parking Garage (Zone 5: Northeast)", 
+   "building_num": null, 
+   "longitude": -71.090567859999993, 
+   "keywords": " free Gated parking Hands-free parking Handicapped parking", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-P38.jpg", 
+   "latitude": 42.361612839999999
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Stratton Student Center", 
+   "building_num": "W20", 
+   "longitude": -71.094774920000006, 
+   "keywords": " activities Sala de Puerto Rico Cambridge Grill La Verde's Market Anna's Taqueria Cafe Spice (Lobdell Food Court) Sepal (Lobdell Food Court) Shinkansen Japan (Lobdell Food Court) Subway Restaurant (Lobdell Food Court) Dunkin Donuts Technicuts New Tech Barber Parking Art Association, Student Association of Student Activities Campus Activities Complex Student Mediation and Community Standards Community Development and Substance Abuse Coop, The (official MIT bookstore) Copy Technology Centers Bank of America Fraternities, Sororities, and Living Groups Interfraternity Council (IFC) Lecture Series Committee (LSC) Lesbian, Bisexual, Gay, and  Transgendered at MIT MIT Card Parking and Transportation SafeRide Service Learning Space Reservations Student Activities Office Student Information Processing Board (SIPB) Student Life Programs Student Life, Division of (DSL) Technique (yearbook) Tech, The Athena Cluster (W20-575) Post Office", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W20.jpg", 
+   "latitude": 42.359042619999997
+  }
+ }, 
+ {
+  "pk": 203, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Student Center Plaza", 
+   "building_num": null, 
+   "longitude": -71.094491410000003, 
+   "keywords": " center", 
+   "image_url": null, 
+   "latitude": 42.358755530000003
+  }
+ }, 
+ {
+  "pk": 139, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Student House", 
+   "name": "Student House (SH)", 
+   "building_num": null, 
+   "longitude": -71.098349690000006, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-SH.jpg", 
+   "latitude": 42.350392990000003
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Suffolk Building", 
+   "building_num": "E38", 
+   "longitude": -71.085878550000004, 
+   "keywords": " advancement Publishing Services Bureau (PSB) Reference Publications Office (RPO) Corporate Relations, Office of Industrial Liaison Program (ILP) Industrial Performance Center Sea Grant College Program Bookstore, MIT Press & MIT Authors Systems Engineering Advancement Research Initiative International Scholars Office", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E38.jpg", 
+   "latitude": 42.362150079999999
+  }
+ }, 
+ {
+  "pk": 95, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Superconducting Test Facility", 
+   "building_num": "N9", 
+   "longitude": -71.095193769999995, 
+   "keywords": " albany", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-N9.jpg", 
+   "latitude": 42.360953199999997
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Tang Center", 
+   "building_num": "E51", 
+   "longitude": -71.084497630000001, 
+   "keywords": " auditorium Wong Auditorium Diebold Lounge Ting Foyer History, Dept. of Science, Technology, and Society (STS), Program in The Study of Diversity in Science, Technology and Medicine (CSD), Center for MIT Sloan Career Development Office Dean's office for the School of Humanities, Arts, and Social Sciences Soundings Athena Cluster (E51-075)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E51.jpg", 
+   "latitude": 42.360542289999998
+  }
+ }, 
+ {
+  "pk": 87, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Tang Hall", 
+   "building_num": "W84", 
+   "longitude": -71.103479500000006, 
+   "keywords": " associates", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W84.jpg", 
+   "latitude": 42.35435176
+  }
+ }, 
+ {
+  "pk": 134, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Tau Epsilon Phi", 
+   "name": "Tau Epsilon Phi (TEP)", 
+   "building_num": null, 
+   "longitude": -71.083512979999995, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-TEP.jpg", 
+   "latitude": 42.350895639999997
+  }
+ }, 
+ {
+  "pk": 233, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Tech Square Garage", 
+   "building_num": null, 
+   "longitude": -71.092037099999999, 
+   "keywords": " garage Pay public parking (non-MIT)", 
+   "image_url": null, 
+   "latitude": 42.364532949999997
+  }
+ }, 
+ {
+  "pk": 186, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Tennis Courts", 
+   "building_num": null, 
+   "longitude": -71.102717859999998, 
+   "keywords": " courts", 
+   "image_url": null, 
+   "latitude": 42.354330089999998
+  }
+ }, 
+ {
+  "pk": 163, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "The Coop", 
+   "building_num": null, 
+   "longitude": -71.086569229999995, 
+   "keywords": " bookstore The Coop (official MIT bookstore)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NE20.jpg", 
+   "latitude": 42.362732110000003
+  }
+ }, 
+ {
+  "pk": 182, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "The David H. Koch Institute for Integrative Cancer Research At MIT", 
+   "building_num": "76", 
+   "longitude": -71.089227080000001, 
+   "keywords": " cancer David H. Koch Institute for Integrative Cancer Research at MIT Koch Institute Public Galleries", 
+   "image_url": null, 
+   "latitude": 42.362300789999999
+  }
+ }, 
+ {
+  "pk": 236, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "The Kendall Hotel", 
+   "building_num": null, 
+   "longitude": -71.087286160000005, 
+   "keywords": " hotels", 
+   "image_url": null, 
+   "latitude": 42.362204339999998
+  }
+ }, 
+ {
+  "pk": 150, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "The Royal Sonesta Hotel", 
+   "building_num": null, 
+   "longitude": -71.074912159999997, 
+   "keywords": " boulevard", 
+   "image_url": null, 
+   "latitude": 42.366786179999998
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "The Warehouse", 
+   "building_num": "NW30", 
+   "longitude": -71.099972870000002, 
+   "keywords": " apartments", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW30.jpg", 
+   "latitude": 42.358647249999997
+  }
+ }, 
+ {
+  "pk": 143, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Theta Chi", 
+   "name": "Theta Chi (TC)", 
+   "building_num": null, 
+   "longitude": -71.090978669999998, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-TC.jpg", 
+   "latitude": 42.350706680000002
+  }
+ }, 
+ {
+  "pk": 183, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Theta Delta Chi", 
+   "name": "Theta Delta Chi (TDC)", 
+   "building_num": null, 
+   "longitude": -71.096494969999995, 
+   "keywords": " chi", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-TDC.jpg", 
+   "latitude": 42.356390740000002
+  }
+ }, 
+ {
+  "pk": 141, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Theta Xi", 
+   "name": "Theta Xi (TXi)", 
+   "building_num": null, 
+   "longitude": -71.095938059999995, 
+   "keywords": " boston", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-TXi.jpg", 
+   "latitude": 42.349784309999997
+  }
+ }, 
+ {
+  "pk": 251, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "University Park Public Parking", 
+   "building_num": null, 
+   "longitude": -71.099224000000007, 
+   "keywords": " non Pay public parking (non-MIT)", 
+   "image_url": null, 
+   "latitude": 42.361394619999999
+  }
+ }, 
+ {
+  "pk": 214, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Volvo Garage", 
+   "building_num": "NW62", 
+   "longitude": -71.098910070000002, 
+   "keywords": " facilities Recycling", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-NW62.jpg", 
+   "latitude": 42.362030910000001
+  }
+ }, 
+ {
+  "pk": 249, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "W51C", 
+   "building_num": null, 
+   "longitude": -71.097245549999997, 
+   "keywords": " memorial", 
+   "image_url": null, 
+   "latitude": 42.356185250000003
+  }
+ }, 
+ {
+  "pk": 252, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "W53B", 
+   "building_num": "W53B", 
+   "longitude": -71.096947080000007, 
+   "keywords": " w53b", 
+   "image_url": null, 
+   "latitude": 42.356966360000001
+  }
+ }, 
+ {
+  "pk": 72, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "W91 Lots (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.104692270000001, 
+   "keywords": " arranged Handicapped parking MIT pre-arranged visitor parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.354375480000002
+  }
+ }, 
+ {
+  "pk": 224, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "W92 Garage (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.104616820000004, 
+   "keywords": " gated Gated parking", 
+   "image_url": null, 
+   "latitude": 42.354920659999998
+  }
+ }, 
+ {
+  "pk": 246, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Walker Lawn", 
+   "building_num": null, 
+   "longitude": -71.088658510000002, 
+   "keywords": " l22", 
+   "image_url": null, 
+   "latitude": 42.359235609999999
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Walker Memorial", 
+   "building_num": "50", 
+   "longitude": -71.088319600000005, 
+   "keywords": " activities Muddy Charles Pub Morss Hall WMBR-FM Radio W1MX Radio Society", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-50.jpg", 
+   "latitude": 42.359362410000003
+  }
+ }, 
+ {
+  "pk": 75, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Waste Chemical Storage", 
+   "building_num": "12A", 
+   "longitude": -71.091169149999999, 
+   "keywords": " access", 
+   "image_url": null, 
+   "latitude": 42.360143899999997
+  }
+ }, 
+ {
+  "pk": 114, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "West Annex Lot (Zone 3: West)", 
+   "building_num": null, 
+   "longitude": -71.098749150000003, 
+   "keywords": " annex Gated parking Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.358507950000003
+  }
+ }, 
+ {
+  "pk": 175, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "West Garage", 
+   "building_num": "W45", 
+   "longitude": -71.097593219999993, 
+   "keywords": " corp Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.359069890000001
+  }
+ }, 
+ {
+  "pk": 218, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "West Garage (Zone 3: West)", 
+   "building_num": null, 
+   "longitude": -71.097594110000003, 
+   "keywords": " free Gated parking Hands-free parking Motorcycle parking", 
+   "image_url": null, 
+   "latitude": 42.359069390000002
+  }
+ }, 
+ {
+  "pk": 220, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "West Lot (Zone 13)", 
+   "building_num": null, 
+   "longitude": -71.103799240000001, 
+   "keywords": " gated Gated parking Student parking", 
+   "image_url": null, 
+   "latitude": 42.356010300000001
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate (ABC)", 
+   "building_num": "W85ABC", 
+   "longitude": -71.103900879999998, 
+   "keywords": " abc", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85ABC.jpg", 
+   "latitude": 42.354981729999999
+  }
+ }, 
+ {
+  "pk": 84, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate (DE)", 
+   "building_num": "W85DE", 
+   "longitude": -71.10394805, 
+   "keywords": " associates", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85DE.jpg", 
+   "latitude": 42.355374619999999
+  }
+ }, 
+ {
+  "pk": 86, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate (Family Housing)", 
+   "building_num": "W85", 
+   "longitude": -71.103257790000001, 
+   "keywords": " associates", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85.jpg", 
+   "latitude": 42.354997750000003
+  }
+ }, 
+ {
+  "pk": 89, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate (FG)", 
+   "building_num": "W85FG", 
+   "longitude": -71.10360025, 
+   "keywords": " associates", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85FG.jpg", 
+   "latitude": 42.355623029999997
+  }
+ }, 
+ {
+  "pk": 88, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate (HJK)", 
+   "building_num": "W85HJK", 
+   "longitude": -71.103152730000005, 
+   "keywords": " associates", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W85HJK.jpg", 
+   "latitude": 42.355450339999997
+  }
+ }, 
+ {
+  "pk": 221, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate Lot (Zone 1)", 
+   "building_num": null, 
+   "longitude": -71.102500579999997, 
+   "keywords": " gated Gated parking Student parking Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.355591599999997
+  }
+ }, 
+ {
+  "pk": 215, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Westgate Lowrise Lots (Zone 1)", 
+   "building_num": null, 
+   "longitude": -71.102789099999995, 
+   "keywords": " family Family parking Student parking", 
+   "image_url": null, 
+   "latitude": 42.354984690000002
+  }
+ }, 
+ {
+  "pk": 55, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Whitaker Building", 
+   "building_num": "56", 
+   "longitude": -71.089860349999995, 
+   "keywords": " ames Biological Engineering, Department of Center for Environmental Health Sciences Environmental Health Sciences, Center for Working Group on Support Staff Issues Athena Cluster (56-129)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-56.jpg", 
+   "latitude": 42.360700729999998
+  }
+ }, 
+ {
+  "pk": 82, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Whitaker College", 
+   "building_num": "E25", 
+   "longitude": -71.086937980000002, 
+   "keywords": " as Humans as Experimental Subjects (COUHES), Committee on the Use of Harvard-MIT Division of Health Sciences and Technology (HST) Whitaker College of Health Sciences and Technology (HST)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E25.jpg", 
+   "latitude": 42.361667089999997
+  }
+ }, 
+ {
+  "pk": 180, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Whitehead Institute", 
+   "building_num": null, 
+   "longitude": -71.08936799, 
+   "keywords": " cambridge", 
+   "image_url": null, 
+   "latitude": 42.363415699999997
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Wiesner Building", 
+   "building_num": "E15", 
+   "longitude": -71.087635480000003, 
+   "keywords": " advanced Bartos Theater Arts, Office of the Media Laboratory Center for Bits and Atoms (Offices, Labs) Program in Art, Culture and Technology Comparative Media Studies (CMS) Media Arts and Sciences, Program in Media In Transition Music, Mind and Machine List Visual Arts Center Media Arts and Sciences Freshman Program", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-E15.jpg", 
+   "latitude": 42.360838889999997
+  }
+ }, 
+ {
+  "pk": 73, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Windsor St. Lot (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.09661844, 
+   "keywords": " arranged Student parking Motorcycle parking MIT pre-arranged visitor parking", 
+   "image_url": null, 
+   "latitude": 42.36220582
+  }
+ }, 
+ {
+  "pk": 227, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Women's Independent Living Group (WILG)", 
+   "name": "Women's Independent Living Group (WILG)", 
+   "building_num": null, 
+   "longitude": -71.099247320000003, 
+   "keywords": " group", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-WILG.jpg", 
+   "latitude": 42.363028180000001
+  }
+ }, 
+ {
+  "pk": 166, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Wood Sailing Pavilion", 
+   "building_num": "51", 
+   "longitude": -71.087730359999995, 
+   "keywords": " coolidge", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-51.jpg", 
+   "latitude": 42.358517050000003
+  }
+ }, 
+ {
+  "pk": 80, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Wright Brothers Wind Tunnel", 
+   "building_num": "17", 
+   "longitude": -71.093493199999998, 
+   "keywords": " aeroastro Wright Brothers Wind Tunnel (WBWT)", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-17.jpg", 
+   "latitude": 42.360114260000003
+  }
+ }, 
+ {
+  "pk": 237, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "WW15 Lot (Zone 4: North)", 
+   "building_num": null, 
+   "longitude": -71.108895559999993, 
+   "keywords": " handicapped Handicapped parking", 
+   "image_url": null, 
+   "latitude": 42.355151659999997
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": null, 
+   "name": "Zesiger Sports & Fitness Center", 
+   "building_num": "W35", 
+   "longitude": -71.0957528, 
+   "keywords": " athletics Au Bon Pain Athletics, Physical Education and Recreation, Dept. Sports Medicine Zesiger Sports and Fitness Center", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-W35.jpg", 
+   "latitude": 42.358711210000003
+  }
+ }, 
+ {
+  "pk": 148, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Zeta Beta Tau", 
+   "name": "Zeta Beta Tau (ZBT)", 
+   "building_num": null, 
+   "longitude": -71.123950190000002, 
+   "keywords": " brookline", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-ZBT.jpg", 
+   "latitude": 42.348706749999998
+  }
+ }, 
+ {
+  "pk": 248, 
+  "model": "core.location", 
+  "fields": {
+   "display_name": "Zeta Psi", 
+   "name": "Zeta Psi (ZP)", 
+   "building_num": null, 
+   "longitude": -71.097157640000006, 
+   "keywords": " mass", 
+   "image_url": "http://web.mit.edu/campus-map/objimgs/object-ZP.jpg", 
+   "latitude": 42.361764409999999
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "0.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Basics", 
+   "slug": "basics"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "0.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Registration", 
+   "slug": "registration"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "1.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Account Management", 
+   "slug": "account-management"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "2.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Employer Subscriptions", 
+   "slug": "employer_subscriptions"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "2.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Student Filtering", 
+   "slug": "student-filtering"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "3.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Resumebooks", 
+   "slug": "resumebooks"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "4.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Events", 
+   "slug": "events"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "5.000", 
+   "last_updated": "2011-06-28 01:55:42", 
+   "name": "Invitations", 
+   "slug": "invitations"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "question": "What is Umeqo?", 
+   "slug": "what-is-umeqo", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "0.000", 
+   "answer": "Umeqo is a new platform for helping students and employers connect during recruiting season.", 
+   "date_created": "2011-06-28 01:55:42", 
+   "display": false
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.schoolyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Freshman"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.schoolyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Sophomore"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.schoolyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Junior"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.schoolyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Senior"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.schoolyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-07-06 05:54:59", 
+   "name": "Graduate (Masters)"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.schoolyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "name": "Graduate (PHD)"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "year": 2012
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "year": 2013
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "year": 2014
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "year": 2015
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "year": 2016
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.graduationyear", 
+  "fields": {
+   "date_created": "2011-07-04 18:32:46", 
+   "last_updated": "2011-07-04 18:32:46", 
+   "year": 2017
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "name_and_level": "English (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "English"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "name_and_level": "English (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "English"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:35", 
+   "name_and_level": "English (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "English"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:55:49", 
+   "name_and_level": "American Sign Language (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "American"
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:56:53", 
+   "name_and_level": "American Sign Language (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "American"
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:08", 
+   "name_and_level": "American Sign Language (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "American"
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:16", 
+   "name_and_level": "Arabic (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Arabic"
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:28", 
+   "name_and_level": "Arabic (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Arabic"
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:33", 
+   "name_and_level": "Arabic (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Arabic"
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:40", 
+   "name_and_level": "Bengali (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bengali"
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:48", 
+   "name_and_level": "Bengali (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bengali"
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:57:53", 
+   "name_and_level": "Bengali (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bengali"
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:58:07", 
+   "name_and_level": "Bulgarian (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bulgarian"
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:58:15", 
+   "name_and_level": "Bulgarian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bulgarian"
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:58:21", 
+   "name_and_level": "Bulgarian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Bulgarian"
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:59:46", 
+   "name_and_level": "Cantonese (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Cantonese"
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 18:59:53", 
+   "name_and_level": "Cantonese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Cantonese"
+  }
+ }, 
+ {
+  "pk": 45, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:10", 
+   "name_and_level": "Cantonese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Cantonese"
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:15", 
+   "name_and_level": "Chinese (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Chinese"
+  }
+ }, 
+ {
+  "pk": 47, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:32", 
+   "name_and_level": "Chinese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Chinese"
+  }
+ }, 
+ {
+  "pk": 48, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:38", 
+   "name_and_level": "Chinese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Chinese"
+  }
+ }, 
+ {
+  "pk": 49, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:46", 
+   "name_and_level": "Croatian (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Croatian"
+  }
+ }, 
+ {
+  "pk": 50, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:00:54", 
+   "name_and_level": "Croatian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Croatian"
+  }
+ }, 
+ {
+  "pk": 51, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:00", 
+   "name_and_level": "Croatian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Croatian"
+  }
+ }, 
+ {
+  "pk": 52, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:08", 
+   "name_and_level": "Czech (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Czech"
+  }
+ }, 
+ {
+  "pk": 53, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:16", 
+   "name_and_level": "Czech (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Czech"
+  }
+ }, 
+ {
+  "pk": 54, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:31", 
+   "name_and_level": "Czech (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Czech"
+  }
+ }, 
+ {
+  "pk": 55, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:38", 
+   "name_and_level": "Danish (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Danish"
+  }
+ }, 
+ {
+  "pk": 56, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:44", 
+   "name_and_level": "Danish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Danish"
+  }
+ }, 
+ {
+  "pk": 57, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:51", 
+   "name_and_level": "Danish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Danish"
+  }
+ }, 
+ {
+  "pk": 58, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:01:57", 
+   "name_and_level": "Dutch (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Dutch"
+  }
+ }, 
+ {
+  "pk": 59, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:03", 
+   "name_and_level": "Dutch (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Dutch"
+  }
+ }, 
+ {
+  "pk": 60, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:08", 
+   "name_and_level": "Dutch (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Dutch"
+  }
+ }, 
+ {
+  "pk": 61, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:15", 
+   "name_and_level": "Estonian (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Estonian"
+  }
+ }, 
+ {
+  "pk": 62, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:34", 
+   "name_and_level": "Estonian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Estonian"
+  }
+ }, 
+ {
+  "pk": 63, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:41", 
+   "name_and_level": "Estonian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Estonian"
+  }
+ }, 
+ {
+  "pk": 64, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:46", 
+   "name_and_level": "Farsi (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Farsi"
+  }
+ }, 
+ {
+  "pk": 65, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:52", 
+   "name_and_level": "Farsi (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Farsi"
+  }
+ }, 
+ {
+  "pk": 66, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:02:56", 
+   "name_and_level": "Farsi (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Farsi"
+  }
+ }, 
+ {
+  "pk": 67, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:27", 
+   "name_and_level": "Finnish (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Finnish"
+  }
+ }, 
+ {
+  "pk": 68, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:34", 
+   "name_and_level": "Finnish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Finnish"
+  }
+ }, 
+ {
+  "pk": 69, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:39", 
+   "name_and_level": "Finnish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Finnish"
+  }
+ }, 
+ {
+  "pk": 70, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:44", 
+   "name_and_level": "French (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "French"
+  }
+ }, 
+ {
+  "pk": 71, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:49", 
+   "name_and_level": "French (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "French"
+  }
+ }, 
+ {
+  "pk": 72, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:03:54", 
+   "name_and_level": "French (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "French"
+  }
+ }, 
+ {
+  "pk": 73, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:01", 
+   "name_and_level": "German (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "German"
+  }
+ }, 
+ {
+  "pk": 74, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:07", 
+   "name_and_level": "German (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "German"
+  }
+ }, 
+ {
+  "pk": 75, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:14", 
+   "name_and_level": "German (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "German"
+  }
+ }, 
+ {
+  "pk": 76, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:19", 
+   "name_and_level": "Greek (Basic)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Greek"
+  }
+ }, 
+ {
+  "pk": 77, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:28", 
+   "name_and_level": "Greek (Proficient)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Greek"
+  }
+ }, 
+ {
+  "pk": 78, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:37", 
+   "name_and_level": "Greek (Fluent)", 
+   "last_updated": "2011-08-13 09:14:28", 
+   "name": "Greek"
+  }
+ }, 
+ {
+  "pk": 79, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:04:44", 
+   "name_and_level": "Hebrew (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hebrew"
+  }
+ }, 
+ {
+  "pk": 80, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:05:22", 
+   "name_and_level": "Hebrew (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hebrew"
+  }
+ }, 
+ {
+  "pk": 81, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:05:34", 
+   "name_and_level": "Hebrew (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hebrew"
+  }
+ }, 
+ {
+  "pk": 82, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:05:56", 
+   "name_and_level": "Hindi (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hindi"
+  }
+ }, 
+ {
+  "pk": 83, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:01", 
+   "name_and_level": "Hindi (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hindi"
+  }
+ }, 
+ {
+  "pk": 84, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:07", 
+   "name_and_level": "Hindi (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hindi"
+  }
+ }, 
+ {
+  "pk": 85, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:52", 
+   "name_and_level": "Hungarian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hungarian"
+  }
+ }, 
+ {
+  "pk": 86, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:06:59", 
+   "name_and_level": "Hungarian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hungarian"
+  }
+ }, 
+ {
+  "pk": 87, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:09", 
+   "name_and_level": "Hungarian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Hungarian"
+  }
+ }, 
+ {
+  "pk": 88, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:14", 
+   "name_and_level": "Icelandic (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Icelandic"
+  }
+ }, 
+ {
+  "pk": 89, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:21", 
+   "name_and_level": "Icelandic (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Icelandic"
+  }
+ }, 
+ {
+  "pk": 90, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:07:26", 
+   "name_and_level": "Icelandic (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Icelandic"
+  }
+ }, 
+ {
+  "pk": 91, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:03", 
+   "name_and_level": "Italian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Italian"
+  }
+ }, 
+ {
+  "pk": 92, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:08", 
+   "name_and_level": "Italian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Italian"
+  }
+ }, 
+ {
+  "pk": 93, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:14", 
+   "name_and_level": "Italian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Italian"
+  }
+ }, 
+ {
+  "pk": 94, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:22", 
+   "name_and_level": "Japanese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Japanese"
+  }
+ }, 
+ {
+  "pk": 95, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:27", 
+   "name_and_level": "Japanese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Japanese"
+  }
+ }, 
+ {
+  "pk": 96, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:33", 
+   "name_and_level": "Japanese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Japanese"
+  }
+ }, 
+ {
+  "pk": 97, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:49", 
+   "name_and_level": "Korean (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Korean"
+  }
+ }, 
+ {
+  "pk": 98, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:08:54", 
+   "name_and_level": "Korean (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Korean"
+  }
+ }, 
+ {
+  "pk": 99, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:01", 
+   "name_and_level": "Korean (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Korean"
+  }
+ }, 
+ {
+  "pk": 100, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:08", 
+   "name_and_level": "Latvian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Latvian"
+  }
+ }, 
+ {
+  "pk": 101, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:17", 
+   "name_and_level": "Latvian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Latvian"
+  }
+ }, 
+ {
+  "pk": 102, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:26", 
+   "name_and_level": "Latvian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Latvian"
+  }
+ }, 
+ {
+  "pk": 103, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:36", 
+   "name_and_level": "Lithuanian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Lithuanian"
+  }
+ }, 
+ {
+  "pk": 104, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:09:46", 
+   "name_and_level": "Lithuanian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Lithuanian"
+  }
+ }, 
+ {
+  "pk": 105, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:06", 
+   "name_and_level": "Lithuanian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Lithuanian"
+  }
+ }, 
+ {
+  "pk": 106, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:13", 
+   "name_and_level": "Mandarin (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Mandarin"
+  }
+ }, 
+ {
+  "pk": 107, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:19", 
+   "name_and_level": "Mandarin (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Mandarin"
+  }
+ }, 
+ {
+  "pk": 108, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:10:44", 
+   "name_and_level": "Mandarin (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Mandarin"
+  }
+ }, 
+ {
+  "pk": 109, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:00", 
+   "name_and_level": "Norwegian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Norwegian"
+  }
+ }, 
+ {
+  "pk": 110, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:07", 
+   "name_and_level": "Norwegian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Norwegian"
+  }
+ }, 
+ {
+  "pk": 111, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:12", 
+   "name_and_level": "Norwegian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Norwegian"
+  }
+ }, 
+ {
+  "pk": 112, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:21", 
+   "name_and_level": "Polish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Polish"
+  }
+ }, 
+ {
+  "pk": 113, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:31", 
+   "name_and_level": "Polish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Polish"
+  }
+ }, 
+ {
+  "pk": 114, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:36", 
+   "name_and_level": "Polish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Polish"
+  }
+ }, 
+ {
+  "pk": 115, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:11:50", 
+   "name_and_level": "Portuguese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Portuguese"
+  }
+ }, 
+ {
+  "pk": 116, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:08", 
+   "name_and_level": "Portuguese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Portuguese"
+  }
+ }, 
+ {
+  "pk": 117, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:14", 
+   "name_and_level": "Portuguese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Portuguese"
+  }
+ }, 
+ {
+  "pk": 118, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:23", 
+   "name_and_level": "Romanian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Romanian"
+  }
+ }, 
+ {
+  "pk": 119, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:35", 
+   "name_and_level": "Romanian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Romanian"
+  }
+ }, 
+ {
+  "pk": 120, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:42", 
+   "name_and_level": "Romanian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Romanian"
+  }
+ }, 
+ {
+  "pk": 121, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:50", 
+   "name_and_level": "Russian (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Russian"
+  }
+ }, 
+ {
+  "pk": 122, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:54", 
+   "name_and_level": "Russian (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Russian"
+  }
+ }, 
+ {
+  "pk": 123, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:12:59", 
+   "name_and_level": "Russian (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Russian"
+  }
+ }, 
+ {
+  "pk": 124, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:09", 
+   "name_and_level": "Slovak (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Slovak"
+  }
+ }, 
+ {
+  "pk": 125, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:17", 
+   "name_and_level": "Slovak (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Slovak"
+  }
+ }, 
+ {
+  "pk": 126, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:23", 
+   "name_and_level": "Slovak (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Slovak"
+  }
+ }, 
+ {
+  "pk": 127, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:30", 
+   "name_and_level": "Spanish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Spanish"
+  }
+ }, 
+ {
+  "pk": 128, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:36", 
+   "name_and_level": "Spanish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Spanish"
+  }
+ }, 
+ {
+  "pk": 129, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:42", 
+   "name_and_level": "Spanish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Spanish"
+  }
+ }, 
+ {
+  "pk": 130, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:49", 
+   "name_and_level": "Swedish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Swedish"
+  }
+ }, 
+ {
+  "pk": 131, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:13:55", 
+   "name_and_level": "Swedish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Swedish"
+  }
+ }, 
+ {
+  "pk": 132, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:14:01", 
+   "name_and_level": "Swedish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Swedish"
+  }
+ }, 
+ {
+  "pk": 133, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:14:07", 
+   "name_and_level": "Taiwanese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Taiwanese"
+  }
+ }, 
+ {
+  "pk": 134, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:23", 
+   "name_and_level": "Taiwanese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Taiwanese"
+  }
+ }, 
+ {
+  "pk": 135, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:31", 
+   "name_and_level": "Taiwanese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Taiwanese"
+  }
+ }, 
+ {
+  "pk": 136, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:37", 
+   "name_and_level": "Thai (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Thai"
+  }
+ }, 
+ {
+  "pk": 137, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:17:59", 
+   "name_and_level": "Thai (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Thai"
+  }
+ }, 
+ {
+  "pk": 138, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:03", 
+   "name_and_level": "Thai (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Thai"
+  }
+ }, 
+ {
+  "pk": 139, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:09", 
+   "name_and_level": "Turkish (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Turkish"
+  }
+ }, 
+ {
+  "pk": 140, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:15", 
+   "name_and_level": "Turkish (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Turkish"
+  }
+ }, 
+ {
+  "pk": 141, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:20", 
+   "name_and_level": "Turkish (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Turkish"
+  }
+ }, 
+ {
+  "pk": 142, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:30", 
+   "name_and_level": "Urdu (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Urdu"
+  }
+ }, 
+ {
+  "pk": 143, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:35", 
+   "name_and_level": "Urdu (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Urdu"
+  }
+ }, 
+ {
+  "pk": 144, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:43", 
+   "name_and_level": "Urdu (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Urdu"
+  }
+ }, 
+ {
+  "pk": 145, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:50", 
+   "name_and_level": "Vietnamese (Basic)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Vietnamese"
+  }
+ }, 
+ {
+  "pk": 146, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:18:57", 
+   "name_and_level": "Vietnamese (Proficient)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Vietnamese"
+  }
+ }, 
+ {
+  "pk": 147, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-07-04 19:19:05", 
+   "name_and_level": "Vietnamese (Fluent)", 
+   "last_updated": "2011-08-13 09:14:29", 
+   "name": "Vietnamese"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 15:52:56", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "1", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 1, 
+   "display": false, 
+   "name": "Civil and Environmental Engineering"
+  }
+ }, 
+ {
+  "pk": 26, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "2", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 2, 
+   "display": false, 
+   "name": "Mechanical Engineering"
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "3", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 3, 
+   "display": false, 
+   "name": "Materials Science and Engineering"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "4", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 4, 
+   "display": false, 
+   "name": "Architecture"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "5", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 5, 
+   "display": false, 
+   "name": "Chemistry"
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "6-1", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 6, 
+   "display": false, 
+   "name": "Electrical Science and Engineering"
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "6-2", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 7, 
+   "display": false, 
+   "name": "Electrical Engineering & Computer Science"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-18 01:22:45", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "core/Course/computer_science_and_engineering_2011-07-18-00-45-06_thumbnail.png", 
+   "num": "6-3", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 8, 
+   "display": false, 
+   "name": "Computer Science and Engineering"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "7", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 9, 
+   "display": false, 
+   "name": "Biology"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "8", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 10, 
+   "display": false, 
+   "name": "Physics"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "9", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 11, 
+   "display": false, 
+   "name": "Brain and Cognitive Sciences"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "10", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 12, 
+   "display": false, 
+   "name": "Chemical Engineering"
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:36", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "11", 
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 13, 
+   "display": false, 
+   "name": "Urban Studies and Planning"
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "12", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 14, 
+   "display": false, 
+   "name": "Earth, Atmosphere & Planetary Sciences"
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "13", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 15, 
+   "display": false, 
+   "name": "Ocean Engineering"
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "14", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 16, 
+   "display": false, 
+   "name": "Economics"
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "15", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 17, 
+   "display": false, 
+   "name": "Management"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "16", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 18, 
+   "display": false, 
+   "name": "Aeronautics and Astronautics"
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:36", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "17", 
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 19, 
+   "display": false, 
+   "name": "Political Science"
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "core.course", 
+  "fields": {
+   "website": "http://math.mit.edu", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "MIT's Mathematics Department is one of the strongest in the world, representing a broad spectrum of fields ranging from the traditional areas of pure mathematics such as analysis, algebra, geometry, and topology, to applied mathematics areas such as combinatorics, computational biology, fluid dynamics, theoretical computer science, and theoretical physics.", 
+   "admin": null, 
+   "image": "", 
+   "email": "math@mit.edu", 
+   "thumbnail": "", 
+   "num": "18", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 20, 
+   "display": false, 
+   "name": "Mathematics"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "20", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 21, 
+   "display": false, 
+   "name": "Biological Engineering"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "21A", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 22, 
+   "display": false, 
+   "name": "Anthropology"
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "21F", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 23, 
+   "display": false, 
+   "name": "Foreign Languages and Literatures"
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "21H", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 24, 
+   "display": false, 
+   "name": "History"
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "21L", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 25, 
+   "display": false, 
+   "name": "Literature"
+  }
+ }, 
+ {
+  "pk": 28, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "21M", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 26, 
+   "display": false, 
+   "name": "Music and Theater Arts"
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:36", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "21W", 
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 27, 
+   "display": false, 
+   "name": "Writing and Humanistic Studies"
+  }
+ }, 
+ {
+  "pk": 29, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "22", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 28, 
+   "display": false, 
+   "name": "Nuclear Engineering"
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "24", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 29, 
+   "display": false, 
+   "name": "Linguistics and Philosophy"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "CMS", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 30, 
+   "display": false, 
+   "name": "Comparable Media Studies"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "CSB", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 31, 
+   "display": false, 
+   "name": "Computational and Systems Biology"
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "ESD", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 32, 
+   "display": false, 
+   "name": "Engineering Systems"
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "HST", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 33, 
+   "display": false, 
+   "name": "Health Sciences and Technology"
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:36", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "STS", 
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 34, 
+   "display": false, 
+   "name": "Science, Technology, and Society"
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:35", 
+   "description": "", 
+   "admin": null, 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "MAS", 
+   "date_created": "2011-05-03 12:27:35", 
+   "sort_order": 35, 
+   "display": false, 
+   "name": "Media Arts and Sciences"
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:44:37", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "CDO", 
+   "date_created": "2011-07-17 14:44:37", 
+   "sort_order": 36, 
+   "display": false, 
+   "name": "Computation for Design and Optimization"
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:45:07", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "CRE", 
+   "date_created": "2011-07-17 14:45:07", 
+   "sort_order": 37, 
+   "display": false, 
+   "name": "Center for Real Estate Program"
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:45:34", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "ESD", 
+   "date_created": "2011-07-17 14:45:34", 
+   "sort_order": 39, 
+   "display": false, 
+   "name": "Engineering Systems Division"
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:46:27", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "LGO", 
+   "date_created": "2011-07-17 14:46:27", 
+   "sort_order": 40, 
+   "display": false, 
+   "name": "Leaders for Global Operations"
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:46:49", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "MLOG", 
+   "date_created": "2011-07-17 14:46:49", 
+   "sort_order": 41, 
+   "display": false, 
+   "name": "Masters of Engineering in Logistics"
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:47:26", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "Naval Eng", 
+   "date_created": "2011-07-17 14:47:26", 
+   "sort_order": 42, 
+   "display": false, 
+   "name": "Naval Engineering"
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:47:58", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "Op Res Cen", 
+   "date_created": "2011-07-17 14:47:58", 
+   "sort_order": 43, 
+   "display": false, 
+   "name": "Operations Research Center"
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:48:23", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "SDM", 
+   "date_created": "2011-07-17 14:48:23", 
+   "sort_order": 44, 
+   "display": false, 
+   "name": "System Design and Management Program"
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:48:47", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "Sloan Fel", 
+   "date_created": "2011-07-17 14:48:47", 
+   "sort_order": 45, 
+   "display": false, 
+   "name": "Sloan Fellows"
+  }
+ }, 
+ {
+  "pk": 45, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:51:00", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "STS", 
+   "date_created": "2011-07-17 14:50:55", 
+   "sort_order": 46, 
+   "display": false, 
+   "name": "Program in Science, Technology, and Societ"
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:51:51", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "TPP", 
+   "date_created": "2011-07-17 14:51:51", 
+   "sort_order": 47, 
+   "display": false, 
+   "name": "The Technology and Policy Program"
+  }
+ }, 
+ {
+  "pk": 47, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:52:18", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "WHOI ", 
+   "date_created": "2011-07-17 14:52:18", 
+   "sort_order": 48, 
+   "display": false, 
+   "name": "WHOI Oceanographic Institute"
+  }
+ }, 
+ {
+  "pk": 48, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:52:48", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "CSB", 
+   "date_created": "2011-07-17 14:52:48", 
+   "sort_order": 49, 
+   "display": false, 
+   "name": "Computation and Systems Biology"
+  }
+ }, 
+ {
+  "pk": 49, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 14:53:41", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "SCM", 
+   "date_created": "2011-07-17 14:53:41", 
+   "sort_order": 50, 
+   "display": false, 
+   "name": "Supply Chain Management "
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.employmenttype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-07 15:34:18", 
+   "name": "Full-Time"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.employmenttype", 
+  "fields": {
+   "date_created": "2011-05-07 15:29:00", 
+   "sort_order": 1, 
+   "last_updated": "2011-05-07 15:34:04", 
+   "name": "Part-Time"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.employmenttype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "sort_order": 2, 
+   "last_updated": "2011-05-07 15:33:43", 
+   "name": "Internship"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.employmenttype", 
+  "fields": {
+   "date_created": "2011-05-07 15:29:11", 
+   "sort_order": 3, 
+   "last_updated": "2011-05-07 15:33:29", 
+   "name": "Externship"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Architecture/Urban Planning"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Automotive/Transportation Equip."
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Aviation/Aerospace"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Biotech & Pharmaceuticals"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Chemicals"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Commercial Banking"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Education"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Energy"
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Engineering"
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Entertainment"
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Entrepreneurial/Start-Ups"
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Government/Public Administration"
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Healthcare"
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-07-06 18:47:06", 
+   "name": "Hedge Funds"
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Information Technology"
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Insurance"
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "International Affairs & Development"
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-07-06 18:44:54", 
+   "name": "Investment Banking"
+  }
+ }, 
+ {
+  "pk": 28, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Investment Management"
+  }
+ }, 
+ {
+  "pk": 29, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Natural Resources"
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Non-Profit/Philanthropy"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-07-06 19:17:51", 
+   "name": "Petroleum"
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Print & Publishing"
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Real Estate"
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Sales & Trading"
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Utilities"
+  }
+ }, 
+ {
+  "pk": 36, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:44:12", 
+   "last_updated": "2011-07-06 18:44:12", 
+   "name": "Software Development"
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:44:24", 
+   "last_updated": "2011-07-06 18:44:24", 
+   "name": "Consulting - Management"
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:44:33", 
+   "last_updated": "2011-07-06 18:44:33", 
+   "name": "Consulting - Other"
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:46:16", 
+   "last_updated": "2011-07-06 18:46:16", 
+   "name": "Trading - Algorithmic & Proprietary "
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:47:13", 
+   "last_updated": "2011-07-06 18:47:13", 
+   "name": "Private Equity"
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:47:19", 
+   "last_updated": "2011-07-06 18:47:19", 
+   "name": "Venture Capital"
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:47:58", 
+   "last_updated": "2011-07-06 18:47:58", 
+   "name": "Investment Research"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Info Session"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-07-31 11:30:28", 
+   "name": "Hard Deadline"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Panel"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Case Study"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Presentation"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Workshop"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Seminar"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Conference"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:43", 
+   "last_updated": "2011-05-03 12:27:43", 
+   "name": "Networking"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-07-31 11:30:37", 
+   "last_updated": "2011-07-31 11:30:37", 
+   "name": "Rolling Deadline"
+  }
+ }
+]

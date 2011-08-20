@@ -4256,6 +4256,22 @@
   }
  }, 
  {
+  "pk": 315, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://mit.edu/russian-club/web/", 
+   "last_updated": "2011-08-19 23:50:14", 
+   "description": "The MIT Russian Club supports the MIT community's exploration of Russia and neighboring countries. The club enriches MIT's cultural landscape and paves the way to connect technologies and businesses through its diverse offerings. Over years, we have developed from a social group to a platform that represents at MIT a variety of interests in culture and social entertainment, as well as opportunities in business and technology innovation.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 5, 
+   "display": true, 
+   "name": "REVIEW --- Russian Business Club"
+  }
+ }, 
+ {
   "pk": 305, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4400,33 +4416,17 @@
   }
  }, 
  {
-  "pk": 315, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Russian Business Club"
-  }
- }, 
- {
   "pk": 316, 
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:48:43", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Russian Connection"
   }
@@ -4436,13 +4436,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:49:01", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Salsa Club"
   }
@@ -4452,14 +4452,14 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
+   "last_updated": "2011-08-19 23:49:28", 
+   "description": "MIT Samskritam is a group of MIT students who are enthusiastic about learning Samskritam. Samskritam (aka Sanskrit), a language that was spoken once upon a time in ancient India, is one of the oldest and richest languages in the world.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Samskritam"
   }
  }, 
@@ -4468,13 +4468,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:49:55", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Sangam"
   }
@@ -4484,7 +4484,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:50:39", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -4496,19 +4496,19 @@
   }
  }, 
  {
-  "pk": 321, 
+  "pk": 334, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Science and Engineering Business Club"
+   "website": "http://www.mit-sbc.org/", 
+   "last_updated": "2011-08-19 23:53:02", 
+   "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
+   "image": "campus_org/CampusOrg/sloan_business_club_2011-07-24-19-56-58.png", 
+   "email": "sbc-exec@mit.edu", 
+   "thumbnail": "campus_org/CampusOrg/sloan_business_club_2011-07-24-19-56-58_thumbnail.png", 
+   "date_created": "2011-05-03 12:27:42", 
+   "type": 5, 
+   "display": true, 
+   "name": "SBC (Sloan Business Club)"
   }
  }, 
  {
@@ -4516,13 +4516,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:51:58", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Science Fiction Society"
   }
@@ -4532,13 +4532,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:52:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Science Policy Initiative"
   }
@@ -4548,31 +4548,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:52:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Scuba Club"
-  }
- }, 
- {
-  "pk": 325, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Service"
   }
  }, 
  {
@@ -4580,13 +4564,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:52:22", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Shakespeare Ensemble"
   }
@@ -4596,13 +4580,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-08-19 23:52:28", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Shotokan Karate"
   }
@@ -4701,22 +4685,6 @@
    "type": 8, 
    "display": false, 
    "name": "Skateboarding Club"
-  }
- }, 
- {
-  "pk": 334, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://www.mit-sbc.org/", 
-   "last_updated": "2011-07-24 19:56:58", 
-   "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
-   "image": "campus_org/CampusOrg/sloan_business_club_2011-07-24-19-56-58.png", 
-   "email": "sbc-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/sloan_business_club_2011-07-24-19-56-58_thumbnail.png", 
-   "date_created": "2011-05-03 12:27:42", 
-   "type": 5, 
-   "display": true, 
-   "name": "Sloan Business Club"
   }
  }, 
  {
