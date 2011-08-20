@@ -1,6 +1,5 @@
 import os
 import sys
-import socket
 
 from fabric.api import env, sudo, cd, run, local, settings as fabric_settings
 from fabric.context_managers import prefix
