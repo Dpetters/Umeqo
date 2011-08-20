@@ -103,7 +103,7 @@ def commit_prod_data():
                 if app == "sites":
                     run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                     continue
-                fixtures_dir = "%s/%s/fixtures" % (ROOT, app)
+                fixtures_dir = "./%s/fixtures" % (app)
                 print "about to create dir"
                 if not os.path.exists(fixtures_dir):
                     print "creating dir"
