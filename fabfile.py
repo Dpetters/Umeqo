@@ -1,4 +1,3 @@
-import os
 import sys
 
 from fabric.api import env, sudo, cd, run, local, settings as fabric_settings
@@ -6,8 +5,6 @@ from fabric.context_managers import prefix
 from fabric.contrib import django as fabric_django
 from fabric.utils import abort
 
-ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
-sys.path.append(ROOT)
 fabric_django.settings_module('settings')
 from django.conf import settings
 from south.models import MigrationHistory
@@ -15,7 +12,7 @@ from south.models import MigrationHistory
 
 __all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
-          "update", "schemamigrate", "runserver"]
+          "update", "schemamigrate"]
 
 def staging():
     env.hosts = ['root@staging.umeqo.com']
@@ -46,8 +43,8 @@ def migrate():
     
 def create_database():
     if not env.host:  
-        if os.path.exists(ROOT + "/database.db"):
-            os.remove(ROOT + "/database.db")
+        with fabric_settings(warn_only=True):
+            local("rm %s" % (settings.DATABASES['default']['NAME']))
         local("python copy_media.py prod in")
         local("python manage.py syncdb --noinput --migrate")
     else:
@@ -104,10 +101,8 @@ def commit_prod_data():
                     run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                     continue
                 fixtures_dir = "./%s/fixtures" % (app)
-                print "about to create dir"
-                if not os.path.exists(fixtures_dir):
-                    print "creating dir"
-                    os.makedirs(fixtures_dir)
+                with fabric_settings(warn_only=True):
+                    run("mkdir %s" % (fixtures_dir))
                 for model in settings.PROD_DATA_MODELS[app]:
                     model_labels.append("%s.%s" % (app, model))
                     with fabric_settings(warn_only=True):
@@ -118,14 +113,6 @@ def commit_prod_data():
             with fabric_settings(warn_only=True):
                 run('git commit -m "Local data commit from staging."')
                 run("git push")
-
-def runserver():
-    if not env.host:
-        if not os.path.exists(settings.CKEDITOR_UPLOAD_PATH):
-            os.makedirs(settings.CKEDITOR_UPLOAD_PATH)
-        local("python manage.py runserver")
-    else: 
-        abort("runserver can only be called locally.")
 
 def commit_local_data():
     if env.host != "staging.umeqo.com":
@@ -139,8 +126,8 @@ def commit_local_data():
                     with fabric_settings(warn_only=True):
                         run("python manage.py file_cleanup %s.%s" % (app, model))
             run("python copy_media.py local out")
-            if not os.path.exists("./local_data/fixtures/"):
-                os.makedirs("./local_data/fixtures/")
+            with fabric_settings(warn_only=True):
+                run("mkdir ./local_data/fixtures")
             run("python manage.py dumpdata %s --indent=1 > ./local_data/fixtures/local_data.json" % (" ".join(model_labels)))
             run("git add -A")
             with fabric_settings(warn_only=True):
