@@ -48,6 +48,38 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-27 01:39:13", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:36", 
+   "type": 9, 
+   "display": false, 
+   "name": "AID-MIT"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/ashrae/www/", 
+   "last_updated": "2011-07-27 23:15:33", 
+   "description": "ASHRAE, the American Society of Heating, Refrigerating and Air-Conditioning Engineers is an international organization of 50,000 persons with chapters throughout the world. The Society is organized for the sole purpose of advancing the arts and sciences of heating, ventilation, air conditioning and refrigeration.The MIT branch of ASHRAE was created through an initiative of MIT's Building Technology Program students and professors in late 1995. On March 4, 1996 MIt's ASHRAE branch was officially approved by the Society's Board of Directors. The objects of the Branch are exclusively scientific and educational and include, but are not limited to:\r\n - the advancements of the sciences of heating, refrigerating and air conditioning engineering and related sciences;\r\n - the continuing education of the members and other interested persons in said sciences, through lectures, demonstrations and publications;\r\n - the rendition of career guidance to students of the sciences;\r\n - the encouragement of the scientific research.", 
+   "image": "campus_org/CampusOrg/ashrae_mit_student_chapter_2011-07-27-23-15-33.png", 
+   "email": "", 
+   "thumbnail": "campus_org/CampusOrg/ashrae_mit_student_chapter_2011-07-27-23-15-33_thumbnail.png", 
+   "date_created": "2011-05-03 12:27:36", 
+   "type": 1, 
+   "display": true, 
+   "name": "ASHRAE MIT Student Chapter"
+  }
+ }, 
+ {
   "pk": 4, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -93,22 +125,6 @@
    "type": 4, 
    "display": true, 
    "name": "African Students Association"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-07-27 01:39:13", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:36", 
-   "type": 9, 
-   "display": false, 
-   "name": "AID-MIT"
   }
  }, 
  {
@@ -445,22 +461,6 @@
    "type": 9, 
    "display": true, 
    "name": "Asha-MIT"
-  }
- }, 
- {
-  "pk": 31, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://web.mit.edu/ashrae/www/", 
-   "last_updated": "2011-07-27 23:15:33", 
-   "description": "ASHRAE, the American Society of Heating, Refrigerating and Air-Conditioning Engineers is an international organization of 50,000 persons with chapters throughout the world. The Society is organized for the sole purpose of advancing the arts and sciences of heating, ventilation, air conditioning and refrigeration.The MIT branch of ASHRAE was created through an initiative of MIT's Building Technology Program students and professors in late 1995. On March 4, 1996 MIt's ASHRAE branch was officially approved by the Society's Board of Directors. The objects of the Branch are exclusively scientific and educational and include, but are not limited to:\r\n - the advancements of the sciences of heating, refrigerating and air conditioning engineering and related sciences;\r\n - the continuing education of the members and other interested persons in said sciences, through lectures, demonstrations and publications;\r\n - the rendition of career guidance to students of the sciences;\r\n - the encouragement of the scientific research.", 
-   "image": "campus_org/CampusOrg/ashrae_mit_student_chapter_2011-07-27-23-15-33.png", 
-   "email": "", 
-   "thumbnail": "campus_org/CampusOrg/ashrae_mit_student_chapter_2011-07-27-23-15-33_thumbnail.png", 
-   "date_created": "2011-05-03 12:27:36", 
-   "type": 1, 
-   "display": true, 
-   "name": "ASHRAE MIT Student Chapter"
   }
  }, 
  {
@@ -960,22 +960,6 @@
   }
  }, 
  {
-  "pk": 64, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://web.mit.edu/bcss/www/", 
-   "last_updated": "2011-07-28 00:27:20", 
-   "description": "The purpose of BCSS is to disseminate information and act as a resource for course 9 (Brain and Cognitive Sciences) undergraduates.They aim to provide information about graduate school, career opportunities, and classes and requirements, in addition to promoting speakers and conferences that may be of interest to Course 9 undergraduates. They also aim to unite the Brain and Cognitive Sciences community at MIT by encouraging more interaction between undergraduates and faculty, as well as among undergraduates in the department themselves. In general, They work to improve the undergraduate experience in Course 9.", 
-   "image": "", 
-   "email": "bcss-officers@mit.edu", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:37", 
-   "type": 1, 
-   "display": true, 
-   "name": "Brain and Cognitive Sciences Society"
-  }
- }, 
- {
   "pk": 65, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -989,6 +973,22 @@
    "type": 1, 
    "display": true, 
    "name": "Brain Trust"
+  }
+ }, 
+ {
+  "pk": 64, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/bcss/www/", 
+   "last_updated": "2011-07-28 00:27:20", 
+   "description": "The purpose of BCSS is to disseminate information and act as a resource for course 9 (Brain and Cognitive Sciences) undergraduates.They aim to provide information about graduate school, career opportunities, and classes and requirements, in addition to promoting speakers and conferences that may be of interest to Course 9 undergraduates. They also aim to unite the Brain and Cognitive Sciences community at MIT by encouraging more interaction between undergraduates and faculty, as well as among undergraduates in the department themselves. In general, They work to improve the undergraduate experience in Course 9.", 
+   "image": "", 
+   "email": "bcss-officers@mit.edu", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:37", 
+   "type": 1, 
+   "display": true, 
+   "name": "Brain and Cognitive Sciences Society"
   }
  }, 
  {
@@ -1600,6 +1600,22 @@
   }
  }, 
  {
+  "pk": 119, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/dusp/dsc/", 
+   "last_updated": "2011-07-31 02:13:40", 
+   "description": "The DUSP Student Council, or the DSC, is an organization representing the students of the Department of Urban Studies and Planning. The DSC serves as the primary liaison between students, staff, and faculty, and works to improve student life within the department.", 
+   "image": "", 
+   "email": "dsc@mit.edu", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:38", 
+   "type": 10, 
+   "display": true, 
+   "name": "DUSP Student Council"
+  }
+ }, 
+ {
   "pk": 112, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1629,6 +1645,22 @@
    "type": 8, 
    "display": true, 
    "name": "Debate Team"
+  }
+ }, 
+ {
+  "pk": 438, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-14 23:28:38", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 23:28:38", 
+   "type": 16, 
+   "display": false, 
+   "name": "Dmitrij"
   }
  }, 
  {
@@ -1664,22 +1696,6 @@
   }
  }, 
  {
-  "pk": 119, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://web.mit.edu/dusp/dsc/", 
-   "last_updated": "2011-07-31 02:13:40", 
-   "description": "The DUSP Student Council, or the DSC, is an organization representing the students of the Department of Urban Studies and Planning. The DSC serves as the primary liaison between students, staff, and faculty, and works to improve student life within the department.", 
-   "image": "", 
-   "email": "dsc@mit.edu", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 10, 
-   "display": true, 
-   "name": "DUSP Student Council"
-  }
- }, 
- {
   "pk": 120, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1693,6 +1709,54 @@
    "type": 2, 
    "display": true, 
    "name": "E33 Productions"
+  }
+ }, 
+ {
+  "pk": 128, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-31 15:23:32", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:38", 
+   "type": 10, 
+   "display": false, 
+   "name": "EE-CS Graduate Students Association"
+  }
+ }, 
+ {
+  "pk": 134, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://ems.mit.edu/", 
+   "last_updated": "2011-07-31 15:29:39", 
+   "description": "MIT-EMS is an ASA-approved student group, dedicated to providing emergency medical support resources to the MIT Community. In addition to operating MIT's ambulance at the Basic Life Support (BLS) level, they also train undergraduate and graduate students, as well as MIT faculty and staff, in emergency medical skills.", 
+   "image": "campus_org/CampusOrg/ems_2011-07-31-15-29-39.png", 
+   "email": "ems-webmaster@mit.edu", 
+   "thumbnail": "campus_org/CampusOrg/ems_2011-07-31-15-29-39_thumbnail.png", 
+   "date_created": "2011-05-03 12:27:38", 
+   "type": 9, 
+   "display": true, 
+   "name": "EMS"
+  }
+ }, 
+ {
+  "pk": 140, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-31 17:58:54", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:38", 
+   "type": 1, 
+   "display": false, 
+   "name": "ESD Student Society"
   }
  }, 
  {
@@ -1792,22 +1856,6 @@
   }
  }, 
  {
-  "pk": 128, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-07-31 15:23:32", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 10, 
-   "display": false, 
-   "name": "EE-CS Graduate Students Association"
-  }
- }, 
- {
   "pk": 129, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1872,22 +1920,6 @@
   }
  }, 
  {
-  "pk": 134, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://ems.mit.edu/", 
-   "last_updated": "2011-07-31 15:29:39", 
-   "description": "MIT-EMS is an ASA-approved student group, dedicated to providing emergency medical support resources to the MIT Community. In addition to operating MIT's ambulance at the Basic Life Support (BLS) level, they also train undergraduate and graduate students, as well as MIT faculty and staff, in emergency medical skills.", 
-   "image": "campus_org/CampusOrg/ems_2011-07-31-15-29-39.png", 
-   "email": "ems-webmaster@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/ems_2011-07-31-15-29-39_thumbnail.png", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 9, 
-   "display": true, 
-   "name": "EMS"
-  }
- }, 
- {
   "pk": 135, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1949,22 +1981,6 @@
    "type": 11, 
    "display": true, 
    "name": "Equestrian Club"
-  }
- }, 
- {
-  "pk": 140, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-07-31 17:58:54", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:38", 
-   "type": 1, 
-   "display": false, 
-   "name": "ESD Student Society"
   }
  }, 
  {
@@ -2432,6 +2448,22 @@
   }
  }, 
  {
+  "pk": 179, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://hfes.scripts.mit.edu/web/", 
+   "last_updated": "2011-08-13 13:11:59", 
+   "description": "The MIT Student Chapter of the Human Factors and Ergonomics Society (HFES) is a group of MIT students and scholars interested in the field of human factors and ergonomics who organize events and activities for the benefit of the students, the human factors community, and HFES. The student chapter operates under the auspices of HFES and receives support from HFES for its activities.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:39", 
+   "type": 8, 
+   "display": true, 
+   "name": "HFES Student Chapter"
+  }
+ }, 
+ {
   "pk": 173, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2528,19 +2560,19 @@
   }
  }, 
  {
-  "pk": 179, 
+  "pk": 180, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "http://hfes.scripts.mit.edu/web/", 
-   "last_updated": "2011-08-13 13:11:59", 
-   "description": "The MIT Student Chapter of the Human Factors and Ergonomics Society (HFES) is a group of MIT students and scholars interested in the field of human factors and ergonomics who organize events and activities for the benefit of the students, the human factors community, and HFES. The student chapter operates under the auspices of HFES and receives support from HFES for its activities.", 
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:39", 
+   "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 8, 
-   "display": true, 
-   "name": "HFES Student Chapter"
+   "type": 1, 
+   "display": false, 
+   "name": "Hillel"
   }
  }, 
  {
@@ -2672,6 +2704,22 @@
   }
  }, 
  {
+  "pk": 189, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:39", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:39", 
+   "type": 1, 
+   "display": false, 
+   "name": "IAP Web Programming Competition"
+  }
+ }, 
+ {
   "pk": 190, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2685,6 +2733,38 @@
    "type": 2, 
    "display": true, 
    "name": "Imobilare"
+  }
+ }, 
+ {
+  "pk": 191, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:39", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:39", 
+   "type": 1, 
+   "display": false, 
+   "name": "India School Fund - MIT Chapter"
+  }
+ }, 
+ {
+  "pk": 192, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:39", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:39", 
+   "type": 1, 
+   "display": false, 
+   "name": "Informs"
   }
  }, 
  {
@@ -2752,6 +2832,22 @@
   }
  }, 
  {
+  "pk": 197, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:39", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:39", 
+   "type": 1, 
+   "display": false, 
+   "name": "Intervarsity"
+  }
+ }, 
+ {
   "pk": 198, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2797,6 +2893,22 @@
    "type": 11, 
    "display": false, 
    "name": "Isshinryu Karate-do"
+  }
+ }, 
+ {
+  "pk": 201, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:39", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:39", 
+   "type": 1, 
+   "display": false, 
+   "name": "Ivory Tower Research Group"
   }
  }, 
  {
@@ -3264,6 +3376,86 @@
   }
  }, 
  {
+  "pk": 250, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://bellringers.scripts.mit.edu/www/", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "The MIT Guild of Bellringers rings hand bells at MIT and helps with maintaining and ringing the tower bells of the Old North Church in Boston. We have a tune ringing hand bell choir and a change ringing hand bell group. They each meet once a week for practices.", 
+   "image": "", 
+   "email": "bellringers@mit.edu", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 8, 
+   "display": false, 
+   "name": "MIT Guild of Bellringers"
+  }
+ }, 
+ {
+  "pk": 249, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 1, 
+   "display": false, 
+   "name": "MIT for Liberty"
+  }
+ }, 
+ {
+  "pk": 251, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 1, 
+   "display": false, 
+   "name": "MITALY - Italian Student Association"
+  }
+ }, 
+ {
+  "pk": 253, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 1, 
+   "display": false, 
+   "name": "MITKNIT"
+  }
+ }, 
+ {
+  "pk": 254, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 1, 
+   "display": false, 
+   "name": "MITRaas"
+  }
+ }, 
+ {
   "pk": 231, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -3552,102 +3744,6 @@
   }
  }, 
  {
-  "pk": 249, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MIT for Liberty"
-  }
- }, 
- {
-  "pk": 250, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://bellringers.scripts.mit.edu/www/", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "The MIT Guild of Bellringers rings hand bells at MIT and helps with maintaining and ringing the tower bells of the Old North Church in Boston. We have a tune ringing hand bell choir and a change ringing hand bell group. They each meet once a week for practices.", 
-   "image": "", 
-   "email": "bellringers@mit.edu", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 8, 
-   "display": false, 
-   "name": "MIT Guild of Bellringers"
-  }
- }, 
- {
-  "pk": 251, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MITALY - Italian Student Association"
-  }
- }, 
- {
-  "pk": 252, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "mitBEEF"
-  }
- }, 
- {
-  "pk": 253, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MITKNIT"
-  }
- }, 
- {
-  "pk": 254, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MITRaas"
-  }
- }, 
- {
   "pk": 255, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -3792,6 +3888,22 @@
   }
  }, 
  {
+  "pk": 270, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 1, 
+   "display": false, 
+   "name": "NOBCChE-MIT"
+  }
+ }, 
+ {
   "pk": 264, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -3885,22 +3997,6 @@
    "type": 1, 
    "display": false, 
    "name": "Nigerian Students Association"
-  }
- }, 
- {
-  "pk": 270, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "NOBCChE-MIT"
   }
  }, 
  {
@@ -4368,6 +4464,38 @@
   }
  }, 
  {
+  "pk": 309, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:41", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 1, 
+   "display": false, 
+   "name": "ROCSA"
+  }
+ }, 
+ {
+  "pk": 312, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:41", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 1, 
+   "display": false, 
+   "name": "RS Infinity"
+  }
+ }, 
+ {
   "pk": 301, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4496,22 +4624,6 @@
   }
  }, 
  {
-  "pk": 309, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "ROCSA"
-  }
- }, 
- {
   "pk": 310, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4541,22 +4653,6 @@
    "type": 1, 
    "display": false, 
    "name": "Rowing Club"
-  }
- }, 
- {
-  "pk": 312, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "RS Infinity"
   }
  }, 
  {
@@ -4624,6 +4720,38 @@
   }
  }, 
  {
+  "pk": 354, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/mit-stand/www/", 
+   "last_updated": "2011-07-24 19:21:15", 
+   "description": "MIT-STAND was established in 2007 in order to further the MIT divestment campaign from Sudan. As of September 21st, MIT announced its divestment in an Interview with the Tech. Members of STAND and Amnesty groups were greatly involved with promulgating this action. Later, MIT provided an official clarification of the former vague divestment statement, again in large part due to student pressure. \r\n\r\nThe objectives of MIT-STAND are currently two-fold: \r\n1.   To increase awareness of genocide in the Sudan among the student community at MIT via featured events on campus \r\n2.   To work with MIT to design a standing Standing Committee on Investment Responsibility [SCIR] within the corporation framework.", 
+   "image": "campus_org/CampusOrg/stand_2011-07-24-19-21-15.png", 
+   "email": "mitstand-exec@mit.edu", 
+   "thumbnail": "campus_org/CampusOrg/stand_2011-07-24-19-21-15_thumbnail.png", 
+   "date_created": "2011-05-03 12:27:42", 
+   "type": 9, 
+   "display": true, 
+   "name": "STAND"
+  }
+ }, 
+ {
+  "pk": 358, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/stela-mit/", 
+   "last_updated": "2011-07-24 19:15:30", 
+   "description": "Established in 2007, STeLA (Science and Technology Leadership Association) is a student organization founded with the objective of developing leadership in, and creating a network of, the next generation in science and technology - scientists, engineers, entrepreneurs, policymakers, etc. - who will direct and deeply influence global society. The organization was launched by graduate students studying science and engineering at universities in the United States with the desire to answer the question, \"how can science and engineering students change the global community.\" The founders recognized the importance of multicultural and interdisciplinary perspectives in addressing contemporary global issues, and became motivated to establish a network where we, the young generation, can exchange ideas on where we can lead the global society and how we individual can contribute to the needs of society's leadership. We then build on that network to take the first steps towards local and global action.", 
+   "image": "", 
+   "email": "stela-info@mit.edu", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:42", 
+   "type": 12, 
+   "display": true, 
+   "name": "STeLA@MIT"
+  }
+ }, 
+ {
   "pk": 317, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4688,22 +4816,6 @@
   }
  }, 
  {
-  "pk": 321, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Science and Engineering Business Club"
-  }
- }, 
- {
   "pk": 322, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4733,6 +4845,22 @@
    "type": 1, 
    "display": false, 
    "name": "Science Policy Initiative"
+  }
+ }, 
+ {
+  "pk": 321, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:41", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 1, 
+   "display": false, 
+   "name": "Science and Engineering Business Club"
   }
  }, 
  {
@@ -4909,6 +5037,38 @@
    "type": 5, 
    "display": true, 
    "name": "Sloan Business Club"
+  }
+ }, 
+ {
+  "pk": 433, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-14 22:45:22", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 22:45:22", 
+   "type": 2, 
+   "display": false, 
+   "name": "Sloan Business Clubs"
+  }
+ }, 
+ {
+  "pk": 434, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://facebook.com/", 
+   "last_updated": "2011-08-14 22:51:03", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 22:51:03", 
+   "type": 1, 
+   "display": false, 
+   "name": "Sloan Business Clubss"
   }
  }, 
  {
@@ -5216,22 +5376,6 @@
   }
  }, 
  {
-  "pk": 354, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://web.mit.edu/mit-stand/www/", 
-   "last_updated": "2011-07-24 19:21:15", 
-   "description": "MIT-STAND was established in 2007 in order to further the MIT divestment campaign from Sudan. As of September 21st, MIT announced its divestment in an Interview with the Tech. Members of STAND and Amnesty groups were greatly involved with promulgating this action. Later, MIT provided an official clarification of the former vague divestment statement, again in large part due to student pressure. \r\n\r\nThe objectives of MIT-STAND are currently two-fold: \r\n1.   To increase awareness of genocide in the Sudan among the student community at MIT via featured events on campus \r\n2.   To work with MIT to design a standing Standing Committee on Investment Responsibility [SCIR] within the corporation framework.", 
-   "image": "campus_org/CampusOrg/stand_2011-07-24-19-21-15.png", 
-   "email": "mitstand-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/stand_2011-07-24-19-21-15_thumbnail.png", 
-   "date_created": "2011-05-03 12:27:42", 
-   "type": 9, 
-   "display": true, 
-   "name": "STAND"
-  }
- }, 
- {
   "pk": 355, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -5277,22 +5421,6 @@
    "type": 5, 
    "display": true, 
    "name": "Startup Club"
-  }
- }, 
- {
-  "pk": 358, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://web.mit.edu/stela-mit/", 
-   "last_updated": "2011-07-24 19:15:30", 
-   "description": "Established in 2007, STeLA (Science and Technology Leadership Association) is a student organization founded with the objective of developing leadership in, and creating a network of, the next generation in science and technology - scientists, engineers, entrepreneurs, policymakers, etc. - who will direct and deeply influence global society. The organization was launched by graduate students studying science and engineering at universities in the United States with the desire to answer the question, \"how can science and engineering students change the global community.\" The founders recognized the importance of multicultural and interdisciplinary perspectives in addressing contemporary global issues, and became motivated to establish a network where we, the young generation, can exchange ideas on where we can lead the global society and how we individual can contribute to the needs of society's leadership. We then build on that network to take the first steps towards local and global action.", 
-   "image": "", 
-   "email": "stela-info@mit.edu", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:42", 
-   "type": 12, 
-   "display": true, 
-   "name": "STeLA@MIT"
   }
  }, 
  {
@@ -5760,22 +5888,6 @@
   }
  }, 
  {
-  "pk": 388, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://web.mit.edu/techiya/www/", 
-   "last_updated": "2011-07-24 16:25:52", 
-   "description": "Techiya is MIT's only Jewish, Hebrew, and Israeli a cappella group.", 
-   "image": "campus_org/CampusOrg/techiya_2011-07-24-16-25-52.gif", 
-   "email": "techiya-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/techiya_2011-07-24-16-25-52_thumbnail.gif", 
-   "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": true, 
-   "name": "Techiya"
-  }
- }, 
- {
   "pk": 389, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -5789,6 +5901,22 @@
    "type": 12, 
    "display": true, 
    "name": "TechLink"
+  }
+ }, 
+ {
+  "pk": 388, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/techiya/www/", 
+   "last_updated": "2011-07-24 16:25:52", 
+   "description": "Techiya is MIT's only Jewish, Hebrew, and Israeli a cappella group.", 
+   "image": "campus_org/CampusOrg/techiya_2011-07-24-16-25-52.gif", 
+   "email": "techiya-exec@mit.edu", 
+   "thumbnail": "campus_org/CampusOrg/techiya_2011-07-24-16-25-52_thumbnail.gif", 
+   "date_created": "2011-05-03 12:27:43", 
+   "type": 1, 
+   "display": true, 
+   "name": "Techiya"
   }
  }, 
  {
@@ -6240,6 +6368,38 @@
   }
  }, 
  {
+  "pk": 421, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-17 17:17:28", 
+   "description": "The purpose of the MIT/WHOI Student Organization is to encourage interaction\r\nbetween MIT students and the Woods Hole community and to enhance student life in\r\nthe MIT/WHOI Joint program. The MIT/Woods Hole Joint Program in Oceanography\r\nis a joint venture between the two institutions to pursue excellence in oceanographic\r\nresearch and education. MIT students in this program are often based in Woods Hole,\r\n80 miles from Cambridge. This group helps to keep these students in touch with\r\neach other and with MIT.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:43", 
+   "type": 1, 
+   "display": true, 
+   "name": "WHOI Student Organization"
+  }
+ }, 
+ {
+  "pk": 423, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-07-06 06:00:58", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:43", 
+   "type": 8, 
+   "display": false, 
+   "name": "WMBR Radio"
+  }
+ }, 
+ {
   "pk": 419, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6272,22 +6432,6 @@
   }
  }, 
  {
-  "pk": 421, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-07-17 17:17:28", 
-   "description": "The purpose of the MIT/WHOI Student Organization is to encourage interaction\r\nbetween MIT students and the Woods Hole community and to enhance student life in\r\nthe MIT/WHOI Joint program. The MIT/Woods Hole Joint Program in Oceanography\r\nis a joint venture between the two institutions to pursue excellence in oceanographic\r\nresearch and education. MIT students in this program are often based in Woods Hole,\r\n80 miles from Cambridge. This group helps to keep these students in touch with\r\neach other and with MIT.", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:43", 
-   "type": 1, 
-   "display": true, 
-   "name": "WHOI Student Organization"
-  }
- }, 
- {
   "pk": 422, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6301,22 +6445,6 @@
    "type": 1, 
    "display": true, 
    "name": "Wind Energy Projects in Action"
-  }
- }, 
- {
-  "pk": 423, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-07-06 06:00:58", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:43", 
-   "type": 8, 
-   "display": false, 
-   "name": "WMBR Radio"
   }
  }, 
  {
@@ -6461,6 +6589,86 @@
    "type": 12, 
    "display": false, 
    "name": "Yan Xin Life Science and Tech Association"
+  }
+ }, 
+ {
+  "pk": 435, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-14 22:54:12", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 22:54:12", 
+   "type": 2, 
+   "display": false, 
+   "name": "aaa"
+  }
+ }, 
+ {
+  "pk": 437, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://fefe.com/", 
+   "last_updated": "2011-08-14 23:27:00", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 23:27:00", 
+   "type": 16, 
+   "display": false, 
+   "name": "aaaa"
+  }
+ }, 
+ {
+  "pk": 439, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-14 23:34:43", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 23:34:43", 
+   "type": 1, 
+   "display": false, 
+   "name": "aaaaaa"
+  }
+ }, 
+ {
+  "pk": 436, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-14 23:18:06", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-14 23:18:06", 
+   "type": 2, 
+   "display": false, 
+   "name": "fefe"
+  }
+ }, 
+ {
+  "pk": 252, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:40", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:40", 
+   "type": 1, 
+   "display": false, 
+   "name": "mitBEEF"
   }
  }
 ]

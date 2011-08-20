@@ -1,4 +1,7 @@
-import os, sys
+import os
+import sys
+import socket
+
 from fabric.api import env, sudo, cd, run, local, settings as fabric_settings
 from fabric.context_managers import prefix
 from fabric.contrib import django as fabric_django
@@ -13,7 +16,7 @@ from south.models import MigrationHistory
 
 __all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
-          "update", "create_media_dirs", "schemamigrate", "runserver"]
+          "update", "schemamigrate", "runserver"]
 
 def staging():
     env.hosts = ['root@staging.umeqo.com']
@@ -43,7 +46,7 @@ def migrate():
         abort("migrate can only be called locally.")
     
 def create_database():
-    create_media_dirs()
+    #create_media_dirs()
     if not env.host:  
         if os.path.exists(ROOT + "/database.db"):
             os.remove(ROOT + "/database.db")
@@ -57,12 +60,14 @@ def create_database():
                 run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
                 run("python manage.py syncdb --noinput --migrate")
                 run("python copy_media.py prod in")
-                
+
+"""                
 def create_media_dirs():
     for model_path in settings.MEDIA_MODEL_PATHS.split(" "):
         model_root = settings.MEDIA_ROOT + model_path
         if not os.path.exists(model_root):
             os.makedirs(model_root)
+"""
     
 def schemamigrate():
     if not env.host:
@@ -84,40 +89,52 @@ def load_prod_data():
                     abort("load_prod_data should not be called on staging.")
                 run("python copy_media.py prod in")
                 run("python manage.py flush --noinput")
-        
+
 def load_local_data():
     if not env.host:
         local("python copy_media.py local in")
-        for app in settings.LOCAL_DATA_APPS:
-            local("python manage.py loaddata " + settings.LOCAL_FIXTURES_ROOT + "local_" + app + "_data.json")    
+        local("python manage.py loaddata %slocal_data.json" % (settings.LOCAL_FIXTURES_ROOT))    
     else:
+        if env.host == "umeqo.com":
+            abort("load_local_data should not be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
-                if env.host == "umeqo.com":
-                    abort("load_local_data should not be called on prod.")
                 run("python copy_media.py local in")
-                for app in settings.LOCAL_DATA_APPS:
-                    run("python manage.py loaddata  /var/www/umeqo/local_data/fixtures/local_%s_data.json" % (app))
+                run("python manage.py loaddata %slocal_data.json" % (settings.LOCAL_FIXTURES_ROOT))  
 
 def commit_prod_data():
-    if not env.host:
-        abort("commit_prod_data should not be called locally.")
-    else: 
-        with cd(env.directory):
-            with prefix(env.activate):
-                with fabric_settings(warn_only=True):
-                    run("python manage.py file_cleanup %s" % (settings.PROD_DATA_MODELS,))
-                run("python copy_media.py prod out")
-                run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
-                for app in settings.PROD_DATA_APPS:
-                    if app =="sites":
-                        run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
-                    else:
-                        run("python manage.py dumpdata %s --indent=1 > ./%s/fixtures/initial_data.json" % (app, app))
-                run("git add -A")
-                with fabric_settings(warn_only=True):
-                    run('git commit -m "Prod data commit from staging."')
-                    run("git push")
+    for app in settings.PROD_DATA_MODELS:
+        model_labels = []
+        fixtures_dir = "./%s/fixtures" % app
+        if not os.path.exists(fixtures_dir):
+            os.makedirs(fixtures_dir)
+        for model in settings.PROD_DATA_MODELS[app]:
+            model_labels.append("%s.%s" % (app, model))
+            with fabric_settings(warn_only=True):
+                local("python manage.py file_cleanup %s.%s" % (app, model))
+        local("python manage.py dumpdata %s --indent=1 > %s/initial_data.json" % (" ".join(model_labels), fixtures_dir))
+    local("python copy_media.py prod out")
+    """
+    if env.host != "li323-63":
+        abort("commit_prod_data should only be called on staging")
+    with cd(env.directory):
+        with prefix(env.activate):
+            for app in settings.PROD_DATA_MODELS:
+                model_labels = []
+                fixtures_dir = "./%s/fixtures" % app
+                if not os.path.exists(fixtures_dir):
+                    os.makedirs(fixtures_dir)
+                for model in settings.PROD_DATA_MODELS[app]:
+                    model_labels.append("%s.%s" % (app, model))
+                    with fabric_settings(warn_only=True):
+                        run("python manage.py file_cleanup %s.%s" % (app, model))
+                run("python manage.py dumpdata %s --indent=1 > %s/initial_data.json" % (model_labels, fixtures_dir))
+            run("python copy_media.py prod out")
+            run("git add -A")
+            with fabric_settings(warn_only=True):
+                run('git commit -m "Local data commit from staging."')
+                run("git push")
+    """
 
 def runserver():
     if not env.host:
@@ -128,39 +145,41 @@ def runserver():
         abort("runserver can only be called locally.")
             
 def commit_local_data():
-    if not env.host:
-        local("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
-        local("python copy_media.py local out")
-        for app in settings.LOCAL_DATA_APPS:
-            # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
-            if app == "user":
-                local("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json")
-            else:
-                local("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
-    else: 
-        if env.host == "umeqo.com":
-            abort("commit_local_data should not be called on prod.")
-        with cd(env.directory):
-            with prefix(env.activate):
-                with fabric_settings(warn_only=True):
-                    run("python manage.py file_cleanup %s" % (settings.LOCAL_DATA_MODELS,))
-                run("python copy_media.py local out")
-                for app in settings.LOCAL_DATA_APPS:
-                    # For some reason just running "loaddata user" works but "dumpdata user" doesn't. You need "dumpdata auth.user"
-                    if app == "user":
-                        run("python manage.py dumpdata auth.user --indent=1 > ./local_data/fixtures/local_user_data.json")
-                    else:
-                        run("python manage.py dumpdata " + app + " --indent=1 > ./local_data/fixtures/local_" + app + "_data.json")
-                run("git add -A")
-                with fabric_settings(warn_only=True):
-                    run('git commit -m "Local data commit from staging."')
-                    run("git push")
+    model_labels = []
+    for app in settings.LOCAL_DATA_MODELS:
+        for model in settings.LOCAL_DATA_MODELS[app]:
+            model_labels.append("%s.%s" % ( app, model))
+            with fabric_settings(warn_only=True):
+                local("python manage.py file_cleanup %s.%s" % (app, model))
+    local("python copy_media.py local out")
+    if not os.path.exists("./local_data/fixtures/"):
+        os.makedirs("./local_data/fixtures/")
+    local("python manage.py dumpdata %s --indent=1 > ./local_data/fixtures/local_data.json" % (" ".join(model_labels)))
+    """
+    if env.host != "li323-63":
+        abort("commit_local_data should only be called on staging")
+    with cd(env.directory):
+        with prefix(env.activate):
+            model_labels = []
+            for app in settings.LOCAL_DATA_MODELS:
+                for model in settings.LOCAL_DATA_MODELS[app]:
+                    model_labels.append("%s.%s" % ( app, model))
+                    with fabric_settings(warn_only=True):
+                        run("python manage.py file_cleanup %s.%s" % (app, model))
+            run("python copy_media.py local out")
+            if not os.path.exists("./local_data/fixtures/"):
+                os.makedirs("./local_data/fixtures/")
+            run("python manage.py dumpdata %s --indent=1 > ./local_data/fixtures/local_data.json" % (" ".join(model_labels)))
+            run("git add -A")
+            with fabric_settings(warn_only=True):
+                run('git commit -m "Local data commit from staging."')
+                run("git push")
+    """
 
 def update():
     if env.host:
         with cd(env.directory):
             with prefix(env.activate):
-                create_media_dirs()
                 commit_local_data()
                 commit_prod_data()
                 run("git pull")
@@ -171,7 +190,7 @@ def update():
                 if result.failed:
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
-                    create_media_dirs()
+                    #create_media_dirs()
                     run("echo 'yes'|python manage.py collectstatic")
                 restart()       
     else:

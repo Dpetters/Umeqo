@@ -1,0 +1,26 @@
+[
+ {
+  "pk": 3, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "localhost:8000", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "staging.umeqo.com", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "umeqo.com", 
+   "name": "Umeqo"
+  }
+ }
+]
