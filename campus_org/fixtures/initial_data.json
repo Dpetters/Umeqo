@@ -2788,7 +2788,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/~isshinryu/www/", 
-   "last_updated": "2011-08-13 13:32:03", 
+   "last_updated": "2011-08-19 22:41:24", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2804,7 +2804,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-08-13 13:32:28", 
+   "last_updated": "2011-08-19 22:41:26", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2820,7 +2820,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-08-13 13:32:37", 
+   "last_updated": "2011-08-19 22:41:28", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2836,13 +2836,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:41:36", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Jewish Student Activism"
   }
@@ -2852,13 +2852,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:41:48", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Judo Club"
   }
@@ -2868,13 +2868,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:42:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 12, 
    "display": false, 
    "name": "Kaleidoscope"
   }
@@ -2884,13 +2884,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:01", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
    "name": "Kappa Alpha Theta"
   }
@@ -2900,13 +2900,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Kendall Band Preservation Society"
   }
@@ -2916,13 +2916,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:13", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Kendo Club"
   }
@@ -2932,13 +2932,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:21", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Kickboxing"
   }
@@ -2948,13 +2948,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:44:00", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Kokikai"
   }
@@ -2964,13 +2964,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:12", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 15, 
    "display": false, 
    "name": "Komaza"
   }
@@ -2980,13 +2980,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:18", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Korean Graduate Students Association"
   }
@@ -2996,13 +2996,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:24", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Korean Karate Club"
   }
@@ -3012,13 +3012,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:47", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Korean Students Association"
   }
@@ -3028,13 +3028,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:45:21", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "La Union Chicana por Aztlan"
   }
@@ -3044,13 +3044,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:45:27", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Laboratory for Chocolate Science"
   }
@@ -3060,13 +3060,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:45:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Latter-day Saint Student Association"
   }
@@ -3076,7 +3076,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:46:08", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3092,13 +3092,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:46:17", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Leadership Training Institute"
   }
@@ -3108,15 +3108,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:46:59", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
-   "name": "Lebanese Club at MIT, The"
+   "name": "Lebanese Club at MIT"
   }
  }, 
  {
@@ -3124,13 +3124,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:05", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "Lecture Series Committee"
   }
@@ -3140,13 +3140,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Lindy Hop Society"
   }
@@ -3156,7 +3156,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:15", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3172,13 +3172,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:22", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Lion Dance Group"
   }
@@ -3188,7 +3188,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:28", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3204,13 +3204,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Live Music Connection"
   }
@@ -3220,13 +3220,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "Living Group Council"
   }
@@ -3236,13 +3236,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Logarhythms"
   }
@@ -3252,31 +3252,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:59", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Lutheran-Episcopal Ministry"
-  }
- }, 
- {
-  "pk": 231, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "Magic the Gathering"
   }
  }, 
  {
@@ -3284,13 +3268,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:14", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Malaysian Students Association"
   }
@@ -3300,13 +3284,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:25", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Marching Band"
   }
@@ -3316,13 +3300,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:34", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Maum Meditation"
   }
@@ -3332,13 +3316,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Media and Entertainment Society"
   }
@@ -3348,13 +3332,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Medlinks"
   }
@@ -3364,13 +3348,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:51", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Melodies"
   }
@@ -3380,13 +3364,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:24", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Gymnastics Club"
   }
@@ -3396,13 +3380,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:28", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Ice Hockey Club"
   }
@@ -3412,13 +3396,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:35", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Rugby Football Club"
   }
@@ -3428,13 +3412,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Ultimate Frisbee"
   }
@@ -3444,13 +3428,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:53", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Volleyball Club"
   }
@@ -3460,13 +3444,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:00", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "MentorConnection"
   }
@@ -3476,13 +3460,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:26", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Mes Latino"
   }
@@ -3492,13 +3476,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Mexican Student Association"
   }
@@ -3508,7 +3492,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:40", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3524,13 +3508,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:49", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 12, 
    "display": false, 
    "name": "Middle East Education Through Technology"
   }
@@ -3540,31 +3524,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:59:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 5, 
    "display": false, 
    "name": "Minority Business Association"
-  }
- }, 
- {
-  "pk": 249, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MIT for Liberty"
   }
  }, 
  {
@@ -3588,13 +3556,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:59:38", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "MITALY - Italian Student Association"
   }
@@ -3604,13 +3572,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:59:44", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "mitBEEF"
   }
@@ -3620,31 +3588,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:00:49", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "MITKNIT"
-  }
- }, 
- {
-  "pk": 254, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MITRaas"
   }
  }, 
  {
@@ -3652,13 +3604,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:01:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Mocha Moves Dance Squad"
   }
@@ -3668,15 +3620,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:02:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
-   "name": "Model United Nations(MUN)"
+   "name": "Model United Nations (MUN)"
   }
  }, 
  {
@@ -3684,13 +3636,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:03:20", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Movements in Time"
   }
@@ -3700,46 +3652,30 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:03:25", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Mujeres Latinas"
-  }
- }, 
- {
-  "pk": 259, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "Mural Club"
   }
  }, 
  {
   "pk": 260, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "website": "http://muses.mit.edu/muses/", 
+   "last_updated": "2011-08-19 23:07:24", 
    "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "image": "campus_org/CampusOrg/muses,_the_mit_2011-08-19-23-07-24.png", 
+   "email": "muses@mit.edu", 
+   "thumbnail": "campus_org/CampusOrg/muses,_the_mit_2011-08-19-23-07-24_thumbnail.png", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Muses, The MIT"
   }
  }, 
