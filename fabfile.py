@@ -1,5 +1,3 @@
-import sys
-
 from fabric.api import env, sudo, cd, run, local, settings as fabric_settings
 from fabric.context_managers import prefix
 from fabric.contrib import django as fabric_django
@@ -56,7 +54,6 @@ def create_database():
                 run("python manage.py syncdb --noinput --migrate")
                 run("python copy_media.py prod in")
                 
-    
 def schemamigrate():
     if not env.host:
         apps = list(set(app.app_name for app in MigrationHistory.objects.all()))
@@ -64,22 +61,23 @@ def schemamigrate():
             for app in apps:
                 local("python manage.py schemamigration %s --auto" % app)
     else:
-        abort("Update can only be called locally.")
+        abort("Schemamigrate can only be called locally.")
 
 def load_prod_data():
-    if not env.host:  
+    if not env.host:
         local("python copy_media.py prod in")
         local("python manage.py flush --noinput")
     else:
+        if env.host == "umeqo.com":
+            abort("load_prod_data cannot be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
                 if env.host == "staging.umeqo.com":
                     abort("load_prod_data should not be called on staging.")
                 run("python copy_media.py prod in")
-                run("python manage.py flush --noinput")
+                run("python manage.py flush --noinput")    
 
 def load_local_data():
-    print env.host
     if not env.host:
         local("python copy_media.py local in")
         local("python manage.py loaddata ./local_data/fixtures/local_data.json")    
@@ -136,7 +134,9 @@ def commit_local_data():
                 run("git push")
 
 def update():
-    if env.host:
+    if env.host != "staging.umeqo.com":
+        abort("update can only be called on staging.")
+    else:
         with cd(env.directory):
             with prefix(env.activate):
                 commit_local_data()
@@ -144,15 +144,10 @@ def update():
                 run("git pull")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
-                """
                 with fabric_settings(warn_only=True):
                     result = run("python manage.py test --setting=settings_test")
                 if result.failed:
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
-                    #create_media_dirs()
                     run("echo 'yes'|python manage.py collectstatic")
-                """
-                restart()       
-    else:
-        abort("update cannot be called locally.")
+                restart()
