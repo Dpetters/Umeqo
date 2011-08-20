@@ -103,8 +103,10 @@ def commit_prod_data():
                 if app == "sites":
                     run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
                     continue
-                fixtures_dir = "./%s/fixtures" % app
+                fixtures_dir = "%s/%s/fixtures" % (ROOT, app)
+                print "about to create dir"
                 if not os.path.exists(fixtures_dir):
+                    print "creating dir"
                     os.makedirs(fixtures_dir)
                 for model in settings.PROD_DATA_MODELS[app]:
                     model_labels.append("%s.%s" % (app, model))
