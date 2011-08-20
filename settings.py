@@ -23,24 +23,24 @@ EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
 PROD_DATA_MODELS = {
-    'campus_org': ['campusorg'],
-    'registration': ['interestedperson'],
-    'core':['campusorgtype', 'location', 'topic', \
-            'question', 'schoolyear', 'graduationyear', \
-            'language', 'course','employmenttype', \
-            'industry', 'eventtype'],
-    'sites':['site']
+    'campus_org': ['CampusOrg'],
+    'registration': ['InterestedPerson'],
+    'core':['CampusOrgType', 'Location', 'Topic', \
+            'Question', 'SchoolYear', 'GraduationYear', \
+            'Language', 'Course','EmploymentType', \
+            'Industry', 'EventType'],
+    'sites':['Site']
 }
 LOCAL_DATA_MODELS = {
-    'auth': ['user'],
-    'student': ['student', 'studentpreferences', 'studentstatistics', 'studentinvite'],
-    'registration':['userattributes', 'interestedperson', \
-                    'sessionkey', 'registrationprofile'],
-    'employer':['employer','employerstatistics', 'recruiter', \
-                'resumebook', 'studentfilteringparameters', \
-                'employerstudentcomment', 'recruiterpreferences', \
-                'recruiterstatistics'],
-    'events':['event', 'rsvp', 'invitee', 'attendee']
+    'auth': ['User'],
+    'student': ['Student', 'StudentPreferences', 'StudentStatistics', 'StudentInvite'],
+    'registration':['UserAttributes', \
+                    'SessionKey', 'RegistrationProfile'],
+    'employer':['Employer','EmployerStatistics', 'Recruiter', \
+                'ResumeBook', 'StudentFilteringParameters', \
+                'EmployerStudentComment', 'RecruiterPreferences', \
+                'RecruiterStatistics'],
+    'events':['Event', 'Rsvp', 'Invitee', 'Attendee']
 }
 
 PROD_PASSWORD = 'H3rcul3s'
