@@ -4512,6 +4512,22 @@
   }
  }, 
  {
+  "pk": 321, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:41", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 1, 
+   "display": false, 
+   "name": "Science and Engineering Business Club"
+  }
+ }, 
+ {
   "pk": 322, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4557,6 +4573,22 @@
    "type": 8, 
    "display": false, 
    "name": "Scuba Club"
+  }
+ }, 
+ {
+  "pk": 325, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-05-03 12:27:41", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 1, 
+   "display": false, 
+   "name": "Service"
   }
  }, 
  {
