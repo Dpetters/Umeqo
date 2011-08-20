@@ -22,19 +22,28 @@ EMAIL_HOST_USER = 'no-reply@umeqo.com'
 EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
 EMAIL_PORT = 587
 
-PROD_DATA_APPS = (
-    'campus_org',
-    'core',
-    'sites'
-)
+PROD_DATA_MODELS = {
+    'campus_org': ['campusorg'],
+    'registration': ['interestedperson'],
+    'core':['campusorgtype', 'location', 'topic', \
+            'question', 'schoolyear', 'graduationyear', \
+            'language', 'course','employmenttype', \
+            'industry', 'eventtype'],
+    'sites':['site'],
+    'student':['studentinvite']
+}
+LOCAL_DATA_MODELS = {
+    'auth': ['user'],
+    'student': ['student', 'studentpreferences', 'studentstatistics'],
+    'registration':['userattributes', 'interestedperson', \
+                    'sessionkey', 'registrationprofile'],
+    'employer':['employer','employerstatistics', 'recruiter', \
+                'resumebook', 'studentfilteringparameters', \
+                'employerstudentcomment', 'recruiterpreferences', \
+                'recruiterstatistics'],
+    'events':['event', 'rsvp', 'invitee', 'attendee']
+}
 
-LOCAL_DATA_APPS = (
-    'user',
-    'registration',
-    'employer',
-    'student',
-    'events',
-)
 PROD_PASSWORD = 'H3rcul3s'
 STAGING_PASSWORD = 'Jamb4Juic3'
 
@@ -105,27 +114,6 @@ LOCAL_MEDIA_ROOT = ROOT + "/local_data/media/"
 PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
 
 CKEDITOR_PATH = "ckeditor/"
-
-STUDENT_STUDENT_MODEL = "student.Student"
-STUDENT_STUDENT_PATH = "student/Student/"
-
-EMPLOYER_EMPLOYER_MODEL = "employer.Employer"
-EMPLOYER_EMPLOYER_PATH = "employer/Employer/"
-
-EMPLOYER_RESUME_BOOK_MODEL = "employer.ResumeBook"
-EMPLOYER_RESUME_BOOK_PATH = "employer/ResumeBook/"
-
-CAMPUS_ORG_CAMPUS_ORG_MODEL = "campus_org.CampusOrg"
-CAMPUS_ORG_CAMPUS_ORG_PATH = "campus_org/CampusOrg/"
-
-CORE_COURSE_MODEL = "core.Course"
-CORE_COURSE_PATH = "core/Course/"
-
-LOCAL_DATA_MODELS = "%s %s %s" % (STUDENT_STUDENT_MODEL, EMPLOYER_EMPLOYER_MODEL, EMPLOYER_RESUME_BOOK_MODEL)
-
-PROD_DATA_MODELS = "%s %s" % (CAMPUS_ORG_CAMPUS_ORG_MODEL, CORE_COURSE_MODEL,)
-
-MEDIA_MODEL_PATHS = "%s %s %s %s %s %s" % (CKEDITOR_PATH, STUDENT_STUDENT_PATH, EMPLOYER_EMPLOYER_PATH, EMPLOYER_RESUME_BOOK_PATH, CAMPUS_ORG_CAMPUS_ORG_PATH, CORE_COURSE_PATH)
 
 # a list of folders inside of which of django looks for static files
 STATICFILES_DIRS = (
