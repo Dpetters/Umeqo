@@ -5603,7 +5603,7 @@
   "pk": 390, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "http://technique.mit.edu/",
+   "website": "http://technique.mit.edu/", 
    "last_updated": "2011-07-24 16:21:20", 
    "description": "Every year the staff of Technique publishes a 400 page book, making it the only authoritative annual publication at MIT. Not even the faculty directory surpasses our majesty.\r\n\r\nThe previous version of the website made a big deal of how Technique is 400 pages in size. That\u2019s just how big it is.\r\n\r\nWe also run the yearly 24-hour event A Day in the Life of MIT, where anyone on MIT\u2019s campus can submit a photographic journal of their day to a common website.", 
    "image": "", 
