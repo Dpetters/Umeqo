@@ -79,16 +79,17 @@ def load_prod_data():
                 run("python manage.py flush --noinput")
 
 def load_local_data():
+    print env.host
     if not env.host:
         local("python copy_media.py local in")
-        local("python manage.py loaddata %slocal_data.json" % (settings.LOCAL_FIXTURES_ROOT))    
+        local("python manage.py loaddata ./local_data.json")    
     else:
         if env.host == "umeqo.com":
             abort("load_local_data should not be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
                 run("python copy_media.py local in")
-                run("python manage.py loaddata %slocal_data.json" % (settings.LOCAL_FIXTURES_ROOT))  
+                run("python manage.py loaddata ./local_data.json")  
 
 def commit_prod_data():
     if env.host != "staging.umeqo.com":
