@@ -29,12 +29,11 @@ PROD_DATA_MODELS = {
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
-    'sites':['site'],
-    'student':['studentinvite']
+    'sites':['site']
 }
 LOCAL_DATA_MODELS = {
     'auth': ['user'],
-    'student': ['student', 'studentpreferences', 'studentstatistics'],
+    'student': ['student', 'studentpreferences', 'studentstatistics', 'studentinvite'],
     'registration':['userattributes', 'interestedperson', \
                     'sessionkey', 'registrationprofile'],
     'employer':['employer','employerstatistics', 'recruiter', \
