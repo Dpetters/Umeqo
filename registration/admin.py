@@ -7,7 +7,8 @@ from registration.models import RegistrationProfile, InterestedPerson, UserAttri
 
 
 class InterestedPersonAdmin(admin.ModelAdmin):
-    pass
+    fields = ['first_name', 'last_name', 'email', 'summer_plans', 'auto_email', 'final', 'emailed']
+    list_display = ('first_name', 'last_name', 'email', 'auto_email', 'final', 'emailed')
 admin.site.register(InterestedPerson, InterestedPersonAdmin)
 
 
@@ -57,5 +58,6 @@ admin.site.register(SessionKey, SessionKeyAdmin)
 
     
 class UserAttributesAdmin(admin.ModelAdmin):
-    pass
+    fields = ['user', 'is_verified']
+    list_display=['user', 'is_verified']
 admin.site.register(UserAttributes, UserAttributesAdmin)

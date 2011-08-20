@@ -33,4 +33,3 @@ class Command(BaseCommand):
                             location.save()
         except URLError, e:
             print "Error: %s" % (e)
-        

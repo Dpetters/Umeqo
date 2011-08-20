@@ -37,7 +37,8 @@ class Command(LabelCommand):
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
 
         if not db_has_unseen_files:
-            print filenames_in_database - filenames_on_disk
+            print filenames_in_database
+            print filenames_on_disk
             raise CommandError("Database filenames are not a "
                                 "subset of actual filenames on disk. Will not risk "
                                 "erasing arbitrary files, exiting.")
@@ -50,7 +51,6 @@ class Command(LabelCommand):
         else:
             remove_files(dangling_files)
 
-
 def get_filefields(model_cls):
     filefields = []
     for field in model_cls._meta.fields:
@@ -58,14 +58,11 @@ def get_filefields(model_cls):
             filefields.append(field.name)
     return filefields
 
-
 def list_files(base_path):
     files = set()
     for (root, dirnames, filenames) in os.walk(base_path):
         files.update(smart_unicode(os.path.join(root, name)).replace("\\", "/") for name in filenames)
     return files
-
-
 
 def move_files(filenames, backup_dir):
     for name in filenames:
@@ -74,7 +71,6 @@ def move_files(filenames, backup_dir):
             os.makedirs(dir)
         shutil.copyfile(name, backup_dir + name.split(settings.MEDIA_ROOT)[1])
     remove_files(filenames)
-
 
 def remove_files(filenames):
     for name in filenames:

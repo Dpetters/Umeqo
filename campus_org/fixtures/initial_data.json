@@ -6,9 +6,9 @@
    "website": "http://www.mit100k.org/", 
    "last_updated": "2011-08-13 14:19:06", 
    "description": "The MIT $100K Entrepreneurship Competition is a year-long educational experience designed to encourage students and researchers in the MIT community to act on their talent, ideas and energy to produce tomorrow\u2019s leading firms.", 
-   "image": "campus_org/CampusOrg/100k_competititon_2011-07-27-01-26-53.png", 
+   "image": "campus_org/campusorg/100k_competititon_2011-07-27-01-26-53.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/100k_competititon_2011-07-27-01-26-53_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/100k_competititon_2011-07-27-01-26-53_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 3, 
    "display": true, 
@@ -20,11 +20,11 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/13seas/www/", 
-   "last_updated": "2011-07-27 01:35:16", 
+   "last_updated": "2011-08-20 11:40:08", 
    "description": "A collaboration of ocean science and engineering professional societies dedicated to enhancing the experience of ocean engineering, naval architecture, and marine technology students at the Massachusetts Institute of Technology.", 
-   "image": "", 
+   "image": "campus_org/campusorg/13seas_student_engineering_association_2011-08-20-11-40-08.gif", 
    "email": "13seas-officers@mit.edu", 
-   "thumbnail": "", 
+   "thumbnail": "campus_org/campusorg/13seas_student_engineering_association_2011-08-20-11-40-08_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 1, 
    "display": true, 
@@ -54,9 +54,9 @@
    "website": "http://web.mit.edu/activeminds/", 
    "last_updated": "2011-07-27 01:35:35", 
    "description": "Active Minds at MIT is a student-led initiative for better health and wellness, stress relief, and health education.  ", 
-   "image": "campus_org/CampusOrg/active_minds_at_mit_2011-07-27-01-32-11.png", 
+   "image": "campus_org/campusorg/active_minds_at_mit_2011-07-27-01-32-11.png", 
    "email": "activeminds-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/active_minds_at_mit_2011-07-27-01-32-11_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/active_minds_at_mit_2011-07-27-01-32-11_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 9, 
    "display": false, 
@@ -70,9 +70,9 @@
    "website": "http://aiti.mit.edu/", 
    "last_updated": "2011-07-27 01:35:38", 
    "description": "MIT Accelerating Information Technology Innovation (AITI) is a multidisciplinary group of the Massachusetts Institute of Technology's International Science and Technology Initiative (MISTI) that promotes development in emerging regions by cultivating young technology entrepreneurs. AITI develops curriculum materials, software technologies, platforms, and networks that enable undergraduate students in emerging regions to innovate in the area of information and communication technologies (ICTs).\r\n\r\nMost directly, AITI partners with universities in emerging regions and organizes advanced courses taught by MIT student/instructors. Our courses focus on mobile and Internet technologies, and are structured so that our students are awakened to the commercial possibilities of the technologies. Components of the course include detailed technical curriculum, funded business competitions, guest lectures, and networking events, all to help our students develop and realize their ideas.\r\n\r\nConcurrent to its courses, AITI scales its impact by transferring teaching expertise to our partner universities so that they can incorporate components of our courses with little intervention. Furthermore, AITI creates online course material so that we can reach students across the globe.\r\n\r\nSince 2000, AITI has sent nearly 120 MIT instructors to teach over 1500 students in five countries, resulting in the creation of businesses and the addition of course offerings at our partner universities.", 
-   "image": "campus_org/CampusOrg/africa_information_technology_initiative_2011-07-27-01-35-10.png", 
+   "image": "campus_org/campusorg/africa_information_technology_initiative_2011-07-27-01-35-10.png", 
    "email": "aiti@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/africa_information_technology_initiative_2011-07-27-01-35-10_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/africa_information_technology_initiative_2011-07-27-01-35-10_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 12, 
    "display": true, 
@@ -150,9 +150,9 @@
    "website": "http://aepi.mit.edu/", 
    "last_updated": "2011-07-27 01:44:59", 
    "description": "AEPi is MIT's Jewish fraternity. Situated on Boston's tree-lined Bay State Road, a short bike or shuttle ride from campus, our brownstone is home to an eclectic, but close, group of guys. We've got athletes, musicians, mechanics, and leaders of various campus political, technical, theater, and religious groups. We have an active social calendar including parties, sorority mixers, and weekly study breaks with delicious home-baked goods, but we still have had enough time to rank first among fraternity GPAs the past two semesters. Most importantly, however, we are a brotherhood. It's the late-night discussions, foosball tournaments, jam sessions, and the individual characters that make this fraternity great and something to be proud of.", 
-   "image": "campus_org/CampusOrg/alpha_epsilon_pi_fraternity_2011-07-27-01-44-59.png", 
+   "image": "campus_org/campusorg/alpha_epsilon_pi_fraternity_2011-07-27-01-44-59.png", 
    "email": "aepi-master@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/alpha_epsilon_pi_fraternity_2011-07-27-01-44-59_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/alpha_epsilon_pi_fraternity_2011-07-27-01-44-59_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 6, 
    "display": true, 
@@ -166,9 +166,9 @@
    "website": "http://web.mit.edu/rhonu/www/", 
    "last_updated": "2011-07-27 01:52:17", 
    "description": "The Rho Nu Chapter of Alpha Phi Alpha Fraternity was established in 1989.", 
-   "image": "campus_org/CampusOrg/alpha_phi_alpha_fraternity,_inc_2011-07-27-01-50-40.png", 
+   "image": "campus_org/campusorg/alpha_phi_alpha_fraternity,_inc_2011-07-27-01-50-40.png", 
    "email": "apa06@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/alpha_phi_alpha_fraternity,_inc_2011-07-27-01-50-40_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/alpha_phi_alpha_fraternity,_inc_2011-07-27-01-50-40_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 6, 
    "display": true, 
@@ -182,9 +182,9 @@
    "website": "http://web.mit.edu/apo/www/", 
    "last_updated": "2011-07-27 01:52:11", 
    "description": "Alpha Phi Omega is a national coed service fraternity, centered on the principles of leadership, friendship, and service. The Alpha Chi chapter here at M.I.T. consists of about 30 active men and women, and many more alumni, prospectives, and friends. We represent a variety of fields of study; we live in a variety of living groups. We have many different interests, but we are united in our desire to provide service to others.", 
-   "image": "campus_org/CampusOrg/alpha_omega_2011-07-27-01-47-36.gif", 
+   "image": "campus_org/campusorg/alpha_omega_2011-07-27-01-47-36.gif", 
    "email": "apo@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/alpha_omega_2011-07-27-01-47-36_thumbnail.gif", 
+   "thumbnail": "campus_org/campusorg/alpha_omega_2011-07-27-01-47-36_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 6, 
    "display": true, 
@@ -214,9 +214,9 @@
    "website": "http://asb.scripts.mit.edu/", 
    "last_updated": "2011-07-27 01:54:49", 
    "description": "The Alternative Spring Break Program of Massachusetts Institute of Technology is dedicated to helping communities in their time of need by offering an opportunity for students to organize and participate in community service trips during Fall Break, Spring Break, and IAP. While many students have a desire to help and many innovative ideas, they often lack an outlet for these ideas, funding, or the opportunity to enact change.  The organization aims to provide this opportunity for students who want it, at the same time raising awareness about the communities that need help.", 
-   "image": "campus_org/CampusOrg/alternative_spring_break_2011-07-27-01-54-49.png", 
+   "image": "campus_org/campusorg/alternative_spring_break_2011-07-27-01-54-49.png", 
    "email": "asb-board@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/alternative_spring_break_2011-07-27-01-54-49_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/alternative_spring_break_2011-07-27-01-54-49_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 9, 
    "display": true, 
@@ -246,9 +246,9 @@
    "website": "http://amsa.mit.edu/", 
    "last_updated": "2011-07-27 01:57:40", 
    "description": "AMSA is a national association of medical and premedical students. At MIT, AMSA consists of the premedical community.  They hold forums and bring speakers to allow students to better understand what the medical field is all about.  They also participate in service projects related to medicine.", 
-   "image": "campus_org/CampusOrg/american_medical_students_association_2011-07-27-01-57-40.png", 
+   "image": "campus_org/campusorg/american_medical_students_association_2011-07-27-01-57-40.png", 
    "email": "amsa-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/american_medical_students_association_2011-07-27-01-57-40_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/american_medical_students_association_2011-07-27-01-57-40_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 1, 
    "display": true, 
@@ -262,9 +262,9 @@
    "website": "http://mit.edu/ans/www/", 
    "last_updated": "2011-07-27 02:00:11", 
    "description": "", 
-   "image": "campus_org/CampusOrg/american_nuclear_society_2011-07-27-02-00-11.png", 
+   "image": "campus_org/campusorg/american_nuclear_society_2011-07-27-02-00-11.png", 
    "email": "ans@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/american_nuclear_society_2011-07-27-02-00-11_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/american_nuclear_society_2011-07-27-02-00-11_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 1, 
    "display": true, 
@@ -278,9 +278,9 @@
    "website": "http://web.mit.edu/arctan/www/", 
    "last_updated": "2011-07-27 02:02:32", 
    "description": "The American Red Cross Team And Network (ARCTAN) of the Massachusetts Institute of Technology is a college club of the Massachusetts Bay chapter of the American Red Cross.  They offer volunteer opportunities in all of the functions of the American Red Cross.  They specialize in Blood Services, Disaster Relief, Health and Safety, Food Pantry, and Youth Outreach.", 
-   "image": "campus_org/CampusOrg/american_red_cross_team_&_network_of_mit_2011-07-27-02-02-32.png", 
+   "image": "campus_org/campusorg/american_red_cross_team_&_network_of_mit_2011-07-27-02-02-32.png", 
    "email": "arctan-info@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/american_red_cross_team_&_network_of_mit_2011-07-27-02-02-32_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/american_red_cross_team_&_network_of_mit_2011-07-27-02-02-32_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 9, 
    "display": true, 
@@ -294,9 +294,9 @@
    "website": "http://web.mit.edu/amnesty/www/", 
    "last_updated": "2011-07-27 02:04:52", 
    "description": "The MIT Chapter is part of Amnesty International, a non-governmental, non-partisan organization working for the protection of human rights.  The MIT Amnesty International chapter meets once every other week during the spring and fall terms.  Their activities include discussion of human rights related events, letter writing, and planning of activities for public education of human rights issues.  Their public education activities include letter writing tables in Lobby 10, movie nights where we show movies with human rights themes, and guest lectures by individuals who have experience with human rights.", 
-   "image": "campus_org/CampusOrg/amnesty_international_2011-07-27-02-04-52.png", 
+   "image": "campus_org/campusorg/amnesty_international_2011-07-27-02-04-52.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/amnesty_international_2011-07-27-02-04-52_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/amnesty_international_2011-07-27-02-04-52_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 9, 
    "display": true, 
@@ -310,9 +310,9 @@
    "website": "http://anime.scripts.mit.edu/", 
    "last_updated": "2011-07-27 02:06:58", 
    "description": "The MIT Anime Club is a non-profit MIT student organization dedicated to increasing the awareness of Japanese animation (anime) on campus.  They hold free showings for current MIT students, faculty, and staff, as well as current students from local universities.  They maintain a library of DVDs, tapes, CDs, and other media for members.", 
-   "image": "campus_org/CampusOrg/anime_club_2011-07-27-02-06-58.png", 
+   "image": "campus_org/campusorg/anime_club_2011-07-27-02-06-58.png", 
    "email": "inquiry@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/anime_club_2011-07-27-02-06-58_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/anime_club_2011-07-27-02-06-58_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 8, 
    "display": true, 
@@ -358,9 +358,9 @@
    "website": "http://web.mit.edu/archery/www/", 
    "last_updated": "2011-07-27 02:13:56", 
    "description": "MIT Archery Club is a group of MIT affiliated people who enjoy the sport of Archery.", 
-   "image": "campus_org/CampusOrg/archery_club_2011-07-27-02-13-56.png", 
+   "image": "campus_org/campusorg/archery_club_2011-07-27-02-13-56.png", 
    "email": "archery-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/archery_club_2011-07-27-02-13-56_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/archery_club_2011-07-27-02-13-56_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 11, 
    "display": true, 
@@ -454,9 +454,9 @@
    "website": "http://web.mit.edu/ashrae/www/", 
    "last_updated": "2011-07-27 23:15:33", 
    "description": "ASHRAE, the American Society of Heating, Refrigerating and Air-Conditioning Engineers is an international organization of 50,000 persons with chapters throughout the world. The Society is organized for the sole purpose of advancing the arts and sciences of heating, ventilation, air conditioning and refrigeration.The MIT branch of ASHRAE was created through an initiative of MIT's Building Technology Program students and professors in late 1995. On March 4, 1996 MIt's ASHRAE branch was officially approved by the Society's Board of Directors. The objects of the Branch are exclusively scientific and educational and include, but are not limited to:\r\n - the advancements of the sciences of heating, refrigerating and air conditioning engineering and related sciences;\r\n - the continuing education of the members and other interested persons in said sciences, through lectures, demonstrations and publications;\r\n - the rendition of career guidance to students of the sciences;\r\n - the encouragement of the scientific research.", 
-   "image": "campus_org/CampusOrg/ashrae_mit_student_chapter_2011-07-27-23-15-33.png", 
+   "image": "campus_org/campusorg/ashrae_mit_student_chapter_2011-07-27-23-15-33.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/ashrae_mit_student_chapter_2011-07-27-23-15-33_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/ashrae_mit_student_chapter_2011-07-27-23-15-33_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 1, 
    "display": true, 
@@ -486,9 +486,9 @@
    "website": "http://web.mit.edu/absk/www/", 
    "last_updated": "2011-07-27 23:24:00", 
    "description": "Asian Baptist Student Koinonia, a Christian fellowship at MIT, is composed of students who seek to know and love Jesus Christ through a life shared with Him and each other. Through Bible studies, fun fellowship and activities, lots of food, and real friendships, ABSK members learn more about God, one another, and theirselves.", 
-   "image": "campus_org/CampusOrg/asian_baptist_student_koinonia_2011-07-27-23-24-00.png", 
+   "image": "campus_org/campusorg/asian_baptist_student_koinonia_2011-07-27-23-24-00.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/asian_baptist_student_koinonia_2011-07-27-23-24-00_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/asian_baptist_student_koinonia_2011-07-27-23-24-00_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 13, 
    "display": false, 
@@ -550,9 +550,9 @@
    "website": "", 
    "last_updated": "2011-07-27 23:31:34", 
    "description": "Assistive Technology Club helps enable people with severe physical disabilities to use mobile computing devices", 
-   "image": "campus_org/CampusOrg/assistive_technology_club_2011-07-27-23-31-34.png", 
+   "image": "campus_org/campusorg/assistive_technology_club_2011-07-27-23-31-34.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/assistive_technology_club_2011-07-27-23-31-34_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/assistive_technology_club_2011-07-27-23-31-34_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 12, 
    "display": true, 
@@ -598,9 +598,9 @@
    "website": "http://web.mit.edu/asa/", 
    "last_updated": "2011-07-27 23:43:23", 
    "description": "The Association of Student Activities (ASA) is a joint committee of both the Undergraduate Association (UA) and the Graduate Student Council (GSC). The ASA Executive Board advocates on behalf of student groups to gain resources for student groups' benefit, allocates resources among student groups, and arbitrates among student groups and any other involved parties. In general, the ASA oversees student group activity and is the governing body of students groups on the MIT campus.\r\n\r\nThe ASA Executive Board is comprised of ten student members: one President, one Treasurer, one Secretary, one Student Member-At-Large, two Undergraduate Members-At-Large, two Graduate Members-At-Large, one UA Representative to the ASA, and one GSC Representative to the ASA. Each member must be an MIT student. The UA President appoints the UA Representative to the ASA, and the GSC President appoints the GSC Representative to the ASA. The General Body, which is made up of all ASA-recognized student groups, elects the other eight officers of the ASA Executive Board at the Spring General Body Meeting.", 
-   "image": "campus_org/CampusOrg/association_of_student_activities_2011-07-27-23-42-56.png", 
+   "image": "campus_org/campusorg/association_of_student_activities_2011-07-27-23-42-56.png", 
    "email": "asa-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/association_of_student_activities_2011-07-27-23-42-56_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/association_of_student_activities_2011-07-27-23-42-56_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 10, 
    "display": true, 
@@ -630,9 +630,9 @@
    "website": "http://asymptones.mit.edu/", 
    "last_updated": "2011-07-27 23:47:09", 
    "description": "Asymptones was started in 2007 when a few MIT students started singing together for fun, and grew from there into our group today. The Asymptones are dedicated to being a low-time-commitment group that sings for fun! The group was started to let us sing fun songs without dedicating 6+ hours to rehearsal every week.", 
-   "image": "campus_org/CampusOrg/asymptones_2011-07-27-23-47-09.png", 
+   "image": "campus_org/campusorg/asymptones_2011-07-27-23-47-09.png", 
    "email": "asymptones-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/asymptones_2011-07-27-23-47-09_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/asymptones_2011-07-27-23-47-09_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
    "display": true, 
@@ -694,9 +694,9 @@
    "website": "http://web.mit.edu/bdclub/", 
    "last_updated": "2011-07-27 23:55:05", 
    "description": "The MIT Ballroom Dance Club is a recognized MIT student group focused on social dancing. In regular Fall and Spring workshops each year, we teach several types of dances, including those typically seen in competition and other fun dances, such as Salsa and Hustle. Our goal is for our members to feel confident and to enjoy themselves in a social dance setting.", 
-   "image": "campus_org/CampusOrg/ballroom_dance_club_2011-07-27-23-53-06.png", 
+   "image": "campus_org/campusorg/ballroom_dance_club_2011-07-27-23-53-06.png", 
    "email": "bdc-info@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/ballroom_dance_club_2011-07-27-23-53-06_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/ballroom_dance_club_2011-07-27-23-53-06_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
    "display": true, 
@@ -710,9 +710,9 @@
    "website": "http://ballroom.mit.edu/", 
    "last_updated": "2011-07-27 23:55:08", 
    "description": "The MIT Ballroom Dance Team aims to share their passion for competitive ballroom dancing with MIT students, alums, and other MIT affiliates through beginner and advanced ballroom dance classes, competitions, socials, and performances.", 
-   "image": "campus_org/CampusOrg/ballroom_dance_team_2011-07-27-23-54-50.png", 
+   "image": "campus_org/campusorg/ballroom_dance_team_2011-07-27-23-54-50.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/ballroom_dance_team_2011-07-27-23-54-50_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/ballroom_dance_team_2011-07-27-23-54-50_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
    "display": true, 
@@ -726,9 +726,9 @@
    "website": "http://web.mit.edu/bangladesh/www/", 
    "last_updated": "2011-07-27 23:59:25", 
    "description": "MIT Bangladeshi Students\u2019 Association is a close-knit community of students at Massachusetts Institute of Technology who are enthusiastic about promoting and nurturing Bangladeshi culture on campus.  MIT BSA organizes several events every term which cater to the social, intellectual and cultural aspects of our campus community.  They have Eid and Pahela Baishakh (Bengali New Year) celebrations, host notable intellectuals (including Dr. Yunus) for talks and discussions, and put on performance shows - the recent of which celebrated the evolution of Bengali music on the silver screen.   They are also committed to the service of the underprivileged and throughout the years have fundraised for important causes like Cyclone Sidr and Save the Children. MIT BSA is unique in that it is an equal mix of undergraduate and graduate students, and it serves as a platform to unite the wider Bangladeshi population in the greater Boston area.", 
-   "image": "campus_org/CampusOrg/bangladeshi_students_2011-07-27-23-59-25.png", 
+   "image": "campus_org/campusorg/bangladeshi_students_2011-07-27-23-59-25.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/bangladeshi_students_2011-07-27-23-59-25_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/bangladeshi_students_2011-07-27-23-59-25_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 4, 
    "display": true, 
@@ -758,9 +758,9 @@
    "website": "http://www.battlecode.org/", 
    "last_updated": "2011-07-28 00:04:56", 
    "description": "The 6.370 BattleCode programming competition is a unique challenge that combines battle strategy, software engineering and artificial intelligence. In short, the objective is to write the best player program for the computer game BattleCode.\r\n\r\nBattleCode, developed for 6.370, is a real-time strategy game. Two teams of robots roam the screen managing resources and attacking each other with different kinds of weapons. However, in BattleCode each robot functions autonomously; under the hood it runs a Java virtual machine loaded up with its team's player program. Robots in the game communicate by radio and must work together to accomplish their goals.", 
-   "image": "campus_org/CampusOrg/battlecode_6.370_2011-07-28-00-04-56.png", 
+   "image": "campus_org/campusorg/battlecode_6.370_2011-07-28-00-04-56.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/battlecode_6.370_2011-07-28-00-04-56_thumbnail.370_2011-07-28-00-04-56.png", 
+   "thumbnail": "campus_org/campusorg/battlecode_6.370_2011-07-28-00-04-56_thumbnail.370_2011-07-28-00-04-56.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 1, 
    "display": true, 
@@ -790,9 +790,9 @@
    "website": "http://web.mit.edu/bbuddies/www/welcome.htm", 
    "last_updated": "2011-07-28 00:15:06", 
    "description": "MIT Best Buddies is a volunteer organization dedicated to enhancing the lives of individuals with intellectual disabilities through one-on-one friendships.\r\n\r\nStudents are paired with buddies (i.e., individuals with intellectual disabilities) each year and take part in both individual and group activities. Student-buddy pairs regularly chat on the phone and make individuals outings (the nature of which are up to the buddy pair). Every semester, they hold group activities in and around MIT and the Boston area. Some of their activities include making cards for children in hospitals, watching movies at the LSC, taking the Duck Tour, and attending a Celtics game, to name a few.", 
-   "image": "campus_org/CampusOrg/best_buddies_2011-07-28-00-07-46.png", 
+   "image": "campus_org/campusorg/best_buddies_2011-07-28-00-07-46.png", 
    "email": "bb-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/best_buddies_2011-07-28-00-07-46_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/best_buddies_2011-07-28-00-07-46_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 9, 
    "display": true, 
@@ -822,9 +822,9 @@
    "website": "http://bhangra.mit.edu/", 
    "last_updated": "2011-07-28 00:15:17", 
    "description": "MIT is a group of individuals from MIT and the Boston area who love Bhangra (a upbeat folk dance style from the state of Punjab in Northern India) and are dedicated to exhibiting the energy and excitement that comes with it!\r\n\r\nSince their humble beginnings in 1991, their has grown enormously while adhering to their mission of exposing the community to bhangra traditions and culture. They have competed with some of the best bhangra teams in both the United States and Canada. They have performed at various showcases and at many of MIT's domestic events. Every summer, they teach bhangra to people in the Greater Boston area of all ages and skill levels. They also offer many services, including costume rentals and private performances. They strongly believe in our mission of spreading and sharing the bhangra lifestyle. ", 
-   "image": "campus_org/CampusOrg/bhangra_club_2011-07-28-00-12-10.png", 
+   "image": "campus_org/campusorg/bhangra_club_2011-07-28-00-12-10.png", 
    "email": "bhangra-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/bhangra_club_2011-07-28-00-12-10_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/bhangra_club_2011-07-28-00-12-10_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
    "display": true, 
@@ -838,9 +838,9 @@
    "website": "http://web.mit.edu/biodiesel/", 
    "last_updated": "2011-07-28 00:15:19", 
    "description": "Biodiesel@MIT is a group of MIT students, faculty, and staff who have worked over the past few years to install a biodiesel processor on the MIT campus as part of the MIT Energy Initiative. The processor converts waste vegetable oil from campus dining facilities into biodiesel to be mixed with regular diesel fuel and used in the institute's diesel-powered Tech Shuttles and campus equipment.", 
-   "image": "campus_org/CampusOrg/biodiesel@mit_2011-07-28-00-14-52.png", 
+   "image": "campus_org/campusorg/biodiesel@mit_2011-07-28-00-14-52.png", 
    "email": "biodiesel-info@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/biodiesel@mit_2011-07-28-00-14-52_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/biodiesel@mit_2011-07-28-00-14-52_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 8, 
    "display": true, 
@@ -918,9 +918,9 @@
    "website": "http://web.mit.edu/bgsa/www/", 
    "last_updated": "2011-07-28 00:23:26", 
    "description": "The purpose of the BGSA is Education, Empowerment, Encouragement, and Entertainment. They are an organization that recognizes graduation with a Masters or Ph.D. as our #1 priority. Secondly they wish to empower their members so that they can properly transfer the usage of the tools acquired at MIT to successfully advance their community. Third they wish to provide a place of refuge. A place where African, African American, and Afro-Caribbean graduate students are encouraged to express ideas, concepts, and frustrations without rebuke. Finally, they try to provide opportunities for their membership to relax, relate, and release through healthy entertainment.", 
-   "image": "campus_org/CampusOrg/black_graduate_student_association_2011-07-28-00-23-26.png", 
+   "image": "campus_org/campusorg/black_graduate_student_association_2011-07-28-00-23-26.png", 
    "email": "bgsa-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/black_graduate_student_association_2011-07-28-00-23-26_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/black_graduate_student_association_2011-07-28-00-23-26_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 4, 
    "display": true, 
@@ -950,9 +950,9 @@
    "website": "http://web.mit.edu/black-women/www/", 
    "last_updated": "2011-07-28 00:26:10", 
    "description": "", 
-   "image": "campus_org/CampusOrg/black_women's_alliance_2011-07-28-00-26-10.png", 
+   "image": "campus_org/campusorg/black_women's_alliance_2011-07-28-00-26-10.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/black_women's_alliance_2011-07-28-00-26-10_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/black_women's_alliance_2011-07-28-00-26-10_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 4, 
    "display": false, 
@@ -1046,9 +1046,9 @@
    "website": "http://www.campkesem.org/site/c.jvI0ImN0JuE/b.2536417/k.C646/Welcome_to_Camp_Kesem_at_MIT.htm", 
    "last_updated": "2011-07-28 00:37:26", 
    "description": "Camp Kesem MIT is a student-run summer camp for kids whose parents have or have had cancer.", 
-   "image": "campus_org/CampusOrg/camp_kesem_mit_2011-07-28-00-37-26.png", 
+   "image": "campus_org/campusorg/camp_kesem_mit_2011-07-28-00-37-26.png", 
    "email": "mit@campkesem.org", 
-   "thumbnail": "campus_org/CampusOrg/camp_kesem_mit_2011-07-28-00-37-26_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/camp_kesem_mit_2011-07-28-00-37-26_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 9, 
    "display": true, 
@@ -1110,9 +1110,9 @@
    "website": "http://web.mit.edu/caribbean/www/", 
    "last_updated": "2011-07-28 00:44:30", 
    "description": "The MIT Caribbean Club is an active, long-standing organization of the institute. The club was created primarily so that MIT students could maintain their Caribbean identity, culture, and heritage away from their homeland. Over the years, the MIT Caribbean Club has given many West Indian students at MIT, and in the greater Boston area, a slice of home away from home. The Club has worked arduously to educate as many people in the MIT and Boston community about Caribbean culture and develop an appreciation for our heritage. The club continues to work towards these objectives as we seek to further encourage support for the club and further participation and involvement in the club.", 
-   "image": "campus_org/CampusOrg/caribbean-club_2011-07-28-00-44-30.png", 
+   "image": "campus_org/campusorg/caribbean-club_2011-07-28-00-44-30.png", 
    "email": "caribbean-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/caribbean-club_2011-07-28-00-44-30_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/caribbean-club_2011-07-28-00-44-30_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 4, 
    "display": true, 
@@ -1126,9 +1126,9 @@
    "website": "http://web.mit.edu/rueda/www/", 
    "last_updated": "2011-07-28 00:46:47", 
    "description": "The MIT Casino Rueda Group is an entirely student-run organization. Its founding members learned the dance in places such as Miami and San Francisco, and have been spreading the dance to others at MIT and beyond since the fall of 1999. They hold workshops once or twice a month, that provide an intense rueda experience.", 
-   "image": "campus_org/CampusOrg/casino_rueda_group_2011-07-28-00-46-47.png", 
+   "image": "campus_org/campusorg/casino_rueda_group_2011-07-28-00-46-47.png", 
    "email": "rueda-webmaster@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/casino_rueda_group_2011-07-28-00-46-47_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/casino_rueda_group_2011-07-28-00-46-47_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
    "display": true, 
@@ -1158,9 +1158,9 @@
    "website": "http://www.mit.edu/afs/athena/activity/c/chamak/www/", 
    "last_updated": "2011-07-28 00:52:07", 
    "description": "MIT Chamak aims to introduce a new dance genre expressing energy, culture, and grace through a fusion of Eastern and Western dance and musical styles.  Since the Fall of 2002, this team has performed in Boston, Cambridge, Cleveland, New Jersey, and New York. The dancers and choreographers creatively use their dance skills to produce innovative and distinctive masterpieces that continue to astound their audiences.", 
-   "image": "campus_org/CampusOrg/chamak_2011-07-28-00-52-07.png", 
+   "image": "campus_org/campusorg/chamak_2011-07-28-00-52-07.png", 
    "email": "chamakboard@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/chamak_2011-07-28-00-52-07_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/chamak_2011-07-28-00-52-07_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 2, 
    "display": true, 
@@ -1238,9 +1238,9 @@
    "website": "http://cdi.mit.edu/", 
    "last_updated": "2011-07-28 01:00:40", 
    "description": "China Development Initiative (CDI) is a student-run organization that is focused on providing sustainable programs related to China's development for MIT students. The goal of CDI is to provide MIT students with more opportunities to learn about China's development.  \r\n\r\nCDI was founded in October 2007 by MIT students who are very passionate about learning more about China's development. Since its founding, CDI has created various programs and established solid relationships with various China-related organizations from top institutions in both the United States and China.", 
-   "image": "campus_org/CampusOrg/china_development_initiative_2011-07-28-01-00-40.png", 
+   "image": "campus_org/campusorg/china_development_initiative_2011-07-28-01-00-40.png", 
    "email": "mit-cdi@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/china_development_initiative_2011-07-28-01-00-40_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/china_development_initiative_2011-07-28-01-00-40_thumbnail.png", 
    "date_created": "2011-05-03 12:27:37", 
    "type": 9, 
    "display": true, 
@@ -1430,9 +1430,9 @@
    "website": "http://web.mit.edu/clubchem/www/", 
    "last_updated": "2011-07-31 01:19:24", 
    "description": "ClubChem is an organization dedicated to the MIT undergraduate chemistry community and friends. They hold weekly study breaks, organize dinners with professors, design and distribute Course 5 merchandise, and plan other events with the goals of bringing together MIT's chemistry students and interfacing with the rest of the undergraduate community. ", 
-   "image": "campus_org/CampusOrg/clubchem_2011-07-31-01-19-24.png", 
+   "image": "campus_org/campusorg/clubchem_2011-07-31-01-19-24.png", 
    "email": "clubchem-webmaster@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/clubchem_2011-07-31-01-19-24_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/clubchem_2011-07-31-01-19-24_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
    "display": true, 
@@ -1478,9 +1478,9 @@
    "website": "http://web.mit.edu/mitcrc/", 
    "last_updated": "2011-07-31 01:25:39", 
    "description": "The purpose of this club is to channel the energy and enthusiasm elicited by robotics through the rigorous process of engineering design. Members will apply engineering knowledge and principles in a structured approach to the design and construction of competitive robots.", 
-   "image": "campus_org/CampusOrg/competitive_robotics_club_2011-07-31-01-24-43.png", 
+   "image": "campus_org/campusorg/competitive_robotics_club_2011-07-31-01-24-43.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/competitive_robotics_club_2011-07-31-01-24-43_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/competitive_robotics_club_2011-07-31-01-24-43_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 8, 
    "display": true, 
@@ -1510,9 +1510,9 @@
    "website": "http://web.mit.edu/21m401/www/", 
    "last_updated": "2011-07-31 01:46:07", 
    "description": "The MIT Concert Choir is a choral group, open by audition to both graduate and undergraduate students, and to members of the MIT community. The Concert Choir works to create an environment where student singers can learn, perform, and contribute to the MIT musical community. By bringing together singers in a social, academic, and performance atmosphere, they hope to expose the MIT community to a wide range of choral music literature and history. \r\n\r\nAs MIT's large student chorus, the Concert Choir performs major works from the standard repertoire each semester, as well as a variety of shorter and lesser-known pieces. The Choir has a rich history originating with the all-male Glee Club in 1884 and continuing with the MIT Choral Society from 1923 until the formation of the Concert Choir under John Oliver in 1989. William Cutter, who came to MIT in 1990 as John Oliver's assistant and rehearsal pianist, assumed the direction of MIT's choral program upon Mr. Oliver's departure in 1996.\r\n\r\nIn recent years, the Concert Choir has toured in Budapest, Vienna, and Lausanne, and performed in numerous collaborations with the smaller MIT Chamber Chorus, the MIT Symphony Orchestra, the MIT Wind Ensemble, the choirs of Brown, Tufts and Brandeis Universities, and the orchestras of Tufts University and Wellesley College. In 2002, the MIT Concert Choir was invited to perform with the Boston Pops under Keith Lockhart for MIT's Tech Night at the Pops. Often featuring the finest guest soloists along with student soloists, the student singers of the group regularly expose the MIT community to a wide range of choral music literature.", 
-   "image": "campus_org/CampusOrg/concert_choir_students_2011-07-31-01-46-07.png", 
+   "image": "campus_org/campusorg/concert_choir_students_2011-07-31-01-46-07.png", 
    "email": "concert-choir-admin@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/concert_choir_students_2011-07-31-01-46-07_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/concert_choir_students_2011-07-31-01-46-07_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 2, 
    "display": true, 
@@ -1526,9 +1526,9 @@
    "website": "https://sites.google.com/site/ccmatmit/", 
    "last_updated": "2011-07-31 01:49:22", 
    "description": "The Consulting Club at MIT (CCM) aims to facilitate a seamless transition from graduate school to a successful career in management consulting. \r\n\r\nCCM consists of a vibrant community of 500 student members and 60 alumni members. Check out these upcoming and recent great events we have organized", 
-   "image": "campus_org/CampusOrg/consulting_group_2011-07-31-01-49-21.png", 
+   "image": "campus_org/campusorg/consulting_group_2011-07-31-01-49-21.png", 
    "email": "ccm-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/consulting_group_2011-07-31-01-49-22_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/consulting_group_2011-07-31-01-49-22_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 5, 
    "display": true, 
@@ -1542,9 +1542,9 @@
    "website": "http://mit.edu/mitcc/", 
    "last_updated": "2011-07-31 01:51:23", 
    "description": "MIT Cricket Club is a group of cricket enthusiasts from MIT, Cambridge MA. Majority of the club members are students of MIT, or friends of MIT students/affiliates. The club was formed recently and teams from the club have participated in Boston hard tennis ball cricket tournaments.", 
-   "image": "campus_org/CampusOrg/cricket_club_2011-07-31-01-51-23.png", 
+   "image": "campus_org/campusorg/cricket_club_2011-07-31-01-51-23.png", 
    "email": "cricket@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/cricket_club_2011-07-31-01-51-23_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/cricket_club_2011-07-31-01-51-23_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 11, 
    "display": true, 
@@ -1558,9 +1558,9 @@
    "website": "http://web.mit.edu/crossp/www/", 
    "last_updated": "2011-07-31 01:56:34", 
    "description": "The Cross Products are the most \"normal\" co-ed Christian a cappella group at MIT.  They exist to glorify God through music and our lives, and to tell others about the ways that He has changed us. They are each products of the cross of Jesus Christ. The name \"cross products\" stems from as Christians they consider their selves products of the cross of Jesus Christ. \r\n\r\nOne part of their vision is to reflect God's heart for all people. Last Spring Break they sang and volunteered at schools, churches, nursing homes, and homeless shelters in the Seattle area.\r\n\r\nThe Cross Products began singing at MIT in the fall of 1988. The group was formed to communicate the good news of Jesus Christ to people through music, skits, and spoken word, and to complement the other a cappella groups in existence at MIT as a Christian alternative.\r\n\r\n", 
-   "image": "campus_org/CampusOrg/cross_products_2011-07-31-01-56-34.png", 
+   "image": "campus_org/campusorg/cross_products_2011-07-31-01-56-34.png", 
    "email": "xprod@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/cross_products_2011-07-31-01-56-34_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/cross_products_2011-07-31-01-56-34_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 2, 
    "display": true, 
@@ -1590,9 +1590,9 @@
    "website": "http://cycling.mit.edu/www/", 
    "last_updated": "2011-07-31 02:02:13", 
    "description": "The MIT cycling club is an organization dedicated to encouraging the enjoyment of all types of cycling in the MIT community. They welcome members of the the MIT community and friends to most of their club events such as group rides, classes, and community service. In addition to the club events, MIT cycling is the home of the four racing teams covering the four collegiate bicycle racing disciplines, Track, Road, Cyclocross, and Mountain. The team races in the USAC organized Eastern Collegiate Cycling Conference (ECCC).", 
-   "image": "campus_org/CampusOrg/cycling_club_2011-07-31-02-00-40.png", 
+   "image": "campus_org/campusorg/cycling_club_2011-07-31-02-00-40.png", 
    "email": "cycling-club@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/cycling_club_2011-07-31-02-00-40_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/cycling_club_2011-07-31-02-00-40_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 11, 
    "display": true, 
@@ -1606,9 +1606,9 @@
    "website": "http://dancetroupe.mit.edu/", 
    "last_updated": "2011-07-31 02:05:15", 
    "description": "Founded in 1994, the mit Dance Troupe is the largest dance organization at the Massachusetts Institute of Technology. They are a student-run group dedicated to bringing a variety of dance style to everyone in the mit community, regardless of level. Every semester, they offer various dance classes to their members and produce one full length concert. Their concerts are some of the most highly anticipated and well-attended events on campus.", 
-   "image": "campus_org/CampusOrg/dancetroupe_2011-07-31-02-05-15.png", 
+   "image": "campus_org/campusorg/dancetroupe_2011-07-31-02-05-15.png", 
    "email": "dt-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/dancetroupe_2011-07-31-02-05-15_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/dancetroupe_2011-07-31-02-05-15_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 2, 
    "display": true, 
@@ -1654,9 +1654,9 @@
    "website": "http://dramashop.mit.edu/", 
    "last_updated": "2011-07-31 02:12:39", 
    "description": "MIT Dramashop is a co-curricular student theater group open to all members of the MIT community. They offer many opportunities for people interested in acting, directing, stage managing, writing, and designing or building sets, lights, sound, and costumes.", 
-   "image": "campus_org/CampusOrg/dramashop_2011-07-31-02-12-28.png", 
+   "image": "campus_org/campusorg/dramashop_2011-07-31-02-12-28.png", 
    "email": "ds_officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/dramashop_2011-07-31-02-12-28_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/dramashop_2011-07-31-02-12-28_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 2, 
    "display": true, 
@@ -1766,9 +1766,9 @@
    "website": "http://esp.mit.edu/", 
    "last_updated": "2011-07-31 02:31:42", 
    "description": "The MIT Educational Studies Program is a group that organizes classes taught by college students, for middle- and high-school students. Their motto is \u201cTeach Anything, Learn Anything\u201d; their goal is to instill excitement for both learning and teaching.", 
-   "image": "campus_org/CampusOrg/educational_studies_program_2011-07-31-02-27-09.png", 
+   "image": "campus_org/campusorg/educational_studies_program_2011-07-31-02-27-09.png", 
    "email": "esp@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/educational_studies_program_2011-07-31-02-27-09_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/educational_studies_program_2011-07-31-02-27-09_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
    "display": true, 
@@ -1784,7 +1784,7 @@
    "description": "", 
    "image": "", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/educational_technologies_group_2011-07-31-02-31-26_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/educational_technologies_group_2011-07-31-02-31-26_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 9, 
    "display": false, 
@@ -1830,9 +1830,9 @@
    "website": "http://web.mit.edu/evt/", 
    "last_updated": "2011-07-31 15:26:49", 
    "description": "The MIT Electric Vehicle Team (EVT) is a group of over 30 active undergraduate and graduate students at MIT who are dedicated to the research, design, and operation of electric vehicles (EVs). The team has completed one EV conversion and started a second conversion in June 2009. In addition, the team is active in education and community outreach. EVT is supported by the Sloan Automotive Laboratory, Electrochemical Energy Laboratory, and Edgerton Center at MIT.", 
-   "image": "campus_org/CampusOrg/electric_vehicle_team_2011-07-31-15-26-49.png", 
+   "image": "campus_org/campusorg/electric_vehicle_team_2011-07-31-15-26-49.png", 
    "email": "evt-contact@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/electric_vehicle_team_2011-07-31-15-26-49_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/electric_vehicle_team_2011-07-31-15-26-49_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 8, 
    "display": true, 
@@ -1878,9 +1878,9 @@
    "website": "http://ems.mit.edu/", 
    "last_updated": "2011-07-31 15:29:39", 
    "description": "MIT-EMS is an ASA-approved student group, dedicated to providing emergency medical support resources to the MIT Community. In addition to operating MIT's ambulance at the Basic Life Support (BLS) level, they also train undergraduate and graduate students, as well as MIT faculty and staff, in emergency medical skills.", 
-   "image": "campus_org/CampusOrg/ems_2011-07-31-15-29-39.png", 
+   "image": "campus_org/campusorg/ems_2011-07-31-15-29-39.png", 
    "email": "ems-webmaster@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/ems_2011-07-31-15-29-39_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/ems_2011-07-31-15-29-39_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 9, 
    "display": true, 
@@ -1894,9 +1894,9 @@
    "website": "http://www.mitenergyclub.org/", 
    "last_updated": "2011-07-31 15:32:50", 
    "description": "A student club deeply grounded into MIT\u2019s tradition of interdisciplinary work, the MIT Energy Club was founded in 2004 in order to create and integrated, well-educated MIT energy community across campus through events and initiatives focused on fact-based energy analysis.", 
-   "image": "campus_org/CampusOrg/energy_club_2011-07-31-15-32-50.png", 
+   "image": "campus_org/campusorg/energy_club_2011-07-31-15-32-50.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/energy_club_2011-07-31-15-32-50_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/energy_club_2011-07-31-15-32-50_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
    "display": true, 
@@ -1974,9 +1974,9 @@
    "website": "http://hkn.mit.edu/", 
    "last_updated": "2011-07-31 18:00:54", 
    "description": "Eta Kappa Nu is the national honor society for Electrical Engineering and Computer science. Eta Kappa Nu was founded in 1904 at the University of Illinois at Urbana-Champagne. Currently, HKN has over 200 chapters in the United States, Europe, and Asia. Eligibility depends mostly on scholarship, personal character, voluntary services, and distinguished accomplishments. For undergraduates, the most important qualification is scholarship during the first years in college.\r\n\r\nAt MIT, HKN is primarily interested in improving course VI by providing students with many helpful resources. These resources include the Underground guide to course VI and VI-A, the HKN tutoring program, the Big Sib program, and many social events.", 
-   "image": "campus_org/CampusOrg/eta_kappa_nu_2011-07-31-18-00-54.png", 
+   "image": "campus_org/campusorg/eta_kappa_nu_2011-07-31-18-00-54.png", 
    "email": "hkn-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/eta_kappa_nu_2011-07-31-18-00-54_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/eta_kappa_nu_2011-07-31-18-00-54_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 1, 
    "display": true, 
@@ -2086,9 +2086,9 @@
    "website": "http://mitflying.scripts.mit.edu/www/", 
    "last_updated": "2011-07-31 20:20:04", 
    "description": "The MIT Flying Club\u2019s primary purpose is to motivate, encourage, and facilitate an affordable, hands-on experience in flying. Originally formed in the late 1920s, the MIT Flying Club (MITFC) was reborn in the Fall of 2005 to provide members the opportunity to meet and interact with others who are interested in aviation.\r\n\r\nThroughout the academic year, MITFC holds a variety of informal gatherings where members can meet to discuss aviation, listen to lectures, and watch movies. In addition, MITFC maintains a library of navigational and instructional materials. Several textbooks, a headset, U.S. sectionals, and airport facility directories are available for members to borrow. While based at MIT, club membership is open to everyone.\r\n\r\nA \u201cloggable\u201d flight simulator is being readied for use by the end of the semester. In addition, MITFC will be holding a flying trip to Cape Cod this April. For more information about the club\u2019s upcoming events, and how to get into powered and unpowered flight, download the Powerpoint Presentation.\r\n\r\nThe MIT Flying Club is organized by the MIT Flying Club Executive Board.", 
-   "image": "campus_org/CampusOrg/flying_club_2011-07-31-20-20-04.png", 
+   "image": "campus_org/campusorg/flying_club_2011-07-31-20-20-04.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/flying_club_2011-07-31-20-20-04_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/flying_club_2011-07-31-20-20-04_thumbnail.png", 
    "date_created": "2011-05-03 12:27:38", 
    "type": 8, 
    "display": true, 
@@ -2230,9 +2230,9 @@
    "website": "http://mitgcc.mit.edu/", 
    "last_updated": "2011-07-31 20:41:43", 
    "description": "The MIT Chapter of Global China Connection was founded in the fall of 2010 by a group of students interested in international professional and business development. MIT GCC will provide future leaders and the international community with a platform to engage each other on topics of global trade, international relations, sustainable development, and cultural exchanges.\r\n\r\nAs China develops a large presence in the international arena, it is crucial to prepare MIT students for professional exchange with the international community. MIT GCC promotes greater awareness and understanding of these issues in the MIT community by means such as publications, general body meetings, professional seminars, delegation visits, international workshops, mentorship, service events, and other educational activities. As one of over 50 chapters established worldwide, MIT GCC is dedicated propelling this mission forward.", 
-   "image": "campus_org/CampusOrg/global_china_connection_2011-07-31-20-32-37.png", 
+   "image": "campus_org/campusorg/global_china_connection_2011-07-31-20-32-37.png", 
    "email": "gcc@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/global_china_connection_2011-07-31-20-32-37_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/global_china_connection_2011-07-31-20-32-37_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 5, 
    "display": true, 
@@ -2246,9 +2246,9 @@
    "website": "http://gpi.mit.edu/", 
    "last_updated": "2011-07-31 20:41:44", 
    "description": "The Global Poverty Initiative is a completely student-run organization dedicated to fighting poverty. They use our three teams (education, action, and outreach) to inform the MIT community about poverty issues and what is being done at MIT, to send students abroad to interact with community partners, and to connect students to organizations and non-profits all over the world. They have also teamed up with Komaza to publish the beautiful international development magazine. ", 
-   "image": "campus_org/CampusOrg/global_poverty_initiative_2011-07-31-20-36-10.png", 
+   "image": "campus_org/campusorg/global_poverty_initiative_2011-07-31-20-36-10.png", 
    "email": "gpi-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/global_poverty_initiative_2011-07-31-20-36-10_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/global_poverty_initiative_2011-07-31-20-36-10_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 9, 
    "display": true, 
@@ -2262,9 +2262,9 @@
    "website": "http://www.mitgsw.org/", 
    "last_updated": "2011-07-31 20:41:48", 
    "description": "The annual MIT Global Startup Workshop (GSW) brings together entrepreneurial leaders, financiers, students, professors, government agents and private parties to build a global support network for entrepreneurship. They bridge boundaries across different sectors to stimulate discussion, generate ideas and share best entrepreneurial practices. Since 1998 our non-profit, student run organization has held 14 international workshops, spanning 6 continents and attracted participants from 70 nations.\r\n", 
-   "image": "campus_org/CampusOrg/global_startup_workshop_2011-07-31-20-40-21.png", 
+   "image": "campus_org/campusorg/global_startup_workshop_2011-07-31-20-40-21.png", 
    "email": "gsw-contact@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/global_startup_workshop_2011-07-31-20-40-21_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/global_startup_workshop_2011-07-31-20-40-21_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 5, 
    "display": true, 
@@ -2326,9 +2326,9 @@
    "website": "http://web.mit.edu/mitgcf/www/", 
    "last_updated": "2011-07-31 20:47:30", 
    "description": "The MIT Graduate Christian Fellowship (GCF) is an MIT recognized student group consisting of Christians who desire  to know, love and obey God better, and to reflect the love and presence of Jesus Christ.\r\n\r\nGCF, along with the Asian (ACF), Black (BCF), Sloan (SCF), and the United (UCF) Christian Fellowships, are affiliated with InterVarsity Christian Fellowship, USA (IVCF).\r\n\r\nThey are also a part of United Christian Organization (UCO), an umbrella group of 16 Christian fellowships at MIT that are united in vision to serve and glorify God.", 
-   "image": "campus_org/CampusOrg/graduate_christian_fellowship_2011-07-31-20-45-46.png", 
+   "image": "campus_org/campusorg/graduate_christian_fellowship_2011-07-31-20-45-46.png", 
    "email": "mit-gcf-info@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/graduate_christian_fellowship_2011-07-31-20-45-46_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/graduate_christian_fellowship_2011-07-31-20-45-46_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 13, 
    "display": true, 
@@ -2788,7 +2788,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/~isshinryu/www/", 
-   "last_updated": "2011-08-13 13:32:03", 
+   "last_updated": "2011-08-19 22:41:24", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2804,7 +2804,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-08-13 13:32:28", 
+   "last_updated": "2011-08-19 22:41:26", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2820,7 +2820,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-08-13 13:32:37", 
+   "last_updated": "2011-08-19 22:41:28", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -2836,13 +2836,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:41:36", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Jewish Student Activism"
   }
@@ -2852,13 +2852,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:41:48", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Judo Club"
   }
@@ -2868,13 +2868,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:42:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 12, 
    "display": false, 
    "name": "Kaleidoscope"
   }
@@ -2884,13 +2884,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:01", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
    "name": "Kappa Alpha Theta"
   }
@@ -2900,13 +2900,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Kendall Band Preservation Society"
   }
@@ -2916,13 +2916,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:13", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Kendo Club"
   }
@@ -2932,13 +2932,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:43:21", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Kickboxing"
   }
@@ -2948,13 +2948,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:39", 
+   "last_updated": "2011-08-19 22:44:00", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:39", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Kokikai"
   }
@@ -2964,13 +2964,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:12", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 15, 
    "display": false, 
    "name": "Komaza"
   }
@@ -2980,13 +2980,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:18", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Korean Graduate Students Association"
   }
@@ -2996,13 +2996,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:24", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Korean Karate Club"
   }
@@ -3012,13 +3012,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:44:47", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Korean Students Association"
   }
@@ -3028,13 +3028,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:45:21", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "La Union Chicana por Aztlan"
   }
@@ -3044,13 +3044,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:45:27", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Laboratory for Chocolate Science"
   }
@@ -3060,13 +3060,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:45:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Latter-day Saint Student Association"
   }
@@ -3076,7 +3076,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:46:08", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3092,13 +3092,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:46:17", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Leadership Training Institute"
   }
@@ -3108,15 +3108,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:46:59", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
-   "name": "Lebanese Club at MIT, The"
+   "name": "Lebanese Club at MIT"
   }
  }, 
  {
@@ -3124,13 +3124,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:05", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "Lecture Series Committee"
   }
@@ -3140,13 +3140,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Lindy Hop Society"
   }
@@ -3156,7 +3156,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:15", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3172,13 +3172,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:22", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Lion Dance Group"
   }
@@ -3188,7 +3188,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:28", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3204,13 +3204,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Live Music Connection"
   }
@@ -3220,13 +3220,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "Living Group Council"
   }
@@ -3236,13 +3236,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Logarhythms"
   }
@@ -3252,31 +3252,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:47:59", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Lutheran-Episcopal Ministry"
-  }
- }, 
- {
-  "pk": 231, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "Magic the Gathering"
   }
  }, 
  {
@@ -3284,13 +3268,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:14", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Malaysian Students Association"
   }
@@ -3300,13 +3284,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:25", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Marching Band"
   }
@@ -3316,13 +3300,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:34", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Maum Meditation"
   }
@@ -3332,13 +3316,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Media and Entertainment Society"
   }
@@ -3348,13 +3332,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:46", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Medlinks"
   }
@@ -3364,13 +3348,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:55:51", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Melodies"
   }
@@ -3380,13 +3364,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:24", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Gymnastics Club"
   }
@@ -3396,13 +3380,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:28", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Ice Hockey Club"
   }
@@ -3412,13 +3396,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:35", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Rugby Football Club"
   }
@@ -3428,13 +3412,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Ultimate Frisbee"
   }
@@ -3444,13 +3428,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:57:53", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Men's Volleyball Club"
   }
@@ -3460,13 +3444,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:00", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "MentorConnection"
   }
@@ -3476,13 +3460,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:26", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Mes Latino"
   }
@@ -3492,13 +3476,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Mexican Student Association"
   }
@@ -3508,7 +3492,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:40", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3524,13 +3508,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:58:49", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 12, 
    "display": false, 
    "name": "Middle East Education Through Technology"
   }
@@ -3540,31 +3524,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:59:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 5, 
    "display": false, 
    "name": "Minority Business Association"
-  }
- }, 
- {
-  "pk": 249, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MIT for Liberty"
   }
  }, 
  {
@@ -3588,13 +3556,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:59:38", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "MITALY - Italian Student Association"
   }
@@ -3604,13 +3572,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 22:59:44", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "mitBEEF"
   }
@@ -3620,31 +3588,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:00:49", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "MITKNIT"
-  }
- }, 
- {
-  "pk": 254, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "MITRaas"
   }
  }, 
  {
@@ -3652,13 +3604,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:01:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Mocha Moves Dance Squad"
   }
@@ -3668,15 +3620,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:02:39", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
-   "name": "Model United Nations(MUN)"
+   "name": "Model United Nations (MUN)"
   }
  }, 
  {
@@ -3684,13 +3636,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:03:20", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Movements in Time"
   }
@@ -3700,46 +3652,30 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:03:25", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Mujeres Latinas"
-  }
- }, 
- {
-  "pk": 259, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "Mural Club"
   }
  }, 
  {
   "pk": 260, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "website": "http://muses.mit.edu/muses/", 
+   "last_updated": "2011-08-19 23:07:24", 
    "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "image": "campus_org/campusorg/muses,_the_mit_2011-08-19-23-07-24.png", 
+   "email": "muses@mit.edu", 
+   "thumbnail": "campus_org/campusorg/muses,_the_mit_2011-08-19-23-07-24_thumbnail.png", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
+   "type": 2, 
+   "display": true, 
    "name": "Muses, The MIT"
   }
  }, 
@@ -3748,13 +3684,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:07:33", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Musical Theatre Guild"
   }
@@ -3764,13 +3700,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:07:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Muslim Students' Association"
   }
@@ -3780,13 +3716,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:07:48", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Mystery Hunt"
   }
@@ -3796,7 +3732,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:08:07", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3812,7 +3748,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:08:12", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -3828,13 +3764,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:08:25", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Natya"
   }
@@ -3844,31 +3780,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:08:33", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 5, 
    "display": false, 
    "name": "Network of Sloan Undergraduate Women"
-  }
- }, 
- {
-  "pk": 268, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "Networks Initiative"
   }
  }, 
  {
@@ -3876,31 +3796,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
+   "last_updated": "2011-08-19 23:09:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Nigerian Students Association"
-  }
- }, 
- {
-  "pk": 270, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:40", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:40", 
-   "type": 1, 
-   "display": false, 
-   "name": "NOBCChE-MIT"
   }
  }, 
  {
@@ -3908,13 +3812,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:10:07", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 7, 
    "display": false, 
    "name": "Number Six Club - Delta Psi"
   }
@@ -3924,13 +3828,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:10:14", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Ohms"
   }
@@ -3940,13 +3844,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:10:28", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Oori"
   }
@@ -3956,31 +3860,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:10:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Opera Club"
-  }
- }, 
- {
-  "pk": 275, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Order of Omega"
   }
  }, 
  {
@@ -3988,13 +3876,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:12:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Organization of Serbian Students"
   }
@@ -4004,13 +3892,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:12:19", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 15, 
    "display": false, 
    "name": "OrigaMIT"
   }
@@ -4020,13 +3908,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:12:41", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Orthodox Christian Fellowship"
   }
@@ -4036,13 +3924,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:12:52", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Outing Club"
   }
@@ -4052,13 +3940,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:13:30", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Pagan Students' Group"
   }
@@ -4067,15 +3955,15 @@
   "pk": 282, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "website": "http://web.mit.edu/paksmit/www/events.html", 
+   "last_updated": "2011-08-19 23:15:07", 
    "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "image": "campus_org/campusorg/paksmit_2011-08-19-23-15-07.gif", 
+   "email": "paksmit-exec@mit.edu", 
+   "thumbnail": "campus_org/campusorg/paksmit_2011-08-19-23-15-07_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
+   "type": 13, 
+   "display": true, 
    "name": "Paksmit"
   }
  }, 
@@ -4084,13 +3972,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:15:17", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Palestine@MIT"
   }
@@ -4100,13 +3988,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:15:21", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 10, 
    "display": false, 
    "name": "Panhellenic Association"
   }
@@ -4116,13 +4004,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:16:10", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Pershing Rifles C-12 (Abn)"
   }
@@ -4132,31 +4020,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:16:14", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Persian Students Association"
-  }
- }, 
- {
-  "pk": 287, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Petroleum Club"
   }
  }, 
  {
@@ -4164,13 +4036,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:17:13", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
    "name": "Phi Delta Theta"
   }
@@ -4180,15 +4052,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:17:20", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
-   "name": "Phi Kappa Sigma International Fraternity"
+   "name": "Phi Kappa Sigma"
   }
  }, 
  {
@@ -4196,7 +4068,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:17:26", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -4212,13 +4084,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:17:32", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
    "name": "Pi Beta Phi"
   }
@@ -4228,31 +4100,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:17:43", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 6, 
    "display": false, 
    "name": "Pi Kappa Alpha Fraternity"
-  }
- }, 
- {
-  "pk": 293, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Platypus"
   }
  }, 
  {
@@ -4260,13 +4116,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:18:15", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Polish Club at MIT"
   }
@@ -4276,13 +4132,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:18:19", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Portuguese Student Association"
   }
@@ -4292,13 +4148,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:18:23", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Pro-Life"
   }
@@ -4308,13 +4164,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:18:29", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 13, 
    "display": false, 
    "name": "Protestant Student Community"
   }
@@ -4324,31 +4180,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:19:54", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Qigong"
-  }
- }, 
- {
-  "pk": 299, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Quidditch Team"
   }
  }, 
  {
@@ -4356,13 +4196,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:42:54", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Quiz Bowl Team"
   }
@@ -4372,31 +4212,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:00", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Radio Society W1MX"
-  }
- }, 
- {
-  "pk": 302, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Rainbow Coffeehouse"
   }
  }, 
  {
@@ -4404,13 +4228,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:12", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "RecycleMania"
   }
@@ -4420,15 +4244,31 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:22", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
-   "name": "Resonance of MIT, The"
+   "name": "Resonance"
+  }
+ }, 
+ {
+  "pk": 315, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://mit.edu/russian-club/web/", 
+   "last_updated": "2011-08-19 23:50:14", 
+   "description": "The MIT Russian Club supports the MIT community's exploration of Russia and neighboring countries. The club enriches MIT's cultural landscape and paves the way to connect technologies and businesses through its diverse offerings. Over years, we have developed from a social group to a platform that represents at MIT a variety of interests in culture and social entertainment, as well as opportunities in business and technology innovation.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 5, 
+   "display": true, 
+   "name": "REVIEW --- Russian Business Club"
   }
  }, 
  {
@@ -4436,13 +4276,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:27", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Ridonkulous"
   }
@@ -4452,13 +4292,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:31", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 16, 
    "display": false, 
    "name": "Ring Committee"
   }
@@ -4468,13 +4308,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:37", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Roadkill Buffet"
   }
@@ -4484,13 +4324,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:51", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Rocket Team"
   }
@@ -4500,13 +4340,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:43:58", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "ROCSA"
   }
@@ -4516,13 +4356,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:44:02", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Romanian Student Association"
   }
@@ -4532,31 +4372,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:44:07", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Rowing Club"
-  }
- }, 
- {
-  "pk": 312, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "RS Infinity"
   }
  }, 
  {
@@ -4564,13 +4388,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:44:37", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Rubik's Cube Club"
   }
@@ -4579,32 +4403,16 @@
   "pk": 314, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
+   "website": "http://web.mit.edu/rune/www/", 
+   "last_updated": "2011-08-19 23:45:31", 
+   "description": "Rune is a relatively small organization that seeks to churn out quality, representative work, all while trying not to take itself too seriously. After all, we persist yearly on the devotion of a handful of staff members, the gracious support of various humanities departments, and share a small side office with an undergraduate research journal, the news office, and a few other publications. Currently, we're looking to expand our efforts, and we could use your help! \r\n\r\nA literary magazine runs on the strength of the submissions it receives. We are open to submissions of visual or literary art for the the better part of each academic school year though selections are officially broken into two rounds (a fall semester round and a spring semester round). The submissions are reviewed by the staff, and the top pieces are chosen for inclusion in our publication (with all rights retained by authors and artists). \r\n\r\nRune is funded currently by the Undergraduate Association, the Council for the Arts at MIT, and the Program for Writing and Humanistic Studies. In order to continue to serve the MIT community, it has become necessary to expand our funding base. We hope that you will consider contributing to the success of MIT's Literary and Art Magazine. \r\n", 
    "image": "", 
-   "email": "", 
+   "email": "rune@mit.edu", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
+   "type": 15, 
+   "display": true, 
    "name": "Rune"
-  }
- }, 
- {
-  "pk": 315, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
-   "name": "Russian Business Club"
   }
  }, 
  {
@@ -4612,13 +4420,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:48:43", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Russian Connection"
   }
@@ -4628,13 +4436,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:49:01", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Salsa Club"
   }
@@ -4644,14 +4452,14 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
-   "description": "", 
+   "last_updated": "2011-08-19 23:49:28", 
+   "description": "MIT Samskritam is a group of MIT students who are enthusiastic about learning Samskritam. Samskritam (aka Sanskrit), a language that was spoken once upon a time in ancient India, is one of the oldest and richest languages in the world.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
-   "display": false, 
+   "type": 8, 
+   "display": true, 
    "name": "Samskritam"
   }
  }, 
@@ -4660,13 +4468,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:49:55", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 4, 
    "display": false, 
    "name": "Sangam"
   }
@@ -4676,7 +4484,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:50:39", 
    "description": "", 
    "image": "", 
    "email": "", 
@@ -4685,6 +4493,22 @@
    "type": 1, 
    "display": false, 
    "name": "Satellite Team"
+  }
+ }, 
+ {
+  "pk": 334, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://www.mit-sbc.org/", 
+   "last_updated": "2011-08-19 23:53:02", 
+   "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
+   "image": "campus_org/campusorg/sloan_business_club_2011-07-24-19-56-58.png", 
+   "email": "sbc-exec@mit.edu", 
+   "thumbnail": "campus_org/campusorg/sloan_business_club_2011-07-24-19-56-58_thumbnail.png", 
+   "date_created": "2011-05-03 12:27:42", 
+   "type": 5, 
+   "display": true, 
+   "name": "SBC (Sloan Business Club)"
   }
  }, 
  {
@@ -4708,13 +4532,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:51:58", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Science Fiction Society"
   }
@@ -4724,13 +4548,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:52:04", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 9, 
    "display": false, 
    "name": "Science Policy Initiative"
   }
@@ -4740,13 +4564,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:52:09", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 8, 
    "display": false, 
    "name": "Scuba Club"
   }
@@ -4772,13 +4596,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:41", 
+   "last_updated": "2011-08-19 23:52:22", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:41", 
-   "type": 1, 
+   "type": 2, 
    "display": false, 
    "name": "Shakespeare Ensemble"
   }
@@ -4788,13 +4612,13 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:42", 
+   "last_updated": "2011-08-19 23:52:28", 
    "description": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "date_created": "2011-05-03 12:27:42", 
-   "type": 1, 
+   "type": 11, 
    "display": false, 
    "name": "Shotokan Karate"
   }
@@ -4854,9 +4678,9 @@
    "website": "http://spe.mit.edu/", 
    "last_updated": "2011-07-24 20:00:12", 
    "description": "SigEp was founded at Richmond College, now the University of Richmond, on November 1, 1901 on the cardinal principles of Virtue, Diligence, and Brotherly Love. Today, over 280,000 men have joined the fraternity and taken a vow to uphold these values. With over 15,000 current undergraduates at more than 260 colleges across the nation, Sigma Phi Epsilon is the nation's largest fraternity.", 
-   "image": "campus_org/CampusOrg/sigma_phi_epsilon_2011-07-24-20-00-12.png", 
+   "image": "campus_org/campusorg/sigma_phi_epsilon_2011-07-24-20-00-12.png", 
    "email": "spe-president@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/sigma_phi_epsilon_2011-07-24-20-00-12_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/sigma_phi_epsilon_2011-07-24-20-00-12_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 6, 
    "display": true, 
@@ -4896,22 +4720,6 @@
   }
  }, 
  {
-  "pk": 334, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://www.mit-sbc.org/", 
-   "last_updated": "2011-07-24 19:56:58", 
-   "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
-   "image": "campus_org/CampusOrg/sloan_business_club_2011-07-24-19-56-58.png", 
-   "email": "sbc-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/sloan_business_club_2011-07-24-19-56-58_thumbnail.png", 
-   "date_created": "2011-05-03 12:27:42", 
-   "type": 5, 
-   "display": true, 
-   "name": "Sloan Business Club"
-  }
- }, 
- {
   "pk": 335, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4934,9 +4742,9 @@
    "website": "http://socialmedia.mit.edu/", 
    "last_updated": "2011-07-24 19:49:36", 
    "description": "The MIT Social Media Club\u2019s purpose is to explore and understand social media; to study its development and dynamics; and to shape the future of social networks by creating a collaborative platform and environment within the MIT community.\r\nAs of today MIT community does not have a student organization that address social media and its development in a comprehensive manner.\r\n\r\nThey think that there is communication gap between students of different departments at MIT about social media and its development and dynamics. Permanent discussion/meeting platform on campus will give endless opportunities for MIT students, faculty and staff to meet in person, exchanges ideas and collaborate on future projects that may shape social media of tomorrow.\r\n\r\nTopics of social media are cross disciplinary in their nature. Such topics may cover entrepreneurship, technology and innovation, public policy, as well as wide array of social sciences. A common ground is needed where MIT students from different background may exchanges their ideas and create cross disciplinary projects.", 
-   "image": "campus_org/CampusOrg/social_media_club_2011-07-24-19-49-36.png", 
+   "image": "campus_org/campusorg/social_media_club_2011-07-24-19-49-36.png", 
    "email": "socialmedia-core@exchange.mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/social_media_club_2011-07-24-19-49-36_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/social_media_club_2011-07-24-19-49-36_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
    "display": true, 
@@ -4950,9 +4758,9 @@
    "website": "http://web.mit.edu/esperanto/www/", 
    "last_updated": "2011-07-24 19:46:45", 
    "description": "Societo por Esperanto is the name of MIT's Esperanto club. The club helps students learn and use the language Esperanto. They support Esperanto as a tool for making meaningful contact with people of other languages and cultures and countries. Anyone who has an interest in languages, travel, cultural diversity, world events, world literature, meeting new people regardless of their language or country, joining interest groups with members from around the world, or any or all of the above, is welcome to join.\r\n\r\nThe club offers free Esperanto classes to the MIT community and holds regular meetings to help students practice.  They share information and experiences to help each other stay informed about ways to use the language.  They occasionally show Esperanto videos; host conferences, concerts, and visiting Esperanto-speakers; celebrate international language days; and organize lectures and exhibit to inform the rest of the MIT community about the benefits of learning Esperanto.", 
-   "image": "campus_org/CampusOrg/societo_por_esperanto_2011-07-24-19-46-35.png", 
+   "image": "campus_org/campusorg/societo_por_esperanto_2011-07-24-19-46-35.png", 
    "email": "spe-ak@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/societo_por_esperanto_2011-07-24-19-46-35_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/societo_por_esperanto_2011-07-24-19-46-35_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 8, 
    "display": true, 
@@ -4998,9 +4806,9 @@
    "website": "http://web.mit.edu/sase/", 
    "last_updated": "2011-07-24 19:43:07", 
    "description": "The Society of Asian Scientists and Engineers is a newly founded club at MIT whose goal is to help the Asian community identify and develop skills that will enable them to be leaders in the workplace. The climb up the corporate ladder, especially for Asians, is hard. Why is there such a disparity between the high percentage of Asians at top colleges and the low percentage of Asians in the executive levels of corporations? SASE aims to promote awareness of this issue and to instill skills that will break this \"bamboo ceiling.\"", 
-   "image": "campus_org/CampusOrg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17.png", 
+   "image": "campus_org/campusorg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17.png", 
    "email": "sase-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/society_of_asian_scientists_and_engineers_2011-07-24-19-42-17_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 4, 
    "display": true, 
@@ -5046,9 +4854,9 @@
    "website": "http://swe.mit.edu/", 
    "last_updated": "2011-07-24 19:37:08", 
    "description": "The purpose of MIT SWE is to:\r\n - To educate members about career choices in engineering and promote community between professionals and students, including through alumni\r\n - To inspire younger generations about engineering, encourage the notion of diversity in engineering, and determine and advocate for the needs of women engineers at MIT\r\n - To build community at MIT SWE, bridge a relationship with local and national sections, and record and disseminate the culture, history, and events of MIT SWE", 
-   "image": "campus_org/CampusOrg/society_of_women_engineers_(swe)_2011-07-24-19-37-08.png", 
+   "image": "campus_org/campusorg/society_of_women_engineers_(swe)_2011-07-24-19-37-08.png", 
    "email": "swe-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/society_of_women_engineers_(swe)_2011-07-24-19-37-08_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/society_of_women_engineers_(swe)_2011-07-24-19-37-08_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
    "display": true, 
@@ -5110,9 +4918,9 @@
    "website": "http://sealnet.mit.edu/", 
    "last_updated": "2011-07-24 19:29:36", 
    "description": "SEALNet's mission is to bring service and to promote the spirit of service leadership among Southeast Asian communities in the US and abroad.  They strive to accomplish this by building and nurturing a community of service leaders who are committed to serve, equipped to lead, enterprising in action, and plugged into a network of like hearted individuals who are passionate about social development.", 
-   "image": "campus_org/CampusOrg/southeast_asian_service_leadership_network_2011-07-24-19-29-36.png", 
+   "image": "campus_org/campusorg/southeast_asian_service_leadership_network_2011-07-24-19-29-36.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/southeast_asian_service_leadership_network_2011-07-24-19-29-36_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/southeast_asian_service_leadership_network_2011-07-24-19-29-36_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 9, 
    "display": true, 
@@ -5126,9 +4934,9 @@
    "website": "http://spain.mit.edu/", 
    "last_updated": "2011-07-24 19:27:58", 
    "description": "", 
-   "image": "campus_org/CampusOrg/spain@mit_2011-07-24-19-27-43.png", 
+   "image": "campus_org/campusorg/spain@mit_2011-07-24-19-27-43.png", 
    "email": "spaniards-request@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/spain@mit_2011-07-24-19-27-43_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/spain@mit_2011-07-24-19-27-43_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 4, 
    "display": true, 
@@ -5222,9 +5030,9 @@
    "website": "http://web.mit.edu/mit-stand/www/", 
    "last_updated": "2011-07-24 19:21:15", 
    "description": "MIT-STAND was established in 2007 in order to further the MIT divestment campaign from Sudan. As of September 21st, MIT announced its divestment in an Interview with the Tech. Members of STAND and Amnesty groups were greatly involved with promulgating this action. Later, MIT provided an official clarification of the former vague divestment statement, again in large part due to student pressure. \r\n\r\nThe objectives of MIT-STAND are currently two-fold: \r\n1.   To increase awareness of genocide in the Sudan among the student community at MIT via featured events on campus \r\n2.   To work with MIT to design a standing Standing Committee on Investment Responsibility [SCIR] within the corporation framework.", 
-   "image": "campus_org/CampusOrg/stand_2011-07-24-19-21-15.png", 
+   "image": "campus_org/campusorg/stand_2011-07-24-19-21-15.png", 
    "email": "mitstand-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/stand_2011-07-24-19-21-15_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/stand_2011-07-24-19-21-15_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 9, 
    "display": true, 
@@ -5382,9 +5190,9 @@
    "website": "http://sipb.mit.edu/", 
    "last_updated": "2011-07-24 19:03:28", 
    "description": "SIPB is MIT's volunteer student computing group, improving computing at MIT since 1969. Today, SIPB projects provide innovative services and special expertise to the MIT community. They have an office just outside the Athena cluster in the student center W20, and you are welcome to come by to ask us for help or to hang around, use our computers, and maybe get involved. You can find out what's abuzz in the SIPB community at Planet SIPB. They host a number of events, which are enumerated on our calendar.", 
-   "image": "campus_org/CampusOrg/student_information_processing_board_2011-07-24-19-03-28.png", 
+   "image": "campus_org/campusorg/student_information_processing_board_2011-07-24-19-03-28.png", 
    "email": "sipb-chair@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/student_information_processing_board_2011-07-24-19-03-28_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/student_information_processing_board_2011-07-24-19-03-28_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 12, 
    "display": true, 
@@ -5414,9 +5222,9 @@
    "website": "http://stuff.mit.edu/afs/athena/activity/m/msra/", 
    "last_updated": "2011-07-24 19:00:20", 
    "description": "MIT Student Research Association (MSRA) aims to create an interdisciplinary research community at MIT consisting of faculty, students, and researchers of different backgrounds. MSRA seeks to connect students with research opportunities and promote regular interactions between faculty and students.", 
-   "image": "campus_org/CampusOrg/student_research_association_2011-07-24-19-00-20.png", 
+   "image": "campus_org/campusorg/student_research_association_2011-07-24-19-00-20.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/student_research_association_2011-07-24-19-00-20_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/student_research_association_2011-07-24-19-00-20_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
    "display": true, 
@@ -5462,9 +5270,9 @@
    "website": "http://web.mit.edu/mitsi/www/", 
    "last_updated": "2011-07-24 18:54:53", 
    "description": "MIT Students for Israel [MITSI] is both a pro-active advocacy group and an Israeli cultural group that seeks to raise awareness regarding Israel and the Arab-Israeli conflict on the MIT campus.   The main purpose of MIT Students for Israel is to educate the student body about Israel's politics, culture, and history, and to stress the importance of the America-Israel relationship. We believe the best way to accomplish this is through meaningful bonds with our peers, student leaders, and faculty.  Their goal is to raise awareness about Israel through engagement in open dialogue, co-hosting events with other student groups, and making personal connections.  They strive for their events to be widespread on campus and to be accessible to as many students as possible, while at the same time forming invaluable relationships. ", 
-   "image": "campus_org/CampusOrg/students_for_israel_2011-07-24-18-54-09.png", 
+   "image": "campus_org/campusorg/students_for_israel_2011-07-24-18-54-09.png", 
    "email": "mitsi@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/students_for_israel_2011-07-24-18-54-09_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/students_for_israel_2011-07-24-18-54-09_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 9, 
    "display": true, 
@@ -5542,9 +5350,9 @@
    "website": "http://syncopasian.mit.edu/", 
    "last_updated": "2011-07-24 18:46:11", 
    "description": "Syncopasian promotes the awareness of Asian pop culture at MIT and the surrounding community through performances of Asian a cappella music. Unlike other a cappella groups on campus, our repertoire includes songs in not only English, but also Mandarin, Cantonese, Japanese, Korean, and other languages that are East Asian in origin.\r\n\r\nSyncopasian was founded by Kenny Yan ('08) in the Spring of 2008, with 16 original members. Syncopasian today, an ASA-recognized student group, is 17 members strong.", 
-   "image": "campus_org/CampusOrg/syncopasian_2011-07-24-18-46-11.png", 
+   "image": "campus_org/campusorg/syncopasian_2011-07-24-18-46-11.png", 
    "email": "syncopasian-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/syncopasian_2011-07-24-18-46-11_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/syncopasian_2011-07-24-18-46-11_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 2, 
    "display": true, 
@@ -5574,9 +5382,9 @@
    "website": "http://web.mit.edu/tabletennis/", 
    "last_updated": "2011-07-24 18:42:45", 
    "description": "The Table Tennis Club is part of the MIT Sports Club Council.  We are devoted to providing an environment in which members can play both competitively and recreationally.\r\nThe club offers quality coaching to its members under the guidance of Coach Liang Liung and Coach Carlos Espinoza-Toro. Both are certified Table Tennis coaches. Coach Liang handles the training of club members while Coach Carlos handles the training of the intercollegiate team. They are assisted by Coach Alex Landsman.\r\n\r\nThe club offers members 14 quality Butterfly Europa Tables that are in very good condition. In addition, a large number of balls and rackets are available for practice although we do encourage members to bring their own rackets to practice. The club also has a 'Robo Pong' robot to help with team practice sessions.\r\n\r\nThe MIT team has done very well at the divisional level over the last couple of years, coming in at 3rd place both years. Team practices are held three times a week and consist of various drills and excercises along with 'one on one' coaching with our team coach Carlos. The club has open practice sessions twice a week which we encourage members to take advantage of. \r\n\r\nEvery Saturday, the club holds an internal tournament which is open to all members. It is held in a Knockout format with the winner receiving a Club Prize (a club T-shirt, Paddle, etc). Each participant gets a certain number of points from each tournament depending on their performance.  At the end of each semester, the person with the most number of points is felicitated.", 
-   "image": "campus_org/CampusOrg/table_tennis_team_2011-07-24-18-42-45.gif", 
+   "image": "campus_org/campusorg/table_tennis_team_2011-07-24-18-42-45.gif", 
    "email": "tabletennisclub@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/table_tennis_team_2011-07-24-18-42-45_thumbnail.gif", 
+   "thumbnail": "campus_org/campusorg/table_tennis_team_2011-07-24-18-42-45_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 11, 
    "display": true, 
@@ -5622,9 +5430,9 @@
    "website": "http://tango.mit.edu/", 
    "last_updated": "2011-07-24 16:54:03", 
    "description": "The MIT Argentine Tango Club (MITATC) was founded in November 2002 by four students who recognized the need for a tango club at MIT. Since then, MITATC has grown to offer multiple avenues for tango appreciation and involvement, while connecting dancers both within and outside MIT. The club aims to foster interest for Argentine tango by exposing members of the MIT community to the art and culture of Tango. MITATC also endeavors to provide an accessible and affordable locale for individuals already interested in tango, where tango is taught, learned, practiced, embraced and enjoyed.", 
-   "image": "campus_org/CampusOrg/tango_(argentine)_club_2011-07-24-16-54-03.png", 
+   "image": "campus_org/campusorg/tango_(argentine)_club_2011-07-24-16-54-03.png", 
    "email": "tango@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/tango_(argentine)_club_2011-07-24-16-54-03_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tango_(argentine)_club_2011-07-24-16-54-03_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 2, 
    "display": true, 
@@ -5638,9 +5446,9 @@
    "website": "http://web.mit.edu/tbp/www/", 
    "last_updated": "2011-07-24 16:52:38", 
    "description": "Tau Beta Pi (TBP) is the second oldest collegiate honor society in the nation, and the only honor society that represents the entire engineering profession. Founded in 1885 by Professor Edward H. Williams Jr. of Lehigh University, TBP honors those with exemplary character and distinguished scholarship as engineering students and alumni. Both undergraduate and graduate students are invited to become candidates of TBP based on their academic performances, recommendations from faculty, and their contributions to engineering and the society. TBP now consists of 241 collegiate chapters across the United States and Puerto Rico, includes a total initiated membership of almost 501,000. \r\n\r\nThe Mass Beta Chapter of Tau Beta Pi organizes many events on and off the MIT campus to expose those in the Greater Boston community to science/engineering and to introduce MIT students to socially conscious careers. Each year, Tau Beta Pi donates thousands of dollars to the Museum of Science to allow all MIT students enter the museum for free. Tau Beta Pi also organizes the Spring Career Fair that typically occurs during the first week of classes in February to help MIT students and alumni find jobs and internships. Service projects such as SciPro, TBP teach, and Project Fund (TBP Fellowship) are supported by Tau Beta Pi as well.", 
-   "image": "campus_org/CampusOrg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38.png", 
+   "image": "campus_org/campusorg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38.png", 
    "email": "tbp-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 1, 
    "display": true, 
@@ -5654,9 +5462,9 @@
    "website": "http://tep.mit.edu/", 
    "last_updated": "2011-07-24 16:49:41", 
    "description": "tEp (Tau Epsilon Phi, Xi Chapter) is one of the 34 Independent Living Groups at MIT. We eat food, live in a house, and weigh a lot if you add the twenty-two of us together.\r\n\r\nOur house has existed at MIT since 1919, and has a long tradition of housing some of the most creative engineers and scientists at MIT. In fact, more than 35% of our members plan to, or have already founded, at least one company. Additionally, more than 30% of our alumni continue on (or are already involved in) graduate studies in a wide variety of fields, with 4% continuing on to become professors.", 
-   "image": "campus_org/CampusOrg/tau_epsilon_phi_2011-07-24-16-49-41.png", 
+   "image": "campus_org/campusorg/tau_epsilon_phi_2011-07-24-16-49-41.png", 
    "email": "", 
-   "thumbnail": "campus_org/CampusOrg/tau_epsilon_phi_2011-07-24-16-49-41_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tau_epsilon_phi_2011-07-24-16-49-41_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 6, 
    "display": true, 
@@ -5686,9 +5494,9 @@
    "website": "http://tcc.mit.edu/www/", 
    "last_updated": "2011-07-24 16:39:41", 
    "description": "About TCC\r\nThe Tech Catholic Community is almost wholly composed of graduate and undergraduate students at the Massachusetts Institute of Technology in Cambridge, Massachusetts. We are a lively community, filled with youthfullness, curiosity, and the spirit of God's Word.\r\n\r\nWe are a culturally varied, international community \u2014 perhaps more so than any other gathering of people at MIT \u2014 reflecting well the reality of Catholicism as a truly world-wide church. Yet, this community finds unity gathered together to hear God's Word and to celebrate the Eucharist.\r\n\r\nOrganizational Structure\r\nIn keeping with our mission, TCC ministries are divided into four categories: Prayer, Service, Education, and Community. The head of each ministry is reponsible for finding organizers for each activity or project which falls within their domain, as well as for facilitating collaboration between the various ministries.\r\n\r\nThe primary governing body of TCC is the Council, which consists of seven members: the Chair, the four Ministry Coordinators, the Undergraduate Member-At-Large (UMAL), and the Graduate Member-At-Large (GMAL).\r\n\r\nThe Council is supported by the Advisory Board, which consists entirely of MIT faculty and staff, including many alumni of TCC. The Advisory Board provides advice, facilitates contact with MIT and the Archdiocese of Boston, and oversees TCC staff.", 
-   "image": "campus_org/CampusOrg/tech_catholic_community_2011-07-24-16-39-40.png", 
+   "image": "campus_org/campusorg/tech_catholic_community_2011-07-24-16-39-40.png", 
    "email": "tcc@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/tech_catholic_community_2011-07-24-16-39-41_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tech_catholic_community_2011-07-24-16-39-41_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 13, 
    "display": true, 
@@ -5702,9 +5510,9 @@
    "website": "http://tmrc.mit.edu/", 
    "last_updated": "2011-07-24 16:37:34", 
    "description": "The Tech Model Railroad club is an MIT student activity founded during the 1946-1947 school year, making this our 60th year, and making TMRC one of the oldest clubs at MIT. This site contains information on the club, both past and present. There is information about the early days of the club, when we were located in building 20, and the current activities of the club in our current home, building N52, where we've been since 1997. If you'd like to visit the club, we're usually happy to welcome visitors during our regular meetings, and hold an open house twice a year, when you can be sure that lots of trains will be running. MIT students are always welcome to visit and join the club.", 
-   "image": "campus_org/CampusOrg/tech_model_railroad_club_2011-07-24-16-37-34.png", 
+   "image": "campus_org/campusorg/tech_model_railroad_club_2011-07-24-16-37-34.png", 
    "email": "tmrc-web@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/tech_model_railroad_club_2011-07-24-16-37-34_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tech_model_railroad_club_2011-07-24-16-37-34_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 8, 
    "display": true, 
@@ -5718,9 +5526,9 @@
    "website": "http://www.mit.edu/~tech-squares/", 
    "last_updated": "2011-07-24 16:34:52", 
    "description": "Tech Squares is the square and round dance club of MIT, founded in 1967.  Tech Squares dances modern Western square dancing to a professional caller (Ted Lizotte), and round dancing to a professional cuer (Phil Gatchell).  We dance the Plus program, with two squares alternating with two round dances.  We meet every Tuesday 8-10:30pm and sponsor other events as well.  Our dances are open to the public.  We do not have a dress code, so please dress comfortably, knowing that you may be dancing at an accelerated pace! ", 
-   "image": "campus_org/CampusOrg/tech_squares_2011-07-24-16-34-52.png", 
+   "image": "campus_org/campusorg/tech_squares_2011-07-24-16-34-52.png", 
    "email": "squares@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/tech_squares_2011-07-24-16-34-52_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tech_squares_2011-07-24-16-34-52_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 2, 
    "display": true, 
@@ -5734,9 +5542,9 @@
    "website": "http://tech.mit.edu/", 
    "last_updated": "2011-07-24 16:32:45", 
    "description": "The Tech is MIT's oldest and largest newspaper. We have provided MIT faculty, staff, and students with continuous news service since 1881. We publish on Tuesdays and Fridays during the regular school year, weekly during the month of January, and monthly during the summer.\r\n\r\nThe Tech is published by the students of the Massachusetts Institute of Technology. Our staff is composed of undergraduate and graduate student volunteers, although a number of alumni lurk around our offices from time to time.", 
-   "image": "campus_org/CampusOrg/tech,_the_2011-07-24-16-32-45.png", 
+   "image": "campus_org/campusorg/tech,_the_2011-07-24-16-32-45.png", 
    "email": "general@tech.mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/tech,_the_2011-07-24-16-32-45_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/tech,_the_2011-07-24-16-32-45_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 15, 
    "display": true, 
@@ -5750,9 +5558,9 @@
    "website": "http://techfair.mit.edu/", 
    "last_updated": "2011-07-24 16:29:52", 
    "description": "TechFair is completely student run, led by passionate and dedicated students at the Massachusetts Institute of Technology. Members of the board are split into seven committees: Corporate Relations, Finance, Human Resources, Information Technology, Logistics, Marketing, and THINK.", 
-   "image": "campus_org/CampusOrg/techfair_2011-07-24-16-29-45.png", 
+   "image": "campus_org/campusorg/techfair_2011-07-24-16-29-45.png", 
    "email": "techfair-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/techfair_2011-07-24-16-29-45_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/techfair_2011-07-24-16-29-45_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 12, 
    "display": true, 
@@ -5766,9 +5574,9 @@
    "website": "http://web.mit.edu/techiya/www/", 
    "last_updated": "2011-07-24 16:25:52", 
    "description": "Techiya is MIT's only Jewish, Hebrew, and Israeli a cappella group.", 
-   "image": "campus_org/CampusOrg/techiya_2011-07-24-16-25-52.gif", 
+   "image": "campus_org/campusorg/techiya_2011-07-24-16-25-52.gif", 
    "email": "techiya-exec@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/techiya_2011-07-24-16-25-52_thumbnail.gif", 
+   "thumbnail": "campus_org/campusorg/techiya_2011-07-24-16-25-52_thumbnail.gif", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 1, 
    "display": true, 
@@ -5782,9 +5590,9 @@
    "website": "http://techlink.mit.edu/", 
    "last_updated": "2011-07-24 16:24:28", 
    "description": "TechLink\u2019s mission is to assist the MIT graduate community connect, collaborate, and innovate.  They host and create events that link students across all disciplines not only with each other, but alumni and professional networks as well.", 
-   "image": "campus_org/CampusOrg/techlink_2011-07-24-16-23-51.png", 
+   "image": "campus_org/campusorg/techlink_2011-07-24-16-23-51.png", 
    "email": "techlink-officers@mit.edu", 
-   "thumbnail": "campus_org/CampusOrg/techlink_2011-07-24-16-23-51_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/techlink_2011-07-24-16-23-51_thumbnail.png", 
    "date_created": "2011-05-03 12:27:43", 
    "type": 12, 
    "display": true, 
