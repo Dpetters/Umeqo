@@ -1993,5 +1993,15 @@
    "last_updated": "2011-08-20 08:50:59", 
    "user": 1
   }
+ }, 
+ {
+  "pk": 157, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-20 11:03:27", 
+   "session_key": "0e5f6d7b24a15ac2485551fa05b14757", 
+   "last_updated": "2011-08-20 11:03:27", 
+   "user": 1
+  }
  }
 ]
