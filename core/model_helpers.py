@@ -6,23 +6,15 @@ from django.core.files import File
 from django.conf import settings
 
 def get_resume_filename(instance, filename):
-    return "%s%s_%s_%s_%s.pdf" % (settings.STUDENT_STUDENT_PATH, instance.last_name.lower(), instance.first_name.lower(), str(instance.user).lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+    return "%s/%s_%s_%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), instance.last_name.lower(), instance.first_name.lower(), str(instance.user).lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
 
-def get_campus_org_image_filename(instance, filename):
+def get_image_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    return "%s%s_%s%s" % (settings.CAMPUS_ORG_CAMPUS_ORG_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
+    return "%s/%s_%s%s" % (str(type(instance)._meta).replace(".", "/"), instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
-def get_course_image_filename(instance, filename):
+def get_thumbnail_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    return "%s%s_%s%s" % (settings.CORE_COURSE_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
-
-def get_campus_org_thumbnail_filename(instance, filename):
-    extension = filename[filename.find('.'):]
-    return "%s%s_%s_thumbnail%s" % (settings.CAMPUS_ORG_CAMPUS_ORG_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
-
-def get_course_thumbnail_filename(instance, filename):
-    extension = filename[filename.find('.'):]
-    return "%s%s_%s_thumbnail%s" % (settings.CORE_COURSE_PATH, instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
+    return "%s/%s_%s_thumbnail%s" % (str(type(instance)._meta).replace(".", "/"), instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def generate_thumbnail(image):
     image_path = image.path

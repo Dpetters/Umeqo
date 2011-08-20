@@ -3,7 +3,7 @@ from notification import models as notification
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_syncdb
 
-from core.model_helpers import get_course_image_filename, get_course_thumbnail_filename
+from core.model_helpers import get_image_filename, get_thumbnail_filename
 from core import enums
 from core import mixins as core_mixins
 from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
@@ -119,8 +119,8 @@ class Language(core_mixins.DateTracking):
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
-    image = models.ImageField(upload_to=get_course_image_filename, blank=True, null=True)
-    thumbnail = models.ImageField(upload_to=get_course_thumbnail_filename, blank=True, null=True)
+    image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
+    thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
     sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     
