@@ -11,7 +11,6 @@ from core import choices as core_choices
 from core import mixins as core_mixins
 from student.managers import StudentManager
 
-
 class StudentInvite(core_mixins.DateTracking):
     id = models.CharField(max_length=12, primary_key=True)
     owner = models.ForeignKey("student.Student", related_name="owned_invite_set")
@@ -19,8 +18,11 @@ class StudentInvite(core_mixins.DateTracking):
     
     def __unicode__(self):
         return "%s's Invite" % str(self.owner)
-
-
+    
+    class Meta:
+        verbose_name = "Student Invite"
+        verbose_name_plural = "Student Invites"
+        
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True)
@@ -37,7 +39,6 @@ class StudentBaseAttributes(models.Model):
     
     class Meta:
         abstract = True
-
 
 class Student(StudentBaseAttributes, core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
@@ -82,7 +83,17 @@ def create_related_models(sender, instance, created, raw, **kwargs):
         StudentPreferences.objects.create(student=instance)
         StudentStatistics.objects.create(student=instance)
 
-        
+class StudentDeactivation(core_mixins.DateCreatedTracking):
+    student = models.ForeignKey("student.Student")
+    suggestion = models.CharField(max_length=16384, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Student Deactivation"
+        verbose_name_plural = "Student Deactivations"
+    
+    def __unicode__(self):
+        return "%s's Deactivation" % (str(self.student))
+
 class StudentPreferences(core_mixins.DateTracking):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
     
@@ -99,8 +110,7 @@ class StudentPreferences(core_mixins.DateTracking):
             return "Student Preferences for %s" % (self.student,)
         else:
             return "Unattached Student Preferences"
-    
-    
+
 class StudentStatistics(core_mixins.DateTracking):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
     

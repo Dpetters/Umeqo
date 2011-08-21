@@ -54,6 +54,15 @@ Student Registration |
                     {{form.password1}}
                 </td>
             </tr>
+            {% if form.invite_code %}
+            <tr>
+                <th>{{form.invite_code.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.invite_code.errors}}</div>
+                    {{form.invite_code}}
+                </td>
+            </tr>
+            {% endif %}
             <tr>
                 <th></th>
                 <td class="error_section error">

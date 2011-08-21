@@ -5,10 +5,14 @@ import string
 from pprint import pprint as pp
 from optparse import make_option
 
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 from django.core.management.base import BaseCommand
 from django.core.validators import validate_email
+from django.conf import settings
 
 from registration.models import InterestedPerson
+from student.models import StudentInvite
 
 INVITE_CODE_LENGTH = 12
 
@@ -28,9 +32,9 @@ class Command(BaseCommand):
             try:
                 validate_email(person.email)
             except Exception, e:
-                print "Error: %s" % e
-                return
-            
+                person.final = True
+                person.save()
+                continue
             try:
                 con = ldap.open('ldap.mit.edu')
                 con.simple_bind_s("", "")
@@ -76,16 +80,23 @@ class Command(BaseCommand):
         if options["verbose"]:
             for person in not_students:
                 print "%s %s (%s)" % (person.first_name, person.last_name, person.email)
-"""
-    for person in InterestedPerson.objects.all():
-        StudentInvite.objects.create(id=''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for x in range(12)))
-        recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
-        subject = "%s %s (%s) Account Deactivation" % (request.user.student.first_name, request.user.student.last_name, request.user.username) 
-        body = render_to_string('student_account_deactivate_email_body.txt', \
-                                {'first_name':request.user.student.first_name, \
-                                'last_name':request.user.student.last_name, \
-                                'email':request.user.email, \
-                                'suggestion':form.cleaned_data['suggestion']})
-        message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-        message.send()
-"""
+        if options["email"]:
+            for person in InterestedPerson.objects.all():
+                if person.auto_email:
+                    invite_code = ''.join(random.choice(string.ascii_uppercase + \
+                                string.ascii_lowercase + string.digits) for x in range(12))
+                    StudentInvite.objects.create(id = invite_code)
+                    recipients = [person.email]
+                    subject = "Umeqo Beta Invitation" 
+                    body = render_to_string('student_beta_invitation_email_body.txt', \
+                                            {'first_name':person.student.first_name, \
+                                            'last_name':person.student.last_name, \
+                                            'email':person.email })
+                    message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+                    #Do NOT uncomment!
+                    ####################
+                    ###message.send()###
+                    ####################
+                    # Do NOT uncomment!
+                    person.emailed = True
+                    person.save()
