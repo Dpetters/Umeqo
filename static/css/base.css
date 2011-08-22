@@ -13,7 +13,7 @@ img {
 h1 {
     font-family: 'Lato', 'Arial', serif;
     font-size: 35px;
-    color:#333;
+    color: #333;
 }
 h2 {
     font-size: 20px;
@@ -37,30 +37,30 @@ p {
     padding: 5px 0;
 }
 .light {
-	color:#888;
+    color: #888;
 }
 .centered{
-	text-align:center !important;
+    text-align: center !important;
 }
 .ready {
-	color: #00B20E;
+    color: #00B20E;
 }
 label {
     padding-right: 5px;
     font-size: 12px;
     font-weight: bold;
 }
-label:not(.required) {
-	padding-right:8px;
+label: not(.required) {
+    padding-right: 8px;
 }
 #message_area{
-	text-align:center;
+    text-align: center;
 }
 #message_area p{
-	display:inline;
-    background:#7AA7CC;
+    display: inline;
+    background: #7AA7CC;
     border-radius: 3px 3px 0px 0px;
-    bottom:19px;
+    bottom: 19px;
     color: white;
     font-weight: bold;
     padding: 3px 11px 2px;
@@ -78,10 +78,10 @@ label:not(.required) {
     text-shadow: 0 1px 0 #FFF;
     text-align: center;
     font-weight: bold;
-    color:#000;
+    color: #000;
     border: 1px solid #AAA;
-    position:absolute;
-    width:100%;
+    position: absolute;
+    width: 100%;
     padding-top: 4px;
     padding-bottom: 4px;
     -moz-border-radius: 4px;
@@ -97,12 +97,12 @@ label:not(.required) {
 #header_area {
     background: url('/static/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
     min-width: 986px;
-    text-align:center;
+    text-align: center;
     height: 60px;
 }
 #header_area .width_container{
     text-align: left;
-	position:relative;
+    position: relative;
 }
 #logo_block {
     position: relative;
@@ -110,7 +110,7 @@ label:not(.required) {
 }
 #logo_beta {
     display: inline-block;
-    left:173px;
+    left: 173px;
     bottom: 33px;
     position: absolute;
     color: #FAFAFA;
@@ -166,7 +166,7 @@ label:not(.required) {
     font-size: 0.8em;
 }
 #login_section {
-    background-color:#444444;
+    background-color: #444444;
     height: 24px;
     float: right;
     color: white;
@@ -181,7 +181,7 @@ label:not(.required) {
     float: left;
 }
 #below_header_area{
-	min-height:17px;
+    min-height: 17px;
 }
 #content_area {
     padding-bottom: 40px;
@@ -233,9 +233,10 @@ label:not(.required) {
     background-color: #BBB;
 }
 .div_form_above_field_label{
-	font-size:18px;
-	display:inline-block;
-	margin-bottom:3px;
+    font-size: 15px;
+    display: inline-block;
+    margin-bottom: 3px;
+    color: #888;
 }
 input[type=text], input[type=password], select, textarea {
     behavior: url(/static/lib/pie/PIE.htc);
@@ -250,10 +251,10 @@ input[type=text], input[type=password], select, textarea {
     font-size: 12px;
 }
 select{
-	padding-top:3px;
-	padding-bottom:3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
-input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
+input[type=text]:focus, input[type=password]:focus, select: focus, textarea: focus {
     border: 1px solid #888;
     color: #000;
 }
@@ -264,28 +265,28 @@ input[type=text], input[type=password] {
     position: relative;
 }
 #ajax_form_submit_loader {
-    display:none;
+    display: none;
     margin-left: 7px;
     margin-top: 6px;
     position: absolute;
 }
 .form_table.grande #ajax_form_submit_loader{
-	margin-left:10px;
-	margin-top:10px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 .form_table .button_cell{
     text-align: center;
-    border-bottom:none !important;
+    border-bottom: none !important;
 }
 .button_wrapper_with_margins {
     margin-top: 20px;
     text-align: center;
 }
 .back_to_link{
-	float:right;
-	margin-top:5px;
+    float: right;
+    margin-top: 5px;
 }
-.required:not([type=file]):after {
+.required: not([type=file]):after {
     content: '*';
     color: #FF7B7B;
 }
@@ -297,11 +298,11 @@ input[type=text], input[type=password] {
     text-align: right;
 }
 .form_table th label{
-	margin-bottom:7px;
-	display:block;
+    margin-bottom: 7px;
+    display: block;
 }
 .sub_header_message{
-	padding-left:6px;
+    padding-left: 6px;
 }
 .form_table .info {
     width: 312px;
@@ -310,20 +311,20 @@ input[type=text], input[type=password] {
     vertical-align: top;
 }
 .form_table .info p {
-    padding-top:0px;
+    padding-top: 0px;
 }
 .form_table.grande p, .form_table.grande a {
     line-height: 24px;
     font-size: 15px;
     /* Undo the margins on p.grande */
-    margin:0px;
+    margin: 0px;
 }
 .form_table.grande {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 .form_table.grande th label{
-    margin-bottom:6px;
+    margin-bottom: 6px;
 }
 .form_table.grande input[type=text], .form_table.grande input[type=password] {
     font-size: 20px;
@@ -351,13 +352,13 @@ a.hover {
     margin-top: 0px !important;
 }
 .no_top_padding{
-	padding-top:0px !important;
+    padding-top: 0px !important;
 }
 .no_top_border{
-	border-top:0 !important;
+    border-top: 0 !important;
 }
 .no_bottom_border{
-	border-bottom:0 !important;
+    border-bottom: 0 !important;
 }
 .anchor {
     clear: both;
@@ -367,8 +368,8 @@ a.hover {
     text-align: center;
 }
 #dialog_long_load_message{
-	margin-bottom: 10px;
-	min-height: 17px;
+    margin-bottom: 10px;
+    min-height: 17px;
 }
 .clearfix::after {
     clear: both;

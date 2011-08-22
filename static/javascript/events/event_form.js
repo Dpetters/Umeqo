@@ -226,7 +226,6 @@ $(document).ready( function() {
             }
         } else {
             $('label[for=id_start_datetime_0]').addClass('required');
-            $("#event_form_header").html("New Event");
             $("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
             $("#start_datetime_wrapper").css("opacity", 1);
             
@@ -388,8 +387,8 @@ $(document).ready( function() {
         setDate(datetime, 'event_scheduler_day_text');
     }
     function renderScheduler() {
-        $('#event_scheduler_nav_back').removeClass('active');
-        $('#event_scheduler_nav_forward').removeClass('active');
+        $('#event_scheduler_nav_back').removeClass('enabled');
+        $('#event_scheduler_nav_forward').removeClass('enabled');
         var event_date_text = $('#event_scheduler_day_text').val();
         $('.event_block').remove();
         $.get(EVENT_SCHEDULE_URL, {
@@ -465,8 +464,8 @@ $(document).ready( function() {
             } else {
                 $('#event_scheduler').scrollTop(0);
             }
-            $('#event_scheduler_nav_back').addClass('active');
-            $('#event_scheduler_nav_forward').addClass('active');
+            $('#event_scheduler_nav_back').addClass('enabled');
+            $('#event_scheduler_nav_forward').addClass('enabled');
         });
     }
     $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker();
@@ -474,21 +473,21 @@ $(document).ready( function() {
     renderScheduler();
     
     $('#event_scheduler_nav_back').click(function(e) {
-        if ($(this).hasClass('active')) {
+        if ($(this).hasClass('enabled')) {
             var date = getSchedulerDate();
             date.setDate(date.getDate() - 1);
             setEventDate(date);
             renderScheduler();
-            e.preventDefault();
-        }
+        }    
+        e.preventDefault();
     });
     $('#event_scheduler_nav_forward').click(function(e) {
-        if ($(this).hasClass('active')) {
+        if ($(this).hasClass('enabled')) {
             var date = getSchedulerDate();
             date.setDate(date.getDate() + 1);
             setEventDate(date);
             renderScheduler();
-            e.preventDefault();
-        }
+        }    
+        e.preventDefault();
     });
 });
