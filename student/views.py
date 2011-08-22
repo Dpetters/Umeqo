@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import absolute_import
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden
@@ -14,7 +17,7 @@ from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm
                             StudentEmployerSubscriptionsForm, \
                             StudentProfilePreviewForm, StudentProfileForm, \
                             BetaStudentRegistrationForm
-from student.models import Student, StudentDeactivation
+from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
@@ -111,7 +114,8 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 
 
 @render_to("student_registration.html")
-def student_registration(request, backend = RegistrationBackend(), extra_context = None):
+def student_registration(request, backend = RegistrationBackend(), 
+                         extra_context = None):
     
     if settings.INVITE_ONLY:
         form_class = BetaStudentRegistrationForm
@@ -130,18 +134,24 @@ def student_registration(request, backend = RegistrationBackend(), extra_context
             new_user = backend.register(request, **form.cleaned_data)
             student = Student(user=new_user)
             student.save()
+            if settings.INVITE_ONLY:
+                i=StudentInvite.objects.get(id=form.cleaned_data['invite_code'])
+                i.recipient = student
+                i.save()
             if request.is_ajax():
                 data = {
                     'valid': True,
                     'success_url': reverse(success_url),
                     'email': form.cleaned_data['email']
                 }
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                return HttpResponse(simplejson.dumps(data), \
+                                    mimetype="application/json")
             return redirect(success_url)
         else:
             if request.is_ajax():
                 data = {'valid':False, 'errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                return HttpResponse(simplejson.dumps(data), \
+                                    mimetype="application/json")
     else:
         form = form_class()
     
@@ -221,7 +231,7 @@ def student_profile_preview(request,
                 context = {'student':student,
                            'in_resume_book':False,
                            'starred':False,
-                           'comment':messages.student_profile_preview_comment,
+                           'comment':messages.comment_text,
                            'num_of_events_attended':1,
                            'profile_preview':True}
                 

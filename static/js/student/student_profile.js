@@ -125,7 +125,7 @@ $(document).ready( function() {
                 range: STUDENT_PROFILE_FORM_GPA_RANGE
             },
             resume: STUDENT_PROFILE_FORM_RESUME,
-            website: STUDENT_PROFILE_FORM_WEBSITE
+            website: invalid_url
         }
     });
 
@@ -372,21 +372,21 @@ $(document).ready( function() {
                             $(this).html(REMOVE_FROM_RESUME_BOOK_IMG);    
                         }, function(){
                             $(this).html(ADD_TO_RESUME_BOOK_IMG);    
-                        }).tipsy({'gravity':'e', opacity: 0.9, title:function(){return STUDENT_PROFILE_PREVIEW_RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP;}, html:true});
+                        }).tipsy({'gravity':'e', opacity: 0.9, title:function(){return resume_book_current_toggle_tooltip;}, html:true});
                         $(".student_toggle_star").hover(function(){
                             $(this).html(STARRED_IMG);    
                         }, function(){
                             $(this).html(UNSTARRED_IMG);    
-                        }).tipsy({'gravity':'e', opacity: 0.9, fallback:STUDENT_PROFILE_PREVIEW_STAR_TOGGLE_TOOLTIP, html:true});
-                        $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:STUDENT_PROFILE_PREVIEW_EVENT_ATTENDANCE_TOOLTIP, html:true});
+                        }).tipsy({'gravity':'e', opacity: 0.9, fallback:star_toggle_tooltip, html:true});
+                        $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:event_attendance_tooltip, html:true});
                         if (student_detailed_info_visible){
                             $(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
                             $(".student_detailed_info").show();
                         }else{
                             $(".student_detailed_info").hide();
                         }
-                        $(".student_invite_to_event_link").tipsy({'gravity':'e', opacity: 0.9, fallback:STUDENT_PROFILE_PREVIEW_INVITE_TO_EVENT_TOOLTIP, html:true});
-                        $(".student_resume_link").tipsy({'gravity':'e', opacity: 0.9, fallback:STUDENT_PROFILE_PREVIEW_VIEW_RESUME_TOOLTIP, html:true});
+                        $(".student_invite_to_event_link").tipsy({'gravity':'e', opacity: 0.9, fallback:invite_to_event_tooltip, html:true});
+                        $(".student_resume_link").tipsy({'gravity':'e', opacity: 0.9, fallback:view_resume_tooltip, html:true});
                         $(".student_comment").autoResize({
                             animateDuration : 0,
                             extraSpace : 18

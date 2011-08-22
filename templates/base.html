@@ -56,13 +56,13 @@
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
-            <script src="{{ STATIC_URL }}javascript/base.js"></script>
-            <script src="{{ STATIC_URL }}javascript/contact_us_dialog.js"></script>
+            <script src="{{ STATIC_URL }}js/base.js"></script>
+            <script src="{{ STATIC_URL }}js/contact_us_dialog.js"></script>
             
             {% if user.is_authenticated and user.student or user.recruiter %}
-                <script src="{{ STATIC_URL }}javascript/logged_in.js"></script>
+                <script src="{{ STATIC_URL }}js/logged_in.js"></script>
             {% else %}
-                <script type="text/javascript" src="{{ STATIC_URL }}javascript/anonymous.js"></script>
+                <script type="text/javascript" src="{{ STATIC_URL }}js/anonymous.js"></script>
             {% endif %}
         {% endcompress %}
         
@@ -140,33 +140,36 @@
             </div>
         </div>
         <div id="below_header_area">
-            <div class="width_container">
+            <!-- z-index is there to fix IE7 z-index bug -->
+            <div class="width_container" style="z-index:200">
                 {% if not user.is_authenticated or not user.student and not user.recruiter %}
-                <div id="login_wrapper">
-                    <form id="login_form" action="/login/" method='POST'>
-                        {% csrf_token %}
-                        <div class="errorspace"></div>
-                        <div id="username" class="input_div">
-                            <label for="id_username">Email</label>
-                            {{login_form.username}}
+                    {% ifnotequal current_path "/login/" %}
+                        <div id="login_wrapper">
+                            <form id="login_form" action="/login/" method='POST'>
+                                {% csrf_token %}
+                                <div class="errorspace"></div>
+                                <div id="username" class="input_div">
+                                    <label for="id_username">Email</label>
+                                    {{login_form.username}}
+                                </div>
+                                <div class="errorspace"></div>
+                                <div id="password" class="input_div">
+                                    <label for="id_password">Password</label>
+                                    {{login_form.password}}
+                                </div>
+                                <div class="error_section error">
+                                </div>
+                                <div>
+                                    <button class="button" type='submit'>
+                                        Login
+                                    </button>
+                                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                                    <a id="reset_password_link" href="/password/reset/">Forgot password?</a>
+                                </div>
+                                <input type="hidden" name="next" value="{{login_next}}" />
+                            </form>
                         </div>
-                        <div class="errorspace"></div>
-                        <div id="password" class="input_div">
-                            <label for="id_password">Password</label>
-                            {{login_form.password}}
-                        </div>
-                        <div class="error_section error">
-                        </div>
-                        <div>
-                            <button class="button" type='submit'>
-                                Login
-                            </button>
-                            <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-                            <a id="reset_password_link" href="/password/reset/">Forgot password?</a>
-                        </div>
-                        <input type="hidden" name="next" value="{{login_next}}" />
-                    </form>
-                </div>
+                    {% endifnotequal %}
                 {% endif %}
                     {% block below_header_area %}
                     {% endblock %}

@@ -41,18 +41,25 @@ $(document).ready( function() {
             },
             password1: {
                 required: true,
-                minlength: PASSWORD_MIN_LENGTH,
+                minlength: PASSWORD_MIN_LENGTH
+            },
+            invite_code: {
+                required: true
+       
             }
         },
         messages:{
             email:{
-                required: EMAIL_REQUIRED_MESSAGE,
-                email: INVALID_EMAIL_MESSAGE,
-                isMITEmail: MUST_BE_MIT_EMAIL_MESSAGE,
-                remote: EMAIL_ALREADY_REGISTERED_MESSAGE
+                required: EMAIL_REQUIRED,
+                email: INVALID_EMAIL,
+                isMITEmail: MUST_BE_MIT_EMAIL,
+                remote: EMAIL_ALREADY_REGISTERED
             },
             password1: {
-                required: PASSWORD_REQUIRED_MESSAGE
+                required: PASSWORD_REQUIRED
+            },
+            invite_code: {
+                required: INVITE_CODE_REQUIRED
             }
         }
     });

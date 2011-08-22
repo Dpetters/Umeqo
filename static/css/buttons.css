@@ -32,8 +32,8 @@
 }
 a.button, .button{
     height:30px;
-    /* Firefox needs line-height here */
-    line-height:30px;
+    line-height:29px;
+
 }
 input.button{
     height:32px;

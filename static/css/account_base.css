@@ -45,6 +45,7 @@
 }
 #basic_info_table th{
     width:129px;
+    text-align:right;
 }
 #password_change_form th{
     width:130px;

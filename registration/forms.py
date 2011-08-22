@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 from core import messages
 
-
 class PasswordResetForm(AuthPasswordResetForm):
     email = forms.EmailField(label=_("Email:"), max_length=75, required=True)
 

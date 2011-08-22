@@ -39,15 +39,15 @@
     var STUDENT_PROFILE_FORM_GPA_REQUIRED = "{% text_snippet 'student_profile_form_gpa_required' %}";
     var STUDENT_PROFILE_FORM_GPA_RANGE = "{% text_snippet 'student_profile_form_gpa_range' %}";
     var STUDENT_PROFILE_FORM_RESUME = "{% text_snippet 'student_profile_form_resume' %}";
-    var STUDENT_PROFILE_FORM_WEBSITE = "{% text_snippet 'student_profile_form_website' %}";
+    var invalid_url = "{% text_snippet 'invalid_url' %}";
     var STUDENT_PROFILE_FORM_FIRST_SECOND_MAJORS_DIFF = "{% text_snippet 'first_second_majors_diff' %}";
     var STUDENT_PROFILE_PREVIEW_AJAX_LOADER = "{% include 'student_profile_preview_ajax_loader.html' %}"; 
     var STUDENT_PROFILE_PREVIEW_CHECKBOX_TOOLTIP = "{% text_snippet 'student_profile_preview_checkbox_tooltip' %}";
-    var STUDENT_PROFILE_PREVIEW_RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP = "{% text_snippet 'student_profile_preview_resume_book_current_toggle_tooltip' %}";
-    var STUDENT_PROFILE_PREVIEW_STAR_TOGGLE_TOOLTIP = "{% text_snippet 'student_profile_preview_star_toggle_tooltip' %}";
-    var STUDENT_PROFILE_PREVIEW_EVENT_ATTENDANCE_TOOLTIP = "{% text_snippet 'student_profile_preview_event_attendance_tooltip' %}";
-    var STUDENT_PROFILE_PREVIEW_VIEW_RESUME_TOOLTIP = "{% text_snippet 'student_profile_preview_view_resume_tooltip' %}";
-    var STUDENT_PROFILE_PREVIEW_INVITE_TO_EVENT_TOOLTIP = "{% text_snippet 'student_profile_preview_invite_to_event_tooltip' %}";
+    var resume_book_current_toggle_tooltip = "{% text_snippet 'resume_book_current_toggle_tooltip' %}";
+    var star_toggle_tooltip = "{% text_snippet 'star_toggle_tooltip' %}";
+    var event_attendance_tooltip = "{% text_snippet 'event_attendance_tooltip' %}";
+    var view_resume_tooltip = "{% text_snippet 'view_resume_tooltip' %}";
+    var invite_to_event_tooltip = "{% text_snippet 'invite_to_event_tooltip' %}";
     
     var LANGUAGE_ALREADY_EXISTS = "{% text_snippet 'language_already_exists' %}";
     var CAMPUS_ORG_ALREADY_EXISTS = "{% text_snippet 'campus_org_already_exists' %}";
@@ -61,12 +61,12 @@
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_create_campus_org.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_create_language.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/campus_info.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_create_campus_org.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_create_language.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/campus_info.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 {% endcompress %}
 {% endblock %}
@@ -165,7 +165,7 @@ Create Profile |
                                 <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
                                 <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                                 <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
-                                <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif">
+                                <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
                             </td>
                         </tr>
                     </table>
@@ -266,7 +266,7 @@ Create Profile |
                                 <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
                                 <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
                                 <input class="button" type='submit' value="Save Profile" alt="Save Profile">
-                                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                             </td>
                         </tr>
                     </table>
@@ -344,7 +344,7 @@ Create Profile |
                                 <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
                                 <input name="formNext2" type="button" class="button disabled-button" value="Next" alt="Next" disabled="disabled" />
                                 <input class="button" type='submit' value='Save Profile' alt="Save Profile">
-                                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                             </td>
                         </tr>
                     </table>

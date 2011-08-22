@@ -84,7 +84,8 @@ class StudentRegistrationForm(forms.Form):
 
 
 class BetaStudentRegistrationForm(StudentRegistrationForm):
-    invite_code = forms.CharField(label="Invite Code:")
+    invite_code = forms.CharField(label="Invite Code:", \
+                                  widget=forms.TextInput(attrs={'tabindex':2}))
     
     def clean_invite_code(self):
         try:
