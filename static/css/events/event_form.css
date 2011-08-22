@@ -40,7 +40,7 @@ label[for=id_is_public_0], label[for=id_is_public_1] {
     margin-top: 1px;
     cursor: pointer;
 }
-.location_suggestion: hover, .location_suggestion.selected {
+.location_suggestion:hover, .location_suggestion.selected {
     color: #444;
     background: #E9E9E9;
 }
@@ -132,12 +132,12 @@ label[for=id_end_datetime_0]{
 #event_scheduler td {
     height: 15px;
 }
-#event_scheduler tr: nth-child(odd) td {
+#event_scheduler tr:nth-child(odd) td {
     border-style: solid;
     border-width: 1px;
     border-color: #DDD #EEE #EEE;
 }
-#event_scheduler tr: nth-child(even) td {
+#event_scheduler tr:nth-child(even) td {
     border-style: solid;
     border-width: 1px;
     border-color: #EEE #EEE #DDD;
@@ -154,20 +154,20 @@ label[for=id_end_datetime_0]{
 .gray {
     background-color: #CCC;
     border: 2px dashed #666;
-    right: 170px;
+    left: 60px;
+    right: 150px;
     z-index: 1;
 }
-.gray: hover {
+.gray:hover {
     z-index: 3;
 }
 .green {
     background-color: #B08B59;
     border: 2px dashed #000;
-    left: 150px;
-    right: 40px;
+    left: 192px;
     z-index: 2;
 }
-.green: hover {
+.green:hover {
     cursor: pointer;
 }
 .clipTop {
@@ -218,37 +218,42 @@ label[for=id_rsvp_message]{
     margin-left: 10px;
 }
 #event_scheduler_nav {
-  float: right;
+    float: right;
 }
 #event_scheduler_nav_back,
 #event_scheduler_nav_forward {
-  display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  padding: 0 5px;
-  background: #EEE;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  text-decoration: none;
-  color: #BBB;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 5px;
+    background: #EEE;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #BBB;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 #event_scheduler_nav_back.enabled,
 #event_scheduler_nav_forward.enabled {
-  color: #000;
+    color: #000;
 }
-#event_scheduler_nav_back: hover,
-#event_scheduler_nav_forward: hover {
-  background: #EEE;
-  cursor: default;
-  color: #BBB;
+#event_scheduler_nav_back.enabled:active
+#event_scheduler_nav_forward.enabled:active {
+    background: #444;
+    color: #FFF;
 }
-#event_scheduler_nav_back.enabled: hover,
-#event_scheduler_nav_forward.enabled: hover {
-  background: #F2F2F2;
-  color: #222;
-  cursor: pointer;
+#event_scheduler_nav_back:hover,
+#event_scheduler_nav_forward:hover {
+    background: #EEE;
+    cursor: default;
+    color: #BBB;
+}
+#event_scheduler_nav_back.enabled:hover,
+#event_scheduler_nav_forward.enabled:hover {
+    background: #F2F2F2;
+    color: #222;
+    cursor: pointer;
 }
