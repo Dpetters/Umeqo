@@ -1,4 +1,5 @@
-import datetime
+from __future__ import division
+from __future__ import absolute_import
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -11,8 +12,12 @@ from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-from student.forms import StudentDeactivateAccountForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentEmployerSubscriptionsForm, StudentProfilePreviewForm, StudentProfileForm
-from student.models import Student
+from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm,\
+                            StudentRegistrationForm, StudentUpdateResumeForm,\
+                            StudentEmployerSubscriptionsForm, \
+                            StudentProfilePreviewForm, StudentProfileForm, \
+                            BetaStudentRegistrationForm
+from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
@@ -31,7 +36,8 @@ from countries.models import Country
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
-                    change_password_form_class = PasswordChangeForm, extra_context=None):
+                    change_password_form_class = PasswordChangeForm, 
+                    extra_context=None):
     if request.method == "GET":
         context = {}
         page_messages = {
@@ -40,37 +46,43 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
         msg = request.GET.get('msg', None)
         if msg:
             context["msg"] = page_messages[msg]
-        context['preferences_form'] = preferences_form_class(instance = request.user.student.studentpreferences)
+        
+        context['preferences_form'] = \
+        preferences_form_class(instance = request.user.student.studentpreferences)
+        
         context['change_password_form'] = change_password_form_class(request.user)
         context.update(extra_context or {})
         return context
-    return HttpResponseForbidden("Request must be a GET")
+    else:
+        return HttpResponseForbidden("Request must be a GET")
 
 
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 @render_to("student_account_deactivate.html")
-def student_account_deactivate(request, form_class=StudentDeactivateAccountForm):
+def student_account_deactivate(request, 
+                               form_class=StudentAccountDeactivationForm):
     if request.is_ajax():
         if request.method == "POST":
             form = form_class(data = request.POST)
             if form.is_valid():
-                request.user.is_active = False
-                request.user.save()
-                for session_key_object in request.user.sessionkey_set.all():
-                    Session.objects.filter(session_key=session_key_object.session_key).delete()
-                request.user.sessionkey_set.all().delete()
+                user = request.user
+                student = user.student
+                user.is_active = False
+                user.save()
+                for sk in user.sessionkey_set.all():
+                    Session.objects.filter(session_key=sk.session_key).delete()
+                user.sessionkey_set.all().delete()
+                sd = StudentDeactivation.objects.create(student = student)
                 if form.cleaned_data.has_key('suggestion'):
-                    recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
-                    subject = "%s %s (%s) Account Deactivation" % (request.user.student.first_name, request.user.student.last_name, request.user.username) 
-                    body = render_to_string('student_account_deactivate_email_body.txt', \
-                                            {'first_name':request.user.student.first_name, \
-                                            'last_name':request.user.student.last_name, \
-                                            'email':request.user.email, \
-                                            'suggestion':form.cleaned_data['suggestion']})
-                    message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-                    message.send()
-                return HttpResponse()
+                    sd.suggestion = form.cleaned_data['suggestion']
+                    sd.save()
+                return HttpResponse(simplejson.dumps({}), 
+                                    mimetype="application/json")
+            else:
+                if request.is_ajax():
+                    return HttpResponse(simplejson.dumps({'errors':form.errors}), 
+                                        mimetype="application/json")
         else:
             context = {}
             context['form'] = form_class()
@@ -102,33 +114,46 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 
 
 @render_to("student_registration.html")
-def student_registration(request, backend = RegistrationBackend(), extra_context = None):
+def student_registration(request, backend = RegistrationBackend(), 
+                         extra_context = None):
     
+    if settings.INVITE_ONLY:
+        form_class = BetaStudentRegistrationForm
+    else:
+        form_class = StudentRegistrationForm
+
     success_url = 'student_registration_complete'
     if not backend.registration_allowed(request):
         return redirect('student_registration_closed')
     
     if request.method == 'POST':
-        form = StudentRegistrationForm(data=request.POST)
+        
+        form = form_class(data=request.POST)
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
             student = Student(user=new_user)
             student.save()
+            if settings.INVITE_ONLY:
+                i=StudentInvite.objects.get(id=form.cleaned_data['invite_code'])
+                i.recipient = student
+                i.save()
             if request.is_ajax():
                 data = {
                     'valid': True,
                     'success_url': reverse(success_url),
                     'email': form.cleaned_data['email']
                 }
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                return HttpResponse(simplejson.dumps(data), \
+                                    mimetype="application/json")
             return redirect(success_url)
         else:
             if request.is_ajax():
                 data = {'valid':False, 'errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                return HttpResponse(simplejson.dumps(data), \
+                                    mimetype="application/json")
     else:
-        form = StudentRegistrationForm()
+        form = form_class()
     
     context = { 'form':form, 'debug':settings.DEBUG }
     context.update(extra_context or {}) 
@@ -206,7 +231,7 @@ def student_profile_preview(request,
                 context = {'student':student,
                            'in_resume_book':False,
                            'starred':False,
-                           'comment':messages.student_profile_preview_comment,
+                           'comment':messages.comment_text,
                            'num_of_events_attended':1,
                            'profile_preview':True}
                 

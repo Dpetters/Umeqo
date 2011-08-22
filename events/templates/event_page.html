@@ -27,7 +27,7 @@
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
 </script>
 {% compress js %}
-    <script src="{{ STATIC_URL }}javascript/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
 {% endcompress %}    
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}

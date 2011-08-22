@@ -18,12 +18,12 @@ input[type=text] {
     margin-right:28px;
 }
 #student_profile_preview_ajax_loader{
-	margin-bottom:30px;
-	margin-top:5px;
-	text-align:center;
+    margin-bottom:30px;
+    margin-top:5px;
+    text-align:center;
 }
 #profile_form .main_block_header_content{
-	margin-right:50px;
+    margin-right:50px;
 }
 #profile_form_title {
     padding-bottom:15px;
@@ -37,29 +37,29 @@ input[type=text] {
     height: 1px;
 }
 #listing_preview_section_block{
-	margin-top:15px;
-	background:#E6E6E6;
-	padding:8px;
-	border-radius:3px;
+    margin-top:15px;
+    background:#E6E6E6;
+    padding:8px;
+    border-radius:3px;
 }
 #listing_preview_info{
-	margin-right:700px;
+    margin-right:700px;
 }
 #listing_preview_info h2{
-	margin-left:75px;
-	margin-top:32px;
+    margin-left:75px;
+    margin-top:32px;
 }
 #listing_preview{
-	min-height:81px;
-	background:#FFF;
-	border:1px solid #CCC;
-	border-radius:5px;
-	padding:1px 8px;
-	width:651px;
-	float:right
+    min-height:81px;
+    background:#FFF;
+    border:1px solid #CCC;
+    border-radius:5px;
+    padding:1px 8px;
+    width:651px;
+    float:right
 }
 #listing_preview .message_section{
-	margin-top:8px;
+    margin-top:8px;
 }
 .previous_employers_multiselect .ui-multiselect-filter input, .interested_in_multiselect .ui-multiselect-filter input, .campus_involvement_multiselect .ui-multiselect-filter input, .countries_of_citizenship_multiselect .ui-multiselect-filter input, .languages_multiselect .ui-multiselect-filter input{
     width:154px;
@@ -89,24 +89,24 @@ input[type=text] {
 }
 /* Dialogs */
 .create_campus_org_dialog .dialog_content_wrapper, .create_language_dialog .dialog_content_wrapper{
-	padding: 15px;
-	text-align:center;
+    padding: 15px;
+    text-align:center;
 }
 #create_campus_org_form .form_table, #create_language_form .form_table{
-	margin-left:auto;
-	margin-right:auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 .create_campus_org_dialog .message_section p, .create_language_dialog .message_section p{
-	line-height:21px;
+    line-height:21px;
 }
 #create_language_form input[type=submit], #create_campus_org_form input[type=submit]{
-	width:90px;
+    width:90px;
 }
 #create_campus_org_form #id_name, #create_campus_org_form #id_website, #create_language_form #id_name {
     width:250px;
 }
 #create_campus_org_form #id_type{
-	width:260px;
+    width:260px;
 }
 /* Accordion Modifications */
 .ui-accordion .ui-accordion-header {
@@ -120,25 +120,25 @@ input[type=text] {
 }
 /* Form Fields */
 #id_first_major, #id_second_major{
-	width:318px;
+    width:318px;
 }
 #id_gpa{
     width: 40px;
     text-align: center;
 }
 #id_sat_v, #id_sat_m, #id_sat_w, #id_act, #id_older_than_21{
-	width:60px;
+    width:60px;
 }
 #id_website, #id_school_year{
-	width:190px;
+    width:190px;
 }
 #id_graduation_year{
-	width:102px;
+    width:102px;
 } 
 #id_graduation_month{
-	width:83px;
-	margin-left:5px;
-}	
+    width:83px;
+    margin-left:5px;
+}    
 .side_form_info ul {
     padding: 1px 0 10px;
 }

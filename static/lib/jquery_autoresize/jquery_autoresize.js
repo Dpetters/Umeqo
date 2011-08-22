@@ -47,7 +47,7 @@
                         top: 0,
                         left: -9999
                     }).css(propOb).attr('tabIndex','-1').insertBefore(textarea);
-					
+                    
                 })(),
                 lastScrollTop = null,
                 updateSize = function() {

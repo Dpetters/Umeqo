@@ -7,9 +7,8 @@ from django.contrib.auth import authenticate
 from django.contrib.sites.models import Site
 
 from registration.models import InterestedPerson
-from core import messages
+from core import messages as m
 from core.models import Language
-
 
 class EmailAuthenticationForm(AuthenticationForm):
     pass
@@ -17,8 +16,10 @@ class EmailAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
         self.fields['username'].label = "Email:"
+        self.fields['username'].error_messages = {'required': m.email_required}
         self.fields['password'].label = "Password:"
-        
+        self.fields['password'].error_messages = {'required': m.password_required}
+                
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -26,11 +27,11 @@ class EmailAuthenticationForm(AuthenticationForm):
         if username and password:
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
-                raise forms.ValidationError(messages.incorrect_username_password_combo)
+                raise forms.ValidationError(m.incorrect_username_password_combo)
             if self.user_cache.is_staff:
-                return forms.ValidationError(messages.staff_member_login_not_allowed)
+                return forms.ValidationError(m.staff_member_login_not_allowed)
             if not self.user_cache.userattributes.is_verified:
-                raise forms.ValidationError(messages.account_suspended)
+                raise forms.ValidationError(m.account_suspended)
             if not self.user_cache.is_active:
                 self.user_cache.is_active = True
                 self.user_cache.save()
@@ -248,7 +249,7 @@ class AkismetContactForm(ContactForm):
                                  'user_ip': self.request.META.get('REMOTE_ADDR', ''),
                                  'user_agent': self.request.META.get('HTTP_USER_AGENT', '') }
                 if akismet_api.comment_check(smart_str(self.cleaned_data['body']), data=akismet_data, build_data=True):
-                    raise forms.ValidationError(_(messages.contact_us_message_spam))
+                    raise forms.ValidationError(_(m.contact_us_message_spam))
         return self.cleaned_data
 
 
@@ -267,7 +268,7 @@ class CreateLanguageForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data['name']
         if Language.objects.filter(name=name).exists():
-            raise forms.ValidationError(_(messages.language_already_exists))
+            raise forms.ValidationError(_(m.language_already_exists))
         return name
     class Meta:
         fields = ('name',)

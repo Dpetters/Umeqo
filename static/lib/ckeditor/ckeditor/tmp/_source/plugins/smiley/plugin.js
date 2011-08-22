@@ -5,18 +5,18 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 CKEDITOR.plugins.add( 'smiley',
 {
-	requires : [ 'dialog' ],
+    requires : [ 'dialog' ],
 
-	init : function( editor )
-	{
-		editor.addCommand( 'smiley', new CKEDITOR.dialogCommand( 'smiley' ) );
-		editor.ui.addButton( 'Smiley',
-			{
-				label : editor.lang.smiley.toolbar,
-				command : 'smiley'
-			});
-		CKEDITOR.dialog.add( 'smiley', this.path + 'dialogs/smiley.js' );
-	}
+    init : function( editor )
+    {
+        editor.addCommand( 'smiley', new CKEDITOR.dialogCommand( 'smiley' ) );
+        editor.ui.addButton( 'Smiley',
+            {
+                label : editor.lang.smiley.toolbar,
+                command : 'smiley'
+            });
+        CKEDITOR.dialog.add( 'smiley', this.path + 'dialogs/smiley.js' );
+    }
 } );
 
 /**
@@ -30,8 +30,8 @@ CKEDITOR.plugins.add( 'smiley',
  * config.smiley_path = '/images/smileys/';
  */
 CKEDITOR.config.smiley_path = CKEDITOR.basePath +
-	'_source/' +		// @Packager.RemoveLine
-	'plugins/smiley/images/';
+    '_source/' +        // @Packager.RemoveLine
+    'plugins/smiley/images/';
 
 /**
  * The file names for the smileys to be displayed. These files must be
@@ -48,10 +48,10 @@ CKEDITOR.config.smiley_path = CKEDITOR.basePath +
  *     'broken_heart.gif','kiss.gif','envelope.gif'];
  */
 CKEDITOR.config.smiley_images = [
-	'regular_smile.gif','sad_smile.gif','wink_smile.gif','teeth_smile.gif','confused_smile.gif','tounge_smile.gif',
-	'embaressed_smile.gif','omg_smile.gif','whatchutalkingabout_smile.gif','angry_smile.gif','angel_smile.gif','shades_smile.gif',
-	'devil_smile.gif','cry_smile.gif','lightbulb.gif','thumbs_down.gif','thumbs_up.gif','heart.gif',
-	'broken_heart.gif','kiss.gif','envelope.gif'];
+    'regular_smile.gif','sad_smile.gif','wink_smile.gif','teeth_smile.gif','confused_smile.gif','tounge_smile.gif',
+    'embaressed_smile.gif','omg_smile.gif','whatchutalkingabout_smile.gif','angry_smile.gif','angel_smile.gif','shades_smile.gif',
+    'devil_smile.gif','cry_smile.gif','lightbulb.gif','thumbs_down.gif','thumbs_up.gif','heart.gif',
+    'broken_heart.gif','kiss.gif','envelope.gif'];
 
 /**
  * The description to be used for each of the smileys defined in the
@@ -78,8 +78,8 @@ CKEDITOR.config.smiley_images = [
  *     ];
  */
 CKEDITOR.config.smiley_descriptions =
-	[
-		'smiley', 'sad', 'wink', 'laugh', 'frown', 'cheeky', 'blush', 'surprise',
-		'indecision', 'angry', 'angle', 'cool', 'devil', 'crying', 'enlightened', 'no',
-		'yes', 'heart', 'broken heart', 'kiss', 'mail'
-	];
+    [
+        'smiley', 'sad', 'wink', 'laugh', 'frown', 'cheeky', 'blush', 'surprise',
+        'indecision', 'angry', 'angle', 'cool', 'devil', 'crying', 'enlightened', 'no',
+        'yes', 'heart', 'broken heart', 'kiss', 'mail'
+    ];

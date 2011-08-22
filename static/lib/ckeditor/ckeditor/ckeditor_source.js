@@ -13,13 +13,13 @@ if(!window.CKEDITOR)window.CKEDITOR=(function(){var a={timestamp:'',version:'3.6
 // CKEDITOR.timestamp = ( new Date() ).valueOf();
 
 if ( CKEDITOR.loader )
-	CKEDITOR.loader.load( 'core/ckeditor' );
+    CKEDITOR.loader.load( 'core/ckeditor' );
 else
 {
-	// Set the script name to be loaded by the loader.
-	CKEDITOR._autoLoad = 'core/ckeditor';
+    // Set the script name to be loaded by the loader.
+    CKEDITOR._autoLoad = 'core/ckeditor';
 
-	// Include the loader script.
-	document.write(
-		'<script type="text/javascript" src="' + CKEDITOR.getUrl( '_source/core/loader.js' ) + '"></script>' );
+    // Include the loader script.
+    document.write(
+        '<script type="text/javascript" src="' + CKEDITOR.getUrl( '_source/core/loader.js' ) + '"></script>' );
 }

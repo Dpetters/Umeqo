@@ -31,12 +31,12 @@
     color:#FFF;
 }
 a.button, .button{
-	height:30px;
-	/* Firefox needs line-height here */
-	line-height:30px;
+    height:30px;
+    line-height:29px;
+
 }
 input.button{
-	height:32px;
+    height:32px;
 }
 .form_table.grande input[type=submit] {
     font-size: 16px;
@@ -175,6 +175,7 @@ input.button{
 }
 .dark_button.large, .button.large {
     height: 34px;
+    line-height:34px;
     text-decoration: none;
     padding: 0 10px;
     font-size: 16px;
@@ -198,7 +199,7 @@ input.button{
     font-weight:bold;
 }
 .dropdown_menu_button{
-	font-weight:normal;
+    font-weight:normal;
     position: relative;
 }
 .menu_button.hover, .dropdown_menu_button.hover  {
@@ -219,7 +220,7 @@ input.button{
     text-shadow: 0 -1px 0 #000;
 }
 .dropdown_menu_button ul{
-	box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
     behavior: url(/static/lib/pie/PIE.htc);
     list-style: none;
     padding: 2px;
@@ -242,6 +243,6 @@ input.button{
     border: 1px solid #FFF;
 }
 .dropdown_menu_button ul li.hover {
-	background:url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
-	border:1px solid #E9E9E9;
+    background:url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
+    border:1px solid #E9E9E9;
 }

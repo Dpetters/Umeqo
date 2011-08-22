@@ -29,10 +29,10 @@ $('.open_contact_us_dialog_link').live('click', function () {
             contact_us_dialog.dialog('option', 'position', 'center');
         },
         error: function(jqXHR, textStatus, errorThrown) {
-        	if(jqXHR.status==0){
-        		contact_us_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-        	}else{
-				contact_us_dialog.html(ERROR_MESSAGE_DIALOG);
+            if(jqXHR.status==0){
+                contact_us_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+            }else{
+                contact_us_dialog.html(ERROR_MESSAGE_DIALOG);
             }
         },
         success: function (data) {
@@ -40,24 +40,24 @@ $('.open_contact_us_dialog_link').live('click', function () {
             contact_us_form_validator = $("#contact_us_form").validate({
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({
-                    	url: CONTACT_US_URL,
+                        url: CONTACT_US_URL,
                         dataType: 'json',
                         beforeSubmit: function (arr, $form, options) {
                             $("#contact_us_form input[type=submit]").attr("disabled", "disabled");
                             show_form_submit_loader("#contact_us_form");
-                        	$("#contact_us_form .errorspace, #contact_us_form .error_section").html("");
+                            $("#contact_us_form .errorspace, #contact_us_form .error_section").html("");
                         },
                         complete : function(jqXHR, textStatus) {
-                        	contact_us_dialog.dialog('option', 'position', 'center');
-                        	$("#contact_us_form input[type=submit]").removeAttr("disabled");
+                            contact_us_dialog.dialog('option', 'position', 'center');
+                            $("#contact_us_form input[type=submit]").removeAttr("disabled");
                             hide_form_submit_loader("#contact_us_form");
                         },
                         error: function(jqXHR, textStatus, errorThrown){
-	                    	if(jqXHR.status==0){
-	    	            		$(".contact_us_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
-	                    	}else{
-								$(".contact_us_dialog .error_section").html(ERROR_MESSAGE);
-							}
+                            if(jqXHR.status==0){
+                                $(".contact_us_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
+                            }else{
+                                $(".contact_us_dialog .error_section").html(ERROR_MESSAGE);
+                            }
                         },
                         success: function (data) {
                             if(data.valid) {

@@ -3,7 +3,7 @@
 </script>
 
 <div class="dialog_content_wrapper">
-    <p>You can contact us directly or though one of the emails listed below. We'll get back to you ASAP.</p>
+    <p>You can contact us directly or though the email listed below. We'll get back to you ASAP.</p>
     
     <form id="contact_us_form" method='POST'>
         {% csrf_token %}
@@ -14,14 +14,12 @@
                     <div class="errorspace">{{form.name.errors}}</div>
                     {{form.name}}
                 </td>
-				<td rowspan="2">
-					<div id="email_contacts">
-						<h3>Email Contacts</h3>
-						<p><b>Customer Support:</b>  help@umeqo.com</p>
-						<p><b>Employer Sign-Up:</b>  sales@umeqo.com</p>
-						<p><b>General Inquries:</b>  team@umeqo.com</p>
-					</div>
-				</td>
+                <td rowspan="2">
+                    <div id="email_contacts">
+                        <h3>Email Contact</h3>
+                        <p><b>All Inquries:</b> contact@umeqo.com</p>
+                    </div>
+                </td>
             <tr>
                 <th>{{form.email.label_tag}}</th>
                 <td colspan="2">
@@ -44,7 +42,7 @@
             <tr>
                 <td class="button_cell" colspan="3">
                     <input id="contact_us_form_submit_button" class="button" type='submit' value='Submit'>
-                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
+                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                 </td>
             </tr>
         </table>

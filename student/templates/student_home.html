@@ -15,7 +15,7 @@
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
 </script>
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_unparsable_resume_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -36,10 +36,8 @@
             <span class="main_block_header_title">What's New</span>
         </div>
         <div class="main_block_content">
-            <div class="simple_block">
-                <p>
-                    This is probably your first time here, so let us tell you a little bit about Umeqo.
-                </p>
+            <div class="simple_block centered">
+                <p>This is probably your first time here, so let us tell you a little bit about Umeqo.</p>
             </div>
         </div>
     </div>
@@ -57,7 +55,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <div class="simple_block">
+                    <div class="simple_block centered">
                             <p>You have no upcoming events from the employers that you are subscribed to!</p>
                             <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers_list %}">subscribing to some more employers</a>.
                         </p>

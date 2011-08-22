@@ -13,17 +13,18 @@ Student Registration |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration.css" />
 {% endcompress %}
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/student/student_registration.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_registration.js"></script>
 {% endcompress %}
 
 <script type="text/javascript">
-	var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+    var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
     
-    var EMAIL_REQUIRED_MESSAGE = "{% text_snippet 'email_required' %}";
-    var INVALID_EMAIL_MESSAGE = "{% text_snippet 'invalid_email' %}";
-    var MUST_BE_MIT_EMAIL_MESSAGE = "{% text_snippet 'must_be_mit_email' %}";
-    var EMAIL_ALREADY_REGISTERED_MESSAGE = "{% text_snippet 'email_already_registered' %}";
-	var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required' %}";
+    var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
+    var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
+    var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
+    var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
+    var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
+    var INVITE_CODE_REQUIRED = "{% text_snippet 'invite_code_required' %}";
     
     var DEBUG = "{{debug}}";    
 </script>
@@ -32,7 +33,7 @@ Student Registration |
 {% block content_area %}
 <div class="simple_block centered">
     <h1>Student Registration</h1>
-    <form id="student_registration_form" method="POST" action="" autocomplete="off">
+    <form id="student_registration_form" method="POST" autocomplete="off">
         {% csrf_token %}
         <table class="form_table grande">
             <tr>
@@ -54,6 +55,15 @@ Student Registration |
                     {{form.password1}}
                 </td>
             </tr>
+            {% if form.invite_code %}
+            <tr>
+                <th>{{form.invite_code.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.invite_code.errors}}</div>
+                    {{form.invite_code}}
+                </td>
+            </tr>
+            {% endif %}
             <tr>
                 <th></th>
                 <td class="error_section error">
@@ -65,7 +75,7 @@ Student Registration |
                 <th></th>
                 <td colspan="2">
                     <input tabindex="3" class="button" type="submit" value="Create my account" />
-                    <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif" />
+                    <img id="ajax_form_submit_loader" src="{{ STATIC_URL }}images/loaders/s_ajax.gif" />
                 </td>
             </tr>
         </table>

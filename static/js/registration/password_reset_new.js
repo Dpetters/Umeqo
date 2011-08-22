@@ -1,5 +1,5 @@
 $(document).ready( function() {
-	$("#choose_new_password_form").validate({
+    $("#choose_new_password_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
         errorPlacement: place_table_form_field_error,

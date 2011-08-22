@@ -25,7 +25,9 @@ from registration.forms import PasswordChangeForm
 from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
-from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
+from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, \
+                            StudentFilteringForm, StudentDefaultFilteringParametersForm, \
+                            StudentSearchForm, DeliverResumeBookForm
 from employer.views_helper import get_paginator, employer_search_helper
 from student import enums as student_enums
 from student.models import Student

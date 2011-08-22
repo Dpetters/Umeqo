@@ -3,7 +3,7 @@
     padding-bottom: 25px;
 }
 .simple_block h1{
-	margin-bottom:9px;
+    margin-bottom:9px;
 }
 .main_block {
     margin-top: 20px;
@@ -11,12 +11,12 @@
     width:100%
 }
 .main_block.with_side_nav{
-	width:780px;
-	float:right;
+    width:780px;
+    float:right;
 }
 .main_block h1{
-	margin-bottom:15px;
-}	
+    margin-bottom:15px;
+}    
 .main_block_header {
     padding: 3px 0px;
     line-height: 30px;
@@ -83,7 +83,7 @@
     line-height: 29px;
 }
 .no_icon{
-	margin-left:8px;
+    margin-left:8px;
 }
 .side_block_content {
     padding: 10px;

@@ -29,7 +29,7 @@
 {% endcompress %}
 {% compress js %}
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<script src="{{ STATIC_URL }}javascript/events/event_form.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_form.js"></script>
 {% endcompress %}
 <script type="text/javascript" src="{{ STATIC_URL}}lib/ckeditor/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -42,22 +42,22 @@
 <div>
     <h1 id="event_form_header">
     {% if edit %}
-    Edit Event
+        Edit Event
     {% else %}
-    New Event
+        New Event
     {% endif %}
     </h1>
     {% if edit %}
-        <a href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1" class="main_block_header_sidelink">View Event</a>
+        <a id="view_event_button" href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1" class="dark_button">View Event</a>
     {% endif %}
-    <a class="back_to_link" href="{% url home %}#events" tabindex="-1">Back to Events &raquo;</a>
+    <a class="back_to_link" href="{% url home %}#events" tabindex="-1">&laquo; Back to Events</a>
 </div>
 <form id="event_form" method="POST" action="">
     {% csrf_token %}
     <div class="right_side_container">
         <div id="event_datetime_block" class="side_block">
             <div class="side_block_header">
-                <span class="no_icon_side_block_header_title">Date &amp; Time</span>
+                <span class="no_icon side_block_header_title">Date &amp; Time</span>
             </div>
             <div class="side_block_content">
                 <div id="start_datetime_wrapper">
@@ -144,7 +144,7 @@
         </div>
         
         <div class="button_wrapper_with_margins">
-            <input tabindex="8" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
+            <input class="button" tabindex="8" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
         </div>
     </div>
 </form>

@@ -46,10 +46,10 @@ function unhighlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #AAA');
 };
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
-	if(jqXHR.status==0){
-		$("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
-	}else{
-		$("#message_area").html("<p>" + ERROR_MESSAGE + "</p>");
+    if(jqXHR.status==0){
+        $("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
+    }else{
+        $("#message_area").html("<p>" + ERROR_MESSAGE + "</p>");
     }
 };
 function place_table_form_errors(form, errors){
@@ -149,22 +149,22 @@ Array.max = function (array) {
 };
     
 $(document).ready( function () {
-	
-	$(window).scroll(function() {
-	    if(this.scrollTO) clearTimeout(this.scrollTO);
-	    this.scrollTO = setTimeout(function() {
-	        $(this).trigger('scrollEnd');
-	    }, 100);
-	});
-	
-	$(window).resize(function() {
-	    if(this.resizeTO) clearTimeout(this.resizeTO);
-	    this.resizeTO = setTimeout(function() {
-	        $(this).trigger('resizeEnd');
-	    }, 100);
-	});
-	    
-	    
+    
+    $(window).scroll(function() {
+        if(this.scrollTO) clearTimeout(this.scrollTO);
+        this.scrollTO = setTimeout(function() {
+            $(this).trigger('scrollEnd');
+        }, 100);
+    });
+    
+    $(window).resize(function() {
+        if(this.resizeTO) clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(function() {
+            $(this).trigger('resizeEnd');
+        }, 100);
+    });
+        
+        
     // Make sure dialogs are always position in the center
     $(window).bind('resizeEnd',  function() {
         $(".dialog").dialog('option', 'position', 'center');
@@ -181,26 +181,26 @@ $(document).ready( function () {
         window.location.reload();
     });
     $("a, .button, .dark_button, .dropdown_menu_button, .dropdown_menu_button ul li, .menu_button, .current_page_link, .page_link, .disabled_page_link, #logo_beta, #notifications_count").live({
-    	mouseenter:
-    		function() {
-        		$(this).addClass('hover');
-    		},
-    	mouseleave:
-    		function(){
-            	$(this).removeClass('active hover');
-    		}
+        mouseenter:
+            function() {
+                $(this).addClass('hover');
+            },
+        mouseleave:
+            function(){
+                $(this).removeClass('active hover');
+            }
     });
     $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
-    	$(this).addClass("focus");
+        $(this).addClass("focus");
     });
     $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
-    	$(this).removeClass("focus");
+        $(this).removeClass("focus");
     });
     $('.button, .menu_button, .dark_button, #notifications_count').live('mousedown', function() {
         $(this).removeClass("hover").addClass('active');
     });
     $('.button, .menu_button, .dark_button, #notifications_count').live('mouseup', function(){
-    	if ($(this).hasClass('active'))
+        if ($(this).hasClass('active'))
             $(this).removeClass('active');
     });
     $('.dropdown_menu_button').live('click', function() {

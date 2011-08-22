@@ -1,18 +1,15 @@
-.account_deactivate_dialog .dialog_content_wrapper{
-	padding:10px 16px;
+.add .dialog_content_wrapper {
+    padding: 10px 25px;
 }
-label[for=id_suggestion]{
-	padding-right:0px;
+label[for=id_suggestion] {
+    padding-right: 0px;
 }
-#id_suggestion{
-	height:40px;
-	width:370px;
-	margin-top:3px;
+#id_suggestion {
+    height: 40px;
+    width: 370px;
+    margin-top: 3px;
     resize: none;
 }
-#student_account_deactivate_form .form_table{
-	margin-top:13px;
-}
-#student_account_deactivate_form .error_section{
-	padding:5px 0px;
+#student_account_deactivation_form .error_section {
+    padding: 5px 0px;
 }

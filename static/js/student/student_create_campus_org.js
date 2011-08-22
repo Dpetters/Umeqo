@@ -32,8 +32,8 @@ $('#create_campus_organization_link').click( function () {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-					create_campus_org_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-				}else{
+                    create_campus_org_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                }else{
                     create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
@@ -47,15 +47,15 @@ $('#create_campus_organization_link').click( function () {
                         $(form).ajaxSubmit({
                             dataType: 'json',
                             beforeSubmit: function (arr, $form, options) {
-                            	$("#create_campus_org_form input[type=submit]").attr("disabled", "disabled");
+                                $("#create_campus_org_form input[type=submit]").attr("disabled", "disabled");
                                 show_form_submit_loader("#create_campus_org_form");
-                            	$("#create_campus_org_form .error_section").html("");
+                                $("#create_campus_org_form .error_section").html("");
                             },
                             complete: function(jqXHR, textStatus) {
-                            	$("#create_campus_org_form input[type=submit]").removeAttr("disabled");
-                            	create_campus_org_dialog.dialog('option', 'position', 'center');
+                                $("#create_campus_org_form input[type=submit]").removeAttr("disabled");
+                                create_campus_org_dialog.dialog('option', 'position', 'center');
                                 hide_form_submit_loader("#create_campus_org_form");
-				            },
+                            },
                             error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
                                     $(".create_campus_org_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
@@ -73,17 +73,17 @@ $('#create_campus_organization_link').click( function () {
                                     $("optgroup[label='" + data.type + "']").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>');
                                     $("#id_campus_involvement").multiselect("refresh");
                                     $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-									console.log(2);
+                                    console.log(2);
                                     // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
                                     $("#select_new_campus_org_link").live('click', function() {
-                                    	console.log(1);
+                                        console.log(1);
                                         $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
                                         $("#id_campus_involvement").multiselect("refresh");
                                         $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
                                         create_campus_org_dialog.dialog('destroy');
                                     });
-								}else{
-									place_table_form_errors("#create_campus_org_form", data.errors);
+                                }else{
+                                    place_table_form_errors("#create_campus_org_form", data.errors);
                                 }
                             }
                         });
@@ -102,7 +102,7 @@ $('#create_campus_organization_link').click( function () {
                                     }else{
                                         create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                                     }
-                                	create_campus_org_dialog.dialog('option', 'position', 'center');
+                                    create_campus_org_dialog.dialog('option', 'position', 'center');
                                 }
                             }
                         },

@@ -12,42 +12,43 @@ Login |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/registration/login.css" />
 {% endcompress %}
 <script>
-	var EMAIL_REQUIRED_MESSAGE = "{% text_snippet 'email_required' %}";
-	var INVALID_EMAIL_MESSAGE = "{% text_snippet 'invalid_email' %}";
-	var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required'}";
+    var EMAIL_REQUIRED_MESSAGE = "{% text_snippet 'email_required' %}";
+    var INVALID_EMAIL_MESSAGE = "{% text_snippet 'invalid_email' %}";
+    var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required' %}";
+
 </script>
 {% compress js %}
-<script src="{{ STATIC_URL }}javascript/registration/login.js"></script>
+<script src="{{ STATIC_URL }}js/registration/login.js"></script>
 {% endcompress %}
 {% endblock %}
 
 {% block content_area %}
 <div class="simple_block centered">
     <h1>Login to Umeqo</h1>
-    <form id="login_form" method='POST' action="" autocomplete="off">
+    <form id="login_form" method='POST' action="">
         {% csrf_token %}
         <table class="form_table grande">
             {% for field in form %}
-                <tr>
-                    <th>{{ field.label_tag }}</th>
-                    <td>
-                        <div class="errorspace">{{ field.errors }}</div>
-                        {{ field }}
-                    </td>
-                </tr>
+            <tr>
+                <th>{{ field.label_tag }}</th>
+                <td>
+                    <div class="errorspace">{{ field.errors }}</div> 
+                    {{ field }}
+                </td>
+            </tr>
             {% endfor %}
             <tr>
                 <th></th>
-                <td class="error_section error">
-                    {{form.non_field_errors}}
-                </td>
+                <td class="error_section error"> {{form.non_field_errors}}</td>
             </tr>
             <tr>
                 <th></th>
-                <td>
+                    <td>
                     <input class="button" type='submit' value='Login'>
-                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/page_elements/loaders/small_ajax_loader.gif'>
-                    <a id="reset_password_link" href="{% url password_reset %}">Forgot password?</a>
+                    <img id='ajax_form_submit_loader' 
+                    src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                    <a id="reset_password_link" 
+                    href="{% url password_reset %}">Forgot password?</a>
                 </td>
             </tr>
         </table>

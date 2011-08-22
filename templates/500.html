@@ -8,18 +8,18 @@ Server Error |
 {% if user.is_authenticated %}
 <div class="left_side_container">
 {% if user.student %}
-	{% include 'student_side_nav.html' %}
+    {% include 'student_side_nav.html' %}
 {% endif %}
 {% if user.recruiter %}
-	{% include 'employer_side_nav.html' %}
+    {% include 'employer_side_nav.html' %}
 {% endif %}
 </div>
 {% endif %}
 <div class="simple_block grande centered">
- 	<h1>500 - Server Error</h1>
- 	<div class="message_section">
-    	<p>Oops, something bad happened. We've been notified and will fix it ASAP.</p>
-    	<p>May we suggest {% if user.is_authenticated %} starting at one of the links on the left or{% endif %} returning to the <a href="/">home page</a>?</p>
- 	</div>
+     <h1>500 - Server Error</h1>
+     <div class="message_section">
+        <p>Oops, something bad happened. We've been notified and will fix it ASAP.</p>
+        <p>May we suggest {% if user.is_authenticated %} starting at one of the links on the left or{% endif %} returning to the <a href="/">home page</a>?</p>
+     </div>
 </div>
 {% endblock %}

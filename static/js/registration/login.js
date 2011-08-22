@@ -1,8 +1,8 @@
-$(document).ready(function() {
-    $('#login_form').validate({
+$(document).ready( function() {
+    $("#login_form").validate({
         highlight: highlight,
         unhighlight: unhighlight,
-        errorPlacement: place_table_form_errors,
+        errorPlacement: place_table_form_field_error,
         rules: {
             username: {
                 required: true,
@@ -20,4 +20,5 @@ $(document).ready(function() {
             password: PASSWORD_REQUIRED_MESSAGE
         }
     });
+    $("#login_form").valid();
 });
