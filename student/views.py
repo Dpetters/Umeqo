@@ -9,7 +9,7 @@ from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-from student.forms import StudentDeactivateAccountForm, StudentPreferencesForm,\
+from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm,\
                             StudentRegistrationForm, StudentUpdateResumeForm,\
                             StudentEmployerSubscriptionsForm, \
                             StudentProfilePreviewForm, StudentProfileForm, \
@@ -57,21 +57,29 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
 @login_required
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 @render_to("student_account_deactivate.html")
-def student_account_deactivate(request, form_class=StudentDeactivateAccountForm):
+def student_account_deactivate(request, 
+                               form_class=StudentAccountDeactivationForm):
     if request.is_ajax():
         if request.method == "POST":
             form = form_class(data = request.POST)
             if form.is_valid():
-                request.user.is_active = False
-                request.user.save()
-                for session_key_object in request.user.sessionkey_set.all():
-                    Session.objects.filter(session_key=session_key_object.session_key).delete()
-                request.user.sessionkey_set.all().delete()
-                student_deactivation = StudentDeactivation.objects.create(student = request.user.student)
+                user = request.user
+                student = user.student
+                user.is_active = False
+                user.save()
+                for sk in user.sessionkey_set.all():
+                    Session.objects.filter(session_key=sk.session_key).delete()
+                user.sessionkey_set.all().delete()
+                sd = StudentDeactivation.objects.create(student = student)
                 if form.cleaned_data.has_key('suggestion'):
-                    student_deactivation.suggestion = form.cleaned_data['suggestion']
-                    student_deactivation.save()
-                return HttpResponse()
+                    sd.suggestion = form.cleaned_data['suggestion']
+                    sd.save()
+                return HttpResponse(simplejson.dumps({}), 
+                                    mimetype="application/json")
+            else:
+                if request.is_ajax():
+                    return HttpResponse(simplejson.dumps({'errors':form.errors}), 
+                                        mimetype="application/json")
         else:
             context = {}
             context['form'] = form_class()
