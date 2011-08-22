@@ -11,11 +11,11 @@ if (typeof(XMLHttpRequest.prototype.sendAsBinary) == "undefined")
 };
 
 $(document).ready(function(){
-	$("#update_resume_link").click(function(){
-	    $("#update_resume_div").slideToggle();
-	});
+    $("#update_resume_link").click(function(){
+        $("#update_resume_div").slideToggle();
+    });
 
-	if(typeof(FileReader) == "undefined" || typeof(XMLHttpRequest) == "undefined" || !('draggable' in document.createElement('span'))) {
+    if(typeof(FileReader) == "undefined" || typeof(XMLHttpRequest) == "undefined" || !('draggable' in document.createElement('span'))) {
         $('#dropbox_status').html("Browser Not Supported")
     } else {
         var up = {
@@ -155,46 +155,46 @@ $(document).ready(function(){
                 $('#drop-area').html('Uploaded: 100%');
             },
             onload : function (e) {
-            	data = $.parseJSON(e.currentTarget.responseText);
-	            up.uploading = false;
-            	if(data.valid) {
-	                currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
-	                    up.$dropbox.removeClass('uploading').addClass('success');
-	                    up.$status.html(data["num_of_extracted_keywords"]+ ' keywords extracted.');
-	                    $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
-	                });
-				} else {
-				  	if(data.unparsable_resume){
-		                up.$status.html('0 keywords extracted.');
-				  		currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
-		                    $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
-		                });
-						var $unparsable_resume_dialog = open_unparsable_resume_dialog();
-					    $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
-					    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-					    $.ajax({
-					        dataType: "html",
-					        url: UNPARSABLE_RESUME_URL + "?home=true",
-					        complete: function(jqXHR, textStatus) {
-            					clearTimeout(unparsable_resume_dialog_timeout);
-            					$unparsable_resume_dialog.dialog('option', 'position', 'center');
-        					},
-					        error: function(jqXHR, textStatus, errorThrown) {
-					            if(jqXHR.status==0){
-									$unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-								}else{
-					                $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
-					            }
-					        },
-					        success: function (data) {
-					        	$unparsable_resume_dialog.html(data);
-					        }
-					    });
-				    } else{
+                data = $.parseJSON(e.currentTarget.responseText);
+                up.uploading = false;
+                if(data.valid) {
+                    currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
+                        up.$dropbox.removeClass('uploading').addClass('success');
+                        up.$status.html(data["num_of_extracted_keywords"]+ ' keywords extracted.');
+                        $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
+                    });
+                } else {
+                      if(data.unparsable_resume){
+                        up.$status.html('0 keywords extracted.');
+                          currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
+                            $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
+                        });
+                        var $unparsable_resume_dialog = open_unparsable_resume_dialog();
+                        $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
+                        var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+                        $.ajax({
+                            dataType: "html",
+                            url: UNPARSABLE_RESUME_URL + "?home=true",
+                            complete: function(jqXHR, textStatus) {
+                                clearTimeout(unparsable_resume_dialog_timeout);
+                                $unparsable_resume_dialog.dialog('option', 'position', 'center');
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                if(jqXHR.status==0){
+                                    $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                }else{
+                                    $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
+                                }
+                            },
+                            success: function (data) {
+                                $unparsable_resume_dialog.html(data);
+                            }
+                        });
+                    } else{
                         up.$dropbox.removeClass('uploading').addClass('error');
                         up.$status.html('Error. Please try again.');
-				    }
-				}
+                    }
+                }
             }
         };
         $(up.init);

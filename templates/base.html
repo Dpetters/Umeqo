@@ -82,11 +82,11 @@
                 <ul id="navigation_block">
                     {% if not user.is_authenticated or not user.student and not user.recruiter %}
                         {% if registration_open %}
-	                        {% ifnotequal current_path "/signup/"%}
-	                        <li id="signup_button">
-	                            <a tabindex="-1" href="{% url student_registration %}">Join Umeqo!</a>
-	                        </li>
-	                        {% endifnotequal %}
+                            {% ifnotequal current_path "/signup/"%}
+                            <li id="signup_button">
+                                <a tabindex="-1" href="{% url student_registration %}">Join Umeqo!</a>
+                            </li>
+                            {% endifnotequal %}
                         {% endif %}
                         {% ifnotequal current_path "/login/" %}
                         <li id="login_button">

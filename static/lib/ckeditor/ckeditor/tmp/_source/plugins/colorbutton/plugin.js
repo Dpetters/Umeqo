@@ -5,159 +5,159 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 CKEDITOR.plugins.add( 'colorbutton',
 {
-	requires : [ 'panelbutton', 'floatpanel', 'styles' ],
+    requires : [ 'panelbutton', 'floatpanel', 'styles' ],
 
-	init : function( editor )
-	{
-		var config = editor.config,
-			lang = editor.lang.colorButton;
+    init : function( editor )
+    {
+        var config = editor.config,
+            lang = editor.lang.colorButton;
 
-		var clickFn;
+        var clickFn;
 
-		if ( !CKEDITOR.env.hc )
-		{
-			addButton( 'TextColor', 'fore', lang.textColorTitle );
-			addButton( 'BGColor', 'back', lang.bgColorTitle );
-		}
+        if ( !CKEDITOR.env.hc )
+        {
+            addButton( 'TextColor', 'fore', lang.textColorTitle );
+            addButton( 'BGColor', 'back', lang.bgColorTitle );
+        }
 
-		function addButton( name, type, title )
-		{
-			editor.ui.add( name, CKEDITOR.UI_PANELBUTTON,
-				{
-					label : title,
-					title : title,
-					className : 'cke_button_' + name.toLowerCase(),
-					modes : { wysiwyg : 1 },
+        function addButton( name, type, title )
+        {
+            editor.ui.add( name, CKEDITOR.UI_PANELBUTTON,
+                {
+                    label : title,
+                    title : title,
+                    className : 'cke_button_' + name.toLowerCase(),
+                    modes : { wysiwyg : 1 },
 
-					panel :
-					{
-						css : editor.skin.editor.css,
-						attributes : { role : 'listbox', 'aria-label' : lang.panelTitle }
-					},
+                    panel :
+                    {
+                        css : editor.skin.editor.css,
+                        attributes : { role : 'listbox', 'aria-label' : lang.panelTitle }
+                    },
 
-					onBlock : function( panel, block )
-					{
-						block.autoSize = true;
-						block.element.addClass( 'cke_colorblock' );
-						block.element.setHtml( renderColors( panel, type ) );
+                    onBlock : function( panel, block )
+                    {
+                        block.autoSize = true;
+                        block.element.addClass( 'cke_colorblock' );
+                        block.element.setHtml( renderColors( panel, type ) );
 
-						var keys = block.keys;
-						keys[ 39 ]	= 'next';					// ARROW-RIGHT
-						keys[ 40 ]	= 'next';					// ARROW-DOWN
-						keys[ 9 ]	= 'next';					// TAB
-						keys[ 37 ]	= 'prev';					// ARROW-LEFT
-						keys[ 38 ]	= 'prev';					// ARROW-UP
-						keys[ CKEDITOR.SHIFT + 9 ]	= 'prev';	// SHIFT + TAB
-						keys[ 32 ]	= 'click';					// SPACE
-					}
-				});
-		}
+                        var keys = block.keys;
+                        keys[ 39 ]    = 'next';                    // ARROW-RIGHT
+                        keys[ 40 ]    = 'next';                    // ARROW-DOWN
+                        keys[ 9 ]    = 'next';                    // TAB
+                        keys[ 37 ]    = 'prev';                    // ARROW-LEFT
+                        keys[ 38 ]    = 'prev';                    // ARROW-UP
+                        keys[ CKEDITOR.SHIFT + 9 ]    = 'prev';    // SHIFT + TAB
+                        keys[ 32 ]    = 'click';                    // SPACE
+                    }
+                });
+        }
 
 
-		function renderColors( panel, type )
-		{
-			var output = [],
-				colors = config.colorButton_colors.split( ',' ),
-				total = colors.length + ( config.colorButton_enableMore ? 2 : 1 );
+        function renderColors( panel, type )
+        {
+            var output = [],
+                colors = config.colorButton_colors.split( ',' ),
+                total = colors.length + ( config.colorButton_enableMore ? 2 : 1 );
 
-			var clickFn = CKEDITOR.tools.addFunction( function( color, type )
-				{
-					if ( color == '?' )
-					{
-						var applyColorStyle = arguments.callee;
-						function onColorDialogClose( evt )
-						{
-							this.removeListener( 'ok', onColorDialogClose );
-							this.removeListener( 'cancel', onColorDialogClose );
+            var clickFn = CKEDITOR.tools.addFunction( function( color, type )
+                {
+                    if ( color == '?' )
+                    {
+                        var applyColorStyle = arguments.callee;
+                        function onColorDialogClose( evt )
+                        {
+                            this.removeListener( 'ok', onColorDialogClose );
+                            this.removeListener( 'cancel', onColorDialogClose );
 
-							evt.name == 'ok' && applyColorStyle( this.getContentElement( 'picker', 'selectedColor' ).getValue(), type );
-						}
+                            evt.name == 'ok' && applyColorStyle( this.getContentElement( 'picker', 'selectedColor' ).getValue(), type );
+                        }
 
-						editor.openDialog( 'colordialog', function()
-						{
-							this.on( 'ok', onColorDialogClose );
-							this.on( 'cancel', onColorDialogClose );
-						} );
+                        editor.openDialog( 'colordialog', function()
+                        {
+                            this.on( 'ok', onColorDialogClose );
+                            this.on( 'cancel', onColorDialogClose );
+                        } );
 
-						return;
-					}
+                        return;
+                    }
 
-					editor.focus();
+                    editor.focus();
 
-					panel.hide();
+                    panel.hide();
 
-					var style = new CKEDITOR.style( config['colorButton_' + type + 'Style'], color && { color : color } );
+                    var style = new CKEDITOR.style( config['colorButton_' + type + 'Style'], color && { color : color } );
 
-					editor.fire( 'saveSnapshot' );
-					if ( color )
-						style.apply( editor.document );
-					else
-						style.remove( editor.document );
-					editor.fire( 'saveSnapshot' );
-				});
+                    editor.fire( 'saveSnapshot' );
+                    if ( color )
+                        style.apply( editor.document );
+                    else
+                        style.remove( editor.document );
+                    editor.fire( 'saveSnapshot' );
+                });
 
-			// Render the "Automatic" button.
-			output.push(
-				'<a class="cke_colorauto" _cke_focus=1 hidefocus=true' +
-					' title="', lang.auto, '"' +
-					' onclick="CKEDITOR.tools.callFunction(', clickFn, ',null,\'', type, '\');return false;"' +
-					' href="javascript:void(\'', lang.auto, '\')"' +
-					' role="option" aria-posinset="1" aria-setsize="', total, '">' +
-					'<table role="presentation" cellspacing=0 cellpadding=0 width="100%">' +
-						'<tr>' +
-							'<td>' +
-								'<span class="cke_colorbox" style="background-color:#000"></span>' +
-							'</td>' +
-							'<td colspan=7 align=center>',
-								lang.auto,
-							'</td>' +
-						'</tr>' +
-					'</table>' +
-				'</a>' +
-				'<table role="presentation" cellspacing=0 cellpadding=0 width="100%">' );
+            // Render the "Automatic" button.
+            output.push(
+                '<a class="cke_colorauto" _cke_focus=1 hidefocus=true' +
+                    ' title="', lang.auto, '"' +
+                    ' onclick="CKEDITOR.tools.callFunction(', clickFn, ',null,\'', type, '\');return false;"' +
+                    ' href="javascript:void(\'', lang.auto, '\')"' +
+                    ' role="option" aria-posinset="1" aria-setsize="', total, '">' +
+                    '<table role="presentation" cellspacing=0 cellpadding=0 width="100%">' +
+                        '<tr>' +
+                            '<td>' +
+                                '<span class="cke_colorbox" style="background-color:#000"></span>' +
+                            '</td>' +
+                            '<td colspan=7 align=center>',
+                                lang.auto,
+                            '</td>' +
+                        '</tr>' +
+                    '</table>' +
+                '</a>' +
+                '<table role="presentation" cellspacing=0 cellpadding=0 width="100%">' );
 
-			// Render the color boxes.
-			for ( var i = 0 ; i < colors.length ; i++ )
-			{
-				if ( ( i % 8 ) === 0 )
-					output.push( '</tr><tr>' );
+            // Render the color boxes.
+            for ( var i = 0 ; i < colors.length ; i++ )
+            {
+                if ( ( i % 8 ) === 0 )
+                    output.push( '</tr><tr>' );
 
-				var colorCode = colors[ i ];
-				var colorLabel = editor.lang.colors[ colorCode ] || colorCode;
-				output.push(
-					'<td>' +
-						'<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
-							' title="', colorLabel, '"' +
-							' onclick="CKEDITOR.tools.callFunction(', clickFn, ',\'#', colorCode, '\',\'', type, '\'); return false;"' +
-							' href="javascript:void(\'', colorLabel, '\')"' +
-							' role="option" aria-posinset="', ( i + 2 ), '" aria-setsize="', total, '">' +
-							'<span class="cke_colorbox" style="background-color:#', colorCode, '"></span>' +
-						'</a>' +
-					'</td>' );
-			}
+                var colorCode = colors[ i ];
+                var colorLabel = editor.lang.colors[ colorCode ] || colorCode;
+                output.push(
+                    '<td>' +
+                        '<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
+                            ' title="', colorLabel, '"' +
+                            ' onclick="CKEDITOR.tools.callFunction(', clickFn, ',\'#', colorCode, '\',\'', type, '\'); return false;"' +
+                            ' href="javascript:void(\'', colorLabel, '\')"' +
+                            ' role="option" aria-posinset="', ( i + 2 ), '" aria-setsize="', total, '">' +
+                            '<span class="cke_colorbox" style="background-color:#', colorCode, '"></span>' +
+                        '</a>' +
+                    '</td>' );
+            }
 
-			// Render the "More Colors" button.
-			if ( config.colorButton_enableMore )
-			{
-				output.push(
-					'</tr>' +
-					'<tr>' +
-						'<td colspan=8 align=center>' +
-							'<a class="cke_colormore" _cke_focus=1 hidefocus=true' +
-								' title="', lang.more, '"' +
-								' onclick="CKEDITOR.tools.callFunction(', clickFn, ',\'?\',\'', type, '\');return false;"' +
-								' href="javascript:void(\'', lang.more, '\')"',
-								' role="option" aria-posinset="', total, '" aria-setsize="', total, '">',
-								lang.more,
-							'</a>' +
-						'</td>' );	// It is later in the code.
-			}
+            // Render the "More Colors" button.
+            if ( config.colorButton_enableMore )
+            {
+                output.push(
+                    '</tr>' +
+                    '<tr>' +
+                        '<td colspan=8 align=center>' +
+                            '<a class="cke_colormore" _cke_focus=1 hidefocus=true' +
+                                ' title="', lang.more, '"' +
+                                ' onclick="CKEDITOR.tools.callFunction(', clickFn, ',\'?\',\'', type, '\');return false;"' +
+                                ' href="javascript:void(\'', lang.more, '\')"',
+                                ' role="option" aria-posinset="', total, '" aria-setsize="', total, '">',
+                                lang.more,
+                            '</a>' +
+                        '</td>' );    // It is later in the code.
+            }
 
-			output.push( '</tr></table>' );
+            output.push( '</tr></table>' );
 
-			return output.join( '' );
-		}
-	}
+            return output.join( '' );
+        }
+    }
 });
 
 /**
@@ -179,11 +179,11 @@ CKEDITOR.config.colorButton_enableMore = true;
  * config.colorButton_colors = '00923E,F8C100,28166F';
  */
 CKEDITOR.config.colorButton_colors =
-	'000,800000,8B4513,2F4F4F,008080,000080,4B0082,696969,' +
-	'B22222,A52A2A,DAA520,006400,40E0D0,0000CD,800080,808080,' +
-	'F00,FF8C00,FFD700,008000,0FF,00F,EE82EE,A9A9A9,' +
-	'FFA07A,FFA500,FFFF00,00FF00,AFEEEE,ADD8E6,DDA0DD,D3D3D3,' +
-	'FFF0F5,FAEBD7,FFFFE0,F0FFF0,F0FFFF,F0F8FF,E6E6FA,FFF';
+    '000,800000,8B4513,2F4F4F,008080,000080,4B0082,696969,' +
+    'B22222,A52A2A,DAA520,006400,40E0D0,0000CD,800080,808080,' +
+    'F00,FF8C00,FFD700,008000,0FF,00F,EE82EE,A9A9A9,' +
+    'FFA07A,FFA500,FFFF00,00FF00,AFEEEE,ADD8E6,DDA0DD,D3D3D3,' +
+    'FFF0F5,FAEBD7,FFFFE0,F0FFF0,F0FFFF,F0F8FF,E6E6FA,FFF';
 
 /**
  * Holds the style definition to be used to apply the text foreground color.
@@ -197,17 +197,17 @@ CKEDITOR.config.colorButton_colors =
  *     };
  */
 CKEDITOR.config.colorButton_foreStyle =
-	{
-		element		: 'span',
-		styles		: { 'color' : '#(color)' },
-		overrides	: [ { element : 'font', attributes : { 'color' : null } } ],
+    {
+        element        : 'span',
+        styles        : { 'color' : '#(color)' },
+        overrides    : [ { element : 'font', attributes : { 'color' : null } } ],
 
-		// Fore color style must be applied inside links instead of around it.
-		childRule : function( element )
-		{
-			return element.getName() != 'a';
-		}
-	};
+        // Fore color style must be applied inside links instead of around it.
+        childRule : function( element )
+        {
+            return element.getName() != 'a';
+        }
+    };
 
 /**
  * Holds the style definition to be used to apply the text background color.
@@ -221,7 +221,7 @@ CKEDITOR.config.colorButton_foreStyle =
  *     };
  */
 CKEDITOR.config.colorButton_backStyle =
-	{
-		element		: 'span',
-		styles		: { 'background-color' : '#(color)' }
-	};
+    {
+        element        : 'span',
+        styles        : { 'background-color' : '#(color)' }
+    };

@@ -5,18 +5,18 @@ Account Settings |
 {% endblock %}
 
 {% block metadata %}
-	{{block.super}}
-	{% load text_snippet %}
-	{% load compress %}
-	{% compress css %}
-	    <link rel="stylesheet" href="{{ STATIC_URL }}css/account_base.css" />
-	{% endcompress %}
-	<script>
-		var PASSWORDS_DONT_MATCH = "{% text_snippet 'passwords_dont_match' %}";
-	</script>
-	{% compress js %}
-	    <script src="{{ STATIC_URL }}javascript/account_base.js"></script>
-	{% endcompress %}
+    {{block.super}}
+    {% load text_snippet %}
+    {% load compress %}
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/account_base.css" />
+    {% endcompress %}
+    <script>
+        var PASSWORDS_DONT_MATCH = "{% text_snippet 'passwords_dont_match' %}";
+    </script>
+    {% compress js %}
+        <script src="{{ STATIC_URL }}javascript/account_base.js"></script>
+    {% endcompress %}
 {% endblock %}
 
 {% block message_area %}
@@ -61,21 +61,21 @@ Account Settings |
                         <p class="sub_header_message">By changing your password you will be logged off of all other sessions.</p>
                         <table class="form_table">
                             <tbody>
-					            {% for field in change_password_form %}
-					                <tr>
-					                    <th>{{ field.label_tag }}</th>
-					                    <td>
-					                        <div class="errorspace">{{ field.errors }}</div>
-					                        {{ field }}
-					                    </td>
-					                </tr>
-					            {% endfor %}
-					            <tr>
-					                <th></th>
-					                <td class="error_section error">
-					                    {{form.non_field_errors}}
-					                </td>
-					            </tr>
+                                {% for field in change_password_form %}
+                                    <tr>
+                                        <th>{{ field.label_tag }}</th>
+                                        <td>
+                                            <div class="errorspace">{{ field.errors }}</div>
+                                            {{ field }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <th></th>
+                                    <td class="error_section error">
+                                        {{form.non_field_errors}}
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th></th>
                                     <td>

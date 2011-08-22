@@ -17,13 +17,13 @@ Student Registration |
 {% endcompress %}
 
 <script type="text/javascript">
-	var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+    var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
     
     var EMAIL_REQUIRED_MESSAGE = "{% text_snippet 'email_required' %}";
     var INVALID_EMAIL_MESSAGE = "{% text_snippet 'invalid_email' %}";
     var MUST_BE_MIT_EMAIL_MESSAGE = "{% text_snippet 'must_be_mit_email' %}";
     var EMAIL_ALREADY_REGISTERED_MESSAGE = "{% text_snippet 'email_already_registered' %}";
-	var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required' %}";
+    var PASSWORD_REQUIRED_MESSAGE = "{% text_snippet 'password_required' %}";
     
     var DEBUG = "{{debug}}";    
 </script>

@@ -1,5 +1,5 @@
 $(document).ready( function() {
-	var create_language_dialog = null;
+    var create_language_dialog = null;
     
     function open_create_language_dialog() {
         var dialog = $('<div class="dialog"></div>')
@@ -33,8 +33,8 @@ $(document).ready( function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-					create_language_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-				}else{
+                    create_language_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                }else{
                     create_language_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
@@ -48,15 +48,15 @@ $(document).ready( function() {
                         $(form).ajaxSubmit({
                             dataType: 'json',
                             beforeSubmit: function (arr, $form, options) {
-                            	$("#create_language_form input[type=submit]").attr("disabled", "disabled");
+                                $("#create_language_form input[type=submit]").attr("disabled", "disabled");
                                 show_form_submit_loader("#create_language_form");
                                 $("#create_language_form .error_section").html("");
                             },
-				            complete: function(jqXHR, textStatus) {
-				            	$("#create_language_form input[type=submit]").removeAttr("disabled");
-                				create_language_dialog.dialog('option', 'position', 'center');
+                            complete: function(jqXHR, textStatus) {
+                                $("#create_language_form input[type=submit]").removeAttr("disabled");
+                                create_language_dialog.dialog('option', 'position', 'center');
                                 hide_form_submit_loader("#create_language_form");
-				            },
+                            },
                             error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
                                     $(".create_language_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
@@ -98,8 +98,8 @@ $(document).ready( function() {
                                         $("#id_languages").multiselect("refresh");
                                         create_language_dialog.dialog('destroy');
                                     });
-								} else {
-									place_table_form_errors("#create_language_form", data.errors);
+                                } else {
+                                    place_table_form_errors("#create_language_form", data.errors);
                                 }
                             }
                         });
