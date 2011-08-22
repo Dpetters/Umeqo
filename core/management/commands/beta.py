@@ -40,18 +40,24 @@ class Command(BaseCommand):
                 con.simple_bind_s("", "")
                 dn = "dc=mit,dc=edu"
                 username = person.email.split("@")[0]
-                result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, [])
-                if result:
-                    if result[0][1]['eduPersonPrimaryAffiliation'][0] == "student":
-                        students.append(result[0][1])
+                r = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, [])
+                if r:
+                    if r[0][1]['eduPersonPrimaryAffiliation'][0] == "student":
+                        students.append(r[0][1])
                         if options['statistics']:
-                            major = result[0][1]['ou'][0]
+                            major = r[0][1]['ou'][0]
                             if student_majors.has_key(major):
                                 student_majors[major] += 1
                             else:
                                 student_majors[major] = 1
                         if options['update']:
                             if not person.final and not person.emailed:
+                                # Some people have middle names so I can't just
+                                # unpack the values, but instead take first & last
+                                fname = r[0][1]['cn'][0].split(" ")[0]
+                                lname = r[0][1]['cn'][0].split(" ")[-1]
+                                person.first_name = fname
+                                person.last_name = lname
                                 person.auto_email = True
                                 person.save()
                     else:
