@@ -1,16 +1,16 @@
 $(document).ready( function() {
 
-    function open_account_deactivate_dialog() {
+    function open_account_deactivation_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            title:"Deactivate Account",
-            dialogClass: "account_deactivate_dialog",
+            title:"Account Deactivation",
+            dialogClass: "account_deactivation_dialog",
             modal:true,
-            width:418,
+            width:420,
             resizable: false,
             close: function() {
-                account_deactivate_dialog.remove();
+                account_deactivation_dialog.remove();
             }
         });
         $dialog.dialog('open');
@@ -18,26 +18,26 @@ $(document).ready( function() {
     };
 
     $('#account_deactivate_link').click( function () {
-        account_deactivate_dialog = open_account_deactivate_dialog();
-        account_deactivate_dialog.html(DIALOG_AJAX_LOADER);
+        account_deactivation_dialog = open_account_deactivation_dialog();
+        account_deactivation_dialog.html(DIALOG_AJAX_LOADER);
 
-        var account_deactivate_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+        var account_deactivation_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             url: STUDENT_ACCOUNT_DEACTIVATE_URL,
             complete: function(jqXHR, textStatus) {
-                clearTimeout(account_deactivate_dialog_timeout);
-                account_deactivate_dialog.dialog('option', 'position', 'center');
+                clearTimeout(account_deactivation_dialog_timeout);
+                account_deactivation_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-                    account_deactivate_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                    account_deactivation_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                 }else{
-                    account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
+                    account_deactivation_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {
-                account_deactivate_dialog.html(data);
+                account_deactivation_dialog.html(data);
                 $("#student_deactivate_account_link").click(function(){
                 	$.ajax({
                 		type:"POST",
@@ -49,16 +49,18 @@ $(document).ready( function() {
                         },
                         complete : function(jqXHR, textStatus) {
                         	hide_form_submit_loader("#student_account_deactivate_form");
-                    		account_deactivate_dialog.dialog('option', 'position', 'center');
+                    		account_deactivation_dialog.dialog('option', 'position', 'center');
                         },
 			            error: function(jqXHR, textStatus, errorThrown) {
+			                console.log(errorThrown);
 			                if(jqXHR.status==0){
-			                    account_deactivate_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+			                    account_deactivation_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
 			                }else{
-			                    account_deactivate_dialog.html(ERROR_MESSAGE_DIALOG);
+			                    account_deactivation_dialog.html(ERROR_MESSAGE_DIALOG);
 			                }
 			            },
 			            success: function (data) {
+			                console.log(data);
 			                window.location.href = "/?action=account-deactivated";
 			            }
 			        });

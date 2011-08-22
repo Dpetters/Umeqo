@@ -2,8 +2,10 @@ import os
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
 # By default, a session expires when the browser is closed.
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
+INVITE_ONLY = True
+USE_LANDING_PAGE = True
 REGISTRATION_OPEN = True
 
 ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
@@ -215,6 +217,44 @@ INSTALLED_APPS = (
     'ckeditor'
 )
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'file_handler': {
+                'level':'DEBUG',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': ROOT + '/logs/umeqo.log',
+                'maxBytes': 1024*1024*10,
+                'backupCount': 5,
+                'formatter':'standard',
+        },
+        'console':{
+            'level':'ERROR',
+            'class':'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        'django': { # Stop SQL debug from logging to main logger
+            'handlers': ['file_handler'],
+            'level': 'DEBUG',
+        },
+        'django.request': { # Stop SQL debug from logging to main logger
+            'handlers': ['file_handler'],
+            'level': 'DEBUG',
+            'propagate':True
+        },
+    }
+}
 
 CACHES = {
     'default': {

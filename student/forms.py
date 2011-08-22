@@ -5,7 +5,8 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.core.mail import EmailMessage
 
-from student.models import Student, StudentPreferences, StudentInvite
+from student.models import Student, StudentPreferences, StudentInvite,\
+                            StudentDeactivation
 from campus_org.form_helpers import campus_org_types_as_choices
 from campus_org.models import CampusOrg
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
@@ -17,9 +18,12 @@ from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages
 
 
-class StudentDeactivateAccountForm(forms.Form):
-    suggestion = forms.CharField(label="If you still wish to deactivate, please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
+class StudentDeactivateAccountForm(forms.ModelForm):
+    suggestion = forms.CharField(label="If you still wish to deactivate, \
+    please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
 
+    class Meta:
+        model = StudentDeactivation
     
 class StudentRegistrationForm(forms.Form):
 
@@ -39,23 +43,26 @@ class StudentRegistrationForm(forms.Form):
             raise forms.ValidationError(_(messages.must_be_mit_email))
         
         # General idea of what the ldap code below is doing:
-        # --Connected to the Internet
+        # --Connected to the Internet (dev w/ internet, prod)
         # ----LDAP Up
         # ------Run Student Check, Allow Registration
         # ----LDAP Down
         # ------Send Email Alerting Us
         # ------Do Not Allow Registration
-        # --Not Connected to the Internet
-        # ----Allow registration
+        # --Not Connected to the Internet (dev w/o internet)
+        # ----Allow registration. An error will be thrown that the email could
+        # ----not be sent, but you can go into admin and activate the user manually
         if email[-len("umeqo.com"):] != "umeqo.com":
+            # If after ldap check result==[None], then Im not connected to
+            # the internet. If result==[], then I am connected and the email
+            # is not a student's. 
             result = [None]
             try:
                 con = ldap.open('ldap.mit.edu')
                 con.simple_bind_s("", "")
                 dn = "dc=mit,dc=edu"
-                fields = ['cn', 'sn', 'givenName', 'mail', ]
                 username = email.split("@")[0]
-                result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, fields)
+                result = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+username, [])
             except Exception, e:
                 print "%s" % e
                 try:
@@ -66,7 +73,7 @@ class StudentRegistrationForm(forms.Form):
                     raise forms.ValidationError(_(messages.ldap_server_error))
                 except:
                     pass
-            if result == []:
+            if not result or (result[0] != None and result[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
                 raise forms.ValidationError(_(messages.must_be_mit_student))
         return self.cleaned_data['email']
 
@@ -74,7 +81,7 @@ class StudentRegistrationForm(forms.Form):
 class BetaStudentRegistrationForm(StudentRegistrationForm):
     invite_code = forms.CharField(label="Invite Code:")
     
-    def clean_signup_code(self):
+    def clean_invite_code(self):
         try:
             StudentInvite.objects.get(id=self.cleaned_data['invite_code'])
         except StudentInvite.DoesNotExist:
@@ -97,11 +104,20 @@ class StudentUpdateResumeForm(forms.ModelForm):
         model = Student
 
 class StudentBaseAttributeForm(forms.ModelForm):
-    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested in:", queryset = Industry.objects.all(), required = False)
-    previous_employers = forms.ModelMultipleChoiceField(label="Previous employers:", queryset = Employer.objects.all(), required = False)
-    campus_involvement = forms.ModelMultipleChoiceField(label="Campus involvement:", queryset = CampusOrg.objects.all(), required = False)
-    languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
-    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of citizenship:", queryset = Country.objects.all(), required=False)
+    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested in:", \
+                            queryset = Industry.objects.all(), required = False)
+    
+    previous_employers = forms.ModelMultipleChoiceField(label="Previous employers:", \
+                            queryset = Employer.objects.all(), required = False)
+    
+    campus_involvement = forms.ModelMultipleChoiceField(label="Campus involvement:", \
+                            queryset = CampusOrg.objects.all(), required = False)
+    
+    languages = forms.ModelMultipleChoiceField(label="Languages:", \
+                            queryset = Language.objects.all(), required = False)
+    
+    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of citizenship:", \
+                            queryset = Country.objects.all(), required=False)
        
     def __init__(self, *args, **kwargs):
         super(StudentBaseAttributeForm, self).__init__(*args, **kwargs)
