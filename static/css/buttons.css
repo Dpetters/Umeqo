@@ -26,7 +26,7 @@
     border: 1px solid #466175;
     box-shadow: #466175 0 0 2px;
 }
-.dark_button.active{
+.dark_button.um-active{
     background: #4E6D84;
     color:#FFF;
 }

@@ -93,8 +93,8 @@
     background-color: rgba(255,255,255,0.5);
     cursor: pointer;
 }
-#notifications_count.active,
-#notifications_count.active:hover {
+#notifications_count.um-active,
+#notifications_count.um-active:hover {
     border: 1px solid #444;
     background-color: #666;
     color: #FFF;
