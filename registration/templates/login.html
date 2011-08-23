@@ -44,6 +44,8 @@ Login |
                         <div class="errorspace">
                             <ul class="errorlist"><li>Incorrect words. Please try again.</li></ul>
                         </div>
+                    {% else %}
+                        <div style="margin-top:10px"></div>
                     {% endif %}
 					<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k={{RECAPTCHA_PUBLIC_KEY}}"></script>
 					<noscript>

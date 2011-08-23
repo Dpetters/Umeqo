@@ -62,13 +62,7 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
         captcha_resp.close()
 
         if return_values[0] != 'true':
-            print 'NOT TRUE', return_values[0]
-            # Since we can't modify form validation in auth.views, we'll do it here.
-            redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
-
             form = authentication_form(data=request.POST)
-            form.is_valid()
-
             current_site = get_current_site(request)
 
             context = extra_context

@@ -3,8 +3,12 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
-from registration.models import RegistrationProfile, InterestedPerson, UserAttributes, SessionKey
+from registration.models import RegistrationProfile, InterestedPerson, \
+                                 UserAttributes, SessionKey, LoginAttempt
 
+class LoginAttemptAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(LoginAttempt, LoginAttemptAdmin)
 
 class InterestedPersonAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name', 'email', 'summer_plans', 'auto_email', 'final', 'emailed']
