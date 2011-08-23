@@ -86,9 +86,12 @@ $(document).ready(function() {
             }
         };
 
+        var timeoutID;
         $('#id_location').keydown(function(e) {
             if(e.which != 9 && e.which != 32) {
-                get_location_suggestions();
+                if( typeof timeoutID != 'undefined')
+                    window.clearTimeout(timeoutID);
+                timeoutID = window.setTimeout(get_location_suggestions, 50);
             }
         });
     }
@@ -353,6 +356,7 @@ $(document).ready(function() {
 
     function getSchedulerDate() {
         var schedule_date_parts = $('#event_scheduler_day_text').val().split('/');
+        console.log(schedule_date_parts[2] + '-' + schedule_date_parts[0] + '-' + schedule_date_parts[1]);
         var schedule_date = new Date(schedule_date_parts[2] + '-' + schedule_date_parts[0] + '-' + schedule_date_parts[1]);
         return schedule_date;
     }

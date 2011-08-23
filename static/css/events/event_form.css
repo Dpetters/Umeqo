@@ -224,9 +224,9 @@ label[for=id_rsvp_message]{
 #event_scheduler_nav_forward {
     display: inline-block;
     height: 20px;
-    line-height: 20px;
+    line-height: 18px;
     padding: 0 5px;
-    background: #EEE;
+    background: #DDD;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
