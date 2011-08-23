@@ -22,7 +22,7 @@
     text-shadow: #000 0 -1px 0;
     outline: none;
 }
-.dark_button.hover, .dark_button.focus{
+.dark_button:hover, .dark_button.focus{
     border: 1px solid #466175;
     box-shadow: #466175 0 0 2px;
 }
@@ -92,8 +92,8 @@ input.button{
 .button::-moz-focus-inner {
     border: 0;
 }
-.button.focus, .button.hover,
-.ui-multiselect-menu .ui-multiselect-none.hover, .ui-multiselect-menu .ui-multiselect-all.hover
+.button.focus, .button:hover,
+.ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover
 .ui-multiselect-menu .ui-multiselect-none.focus, .ui-multiselect-menu .ui-multiselect-all.focus {
     background: #FFF;
     background: -moz-linear-gradient(top, #FFF 0%, #DDD 100%);
@@ -110,7 +110,7 @@ input.button{
     background: #DDD;
     box-shadow: #666 0 0 2px;
 }
-.button.selected, .button.selected.hover {
+.button.selected, .button.selected:hover {
     background: #1e5799;
     background: -moz-linear-gradient(top, #1e5799 0%, #666666 0%, #999999 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#666666), color-stop(100%,#999999));
@@ -145,7 +145,7 @@ input.button{
     color: #FFF;
     text-shadow: #000 0 -1px 0;
 }
-.warning-button.hover, .warning-button.focus {
+.warning-button:hover, .warning-button.focus {
     behavior: url(/static/lib/pie/PIE.htc);
     background: #FF8888;
     background: -moz-linear-gradient(#FF8888, #FF4444);
@@ -168,7 +168,7 @@ input.button{
 .button.disabled-button {
     color: #888;
 }
-.button.disabled-button.hover {
+.button.disabled-button:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
     color: #888 !important;
     cursor: default !important;
@@ -202,7 +202,7 @@ input.button{
     font-weight:normal;
     position: relative;
 }
-.menu_button.hover, .dropdown_menu_button.hover  {
+.menu_button:hover, .dropdown_menu_button:hover  {
     border: 1px solid #888;
 }
 .menu_button.active{
@@ -242,7 +242,7 @@ input.button{
     font-size: 12px;
     border: 1px solid #FFF;
 }
-.dropdown_menu_button ul li.hover {
+.dropdown_menu_button ul li:hover {
     background:url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
     border:1px solid #E9E9E9;
 }

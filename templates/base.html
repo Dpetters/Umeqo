@@ -29,12 +29,15 @@
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/anonymous.css" />
             {% endif %}
         {% endcompress %}
-        
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/IE7.css" />
+        <![endif]-->
         <script>
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";
             var LONG_HORIZONTAL_AJAX_LOADER = "{% include 'long_horizontal_ajax_loader.html' %}";
             var DIALOG_AJAX_LOADER = "{% include 'dialog_ajax_loader.html' %}";
             var CLOSE_DIALOG_LINK = "{% include 'close_dialog_link.html' %}";
+            var LOAD_WAIT_TIME = "{{load_wait_time}}";
             
             var UNSUPPORTED_BROWSER_URL = "{% url unsupported_browser %}";
             var NOTIFICATIONS_URL = "{% url notification_ajax %}";
@@ -67,7 +70,7 @@
         {% endcompress %}
         
         <!--[if lt IE 8]>
-        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
         <![endif]-->
         {% block metadata %}{% endblock %}
 

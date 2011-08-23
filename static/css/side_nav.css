@@ -12,6 +12,6 @@
     text-decoration: none;
     padding: 4px 0 4px 15px;
 }
-.side_nav a.hover {
+.side_nav a:hover {
     background-color: #EEE;
 }

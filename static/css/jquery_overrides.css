@@ -4,7 +4,7 @@
 .ui-widget-content a {
     color: #6e97b9 !important;
 }
-.ui-widget-content a.hover{
+.ui-widget-content a:hover{
     color: #557389 !important;
 }
 .ui-tabs-nav .ui-state-active{

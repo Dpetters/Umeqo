@@ -11,8 +11,10 @@ Account Settings |
     {% compress css %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/account_base.css" />
     {% endcompress %}
-    <script>
+    <script type="text/javascript">
         var PASSWORDS_DONT_MATCH = "{% text_snippet 'passwords_dont_match' %}";
+        
+        var PASSWORD_MIN_LENGTH="{{password_min_length}}";
     </script>
     {% compress js %}
         <script src="{{ STATIC_URL }}js/account_base.js"></script>

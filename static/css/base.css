@@ -121,7 +121,7 @@ label: not(.required) {
     -webkit-border-radius: 2px;
     border-radius: 2px;
 }
-#logo_beta.hover {
+#logo_beta:hover {
     cursor: pointer;
 }
 #logo_image {
@@ -148,7 +148,7 @@ label: not(.required) {
 #navigation_block a {
     display: inline-block;
     text-decoration: none;
-    line-height: 30px;
+    line-height: 31px;
     padding: 0 6px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -159,7 +159,7 @@ label: not(.required) {
     font-size: 12px;
     border-radius: 2px;
 }
-#navigation_block a.hover {
+#navigation_block a:hover {
     background-color: rgba(255,255,255,0.1);
 }
 #navigation_block .arrow {
@@ -228,7 +228,7 @@ label: not(.required) {
     text-decoration: none;
     padding: 2px 5px;
 }
-#footer_navigation_block a.hover {
+#footer_navigation_block a:hover {
     color: #FFF;
     background-color: #BBB;
 }
@@ -339,7 +339,7 @@ a {
     color: #6e97b9;
     outline: none;
 }
-a.hover {
+a:hover {
     color: #557389;
 }
 .nounderline {

@@ -23,14 +23,14 @@
     padding:2px;
     text-decoration:none;
 }
-.page_link.hover {
+.page_link:hover {
     background-color:#E5EDFF;
 }
 .disabled_page_link {
     color:#CCCCCC;
     border:1px solid #CCCCCC;
 }
-.disabled_page_link.hover {
+.disabled_page_link:hover {
     cursor:default;
     color:#CCCCCC;
 }
@@ -38,7 +38,7 @@
     font-weight:bold;
     background:#E5EDFF;
 }
-.current_page_link.hover {
+.current_page_link:hover {
     color:#6E97B9;
     cursor:default;
 }

@@ -1,4 +1,4 @@
-#account.pressed, #account.pressed.hover {
+#account.pressed, #account.pressed:hover {
     color: #FFF;
     background-color: rgba(255,255,255,0.3);
 }
@@ -47,7 +47,7 @@
     text-shadow: #000 0 -1px 0;
     font-size: 11px;
 }
-#account_dropdown li a.hover {
+#account_dropdown li a:hover {
     background: #404040;
     border-radius: 0;
     -moz-border-radius: 0;
@@ -89,12 +89,12 @@
     -webkit-border-radius: 2px;
     font-weight: bold;
 }
-#notifications_count.hover {
+#notifications_count:hover {
     background-color: rgba(255,255,255,0.5);
     cursor: pointer;
 }
 #notifications_count.active,
-#notifications_count.active.hover {
+#notifications_count.active:hover {
     border: 1px solid #444;
     background-color: #666;
     color: #FFF;

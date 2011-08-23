@@ -37,7 +37,7 @@ $(document).ready( function() {
                     dataType: 'json',
                     url: CHECK_EMAIL_AVAILABILITY_URL,
                     error: errors_in_message_area_handler
-                },
+                }
             },
             password1: {
                 required: true,
@@ -62,13 +62,5 @@ $(document).ready( function() {
                 required: INVITE_CODE_REQUIRED
             }
         }
-    });
-    
-    $.validator.addMethod('isMITEmail', function(value, element) {
-        // If testing, allow umeqo.com emails as well.
-        if (DEBUG)
-               return (value.length - "mit.edu".length) == value.indexOf("mit.edu") || (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
-        else
-            return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
     });
 });
