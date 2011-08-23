@@ -24,7 +24,7 @@ Login |
 {% block content_area %}
 <div class="simple_block centered">
     <h1>Login to Umeqo</h1>
-    <form id="login_form" method='POST' action="">
+    <form id="login_form" method="POST" action="" autocomplete="off">
         {% csrf_token %}
         <table class="form_table grande">
             {% for field in form %}
@@ -36,6 +36,25 @@ Login |
                 </td>
             </tr>
             {% endfor %}
+			{% if show_captcha %}
+			<tr>
+				<th><label>Human?</label></th>
+				<td>
+                    {% if invalid_captcha %}
+                        <div class="errorspace">
+                            <ul class="errorlist"><li>Incorrect words. Please try again.</li></ul>
+                        </div>
+                    {% endif %}
+					<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k={{RECAPTCHA_PUBLIC_KEY}}"></script>
+					<noscript>
+						<iframe src="http://www.google.com/recaptcha/api/noscript?k={{RECAPTCHA_PUBLIC_KEY}}" height="300" width="500" frameborder="0"></iframe><br />
+						<textarea name="recaptcha_challenge_field" rows="3" cols="40">
+						</textarea>
+						<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+					</noscript>
+				</td>
+			</tr>
+			{% endif %}
             <tr>
                 <th></th>
                 <td class="error_section error"> {{form.non_field_errors}}</td>
