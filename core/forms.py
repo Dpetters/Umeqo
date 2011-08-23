@@ -12,7 +12,6 @@ from core.models import Language
 
 
 class EmailAuthenticationForm(AuthenticationForm):
-    pass
     
     def __init__(self, *args, **kwargs):
         super(EmailAuthenticationForm, self).__init__(*args, **kwargs)

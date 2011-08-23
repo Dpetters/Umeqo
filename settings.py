@@ -51,6 +51,10 @@ STAGING_PASSWORD = 'Jamb4Juic3'
 #Akismet Settings
 AKISMET_API_KEY = "40daad1e6eb7"
 
+#reCaptcha Settings
+RECAPTCHA_PUBLIC_KEY = "6LeAXMcSAAAAAERV28inaaefrIPR29sUDUazGXxM"
+RECAPTCHA_PRIVATE_KEY = "6LeAXMcSAAAAAFKWwcMK94XjO5Wvusu5FOQaYsS-"
+
 # URL to redirect the user to if they try to 
 # access a page and aren't logged in
 LOGIN_URL = '/login'

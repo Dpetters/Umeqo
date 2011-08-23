@@ -175,3 +175,7 @@ class RegistrationProfile(models.Model):
         message = render_to_string('activation_email.txt', ctx_dict)
         
         self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+
+class LoginAttempt(models.Model):
+    attempt_datetime = models.DateTimeField(auto_now_add=True)
+    ip_address = models.IPAddressField(editable=False, null=True)
