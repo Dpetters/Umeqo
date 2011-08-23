@@ -5,7 +5,7 @@
     background: -webkit-linear-gradient(top, #555555 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #555555 0%,#333333 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #555555 0%,#333333 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
+    -pie-background: linear-gradient(top, #555555 0%,#333333 100%); /* IE6-9 */
     background: linear-gradient(top, #555555 0%,#333333 100%); /* W3C */
     color: #33BFE4;
     text-shadow: #000 0 -1px 0;
@@ -17,17 +17,19 @@
     background: -webkit-linear-gradient(top, #33bfe4 0%,#179ed3 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #33bfe4 0%,#179ed3 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #33bfe4 0%,#179ed3 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33bfe4', endColorstr='#179ed3',GradientType=0 ); /* IE6-9 */
+    -pie-background: linear-gradient(top, #33bfe4 0%,#179ed3 100%); /* IE6-9 */
     background: linear-gradient(top, #33bfe4 0%,#179ed3 100%); /* W3C */
     color: #000;
 }
 #login_button a {
+    behavior: url(/static/lib/pie/PIE.htc);
     border: 1px solid #333;
     -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
 }
 #signup_button a {
+    behavior: url(/static/lib/pie/PIE.htc);
     border: 1px solid #333;
     -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.4);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.4);
@@ -40,7 +42,7 @@
     background: -webkit-linear-gradient(top, #707070 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #707070 0%,#333333 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #707070 0%,#333333 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#707070', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
+    -pie-background: linear-gradient(top, #707070 0%,#333333 100%); /* IE6-7 */
     background: linear-gradient(top, #707070 0%,#333333 100%); /* W3C */
     color: #33BFE4;
 }
@@ -51,7 +53,7 @@
     background: -webkit-linear-gradient(top, #68cae2 0%,#179ed3 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #68cae2 0%,#179ed3 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #68cae2 0%,#179ed3 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#68cae2', endColorstr='#179ed3',GradientType=0 ); /* IE6-9 */
+    -pie-background: linear-gradient(top, #68cae2 0%,#179ed3 100%); /* IE6-9 */
     background: linear-gradient(top, #68cae2 0%,#179ed3 100%); /* W3C */
     color: #000;
 }
@@ -62,7 +64,7 @@
     background: -webkit-linear-gradient(top, #333333 0%,#555555 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #333333 0%,#555555 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #333333 0%,#555555 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#555555',GradientType=0 ); /* IE6-9 */
+    -pie-background: linear-gradient(top, #333333 0%,#555555 100%); /* IE6-9 */
     background: linear-gradient(top, #333333 0%,#555555 100%); /* W3C */
     color: #33BFE4;
     text-shadow: #000 0 -1px 0;
@@ -74,7 +76,7 @@
     background: -webkit-linear-gradient(top, #179ed3 0%,#68cae2 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #179ed3 0%,#68cae2 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #179ed3 0%,#68cae2 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#179ed3', endColorstr='#68cae2',GradientType=0 ); /* IE6-9 */
+    -pie-background: linear-gradient(top, #179ed3 0%,#68cae2 100%); /* IE6-9 */
     background: linear-gradient(top, #179ed3 0%,#68cae2 100%); /* W3C */
     color: #333;
 }

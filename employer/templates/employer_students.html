@@ -26,6 +26,7 @@ Student Filtering |
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_students.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_hoverIntent/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_students_widgets.js"></script>
 {% endcompress %}
 
 <script type="text/javascript">
@@ -76,6 +77,7 @@ Student Filtering |
     var STUDENT_EVENT_ATTENDANCE_URL = "{% url employer_student_event_attendance %}";
     var STUDENT_COMMENT_URL = "{% url employer_student_comment %}";
     var RESUME_BOOK_CURRENT_DELIVERED_URL = "{% url employer_resume_book_current_delivered %}";
+    var EVENT_NEW_URL = "{% url event_new %}";
 </script>
 {% endblock %}
 

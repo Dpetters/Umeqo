@@ -15,10 +15,8 @@ from django.views.decorators.http import require_http_methods
 
 from notification import models as notification
 from core.models import Edit
-from events.forms import EventForm
-#from employer.forms import EmployerEventForm
-#from campus_org.forms import CampusOrgEventForm
-from core.decorators import is_recruiter, is_student, is_campus_org, render_to
+from events.forms import EventForm, CampusOrgEventForm
+from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
 from events.models import Attendee, Event, EventType, Invitee, RSVP
 from events.views_helper import event_search_helper
 from student.models import Student
@@ -128,8 +126,8 @@ def event_page(request, id, slug, extra_context=None):
     context.update(extra_context or {})
     return render_to_response('event_page.html',context,context_instance=RequestContext(request))
 
-
 @login_required
+@user_passes_test(is_campus_org_or_recruiter)
 @render_to()
 def event_new(request, form_class=None, extra_context=None):
     context = {}
@@ -139,6 +137,7 @@ def event_new(request, form_class=None, extra_context=None):
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
         context['TEMPLATE'] = "campus_org_event_form.html"
+    print form_class
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -157,6 +156,7 @@ def event_new(request, form_class=None, extra_context=None):
 
 
 @login_required
+@user_passes_test(is_campus_org_or_recruiter)
 @render_to()
 def event_edit(request, id=None, extra_context=None):
     try:
@@ -194,6 +194,7 @@ def event_edit(request, id=None, extra_context=None):
 
 
 @login_required
+@user_passes_test(is_campus_org_or_recruiter)
 def event_delete(request, id, extra_context = None):
     if request.is_ajax():
         try:
@@ -213,6 +214,7 @@ def event_delete(request, id, extra_context = None):
 
 
 @login_required
+@user_passes_test(is_campus_org_or_recruiter)
 def event_schedule(request):
     if request.is_ajax():
         schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')))
@@ -276,7 +278,7 @@ def event_unrsvp(request, id):
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
 @login_required
-@user_passes_test(is_recruiter)
+@user_passes_test(is_campus_org_or_recruiter)
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, id):
     event = Event.objects.get(pk=id)

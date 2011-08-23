@@ -16,7 +16,8 @@
     margin-left:2px;
 }
 #contact_us_form th{
-    width:80px;
+    width:82px;
+    min-width:82px;
     text-align:left;
 }
 #contact_us_form #id_name, #contact_us_form #id_email{

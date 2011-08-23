@@ -4,3 +4,9 @@
 #login_wrapper:before{
     top:-15px;
 }
+#contact_us_form table{
+    table-layout:fixed;
+}
+#contact_us_form .input_cell{
+    width:185px;
+}

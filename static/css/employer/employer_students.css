@@ -278,7 +278,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 200px;
-    overflow: hidden;
     display: inline-block;
     text-align: right;
 }

@@ -1,3 +1,4 @@
+import operator
 from datetime import datetime
 
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
@@ -12,7 +13,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models import Q
 
-from haystack.query import SearchQuerySet
+from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
 from core import enums, messages
@@ -98,40 +99,40 @@ def contact_us(request, form_class = AkismetContactForm, fail_silently = False, 
 
 @login_required
 def get_location_guess(request):
-    if request.is_ajax():
-        if request.method == "GET":
-            if request.GET.has_key('query'):
-                search_query_set = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
-                if not search_query_set or len(search_query_set) > 1:
-                    data = {'valid':False}
-                    data['query'] = request.GET['query']
-                else:
-                    location = search_query_set[0].object
-                    data = {'valid':True,
-                            'latitude':location.latitude,
-                            'longitude':location.longitude}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if request.method == "GET":
+        if request.GET.has_key('query'):
+            sqs = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
+            if not sqs or len(sqs) > 1:
+                data = {'single':False, 'query':request.GET['query']}
             else:
-                return HttpResponseBadRequest("Term got which to find suggestions is missing.")
-        return HttpResponseForbidden("Request must be a GET")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+                location = sqs[0].object
+                data = {'single':True, 'latitude':location.latitude,
+                        'longitude':location.longitude}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Term for which to find suggestions is missing.")
+    return HttpResponseForbidden("Request must be a GET")
 
 
 @login_required
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
-    if request.is_ajax():
-        if request.method == "GET":
-            if request.GET.has_key('query'):
-                locations = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
-                context = {'locations': locations[:8]}
-                return context
-            else:
-                return HttpResponseBadRequest("Term got which to find suggestions is missing.")
-        return HttpResponseForbidden("Request must be a GET")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
-
+    if request.GET.has_key('query'):
+        query = request.GET['query']
+        suggestions = []
+        if len(query.split("-")) > 1 and query.split("-")[1] and Location.objects.filter(building_num=query.split("-")[0]).exists():
+            locations = Location.objects.filter(building_num__iexact=query.split("-")[0])[:8]
+            for l in locations:
+                suggestions.append({'name':"%s" % query, 'lat':l.latitude, 'lng':l.longitude})
+        else:
+            locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:8]
+            for l in locations:
+                suggestions.append({'name':"%s" % str(l.object), 'lat':l.object.latitude, 'lng':l.object.longitude})
+        context = {'suggestions': suggestions}
+        print context
+        return context
+    else:
+        return HttpResponseBadRequest("You must pass in either a query or an address to display.")
 
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):

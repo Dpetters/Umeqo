@@ -36,12 +36,8 @@ class Location(models.Model):
 
     def __unicode__(self):
         if self.display_name:
-            if self.building_num:
-                return "%s (Building %s)" % (self.display_name, self.building_num)
             return self.display_name
         else:
-            if self.building_num:
-                return "%s (Building %s)" % (self.name, self.building_num)
             return self.name    
 
 

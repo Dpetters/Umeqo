@@ -59,7 +59,6 @@ $(document).ready( function() {
                             }
                         },
                         success: function (data){
-                            console.log(data);
                             if(data.errors){
                                 place_table_form_errors("#student_account_deactivation_form", data.errors);  
                             }else{

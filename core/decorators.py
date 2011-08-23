@@ -10,6 +10,8 @@ def is_student(user):
 def is_recruiter(user):
     return hasattr(user, "recruiter")
 
+def is_campus_org_or_recruiter(user):
+    return hasattr(user, "recruiter") or hasattr(user, "campus_org")
 #
 # From django-annoying
 #

@@ -27,3 +27,6 @@ class EventForm(forms.ModelForm):
     class Meta:
         fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'latitude', 'longitude', 'audience', 'description', 'rsvp_message', 'is_public',)
         model = Event
+
+class CampusOrgEventForm(EventForm):
+    pass
