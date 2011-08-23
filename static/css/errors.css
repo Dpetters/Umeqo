@@ -28,24 +28,24 @@
     border-bottom: none !important;
 }
 .form_table.grande td.error_section {
-	padding: 5px 0px;
+    padding: 5px 0px;
     width: 300px;
 }
-.errorspace label, .errorlist{
+.errorspace label, .errorlist {
     color: #FF7B7B;
-	position: absolute;
-	bottom: 0px;
+    position: absolute;
+    bottom: 0px;
 }
 .error_section label, .error_section .errorlist {
-	position: static;
+    position: static;
 }
 .errorspace label {
-	padding-right: 0px;
+    padding-right: 0px;
 }
 .errorlist {
-	list-style: none;
+    list-style: none;
 }
 .form_table.grande .errorlist, .form_table.grande .errorspace label {
-	font-size: 14px;
+    font-size: 14px;
     line-height: 18px;
 }

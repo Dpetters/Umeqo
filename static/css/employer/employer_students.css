@@ -97,7 +97,7 @@
     line-height:24px;
 }
 #students_in_resume_book_student_list_link{
-	margin-left:3px;
+    margin-left:3px;
 }
 #students_in_resume_book_student_list_link_section #ajax_form_submit_loader{
     position:static;
@@ -119,7 +119,7 @@
     z-index:100;
 }
 #results_block_info {
-	font-weight:bold;
+    font-weight:bold;
     behavior: url(/static/lib/pie/PIE.htc);
     background:#FAFAFA;
     border:1px solid #888;
@@ -132,7 +132,7 @@
     border-radius:5px;
 }
 #results_block_info p{
-	margin-bottom:3px;
+    margin-bottom:3px;
 }
 #no_results_block {
     height:600px;
@@ -164,7 +164,7 @@
     vertical-align:middle;
 }
 #results_menu_more_actions span{
-	font-weight:normal;
+    font-weight:normal;
 }
 #results_menu_more_actions img {
     margin-right:2px;
@@ -197,14 +197,14 @@
     width:190px;
 }
 #deliver_resume_book_form #id_emails{
-	height:17px;
+    height:17px;
 }
 #deliver_resume_book_form .form_table{
-	margin-left:auto;
-	margin-right:auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 #deliver_resume_book_form_submit_button{
-	width:72px;
+    width:72px;
 }
 #resume_book_status_div{
     float:left;
@@ -241,7 +241,7 @@
     width:282px;
 }
 .email_delivery_type_only_field{
-	display:none;
+    display:none;
 }
 .student_event_attendance_bubble{ 
     position: absolute;
@@ -256,7 +256,7 @@
     color: #444;
 }
 .student_event_attendance_list{
-	list-style:inside;
+    list-style:inside;
 }
 .events_dropdown {
     position: absolute;

@@ -1,16 +1,16 @@
 #search_and_filtering_table{
-	border-collapse: collapse;
-	width:100%;
-	margin-top:10px;
+    border-collapse: collapse;
+    width:100%;
+    margin-top:10px;
 }
 #search_and_filtering_table th{
-	padding: 10px 0px;
-	text-align: left;
-	text-transform: uppercase;
+    padding: 10px 0px;
+    text-align: left;
+    text-transform: uppercase;
 }
 #search_and_filtering_table td{
-	width:1%;
+    width:1%;
 }
 #id_default_student_results_per_page, #id_default_student_result_ordering{
-	width:160px;
+    width:160px;
 }

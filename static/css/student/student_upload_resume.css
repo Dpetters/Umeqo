@@ -8,17 +8,17 @@
 }
 #dropbox_status{
     font-weight: bold;
-	position:relative;
-	height:0px;
-	top:23px;
+    position:relative;
+    height:0px;
+    top:23px;
 }
 #update_resume_div{
-	text-align:center;
-	display:none;
-	width:186px;
+    text-align:center;
+    display:none;
+    width:186px;
 }
 #update_resume_div a{
-	text-align:left;
+    text-align:left;
 }
 #update_resume_div #dropbox.hover {
     border: 1px dashed #000;

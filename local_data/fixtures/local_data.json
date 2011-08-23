@@ -886,7 +886,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-20 11:37:44", 
+   "last_login": "2011-08-21 22:48:42", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -904,7 +904,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-19 23:39:29", 
+   "last_login": "2011-08-22 18:06:10", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -940,7 +940,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-07-10 15:25:44", 
+   "last_login": "2011-08-22 18:06:34", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$700c1$f3e9a729d56257e9983b8d03016c8ed1efd30350", 
@@ -2012,6 +2012,46 @@
    "session_key": "c94d26e8e5c851bf0eea494ea330627f", 
    "last_updated": "2011-08-20 11:37:44", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 159, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-20 12:21:55", 
+   "session_key": "3775d67a6871a8ecb5b497665d42f89d", 
+   "last_updated": "2011-08-20 12:21:55", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 160, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-21 20:49:00", 
+   "session_key": "ae2afbdd42843e251ed54010d62654cf", 
+   "last_updated": "2011-08-21 20:49:00", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 161, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-21 22:48:42", 
+   "session_key": "8aed523b51f92c84308ee0ac832ec8bc", 
+   "last_updated": "2011-08-21 22:48:42", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 163, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-22 18:06:34", 
+   "session_key": "a83aaa56f5dafac1a021e610fd31bc99", 
+   "last_updated": "2011-08-22 18:06:34", 
+   "user": 4
   }
  }
 ]

@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 $('#employer_subscribe').live('click', function(e) {
     var loaded_id = $('#loaded_employer_id').val();
-    $(this).html('<img src="' + STATIC_URL + 'images/page_elements/loaders/small_ajax_loader.gif" />');
+    $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax.gif" />');
     $(this).addClass('disabled-button');
     var that = $(this);
     $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 1}, function(data) {
@@ -46,7 +46,7 @@ $('#employer_subscribe').live('click', function(e) {
 
 $('#employer_unsubscribe').live('click', function(e) {
     var loaded_id = $('#loaded_employer_id').val();
-    $(this).html('<img src="' + STATIC_URL + 'images/page_elements/loaders/small_ajax_loader.gif" />');
+    $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax.gif" />');
     $(this).removeClass('warning-button');
     $(this).addClass('disabled-button');
     var that = $(this);

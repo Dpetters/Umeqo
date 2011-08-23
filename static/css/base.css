@@ -197,7 +197,7 @@ label: not(.required) {
     top: 0;
     right: 0;
     bottom: 0;
-    background: url('../images/page_elements/loaders/small_ajax_loader.gif') no-repeat center right;
+    background: url('../images/loaders/s_ajax.gif') no-repeat center right;
 }
 .right_side_container {
     float: right;

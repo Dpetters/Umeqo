@@ -9,21 +9,21 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 CKEDITOR.plugins.add( 'specialchar',
 {
-	init : function( editor )
-	{
-		var pluginName = 'specialchar';
+    init : function( editor )
+    {
+        var pluginName = 'specialchar';
 
-		// Register the dialog.
-		CKEDITOR.dialog.add( pluginName, this.path + 'dialogs/specialchar.js' );
+        // Register the dialog.
+        CKEDITOR.dialog.add( pluginName, this.path + 'dialogs/specialchar.js' );
 
-		// Register the command.
-		editor.addCommand( pluginName, new CKEDITOR.dialogCommand( pluginName ) );
+        // Register the command.
+        editor.addCommand( pluginName, new CKEDITOR.dialogCommand( pluginName ) );
 
-		// Register the toolbar button.
-		editor.ui.addButton( 'SpecialChar',
-			{
-				label : editor.lang.specialChar.toolbar,
-				command : pluginName
-			});
-	}
+        // Register the toolbar button.
+        editor.ui.addButton( 'SpecialChar',
+            {
+                label : editor.lang.specialChar.toolbar,
+                command : pluginName
+            });
+    }
 } );

@@ -4,11 +4,11 @@
     font-weight:bold;
 }
 .student_test_scores th{
-	font-size:12px;
-	padding-right:5px;
+    font-size:12px;
+    padding-right:5px;
 }
 .student_test_scores .student_detailed_info_header{
-	text-align:left;
+    text-align:left;
 }
 .student_main_info {
     line-height:21px;
@@ -61,25 +61,25 @@
     font-size:20px;
 }
 .student_event_attendance_span{
-	position:relative;
-	top:1px;
+    position:relative;
+    top:1px;
 }
 .student_resume_link {
     float:right;
 }
 .resume_book_current_toggle_student, .student_toggle_star{
-	min-width:16px;
+    min-width:16px;
     margin-left:7px;
     display:inline-block;
     min-width:14px;
-	position:relative;
+    position:relative;
 }
 .resume_book_current_toggle_student{
-	top:2px;
+    top:2px;
 }
 .student_toggle_star{
-	vertical-align:top;
-	top:4px;
+    vertical-align:top;
+    top:4px;
 }
 .student_major {
     margin-left:7px;
@@ -94,8 +94,8 @@
     margin-right:78px;
 }
 .no_detailed_info{
-	text-align: center;
-	display:block;
+    text-align: center;
+    display:block;
 }
 .student_comment {
     border:1px solid #CCC;
@@ -111,7 +111,7 @@
     float:right;
 }
 .student_detailed_info {
-	display:none;
+    display:none;
     background-color:#FBFBFB;
     border-top: 1px solid #E9E9E9;
     padding-top: 2px;

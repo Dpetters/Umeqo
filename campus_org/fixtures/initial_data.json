@@ -116,7 +116,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://axo.mit.edu/", 
-   "last_updated": "2011-07-27 01:39:52", 
+   "last_updated": "2011-08-21 22:49:07", 
    "description": "Alpha Chi Omega is a national women's organization that enriches the lives of both its collegiate and alumnae members through lifetime opportunities for friendship, leadership, learning & service.", 
    "image": "", 
    "email": "axo-president@mit.edu", 
@@ -125,6 +125,22 @@
    "type": 6, 
    "display": true, 
    "name": "Alpha Chi Omega"
+  }
+ }, 
+ {
+  "pk": 433, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://adphi.mit.edu/", 
+   "last_updated": "2011-08-21 22:55:09", 
+   "description": "Each brother in the Lambda Phi chapter of Alpha Delta Phi holds this simple phrase as a commitment, an ideal, a pledge, a goal, a promise, our standard to becoming the best of men. Alpha Delta Phi has a great house with many wonderful amenities such as a professional chef, theater room, well stocked work room, patio, video game systems, billiards table, hot tub, and so much more. There's also a nice group of women living right next door at WILG. But there's so much more to ADPhi than the physical house.\r\n\r\nWhat sets ADPhi apart is our vibrant community of brothers. Every year, the brothers of ADPhi share life's experiences, as we help each other succeed at, and get the most out of, MIT. Alpha Delts enjoy an active and diverse social life at MIT and in reaching out to the local neighborhoods. Alpha Delta Phi is not your typical fraternity either, we pride ourselves in our founding as a literary society. Our pledge training period is intended to introduce you to this and other aspects of our history, before we make you a full brother-member. Absolutely no hazing is permitted.", 
+   "image": "campus_org/campusorg/alpha_delta_phi_2011-08-21-22-55-09.gif", 
+   "email": "adp-webmaster@mit.edu", 
+   "thumbnail": "campus_org/campusorg/alpha_delta_phi_2011-08-21-22-55-09_thumbnail.gif", 
+   "date_created": "2011-08-21 22:55:09", 
+   "type": 6, 
+   "display": true, 
+   "name": "Alpha Delta Phi"
   }
  }, 
  {
@@ -148,7 +164,7 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://aepi.mit.edu/", 
-   "last_updated": "2011-07-27 01:44:59", 
+   "last_updated": "2011-08-21 22:55:50", 
    "description": "AEPi is MIT's Jewish fraternity. Situated on Boston's tree-lined Bay State Road, a short bike or shuttle ride from campus, our brownstone is home to an eclectic, but close, group of guys. We've got athletes, musicians, mechanics, and leaders of various campus political, technical, theater, and religious groups. We have an active social calendar including parties, sorority mixers, and weekly study breaks with delicious home-baked goods, but we still have had enough time to rank first among fraternity GPAs the past two semesters. Most importantly, however, we are a brotherhood. It's the late-night discussions, foosball tournaments, jam sessions, and the individual characters that make this fraternity great and something to be proud of.", 
    "image": "campus_org/campusorg/alpha_epsilon_pi_fraternity_2011-07-27-01-44-59.png", 
    "email": "aepi-master@mit.edu", 
@@ -156,7 +172,7 @@
    "date_created": "2011-05-03 12:27:36", 
    "type": 6, 
    "display": true, 
-   "name": "Alpha Epsilon Pi Fraternity"
+   "name": "Alpha Epsilon Pi"
   }
  }, 
  {
@@ -1216,6 +1232,22 @@
   }
  }, 
  {
+  "pk": 434, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://party.mit.edu/", 
+   "last_updated": "2011-08-21 22:59:33", 
+   "description": "The Beta Chapter of Chi Phi at MIT has been in continuous existence since 1890. An inauguration ceremony was held at which 81 men were present in honor of the founding occasion of the Beta Chapter. The Chronicle Records of Chi Phi state that \u201cBeta was started with an unusually good organization and almost at once took a leading position, not only in the Institute, but in the [National] Fraternity as well\u201d. Since that time, the Beta Chapter of Chi Phi has worked to fulfill that distinction bestowed upon it over 119 years ago, as you can infer from the other sections on this website.", 
+   "image": "campus_org/campusorg/chi_phi___2011-08-21-22-59-20.png", 
+   "email": "chiphi-exec@mit.edu", 
+   "thumbnail": "campus_org/campusorg/chi_phi___2011-08-21-22-59-20_thumbnail.png", 
+   "date_created": "2011-08-21 22:59:20", 
+   "type": 6, 
+   "display": true, 
+   "name": "Chi Phi  "
+  }
+ }, 
+ {
   "pk": 83, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1629,6 +1661,22 @@
    "type": 8, 
    "display": true, 
    "name": "Debate Team"
+  }
+ }, 
+ {
+  "pk": 435, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/dke/www/", 
+   "last_updated": "2011-08-21 23:01:37", 
+   "description": "The Sigma Tau chapter of Delta Kappa Epsilon sits proudly on the Cambridge side of the beautiful Charles River. The house itself is one of the oldest and most traditional buildings on MIT's west campus. It boasts one of the best rooftop views of downtown Boston that you will ever see. The brothers of DKE come from all over the country, from Hawaii to New York and everywhere in between. At DKE the brothers recognize the value of a student who is active both in the classroom and on the playing field. More than 95% of DKE's undergrads participate in at least one varsity sport, however many of them find time to be active in many of MIT's student organizations.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "date_created": "2011-08-21 23:01:33", 
+   "type": 6, 
+   "display": true, 
+   "name": "Delta Kappa Epsilon"
   }
  }, 
  {

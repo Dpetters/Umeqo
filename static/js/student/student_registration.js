@@ -4,17 +4,17 @@ $(document).ready( function() {
             $(form).ajaxSubmit({
                 dataType: 'json',
                 beforeSubmit: function (arr, $form, options) {
-                	$("#student_registration_form input[type=submit]").attr('disabled', 'disabled');
+                    $("#student_registration_form input[type=submit]").attr('disabled', 'disabled');
                     show_form_submit_loader("#student_registration_form");
                     $("#student_registration_form .error_section").html("");
                 },
                 complete : function(jqXHR, textStatus) {
-                	$("#student_registration_form input[type=submit]").removeAttr('disabled').focusout();
+                    $("#student_registration_form input[type=submit]").removeAttr('disabled').focusout();
                     hide_form_submit_loader("#student_registration_form");
                 },
                 success: function(data) {
                     if(data.valid){
-           				window.location = data.success_url + "?email=" + data.email;
+                           window.location = data.success_url + "?email=" + data.email;
                     }else{
                         place_table_form_errors("#student_registration_form", data.errors);
                         if (data.errors.email){
@@ -41,18 +41,25 @@ $(document).ready( function() {
             },
             password1: {
                 required: true,
-                minlength: PASSWORD_MIN_LENGTH,
+                minlength: PASSWORD_MIN_LENGTH
+            },
+            invite_code: {
+                required: true
+       
             }
         },
         messages:{
             email:{
-                required: EMAIL_REQUIRED_MESSAGE,
-                email: INVALID_EMAIL_MESSAGE,
-                isMITEmail: MUST_BE_MIT_EMAIL_MESSAGE,
-                remote: EMAIL_ALREADY_REGISTERED_MESSAGE
+                required: EMAIL_REQUIRED,
+                email: INVALID_EMAIL,
+                isMITEmail: MUST_BE_MIT_EMAIL,
+                remote: EMAIL_ALREADY_REGISTERED
             },
             password1: {
-                required: PASSWORD_REQUIRED_MESSAGE
+                required: PASSWORD_REQUIRED
+            },
+            invite_code: {
+                required: INVITE_CODE_REQUIRED
             }
         }
     });
@@ -60,8 +67,8 @@ $(document).ready( function() {
     $.validator.addMethod('isMITEmail', function(value, element) {
         // If testing, allow umeqo.com emails as well.
         if (DEBUG)
-       		return (value.length - "mit.edu".length) == value.indexOf("mit.edu") || (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
-		else
-			return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
+               return (value.length - "mit.edu".length) == value.indexOf("mit.edu") || (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
+        else
+            return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
     });
 });
