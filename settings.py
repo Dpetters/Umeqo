@@ -202,7 +202,7 @@ SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
-CKEDITOR_MEDIA_PREFIX = "/media/ckeditor/"
+CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
