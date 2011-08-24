@@ -5,4 +5,4 @@ def get_resume_book_filename(instance, filename):
 
 def get_logo_filename(instance, filename):
     extension = filename[filename.find('.'):]
-    return "%s/%s_%s%s" % (str(type(instance)._meta.replace(".", "/"), instance.name.lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
+    return "%s/%s_%s%s" % (str(type(instance)._meta.replace(".", "/")), instance.name.lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
