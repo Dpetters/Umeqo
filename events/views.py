@@ -39,6 +39,11 @@ def events_list(request, extra_context=None):
     context.update(extra_context or {})
     return context
 
+def event_page_redirect(request, id):
+    event = Event.objects.get(pk=id)
+    return redirect(event.get_absolute_url())
+
+
 def event_page(request, id, slug, extra_context=None):
     event = Event.objects.get(pk=id)
     if not hasattr(request.user,"recruiter"):

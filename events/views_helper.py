@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+
 from events.models import Event
 from haystack.query import SearchQuerySet
 
@@ -10,10 +11,6 @@ def event_search_helper(request):
             if q.strip() != "":
                 search_results = search_results.filter(content_auto=q)
     return map(lambda n: n.object, search_results)
-
-def event_page_redirect(request, id):
-    event = Event.objects.get(pk=id)
-    return redirect(event.get_absolute_url())
 
 def buildAttendee(obj):
     output = {
