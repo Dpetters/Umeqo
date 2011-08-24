@@ -161,14 +161,10 @@ $(document).ready(function(){
                     currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
                         up.$dropbox.removeClass('uploading').addClass('success');
                         up.$status.html(data["num_of_extracted_keywords"]+ ' keywords extracted.');
-                        $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
                     });
                 } else {
                       if(data.unparsable_resume){
                         up.$status.html('0 keywords extracted.');
-                          currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
-                            $("#view_resume_link").attr("href", "/media/" + data["path_to_new_resume"]);
-                        });
                         var $unparsable_resume_dialog = open_unparsable_resume_dialog();
                         $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
                         var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);

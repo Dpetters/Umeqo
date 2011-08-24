@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
+from django.views.decorators.http import require_http_methods
 from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -265,37 +266,33 @@ def student_profile_preview(request,
         return HttpResponseForbidden("You must be logged in.")     
 
 @login_required
+@require_http_methods(["POST"])
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_update_resume(request, form_class=StudentUpdateResumeForm):
-    if request.is_ajax() and request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-        if form.is_valid():
-            form.save()
-            resume_status = process_resume(request.user.student)
-            errors = {}
-            if resume_status == RESUME_PROBLEMS.HACKED:
-                data = {'valid':False}
-                errors['id_resume'] = messages.resume_problem
-                data['errors'] = errors
-            elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
-                data = {'valid':False}
-                data['unparsable_resume'] = True
-            else:
-                data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+    if form.is_valid():
+        form.save()
+        resume_status = process_resume(request.user.student)
+        errors = {}
+        if resume_status == RESUME_PROBLEMS.HACKED:
+            data = {'valid':False}
+            errors['id_resume'] = messages.resume_problem
+            data['errors'] = errors
+        elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
+            data = {'valid':False}
+            data['unparsable_resume'] = True
+        else:
+            data = {'valid':True}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
 @login_required
+@require_http_methods(["GET"])
 @user_passes_test(is_student, login_url=settings.LOGIN_URL)
 def student_update_resume_info(request):
-    
-    if request.is_ajax():
-        data = {'path_to_new_resume' : str(request.user.student.resume),
-                'num_of_extracted_keywords' : len(filter(None, request.user.student.keywords.split(" ")))}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return redirect('home')
+    num = len(filter(None, request.user.student.keywords.split(" ")))
+    data = {'num_of_extracted_keywords' : num}
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
 @render_to("student_create_campus_org.html")
