@@ -191,7 +191,7 @@
   "fields": {
    "website": null, 
    "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-26 00:06:12", 
+   "last_updated": "2011-08-24 09:07:01", 
    "description": "temp", 
    "starred_students": [], 
    "industries": [
@@ -201,7 +201,7 @@
    "main_contact_phone": "543-657-9834", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:06:02", 
-   "logo": "employer/Employer/employer2_2011-07-26-00-06-12.png", 
+   "logo": "employer/employer/employer2_2011-08-24-09-07-01.png", 
    "slug": "employer2", 
    "name": "Employer2"
   }
@@ -212,7 +212,7 @@
   "fields": {
    "website": null, 
    "main_contact_email": "fake@fake.com", 
-   "last_updated": "2011-07-26 00:06:05", 
+   "last_updated": "2011-08-24 09:06:55", 
    "description": "Amazing firm.", 
    "starred_students": [], 
    "industries": [
@@ -222,7 +222,7 @@
    "main_contact_phone": "523-987-4567", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:07:34", 
-   "logo": "employer/Employer/employer3_2011-07-26-00-06-05.png", 
+   "logo": "employer/employer/employer3_2011-08-24-09-06-55.png", 
    "slug": "employer3", 
    "name": "Employer3"
   }
@@ -233,7 +233,7 @@
   "fields": {
    "website": null, 
    "main_contact_email": "jason@blah.com", 
-   "last_updated": "2011-07-26 00:05:58", 
+   "last_updated": "2011-08-24 09:06:36", 
    "description": "Sample", 
    "starred_students": [], 
    "industries": [
@@ -243,7 +243,7 @@
    "main_contact_phone": "333-333-3333", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:08:02", 
-   "logo": "employer/Employer/employer4_2011-07-26-00-05-58.png", 
+   "logo": "employer/employer/employer4_2011-08-24-09-06-36.png", 
    "slug": "employer4", 
    "name": "Employer4"
   }
@@ -254,7 +254,7 @@
   "fields": {
    "website": null, 
    "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-07-28 16:17:53", 
+   "last_updated": "2011-08-24 09:06:50", 
    "description": "temp", 
    "starred_students": [], 
    "industries": [
@@ -264,7 +264,7 @@
    "main_contact_phone": "999-999-9999", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:09:24", 
-   "logo": "employer/Employer/employer1_2011-07-26-00-05-52.png", 
+   "logo": "employer/employer/employer1_2011-08-24-09-06-50.png", 
    "slug": "employer1", 
    "name": "Employer1"
   }
