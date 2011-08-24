@@ -17,7 +17,7 @@ class Employer(core_mixins.DateTracking):
     name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
     slug = models.SlugField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     logo = models.ImageField(upload_to=get_logo_filename)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=10000)
     industries = models.ManyToManyField(Industry)
     main_contact = models.CharField("Main Contact", max_length = 50)
     main_contact_email = models.EmailField("Main Contact Email")
@@ -25,7 +25,7 @@ class Employer(core_mixins.DateTracking):
     
     # Null Fields
     offered_job_types = models.ManyToManyField(EmploymentType, blank = True, null=True) 
-    website = models.URLField(verify_exists=False, blank = True, null=True)
+    careers_website = models.URLField(verify_exists=False, blank = True, null=True)
     starred_students = models.ManyToManyField("student.Student", blank=True, null=True)
 
     def __unicode__(self):

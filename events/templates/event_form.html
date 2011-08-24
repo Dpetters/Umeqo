@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block metadata %}
-
+{{ block.super }}
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";

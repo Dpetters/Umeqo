@@ -8,7 +8,7 @@ from employer.models import RecruiterPreferences, StudentFilteringParameters, Em
 from employer import enums as employer_enums
 from ckeditor.widgets import CKEditorWidget
 
-class EmployerProfileForm(forms.Form):
+class EmployerProfileForm(forms.ModelForm):
     # Required Fields
     name = forms.CharField(label="Name:", max_length = 32)
     slug = forms.SlugField(label="Slug:", max_length = 20)
@@ -20,7 +20,7 @@ class EmployerProfileForm(forms.Form):
     # Optional Fields
     main_contact_phone = USPhoneNumberField("Main Contact Phone #:", required=False)
     offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset = EmploymentType.objects.all(), required=False)
-    website = forms.URLField(label="Personal Website:", required=False)
+    website = forms.URLField(label="Careers Website:", required=False)
     
     class Meta:
         fields = ( 'name',
@@ -31,10 +31,9 @@ class EmployerProfileForm(forms.Form):
                    'main_contact_email',
                    'main_contact_phone',
                    'offered_job_types',
-                   'website',
-                    )
+                   'website')
         model = Employer
-        
+
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
     name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)

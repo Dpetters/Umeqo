@@ -79,8 +79,8 @@ function place_table_form_field_error($error, $element) {
     $error.css("padding-left", offset);
 };
 // Shows max number that one can select on that multiselect
-function place_multiselect_warning_table(element, max) {
-    var warning = $("<label class='warning' for'" + element.attr("id") + "'>You can check at most " + max + " checkboxes.</label>");
+function place_multiselect_warning_table(element, message) {
+    var warning = $("<label class='warning' for'" + element.attr("id") + "'> " + message + "</label>");
     place_table_form_field_error($(warning), element);
 };
 // Pick out url GET parameters by name

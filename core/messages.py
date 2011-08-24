@@ -1,3 +1,5 @@
+from django.conf import settings as s
+
 # Employer Students
 no_students_selected = "No students selected."
 wait_until_resume_book_is_ready = "Please wait until the resume book is ready."
@@ -22,6 +24,13 @@ invalid_url = 'Please enter a valid url.'
 first_second_majors_diff = "Second major must be different from first."
 student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to \
 perform actions over multiple students at once."
+
+max_languages_exceeded = "You can select at most %s languages." % s.SP_MAX_LANGUAGES
+one_language_difficulty = "You can only select one language difficulty."
+max_previous_employers_exceeded = "You can select at most %s employers." % s.SP_MAX_PREVIOUS_EMPLOYERS
+max_industries_of_interest_exceeded = "You can select at most %s industries." % s.SP_MAX_INDUSTRIES_OF_INTEREST
+max_countries_of_citizenship_exceeded = "You can select at most %s countries." % s.SP_MAX_COUNTRIES_OF_CITIZENSHIP
+max_campus_involvement_exceeded = "You can select at most %s campus organizations." % s.SP_MAX_CAMPUS_INVOLVEMENT
 
 star_toggle_tooltip = "If you stand out, a recruiter can star you! You will \
 appear as such to all the other recruiters at that company."

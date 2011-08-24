@@ -16,7 +16,7 @@
     top: 40px;
     left: 0;
     bottom: 0;
-    width: 200px;
+    width: 208px;
     overflow-y: auto;
     background-color: #EEE;
 }
@@ -46,12 +46,9 @@
     text-overflow: ellipsis;
 }
 #employers_detail {
-    margin-left: 200px;
+    margin-left: 208px;
     min-height: 200px;
     padding: 10px;
-}
-#employers_detail .industries {
-    float: right;
 }
 #employers_detail .offered_job_types {
     display: inline-block;
@@ -59,8 +56,7 @@
     padding-left: 10px;
     margin-left: 8px;
 }
-#employers_detail .industries div,
-#employers_detail .offered_job_types div {
+#employers_detail .industries div {
     display: inline-block;
     background-color: #EEE;
     border-radius: 2px;
@@ -73,17 +69,41 @@
     margin-top: 10px;
     color: #444;
 }
+div .employer_name{
+    margin-bottom:10px;
+}
+.industries{
+    margin-bottom:18px;
+}
+#logo_and_buttons{
+    text-align:center;
+}
 #employer_subscribe, #employer_unsubscribe {
     margin-bottom: 5px;
     width: 80px;
-    text-align: center;
+    position:relative;
+    bottom:8px;
+}
+#employer_info{
+    margin-right:150px;
 }
 #employers_detail .description {
     padding: 10px 0;
+    clear:both;
+    margin-top:10px;
+    line-height:17px;
+    color:#444;
+    font-size:12px;
 }
 #employers_filter_name {
     width: 180px;
 }
-#employers_detail .logo img {
-    max-height: 150px;
+#offered_job_types{
+    font-size:14px;
+}
+.logo {
+    display:block;
+    position:relative;
+    bottom:10px;
+    max-width:150px;
 }

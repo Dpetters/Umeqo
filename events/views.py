@@ -156,7 +156,6 @@ def event_edit(request, id=None, extra_context=None):
                 return HttpResponseForbidden('You are not allowed to edit this event.') 
         if request.method == 'POST':
             form = form_class(request.POST, instance=event)
-            print form.errors
             if form.is_valid():
                 event = form.save(commit=False)
                 event.edits.add(Edit.objects.create(user=request.user))
