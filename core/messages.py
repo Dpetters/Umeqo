@@ -48,8 +48,10 @@ language_already_exists = "This language already exists."
 resume_problem = "There was a problem with your resume. Please try again."
 empty_resume = "We could not extract any keywords out of your resume."
 
+# Student Event Invitations
+already_invited = "Student has already been invited."
 
-#Login Form
+# Login Form
 incorrect_username_password_combo = "The username and password combo that you \
 entered is invalid. Please note that both fields are case-sensitive."
 

@@ -87,7 +87,10 @@ class ResumeBook(core_mixins.DateTracking):
     def __unicode__(self):
         return self.name
 
-
+    class Meta:
+        verbose_name = "Resume Book"
+        verbose_name_plural = "Resume Books"
+        
 class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
 
@@ -106,6 +109,8 @@ class EmployerStudentComment(core_mixins.DateTracking):
     comment = models.CharField(max_length=500)
     
     class Meta:
+        verbose_name = "Employer Student Comment"
+        verbose_name_plural = "Employer Student Comments"
         unique_together = (("employer", "student"),)
 
         
