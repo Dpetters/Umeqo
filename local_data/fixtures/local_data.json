@@ -254,7 +254,7 @@
   "fields": {
    "website": null, 
    "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-08-24 15:31:30", 
+   "last_updated": "2011-08-24 15:56:36", 
    "description": "temp", 
    "starred_students": [], 
    "industries": [
@@ -262,10 +262,13 @@
    ], 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1, 
+    2
+   ], 
    "date_created": "2011-07-08 00:09:24", 
    "logo": "employer/employer/susquehanna international group_2011-08-24-15-31-30.png", 
-   "slug": "employer1", 
+   "slug": "sig", 
    "name": "Susquehanna International Group"
   }
  }, 
