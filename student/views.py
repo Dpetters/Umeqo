@@ -1,7 +1,7 @@
 from __future__ import division
 from __future__ import absolute_import
 
-from django.conf import settings
+from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect
@@ -34,7 +34,7 @@ from countries.models import Country
 
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
                     change_password_form_class = PasswordChangeForm, 
@@ -59,7 +59,7 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
 
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, 
                                form_class=StudentAccountDeactivationForm):
@@ -93,7 +93,7 @@ def student_account_deactivate(request,
 
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, 
                                 extra_context = None):
     if request.is_ajax():
@@ -118,7 +118,7 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 def student_registration(request, backend = RegistrationBackend(), 
                          extra_context = None):
     
-    if settings.INVITE_ONLY:
+    if s.INVITE_ONLY:
         form_class = BetaStudentRegistrationForm
     else:
         form_class = StudentRegistrationForm
@@ -135,7 +135,7 @@ def student_registration(request, backend = RegistrationBackend(),
             new_user = backend.register(request, **form.cleaned_data)
             student = Student(user=new_user)
             student.save()
-            if settings.INVITE_ONLY:
+            if s.INVITE_ONLY:
                 i=StudentInvite.objects.get(id=form.cleaned_data['invite_code'])
                 i.recipient = student
                 i.save()
@@ -156,7 +156,7 @@ def student_registration(request, backend = RegistrationBackend(),
     else:
         form = form_class()
     
-    context = { 'form':form, 'debug':settings.DEBUG }
+    context = { 'form':form, 'debug':s.DEBUG }
     context.update(extra_context or {}) 
     return context
 
@@ -172,7 +172,7 @@ def student_registration_complete(request,
     
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile.html")
 def student_profile(request,
                      form_class=StudentProfileForm,
@@ -206,18 +206,20 @@ def student_profile(request,
     else:
         form = form_class(instance=request.user.student)
         context = { 'form' : form,
-                    'edit' : request.user.student.profile_created }
-    
-          
+                    'edit' : request.user.student.profile_created,
+                    'industries_of_interest_max' : s.SP_MAX_INDUSTRIES_OF_INTEREST,
+                    'campus_involvement_max': s.SP_MAX_CAMPUS_INVOLVEMENT,
+                    'languages_max':s.SP_MAX_LANGUAGES,
+                    'countries_of_citizenship_max':s.SP_MAX_COUNTRIES_OF_CITIZENSHIP,
+                    'previous_employers_max':s.SP_MAX_PREVIOUS_EMPLOYERS}
         context.update(extra_context or {})
         return context
 
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile_preview.html")
-def student_profile_preview(request,
-                            form_class=StudentProfilePreviewForm,
+def student_profile_preview(request, form_class=StudentProfilePreviewForm,
                             extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "student"):
         if request.method == 'POST':
@@ -267,7 +269,7 @@ def student_profile_preview(request,
 
 @login_required
 @require_http_methods(["POST"])
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_update_resume(request, form_class=StudentUpdateResumeForm):
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
     if form.is_valid():
@@ -288,7 +290,7 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
 
 @login_required
 @require_http_methods(["GET"])
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_update_resume_info(request):
     num = len(filter(None, request.user.student.keywords.split(" ")))
     data = {'num_of_extracted_keywords' : num}
@@ -302,14 +304,14 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
             form = form_class(data=request.POST)
             if form.is_valid():
                 new_campus_org = form.save()
-                recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
+                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
                 subject = "New Campus Org: %s" % (new_campus_org) 
                 body = render_to_string('student_new_campus_org_email_body.txt', \
                                         {'first_name':request.user.student.first_name, \
                                         'last_name':request.user.student.last_name, \
                                         'email':request.user.email, \
                                         'new_campus_org':new_campus_org})
-                message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+                message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
                 message.send()
                 data = {"valid":True,
                         "type": new_campus_org.type.name,
@@ -338,14 +340,14 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
                 basic = Language.objects.create(name_and_level=new_language_name + " (Basic)", name=new_language_name)
                 proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
                 fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
-                recipients = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
+                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
                 subject = "New Language: %s" % (new_language_name) 
                 body = render_to_string('student_new_language_email_body.txt', \
                                         {'first_name':request.user.student.first_name, \
                                         'last_name':request.user.student.last_name, \
                                         'email':request.user.email, \
                                         'new_language':new_language_name})
-                message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+                message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
                 message.send()
                 data = {"valid":True, 
                         "name":new_language_name, 
@@ -364,55 +366,10 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
         context.update(extra_context or {})
         return context
     else:
-        return HttpResponseForbidden("You must be logged in.")     
-
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_employer_subscriptions(request,
-                                   template_name = "student_employer_subscriptions_dialog.html",
-                                   form_class=StudentEmployerSubscriptionsForm,
-                                   extra_context = None):
-    
-    if request.method == 'POST':
-        form = form_class(data=request.POST, 
-                          files=request.FILES, 
-                          instance=request.user.student)
-        if form.is_valid():
-            form.save()
-            data = {"valid":True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        invalid_data = {"valid":False,
-                        "error":form.errors}
-        return HttpResponse(simplejson.dumps(invalid_data), mimetype="application/json")
-    else:
-        form = form_class(instance=request.user.student)
-        
-    context = {
-               'student_employer_subscriptions_form': form
-               }
-    context.update(extra_context or {})
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
+        return HttpResponseForbidden("You must be logged in.")
 
 @login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
-def student_invitations(request,
-                        template_name="student_invitations.html",
-                        extra_context=None):
-
-    if request.user.student.profile_created:
-        return redirect('student_profile')
-    
-    context = {}
-    context.update(extra_context or {})  
-    return render_to_response(template_name,
-                              context,
-                              context_instance=RequestContext(request))
-
-@login_required
-@user_passes_test(is_student, login_url=settings.LOGIN_URL)
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_resume(request):
     # Show the student his/her resume
     resume = request.user.student.resume.read()

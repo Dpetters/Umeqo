@@ -10,7 +10,7 @@
     display: inline-block;
     width:100%
 }
-.main_block.with_side_nav{
+.with_side_nav{
     width:780px;
     float:right;
 }

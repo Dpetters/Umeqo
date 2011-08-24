@@ -219,6 +219,37 @@ class StudentProfileForm(StudentBaseAttributeForm):
             raise forms.ValidationError(_(m.first_second_majors_diff))
         return self.cleaned_data['second_major']
 
+    def clean_languages(self):
+        languages = {}
+        for language in self.cleaned_data.get("languages"):
+            if languages.has_key(language.name):
+                raise forms.ValidationError(_(m.one_language_difficulty))
+            else:
+                languages[language.name] = None
+        if len(self.cleaned_data.get("languages")) > s.SP_MAX_LANGUAGES:
+            raise forms.ValidationError(_(m.max_languages_exceeded))
+        return self.cleaned_data['languages']
+
+    def clean_campus_involvement(self):
+        if len(self.cleaned_data.get("campus_involvement")) > s.SP_MAX_CAMPUS_INVOLVEMENT:
+            raise forms.ValidationError(_(m.max_campus_involvement_exceeded))
+        return self.cleaned_data['campus_involvement']
+    
+    def clean_previous_employers(self):
+        if len(self.cleaned_data.get("previous_employers")) > s.SP_MAX_PREVIOUS_EMPLOYERS:
+            raise forms.ValidationError(_(m.max_previous_employers_exceeded))
+        return self.cleaned_data['previous_employers']
+
+    def clean_industries_of_interest(self):
+        if len(self.cleaned_data.get("industries_of_interest")) > s.SP_MAX_INDUSTRIES_OF_INTEREST:
+            raise forms.ValidationError(_(m.max_industries_of_interest_exceeded))
+        return self.cleaned_data['industries_of_interest']
+
+    def clean_countries_of_citizenship(self):
+        if len(self.cleaned_data.get("countries_of_citizenship")) > s.SP_MAX_COUNTRIES_OF_CITIZENSHIP:
+            raise forms.ValidationError(_(m.max_countries_of_citizenship_exceeded))
+        return self.cleaned_data['countries_of_citizenship']
+    
 class StudentProfilePreviewForm(StudentProfileForm):
     resume = PdfField(label="Resume:", required=False)
 

@@ -1,0 +1,8 @@
+#logo{
+    max-width:180px;
+}
+#profile_form #cke_id_description {
+    height: 320px;
+    width: 752px !important;
+    margin-top: 3px;
+}

@@ -1,0 +1,183 @@
+{% extends "profile_base.html" %}
+
+{% block metadata %}
+{{block.super}}
+{{form.media}}
+{% load text_snippet %}
+{% load student_star %}
+{% load student_resume_book %}
+{% load compress %}
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile.css"/>
+{% endcompress %}
+<script>
+</script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block optional_side_nav %}
+    <div class="left_side_container">
+        {% include "employer_side_nav.html" %}
+    </div>
+    <form id="profile_form" class="with_side_nav" method="POST" action="" enctype="multipart/form-data">
+{% endblock %}
+
+{% block profile_pages %}
+<li id="pg1">
+    <a href='#' class="ui-accordion-link"></a>
+    <div class="main_block clearfix">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+            <span class="main_block_header_title">Edit Profile</span>
+            <div class="main_block_header_content">
+                <span>
+                    <strong>Public Info</strong>
+                </span>
+                &raquo;
+                <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Private Info</a>
+            </div>
+        </div>
+        <table class="form_table">
+            <tr>
+                <th>{{form.name.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.name}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.slug.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.slug}}
+                </td>
+            </tr>
+            <tr>
+                <th>Logo:</th>
+                <td>
+                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.website.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.website}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.industries.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.industries}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.offered_job_types.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.offered_job_types}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="errorspace"></div>
+                    {{form.description.label_tag}}
+                    {{form.description}}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="error_section error">
+                </td>
+            </tr>
+            <tr>
+                <td class="button_cell" colspan="2">
+                    <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
+                    <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
+                    <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
+                    <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
+                </td>
+            </tr>
+        </table>
+        <div class="profile_form_side_info">
+            <h3>Umeqo makes it easy for employers to discover you!</h3>
+            <ul>
+                <li>
+                Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
+                </li>
+                <li>
+                    The more you fill out, the the more likely you are to show up in the results. (e.g. If the employer decides that he wants student with an ACT of 26 or above and you left that field blank, you will not appear in the result.)
+                </li>
+                <li id="profile_form_required_third">
+                    Submit this page, or click <strong>Next</strong> to provide more information.
+                </li>
+            </ul>
+        </div>
+    </div>
+</li>
+<li id="pg2">
+    <a href='#' class="ui-accordion-link"></a>
+    <div class="main_block clearfix">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+            <span class="main_block_header_title">Edit Profile</span>
+            <div class="main_block_header_content">
+                <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Required Info</a>
+                &raquo;
+                <span>
+                    <strong>Academic &amp; Work Info</strong>
+                </span>
+                &raquo;
+                <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
+            </div>
+        </div>
+        <table class="form_table">
+            <tr>
+                <th>{{form.main_contact.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.main_contact}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.main_contact_email.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.main_contact_email}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.main_contact_phone.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.main_contact_phone}}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="error_section error">
+                </td>
+            </tr>
+            <tr>
+                <td class="button_cell" colspan="4">
+                    <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
+                    <input name="formNext2" type="button" class="open2 button disabled" value="Next" alt="Next" />
+                    <input class="button" type='submit' value="Save Profile" alt="Save Profile">
+                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+        <div class="profile_form_side_info">
+            <h3>Give us a hint of your academics and work experience.</h3>
+            <ul>
+                <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
+                <li>Employers will be able to find students by interested industries, and you'll get notifications about relevant employers as well.</li>
+                <li>Yes, some employers still care about standardized test scores.</li>
+            </ul>
+        </div>
+    </div>
+</li>
+{% endblock %}

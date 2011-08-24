@@ -14,8 +14,15 @@ INVITE_ONLY = True
 USE_LANDING_PAGE = True
 # Can students register?
 REGISTRATION_OPEN = True
+# One-day activation window
+ACCOUNT_ACTIVATION_DAYS = 1
 
-ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window;
+# Max numbers of choices for each field on the student profile
+SP_MAX_LANGUAGES = 12;
+SP_MAX_CAMPUS_INVOLVEMENT = 12;
+SP_MAX_INDUSTRIES_OF_INTEREST = 12;
+SP_MAX_PREVIOUS_EMPLOYERS = 12;
+SP_MAX_COUNTRIES_OF_CITIZENSHIP = 3;
 
 # Haystack Settings
 HAYSTACK_INCLUDE_SPELLING = True
@@ -172,7 +179,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'notification.context_processors.notification',
     'core.context_processors.next',
     'core.context_processors.get_current_path',
-    'core.context_processors.registration'
+    'core.context_processors.registration',
+    'core.context_processors.load_wait_time'
 )
 
 MIDDLEWARE_CLASSES = (

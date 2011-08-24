@@ -1,10 +1,4 @@
 $(document).ready( function() {
-    var languages_max = 12;
-    var campus_involvement_max = 12;
-    var industries_of_interest_max = 12;
-    var previous_employers_max = 12;
-    var countries_of_citizenship_max = 3;
-    
     var v = $("#profile_form").validate({
         submitHandler: function (form) {
             $(form).ajaxSubmit({
@@ -19,6 +13,8 @@ $(document).ready( function() {
                     hide_form_submit_loader("#profile_form");
                 },
                 success: function (data) {
+                    console.log("HERE");
+                    console.log(data);
                     data = $.parseJSON(data);
                     if(data.valid) {
                         window.location.href = HOME_URL + "?msg=profile-saved";
@@ -133,23 +129,7 @@ $(document).ready( function() {
     // JQuery validation doesn't respond to the change event
     $("#id_resume").change( function() {
         v.element("#id_resume");
-    });
-
-    $("#id_looking_for").multiselect({
-        noneSelectedText: 'select job types',
-        checkAllText: multiselectCheckAllText,
-        uncheckAllText: multiselectUncheckAllText,
-        minWidth:multiselectMinWidth,
-        click: function(){
-            $("#id_looking_for").trigger("change");
-        },
-        checkAll: function(){
-            $("#id_looking_for").trigger("change");
-        },
-        uncheckAll: function(){
-            $("#id_looking_for").trigger("change");
-        }
-    }).multiselectfilter();    
+    });  
     
     $("#id_gpa").blur(function(){
         $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
@@ -160,157 +140,6 @@ $(document).ready( function() {
         $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
     }
     
-    $("#id_industries_of_interest").multiselect({
-        noneSelectedText: 'select industries',
-        classes: 'interested_in_multiselect',
-        uncheckAllText: multiselectUncheckAllText,
-        minWidth:multiselectMinWidth,
-        beforeclose: function() {
-            $(".warning").remove();
-        },
-        click: function(e) {
-            $(".warning").remove();
-            $("#id_industries_of_interest").trigger("change");
-            if( $(this).multiselect("widget").find("input:checked").length > industries_of_interest_max ) {
-                place_multiselect_warning_table($("#id_industries_of_interest"), industries_of_interest_max);
-                return false;
-            }
-        },
-        checkAll: function(){
-            $("#id_industries_of_interest").trigger("change");
-        },
-        uncheckAll: function(){
-            $("#id_industries_of_interest").trigger("change");
-        }
-    }).multiselectfilter();
-
-    $("#id_previous_employers").multiselect({
-        noneSelectedText: 'select employers',
-        classes: 'previous_employers_multiselect',
-        uncheckAllText: multiselectUncheckAllText,
-        minWidth:multiselectMinWidth,
-        beforeclose: function() {
-            $(".warning").remove();
-        },
-        click: function(e) {
-            $(".warning").remove();
-            $("#id_previous_employers").trigger("change");
-            if( $(this).multiselect("widget").find("input:checked").length > previous_employers_max ) {
-                place_multiselect_warning_table($("#id_previous_employers"), previous_employers_max);
-                return false;
-            }
-        },
-        checkAll: function(){
-            $("#id_previous_employers").trigger("change");
-        },
-        uncheckAll: function(){
-            $("#id_previous_employers").trigger("change");
-        }
-    }).multiselectfilter();
-
-    $("#id_campus_involvement").multiselect({
-        noneSelectedText: 'select campus organizations',
-        classes: 'campus_involvement_multiselect',
-        uncheckAllText: multiselectUncheckAllText,
-        beforeoptgrouptoggle: function(e, ui){
-            $(".warning").remove();
-            if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
-                place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
-                return false;
-            }
-        },
-        minWidth:multiselectMinWidth,
-        height:146,
-        beforeclose: function() {
-            $(".warning").remove();
-        },
-        click: function(e, ui) {
-            $(".warning").remove();
-            $("#id_campus_involvement").trigger("change");
-            if( ui.checked && $(this).multiselect("widget").find("input:checked").length > campus_involvement_max ) {
-                place_multiselect_warning_table($("#id_campus_involvement"), campus_involvement_max);
-                return false;
-            }
-        },
-        checkAll: function(){
-            $("#id_campus_involvement").trigger("change");
-        },
-        uncheckAll: function(){
-            $("#id_campus_involvement").trigger("change");
-        }
-    }).multiselectfilter();
-    
-    $("#id_languages").multiselect({
-        noneSelectedText: 'select languages',
-        classes: 'languages_multiselect',
-        uncheckAllText: multiselectUncheckAllText,
-        minWidth:multiselectMinWidth,
-        height:146,
-        beforeclose: function() {
-            $(".warning").remove();
-        },
-        click: function(event, ui) {
-            $(".warning").remove();
-            $("#id_languages").trigger("change");
-            if( $(this).multiselect("widget").find("input:checked").length > languages_max ) {
-                place_multiselect_warning_table($("#id_languages"), languages_max);
-                return false;
-            }
-            var num = $(this).multiselect("widget").find("input:checked").filter(function(){
-                 if(this.title.split(' (')[0] == ui.text.split(' (')[0])
-                     return true;
-               }).length;
-               if (num > 1){
-                   place_table_form_field_error($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>You can only select one language difficulty.</label>"), $("#id_languages"));
-                   return false;
-               }
-        },
-        checkAll: function(){
-            $("#id_languages").trigger("change");
-        },
-        uncheckAll: function(){
-            $("#id_languages").trigger("change");
-        }
-    }).multiselectfilter();
-
-    $("#id_countries_of_citizenship").multiselect({
-        noneSelectedText: "select countries",
-        classes: 'countries_of_citizenship_multiselect',
-        uncheckAllText: multiselectUncheckAllText,
-        height:146,
-        minWidth:multiselectMinWidth,
-        selectedList: 1,
-        beforeclose: function() {
-            $(".warning").remove();
-        },
-        click: function(e) {
-            $(".warning").remove();
-            $("#id_countries_of_citizenship").trigger("change");
-            if( $(this).multiselect("widget").find("input:checked").length > countries_of_citizenship_max ) {
-                place_multiselect_warning_table($("#id_countries_of_citizenship"), countries_of_citizenship_max);
-                return false;
-            }
-        },
-        checkAll: function(){
-            $("#id_countries_of_citizenship").trigger("change");
-        },
-        uncheckAll: function(){
-            $("#id_countries_of_citizenship").trigger("change");
-        }
-    }).multiselectfilter();
-    
-    // Set up multipart form navigation
-    $(".navigation").click( function() {
-        if (current < this.id) {
-            if (v.form()) {
-                accordion.accordion("activate", parseInt(this.id));
-                current = parseInt(this.id);
-            }
-        } else {
-            accordion.accordion("activate", parseInt(this.id));
-            current = parseInt(this.id);
-        }
-    });
     // Back buttons do not need to run validation
     $("#pg2 .open0").click( function() {
         accordion.accordion("activate", 0);
@@ -334,19 +163,10 @@ $(document).ready( function() {
             current = 1;
         }
     });
-
-    // Set up accordion and validation
-    var current = 0;  // Current Page
-    accordion = $("#stepForm").accordion({
-        autoHeight:false,
-        animated:false
-    });
-    accordion.accordion( "option", "active", parseInt(get_parameter_by_name("page")));
     
-    // Field masks
     $("#id_gpa").mask("9.99",{placeholder:" "});
     
-    $("#student_profile select, #student_profile input[type=text], #student_profile input[type=file]").live('change', load_profile_preview);
+    $("#profile_file select, #profile_form input[type=text], #profile_file input[type=file]").live('change', load_profile_preview);
     
     function load_profile_preview(){
         var required_fields_filled_out = true;

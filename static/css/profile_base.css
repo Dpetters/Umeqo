@@ -1,0 +1,60 @@
+input[type=text] {
+    width:180px;
+}
+.slider{
+    margin-top:7px;
+    margin-right:13px;
+    float:right;
+    width:235px;
+}
+.button {
+    width:100px;
+}
+.main_block_header {
+    border-bottom:1px solid #CCCCCC;
+}
+.main_block_header_content {
+    font-size: 17px;
+    margin-right:28px;
+}
+#profile_form .main_block_header_content{
+    margin-right:50px;
+}
+#profile_form_title {
+    padding-bottom:15px;
+}
+.form_table {
+    float:left;
+    padding-top:4px;
+    padding-left:10px;
+}
+.profile_form_side_info {
+    margin-top: 20px;
+    margin-left:25px;
+    width: 475px;
+    float: left;
+}
+.profile_form_side_info h3 {
+    margin-bottom: 10px;
+    position:relative;
+    left: 5px;
+    font-size:18px;
+    text-shadow:#FFF 0 1px 0;
+}
+.profile_form_side_info li {
+    left: 15px;
+    list-style: disc outside none;
+    margin: 15px 15px 0 10px;
+    position: relative;
+    line-height: 20px;
+}
+/* Accordion Modifications */
+.ui-accordion .ui-accordion-header {
+    display:none;
+}
+.ui-accordion .ui-accordion-content {
+    border-top: 1px solid #CCCCCC;
+    padding:0 0 20px 0;
+    margin-bottom:0px;
+    width:inherit;
+}

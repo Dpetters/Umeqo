@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block metadata %}
+{{block.super}}
+
+{% load compress %}
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/profile_base.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+{% endcompress %}
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/profile_base.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block title %}
+{% if edit %}
+Edit Profile |
+{% else %}
+Create Profile |
+{% endif %}
+{% endblock %}
+
+{% block content_area %}
+{{block.super}}
+
+{% if not edit %}
+<h1 id="profile_form_title">Welcome to Umeqo!</h1>
+{% endif %}
+
+{% block optional_side_nav %}
+{% endblock %}
+    {% csrf_token %}
+    <ul id="stepForm">
+        {% block profile_pages %}
+        {% endblock %}
+    </ul>
+</form>
+{% block preview %}
+{% endblock %}
+
+{% endblock %}
