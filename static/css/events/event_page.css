@@ -465,3 +465,15 @@
 .main_block_content p {
     padding: 10px 0;
 }
+
+#event_resume_undrop,
+#event_resume_drop {
+    display: inline-block;
+    width: 638px;
+    float: left;
+    margin: 20px 0 0;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}

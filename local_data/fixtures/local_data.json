@@ -189,7 +189,7 @@
   "pk": 2, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "careers_website": null, 
    "main_contact_email": "temp@temp.com", 
    "last_updated": "2011-08-24 09:07:01", 
    "description": "temp", 
@@ -210,7 +210,7 @@
   "pk": 3, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "careers_website": null, 
    "main_contact_email": "fake@fake.com", 
    "last_updated": "2011-08-24 09:06:55", 
    "description": "Amazing firm.", 
@@ -231,7 +231,7 @@
   "pk": 4, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "careers_website": null, 
    "main_contact_email": "jason@blah.com", 
    "last_updated": "2011-08-24 09:06:36", 
    "description": "Sample", 
@@ -252,7 +252,7 @@
   "pk": 5, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "careers_website": null, 
    "main_contact_email": "temp@temp.com", 
    "last_updated": "2011-08-24 15:31:30", 
    "description": "temp", 
@@ -546,7 +546,7 @@
    "sat_t": 2310, 
    "sat_v": 770, 
    "sat_w": 740, 
-   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun hadoop cluster dozen windows nodes currently using mrjob workflows structured unstructured data goal performance mapreduce tasks traditional implementations running existing condor setup python bash scripts nightly caches condor cluster nodes using mysql data logged daily workflows athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder developer cambridge feb launching recruiting resource students employers september beta available parties july developed initial foundation site collaborating zach dearing joshua github traders mit exec cambridge nov oct developing otc trading client used trading simulation annual traders mit competition november mit bhs outdoor indoor varsity runner cambridge aug bellevue improvement previous skills interests technical java python django javascript jquery extjs css latex minor bash batch languages fluent russian interests ted talks poker hockey entrepreneurship", 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun hadoop cluster dozen windows nodes currently using mrjob workflows structured unstructured data goal performance mapreduce tasks traditional implementations running existing condor setup python bash scripts nightly caches condor cluster nodes using mysql data logged daily workflows athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member careers_website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder developer cambridge feb launching recruiting resource students employers september beta available parties july developed initial foundation site collaborating zach dearing joshua github traders mit exec cambridge nov oct developing otc trading client used trading simulation annual traders mit competition november mit bhs outdoor indoor varsity runner cambridge aug bellevue improvement previous skills interests technical java python django javascript jquery extjs css latex minor bash batch languages fluent russian interests ted talks poker hockey entrepreneurship", 
    "looking_for": [
     2, 
     4

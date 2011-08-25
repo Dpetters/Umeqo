@@ -46,6 +46,7 @@ class Event(core_mixins.DateCreatedTracking):
     
     is_public = models.BooleanField()
     is_active = models.BooleanField(default=True, editable=False)
+    is_drop = models.BooleanField()
     
     # manager which returns only active events
     objects = ActiveManager()
@@ -125,6 +126,14 @@ class Attendee(models.Model):
 
     def __unicode__(self):
         return '%s <%s>' % (self.name, self.email)
+
+    class Meta:
+        unique_together = (("student", "event"),)
+
+class DroppedResume(models.Model):
+    student = models.ForeignKey(Student, null=True)
+    event = models.ForeignKey(Event)
+    datetime_created = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = (("student", "event"),)

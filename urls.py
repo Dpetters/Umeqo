@@ -123,7 +123,7 @@ urlpatterns += patterns('employer.views',
     (r'^employers/$', 'employers_list', {}, 'employers_list'),
     (r'^employers/ajax$', 'employer_list_ajax', {}, 'employers_list_ajax'),
     (r'^employers/subscribe$', 'employer_subscribe', {}, 'employers_subscribe'),
-    (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview'),
+    (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()

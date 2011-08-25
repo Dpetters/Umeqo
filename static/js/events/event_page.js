@@ -26,10 +26,24 @@ $(document).ready(function() {
                 }
             }
         }, "json");
+        if (isAttending) {
+            dropResume();
+        } else {
+            undropResume();
+        }
+    }
+    function dropResume() {
+        $('#event_resume_drop').attr('id', 'event_resume_undrop');
+        $('#event_resume_undrop').html('Undo Drop Resume');
+    }
+    function undropResume() {
+        $('#event_resume_undrop').attr('id', 'event_resume_drop');
+        $('#event_resume_drop').html('Drop Resume');
     }
     $('#rsvp-yes-button').live('click', function(e) {
-        if ($(this).hasClass('selected')) {
-            return false;
+        if ($(this).hasClass('selected') || $(this).hasClass('disabled-button')) {
+            e.preventDefault();
+            return;
         }
         rsvp.apply(this, [true]);
         if ($(this).hasClass('left-group')) {
@@ -39,8 +53,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
     $('#rsvp-no-button').live('click', function(e) {
-        if ($(this).hasClass('selected')) {
-            return false;
+        if ($(this).hasClass('selected') || $(this).hasClass('disabled-button')) {
+            e.preventDefault();
+            return;
         }
         rsvp.apply(this, [false]);
         if ($(this).hasClass('right-group')) {
@@ -55,6 +70,7 @@ $(document).ready(function() {
                 $('.response').removeClass('hid');
                 $('.no-response').addClass('hid');
                 $('#rsvp_div .selected').removeClass('selected');
+                undropResume();
             }
         }, "json");
         e.preventDefault();
@@ -244,5 +260,24 @@ $(document).ready(function() {
             $('.current').removeClass('current');
             $(this).addClass('current');
         });
+    });
+
+    $('#event_resume_drop').live('click', function(e) {
+        if (!$(this).hasClass('disabled')) {
+            $.post(EVENT_DROP_URL, function() {
+                dropResume();
+            });
+        }
+        e.preventDefault()
+    });
+
+    $('#event_resume_undrop').live('click', function(e) {
+        if (!$(this).hasClass('disabled')) {
+            var that = this;
+            $.post(EVENT_UNDROP_URL, function() {
+                undropResume();
+            });
+        }
+        e.preventDefault()
     });
 });
