@@ -21,7 +21,7 @@ from core.decorators import is_recruiter, is_student, \
 from core.models import Edit
 from employer.models import ResumeBook
 from events.forms import EventForm, CampusOrgEventForm
-from events.models import Attendee, Event, EventType, Invitee, RSVP
+from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, \
                                 get_event_schedule
 from notification import models as notification
@@ -88,6 +88,7 @@ def event_page(request, id, slug, extra_context=None):
         'DOMAIN': current_site.domain,
         'responded': False,
         'attending': False,
+        'dropped_resume': False,
         'can_rsvp': False,
         'show_admin': False,
         'is_past': is_past,
@@ -102,6 +103,9 @@ def event_page(request, id, slug, extra_context=None):
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
             context['responded'] = True
+        dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
+        if dropped_resume.exists():
+            context['dropped_resume'] = True
         context['can_rsvp'] = True
     elif hasattr(request.user,"recruiter"):
         context['show_admin'] = True
@@ -206,7 +210,7 @@ def event_schedule(request):
 @login_required
 @require_http_methods(["GET", "POST"])
 def event_rsvp(request, event_id):
-    event = Event.objects.get(pk=id)
+    event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
     if request.method == 'GET' and hasattr(request.user, 'recruiter'):
         data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
@@ -219,6 +223,12 @@ def event_rsvp(request, event_id):
         if rsvp.exists():
             rsvp = rsvp.get()
             rsvp.attending = isAttending
+            if isAttending:
+                # Also "drop" the resume.
+                DroppedResume.objects.get_or_create(event=event, student=request.user.student)
+            else:
+                # Also "undrop" the resume.
+                DroppedResume.objects.filter(event=event, student=request.user.student).delete()
             rsvp.save()
         else:
             RSVP.objects.create(student=request.user.student, event=event, attending=isAttending)
@@ -232,9 +242,12 @@ def event_rsvp(request, event_id):
 @login_required
 @user_passes_test(is_student)
 def event_unrsvp(request, event_id):
-    event = Event.objects.get(pk=id)
+    event = Event.objects.get(pk=event_id)
     rsvp = RSVP.objects.filter(student=request.user.student, event=event)
     rsvp.delete()
+
+    # Also "undrop" the resume.
+    DroppedResume.objects.filter(event=event, student=request.user.student).delete()
     if request.is_ajax():
         return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
     else:
@@ -260,21 +273,20 @@ def event_drop(request, event_id):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     event = event.get()
     student = request.user.student
-    resume_book = ResumeBook.objects.filter(name="%s Resume Book" % event.name)
-    if not resume_book.exists():
-        data.update({
-            'valid': False,
-            'message': 'Invalid event.'
-        })
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    resume_book = resume_book.get()
-    resume_book.students.add(student)
-    resume_book.save()
+    DroppedResume.objects.get_or_create(event=event, student=student)
     data.update({
         'valid': True,
         'message': 'Resume dropped.'
     })
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+@login_required
+@user_passes_test(is_student)
+@require_http_methods(["POST"])
+def event_undrop(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    DroppedResume.objects.filter(event=event, student=request.user.student).delete()
+    return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)

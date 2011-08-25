@@ -20,6 +20,7 @@
     var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
     var EVENT_UNRSVP_URL = "{% url event_unrsvp event_id=event.id %}";
     var EVENT_DROP_URL = "{% url event_drop event_id=event.id %}";
+    var EVENT_UNDROP_URL = "{% url event_undrop event_id=event.id %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
     
@@ -146,7 +147,7 @@
                         <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">{{attending_text}}</a>
                         <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not {{attending_text}}</a>
                     {% endspaceless %}
-                    <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
+                    <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
                 {% endif %}
             {% endif %}{% endif %}
             {% if not user.is_authenticated %}
@@ -193,7 +194,13 @@
             </div>
         </div>
     {% endif %}
-    <a id="event_resume_drop" class="button{% if show_admin %} disabled-button{% endif %}"href="#">Drop Resume</a>
+    {% if event.is_drop %}
+        {% if dropped_resume %}
+            <a id="event_resume_undrop" class="button{% if show_admin %} disabled-button{% endif %}"href="#">Undo Drop Resume</a>
+        {% else %}
+            <a id="event_resume_drop" class="button{% if show_admin %} disabled-button{% endif %}"href="#">Drop Resume</a>
+        {% endif %}
+    {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
             <span class="main_block_header_title">Event Details</span>

@@ -464,6 +464,7 @@
     padding: 10px 0;
 }
 
+#event_resume_undrop,
 #event_resume_drop {
     display: inline-block;
     width: 638px;
