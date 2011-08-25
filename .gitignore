@@ -3,7 +3,8 @@
 *.exe
 *.pyc
 *.pyo
-database.db
+*.db
+*.db-journal
 index
 .tmp*
 .project
