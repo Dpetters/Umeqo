@@ -18,7 +18,7 @@
     border-bottom: 1px solid #CCCCCC;
 }
 .ui-dialog {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     box-shadow: 0px 0px 20px #606060;
     -moz-box-shadow: 0px 0px 20px #606060;
     -webkit-box-shadow: 0px 0px 20px #606060;
@@ -45,7 +45,7 @@
     list-style:inside;
 }
 .ui-tabs-nav .ui-state-default {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     background-image:-moz-linear-gradient(#F0F0F0, #E6E6E6);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#E6E6E6));
     -pie-background: linear-gradient(#F0F0F0, #E6E6E6);
@@ -72,7 +72,7 @@ a.ui-slider-handle {
     padding: 1px 2px;
 }
 .ui-multiselect {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;

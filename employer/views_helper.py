@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import Q
 from django.core.cache import cache
 
@@ -9,6 +11,13 @@ from employer.models import ResumeBook, Employer, EmployerStudentComment
 from student import enums as student_enums
 from core.digg_paginator import DiggPaginator
 
+def get_employer_events(employer):
+    now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+    return reduce(
+        lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
+        employer.recruiter_set.all(), []
+    )
+        
 def check_for_new_student_matches(employer):
     all_student_matches = filter_students(gpa=employer.gpa,
                                           act=employer.act,

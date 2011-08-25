@@ -10,7 +10,6 @@ from events.choices import PUBLIC_PRIVATE_BOOLEAN_CHOICES
 from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
-               
 class EventForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name', 'tabindex':1}))
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), widget=forms.Select(attrs={'tabindex':2}), empty_label="select event type")

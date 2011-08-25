@@ -7,6 +7,7 @@ Employers |
 {% block metadata %}
 {{block.super}}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 <script>
     var EMPLOYERS_LIST_PANE_URL = "{% url employers_list_pane %}";
@@ -25,7 +26,7 @@ Employers |
     <div class="main_block_content">
         <div id="employers_list_form_wrapper">
             <form id="employers_list_form">
-                <input type="text" name="q" id="employers_filter_name" value="{{ query }}"/>
+                <input type="text" name="q" placeholder="Search by name, keyword, etc.." id="employers_filter_name" value="{{ query }}"/>
                 <select name="i" id="employers_filter_industry">
                     <option value="">Filter by industry</option>
                     {% for industry in industries %}
@@ -33,9 +34,10 @@ Employers |
                     {% endfor %}
                 </select>
                 <input type="checkbox" name="h" value="1" id="employers_filter_has_events" />
-                <label for="employers_filter_has_events">Has events</label>
+                <label class="no_right_padding" for="employers_filter_has_events">Has events</label>
                 <input type="checkbox" name="s" value="1" id="employers_filter_in_subscriptions" />
-                <label for="employers_filter_in_subscriptions">Subscribed</label>
+                <label class="no_right_padding" for="employers_filter_in_subscriptions">Subscribed</label>
+                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
             </form>
         </div>
         <div id="employers_listings">

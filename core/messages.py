@@ -12,14 +12,14 @@ profile_saved = 'Your profile has been saved.'
 
 
 #Student Profile Form
-student_profile_form_first_name = 'Enter your first name.'
-student_profile_form_last_name = 'Enter your last name.'
-student_profile_form_school_year = "Choose your school year."
-student_profile_form_graduation_year = 'Choose your graduation year.'
-student_profile_form_first_major = 'Choose your major.'
-student_profile_form_gpa_required = 'Enter your GPA.'
-student_profile_form_gpa_range = 'Your GPA should be between 0 and 5.'
-student_profile_form_resume = "Please select a PDF version of your resume."
+first_name_required = 'Enter your first name.'
+last_name_required= 'Enter your last name.'
+school_year_required = "Choose your school year."
+graduation_year_required = 'Choose your graduation year.'
+first_major_required = 'Choose your major.'
+gpa_required = 'Enter your GPA.'
+gpa_range = 'Your GPA should be between 0 and 5.'
+resume_required = "Please select a PDF version of your resume."
 invalid_url = 'Please enter a valid url.'
 first_second_majors_diff = "Second major must be different from first."
 student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to \
@@ -52,9 +52,17 @@ view and download your resume individually."
 campus_org_already_exists = "This campus organization already exists."
 language_already_exists = "This language already exists."
 
+# Employer Profile Form
+slug_required = "You need to pick a slug!"
+industries_required = "You need to pick 1-5 industries."
+description_required = "A description is required."
+main_contact_required = "You need to specify a main contact."
+main_contact_email_required = "An email is required for the main contact."
+invalid_phone = "Doesn't look like a valid phone #."
+max_industries_exceeded = "You can select at most %s industries." % s.EP_MAX_INDUSTRIES
 
 # Resume
-resume_problem = "There was a problem with your resume. Please try again."
+resume_problem = "There was a problem with your resume. Try again."
 empty_resume = "We could not extract any keywords out of your resume."
 
 # Student Event Invitations
@@ -91,7 +99,7 @@ incorrect_old_password = "Your old password was entered incorrectly."
 
 # Student Registration
 email_required = "What's your email?"
-invalid_email = "Doesn't look like a valid email"
+invalid_email = "Doesn't look like a valid email."
 must_be_mit_email = "Must be an MIT email."
 email_already_registered = "This email is already registered."
 password_required = "You need a password!"

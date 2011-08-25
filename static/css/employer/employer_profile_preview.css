@@ -1,0 +1,50 @@
+.offered_job_types {
+    display: inline-block;
+    border-left: 1px solid #DDD;
+    padding-left: 10px;
+    margin-left: 8px;
+}
+.industries div {
+    display: inline-block;
+    background-color: #EEE;
+    border-radius: 2px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 2px 2px 0;
+}
+div .employer_name{
+    margin-bottom:10px;
+}
+.industries{
+    margin-bottom:18px;
+}
+#logo_and_buttons{
+    text-align:center;
+}
+#employer_subscribe, #employer_unsubscribe {
+    margin-bottom: 5px;
+    width: 80px;
+    position:relative;
+    bottom:8px;
+}
+#employer_info{
+    margin-right:150px;
+}
+.description {
+    padding: 10px 0 20px 0;
+    clear:both;
+    margin-top:10px;
+    line-height:17px;
+    color:#444;
+    font-size:12px;
+}
+#offered_job_types{
+    font-size:14px;
+}
+.logo {
+    display:block;
+    position:relative;
+    bottom:10px;
+    max-width:150px;
+}

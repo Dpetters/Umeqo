@@ -1,15 +1,17 @@
 import operator
 from datetime import datetime
 
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseBadRequest, \
+                        HttpResponseNotFound, HttpResponseRedirect, \
+                        HttpResponseForbidden
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.shortcuts import redirect
-from django.conf import settings
+from django.conf import settings as s
 from django.core.mail import send_mail
 from django.db.models import Q
 

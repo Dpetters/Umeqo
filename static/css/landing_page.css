@@ -158,7 +158,7 @@ label {
 }
 input[type="password"],
 input[type="text"] {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     border: 0;
     padding: 0 7px;
     font-size: 12px;  
@@ -177,13 +177,13 @@ input[type="text"] {
     transition: box-shadow 0.5s ease;
 }
 input[type="text"]:focus {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     box-shadow: 0 0 6px rgba(255,255,255,0.6), inset 0 1px 1px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: 0 0 6px rgba(255,255,255,0.6), inset 0 1px 1px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 0 0 6px rgba(255,255,255,0.6), inset 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 input[type="submit"] {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     padding-bottom:2px;
     height: 30px;
     border: 1px solid #EEE;
@@ -228,7 +228,7 @@ input[type="submit"]:hover {
     text-align: center;
     margin: 0 30px;
     padding: 10px;
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top, #f0f0f0 0%, #bbbbbb 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#bbbbbb)); /* Chrome,Safari4+ */
@@ -244,7 +244,7 @@ input[type="submit"]:hover {
     text-shadow: #EEE 0 1px 0;
 }
 .message.error {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     background: #900000; /* Old browsers */
     background: -moz-linear-gradient(top, #900000 0%, #700000 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#900000), color-stop(100%,#700000)); /* Chrome,Safari4+ */
@@ -277,7 +277,7 @@ input[type="submit"]:hover {
     clear: both;
 }
 #fb-like {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -287,7 +287,7 @@ input[type="submit"]:hover {
     height: 30px;
 }
 .module {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     padding: 10px;
     margin-top: 20px;
     background-color: rgba(255,255,255,0.1);

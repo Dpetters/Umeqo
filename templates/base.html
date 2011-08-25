@@ -29,9 +29,7 @@
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/anonymous.css" />
             {% endif %}
         {% endcompress %}
-        <!--[if lt IE 8]>
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/IE7.css" />
-        <![endif]-->
+
         <script>
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";
             var LONG_HORIZONTAL_AJAX_LOADER = "{% include 'long_horizontal_ajax_loader.html' %}";
@@ -57,6 +55,7 @@
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_ui_custom/jquery-ui-1.8.12.custom.min.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
+            <script src="{{ STATIC_URL }}lib/jquery_form_validation/additional_methods.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}js/base.js"></script>
@@ -69,8 +68,11 @@
             {% endif %}
         {% endcompress %}
         
-        <!--[if lt IE 8]>
-        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+        <!--[if lte IE 8]>
+        <script src="{{ STATIC_URL }}lib/IE7/IE9.js"></script>
+        <![endif]-->
+        <!--[if lte IE 7]>
+        <script src="{{ STATIC_URL }}lib/IE7/ie7-squish.js"></script>
         <![endif]-->
         {% block metadata %}{% endblock %}
 
@@ -144,7 +146,7 @@
         </div>
         <div id="below_header_area">
             <!-- z-index is there to fix IE7 z-index bug -->
-            <div class="width_container" style="z-index:200">
+            <div style="z-index:200" class="width_container">
                 {% if not user.is_authenticated or not user.student and not user.recruiter %}
                     {% ifnotequal current_path "/login/" %}
                         <div id="login_wrapper">

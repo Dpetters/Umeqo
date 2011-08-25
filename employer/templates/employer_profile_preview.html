@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{employer}} |
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+{% endcompress %}
+<script>
+    var STATIC_URL = "{{ STATIC_URL }}";
+</script>
+{% endblock %}
+
+{% block content_area %}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+<div class="with_side_nav no_top_margin">
+    {% include "employers_list_pane.html" with employer=employer events=events isnotajax="True" %}
+</div>
+{% endblock %}

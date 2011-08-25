@@ -83,14 +83,14 @@
     color: #FFF;
     text-shadow: #000 0 -1px 0;
     border-top: 1px solid #AAA;
-    background: #888;
-    background: -moz-linear-gradient(top, #888 0%, #666 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#888), color-stop(100%,#666));
-    background: -webkit-linear-gradient(top, #888 0%,#666 100%);
-    background: -o-linear-gradient(top, #888 0%,#666 100%);
-    background: linear-gradient(top, #888 0%,#666 100%);
-    behavior: url(/static/lib/pie/PIE.htc);
-    -pie-background: linear-gradient(#888, #666);
+    background: #888888; /* Old browsers */
+    background: -moz-linear-gradient(top, #888888 0%, #666666 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#888888), color-stop(100%,#666666)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #888888 0%,#666666 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #888888 0%,#666666 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #888888 0%,#666666 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#888888', endColorstr='#666666',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #888888 0%,#666666 100%); /* W3C */
 }
 #event_admin h1 .dark_button {
     float: right;
@@ -239,24 +239,25 @@
     border: 1px solid #555;
     text-decoration: none;
     border-radius: 2px;
-    background: #FFF;
-    background: -moz-linear-gradient(top, #888 0%, #666 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#888), color-stop(100%,#666));
-    background: -webkit-linear-gradient(top, #888 0%,#666 100%);
-    background: -o-linear-gradient(top, #888 0%,#666 100%);
-    background: linear-gradient(top, #888 0%,#666 100%);
-    behavior: url(/static/lib/pie/PIE.htc);
-    -pie-background: linear-gradient(#888, #666);
+    background: #888888; /* Old browsers */
+    background: -moz-linear-gradient(top, #888888 0%, #666666 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#888888), color-stop(100%,#666666)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #888888 0%,#666666 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #888888 0%,#666666 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #888888 0%,#666666 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#888888', endColorstr='#666666',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #888888 0%,#666666 100%); /* W3C */
     overflow: hidden;
 }
 #event_checkin_link:active {
-    background: #666;
-    background: -moz-linear-gradient(top, #666 0%, #888 100%);
-    background: -webkit-linear-gradient(top, #666 0%,#888 100%);
-    background: -o-linear-gradient(top, #666 0%,#888 100%);
-    background: linear-gradient(top, #666 0%,#888 100%);
-    behavior: url(/static/lib/pie/PIE.htc);
-    -pie-background: linear-gradient(#666, #888);
+    background: #666666; /* Old browsers */
+    background: -moz-linear-gradient(top, #666666 0%, #888888 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666666), color-stop(100%,#888888)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #666666 0%,#888888 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #666666 0%,#888888 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #666666 0%,#888888 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#888888',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #666666 0%,#888888 100%); /* W3C */
 }
 #event_checkin_link .text {
     position: relative;
@@ -275,13 +276,14 @@
     width: 100%;
     height: 0;
     margin-left: -25px;
-    background: #888;
-    background: -moz-linear-gradient(top, #FFF 0%, #DDD 100%);
-    background: -webkit-linear-gradient(top, #FFF 0%,#DDD 100%);
-    background: -o-linear-gradient(top, #FFF 0%,#DDD 100%);
-    background: linear-gradient(top, #FFF 0%,#DDD 100%);
-    behavior: url(/static/lib/pie/PIE.htc);
-    -pie-background: linear-gradient(#FFF, #DDD);
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#dddddd 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#dddddd 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #ffffff 0%,#dddddd 100%); /* W3C */
 }
 
 #event_checkin_main {

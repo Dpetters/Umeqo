@@ -23,16 +23,10 @@ input[type=text] {
 #profile_form_title {
     padding-bottom:15px;
 }
-.form_table {
+#profile_form .form_table {
     float:left;
     padding-top:4px;
     padding-left:10px;
-}
-.profile_form_side_info {
-    margin-top: 20px;
-    margin-left:25px;
-    width: 475px;
-    float: left;
 }
 .profile_form_side_info h3 {
     margin-bottom: 10px;

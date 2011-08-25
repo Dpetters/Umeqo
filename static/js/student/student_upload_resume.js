@@ -1,22 +1,21 @@
-if (typeof(XMLHttpRequest.prototype.sendAsBinary) == "undefined")
-{
-    XMLHttpRequest.prototype.sendAsBinary = function(datastr) {
+if (typeof (XMLHttpRequest.prototype.sendAsBinary) === "undefined") {
+    XMLHttpRequest.prototype.sendAsBinary = function (datastr) {
         function byteValue(x) {
             return x.charCodeAt(0) & 0xff;
         }
-        var ords = Array.prototype.map.call(datastr, byteValue);
-        var ui8a = new Uint8Array(ords);
+        var ords = Array.prototype.map.call(datastr, byteValue),
+        ui8a = new Uint8Array(ords);
         this.send(ui8a.buffer);
     };
-};
+}
 
-$(document).ready(function(){
-    $("#update_resume_link").click(function(){
+$(document).ready( function() {
+    $("#update_resume_link").click( function() {
         $("#update_resume_div").slideToggle();
     });
 
-    if(typeof(FileReader) == "undefined" || typeof(XMLHttpRequest) == "undefined" || !('draggable' in document.createElement('span'))) {
-        $('#dropbox_status').html("Browser Not Supported")
+    if (typeof (FileReader) === "undefined" || typeof (XMLHttpRequest) === "undefined" || !('draggable' in document.createElement('span'))) {
+        $('#dropbox_status').html("Browser Not Supported");
     } else {
         var up = {
             $dropbox :        null,
@@ -26,11 +25,11 @@ $(document).ready(function(){
             dataReader :    null,
             xhr:            null,
             
-            noop : function(e){
+            noop : function (e){
                 e.stopPropagation();
                 e.preventDefault();
             },
-            init : function() {
+            init : function () {
                 up.$dropbox = $("#dropbox");
                 up.$dropbox.bind("dragenter", up.dragenter);
                 up.$dropbox.bind("dragleave", up.dragleave);
@@ -43,21 +42,21 @@ $(document).ready(function(){
                 up.xhr.upload.addEventListener('progress', up.uploadProgress , false);
                 up.xhr.upload.addEventListener('load', up.uploadLoaded , false);
             },
-            dragover : function(e) {
+            dragover : function (e) {
                 up.noop(e);
             },
-            dragenter : function(e) {
+            dragenter : function (e) {
                 up.noop(e);
                 up.$dropbox.removeClass('success').removeClass('error').addClass('hover');
                 up.$status.html("Drop PDF File Here");
                 return false;
             },
-            dragleave : function(e) {
+            dragleave : function (e) {
                 up.noop(e);
                 up.$dropbox.removeClass('hover');
                 return false;
             },
-            drop : function(e) {
+            drop : function (e) {
                 up.noop(e);
                 up.$dropbox.removeClass('hover').addClass('uploading');
 
@@ -67,7 +66,7 @@ $(document).ready(function(){
                     up.$status.html('Only one file allowed.');
                 } else if(files[0].type != "application/pdf") {
                     up.$dropbox.removeClass('uploading').addClass('error');
-                    up.$status.html('Only PDF files are allowed.');
+                    up.$status.html('Only PDFs are allowed.');
                 } else {
                     if(up.uploading == false) {
                         up.processing = files[0];
@@ -87,7 +86,7 @@ $(document).ready(function(){
                     up.binaryReader.readAsBinaryString(up.processing);
                 } catch(error) {
                     up.uploading = false;
-                    up.$dropbox.removeClass('uploading').addClass('error')
+                    up.$dropbox.removeClass('uploading').addClass('error');
                     up.$status.html('The file could not be read.');
                 }
             },
@@ -112,7 +111,7 @@ $(document).ready(function(){
             loadProgress : function(e) {
                 if (e.lengthComputable) {
                     var percentage = Math.round((e.loaded * 100) / e.total);
-                    up.$status.html('Loaded: '+percentage+'%');
+                    up.$status.html('Loaded: ' + percentage + '%');
                 }
             },
             binaryLoad : function(e) {
@@ -142,7 +141,6 @@ $(document).ready(function(){
                         }
                     }
                 };
-                    
                 up.xhr.onload = up.onload;
             },
             uploadProgress : function(e) {
@@ -175,15 +173,15 @@ $(document).ready(function(){
                                 clearTimeout(unparsable_resume_dialog_timeout);
                                 $unparsable_resume_dialog.dialog('option', 'position', 'center');
                             },
+                            success: function (data) {
+                                $unparsable_resume_dialog.html(data);
+                            },
                             error: function(jqXHR, textStatus, errorThrown) {
                                 if(jqXHR.status==0){
                                     $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                                 }else{
                                     $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
                                 }
-                            },
-                            success: function (data) {
-                                $unparsable_resume_dialog.html(data);
                             }
                         });
                     } else{

@@ -1,4 +1,7 @@
-$(document).ready(function(){    
+$(document).ready(function(){
+
+    setTimeout("", 1000);
+
     $("#id_looking_for").multiselect({
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
@@ -31,9 +34,6 @@ $(document).ready(function(){
                 return false;
             }
         },
-        checkAll: function(){
-            $("#id_industries_of_interest").trigger("change");
-        },
         uncheckAll: function(){
             $("#id_industries_of_interest").trigger("change");
         }
@@ -54,9 +54,6 @@ $(document).ready(function(){
                 place_multiselect_warning_table($("#id_previous_employers"), MAX_PREVIOUS_EMPLOYERS_EXCEEDED);
                 return false;
             }
-        },
-        checkAll: function(){
-            $("#id_previous_employers").trigger("change");
         },
         uncheckAll: function(){
             $("#id_previous_employers").trigger("change");
@@ -86,9 +83,6 @@ $(document).ready(function(){
                 place_multiselect_warning_table($("#id_campus_involvement"), MAX_CAMPUS_INVOLVEMENT_EXCEEDED);
                 return false;
             }
-        },
-        checkAll: function(){
-            $("#id_campus_involvement").trigger("change");
         },
         uncheckAll: function(){
             $("#id_campus_involvement").trigger("change");
@@ -120,9 +114,6 @@ $(document).ready(function(){
                    return false;
                }
         },
-        checkAll: function(){
-            $("#id_languages").trigger("change");
-        },
         uncheckAll: function(){
             $("#id_languages").trigger("change");
         }
@@ -145,9 +136,6 @@ $(document).ready(function(){
                 place_multiselect_warning_table($("#id_countries_of_citizenship"), COUNTRIES_OF_CITIZENSHIP_MAX);
                 return false;
             }
-        },
-        checkAll: function(){
-            $("#id_countries_of_citizenship").trigger("change");
         },
         uncheckAll: function(){
             $("#id_countries_of_citizenship").trigger("change");

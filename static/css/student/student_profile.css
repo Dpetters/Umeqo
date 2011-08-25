@@ -3,23 +3,20 @@
     margin-top:5px;
     text-align:center;
 }
-#id_campus_org, #id_languages, #id_industries_interest, #id_previous_employers {
-    height: 1px;
-}
-#listing_preview_section_block{
+#student_profile_preview_section_block{
     margin-top:15px;
     background:#E6E6E6;
     padding:8px;
     border-radius:3px;
 }
-#listing_preview_info{
+#student_profile_preview_info{
     margin-right:700px;
 }
-#listing_preview_info h2{
+#student_profile_preview_info h2{
     margin-left:75px;
     margin-top:32px;
 }
-#listing_preview{
+#student_profile_preview{
     min-height:81px;
     background:#FFF;
     border:1px solid #CCC;
@@ -28,7 +25,13 @@
     width:651px;
     float:right
 }
-#listing_preview .message_section{
+.profile_form_side_info {
+    margin-top: 20px;
+    margin-left:25px;
+    width: 475px;
+    float: left;
+}
+#student_profile_preview .message_section{
     margin-top:8px;
 }
 .previous_employers_multiselect .ui-multiselect-filter input, .interested_in_multiselect .ui-multiselect-filter input, .campus_involvement_multiselect .ui-multiselect-filter input, .countries_of_citizenship_multiselect .ui-multiselect-filter input, .languages_multiselect .ui-multiselect-filter input{
