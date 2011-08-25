@@ -28,8 +28,9 @@ $(document).ready(function() {
         }, "json");
     }
     $('#rsvp-yes-button').live('click', function(e) {
-        if ($(this).hasClass('selected')) {
-            return false;
+        if ($(this).hasClass('selected') || $(this).hasClass('disabled-button')) {
+            e.preventDefault();
+            return;
         }
         rsvp.apply(this, [true]);
         if ($(this).hasClass('left-group')) {
@@ -39,8 +40,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
     $('#rsvp-no-button').live('click', function(e) {
-        if ($(this).hasClass('selected')) {
-            return false;
+        if ($(this).hasClass('selected') || $(this).hasClass('disabled-button')) {
+            e.preventDefault();
+            return;
         }
         rsvp.apply(this, [false]);
         if ($(this).hasClass('right-group')) {
@@ -244,5 +246,14 @@ $(document).ready(function() {
             $('.current').removeClass('current');
             $(this).addClass('current');
         });
+    });
+
+    $('#event_resume_drop').click(function(e) {
+        if (!$(this).hasClass('disabled')) {
+            $.post(EVENT_DROP_URL, function() {
+                console.log('res');
+            });
+        }
+        e.preventDefault()
     });
 });

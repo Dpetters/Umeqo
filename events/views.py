@@ -13,13 +13,14 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
 
-from notification import models as notification
-from core.models import Edit
-from events.forms import EventForm, CampusOrgEventForm
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
+from core.models import Edit
+from employer.models import ResumeBook
+from events.forms import EventForm, CampusOrgEventForm
 from events.models import Attendee, Event, EventType, Invitee, RSVP
 from events.views_helper import event_search_helper
 from student.models import Student
+from notification import models as notification
 
 @login_required
 @user_passes_test(is_student)
@@ -242,7 +243,7 @@ def get_event_schedule(event_date_string):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def event_rsvp(request, id):
+def event_rsvp(request, event_id):
     event = Event.objects.get(pk=id)
     # if method is GET then get a list of RSVPed students
     if request.method == 'GET' and hasattr(request.user, 'recruiter'):
@@ -268,7 +269,7 @@ def event_rsvp(request, id):
 
 @login_required
 @user_passes_test(is_student)
-def event_unrsvp(request, id):
+def event_unrsvp(request, event_id):
     event = Event.objects.get(pk=id)
     rsvp = RSVP.objects.filter(student=request.user.student, event=event)
     rsvp.delete()
@@ -278,9 +279,45 @@ def event_unrsvp(request, id):
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
 @login_required
+@user_passes_test(is_student)
+@require_http_methods(["POST"])
+def event_drop(request, event_id):
+    data = {}
+    if not event_id:
+        data.update({
+            'valid': False,
+            'message': 'Invalid event id.'
+        })
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        data.update({
+            'valid': False,
+            'message': 'Invalid event id.'
+        })
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    event = event.get()
+    student = request.user.student
+    resume_book = ResumeBook.objects.filter(name="%s Resume Book" % event.name)
+    if not resume_book.exists():
+        data.update({
+            'valid': False,
+            'message': 'Invalid event.'
+        })
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    resume_book = resume_book.get()
+    resume_book.students.add(student)
+    resume_book.save()
+    data.update({
+        'valid': True,
+        'message': 'Resume dropped.'
+    })
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+@login_required
 @user_passes_test(is_campus_org_or_recruiter)
 @require_http_methods(["GET", "POST"])
-def event_checkin(request, id):
+def event_checkin(request, event_id):
     event = Event.objects.get(pk=id)
     if request.method == 'GET':
         attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
@@ -397,4 +434,4 @@ def event_invite(request):
             'message': 'Student has already been invited.'
         }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    
+

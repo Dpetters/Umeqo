@@ -17,9 +17,10 @@
 {% endcompress %}
 <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
-    var EVENT_RSVP_URL = "{% url event_rsvp id=event.id %}";
-    var EVENT_UNRSVP_URL = "{% url event_unrsvp id=event.id %}";
-    var CHECKIN_URL = "{% url event_checkin id=event.id %}";
+    var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
+    var EVENT_UNRSVP_URL = "{% url event_unrsvp event_id=event.id %}";
+    var EVENT_DROP_URL = "{% url event_drop event_id=event.id %}";
+    var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
     
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
@@ -134,18 +135,18 @@
                 {% if event.is_public %}
                     <div class="no-response{% if not responded %} hid{% endif %}">
                         <span id="attending-span">{{attending_text}}</span>
-                        <a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
+                        <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
                     </div>
                     <div class="response{% if responded %} hid{% endif %}">
-                        <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="button">RSVP: {{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button">RSVP: {{attending_text}}</a>
                     </div>
                 {% else %}
                     <strong>RSVP:</strong>
                     {% spaceless %}
-                        <a href="{% url event_rsvp id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">{{attending_text}}</a>
-                        <a href="{% url event_rsvp id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not {{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">{{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not {{attending_text}}</a>
                     {% endspaceless %}
-                    <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
+                    <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP</a></strong>
                 {% endif %}
             {% endif %}{% endif %}
             {% if not user.is_authenticated %}
@@ -192,6 +193,7 @@
             </div>
         </div>
     {% endif %}
+    <a id="event_resume_drop" class="button{% if show_admin %} disabled-button{% endif %}"href="#">Drop Resume</a>
     <div id="event_description" class="main_block">
         <div class="main_block_header">
             <span class="main_block_header_title">Event Details</span>
