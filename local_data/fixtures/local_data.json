@@ -189,19 +189,19 @@
   "pk": 2, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "industries": [
+    42
+   ], 
    "main_contact_email": "temp@temp.com", 
    "last_updated": "2011-08-24 09:07:01", 
    "description": "temp", 
    "starred_students": [], 
-   "industries": [
-    42
-   ], 
    "main_contact": "Liz Floyd", 
    "main_contact_phone": "543-657-9834", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:06:02", 
    "logo": "employer/employer/employer2_2011-08-24-09-07-01.png", 
+   "careers_website": null, 
    "slug": "employer2", 
    "name": "Employer2"
   }
@@ -210,19 +210,19 @@
   "pk": 3, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "industries": [
+    28
+   ], 
    "main_contact_email": "fake@fake.com", 
    "last_updated": "2011-08-24 09:06:55", 
    "description": "Amazing firm.", 
    "starred_students": [], 
-   "industries": [
-    28
-   ], 
    "main_contact": "Katelyn o'Hare", 
    "main_contact_phone": "523-987-4567", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:07:34", 
    "logo": "employer/employer/employer3_2011-08-24-09-06-55.png", 
+   "careers_website": null, 
    "slug": "employer3", 
    "name": "Employer3"
   }
@@ -231,19 +231,19 @@
   "pk": 4, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "industries": [
+    41
+   ], 
    "main_contact_email": "jason@blah.com", 
    "last_updated": "2011-08-24 09:06:36", 
    "description": "Sample", 
    "starred_students": [], 
-   "industries": [
-    41
-   ], 
    "main_contact": "Jason Mccoy", 
    "main_contact_phone": "333-333-3333", 
    "offered_job_types": [], 
    "date_created": "2011-07-08 00:08:02", 
    "logo": "employer/employer/employer4_2011-08-24-09-06-36.png", 
+   "careers_website": null, 
    "slug": "employer4", 
    "name": "Employer4"
   }
@@ -252,14 +252,13 @@
   "pk": 5, 
   "model": "employer.employer", 
   "fields": {
-   "website": null, 
+   "industries": [
+    40
+   ], 
    "main_contact_email": "temp@temp.com", 
    "last_updated": "2011-08-24 15:56:36", 
    "description": "temp", 
    "starred_students": [], 
-   "industries": [
-    40
-   ], 
    "main_contact": "Gina Vaglia", 
    "main_contact_phone": "999-999-9999", 
    "offered_job_types": [
@@ -268,6 +267,7 @@
    ], 
    "date_created": "2011-07-08 00:09:24", 
    "logo": "employer/employer/susquehanna international group_2011-08-24-15-31-30.png", 
+   "careers_website": null, 
    "slug": "sig", 
    "name": "Susquehanna International Group"
   }
@@ -890,7 +890,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-24 14:52:23", 
+   "last_login": "2011-08-25 15:58:40", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -2128,6 +2128,26 @@
    "session_key": "85f41df3e721cdaca4864acbc04a1f2c", 
    "last_updated": "2011-08-24 15:31:06", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 179, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-25 13:56:49", 
+   "session_key": "88cd3fa2c154d16942f2b47e485f5592", 
+   "last_updated": "2011-08-25 13:56:49", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 180, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-25 15:58:40", 
+   "session_key": "f0df7456b4cc86e862c9add578b69e33", 
+   "last_updated": "2011-08-25 15:58:40", 
+   "user": 2
   }
  }
 ]
