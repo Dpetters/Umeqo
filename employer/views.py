@@ -6,20 +6,24 @@ import re
 from operator import attrgetter
 from datetime import datetime 
 from django.core.files import File
-from django.conf import settings
+from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, \
+                        HttpResponseBadRequest, HttpResponseNotFound, \
+                        HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
 from pyPdf import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.units import cm
+from django.core.urlresolvers import reverse
 
-from core.decorators import is_student, is_recruiter, render_to
+from core.decorators import is_student, is_student_or_recruiter, is_recruiter, \
+                            render_to
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
@@ -28,7 +32,8 @@ from employer.models import ResumeBook, Employer, EmployerStudentComment
 from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, \
                             StudentFilteringForm, StudentDefaultFilteringParametersForm, \
                             StudentSearchForm, DeliverResumeBookForm
-from employer.views_helper import get_paginator, employer_search_helper
+from employer.views_helper import get_paginator, employer_search_helper, \
+                                  get_employer_events
 from student import enums as student_enums
 from student.models import Student
 
@@ -39,9 +44,24 @@ def employer_registration(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
+@login_required
+@user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_profile_preview.html")
+def employer_profile_preview(request, slug, extra_context=None):
+    try:
+        employer = Employer.objects.get(slug=slug)
+    except Employer.DoesNotExist:
+        return HttpResponseNotFound()
+    
+    if is_student(request.user):
+        return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
+    elif is_recruiter(request.user):
+        context = {'employer':employer,
+                   'events':get_employer_events(employer)}
+        return context
 
 @login_required
-@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account.html")
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
                     change_password_form_class = PasswordChangeForm, extra_context=None):
@@ -75,7 +95,7 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
         return HttpResponseForbidden("Request must be a POST.")
 
 @login_required
-@user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
@@ -425,10 +445,10 @@ def employer_resume_book_current_create(request):
         output = PdfFileWriter()
         output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
         for student in current_resume_book.students.all():
-            output.addPage(PdfFileReader(file("%s%s" % (settings.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
+            output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
         resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
         current_resume_book.resume_book_name = resume_book_name
-        file_name = "%s%s%s.tmp" % (settings.MEDIA_ROOT, settings.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
+        file_name = "%s%s%s.tmp" % (s.MEDIA_ROOT, s.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
         outputStream = file(file_name, "wb")
         output.write(outputStream)
         outputStream.close()
@@ -451,8 +471,8 @@ def employer_resume_book_current_email(request, extra_context=None):
             recipients = reg.split(request.POST['emails'])
             subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
             body = render_to_string('resume_book_email_body.txt', {})
-            message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-            message.attach_file("%s%s" % (settings.MEDIA_ROOT, current_resume_book.resume_book.name))
+            message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
+            message.attach_file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name))
             message.send()
             context = {}
             context.update(extra_context or {}) 
@@ -470,7 +490,7 @@ def employer_resume_book_current_download(request):
         current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
         mimetype = mimetypes.guess_type(str(current_resume_book.resume_book))[0]
         if not mimetype: mimetype = "application/octet-stream"
-        response = HttpResponse(file("%s%s" % (settings.MEDIA_ROOT, current_resume_book.resume_book.name), "rb").read(), mimetype=mimetype)
+        response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb").read(), mimetype=mimetype)
         filename = os.path.basename(current_resume_book.resume_book.name)
         if request.GET.has_key('name'):
             filename = request.GET['name']
@@ -512,20 +532,13 @@ def employers_list(request, extra_content=None):
         else:
             employer = employers[0]
             employer_id = employer.id
-        
-        now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-        events = reduce(
-            lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
-            employer.recruiter_set.all(),
-            []
-        )
 
         subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
 
         context.update({
             'employer': employer,
-            'events': events,
+            'events': get_employer_events(employer),
             'employer_id': employer_id,
             'subbed': subbed
         })

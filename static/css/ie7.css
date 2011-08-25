@@ -10,3 +10,21 @@
 #contact_us_form .input_cell{
     width:185px;
 }
+.student_checkbox{
+    margin-left:5px !important;
+}
+.student_name{
+    margin-left:0px !important;
+}
+div.student_detailed_info_first_col{
+    display:inline;
+}
+div.student_detailed_info_second_col{
+    display:inline;
+}
+div.student_detailed_info_third_col{
+    display:inline;   
+}
+.dialog_content_wrapper h3{
+    font-size:15px;
+}

@@ -4,7 +4,6 @@
     width: 300px;
     padding-left: 6px;
     font-size: 15px;
-    behavior: url(/static/lib/pie/PIE.htc);
     box-shadow: inset 2px 2px 2px #DDDDDD;
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;

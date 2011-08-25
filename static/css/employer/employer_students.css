@@ -48,7 +48,7 @@
     padding:5px 0px 5px 4px
 }
 #query_field {
-    behavior: url(/static/lib/pie/PIE.htc);
+
     height:22px;
     vertical-align:middle;
     width:95%;
@@ -120,7 +120,6 @@
 }
 #results_block_info {
     font-weight:bold;
-    behavior: url(/static/lib/pie/PIE.htc);
     background:#FAFAFA;
     border:1px solid #888;
     margin-left:auto;
@@ -169,20 +168,6 @@
 #results_menu_more_actions img {
     margin-right:2px;
     margin-left:2px;
-}
-#results_menu_more_actions_dropdown li a:hover {
-    background: #404040;
-    border-radius: 0;
-    -moz-border-radius: 0;
-    color: #FFF;
-}
-#results_menu_more_actions_dropdown .info {
-    color: #FFF;
-    padding: 10px;
-    text-shadow: rgba(255,255,255,0.8) 0 0 2px;
-    background-color: #333;
-    font-size: 14px;
-    overflow-x: hidden;
 }
 #results_menu_toggle_details {
     float:right;

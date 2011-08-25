@@ -1,21 +1,20 @@
-.dark_button{
-    behavior: url(/static/lib/pie/PIE.htc);
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
+.dark_button {
     background: #6e97b9; /* Old browsers */
     background: -moz-linear-gradient(top, #6e97b9 0%, #53738d 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6e97b9), color-stop(100%,#53738d)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, #6e97b9 0%,#53738d 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #6e97b9 0%,#53738d 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #6e97b9 0%,#53738d 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #6e97b9 0%,#53738d 100%); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e97b9', endColorstr='#53738d',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #6e97b9 0%,#53738d 100%); /* W3C */
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
     text-shadow: #000 0 -1px 0;
     border: 1px solid #53738D;
     cursor: pointer;
     display: inline-block;
-    color:#FFF !important;
+    color: #FFF !important;
     padding: 0 5px 2px 5px;
     text-decoration: none;
     outline: none;
@@ -24,20 +23,20 @@
     line-height:29px;
     vertical-align: middle;
 }
-.dark_button:hover, .dark_button.um-focus{
+.dark_button:hover, .dark_button.um-focus {
     border: 1px solid #466175;
     box-shadow: #466175 0 0 2px;
 }
-.dark_button.um-active{
+.dark_button.um-active {
     background: #4E6D84;
-    color:#FFF;
+    color: #FFF;
 }
 a.button, .button{
-    height:30px;
-    line-height:29px;
+    height: 30px;
+    line-height: 29px;
 }
-input.button{
-    height:32px;
+input.button {
+    height: 32px;
     outline: 0;
 }
 .form_table.grande input[type=submit] {
@@ -49,14 +48,12 @@ input.button{
     vertical-align: middle;
 }
 .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
-    behavior: url(/static/lib/pie/PIE.htc);
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top, #f0f0f0 0%, #dddddd 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* IE6-9 */ 
     background: linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* W3C */
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -82,7 +79,7 @@ input.button{
     border-radius: 3px 0 0 3px;
 }
 .right-group.button {
-    behavior: url(/static/lib/pie/PIE.htc);
+    
     -moz-border-radius-topleft: 0;
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
@@ -103,7 +100,7 @@ input.button{
     background: -webkit-linear-gradient(top, #ffffff 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #ffffff 0%,#dddddd 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #ffffff 0%,#dddddd 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #ffffff 0%,#dddddd 100%); /* IE 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #ffffff 0%,#dddddd 100%); /* W3C */
     color: #6e97b9 !important;
     box-shadow: #666 0 0 2px;
@@ -115,41 +112,40 @@ input.button{
     box-shadow: #666 0 0 2px;
 }
 .button.selected, .button.selected:hover {
-    background: #1e5799;
-    background: -moz-linear-gradient(top, #1e5799 0%, #666666 0%, #999999 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#666666), color-stop(100%,#999999));
-    background: -webkit-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
-    background: -o-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
-    background: -ms-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
-    -pie-background: linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
-    background: linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%);
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #666666 0%, #999999 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#666666), color-stop(100%,#999999)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#999999',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #1e5799 0%,#666666 0%,#999999 100%); /* W3C */
     color: #FFF !important;
     text-shadow: #444 0 -1px 0;
 }
 .button[disabled] {
     color: #AAA !important;
-    border:1px solid #BBB;
-    cursor:default;
+    border: 1px solid #BBB;
+    cursor: default;
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top, #f0f0f0 0%, #dddddd 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #f0f0f0 0%,#dddddd 100%); /* W3C */
-    box-shadow:none;
+    box-shadow: none;
 }
 .warning-button {
-    behavior: url(/static/lib/pie/PIE.htc);
-    background: #ff7b7b; /* Old browsers */
-    background: -moz-linear-gradient(top, #ff7b7b 0%, #ff4444 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff7b7b), color-stop(100%,#ff4444)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #ff7b7b 0%,#ff4444 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #ff7b7b 0%,#ff4444 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, #ff7b7b 0%,#ff4444 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #ff7b7b 0%,#ff4444 100%); /* IE6-9 */
-    background: linear-gradient(top, #ff7b7b 0%,#ff4444 100%); /* W3C */
+    background: #ff4444; /* Old browsers */
+    background: -moz-linear-gradient(top, #ff4444 0%, #ce0006 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff4444), color-stop(100%,#ce0006)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ff4444 0%,#ce0006 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ff4444 0%,#ce0006 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #ff4444 0%,#ce0006 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4444', endColorstr='#ce0006',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #ff4444 0%,#ce0006 100%); /* W3C */
     color: #FFF;
     text-shadow: #000 0 -1px 0;
 }
@@ -160,7 +156,7 @@ input.button{
     background: -webkit-linear-gradient(top, #ff8888 0%,#ff4444 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #ff8888 0%,#ff4444 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #ff8888 0%,#ff4444 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #ff8888 0%,#ff4444 100%); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8888', endColorstr='#ff4444',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #ff8888 0%,#ff4444 100%); /* W3C */
     color: #FFF !important;
     text-shadow: #000 0 -1px 0;
@@ -172,7 +168,7 @@ input.button{
     background: -webkit-linear-gradient(top, #ff4444 0%,#ff7b7b 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #ff4444 0%,#ff7b7b 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #ff4444 0%,#ff7b7b 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #ff4444 0%,#ff7b7b 100%); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4444', endColorstr='#ff7b7b',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #ff4444 0%,#ff7b7b 100%); /* W3C */
     color: #FFF;
     text-shadow: #000 0 -1px 0;
@@ -187,63 +183,61 @@ input.button{
     background: -webkit-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* IE10+ */
-    background: linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* IE6-9 */
-    -pie-background: linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #eeeeee 0%,#dddddd 100%); /* W3C */
     color: #888 !important;
     cursor: default !important;
 }
 .dark_button.large, .button.large {
     height: 34px;
-    line-height:34px;
+    line-height: 34px;
     text-decoration: none;
     padding: 0 10px;
     font-size: 16px;
 }
 .menu_button, .dropdown_menu_button {
-    behavior: url(/static/lib/pie/PIE.htc);
     background: #f9f9f9; /* Old browsers */
     background: -moz-linear-gradient(top, #f9f9f9 0%, #e3e3e3 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f9f9), color-stop(100%,#e3e3e3)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, #f9f9f9 0%,#e3e3e3 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #f9f9f9 0%,#e3e3e3 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #f9f9f9 0%,#e3e3e3 100%); /* IE10+ */
-    -pie-background: linear-gradient(top, #f9f9f9 0%,#e3e3e3 100%);/* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e3e3e3',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #f9f9f9 0%,#e3e3e3 100%); /* W3C */
     cursor: pointer;
     padding: 0px 5px;
-    height:23px;
-    line-height:23px;
+    height: 23px;
+    line-height: 23px;
     display: inline-block;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border: 1px solid #BBBBBB;
     margin-left: 1px;
-    font-weight:bold;
+    font-weight: bold;
 }
-.dropdown_menu_button{
-    font-weight:normal;
+.dropdown_menu_button {
+    font-weight: normal;
     position: relative;
 }
-.menu_button:hover, .dropdown_menu_button:hover  {
+.menu_button:hover, .dropdown_menu_button:hover {
     border: 1px solid #888;
 }
-.menu_button.um-active{
-    background:#E3E3E3;
+.menu_button.um-active {
+    background: #E3E3E3;
 }
-.dropdown_menu_button.pressed{
+.dropdown_menu_button.pressed {
     background: none repeat scroll 0 0 #888888;
-    border-color:#666;
+    border-color: #666;
     border-radius: 3px 3px 0px 0px;
     -webkit-border-radius: 3px 3px 0px 0px;
     -moz-border-radius: 3px 3px 0px 0px;
 }
-.dropdown_menu_button.pressed span{
-    color:#FFF;
+.dropdown_menu_button.pressed span {
+    color: #FFF;
     text-shadow: 0 -1px 0 #000;
 }
 .dropdown_menu_button ul{
-    behavior: url(/static/lib/pie/PIE.htc);
     box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
     list-style: none;
     padding: 2px;
@@ -266,6 +260,6 @@ input.button{
     border: 1px solid #FFF;
 }
 .dropdown_menu_button ul li:hover {
-    background:url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
-    border:1px solid #E9E9E9;
+    background: url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
+    border: 1px solid #E9E9E9;
 }

@@ -3,6 +3,11 @@ PUBLIC_PRIVATE_BOOLEAN_CHOICES = (
 (False, 'Private')
 )
 
+DROP_BOOLEAN_CHOICES = (
+(True, 'Enabled'),
+(False, 'Disabled')
+)
+
 TIME_CHOICES = (
 ('00:00','12:00 AM'),
 ('00:30','12:30 AM'),

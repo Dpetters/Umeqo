@@ -5,6 +5,7 @@ from django.conf import settings as s
 from django.utils.translation import ugettext as _
 from django.core.mail import EmailMessage
 
+from core.form_helpers import decorate_bound_field
 from student.models import Student, StudentPreferences, StudentInvite, \
                             StudentDeactivation
 from campus_org.form_helpers import campus_org_types_as_choices
@@ -17,6 +18,7 @@ from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages as m
 
+decorate_bound_field()
 
 class StudentAccountDeactivationForm(forms.ModelForm):
     suggestion = forms.CharField(label="If you still wish to deactivate, \

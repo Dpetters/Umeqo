@@ -253,10 +253,14 @@ class AkismetContactForm(ContactForm):
 
 
 class BetaForm(forms.ModelForm):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'e.g. susan@mit.edu'}))
-    summer_plans = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'e.g. Goldman, Microsoft, UROP'}),required=False)
+    first_name = forms.CharField(label="First Name:", max_length=42)
+    last_name = forms.CharField(label="Last Name:", max_length=42)
+    email = forms.EmailField(label="Email:", widget=forms.TextInput(attrs={'placeholder':'e.g. susan@mit.edu'}))
+    
     class Meta:
-        fields = ('first_name','last_name','email','summer_plans')
+        fields = ('first_name',
+                  'last_name',
+                  'email')
         model = InterestedPerson
 
         
@@ -269,6 +273,7 @@ class CreateLanguageForm(forms.ModelForm):
         if Language.objects.filter(name=name).exists():
             raise forms.ValidationError(_(m.language_already_exists))
         return name
+    
     class Meta:
         fields = ('name',)
         model = Language

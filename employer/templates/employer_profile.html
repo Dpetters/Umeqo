@@ -4,16 +4,24 @@
 {{block.super}}
 {{form.media}}
 {% load text_snippet %}
-{% load student_star %}
-{% load student_resume_book %}
 {% load compress %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile.css"/>
 {% endcompress %}
 <script>
+    var SLUG_REQUIRED = "{% text_snippet 'slug_required' %}";
+    var INDUSTRIES_REQUIRED = "{% text_snippet 'industries_required' %}";
+    var DESCRIPTION_REQUIRED = "{% text_snippet 'description_required' %}";
+    var MAIN_CONTACT_REQUIRED = "{% text_snippet 'main_contact_required' %}";
+    var MAIN_CONTACT_EMAIL_REQUIRED = "{% text_snippet 'main_contact_email_required' %}";
+    var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
+    var INVALID_PHONE = "{% text_snippet 'invalid_phone' %}";
+    var MAX_INDUSTRIES = "{{industries_max}}";
+    var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_widgets.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -29,7 +37,7 @@
     <a href='#' class="ui-accordion-link"></a>
     <div class="main_block clearfix">
         <div class="main_block_header">
-            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
             <span class="main_block_header_title">Edit Profile</span>
             <div class="main_block_header_content">
                 <span>
@@ -41,33 +49,11 @@
         </div>
         <table class="form_table">
             <tr>
-                <th>{{form.name.label_tag}}</th>
-                <td>
+                <th><label>Name:</label></th>
+                <td class="grande">
                     <div class="errorspace"></div>
-                    {{form.name}}
+                    <span>{{request.user.recruiter.employer.name}}</span>
                 </td>
-            </tr>
-            <tr>
-                <th>{{form.slug.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.slug}}
-                </td>
-            </tr>
-            <tr>
-                <th>Logo:</th>
-                <td>
-                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.website.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.website}}
-                </td>
-            </tr>
-            <tr>
                 <th>{{form.industries.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
@@ -75,6 +61,11 @@
                 </td>
             </tr>
             <tr>
+                <th><label>Slug:</label></th>
+                <td class="grande">
+                    <div class="errorspace"></div>
+                    <span>www.umeqo.com/{{request.user.recruiter.employer.slug}}/</span>
+                </td>
                 <th>{{form.offered_job_types.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
@@ -82,19 +73,38 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <th><label id="logo_label">Logo:</label></th>
+                <td>
+                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                </td>
+                <th class="vertical_align_top">{{form.website.label_tag}}</th>
+                <td class="vertical_align_top">
+                    <div class="errorspace"></div>
+                    {{form.website}}
+                </td>
+            </tr>
+            <tr>
+                <th><label>Note:</label></th>
+                <td class="grande">
+                    <div class="errorspace"></div>
+                    <span class="epf-note">To change any of the above info, <a href="javascript:void()" class="open_contact_us_dialog_link">contact us</a>.</span>
+                </td>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4">
                     <div class="errorspace"></div>
                     {{form.description.label_tag}}
                     {{form.description}}
                 </td>
             </tr>
             <tr>
-                <th></th>
-                <td class="error_section error">
+                <td colspan="4" class="error_section error">
                 </td>
             </tr>
             <tr>
-                <td class="button_cell" colspan="2">
+                <td class="button_cell" colspan="4">
                     <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
                     <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                     <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
@@ -102,20 +112,6 @@
                 </td>
             </tr>
         </table>
-        <div class="profile_form_side_info">
-            <h3>Umeqo makes it easy for employers to discover you!</h3>
-            <ul>
-                <li>
-                Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
-                </li>
-                <li>
-                    The more you fill out, the the more likely you are to show up in the results. (e.g. If the employer decides that he wants student with an ACT of 26 or above and you left that field blank, you will not appear in the result.)
-                </li>
-                <li id="profile_form_required_third">
-                    Submit this page, or click <strong>Next</strong> to provide more information.
-                </li>
-            </ul>
-        </div>
     </div>
 </li>
 <li id="pg2">
@@ -125,13 +121,11 @@
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
             <span class="main_block_header_title">Edit Profile</span>
             <div class="main_block_header_content">
-                <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Required Info</a>
+                <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Public Info</a>
                 &raquo;
                 <span>
-                    <strong>Academic &amp; Work Info</strong>
+                    <strong>Private Info</strong>
                 </span>
-                &raquo;
-                <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
             </div>
         </div>
         <table class="form_table">
@@ -140,6 +134,14 @@
                 <td>
                     <div class="errorspace"></div>
                     {{form.main_contact}}
+                </td>
+                <td class="profile_form_side_info" rowspan="3">
+                    <h3>Tell us how to contact you!</h3>
+                    <ul>
+                        <li>
+                            The information on the left will only be used internally by the Umeqo team.
+                        </li>
+                    </ul>
                 </td>
             </tr>
             <tr>
@@ -167,17 +169,10 @@
                     <input name="formNext2" type="button" class="open2 button disabled" value="Next" alt="Next" />
                     <input class="button" type='submit' value="Save Profile" alt="Save Profile">
                     <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
-                </td>
+                </td>                
             </tr>
         </table>
-        <div class="profile_form_side_info">
-            <h3>Give us a hint of your academics and work experience.</h3>
-            <ul>
-                <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
-                <li>Employers will be able to find students by interested industries, and you'll get notifications about relevant employers as well.</li>
-                <li>Yes, some employers still care about standardized test scores.</li>
-            </ul>
-        </div>
+
     </div>
 </li>
 {% endblock %}

@@ -3,7 +3,10 @@ from django.contrib.auth.forms import PasswordResetForm as AuthPasswordResetForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from core.form_helpers import decorate_bound_field
 from core import messages
+
+decorate_bound_field()
 
 class PasswordResetForm(AuthPasswordResetForm):
     email = forms.EmailField(label=_("Email:"), max_length=75, required=True)

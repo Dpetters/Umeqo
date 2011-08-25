@@ -24,6 +24,9 @@ SP_MAX_INDUSTRIES_OF_INTEREST = 12;
 SP_MAX_PREVIOUS_EMPLOYERS = 12;
 SP_MAX_COUNTRIES_OF_CITIZENSHIP = 3;
 
+# Max number of industries any one employer can claim to be in.
+EP_MAX_INDUSTRIES = 5;
+
 # Haystack Settings
 HAYSTACK_INCLUDE_SPELLING = True
 HAYSTACK_DEFAULT_OPERATOR = 'AND'
@@ -110,7 +113,14 @@ MEDIA_URL = '/media/'
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Basic',
+        'toolbar': [
+            [      'Undo', 'Redo',
+              '-', 'Bold', 'Italic', 'Underline',
+            ],
+            [      'HorizontalRule',
+              '-', 'BulletedList', 'NumberedList',
+            ]
+        ],
         'width': 586,
         'resize_maxWidth' : 586,
         'resize_minWidth' : 586,
@@ -120,6 +130,7 @@ CKEDITOR_CONFIGS = {
         'toolbarCanCollapse': False,
     },
 }
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ROOT + '/media/'

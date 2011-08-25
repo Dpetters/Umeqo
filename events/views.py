@@ -16,14 +16,15 @@ from django.views.decorators.http import require_http_methods
 from django.utils.translation import ugettext_lazy as _
 
 from core import messages as m
-from notification import models as notification
-from core.models import Edit
-from events.forms import EventForm, CampusOrgEventForm
 from core.decorators import is_recruiter, is_student, \
                             is_campus_org_or_recruiter, is_campus_org, render_to
-from events.models import Attendee, Event, EventType, Invitee, RSVP
+from core.models import Edit
+from employer.models import ResumeBook
+from events.forms import EventForm, CampusOrgEventForm
+from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, \
                                 get_event_schedule
+from notification import models as notification
 from student.models import Student
 
 @login_required
@@ -87,6 +88,7 @@ def event_page(request, id, slug, extra_context=None):
         'DOMAIN': current_site.domain,
         'responded': False,
         'attending': False,
+        'dropped_resume': False,
         'can_rsvp': False,
         'show_admin': False,
         'is_past': is_past,
@@ -101,6 +103,9 @@ def event_page(request, id, slug, extra_context=None):
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
             context['responded'] = True
+        dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
+        if dropped_resume.exists():
+            context['dropped_resume'] = True
         context['can_rsvp'] = True
     elif hasattr(request.user,"recruiter"):
         context['show_admin'] = True
@@ -204,8 +209,8 @@ def event_schedule(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def event_rsvp(request, id):
-    event = Event.objects.get(pk=id)
+def event_rsvp(request, event_id):
+    event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
     if request.method == 'GET' and hasattr(request.user, 'recruiter'):
         data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
@@ -218,6 +223,12 @@ def event_rsvp(request, id):
         if rsvp.exists():
             rsvp = rsvp.get()
             rsvp.attending = isAttending
+            if isAttending:
+                # Also "drop" the resume.
+                DroppedResume.objects.get_or_create(event=event, student=request.user.student)
+            else:
+                # Also "undrop" the resume.
+                DroppedResume.objects.filter(event=event, student=request.user.student).delete()
             rsvp.save()
         else:
             RSVP.objects.create(student=request.user.student, event=event, attending=isAttending)
@@ -230,19 +241,57 @@ def event_rsvp(request, id):
 
 @login_required
 @user_passes_test(is_student)
-def event_unrsvp(request, id):
-    event = Event.objects.get(pk=id)
+def event_unrsvp(request, event_id):
+    event = Event.objects.get(pk=event_id)
     rsvp = RSVP.objects.filter(student=request.user.student, event=event)
     rsvp.delete()
+
+    # Also "undrop" the resume.
+    DroppedResume.objects.filter(event=event, student=request.user.student).delete()
     if request.is_ajax():
         return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
 @login_required
+@user_passes_test(is_student)
+@require_http_methods(["POST"])
+def event_drop(request, event_id):
+    data = {}
+    if not event_id:
+        data.update({
+            'valid': False,
+            'message': 'Invalid event id.'
+        })
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        data.update({
+            'valid': False,
+            'message': 'Invalid event id.'
+        })
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    event = event.get()
+    student = request.user.student
+    DroppedResume.objects.get_or_create(event=event, student=student)
+    data.update({
+        'valid': True,
+        'message': 'Resume dropped.'
+    })
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+@login_required
+@user_passes_test(is_student)
+@require_http_methods(["POST"])
+def event_undrop(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    DroppedResume.objects.filter(event=event, student=request.user.student).delete()
+    return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
+
+@login_required
 @user_passes_test(is_campus_org_or_recruiter)
 @require_http_methods(["GET", "POST"])
-def event_checkin(request, id):
+def event_checkin(request, event_id):
     event = Event.objects.get(pk=id)
     if request.method == 'GET':
         attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))

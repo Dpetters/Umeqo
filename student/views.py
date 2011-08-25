@@ -15,7 +15,6 @@ from django.template.loader import render_to_string
 
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm,\
                             StudentRegistrationForm, StudentUpdateResumeForm,\
-                            StudentEmployerSubscriptionsForm, \
                             StudentProfilePreviewForm, StudentProfileForm, \
                             BetaStudentRegistrationForm
 from student.models import Student, StudentDeactivation, StudentInvite
@@ -31,7 +30,7 @@ from core import messages
 from employer.models import Employer
 from student.enums import RESUME_PROBLEMS
 from countries.models import Country
-
+        
 
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
@@ -191,7 +190,7 @@ def student_profile(request,
                 resume_status = process_resume(request.user.student)
                 if resume_status == RESUME_PROBLEMS.HACKED:
                     data = {'valid':False}
-                    errors = {'id_resume': messages.resume_problem}
+                    errors = {'resume': messages.resume_problem}
                     data['errors'] = errors
                 elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
                     data = {'valid':False}

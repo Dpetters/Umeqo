@@ -14,18 +14,18 @@ from student.models import Student, StudentBaseAttributes
 
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
-    name = models.CharField(max_length = 42, unique = True, help_text="Maximum 42 characters.")
+    name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters.")
     slug = models.SlugField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     logo = models.ImageField(upload_to=get_logo_filename)
     description = models.CharField(max_length=10000)
     industries = models.ManyToManyField(Industry)
-    main_contact = models.CharField("Main Contact", max_length = 50)
+    main_contact = models.CharField("Main Contact", max_length=50)
     main_contact_email = models.EmailField("Main Contact Email")
     main_contact_phone = PhoneNumberField("Main Contact Phone #")
     
     # Null Fields
-    offered_job_types = models.ManyToManyField(EmploymentType, blank = True, null=True) 
-    careers_website = models.URLField(verify_exists=False, blank = True, null=True)
+    offered_job_types = models.ManyToManyField(EmploymentType, blank=True, null=True) 
+    careers_website = models.URLField(verify_exists=False, blank=True, null=True)
     starred_students = models.ManyToManyField("student.Student", blank=True, null=True)
 
     def __unicode__(self):
@@ -44,7 +44,7 @@ def create_employer_related_models(sender, instance, created, raw, **kwargs):
 class EmployerStatistics(core_mixins.DateTracking):
     employer = models.OneToOneField(Employer, unique=True, editable=False)
     
-    resumes_viewed = models.PositiveIntegerField(default = 0, editable=False, blank = True, null=True)
+    resumes_viewed = models.PositiveIntegerField(default=0, editable=False, blank=True, null=True)
 
     class Meta:
         verbose_name = "Employer Statistics"
@@ -80,9 +80,9 @@ def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
 
 class ResumeBook(core_mixins.DateTracking):
     recruiter = models.ForeignKey("employer.Recruiter", editable=False)
-    resume_book = models.FileField(upload_to = get_resume_book_filename, blank = True, null=True)
-    name = models.CharField("Resume Book Name", max_length = 42, blank = True, null = True, help_text="Maximum 42 characters.")
-    students = models.ManyToManyField("student.Student", blank = True, null = True)
+    resume_book = models.FileField(upload_to=get_resume_book_filename, blank=True, null=True)
+    name = models.CharField("Resume Book Name", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
+    students = models.ManyToManyField("student.Student", blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -94,13 +94,13 @@ class ResumeBook(core_mixins.DateTracking):
 class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
 
-    majors = models.ManyToManyField(Course, blank = True, null = True)    
-    school_years = models.ManyToManyField(SchoolYear, blank = True, null = True)
-    graduation_years = models.ManyToManyField(GraduationYear, blank = True, null = True)
+    majors = models.ManyToManyField(Course, blank=True, null=True)    
+    school_years = models.ManyToManyField(SchoolYear, blank=True, null=True)
+    graduation_years = models.ManyToManyField(GraduationYear, blank=True, null=True)
 
-    employment_types = models.ManyToManyField(EmploymentType, blank = True, null = True)
+    employment_types = models.ManyToManyField(EmploymentType, blank=True, null=True)
     
-    older_than_21 = models.CharField(max_length=1, choices = choices.NO_YES_CHOICES, blank = True, null = True)
+    older_than_21 = models.CharField(max_length=1, choices=choices.NO_YES_CHOICES, blank=True, null=True)
 
 
 class EmployerStudentComment(core_mixins.DateTracking):
@@ -120,7 +120,7 @@ class RecruiterPreferences(core_mixins.DateTracking):
     email_on_rsvp_to_public_event = models.BooleanField()
     email_on_rsvp_to_private_event = models.BooleanField()
     default_student_results_per_page = models.PositiveSmallIntegerField(choices=employer_enums.RESULTS_PER_PAGE_CHOICES, default=10)
-    default_student_result_ordering = models.CharField(max_length = 42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
+    default_student_result_ordering = models.CharField(max_length=42, choices=employer_enums.ORDERING_CHOICES, default=employer_enums.ORDERING_CHOICES[0][0])
 
     class Meta:
         verbose_name = "Recruiter Preferences"
@@ -136,7 +136,7 @@ class RecruiterPreferences(core_mixins.DateTracking):
 class RecruiterStatistics(core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
      
-    resumes_viewed = models.PositiveIntegerField(default = 0, editable=False, blank = True, null=True)
+    resumes_viewed = models.PositiveIntegerField(default=0, editable=False, blank=True, null=True)
 
     class Meta:
         verbose_name = "Recruiter Statistics"

@@ -9,7 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.shortcuts import redirect
-from django.conf import settings
+from django.conf import settings as s
 from django.core.mail import send_mail
 from django.db.models import Q
 
@@ -156,8 +156,8 @@ def landing_page(request, extra_context = None):
             
             subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
             message = "%s %s (%s) signed up!" % (form.cleaned_data['first_name'],form.cleaned_data['last_name'],form.cleaned_data['email'])
-            sender = settings.DEFAULT_FROM_EMAIL
-            recipients = map(lambda n: n[1],settings.ADMINS)
+            sender = s.DEFAULT_FROM_EMAIL
+            recipients = map(lambda n: n[1], s.ADMINS)
             send_mail(subject,message,sender,recipients)
             posted = True
             disabled = True

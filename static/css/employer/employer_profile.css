@@ -2,7 +2,30 @@
     max-width:180px;
 }
 #profile_form #cke_id_description {
-    height: 320px;
-    width: 752px !important;
+    width: 760px !important;
     margin-top: 3px;
+    position:relative;
+    right:12px;
+}
+#profile_form th.vertical_align_top{
+    padding-top:25px;
+}
+.profile_form_side_info {
+    padding: 15px 0px 0px 25px;
+    vertical-align:top;
+}
+.form_table{
+    padding-left:18px;
+}
+.form_table th label{
+    margin-bottom:6px;
+}
+.industries_multiselect .ui-multiselect-all{
+    display:none;
+}
+#logo_label{
+    margin-bottom:33px;
+}
+.epf-note{
+    padding-bottom:3px;
 }

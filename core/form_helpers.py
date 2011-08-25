@@ -13,6 +13,9 @@ def add_required_label_tag(original_function):
     def required_label_tag(self, contents=None, attrs=None):
         contents = contents or escape(self.label)
         if self.field.required:
+            if not self.label.endswith("<span class='error'>*</span>"):
+                self.label += "<span class='error'>*</span>"
+                contents += "<span class='error'>*</span>"
             attrs = {'class': 'required'}
         return original_function(self, contents, attrs)
     return required_label_tag

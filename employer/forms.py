@@ -1,5 +1,9 @@
 from django import forms
 from django.contrib.localflavor.us.forms import USPhoneNumberField
+from django.conf import settings as s
+
+from core.form_helpers import decorate_bound_field
+from core import messages as m
 from core.choices import NO_YES_CHOICES
 from core.models import Industry, EmploymentType
 from student.form_helpers import student_lists_as_choices
@@ -8,24 +12,22 @@ from employer.models import RecruiterPreferences, StudentFilteringParameters, Em
 from employer import enums as employer_enums
 from ckeditor.widgets import CKEditorWidget
 
+decorate_bound_field()
+
 class EmployerProfileForm(forms.ModelForm):
     # Required Fields
-    name = forms.CharField(label="Name:", max_length = 32)
-    slug = forms.SlugField(label="Slug:", max_length = 20)
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
-    main_contact = forms.CharField("Main Contact:")
-    main_contact_email = forms.EmailField("Main Contact Email:")
+    main_contact = forms.CharField(label="Main Contact:")
+    main_contact_email = forms.EmailField(label="Main Contact Email:")
     
     # Optional Fields
-    main_contact_phone = USPhoneNumberField("Main Contact Phone #:", required=False)
+    main_contact_phone = USPhoneNumberField(label="Main Contact Phone #:", required=False)
     offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset = EmploymentType.objects.all(), required=False)
     website = forms.URLField(label="Careers Website:", required=False)
     
     class Meta:
-        fields = ( 'name',
-                   'slug',
-                   'industries',
+        fields = ( 'industries',
                    'description',
                    'main_contact',
                    'main_contact_email',
@@ -33,6 +35,12 @@ class EmployerProfileForm(forms.ModelForm):
                    'offered_job_types',
                    'website')
         model = Employer
+    
+    def clean_industries(self):
+        if len(self.cleaned_data.get("industries")) > s.EP_MAX_INDUSTRIES:
+            raise forms.ValidationError(_(m.max_industries_exceeded))
+        return self.cleaned_data['industries']
+    
 
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)

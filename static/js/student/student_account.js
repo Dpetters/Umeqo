@@ -1,5 +1,4 @@
 $(document).ready( function() {
-
     function open_add() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
@@ -51,18 +50,18 @@ $(document).ready( function() {
                             hide_form_submit_loader("#student_account_deactivation_form");
                             add.dialog('option', 'position', 'center');
                         },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            if(jqXHR.status==0){
-                                add.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                            }else{
-                                add.html(ERROR_MESSAGE_DIALOG);
-                            }
-                        },
                         success: function (data){
                             if(data.errors){
                                 place_table_form_errors("#student_account_deactivation_form", data.errors);  
                             }else{
                                 window.location.href = "/?action=account-deactivated";
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            if(jqXHR.status==0){
+                                add.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                            }else{
+                                add.html(ERROR_MESSAGE_DIALOG);
                             }
                         }
                     });

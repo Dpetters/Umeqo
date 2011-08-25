@@ -4,14 +4,22 @@
 #event_form_left_col {
     width: 575px;
 }
-#event_name_section .errorspace, #event_type_section .errorspace, #event_location_section .errorspace, #event_description_section .errorspace {
+#event_name_section .errorspace,
+#event_type_section .errorspace,
+#event_drop_section .errorspace,
+#event_location_section .errorspace,
+#event_description_section .errorspace {
     display: inline-block;
     width: 150px;
     position: relative;
     top: 2px;
     left: 5px;
 }
-#event_name_section, #event_type_section, #event_location_section, #event_description_section {
+#event_name_section,
+#event_type_section,
+#event_drop_section,
+#event_location_section,
+#event_description_section {
     margin-top: 15px;
 }
 #event_form #id_name, #event_form #id_location {

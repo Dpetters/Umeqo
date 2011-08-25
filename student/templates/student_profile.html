@@ -27,18 +27,17 @@
     var FILL_OUT_REQUIRED_FIELDS_MESSAGE = "{% include 'student_profile_preview_fill_out_required_fields_message.html' %}";
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
     var PROFILE_PREVIEW_URL = "{% url student_profile_preview %}";
-    var STUDENT_PROFILE_FORM_FIRST_NAME = "{% text_snippet 'student_profile_form_first_name' %}";
-    var STUDENT_PROFILE_FORM_LAST_NAME = "{% text_snippet 'student_profile_form_last_name' %}";
-    var STUDENT_PROFILE_FORM_SCHOOL_YEAR = "{% text_snippet 'student_profile_form_school_year' %}";
-    var STUDENT_PROFILE_FORM_GRADUATION_YEAR = "{% text_snippet 'student_profile_form_graduation_year' %}";
-    var STUDENT_PROFILE_FORM_FIRST_MAJOR = "{% text_snippet 'student_profile_form_first_major' %}";
-    var STUDENT_PROFILE_FORM_GPA_REQUIRED = "{% text_snippet 'student_profile_form_gpa_required' %}";
-    var STUDENT_PROFILE_FORM_GPA_RANGE = "{% text_snippet 'student_profile_form_gpa_range' %}";
-    var STUDENT_PROFILE_FORM_RESUME = "{% text_snippet 'student_profile_form_resume' %}";
-    var invalid_url = "{% text_snippet 'invalid_url' %}";
-    var STUDENT_PROFILE_FORM_FIRST_SECOND_MAJORS_DIFF = "{% text_snippet 'first_second_majors_diff' %}";
-    var STUDENT_PROFILE_PREVIEW_AJAX_LOADER = "{% include 'student_profile_preview_ajax_loader.html' %}"; 
-    var STUDENT_PROFILE_PREVIEW_CHECKBOX_TOOLTIP = "{% text_snippet 'student_profile_preview_checkbox_tooltip' %}";
+    var FIRST_NAME_REQUIRED = "{% text_snippet 'first_name_required' %}";
+    var LAST_NAME_REQUIRED = "{% text_snippet 'last_name_required' %}";
+    var SCHOOL_YEAR_REQUIRED = "{% text_snippet 'school_year_required' %}";
+    var GRADUATION_YEAR_REQUIRED = "{% text_snippet 'graduation_year_required' %}";
+    var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
+    var GPA_REQUIRED = "{% text_snippet 'gpa_required' %}";
+    var GPA_RANGE = "{% text_snippet 'gpa_range' %}";
+    var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
+    var FIRST_SECOND_MAJORS_DIFF = "{% text_snippet 'first_second_majors_diff' %}";
+    var PREVIEW_AJAX_LOADER = "{% include 'student_profile_preview_ajax_loader.html' %}"; 
+    var PREVIEW_CHECKBOX_TOOLTIP = "{% text_snippet 'student_profile_preview_checkbox_tooltip' %}";
     var resume_book_current_toggle_tooltip = "{% text_snippet 'resume_book_current_toggle_tooltip' %}";
     var star_toggle_tooltip = "{% text_snippet 'star_toggle_tooltip' %}";
     var event_attendance_tooltip = "{% text_snippet 'event_attendance_tooltip' %}";
@@ -87,8 +86,6 @@
         <a href='#' class="ui-accordion-link"></a>
         <div class="main_block clearfix">
             <div class="main_block_header">
-                <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
                 <div class="main_block_header_content">
                     <span>
                         <strong>Required Info</strong>
@@ -98,6 +95,8 @@
                     &raquo;
                     <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
                 </div>
+                <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+                <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
             </div>
             <table class="form_table">
                 <tr>
@@ -156,7 +155,7 @@
                 </tr>
                 <tr>
                     <td class="button_cell" colspan="2">
-                        <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
+                        <input name="formBack0" type="button" class="button disabled" value="Back" alt="Back" disabled="disabled" />
                         <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                         <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
                         <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
@@ -332,7 +331,7 @@
                 <tr>
                     <td class="button_cell" colspan="2">
                         <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
-                        <input name="formNext2" type="button" class="button disabled-button" value="Next" alt="Next" disabled="disabled" />
+                        <input name="formNext2" type="button" class="button disabled" value="Next" alt="Next" disabled="disabled" />
                         <input class="button" type='submit' value='Save Profile' alt="Save Profile">
                         <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                     </td>
@@ -356,10 +355,10 @@
 {% endblock %}
 
 {% block preview %}
-<div id="listing_preview_section_block" class="clearfix">
-    <div id="listing_preview">
+<div id="student_profile_preview_section_block" class="clearfix">
+    <div id="student_profile_preview">
     </div>
-    <div id="listing_preview_info">
+    <div id="student_profile_preview_info">
         <h2>Profile Preview</h2>
     </div>
 </div>

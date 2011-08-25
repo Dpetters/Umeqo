@@ -2,8 +2,8 @@
 {% load static %}
 
 {% if in_resume_book %}
-<img class='remove_from_resume_book_img' title='Remove from Resume Book' src='{% get_static_prefix %}images/icons/cross.png'/>
+<div class='icon sprite-cross'></div>
 {% else %}
-<img class='add_to_resume_book_img' title='Add to Resume Book' src='{% get_static_prefix %}images/icons/plus.png'/>
+<div class='icon sprite-plus'></div>
 {% endif %}
 {% endspaceless %}
