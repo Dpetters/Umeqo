@@ -7,20 +7,25 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, \
+            HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.http import require_http_methods
+from django.utils.translation import ugettext_lazy as _
 
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
+from core import messages as m
+from core.decorators import is_recruiter, is_student, \
+                            is_campus_org_or_recruiter, is_campus_org, render_to
 from core.models import Edit
 from employer.models import ResumeBook
 from events.forms import EventForm, CampusOrgEventForm
 from events.models import Attendee, Event, EventType, Invitee, RSVP
-from events.views_helper import event_search_helper
-from student.models import Student
+from events.views_helper import event_search_helper, buildAttendee, buildRSVP, \
+                                get_event_schedule
 from notification import models as notification
+from student.models import Student
 
 @login_required
 @user_passes_test(is_student)
@@ -39,29 +44,6 @@ def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
     return redirect(event.get_absolute_url())
 
-def buildAttendee(obj):
-    output = {
-        'email': obj.email,
-        'datetime_created': obj.datetime_created.isoformat()
-    }
-    if obj.student:
-        output['name'] = obj.student.first_name + ' ' + obj.student.last_name
-        output['account'] = True
-        output['id'] = obj.student.id
-    else:
-        output['name'] = obj.name
-        output['account'] = False
-    return output
-
-def buildRSVP(obj):
-    output = {
-        'id': obj.student.id,
-        'name': obj.student.first_name + ' ' + obj.student.last_name,
-        'datetime_created': obj.datetime_created.isoformat(),
-        'email': obj.student.user.email,
-        'account': True
-    }
-    return output
 
 def event_page(request, id, slug, extra_context=None):
     event = Event.objects.get(pk=id)
@@ -138,7 +120,6 @@ def event_new(request, form_class=None, extra_context=None):
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
         context['TEMPLATE'] = "campus_org_event_form.html"
-    print form_class
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -176,7 +157,6 @@ def event_edit(request, id=None, extra_context=None):
                 return HttpResponseForbidden('You are not allowed to edit this event.') 
         if request.method == 'POST':
             form = form_class(request.POST, instance=event)
-            print form.errors
             if form.is_valid():
                 event = form.save(commit=False)
                 event.edits.add(Edit.objects.create(user=request.user))
@@ -222,24 +202,6 @@ def event_schedule(request):
         return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-
-def get_event_schedule(event_date_string):
-    event_date = datetime.strptime(event_date_string, '%m/%d/%Y')
-    event_date_tmrw = event_date + timedelta(days=1)
-    events = Event.objects.all().filter(start_datetime__gt=event_date).filter(start_datetime__lt=event_date_tmrw)
-    def buildScheduleItem(event):
-        name = event.name
-        start = event.start_datetime
-        start_hour = start.hour + start.minute/60.0
-        end = event.end_datetime
-        if event.end_datetime > event_date_tmrw:
-            end_hour = 24
-        else:
-            end_hour = end.hour + end.minute/60.0
-        start_px, end_px = map(lambda t: int(1 + 32*t), (start_hour, end_hour))
-        return name, start_px, (end_px - start_px)
-    schedule = map(buildScheduleItem, events)
-    return schedule
 
 @login_required
 @require_http_methods(["GET", "POST"])
@@ -424,14 +386,16 @@ def event_invite(request):
             'time_added': datetime.now(),
             'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
         })
-        data = {
-            'valid': True,
-            'message': 'Invite sent successfully.'
-        }
+        data = { 'valid': True, 'message': 'Invite sent successfully.' }
     else:
+<<<<<<< HEAD
         data = {
             'valid': False,
             'message': 'Student has already been invited.'
         }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
+=======
+        data = {'valid': False, 'message': _(m.already_invited) }
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+>>>>>>> 5d4ee41e83c2c722388b413243b9b82b6320cac2

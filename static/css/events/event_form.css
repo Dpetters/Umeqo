@@ -98,7 +98,7 @@ label[for=id_end_datetime_0]{
     border-top: 1px solid #808080;
 }
 #event_scheduler {
-    height: 306px;
+    height: 339px;
     overflow-y: scroll;
     position: relative;
     width: 380px;
@@ -206,10 +206,6 @@ label[for=id_rsvp_message]{
 #id_rsvp_message {
     width: 231px;
     height: 36px;
-}
-.button_wrapper_with_margins {
-    text-align: left;
-    padding-right: 10px;
 }
 #view_event_button {
     line-height: 20px;

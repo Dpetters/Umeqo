@@ -1,27 +1,39 @@
-<div class="industries">
+<div id="logo_and_buttons" class="right_side_container">
+    <img class="logo" src="{{MEDIA_URL}}{{employer.logo}}" />
+    {% if subbed %}
+        <a id="employer_unsubscribe" href="#" class="button warning-button">Unsubscribe</a>
+    {% else %}
+        <a id="employer_subscribe" href="#" class="dark_button">Subscribe</a>
+    {% endif %}    
+</div>
+
+<div id="employer_info">
+    <h1 class="employer_name">{{employer.name}}</h1>    
+    <div class="industries">
     {% for industry in employer.industries.all %}
         <div>{{industry}}</div>
-    {% endfor %}
-</div>
-<h1>{{employer.name}}</h1>
-<div class="logo">
-    <img src="{{MEDIA_URL}}{{employer.logo}}" />
-</div>
-{% if subbed %}
-    <a id="employer_unsubscribe" href="#" class="button warning-button">Unsubscribe</a>
-{% else %}
-    <a id="employer_subscribe" href="#" class="button">Subscribe</a>
-{% endif %}
-{% if employer.offered_job_types.all %}
-    <div class="offered_job_types">
-        <strong>Jobs Available:</strong>
-        {% for offered_job_type in employer.offered_job_types.all %}
-            <div>{{offered_job_type}}</div>
-        {% endfor %}
+    {% endfor %}    
     </div>
-{% endif %}
+    
+    {% if employer.offered_job_types.all %}
+        <p id="offered_job_types">
+            <strong>Jobs Available: </strong>    
+            {% for offered_job_type in employer.offered_job_types.all %}
+                {% if forloop.last %}
+                    <span>{{offered_job_type}}</span>
+                {% else %}
+                    <span>{{offered_job_type}},</span>
+                {% endif %}
+            {% endfor %}
+        {% if employer.website%}
+                (see <a href="{{employer.website}}">careers website</a>)
+        {% endif %}
+        </p>
+    {% endif %}
+</div>
+
 <div class="description">{{employer.description}}</div>
-<h2>Events</h2>
+<h2>Upcoming Events</h2>
 <ul class="event_list editable_event_list">
     {% for event in events %}
         {% include "event_snippet.html" %}

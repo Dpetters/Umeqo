@@ -74,22 +74,21 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     else:
         return HttpResponseForbidden("Request must be a POST.")
 
-
 @login_required
 @user_passes_test(is_recruiter, login_url=settings.LOGIN_URL)
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
-
     if request.method == 'POST':
-        form = form_class(data=request.POST, instance=request.user.recruiter.employer)
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+        data = []
         if form.is_valid():
             form.save()
-            data = {'valid':True}
         else:
-            data = { 'valid':False, 'errors':form.errors }
-        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+            data = {'errors':form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        context = { 'form' : form_class(instance=request.user.recruiter.employer) }
+        context = {'form':form_class(instance=request.user.recruiter.employer),
+                   'edit':True}
         context.update(extra_context or {})
         return context
         

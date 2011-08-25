@@ -25,7 +25,17 @@ class EventForm(forms.ModelForm):
     rsvp_message = forms.CharField(label="RSVP Message:", widget=forms.Textarea(attrs={'tabindex':8, 'placeholder':'Tell RSVPs what to wear, bring, etc..'}), required=False)
     
     class Meta:
-        fields = ('name', 'start_datetime', 'end_datetime', 'type', 'location', 'latitude', 'longitude', 'audience', 'description', 'rsvp_message', 'is_public',)
+        fields = ('name', 
+                  'start_datetime', 
+                  'end_datetime', 
+                  'type', 
+                  'location', 
+                  'latitude', 
+                  'longitude', 
+                  'audience', 
+                  'description', 
+                  'rsvp_message', 
+                  'is_public',)
         model = Event
 
 class CampusOrgEventForm(EventForm):

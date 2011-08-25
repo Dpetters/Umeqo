@@ -10,7 +10,7 @@
  * will always have one error.
  */
 .warning {
-    color: #222;
+    color: #222 !important;
 }
 .asterisk, .error {
     color: #FF7B7B;

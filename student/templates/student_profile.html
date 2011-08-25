@@ -1,16 +1,12 @@
-{% extends "base.html" %}
-
-{% load macros %}
-{% load text_snippet %}
-{% load student_star %}
-{% load student_resume_book %}
+{% extends "profile_base.html" %}
 
 {% block metadata %}
 {{block.super}}
+{% load text_snippet %}
+{% load student_star %}
+{% load student_resume_book %}
 {% load compress %}
 {% compress css %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_info.css"/>
@@ -49,6 +45,19 @@
     var view_resume_tooltip = "{% text_snippet 'view_resume_tooltip' %}";
     var invite_to_event_tooltip = "{% text_snippet 'invite_to_event_tooltip' %}";
     
+    var ONE_LANGUAGE_DIFFICULTY = "{% text_snippet 'one_language_difficulty'%}";
+    
+    var LANGUAGES_MAX = "{{languages_max}}";
+    var CAMPUS_INVOLVEMENT_MAX = "{{campus_involvement_max}}";
+    var INDUSTRIES_OF_INTEREST_MAX = "{{industries_of_interest_max}}";
+    var PREVIOUS_EMPLOYERS_MAX = "{{previous_employers_max}}";
+    var COUNTRIES_OF_CITIZENSHIP_MAX = "{{countries_of_citizenship_max}}";
+    var MAX_LANGUAGES_EXCEEDED= "{% text_snippet 'max_languages_exceeded' %}";
+    var MAX_CAMPUS_INVOLVEMENT_EXCEEDED = "{% text_snippet 'max_campus_involvement_exceeded' %}";
+    var MAX_INDUSTRIES_OF_INTEREST_EXCEEDED = "{% text_snippet 'max_industries_of_interest_exceeded' %}";
+    var MAX_PREVIOUS_EMPLOYERS_EXCEEDED = "{% text_snippet 'max_previous_employers_exceeded' %}";
+    var MAX_COUNTRIES_OF_CITIZENSHIP_EXCEEDED = "{% text_snippet 'max_countries_of_citizenship_exceeded' %}";
+        
     var LANGUAGE_ALREADY_EXISTS = "{% text_snippet 'language_already_exists' %}";
     var CAMPUS_ORG_ALREADY_EXISTS = "{% text_snippet 'campus_org_already_exists' %}";
     var REMOVE_FROM_RESUME_BOOK_IMG = "{% student_resume_book 'True' %}";
@@ -58,10 +67,8 @@
     var UNSTARRED_IMG = "{% student_star '' %}";
 </script>
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_widgets.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_create_campus_org.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_create_language.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
@@ -71,301 +78,284 @@
 {% endcompress %}
 {% endblock %}
 
-{% block title %}
-{% if edit %}
-Edit Profile |
-{% else %}
-Create Profile |
-{% endif %}
+{% block optional_side_nav %}
+<form id="profile_form" method="POST" action="" enctype="multipart/form-data">
 {% endblock %}
 
-{% block content_area %}
-{{block.super}}
-{% if not edit %}
-<h1 id="profile_form_title">Welcome to Umeqo!</h1>
-{% endif %}
+{% block profile_pages %}
+    <li id="pg1">
+        <a href='#' class="ui-accordion-link"></a>
+        <div class="main_block clearfix">
+            <div class="main_block_header">
+                <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+                <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
+                <div class="main_block_header_content">
+                    <span>
+                        <strong>Required Info</strong>
+                    </span>
+                    &raquo;
+                    <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Academic &amp; Work Info</a>
+                    &raquo;
+                    <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
+                </div>
+            </div>
+            <table class="form_table">
+                <tr>
+                    <th>{{form.first_name.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.first_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.last_name.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.last_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.school_year.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.school_year}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.graduation_year.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.graduation_year}}{{form.graduation_month}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.first_major.label_tag}}</th>
+                    <td>
+                        <div class="errorspace">{{form.first_major.error}}</div>
+                        {{form.first_major}}
+                    </td>
+                </tr>
+                <tr id="gpa_section">
+                    <th>{{form.gpa.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.gpa}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.resume.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.resume}}
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="error_section error">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="button_cell" colspan="2">
+                        <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
+                        <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
+                        <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
+                        <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
+                    </td>
+                </tr>
+            </table>
+            <div class="profile_form_side_info">
+                <h3>Umeqo makes it easy for employers to discover you!</h3>
+                <ul>
+                    <li>
+                    Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
+                    </li>
+                    <li>
+                        The more you fill out, the the more likely you are to show up in the results. (e.g. If the employer decides that he wants student with an ACT of 26 or above and you left that field blank, you will not appear in the result.)
+                    </li>
+                    <li id="profile_form_required_third">
+                        Submit this page, or click <strong>Next</strong> to provide more information.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </li>
+    <li id="pg2">
+        <a href='#' class="ui-accordion-link"></a>
+        <div class="main_block clearfix">
+            <div class="main_block_header">
+                <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+                <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
+                <div class="main_block_header_content">
+                    <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Required Info</a>
+                    &raquo;
+                    <span>
+                        <strong>Academic &amp; Work Info</strong>
+                    </span>
+                    &raquo;
+                    <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
+                </div>
+            </div>
+            <table class="form_table">
+                <tr>
+                    <th>{{form.looking_for.label_tag}}</th>
+                    <td colspan="3">
+                        <div class="errorspace"></div>
+                        {{form.looking_for}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.industries_of_interest.label_tag}}</th>
+                    <td colspan="3">
+                        <div class="errorspace"></div>
+                        {{form.industries_of_interest}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.previous_employers.label_tag}}</th>
+                    <td colspan="3">
+                        <div class="errorspace"></div>
+                        {{form.previous_employers}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.second_major.label_tag}}</th>
+                    <td colspan="3">
+                        <div class="errorspace"></div>
+                        {{form.second_major}}
+                    </td>
+                </tr>
+                <tr id="act_section">
+                    <th>{{form.act.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.act}}
+                    </td>
+                    <th>{{form.sat_m.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.sat_m}}
+                    </td>
+                </tr>
+                <tr id="sat_v_section">
+                    <th>{{form.sat_v.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.sat_v}}
+                    </td>
+                    <th>{{form.sat_w.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.sat_w}}
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="3" class="error_section error">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="button_cell" colspan="4">
+                        <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
+                        <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
+                        <input class="button" type='submit' value="Save Profile" alt="Save Profile">
+                        <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                    </td>
+                </tr>
+            </table>
+            <div class="profile_form_side_info">
+                <h3>Give us a hint of your academics and work experience.</h3>
+                <ul>
+                    <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
+                    <li>Employers will be able to find students by interested industries, and you'll get notifications about relevant employers as well.</li>
+                    <li>Yes, some employers still care about standardized test scores.</li>
+                </ul>
+            </div>
+        </div>
+    </li>
+    <li id="pg3">
+        <a href='#' class="ui-accordion-link"></a>
+        <div class="main_block clearfix">
+            <div class="main_block_header">
+                <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
+                <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
+                <div class="main_block_header_content">
+                    <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Required Info</a>
+                    &raquo;
+                    <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Academic &amp; Work Info</a>
+                    &raquo;
+                    <span>
+                        <strong>Miscellaneous Info</strong>
+                    </span>
+                </div>
+            </div>
+            <table class="form_table">
+                <tr>
+                    <th>{{form.campus_involvement.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.campus_involvement}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.languages.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.languages}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.countries_of_citizenship.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.countries_of_citizenship}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.older_than_21.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.older_than_21}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.website.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.website}}
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="error_section error">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="button_cell" colspan="2">
+                        <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
+                        <input name="formNext2" type="button" class="button disabled-button" value="Next" alt="Next" disabled="disabled" />
+                        <input class="button" type='submit' value='Save Profile' alt="Save Profile">
+                        <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                    </td>
+                </tr>
+            </table>
+            <div class="profile_form_side_info">
+                <h3>Almost there - for real this time.</h3>
+                <ul>
+                    <li>
+                        Don't see your campus organization?
+                        <a href="#" id="create_campus_organization_link">Submit yours to the list.</a>
+                    </li>
+                    <li>
+                        Is a language you speak not listed?
+                        <a href="#" id="create_language_link">Submit yours to the list.</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </li>
+{% endblock %}
 
-<form id="profile_form" method="POST" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    <ul id="stepForm">
-        <li id="pg1">
-            <a href='#' class="ui-accordion-link"></a>
-            <div class="main_block clearfix">
-                <div class="main_block_header">
-                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
-                    <div class="main_block_header_content">
-                        <span>
-                            <strong>Required Info</strong>
-                        </span>
-                        &raquo;
-                        <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Academic &amp; Work Info</a>
-                        &raquo;
-                        <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
-                    </div>
-                </div>
-                <div id="required_info_page">
-                    <table class="form_table">
-                        <tr>
-                            <th>{{form.first_name.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.first_name}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.last_name.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.last_name}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.school_year.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.school_year}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.graduation_year.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.graduation_year}}{{form.graduation_month}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.first_major.label_tag}}</th>
-                            <td>
-                                <div class="errorspace">{{form.first_major.error}}</div>
-                                {{form.first_major}}
-                            </td>
-                        </tr>
-                        <tr id="gpa_section">
-                            <th>{{form.gpa.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.gpa}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.resume.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.resume}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td class="error_section error">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="button_cell" colspan="2">
-                                <input name="formBack0" type="button" class="button disabled-button" value="Back" alt="Back" disabled="disabled" />
-                                <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
-                                <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
-                                <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="profile_form_side_info">
-                    <h3>Umeqo makes it easy for employers to discover you!</h3>
-                    <ul>
-                        <li>
-                        Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
-                        </li>
-                        <li>
-                            The more you fill out, the the more likely you are to show up in the results. (e.g. If the employer decides that he wants student with an ACT of 26 or above and you left that field blank, you will not appear in the result.)
-                        </li>
-                        <li id="profile_form_required_third">
-                            Submit this page, or click <strong>Next</strong> to provide more information.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-        <li id="pg2">
-            <a href='#' class="ui-accordion-link"></a>
-            <div class="main_block clearfix">
-                <div class="main_block_header">
-                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
-                    <div class="main_block_header_content">
-                        <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Required Info</a>
-                        &raquo;
-                        <span>
-                            <strong>Academic &amp; Work Info</strong>
-                        </span>
-                        &raquo;
-                        <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
-                    </div>
-                </div>
-                <div id="academic_info_page">
-                    <table class="form_table">
-                        <tr>
-                            <th>{{form.looking_for.label_tag}}</th>
-                            <td colspan="3">
-                                <div class="errorspace"></div>
-                                {{form.looking_for}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.industries_of_interest.label_tag}}</th>
-                            <td colspan="3">
-                                <div class="errorspace"></div>
-                                {{form.industries_of_interest}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.previous_employers.label_tag}}</th>
-                            <td colspan="3">
-                                <div class="errorspace"></div>
-                                {{form.previous_employers}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.second_major.label_tag}}</th>
-                            <td colspan="3">
-                                <div class="errorspace"></div>
-                                {{form.second_major}}
-                            </td>
-                        </tr>
-                        <tr id="act_section">
-                            <th>{{form.act.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.act}}
-                            </td>
-                            <th>{{form.sat_m.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.sat_m}}
-                            </td>
-                        </tr>
-                        <tr id="sat_v_section">
-                            <th>{{form.sat_v.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.sat_v}}
-                            </td>
-                            <th>{{form.sat_w.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.sat_w}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td colspan="3" class="error_section error">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="button_cell" colspan="4">
-                                <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-                                <input name="formNext2" type="button" class="open2 button" value="Next" alt="Next" />
-                                <input class="button" type='submit' value="Save Profile" alt="Save Profile">
-                                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="profile_form_side_info">
-                    <h3>Give us a hint of your academics and work experience.</h3>
-                    <ul>
-                        <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
-                        <li>Employers will be able to find students by interested industries, and you'll get notifications about relevant employers as well.</li>
-                        <li>Yes, some employers still care about standardized test scores.</li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-        <li id="pg3">
-            <a href='#' class="ui-accordion-link"></a>
-            <div class="main_block clearfix">
-                <div class="main_block_header">
-                    <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-                    <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
-                    <div class="main_block_header_content">
-                        <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Required Info</a>
-                        &raquo;
-                        <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Academic &amp; Work Info</a>
-                        &raquo;
-                        <span>
-                            <strong>Miscellaneous Info</strong>
-                        </span>
-                    </div>
-                </div>
-                <div id="miscellaneous_info_page">
-                    <table class="form_table">
-                        <tr>
-                            <th>{{form.campus_involvement.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.campus_involvement}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.languages.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.languages}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.countries_of_citizenship.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.countries_of_citizenship}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.older_than_21.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.older_than_21}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{form.website.label_tag}}</th>
-                            <td>
-                                <div class="errorspace"></div>
-                                {{form.website}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td class="error_section error">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="button_cell" colspan="2">
-                                <input name="formBack1" type="button" class="open1 button" value="Back" alt="Back" />
-                                <input name="formNext2" type="button" class="button disabled-button" value="Next" alt="Next" disabled="disabled" />
-                                <input class="button" type='submit' value='Save Profile' alt="Save Profile">
-                                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="profile_form_side_info">
-                    <h3>Almost there - for real this time.</h3>
-                    <ul>
-                        <li>
-                            Don't see your campus organization?
-                            <a href="#" id="create_campus_organization_link">Submit yours to the list.</a>
-                        </li>
-                        <li>
-                            Is a language you speak not listed?
-                            <a href="#" id="create_language_link">Submit yours to the list.</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-    </ul>
-</form>
+{% block preview %}
 <div id="listing_preview_section_block" class="clearfix">
     <div id="listing_preview">
     </div>
