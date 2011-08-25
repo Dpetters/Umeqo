@@ -1,10 +1,8 @@
 import operator
 from datetime import datetime
 
-from django.http import HttpResponse, HttpResponseBadRequest, \
-                        HttpResponseNotFound, HttpResponseRedirect, \
-                        HttpResponseForbidden
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.contrib.auth.forms import AuthenticationForm
@@ -158,8 +156,8 @@ def landing_page(request, extra_context = None):
             
             subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
             message = "%s %s (%s) signed up!" % (form.cleaned_data['first_name'],form.cleaned_data['last_name'],form.cleaned_data['email'])
-            sender = settings.DEFAULT_FROM_EMAIL
-            recipients = map(lambda n: n[1],settings.ADMINS)
+            sender = s.DEFAULT_FROM_EMAIL
+            recipients = map(lambda n: n[1], s.ADMINS)
             send_mail(subject,message,sender,recipients)
             posted = True
             disabled = True

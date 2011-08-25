@@ -15,6 +15,7 @@
 
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/icons.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/errors.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/blocks.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
@@ -67,7 +68,12 @@
                 <script type="text/javascript" src="{{ STATIC_URL }}js/anonymous.js"></script>
             {% endif %}
         {% endcompress %}
-        
+        <!--[if lt IE 8]>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/IE7.css" />
+        <![endif]-->
+        <!--[if lte IE 6]>
+        <   script src="{{ STATIC_URL }}javascript/unsupported-browser.js" type="text/javascript"></script>
+        <![endif]-->
         <!--[if lte IE 8]>
         <script src="{{ STATIC_URL }}lib/IE7/IE9.js"></script>
         <![endif]-->

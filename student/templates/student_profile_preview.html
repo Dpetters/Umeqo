@@ -8,6 +8,11 @@
 {% else %}
 <div class="student_main_info" data-student-id="{{student.id}}">
 {% endif %}
+    {% if profile_preview %}
+    <a class="student_resume_link" href="javascript:void(0)" tabindex="-1">View Resume</a>
+    {% else %}
+    <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}" tabindex="-1">View Resume</a>
+    {% endif %}
     <input class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
     <strong data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</strong>
     <span class="student_year">
@@ -17,12 +22,13 @@
     {% if num_of_events_attended > 0 %}
     <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
     {% endif %}
-    {% if profile_preview %}
-    <a class="student_resume_link" href="javascript:void(0)" tabindex="-1">View Resume</a>
-    {% else %}
-    <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}" tabindex="-1">View Resume</a>
-    {% endif %}
     <br />
+    <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
+        <a class="student_invite_to_event_link" href="javascript:void(0)" tabindex="-1">Invite To Event</a>
+    </span>
+    <p class="student_gpa">
+        <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
+    </p>
     <a data-student-id="{{student.id}}" class="resume_book_current_toggle_student" href="javascript:void(0)" tabindex="-1">{% student_resume_book in_resume_book %}</a>
     <span class="student_major">
         <strong>First Major:</strong>
@@ -32,17 +38,11 @@
             {{student.first_major}}
         {% endif %}
     </span>
-    <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
-        <a class="student_invite_to_event_link" href="javascript:void(0)" tabindex="-1">Invite To Event</a>
-    </span>
-    <p class="student_gpa">
-        <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
-    </p>
     <br />
+    <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="javascript:void(0)" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
     <a data-student-id="{{student.id}}" class="student_toggle_star" href="javascript:void(0)" tabindex="-1">{% student_star starred %}</a>
     <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note" tabindex="-1">{{comment}}</textarea>
     <span data-student-id="{{student.id}}" class="saved_message light hid">Saved</span>
-    <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="javascript:void(0)" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
 </div>
 <div class="student_detailed_info" data-student-id="{{student.id}}">
     {% if student.countries_of_citizenship.all or countries_of_citizenship or student.second_major or student.website or student.older_than_21 or student.looking_for.all or looking_for or student.previous_employers.all or previous_employers or student.industries_of_interest.all or industries_of_interest or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.campus_involvement.all or campus_involvement or student.languages.all or languages %}

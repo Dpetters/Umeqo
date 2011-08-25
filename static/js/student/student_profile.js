@@ -187,15 +187,15 @@ $(document).ready( function() {
                         $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
                         
                         $(".resume_book_current_toggle_student").hover(function(){
-                            $(this).html(REMOVE_FROM_RESUME_BOOK_IMG);    
+                            $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");    
                         }, function(){
-                            $(this).html(ADD_TO_RESUME_BOOK_IMG);    
+                            $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");     
                         }).tipsy({'gravity':'e', opacity: 0.9, title:function(){return resume_book_current_toggle_tooltip;}, html:true});
                         
                         $(".student_toggle_star").hover(function(){
-                            $(this).html(STARRED_IMG);    
+                            $($(this).children()[0]).removeClass("sprite-star-empty").addClass("sprite-star");    
                         }, function(){
-                            $(this).html(UNSTARRED_IMG);    
+                            $($(this).children()[0]).removeClass("sprite-star").addClass("sprite-star-empty");   
                         }).tipsy({'gravity':'e', opacity: 0.9, fallback:star_toggle_tooltip, html:true});
                         
                         $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:event_attendance_tooltip, html:true});
@@ -227,7 +227,7 @@ $(document).ready( function() {
     };
     $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
     
-    $("#profile_form select, #profile_form input[type=text], #profile_form input[type=file]").live('change', load_profile_preview);
+    //$("#profile_form select, #profile_form input[type=text], #profile_form input[type=file]").live('change', load_profile_preview);
     var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
     load_profile_preview();
 });

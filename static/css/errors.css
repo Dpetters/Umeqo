@@ -27,7 +27,7 @@
     padding: 8px 0px;
     border-bottom: none !important;
 }
-.form_table.grande td.error_section{
+.form_table.grande .error_section{
     padding:5px 0px;
     width:250px;
     font-weight:bold;
