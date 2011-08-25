@@ -388,14 +388,5 @@ def event_invite(request):
         })
         data = { 'valid': True, 'message': 'Invite sent successfully.' }
     else:
-<<<<<<< HEAD
-        data = {
-            'valid': False,
-            'message': 'Student has already been invited.'
-        }
-    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
-=======
         data = {'valid': False, 'message': _(m.already_invited) }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
->>>>>>> 5d4ee41e83c2c722388b413243b9b82b6320cac2
