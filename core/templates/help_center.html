@@ -23,10 +23,10 @@ Help |
         <a href="{% url faq %}">FAQ</a>
         <a href="{% url tutorials %}">Tutorials</a>
     </div>
-    {% if request.user.student %}
+    {% if user.student %}
         {% include "student_side_nav.html" %}
     {% endif %}
-    {% if request.user.recruiter %}
+    {% if user.recruiter %}
         {% include "employer_side_nav.html" %}    
     {% endif %}
 </div>
@@ -35,40 +35,46 @@ Help |
     {% block help_content %}
     <h1>Help Center</h1>
     <div id="contact_us_div">
-        <h2>Didn't find an answer?</h2>
+        <h2><u>Didn't find an answer?</u></h2>
         <p>Feel free to <a href="javascript:void(0)" class="open_contact_us_dialog_link">contact us!</a></p>
     </div>
     <div id="getting_started_div">
-        <h2 class="h-header">Getting Started</h2>
-        {% if user.is_authenticated %}
-            <p>Umeqo was made to save you time, so getting started is a snap.</p>
-            <h3>Got going in three easy steps:</h3>
-            <ul class="h-list">
-                 {% if user.student %}
-                    <li>Fill out your profile as much as you can.</li>
-                    <li>Look through the employers and subscribe to ones you're interested in.</li>
-                    <li>Browse through upcoming events and make sure you don't miss anything!</li>
-                 {% endif %}
-                 {% if user.recruiter %}
-                    <li>Setup your automatic filtering parameters to get updated on new qualified candidates!</li>
-                    <li>Browse through the student body, create custom resumebooks, and learn about the campus.</li>
-                    <li>Create an event, invite high potential candiates to it and then check attendees in using Umeqo!</li>
-                 {% endif %}
-                 {% if user.campus_org %}
-                    <li>Reach out to some of your employer contacts and plan a campus event.</li>
-                    <li>Create the event through Umeqo and specify which employers are attending.</li>
-                    <li>Check students in using Umeqo and let the attending employers browse through the attendees!</li>
-                 {% endif %}
-            </ul>
-         {% else %}
-            <p>Umeqo was made to save you time, so getting started is a snap.</p>
-            <p>Please <a class="login_link" href="javascript:void(0)">log in</a>, or select who you are below to sign up:</p>
-            <button class="button h-usrtype">Student</button><button class="button h-usrtype">Recruiter</button><button class="button h-usrtype">Campus Organization</button>
-         {% endif %}
+        <h2 class="h-header"><u>Getting Started</u></h2>
+        <div class="h-content">
+            {% if user.is_authenticated %}
+                <p>Umeqo was made to save you time, so getting started is a snap.</p>
+                <h3>Got going in three easy steps:</h3>
+                <ul class="h-list">
+                     {% if user.student %}
+                        <li>Fill out your profile as much as you can.</li>
+                        <li>Look through the employers and subscribe to ones you're interested in.</li>
+                        <li>Browse through upcoming events and make sure you don't miss anything!</li>
+                     {% endif %}
+                     {% if user.recruiter %}
+                        <li>Setup your automatic filtering parameters to get updated on new qualified candidates!</li>
+                        <li>Browse through the student body, create custom resumebooks, and learn about the campus.</li>
+                        <li>Create an event, invite high potential candiates to it and then check attendees in using Umeqo!</li>
+                     {% endif %}
+                     {% if user.campus_org %}
+                        <li>Reach out to some of your employer contacts and plan a campus event.</li>
+                        <li>Create the event through Umeqo and specify which employers are attending.</li>
+                        <li>Check students in using Umeqo and let the attending employers browse through the attendees!</li>
+                     {% endif %}
+                </ul>
+             {% else %}
+                <p>Umeqo was created to save you time, so getting started is a snap!</p>
+                <p>To get rolling, please <a class="login_link" href="javascript:void(0)">log in</a>, or select who you are below to sign up.</p> 
+                <p id="h-usrselect">
+                    <span><strong>I am a </strong></span>
+                    <a href="{% url student_registration %}"<button class="button h-usrtype">Student</button></a>
+                    <a href="{% url employer_registration %}"<button class="button h-usrtype">Recruiter</button></a>      
+                </p>
+             {% endif %}
+        </div>
     </div>
     <div id="top_questions_div" class="simple_block">
-        <h2 class="h-header">Top 10 Questions</h2>
-        <ul class="h-list">
+        <h2 class="h-header"><u>Top 10 Questions</u></h2>
+        <ul class="h-content h-list">
         {% for question in top_questions %}
                 <li><a href="{% url faq %}#{{question.slug}}">{{question.question}}</a></li>
         {% endfor %}            
