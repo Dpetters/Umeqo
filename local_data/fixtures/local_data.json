@@ -3,7 +3,7 @@
   "pk": 1, 
   "model": "events.event", 
   "fields": {
-   "view_count": 10, 
+   "view_count": 11, 
    "start_datetime": "2011-10-01 06:00:00", 
    "audience": [
     1, 
@@ -378,7 +378,9 @@
   "fields": {
    "last_updated": "2011-08-26 15:32:01", 
    "name": null, 
-   "students": [], 
+   "students": [
+    1
+   ], 
    "recruiter": 1, 
    "resume_book": "", 
    "date_created": "2011-08-26 15:32:01"
@@ -559,7 +561,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-26 15:32:01", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -609,7 +611,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-08-26 15:32:01", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -657,7 +659,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-08-26 15:32:01", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -691,7 +693,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-08-26 15:32:01", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -725,7 +727,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Dearing", 
-   "last_updated": "2011-08-26 15:32:01", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "", 
@@ -907,7 +909,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-26 15:36:12", 
+   "last_login": "2011-08-26 16:20:23", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -925,7 +927,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-26 15:31:55", 
+   "last_login": "2011-08-26 18:23:30", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$c958f$e7322772f54c5731c1d9e6502f6816cb965fba1a", 
@@ -2178,23 +2180,23 @@
   }
  }, 
  {
-  "pk": 182, 
+  "pk": 187, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-26 13:07:28", 
-   "session_key": "32119061a42e7bc9e8b05ba53bbd6a49", 
-   "last_updated": "2011-08-26 13:07:28", 
-   "user": 1
+   "date_created": "2011-08-26 16:05:34", 
+   "session_key": "5e3217c3310035e2995a1a0682de1f19", 
+   "last_updated": "2011-08-26 16:05:34", 
+   "user": 3
   }
  }, 
  {
-  "pk": 184, 
+  "pk": 192, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-26 15:36:12", 
-   "session_key": "e13d2c48a2e537bbc65f14b1d85c70fc", 
-   "last_updated": "2011-08-26 15:36:12", 
-   "user": 2
+   "date_created": "2011-08-26 18:23:30", 
+   "session_key": "a5fc7cfaecf9ac4735502be2f3431c63", 
+   "last_updated": "2011-08-26 18:23:30", 
+   "user": 3
   }
  }
 ]
