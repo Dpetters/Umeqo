@@ -50,10 +50,8 @@ $(document).ready(function() {
                     },
                     success : function(data) {
                         if(data) {
-                            console.log("our suggestions");
                             $("#location_suggestions").html(data);
                         } else {
-                            console.log("google's suggestions");
                             if( typeof (geocoder) === "undefined") {
                                 geocoder = new google.maps.Geocoder();
                             }
@@ -247,15 +245,25 @@ $(document).ready(function() {
     // Prevent end datetime from being before start datetime.
     function getStartDate() {
         var start_date = $('#id_start_datetime_0').val().split('/');
-        var start_time = $('#id_start_datetime_1').val();
-        var start = new Date(start_date[2] + '-' + start_date[0] + '-' + start_date[1] + ' ' + start_time);
+        var month = start_date[0];
+        var day = start_date[1];
+        var year = start_date[2];
+        var start_time = $('#id_start_datetime_1').val().split(':');
+        var hour = start_time[0];
+        var minute = start_time[1];
+        var start = new Date(year, month-1, day, hour, minute, 0);
         return start;
     }
 
     function getEndDate() {
         var end_date = $('#id_end_datetime_0').val().split('/');
-        var end_time = $('#id_end_datetime_1').val();
-        var end = new Date(end_date[2] + '-' + end_date[0] + '-' + end_date[1] + ' ' + end_time);
+        var month = end_date[0];
+        var day = end_date[1];
+        var year = end_date[2];
+        var end_time = $('#id_end_datetime_1').val().split(':');
+        var hour = end_time[0];
+        var minute = end_time[1];
+        var end = new Date(year, month-1, day, hour, minute, 0);
         return end;
     }
 
@@ -294,6 +302,8 @@ $(document).ready(function() {
     $('#id_start_datetime_0, #id_start_datetime_1').change(function() {
         var start = getStartDate();
         var end = getEndDate();
+        console.log(start);
+        console.log(end);
         if(end - start <= 0) {
             end = new Date(start);
             end.setHours(end.getHours() + 1);
@@ -356,8 +366,11 @@ $(document).ready(function() {
 
     function getSchedulerDate() {
         var schedule_date_parts = $('#event_scheduler_day_text').val().split('/');
-        console.log(schedule_date_parts[2] + '-' + schedule_date_parts[0] + '-' + schedule_date_parts[1]);
-        var schedule_date = new Date(schedule_date_parts[2] + '-' + schedule_date_parts[0] + '-' + schedule_date_parts[1]);
+        var month = schedule_date_parts[0];
+        var day = schedule_date_parts[1];
+        var year = schedule_date_parts[2];
+        // Months are 0-indexed!
+        var schedule_date = new Date(year, month-1, day, 0, 0, 0, 0);
         return schedule_date;
     }
 
@@ -385,8 +398,8 @@ $(document).ready(function() {
                     highest = top;
                 }
             });
-            var thisEventInfo = getCurrentEventItem();
 
+            var thisEventInfo = getCurrentEventItem();
             var schedule_date = removeTime(getSchedulerDate());
             var start_date = thisEventInfo.start_date;
             var end_date = thisEventInfo.end_date;
@@ -448,7 +461,9 @@ $(document).ready(function() {
     }
 
 
-    $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker();
+    $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker({
+        'minDate': null
+    });
     $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1, #event_scheduler_day_text').change(renderScheduler);
     renderScheduler();
 
