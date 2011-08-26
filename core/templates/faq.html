@@ -23,7 +23,7 @@ FAQ |
     <h1>FAQ</h1>
     {% for topic in topics %}
         <h2 class="h-header">{{topic.name}}</h2>
-        <ul class="h-list">
+        <ul class="h-content h-list">
         {% for question in topic.questions %}
              <li><a class="question_link" data-id="{{question.id}}" href="#{{question.slug}}">{{question.question}}</li>
         {% endfor %}
@@ -33,10 +33,12 @@ FAQ |
     {% for topic in topics %}
         <h2 class="h-header">{{topic.name}}</h2>
         {% for question in topic.questions %}
-            <a id="{{question.slug}}"></a>
-            <img class="faq-question-icon" src="{{ STATIC_URL }}images/icons/question.png" /><h3 class="faq-question">{{question.question}}</h3>
-            <p>{{question.answer}}</p>
-            <p><a href="#top">Back to top</a></p>
+            <div class="h-content">
+                <a id="{{question.slug}}"></a>
+                <img class="faq-question-icon" src="{{ STATIC_URL }}images/icons/question.png" /><h3 class="faq-question">{{question.question}}</h3>
+                <p>{{question.answer}}</p>
+                <p><a href="#top">Back to top</a></p>
+            </div>
         {% endfor %}
     {% endfor %}
 {% endblock %}

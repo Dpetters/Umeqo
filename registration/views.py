@@ -3,7 +3,7 @@ import urllib
 import urllib2
 
 from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout as auth_logout_then_login_view, login as auth_login_view
 from django.contrib.sessions.models import Session
@@ -31,7 +31,10 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
         return redirect(reverse('home'))
 
     # Log the login attempt.
-    ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip_address = request.META['REMOTE_ADDR']
     LoginAttempt.objects.create(ip_address=ip_address)
     
     half_day_ago = datetime.now() - timedelta(hours=12)

@@ -217,6 +217,9 @@ input[type="submit"]:hover {
     background: linear-gradient(top, #666666 0%,#444444 100%); /* W3C */
     cursor: pointer;
 }
+label.required span.error{
+    display:none;
+}
 #working {
     font-size: 35px;
     line-height: 30px;
