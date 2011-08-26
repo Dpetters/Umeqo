@@ -3512,7 +3512,23 @@
    "name": "Invitations", 
    "slug": "invitations"
   }
- },
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-06-28 01:55:42", 
+   "click_count": 0, 
+   "question": "What is Umeqo?", 
+   "slug": "what-is-umeqo", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "0.000", 
+   "answer": "Umeqo is a new platform for helping students and employers connect during recruiting season.", 
+   "date_created": "2011-06-28 01:55:42", 
+   "display": false
+  }
+ }, 
  {
   "pk": 1, 
   "model": "core.schoolyear", 
