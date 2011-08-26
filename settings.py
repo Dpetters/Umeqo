@@ -300,3 +300,5 @@ try:
     from settings_local import *
 except ImportError:
     from settings_prod import *
+
+NOTIFICATION_QUEUE_ALL = True

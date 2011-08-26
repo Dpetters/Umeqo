@@ -41,7 +41,7 @@ def get_event_schedule(event_date_string):
     event_date_tmrw = event_date + timedelta(days=1)
     events = Event.objects.all().filter(start_datetime__gt=event_date).filter(start_datetime__lt=event_date_tmrw)
     def buildScheduleItem(event):
-        name = event.name
+        name = event.employer.name
         start = event.start_datetime
         start_hour = start.hour + start.minute/60.0
         end = event.end_datetime

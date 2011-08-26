@@ -267,3 +267,10 @@ label[for=id_rsvp_message]{
     color: #222;
     cursor: pointer;
 }
+input[type=text].datefield_no_bind {
+    width: 95px;
+    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
+}
+    width: 95px;
+    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
+}
