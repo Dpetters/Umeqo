@@ -1,6 +1,8 @@
 from django.contrib.auth import signals
 from django.dispatch import Signal, receiver
 
+from registration.models import LoginAttempt
+
 
 # A new user has registered.
 user_registered = Signal(providing_args=["user", "request"])
