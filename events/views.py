@@ -135,6 +135,7 @@ def event_new(request, form_class=None, extra_context=None):
         })
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
+    print form.errors
     context.update(extra_context or {})
     return context
 

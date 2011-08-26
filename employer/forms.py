@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from django import forms
 from django.contrib.localflavor.us.forms import USPhoneNumberField
 from django.conf import settings as s
+from django.utils.translation import ugettext_lazy as _
 
 from core.form_helpers import decorate_bound_field
 from core import messages as m

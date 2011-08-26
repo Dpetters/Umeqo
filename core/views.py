@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import absolute_import
+
 import operator
 from datetime import datetime
 
@@ -17,8 +20,8 @@ from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
 from core import enums, messages
-from core.decorators import render_to, is_student, is_recruiter
-from core.models import Course, Language, Topic, Location
+from core.decorators import render_to, is_student, is_recruiter, is_campus_org
+from core.models import Course, Language, Topic, Location, Question
 from core.forms import BetaForm, AkismetContactForm
 from core.view_helpers import does_email_exist
 from employer.forms import StudentSearchForm
@@ -28,13 +31,20 @@ from events.models import Event
 
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
-    
-    context = {}
+    questions = Question.objects.visible()
+    if is_recruiter(request.user):
+        questions = questions.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+    elif is_student(request.user):
+        questions = questions.filter(Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+    elif is_campus_org(request.user):
+        questions = questions.filter(Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
+    else:
+        questions = questions.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+    context = {'top_questions':questions.order_by("-click_count")[:10]}
     context.update(extra_context or {})
     return context
 
 def account_deactivate(request, extra_context = None):
-    
     context = {}
     if hasattr(request.user, "student"):
         context['TEMPLATE'] = "student_account_deactivate.html"
@@ -43,35 +53,38 @@ def account_deactivate(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-
 @render_to('faq.html')
 def faq(request, extra_context = None):
-    
-    context = {'topics':[]}
-    
-    for topic in Topic.objects.all():
-        questions = topic.question_set.filter(display = True)           
-        if hasattr(request.user, "employer"):
-            questions = topic.question_set.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-        elif hasattr(request.user, "student"):
-            questions = topic.question_set.filter(Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-        elif hasattr(request.user, "campus_org"):
-            questions = topic.question_set.filter(Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
+    if request.method == "POST":
+        if request.POST.has_key("question_id"):
+            q = Question.objects.get(id=request.POST["question_id"])
+            q.click_count += 1
+            q.save()
+            return HttpResponse()
         else:
-            questions = topic.question_set.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
-        if questions:
-            context['topics'].append({'name': topic, 'questions':questions})
-
-    context.update(extra_context or {})  
-    return context
+            return HttpResponseBadRequest("Question id is missing.")
+    else:
+        context = {'topics':[]}
+        for topic in Topic.objects.all():
+            questions = topic.question_set.visible()         
+            if is_recruiter(request.user):
+                questions = questions.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+            elif is_student(request.user):
+                questions = questions.filter(Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+            elif is_campus_org(request.user):
+                questions = questions.filter(Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
+            else:
+                questions = questions.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+            if questions:
+                context['topics'].append({'name': topic, 'questions':questions})
+        context.update(extra_context or {})  
+        return context
 
 @render_to('tutorials.html')
-def tutorials(request, extra_context = None):
-    
+def tutorials(request, extra_context = None):    
     context = {}
     context.update(extra_context or {})
     return context
-
 
 @render_to('contact_us.html')
 def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
@@ -95,7 +108,6 @@ def contact_us(request, form_class = AkismetContactForm, fail_silently = False, 
             }
     context.update(extra_context or {}) 
     return context
-
 
 @login_required
 def get_location_guess(request):

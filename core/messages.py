@@ -97,6 +97,10 @@ email_not_registered = "This email is not registered."
 # Password Change Form
 incorrect_old_password = "Your old password was entered incorrectly."
 
+# New event form
+start_datetime_required = "Start date and time are required."
+end_datetime_required = "End date and time are required."
+
 # Student Registration
 email_required = "What's your email?"
 invalid_email = "Doesn't look like a valid email."

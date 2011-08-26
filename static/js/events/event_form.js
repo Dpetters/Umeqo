@@ -174,31 +174,40 @@ $(document).ready(function() {
     $("#id_type").change(function() {
         var event_type = $("#id_type option:selected").text()
         if(event_type === "Hard Deadline" || event_type === "Rolling Deadline") {
-            $('label[for=id_start_datetime_0]').removeClass('required');
-            $('#start_datetime_asterisk').hide();
-            $("#event_form_header").html("New Deadline");
-
-            $("#id_name").attr("placeholder", "Enter deadline name");
-
-            $("#event_location_section").css("opacity", .2);
+            $($('label[for=id_start_datetime_0]').removeClass('required').children()[0]).remove();
+            $("#event_location_section").slideUp()
             $("#event_location_section input").attr('disabled', 'disabled');
-
+            $("#event_form input[type=submit]").val("Create Deadline");
             if(event_type === "Rolling Deadline") {
-                $("#event_datetime_block").css("opacity", .2);
-                $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
+                $("#event_form_header").html("New Rolling Deadline");
+                $("#id_name").attr("placeholder", "Enter rolling deadline name");
+                
+                $("#event_scheduler").css("height", 270);
+            
+                $($('label[for=id_end_datetime_0]').removeClass('required').children()[0]).remove();
+                
+                $("#start_datetime_wrapper, #end_datetime_wrapper").slideUp();
+                $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").attr('disabled', 'disabled');
             } else if(event_type === "Hard Deadline") {
-                $("#event_datetime_block").css("opacity", 1);
-                $("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
-                $("#start_datetime_wrapper").css("opacity", .2);
+                $("#event_form_header").html("New Hard Deadline");
+                $("#id_name").attr("placeholder", "Enter hard deadline name");
+                
+                $("#event_scheduler").css("height", 230);
+                            
+                $("#end_datetime_wrapper").slideDown();
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
+                $("#end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
+                $("#start_datetime_wrapper").slideUp();
             }
         } else {
             $('label[for=id_start_datetime_0]').addClass('required').append("<span class='error'>*</span>");
-            $("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
-            $("#start_datetime_wrapper").css("opacity", 1);
+            $('label[for=id_end_datetime_0]').addClass('required').append("<span class='error'>*</span>");
+            $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
+            $("#start_datetime_wrapper, #end_datetime_wrapper").slideDown();
+            $("event_form input[type=submit]").val("Create Event");
 
             $("#event_location_section input").removeAttr('disabled');
-            $("#event_location_section").css("opacity", 1);
+            $("#event_location_section").slideDown();
         }
     });
 
@@ -383,83 +392,84 @@ $(document).ready(function() {
         $('#event_scheduler_nav_forward').removeClass('enabled');
         var event_date_text = $('#event_scheduler_day_text').val();
         $('.event_block').remove();
-        $.get(EVENT_SCHEDULE_URL, {
-            event_date : event_date_text
-        }, function(res) {
-            var highest = Infinity;
-            $.each(res, function(i, eventInfo) {
-                var title = eventInfo[0];
-                var top = eventInfo[1];
-                var height = eventInfo[2];
-                var newEvent = $('<div>' + title + '</div>').addClass('event_block').addClass('gray');
-                newEvent.css('top', top).css('height', height - 8);
-                $('#event_scheduler').append(newEvent);
-                if(top < highest) {
-                    highest = top;
-                }
-            });
-
-            var thisEventInfo = getCurrentEventItem();
-            var schedule_date = removeTime(getSchedulerDate());
-            var start_date = thisEventInfo.start_date;
-            var end_date = thisEventInfo.end_date;
-
-            var clipTop = false;
-            var clipBottom = false;
-            //Defaults to Infinity.
-            var top = Infinity;
-            // If event starts before displayed schedule, start from top.
-            if(start_date - schedule_date < 0) {
-                top = 0;
-                clipTop = true;
-                // If event starts on displayed schedule, start from proper place.
-            } else if(start_date - schedule_date == 0) {
-                top = thisEventInfo.top;
-            }
-
-            //Height defaults to Infinity.
-            var height = Infinity;
-            // If event ends after displayed schedule, end at bottom.
-            if(end_date - schedule_date > 0) {
-                height = (1 + 32 * 24) - top;
-                clipBottom = true;
-                // If event ends on displayed schedule, end at proper place.
-            } else if(end_date - schedule_date == 0) {
-                height = thisEventInfo.height;
-            }
-
-            if(top != Infinity && height != Infinity) {
-                var name = thisEventInfo.name;
-                if(name == '') {
-                    name = 'New Event';
-                }
-                var thisEvent = $('<div>' + name + '</div>').addClass('event_block').addClass('green');
-                thisEvent.css('top', top).css('height', height - 8);
-                if(clipTop) {
-                    thisEvent.addClass('clipTop');
-                }
-                if(clipBottom) {
-                    thisEvent.addClass('clipBottom');
-                }
-                $('#event_scheduler').append(thisEvent);
-                thisEvent.click(function() {
-                    $('#id_name').focus();
+        if (event_date_text){
+            $.get(EVENT_SCHEDULE_URL, {
+                event_date : event_date_text
+            }, function(res) {
+                var highest = Infinity;
+                $.each(res, function(i, eventInfo) {
+                    var title = eventInfo[0];
+                    var top = eventInfo[1];
+                    var height = eventInfo[2];
+                    var newEvent = $('<div>' + title + '</div>').addClass('event_block').addClass('gray');
+                    newEvent.css('top', top).css('height', height - 8);
+                    $('#event_scheduler').append(newEvent);
+                    if(top < highest) {
+                        highest = top;
+                    }
                 });
-                if(top < highest) {
-                    highest = top;
+    
+                var thisEventInfo = getCurrentEventItem();
+                var schedule_date = removeTime(getSchedulerDate());
+                var start_date = thisEventInfo.start_date;
+                var end_date = thisEventInfo.end_date;
+    
+                var clipTop = false;
+                var clipBottom = false;
+                //Defaults to Infinity.
+                var top = Infinity;
+                // If event starts before displayed schedule, start from top.
+                if(start_date - schedule_date < 0) {
+                    top = 0;
+                    clipTop = true;
+                    // If event starts on displayed schedule, start from proper place.
+                } else if(start_date - schedule_date == 0) {
+                    top = thisEventInfo.top;
                 }
-            }
-
-            if(highest < Infinity) {
-                $('#event_scheduler').scrollTop(highest - 32);
-            } else {
-                $('#event_scheduler').scrollTop(0);
-            }
-            $('#event_scheduler_nav_back').addClass('enabled');
-            $('#event_scheduler_nav_forward').addClass('enabled');
-        });
+    
+                //Height defaults to Infinity.
+                var height = Infinity;
+                // If event ends after displayed schedule, end at bottom.
+                if(end_date - schedule_date > 0) {
+                    height = (1 + 32 * 24) - top;
+                    clipBottom = true;
+                    // If event ends on displayed schedule, end at proper place.
+                } else if(end_date - schedule_date == 0) {
+                    height = thisEventInfo.height;
+                }
+    
+                if(top != Infinity && height != Infinity) {
+                    var name = thisEventInfo.name;
+                    if(name == '') {
+                        name = 'New Event';
+                    }
+                    var thisEvent = $('<div>' + name + '</div>').addClass('event_block').addClass('green');
+                    thisEvent.css('top', top).css('height', height - 8);
+                    if(clipTop) {
+                        thisEvent.addClass('clipTop');
+                    }
+                    if(clipBottom) {
+                        thisEvent.addClass('clipBottom');
+                    }
+                    $('#event_scheduler').append(thisEvent);
+                    thisEvent.click(function() {
+                        $('#id_name').focus();
+                    });
+                    if(top < highest) {
+                        highest = top;
+                    }
+                }
+    
+                if(highest < Infinity) {
+                    $('#event_scheduler').scrollTop(highest - 32);
+                } else {
+                    $('#event_scheduler').scrollTop(0);
+                }
+                $('#event_scheduler_nav_back').addClass('enabled');
+                $('#event_scheduler_nav_forward').addClass('enabled');
+            });
+        }
     }
-
 
     $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker({
         'minDate': null

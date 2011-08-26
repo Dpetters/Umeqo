@@ -1,5 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
+
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from core.form_helpers import decorate_bound_field, boolean_coerce
 from core.models import SchoolYear
@@ -7,6 +9,7 @@ from core.renderers import RadioSelectTableRenderer
 from core.widgets import ImprovedSplitDateTimeWidget
 from events.choices import PUBLIC_PRIVATE_BOOLEAN_CHOICES, DROP_BOOLEAN_CHOICES
 from events.models import Event, EventType
+from core import messages as m
 
 decorate_bound_field()
 class EventForm(forms.ModelForm):
@@ -19,7 +22,7 @@ class EventForm(forms.ModelForm):
     longitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':6}))
     start_datetime = forms.DateTimeField(label="Start Date/Time:", widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':7}), required=False)
-    end_datetime = forms.DateTimeField(label="End Date/Time:", widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':8}))
+    end_datetime = forms.DateTimeField(label="End Date/Time:", widget=ImprovedSplitDateTimeWidget(attrs={'tabindex':8}), required=False)
     audience = forms.ModelMultipleChoiceField(label="Intended Audience:", widget=forms.SelectMultiple(attrs={'tabindex':9}), queryset = SchoolYear.objects.all(), required=False)
     rsvp_message = forms.CharField(label="RSVP Message:", widget=forms.Textarea(attrs={'tabindex':10, 'placeholder':'Tell RSVPs what to wear, bring, etc..'}), required=False)
     
@@ -37,6 +40,20 @@ class EventForm(forms.ModelForm):
                   'rsvp_message', 
                   'is_public',)
         model = Event
+        
+    def clean(self):
+        print self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline")
+        print self.cleaned_data['start_datetime']
+        print self.cleaned_data['end_datetime']
+        if not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline") and not self.cleaned_data["type"]==EventType.objects.get(name="Hard Deadline"):
+            print 1
+            if not self.cleaned_data['start_datetime']:
+                raise forms.ValidationError(_(m.start_datetime_required))
+        elif not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline"):
+            print 2
+            if not self.cleaned_data['end_datetime']:
+                raise forms.ValidationError(_(m.end_datetime_required))            
+        return self.cleaned_data
 
 class CampusOrgEventForm(EventForm):
     pass

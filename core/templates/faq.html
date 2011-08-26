@@ -4,29 +4,39 @@
 FAQ |
 {% endblock %}
 
+{% block metadata %}
+{{block.super}}
+<script>
+    var FAQ_URL = "{% url faq %}";
+</script>
+{% load compress %}
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/faq.css" />
+    {% endcompress %}
+    {% compress js %}
+        <script src="{{ STATIC_URL}}js/faq.js"></script>
+    {% endcompress %}
+{% endblock %}
+
 {% block help_content %}
     <a id="top"></a>
     <h1>FAQ</h1>
-    <br/>
-    
     {% for topic in topics %}
-        <h2>{{topic.name}}</h2>
-        <ul>
+        <h2 class="h-header">{{topic.name}}</h2>
+        <ul class="h-list">
         {% for question in topic.questions %}
-                <br><a href="#{{question.slug}}">{{question.question}}</a>
+             <li><a class="question_link" data-id="{{question.id}}" href="#{{question.slug}}">{{question.question}}</li>
         {% endfor %}
         </ul>
-        <br/>
     {% endfor %}
     
     {% for topic in topics %}
-        <h2>{{topic.name}}</h2>
+        <h2 class="h-header">{{topic.name}}</h2>
         {% for question in topic.questions %}
             <a id="{{question.slug}}"></a>
-            <h3>{{question.question}}</h3>
+            <img class="faq-question-icon" src="{{ STATIC_URL }}images/icons/question.png" /><h3 class="faq-question">{{question.question}}</h3>
             <p>{{question.answer}}</p>
-            <a href="#top">Back to top</a>
+            <p><a href="#top">Back to top</a></p>
         {% endfor %}
-        <br/>
     {% endfor %}
 {% endblock %}

@@ -108,7 +108,7 @@
 
     <field name="start_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
-    <field name="subscribers" type="text" indexed="true" stored="true" multiValued="true" />
+    <field name="has_events" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
 
@@ -116,7 +116,7 @@
 
     <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
-    <field name="has_events" type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="subscribers" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="content_auto" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 

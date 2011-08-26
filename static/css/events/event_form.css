@@ -10,9 +10,9 @@
 #event_location_section .errorspace,
 #event_description_section .errorspace {
     display: inline-block;
-    width: 150px;
+    width: 200px;
     position: relative;
-    top: 2px;
+    top: 3px;
     left: 5px;
 }
 #event_name_section,
@@ -82,8 +82,14 @@ label[for=id_end_datetime_0]{
 label[for=id_start_datetime_0]{
     margin-left:21px;
 }
+label[for=id_end_datetime_0].error, label[for=id_start_datetime_0].error{
+    margin-left:0px;
+}
 label[for=event_scheduler_day_text]{
     font-weight:normal;
+}
+#datetime_field_wrapper{
+    margin-left:122px;
 }
 #new_event_form #id_days, #new_event_form #id_hours, #new_event_form #id_minutes {
     width: 65px;
@@ -115,7 +121,7 @@ label[for=event_scheduler_day_text]{
     height: 410px;
     overflow-y: scroll;
     position: relative;
-    width: 380px;
+    width: 378px;
 }
 #event_scheduler table {
     width: 100%;

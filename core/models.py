@@ -5,6 +5,7 @@ from django.db.models.signals import post_save, post_syncdb
 
 from core.model_helpers import get_image_filename, get_thumbnail_filename
 from core import enums
+from core.managers import QuestionManager
 from core import mixins as core_mixins
 from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
 
@@ -40,7 +41,6 @@ class Location(models.Model):
         else:
             return self.name    
 
-
 class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
@@ -52,7 +52,6 @@ class Topic(core_mixins.DateTracking):
     def __unicode__(self):
         return self.name
 
-
 class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
@@ -61,14 +60,16 @@ class Question(core_mixins.DateTracking):
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
-
+    click_count = models.PositiveIntegerField(default=0)
+    
+    objects = QuestionManager()
+    
     class Meta:
         ordering = ['sort_order', 'question']
         
     def __unicode__(self):
         return self.question
         
-         
 class CommonInfo(core_mixins.DateTracking):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)

@@ -22,7 +22,7 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequ
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
-from django.views.decorators.http import require_http_methods, require_POST, require_GET
+from django.views.decorators.http import require_POST, require_GET
 from django.core.urlresolvers import reverse
 
 from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
@@ -76,6 +76,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 @require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
+    data = []
     if form.is_valid():
         request.user.recruiter.recruiter_preferencess = form.save()
     else:
