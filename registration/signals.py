@@ -12,5 +12,8 @@ user_activated = Signal(providing_args=["user", "request"])
 
 @receiver(signals.user_logged_in)
 def clear_attempts(sender, request, user, **kwargs):
-    ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip_address = request.META['REMOTE_ADDR']
     LoginAttempt.objects.all().filter(ip_address=ip_address).delete()

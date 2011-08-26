@@ -31,7 +31,10 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
         return redirect(reverse('home'))
 
     # Log the login attempt.
-    ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip_address = request.META['REMOTE_ADDR']
     LoginAttempt.objects.create(ip_address=ip_address)
     
     half_day_ago = datetime.now() - timedelta(hours=12)
