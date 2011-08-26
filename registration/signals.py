@@ -8,7 +8,7 @@ user_registered = Signal(providing_args=["user", "request"])
 # A user has activated his or her account.
 user_activated = Signal(providing_args=["user", "request"])
 
-@receiver(signals.user_logged_in)
+@receiver(signals.user_logged_in, **kwargs)
 def clear_attempts(sender, request, user):
     ip_address = request.META['HTTP_X_FORWARDED_FOR']
     LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
