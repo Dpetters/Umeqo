@@ -3,7 +3,7 @@ import urllib
 import urllib2
 
 from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout as auth_logout_then_login_view, login as auth_login_view
 from django.contrib.sessions.models import Session
