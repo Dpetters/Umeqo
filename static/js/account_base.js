@@ -19,7 +19,11 @@ $(document).ready( function () {
                 hide_form_submit_loader("#preferences_form");
             },
             success: function(data) {
-                $("#message_area").html("<p>Preferences Saved.</p>");
+                if (data.errors){
+                    place_table_form_errors("#preferences_form", data.errors);
+                }else{
+                    $("#message_area").html("<p>Preferences Saved.</p>");   
+                }
             },
             error: errors_in_message_area_handler
         });
@@ -34,7 +38,7 @@ $(document).ready( function () {
                     $("#message_area").html("");
                     show_form_submit_loader("#password_change_form");
                 },
-                complete: function(jqXHR, textStatus) {
+                complete: function(jqXHR, textStatus) {Y
                     hide_form_submit_loader("#password_change_form");
                 },
                 success: function(data) {

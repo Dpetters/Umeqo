@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import absolute_import
+
 def enum(**enums):
     return type('Enum', (), enums)
 
@@ -10,7 +13,6 @@ STUDENT_LIST_TYPE_CHOICES = (
     (GENERAL, 'General'),
     (EVENT, 'Event')
 )
-
 
 ALL_STUDENTS = 0
 STARRED_STUDENTS = 1

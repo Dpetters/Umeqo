@@ -61,20 +61,20 @@
             <div class="side_block_content">
                 <div id="start_datetime_wrapper">
                     {{form.start_datetime.label_tag}}
-                    <div>
+                    <div id="datetime_field_wrapper">
                         <div class="errorspace">{{form.start_datetime.error}}</div>
                         {{form.start_datetime}}
                     </div>
                 </div>
                 <div id="end_datetime_wrapper">
                     {{form.end_datetime.label_tag}}
-                    <div>
+                    <div  id="datetime_field_wrapper">
                         <div class="errorspace">{{form.end_datetime.error}}</div>
                         {{form.end_datetime}}
                     </div>
                 </div>
                 <div id="event_scheduler_day">
-                    Showing schedule for <input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield_no_bind" />:
+                    <label for="event_scheduler_day_text">Event schedule for</label><input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield_no_bind" />
                     <div id="event_scheduler_nav">
                         <a id="event_scheduler_nav_back" class="active" href="#">&laquo;</a>
                         <a id="event_scheduler_nav_forward" class="active" href="#">&raquo;</a>
@@ -130,7 +130,8 @@
             <div class="errorspace"></div>
             <br>
             {{form.is_drop}}
-            <p>Enabling resume drops will allow students to drop their resume without RSVP-ing. <strong>You will be able to see the resumes of students who RSVP regardless of resume drops.</strong>
+            <p>Enabling resume drops will allow students to drop their resume without RSVP-ing.<p>
+            <p><strong>Note: </strong>You will be able to see the resumes of students who RSVP regardless of resume drops.</p>
         </div>
         <div id="event_location_section">
             <span class="div_form_above_field_label">Location</span>

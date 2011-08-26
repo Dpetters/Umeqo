@@ -1,48 +1,40 @@
+from __future__ import division
+from __future__ import absolute_import
+
 import cStringIO
 import mimetypes
 import os
 import re
 
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.units import cm
+from pyPdf import PdfFileWriter, PdfFileReader
 from operator import attrgetter
 from datetime import datetime 
+
 from django.core.files import File
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
-from django.http import HttpResponse, HttpResponseForbidden, \
-                        HttpResponseBadRequest, HttpResponseNotFound, \
-                        HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
-from pyPdf import PdfFileWriter, PdfFileReader
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.units import cm
+from django.views.decorators.http import require_POST, require_GET
 from django.core.urlresolvers import reverse
 
-from core.decorators import is_student, is_student_or_recruiter, is_recruiter, \
-                            render_to
+from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
-from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, \
-                            StudentFilteringForm, StudentDefaultFilteringParametersForm, \
-                            StudentSearchForm, DeliverResumeBookForm
-from employer.views_helper import get_paginator, employer_search_helper, \
-                                  get_employer_events
+from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
+from employer.views_helper import get_paginator, employer_search_helper, get_employer_events
 from student import enums as student_enums
 from student.models import Student
-
-
-@render_to('employer_registration.html')
-def employer_registration(request, extra_context = None):
-    context = {}
-    context.update(extra_context or {})
-    return context
 
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
@@ -51,48 +43,45 @@ def employer_profile_preview(request, slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug=slug)
     except Employer.DoesNotExist:
-        return HttpResponseNotFound()
+        return HttpResponseNotFound("No employer with the slug %s exists." % (slug))
     
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
     elif is_recruiter(request.user):
-        context = {'employer':employer,
-                   'events':get_employer_events(employer)}
+        context = {'employer':employer, 'events':get_employer_events(employer)}
+        context.update(extra_context or {})
         return context
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account.html")
+@require_GET
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
-                    change_password_form_class = PasswordChangeForm, extra_context=None):
-    if request.method == "GET":
-        context = {}
+                     change_password_form_class = PasswordChangeForm, extra_context=None):
+    context = {}
+    msg = request.GET.get('msg', None)
+    if msg:
         page_messages = {
             'password-changed': messages.password_changed,
         }
-        msg = request.GET.get('msg', None)
-        if msg:
-            context["msg"] = page_messages[msg]
-        context['preferences_form'] = preferences_form_class(instance = request.user.recruiter.recruiterpreferences)
-        context['change_password_form'] = change_password_form_class(request.user)
-        context.update(extra_context or {})
-        return context
-    return HttpResponseForbidden("Request must be a GET")
+        context["msg"] = page_messages[msg]
+    context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
+    context['change_password_form'] = change_password_form_class(request.user)
+    context.update(extra_context or {})
+    return context
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
-    if request.method == 'POST':
-        form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
-        if form.is_valid():
-            request.user.recruiter.recruiter_preferencess = form.save()
-            data = {'valid':True}
-        else:
-            data = {'valid':False, 'errors': form.errors }
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
+    data = []
+    if form.is_valid():
+        request.user.recruiter.recruiter_preferencess = form.save()
     else:
-        return HttpResponseForbidden("Request must be a POST.")
+        data = {'errors': form.errors }
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
@@ -107,150 +96,134 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
             data = {'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        context = {'form':form_class(instance=request.user.recruiter.employer),
-                   'edit':True}
+        context = {'form':form_class(instance=request.user.recruiter.employer), 'edit':True}
         context.update(extra_context or {})
         return context
         
 @login_required
 @user_passes_test(is_recruiter)
+@require_POST
 def employer_student_toggle_star(request):
-    if request.method == "POST":
-        if request.POST.has_key('student_id'):
-            student = Student.objects.get(id=request.POST['student_id'])
+    if request.POST.has_key('student_id'):
+        student = Student.objects.get(id=request.POST['student_id'])
+        if student in request.user.recruiter.employer.starred_students.all():
+            request.user.recruiter.employer.starred_students.remove(student)
+            data = {'action':employer_enums.UNSTARRED}
+        else:
+            request.user.recruiter.employer.starred_students.add(student)
+            data = {'action':employer_enums.STARRED}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        return HttpResponseBadRequest("Student ID is missing")
+
+
+@login_required
+@user_passes_test(is_recruiter)
+@require_POST
+def employer_students_add_star(request):
+    if request.POST.has_key('student_ids'):
+        for id in request.POST['student_ids'].split('~'):
+            student = Student.objects.get(id=id)  
+            if student not in request.user.recruiter.employer.starred_students.all():
+                request.user.recruiter.employer.starred_students.add(student)
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest("Student IDs are missing")
+
+
+@login_required
+@user_passes_test(is_recruiter)
+@require_POST
+def employer_students_remove_star(request):
+    if request.POST.has_key('student_ids'):
+        for id in request.POST['student_ids'].split('~'):
+            student = Student.objects.get(id=id)  
             if student in request.user.recruiter.employer.starred_students.all():
                 request.user.recruiter.employer.starred_students.remove(student)
-                data = {'action':employer_enums.UNSTARRED}
-            else:
-                request.user.recruiter.employer.starred_students.add(student)
-                data = {'action':employer_enums.STARRED}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            return HttpResponseBadRequest("Student ID is missing")
+        return HttpResponse()
     else:
-        return HttpResponseForbidden("Request must be a POST.")
+        return HttpResponseBadRequest("Student IDs are missing")
 
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_students_add_star(request):    
-    if request.method == "POST":
-        if request.POST.has_key('student_ids'):
-            for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
-                if student not in request.user.recruiter.employer.starred_students.all():
-                    request.user.recruiter.employer.starred_students.add(student)
-            return HttpResponse()
-        else:
-            return HttpResponseBadRequest("Student IDs are missing")
-    else:
-        return HttpResponseForbidden("Request must be a POST.")
-
-
-@login_required
-@user_passes_test(is_recruiter)
-def employer_students_remove_star(request):
-    if request.method == "POST":
-        if request.POST.has_key('student_ids'):
-            for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
-                if student in request.user.recruiter.employer.starred_students.all():
-                    request.user.recruiter.employer.starred_students.remove(student)
-            return HttpResponse()
-        else:
-            return HttpResponseBadRequest("Student IDs are missing")
-    else:
-        return HttpResponseForbidden("Request must be a POST.")
-
-
-@login_required
-@user_passes_test(is_recruiter)
+@require_POST
 def employer_student_comment(request):
-    if request.method == "POST":
-        if request.POST.has_key('student_id'):
-            if request.POST.has_key('comment'):
-                student = Student.objects.get(id=request.POST['student_id'])
-                comment = request.POST['comment']
-                try:
-                    student_comment = EmployerStudentComment.objects.get(student=student, employer=request.user.recruiter.employer)
-                except EmployerStudentComment.DoesNotExist:
-                    EmployerStudentComment.objects.create(employer = request.user.recruiter.employer, student=student, comment=comment)
-                student_comment.comment = comment
-                student_comment.save()
-                return HttpResponse()
-            else:
-                return HttpResponseBadRequest("Comment is missing.")
-        else:
-            return HttpResponseBadRequest("Student ID is missing.")
-    else:
-        return HttpResponseForbidden("Request must be a POST.")
-
-
-@login_required
-@user_passes_test(is_recruiter)
-def employer_resume_book_current_toggle_student(request):
-    if request.method == "POST":
-        if request.POST.has_key('student_id'):
+    if request.POST.has_key('student_id'):
+        if request.POST.has_key('comment'):
             student = Student.objects.get(id=request.POST['student_id'])
-            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-            if not resume_books.exists():
-                current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-            else:
-                current_resume_book = resume_books.order_by('-date_created')[0]
-            if student in current_resume_book.students.all():
-                current_resume_book.students.remove(student)
-                data = {'action':employer_enums.REMOVED}  
-            else:
-                current_resume_book.students.add(student)
-                data = {'action':employer_enums.ADDED}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            comment = request.POST['comment']
+            try:
+                student_comment = EmployerStudentComment.objects.get(student=student, employer=request.user.recruiter.employer)
+            except EmployerStudentComment.DoesNotExist:
+                EmployerStudentComment.objects.create(employer = request.user.recruiter.employer, student=student, comment=comment)
+            student_comment.comment = comment
+            student_comment.save()
+            return HttpResponse()
         else:
-            return HttpResponseBadRequest("Student ID is missing.")
+            return HttpResponseBadRequest("Comment is missing.")
     else:
-        return HttpResponseForbidden("Request must be a POST.")
+        return HttpResponseBadRequest("Student ID is missing.")
+
+@login_required
+@user_passes_test(is_recruiter)
+@require_POST
+def employer_resume_book_current_toggle_student(request):
+    if request.POST.has_key('student_id'):
+        student = Student.objects.get(id=request.POST['student_id'])
+        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+        if not resume_books.exists():
+            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+        else:
+            current_resume_book = resume_books.order_by('-date_created')[0]
+        if student in current_resume_book.students.all():
+            current_resume_book.students.remove(student)
+            data = {'action':employer_enums.REMOVED}  
+        else:
+            current_resume_book.students.add(student)
+            data = {'action':employer_enums.ADDED}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        return HttpResponseBadRequest("Student ID is missing.")
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@require_POST
 def employer_resume_book_current_add_students(request):
-    if request.method == "POST"():
-        if request.POST.has_key('student_ids'):
-            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-            if not resume_books.exists():
-                current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-            else:
-                current_resume_book = resume_books.order_by('-date_created')[0]
-            if request.POST['student_ids']:
-                for id in request.POST['student_ids'].split('~'):
-                    student = Student.objects.get(id=id)  
-                    if student not in current_resume_book.students.all():
-                        current_resume_book.students.add(student)
-            return HttpResponse()
+    if request.POST.has_key('student_ids'):
+        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+        if not resume_books.exists():
+            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
         else:
-            return HttpResponseBadRequest("Student IDs are missing.")
+            current_resume_book = resume_books.order_by('-date_created')[0]
+        if request.POST['student_ids']:
+            for id in request.POST['student_ids'].split('~'):
+                student = Student.objects.get(id=id)  
+                if student not in current_resume_book.students.all():
+                    current_resume_book.students.add(student)
+        return HttpResponse()
     else:
-        return HttpResponseForbidden("Request must be a POST.")
+        return HttpResponseBadRequest("Student IDs are missing.")
 
 @login_required
 @user_passes_test(is_recruiter)
+@require_POST
 def employer_resume_book_current_remove_students(request):
-    if request.method == "POST":
-        if request.POST.has_key('student_ids'):
-            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-            if not resume_books.exists():
-                current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-            else:
-                current_resume_book = resume_books.order_by('-date_created')[0]
-            if request.POST['student_ids']:
-                for student_id in request.POST['student_ids'].split('~'):
-                    student = Student.objects.get(id=student_id)  
-                    if student in current_resume_book.students.all():
-                        current_resume_book.students.remove(student)
-            return HttpResponse()
+    if request.POST.has_key('student_ids'):
+        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+        if not resume_books.exists():
+            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
         else:
-            return HttpResponseBadRequest("Student IDs are missing.")
+            current_resume_book = resume_books.order_by('-date_created')[0]
+        if request.POST['student_ids']:
+            for student_id in request.POST['student_ids'].split('~'):
+                student = Student.objects.get(id=student_id)  
+                if student in current_resume_book.students.all():
+                    current_resume_book.students.remove(student)
+        return HttpResponse()
     else:
-        return HttpResponseForbidden("Request must be a POST.")
+        return HttpResponseBadRequest("Student IDs are missing.")
 
 
 @login_required
@@ -392,17 +365,14 @@ def employer_students(request, extra_context=None):
 @user_passes_test(is_recruiter)
 @render_to('employer_resume_book_current_summary.html')
 def employer_resume_book_current_summary(request, extra_context=None):
-    if request.is_ajax():
-        context = {}
-        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-        if not resume_books.exists():
-            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-        else:
-            current_resume_book = resume_books.order_by('-date_created')[0]
-            context = {'resume_book': current_resume_book}
-            context.update(extra_context or {}) 
-        return context
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+    if not resume_books.exists():
+        current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    else:
+        current_resume_book = resume_books.order_by('-date_created')[0]
+    context = {'resume_book': current_resume_book}
+    context.update(extra_context or {}) 
+    return context
 
 
 @login_required

@@ -157,41 +157,31 @@ class ContactForm(forms.Form):
         super(ContactForm, self).__init__(data=data, files=files, *args, **kwargs)
         self.request = request
     
-    name = forms.CharField(max_length=100,
-                           widget=forms.TextInput(),
+    name = forms.CharField(max_length=100, widget=forms.TextInput(),
                            label=u'Your Name:')
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(maxlength=200)),
                              label=u'Your Email:')
     
-    body = forms.CharField(widget=forms.Textarea(),
-                              label=u'Message')
-    
+    body = forms.CharField(widget=forms.Textarea(), label=u'Message')
     from_email = settings.DEFAULT_FROM_EMAIL
-    
     recipient_list = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
-
     subject_template_name = "contact_us_form_subject.txt"
-    
     template_name = 'contact_us_form.txt'
-
     _context = None
     
     def message(self):
         """
         Renders the body of the message to a string.
-        
         """
         if callable(self.template_name):
             template_name = self.template_name()
         else:
             template_name = self.template_name
-        return loader.render_to_string(template_name,
-                                       self.get_context())
+        return loader.render_to_string(template_name, self.get_context())
     
     def subject(self):
         """
         Renders the subject of the message to a string.
-        
         """
         subject = loader.render_to_string(self.subject_template_name,
                                           self.get_context())
@@ -201,8 +191,7 @@ class ContactForm(forms.Form):
         if not self.is_valid():
             raise ValueError("Cannot generate Context from invalid contact form")
         if self._context is None:
-            self._context = RequestContext(self.request,
-                                           dict(self.cleaned_data,
+            self._context = RequestContext(self.request, dict(self.cleaned_data,
                                                 site=Site.objects.get_current()))
         return self._context
     
@@ -218,7 +207,6 @@ class ContactForm(forms.Form):
     def save(self, fail_silently=False): #@UnusedVariable
         """
         Builds and sends the email message.
-        
         """
         dictionary = self.get_message_dict()
         from django.core.mail import EmailMultiAlternatives
@@ -226,15 +214,12 @@ class ContactForm(forms.Form):
         msg.attach_alternative(dictionary['message'], 'text/html')
         msg.send() 
 
-
 class AkismetContactForm(ContactForm):
     """
     Contact form which doesn't add any extra fields, but does add an
-    Akismet spam check to the validation routine.
-    
+    Akismet spam check to the validation routine.    
     Requires the setting ``AKISMET_API_KEY``, which should be a valid
     Akismet API key.
-    
     """
     def clean(self):
         if 'body' in self.cleaned_data and getattr(settings, 'AKISMET_API_KEY', ''):
