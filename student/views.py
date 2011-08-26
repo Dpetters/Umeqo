@@ -13,10 +13,8 @@ from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm,\
-                            StudentRegistrationForm, StudentUpdateResumeForm,\
-                            StudentProfilePreviewForm, StudentProfileForm, \
-                            BetaStudentRegistrationForm
+from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm,\
+                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm
 from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -116,7 +114,6 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 @render_to("student_registration.html")
 def student_registration(request, backend = RegistrationBackend(), 
                          extra_context = None):
-    
     if s.INVITE_ONLY:
         form_class = BetaStudentRegistrationForm
     else:
@@ -127,7 +124,6 @@ def student_registration(request, backend = RegistrationBackend(),
         return redirect('student_registration_closed')
     
     if request.method == 'POST':
-        
         form = form_class(data=request.POST)
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
@@ -144,18 +140,19 @@ def student_registration(request, backend = RegistrationBackend(),
                     'success_url': reverse(success_url),
                     'email': form.cleaned_data['email']
                 }
-                return HttpResponse(simplejson.dumps(data), \
-                                    mimetype="application/json")
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             return redirect(success_url)
         else:
             if request.is_ajax():
                 data = {'valid':False, 'errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), \
-                                    mimetype="application/json")
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        form = form_class()
+        if s.INVITE_ONLY and request.GET.has_key("ic"):
+            form = form_class(initial={"invite_code":request.GET["ic"]})
+        else:
+            form = form_class()
     
-    context = { 'form':form, 'debug':s.DEBUG }
+    context = {'form':form, 'debug':s.DEBUG}
     context.update(extra_context or {}) 
     return context
 

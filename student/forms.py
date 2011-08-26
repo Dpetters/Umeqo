@@ -79,23 +79,19 @@ class StudentRegistrationForm(forms.Form):
                     raise forms.ValidationError(_(m.ldap_server_error))
                 except:
                     pass
-            if not res or (res[0] != None \
-                and res[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
+            if not res or (res[0] != None and res[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
                 raise forms.ValidationError(m.must_be_mit_student)
         return self.cleaned_data['email']
 
-
 class BetaStudentRegistrationForm(StudentRegistrationForm):
-    invite_code = forms.CharField(label="Invite Code:", \
-                                  widget=forms.TextInput(attrs={'tabindex':2}))
-    
+    invite_code = forms.CharField(label="Invite Code:", widget=forms.TextInput(attrs={'tabindex':2}))
+        
     def clean_invite_code(self):
         try:
             StudentInvite.objects.get(id=self.cleaned_data['invite_code'])
         except StudentInvite.DoesNotExist:
             raise forms.ValidationError(m.invalid_invite_code)
         return self.cleaned_data['invite_code']
-
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     

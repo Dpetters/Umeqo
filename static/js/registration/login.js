@@ -20,5 +20,4 @@ $(document).ready( function() {
             password: PASSWORD_REQUIRED_MESSAGE
         }
     });
-    //$("#login_form").valid();
 });

@@ -50,10 +50,8 @@ $(document).ready(function() {
                     },
                     success : function(data) {
                         if(data) {
-                            console.log("our suggestions");
                             $("#location_suggestions").html(data);
                         } else {
-                            console.log("google's suggestions");
                             if( typeof (geocoder) === "undefined") {
                                 geocoder = new google.maps.Geocoder();
                             }
@@ -177,7 +175,7 @@ $(document).ready(function() {
         var event_type = $("#id_type option:selected").text()
         if(event_type === "Hard Deadline" || event_type === "Rolling Deadline") {
             $('label[for=id_start_datetime_0]').removeClass('required');
-
+            $('#start_datetime_asterisk').hide();
             $("#event_form_header").html("New Deadline");
 
             $("#id_name").attr("placeholder", "Enter deadline name");
@@ -195,7 +193,7 @@ $(document).ready(function() {
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
             }
         } else {
-            $('label[for=id_start_datetime_0]').addClass('required');
+            $('label[for=id_start_datetime_0]').addClass('required').append("<span class='error'>*</span>");
             $("#start_datetime_wrapper select, #start_datetime_wrapper input").removeAttr('disabled');
             $("#start_datetime_wrapper").css("opacity", 1);
 

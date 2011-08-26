@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import absolute_import
+
 from django import forms
 from django.contrib.localflavor.us.forms import USPhoneNumberField
 from django.conf import settings as s
@@ -15,15 +18,12 @@ from ckeditor.widgets import CKEditorWidget
 decorate_bound_field()
 
 class EmployerProfileForm(forms.ModelForm):
-    # Required Fields
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
-    main_contact = forms.CharField(label="Main Contact:")
-    main_contact_email = forms.EmailField(label="Main Contact Email:")
-    
-    # Optional Fields
-    main_contact_phone = USPhoneNumberField(label="Main Contact Phone #:", required=False)
-    offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset = EmploymentType.objects.all(), required=False)
+    main_contact = forms.CharField("Main Contact:")
+    main_contact_email = forms.EmailField("Main Contact Email:")
+    main_contact_phone = USPhoneNumberField("Main Contact Phone #:", required=False)
+    offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset=EmploymentType.objects.all(), required=False)
     website = forms.URLField(label="Careers Website:", required=False)
     
     class Meta:
@@ -40,21 +40,17 @@ class EmployerProfileForm(forms.ModelForm):
         if len(self.cleaned_data.get("industries")) > s.EP_MAX_INDUSTRIES:
             raise forms.ValidationError(_(m.max_industries_exceeded))
         return self.cleaned_data['industries']
-    
 
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
     name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
     emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)
-
         
 class StudentSearchForm(forms.Form):
     query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))
-
-
+    
 class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
     older_than_21 = forms.ChoiceField(label="Must be older than 21:", choices = NO_YES_CHOICES, required = False)
-
     gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
     act = forms.IntegerField(label="Minimum ACT:", max_value = 36, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
     sat_t = forms.IntegerField(label="Minimum SAT:", max_value = 2400, min_value = 600, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
@@ -81,8 +77,7 @@ class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
                    'older_than_21'
                     )
         model = StudentFilteringParameters
-    
-    
+
 class StudentFilteringForm(StudentDefaultFilteringParametersForm):
     ordering = forms.ChoiceField(label="Order Results By:", choices = employer_enums.ORDERING_CHOICES, required = False)
     results_per_page = forms.ChoiceField(label="Results Per Page:", choices = employer_enums.RESULTS_PER_PAGE_CHOICES, required = False)
@@ -90,7 +85,6 @@ class StudentFilteringForm(StudentDefaultFilteringParametersForm):
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)
         self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(kwargs.get('initial').get('employer_id', '')))
-
 
 class RecruiterPreferencesForm(forms.ModelForm):
     default_student_result_ordering = forms.ChoiceField(label="Default Student Result Ordering:", choices = employer_enums.ORDERING_CHOICES, required = False)

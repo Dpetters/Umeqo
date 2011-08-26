@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import absolute_import
+
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
@@ -97,12 +100,12 @@ urlpatterns += patterns('student.views',
     (r'^student/resume/$', 'student_resume', {}, 'student_resume'),
 )
 urlpatterns += patterns('employer.views',
-    (r'^employer/signup/$', 'employer_registration', {'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
+    (r'^employer/signup/$', direct_to_template, {'template': 'employer_registration.html', 'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     (r'^employer/account/$', 'employer_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'employer_account'),
     (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),
     (r'^employer/profile/$', 'employer_profile', {}, "employer_profile"),
-    (r'^employer/students/*$', 'employer_students', {}, 'employer_students'),
-    (r'^employer/students/default-filtering/$', 'employer_students_default_filtering', {}, 'employer_students_default_filtering'),
+    (r'^employer/students/$', 'employer_students', {}, 'employer_students'),
+    (r'^employer/students/default_filtering/', 'employer_students_default_filtering', {}, 'employer_students_default_filtering'),
     (r'^employer/students/toggle-star/$', 'employer_student_toggle_star', {}, 'employer_student_toggle_star'),    
     (r'^employer/students/add-star/$', 'employer_students_add_star', {}, 'employer_students_add_star'),   
     (r'^employer/students/remove-star/$', 'employer_students_remove_star', {}, 'employer_students_remove_star'),    

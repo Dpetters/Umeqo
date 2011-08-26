@@ -1,7 +1,9 @@
+from __future__ import division
+from __future__ import absolute_import
+
 from django.contrib import admin
 
-from student.models import Student, StudentPreferences, StudentStatistics, \
-                            StudentInvite, StudentDeactivation
+from student.models import Student, StudentPreferences, StudentStatistics, StudentInvite, StudentDeactivation
 
 class StudentAdmin(admin.ModelAdmin):
     pass
