@@ -1,220 +1,38 @@
 [
  {
-  "pk": 1, 
+  "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 12, 
-   "start_datetime": "2011-10-01 06:00:00", 
-   "audience": [
-    1, 
-    2, 
-    3, 
-    4, 
-    5, 
-    6
-   ], 
-   "attending_employers": [], 
-   "name": "Quora Hackathon", 
-   "is_public": false, 
-   "description": "<p>\r\n\tIn the Bay Area for the summer? Feel there is not enough hacking in your life? Enjoyed the awesome Hackleberry Finn? Then come to Fear and Hacking in Palo Alto, SIPB&#39;s second Bay Area Hackathon!</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.090567859999993, 
-   "latitude": 42.361612839999999, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-10-02 00:00:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-08-02 19:06:49", 
-   "type": 1, 
-   "slug": "quora-hackathon", 
-   "location": "Ray and Maria Stata Center (Building 32)"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 14, 
-   "start_datetime": "2011-11-02 19:30:00", 
+   "view_count": 0, 
+   "start_datetime": "2011-12-01 00:00:00", 
    "audience": [], 
    "attending_employers": [], 
-   "name": "Fortune 500 Panel", 
-   "is_public": false, 
-   "description": "<p>\r\n\tIf you are interested in the ins-and-outs of Fortune 500 companies, then join us for a panel-style discussion!</p>\r\n", 
+   "name": "Umeqo Launch", 
+   "is_public": true, 
+   "description": "<p>\r\n\tThis is an example of what employer events will look like!</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": -71.098349690000006, 
-   "latitude": 42.350392990000003, 
+   "longitude": -71.098124330000005, 
+   "latitude": 42.355969399999999, 
    "edits": [], 
    "is_drop": false, 
-   "end_datetime": "2011-11-02 21:30:00", 
-   "rsvp_message": "", 
+   "end_datetime": "2011-12-01 13:30:00", 
+   "rsvp_message": "Bring your party hats!", 
    "owner": 3, 
-   "date_created": "2011-08-02 19:06:49", 
-   "type": 3, 
-   "slug": "fortune-500-panel", 
-   "location": "Student House"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 10, 
-   "start_datetime": "2011-08-02 15:30:00", 
-   "audience": [], 
-   "attending_employers": [], 
-   "name": "Sample Event #3", 
-   "is_public": false, 
-   "description": "<p>\r\n\they</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.088658510000002, 
-   "latitude": 42.359235609999999, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-08-09 22:00:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-08-02 21:23:01", 
-   "type": 1, 
-   "slug": "sample-event-3", 
-   "location": "Walker Lawn"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 3, 
-   "start_datetime": "2011-08-02 16:00:00", 
-   "audience": [], 
-   "attending_employers": [], 
-   "name": "Sample Event", 
-   "is_public": false, 
-   "description": "<p>\r\n\tHello</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.087286160000005, 
-   "latitude": 42.362204339999998, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-08-03 22:00:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-08-02 22:50:06", 
-   "type": 1, 
-   "slug": "sample-event", 
-   "location": "The Kendall Hotel"
+   "date_created": "2011-08-27 12:48:16", 
+   "type": 5, 
+   "slug": "umeqo-launch", 
+   "location": "Burton-Conner House"
   }
  }, 
  {
   "pk": 5, 
-  "model": "events.event", 
+  "model": "employer.employerstatistics", 
   "fields": {
-   "view_count": 1, 
-   "start_datetime": null, 
-   "audience": [], 
-   "attending_employers": [], 
-   "name": "Hi", 
-   "is_public": false, 
-   "description": "<h1>\r\n\tThis is going to be an awesome event<a href=\"http://facebook.com\">http://facebook.com</a></h1>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-08-03 16:00:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-08-03 01:27:02", 
-   "type": 2, 
-   "slug": "hi", 
-   "location": ""
-  }
- }, 
- {
-  "pk": 13, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": false, 
-   "event": 3, 
-   "student": 1, 
-   "datetime_created": "2011-08-09 21:10:18"
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-08-26 21:38:42", 
-   "event": 1, 
-   "student": 5
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-08-26 21:41:26", 
-   "event": 1, 
-   "student": 1
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-08-26 21:54:56", 
-   "event": 2, 
-   "student": 1
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "events.attendee", 
-  "fields": {
-   "event": 1, 
-   "datetime_created": "2011-07-16 15:32:42", 
-   "email": "student1@umeqo.com", 
-   "student": 1, 
-   "name": "Dmitrij Petters"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.attendee", 
-  "fields": {
-   "event": 1, 
-   "datetime_created": "2011-07-16 15:32:53", 
-   "email": "student2@umeqo.com", 
-   "student": 2, 
-   "name": "Hrishikesh Joshi"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "events.attendee", 
-  "fields": {
-   "event": 1, 
-   "datetime_created": "2011-07-16 15:33:06", 
-   "email": "dpetters@mit.edu", 
-   "student": null, 
-   "name": "Dmitrij Petters"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "events.attendee", 
-  "fields": {
-   "event": 2, 
-   "datetime_created": "2011-07-19 13:15:32", 
-   "email": "feaf@gmail.com", 
-   "student": null, 
-   "name": "Hel"
+   "date_created": "2011-08-27 12:24:42", 
+   "last_updated": "2011-08-27 12:24:42", 
+   "resumes_viewed": 0, 
+   "employer": 6
   }
  }, 
  {
@@ -610,40 +428,6 @@
   }
  }, 
  {
-  "pk": 9, 
-  "model": "student.student", 
-  "fields": {
-   "last_name": "Petters", 
-   "last_updated": "2011-08-27 03:21:09", 
-   "sat_m": null, 
-   "graduation_month": "1", 
-   "older_than_21": "", 
-   "sat_t": null, 
-   "sat_v": null, 
-   "sat_w": null, 
-   "keywords": "", 
-   "looking_for": [], 
-   "countries_of_citizenship": [], 
-   "first_name": "Dmitrij", 
-   "first_major": 3, 
-   "subscriptions": [], 
-   "gpa": "3.400", 
-   "campus_involvement": [], 
-   "languages": [], 
-   "profile_created": true, 
-   "school_year": 2, 
-   "graduation_year": 5, 
-   "previous_employers": [], 
-   "website": "", 
-   "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-08-27-03-21-09.pdf", 
-   "user": 15, 
-   "industries_of_interest": [], 
-   "act": null, 
-   "date_created": "2011-08-27 03:19:27"
-  }
- }, 
- {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -701,18 +485,6 @@
    "email_on_invite_to_public_event": false, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "student.studentpreferences", 
-  "fields": {
-   "email_on_new_subscribed_employer_event": false, 
-   "last_updated": "2011-08-27 03:19:27", 
-   "email_on_invite_to_private_event": false, 
-   "email_on_invite_to_public_event": false, 
-   "student": 9, 
-   "date_created": "2011-08-27 03:19:27"
   }
  }, 
  {
@@ -781,31 +553,6 @@
   }
  }, 
  {
-  "pk": 9, 
-  "model": "student.studentstatistics", 
-  "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-08-27 03:19:27", 
-   "event_invite_count": 0, 
-   "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
-   "student": 9, 
-   "date_created": "2011-08-27 03:19:27"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "student.studentinvite", 
-  "fields": {
-   "used": true, 
-   "last_updated": "2011-08-27 03:19:27", 
-   "code": "ggggg", 
-   "owner": null, 
-   "date_created": "2011-08-27 03:18:20", 
-   "recipient": 9
-  }
- }, 
- {
   "pk": 1, 
   "model": "auth.user", 
   "fields": {
@@ -845,17 +592,17 @@
   "pk": 3, 
   "model": "auth.user", 
   "fields": {
-   "username": "recruiter1@umeqo.com", 
-   "first_name": "Lauren", 
-   "last_name": "Laver", 
+   "username": "potter@umeqo.com", 
+   "first_name": "Harry", 
+   "last_name": "Potter", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 02:48:53", 
+   "last_login": "2011-08-27 12:42:39", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$c958f$e7322772f54c5731c1d9e6502f6816cb965fba1a", 
-   "email": "recruiter1@umeqo.com", 
+   "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
+   "email": "potter@umeqo.com", 
    "date_joined": "2011-07-07 22:03:05"
   }
  }, 
@@ -1004,24 +751,6 @@
   }
  }, 
  {
-  "pk": 15, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "dpetters@mit.edu", 
-   "first_name": "", 
-   "last_name": "", 
-   "is_active": true, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-08-27 03:19:38", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$d0194$069b64d4d895ee242cc5e10fa61c70290426cebe", 
-   "email": "dpetters@mit.edu", 
-   "date_joined": "2011-08-27 03:19:25"
-  }
- }, 
- {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -1108,15 +837,6 @@
   "fields": {
    "is_verified": true, 
    "user": 11, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 14, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "is_verified": false, 
-   "user": 15, 
    "last_password_change_date": null
   }
  }, 
@@ -2241,13 +1961,13 @@
   }
  }, 
  {
-  "pk": 207, 
+  "pk": 215, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-27 03:19:38", 
-   "session_key": "45be626176df88fdaa4af0f621c201ce", 
-   "last_updated": "2011-08-27 03:19:38", 
-   "user": 15
+   "date_created": "2011-08-27 12:42:39", 
+   "session_key": "89857bf10f1840febf4a44633683f6c2", 
+   "last_updated": "2011-08-27 12:42:39", 
+   "user": 3
   }
  }, 
  {
@@ -2328,14 +2048,6 @@
    "session_key": "5c10eeeec05390e2bfa99a8e3f747c55", 
    "last_updated": "2011-08-27 12:08:29", 
    "user": 1
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "registration.registrationprofile", 
-  "fields": {
-   "activation_key": "ALREADY_ACTIVATED", 
-   "user": 15
   }
  }
 ]
