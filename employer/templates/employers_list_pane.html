@@ -32,7 +32,7 @@
     {% endif %}
 </div>
 
-<div class="description">{{employer.description}}</div>
+<div class="description">{{employer.description|safe}}</div>
 <h2>Upcoming Events</h2>
 <ul class="event_list editable_event_list">
     {% for event in events %}

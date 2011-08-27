@@ -290,7 +290,7 @@ def event_undrop(request, event_id):
 @user_passes_test(is_campus_org_or_recruiter)
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
-    event = Event.objects.get(pk=id)
+    event = Event.objects.get(pk=event_id)
     if request.method == 'GET':
         attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
         return HttpResponse(simplejson.dumps(attendees), mimetype="application/json")

@@ -190,6 +190,9 @@ def clear_login_attempts(sender, request, user, **kwargs):
 
 @receiver(post_save, sender=User)
 def send_first_notice(sender, instance, created, raw, **kwargs):
-    if created and is_student(sender):
-        event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
-        notify_about_event(event, 'new_event')
+    if created and is_student(sender) and not raw:
+        try:
+            event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
+            notify_about_event(event, 'new_event')
+        except Event.DoesNotExist:
+            pass

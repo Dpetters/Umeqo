@@ -8,12 +8,6 @@ PASSWORD_MIN_LENGTH = 5
 # How long do we allow dialogs to load for before showing "this is taking longer
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000
-# Students need an invite code to register
-INVITE_ONLY = True
-# Base page is the landing page
-USE_LANDING_PAGE = True
-# Can students register?
-REGISTRATION_OPEN = True
 # One-day activation window
 ACCOUNT_ACTIVATION_DAYS = 1
 

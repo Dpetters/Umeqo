@@ -126,17 +126,14 @@ def student_registration(request, backend = RegistrationBackend(),
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
-            invite = StudentInvite.objects.get(code=form.cleaned_data['invite_code'])
-            invite.used = True
-            invite.save()
-            
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
             student = Student(user=new_user)
             student.save()
             if s.INVITE_ONLY:
-                i=StudentInvite.objects.get(id=form.cleaned_data['invite_code'])
+                i=StudentInvite.objects.get(code=form.cleaned_data['invite_code'])
                 i.recipient = student
+                i.used = True
                 i.save()
             if request.is_ajax():
                 data = {
@@ -196,10 +193,11 @@ def student_profile(request,
                 elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
                     data = {'valid':False}
                     data['unparsable_resume'] = True
-            if data['valid'] and data['unparsable_resume']:
+            if data['valid'] and not data['unparsable_resume']:
                 student.profile_created = True
                 student.save()
         else:
+            print form.errors
             data = {'valid':False,
                     'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
