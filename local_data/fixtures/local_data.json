@@ -698,71 +698,37 @@
   }
  }, 
  {
-  "pk": 7, 
-  "model": "student.student", 
-  "fields": {
-   "last_name": null, 
-   "last_updated": "2011-08-27 02:18:05", 
-   "sat_m": null, 
-   "graduation_month": "4", 
-   "older_than_21": null, 
-   "sat_t": null, 
-   "sat_v": null, 
-   "sat_w": null, 
-   "keywords": null, 
-   "looking_for": [], 
-   "countries_of_citizenship": [], 
-   "first_name": null, 
-   "first_major": null, 
-   "subscriptions": [], 
-   "gpa": null, 
-   "campus_involvement": [], 
-   "languages": [], 
-   "profile_created": false, 
-   "school_year": null, 
-   "graduation_year": null, 
-   "previous_employers": [], 
-   "website": null, 
-   "second_major": null, 
-   "resume": "", 
-   "user": 13, 
-   "industries_of_interest": [], 
-   "act": null, 
-   "date_created": "2011-08-27 02:18:05"
-  }
- }, 
- {
-  "pk": 8, 
+  "pk": 9, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-27 02:22:55", 
+   "last_updated": "2011-08-27 03:21:09", 
    "sat_m": null, 
-   "graduation_month": "6", 
+   "graduation_month": "1", 
    "older_than_21": "", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
-   "keywords": " principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further reform years beyond accession treaties merely principal treaties based treaty european union teu maastricht treaty effective treaty functioning european union tfeu rome treaty effective treaties plus attached protocols declarations altered amending treaties decade into latest being treaty lisbon into lisbon charter fundamental rights legally binding not treaty per troubled ratification lisbon climate further", 
+   "keywords": "", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "Dmitrij", 
-   "first_major": 26, 
+   "first_major": 3, 
    "subscriptions": [], 
-   "gpa": "3.450", 
+   "gpa": "3.400", 
    "campus_involvement": [], 
    "languages": [], 
-   "profile_created": false, 
+   "profile_created": true, 
    "school_year": 2, 
-   "graduation_year": 2, 
+   "graduation_year": 5, 
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dmitrij@umeqo.com_2011-08-27-02-22-54.pdf", 
-   "user": 14, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-08-27-03-21-09.pdf", 
+   "user": 15, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-08-27 02:21:46"
+   "date_created": "2011-08-27 03:19:27"
   }
  }, 
  {
@@ -826,27 +792,15 @@
   }
  }, 
  {
-  "pk": 7, 
+  "pk": 9, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": false, 
-   "last_updated": "2011-08-27 02:18:05", 
+   "last_updated": "2011-08-27 03:19:27", 
    "email_on_invite_to_private_event": false, 
    "email_on_invite_to_public_event": false, 
-   "student": 7, 
-   "date_created": "2011-08-27 02:18:05"
-  }
- }, 
- {
-  "pk": 8, 
-  "model": "student.studentpreferences", 
-  "fields": {
-   "email_on_new_subscribed_employer_event": false, 
-   "last_updated": "2011-08-27 02:21:46", 
-   "email_on_invite_to_private_event": false, 
-   "email_on_invite_to_public_event": false, 
-   "student": 8, 
-   "date_created": "2011-08-27 02:21:46"
+   "student": 9, 
+   "date_created": "2011-08-27 03:19:27"
   }
  }, 
  {
@@ -915,41 +869,28 @@
   }
  }, 
  {
-  "pk": 7, 
+  "pk": 9, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-08-27 02:18:05", 
+   "last_updated": "2011-08-27 03:19:27", 
    "event_invite_count": 0, 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 7, 
-   "date_created": "2011-08-27 02:18:05"
+   "student": 9, 
+   "date_created": "2011-08-27 03:19:27"
   }
  }, 
  {
-  "pk": 8, 
-  "model": "student.studentstatistics", 
-  "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-08-27 02:21:46", 
-   "event_invite_count": 0, 
-   "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
-   "student": 8, 
-   "date_created": "2011-08-27 02:21:46"
-  }
- }, 
- {
-  "pk": 1, 
+  "pk": 2, 
   "model": "student.studentinvite", 
   "fields": {
    "used": true, 
-   "last_updated": "2011-08-27 02:21:46", 
+   "last_updated": "2011-08-27 03:19:27", 
    "code": "ggggg", 
-   "owner": 1, 
-   "date_created": "2011-08-27 01:46:30", 
-   "recipient": 8
+   "owner": null, 
+   "date_created": "2011-08-27 03:18:20", 
+   "recipient": 9
   }
  }, 
  {
@@ -962,7 +903,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-27 02:20:59", 
+   "last_login": "2011-08-27 08:55:53", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -980,7 +921,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 02:19:27", 
+   "last_login": "2011-08-27 09:07:48", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1151,39 +1092,21 @@
   }
  }, 
  {
-  "pk": 13, 
+  "pk": 15, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
    "first_name": "", 
    "last_name": "", 
-   "is_active": false, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-08-27 02:18:02", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$7b09a$fab83529b85eee6d3293c6cad44b06568c856cbb", 
-   "email": "dpetters@mit.edu", 
-   "date_joined": "2011-08-27 02:18:02"
-  }
- }, 
- {
-  "pk": 14, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "dmitrij@umeqo.com", 
-   "first_name": "", 
-   "last_name": "", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 02:22:02", 
+   "last_login": "2011-08-27 03:19:38", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$cf868$f455c3d6832ccf5e634f8be3ec53b9761864f5da", 
-   "email": "dmitrij@umeqo.com", 
-   "date_joined": "2011-08-27 02:21:45"
+   "password": "sha1$d0194$069b64d4d895ee242cc5e10fa61c70290426cebe", 
+   "email": "dpetters@mit.edu", 
+   "date_joined": "2011-08-27 03:19:25"
   }
  }, 
  {
@@ -1277,20 +1200,11 @@
   }
  }, 
  {
-  "pk": 12, 
+  "pk": 14, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": false, 
-   "user": 13, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 13, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "is_verified": false, 
-   "user": 14, 
+   "user": 15, 
    "last_password_change_date": null
   }
  }, 
@@ -2415,13 +2329,13 @@
   }
  }, 
  {
-  "pk": 204, 
+  "pk": 207, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-27 02:22:02", 
-   "session_key": "dbe0b11d58f40a6f11e1a81a41167764", 
-   "last_updated": "2011-08-27 02:22:02", 
-   "user": 14
+   "date_created": "2011-08-27 03:19:38", 
+   "session_key": "45be626176df88fdaa4af0f621c201ce", 
+   "last_updated": "2011-08-27 03:19:38", 
+   "user": 15
   }
  }, 
  {
@@ -2435,19 +2349,51 @@
   }
  }, 
  {
-  "pk": 2, 
-  "model": "registration.registrationprofile", 
+  "pk": 206, 
+  "model": "registration.sessionkey", 
   "fields": {
-   "activation_key": "bad10d3071550191454a3bee790e707c7687f8f0", 
-   "user": 13
+   "date_created": "2011-08-27 03:17:49", 
+   "session_key": "5a225abbe5e91d4cd9a9fc1c286543c4", 
+   "last_updated": "2011-08-27 03:17:49", 
+   "user": 1
   }
  }, 
  {
-  "pk": 3, 
+  "pk": 209, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 08:55:53", 
+   "session_key": "f849284d5d2829e4c1050238e516e813", 
+   "last_updated": "2011-08-27 08:55:53", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 210, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 09:00:28", 
+   "session_key": "58891af7827b74fee4fb204bfead05a6", 
+   "last_updated": "2011-08-27 09:00:28", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 211, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 09:07:48", 
+   "session_key": "f02565371be8be8402d49431b9d7d471", 
+   "last_updated": "2011-08-27 09:07:48", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 4, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 14
+   "user": 15
   }
  }
 ]
