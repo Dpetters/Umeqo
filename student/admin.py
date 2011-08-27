@@ -10,8 +10,8 @@ class StudentAdmin(admin.ModelAdmin):
 admin.site.register(Student, StudentAdmin)
 
 class StudentInviteAdmin(admin.ModelAdmin):
-    fields = ['owner', 'id']
-    list_display = ('id', 'owner', 'recipient', 'last_updated')
+    fields = ['owner', 'code', 'used']
+    list_display = ('code', 'owner', 'recipient', 'used', 'last_updated')
     date_hierarchy = 'last_updated'
 admin.site.register(StudentInvite, StudentInviteAdmin)
 
