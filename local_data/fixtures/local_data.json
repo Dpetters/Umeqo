@@ -62,7 +62,7 @@
   "pk": 3, 
   "model": "events.event", 
   "fields": {
-   "view_count": 8, 
+   "view_count": 10, 
    "start_datetime": "2011-08-02 15:30:00", 
    "audience": [], 
    "attending_employers": [], 
@@ -698,13 +698,47 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 7, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": null, 
+   "last_updated": "2011-08-27 02:18:05", 
+   "sat_m": null, 
+   "graduation_month": "4", 
+   "older_than_21": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": null, 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": null, 
+   "first_major": null, 
+   "subscriptions": [], 
+   "gpa": null, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": false, 
+   "school_year": null, 
+   "graduation_year": null, 
+   "previous_employers": [], 
+   "website": null, 
+   "second_major": null, 
+   "resume": "", 
+   "user": 13, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-08-27 02:18:05"
+  }
+ }, 
+ {
+  "pk": 8, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-27 01:50:59", 
+   "last_updated": "2011-08-27 02:22:55", 
    "sat_m": null, 
-   "graduation_month": "4", 
+   "graduation_month": "6", 
    "older_than_21": "", 
    "sat_t": null, 
    "sat_v": null, 
@@ -713,9 +747,9 @@
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "Dmitrij", 
-   "first_major": 12, 
+   "first_major": 26, 
    "subscriptions": [], 
-   "gpa": "4.500", 
+   "gpa": "3.450", 
    "campus_involvement": [], 
    "languages": [], 
    "profile_created": false, 
@@ -724,11 +758,11 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-08-27-01-50-59.pdf", 
-   "user": 12, 
+   "resume": "student/student/petters_dmitrij_dmitrij@umeqo.com_2011-08-27-02-22-54.pdf", 
+   "user": 14, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-08-27 01:49:18"
+   "date_created": "2011-08-27 02:21:46"
   }
  }, 
  {
@@ -792,15 +826,27 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 7, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": false, 
-   "last_updated": "2011-08-27 01:49:18", 
+   "last_updated": "2011-08-27 02:18:05", 
    "email_on_invite_to_private_event": false, 
    "email_on_invite_to_public_event": false, 
-   "student": 6, 
-   "date_created": "2011-08-27 01:49:18"
+   "student": 7, 
+   "date_created": "2011-08-27 02:18:05"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": false, 
+   "last_updated": "2011-08-27 02:21:46", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 8, 
+   "date_created": "2011-08-27 02:21:46"
   }
  }, 
  {
@@ -869,16 +915,29 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 7, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-08-27 01:49:18", 
+   "last_updated": "2011-08-27 02:18:05", 
    "event_invite_count": 0, 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 6, 
-   "date_created": "2011-08-27 01:49:18"
+   "student": 7, 
+   "date_created": "2011-08-27 02:18:05"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-08-27 02:21:46", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 8, 
+   "date_created": "2011-08-27 02:21:46"
   }
  }, 
  {
@@ -886,11 +945,11 @@
   "model": "student.studentinvite", 
   "fields": {
    "used": true, 
-   "last_updated": "2011-08-27 01:49:15", 
+   "last_updated": "2011-08-27 02:21:46", 
    "code": "ggggg", 
    "owner": 1, 
    "date_created": "2011-08-27 01:46:30", 
-   "recipient": null
+   "recipient": 8
   }
  }, 
  {
@@ -903,11 +962,11 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-27 01:57:34", 
+   "last_login": "2011-08-27 02:20:59", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
-   "email": "umeqo@mit.edu", 
+   "email": "", 
    "date_joined": "2011-05-22 19:39:52"
   }
  }, 
@@ -921,7 +980,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-26 21:40:25", 
+   "last_login": "2011-08-27 02:19:27", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -939,7 +998,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 01:37:51", 
+   "last_login": "2011-08-27 02:48:53", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$c958f$e7322772f54c5731c1d9e6502f6816cb965fba1a", 
@@ -1092,21 +1151,39 @@
   }
  }, 
  {
-  "pk": 12, 
+  "pk": 13, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
    "first_name": "", 
    "last_name": "", 
+   "is_active": false, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-08-27 02:18:02", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$7b09a$fab83529b85eee6d3293c6cad44b06568c856cbb", 
+   "email": "dpetters@mit.edu", 
+   "date_joined": "2011-08-27 02:18:02"
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "dmitrij@umeqo.com", 
+   "first_name": "", 
+   "last_name": "", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 01:50:00", 
+   "last_login": "2011-08-27 02:22:02", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$a86d2$3b51a1aef953d739fbeaaf04dc8fecd5faeee4d3", 
-   "email": "dpetters@mit.edu", 
-   "date_joined": "2011-08-27 01:49:15"
+   "password": "sha1$cf868$f455c3d6832ccf5e634f8be3ec53b9761864f5da", 
+   "email": "dmitrij@umeqo.com", 
+   "date_joined": "2011-08-27 02:21:45"
   }
  }, 
  {
@@ -1200,11 +1277,20 @@
   }
  }, 
  {
-  "pk": 11, 
+  "pk": 12, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": false, 
-   "user": 12, 
+   "user": 13, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": false, 
+   "user": 14, 
    "last_password_change_date": null
   }
  }, 
@@ -2299,13 +2385,13 @@
   }
  }, 
  {
-  "pk": 199, 
+  "pk": 202, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-27 01:50:00", 
-   "session_key": "95252db52d22e30b4e6eff7bafce00f8", 
-   "last_updated": "2011-08-27 01:50:00", 
-   "user": 12
+   "date_created": "2011-08-27 02:19:27", 
+   "session_key": "758e4e86b23b6aa1e0efa184aa381b4f", 
+   "last_updated": "2011-08-27 02:19:27", 
+   "user": 2
   }
  }, 
  {
@@ -2319,11 +2405,49 @@
   }
  }, 
  {
-  "pk": 1, 
+  "pk": 203, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 02:20:59", 
+   "session_key": "6353acd2063cdf6d1745195b8e629b40", 
+   "last_updated": "2011-08-27 02:20:59", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 204, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 02:22:02", 
+   "session_key": "dbe0b11d58f40a6f11e1a81a41167764", 
+   "last_updated": "2011-08-27 02:22:02", 
+   "user": 14
+  }
+ }, 
+ {
+  "pk": 205, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 02:48:53", 
+   "session_key": "7dff13dba8b09d78594a872aa47eb9c8", 
+   "last_updated": "2011-08-27 02:48:53", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "bad10d3071550191454a3bee790e707c7687f8f0", 
+   "user": 13
+  }
+ }, 
+ {
+  "pk": 3, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 12
+   "user": 14
   }
  }
 ]
