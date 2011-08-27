@@ -1,4 +1,64 @@
 $(document).ready( function() {
+    
+    function load_profile_preview(){
+        var required_fields_filled_out = true;
+        $("label.required").each(function(){
+            required_fields_filled_out = required_fields_filled_out && $("#" + $(this).attr("for")).val();
+        });
+        if(required_fields_filled_out){
+            if ($("#profile_form").valid()){
+                var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
+                $("#profile_form").ajaxSubmit({
+                    type:"POST",
+                    dataType: "html",
+                    url: PROFILE_PREVIEW_URL,
+                    iframe: false,
+                    complete: function(jqXHR, textStatus) {
+                        clearTimeout(profile_preview_timeout);
+                    },
+                    error: errors_in_message_area_handler,
+                    success: function (data) { 
+                        $("#student_profile_preview").html(data);
+                        $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
+                        
+                        $(".resume_book_current_toggle_student").hover(function(){
+                            $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");    
+                        }, function(){
+                            $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");     
+                        }).tipsy({'gravity':'e', opacity: 0.9, title:function(){return resume_book_current_toggle_tooltip;}, html:true});
+                        
+                        $(".student_toggle_star").hover(function(){
+                            $($(this).children()[0]).removeClass("sprite-star-empty").addClass("sprite-star");    
+                        }, function(){
+                            $($(this).children()[0]).removeClass("sprite-star").addClass("sprite-star-empty");   
+                        }).tipsy({'gravity':'e', opacity: 0.9, fallback:star_toggle_tooltip, html:true});
+                        
+                        $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:event_attendance_tooltip, html:true});
+                        
+                        if (student_detailed_info_visible){
+                            $(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
+                            $(".student_detailed_info").show();
+                        }else{
+                            $(".student_detailed_info").hide();
+                        }
+                        
+                        $(".student_invite_to_event_link").tipsy({'gravity':'e', opacity: 0.9, fallback:invite_to_event_tooltip, html:true});
+                        
+                        $(".student_resume_link").tipsy({'gravity':'e', opacity: 0.9, fallback:view_resume_tooltip, html:true});
+                        
+                        $(".student_comment").autoResize({
+                            animateDuration : 0,
+                            extraSpace : 18
+                        });
+                    }
+                });
+            }
+        }else{
+            clearTimeout(profile_preview_timeout);
+            $("#student_profile_preview").html(FILL_OUT_REQUIRED_FIELDS_MESSAGE);
+        }
+    };
+    
     v = $("#profile_form").validate({
         submitHandler: function (form) {
             $(form).ajaxSubmit({
@@ -128,7 +188,7 @@ $(document).ready( function() {
     // JQuery validation doesn't respond to the change event
     $("#id_resume").change( function() {
         v.element("#id_resume");
-    });  
+    });
     
     $("#id_gpa").blur(function(){
         $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
@@ -138,18 +198,21 @@ $(document).ready( function() {
     if($("#id_gpa").val()){
         $("#id_gpa").val(formatNumber($("#id_gpa").val(),2,' ','.','','','-','').toString());
     }
-    
-    // Back buttons do not need to run validation
+    // The setup of the mask MUST come after the formating of the number above
+    $("#id_gpa").mask("9.99",{placeholder:" "});
+        
     $("#pg2 .open0").click( function() {
-        accordion.accordion("activate", 0);
-        current = 0;
+        if (v.form()) {
+            accordion.accordion("activate", 0);
+            current = 0;
+        }
     });
     $("#pg3 .open1").click( function() {
-        accordion.accordion("activate", 1);
-        current = 1;
+        if (v.form()) {
+            accordion.accordion("activate", 1);
+            current = 1;
+        }
     });
-    
-    // Next buttons need to run validation
     $("#pg2 .open2").click( function() {
         if (v.form()) {
             accordion.accordion("activate", 2);
@@ -162,73 +225,8 @@ $(document).ready( function() {
             current = 1;
         }
     });
-    
-    $("#id_gpa").mask("9.99",{placeholder:" "});
-    
-    function load_profile_preview(){
-        var required_fields_filled_out = true;
-        $("label.required").each(function(){
-            required_fields_filled_out = required_fields_filled_out && $("#" + $(this).attr("for")).val();
-        });
-        if(required_fields_filled_out){
-            if ($("#profile_form").valid()){
-                var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
-                $("#profile_form").ajaxSubmit({
-                    type:"POST",
-                    dataType: "html",
-                    url: PROFILE_PREVIEW_URL,
-                    iframe: false,
-                    complete: function(jqXHR, textStatus) {
-                        clearTimeout(profile_preview_timeout);
-                    },
-                    error: errors_in_message_area_handler,
-                    success: function (data) { 
-                        $("#student_profile_preview").html(data);
-                        $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
-                        
-                        $(".resume_book_current_toggle_student").hover(function(){
-                            $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");    
-                        }, function(){
-                            $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");     
-                        }).tipsy({'gravity':'e', opacity: 0.9, title:function(){return resume_book_current_toggle_tooltip;}, html:true});
-                        
-                        $(".student_toggle_star").hover(function(){
-                            $($(this).children()[0]).removeClass("sprite-star-empty").addClass("sprite-star");    
-                        }, function(){
-                            $($(this).children()[0]).removeClass("sprite-star").addClass("sprite-star-empty");   
-                        }).tipsy({'gravity':'e', opacity: 0.9, fallback:star_toggle_tooltip, html:true});
-                        
-                        $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:event_attendance_tooltip, html:true});
-                        
-                        if (student_detailed_info_visible){
-                            $(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
-                            $(".student_detailed_info").show();
-                        }else{
-                            $(".student_detailed_info").hide();
-                        }
-                        
-                        $(".student_invite_to_event_link").tipsy({'gravity':'e', opacity: 0.9, fallback:invite_to_event_tooltip, html:true});
-                        
-                        $(".student_resume_link").tipsy({'gravity':'e', opacity: 0.9, fallback:view_resume_tooltip, html:true});
-                        
-                        $(".student_comment").autoResize({
-                            animateDuration : 0,
-                            extraSpace : 18
-                        });
-                    }
-                });
-            }else{
-                $("#student_profile_preview").html(data);
-            }
-        }else{
-            clearTimeout(profile_preview_timeout);
-            $("#student_profile_preview").html(FILL_OUT_REQUIRED_FIELDS_MESSAGE);
-        }
-    };
-    $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
-    
+   
     $("#profile_form select, #profile_form input[type=file]").live('change', load_profile_preview);
-    
     var timeoutID;
     $('#profile_form input[type=text]').keydown(function(e) {
         if(e.which != 9) {
@@ -238,6 +236,7 @@ $(document).ready( function() {
         }
     });
 
+    $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
     var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
     load_profile_preview();
 });

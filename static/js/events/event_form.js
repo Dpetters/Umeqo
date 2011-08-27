@@ -184,7 +184,7 @@ $(document).ready(function() {
                 
                 $("#event_scheduler").css("height", 270);
             
-                $($('label[for=id_end_datetime_0]').removeClass('required').children()[0]).remove();
+                $($('label[for=id_end_datetime_0]').removeClass('required').children()[0]).hide();
                 
                 $("#start_datetime_wrapper, #end_datetime_wrapper").slideUp();
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").attr('disabled', 'disabled');
@@ -195,13 +195,32 @@ $(document).ready(function() {
                 $("#event_scheduler").css("height", 230);
                             
                 $("#end_datetime_wrapper").slideDown();
+                $('label[for=id_end_datetime_0]').addClass('required');
+                if ($('label[for=id_end_datetime_0] span.error').length > 0){
+                    $('label[for=id_end_datetime_0] span.error').show();                
+                }else{
+                    $('label[for=id_end_datetime_0]').append("<span class='error'>*</span>");
+                }     
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
                 $("#end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
                 $("#start_datetime_wrapper").slideUp();
             }
         } else {
-            $('label[for=id_start_datetime_0]').addClass('required').append("<span class='error'>*</span>");
-            $('label[for=id_end_datetime_0]').addClass('required').append("<span class='error'>*</span>");
+            $('label[for=id_start_datetime_0]').addClass('required');
+            if ($('label[for=id_start_datetime_0] span.error').length > 0){
+                console.log(2);
+                $('label[for=id_start_datetime_0] span.error').show();                
+            }else{
+                console.log(1);
+                $('label[for=id_start_datetime_0]').append("<span class='error'>*</span>");                
+            }
+            
+            $('label[for=id_end_datetime_0]').addClass('required');
+            if ($('label[for=id_end_datetime_0] span.error').length > 0){
+                $('label[for=id_end_datetime_0] span.error').show();                
+            }else{
+                $('label[for=id_end_datetime_0]').append("<span class='error'>*</span>");                
+            }
             $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
             $("#start_datetime_wrapper, #end_datetime_wrapper").slideDown();
             $("event_form input[type=submit]").val("Create Event");
