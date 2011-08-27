@@ -399,3 +399,14 @@ a:hover {
     text-shadow: #222 0 -1px 0;
     background-color: #B00;
 }
+
+#welcome_block {
+}
+#welcome_list {
+    font-size: 12px;
+    color: #555;
+    margin: 10px 20px 0 20px;
+}
+#welcome_list li {
+    margin: 0 0 6px;
+k

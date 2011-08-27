@@ -263,7 +263,7 @@ $(document).ready(function() {
     });
 
     $('#event_resume_drop').live('click', function(e) {
-        if (!$(this).hasClass('disabled')) {
+        if (!$(this).hasClass('disabled-button')) {
             $.post(EVENT_DROP_URL, function() {
                 dropResume();
             });
@@ -272,7 +272,7 @@ $(document).ready(function() {
     });
 
     $('#event_resume_undrop').live('click', function(e) {
-        if (!$(this).hasClass('disabled')) {
+        if (!$(this).hasClass('disabled-button')) {
             var that = this;
             $.post(EVENT_UNDROP_URL, function() {
                 undropResume();

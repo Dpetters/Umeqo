@@ -139,7 +139,7 @@
                         <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
                     </div>
                     <div class="response{% if responded %} hid{% endif %}">
-                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button">RSVP: {{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button{% if not can_rsvp %} disabled-button{% endif %}">RSVP: {{attending_text}}</a>
                     </div>
                 {% else %}
                     <strong>RSVP:</strong>
