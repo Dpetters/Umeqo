@@ -22,8 +22,13 @@ Help |
         <a href="{% url help_center %}">Help Center</a>
         <a href="{% url faq %}">FAQ</a>
         <a href="{% url tutorials %}">Tutorials</a>
-        <a href="{% url home %}">Back to home</a>
     </div>
+    {% if user.student %}
+        {% include "student_side_nav.html" %}
+    {% endif %}
+    {% if user.recruiter %}
+        {% include "employer_side_nav.html" %}    
+    {% endif %}
 </div>
 
 <div id="help_content" class="simple_block no_top_padding grande with_side_nav">

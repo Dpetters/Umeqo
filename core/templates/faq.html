@@ -21,6 +21,9 @@ FAQ |
 {% block help_content %}
     <a id="top"></a>
     <h1>FAQ</h1>
+    {% if not topics %}
+        <p>There are no topics yet.</p>
+    {% endif %}
     {% for topic in topics %}
         <h2 class="h-header">{{topic.name}}</h2>
         <ul class="h-content h-list">
@@ -32,13 +35,13 @@ FAQ |
     
     {% for topic in topics %}
         <h2 class="h-header">{{topic.name}}</h2>
-        {% for question in topic.questions %}
-            <div class="h-content">
-                <a id="{{question.slug}}"></a>
-                <img class="faq-question-icon" src="{{ STATIC_URL }}images/icons/question.png" /><h3 class="faq-question">{{question.question}}</h3>
-                <p>{{question.answer}}</p>
-                <p><a href="#top">Back to top</a></p>
-            </div>
-        {% endfor %}
+            {% for question in topic.questions %}
+                <div class="h-content">
+                    <a id="{{question.slug}}"></a>
+                    <img class="faq-question-icon" src="{{ STATIC_URL }}images/icons/question.png" /><h3 class="faq-question">{{question.question}}</h3>
+                    <p>{{question.answer}}</p>
+                    <p><a href="#top">Back to top</a></p>
+                </div>
+            {% endfor %}
     {% endfor %}
 {% endblock %}
