@@ -90,10 +90,10 @@ class Command(BaseCommand):
             for person in InterestedPerson.objects.all():
                 if person.auto_email:
                     invite_codes = []
-                    for i in s.INVITE_CODE_COUNT:
+                    for i in range(s.INVITE_CODE_COUNT):
                         invite_code = ''.join(random.choice(string.ascii_uppercase + \
                                     string.ascii_lowercase + string.digits) for x in range(12))
-                        StudentInvite.objects.create(id = invite_code)
+                        StudentInvite.objects.create(code = invite_code)
                     recipients = [person.email]
                     subject = "Umeqo Beta Invitation" 
                     body = render_to_string('student_beta_invitation_email_body.txt', \

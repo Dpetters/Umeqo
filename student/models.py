@@ -16,12 +16,12 @@ class StudentInvite(core_mixins.DateTracking):
     used = models.BooleanField(default=False)
     
     def __unicode__(self):
-        return "%s's Invite" % str(self.owner)
+        return "%s" % (self.code)
     
     class Meta:
         verbose_name = "Student Invite"
         verbose_name_plural = "Student Invites"
-        
+
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True)
