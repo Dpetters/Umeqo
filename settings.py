@@ -43,6 +43,7 @@ EMAIL_PORT = 587
 
 PROD_DATA_MODELS = {
     'campus_org': ['campusorg'],
+    'employer': ['employer'],
     'registration': ['interestedperson'],
     'core':['campusorgtype', 'location', 'topic', \
             'question', 'schoolyear', 'graduationyear', \
@@ -55,7 +56,7 @@ LOCAL_DATA_MODELS = {
     'student': ['student', 'studentpreferences', 'studentstatistics', 'studentinvite'],
     'registration':['userattributes', \
                     'sessionkey', 'registrationprofile'],
-    'employer':['employer','employerstatistics', 'recruiter', \
+    'employer':['employerstatistics', 'recruiter', \
                 'resumebook', 'studentfilteringparameters', \
                 'employerstudentcomment', 'recruiterpreferences', \
                 'recruiterstatistics'],
