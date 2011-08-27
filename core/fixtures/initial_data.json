@@ -6084,15 +6084,6 @@
   }
  }, 
  {
-  "pk": 4, 
-  "model": "core.eventtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:43", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "name": "Case Study"
-  }
- }, 
- {
   "pk": 5, 
   "model": "core.eventtype", 
   "fields": {
@@ -6108,15 +6099,6 @@
    "date_created": "2011-05-03 12:27:43", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Workshop"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "core.eventtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:43", 
-   "last_updated": "2011-05-03 12:27:43", 
-   "name": "Seminar"
   }
  }, 
  {
@@ -6144,15 +6126,6 @@
    "date_created": "2011-07-31 11:30:37", 
    "last_updated": "2011-07-31 11:30:37", 
    "name": "Rolling Deadline"
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "core.eventtype", 
-  "fields": {
-   "date_created": "2011-08-23 20:16:22", 
-   "last_updated": "2011-08-23 20:16:22", 
-   "name": "Resume Drop"
   }
  }
 ]
