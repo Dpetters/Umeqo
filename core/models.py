@@ -168,5 +168,6 @@ def create_notice_types(app, created_models, verbosity, **kwargs):
     notification.create_notice_type('new_event', 'New Event', 'an employer has created a new event')
     notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
     notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')
+    notification.create_notice_type('cancelled_event', 'Cancelled Event', 'an employer has cancelled an event')
 
 post_syncdb.connect(create_notice_types, sender=notification)
