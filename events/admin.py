@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from events.models import Event, EventType
+from events.models import Event
+from core.models import EventType
 
 
 class EventAdmin(admin.ModelAdmin):
@@ -14,8 +15,8 @@ class EventAdmin(admin.ModelAdmin):
     date_hierarchy = 'start_datetime'
 admin.site.register(Event, EventAdmin)
 
-
 class EventTypeAdmin(admin.ModelAdmin):
-    fields = ['name']
+    fields = ['name', 'sort_order']
+    list_display = ('name', 'sort_order')
     ordering = ('-last_updated',)
 admin.site.register(EventType, EventTypeAdmin)
