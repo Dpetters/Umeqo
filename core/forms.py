@@ -29,7 +29,7 @@ class EmailAuthenticationForm(AuthenticationForm):
                 raise forms.ValidationError(m.incorrect_username_password_combo)
             if self.user_cache.is_staff:
                 return forms.ValidationError(m.staff_member_login_not_allowed)
-            if not self.user_cache.userattributes.is_verified:
+            if not self.user_cache.userattributes.is_verified and not self.user_cache.is_active:
                 raise forms.ValidationError(m.account_suspended)
             if not self.user_cache.is_active:
                 self.user_cache.is_active = True

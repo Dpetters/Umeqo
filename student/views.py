@@ -193,10 +193,11 @@ def student_profile(request,
                 elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
                     data = {'valid':False}
                     data['unparsable_resume'] = True
-            if data['valid'] and data['unparsable_resume']:
+            if data['valid'] and not data['unparsable_resume']:
                 student.profile_created = True
                 student.save()
         else:
+            print form.errors
             data = {'valid':False,
                     'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")

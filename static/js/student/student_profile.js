@@ -227,7 +227,7 @@ $(document).ready( function() {
     };
     $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
     
-    $("#profile_form select").live('change', load_profile_preview);
+    $("#profile_form select, #profile_form input[type=file]").live('change', load_profile_preview);
     
     var timeoutID;
     $('#profile_form input[type=text]').keydown(function(e) {
