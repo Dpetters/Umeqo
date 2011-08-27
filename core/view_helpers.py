@@ -29,3 +29,5 @@ def get_ip(request):
         return request.META['HTTP_X_FORWARDED_FOR'].split(',')[-1]
     elif 'REMOTE_ADDR' in request.META:
         return request.META['REMOTE_ADDR']
+    else:
+        return None
