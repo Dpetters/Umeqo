@@ -36,7 +36,7 @@ class Employer(core_mixins.DateTracking):
 
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         if not EmployerStatistics.objects.filter(employer=instance).exists():
             EmployerStatistics.objects.create(employer=instance)
 
