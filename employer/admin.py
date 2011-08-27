@@ -1,5 +1,7 @@
 from django.contrib import admin
+from django.db import models
 
+from ckeditor.widgets import CKEditorWidget
 from employer.models import Employer, EmployerStatistics, ResumeBook, Recruiter, RecruiterStatistics, RecruiterPreferences
 
 
@@ -42,7 +44,7 @@ class EmployerAdmin(admin.ModelAdmin):
     list_display = ('name', 'main_contact', 'main_contact_phone', 'date_created')
     search_fields = ['name', 'industries__name', 'main_contact']
     date_hierarchy = 'date_created'
-    
+    formfield_overrides = { models.TextField: {'widget': CKEditorWidget(attrs={'class':'ckeditor'})},}
 admin.site.register(Employer, EmployerAdmin)
 
 
@@ -51,5 +53,4 @@ class EmployerStatisticsAdmin(admin.ModelAdmin):
     list_display = ('employer', 'last_updated', 'date_created')
     search_fields = ['employer']
     date_hierarchy = 'date_created'
-            
 admin.site.register(EmployerStatistics, EmployerStatisticsAdmin)
