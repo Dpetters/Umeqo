@@ -139,7 +139,7 @@
                         <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
                     </div>
                     <div class="response{% if responded %} hid{% endif %}">
-                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button">RSVP: {{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button{% if not can_rsvp %} disabled-button{% endif %}">RSVP: {{attending_text}}</a>
                     </div>
                 {% else %}
                     <strong>RSVP:</strong>
@@ -237,13 +237,13 @@
             </div>
             <div class="main_block_content">
                 <div class="event_company">
+                    <div class="event_company_logo">
+                      <img class="logo" src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
+                    </div>
                     <div class="event_company_name">
                         <a href="{% if not show_admin %}{% url employers_list %}?id={{recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
                             {{event.owner.recruiter.employer}}
                         </a>
-                    </div>
-                    <div class="event_company_description">
-                        {{ event.owner.recruiter.employer.description }}
                     </div>
                     <div class="industries">
                         {% for industry in event.owner.recruiter.employer.industries.all %}

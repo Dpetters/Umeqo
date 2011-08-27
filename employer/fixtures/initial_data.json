@@ -1,44 +1,23 @@
 [
  {
-  "pk": 2, 
+  "pk": 6, 
   "model": "employer.employer", 
   "fields": {
    "industries": [
-    42
+    15
    ], 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-08-24 09:07:01", 
-   "description": "temp", 
+   "main_contact_email": "potter@hogwarts.com", 
+   "last_updated": "2011-08-27 12:24:42", 
+   "description": "<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tUmeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.</p>\r\n", 
    "starred_students": [], 
-   "main_contact": "Liz Floyd", 
-   "main_contact_phone": "543-657-9834", 
+   "main_contact": "Harry Potter", 
+   "main_contact_phone": "999-999-9999", 
    "offered_job_types": [], 
-   "date_created": "2011-07-08 00:06:02", 
-   "logo": "employer/employer/employer2_2011-08-24-09-07-01.png", 
-   "careers_website": null, 
-   "slug": "employer2", 
-   "name": "Employer2"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    28
-   ], 
-   "main_contact_email": "fake@fake.com", 
-   "last_updated": "2011-08-24 09:06:55", 
-   "description": "Amazing firm.", 
-   "starred_students": [], 
-   "main_contact": "Katelyn o'Hare", 
-   "main_contact_phone": "523-987-4567", 
-   "offered_job_types": [], 
-   "date_created": "2011-07-08 00:07:34", 
-   "logo": "employer/employer/employer3_2011-08-24-09-06-55.png", 
-   "careers_website": null, 
-   "slug": "employer3", 
-   "name": "Employer3"
+   "date_created": "2011-08-27 12:24:42", 
+   "logo": "employer/employer/umeqo_2011-08-27-12-24-42.png", 
+   "careers_website": "", 
+   "slug": "us", 
+   "name": "Umeqo"
   }
  }, 
  {
@@ -46,20 +25,26 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [
-    41
+    20, 
+    32, 
+    36
    ], 
-   "main_contact_email": "jason@blah.com", 
-   "last_updated": "2011-08-24 09:06:36", 
-   "description": "Sample", 
+   "main_contact_email": "ed.tilford@thomsonreuters.com", 
+   "last_updated": "2011-08-27 12:05:11", 
+   "description": "Thomson Reuters is a leading provider of information for the world's businesses and professionals. The firm combines industry expertise with innovative technology to keep leading decision makers in the financial, legal, scientific, media and other sectors informed and up-to-date. Its variety of internship and full-time opportunities allow students to step into the challenging and fast-paced environment of a truly global organization. Those that do will be encouraged to engineer fresh solutions to problems old as well as new and will find that at Thomson Reuters,there are no limits on where creative thinking and a willingness to learn takes bright minds.", 
    "starred_students": [], 
-   "main_contact": "Jason Mccoy", 
+   "main_contact": "Ed Tilford", 
    "main_contact_phone": "333-333-3333", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1, 
+    2, 
+    4
+   ], 
    "date_created": "2011-07-08 00:08:02", 
-   "logo": "employer/employer/employer4_2011-08-24-09-06-36.png", 
-   "careers_website": null, 
-   "slug": "employer4", 
-   "name": "Employer4"
+   "logo": "employer/employer/thomson reuters_2011-08-27-12-05-11.png", 
+   "careers_website": "http://careers.thomsonreuters.com/students/", 
+   "slug": "tr", 
+   "name": "Thomson Reuters"
   }
  }, 
  {
@@ -69,19 +54,19 @@
    "industries": [
     40
    ], 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-08-24 15:56:36", 
-   "description": "temp", 
+   "main_contact_email": "Gina.Vaglia@sig.com", 
+   "last_updated": "2011-08-27 11:58:19", 
+   "description": "Susquehanna International Group (SIG) is a world-leading technology-empowered financial trading firm. Founded in 1987, SIG has grown from an options trading firm on the Philadelphia Stock Exchange to one of the world\u2019s largest privately held financial institutions. Today, with offices around the world, the firm trades virtually every major financial product and is recognized for its disciplined and quantitative trading approach, as well as its leading-edge trading systems. SIG\u2019s structured Development Programs introduce university hires to its unique approach to decision making and prepare them to become independent thinkers within a collaborative environment.", 
    "starred_students": [], 
    "main_contact": "Gina Vaglia", 
-   "main_contact_phone": "999-999-9999", 
+   "main_contact_phone": "484-562-1336", 
    "offered_job_types": [
     1, 
     2
    ], 
    "date_created": "2011-07-08 00:09:24", 
    "logo": "employer/employer/susquehanna international group_2011-08-24-15-31-30.png", 
-   "careers_website": null, 
+   "careers_website": "http://sig.com/campus.aspx", 
    "slug": "sig", 
    "name": "Susquehanna International Group"
   }

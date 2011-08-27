@@ -356,14 +356,15 @@
 #event_who .event_company {
     margin-bottom: 10px;
 }
-#event_who .event_company_name {
-    font-size: 20px;
-    font-family: 'Lato', 'Arial', serif;
+#event_who .event_company_logo img {
+    height: 100px;
+    border: 1px solid #EEE;
 }
-#event_who .event_company_description {
-    margin: 10px 0;
-    color: #666;
-    line-height: 20px;
+#event_who .event_company_name {
+    font-family: 'Lato', 'Arial', serif;
+    font-size: 20px;
+    line-height: 18px;
+    margin-bottom: 10px;
 }
 #event_who .industries div {
     margin-bottom: 3px;
