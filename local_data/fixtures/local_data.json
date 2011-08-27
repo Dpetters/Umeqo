@@ -36,7 +36,7 @@
   "pk": 2, 
   "model": "events.event", 
   "fields": {
-   "view_count": 11, 
+   "view_count": 14, 
    "start_datetime": "2011-11-02 19:30:00", 
    "audience": [], 
    "attending_employers": [], 
@@ -218,26 +218,6 @@
   }
  }, 
  {
-  "pk": 1, 
-  "model": "employer.employerstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:06:02", 
-   "last_updated": "2011-07-08 00:06:02", 
-   "resumes_viewed": 0, 
-   "employer": 2
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "employer.employerstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:07:34", 
-   "last_updated": "2011-07-08 00:07:34", 
-   "resumes_viewed": 0, 
-   "employer": 3
-  }
- }, 
- {
   "pk": 3, 
   "model": "employer.employerstatistics", 
   "fields": {
@@ -277,28 +257,6 @@
    "last_updated": "2011-07-19 00:03:51", 
    "user": 8, 
    "employer": 5
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "employer.recruiter", 
-  "fields": {
-   "is_master": false, 
-   "date_created": "2011-07-08 00:12:02", 
-   "last_updated": "2011-07-19 00:03:51", 
-   "user": 9, 
-   "employer": 2
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "employer.recruiter", 
-  "fields": {
-   "is_master": false, 
-   "date_created": "2011-07-08 00:12:13", 
-   "last_updated": "2011-07-19 00:03:51", 
-   "user": 10, 
-   "employer": 3
   }
  }, 
  {
@@ -409,32 +367,6 @@
   }
  }, 
  {
-  "pk": 3, 
-  "model": "employer.recruiterpreferences", 
-  "fields": {
-   "email_on_rsvp_to_public_event": false, 
-   "last_updated": "2011-07-08 00:12:02", 
-   "recruiter": 3, 
-   "email_on_rsvp_to_private_event": false, 
-   "date_created": "2011-07-08 00:12:02", 
-   "default_student_result_ordering": "relevancy", 
-   "default_student_results_per_page": 10
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "employer.recruiterpreferences", 
-  "fields": {
-   "email_on_rsvp_to_public_event": false, 
-   "last_updated": "2011-07-08 00:12:13", 
-   "recruiter": 4, 
-   "email_on_rsvp_to_private_event": false, 
-   "date_created": "2011-07-08 00:12:13", 
-   "default_student_result_ordering": "relevancy", 
-   "default_student_results_per_page": 10
-  }
- }, 
- {
   "pk": 5, 
   "model": "employer.recruiterpreferences", 
   "fields": {
@@ -464,26 +396,6 @@
    "date_created": "2011-07-08 00:11:33", 
    "recruiter": 2, 
    "last_updated": "2011-07-08 00:11:33", 
-   "resumes_viewed": 0
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "employer.recruiterstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:12:02", 
-   "recruiter": 3, 
-   "last_updated": "2011-07-08 00:12:02", 
-   "resumes_viewed": 0
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "employer.recruiterstatistics", 
-  "fields": {
-   "date_created": "2011-07-08 00:12:13", 
-   "recruiter": 4, 
-   "last_updated": "2011-07-08 00:12:13", 
    "resumes_viewed": 0
   }
  }, 
@@ -903,7 +815,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-27 08:55:53", 
+   "last_login": "2011-08-27 12:08:29", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -921,7 +833,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 09:07:48", 
+   "last_login": "2011-08-27 12:07:44", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -2386,6 +2298,36 @@
    "session_key": "f02565371be8be8402d49431b9d7d471", 
    "last_updated": "2011-08-27 09:07:48", 
    "user": 2
+  }
+ }, 
+ {
+  "pk": 212, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 12:07:19", 
+   "session_key": "3e6a4acdff94aedc86014f7b848371ad", 
+   "last_updated": "2011-08-27 12:07:19", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 213, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 12:07:44", 
+   "session_key": "a2648377f02f7b53caaeeedbd048dec0", 
+   "last_updated": "2011-08-27 12:07:44", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 214, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 12:08:29", 
+   "session_key": "5c10eeeec05390e2bfa99a8e3f747c55", 
+   "last_updated": "2011-08-27 12:08:29", 
+   "user": 1
   }
  }, 
  {
