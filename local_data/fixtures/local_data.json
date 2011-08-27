@@ -401,7 +401,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-27 17:06:03", 
+   "last_updated": "2011-08-27 17:06:21", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -451,7 +451,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-08-27 17:06:03", 
+   "last_updated": "2011-08-27 17:06:22", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -499,7 +499,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-08-27 17:06:03", 
+   "last_updated": "2011-08-27 17:06:22", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -533,7 +533,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-08-27 17:06:03", 
+   "last_updated": "2011-08-27 17:06:22", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -567,7 +567,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Dearing", 
-   "last_updated": "2011-08-27 17:06:03", 
+   "last_updated": "2011-08-27 17:06:22", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "", 
@@ -742,6 +742,26 @@
   }
  }, 
  {
+  "pk": 6, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 17:11:26", 
+   "code": "UkgaTZbMLwTJ", 
+   "last_updated": "2011-08-27 17:11:26", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 17:48:48", 
+   "code": "8O6QmrxaCG3x", 
+   "last_updated": "2011-08-27 17:48:48", 
+   "used": false
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "auth.user", 
   "fields": {
@@ -787,7 +807,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 16:20:33", 
+   "last_login": "2011-08-27 17:06:18", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -2307,23 +2327,13 @@
   }
  }, 
  {
-  "pk": 225, 
+  "pk": 228, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-27 17:01:16", 
-   "session_key": "9f86d1cc57c6fba405acc34909b857a9", 
-   "last_updated": "2011-08-27 17:01:16", 
-   "user": 1
-  }
- }, 
- {
-  "pk": 227, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-27 17:05:56", 
-   "session_key": "79e9c51aefd3e010a836f74c77b2ca6a", 
-   "last_updated": "2011-08-27 17:05:56", 
-   "user": 16
+   "date_created": "2011-08-27 17:06:18", 
+   "session_key": "96de9a24a8224359d670c16be85fc7cc", 
+   "last_updated": "2011-08-27 17:06:18", 
+   "user": 3
   }
  }
 ]
