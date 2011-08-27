@@ -12,7 +12,7 @@ from django.dispatch import receiver
 from core import mixins as core_mixins
 from core.decorators import is_student
 from core.view_helpers import get_ip
-from events.models import notify_about_event
+from events.models import notify_about_event, Event
 from registration.managers import RegistrationManager
 
 

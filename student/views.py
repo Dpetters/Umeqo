@@ -126,6 +126,10 @@ def student_registration(request, backend = RegistrationBackend(),
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
+            invite = StudentInvite.objects.get(code=form.cleaned_data['invite_code'])
+            invite.used = True
+            invite.save()
+            
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
             student = Student(user=new_user)
