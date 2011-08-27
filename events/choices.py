@@ -4,8 +4,8 @@ PUBLIC_PRIVATE_BOOLEAN_CHOICES = (
 )
 
 DROP_BOOLEAN_CHOICES = (
-(True, 'Enabled'),
-(False, 'Disabled')
+(False, 'Disabled'),
+(True, 'Enabled')
 )
 
 TIME_CHOICES = (

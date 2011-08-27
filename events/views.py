@@ -347,7 +347,7 @@ def event_search(request, extra_context=None):
 @login_required
 @user_passes_test(is_recruiter)
 def events_by_employer(request):
-    upcoming_events = request.user.recruiter.employer.event_set.active().filter(end_datetime__gte=datetime.now())
+    upcoming_events = request.user.event_set.active().filter(end_datetime__gte=datetime.now())
     student_id = request.GET.get('student_id', None)
     if not student_id or not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()
