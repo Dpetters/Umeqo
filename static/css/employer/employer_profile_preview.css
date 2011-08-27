@@ -14,37 +14,33 @@
     margin: 0 2px 2px 0;
 }
 div .employer_name{
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 .industries{
-    margin-bottom:18px;
+    margin-bottom: 18px;
 }
 #logo_and_buttons{
-    text-align:center;
+    text-align: center;
 }
 #employer_subscribe, #employer_unsubscribe {
-    margin-bottom: 5px;
+    margin: 5px 0;
     width: 80px;
-    position:relative;
-    bottom:8px;
 }
 #employer_info{
-    margin-right:150px;
+    margin-right: 150px;
 }
 .description {
     padding: 10px 0 20px 0;
-    clear:both;
-    margin-top:10px;
-    line-height:17px;
-    color:#444;
-    font-size:12px;
+    clear: both;
+    margin-top: 10px;
+    line-height: 17px;
+    color: #444;
+    font-size: 12px;
 }
 #offered_job_types{
-    font-size:14px;
+    font-size: 14px;
 }
 .logo {
-    display:block;
-    position:relative;
-    bottom:10px;
-    max-width:150px;
+    display: block;
+    max-width: 150px;
 }
