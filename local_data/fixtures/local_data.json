@@ -710,12 +710,12 @@
   }
  }, 
  {
-  "pk": 3, 
+  "pk": 4, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 16:13:20", 
-   "code": "ggggg", 
-   "last_updated": "2011-08-27 16:13:20", 
+   "date_created": "2011-08-27 16:54:38", 
+   "code": "SDHQt9GPptLV", 
+   "last_updated": "2011-08-27 16:54:38", 
    "used": false
   }
  }, 
