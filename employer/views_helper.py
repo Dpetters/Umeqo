@@ -19,9 +19,7 @@ def get_employer_events(employer):
     )
         
 def check_for_new_student_matches(employer):
-    all_student_matches = filter_students(gpa=employer.gpa,
-                                          act=employer.act,
-                                          sat = employer.sat)
+    all_student_matches = filter_students(gpa=employer.gpa, act=employer.act, sat = employer.sat)
     latest_student_matches = []
     for student in all_student_matches:
         if student not in employer.last_seen_students.all():
