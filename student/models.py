@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.db.models import signals
 
 from countries.models import Country
 from campus_org.models import CampusOrg
@@ -10,6 +10,7 @@ from core.model_helpers import get_resume_filename
 from core import choices as core_choices
 from core import mixins as core_mixins
 from student.managers import StudentManager
+
 
 class StudentInvite(core_mixins.DateTracking):
     id = models.CharField(max_length=12, primary_key=True)
@@ -22,6 +23,7 @@ class StudentInvite(core_mixins.DateTracking):
     class Meta:
         verbose_name = "Student Invite"
         verbose_name_plural = "Student Invites"
+
         
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
@@ -39,6 +41,7 @@ class StudentBaseAttributes(models.Model):
     
     class Meta:
         abstract = True
+
 
 class Student(StudentBaseAttributes, core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
@@ -73,8 +76,8 @@ class Student(StudentBaseAttributes, core_mixins.DateTracking):
         else:
             return "Unattached Student"
 
-@receiver(signals.post_save, sender=Student)
-def create_related_models(sender, instance, created, raw, **kwargs):
+@receiver(post_save, sender=Student)
+def create_student_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:
         if instance.first_name and instance.last_name:
             instance.user.first_name = instance.first_name
@@ -82,6 +85,7 @@ def create_related_models(sender, instance, created, raw, **kwargs):
             instance.user.save()
         StudentPreferences.objects.create(student=instance)
         StudentStatistics.objects.create(student=instance)
+
 
 class StudentDeactivation(core_mixins.DateCreatedTracking):
     student = models.ForeignKey("student.Student")
@@ -93,6 +97,7 @@ class StudentDeactivation(core_mixins.DateCreatedTracking):
     
     def __unicode__(self):
         return "%s's Deactivation" % (str(self.student))
+
 
 class StudentPreferences(core_mixins.DateTracking):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
@@ -110,6 +115,7 @@ class StudentPreferences(core_mixins.DateTracking):
             return "Student Preferences for %s" % (self.student,)
         else:
             return "Unattached Student Preferences"
+
 
 class StudentStatistics(core_mixins.DateTracking):
     student = models.OneToOneField("student.Student", unique=True, editable=False)

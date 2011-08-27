@@ -5,14 +5,15 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
-from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.dispatch import receiver
 
 from core import mixins as core_mixins
 from registration.managers import RegistrationManager
-    
-    
+from core.view_helpers import get_ip
+
+
 class InterestedPerson(core_mixins.DateTracking):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -45,12 +46,11 @@ class SessionKey(core_mixins.DateTracking):
 @receiver(user_logged_out, sender=User)
 def delete_session_key(sender, request, user, **kwargs):
     SessionKey.objects.filter(user=user, session_key=request.session.session_key).delete()
-    
+
 @receiver(user_logged_in, sender=User)
 def create_session_key(sender, request, user, **kwargs):
     SessionKey.objects.create(user=user, session_key=request.session.session_key)
-
-
+    
 class UserAttributes(models.Model):
     user = models.OneToOneField(User)
     is_verified = models.BooleanField(default=False)
@@ -64,7 +64,7 @@ class UserAttributes(models.Model):
         return str(self.user)
 
 @receiver(post_save, sender=User)
-def create_related_models(sender, instance, created, raw, **kwargs):
+def create_userattributes(sender, instance, created, raw, **kwargs):
     if created and not raw:
         UserAttributes.objects.create(user=instance, is_verified=False)
 
@@ -179,3 +179,8 @@ class RegistrationProfile(models.Model):
 class LoginAttempt(models.Model):
     attempt_datetime = models.DateTimeField(auto_now_add=True)
     ip_address = models.IPAddressField(editable=False, null=True)
+
+@receiver(user_logged_in, sender=User)
+def clear_login_attempts(sender, request, user, **kwargs):
+    ip_address = get_ip(request)
+    LoginAttempt.objects.all().filter(ip_address=ip_address).delete()

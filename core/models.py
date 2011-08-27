@@ -1,13 +1,14 @@
 from django.db import models
-from notification import models as notification
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_syncdb
+from django.dispatch import receiver
 
 from core.model_helpers import get_image_filename, get_thumbnail_filename
 from core import enums
 from core.managers import QuestionManager
 from core import mixins as core_mixins
 from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
+from notification import models as notification
 
 
 class CampusOrgType(core_mixins.DateTracking):
@@ -21,7 +22,7 @@ class CampusOrgType(core_mixins.DateTracking):
 
     def __unicode__(self):
         return self.name
-        
+
         
 class Location(models.Model):
     name = models.CharField(max_length=200)
@@ -41,16 +42,18 @@ class Location(models.Model):
         else:
             return self.name    
 
+
 class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
     sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
-
+    
     class Meta:
         ordering = ['sort_order', 'name']
 
     def __unicode__(self):
         return self.name
+
 
 class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
@@ -61,7 +64,7 @@ class Question(core_mixins.DateTracking):
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
     click_count = models.PositiveIntegerField(default=0)
-    
+
     objects = QuestionManager()
     
     class Meta:
@@ -69,7 +72,8 @@ class Question(core_mixins.DateTracking):
         
     def __unicode__(self):
         return self.question
-        
+
+
 class CommonInfo(core_mixins.DateTracking):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)
@@ -93,6 +97,7 @@ class SchoolYear(core_mixins.DateTracking):
 
 class Edit(core_mixins.DateCreatedTracking):
     user = models.ForeignKey(User)
+
     
 class GraduationYear(core_mixins.DateTracking):
     year = models.PositiveSmallIntegerField("Graduation Year", unique=True)
@@ -111,7 +116,7 @@ class Language(core_mixins.DateTracking):
 
     def __unicode__(self):
         return self.name_and_level
-    
+
     
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
@@ -142,8 +147,8 @@ class EmploymentType(core_mixins.DateTracking):
 
     def __unicode__(self):
         return self.name
-        
 
+        
 class Industry(core_mixins.DateTracking):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
 
@@ -156,18 +161,20 @@ class Industry(core_mixins.DateTracking):
 
 class EventType(core_mixins.DateTracking):
     name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
+    
+    sort_order = models.IntegerField("sort order", default=0, help_text='EventTypes will be ordered by the sort order. (Smallest at top.)')
 
     class Meta:
         verbose_name = "Event Type"
         verbose_name_plural = "Event Types"
+        ordering=['sort_order']
     
     def __unicode__(self):
         return self.name
 
+@receiver(post_syncdb, sender=notification)
 def create_notice_types(app, created_models, verbosity, **kwargs):
     notification.create_notice_type('new_event', 'New Event', 'an employer has created a new event')
     notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
     notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')
     notification.create_notice_type('cancelled_event', 'Cancelled Event', 'an employer has cancelled an event')
-
-post_syncdb.connect(create_notice_types, sender=notification)

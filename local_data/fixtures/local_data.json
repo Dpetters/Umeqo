@@ -3,7 +3,7 @@
   "pk": 1, 
   "model": "events.event", 
   "fields": {
-   "view_count": 11, 
+   "view_count": 12, 
    "start_datetime": "2011-10-01 06:00:00", 
    "audience": [
     1, 
@@ -148,6 +148,33 @@
  }, 
  {
   "pk": 1, 
+  "model": "events.invitee", 
+  "fields": {
+   "datetime_created": "2011-08-26 21:38:42", 
+   "event": 1, 
+   "student": 5
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "events.invitee", 
+  "fields": {
+   "datetime_created": "2011-08-26 21:41:26", 
+   "event": 1, 
+   "student": 1
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "events.invitee", 
+  "fields": {
+   "datetime_created": "2011-08-26 21:54:56", 
+   "event": 2, 
+   "student": 1
+  }
+ }, 
+ {
+  "pk": 1, 
   "model": "events.attendee", 
   "fields": {
    "event": 1, 
@@ -188,93 +215,6 @@
    "email": "feaf@gmail.com", 
    "student": null, 
    "name": "Hel"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    42
-   ], 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-08-24 09:07:01", 
-   "description": "temp", 
-   "starred_students": [], 
-   "main_contact": "Liz Floyd", 
-   "main_contact_phone": "543-657-9834", 
-   "offered_job_types": [], 
-   "date_created": "2011-07-08 00:06:02", 
-   "logo": "employer/employer/employer2_2011-08-24-09-07-01.png", 
-   "careers_website": null, 
-   "slug": "employer2", 
-   "name": "Employer2"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    28
-   ], 
-   "main_contact_email": "fake@fake.com", 
-   "last_updated": "2011-08-24 09:06:55", 
-   "description": "Amazing firm.", 
-   "starred_students": [], 
-   "main_contact": "Katelyn o'Hare", 
-   "main_contact_phone": "523-987-4567", 
-   "offered_job_types": [], 
-   "date_created": "2011-07-08 00:07:34", 
-   "logo": "employer/employer/employer3_2011-08-24-09-06-55.png", 
-   "careers_website": null, 
-   "slug": "employer3", 
-   "name": "Employer3"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    41
-   ], 
-   "main_contact_email": "jason@blah.com", 
-   "last_updated": "2011-08-24 09:06:36", 
-   "description": "Sample", 
-   "starred_students": [], 
-   "main_contact": "Jason Mccoy", 
-   "main_contact_phone": "333-333-3333", 
-   "offered_job_types": [], 
-   "date_created": "2011-07-08 00:08:02", 
-   "logo": "employer/employer/employer4_2011-08-24-09-06-36.png", 
-   "careers_website": null, 
-   "slug": "employer4", 
-   "name": "Employer4"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "employer.employer", 
-  "fields": {
-   "industries": [
-    40
-   ], 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-08-24 15:56:36", 
-   "description": "temp", 
-   "starred_students": [], 
-   "main_contact": "Gina Vaglia", 
-   "main_contact_phone": "999-999-9999", 
-   "offered_job_types": [
-    1, 
-    2
-   ], 
-   "date_created": "2011-07-08 00:09:24", 
-   "logo": "employer/employer/susquehanna international group_2011-08-24-15-31-30.png", 
-   "careers_website": null, 
-   "slug": "sig", 
-   "name": "Susquehanna International Group"
   }
  }, 
  {
@@ -561,7 +501,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-26 16:20:03", 
+   "last_updated": "2011-08-26 22:28:03", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -611,7 +551,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-08-26 16:20:03", 
+   "last_updated": "2011-08-26 22:28:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -659,7 +599,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-08-26 16:20:03", 
+   "last_updated": "2011-08-26 22:28:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -693,7 +633,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-08-26 16:20:03", 
+   "last_updated": "2011-08-26 22:28:03", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -727,7 +667,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Dearing", 
-   "last_updated": "2011-08-26 16:20:03", 
+   "last_updated": "2011-08-26 22:28:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "", 
@@ -891,7 +831,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-26 13:07:28", 
+   "last_login": "2011-08-26 22:28:16", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -909,7 +849,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-26 16:20:23", 
+   "last_login": "2011-08-26 21:40:25", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -2197,6 +2137,26 @@
    "session_key": "a5fc7cfaecf9ac4735502be2f3431c63", 
    "last_updated": "2011-08-26 18:23:30", 
    "user": 3
+  }
+ }, 
+ {
+  "pk": 193, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-26 21:40:25", 
+   "session_key": "31bbc828dd1c765b84ce3bba85c43414", 
+   "last_updated": "2011-08-26 21:40:25", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 194, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-26 22:28:16", 
+   "session_key": "770bf6795f0b6bac34e8c954fbb33da4", 
+   "last_updated": "2011-08-26 22:28:16", 
+   "user": 1
   }
  }
 ]

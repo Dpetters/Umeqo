@@ -17,7 +17,7 @@ class Employer(core_mixins.DateTracking):
     name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters.")
     slug = models.SlugField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     logo = models.ImageField(upload_to=get_logo_filename)
-    description = models.CharField(max_length=10000)
+    description = models.TextField()
     industries = models.ManyToManyField(Industry)
     main_contact = models.CharField("Main Contact", max_length=50)
     main_contact_email = models.EmailField("Main Contact Email")
@@ -36,7 +36,7 @@ class Employer(core_mixins.DateTracking):
 
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         if not EmployerStatistics.objects.filter(employer=instance).exists():
             EmployerStatistics.objects.create(employer=instance)
 
@@ -71,7 +71,7 @@ class Recruiter(core_mixins.DateTracking):
 
 @receiver(signals.post_save, sender=Recruiter)
 def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         if not RecruiterPreferences.objects.filter(recruiter=instance).exists():
             RecruiterPreferences.objects.create(recruiter=instance)
         if not RecruiterStatistics.objects.filter(recruiter=instance).exists():
@@ -93,13 +93,10 @@ class ResumeBook(core_mixins.DateTracking):
         
 class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
-
     majors = models.ManyToManyField(Course, blank=True, null=True)    
     school_years = models.ManyToManyField(SchoolYear, blank=True, null=True)
     graduation_years = models.ManyToManyField(GraduationYear, blank=True, null=True)
-
     employment_types = models.ManyToManyField(EmploymentType, blank=True, null=True)
-    
     older_than_21 = models.CharField(max_length=1, choices=choices.NO_YES_CHOICES, blank=True, null=True)
 
 
@@ -135,7 +132,6 @@ class RecruiterPreferences(core_mixins.DateTracking):
 
 class RecruiterStatistics(core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
-     
     resumes_viewed = models.PositiveIntegerField(default=0, editable=False, blank=True, null=True)
 
     class Meta:
