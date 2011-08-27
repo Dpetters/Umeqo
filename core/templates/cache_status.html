@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Memcache Status | {% endblock %}
+
+{% block content_area %}
+  <h1>Memcache Status</h1>
+
+  <table>
+      <tr>
+          <th>memory usage:</th>
+          <td>{{ stats.bytes|filesizeformat }}</td>
+      </tr>
+      <tr>
+          <th>keys in cache:</th>
+          <td>{{ stats.curr_items }} of {{ stats.total_items }}</td>
+      </tr>
+      <tr>
+          <th>cache hits:</th>
+          <td>
+              {{ stats.get_hits }} of {{ stats.cmd_get }}:
+              <strong>{{ hit_rate }}%</strong>
+          </td>
+      </tr>
+      <tr>
+          <th>cache traffic:</th>
+          <td>
+              {{ stats.bytes_read|filesizeformat }} in,
+              {{ stats.bytes_written|filesizeformat }} out
+          </td>
+      </tr>
+      <tr>
+          <th>uptime:</th>
+          <td>{{ stats.uptime }}</td>
+      </tr>
+  </table>
+{% endblock %}
