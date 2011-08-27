@@ -1,6 +1,7 @@
 from django.contrib.auth import signals
 from django.dispatch import Signal, receiver
 
+from core.view_helpers import get_ip
 from registration.models import LoginAttempt
 
 
@@ -12,8 +13,5 @@ user_activated = Signal(providing_args=["user", "request"])
 
 @receiver(signals.user_logged_in)
 def clear_attempts(sender, request, user, **kwargs):
-    if 'HTTP_X_FORWARDED_FOR' in request.META:
-        ip_address = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        ip_address = request.META['REMOTE_ADDR']
+    ip_address = get_ip(request)
     LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
