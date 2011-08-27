@@ -13,11 +13,12 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
+from core.decorators import render_to
+from core.forms import EmailAuthenticationForm as AuthenticationForm
+from core.view_helpers import get_ip
 from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
-from core.decorators import render_to
-from core.forms import EmailAuthenticationForm as AuthenticationForm
 
 
 @login_required
@@ -31,10 +32,7 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
         return redirect(reverse('home'))
 
     # Log the login attempt.
-    if 'HTTP_X_FORWARDED_FOR' in request.META:
-        ip_address = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        ip_address = request.META['REMOTE_ADDR']
+    ip_address = get_ip(request)
     LoginAttempt.objects.create(ip_address=ip_address)
     
     half_day_ago = datetime.now() - timedelta(hours=12)
