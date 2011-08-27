@@ -3,7 +3,7 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 4, 
+   "view_count": 5, 
    "start_datetime": "2011-12-01 00:00:00", 
    "audience": [], 
    "attending_employers": [], 
@@ -61,9 +61,9 @@
   "fields": {
    "is_master": false, 
    "date_created": "2011-07-08 00:11:22", 
-   "last_updated": "2011-07-19 00:03:51", 
+   "last_updated": "2011-08-27 16:16:32", 
    "user": 3, 
-   "employer": 5
+   "employer": 6
   }
  }, 
  {
@@ -72,8 +72,30 @@
   "fields": {
    "is_master": false, 
    "date_created": "2011-07-08 00:11:33", 
-   "last_updated": "2011-07-19 00:03:51", 
+   "last_updated": "2011-08-27 16:16:25", 
    "user": 8, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "is_master": false, 
+   "date_created": "2011-08-27 16:18:31", 
+   "last_updated": "2011-08-27 16:18:31", 
+   "user": 9, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "is_master": false, 
+   "date_created": "2011-08-27 16:18:23", 
+   "last_updated": "2011-08-27 16:18:23", 
+   "user": 16, 
    "employer": 5
   }
  }, 
@@ -85,6 +107,17 @@
    "date_created": "2011-07-08 00:12:22", 
    "last_updated": "2011-07-19 00:03:51", 
    "user": 11, 
+   "employer": 4
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "is_master": false, 
+   "date_created": "2011-08-27 16:18:41", 
+   "last_updated": "2011-08-27 16:18:41", 
+   "user": 10, 
    "employer": 4
   }
  }, 
@@ -159,6 +192,61 @@
   }
  }, 
  {
+  "pk": 6, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-08-27 16:20:39", 
+   "last_updated": "2011-08-27 16:20:39", 
+   "student": 1, 
+   "employer": 6
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-08-27 16:20:39", 
+   "last_updated": "2011-08-27 16:20:39", 
+   "student": 2, 
+   "employer": 6
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-08-27 16:20:39", 
+   "last_updated": "2011-08-27 16:20:39", 
+   "student": 3, 
+   "employer": 6
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-08-27 16:20:39", 
+   "last_updated": "2011-08-27 16:20:39", 
+   "student": 4, 
+   "employer": 6
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-08-27 16:20:39", 
+   "last_updated": "2011-08-27 16:20:39", 
+   "student": 5, 
+   "employer": 6
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "employer.recruiterpreferences", 
   "fields": {
@@ -185,6 +273,32 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "employer.recruiterpreferences", 
+  "fields": {
+   "email_on_rsvp_to_public_event": false, 
+   "last_updated": "2011-08-27 16:18:31", 
+   "recruiter": 7, 
+   "email_on_rsvp_to_private_event": false, 
+   "date_created": "2011-08-27 16:18:31", 
+   "default_student_result_ordering": "relevancy", 
+   "default_student_results_per_page": 10
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "employer.recruiterpreferences", 
+  "fields": {
+   "email_on_rsvp_to_public_event": false, 
+   "last_updated": "2011-08-27 16:18:23", 
+   "recruiter": 6, 
+   "email_on_rsvp_to_private_event": false, 
+   "date_created": "2011-08-27 16:18:23", 
+   "default_student_result_ordering": "relevancy", 
+   "default_student_results_per_page": 10
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.recruiterpreferences", 
   "fields": {
@@ -193,6 +307,19 @@
    "recruiter": 5, 
    "email_on_rsvp_to_private_event": false, 
    "date_created": "2011-07-08 00:12:22", 
+   "default_student_result_ordering": "relevancy", 
+   "default_student_results_per_page": 10
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "employer.recruiterpreferences", 
+  "fields": {
+   "email_on_rsvp_to_public_event": false, 
+   "last_updated": "2011-08-27 16:18:41", 
+   "recruiter": 8, 
+   "email_on_rsvp_to_private_event": false, 
+   "date_created": "2011-08-27 16:18:41", 
    "default_student_result_ordering": "relevancy", 
    "default_student_results_per_page": 10
   }
@@ -218,6 +345,26 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "employer.recruiterstatistics", 
+  "fields": {
+   "date_created": "2011-08-27 16:18:31", 
+   "recruiter": 7, 
+   "last_updated": "2011-08-27 16:18:31", 
+   "resumes_viewed": 0
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "employer.recruiterstatistics", 
+  "fields": {
+   "date_created": "2011-08-27 16:18:23", 
+   "recruiter": 6, 
+   "last_updated": "2011-08-27 16:18:23", 
+   "resumes_viewed": 0
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.recruiterstatistics", 
   "fields": {
@@ -228,11 +375,21 @@
   }
  }, 
  {
+  "pk": 8, 
+  "model": "employer.recruiterstatistics", 
+  "fields": {
+   "date_created": "2011-08-27 16:18:41", 
+   "recruiter": 8, 
+   "last_updated": "2011-08-27 16:18:41", 
+   "resumes_viewed": 0
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-27 15:27:31", 
+   "last_updated": "2011-08-27 16:20:39", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -282,7 +439,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-08-27 15:27:31", 
+   "last_updated": "2011-08-27 16:20:39", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -330,7 +487,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-08-27 15:27:31", 
+   "last_updated": "2011-08-27 16:20:39", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -364,7 +521,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-08-27 15:27:31", 
+   "last_updated": "2011-08-27 16:20:39", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -398,7 +555,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Dearing", 
-   "last_updated": "2011-08-27 15:27:31", 
+   "last_updated": "2011-08-27 16:20:39", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "", 
@@ -553,6 +710,16 @@
   }
  }, 
  {
+  "pk": 3, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 16:13:20", 
+   "code": "ggggg", 
+   "last_updated": "2011-08-27 16:13:20", 
+   "used": false
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "auth.user", 
   "fields": {
@@ -562,7 +729,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-27 15:32:18", 
+   "last_login": "2011-08-27 16:40:16", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -580,7 +747,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 15:48:04", 
+   "last_login": "2011-08-27 16:14:48", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -598,7 +765,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 12:42:39", 
+   "last_login": "2011-08-27 16:20:33", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -751,6 +918,24 @@
   }
  }, 
  {
+  "pk": 16, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "recruiter1@umeqo.com", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-08-27 16:17:29", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
+   "email": "recruiter1@umeqo.com", 
+   "date_joined": "2011-08-27 16:17:29"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -837,6 +1022,15 @@
   "fields": {
    "is_verified": true, 
    "user": 11, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": false, 
+   "user": 16, 
    "last_password_change_date": null
   }
  }, 
@@ -2011,13 +2205,13 @@
   }
  }, 
  {
-  "pk": 211, 
+  "pk": 218, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-27 09:07:48", 
-   "session_key": "f02565371be8be8402d49431b9d7d471", 
-   "last_updated": "2011-08-27 09:07:48", 
-   "user": 2
+   "date_created": "2011-08-27 16:14:13", 
+   "session_key": "26f1c537ca8f418dfd2c0d366aff3c51", 
+   "last_updated": "2011-08-27 16:14:13", 
+   "user": 3
   }
  }, 
  {
@@ -2031,13 +2225,13 @@
   }
  }, 
  {
-  "pk": 213, 
+  "pk": 222, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-27 12:07:44", 
-   "session_key": "a2648377f02f7b53caaeeedbd048dec0", 
-   "last_updated": "2011-08-27 12:07:44", 
-   "user": 2
+   "date_created": "2011-08-27 16:18:54", 
+   "session_key": "e4c7d1bce93394af0ae79048fed3dbae", 
+   "last_updated": "2011-08-27 16:18:54", 
+   "user": 3
   }
  }, 
  {
@@ -2057,6 +2251,36 @@
    "date_created": "2011-08-27 15:32:18", 
    "session_key": "730baa30b31afdae8f67e5a2ee5a8b2a", 
    "last_updated": "2011-08-27 15:32:18", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 220, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 16:15:58", 
+   "session_key": "f8d67789324d2f13acd2adfb5f01c3f6", 
+   "last_updated": "2011-08-27 16:15:58", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 221, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 16:16:07", 
+   "session_key": "1686086f47f848144b948db4531633af", 
+   "last_updated": "2011-08-27 16:16:07", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 224, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 16:40:16", 
+   "session_key": "a05ed35e5b6c43c9403082034a60edd7", 
+   "last_updated": "2011-08-27 16:40:16", 
    "user": 1
   }
  }
