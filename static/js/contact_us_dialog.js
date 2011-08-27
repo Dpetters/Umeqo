@@ -15,7 +15,7 @@ var open_contact_us_dialog = function () {
     return contact_us_dialog;
 };
 
-$('.open_contact_us_dialog_link').live('click', function () {
+$('.open_contact_us_dialog_link').live('click', function (e) {
 
     contact_us_dialog = open_contact_us_dialog();
     contact_us_dialog.html(DIALOG_AJAX_LOADER);
@@ -88,4 +88,5 @@ $('.open_contact_us_dialog_link').live('click', function () {
             });
         }
     });
+    e.preventDefault();
 });

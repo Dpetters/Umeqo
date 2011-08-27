@@ -37,13 +37,13 @@
         </div>
         <div class="main_block_content">
             <div id="welcome_block">
-                <p>Hey there! <strong>Welcome, and thanks for beta testing Umeqo!</strong></p>
-                <p>You might notice some things breaking here and there - please bear with us and let us know if you see anything (<a href="mailto:umeqo@mit.edu">umeqo@mit.edu</a>).</p>
+                <p>Hey there! <strong>Welcome, and thanks for beta testing Umeqo!</strong> Explore the site and check out some of the features:</p>
                 <ul id="welcome_list">
-                    <li>Browse and search the events that employers have posted.</li>
-                    <li>Filter through employers on Umeqo - watch this list grow! Subscribe to the ones you're interested in, and we'll send you notifications when they create new events.</li>
-                    <li>Edit your profile details and preview yourself as employers would.</li>
+                    <li><a href="{% url events_list %}">Browse and search</a> the events that employers have posted.</li>
+                    <li><a href="{% url employers_list %}">Filter through employers</a> on Umeqo - watch this list grow! Subscribe to the ones you're interested in, and we'll send you notifications when they create new events and their events will appear below.</li>
+                    <li><a href="{% url student_profile %}">Edit your profile details</a> and preview yourself as employers would. The more you fill out, the more likely you'll be seen.</li>
                 </ul>
+                <p>Again, please remember this is just a beta and there may (read: definitely) be things that are broken. Please do <a href="#" class="open_contact_us_dialog_link">report bugs you see</a> - there's a "Contact Us" link at the bottom of every page.</p>
             </div>
         </div>
     </div>
