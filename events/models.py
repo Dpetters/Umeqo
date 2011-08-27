@@ -3,11 +3,11 @@ from django.db.models import signals
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-from core import mixins as core_mixins
 
+from core import mixins as core_mixins
 from core.decorators import is_recruiter
-from core.models import EventType
 from core.managers import ActiveManager
+from core.models import EventType
 from core.view_helpers import english_join
 from student.models import Student
 from notification import models as notification

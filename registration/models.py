@@ -10,8 +10,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.dispatch import receiver
 
 from core import mixins as core_mixins
-from registration.managers import RegistrationManager
 from core.view_helpers import get_ip
+from events.models import notify_about_event
+from registration.managers import RegistrationManager
 
 
 class InterestedPerson(core_mixins.DateTracking):
@@ -184,3 +185,9 @@ class LoginAttempt(models.Model):
 def clear_login_attempts(sender, request, user, **kwargs):
     ip_address = get_ip(request)
     LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
+
+@receiver(post_save, sender=User)
+def send_first_notice(sender, request, created, **kwargs):
+    if created:
+        event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
+        notify_about_event(event, 'new_event')
