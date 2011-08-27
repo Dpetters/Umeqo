@@ -10,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.dispatch import receiver
 
 from core import mixins as core_mixins
+from core.decorators import is_student
 from core.view_helpers import get_ip
 from events.models import notify_about_event
 from registration.managers import RegistrationManager
@@ -189,6 +190,6 @@ def clear_login_attempts(sender, request, user, **kwargs):
 
 @receiver(post_save, sender=User)
 def send_first_notice(sender, request, created, **kwargs):
-    if created:
+    if created and is_student(sender):
         event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
         notify_about_event(event, 'new_event')
