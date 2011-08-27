@@ -761,7 +761,7 @@ $(document).ready(function() {
                     $(that).append(dropdown);
                 });
             }, function() {
-                //$(this).children('.events_dropdown').remove();
+                $(this).children('.events_dropdown').remove();
             });
             $(this).trigger('mouseover');
         }

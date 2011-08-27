@@ -1,0 +1,5 @@
+Hey {{name}},
+
+This is to just let you know that {{employer_names}} {{has_word}} deleted their event: {{event.name}}
+
+- Your friends at Umeqo
