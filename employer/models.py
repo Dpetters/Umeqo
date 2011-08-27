@@ -36,14 +36,13 @@ class Employer(core_mixins.DateTracking):
 
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
-    if created and not raw:
+    if created:
         if not EmployerStatistics.objects.filter(employer=instance).exists():
             EmployerStatistics.objects.create(employer=instance)
 
 
 class EmployerStatistics(core_mixins.DateTracking):
     employer = models.OneToOneField(Employer, unique=True, editable=False)
-    
     resumes_viewed = models.PositiveIntegerField(default=0, editable=False, blank=True, null=True)
 
     class Meta:

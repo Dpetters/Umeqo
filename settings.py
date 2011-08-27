@@ -43,7 +43,7 @@ EMAIL_PORT = 587
 
 PROD_DATA_MODELS = {
     'campus_org': ['campusorg'],
-    'employer': ['employer'],
+    'employer':['employer'],
     'registration': ['interestedperson'],
     'core':['campusorgtype', 'location', 'topic', \
             'question', 'schoolyear', 'graduationyear', \
@@ -234,6 +234,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'core',
     'events',
+    'student',
     'employer',
     'haystack',
     'messages',
@@ -241,7 +242,6 @@ INSTALLED_APPS = (
     'notification',
     'registration',
     'south',
-    'student',
     'debug_toolbar',
     'compressor',
     'campus_org',
