@@ -713,12 +713,10 @@
   "pk": 3, 
   "model": "student.studentinvite", 
   "fields": {
-   "used": false, 
-   "last_updated": "2011-08-27 16:13:20", 
-   "code": "ggggg", 
-   "owner": null, 
    "date_created": "2011-08-27 16:13:20", 
-   "recipient": null
+   "code": "ggggg", 
+   "last_updated": "2011-08-27 16:13:20", 
+   "used": false
   }
  }, 
  {
@@ -2274,16 +2272,6 @@
    "session_key": "1686086f47f848144b948db4531633af", 
    "last_updated": "2011-08-27 16:16:07", 
    "user": 1
-  }
- }, 
- {
-  "pk": 223, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-27 16:20:33", 
-   "session_key": "250b87e291876a55fea688da19bf976d", 
-   "last_updated": "2011-08-27 16:20:33", 
-   "user": 3
   }
  }
 ]
