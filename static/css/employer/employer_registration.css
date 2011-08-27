@@ -1,6 +1,5 @@
 #er-overview{
-    float:left;
-    margin-top:15px;
+    margin-top:20px;
 }
 #er-overview p{
     margin-top:5px;
@@ -8,7 +7,7 @@
 .right_side_container{
     width:250px;
 }
-#er-features{
+#er-features, #er-overview{
     margin-right:250px;
     clear:left;
 }
@@ -50,5 +49,5 @@ h2{
     padding-left:10px;
 }
 #er-signup{
-    margin-bottom:100px;
+    margin-bottom:110px;
 }
