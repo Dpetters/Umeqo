@@ -752,6 +752,16 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 17:48:48", 
+   "code": "8O6QmrxaCG3x", 
+   "last_updated": "2011-08-27 17:48:48", 
+   "used": false
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "auth.user", 
   "fields": {
