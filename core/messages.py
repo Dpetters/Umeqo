@@ -75,8 +75,7 @@ entered is invalid. Please note that both fields are case-sensitive."
 staff_member_login_not_allowed = "Staff users cannot login. They can only \
 access the admin pages."
 
-account_suspended = "This account has been suspended. Please direct all \
-inquiries to help@umeqo.com."
+account_suspended = "This account has been suspended. Feel free to contact us by clicking the link in the footer."
 
 enable_cookies = "Your browser doesn't seem to have cookies enabled. \
 Cookies are required to login."
@@ -111,4 +110,4 @@ must_be_mit_student = "You must be a student to sign up."
 ldap_server_error = "Can't contact LDAP server. Try again in a few min."
 invalid_invite_code = "Sorry, but this invite code is invalid."
 invite_code_required = "You need an invite code!"
-invite_code_already_used = "This invite code has already been used."
+invite_code_already_used = "This code has already been used."
