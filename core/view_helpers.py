@@ -27,5 +27,5 @@ def english_join(l):
 def get_ip(request):
     if 'HTTP_X_FORWARDED_FOR' in request.META:
         return request.META['HTTP_X_FORWARDED_FOR'].split(',')[-1]
-    else:
+    elif 'REMOTE_ADDR' in request.META:
         return request.META['REMOTE_ADDR']

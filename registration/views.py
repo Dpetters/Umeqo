@@ -33,7 +33,8 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
 
     # Log the login attempt.
     ip_address = get_ip(request)
-    LoginAttempt.objects.create(ip_address=ip_address)
+    if ip_address:
+        LoginAttempt.objects.create(ip_address=ip_address)
     
     half_day_ago = datetime.now() - timedelta(hours=12)
     login_attempts = LoginAttempt.objects.all().filter(ip_address=ip_address).filter(attempt_datetime__gt=half_day_ago).count()

@@ -183,4 +183,5 @@ class LoginAttempt(models.Model):
 @receiver(user_logged_in, sender=User)
 def clear_login_attempts(sender, request, user, **kwargs):
     ip_address = get_ip(request)
-    LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
+    if ip_address:
+        LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
