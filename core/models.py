@@ -156,10 +156,13 @@ class Industry(core_mixins.DateTracking):
 
 class EventType(core_mixins.DateTracking):
     name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
+    
+    sort_order = models.IntegerField("sort order", default=0, help_text='EventTypes will be ordered by the sort order. (Smallest at top.)')
 
     class Meta:
         verbose_name = "Event Type"
         verbose_name_plural = "Event Types"
+        ordering=['sort_order']
     
     def __unicode__(self):
         return self.name
