@@ -11,8 +11,6 @@ $(document).ready(function() {
         marker.setPosition(location);
     }
 
-
-    
     function rsvp(isAttending) {
         $.post($(this).attr('href'), {
             isAttending: isAttending

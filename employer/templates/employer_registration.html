@@ -13,6 +13,40 @@ Employer Registration |
 
 {% block content_area %}
 <h1>Employer Registration</h1>
-<div class="simple_block centered">
+<div id="er-overview" class="grande">
+    <h2>What is Umeqo?</h2>
+    <div><p>A single resource for both discovering top students and promoting your firm</p></div>
+</div>
+<div class="right_side_container">
+    <div id="er-signup">
+        <h2>Interested? <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact Us!</a></h2>
+    </div>
+    <div id="er-privacy">
+        <h2>Safety and Security</h2>
+        <p><strong>We understand that your data is sensitive.</strong> That is why we pledge to never track your activity on the site, but are making all of the recruiter sessions run on a secure connection (https).</p>
+    </div>
+</div>
+<div id="er-features">
+    <h2>What can I do using Umeqo?</h2>
+    <div class="er-feature">
+        <img src="{{ STATIC_URL }}images/e-reg/filtering.png" />
+        <h3>Search, Filter, Find</h3>       
+        <p>Easily discover the perfect candidate from the vast collection of students. We present you with not only a candidate’s resume, but also info applicable to your firm, such as event attendance.  Potential candidates can be added to custom resume books that can be emailed and/or downloaded.</p>
+    </div>
+    <div class="er-feature">
+        <img src="{{ STATIC_URL }}images/e-reg/checkin.png" />
+        <h3>Effectively plan events</h3>
+        <p>The Umeqo Event Scheduling Assistant presents you with an overview of both major campus activities and events hosted by other companies, allowing you to schedule your event at an optimal time. Umeqo also handles event check-ins, minimizing headaches and the length of those check-in lines.</p>
+    </div>
+    <div class="er-feature">
+        <img src="{{ STATIC_URL }}images/e-reg/learn.png" />
+        <h3>Learn about the campus</h3>
+        <p>Umeqo allows you to annotate students’ profiles, making it easy for you to remember promising candidates and share notes with colleagues.</p>
+    </div>
+    <div class="er-feature">
+        <img src="{{ STATIC_URL }}images/e-reg/annotate.png" />
+        <h3>Discover promising candidates</h3>
+        <p>Umeqo allows you to annotate students’ profiles, making it easy for you to remember promising candidates and share notes with colleagues.</p>
+    </div>
 </div>
 {% endblock %}

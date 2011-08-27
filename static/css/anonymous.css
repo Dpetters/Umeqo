@@ -128,6 +128,7 @@
     padding: 5px 6px;
     border: 1px solid #DDD;
     border-radius: 3px;
+    -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     display: inline-block;
     position: relative;
