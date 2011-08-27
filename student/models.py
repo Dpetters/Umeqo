@@ -13,9 +13,10 @@ from student.managers import StudentManager
 
 
 class StudentInvite(core_mixins.DateTracking):
-    id = models.CharField(max_length=12, primary_key=True)
-    owner = models.ForeignKey("student.Student", related_name="owned_invite_set")
+    owner = models.ForeignKey("student.Student", related_name="owned_invite_set", null=True)
     recipient = models.ForeignKey("student.Student", related_name="accepted_invite", null=True, blank=True, unique=True)
+    code = models.CharField(max_length=12, unique=True)
+    used = models.BooleanField(default=False)
     
     def __unicode__(self):
         return "%s's Invite" % str(self.owner)

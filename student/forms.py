@@ -88,9 +88,11 @@ class BetaStudentRegistrationForm(StudentRegistrationForm):
         
     def clean_invite_code(self):
         try:
-            StudentInvite.objects.get(id=self.cleaned_data['invite_code'])
+            i = StudentInvite.objects.get(code=self.cleaned_data['invite_code'])
         except StudentInvite.DoesNotExist:
             raise forms.ValidationError(m.invalid_invite_code)
+        if i.used:
+            raise forms.ValidationError(m.invite_code_already_used)          
         return self.cleaned_data['invite_code']
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):

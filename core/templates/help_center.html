@@ -35,7 +35,7 @@ Help |
     {% block help_content %}
     <h1>Help Center</h1>
     <div id="contact_us_div">
-        <h2><u>Didn't find an answer?</u></h2>
+        <h2>Didn't find an answer?</h2>
         <p>Feel free to <a href="javascript:void(0)" class="open_contact_us_dialog_link">contact us!</a></p>
     </div>
     <div id="getting_started_div">
@@ -74,11 +74,15 @@ Help |
     </div>
     <div id="top_questions_div" class="simple_block">
         <h2 class="h-header"><u>Top 10 Questions</u></h2>
-        <ul class="h-content h-list">
-        {% for question in top_questions %}
-                <li><a href="{% url faq %}#{{question.slug}}">{{question.question}}</a></li>
-        {% endfor %}            
-        </ul>
+        {% if top_questions %}
+            <ul class="h-content h-list">
+                {% for question in top_questions %}
+                    <li><a href="{% url faq %}#{{question.slug}}">{{question.question}}</a></li>
+                {% endfor %}            
+            </ul>
+        {% else %}
+            <p>There are no questions yet.</p>
+        {% endif %}
     </div>
     {% endblock %}
 </div>

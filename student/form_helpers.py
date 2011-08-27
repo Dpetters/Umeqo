@@ -17,8 +17,6 @@ def student_lists_as_choices(employer_id):
                 student_lists.append([0, student_list[1]])
         if student_list_type[0] == student_enums.EVENT:
             for event in Event.objects.filter(owner__in = [recruiter.user for recruiter in Employer.objects.get(id=employer_id).recruiter_set.all()]):
-                if event.type == EventType.objects.get(name="Resume Drop"):
-                    student_list.append([0, event.name + " Resume Book"])
                 student_lists.append([0, event.name + " RSVPS"])
                 student_lists.append([0, event.name + " Attendees"])
         new_student_list_type = [student_list_type[1], student_lists]
