@@ -47,7 +47,7 @@ class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
     sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
-
+    
     class Meta:
         ordering = ['sort_order', 'name']
 
@@ -64,7 +64,7 @@ class Question(core_mixins.DateTracking):
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
     click_count = models.PositiveIntegerField(default=0)
-    
+
     objects = QuestionManager()
     
     class Meta:
@@ -73,7 +73,7 @@ class Question(core_mixins.DateTracking):
     def __unicode__(self):
         return self.question
 
-        
+
 class CommonInfo(core_mixins.DateTracking):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)
