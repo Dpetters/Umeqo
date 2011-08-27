@@ -144,9 +144,8 @@ def update():
                 run("git pull")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
-                run("cd /var/www/umeqo")
-                run("chmod 777 /logs -R")
-                run("chmod 777 /media -R")
+                run("chmod 777 logs/ -R")
+                run("chmod 777 media/ -R")
                 with fabric_settings(warn_only=True):
                     result = run("python manage.py test --setting=settings_test")
                 if result.failed:
