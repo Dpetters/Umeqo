@@ -189,7 +189,7 @@ def clear_login_attempts(sender, request, user, **kwargs):
         LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
 
 @receiver(post_save, sender=User)
-def send_first_notice(sender, request, created, **kwargs):
+def send_first_notice(sender, instance, created, raw, **kwargs):
     if created and is_student(sender):
         event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
         notify_about_event(event, 'new_event')
