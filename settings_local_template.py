@@ -3,6 +3,15 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# Compress static content?
+COMPRESS = False
+# Students need an invite code to register
+INVITE_ONLY = True
+# Base page is the landing page
+USE_LANDING_PAGE = True
+# Can students register?
+REGISTRATION_OPEN = True
+
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
 # 1 - Prod, 2 - Staging, 3 - Dev/Local

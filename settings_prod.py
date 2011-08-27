@@ -2,7 +2,15 @@ import socket
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+# Compress static content?
 COMPRESS = False
+# Students need an invite code to register
+INVITE_ONLY = True
+# Base page is the landing page
+USE_LANDING_PAGE = True
+# Can students register?
+REGISTRATION_OPEN = True
 
 def is_prod():
     return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
