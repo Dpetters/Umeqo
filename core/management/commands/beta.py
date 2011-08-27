@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.core.management.base import BaseCommand
 from django.core.validators import validate_email
-from django.conf import settings
+from django.conf import settings as s
 
 from registration.models import InterestedPerson
 from student.models import StudentInvite
@@ -89,20 +89,20 @@ class Command(BaseCommand):
         if options["email"]:
             for person in InterestedPerson.objects.all():
                 if person.auto_email:
-                    invite_code = ''.join(random.choice(string.ascii_uppercase + \
-                                string.ascii_lowercase + string.digits) for x in range(12))
-                    StudentInvite.objects.create(id = invite_code)
+                    invite_codes = []
+                    for i in s.INVITE_CODE_COUNT:
+                        invite_code = ''.join(random.choice(string.ascii_uppercase + \
+                                    string.ascii_lowercase + string.digits) for x in range(12))
+                        StudentInvite.objects.create(id = invite_code)
                     recipients = [person.email]
                     subject = "Umeqo Beta Invitation" 
                     body = render_to_string('student_beta_invitation_email_body.txt', \
                                             {'first_name':person.student.first_name, \
                                             'last_name':person.student.last_name, \
-                                            'email':person.email })
-                    message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
-                    #Do NOT uncomment!
-                    ####################
-                    ###message.send()###
-                    ####################
-                    # Do NOT uncomment!
+                                            'email':person.email,
+                                            'extra_invite_codes': invite_codes[1:],
+                                            'ic':invite_codes[0]})
+                    message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
+                    message.send()
                     person.emailed = True
                     person.save()
