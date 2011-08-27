@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 )
 if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
-        (r'^$', 'core.views.landing_page', {'extra_context': {'login_form': AuthenticationForm}}),
+        (r'^$', 'core.views.landing_page_wrapper', {'extra_context': {'login_form': AuthenticationForm}}),
     )
 urlpatterns += patterns('',
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
@@ -53,6 +53,7 @@ urlpatterns += patterns('core.views',
     (r'^get-location-guess/$', 'get_location_guess', {}, 'get_location_guess'),
     (r'^get-location-suggestions/$', 'get_location_suggestions', {}, 'get_location_suggestions'),
     (r'^notification/count$', 'get_notice_unseen_count', {}, 'get_notice_unseen_count'),
+    (r'^cache-status/$', 'cache_status', {}, 'cache_status')
 )
 
 urlpatterns += patterns('campus_org.views',

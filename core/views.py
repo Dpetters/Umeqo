@@ -1,32 +1,34 @@
 from __future__ import division
 from __future__ import absolute_import
 
+from datetime import datetime, timedelta
 import operator
-from datetime import datetime
+import re
 
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.utils import simplejson
-from django.contrib.auth.forms import AuthenticationForm
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
-from django.shortcuts import redirect
 from django.conf import settings as s
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+from django.core.validators import URLValidator
 from django.db.models import Q
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
+from django.shortcuts import redirect
+from django.views.decorators.cache import cache_page
+from django.utils import simplejson
 
-from haystack.query import SearchQuerySet, SQ
-from notification.models import Notice
-from registration.models import InterestedPerson
 from core import enums, messages
 from core.decorators import render_to, is_student, is_recruiter, is_campus_org
-from core.models import Course, Language, Topic, Location, Question
 from core.forms import BetaForm, AkismetContactForm
+from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import does_email_exist
 from employer.forms import StudentSearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
+from haystack.query import SearchQuerySet, SQ
+from notification.models import Notice
+from registration.models import InterestedPerson
 
 
 @render_to('help_center.html')
@@ -141,18 +143,22 @@ def get_location_suggestions(request):
             for l in locations:
                 suggestions.append({'name':"%s" % str(l.object), 'lat':l.object.latitude, 'lng':l.object.longitude})
         context = {'suggestions': suggestions}
-        print context
         return context
     else:
         return HttpResponseBadRequest("You must pass in either a query or an address to display.")
 
+
+def landing_page_wrapper(request, extra_context=None):
+    if request.user.is_authenticated():
+        return home(request, extra_context=extra_context)
+    else:
+        return landing_page(request, extra_context=extra_context)
+
+@cache_page(60 * 15)
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
     
     form_class = BetaForm
-
-    if request.GET.get('magic','')!='' or request.user.is_authenticated():
-        return home(request)
     
     posted = False
     disabled = False
@@ -370,4 +376,52 @@ def handle_403(request, extra_context = None):
     if not request.user.is_authenticated():
         context = {'login_form': AuthenticationForm}
     context.update(extra_context or {})
+    return context
+
+@render_to('cache_status.html')
+def cache_status(request, extra_context = None):
+    try:
+        import memcache
+    except ImportError:
+        raise Http404
+
+    if not (request.user.is_authenticated() and request.user.is_staff):
+        raise Http404
+    
+    cache_location = s.CACHES['default']['LOCATION']
+    host = memcache._Host(cache_location)
+    host.connect()
+    host.send_cmd("stats")
+
+    class Stats:
+        pass
+
+    stats = Stats()
+
+    while True:
+        line = host.readline().split(None, 2)
+        if line[0] == "END":
+            break
+        stat, key, value = line
+        try:
+            # convert to native type, if possible
+            value = int(value)
+            if key == "uptime":
+                value = timedelta(seconds=value)
+            elif key == "time":
+                value = datetime.fromtimestamp(value)
+        except ValueError:
+            pass
+        setattr(stats, key, value)
+
+    host.close_socket()
+
+    hit_rate = 100 * stats.get_hits / stats.cmd_get if stats.cmd_get else 'NaN'
+
+    context = {
+        'stats': stats,
+        'hit_rate': '%.3f' % hit_rate,
+        'time': datetime.now()
+    }
+
     return context
