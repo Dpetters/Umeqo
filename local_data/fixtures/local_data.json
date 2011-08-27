@@ -3,7 +3,7 @@
   "pk": 1, 
   "model": "events.event", 
   "fields": {
-   "view_count": 10, 
+   "view_count": 11, 
    "start_datetime": "2011-10-01 06:00:00", 
    "audience": [
     1, 
@@ -22,6 +22,7 @@
    "longitude": -71.090567859999993, 
    "latitude": 42.361612839999999, 
    "edits": [], 
+   "is_drop": false, 
    "end_datetime": "2011-10-02 00:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
@@ -47,6 +48,7 @@
    "longitude": -71.098349690000006, 
    "latitude": 42.350392990000003, 
    "edits": [], 
+   "is_drop": false, 
    "end_datetime": "2011-11-02 21:30:00", 
    "rsvp_message": "", 
    "owner": 3, 
@@ -72,6 +74,7 @@
    "longitude": -71.088658510000002, 
    "latitude": 42.359235609999999, 
    "edits": [], 
+   "is_drop": false, 
    "end_datetime": "2011-08-09 22:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
@@ -97,6 +100,7 @@
    "longitude": -71.087286160000005, 
    "latitude": 42.362204339999998, 
    "edits": [], 
+   "is_drop": false, 
    "end_datetime": "2011-08-03 22:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
@@ -122,6 +126,7 @@
    "longitude": null, 
    "latitude": null, 
    "edits": [], 
+   "is_drop": false, 
    "end_datetime": "2011-08-03 16:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
@@ -189,10 +194,9 @@
   "pk": 2, 
   "model": "employer.employer", 
   "fields": {
-  "industries": [
+   "industries": [
     42
    ], 
-   "careers_website": null, 
    "main_contact_email": "temp@temp.com", 
    "last_updated": "2011-08-24 09:07:01", 
    "description": "temp", 
@@ -214,7 +218,6 @@
    "industries": [
     28
    ], 
-   "careers_website": null,
    "main_contact_email": "fake@fake.com", 
    "last_updated": "2011-08-24 09:06:55", 
    "description": "Amazing firm.", 
@@ -236,7 +239,6 @@
    "industries": [
     41
    ], 
-   "careers_website": null,
    "main_contact_email": "jason@blah.com", 
    "last_updated": "2011-08-24 09:06:36", 
    "description": "Sample", 
@@ -255,11 +257,6 @@
   "pk": 5, 
   "model": "employer.employer", 
   "fields": {
-   "careers_website": null, 
-   "main_contact_email": "temp@temp.com", 
-   "last_updated": "2011-08-24 15:31:30", 
-   "description": "temp", 
-   "starred_students": [],
    "industries": [
     40
    ], 
@@ -373,6 +370,20 @@
    "last_updated": "2011-07-19 00:03:51", 
    "user": 11, 
    "employer": 4
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "last_updated": "2011-08-26 15:32:01", 
+   "name": null, 
+   "students": [
+    1
+   ], 
+   "recruiter": 1, 
+   "resume_book": "", 
+   "date_created": "2011-08-26 15:32:01"
   }
  }, 
  {
@@ -550,7 +561,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-24 11:41:22", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -600,7 +611,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-08-23 20:36:01", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -648,7 +659,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-08-23 21:01:29", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -682,7 +693,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-08-23 21:01:48", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -716,7 +727,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Dearing", 
-   "last_updated": "2011-08-23 21:02:17", 
+   "last_updated": "2011-08-26 16:20:03", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "", 
@@ -880,7 +891,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-24 15:31:06", 
+   "last_login": "2011-08-26 13:07:28", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -898,7 +909,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-25 15:58:40", 
+   "last_login": "2011-08-26 16:20:23", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -916,7 +927,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-24 14:52:10", 
+   "last_login": "2011-08-26 18:23:30", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$c958f$e7322772f54c5731c1d9e6502f6816cb965fba1a", 
@@ -2156,6 +2167,36 @@
    "session_key": "f0df7456b4cc86e862c9add578b69e33", 
    "last_updated": "2011-08-25 15:58:40", 
    "user": 2
+  }
+ }, 
+ {
+  "pk": 181, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-26 09:34:24", 
+   "session_key": "2d09cf9f1275a9cbbaf6a9852621d74f", 
+   "last_updated": "2011-08-26 09:34:24", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 187, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-26 16:05:34", 
+   "session_key": "5e3217c3310035e2995a1a0682de1f19", 
+   "last_updated": "2011-08-26 16:05:34", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 192, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-26 18:23:30", 
+   "session_key": "a5fc7cfaecf9ac4735502be2f3431c63", 
+   "last_updated": "2011-08-26 18:23:30", 
+   "user": 3
   }
  }
 ]

@@ -227,7 +227,17 @@ $(document).ready( function() {
     };
     $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
     
-    //$("#profile_form select, #profile_form input[type=text], #profile_form input[type=file]").live('change', load_profile_preview);
+    $("#profile_form select").live('change', load_profile_preview);
+    
+    var timeoutID;
+    $('#profile_form input[type=text]').keydown(function(e) {
+        if(e.which != 9) {
+            if( typeof timeoutID != 'undefined')
+                window.clearTimeout(timeoutID);
+            timeoutID = window.setTimeout(load_profile_preview, 400);
+        }
+    });
+
     var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
     load_profile_preview();
 });

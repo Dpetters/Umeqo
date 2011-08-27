@@ -296,9 +296,9 @@ CACHES = {
 #only allow toolbar from localhost
 INTERNAL_IPS = ('127.0.0.1',)
 
+NOTIFICATION_QUEUE_ALL = True
+
 try:
     from settings_local import *
 except ImportError:
     from settings_prod import *
-
-NOTIFICATION_QUEUE_ALL = True

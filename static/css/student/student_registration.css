@@ -1,4 +1,8 @@
 #recruiter_signup_link{
     text-align:right;
-    margin-right:7px;
+    margin-right:20px;
+}
+#id_invite_code{
+    width:180px;
+    font-family:"Courier New";
 }
