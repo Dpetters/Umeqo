@@ -93,13 +93,10 @@ class ResumeBook(core_mixins.DateTracking):
         
 class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
-
     majors = models.ManyToManyField(Course, blank=True, null=True)    
     school_years = models.ManyToManyField(SchoolYear, blank=True, null=True)
     graduation_years = models.ManyToManyField(GraduationYear, blank=True, null=True)
-
     employment_types = models.ManyToManyField(EmploymentType, blank=True, null=True)
-    
     older_than_21 = models.CharField(max_length=1, choices=choices.NO_YES_CHOICES, blank=True, null=True)
 
 
@@ -135,7 +132,6 @@ class RecruiterPreferences(core_mixins.DateTracking):
 
 class RecruiterStatistics(core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
-     
     resumes_viewed = models.PositiveIntegerField(default=0, editable=False, blank=True, null=True)
 
     class Meta:

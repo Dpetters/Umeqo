@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_syncdb
+from django.dispatch import receiver
 
 from core.model_helpers import get_image_filename, get_thumbnail_filename
 from core import enums
 from core.managers import QuestionManager
 from core import mixins as core_mixins
 from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
+from notification import models as notification
 
 
 class CampusOrgType(core_mixins.DateTracking):
@@ -169,3 +171,9 @@ class EventType(core_mixins.DateTracking):
     
     def __unicode__(self):
         return self.name
+
+@receiver(post_syncdb, sender=notification)
+def create_notice_types(app, created_models, verbosity, **kwargs):
+    notification.create_notice_type('new_event', 'New Event', 'an employer has created a new event')
+    notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
+    notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')

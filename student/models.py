@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from countries.models import Country
 from campus_org.models import CampusOrg
@@ -9,7 +10,6 @@ from core.model_helpers import get_resume_filename
 from core import choices as core_choices
 from core import mixins as core_mixins
 from student.managers import StudentManager
-from student.signals import create_student_related_models
 
 
 class StudentInvite(core_mixins.DateTracking):
@@ -76,7 +76,15 @@ class Student(StudentBaseAttributes, core_mixins.DateTracking):
         else:
             return "Unattached Student"
 
-post_save.connect(create_student_related_models, sender=Student)
+@receiver(post_save, sender=Student)
+def create_student_related_models(sender, instance, created, raw, **kwargs):
+    if created and not raw:
+        if instance.first_name and instance.last_name:
+            instance.user.first_name = instance.first_name
+            instance.user.last_name = instance.last_name
+            instance.user.save()
+        StudentPreferences.objects.create(student=instance)
+        StudentStatistics.objects.create(student=instance)
 
 
 class StudentDeactivation(core_mixins.DateCreatedTracking):
