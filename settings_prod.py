@@ -11,7 +11,7 @@ COMPRESS = False
 INVITE_ONLY = True
 
 # Base page is the landing page
-USE_LANDING_PAGE = True
+USE_LANDING_PAGE = False
 
 # Can students register?
 REGISTRATION_OPEN = True
