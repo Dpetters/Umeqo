@@ -3,15 +3,23 @@ ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
 # The minimum password length that we allow
 PASSWORD_MIN_LENGTH = 5
+
+#ID of the event for which student will get notified of when they register
+WELCOME_EVENT_ID = 3
+
 # How long do we allow dialogs to load for before showing "this is taking longer
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000
+
 # One-day activation window
 ACCOUNT_ACTIVATION_DAYS = 1
+
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4
+
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
 SP_MAX_CAMPUS_INVOLVEMENT = 12;
@@ -57,6 +65,9 @@ LOCAL_DATA_MODELS = {
                 'recruiterstatistics'],
     'events':['event', 'rsvp', 'invitee', 'attendee']
 }
+
+MAX_DIALOG_IMAGE_WIDTH = 200
+MAX_DIALOG_IMAGE_HEIGHT = 140
 
 PROD_PASSWORD = 'H3rcul3s'
 STAGING_PASSWORD = 'Jamb4Juic3'
@@ -157,9 +168,6 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.cssmin.CSSMinFilter',
 )
 
-MAX_DIALOG_IMAGE_WIDTH = 200
-MAX_DIALOG_IMAGE_HEIGHT = 140
-    
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
@@ -242,45 +250,6 @@ INSTALLED_APPS = (
     'campus_org',
     'ckeditor'
 )
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'standard': {
-            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'file_handler': {
-                'level':'DEBUG',
-                'class': 'logging.handlers.RotatingFileHandler',
-                'filename': ROOT + '/logs/umeqo.log',
-                'maxBytes': 1024*1024*10,
-                'backupCount': 5,
-                'formatter':'standard',
-        },
-        'console':{
-            'level':'ERROR',
-            'class':'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-    },
-    'loggers': {
-        'django': { # Stop SQL debug from logging to main logger
-            'handlers': ['file_handler'],
-            'level': 'DEBUG',
-        },
-        'django.request': { # Stop SQL debug from logging to main logger
-            'handlers': ['file_handler'],
-            'level': 'DEBUG',
-            'propagate':True
-        },
-    }
-}
 
 CACHES = {
     'default': {
