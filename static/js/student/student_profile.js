@@ -57,6 +57,7 @@ $(document).ready( function() {
             clearTimeout(profile_preview_timeout);
             $("#student_profile_preview").html(FILL_OUT_REQUIRED_FIELDS_MESSAGE);
         }
+        console.profileEnd();
     };
     
     v = $("#profile_form").validate({
@@ -226,7 +227,9 @@ $(document).ready( function() {
         }
     });
    
-    $("#profile_form select, #profile_form input[type=file]").live('change', load_profile_preview);
+    $("#profile_form select, #profile_form input[type=file]").live('change', function() {
+        setTimeout(load_profile_preview, 0);
+    });
     var timeoutID;
     $('#profile_form input[type=text]').keydown(function(e) {
         if(e.which != 9) {
