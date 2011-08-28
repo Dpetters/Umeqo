@@ -2879,16 +2879,6 @@
   }
  }, 
  {
-  "pk": 234, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-27 21:55:53", 
-   "session_key": "e62703646cd74afcdea38152ecd27dbb", 
-   "last_updated": "2011-08-27 21:55:53", 
-   "user": 2
-  }
- }, 
- {
   "pk": 235, 
   "model": "registration.sessionkey", 
   "fields": {
