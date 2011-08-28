@@ -253,7 +253,7 @@ def home(request, extra_context=None):
     events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")
     context['events'] = list(events)[:3]
     context.update(extra_context or {})
-    return condtext
+    return context
 
 
 def check_website(request):
