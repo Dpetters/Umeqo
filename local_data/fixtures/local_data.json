@@ -491,7 +491,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-28 16:33:37", 
+   "last_updated": "2011-08-28 18:05:21", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -510,7 +510,9 @@
    "first_major": 31, 
    "subscriptions": [
     5, 
-    6
+    6, 
+    10, 
+    14
    ], 
    "gpa": "4.800", 
    "campus_involvement": [
@@ -1300,7 +1302,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-28 17:14:34", 
+   "last_login": "2011-08-28 19:30:53", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -3087,6 +3089,16 @@
    "session_key": "70853a7443a6ab39931481275a5dfb17", 
    "last_updated": "2011-08-28 17:22:51", 
    "user": 2
+  }
+ }, 
+ {
+  "pk": 248, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 19:30:53", 
+   "session_key": "0f76ad127129073823d338f859b0f04e", 
+   "last_updated": "2011-08-28 19:30:53", 
+   "user": 1
   }
  }, 
  {
