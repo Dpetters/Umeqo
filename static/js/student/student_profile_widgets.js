@@ -7,7 +7,6 @@ $(document).ready(function(){
         minWidth:multiselectMinWidth,
         click: function(){
             $("#id_looking_for").trigger("change");
-
         },
         checkAll: function(){
             $("#id_looking_for").trigger("change");
