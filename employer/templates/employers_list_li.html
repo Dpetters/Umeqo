@@ -1,5 +1,5 @@
 <div class="employers_listing{% if employer_id == employer.id %} selected{% endif %}">
     <h2>{{employer.name}}</h2>
-    <div class="description_preview">{{employer.description}}</div>
+    <div class="description_preview">{{employer.description|safe}}</div>
     <input type="hidden" class="employer_id" value="{{employer.id}}" /> 
 </div>
