@@ -1472,6 +1472,22 @@
   }
  }, 
  {
+  "pk": 436, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-27 21:56:29", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-27 21:56:29", 
+   "type": 16, 
+   "display": false, 
+   "name": "CODERS GONE WILD"
+  }
+ }, 
+ {
   "pk": 99, 
   "model": "campus_org.campusorg", 
   "fields": {

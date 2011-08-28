@@ -1,82 +1,2226 @@
 [
  {
-  "pk": 155, 
+  "pk": 9, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Michael", 
+   "last_name": "Hwang", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 19:39:58", 
+   "summer_plans": "Genentech", 
+   "ip_address": "18.245.6.12", 
+   "email": "mshwang@mit.edu"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Narendra", 
+   "last_name": "Tallapragada", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 19:54:05", 
+   "summer_plans": "Office of Sen. Mark Warner; Dept. of Energy", 
+   "ip_address": "18.216.1.46", 
+   "email": "ntallapr@mit.edu"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ishaan", 
+   "last_name": "Kumar", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 19:28:43", 
+   "summer_plans": "Aerospace Internship in Montreal", 
+   "ip_address": "18.239.6.45", 
+   "email": "ishaan92@gmail.com"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Nathaniel", 
+   "last_name": "Fox", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-13 18:12:41", 
+   "summer_plans": "Interning at McKinsey as  a Business Analyst", 
+   "ip_address": "18.111.14.156", 
+   "email": "natefox@mit.edu"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Reguli", 
+   "last_name": "Granger", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-13 20:05:29", 
+   "summer_plans": "Internal Consulting for Liberty Mutual Group (Boston, MA)", 
+   "ip_address": "18.235.1.246", 
+   "email": "rgranger@mit.edu"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Stephen", 
+   "last_name": "Chang", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 19:59:42", 
+   "summer_plans": "Internship", 
+   "ip_address": "18.216.1.124", 
+   "email": "smchang@mit.edu"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Betty", 
+   "last_name": "Liu", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 20:43:05", 
+   "summer_plans": "Traveling", 
+   "ip_address": "24.187.37.43", 
+   "email": "bettyliu@wharton.upenn.edu"
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Maksim", 
+   "last_name": "Kolysh", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 20:53:37", 
+   "summer_plans": "AITI", 
+   "ip_address": "18.189.117.204", 
+   "email": "mkolysh@mit.edu"
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Vivaek", 
+   "last_name": "Shivakumar", 
+   "last_updated": "2011-08-27 20:47:47", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 20:58:10", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.216.0.84", 
+   "email": "vivaeks@gmail.com"
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jonathan", 
+   "last_name": "Gootenberg", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:00:28", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.111.116.108", 
+   "email": "jgoot@mit.edu"
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Larry", 
+   "last_name": "Pang", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:08:21", 
+   "summer_plans": "Standard & Poor's", 
+   "ip_address": "18.236.1.187", 
+   "email": "lpang@mit.edu"
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Oliver", 
+   "last_name": "Song", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:09:16", 
+   "summer_plans": "Internship", 
+   "ip_address": "18.246.6.181", 
+   "email": "osong@mit.edu"
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Mari", 
+   "last_name": "Miyachi", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:11:02", 
+   "summer_plans": "Autodesk", 
+   "ip_address": "192.54.222.19", 
+   "email": "mmiyachi@mit.edu"
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jeffrey", 
+   "last_name": "Lin", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:11:41", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.223.1.110", 
+   "email": "jelin@mit.edu"
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Rishikesh", 
+   "last_name": "Tirumala", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:14:14", 
+   "summer_plans": "Internship @ Amalgamated Advertising", 
+   "ip_address": "18.111.98.192", 
+   "email": "rishter@gmail.com"
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Benjamin", 
+   "last_name": "Frank", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:15:10", 
+   "summer_plans": "SPL UROP", 
+   "ip_address": "18.189.127.208", 
+   "email": "bfrank@mit.edu"
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Di", 
+   "last_name": "Wu", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:17:48", 
+   "summer_plans": "Gelber Group - Chicago", 
+   "ip_address": "18.218.1.249", 
+   "email": "di_wu@mit.edu"
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ravi", 
+   "last_name": "Charan", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:34:39", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.189.119.128", 
+   "email": "rcharan@mit.edu"
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ying", 
+   "last_name": "Wei", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:36:23", 
+   "summer_plans": "", 
+   "ip_address": "18.111.121.184", 
+   "email": "ying.wei@credit-suisse.com"
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Marco", 
+   "last_name": "Alagna", 
+   "last_updated": "2011-08-27 20:47:48", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:36:51", 
+   "summer_plans": "None", 
+   "ip_address": "18.239.5.241", 
+   "email": "alagnam@mit.edu"
+  }
+ }, 
+ {
+  "pk": 26, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "John", 
+   "last_name": "LaColla", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:41:24", 
+   "summer_plans": "Boeing", 
+   "ip_address": "18.216.1.174", 
+   "email": "jlacolla@mit.edu"
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Akshar", 
+   "last_name": "Wunnava", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 21:51:06", 
+   "summer_plans": "MIT Investment Management Company", 
+   "ip_address": "18.189.111.185", 
+   "email": "awunnava@mit.edu"
+  }
+ }, 
+ {
+  "pk": 28, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Thomas", 
+   "last_name": "Georgiou", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:02:53", 
+   "summer_plans": "Facebook", 
+   "ip_address": "18.245.6.69", 
+   "email": "georgiou@mit.edu"
+  }
+ }, 
+ {
+  "pk": 29, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Yida", 
+   "last_name": "Gao", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:15:28", 
+   "summer_plans": "Ibank and Course 15 UROP", 
+   "ip_address": "18.111.90.132", 
+   "email": "yidagao@mit.edu"
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jennifer", 
+   "last_name": "Wang", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:18:11", 
+   "summer_plans": "UROP", 
+   "ip_address": "192.54.222.3", 
+   "email": "jewang@mit.edu"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Carlo", 
+   "last_name": "Biedenharn", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:30:08", 
+   "summer_plans": "Gaslight Software, LLC", 
+   "ip_address": "18.111.124.95", 
+   "email": "cbieden@mit.edu"
+  }
+ }, 
+ {
+  "pk": 32, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "David", 
+   "last_name": "Kim", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:32:22", 
+   "summer_plans": "Google", 
+   "ip_address": "18.212.1.118", 
+   "email": "dmwkim@mit.edu"
+  }
+ }, 
+ {
+  "pk": 33, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Adele", 
+   "last_name": "Lu", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:32:50", 
+   "summer_plans": "work and take summer classes", 
+   "ip_address": "69.138.193.143", 
+   "email": "lu_adele@yahoo.com"
+  }
+ }, 
+ {
+  "pk": 34, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Neena", 
+   "last_name": "Parikh", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:35:17", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.245.6.181", 
+   "email": "nsparikh@mit.edu"
+  }
+ }, 
+ {
+  "pk": 35, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Amie", 
+   "last_name": "Guo", 
+   "last_updated": "2011-08-27 20:47:49", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:35:20", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.111.117.189", 
+   "email": "amieguo@mit.edu"
+  }
+ }, 
+ {
+  "pk": 36, 
   "model": "registration.interestedperson", 
   "fields": {
    "first_name": "Joshua", 
    "last_name": "Ma", 
-   "last_updated": "2011-08-27 20:33:19", 
-   "auto_email": true, 
-   "final": false, 
-   "emailed": true, 
-   "date_created": "2011-08-27 15:49:42", 
-   "summer_plans": "", 
-   "ip_address": null, 
-   "email": "joshma@mit.edu"
-  }
- }, 
- {
-  "pk": 156, 
-  "model": "registration.interestedperson", 
-  "fields": {
-   "first_name": "fake", 
-   "last_name": "fakerson", 
-   "last_updated": "2011-08-27 20:25:51", 
+   "last_updated": "2011-08-27 20:47:49", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
-   "date_created": "2011-08-27 15:49:54", 
+   "date_created": "2011-05-15 22:36:48", 
    "summer_plans": "", 
-   "ip_address": null, 
-   "email": "faejfaef@mit.edu"
+   "ip_address": "18.111.99.245", 
+   "email": "me+2@joshma.com"
   }
  }, 
  {
-  "pk": 157, 
+  "pk": 37, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Lena", 
+   "last_name": "Ziskin", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:37:28", 
+   "summer_plans": "IBM", 
+   "ip_address": "18.111.96.99", 
+   "email": "lmziskin@mit.edu"
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Isabella", 
+   "last_name": "Wei", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:42:20", 
+   "summer_plans": "UROP at Sloan School of Management", 
+   "ip_address": "192.54.222.27", 
+   "email": "icwei@mit.edu"
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Arash", 
+   "last_name": "Delijani", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:43:34", 
+   "summer_plans": "Google", 
+   "ip_address": "18.111.101.78", 
+   "email": "arashd@mit.edu"
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Steven Ambrose", 
+   "last_name": "Wesel", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:47:29", 
+   "summer_plans": "Calera (San Jose, CO2 Sequestration)", 
+   "ip_address": "18.216.1.127", 
+   "email": "sawesel@gmail.com"
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ernest", 
+   "last_name": "Park", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:49:55", 
+   "summer_plans": "Ooyala", 
+   "ip_address": "18.111.96.213", 
+   "email": "eipark@mit.edu"
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Andrew", 
+   "last_name": "Shum", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 22:52:35", 
+   "summer_plans": "Google New York - Software Engineering Internship", 
+   "ip_address": "18.111.95.111", 
+   "email": "shumbody@mit.edu"
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Elina", 
+   "last_name": "Hu", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 23:05:44", 
+   "summer_plans": "Oshkosh Corporation", 
+   "ip_address": "18.111.122.171", 
+   "email": "ehu@mit.edu"
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Sheila", 
+   "last_name": "Xu", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 23:12:48", 
+   "summer_plans": "US Department of Transportation--Volpe Center", 
+   "ip_address": "152.122.1.5", 
+   "email": "sheilaxu@mit.edu"
+  }
+ }, 
+ {
+  "pk": 45, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Cassandra", 
+   "last_name": "Xia", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 23:19:04", 
+   "summer_plans": "Five Rings", 
+   "ip_address": "18.111.113.217", 
+   "email": "xiac@mit.edu"
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jason", 
+   "last_name": "Moon", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 23:28:19", 
+   "summer_plans": "Research internship overseas", 
+   "ip_address": "67.164.94.170", 
+   "email": "jsnmoon@berkeley.edu"
+  }
+ }, 
+ {
+  "pk": 47, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Hrishikesh", 
+   "last_name": "Joshi", 
+   "last_updated": "2011-08-27 20:47:50", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-15 23:47:05", 
+   "summer_plans": "Gelber Group", 
+   "ip_address": "192.54.222.27", 
+   "email": "hjoshi@mit.edu"
+  }
+ }, 
+ {
+  "pk": 48, 
   "model": "registration.interestedperson", 
   "fields": {
    "first_name": "Zachary", 
    "last_name": "Dearing", 
-   "last_updated": "2011-08-27 20:33:21", 
+   "last_updated": "2011-08-27 20:47:51", 
    "auto_email": true, 
    "final": false, 
-   "emailed": true, 
-   "date_created": "2011-08-27 15:50:14", 
-   "summer_plans": "", 
-   "ip_address": null, 
+   "emailed": false, 
+   "date_created": "2011-05-16 00:09:24", 
+   "summer_plans": "McKinsey & Co.", 
+   "ip_address": "18.205.1.159", 
    "email": "zdearing@mit.edu"
   }
  }, 
  {
-  "pk": 158, 
+  "pk": 49, 
   "model": "registration.interestedperson", 
   "fields": {
-   "first_name": "Umeqo", 
-   "last_name": "Umeqo", 
-   "last_updated": "2011-08-27 20:25:51", 
-   "auto_email": false, 
+   "first_name": "Tzu-Hsien", 
+   "last_name": "Chan", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
    "final": false, 
    "emailed": false, 
-   "date_created": "2011-08-27 15:50:21", 
-   "summer_plans": "", 
-   "ip_address": null, 
-   "email": "umeqo@mit.edu"
+   "date_created": "2011-05-16 00:41:09", 
+   "summer_plans": "Startup", 
+   "ip_address": "18.245.6.246", 
+   "email": "jeffchan@mit.edu"
   }
  }, 
  {
-  "pk": 159, 
+  "pk": 50, 
   "model": "registration.interestedperson", 
   "fields": {
-   "first_name": "Dmitrij", 
-   "last_name": "Petters", 
-   "last_updated": "2011-08-27 20:33:22", 
+   "first_name": "Isaac", 
+   "last_name": "Lozada", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 02:39:50", 
+   "summer_plans": "Find job", 
+   "ip_address": "18.55.1.65", 
+   "email": "iwlozada@gmail.com"
+  }
+ }, 
+ {
+  "pk": 51, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Robert", 
+   "last_name": "Drenkhahn", 
+   "last_updated": "2011-08-27 20:47:51", 
    "auto_email": true, 
    "final": false, 
-   "emailed": true, 
-   "date_created": "2011-08-27 15:50:31", 
+   "emailed": false, 
+   "date_created": "2011-05-16 03:10:28", 
+   "summer_plans": "MISTI Germany", 
+   "ip_address": "18.205.1.152", 
+   "email": "rad7@mit.edu"
+  }
+ }, 
+ {
+  "pk": 52, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Carolyn", 
+   "last_name": "Zhang", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 03:16:50", 
    "summer_plans": "", 
-   "ip_address": null, 
-   "email": "dpetters@mit.edu"
+   "ip_address": "18.111.97.179", 
+   "email": "carolynz@mit.edu"
+  }
+ }, 
+ {
+  "pk": 53, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Danny", 
+   "last_name": "Yuan", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 07:14:03", 
+   "summer_plans": "Google", 
+   "ip_address": "76.24.25.105", 
+   "email": "dyn@mit.edu"
+  }
+ }, 
+ {
+  "pk": 54, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Kartik", 
+   "last_name": "Trehan", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 09:48:30", 
+   "summer_plans": "", 
+   "ip_address": "18.159.6.227", 
+   "email": "enzyme@mit.edu"
+  }
+ }, 
+ {
+  "pk": 55, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Samantha", 
+   "last_name": "O'Keefe", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 10:52:54", 
+   "summer_plans": "OECD, UNICEF", 
+   "ip_address": "98.216.104.108", 
+   "email": "samok@mit.edu"
+  }
+ }, 
+ {
+  "pk": 56, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Gaia", 
+   "last_name": "Carini", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 10:53:17", 
+   "summer_plans": "MEng Thesis at the Media Lab", 
+   "ip_address": "18.153.1.111", 
+   "email": "carinig@mit.edu"
+  }
+ }, 
+ {
+  "pk": 57, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Susie", 
+   "last_name": "Fu", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 11:04:48", 
+   "summer_plans": "Microsoft", 
+   "ip_address": "18.111.112.115", 
+   "email": "susiefu@mit.edu"
+  }
+ }, 
+ {
+  "pk": 58, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Erika", 
+   "last_name": "Sandford", 
+   "last_updated": "2011-08-27 20:47:51", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 11:32:14", 
+   "summer_plans": "MIT Research Assistant", 
+   "ip_address": "18.111.83.227", 
+   "email": "ejsandfo@mit.edu"
+  }
+ }, 
+ {
+  "pk": 59, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Yangbo", 
+   "last_name": "Du", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 11:38:36", 
+   "summer_plans": "", 
+   "ip_address": "18.111.118.125", 
+   "email": "yangbodu@mit.edu"
+  }
+ }, 
+ {
+  "pk": 60, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Victor", 
+   "last_name": "Hung", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 11:43:36", 
+   "summer_plans": "", 
+   "ip_address": "18.111.114.156", 
+   "email": "victorhung92@gmail.com"
+  }
+ }, 
+ {
+  "pk": 61, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Christian", 
+   "last_name": "Reed", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 11:46:44", 
+   "summer_plans": "Airborne School, Working with Congressmen ", 
+   "ip_address": "18.85.54.169", 
+   "email": "crreed@mit.edu"
+  }
+ }, 
+ {
+  "pk": 62, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Tim", 
+   "last_name": "Zheng", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 12:02:19", 
+   "summer_plans": "Startup/Citadel", 
+   "ip_address": "18.212.1.212", 
+   "email": "tzheng11@gmail.com"
+  }
+ }, 
+ {
+  "pk": 63, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Mei", 
+   "last_name": "Zuo", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 12:25:42", 
+   "summer_plans": "MoMA", 
+   "ip_address": "18.111.118.110", 
+   "email": "meizuo@mit.edu"
+  }
+ }, 
+ {
+  "pk": 64, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ramya", 
+   "last_name": "Swamy", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 12:27:36", 
+   "summer_plans": "UROP/Working at the Museum of Science", 
+   "ip_address": "18.111.105.241", 
+   "email": "ramya@mit.edu"
+  }
+ }, 
+ {
+  "pk": 65, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Qing", 
+   "last_name": "Li", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 12:28:39", 
+   "summer_plans": "", 
+   "ip_address": "18.111.118.108", 
+   "email": "qingli@mit.edu"
+  }
+ }, 
+ {
+  "pk": 66, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "George", 
+   "last_name": "Erickson", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 12:56:43", 
+   "summer_plans": "TripAdvisor", 
+   "ip_address": "24.147.171.34", 
+   "email": "george55@mit.edu"
+  }
+ }, 
+ {
+  "pk": 67, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Matthew", 
+   "last_name": "Farrell", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 13:16:23", 
+   "summer_plans": "consulting", 
+   "ip_address": "18.111.112.184", 
+   "email": "mtfarrel@mit.edu"
+  }
+ }, 
+ {
+  "pk": 68, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Cory", 
+   "last_name": "Kays", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 14:06:46", 
+   "summer_plans": "Research at MIT", 
+   "ip_address": "18.216.1.30", 
+   "email": "corykays@mit.edu"
+  }
+ }, 
+ {
+  "pk": 69, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ingwon", 
+   "last_name": "Chae", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 14:09:44", 
+   "summer_plans": "NERA Economic Consulting", 
+   "ip_address": "18.189.102.218", 
+   "email": "ichae@mit.edu"
+  }
+ }, 
+ {
+  "pk": 70, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Igor", 
+   "last_name": "Carvalho", 
+   "last_updated": "2011-08-27 20:47:52", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 14:35:40", 
+   "summer_plans": "Brazil", 
+   "ip_address": "24.62.60.21", 
+   "email": "icarvalho@college.harvard.edu"
+  }
+ }, 
+ {
+  "pk": 75, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Elliot", 
+   "last_name": "Sedegah", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 15:59:27", 
+   "summer_plans": "", 
+   "ip_address": "24.63.140.158", 
+   "email": "esedegah@gmail.com"
+  }
+ }, 
+ {
+  "pk": 74, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Michael", 
+   "last_name": "Lo", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 15:21:28", 
+   "summer_plans": "Work on my startup or at Tool. Inc", 
+   "ip_address": "18.245.0.196", 
+   "email": "mchkl@mit.edu"
+  }
+ }, 
+ {
+  "pk": 76, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Rena", 
+   "last_name": "Kuai", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 16:57:45", 
+   "summer_plans": "Internship", 
+   "ip_address": "18.245.6.236", 
+   "email": "rkuai@mit.edu"
+  }
+ }, 
+ {
+  "pk": 77, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Shuang", 
+   "last_name": "Chen", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 17:33:56", 
+   "summer_plans": "Tencent Boston", 
+   "ip_address": "18.96.5.240", 
+   "email": "shuang61@mit.edu"
+  }
+ }, 
+ {
+  "pk": 78, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Tiffany", 
+   "last_name": "Peng", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 17:42:07", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.111.114.66", 
+   "email": "tpeng726@mit.edu"
+  }
+ }, 
+ {
+  "pk": 79, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jeff", 
+   "last_name": "Blake", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 17:50:46", 
+   "summer_plans": "Undetermined", 
+   "ip_address": "18.4.72.96", 
+   "email": "jeffrobblake@gmail.com"
+  }
+ }, 
+ {
+  "pk": 80, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Al", 
+   "last_name": "Onye", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 17:53:32", 
+   "summer_plans": "open", 
+   "ip_address": "168.156.41.148", 
+   "email": "alozieo@hotmail.com"
+  }
+ }, 
+ {
+  "pk": 81, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Andrew", 
+   "last_name": "Okoh", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 17:58:39", 
+   "summer_plans": "Barclays ", 
+   "ip_address": "18.235.1.62", 
+   "email": "manova@mit.edu"
+  }
+ }, 
+ {
+  "pk": 82, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Kuan", 
+   "last_name": "Cheng", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 18:58:22", 
+   "summer_plans": "Apple", 
+   "ip_address": "18.111.110.142", 
+   "email": "kuan@mit.edu"
+  }
+ }, 
+ {
+  "pk": 83, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jonathan", 
+   "last_name": "Batscha", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 19:29:12", 
+   "summer_plans": "UROP, STeLA Leadership Forum", 
+   "ip_address": "18.189.44.176", 
+   "email": "jbatscha@mit.edu"
+  }
+ }, 
+ {
+  "pk": 84, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ignatius", 
+   "last_name": "Chen", 
+   "last_updated": "2011-08-27 20:47:53", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 19:50:31", 
+   "summer_plans": "Hewlett-Packard Singapore - Business Consulting Internship", 
+   "ip_address": "18.111.92.8", 
+   "email": "ignatius@mit.edu"
+  }
+ }, 
+ {
+  "pk": 85, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Charles", 
+   "last_name": "Huang", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 21:38:22", 
+   "summer_plans": "Sayagle, Inc.", 
+   "ip_address": "18.236.1.73", 
+   "email": "charlie.huang1@gmail.com"
+  }
+ }, 
+ {
+  "pk": 86, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Emmanuel", 
+   "last_name": "Magani", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-16 22:22:48", 
+   "summer_plans": "", 
+   "ip_address": "76.24.223.30", 
+   "email": "emagani@sloan.mit.edu"
+  }
+ }, 
+ {
+  "pk": 87, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Natthida", 
+   "last_name": "Wiwatwicha", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-17 15:01:40", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.189.111.192", 
+   "email": "nadia77@mit.edu"
+  }
+ }, 
+ {
+  "pk": 88, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Somak", 
+   "last_name": "Das", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-17 16:08:40", 
+   "summer_plans": "Intel", 
+   "ip_address": "18.189.123.204", 
+   "email": "das@mit.edu"
+  }
+ }, 
+ {
+  "pk": 89, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Justin", 
+   "last_name": "Lai", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-17 18:51:53", 
+   "summer_plans": "Research as grad student", 
+   "ip_address": "18.111.110.14", 
+   "email": "justinlai@mit.edu"
+  }
+ }, 
+ {
+  "pk": 90, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Catherine", 
+   "last_name": "Koch", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-17 20:29:49", 
+   "summer_plans": "Working at the Cleveland Clinic Learner Research Institute (similar to a UROP) ", 
+   "ip_address": "18.111.103.57", 
+   "email": "kkoch@mit.edu"
+  }
+ }, 
+ {
+  "pk": 91, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Eunice", 
+   "last_name": "Giarta", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-17 21:43:43", 
+   "summer_plans": "Bank of America", 
+   "ip_address": "18.212.1.40", 
+   "email": "engiarta@mit.edu"
+  }
+ }, 
+ {
+  "pk": 92, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Abir", 
+   "last_name": "Liben", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-17 22:15:03", 
+   "summer_plans": "UROP", 
+   "ip_address": "192.54.222.27", 
+   "email": "aliben@mit.edu"
+  }
+ }, 
+ {
+  "pk": 93, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Tim", 
+   "last_name": "Smith", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 08:55:47", 
+   "summer_plans": "engineering internships nyc", 
+   "ip_address": "69.193.211.250", 
+   "email": "tsmith282@yahoo.com"
+  }
+ }, 
+ {
+  "pk": 94, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Noah", 
+   "last_name": "Jessop", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 11:54:41", 
+   "summer_plans": "Building cool stuff", 
+   "ip_address": "65.96.160.150", 
+   "email": "njess@mit.edu"
+  }
+ }, 
+ {
+  "pk": 95, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Courtney", 
+   "last_name": "Hilliard", 
+   "last_updated": "2011-08-27 20:47:54", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 14:09:22", 
+   "summer_plans": "MIT Lincoln Laboratory", 
+   "ip_address": "18.111.68.50", 
+   "email": "cdhill@mit.edu"
+  }
+ }, 
+ {
+  "pk": 96, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Iyobosa", 
+   "last_name": "Ekhato", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 18:13:32", 
+   "summer_plans": "South Africa", 
+   "ip_address": "71.190.10.11", 
+   "email": "ekhato@sas.upenn.edu"
+  }
+ }, 
+ {
+  "pk": 97, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Eryn", 
+   "last_name": "Maynard", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 23:33:15", 
+   "summer_plans": "Google", 
+   "ip_address": "18.111.113.15", 
+   "email": "eryndm@mit.edu"
+  }
+ }, 
+ {
+  "pk": 98, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Tong", 
+   "last_name": "Chen", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 23:34:10", 
+   "summer_plans": "Fidelity Investments", 
+   "ip_address": "18.245.6.78", 
+   "email": "chentong@mit.edu"
+  }
+ }, 
+ {
+  "pk": 99, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Mengjie", 
+   "last_name": "Ding", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 23:46:28", 
+   "summer_plans": "", 
+   "ip_address": "18.111.103.193", 
+   "email": "mengjie@mit.edu"
+  }
+ }, 
+ {
+  "pk": 100, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Andre", 
+   "last_name": "Fialho", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-18 23:57:53", 
+   "summer_plans": "", 
+   "ip_address": "76.24.26.0", 
+   "email": "afialho@mit.edu"
+  }
+ }, 
+ {
+  "pk": 101, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "James", 
+   "last_name": "Peruvankal", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 00:19:28", 
+   "summer_plans": "", 
+   "ip_address": "18.111.107.23", 
+   "email": "james.paul@sloan.mit.edu"
+  }
+ }, 
+ {
+  "pk": 102, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ignasi", 
+   "last_name": "Viladesau", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 00:38:58", 
+   "summer_plans": "Black Coral Capital", 
+   "ip_address": "18.189.116.125", 
+   "email": "ignasi.viladesau@gmail.com"
+  }
+ }, 
+ {
+  "pk": 103, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Joanna", 
+   "last_name": "Cummings", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 01:18:27", 
+   "summer_plans": "MISTI Mexico", 
+   "ip_address": "192.54.222.27", 
+   "email": "jcummings317@gmail.com"
+  }
+ }, 
+ {
+  "pk": 104, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Theodore", 
+   "last_name": "Hilk", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 03:55:56", 
+   "summer_plans": "Tower Research Capital", 
+   "ip_address": "18.238.7.117", 
+   "email": "thilk@mit.edu"
+  }
+ }, 
+ {
+  "pk": 105, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Vladislav", 
+   "last_name": "Kontsevoi", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 04:31:05", 
+   "summer_plans": "Toji Trading Group", 
+   "ip_address": "18.111.119.65", 
+   "email": "vok@mit.edu"
+  }
+ }, 
+ {
+  "pk": 106, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Coyin", 
+   "last_name": "Oh", 
+   "last_updated": "2011-08-27 20:47:55", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 08:46:11", 
+   "summer_plans": "UROP, GrubCycle", 
+   "ip_address": "18.111.98.82", 
+   "email": "coyin@mit.edu"
+  }
+ }, 
+ {
+  "pk": 107, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Bayo", 
+   "last_name": "Olatunji", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 09:04:42", 
+   "summer_plans": "Microsoft", 
+   "ip_address": "66.31.202.169", 
+   "email": "lilibayo@mit.edu"
+  }
+ }, 
+ {
+  "pk": 108, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ekaterina", 
+   "last_name": "Kononov", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 10:28:45", 
+   "summer_plans": "interning at ADI in MA, on campus", 
+   "ip_address": "18.244.7.104", 
+   "email": "kkon@mit.edu"
+  }
+ }, 
+ {
+  "pk": 109, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Alex", 
+   "last_name": "Willisson", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 12:27:01", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.189.63.48", 
+   "email": "atw@mit.edu"
+  }
+ }, 
+ {
+  "pk": 110, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Attila", 
+   "last_name": "Forruchi", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 13:59:08", 
+   "summer_plans": "MIT Media Lab", 
+   "ip_address": "140.247.135.41", 
+   "email": "axf@media.mit.edu"
+  }
+ }, 
+ {
+  "pk": 111, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jake", 
+   "last_name": "Frink", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 14:43:45", 
+   "summer_plans": "Startup", 
+   "ip_address": "171.67.168.41", 
+   "email": "jakefrink05@gmail.com"
+  }
+ }, 
+ {
+  "pk": 112, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Chris", 
+   "last_name": "Miles", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-19 19:37:49", 
+   "summer_plans": "", 
+   "ip_address": "68.8.13.248", 
+   "email": "cjmiles@alum.mit.edu"
+  }
+ }, 
+ {
+  "pk": 113, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ben", 
+   "last_name": "Lerner", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-20 09:30:18", 
+   "summer_plans": "internship", 
+   "ip_address": "18.81.1.14", 
+   "email": "karamazov@mit.edu"
+  }
+ }, 
+ {
+  "pk": 114, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Anthony", 
+   "last_name": "Rios", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-20 18:19:45", 
+   "summer_plans": "Goldman Sachs Securities", 
+   "ip_address": "18.204.1.236", 
+   "email": "gravity@mit.edu"
+  }
+ }, 
+ {
+  "pk": 115, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jennifer", 
+   "last_name": "Tran", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-21 11:48:01", 
+   "summer_plans": "Traveling, looking for job starting fall", 
+   "ip_address": "24.138.227.125", 
+   "email": "jentran@alum.mit.edu"
+  }
+ }, 
+ {
+  "pk": 116, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "James", 
+   "last_name": "Cheung", 
+   "last_updated": "2011-08-27 20:47:56", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-21 19:44:41", 
+   "summer_plans": "IBD NYC", 
+   "ip_address": "18.111.113.219", 
+   "email": "jcheung@mit.edu"
+  }
+ }, 
+ {
+  "pk": 117, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jie", 
+   "last_name": "Zhao", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-22 14:21:48", 
+   "summer_plans": "UROP/Consulting internship in China/startup ", 
+   "ip_address": "18.187.0.40", 
+   "email": "zhaoj@mit.edu"
+  }
+ }, 
+ {
+  "pk": 118, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Kana ", 
+   "last_name": "Yoshizawa", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-22 17:55:02", 
+   "summer_plans": "UBS early career exploration program", 
+   "ip_address": "76.120.195.216", 
+   "email": "ky5uj@virginia.edu"
+  }
+ }, 
+ {
+  "pk": 119, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Vanessa", 
+   "last_name": "Trevino", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 08:07:58", 
+   "summer_plans": "Ferro Solutions", 
+   "ip_address": "98.194.72.67", 
+   "email": "vtrevino@mit.edu"
+  }
+ }, 
+ {
+  "pk": 120, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jennifer", 
+   "last_name": "Shi", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 08:50:01", 
+   "summer_plans": "UROP", 
+   "ip_address": "192.54.222.27", 
+   "email": "jen_shi@mit.edu"
+  }
+ }, 
+ {
+  "pk": 121, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Wendi", 
+   "last_name": "Zhang", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 08:52:03", 
+   "summer_plans": "Startup in India; entrepreneurship development in Singapore", 
+   "ip_address": "76.24.22.90", 
+   "email": "xwzhang@alum.mit.edu"
+  }
+ }, 
+ {
+  "pk": 122, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Emily", 
+   "last_name": "Chen", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 09:11:14", 
+   "summer_plans": "UROP", 
+   "ip_address": "78.250.124.178", 
+   "email": "emchen1@mit.edu"
+  }
+ }, 
+ {
+  "pk": 123, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Katherine", 
+   "last_name": "Fang", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 10:31:08", 
+   "summer_plans": "Deutsche Bahn", 
+   "ip_address": "99.40.250.202", 
+   "email": "kfang@mit.edu"
+  }
+ }, 
+ {
+  "pk": 124, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Briana", 
+   "last_name": "Stanley", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 14:28:34", 
+   "summer_plans": "find a job", 
+   "ip_address": "72.93.187.191", 
+   "email": "bsta@alum.mit.edu"
+  }
+ }, 
+ {
+  "pk": 125, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jessica", 
+   "last_name": "Artiles", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 15:10:39", 
+   "summer_plans": "DOE-CFO's Office: Risk Assessment", 
+   "ip_address": "205.254.147.8", 
+   "email": "jartiles@mit.edu"
+  }
+ }, 
+ {
+  "pk": 126, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jacqueline", 
+   "last_name": "Sly", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 15:14:08", 
+   "summer_plans": "\"UROP\"-ing @ MIT", 
+   "ip_address": "76.194.244.244", 
+   "email": "jsly@mit.edu"
+  }
+ }, 
+ {
+  "pk": 127, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Aliya", 
+   "last_name": "Dincer", 
+   "last_updated": "2011-08-27 20:47:57", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-23 17:12:23", 
+   "summer_plans": "UROP", 
+   "ip_address": "18.111.124.133", 
+   "email": "apdincer@mit.edu"
+  }
+ }, 
+ {
+  "pk": 128, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Arooshi", 
+   "last_name": "Kumar", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-24 02:55:45", 
+   "summer_plans": "UROP", 
+   "ip_address": "74.241.58.202", 
+   "email": "arkumar@mit.edu"
+  }
+ }, 
+ {
+  "pk": 129, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Demons", 
+   "last_name": "Theses", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-24 17:27:48", 
+   "summer_plans": "Goldman", 
+   "ip_address": "140.32.16.101", 
+   "email": "demonstheses@gmail.com"
+  }
+ }, 
+ {
+  "pk": 130, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Austin", 
+   "last_name": "Pablo", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-25 18:14:01", 
+   "summer_plans": "Learn", 
+   "ip_address": "67.175.250.222", 
+   "email": "pablaustin@gmail.com"
+  }
+ }, 
+ {
+  "pk": 131, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Tara", 
+   "last_name": "Krishnan", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-25 19:51:44", 
+   "summer_plans": "UROP at MIT Media Lab's Macro Connections group", 
+   "ip_address": "173.76.154.59", 
+   "email": "tarakris@mit.edu"
+  }
+ }, 
+ {
+  "pk": 132, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Sarah", 
+   "last_name": "Bindman", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-26 13:33:38", 
+   "summer_plans": "Urban Planning UROP", 
+   "ip_address": "98.210.144.151", 
+   "email": "sbindman@mit.edu"
+  }
+ }, 
+ {
+  "pk": 133, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Rishi", 
+   "last_name": "Dixit", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-26 21:53:18", 
+   "summer_plans": "Morgan Stanley IBD", 
+   "ip_address": "74.73.179.93", 
+   "email": "rishiltms@yahoo.com"
+  }
+ }, 
+ {
+  "pk": 134, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "David", 
+   "last_name": "Campos", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-26 22:01:30", 
+   "summer_plans": "J.P. Morgan Chase", 
+   "ip_address": "38.109.98.133", 
+   "email": "xenophon@mit.edu"
+  }
+ }, 
+ {
+  "pk": 135, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Ricardo", 
+   "last_name": "Perez", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-27 01:03:47", 
+   "summer_plans": "Internship w/ ExxonMobil", 
+   "ip_address": "71.126.133.38", 
+   "email": "rjperez@mit.edu"
+  }
+ }, 
+ {
+  "pk": 140, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Gordon", 
+   "last_name": "Wintrob", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-29 18:59:14", 
+   "summer_plans": "Goldman Sachs", 
+   "ip_address": "18.101.16.182", 
+   "email": "gwintrob@mit.edu"
+  }
+ }, 
+ {
+  "pk": 137, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Brian", 
+   "last_name": "Anderson", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-27 15:59:43", 
+   "summer_plans": "", 
+   "ip_address": "64.72.183.74", 
+   "email": "ando28@mit.edu"
+  }
+ }, 
+ {
+  "pk": 138, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Neha", 
+   "last_name": "Hebbar", 
+   "last_updated": "2011-08-27 20:47:58", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-27 17:32:03", 
+   "summer_plans": "", 
+   "ip_address": "71.53.153.47", 
+   "email": "nhebb@mit.edu"
+  }
+ }, 
+ {
+  "pk": 139, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Kang", 
+   "last_name": "Liu", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-05-27 20:12:00", 
+   "summer_plans": "Morgan Stanley", 
+   "ip_address": "118.169.171.251", 
+   "email": "kangliu@mit.edu"
+  }
+ }, 
+ {
+  "pk": 150, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Jacob", 
+   "last_name": "Bennett", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-14 18:03:04", 
+   "summer_plans": "UROP, Independent Startup", 
+   "ip_address": "208.81.114.115", 
+   "email": "bennettj@mit.edu"
+  }
+ }, 
+ {
+  "pk": 145, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Alea", 
+   "last_name": "Teeters", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-13 16:14:49", 
+   "summer_plans": "undertermined", 
+   "ip_address": "74.64.106.16", 
+   "email": "alea@alum.mit.edu"
+  }
+ }, 
+ {
+  "pk": 144, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "John", 
+   "last_name": "Boghossian", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-08 14:41:15", 
+   "summer_plans": "", 
+   "ip_address": "69.70.100.154", 
+   "email": "jbogoss@mit.edu"
+  }
+ }, 
+ {
+  "pk": 147, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Matthew", 
+   "last_name": "Huang", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-14 12:36:17", 
+   "summer_plans": "", 
+   "ip_address": "98.210.171.232", 
+   "email": "mhuang@mit.edu"
+  }
+ }, 
+ {
+  "pk": 148, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Randy", 
+   "last_name": "Shults", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-14 14:51:32", 
+   "summer_plans": "", 
+   "ip_address": "65.96.163.214", 
+   "email": "randy@luckylabs.com"
+  }
+ }, 
+ {
+  "pk": 149, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Marcus", 
+   "last_name": "Lowe", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-14 15:20:04", 
+   "summer_plans": "Software Development Intern at Army Labs in Natick, MA", 
+   "ip_address": "153.103.190.11", 
+   "email": "mglowe@mit.edu"
+  }
+ }, 
+ {
+  "pk": 151, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Zanele", 
+   "last_name": "mkhize", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-06-30 13:39:03", 
+   "summer_plans": "", 
+   "ip_address": "196.213.28.66", 
+   "email": "zmkhize@goldfieldscasino.co.za"
+  }
+ }, 
+ {
+  "pk": 154, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Justin", 
+   "last_name": "Colt", 
+   "last_updated": "2011-08-27 20:47:59", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-07-31 21:00:07", 
+   "summer_plans": "Kingston Capital", 
+   "ip_address": "38.109.98.184", 
+   "email": "jcolt@mit.edu"
   }
  }
 ]
