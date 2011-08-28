@@ -597,6 +597,40 @@
   }
  }, 
  {
+  "pk": 6, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": null, 
+   "last_updated": "2011-08-27 20:34:58", 
+   "sat_m": null, 
+   "graduation_month": "4", 
+   "older_than_21": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": null, 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": null, 
+   "first_major": null, 
+   "subscriptions": [], 
+   "gpa": null, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": false, 
+   "school_year": null, 
+   "graduation_year": null, 
+   "previous_employers": [], 
+   "website": null, 
+   "second_major": null, 
+   "resume": "", 
+   "user": 17, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-08-27 20:34:58"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -654,6 +688,18 @@
    "email_on_invite_to_public_event": false, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": false, 
+   "last_updated": "2011-08-27 20:34:58", 
+   "email_on_invite_to_private_event": false, 
+   "email_on_invite_to_public_event": false, 
+   "student": 6, 
+   "date_created": "2011-08-27 20:34:58"
   }
  }, 
  {
@@ -722,12 +768,55 @@
   }
  }, 
  {
+  "pk": 6, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-08-27 20:34:58", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 6, 
+   "date_created": "2011-08-27 20:34:58"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:32:03", 
+   "code": "WVZoaWxarhhE", 
+   "last_updated": "2011-08-27 20:32:03", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:32:03", 
+   "code": "22qWYKHzgzl5", 
+   "last_updated": "2011-08-27 20:32:03", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:32:03", 
+   "code": "r5aI4h24wAiw", 
+   "last_updated": "2011-08-27 20:32:03", 
+   "used": false
+  }
+ }, 
+ {
   "pk": 4, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 16:54:38", 
-   "code": "SDHQt9GPptLV", 
-   "last_updated": "2011-08-27 16:54:38", 
+   "date_created": "2011-08-27 20:32:03", 
+   "code": "hu7LQJR6W8pr", 
+   "last_updated": "2011-08-27 20:32:03", 
    "used": false
   }
  }, 
@@ -735,9 +824,9 @@
   "pk": 5, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 17:01:26", 
-   "code": "AIqGeqzz4cW4", 
-   "last_updated": "2011-08-27 17:01:26", 
+   "date_created": "2011-08-27 20:32:05", 
+   "code": "GenBua2lXZ3e", 
+   "last_updated": "2011-08-27 20:32:05", 
    "used": false
   }
  }, 
@@ -745,9 +834,9 @@
   "pk": 6, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 17:11:26", 
-   "code": "UkgaTZbMLwTJ", 
-   "last_updated": "2011-08-27 17:11:26", 
+   "date_created": "2011-08-27 20:32:05", 
+   "code": "lCV9iHdKBZLn", 
+   "last_updated": "2011-08-27 20:32:05", 
    "used": false
   }
  }, 
@@ -755,9 +844,9 @@
   "pk": 7, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 17:48:48", 
-   "code": "8O6QmrxaCG3x", 
-   "last_updated": "2011-08-27 17:48:48", 
+   "date_created": "2011-08-27 20:32:05", 
+   "code": "ZiLQq9l90NNH", 
+   "last_updated": "2011-08-27 20:32:05", 
    "used": false
   }
  }, 
@@ -765,9 +854,9 @@
   "pk": 8, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 17:51:25", 
-   "code": "yv297JXEYosR", 
-   "last_updated": "2011-08-27 17:51:25", 
+   "date_created": "2011-08-27 20:32:05", 
+   "code": "G1bXrqzzMF9d", 
+   "last_updated": "2011-08-27 20:32:05", 
    "used": false
   }
  }, 
@@ -775,9 +864,9 @@
   "pk": 9, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 17:51:52", 
-   "code": "U5YLqbg193X2", 
-   "last_updated": "2011-08-27 17:51:52", 
+   "date_created": "2011-08-27 20:32:07", 
+   "code": "vjegfX9pfAWs", 
+   "last_updated": "2011-08-27 20:32:07", 
    "used": false
   }
  }, 
@@ -785,9 +874,9 @@
   "pk": 10, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 17:53:12", 
-   "code": "345", 
-   "last_updated": "2011-08-27 17:53:12", 
+   "date_created": "2011-08-27 20:32:07", 
+   "code": "OYTORzzQe6xA", 
+   "last_updated": "2011-08-27 20:32:07", 
    "used": false
   }
  }, 
@@ -795,9 +884,139 @@
   "pk": 11, 
   "model": "student.studentinvite", 
   "fields": {
-   "date_created": "2011-08-27 20:25:58", 
-   "code": "75tzc8qTCwDD", 
-   "last_updated": "2011-08-27 20:25:58", 
+   "date_created": "2011-08-27 20:32:07", 
+   "code": "6FoCaiP9geZl", 
+   "last_updated": "2011-08-27 20:32:07", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:32:07", 
+   "code": "7zG0dFVq7qaj", 
+   "last_updated": "2011-08-27 20:32:07", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:17", 
+   "code": "SBorAFY9Ve8J", 
+   "last_updated": "2011-08-27 20:33:17", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:17", 
+   "code": "VzUXz77dSaPM", 
+   "last_updated": "2011-08-27 20:33:17", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:17", 
+   "code": "GRAmhepCtkaF", 
+   "last_updated": "2011-08-27 20:33:17", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:17", 
+   "code": "MQITeXJqbj5x", 
+   "last_updated": "2011-08-27 20:33:17", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:19", 
+   "code": "Vo6yoRtELmsx", 
+   "last_updated": "2011-08-27 20:33:19", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:19", 
+   "code": "QOVZvRus7tFr", 
+   "last_updated": "2011-08-27 20:33:19", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:19", 
+   "code": "QGFIetEdSsUu", 
+   "last_updated": "2011-08-27 20:33:19", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:19", 
+   "code": "FgwDcvV0kqTj", 
+   "last_updated": "2011-08-27 20:33:19", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:21", 
+   "code": "s1mwRKWZZ39x", 
+   "last_updated": "2011-08-27 20:34:58", 
+   "used": true
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:21", 
+   "code": "EpQSFjFfTZnV", 
+   "last_updated": "2011-08-27 20:33:21", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:21", 
+   "code": "XD33wxMhecP5", 
+   "last_updated": "2011-08-27 20:33:21", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 20:33:21", 
+   "code": "Xdhe1ja4PnD0", 
+   "last_updated": "2011-08-27 20:33:21", 
    "used": false
   }
  }, 
@@ -1018,6 +1237,24 @@
   }
  }, 
  {
+  "pk": 17, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "dpetters@mit.edu", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-08-27 20:35:04", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$7c700$541716ba1c69382256874d90377fb3804f781634", 
+   "email": "dpetters@mit.edu", 
+   "date_joined": "2011-08-27 20:34:56"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -1113,6 +1350,15 @@
   "fields": {
    "is_verified": false, 
    "user": 16, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": false, 
+   "user": 17, 
    "last_password_change_date": null
   }
  }, 
@@ -2384,6 +2630,24 @@
    "session_key": "75d5db4fa6663d1e7fe94643358bfe30", 
    "last_updated": "2011-08-27 20:24:33", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 230, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-27 20:35:04", 
+   "session_key": "aeb4e99dd04b865fd8ef790f84057616", 
+   "last_updated": "2011-08-27 20:35:04", 
+   "user": 17
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "ALREADY_ACTIVATED", 
+   "user": 17
   }
  }
 ]
