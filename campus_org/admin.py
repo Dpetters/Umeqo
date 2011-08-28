@@ -9,7 +9,7 @@ from campus_org.models import CampusOrg
 class CampusOrgAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Required Info', {'fields': ['name', 'type']}),
-        ('Extra Info', {'fields': ['email', 'website', 'image', 'description', 'display']}),
+        ('Extra Info', {'fields': ['email', 'website', 'image', 'thumbnail', 'description', 'display']}),
     ]
     list_display = ('name', 'type', 'display')
     list_filter = ('type',)
