@@ -11,6 +11,7 @@ from core import choices as core_choices
 from core import mixins as core_mixins
 from student.managers import StudentManager
 
+
 class StudentInvite(core_mixins.DateTracking):
     code = models.CharField(max_length=12, unique=True)
     used = models.BooleanField(default=False)
@@ -21,6 +22,7 @@ class StudentInvite(core_mixins.DateTracking):
     class Meta:
         verbose_name = "Student Invite"
         verbose_name_plural = "Student Invites"
+
 
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
