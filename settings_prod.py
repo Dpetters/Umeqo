@@ -16,7 +16,7 @@ USE_LANDING_PAGE = True
 # Can students register?
 REGISTRATION_OPEN = True
 
-ROOT = os.path.dirname(os.path.realpath("__file__"))
+ROOT = os.path.dirname(os.path.realpath(__file__))
 
 def is_prod():
     return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
@@ -67,7 +67,7 @@ LOGGING = {
         'file_handler': {
             'level':'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': ROOT + '/logs/umeqo.log',
+            'filename': '/var/www/umeqo/logs/umeqo.log',
             'maxBytes': 1024*1024*10,
             'backupCount': 5,
             'formatter':'standard',
