@@ -27,7 +27,7 @@
     top: 40px;
     left: 0;
     bottom: 0;
-    width: 208px;
+    width: 218px;
     overflow-y: auto;
     background-color: #EEE;
 }
@@ -50,13 +50,13 @@
 #employers_listings .description_preview {
     overflow-x: hidden;
     white-space: nowrap;
-    width: 195px;
+    width: 198px;
     display: inline-block;
     color: #777;
     text-overflow: ellipsis;
 }
 #employers_detail {
-    margin-left: 208px;
+    margin-left: 218px;
     min-height: 200px;
     padding: 10px;
 }
