@@ -152,9 +152,12 @@ class EmploymentType(core_mixins.DateTracking):
 class Industry(core_mixins.DateTracking):
     name = models.CharField("Industry Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
 
-    class Meta(CommonInfo.Meta):
+    class Meta:
+        ordering = ['name']
+        verbose_name = "Industry"
         verbose_name_plural = "Industries"
-            
+
+        
     def __unicode__(self):
         return self.name
 

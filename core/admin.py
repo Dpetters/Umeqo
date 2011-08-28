@@ -48,7 +48,6 @@ class CustomUserAdmin(UserAdmin):
 
 class IndustryAdmin(admin.ModelAdmin):
     fields = ['name']
-    ordering = ('-last_updated',)
     
 class SchoolYearAdmin(admin.ModelAdmin):
     fields = ['name']
