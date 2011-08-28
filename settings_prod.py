@@ -48,7 +48,6 @@ DATABASES = {
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -61,6 +60,10 @@ LOGGING = {
         }
     },
     'handlers': {
+        'null': {
+            'level':'DEBUG',
+            'class':'django.utils.log.NullHandler',
+        },
         'file_handler': {
             'level':'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
@@ -69,14 +72,15 @@ LOGGING = {
             'backupCount': 5,
             'formatter':'standard',
         },
+        'mail_admins': {
+            'level': 'WARNING',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html':True
+        }
     },
     'loggers': {
-        'django': { # Stop SQL debug from logging to main logger
-            'handlers': ['file_handler'],
-            'level': 'DEBUG',
-        },
         'django.request': { # Stop SQL debug from logging to main logger
-            'handlers': ['file_handler'],
+            'handlers': ['file_handler', 'mail_admins'],
             'level': 'DEBUG',
             'propagate':True
         },
