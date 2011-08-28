@@ -17,7 +17,7 @@ class Employer(core_mixins.DateTracking):
     name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters.")
     slug = models.SlugField(max_length=20, unique=True, help_text="Maximum 20 characters.")
     logo = models.ImageField(upload_to=get_logo_filename)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     industries = models.ManyToManyField(Industry)
     main_contact = models.CharField("Main Contact", max_length=50, blank=True, null=True)
     main_contact_email = models.EmailField("Main Contact Email", blank=True, null=True)
