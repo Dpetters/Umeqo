@@ -16,6 +16,9 @@ USE_LANDING_PAGE = False
 # Can students register?
 REGISTRATION_OPEN = True
 
+# Email from which server emails will be sent
+SERVER_EMAIL = "server@umeqo.com"
+
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 def is_prod():
