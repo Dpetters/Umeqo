@@ -1,21 +1,20 @@
 .simple_block {
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding: 10px 0;
 }
-.simple_block h1{
-    margin-bottom:9px;
+.simple_block h1 {
+    margin-bottom: 9px;
 }
 .main_block {
     margin-top: 20px;
     display: inline-block;
-    width:100%
+    width: 100%
 }
-.with_side_nav{
-    width:780px;
-    float:right;
+.with_side_nav {
+    width: 780px;
+    float: right;
 }
-.main_block h1{
-    margin-bottom:15px;
+.main_block h1 {
+    margin-bottom: 15px;
 }    
 .main_block_header {
     padding: 3px 0px;
@@ -45,7 +44,7 @@
     background: -webkit-linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* W3C */
     border-top: 1px solid #FFF;
     border-bottom: 1px solid #DDD;
@@ -56,7 +55,7 @@
 .main_block_header_title, .side_block_header_title {
     text-shadow: 0px 1px white;
     vertical-align: middle;
-    color:#444;
+    color: #444;
     margin-left: 7px;
 }
 .main_block_header_content, .side_block_header_content {
@@ -79,8 +78,8 @@
     margin-left: 5px;
     line-height: 29px;
 }
-.no_icon{
-    margin-left:8px;
+.no_icon {
+    margin-left: 8px;
 }
 .side_block_content {
     padding: 10px;

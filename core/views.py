@@ -3,7 +3,6 @@ from __future__ import absolute_import
 
 from datetime import datetime, timedelta
 import operator
-import re
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
@@ -46,6 +45,7 @@ def help_center(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
+
 def account_deactivate(request, extra_context = None):
     context = {}
     if hasattr(request.user, "student"):
@@ -54,6 +54,7 @@ def account_deactivate(request, extra_context = None):
         context['TEMPLATE'] = "student_account_deactivate.html"        
     context.update(extra_context or {})
     return context
+
 
 @render_to('faq.html')
 def faq(request, extra_context = None):
@@ -82,11 +83,13 @@ def faq(request, extra_context = None):
         context.update(extra_context or {})  
         return context
 
+
 @render_to('tutorials.html')
 def tutorials(request, extra_context = None):    
     context = {}
     context.update(extra_context or {})
     return context
+
 
 @render_to('contact_us.html')
 def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
@@ -110,6 +113,7 @@ def contact_us(request, form_class = AkismetContactForm, fail_silently = False, 
             }
     context.update(extra_context or {}) 
     return context
+
 
 @login_required
 def get_location_guess(request):
@@ -154,6 +158,7 @@ def landing_page_wrapper(request, extra_context=None):
     else:
         return landing_page(request, extra_context=extra_context)
 
+
 @cache_page(60 * 15)
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
@@ -196,6 +201,7 @@ def landing_page(request, extra_context = None):
 
     context.update(extra_context or {})
     return context
+
 
 @render_to()
 def home(request, extra_context=None):
