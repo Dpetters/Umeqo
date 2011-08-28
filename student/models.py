@@ -51,7 +51,7 @@ class Student(StudentBaseAttributes, core_mixins.DateTracking):
     last_name = models.CharField(max_length = 30, blank = True, null=True)
     school_year = models.ForeignKey(SchoolYear, blank = True, null=True)
     graduation_year = models.ForeignKey(GraduationYear, blank = True, null=True)
-    graduation_month = models.CharField(max_length=2, choices = core_choices.MONTH_CHOICES, default = core_choices.MAY, blank = True, null = True)
+    graduation_month = models.CharField(max_length=2, choices = core_choices.MONTH_CHOICES, default = core_choices.JUNE, blank = True, null = True)
     first_major = models.ForeignKey(Course, related_name = "first_major", blank = True, null=True)
     resume = models.FileField(upload_to = get_resume_filename, blank = True, null=True)
     

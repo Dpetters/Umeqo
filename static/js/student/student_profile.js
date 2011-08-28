@@ -17,10 +17,11 @@ $(document).ready( function() {
                         clearTimeout(profile_preview_timeout);
                     },
                     error: errors_in_message_area_handler,
-                    success: function (data) { 
+                    success: function (data) {
                         $("#student_profile_preview").html(data);
+
                         $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
-                        
+
                         $(".resume_book_current_toggle_student").hover(function(){
                             $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");    
                         }, function(){
@@ -59,7 +60,6 @@ $(document).ready( function() {
         }
         console.profileEnd();
     };
-    
     v = $("#profile_form").validate({
         submitHandler: function (form) {
             $(form).ajaxSubmit({
@@ -115,7 +115,6 @@ $(document).ready( function() {
                                 accordion.accordion("activate", 1);
                                 current = 1;
                             }
-                            console.log(data.errors);
                             place_table_form_errors("#profile_form", data.errors);
                         }
                     }

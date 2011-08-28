@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    setTimeout("", 1000);
-
     $("#id_looking_for").multiselect({
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
@@ -28,7 +26,7 @@ $(document).ready(function(){
         },
         click: function(e) {
             $(".warning").remove();
-            $("#id_industries_of_interest").trigger("change");
+            $("#id_industries_of_interest").change();
             if( $(this).multiselect("widget").find("input:checked").length > INDUSTRIES_OF_INTEREST_MAX ) {
                 place_multiselect_warning_table($("#id_industries_of_interest"), MAX_INDUSTRIES_OF_INTEREST_EXCEEDED);
                 return false;
