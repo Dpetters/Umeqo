@@ -762,6 +762,36 @@
   }
  }, 
  {
+  "pk": 8, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 17:51:25", 
+   "code": "yv297JXEYosR", 
+   "last_updated": "2011-08-27 17:51:25", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 17:51:52", 
+   "code": "U5YLqbg193X2", 
+   "last_updated": "2011-08-27 17:51:52", 
+   "used": false
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "student.studentinvite", 
+  "fields": {
+   "date_created": "2011-08-27 17:53:12", 
+   "code": "345", 
+   "last_updated": "2011-08-27 17:53:12", 
+   "used": false
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "auth.user", 
   "fields": {

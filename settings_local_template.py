@@ -5,10 +5,13 @@ TEMPLATE_DEBUG = DEBUG
 
 # Compress static content?
 COMPRESS = False
+
 # Students need an invite code to register
 INVITE_ONLY = True
+
 # Base page is the landing page
 USE_LANDING_PAGE = True
+
 # Can students register?
 REGISTRATION_OPEN = True
 
@@ -33,12 +36,12 @@ LOGGING = {
     },
     'handlers': {
         'request_handler': {
-                'level':'DEBUG',
-                'class':'logging.handlers.RotatingFileHandler',
-                'filename': ROOT + '/logs/django_request.log',
-                'maxBytes': 1024*1024*5, # 5 MB
-                'backupCount': 5,
-                'formatter':'standard',
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': ROOT + '/logs/umeqo.log',
+            'maxBytes': 1024*1024*5, # 5 MB
+            'backupCount': 5,
+            'formatter':'standard',
         },
     },
     'loggers': {
@@ -60,5 +63,3 @@ DATABASES = {
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-WELCOME_EVENT_ID = 3

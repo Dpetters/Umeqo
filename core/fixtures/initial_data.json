@@ -10,113 +10,13 @@
   }
  }, 
  {
-  "pk": 13, 
+  "pk": 15, 
   "model": "core.campusorgtype", 
   "fields": {
-   "date_created": "2011-05-03 12:27:36", 
+   "date_created": "2011-07-17 15:18:01", 
    "sort_order": 0, 
-   "last_updated": "2011-07-17 15:46:54", 
-   "name": "Religious"
-  }
- }, 
- {
-  "pk": 12, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 17:07:00", 
-   "name": "Technology"
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 17:07:11", 
-   "name": "Sports"
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 15:48:22", 
-   "name": "Governance"
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 15:52:44", 
-   "name": "Service and Advocacy"
-  }
- }, 
- {
-  "pk": 8, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 15:51:39", 
-   "name": "Hobbies"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Living Group"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 17:06:44", 
-   "name": "Fraternity/Sorority"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 17:06:51", 
-   "name": "Business/Finance "
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-07-17 15:47:15", 
-   "name": "Cultural and Gender"
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "core.campusorgtype", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
-   "last_updated": "2011-05-03 12:27:36", 
-   "name": "Competition"
+   "last_updated": "2011-07-17 15:18:01", 
+   "name": "Visual Arts and Publications"
   }
  }, 
  {
@@ -130,13 +30,113 @@
   }
  }, 
  {
-  "pk": 15, 
+  "pk": 3, 
   "model": "core.campusorgtype", 
   "fields": {
-   "date_created": "2011-07-17 15:18:01", 
+   "date_created": "2011-05-03 12:27:36", 
    "sort_order": 0, 
-   "last_updated": "2011-07-17 15:18:01", 
-   "name": "Visual Arts and Publications"
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Competition"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:47:15", 
+   "name": "Cultural and Gender"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:06:51", 
+   "name": "Business/Finance "
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:06:44", 
+   "name": "Fraternity/Sorority"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-05-03 12:27:36", 
+   "name": "Living Group"
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:51:39", 
+   "name": "Hobbies"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:52:44", 
+   "name": "Service and Advocacy"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:48:22", 
+   "name": "Governance"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:07:11", 
+   "name": "Sports"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 17:07:00", 
+   "name": "Technology"
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.campusorgtype", 
+  "fields": {
+   "date_created": "2011-05-03 12:27:36", 
+   "sort_order": 0, 
+   "last_updated": "2011-07-17 15:46:54", 
+   "name": "Religious"
   }
  }, 
  {

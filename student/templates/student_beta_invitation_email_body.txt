@@ -1,1 +1,23 @@
-Welcome to the Beta {{student.first_name}} {{student.last_name}}!
+Dear {{first_name}},
+
+We are excited to announce the release of the Umeqo Beta, and we would like to personally invite you to participate.  Umeqo's goal is to create a one-stop resource where technology, consulting, finance, and other types of firms can learn more about you, contact you, and provide you with information about what they're up to on campus. The system was built by MIT students for MIT students, with an emphasis on saving you time and effort year round.
+
+Join the Beta - 3 easy steps
+Go to umeqo.com. Sign up using your invite code - {{ic}}
+Enter your MIT email address and a password of your choosing.
+Create your Umeqo profile by uploading your resume and inputting a few key pieces of information.
+That's it!
+
+Who's using Umeqo?
+Initially, we are also giving exclusive early access to several tops firm - J.P. Morgan, Google, Microsoft, Oliver Wyman, Blackstone, SIG, Exxon Mobil, Thomson Reuters, Oracle and others. These are the firms that will get to browse through the Umeqo beta users, such as yourself, in about a week. In September, Umeqo will be open to the entire MIT community and additional employers.
+
+Below are three extra invite codes for you to give away to other MIT students who did not sign up for the Beta but are interested in participating.
+{% for ic in extra_invite_codes %}
+{{ic}}
+{% endfor %}
+
+MIT is hard; recruiting doesn't have to be. Join Umeqo and help shape the student experience!
+
+Enthusiastically,
+Dmitrij, Josh, and Zac
+The Umeqo Team

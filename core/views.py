@@ -3,7 +3,6 @@ from __future__ import absolute_import
 
 from datetime import datetime, timedelta
 import operator
-import re
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required

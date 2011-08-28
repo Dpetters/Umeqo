@@ -5,7 +5,7 @@ import string
 from pprint import pprint as pp
 from optparse import make_option
 
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.core.management.base import BaseCommand
 from django.core.validators import validate_email
@@ -88,21 +88,29 @@ class Command(BaseCommand):
                 print "%s %s (%s)" % (person.first_name, person.last_name, person.email)
         if options["email"]:
             for person in InterestedPerson.objects.all():
-                if person.auto_email:
+                if person.auto_email and not person.emailed:
                     invite_codes = []
                     for i in range(s.INVITE_CODE_COUNT):
                         invite_code = ''.join(random.choice(string.ascii_uppercase + \
                                     string.ascii_lowercase + string.digits) for x in range(12))
+                        invite_codes.append(invite_code)
                         StudentInvite.objects.create(code = invite_code)
                     recipients = [person.email]
                     subject = "Umeqo Beta Invitation" 
-                    body = render_to_string('student_beta_invitation_email_body.txt', \
-                                            {'first_name':person.student.first_name, \
-                                            'last_name':person.student.last_name, \
+                    txt_body = render_to_string('student_beta_invitation_email_body.txt', \
+                                            {'first_name':person.first_name, \
+                                            'last_name':person.last_name, \
                                             'email':person.email,
                                             'extra_invite_codes': invite_codes[1:],
                                             'ic':invite_codes[0]})
-                    message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
+                    html_body = render_to_string('student_beta_invitation_email_body.html', \
+                                            {'first_name':person.first_name, \
+                                            'last_name':person.last_name, \
+                                            'email':person.email,
+                                            'extra_invite_codes': invite_codes[1:],
+                                            'ic':invite_codes[0]})
+                    message = EmailMultiAlternatives(subject, txt_body, s.DEFAULT_FROM_EMAIL, recipients)
+                    message.attach_alternative(html_body, "text/html")
                     message.send()
                     person.emailed = True
                     person.save()
