@@ -10,8 +10,8 @@ PASSWORD_MIN_LENGTH = 5
 LOAD_WAIT_TIME = 8000
 # One-day activation window
 ACCOUNT_ACTIVATION_DAYS = 1
-# Number of extra invite codes to give to a student
-INVITE_CODE_COUNT = 3
+# Number of extra invite codes to give to a student (including theirs)
+INVITE_CODE_COUNT = 4
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
 SP_MAX_CAMPUS_INVOLVEMENT = 12;
