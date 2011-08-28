@@ -3,7 +3,7 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 5, 
+   "view_count": 8, 
    "start_datetime": "2011-12-01 00:00:00", 
    "audience": [], 
    "attending_employers": [], 
@@ -23,6 +23,16 @@
    "type": 5, 
    "slug": "umeqo-launch", 
    "location": "Burton-Conner House"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 6, 
+   "student": 1, 
+   "datetime_created": "2011-08-28 16:34:44"
   }
  }, 
  {
@@ -481,7 +491,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-27 22:19:04", 
+   "last_updated": "2011-08-28 16:33:37", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -499,7 +509,8 @@
    "first_name": "Dmitrij", 
    "first_major": 31, 
    "subscriptions": [
-    5
+    5, 
+    6
    ], 
    "gpa": "4.800", 
    "campus_involvement": [
@@ -1289,7 +1300,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-28 13:32:15", 
+   "last_login": "2011-08-28 17:14:34", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1307,7 +1318,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-28 16:23:55", 
+   "last_login": "2011-08-28 17:22:51", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -3025,6 +3036,56 @@
    "date_created": "2011-08-28 16:23:55", 
    "session_key": "73da774d2d21a24fa71d476b27912d53", 
    "last_updated": "2011-08-28 16:23:55", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 243, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 16:32:29", 
+   "session_key": "6a4180a1edd1c8b2e44e1dd0223d3fed", 
+   "last_updated": "2011-08-28 16:32:29", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 244, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 16:33:06", 
+   "session_key": "576e2f6348cf6b5b9fb0ed7db540ada5", 
+   "last_updated": "2011-08-28 16:33:06", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 245, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 16:54:16", 
+   "session_key": "b041522956075bfed8b18fd9c870c635", 
+   "last_updated": "2011-08-28 16:54:16", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 246, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 17:14:34", 
+   "session_key": "337208d29a06f0cb4cb652b3fb48b239", 
+   "last_updated": "2011-08-28 17:14:34", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 247, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 17:22:51", 
+   "session_key": "70853a7443a6ab39931481275a5dfb17", 
+   "last_updated": "2011-08-28 17:22:51", 
    "user": 2
   }
  }, 
