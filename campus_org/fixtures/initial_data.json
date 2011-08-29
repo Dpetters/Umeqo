@@ -1680,6 +1680,22 @@
   }
  }, 
  {
+  "pk": 446, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-29 09:25:16", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-29 09:25:16", 
+   "type": 11, 
+   "display": false, 
+   "name": "delete me"
+  }
+ }, 
+ {
   "pk": 435, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2909,6 +2925,22 @@
    "type": 9, 
    "display": false, 
    "name": "Jewish Student Activism"
+  }
+ }, 
+ {
+  "pk": 448, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://joshma.com/", 
+   "last_updated": "2011-08-29 11:53:09", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-29 11:53:09", 
+   "type": 1, 
+   "display": false, 
+   "name": "Josh's Org"
   }
  }, 
  {
@@ -5693,6 +5725,22 @@
    "type": 1, 
    "display": false, 
    "name": "Technology Policy Students Society"
+  }
+ }, 
+ {
+  "pk": 447, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-08-29 10:44:30", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-29 10:44:30", 
+   "type": 1, 
+   "display": false, 
+   "name": "test8"
   }
  }, 
  {
