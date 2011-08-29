@@ -5,7 +5,7 @@ function open_unparsable_resume_dialog(){
         title:"Unparsable Resume",
         dialogClass: "unparsable_resume_dialog",
         modal:true,
-        width:435,
+        width:428,
         resizable: false,
         close: function() {
             $(".unparsable_resume_dialog").remove();
