@@ -13,22 +13,20 @@
     font-weight: 600;
     margin: 0 2px 2px 0;
 }
-div .employer_name{
+div .employer_name {
     margin-bottom: 10px;
 }
-.industries{
+.industries {
     margin-bottom: 18px;
 }
 #logo_and_buttons{
     text-align: center;
-    position:relative;
-    bottom:10px;
 }
 #employer_subscribe, #employer_unsubscribe {
     margin: 5px 0;
     width: 80px;
 }
-#employer_info{
+#employer_info {
     margin-right: 150px;
 }
 .description {
@@ -39,7 +37,7 @@ div .employer_name{
     color: #444;
     font-size: 12px;
 }
-#offered_job_types{
+#offered_job_types {
     font-size: 14px;
 }
 .logo {

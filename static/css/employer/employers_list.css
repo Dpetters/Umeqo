@@ -23,13 +23,9 @@
     margin-top:11px;
 }
 #employers_listings {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    bottom: 0;
-    width: 218px;
-    overflow-y: auto;
+    float: left;
     background-color: #EEE;
+    padding: 0 0 10px;
 }
 #employers_listings .employers_listing {
     padding: 5px;
@@ -56,7 +52,9 @@
     text-overflow: ellipsis;
 }
 #employers_detail {
-    margin-left: 218px;
+    margin-left: 243px;
     min-height: 400px;
     padding: 10px;
+    overflow: hidden;
+    width: 723px;
 }
