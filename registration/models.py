@@ -197,7 +197,6 @@ def send_first_notice(sender, instance, created, raw, **kwargs):
         try:
             event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
             notification.send([sender], NoticeType.objects.get(label="public_invite"), {
-                'name': sender.first_name,
                 'employer': Employer.objects.get(name="Umeqo"),
                 'invite_message': "This is your first invite! There are many more to come!",
                 'event': event,
