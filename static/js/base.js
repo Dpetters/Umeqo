@@ -167,13 +167,9 @@ $(document).ready( function () {
     $("a, .button, .dark_button, .dropdown_menu_button, \
     .dropdown_menu_button ul li, .menu_button, .current_page_link, \
     .page_link, .disabled_page_link, #logo_beta, #notifications_count").live({
-        mouseenter:
-            function() {
-                $(this).addClass('um-hover');
-            },
         mouseleave:
             function(){
-                $(this).removeClass('um-active um-hover');
+                $(this).removeClass('um-active');
             }
     });
     $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, \
@@ -185,7 +181,7 @@ $(document).ready( function () {
         $(this).removeClass("um-focus");
     });
     $('.button, .menu_button, .dark_button, #notifications_count').live('mousedown', function() {
-        $(this).removeClass("um-hover").addClass('um-active');
+        $(this).addClass('um-active');
     });
     $('.button, .menu_button, .dark_button, #notifications_count').live('mouseup', function(){
         if ($(this).hasClass('um-active'))
