@@ -33,7 +33,7 @@
         </div>
         {% endif %}
         {% if event.description %}
-        <div class="reset">{{event.description|safe}}</div>
+        <div>{{event.description|striptags|safe|truncatewords:50}}</div>
         {% endif %}
     </div>
 </li>
