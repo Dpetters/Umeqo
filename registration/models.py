@@ -196,12 +196,10 @@ def send_first_notice(sender, instance, created, raw, **kwargs):
     if created and is_student(sender) and not raw:
         try:
             event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
-            employer = Employer.objects.get(name="Umeqo")
-            message = "This is your first invite! There are many more to come!"
-            notification.send([sender], "public_invite", {
-                'employer_name': str(employer.name),
-                'employer_url': employer.get_absolute_url,
-                'invite_message': message,
+            notification.send([sender], "new_event", {
+                'employer': "Umeqo",
+                'has_word': "has",
+                'invite_message': "This is your first invite! There are many more to come!",
                 'event': event
             })
         except Event.DoesNotExist:

@@ -1,7 +1,7 @@
 Hey {% if name %}{{name}}{% else %}there{% endif %},
 
-{{employer_name}} has sent you an invite to the public event "{{event}}":
+{{employer}} has sent you an invite to the public event "{{event}}":
 
 {% load core_extras %}{{invite_message|wordwrapwithindent:80}}
 
-Check out the event details and respond at http://{{current_site.domain}}{{permalink}}
+Check out the event details and respond at http://{{current_site.domain}}{{event.get_absolute_url}}
