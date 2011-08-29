@@ -241,7 +241,8 @@
                       <img class="logo" src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
                     </div>
                     <div class="event_company_name">
-                        <a href="{% if not show_admin %}{% url employers_list %}?id={{recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
+                      {{ recruiter.name }}
+                        <a href="{% if not show_admin %}{% url employers_list %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
                             {{event.owner.recruiter.employer}}
                         </a>
                     </div>
