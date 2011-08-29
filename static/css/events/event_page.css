@@ -465,8 +465,12 @@
     padding: 5px;
     border-radius: 3px;
 }
+
 .main_block_content p {
-    padding: 10px 0;
+	margin: 0 0 10px;
+}
+.main_block_content ul {
+	margin: 0 0 0 20px;
 }
 
 #event_resume_undrop,
