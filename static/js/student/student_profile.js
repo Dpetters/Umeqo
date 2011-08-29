@@ -237,8 +237,4 @@ $(document).ready( function() {
             timeoutID = window.setTimeout(load_profile_preview, 400);
         }
     });
-
-    $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
-    var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
-    load_profile_preview();
 });
