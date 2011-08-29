@@ -11,7 +11,7 @@ That's it!
 Who's using Umeqo?
 Initially, we are also giving exclusive early access to several tops firm - J.P. Morgan, Google, Microsoft, Oliver Wyman, Blackstone, SIG, Exxon Mobil, Thomson Reuters, Oracle and others. These are the firms that will get to browse through the Umeqo beta users, such as yourself, in about a week. In September, Umeqo will be open to the entire MIT community and additional employers.
 
-Below are three extra invite codes for you to give away to other MIT students who did not sign up for the Beta but are interested in participating.
+Below are {{extra_invite_codes|length}} extra invite codes for you to give away to other MIT students who did not sign up for the Beta but are interested in participating.
 {% for ic in extra_invite_codes %}
 {{ic}}
 {% endfor %}
