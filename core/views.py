@@ -15,8 +15,6 @@ from django.core.validators import URLValidator
 from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import redirect
-from django.views.decorators.cache import cache_page
-from django.views.decorators.csrf import csrf_protect
 from django.utils import simplejson
 
 from core import enums, messages

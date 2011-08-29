@@ -37,6 +37,10 @@ from countries.models import Country
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
                     change_password_form_class = PasswordChangeForm, 
                     extra_context=None):
+    
+    if not request.user.student.profile_created:
+        return redirect('student_profile')
+    
     if request.method == "GET":
         context = {}
         page_messages = {
@@ -59,8 +63,8 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account_deactivate.html")
-def student_account_deactivate(request, 
-                               form_class=StudentAccountDeactivationForm):
+def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
+
     if request.is_ajax():
         if request.method == "POST":
             form = form_class(data = request.POST)
