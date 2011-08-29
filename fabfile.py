@@ -91,8 +91,8 @@ def load_local_data():
                 run("python manage.py loaddata ./local_data/fixtures/local_data.json")  
 
 def commit_prod_data():
-    if env.host != "staging.umeqo.com":
-        abort("commit_prod_data should only be called on staging")
+    if env.host != "umeqo.com":
+        abort("commit_prod_data should only be called on prod")
     with cd(env.directory):
         with prefix(env.activate):
             for app in settings.PROD_DATA_MODELS:
@@ -143,8 +143,7 @@ def update():
                 if env.host=="staging.umeqo.com":
                     commit_local_data()
                 elif env.host=="umeqo.com":
-                    pass
-                    #commit_prod_data()
+                    commit_prod_data()
                 run("git pull")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")

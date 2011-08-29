@@ -8,6 +8,7 @@ class EmployerIndex(indexes.RealTimeSearchIndex):
     industries = indexes.MultiValueField()
     subscribers = indexes.MultiValueField()
     has_events = indexes.BooleanField()
+    visible = indexes.BooleanField(model_attr="visible")
 
     def prepare_industries(self, obj):
         return [industry.id for industry in obj.industries.all()]
