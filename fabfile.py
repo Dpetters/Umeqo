@@ -46,12 +46,13 @@ def create_database():
         local("python copy_media.py prod in")
         local("python manage.py syncdb --noinput --migrate")
     else:
-        if env.host == "umeqo.com":
-            abort("create_database cannot be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
                 run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
-                run("python manage.py syncdb --noinput --migrate")
+                if env.host=="umeqo.com":
+                    run("python manage.py syncdb --noinput --migrate")
+                else:
+                    run("python manage.py syncdb --noinput --migrate")                    
                 run("python copy_media.py prod in")
                 
 def schemamigrate():
@@ -134,13 +135,16 @@ def commit_local_data():
                 run("git push")
 
 def update():
-    if env.host != "staging.umeqo.com":
-        abort("update can only be called on staging.")
+    if not env.host:
+        abort("update can only be called on staging and prod.")
     else:
         with cd(env.directory):
             with prefix(env.activate):
-                commit_local_data()
-                commit_prod_data()
+                if env.host=="staging.umeqo.com":
+                    commit_local_data()
+                elif env.host=="umeqo.com":
+                    pass
+                    #commit_prod_data()
                 run("git pull")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")

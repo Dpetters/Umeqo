@@ -20,8 +20,6 @@ ROOT = os.path.dirname(os.path.realpath("__file__"))
 # 1 - Prod, 2 - Staging, 3 - Dev/Local
 SITE_ID = 3
 
-USE_LANDING_PAGE = False
-
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }

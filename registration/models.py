@@ -12,8 +12,11 @@ from django.dispatch import receiver
 from core import mixins as core_mixins
 from core.decorators import is_student
 from core.view_helpers import get_ip
-from events.models import notify_about_event, Event
+from events.models import Event
 from registration.managers import RegistrationManager
+from notification.models import NoticeType
+from employer.models import Employer
+from notification import models as notification
 
 
 class InterestedPerson(core_mixins.DateTracking):
@@ -68,7 +71,7 @@ class UserAttributes(models.Model):
 @receiver(post_save, sender=User)
 def create_userattributes(sender, instance, created, raw, **kwargs):
     if created and not raw:
-        UserAttributes.objects.create(user=instance, is_verified=False)
+        UserAttributes.objects.create(user=instance, is_verified=True)
 
 
 class RegistrationProfile(models.Model):
@@ -193,6 +196,10 @@ def send_first_notice(sender, instance, created, raw, **kwargs):
     if created and is_student(sender) and not raw:
         try:
             event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
-            notify_about_event(event, 'new_event')
+            notification.send([sender], NoticeType.objects.get(label="public_invite"), {
+                'employer': Employer.objects.get(name="Umeqo"),
+                'invite_message': "This is your first invite! There are many more to come!",
+                'event': event,
+            })
         except Event.DoesNotExist:
             pass

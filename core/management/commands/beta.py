@@ -14,7 +14,7 @@ from django.conf import settings as s
 from registration.models import InterestedPerson
 from student.models import StudentInvite
 
-INVITE_CODE_LENGTH = 12
+INVITE_CODE_LENGTH = 6
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
@@ -92,7 +92,7 @@ class Command(BaseCommand):
                     invite_codes = []
                     for i in range(s.INVITE_CODE_COUNT):
                         invite_code = ''.join(random.choice(string.ascii_uppercase + \
-                                    string.ascii_lowercase + string.digits) for x in range(12))
+                                    string.ascii_lowercase + string.digits) for x in range(INVITE_CODE_LENGTH))
                         invite_codes.append(invite_code)
                         StudentInvite.objects.create(code = invite_code)
                     recipients = [person.email]

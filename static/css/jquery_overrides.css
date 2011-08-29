@@ -41,6 +41,9 @@
     font-size: 18px;
     color: #555;
 }
+.ui-dialog-content h3 {
+    padding-top:0px;
+}
 .ui-dialog-content ul {
     list-style:inside;
 }

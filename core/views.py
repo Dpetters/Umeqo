@@ -7,6 +7,7 @@ import operator
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
@@ -15,6 +16,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_protect
 from django.utils import simplejson
 
 from core import enums, messages
@@ -160,9 +162,9 @@ def landing_page_wrapper(request, extra_context=None):
 
 
 @cache_page(60 * 15)
+@csrf_protect
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
-    
     form_class = BetaForm
     
     posted = False
@@ -190,7 +192,7 @@ def landing_page(request, extra_context = None):
             form_error = True
     else:
         form = form_class()
-        
+
     context = {
             'form': form,
             'posted': posted,
@@ -198,7 +200,8 @@ def landing_page(request, extra_context = None):
             'form_error': form_error,
             'email_error': email_error
     }
-
+    if request.GET.has_key("action") and request.GET['action'] == "account-deactivated":
+        context['deactivated'] = True
     context.update(extra_context or {})
     return context
 
@@ -347,13 +350,6 @@ def check_language_uniqueness(request):
         else:
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
-
-@render_to('unsupported_browser.html')
-def unsupported_browser(request, extra_context=None):
-    context = {}
-    context.update(extra_context or {})
-    return context
 
 @login_required
 def get_notice_unseen_count(request):

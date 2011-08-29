@@ -19,6 +19,7 @@ from core.view_helpers import get_ip
 from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
+from employer.models import Employer
 
 
 @login_required
@@ -101,6 +102,7 @@ def activate_user(request, backend = RegistrationBackend(), success_url=None, ex
     if user:
         user.backend = settings.AUTHENTICATION_BACKENDS[0]
         auth_login(request, user)
+        user.student.subscriptions.add(Employer.objects.get(name="Umeqo"))
         if success_url is None:
             to, args, context = backend.post_activation_redirect(request, user)
             return redirect(to, *args, **context)
