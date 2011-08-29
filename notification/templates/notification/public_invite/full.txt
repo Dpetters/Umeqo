@@ -1,6 +1,6 @@
 Hey {% if name %}{{name}}{% else %}there{% endif %},
 
-{{recruiter}} ({{employer}}) has sent you an invite to the public event "{{event}}":
+{{employer_name}} has sent you an invite to the public event "{{event}}":
 
 {% load core_extras %}{{invite_message|wordwrapwithindent:80}}
 
