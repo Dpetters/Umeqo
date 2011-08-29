@@ -4,9 +4,12 @@ from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.syndication.views import feed
+from django.shortcuts import redirect
+
 
 from core.decorators import render_to
 from notification.models import *
+from core.decorators import is_student
 from notification.decorators import basic_auth_required, simple_basic_auth_callback
 from notification.feeds import NoticeUserFeed
 
@@ -35,6 +38,9 @@ def notices(request):
             A list of :model:`notification.Notice` objects that are not archived
             and to be displayed on the site.
     """
+    if is_student(request.user) and not request.user.student.profile_created:
+        return redirect('student_profile')
+    
     notices = Notice.objects.notices_for(request.user, on_site=True)
     
     return render_to_response("notification/notices.html", {
