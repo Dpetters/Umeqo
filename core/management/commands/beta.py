@@ -92,7 +92,7 @@ class Command(BaseCommand):
                     invite_codes = []
                     for i in range(s.INVITE_CODE_COUNT):
                         invite_code = ''.join(random.choice(string.ascii_uppercase + \
-                                    string.ascii_lowercase + string.digits) for x in range(12))
+                                    string.ascii_lowercase + string.digits) for x in range(INVITE_CODE_LENGTH))
                         invite_codes.append(invite_code)
                         StudentInvite.objects.create(code = invite_code)
                     recipients = [person.email]
