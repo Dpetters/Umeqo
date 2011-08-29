@@ -89,7 +89,7 @@ def event_page(request, id, slug, extra_context=None):
         'login_next': page_url,
         'page_url': page_url,
         'DOMAIN': current_site.domain,
-        'current_site':current_site,
+        'current_site':"http://" + current_site,
         'responded': False,
         'attending': False,
         'dropped_resume': False,
