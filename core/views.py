@@ -7,6 +7,7 @@ import operator
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
@@ -15,6 +16,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_protect
 from django.utils import simplejson
 
 from core import enums, messages
@@ -160,6 +162,7 @@ def landing_page_wrapper(request, extra_context=None):
 
 
 @cache_page(60 * 15)
+@csrf_protect
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
     form_class = BetaForm
@@ -197,7 +200,6 @@ def landing_page(request, extra_context = None):
             'form_error': form_error,
             'email_error': email_error
     }
-    print request.GET
     if request.GET.has_key("action") and request.GET['action'] == "account-deactivated":
         context['deactivated'] = True
     context.update(extra_context or {})
@@ -206,7 +208,6 @@ def landing_page(request, extra_context = None):
 
 @render_to()
 def home(request, extra_context=None):
-    print "here"
     context = {}
     page_messages = { 'profile-saved': messages.profile_saved }
     msg = request.GET.get('msg',None)
