@@ -5,6 +5,7 @@ $(document).ready(function(){
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
+        height:'auto',
         click: function(){
             $("#id_looking_for").trigger("change");
         },
@@ -21,6 +22,7 @@ $(document).ready(function(){
         classes: 'interested_in_multiselect',
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
+        height:'auto',
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -42,6 +44,7 @@ $(document).ready(function(){
         classes: 'previous_employers_multiselect',
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
+        height:'auto',
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -62,6 +65,7 @@ $(document).ready(function(){
         noneSelectedText: 'select campus organizations',
         classes: 'campus_involvement_multiselect',
         uncheckAllText: multiselectUncheckAllText,
+        height:'auto',
         beforeoptgrouptoggle: function(e, ui){
             $(".warning").remove();
             if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > CAMPUS_INVOLVEMENT_MAX ) {
@@ -70,7 +74,6 @@ $(document).ready(function(){
             }
         },
         minWidth:multiselectMinWidth,
-        height:146,
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -92,7 +95,7 @@ $(document).ready(function(){
         classes: 'languages_multiselect',
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
-        height:146,
+        height:'auto',
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -121,7 +124,7 @@ $(document).ready(function(){
         noneSelectedText: "select countries",
         classes: 'countries_of_citizenship_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        height:146,
+        height:'auto',
         minWidth:multiselectMinWidth,
         selectedList: 1,
         beforeclose: function() {

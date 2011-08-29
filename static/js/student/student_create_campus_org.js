@@ -65,7 +65,11 @@ $('#create_campus_organization_link').click( function () {
                             },
                             success: function(data) {
                                 if (data.valid) {
-                                    var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p><p><a id='select_new_campus_org_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
+                                    
+                                    var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p>";
+                                    if( $("#id_campus_involvement").multiselect("widget").find("input:checked").length > COUNTRIES_OF_CITIZENSHIP_MAX-1 ) {
+                                        success_message += "<p><a id='select_new_campus_org_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
+                                    }
                                     success_message += CLOSE_DIALOG_LINK + "</div>";
                                     create_campus_org_dialog.html(success_message);
 
@@ -73,15 +77,15 @@ $('#create_campus_organization_link').click( function () {
                                     $("optgroup[label='" + data.type + "']").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>');
                                     $("#id_campus_involvement").multiselect("refresh");
                                     $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-                                    console.log(2);
-                                    // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
-                                    $("#select_new_campus_org_link").live('click', function() {
-                                        console.log(1);
-                                        $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
-                                        $("#id_campus_involvement").multiselect("refresh");
-                                        $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-                                        create_campus_org_dialog.dialog('destroy');
-                                    });
+                                    if( $("#id_campus_involvement").multiselect("widget").find("input:checked").length > COUNTRIES_OF_CITIZENSHIP_MAX-1 ) {
+                                        // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
+                                        $("#select_new_campus_org_link").live('click', function() {
+                                            $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
+                                            $("#id_campus_involvement").multiselect("refresh");
+                                            $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
+                                            create_campus_org_dialog.dialog('destroy');
+                                        });
+                                    }
                                 }else{
                                     place_table_form_errors("#create_campus_org_form", data.errors);
                                 }

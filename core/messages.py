@@ -94,7 +94,7 @@ passwords_dont_match = "The two passwords don't match."
 email_not_registered = "This email is not registered."
 
 # Password Change Form
-incorrect_old_password = "Your old password was entered incorrectly."
+incorrect_old_password = "Your password was incorrect."
 
 # New event form
 start_datetime_required = "Start date and time are required."

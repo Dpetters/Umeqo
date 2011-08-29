@@ -38,7 +38,7 @@ $(document).ready( function () {
                     $("#message_area").html("");
                     show_form_submit_loader("#password_change_form");
                 },
-                complete: function(jqXHR, textStatus) {Y
+                complete: function(jqXHR, textStatus) {
                     hide_form_submit_loader("#password_change_form");
                 },
                 success: function(data) {

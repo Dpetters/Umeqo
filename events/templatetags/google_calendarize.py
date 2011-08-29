@@ -9,7 +9,6 @@ register = template.Library()
 def google_calendarize(event):
     
     name = urlquote_plus(event.name)
-    description = urlquote_plus(event.description)
     
     st = event.datetime
     if event.type.name != "Deadline":
@@ -24,7 +23,6 @@ def google_calendarize(event):
     s = ('http://www.google.com/calendar/event?action=TEMPLATE&' +
          'text=' + name + '&' +
          'dates=' + dates + '&' +
-         'details=' + description + '&' +
          'sprop=website:' + urlquote_plus(Site.objects.get_current().domain))
 
     if event.location:

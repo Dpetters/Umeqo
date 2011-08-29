@@ -208,10 +208,8 @@ $(document).ready(function() {
         } else {
             $('label[for=id_start_datetime_0]').addClass('required');
             if ($('label[for=id_start_datetime_0] span.error').length > 0){
-                console.log(2);
                 $('label[for=id_start_datetime_0] span.error').show();                
             }else{
-                console.log(1);
                 $('label[for=id_start_datetime_0]').append("<span class='error'>*</span>");                
             }
             
@@ -330,8 +328,7 @@ $(document).ready(function() {
     $('#id_start_datetime_0, #id_start_datetime_1').change(function() {
         var start = getStartDate();
         var end = getEndDate();
-        console.log(start);
-        console.log(end);
+        
         if(end - start <= 0) {
             end = new Date(start);
             end.setHours(end.getHours() + 1);
