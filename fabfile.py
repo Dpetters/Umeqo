@@ -142,7 +142,9 @@ def update():
             with prefix(env.activate):
                 if env.host=="staging.umeqo.com":
                     commit_local_data()
-                    commit_prod_data()
+                elif env.host=="umeqo.com":
+                    pass
+                    #commit_prod_data()
                 run("git pull")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")

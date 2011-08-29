@@ -8,7 +8,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 PASSWORD_MIN_LENGTH = 5
 
 #ID of the event for which student will get notified of when they register
-WELCOME_EVENT_ID = 3
+WELCOME_EVENT_ID = 1
 
 # How long do we allow dialogs to load for before showing "this is taking longer
 # than usual..." message (in milliseconds)
