@@ -29,6 +29,9 @@ from student.models import Student
 @user_passes_test(is_student)
 @render_to('events_list.html')
 def events_list(request, extra_context=None):
+    if not request.user.student.profile_created:
+        return redirect('student_profile')
+    
     query = request.GET.get('q', '')
     events = event_search_helper(request)
     context = {

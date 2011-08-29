@@ -483,6 +483,9 @@ def employer_invitations(request, extra_context=None):
 @user_passes_test(is_student)
 @render_to('employers_list.html')
 def employers_list(request, extra_content=None):
+    if not request.user.student.profile_created:
+        return redirect('student_profile')
+    
     query = request.GET.get('q', '')
     employers = employer_search_helper(request)
     industries = Industry.objects.all()
