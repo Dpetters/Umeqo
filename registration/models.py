@@ -9,8 +9,8 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.dispatch import receiver
 
+from student.models import Student
 from core import mixins as core_mixins
-from core.decorators import is_student
 from core.view_helpers import get_ip
 from events.models import Event
 from registration.managers import RegistrationManager
@@ -191,15 +191,15 @@ def clear_login_attempts(sender, request, user, **kwargs):
     if ip_address:
         LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=Student)
 def send_first_notice(sender, instance, created, raw, **kwargs):
-    if created and is_student(instance) and not raw:
+    if created and not raw:
         try:
             event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
             employer = Employer.objects.get(name="Umeqo")
             notice_type = NoticeType.objects.get(label="public_invite")
             invite_message = "This is your first invite! There are many more to come!"
-            notification.send([instance], notice_type, {
+            notification.send([instance.user], notice_type, {
                 'employer': employer,
                 'invite_message': invite_message,
                 'event': event
