@@ -161,8 +161,8 @@ def landing_page_wrapper(request, extra_context=None):
         return landing_page(request, extra_context=extra_context)
 
 
-@cache_page(60 * 15)
-@csrf_protect
+#@cache_page(60 * 15)
+#@csrf_protect
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
     form_class = BetaForm
