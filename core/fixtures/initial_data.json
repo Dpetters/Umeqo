@@ -4838,36 +4838,6 @@
   }
  }, 
  {
-  "pk": 148, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-08-29 10:44:46", 
-   "name_and_level": "lang (Basic)", 
-   "last_updated": "2011-08-29 10:44:46", 
-   "name": "lang"
-  }
- }, 
- {
-  "pk": 149, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-08-29 10:44:46", 
-   "name_and_level": "lang (Proficient)", 
-   "last_updated": "2011-08-29 10:44:46", 
-   "name": "lang"
-  }
- }, 
- {
-  "pk": 150, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-08-29 10:44:46", 
-   "name_and_level": "lang (Fluent)", 
-   "last_updated": "2011-08-29 10:44:46", 
-   "name": "lang"
-  }
- }, 
- {
   "pk": 9, 
   "model": "core.course", 
   "fields": {

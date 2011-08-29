@@ -14,5 +14,21 @@
    "ip_address": null, 
    "email": "dpetters@mit.edu"
   }
+ }, 
+ {
+  "pk": 165, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Stephen", 
+   "last_name": "Chang", 
+   "last_updated": "2011-08-29 14:50:03", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-08-29 14:50:03", 
+   "summer_plans": null, 
+   "ip_address": "18.216.1.31", 
+   "email": "smchang@mit.edu"
+  }
  }
 ]
