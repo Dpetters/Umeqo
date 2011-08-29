@@ -465,8 +465,17 @@
     padding: 5px;
     border-radius: 3px;
 }
+
 .main_block_content p {
-    padding: 10px 0;
+	margin: 0 0 10px;
+}
+.main_block_content ol,
+.main_block_content ul {
+	margin: 5px 0 5px 20px;
+}
+.main_block_content ul li {
+	color: #666;
+	margin-bottom: 10px;
 }
 
 #event_resume_undrop,
