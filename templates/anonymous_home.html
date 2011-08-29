@@ -65,7 +65,6 @@ Welcome |
     </div>
     <div style="clear:both"></div>
     
-    <!--{ load google_calendarize %}-->
     <div id="events_block" class="longInfo">
         <h2>Latest Events and Deadlines</h2>
         <table>
@@ -76,7 +75,6 @@ Welcome |
                     <div class="details">{{event.datetime|date:"l, M j"}} at {{event.datetime|date:"f A"}}{% if event.location %} in {{event.location}} {% endif %}</div>
                 </td>
                 <td>
-                <!--<a href="{ event|google_calendarize }}" target="_blank" class="gcal">-->
                 <img class="gc_button" src="{{ STATIC_URL }}images/icons/gc_button.gif" alt="+ Add to Google Calendar" title="Add to Google Calendar">
                 </a>
                 </td>
