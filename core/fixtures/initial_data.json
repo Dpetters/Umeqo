@@ -5814,6 +5814,24 @@
   }
  }, 
  {
+  "pk": 37, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:44:24", 
+   "last_updated": "2011-07-06 18:44:24", 
+   "name": "Consulting - Management"
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:44:33", 
+   "last_updated": "2011-07-06 18:44:33", 
+   "name": "Consulting - Other"
+  }
+ }, 
+ {
   "pk": 11, 
   "model": "core.industry", 
   "fields": {
@@ -5931,6 +5949,15 @@
   }
  }, 
  {
+  "pk": 43, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:47:58", 
+   "last_updated": "2011-07-06 18:47:58", 
+   "name": "Investment Research"
+  }
+ }, 
+ {
   "pk": 29, 
   "model": "core.industry", 
   "fields": {
@@ -5967,6 +5994,15 @@
   }
  }, 
  {
+  "pk": 41, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-07-06 18:47:13", 
+   "last_updated": "2011-07-06 18:47:13", 
+   "name": "Private Equity"
+  }
+ }, 
+ {
   "pk": 33, 
   "model": "core.industry", 
   "fields": {
@@ -5985,39 +6021,12 @@
   }
  }, 
  {
-  "pk": 35, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Utilities"
-  }
- }, 
- {
   "pk": 36, 
   "model": "core.industry", 
   "fields": {
    "date_created": "2011-07-06 18:44:12", 
    "last_updated": "2011-07-06 18:44:12", 
    "name": "Software Development"
-  }
- }, 
- {
-  "pk": 37, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-07-06 18:44:24", 
-   "last_updated": "2011-07-06 18:44:24", 
-   "name": "Consulting - Management"
-  }
- }, 
- {
-  "pk": 38, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-07-06 18:44:33", 
-   "last_updated": "2011-07-06 18:44:33", 
-   "name": "Consulting - Other"
   }
  }, 
  {
@@ -6030,12 +6039,12 @@
   }
  }, 
  {
-  "pk": 41, 
+  "pk": 35, 
   "model": "core.industry", 
   "fields": {
-   "date_created": "2011-07-06 18:47:13", 
-   "last_updated": "2011-07-06 18:47:13", 
-   "name": "Private Equity"
+   "date_created": "2011-05-03 12:27:34", 
+   "last_updated": "2011-05-03 12:27:34", 
+   "name": "Utilities"
   }
  }, 
  {
@@ -6045,15 +6054,6 @@
    "date_created": "2011-07-06 18:47:19", 
    "last_updated": "2011-07-06 18:47:19", 
    "name": "Venture Capital"
-  }
- }, 
- {
-  "pk": 43, 
-  "model": "core.industry", 
-  "fields": {
-   "date_created": "2011-07-06 18:47:58", 
-   "last_updated": "2011-07-06 18:47:58", 
-   "name": "Investment Research"
   }
  }, 
  {
