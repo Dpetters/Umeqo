@@ -195,11 +195,11 @@ def clear_login_attempts(sender, request, user, **kwargs):
 def send_first_notice(sender, instance, created, raw, **kwargs):
     if created and is_student(sender) and not raw:
         try:
+            print "here"
             event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
             employer = Employer.objects.get(name="Umeqo")
-            notice_type = NoticeType.objects.get(label="public_invite")
             message = "This is your first invite! There are many more to come!"
-            notification.send([sender], notice_type.label, {
+            notification.send([sender], "public_invite", {
                 'employer': employer,
                 'invite_message': message,
                 'event': event,

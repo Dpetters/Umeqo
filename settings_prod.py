@@ -1,8 +1,7 @@
 import socket
 import os
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
 
 # Compress static content?
 COMPRESS = False
@@ -23,11 +22,16 @@ def is_prod():
 
 # 1 - Prod, 2 - Staging, 3 - Dev/Local
 if is_prod():
+    WELCOME_EVENT_ID = 1
     SITE_ID = 1
     DB_PASSWORD = "H3rcul3s"
+    DEBUG = False
 else:
+    WELCOME_EVENT_ID = 6
     SITE_ID = 2
     DB_PASSWORD = "Jamb4Juic3"
+    DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),
@@ -43,7 +47,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'umeqo_main',                   # Or path to database file if using sqlite3.
         'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': 'H3rcul3s',                # Not used with sqlite3.
+        'PASSWORD': DB_PASSWORD,                # Not used with sqlite3.
         'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
