@@ -48,7 +48,8 @@ class CustomUserAdmin(UserAdmin):
 
 class IndustryAdmin(admin.ModelAdmin):
     fields = ['name']
-    
+    search_fields = ['name']
+      
 class SchoolYearAdmin(admin.ModelAdmin):
     fields = ['name']
     ordering = ('-last_updated',)
@@ -60,6 +61,7 @@ class GraduationYearAdmin(admin.ModelAdmin):
 class LanguageAdmin(admin.ModelAdmin):
     fields = ['name']
     ordering = ('-last_updated',)
+    search_fields = ['name']
     
 class CampusOrgTypeAdmin(admin.ModelAdmin):
     fields = ['name']

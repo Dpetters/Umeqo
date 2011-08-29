@@ -84,6 +84,11 @@ $('.open_contact_us_dialog_link').live('click', function (e) {
                     body: {
                         required: true
                     }
+                },
+                messages: {
+                    email: {
+                        email: "Please enter a valid email."
+                    }
                 }
             });
         }
