@@ -350,13 +350,6 @@ def check_language_uniqueness(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-
-@render_to('unsupported_browser.html')
-def unsupported_browser(request, extra_context=None):
-    context = {}
-    context.update(extra_context or {})
-    return context
-
 @login_required
 def get_notice_unseen_count(request):
     count = Notice.objects.unseen_count_for(request.user, on_site=True)
