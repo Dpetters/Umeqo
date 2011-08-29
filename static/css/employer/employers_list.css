@@ -26,6 +26,7 @@
     float: left;
     background-color: #EEE;
     padding: 0 0 10px;
+    width: 200px;
 }
 #employers_listings .employers_listing {
     padding: 5px;
@@ -56,5 +57,5 @@
     min-height: 400px;
     padding: 10px;
     overflow: hidden;
-    width: 723px;
+    width: 760px;
 }
