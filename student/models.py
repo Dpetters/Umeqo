@@ -101,9 +101,9 @@ class StudentDeactivation(core_mixins.DateCreatedTracking):
 class StudentPreferences(core_mixins.DateTracking):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
     
-    email_on_invite_to_public_event = models.BooleanField()
-    email_on_invite_to_private_event = models.BooleanField()
-    email_on_new_subscribed_employer_event = models.BooleanField()
+    email_on_invite_to_public_event = models.BooleanField(default=True)
+    email_on_invite_to_private_event = models.BooleanField(default=True)
+    email_on_new_subscribed_employer_event = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Student Preferences"

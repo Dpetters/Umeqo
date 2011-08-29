@@ -13,6 +13,7 @@ from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
+from notification.models import NoticeSetting, NoticeType, EMAIL
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm,\
                             StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm
 from student.models import Student, StudentDeactivation, StudentInvite
@@ -97,8 +98,36 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
         if request.method == "POST":
             form = preferences_form_class(data = request.POST, \
                                           instance = request.user.student.studentpreferences)
+
             if form.is_valid():
+                print form.cleaned_data
                 request.user.student.student_preferences = form.save()
+                
+                public_invite = NoticeType.objects.get(label = "public_invite")
+                private_invite = NoticeType.objects.get(label = "private_invite")
+                new_event = NoticeType.objects.get(label = "new_event")
+                
+                try:
+                    n = NoticeSetting.objects.get(user=request.user, notice_type = public_invite, medium = EMAIL)
+                except NoticeSetting.DoesNotExist:
+                    n = NoticeSetting.objects.create(user=request.user, notice_type = public_invite, medium = EMAIL)
+                n.send = form.cleaned_data["email_on_invite_to_public_event"];
+                n.save()
+                
+                try:
+                    n = NoticeSetting.objects.get(user=request.user, notice_type = private_invite, medium = EMAIL)
+                except NoticeSetting.DoesNotExist:
+                    n = NoticeSetting.objects.create(user=request.user, notice_type = private_invite, medium = EMAIL)
+                n.send = form.cleaned_data["email_on_invite_to_private_event"];
+                n.save()
+                
+                try:
+                    n = NoticeSetting.objects.get(user=request.user, notice_type = new_event, medium = EMAIL)
+                except NoticeSetting.DoesNotExist:
+                    n = NoticeSetting.objects.create(user=request.user, notice_type = new_event, medium = EMAIL)
+                n.send = form.cleaned_data["email_on_new_subscribed_employer_event"];
+                n.save()
+
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
             else:

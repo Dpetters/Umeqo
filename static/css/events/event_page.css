@@ -66,6 +66,10 @@
     float: right;
 }
 
+#event_where h3{
+    margin-top:0px;
+    margin-bottom:8px;
+}
 #rsvp_div {
     position: relative;
     text-align: center;

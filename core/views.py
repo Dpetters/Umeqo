@@ -162,7 +162,6 @@ def landing_page_wrapper(request, extra_context=None):
 @cache_page(60 * 15)
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
-    
     form_class = BetaForm
     
     posted = False
@@ -190,7 +189,7 @@ def landing_page(request, extra_context = None):
             form_error = True
     else:
         form = form_class()
-        
+
     context = {
             'form': form,
             'posted': posted,
@@ -198,13 +197,16 @@ def landing_page(request, extra_context = None):
             'form_error': form_error,
             'email_error': email_error
     }
-
+    print request.GET
+    if request.GET.has_key("action") and request.GET['action'] == "account-deactivated":
+        context['deactivated'] = True
     context.update(extra_context or {})
     return context
 
 
 @render_to()
 def home(request, extra_context=None):
+    print "here"
     context = {}
     page_messages = { 'profile-saved': messages.profile_saved }
     msg = request.GET.get('msg',None)
