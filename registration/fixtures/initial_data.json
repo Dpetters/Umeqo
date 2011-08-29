@@ -5,7 +5,7 @@
   "fields": {
    "first_name": "Michael", 
    "last_name": "Hwang", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:06", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -21,7 +21,7 @@
   "fields": {
    "first_name": "Narendra", 
    "last_name": "Tallapragada", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:07", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -37,7 +37,7 @@
   "fields": {
    "first_name": "Ishaan", 
    "last_name": "Kumar", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:07", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -53,7 +53,7 @@
   "fields": {
    "first_name": "Nathaniel", 
    "last_name": "Fox", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:07", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -69,7 +69,7 @@
   "fields": {
    "first_name": "Reguli", 
    "last_name": "Granger", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:07", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -85,7 +85,7 @@
   "fields": {
    "first_name": "Stephen", 
    "last_name": "Chang", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:07", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -101,7 +101,7 @@
   "fields": {
    "first_name": "Betty", 
    "last_name": "Liu", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -117,7 +117,7 @@
   "fields": {
    "first_name": "Maksim", 
    "last_name": "Kolysh", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -133,7 +133,7 @@
   "fields": {
    "first_name": "Vivaek", 
    "last_name": "Shivakumar", 
-   "last_updated": "2011-08-27 20:47:47", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -149,7 +149,7 @@
   "fields": {
    "first_name": "Jonathan", 
    "last_name": "Gootenberg", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -165,7 +165,7 @@
   "fields": {
    "first_name": "Larry", 
    "last_name": "Pang", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -181,7 +181,7 @@
   "fields": {
    "first_name": "Oliver", 
    "last_name": "Song", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -197,7 +197,7 @@
   "fields": {
    "first_name": "Mari", 
    "last_name": "Miyachi", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:08", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -213,7 +213,7 @@
   "fields": {
    "first_name": "Jeffrey", 
    "last_name": "Lin", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:09", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -229,7 +229,7 @@
   "fields": {
    "first_name": "Rishikesh", 
    "last_name": "Tirumala", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:09", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -245,7 +245,7 @@
   "fields": {
    "first_name": "Benjamin", 
    "last_name": "Frank", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:09", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -261,7 +261,7 @@
   "fields": {
    "first_name": "Di", 
    "last_name": "Wu", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:13", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -277,7 +277,7 @@
   "fields": {
    "first_name": "Ravi", 
    "last_name": "Charan", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:13", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -293,7 +293,7 @@
   "fields": {
    "first_name": "Ying", 
    "last_name": "Wei", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:13", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -309,7 +309,7 @@
   "fields": {
    "first_name": "Marco", 
    "last_name": "Alagna", 
-   "last_updated": "2011-08-27 20:47:48", 
+   "last_updated": "2011-08-28 22:27:14", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -325,7 +325,7 @@
   "fields": {
    "first_name": "John", 
    "last_name": "LaColla", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:14", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -341,7 +341,7 @@
   "fields": {
    "first_name": "Akshar", 
    "last_name": "Wunnava", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:14", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -357,7 +357,7 @@
   "fields": {
    "first_name": "Thomas", 
    "last_name": "Georgiou", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:14", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -373,7 +373,7 @@
   "fields": {
    "first_name": "Yida", 
    "last_name": "Gao", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:14", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -389,7 +389,7 @@
   "fields": {
    "first_name": "Jennifer", 
    "last_name": "Wang", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:14", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -405,7 +405,7 @@
   "fields": {
    "first_name": "Carlo", 
    "last_name": "Biedenharn", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -421,7 +421,7 @@
   "fields": {
    "first_name": "David", 
    "last_name": "Kim", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -437,7 +437,7 @@
   "fields": {
    "first_name": "Adele", 
    "last_name": "Lu", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -453,7 +453,7 @@
   "fields": {
    "first_name": "Neena", 
    "last_name": "Parikh", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -469,7 +469,7 @@
   "fields": {
    "first_name": "Amie", 
    "last_name": "Guo", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -485,7 +485,7 @@
   "fields": {
    "first_name": "Joshua", 
    "last_name": "Ma", 
-   "last_updated": "2011-08-27 20:47:49", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -501,7 +501,7 @@
   "fields": {
    "first_name": "Lena", 
    "last_name": "Ziskin", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -517,7 +517,7 @@
   "fields": {
    "first_name": "Isabella", 
    "last_name": "Wei", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:15", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -533,7 +533,7 @@
   "fields": {
    "first_name": "Arash", 
    "last_name": "Delijani", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -549,7 +549,7 @@
   "fields": {
    "first_name": "Steven Ambrose", 
    "last_name": "Wesel", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -565,7 +565,7 @@
   "fields": {
    "first_name": "Ernest", 
    "last_name": "Park", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -581,7 +581,7 @@
   "fields": {
    "first_name": "Andrew", 
    "last_name": "Shum", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -597,7 +597,7 @@
   "fields": {
    "first_name": "Elina", 
    "last_name": "Hu", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -613,7 +613,7 @@
   "fields": {
    "first_name": "Sheila", 
    "last_name": "Xu", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -629,7 +629,7 @@
   "fields": {
    "first_name": "Cassandra", 
    "last_name": "Xia", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:16", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -645,7 +645,7 @@
   "fields": {
    "first_name": "Jason", 
    "last_name": "Moon", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:17", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -661,7 +661,7 @@
   "fields": {
    "first_name": "Hrishikesh", 
    "last_name": "Joshi", 
-   "last_updated": "2011-08-27 20:47:50", 
+   "last_updated": "2011-08-28 22:27:17", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -677,7 +677,7 @@
   "fields": {
    "first_name": "Zachary", 
    "last_name": "Dearing", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:17", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -693,7 +693,7 @@
   "fields": {
    "first_name": "Tzu-Hsien", 
    "last_name": "Chan", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:17", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -709,7 +709,7 @@
   "fields": {
    "first_name": "Isaac", 
    "last_name": "Lozada", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:20", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -725,7 +725,7 @@
   "fields": {
    "first_name": "Robert", 
    "last_name": "Drenkhahn", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:21", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -741,7 +741,7 @@
   "fields": {
    "first_name": "Carolyn", 
    "last_name": "Zhang", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:23", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -757,7 +757,7 @@
   "fields": {
    "first_name": "Danny", 
    "last_name": "Yuan", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:23", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -773,7 +773,7 @@
   "fields": {
    "first_name": "Kartik", 
    "last_name": "Trehan", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:27", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -789,7 +789,7 @@
   "fields": {
    "first_name": "Samantha", 
    "last_name": "O'Keefe", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:27", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -805,7 +805,7 @@
   "fields": {
    "first_name": "Gaia", 
    "last_name": "Carini", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:27", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -821,7 +821,7 @@
   "fields": {
    "first_name": "Susie", 
    "last_name": "Fu", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:27", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -837,7 +837,7 @@
   "fields": {
    "first_name": "Erika", 
    "last_name": "Sandford", 
-   "last_updated": "2011-08-27 20:47:51", 
+   "last_updated": "2011-08-28 22:27:27", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -853,9 +853,9 @@
   "fields": {
    "first_name": "Yangbo", 
    "last_name": "Du", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 21:09:16", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 11:38:36", 
    "summer_plans": "", 
@@ -869,9 +869,9 @@
   "fields": {
    "first_name": "Victor", 
    "last_name": "Hung", 
-   "last_updated": "2011-08-27 20:47:52", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 21:08:55", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 11:43:36", 
    "summer_plans": "", 
@@ -885,7 +885,7 @@
   "fields": {
    "first_name": "Christian", 
    "last_name": "Reed", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:28", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -901,9 +901,9 @@
   "fields": {
    "first_name": "Tim", 
    "last_name": "Zheng", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 20:53:34", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 12:02:19", 
    "summer_plans": "Startup/Citadel", 
@@ -917,9 +917,9 @@
   "fields": {
    "first_name": "Mei", 
    "last_name": "Zuo", 
-   "last_updated": "2011-08-27 20:47:52", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:53:12", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 12:25:42", 
    "summer_plans": "MoMA", 
@@ -933,7 +933,7 @@
   "fields": {
    "first_name": "Ramya", 
    "last_name": "Swamy", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:28", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -949,7 +949,7 @@
   "fields": {
    "first_name": "Qing", 
    "last_name": "Li", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:28", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -965,7 +965,7 @@
   "fields": {
    "first_name": "George", 
    "last_name": "Erickson", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:28", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -981,7 +981,7 @@
   "fields": {
    "first_name": "Matthew", 
    "last_name": "Farrell", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:28", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -997,7 +997,7 @@
   "fields": {
    "first_name": "Cory", 
    "last_name": "Kays", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:29", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1013,7 +1013,7 @@
   "fields": {
    "first_name": "Ingwon", 
    "last_name": "Chae", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 22:27:29", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1029,9 +1029,9 @@
   "fields": {
    "first_name": "Igor", 
    "last_name": "Carvalho", 
-   "last_updated": "2011-08-27 20:47:52", 
+   "last_updated": "2011-08-28 20:52:47", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 14:35:40", 
    "summer_plans": "Brazil", 
@@ -1045,9 +1045,9 @@
   "fields": {
    "first_name": "Elliot", 
    "last_name": "Sedegah", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 20:52:22", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 15:59:27", 
    "summer_plans": "", 
@@ -1061,7 +1061,7 @@
   "fields": {
    "first_name": "Michael", 
    "last_name": "Lo", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:33", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1077,7 +1077,7 @@
   "fields": {
    "first_name": "Rena", 
    "last_name": "Kuai", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:34", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1093,7 +1093,7 @@
   "fields": {
    "first_name": "Shuang", 
    "last_name": "Chen", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:34", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1109,7 +1109,7 @@
   "fields": {
    "first_name": "Tiffany", 
    "last_name": "Peng", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:34", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1123,16 +1123,16 @@
   "pk": 79, 
   "model": "registration.interestedperson", 
   "fields": {
-   "first_name": "Jeff", 
+   "first_name": "Jeffrey", 
    "last_name": "Blake", 
-   "last_updated": "2011-08-27 20:47:53", 
-   "auto_email": false, 
+   "last_updated": "2011-08-28 22:27:34", 
+   "auto_email": true, 
    "final": false, 
    "emailed": false, 
    "date_created": "2011-05-16 17:50:46", 
-   "summer_plans": "Undetermined", 
+   "summer_plans": "", 
    "ip_address": "18.4.72.96", 
-   "email": "jeffrobblake@gmail.com"
+   "email": "jblake@MIT.EDU"
   }
  }, 
  {
@@ -1141,9 +1141,9 @@
   "fields": {
    "first_name": "Al", 
    "last_name": "Onye", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 20:50:52", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 17:53:32", 
    "summer_plans": "open", 
@@ -1157,7 +1157,7 @@
   "fields": {
    "first_name": "Andrew", 
    "last_name": "Okoh", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:35", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1173,7 +1173,7 @@
   "fields": {
    "first_name": "Kuan", 
    "last_name": "Cheng", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:35", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1189,7 +1189,7 @@
   "fields": {
    "first_name": "Jonathan", 
    "last_name": "Batscha", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:35", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1205,7 +1205,7 @@
   "fields": {
    "first_name": "Ignatius", 
    "last_name": "Chen", 
-   "last_updated": "2011-08-27 20:47:53", 
+   "last_updated": "2011-08-28 22:27:35", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1221,9 +1221,9 @@
   "fields": {
    "first_name": "Charles", 
    "last_name": "Huang", 
-   "last_updated": "2011-08-27 20:47:54", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:50:33", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 21:38:22", 
    "summer_plans": "Sayagle, Inc.", 
@@ -1237,9 +1237,9 @@
   "fields": {
    "first_name": "Emmanuel", 
    "last_name": "Magani", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 20:50:20", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-16 22:22:48", 
    "summer_plans": "", 
@@ -1253,7 +1253,7 @@
   "fields": {
    "first_name": "Natthida", 
    "last_name": "Wiwatwicha", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 22:27:35", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1269,7 +1269,7 @@
   "fields": {
    "first_name": "Somak", 
    "last_name": "Das", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 22:27:35", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1285,9 +1285,9 @@
   "fields": {
    "first_name": "Justin", 
    "last_name": "Lai", 
-   "last_updated": "2011-08-27 20:47:54", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:50:02", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-17 18:51:53", 
    "summer_plans": "Research as grad student", 
@@ -1301,7 +1301,7 @@
   "fields": {
    "first_name": "Catherine", 
    "last_name": "Koch", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 22:27:36", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1317,7 +1317,7 @@
   "fields": {
    "first_name": "Eunice", 
    "last_name": "Giarta", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 22:27:36", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1333,7 +1333,7 @@
   "fields": {
    "first_name": "Abir", 
    "last_name": "Liben", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 22:27:36", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1349,9 +1349,9 @@
   "fields": {
    "first_name": "Tim", 
    "last_name": "Smith", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 20:47:58", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-18 08:55:47", 
    "summer_plans": "engineering internships nyc", 
@@ -1365,9 +1365,9 @@
   "fields": {
    "first_name": "Noah", 
    "last_name": "Jessop", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 20:17:01", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-18 11:54:41", 
    "summer_plans": "Building cool stuff", 
@@ -1381,7 +1381,7 @@
   "fields": {
    "first_name": "Courtney", 
    "last_name": "Hilliard", 
-   "last_updated": "2011-08-27 20:47:54", 
+   "last_updated": "2011-08-28 22:27:36", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1397,9 +1397,9 @@
   "fields": {
    "first_name": "Iyobosa", 
    "last_name": "Ekhato", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 20:16:52", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-18 18:13:32", 
    "summer_plans": "South Africa", 
@@ -1413,7 +1413,7 @@
   "fields": {
    "first_name": "Eryn", 
    "last_name": "Maynard", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 22:27:36", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1429,7 +1429,7 @@
   "fields": {
    "first_name": "Tong", 
    "last_name": "Chen", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 22:27:37", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1445,7 +1445,7 @@
   "fields": {
    "first_name": "Mengjie", 
    "last_name": "Ding", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 22:27:39", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1461,9 +1461,9 @@
   "fields": {
    "first_name": "Andre", 
    "last_name": "Fialho", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 20:47:22", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-18 23:57:53", 
    "summer_plans": "", 
@@ -1477,9 +1477,9 @@
   "fields": {
    "first_name": "James", 
    "last_name": "Peruvankal", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 20:19:25", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 00:19:28", 
    "summer_plans": "", 
@@ -1493,14 +1493,14 @@
   "fields": {
    "first_name": "Ignasi", 
    "last_name": "Viladesau", 
-   "last_updated": "2011-08-27 20:47:55", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:19:03", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 00:38:58", 
    "summer_plans": "Black Coral Capital", 
    "ip_address": "18.189.116.125", 
-   "email": "ignasi.viladesau@gmail.com"
+   "email": "i_v@MIT.EDU"
   }
  }, 
  {
@@ -1509,9 +1509,9 @@
   "fields": {
    "first_name": "Joanna", 
    "last_name": "Cummings", 
-   "last_updated": "2011-08-27 20:47:55", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:18:38", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 01:18:27", 
    "summer_plans": "MISTI Mexico", 
@@ -1525,7 +1525,7 @@
   "fields": {
    "first_name": "Theodore", 
    "last_name": "Hilk", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 22:27:41", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1541,7 +1541,7 @@
   "fields": {
    "first_name": "Vladislav", 
    "last_name": "Kontsevoi", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 22:27:41", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1557,7 +1557,7 @@
   "fields": {
    "first_name": "Coyin", 
    "last_name": "Oh", 
-   "last_updated": "2011-08-27 20:47:55", 
+   "last_updated": "2011-08-28 22:27:41", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1573,9 +1573,9 @@
   "fields": {
    "first_name": "Bayo", 
    "last_name": "Olatunji", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 20:18:13", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 09:04:42", 
    "summer_plans": "Microsoft", 
@@ -1589,7 +1589,7 @@
   "fields": {
    "first_name": "Ekaterina", 
    "last_name": "Kononov", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 22:27:41", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1605,7 +1605,7 @@
   "fields": {
    "first_name": "Alex", 
    "last_name": "Willisson", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 22:27:41", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1621,9 +1621,9 @@
   "fields": {
    "first_name": "Attila", 
    "last_name": "Forruchi", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 20:17:39", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 13:59:08", 
    "summer_plans": "MIT Media Lab", 
@@ -1637,9 +1637,9 @@
   "fields": {
    "first_name": "Jake", 
    "last_name": "Frink", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 20:16:44", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 14:43:45", 
    "summer_plans": "Startup", 
@@ -1653,9 +1653,9 @@
   "fields": {
    "first_name": "Chris", 
    "last_name": "Miles", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 20:16:25", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-19 19:37:49", 
    "summer_plans": "", 
@@ -1669,9 +1669,9 @@
   "fields": {
    "first_name": "Ben", 
    "last_name": "Lerner", 
-   "last_updated": "2011-08-27 20:47:56", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:16:16", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-20 09:30:18", 
    "summer_plans": "internship", 
@@ -1685,7 +1685,7 @@
   "fields": {
    "first_name": "Anthony", 
    "last_name": "Rios", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 22:27:42", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1701,9 +1701,9 @@
   "fields": {
    "first_name": "Jennifer", 
    "last_name": "Tran", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 20:13:48", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-21 11:48:01", 
    "summer_plans": "Traveling, looking for job starting fall", 
@@ -1717,9 +1717,9 @@
   "fields": {
    "first_name": "James", 
    "last_name": "Cheung", 
-   "last_updated": "2011-08-27 20:47:56", 
+   "last_updated": "2011-08-28 20:15:49", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-21 19:44:41", 
    "summer_plans": "IBD NYC", 
@@ -1733,7 +1733,7 @@
   "fields": {
    "first_name": "Jie", 
    "last_name": "Zhao", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:42", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1749,9 +1749,9 @@
   "fields": {
    "first_name": "Kana ", 
    "last_name": "Yoshizawa", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 20:13:35", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-22 17:55:02", 
    "summer_plans": "UBS early career exploration program", 
@@ -1765,7 +1765,7 @@
   "fields": {
    "first_name": "Vanessa", 
    "last_name": "Trevino", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:42", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1781,7 +1781,7 @@
   "fields": {
    "first_name": "Jennifer", 
    "last_name": "Shi", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:42", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1797,9 +1797,9 @@
   "fields": {
    "first_name": "Wendi", 
    "last_name": "Zhang", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 20:13:23", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-23 08:52:03", 
    "summer_plans": "Startup in India; entrepreneurship development in Singapore", 
@@ -1813,7 +1813,7 @@
   "fields": {
    "first_name": "Emily", 
    "last_name": "Chen", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:44", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1829,7 +1829,7 @@
   "fields": {
    "first_name": "Katherine", 
    "last_name": "Fang", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:44", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1845,9 +1845,9 @@
   "fields": {
    "first_name": "Briana", 
    "last_name": "Stanley", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 20:12:54", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-23 14:28:34", 
    "summer_plans": "find a job", 
@@ -1861,7 +1861,7 @@
   "fields": {
    "first_name": "Jessica", 
    "last_name": "Artiles", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:45", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1877,7 +1877,7 @@
   "fields": {
    "first_name": "Jacqueline", 
    "last_name": "Sly", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:45", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1893,7 +1893,7 @@
   "fields": {
    "first_name": "Aliya", 
    "last_name": "Dincer", 
-   "last_updated": "2011-08-27 20:47:57", 
+   "last_updated": "2011-08-28 22:27:45", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1909,7 +1909,7 @@
   "fields": {
    "first_name": "Arooshi", 
    "last_name": "Kumar", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:46", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1925,9 +1925,9 @@
   "fields": {
    "first_name": "Demons", 
    "last_name": "Theses", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 20:12:48", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-24 17:27:48", 
    "summer_plans": "Goldman", 
@@ -1941,9 +1941,9 @@
   "fields": {
    "first_name": "Austin", 
    "last_name": "Pablo", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 20:12:03", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-25 18:14:01", 
    "summer_plans": "Learn", 
@@ -1957,7 +1957,7 @@
   "fields": {
    "first_name": "Tara", 
    "last_name": "Krishnan", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:51", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1973,7 +1973,7 @@
   "fields": {
    "first_name": "Sarah", 
    "last_name": "Bindman", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:51", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -1989,14 +1989,14 @@
   "fields": {
    "first_name": "Rishi", 
    "last_name": "Dixit", 
-   "last_updated": "2011-08-27 20:47:58", 
-   "auto_email": false, 
-   "final": false, 
+   "last_updated": "2011-08-28 20:11:51", 
+   "auto_email": true, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-05-26 21:53:18", 
    "summer_plans": "Morgan Stanley IBD", 
    "ip_address": "74.73.179.93", 
-   "email": "rishiltms@yahoo.com"
+   "email": "rdixit@MIT.EDU"
   }
  }, 
  {
@@ -2005,7 +2005,7 @@
   "fields": {
    "first_name": "David", 
    "last_name": "Campos", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2021,7 +2021,7 @@
   "fields": {
    "first_name": "Ricardo", 
    "last_name": "Perez", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2037,7 +2037,7 @@
   "fields": {
    "first_name": "Gordon", 
    "last_name": "Wintrob", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2053,7 +2053,7 @@
   "fields": {
    "first_name": "Brian", 
    "last_name": "Anderson", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2069,7 +2069,7 @@
   "fields": {
    "first_name": "Neha", 
    "last_name": "Hebbar", 
-   "last_updated": "2011-08-27 20:47:58", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2085,7 +2085,7 @@
   "fields": {
    "first_name": "Kang", 
    "last_name": "Liu", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2101,7 +2101,7 @@
   "fields": {
    "first_name": "Jacob", 
    "last_name": "Bennett", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 22:27:52", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2117,9 +2117,9 @@
   "fields": {
    "first_name": "Alea", 
    "last_name": "Teeters", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 20:08:48", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-06-13 16:14:49", 
    "summer_plans": "undertermined", 
@@ -2133,9 +2133,9 @@
   "fields": {
    "first_name": "John", 
    "last_name": "Boghossian", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 20:11:26", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-06-08 14:41:15", 
    "summer_plans": "", 
@@ -2149,9 +2149,9 @@
   "fields": {
    "first_name": "Matthew", 
    "last_name": "Huang", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 20:08:26", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-06-14 12:36:17", 
    "summer_plans": "", 
@@ -2165,7 +2165,7 @@
   "fields": {
    "first_name": "Randy", 
    "last_name": "Shults", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 22:27:53", 
    "auto_email": false, 
    "final": false, 
    "emailed": false, 
@@ -2181,7 +2181,7 @@
   "fields": {
    "first_name": "Marcus", 
    "last_name": "Lowe", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 22:27:53", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
@@ -2197,9 +2197,9 @@
   "fields": {
    "first_name": "Zanele", 
    "last_name": "mkhize", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 20:07:59", 
    "auto_email": false, 
-   "final": false, 
+   "final": true, 
    "emailed": false, 
    "date_created": "2011-06-30 13:39:03", 
    "summer_plans": "", 
@@ -2213,7 +2213,7 @@
   "fields": {
    "first_name": "Justin", 
    "last_name": "Colt", 
-   "last_updated": "2011-08-27 20:47:59", 
+   "last_updated": "2011-08-28 22:27:53", 
    "auto_email": true, 
    "final": false, 
    "emailed": false, 
