@@ -32,6 +32,9 @@ class Employer(core_mixins.DateTracking):
     def __unicode__(self):
         return self.name
     
+    class Meta:
+        ordering=["name"]
+           
     def get_absolute_url(self):
         return reverse('employers_list') + '?id=' + self.id
 

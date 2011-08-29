@@ -1,5 +1,4 @@
 $(document).ready( function() {
-    
     function load_profile_preview(){
         var required_fields_filled_out = true;
         $("label.required").each(function(){
@@ -237,4 +236,150 @@ $(document).ready( function() {
             timeoutID = window.setTimeout(load_profile_preview, 400);
         }
     });
+    $("#id_looking_for").multiselect({
+        noneSelectedText: 'select job types',
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+        minWidth:multiselectMinWidth,
+        height:'auto',
+        click: function(){
+            $("#id_looking_for").trigger("change");
+        },
+        checkAll: function(){
+            $("#id_looking_for").trigger("change");
+        },
+        uncheckAll: function(){
+            $("#id_looking_for").trigger("change");
+        }
+    }).multiselectfilter();  
+    
+    $("#id_industries_of_interest").multiselect({
+        noneSelectedText: 'select industries',
+        classes: 'interested_in_multiselect',
+        uncheckAllText: multiselectUncheckAllText,
+        minWidth:multiselectMinWidth,
+        height:'auto',
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(e) {
+            $(".warning").remove();
+            $("#id_industries_of_interest").change();
+            if( $(this).multiselect("widget").find("input:checked").length > INDUSTRIES_OF_INTEREST_MAX ) {
+                place_multiselect_warning_table($("#id_industries_of_interest"), MAX_INDUSTRIES_OF_INTEREST_EXCEEDED);
+                return false;
+            }
+        },
+        uncheckAll: function(){
+            $("#id_industries_of_interest").trigger("change");
+        }
+    }).multiselectfilter();
+
+    $("#id_previous_employers").multiselect({
+        noneSelectedText: 'select employers',
+        classes: 'previous_employers_multiselect',
+        uncheckAllText: multiselectUncheckAllText,
+        minWidth:multiselectMinWidth,
+        height:'auto',
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(e) {
+            $(".warning").remove();
+            $("#id_previous_employers").trigger("change");
+            if( $(this).multiselect("widget").find("input:checked").length > PREVIOUS_EMPLOYERS_MAX ) {
+                place_multiselect_warning_table($("#id_previous_employers"), MAX_PREVIOUS_EMPLOYERS_EXCEEDED);
+                return false;
+            }
+        },
+        uncheckAll: function(){
+            $("#id_previous_employers").trigger("change");
+        }
+    }).multiselectfilter();
+
+    $("#id_campus_involvement").multiselect({
+        noneSelectedText: 'select campus organizations',
+        classes: 'campus_involvement_multiselect',
+        uncheckAllText: multiselectUncheckAllText,
+        height:'auto',
+        beforeoptgrouptoggle: function(e, ui){
+            $(".warning").remove();
+            if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > CAMPUS_INVOLVEMENT_MAX ) {
+                place_multiselect_warning_table($("#id_campus_involvement"), MAX_CAMPUS_INVOLVEMENT_EXCEEDED);
+                return false;
+            }
+        },
+        minWidth:multiselectMinWidth,
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(e, ui) {
+            $(".warning").remove();
+            $("#id_campus_involvement").trigger("change");
+            if( ui.checked && $(this).multiselect("widget").find("input:checked").length > CAMPUS_INVOLVEMENT_MAX ) {
+                place_multiselect_warning_table($("#id_campus_involvement"), MAX_CAMPUS_INVOLVEMENT_EXCEEDED);
+                return false;
+            }
+        },
+        uncheckAll: function(){
+            $("#id_campus_involvement").trigger("change");
+        }
+    }).multiselectfilter();
+    
+    $("#id_languages").multiselect({
+        noneSelectedText: 'select languages',
+        classes: 'languages_multiselect',
+        uncheckAllText: multiselectUncheckAllText,
+        minWidth:multiselectMinWidth,
+        height:'auto',
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(event, ui) {
+            $(".warning").remove();
+            $("#id_languages").trigger("change");
+            if( $(this).multiselect("widget").find("input:checked").length > LANGUAGES_MAX ) {
+                place_multiselect_warning_table($("#id_languages"), MAX_LANGUAGES_EXCEEDED);
+                return false;
+            }
+            var num = $(this).multiselect("widget").find("input:checked").filter(function(){
+                 if(this.title.split(' (')[0] == ui.text.split(' (')[0])
+                     return true;
+               }).length;
+               if (num > 1){
+                   place_table_form_field_error($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>" + ONE_LANGUAGE_DIFFICULTY + "</label>"), $("#id_languages"));
+                   return false;
+               }
+        },
+        uncheckAll: function(){
+            $("#id_languages").trigger("change");
+        }
+    }).multiselectfilter();
+
+    $("#id_countries_of_citizenship").multiselect({
+        noneSelectedText: "select countries",
+        classes: 'countries_of_citizenship_multiselect',
+        uncheckAllText: multiselectUncheckAllText,
+        height:'auto',
+        minWidth:multiselectMinWidth,
+        selectedList: 1,
+        beforeclose: function() {
+            $(".warning").remove();
+        },
+        click: function(e) {
+            $(".warning").remove();
+            $("#id_countries_of_citizenship").trigger("change");
+            if( $(this).multiselect("widget").find("input:checked").length > COUNTRIES_OF_CITIZENSHIP_MAX ) {
+                place_multiselect_warning_table($("#id_countries_of_citizenship"), COUNTRIES_OF_CITIZENSHIP_MAX);
+                return false;
+            }
+        },
+        uncheckAll: function(){
+            $("#id_countries_of_citizenship").trigger("change");
+        }
+    }).multiselectfilter();
+     
+    $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
+    var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
+    load_profile_preview();
 });
