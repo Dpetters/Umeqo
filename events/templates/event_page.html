@@ -4,13 +4,15 @@
 {{event.name}} |
 {% endblock %}
 
-{% block metadata %}
-<meta property="og:title" content="{{event.name}}" />
+{% block meta %}
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{page_url}}" />
 <meta property="og:image" content="{{current_site}}{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
 <meta property="og:site_name" content="Umeqo" />
 <meta property="fb:admins" content="502728220" />
+{% endblock %}
+
+{% block metadata %}
 {% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
