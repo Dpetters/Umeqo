@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block meta %}
+<meta property="og:title" content="{{event.name}}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{page_url}}" />
 <meta property="og:image" content="{{current_site}}{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
