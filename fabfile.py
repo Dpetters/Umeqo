@@ -49,7 +49,10 @@ def create_database():
         with cd(env.directory):
             with prefix(env.activate):
                 run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
-                run("python manage.py syncdb --noinput --migrate")
+                if env.host=="umeqo.com":
+                    run("python manage.py syncdb --noinput --migrate")
+                else:
+                    run("python manage.py syncdb --noinput --migrate")                    
                 run("python copy_media.py prod in")
                 
 def schemamigrate():
