@@ -3,7 +3,7 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 8, 
+   "view_count": 12, 
    "start_datetime": "2011-12-01 00:00:00", 
    "audience": [], 
    "attending_employers": [], 
@@ -491,14 +491,14 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-28 18:05:21", 
+   "last_updated": "2011-08-28 20:48:34", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
    "sat_t": 2310, 
    "sat_v": 770, 
    "sat_w": 740, 
-   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun hadoop cluster dozen windows nodes currently using mrjob workflows structured unstructured data goal performance mapreduce tasks traditional implementations running existing condor setup python bash scripts nightly caches condor cluster nodes using mysql data logged daily workflows athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member careers_website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder developer cambridge feb launching recruiting resource students employers september beta available parties july developed initial foundation site collaborating zach dearing joshua github traders mit exec cambridge nov oct developing otc trading client used trading simulation annual traders mit competition november mit bhs outdoor indoor varsity runner cambridge aug bellevue improvement previous skills interests technical java python django javascript jquery extjs css latex minor bash batch languages fluent russian interests ted talks poker hockey entrepreneurship", 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun hadoop cluster dozen windows nodes currently using mrjob workflows structured unstructured data goal performance mapreduce tasks traditional implementations running existing condor setup python bash scripts nightly caches condor cluster nodes using mysql data logged daily workflows athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder developer cambridge feb launching recruiting resource students employers september beta available parties july developed initial foundation site collaborating zach dearing joshua github traders mit exec cambridge nov oct developing otc trading client used trading simulation annual traders mit competition november mit bhs outdoor indoor varsity runner cambridge aug bellevue improvement previous skills interests technical java python django javascript jquery extjs css latex minor bash batch languages fluent russian interests ted talks poker hockey entrepreneurship", 
    "looking_for": [
     2, 
     4
@@ -528,7 +528,7 @@
    ], 
    "website": "", 
    "second_major": 8, 
-   "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-08-23-21-00-48.pdf", 
+   "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-08-28-20-48-34.pdf", 
    "user": 2, 
    "industries_of_interest": [
     15, 
@@ -1302,7 +1302,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-28 19:30:53", 
+   "last_login": "2011-08-28 22:45:14", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1320,7 +1320,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-28 17:22:51", 
+   "last_login": "2011-08-28 22:02:48", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -3098,6 +3098,36 @@
    "date_created": "2011-08-28 19:30:53", 
    "session_key": "0f76ad127129073823d338f859b0f04e", 
    "last_updated": "2011-08-28 19:30:53", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 251, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 22:02:48", 
+   "session_key": "35ab7657720250fe474378f993546760", 
+   "last_updated": "2011-08-28 22:02:48", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 250, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 20:02:14", 
+   "session_key": "df3f92bc1ebf5a3748c6c20548727363", 
+   "last_updated": "2011-08-28 20:02:14", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 253, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-28 22:45:14", 
+   "session_key": "e0e1a0ee7ea65153ab3179d9ede99e24", 
+   "last_updated": "2011-08-28 22:45:14", 
    "user": 1
   }
  }, 
