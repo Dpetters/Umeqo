@@ -31,7 +31,6 @@ from student.models import Student
 def events_list(request, extra_context=None):
     if not request.user.student.profile_created:
         return redirect('student_profile')
-    
     query = request.GET.get('q', '')
     events = event_search_helper(request)
     context = {
@@ -47,6 +46,9 @@ def event_page_redirect(request, id):
 
 @render_to('event_page.html')
 def event_page(request, id, slug, extra_context=None):
+    if is_student(request.user) and not request.user.student.profile_created:
+        return redirect('student_profile')
+    
     event = Event.objects.get(pk=id)
     if not hasattr(request.user,"recruiter"):
         event.view_count += 1
