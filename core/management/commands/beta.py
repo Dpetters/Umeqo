@@ -14,7 +14,7 @@ from django.conf import settings as s
 from registration.models import InterestedPerson
 from student.models import StudentInvite
 
-INVITE_CODE_LENGTH = 12
+INVITE_CODE_LENGTH = 6
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
