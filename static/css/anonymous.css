@@ -8,7 +8,7 @@
     background: -ms-linear-gradient(top, #555555 0%,#333333 100%); /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #555555 0%,#333333 100%); /* W3C */
-    color: #33BFE4;
+    color: #6FCBE2;
     text-shadow: #000 0 -1px 0;
 }
 #login_button a,
