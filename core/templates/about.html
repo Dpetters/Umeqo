@@ -4,6 +4,24 @@
 About |
 {% endblock %}
 
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/about.css" />
+{% endcompress %}
+{% endblock %}
+
 {% block content_area %}
 <h1>About Us</h1>
+<div class="right_side_container">
+     <h2>Questions? <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact Us!</a></h2>
+</div>
+<div id="about_us" class="grande">
+    <h3>What is Umeqo?</h3>
+    <p>Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.</p>  
+    <h3>Why was Umeqo created?</h3>
+    <p>Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn’t hear about them and having to drop our resumes in a gazillion different places.  Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.</p>
+    <h3>What lies ahead?</h3>
+    <p>With the student beta released, we're setting our sights on helping SBC manage their annual barbecue and opening up the employer beta in about a week. Once all the kinks are ironed out, we'll open up to the entire campus and dozens of other employers.</p>
+</div>
 {% endblock %}
