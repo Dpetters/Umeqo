@@ -104,7 +104,6 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
                                           instance = request.user.student.studentpreferences)
 
             if form.is_valid():
-                print form.cleaned_data
                 request.user.student.student_preferences = form.save()
                 
                 public_invite = NoticeType.objects.get(label = "public_invite")
@@ -216,21 +215,20 @@ def student_profile(request,
                 student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
             else:
                 student.sat_t = None
-            data = {'valid':True, 'unparsable_resume':False} 
+            data = {'valid':True, 'unparsable_resume':False}
             if request.FILES.has_key('resume'):
                 resume_status = process_resume(request.user.student)
                 if resume_status == RESUME_PROBLEMS.HACKED:
                     data = {'valid':False}
                     errors = {'resume': messages.resume_problem}
                     data['errors'] = errors
-                elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
+                elif resume_status == RESUME_PROBLEMS.UNPARSABLE and request.POST['ingore_unparsable_resume'] == "false":
                     data = {'valid':False}
                     data['unparsable_resume'] = True
             if data['valid'] and not data['unparsable_resume']:
                 student.profile_created = True
                 student.save()
         else:
-            print form.errors
             data = {'valid':False,
                     'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")

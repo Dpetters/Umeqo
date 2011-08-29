@@ -57,69 +57,80 @@ $(document).ready( function() {
             clearTimeout(profile_preview_timeout);
             $("#student_profile_preview").html(FILL_OUT_REQUIRED_FIELDS_MESSAGE);
         }
-        console.profileEnd();
     };
+    function submit_profile_form(form, ignore_unparsable_resume){
+        var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
+        $(form).ajaxSubmit({
+            dataType: 'text',
+            data:{'ingore_unparsable_resume':ignore_unparsable_resume},
+            beforeSubmit: function (arr, $form, options) {
+                $("#profile_form input[type=submit]").attr("disabled", "disabled");
+                show_form_submit_loader("#profile_form");
+                $("#profile_form .error_section").html("");
+            },
+            complete : function(jqXHR, textStatus) {
+                $("#profile_form input[type=submit]").removeAttr("disabled");
+                hide_form_submit_loader("#profile_form");
+            },
+            success: function (data) {
+                data = $.parseJSON(data);
+                if(data.valid) {
+                    window.location.href = HOME_URL + "?msg=profile-saved";
+                } else {
+                    if(data.unparsable_resume){
+                        var $unparsable_resume_dialog = open_unparsable_resume_dialog();
+                        $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
+                        $unparsable_resume_dialog.dialog('option', 'position', 'center');
+                        var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+                        $.ajax({
+                            dataType: "html",
+                            url: UNPARSABLE_RESUME_URL,
+                            complete: function(jqXHR, textStatus) {
+                                clearTimeout(unparsable_resume_dialog_timeout);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                if(jqXHR.status==0){
+                                    $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                }else{
+                                    $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
+                                }
+                            },
+                            success: function (data) {
+                                $unparsable_resume_dialog.html(data);
+                                $unparsable_resume_dialog.dialog('option', 'position', 'center');
+                                $(".choose_another_resume_link").live('click', function(){
+                                    $unparsable_resume_dialog.remove();
+                                       accordion.accordion("activate", 0);
+                                    current = 0;
+                                    $("#id_resume").focus();
+                                });
+                                $(".save_profile_link").live('click', function(){
+                                    if (EDIT){
+                                        window.location.href = HOME_URL + "?msg=profile-saved";                                            
+                                    }else{
+                                        $unparsable_resume_dialog.remove();
+                                        submit_profile_form($("#profile_form"), true);
+                                    }
+
+                                });
+                            }
+                        });
+                    }else{
+                        if('second_major' in data.errors){
+                            accordion.accordion("activate", 1);
+                            current = 1;
+                        }
+                        place_table_form_errors("#profile_form", data.errors);
+                    }
+                }
+            },
+            error: errors_in_message_area_handler
+        });        
+    }
+
     v = $("#profile_form").validate({
         submitHandler: function (form) {
-            $(form).ajaxSubmit({
-                dataType: 'text',
-                beforeSubmit: function (arr, $form, options) {
-                    $("#profile_form input[type=submit]").attr("disabled", "disabled");
-                    show_form_submit_loader("#profile_form");
-                    $("#profile_form .error_section").html("");
-                },
-                complete : function(jqXHR, textStatus) {
-                    $("#profile_form input[type=submit]").removeAttr("disabled");
-                    hide_form_submit_loader("#profile_form");
-                },
-                success: function (data) {
-                    data = $.parseJSON(data);
-                    if(data.valid) {
-                        window.location.href = HOME_URL + "?msg=profile-saved";
-                    } else {
-                        if(data.unparsable_resume){
-                            var $unparsable_resume_dialog = open_unparsable_resume_dialog();
-                            $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
-                            $unparsable_resume_dialog.dialog('option', 'position', 'center');
-                            var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-                            $.ajax({
-                                dataType: "html",
-                                url: UNPARSABLE_RESUME_URL,
-                                complete: function(jqXHR, textStatus) {
-                                    clearTimeout(unparsable_resume_dialog_timeout);
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    if(jqXHR.status==0){
-                                        $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                                    }else{
-                                        $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
-                                    }
-                                },
-                                success: function (data) {
-                                    $unparsable_resume_dialog.html(data);
-                                    $unparsable_resume_dialog.dialog('option', 'position', 'center');
-                                    $(".choose_another_resume_link").live('click', function(){
-                                        $unparsable_resume_dialog.remove();
-                                           accordion.accordion("activate", 0);
-                                        current = 0;
-                                        $("#id_resume").focus();
-                                    });
-                                    $(".save_profile_link").live('click', function(){
-                                        window.location.href = HOME_URL + "?msg=profile-saved";
-                                    });
-                                }
-                            });
-                        }else{
-                            if('second_major' in data.errors){
-                                accordion.accordion("activate", 1);
-                                current = 1;
-                            }
-                            place_table_form_errors("#profile_form", data.errors);
-                        }
-                    }
-                },
-                error: errors_in_message_area_handler
-            });
+            submit_profile_form(form, false);
         },
         highlight: highlight,
         unhighlight: unhighlight,
@@ -258,7 +269,7 @@ $(document).ready( function() {
         classes: 'interested_in_multiselect',
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
-        height:'auto',
+        height:220,
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -280,7 +291,7 @@ $(document).ready( function() {
         classes: 'previous_employers_multiselect',
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
-        height:'auto',
+        height:220,
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -301,7 +312,7 @@ $(document).ready( function() {
         noneSelectedText: 'select campus organizations',
         classes: 'campus_involvement_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        height:'auto',
+        height:220,
         beforeoptgrouptoggle: function(e, ui){
             $(".warning").remove();
             if( ui.inputs.length - $(ui.inputs).filter(':checked').length + $(this).multiselect("widget").find("input:checked").length > CAMPUS_INVOLVEMENT_MAX ) {
@@ -331,7 +342,7 @@ $(document).ready( function() {
         classes: 'languages_multiselect',
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
-        height:'auto',
+        height:220,
         beforeclose: function() {
             $(".warning").remove();
         },
@@ -360,7 +371,7 @@ $(document).ready( function() {
         noneSelectedText: "select countries",
         classes: 'countries_of_citizenship_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        height:'auto',
+        height:220,
         minWidth:multiselectMinWidth,
         selectedList: 1,
         beforeclose: function() {

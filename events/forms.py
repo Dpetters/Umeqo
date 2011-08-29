@@ -42,15 +42,10 @@ class EventForm(forms.ModelForm):
         model = Event
         
     def clean(self):
-        print self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline")
-        print self.cleaned_data['start_datetime']
-        print self.cleaned_data['end_datetime']
         if not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline") and not self.cleaned_data["type"]==EventType.objects.get(name="Hard Deadline"):
-            print 1
             if not self.cleaned_data['start_datetime']:
                 raise forms.ValidationError(_(m.start_datetime_required))
         elif not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline"):
-            print 2
             if not self.cleaned_data['end_datetime']:
                 raise forms.ValidationError(_(m.end_datetime_required))            
         return self.cleaned_data

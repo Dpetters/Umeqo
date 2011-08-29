@@ -64,6 +64,13 @@
     
     var STARRED_IMG = "{% student_star 'True' %}";
     var UNSTARRED_IMG = "{% student_star '' %}";
+    
+    {% if edit %}
+        var EDIT = true;
+    {% else %}
+        var EDIT = false;
+    {% endif %}
+    
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile.js"></script>
