@@ -286,7 +286,7 @@ def combine_and_order_results(filtering_results, search_results, ordering, query
         return []
 
 def employer_search_helper(request):
-    search_results = SearchQuerySet().models(Employer)
+    search_results = SearchQuerySet().models(Employer).filter(visible=True)
     in_subscriptions = True if request.GET.get('s', 'false')=='true' else False
     if in_subscriptions:
         search_results = search_results.filter(subscribers=request.user.id)
