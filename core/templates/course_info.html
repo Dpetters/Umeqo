@@ -2,8 +2,16 @@
     {% if course.thumbnail %}
     <a href="{{MEDIA_URL}}{{course.image}}" target="_blank"><img class="course_image" src="{{MEDIA_URL}}{{course.thumbnail}}" /></a>
     {% endif %}
+    {% if course.admin %}
     <p><strong>Administrator: </strong> {{course.admin}}</p>
+    {% endif %}
+    {% if course.email %}
     <p><strong>E-mail: </strong> {{course.email}}</p>
+    {% endif %}
+    {% if course.website %}
     <p><strong>Website: </strong> <a href="{{course.website}}" target="_blank">{{course.website}}</a></p>
+    {% endif %}
+    {% if course.description %}
     <p><strong>Description: </strong> {{course.description}}</p>
+    {% endif %}
 </div>

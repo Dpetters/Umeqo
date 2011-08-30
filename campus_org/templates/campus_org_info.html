@@ -2,7 +2,13 @@
     {% if campus_org.thumbnail %}
     <a href="{{MEDIA_URL}}{{campus_org.image}}" target="_blank"><img class="campus_org_image" src="{{MEDIA_URL}}{{campus_org.thumbnail}}" /></a>
     {% endif %}
+    {% if campus_org.email %}
     <p><strong>E-mail: </strong> {{campus_org.email}}</p>
+    {% endif %}
+    {% if campus_org.website %}
     <p><strong>Website: </strong> <a href="{{campus_org.website}}" target="_blank">{{campus_org.website}}</a></p>
+    {% endif %}
+    {% if campus_org.description %}
     <p><strong>Description: </strong> {{campus_org.description}}</p>
+    {% endif %}
 </div>
