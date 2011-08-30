@@ -8,7 +8,7 @@ from django.conf import settings
 from south.models import MigrationHistory
 
 
-__all__= ["staging", "prod", "restart", "create_database", "load_prod_data", 
+__all__= ["staging", "prod", "restart", "restart_apache", "create_database", 
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
 
@@ -23,7 +23,13 @@ def prod():
     env.password = settings.PROD_PASSWORD
     env.directory = '/var/www/umeqo'
     env.activate = 'source /usr/local/pythonenv/UMEQO/bin/activate'
-    
+
+def restart_apache():
+    if env.host:
+        sudo('service apache2 restart')
+    else:
+        abort("restart cannot be called locally.")
+                    
 def restart():
     if env.host:
         sudo('service apache2 restart')
@@ -63,20 +69,6 @@ def schemamigrate():
                 local("python manage.py schemamigration %s --auto" % app)
     else:
         abort("Schemamigrate can only be called locally.")
-
-def load_prod_data():
-    if not env.host:
-        local("python copy_media.py prod in")
-        local("python manage.py flush --noinput")
-    else:
-        if env.host == "umeqo.com":
-            abort("load_prod_data cannot be called on prod.")
-        with cd(env.directory):
-            with prefix(env.activate):
-                if env.host == "staging.umeqo.com":
-                    abort("load_prod_data should not be called on staging.")
-                run("python copy_media.py prod in")
-                run("python manage.py flush --noinput")    
 
 def load_local_data():
     if not env.host:
