@@ -104,7 +104,7 @@ def commit_prod_data():
             run("git add -A")
             with fabric_settings(warn_only=True):
                 run('git commit -m "Local data commit from staging."')
-                run("git push")
+                run("git push origin prod")
 
 def commit_local_data():
     if env.host != "staging.umeqo.com":
@@ -124,7 +124,7 @@ def commit_local_data():
             run("git add -A")
             with fabric_settings(warn_only=True):
                 run('git commit -m "Local data commit from staging."')
-                run("git push")
+                run("git push origin dev")
 
 def update():
     if not env.host:
@@ -134,9 +134,10 @@ def update():
             with prefix(env.activate):
                 if env.host=="staging.umeqo.com":
                     commit_local_data()
+                    run("git pull origin dev")
                 elif env.host=="umeqo.com":
                     commit_prod_data()
-                run("git pull")
+                    run("git pull origin prod")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
