@@ -125,7 +125,7 @@ class Course(CommonInfo):
     thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
     sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
-    ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True, unique=True)
+    ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True)
     
     def __unicode__(self):
         return "%s (%s)" % (self.name, self.num)
