@@ -48,6 +48,22 @@
   }
  }, 
  {
+  "pk": 463, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://ieee.scripts.mit.edu/", 
+   "last_updated": "2011-08-30 00:05:48", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-30 00:05:48", 
+   "type": 1, 
+   "display": false, 
+   "name": "ACM/IEEE"
+  }
+ }, 
+ {
   "pk": 4, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -116,11 +132,11 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://axo.mit.edu/", 
-   "last_updated": "2011-08-21 22:49:07", 
+   "last_updated": "2011-08-29 19:19:05", 
    "description": "Alpha Chi Omega is a national women's organization that enriches the lives of both its collegiate and alumnae members through lifetime opportunities for friendship, leadership, learning & service.", 
-   "image": "", 
+   "image": "campus_org/campusorg/alpha_chi_omega_2011-08-29-19-19-05.png", 
    "email": "axo-president@mit.edu", 
-   "thumbnail": "", 
+   "thumbnail": "campus_org/campusorg/alpha_chi_omega_2011-08-29-19-19-05_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 6, 
    "display": true, 
@@ -148,14 +164,14 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://aephi.scripts.mit.edu/public/", 
-   "last_updated": "2011-08-28 13:08:26", 
-   "description": "", 
+   "last_updated": "2011-08-29 19:20:13", 
+   "description": "Alpha Epsilon Phi is a national sorority, founded in 1909 by seven Jewish women, dedicated to helping women become the best they can be. We prize individuality, encouraging each member to discover and develop the talents and abilities that make her unique.\r\n\r\nBut just as we value individuality, we also prize togetherness, fostering friendships and a sense of belonging that last a lifetime. When you\u2019re an AE?, you\u2019ll find there\u2019s always a sister to laugh when you laugh, to listen when you talk, to lend a hand and be there for you.\r\n\r\nSeven women founded AEPhi, so it is fitting that seven women at MIT sought to bring a chapter to this campus. These women petitioned the campus Panhellenic on March 31, 1993 for permission to bring a new national sorority to MIT \u2013 AEPhi. The request was denied, but the group\u2019s spirit was not extinguished. They formed a local sorority, Sigma Iota Phi, and made it flourish as a sorority with its own ritual, symbols, and ideals.\r\n\r\nIn 1995, Sigma Iota Phi was finally granted permission to go national. The sisters chose to become part of the sorority that the founders had wanted from the beginning \u2013 AEPhi. As the MIT colony, they adopted AEPhi\u2019s ritual and symbols, but kept their same traditions of sisterhood, strength, and dedication. Their second annual \u201cNight at the Improv\u201d raised money for both the local philanthropy and the new national one, the Chaim Sheba Medical Center in Israel. Their initiation, the first AEPhi initiation held on the MIT campus, was conducted on April 9, 1995. By the end of the semester two more members had joined.\r\n\r\nToday the chapter is comprised of an outstanding group of women involved in various extracurricular activities and fields of study. We continue to support the ideals and traditions of both the national sorority and our local chapter.", 
    "image": "campus_org/campusorg/alpha_epsilon_phi_2011-08-28-13-00-17.png", 
    "email": "", 
-   "thumbnail": "campus_org/campusorg/alpha_epsilon_phi_2011-08-28-13-00-03_thumbnail.gif", 
+   "thumbnail": "campus_org/campusorg/alpha_epsilon_phi_2011-08-29-19-20-13_thumbnail.png", 
    "date_created": "2011-05-03 12:27:36", 
    "type": 6, 
-   "display": false, 
+   "display": true, 
    "name": "Alpha Epsilon Phi"
   }
  }, 
@@ -173,6 +189,22 @@
    "type": 6, 
    "display": true, 
    "name": "Alpha Epsilon Pi"
+  }
+ }, 
+ {
+  "pk": 457, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://aphi.mit.edu/", 
+   "last_updated": "2011-08-29 19:24:02", 
+   "description": "Alpha Phi was founded in 1872 by ten women at Syracuse University, and is now one of the oldest and largest women\u2019s fraternities in North America. In 1981, a small group of women founded the Zeta Phi chapter at MIT, making it the first sorority on campus.\r\n\r\nAlpha Phis are members of a lifelong sisterhood. Sisters are there for each other to celebrate after you ace that job interview and also to lend a shoulder to cry on when you finished that difficult exam, as well as every event in between. The bond of sisterhood is strengthened by the experiences of hanging out and living together in our beautiful brownstone house in Kenmore Square in Boston. Our friendships last beyond college, as sisters reunite at weddings and reunions or live together as they start their careers.\r\n\r\nWe pride ourselves in being well rounded individuals that are leaders in all aspects of campus life. Our sisters are members of various clubs and student organizations and captains of several athletic teams. In addition, APhi\u2019s are TAs and participate in on campus research through UROPs. We can be found all over campus supporting each other in our endeavors.", 
+   "image": "campus_org/campusorg/alpha_phi_2011-08-29-19-24-02.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/alpha_phi_2011-08-29-19-24-02_thumbnail.png", 
+   "date_created": "2011-08-29 19:24:02", 
+   "type": 6, 
+   "display": true, 
+   "name": "Alpha Phi"
   }
  }, 
  {
@@ -196,8 +228,8 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/apo/www/", 
-   "last_updated": "2011-07-27 01:52:11", 
-   "description": "Alpha Phi Omega is a national coed service fraternity, centered on the principles of leadership, friendship, and service. The Alpha Chi chapter here at M.I.T. consists of about 30 active men and women, and many more alumni, prospectives, and friends. We represent a variety of fields of study; we live in a variety of living groups. We have many different interests, but we are united in our desire to provide service to others.", 
+   "last_updated": "2011-08-29 19:19:34", 
+   "description": "Alpha Chi Omega is a national women\u2019s organization that enriches the lives of both its collegiate and alumnae members through lifetime opportunities for friendship, leadership, learning, and service. Alpha Chi Omega was founded on October 15, 1885, at DePauw University in Greencastle, Indiana.\r\n\r\nAt MIT, seven women started a organization for women called the \u201cThalians,\u201d and the group continued to grow. Soon after in 1985, they sought the support of a national sorority and chose Alpha Chi Omega because of the level of individuality this organization offered them as a chapter. Our founders understood that as MIT was a unique campus, a thriving Greek organization here would require unique guidance.\r\n\r\nToday, Alpha Chi Omega sisters are involved in all facets of campus: athletics, dance, student government, community service, and dorm life to name a few. We sponsor a Domestic Violence Awareness Week every fall and host our annual Lip Sync competition each spring to support the Boston Area Rape Crisis Center, our local philanthropy.\r\n\r\nSisters of Alpha Chi Omega are not just there for you for four years, but for a lifetime. Sisters are there for you in the best and worst times, both to make exciting memories to cherish and to make hard times more bearable. Sisters are not just for four years; they\u2019re for a lifetime.", 
    "image": "campus_org/campusorg/alpha_omega_2011-07-27-01-47-36.gif", 
    "email": "apo@mit.edu", 
    "thumbnail": "campus_org/campusorg/alpha_omega_2011-07-27-01-47-36_thumbnail.gif", 
@@ -317,6 +349,22 @@
    "type": 9, 
    "display": true, 
    "name": "Amnesty International"
+  }
+ }, 
+ {
+  "pk": 460, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://amphibious.mit.edu/", 
+   "last_updated": "2011-08-29 22:00:16", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-29 22:00:16", 
+   "type": 9, 
+   "display": false, 
+   "name": "Amphibious Achievement"
   }
  }, 
  {
@@ -484,8 +532,8 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://shumbody.mit.edu/aaa/", 
-   "last_updated": "2011-07-27 23:20:13", 
-   "description": "The MIT Asian American Association was founded during the 2001-2002 academic year as a conglomeration of the MIT Asian American Pacific Caucus, Asian Athletic Association, Grains of Rice, and Origami Seminar. ", 
+   "last_updated": "2011-08-30 03:48:23", 
+   "description": "The MIT Asian American Association was founded during the 2001-2002 academic year as a conglomeration of the MIT Asian American Pacific Caucus, Asian Athletic Association, Grains of Rice, and Origami Seminar. \r\nOur missions are:\r\nTo enrich campus life by contributing to an understanding of the Asian American experience.\r\nTo foster an understanding of the diversity of Asian cultures.\r\nTo promote awareness of Asian American issues and concerns.\r\nTo protect Asian American interests by working as a pan-ethnic group.\r\nTo provide opportunities for the development of leadership and communication skills.\r\nTo become a service to the community.\r\nTo encourage Asian American students to take pride in their heritage and identity.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
@@ -1184,6 +1232,22 @@
   }
  }, 
  {
+  "pk": 465, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/music/performance/instrumental/cms.html", 
+   "last_updated": "2011-08-30 00:07:31", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-30 00:07:31", 
+   "type": 2, 
+   "display": false, 
+   "name": "Chamber Music Society"
+  }
+ }, 
+ {
   "pk": 78, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1472,22 +1536,6 @@
   }
  }, 
  {
-  "pk": 436, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-08-27 21:56:29", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
-   "date_created": "2011-08-27 21:56:29", 
-   "type": 16, 
-   "display": false, 
-   "name": "CODERS GONE WILD"
-  }
- }, 
- {
   "pk": 99, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -1677,22 +1725,6 @@
    "type": 8, 
    "display": true, 
    "name": "Debate Team"
-  }
- }, 
- {
-  "pk": 446, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-08-29 09:25:16", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
-   "date_created": "2011-08-29 09:25:16", 
-   "type": 11, 
-   "display": false, 
-   "name": "delete me"
   }
  }, 
  {
@@ -2788,11 +2820,11 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://ifc.mit.edu/", 
-   "last_updated": "2011-08-13 13:24:24", 
+   "last_updated": "2011-08-30 03:22:10", 
    "description": "The purpose of the Interfraternity Council is to assist in providing a total educational experience for the fraternity community by emphasizing and acting as a resource to support community participation and responsibility. The role of the Interfraternity Council executive board is to create proper programming and protocol in order to ensure that our purpose as an organization comes to fruition.\r\nOne of our main goals is to promote interfraternal relations and we do this by creating programming such Greek Week in the spring and the President-Faculty Dinner in the fall. Outside of our IFC Meetings, which mainly involve presidents from every fraternity, we also have a Delegate's Council where we talk about organizational commonalities amongst the fraternities which each person can use to improve their own fraternity.\r\n\r\nAs an organization, we are very structured and have various documents that outline our goals and rules. We have our Constitution that outlines the reason behind our existence as an organization and three main documents that are followed by all our constituents: the Judicial Committee Bylaws, the Recruitment Rules, and the Risk Management Policy.", 
-   "image": "", 
+   "image": "campus_org/campusorg/interfraternity_council_2011-08-30-03-22-10.jpg", 
    "email": "ifc-exec@mit.edu", 
-   "thumbnail": "", 
+   "thumbnail": "campus_org/campusorg/interfraternity_council_2011-08-30-03-22-10_thumbnail.jpg", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 10, 
    "display": true, 
@@ -2928,22 +2960,6 @@
   }
  }, 
  {
-  "pk": 448, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://joshma.com/", 
-   "last_updated": "2011-08-29 11:53:09", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
-   "date_created": "2011-08-29 11:53:09", 
-   "type": 1, 
-   "display": false, 
-   "name": "Josh's Org"
-  }
- }, 
- {
   "pk": 205, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2979,15 +2995,15 @@
   "pk": 207, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-08-19 22:43:01", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://theta.mit.edu/", 
+   "last_updated": "2011-08-29 19:26:07", 
+   "description": "Yesterday, today, and tomorrow, Kappa Alpha Theta exists to nurture each member throughout her college and alumnae experience and to offer a lifelong opportunity for social, intellectual and moral growth as she meets the higher and broader demands of mature life.\r\n\r\nKappa Alpha Theta was founded at Asbury University (now DePauw University) in Greencastle, Indiana on January 27, 1870, making it the first Greek letter fraternity for women. (The word \u201csorority\u201d was not coined until after Kappa Alpha Theta was founded.) Bettie Locke Hamilton was one of the first women admitted to Asbury in 1867, and she believed that uniting with other female students in pursuit of similar goals would greatly enrich their college experience.\r\n\r\nBettie was friends with several Phi Gamma Deltas, and when one of them asked her to wear his pin as a symbol of friendship with the fraternity, she said that she would not unless she could be initiated into the fraternity. Since that was not possible as she was female, she decided that she would start her own fraternity instead.\r\n\r\nShe shared her idea with Alice Allen, Bettie Tipton, and Hannah Fitch, and the four of them together founded Kappa Alpha Theta. Later that year, Kappa Alpha Theta expanded past Asbury, as they established a chapter at Indiana University. In the more than 130 years since, Kappa Alpha Theta has grown to 124 chapters all across the United States and Canada.", 
+   "image": "campus_org/campusorg/kappa_alpha_theta_2011-08-29-19-26-07.png", 
+   "email": "theta-webmaster@mit.edu", 
+   "thumbnail": "campus_org/campusorg/kappa_alpha_theta_2011-08-29-19-26-07_thumbnail.png", 
    "date_created": "2011-05-03 12:27:39", 
    "type": 6, 
-   "display": false, 
+   "display": true, 
    "name": "Kappa Alpha Theta"
   }
  }, 
@@ -3696,6 +3712,22 @@
   }
  }, 
  {
+  "pk": 464, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/mitso/", 
+   "last_updated": "2011-08-30 00:06:23", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-30 00:06:23", 
+   "type": 2, 
+   "display": false, 
+   "name": "MITSO"
+  }
+ }, 
+ {
   "pk": 255, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4160,6 +4192,22 @@
   }
  }, 
  {
+  "pk": 462, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://pkt.mit.edu/", 
+   "last_updated": "2011-08-29 22:37:18", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-29 22:37:18", 
+   "type": 6, 
+   "display": false, 
+   "name": "Phi Kappa Theta"
+  }
+ }, 
+ {
   "pk": 290, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4179,15 +4227,15 @@
   "pk": 291, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-08-19 23:17:32", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://piphi.mit.edu/", 
+   "last_updated": "2011-08-29 19:27:50", 
+   "description": "Pi Beta Phi was founded on April 28, 1867, at Monmouth College in Monmouth, Illinois. The 12 founders had a vision to form the first national secret society for women at a time when only five state universities admitted women.\r\n\r\nPi Beta Phi distinguishes itself in the Greek world by leading the way as one of the first of seven founding members of the National Panhellenic Conference (NPC), an umbrella organization for 26 inter/national women\u2019s fraternities and sororities.\r\n\r\nPi Beta Phi was also the first organization to form an alumnae department in 1893, the first to organize a national philanthropic project in 1910 and the first to establish an alumnae advisory committee for each chapter in 1913.\r\n\r\nThe founders of Pi Beta Phi created the Fraternity to cultivate sincere friendship, establish real-life objectives and promote happiness.\r\n\r\nPi Beta Phi continues to encourage young women to develop meaningful relationships as they reach for their personal goals. Membership in Pi Beta Phi and the relationships it yields help sisters adapt to college life by providing a sense of belonging, mutual support and guidance.", 
+   "image": "campus_org/campusorg/pi_beta_phi_2011-08-29-19-27-50.png", 
+   "email": "magamma@pibetaphi.org", 
+   "thumbnail": "campus_org/campusorg/pi_beta_phi_2011-08-29-19-27-50_thumbnail.png", 
    "date_created": "2011-05-03 12:27:41", 
    "type": 6, 
-   "display": false, 
+   "display": true, 
    "name": "Pi Beta Phi"
   }
  }, 
@@ -4205,6 +4253,22 @@
    "type": 6, 
    "display": false, 
    "name": "Pi Kappa Alpha Fraternity"
+  }
+ }, 
+ {
+  "pk": 449, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://pilam.mit.edu/", 
+   "last_updated": "2011-08-29 18:30:25", 
+   "description": "Pi Lambda Phi was founded in 1895, and began at MIT in 1897. As the first non-sectarian fraternity, Pi Lambda Phi prides itself on its belief of equality for all men. As a chapter of 50 MIT men, Pi Lams at MIT are a diverse group, hailing from all around the country and the world (current undergrads are from 15 states and 7 countries), and participating in everything from acapella and jazz to varsity sports and student government. \r\n\r\nPi Lambda Phi prides itself on having many notable alumni here at MIT, of them professor of Mechanical Engineering Alex Slocum and Physicist Richard Feynman.", 
+   "image": "campus_org/campusorg/pi_lambda_phi_2011-08-29-18-25-22.jpg", 
+   "email": "plp-rex@mit.edu", 
+   "thumbnail": "campus_org/campusorg/pi_lambda_phi_2011-08-29-18-25-22_thumbnail.jpg", 
+   "date_created": "2011-08-29 18:25:22", 
+   "type": 6, 
+   "display": true, 
+   "name": "Pi Lambda Phi"
   }
  }, 
  {
@@ -4736,15 +4800,31 @@
   }
  }, 
  {
+  "pk": 450, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/sae/", 
+   "last_updated": "2011-08-29 18:36:22", 
+   "description": "Massachusetts Iota Tau, the chapter of Sigma Alpha Epsilon at MIT, was founded in November 1892 by Harold C. Buckminster, Wallace C. Brackett, Ernest F. Badger, and Frank B. Masters, who were initiated by a member of the newly formed chapter at Boston University, Massachusetts Beta Upsilon. After completion of the first pledge training program, the brothers of Massachusetts Iota Tau held their first initiation at the Woodlawn Hotel in Auburndale, Massachusetts. John Thompson Dorrance, the founder of Campbell\u2019s Soup, was a member of the first pledge class. \r\n\r\nDue to extenuating circumstances, the chapter was closed in 1998. The Phoenix is nothing if not hardy, and thus it was reborn again ten years later in 2008. There was a recolonization attempt in 2003, but those members did not make it and were shut down in 2006. However, members from the first colonization were instrumental in our recolonization; Neil Kelly first contacted Cyrus Vafadari in the fall of 2008, who then passed the word on to two of his friends: Ian Fischer and Davey Hunt. Later, Chase Anderson learned of the opportunity and made the decision to become part of the group as well. The four members worked hard throughout the rest of the year and the summer to develop a strong recruitment schedule, and were successful in bringing three quality individuals into their brotherhood: Ken Cooper, Cory Monroe and Cameron McAlpine. The colony was further successful in spring recruitment, and added to their ranks brothers Nathan Monroe, Teddy Toussaint, and Fernando Cerullo. Growth continued the following semester, with the pledging and initiation of seven new brothers.", 
+   "image": "campus_org/campusorg/sigma_alpha_epsilon_2011-08-29-18-36-22.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/sigma_alpha_epsilon_2011-08-29-18-36-22_thumbnail.png", 
+   "date_created": "2011-08-29 18:36:22", 
+   "type": 6, 
+   "display": true, 
+   "name": "Sigma Alpha Epsilon"
+  }
+ }, 
+ {
   "pk": 329, 
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://sigmachi.mit.edu/", 
-   "last_updated": "2011-07-24 20:04:41", 
+   "last_updated": "2011-08-29 18:38:29", 
    "description": "Besides being one of the largest international fraternities in North America, Sigma Chi has had a long history of excellence at MIT that began in 1882. Founded in 1882, the Alpha Theta chapter is the oldest continuous Fraternity at MIT with one of the oldest houses as well (some organizations, such as MIT Libraries, simply cite us as the first MIT fraternity). With nearly 125 pledge classes that have gone through Alpha Theta, their alumni are found in all parts of the world and still enjoy coming back to the house for some of our house's events such as our annual Alumni Day.", 
-   "image": "", 
+   "image": "campus_org/campusorg/sigma_chi_2011-08-29-18-38-29.png", 
    "email": "", 
-   "thumbnail": "", 
+   "thumbnail": "campus_org/campusorg/sigma_chi_2011-08-29-18-38-29_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 6, 
    "display": true, 
@@ -4756,8 +4836,8 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://www.skmit.com/", 
-   "last_updated": "2011-07-24 20:02:32", 
-   "description": "In 1988, the Sigma Kappa - Theta Lambda Chapter - was founded, becoming the third nationally recognized sorority at MIT. As our chapter grew in the nineties, so did our presence on and off campus. Now as 2010 approaches, Sigma Kappa is thriving.  Sigma Kappa is over 120 sisters strong, representing multiple countries, ethnicities, and interests. The sisters are confident, passionate, and grateful women: confident in our abilities, passionate in our pursuits, and grateful to our founders for makings us sisters. They are bringing sisterhood to life.", 
+   "last_updated": "2011-08-29 19:28:58", 
+   "description": "In 1988, the Sigma Kappa \u2013 Theta Lambda Chapter \u2013 was founded, becoming the third nationally recognized sorority at MIT. As our chapter grew in the nineties, so did our presence on and off campus. Now, Sigma Kappa is thriving. We are over 90 sisters strong, representing multiple countries, ethnicities, and interests. We are confident, passionate, and grateful women: confident in our abilities, passionate in our pursuits, and grateful to our founders for makings us sisters. We are bringing sisterhood to life.\r\n\r\nAt Sigma Kappa, we pride ourselves on our sisterhood. ?K isn\u2019t just two letters you wear on your chest, it\u2019s about being a part of a group of girls who will always be there for you. To us, sisterhood means never having to ask for a hug, IMing someone when they are 10 feet away just to say hi, or laughing so hard that you can barely breathe. It means painting your entire face in school colors and cheering on one of your sisters at her championship volleyball game, or spelling out a sister\u2019s name on your stomach because she\u2019s giving a speech at Ring Premiere. In the end, Sigma Kappa is a place where you can be confident about yourself because your sisters are always by your side.", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
@@ -4768,15 +4848,31 @@
   }
  }, 
  {
+  "pk": 451, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://sigmanu.mit.edu/", 
+   "last_updated": "2011-08-29 18:44:56", 
+   "description": "Sigma Nu is, first and foremost, a brotherhood. The friendships and memories that are formed here last a lifetime. Fraternity, for us, is about supporting one another and working together to build a richer college experience. For a glimpse of all the great experiences we offer our members, please feel free to browse the rest of our website. We're confident you'll agree that no college experience is complete without the unique and exciting opportunities that Sigma Nu has to offer.\r\n\r\nSigma Nu is one of America's largest fraternities, with hundreds of chapters and hundreds of thousands of brothers at different college campuses across the nation. Founded in 1869 at the Virginia Military Institute, our founders, James Hopkins, Greenfield Quarles, and James Riley were deeply averse to the rampant hazing that is typical at such military institutions, and founded Sigma Nu as an anti-hazing fraternity. Often referred to as the \"Legion of Honor,\" Sigma Nu rests on three core ideals of Love, Truth, and Honor.\r\n\r\nOur chapter's charter date of 1995 makes us one of the youngest fraternities at MIT. In just over a decade, we've built a fraternity full of cool traditions, ambition, and great people. We pride ourselves on being a diverse group of brothers. No matter what your interests, you're sure to find people here who share them.", 
+   "image": "campus_org/campusorg/sigma_nu_2011-08-29-18-44-56.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/sigma_nu_2011-08-29-18-44-56_thumbnail.png", 
+   "date_created": "2011-08-29 18:44:56", 
+   "type": 6, 
+   "display": true, 
+   "name": "Sigma Nu"
+  }
+ }, 
+ {
   "pk": 331, 
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://spe.mit.edu/", 
-   "last_updated": "2011-07-24 20:00:12", 
+   "last_updated": "2011-08-29 18:48:28", 
    "description": "SigEp was founded at Richmond College, now the University of Richmond, on November 1, 1901 on the cardinal principles of Virtue, Diligence, and Brotherly Love. Today, over 280,000 men have joined the fraternity and taken a vow to uphold these values. With over 15,000 current undergraduates at more than 260 colleges across the nation, Sigma Phi Epsilon is the nation's largest fraternity.", 
    "image": "campus_org/campusorg/sigma_phi_epsilon_2011-07-24-20-00-12.png", 
    "email": "spe-president@mit.edu", 
-   "thumbnail": "campus_org/campusorg/sigma_phi_epsilon_2011-07-24-20-00-12_thumbnail.png", 
+   "thumbnail": "campus_org/campusorg/sigma_phi_epsilon_2011-08-29-18-48-28_thumbnail.png", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 6, 
    "display": true, 
@@ -5060,11 +5156,11 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/pistol/www/", 
-   "last_updated": "2011-07-24 19:26:04", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "last_updated": "2011-08-30 03:19:03", 
+   "description": "No prior shooting experience is necessary.\r\n\r\nAll MIT undergraduate students in full time enrollment (more than 36 units) are eligible to shoot competitively on the team. Recruitment happens during the beginning of the school year with the Athletic Midway which is held during R/O week.\r\n\r\nIf you are a grad student or employee, there is a pistol club at MIT that practices on Tuesday nights and goes to local competitions. For more information, call the range at x3-3296 on Tuesday evenings (5-7pm) during the school year.\r\n\r\nThe season runs from September to March, with the first match in October. Practice is currently from Monday to Thursday. The range is open for the team from 4:30 to 7:00 pm (except on Tuesdays, when it closes at 6:30).\r\n\r\nAs with other sports, practice is required, absences must be excused, and participation at home matches is expected. As your level of proficiency increases, you will be asked to go to away matches. You must be patient as it takes as much time to develop proficiency in pistol as it does in any other sport. However, if you practice and stick with it, maybe you can join the ranks of our All-Americans, All-Stars, and nationally ranked teams!", 
+   "image": "campus_org/campusorg/sport_pistol_club_2011-08-30-03-17-08.jpg", 
+   "email": "willhart@mit.edu", 
+   "thumbnail": "campus_org/campusorg/sport_pistol_club_2011-08-30-03-17-08_thumbnail.jpg", 
    "date_created": "2011-05-03 12:27:42", 
    "type": 11, 
    "display": true, 
@@ -5728,22 +5824,6 @@
   }
  }, 
  {
-  "pk": 447, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-08-29 10:44:30", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
-   "date_created": "2011-08-29 10:44:30", 
-   "type": 1, 
-   "display": false, 
-   "name": "test8"
-  }
- }, 
- {
   "pk": 392, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -5757,6 +5837,54 @@
    "type": 4, 
    "display": true, 
    "name": "Thai Students at MIT"
+  }
+ }, 
+ {
+  "pk": 452, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://ox.mit.edu/", 
+   "last_updated": "2011-08-29 19:05:05", 
+   "description": "Theta Chi is an international fraternity made up of more than 160 chapters and colonies. It was founded in 1856 at Norwich University by Arthur Chase and Frederick Norton Freeman.", 
+   "image": "campus_org/campusorg/theta_chi_2011-08-29-19-05-05.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/theta_chi_2011-08-29-19-05-05_thumbnail.png", 
+   "date_created": "2011-08-29 19:05:05", 
+   "type": 6, 
+   "display": true, 
+   "name": "Theta Chi"
+  }
+ }, 
+ {
+  "pk": 453, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://tdc.mit.edu/", 
+   "last_updated": "2011-08-29 19:07:16", 
+   "description": "", 
+   "image": "campus_org/campusorg/theta_delta_chi_2011-08-29-19-07-16.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/theta_delta_chi_2011-08-29-19-07-16_thumbnail.png", 
+   "date_created": "2011-08-29 19:07:16", 
+   "type": 6, 
+   "display": false, 
+   "name": "Theta Delta Chi"
+  }
+ }, 
+ {
+  "pk": 454, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://txi.mit.edu/", 
+   "last_updated": "2011-08-29 19:11:23", 
+   "description": "Theta Xi Fraternity is a national leader in the educational and social development of its members. Our successes and diversity have been celebrated by over 60,000 members since 1864.\r\n\r\nThe Purpose of Theta Xi is to provide a college home environment for its active members in which fellowship and alumni guidance lead to wholesome mental, moral, physical and spiritual growth. The values on which Theta Xi was founded on are passed onto new members in \"The Quest for Theta Xi.\"\r\n\r\nTheta Xi is one of North America's oldest social fraternities and the only such organization founded during the Civil War. Headquartered in St. Louis, Missouri, Theta Xi services Chapters and Colonies all over the United States. The Fraternity offers a comprehensive new member education program called Alpha Nine and countless educational programs for its members. Theta Xi is the only National Fraternity to receive two Association of Fraternity Advisors (AFAR) \"Excellence in Programming\" awards; one for Values into Action (Values training) and then second for Benchmarks of Excellence (Chapter Operations training).", 
+   "image": "campus_org/campusorg/theta_xi_2011-08-29-19-11-23.png", 
+   "email": "txi-officers@mit.edu", 
+   "thumbnail": "campus_org/campusorg/theta_xi_2011-08-29-19-11-23_thumbnail.png", 
+   "date_created": "2011-08-29 19:11:23", 
+   "type": 6, 
+   "display": true, 
+   "name": "Theta Xi"
   }
  }, 
  {
@@ -6304,6 +6432,22 @@
   }
  }, 
  {
+  "pk": 461, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://mitathletics.com/sports/w-swim/index", 
+   "last_updated": "2011-08-29 22:01:38", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "date_created": "2011-08-29 22:01:38", 
+   "type": 11, 
+   "display": false, 
+   "name": "Women's Swimming and Diving"
+  }
+ }, 
+ {
   "pk": 428, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6381,6 +6525,38 @@
    "type": 12, 
    "display": false, 
    "name": "Yan Xin Life Science and Tech Association"
+  }
+ }, 
+ {
+  "pk": 455, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/zbt/www/", 
+   "last_updated": "2011-08-29 19:13:58", 
+   "description": "For many of us, ZBT is the best part of being at MIT. ZBT is non-pledging, which means we don't have a pledge period, and we provide full privileges as a brother as soon as you join. We are the only fraternity in Brookline, a beautiful residential neighborhood with access to local parks, shopping, and great restaurants. Our interests are diverse, our activities are many, and we consider our bonds lifelong. Zebes are sociable, responsible, thoughtful, and always at their brother's side. We hold soirees once a term where brothers and guests enjoy a night of classy music, good company, and elegant desserts made by our chef. And, of course, a Zebe is a gentleman.\r\nAwards", 
+   "image": "campus_org/campusorg/zeta_beta_tau_2011-08-29-19-13-58.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/zeta_beta_tau_2011-08-29-19-13-58_thumbnail.png", 
+   "date_created": "2011-08-29 19:13:58", 
+   "type": 6, 
+   "display": true, 
+   "name": "Zeta Beta Tau"
+  }
+ }, 
+ {
+  "pk": 456, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://zetapsi.mit.edu/", 
+   "last_updated": "2011-08-29 19:16:05", 
+   "description": "", 
+   "image": "campus_org/campusorg/zeta_psi_2011-08-29-19-16-05.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/zeta_psi_2011-08-29-19-16-05_thumbnail.png", 
+   "date_created": "2011-08-29 19:16:05", 
+   "type": 6, 
+   "display": false, 
+   "name": "Zeta Psi"
   }
  }
 ]
