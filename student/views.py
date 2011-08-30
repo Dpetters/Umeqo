@@ -160,7 +160,7 @@ def student_registration(request, backend = RegistrationBackend(),
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
-            student = Student(user=new_user)
+            student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
             umeqo = Employer.objects.get(name="Umeqo")
             student.save()
             student.subscriptions.add(umeqo)
