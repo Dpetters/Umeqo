@@ -8,7 +8,7 @@ from django.conf import settings
 from south.models import MigrationHistory
 
 
-__all__= ["staging", "prod", "restart", "restart_apache", "create_database", 
+__all__= ["staging", "prod", "restart", "restart_apache", "create_database", "load_prod_data",
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
 
@@ -106,6 +106,18 @@ def commit_prod_data():
                 run('git commit -m "Prod data commit from prod."')
                 run("git push origin master")
 
+def load_prod_data():
+    if not env.host:
+        local("python copy_media.py prod in")
+        local("python manage.py flush --noinput")
+    else:
+        if env.host == "umeqo.com":
+            abort("load_prod_data cannot be called on prod.")
+        with cd(env.directory):
+            with prefix(env.activate):
+                run("python copy_media.py prod in")
+                run("python manage.py flush --noinput") 
+                
 def commit_local_data():
     if env.host != "staging.umeqo.com":
         abort("commit_local_data should only be called on staging")
