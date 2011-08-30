@@ -15,6 +15,8 @@ USE_LANDING_PAGE = True
 # Can students register?
 REGISTRATION_OPEN = True
 
+BACKUP_DIR = "/var/www/umeqo_backups/"
+
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 def is_prod():
