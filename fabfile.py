@@ -137,7 +137,7 @@ def update():
                     run("git pull origin dev")
                 elif env.host=="umeqo.com":
                     commit_prod_data()
-                    run("git pull origin prod")
+                    run("git pull origin master")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
