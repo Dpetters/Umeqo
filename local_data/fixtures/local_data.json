@@ -3,7 +3,7 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 15, 
+   "view_count": 20,
    "start_datetime": "2011-12-01 00:00:00", 
    "audience": [], 
    "attending_employers": [], 
@@ -724,39 +724,39 @@
   }
  }, 
  {
-  "pk": 10, 
+  "pk": 11, 
   "model": "student.student", 
   "fields": {
-   "last_name": null, 
-   "last_updated": "2011-08-29 01:53:33", 
+   "last_name": "Petters", 
+   "last_updated": "2011-08-30 14:40:53", 
    "sat_m": null, 
    "graduation_month": "5", 
-   "older_than_21": null, 
+   "older_than_21": "", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
-   "keywords": null, 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers crafted interactive javascript widgets custom validation jquery plug mail text areas rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined python pil ffmpeg video overlay showed simulation video looking given skewed gaze data translated researched possibility heads display projected windshield laboratory using facelab gaze tracking data correction algorithms user selections visually activities leadership sbc sloan business club entrepreneurship project development leader cambridge feb developer sbconnect django employer interaction webapp featuring events invitations resume creation etc collaborating designer github currently working resume parsing backend ajax filtering consulting client development cambridge nov oct furthered makes non organizations worked internal development mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical java python django javascript jquery extjs css latex languages fluent russian interests ted talks hockey entrepreneurship", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
-   "first_name": null, 
-   "first_major": null, 
+   "first_name": "Dmitrij", 
+   "first_major": 12, 
    "subscriptions": [
     6
    ], 
-   "gpa": null, 
+   "gpa": "3.400", 
    "campus_involvement": [], 
    "languages": [], 
-   "profile_created": false, 
-   "school_year": null, 
-   "graduation_year": null, 
+   "profile_created": true, 
+   "school_year": 3, 
+   "graduation_year": 2, 
    "previous_employers": [], 
-   "website": null, 
+   "website": "", 
    "second_major": null, 
-   "resume": "", 
-   "user": 24, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-08-30-14-40-52.pdf", 
+   "user": 25, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-08-29 01:53:33"
+   "date_created": "2011-08-30 14:38:11"
   }
  }, 
  {
@@ -820,15 +820,15 @@
   }
  }, 
  {
-  "pk": 10, 
+  "pk": 11, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-08-29 01:53:33", 
+   "last_updated": "2011-08-30 14:38:11", 
    "email_on_invite_to_private_event": true, 
    "email_on_invite_to_public_event": true, 
-   "student": 10, 
-   "date_created": "2011-08-29 01:53:33"
+   "student": 11, 
+   "date_created": "2011-08-30 14:38:11"
   }
  }, 
  {
@@ -909,16 +909,16 @@
   }
  }, 
  {
-  "pk": 10, 
+  "pk": 11, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-08-29 01:53:33", 
+   "last_updated": "2011-08-30 14:38:11", 
    "event_invite_count": 0, 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 10, 
-   "date_created": "2011-08-29 01:53:33"
+   "student": 11, 
+   "date_created": "2011-08-30 14:38:11"
   }
  }, 
  {
@@ -1290,8 +1290,8 @@
   "fields": {
    "date_created": "2011-08-27 20:42:30", 
    "code": "1vjLY8YcZI4W", 
-   "last_updated": "2011-08-27 20:42:30", 
-   "used": false
+   "last_updated": "2011-08-30 14:38:11", 
+   "used": true
   }
  }, 
  {
@@ -1304,7 +1304,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-08-29 13:01:30", 
+   "last_login": "2011-08-30 14:33:59", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1322,7 +1322,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-29 12:57:52", 
+   "last_login": "2011-08-29 18:28:21", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1511,21 +1511,21 @@
   }
  }, 
  {
-  "pk": 24, 
+  "pk": 25, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
-   "first_name": "", 
-   "last_name": "", 
+   "first_name": "Dmitrij", 
+   "last_name": "Petters", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-29 01:53:42", 
+   "last_login": "2011-08-30 14:38:26", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$61e46$62942a6c276207ff16102913b5ef0af3a759f734", 
+   "password": "sha1$315b3$df74476f04738e9750564cf56d41c98b18150c29", 
    "email": "dpetters@mit.edu", 
-   "date_joined": "2011-08-29 01:53:32"
+   "date_joined": "2011-08-30 14:38:10"
   }
  }, 
  {
@@ -1646,11 +1646,11 @@
   }
  }, 
  {
-  "pk": 23, 
+  "pk": 24, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": true, 
-   "user": 24, 
+   "user": 25, 
    "last_password_change_date": null
   }
  }, 
@@ -3164,13 +3164,13 @@
   }
  }, 
  {
-  "pk": 262, 
+  "pk": 276, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-29 01:53:42", 
-   "session_key": "355bf074526da113432a458aa58b4cad", 
-   "last_updated": "2011-08-29 01:53:42", 
-   "user": 24
+   "date_created": "2011-08-30 14:38:26", 
+   "session_key": "503b010367ecceeea813bed56e7bb5f0", 
+   "last_updated": "2011-08-30 14:38:26", 
+   "user": 25
   }
  }, 
  {
@@ -3194,13 +3194,13 @@
   }
  }, 
  {
-  "pk": 264, 
+  "pk": 269, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-29 12:57:52", 
-   "session_key": "000b8fdd344eb9ddba1087c5b5aefbdb", 
-   "last_updated": "2011-08-29 12:57:52", 
-   "user": 2
+   "date_created": "2011-08-29 16:04:25", 
+   "session_key": "4021b9663f3f4a144283db8944a148af", 
+   "last_updated": "2011-08-29 16:04:25", 
+   "user": 1
   }
  }, 
  {
@@ -3214,11 +3214,60 @@
   }
  }, 
  {
-  "pk": 5, 
+  "pk": 270, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-29 18:11:14", 
+   "session_key": "4d8e496216ba6fe28d0d43a9fc1abb86", 
+   "last_updated": "2011-08-29 18:11:14", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 271, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-29 18:25:32", 
+   "session_key": "c6a34e356a5d77c30e4519559666dedf", 
+   "last_updated": "2011-08-29 18:25:32", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 272, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-29 18:27:27", 
+   "session_key": "22b37373b73fa6945fa8545f86716ec1", 
+   "last_updated": "2011-08-29 18:27:27", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 273, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-29 18:28:21", 
+   "session_key": "a8d838843ce63d493ac65d94a0469260", 
+   "last_updated": "2011-08-29 18:28:21", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 275, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-08-30 14:33:59", 
+   "session_key": "bb1e80ac351737e92fee14dc9503a583", 
+   "last_updated": "2011-08-30 14:33:59", 
+  }
+ }, 
+ {
+  "pk": 6, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 24
+   "user": 25
   }
  }, 
  {
