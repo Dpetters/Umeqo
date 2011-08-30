@@ -4838,41 +4838,11 @@
   }
  }, 
  {
-  "pk": 148, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-08-29 10:44:46", 
-   "name_and_level": "lang (Basic)", 
-   "last_updated": "2011-08-29 10:44:46", 
-   "name": "lang"
-  }
- }, 
- {
-  "pk": 149, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-08-29 10:44:46", 
-   "name_and_level": "lang (Proficient)", 
-   "last_updated": "2011-08-29 10:44:46", 
-   "name": "lang"
-  }
- }, 
- {
-  "pk": 150, 
-  "model": "core.language", 
-  "fields": {
-   "date_created": "2011-08-29 10:44:46", 
-   "name_and_level": "lang (Fluent)", 
-   "last_updated": "2011-08-29 10:44:46", 
-   "name": "lang"
-  }
- }, 
- {
   "pk": 9, 
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-07-17 15:52:56", 
+   "last_updated": "2011-08-30 16:35:17", 
    "description": "", 
    "admin": "", 
    "image": "", 
@@ -4880,6 +4850,7 @@
    "thumbnail": "", 
    "num": "1", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "CIVIL AND ENVIRONMENTAL ENG", 
    "sort_order": 1, 
    "display": false, 
    "name": "Civil and Environmental Engineering"
@@ -4890,14 +4861,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:36:14", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "2", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "MECHANICAL ENGINEERING", 
    "sort_order": 2, 
    "display": false, 
    "name": "Mechanical Engineering"
@@ -4908,14 +4880,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:36:04", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "3", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "MATERIALS SCIENCE AND ENG", 
    "sort_order": 3, 
    "display": false, 
    "name": "Materials Science and Engineering"
@@ -4926,14 +4899,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:34:28", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "4", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "ARCHITECTURE", 
    "sort_order": 4, 
    "display": false, 
    "name": "Architecture"
@@ -4952,6 +4926,7 @@
    "thumbnail": "", 
    "num": "5", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 5, 
    "display": false, 
    "name": "Chemistry"
@@ -4970,6 +4945,7 @@
    "thumbnail": "", 
    "num": "6-1", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 6, 
    "display": false, 
    "name": "Electrical Science and Engineering"
@@ -4988,6 +4964,7 @@
    "thumbnail": "", 
    "num": "6-2", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 7, 
    "display": false, 
    "name": "Electrical Engineering & Computer Science"
@@ -5006,6 +4983,7 @@
    "thumbnail": "", 
    "num": "6-3", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 8, 
    "display": false, 
    "name": "Computer Science and Engineering"
@@ -5016,14 +4994,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:34:38", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "7", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "BIOLOGY", 
    "sort_order": 9, 
    "display": false, 
    "name": "Biology"
@@ -5034,14 +5013,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:36:33", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "8", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "PHYSICS", 
    "sort_order": 10, 
    "display": false, 
    "name": "Physics"
@@ -5052,14 +5032,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:34:50", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "9", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "BRAIN AND COGNITIVE SCIENCES", 
    "sort_order": 11, 
    "display": false, 
    "name": "Brain and Cognitive Sciences"
@@ -5070,14 +5051,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:35:01", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "10", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "CHEMICAL ENGINEERING", 
    "sort_order": 12, 
    "display": false, 
    "name": "Chemical Engineering"
@@ -5088,14 +5070,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:36", 
+   "last_updated": "2011-08-30 16:36:53", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "11", 
    "date_created": "2011-05-03 12:27:36", 
+   "ou": "URBAN STUDIES AND PLANNING", 
    "sort_order": 13, 
    "display": false, 
    "name": "Urban Studies and Planning"
@@ -5114,6 +5097,7 @@
    "thumbnail": "", 
    "num": "12", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 14, 
    "display": false, 
    "name": "Earth, Atmosphere & Planetary Sciences"
@@ -5124,14 +5108,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 15:31:46", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "13", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "", 
    "sort_order": 15, 
    "display": false, 
    "name": "Ocean Engineering"
@@ -5142,14 +5127,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:31:33", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "14", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "14", 
    "sort_order": 16, 
    "display": false, 
    "name": "Economics"
@@ -5160,14 +5146,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:35:53", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "15", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "MANAGEMENT", 
    "sort_order": 17, 
    "display": false, 
    "name": "Management"
@@ -5178,14 +5165,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 15:33:11", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "16", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "AERONAUTICS AND ASTRONAUTICS", 
    "sort_order": 18, 
    "display": false, 
    "name": "Aeronautics and Astronautics"
@@ -5196,14 +5184,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:36", 
+   "last_updated": "2011-08-30 16:32:58", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "17", 
    "date_created": "2011-05-03 12:27:36", 
+   "ou": "17", 
    "sort_order": 19, 
    "display": false, 
    "name": "Political Science"
@@ -5213,15 +5202,16 @@
   "pk": 25, 
   "model": "core.course", 
   "fields": {
-   "website": "http://math.mit.edu", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "website": "http://math.mit.edu/", 
+   "last_updated": "2011-08-30 15:32:48", 
    "description": "MIT's Mathematics Department is one of the strongest in the world, representing a broad spectrum of fields ranging from the traditional areas of pure mathematics such as analysis, algebra, geometry, and topology, to applied mathematics areas such as combinatorics, computational biology, fluid dynamics, theoretical computer science, and theoretical physics.", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "math@mit.edu", 
    "thumbnail": "", 
    "num": "18", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "MATHEMATICS", 
    "sort_order": 20, 
    "display": false, 
    "name": "Mathematics"
@@ -5232,14 +5222,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:33:34", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "20", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "20", 
    "sort_order": 21, 
    "display": false, 
    "name": "Biological Engineering"
@@ -5258,6 +5249,7 @@
    "thumbnail": "", 
    "num": "21A", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 22, 
    "display": false, 
    "name": "Anthropology"
@@ -5276,6 +5268,7 @@
    "thumbnail": "", 
    "num": "21F", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 23, 
    "display": false, 
    "name": "Foreign Languages and Literatures"
@@ -5294,6 +5287,7 @@
    "thumbnail": "", 
    "num": "21H", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 24, 
    "display": false, 
    "name": "History"
@@ -5312,6 +5306,7 @@
    "thumbnail": "", 
    "num": "21L", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 25, 
    "display": false, 
    "name": "Literature"
@@ -5330,6 +5325,7 @@
    "thumbnail": "", 
    "num": "21M", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 26, 
    "display": false, 
    "name": "Music and Theater Arts"
@@ -5348,6 +5344,7 @@
    "thumbnail": "", 
    "num": "21W", 
    "date_created": "2011-05-03 12:27:36", 
+   "ou": null, 
    "sort_order": 27, 
    "display": false, 
    "name": "Writing and Humanistic Studies"
@@ -5358,14 +5355,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:33:44", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "22", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "22", 
    "sort_order": 28, 
    "display": false, 
    "name": "Nuclear Engineering"
@@ -5376,14 +5374,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:33:52", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "24", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "24", 
    "sort_order": 29, 
    "display": false, 
    "name": "Linguistics and Philosophy"
@@ -5402,6 +5401,7 @@
    "thumbnail": "", 
    "num": "CMS", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 30, 
    "display": false, 
    "name": "Comparable Media Studies"
@@ -5420,6 +5420,7 @@
    "thumbnail": "", 
    "num": "CSB", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 31, 
    "display": false, 
    "name": "Computational and Systems Biology"
@@ -5438,6 +5439,7 @@
    "thumbnail": "", 
    "num": "ESD", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": null, 
    "sort_order": 32, 
    "display": false, 
    "name": "Engineering Systems"
@@ -5448,14 +5450,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:35:42", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "HST", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "HEALTH SCIENCES & TECHNOLOGY", 
    "sort_order": 33, 
    "display": false, 
    "name": "Health Sciences and Technology"
@@ -5474,6 +5477,7 @@
    "thumbnail": "", 
    "num": "STS", 
    "date_created": "2011-05-03 12:27:36", 
+   "ou": null, 
    "sort_order": 34, 
    "display": false, 
    "name": "Science, Technology, and Society"
@@ -5484,14 +5488,15 @@
   "model": "core.course", 
   "fields": {
    "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
+   "last_updated": "2011-08-30 16:36:25", 
    "description": "", 
-   "admin": null, 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "MAS", 
    "date_created": "2011-05-03 12:27:35", 
+   "ou": "MEDIA ARTS AND SCIENCES", 
    "sort_order": 35, 
    "display": false, 
    "name": "Media Arts and Sciences"
@@ -5510,6 +5515,7 @@
    "thumbnail": "", 
    "num": "CDO", 
    "date_created": "2011-07-17 14:44:37", 
+   "ou": null, 
    "sort_order": 36, 
    "display": false, 
    "name": "Computation for Design and Optimization"
@@ -5528,6 +5534,7 @@
    "thumbnail": "", 
    "num": "CRE", 
    "date_created": "2011-07-17 14:45:07", 
+   "ou": null, 
    "sort_order": 37, 
    "display": false, 
    "name": "Center for Real Estate Program"
@@ -5546,6 +5553,7 @@
    "thumbnail": "", 
    "num": "ESD", 
    "date_created": "2011-07-17 14:45:34", 
+   "ou": null, 
    "sort_order": 39, 
    "display": false, 
    "name": "Engineering Systems Division"
@@ -5564,6 +5572,7 @@
    "thumbnail": "", 
    "num": "LGO", 
    "date_created": "2011-07-17 14:46:27", 
+   "ou": null, 
    "sort_order": 40, 
    "display": false, 
    "name": "Leaders for Global Operations"
@@ -5582,6 +5591,7 @@
    "thumbnail": "", 
    "num": "MLOG", 
    "date_created": "2011-07-17 14:46:49", 
+   "ou": null, 
    "sort_order": 41, 
    "display": false, 
    "name": "Masters of Engineering in Logistics"
@@ -5600,6 +5610,7 @@
    "thumbnail": "", 
    "num": "Naval Eng", 
    "date_created": "2011-07-17 14:47:26", 
+   "ou": null, 
    "sort_order": 42, 
    "display": false, 
    "name": "Naval Engineering"
@@ -5618,6 +5629,7 @@
    "thumbnail": "", 
    "num": "Op Res Cen", 
    "date_created": "2011-07-17 14:47:58", 
+   "ou": null, 
    "sort_order": 43, 
    "display": false, 
    "name": "Operations Research Center"
@@ -5636,6 +5648,7 @@
    "thumbnail": "", 
    "num": "SDM", 
    "date_created": "2011-07-17 14:48:23", 
+   "ou": null, 
    "sort_order": 44, 
    "display": false, 
    "name": "System Design and Management Program"
@@ -5654,6 +5667,7 @@
    "thumbnail": "", 
    "num": "Sloan Fel", 
    "date_created": "2011-07-17 14:48:47", 
+   "ou": null, 
    "sort_order": 45, 
    "display": false, 
    "name": "Sloan Fellows"
@@ -5672,6 +5686,7 @@
    "thumbnail": "", 
    "num": "STS", 
    "date_created": "2011-07-17 14:50:55", 
+   "ou": null, 
    "sort_order": 46, 
    "display": false, 
    "name": "Program in Science, Technology, and Societ"
@@ -5690,6 +5705,7 @@
    "thumbnail": "", 
    "num": "TPP", 
    "date_created": "2011-07-17 14:51:51", 
+   "ou": null, 
    "sort_order": 47, 
    "display": false, 
    "name": "The Technology and Policy Program"
@@ -5708,6 +5724,7 @@
    "thumbnail": "", 
    "num": "WHOI ", 
    "date_created": "2011-07-17 14:52:18", 
+   "ou": null, 
    "sort_order": 48, 
    "display": false, 
    "name": "WHOI Oceanographic Institute"
@@ -5726,6 +5743,7 @@
    "thumbnail": "", 
    "num": "CSB", 
    "date_created": "2011-07-17 14:52:48", 
+   "ou": null, 
    "sort_order": 49, 
    "display": false, 
    "name": "Computation and Systems Biology"
@@ -5744,6 +5762,7 @@
    "thumbnail": "", 
    "num": "SCM", 
    "date_created": "2011-07-17 14:53:41", 
+   "ou": null, 
    "sort_order": 50, 
    "display": false, 
    "name": "Supply Chain Management "
