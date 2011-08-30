@@ -13,3 +13,6 @@ label[for=id_suggestion] {
 #student_account_deactivation_form .error_section {
     padding: 5px 0px;
 }
+#notification_preferences_table label {
+    font-weight: 400;
+}
