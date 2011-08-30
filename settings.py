@@ -36,9 +36,9 @@ HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
 
 # Email Settings
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'no-reply@umeqo.com'
-EMAIL_HOST_PASSWORD = 'californiapizzakitchen'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'umeqo'
+EMAIL_HOST_PASSWORD = 'Jamb4Juic3'
 EMAIL_PORT = 587
 
 PROD_DATA_MODELS = {

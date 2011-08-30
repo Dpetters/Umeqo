@@ -162,6 +162,7 @@ def student_registration(request, backend = RegistrationBackend(),
             new_user = backend.register(request, **form.cleaned_data)
             student = Student(user=new_user)
             umeqo = Employer.objects.get(name="Umeqo")
+            student.save()
             student.subscriptions.add(umeqo)
             student.save()
             if s.INVITE_ONLY:
