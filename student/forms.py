@@ -93,6 +93,11 @@ class StudentRegistrationForm(forms.Form):
                 res = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
                 fname = res[0][1]['cn'][0].split(" ")[0]
                 lname = res[0][1]['cn'][0].split(" ")[-1]
+                try:
+                    c = Course.objects.get(ou = res[0][1]['ou'][0])
+                    self.cleaned_data['course'] = c
+                except Exception, e:
+                    pass
                 self.cleaned_data["first_name"] = fname
                 self.cleaned_data["last_name"] = lname
             except Exception, e:
