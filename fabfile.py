@@ -103,8 +103,8 @@ def commit_prod_data():
             run("python copy_media.py prod out")
             run("git add -A")
             with fabric_settings(warn_only=True):
-                run('git commit -m "Local data commit from staging."')
-                run("git push origin prod")
+                run('git commit -m "Prod data commit from prod."')
+                run("git push origin master")
 
 def commit_local_data():
     if env.host != "staging.umeqo.com":
