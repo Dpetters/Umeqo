@@ -148,4 +148,4 @@ def update():
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
                     run("echo 'yes'|python manage.py collectstatic")
-                restart()
+                restart_apache()
