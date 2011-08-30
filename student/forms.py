@@ -82,7 +82,23 @@ class StudentRegistrationForm(forms.Form):
             if not res or (res[0] != None and res[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
                 raise forms.ValidationError(m.must_be_mit_student)
         return self.cleaned_data['email']
-
+    
+    def clean(self):
+        if self.cleaned_data.has_key("email"):
+            try:
+                con = ldap.open('ldap.mit.edu')
+                con.simple_bind_s("", "")
+                dn = "dc=mit,dc=edu"
+                uid = self.cleaned_data["email"].split("@")[0]
+                res = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
+                fname = res[0][1]['cn'][0].split(" ")[0]
+                lname = res[0][1]['cn'][0].split(" ")[-1]
+                self.cleaned_data["first_name"] = fname
+                self.cleaned_data["last_name"] = lname
+            except Exception, e:
+                pass
+        return self.cleaned_data
+            
 class BetaStudentRegistrationForm(StudentRegistrationForm):
     invite_code = forms.CharField(label="Invite Code:", widget=forms.TextInput(attrs={'tabindex':2}))
         
