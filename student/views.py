@@ -201,7 +201,6 @@ def student_registration_complete(request,
     context.update(extra_context)
     return render_to_response(template_name, context,
             context_instance = RequestContext(request))
-    
 
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
