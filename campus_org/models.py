@@ -5,7 +5,6 @@ from core.model_helpers import get_image_filename, get_thumbnail_filename
 from core.models import CommonInfo
 from core.signals import create_thumbnail, delete_thumbnail_on_image_delete
 
-
 class CampusOrg(CommonInfo):
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     type = models.ForeignKey("core.CampusOrgType")

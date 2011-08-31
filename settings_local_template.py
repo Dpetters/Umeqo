@@ -11,6 +11,8 @@ INVITE_ONLY = True
 
 WELCOME_EVENT_ID = 6 
 
+BACKUP_DIR = "backup"
+
 # Base page is the landing page
 USE_LANDING_PAGE = True
 
