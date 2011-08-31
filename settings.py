@@ -35,11 +35,9 @@ HAYSTACK_SEARCH_ENGINE = 'solr'
 HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
 
 # Email Settings
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'umeqo'
-EMAIL_HOST_PASSWORD = 'Jamb4Juic3'
-EMAIL_PORT = 587
+AWS_ACCESS_KEY_ID = 'AKIAJD32PEOKIG4RK3NQ'
+AWS_SECRET_ACCESS_KEY = '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'
+EMAIL_BACKEND = 'django_ses.SESBackend'
 
 PROD_DATA_MODELS = {
     'campus_org': ['campusorg'],

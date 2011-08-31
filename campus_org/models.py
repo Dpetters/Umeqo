@@ -7,7 +7,6 @@ from core.models import CommonInfo
 from core.signals import create_thumbnail, delete_thumbnail_on_image_delete
 from core import mixins as core_mixins
 
-
 class CampusOrg(CommonInfo):
     user = models.OneToOneField(User, unique=True, null=True, blank=True)
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
