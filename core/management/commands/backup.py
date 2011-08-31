@@ -41,10 +41,10 @@ class Command(BaseCommand):
         outfile = os.path.join(backup_dir, 'backup_%s.sql' % self._time_suffix())
 
         # Doing backup
-        if self.engine == 'mysql':
+        if self.engine == 'django.db.backends.mysql':
             print 'Doing Mysql backup to database %s into %s' % (self.db, outfile)
             self.do_mysql_backup(outfile)
-        elif self.engine in ('postgresql_psycopg2', 'postgresql'):
+        elif self.engine in ('django.db.backends.postgresql_psycopg2', 'django.db.backends.postgresql'):
             print 'Doing Postgresql backup to database %s into %s' % (self.db, outfile)
             self.do_postgresql_backup(outfile)
         else:
