@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from core.model_helpers import get_image_filename, get_thumbnail_filename
 from core.models import CommonInfo
 from core.signals import create_thumbnail, delete_thumbnail_on_image_delete
-from core import mixins as core_mixins
 
 class CampusOrg(CommonInfo):
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
@@ -22,17 +21,3 @@ class CampusOrg(CommonInfo):
 
 post_save.connect(create_thumbnail, sender=CampusOrg)
 post_save.connect(delete_thumbnail_on_image_delete, sender=CampusOrg)
-
-class campusOrgPreferences(core_mixins.DateTracking):
-    campu_org = models.OneToOneField(CampusOrg, unique=True, editable=False)
-    
-
-    class Meta:
-        verbose_name = "CampusOrg Preferences"
-        verbose_name_plural = "Recruiter Preferences"
-    
-    def __unicode__(self):
-        if hasattr(self, "recruiter"):
-            return "Recruiter Preferences for %s" % (self.campus_org,)
-        else:
-            return "Unattached Recruiter Preferences"
