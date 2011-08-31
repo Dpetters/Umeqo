@@ -58,6 +58,9 @@ urlpatterns += patterns('core.views',
 urlpatterns += patterns('campus_org.views',
     (r'^campus-org/info/$', 'campus_org_info', {}, 'campus_org_info'),
     (r'^campus-org/check-uniqueness/$', 'check_campus_org_uniqueness', {}, 'check_campus_org_uniqueness'),
+    (r'^campus_org/profile/$', 'campus_org_profile', {}, "campus_org_profile"),
+    (r'^campus-org/account/$', 'campus_org_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'campus_org_account'),
+    (r'^campus-org/account/preferences/$', 'campus_org_account_preferences', {}, 'campus_org_account_preferences'),
 )
 
 urlpatterns += patterns('registration.views',
@@ -101,6 +104,7 @@ urlpatterns += patterns('student.views',
     (r'^student/resume/$', 'student_resume', {}, 'student_resume'),
 )
 urlpatterns += patterns('employer.views',
+    (r'^employer/', 'employer', {}, 'employer'),                        
     (r'^employer/signup/$', direct_to_template, {'template': 'employer_registration.html', 'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     (r'^employer/account/$', 'employer_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'employer_account'),
     (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),

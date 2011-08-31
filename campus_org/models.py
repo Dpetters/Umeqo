@@ -9,7 +9,7 @@ from core import mixins as core_mixins
 
 
 class CampusOrg(CommonInfo):
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.OneToOneField(User, unique=True, null=True, blank=True)
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     type = models.ForeignKey("core.CampusOrgType")
     image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)

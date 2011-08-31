@@ -1,0 +1,94 @@
+{% extends "profile_base.html" %}
+
+{% block metadata %}
+{{block.super}}
+{{form.media}}
+{% load text_snippet %}
+{% load compress %}
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
+{% endcompress %}
+<script>
+    var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
+    
+    var NAME_REQUIRED = "{% text_snippet 'campus_org_name_required' %}";
+    var TYPE_REQUIRED = "{% text_snippet 'campus_org_type_required' %}";
+    var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
+</script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block optional_side_nav %}
+    <div class="left_side_container">
+        {% include "campus_org_side_nav.html" %}
+    </div>
+    <form id="profile_form" class="with_side_nav" method="POST" action="" enctype="multipart/form-data">
+{% endblock %}
+
+{% block profile_pages %}
+<li id="pg1">
+    <a href='#' class="ui-accordion-link"></a>
+    <div class="main_block clearfix">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
+            <span class="main_block_header_title">Edit Profile</span>
+        </div>
+        <table class="form_table">
+            <tr>
+                <th>{{form.name.label}}</th>
+                <td class="grande">
+                    <div class="errorspace"></div>
+                    {{form.name}}
+                </td>
+                <th>{{form.website.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.website}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.type.label}}</label></th>
+                <td class="grande">
+                    <div class="errorspace"></div>
+                    {{form.type}}
+                </td>
+                <th>{{form.image.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.image}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.email.label_tag}}</th>
+                <td colspan="3">
+                    <div class="errorspace"></div>
+                    {{form.email}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="errorspace"></div>
+                    {{form.description.label_tag}}
+                    {{form.description}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="error_section error">
+                </td>
+            </tr>
+            <tr>
+                <td class="button_cell" colspan="4">
+                     <a data-campus-org-name="{{user.campusorg.name}}" data-campus-org-id="{{user.campusorg.id}}" href="javascript:void(0)" class="button campus_org_link">Preview Profile</a>
+                    <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
+                    
+                    <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
+                </td>
+            </tr>
+        </table>
+    </div>
+</li>
+{% endblock %}

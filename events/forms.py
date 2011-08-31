@@ -10,6 +10,7 @@ from core.widgets import ImprovedSplitDateTimeWidget
 from events.choices import PUBLIC_PRIVATE_BOOLEAN_CHOICES, DROP_BOOLEAN_CHOICES
 from events.models import Event, EventType
 from core import messages as m
+from employer.models import Employer
 
 decorate_bound_field()
 class EventForm(forms.ModelForm):
@@ -51,4 +52,20 @@ class EventForm(forms.ModelForm):
         return self.cleaned_data
 
 class CampusOrgEventForm(EventForm):
-    pass
+    attending_employers = forms.ModelMultipleChoiceField(label="Attending Employers:", widget=forms.SelectMultiple(attrs={'tabindex':9}), queryset = Employer.objects.all(), required=False)
+    
+    class Meta:
+        fields = ('name', 
+                  'start_datetime', 
+                  'end_datetime', 
+                  'type', 
+                  'is_drop',
+                  'attending_employers',
+                  'location', 
+                  'latitude', 
+                  'longitude', 
+                  'audience', 
+                  'description', 
+                  'rsvp_message',
+                  'is_public',)
+        model = Event

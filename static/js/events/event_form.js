@@ -130,6 +130,9 @@ $(document).ready(function() {
                 }
             },
         },
+        attending_employers : {
+            required : true,
+        },
         description : {
             required : true,
         },
@@ -168,6 +171,9 @@ $(document).ready(function() {
         },
         location : {
             required : 'Location is required.'
+        },
+        attending_employers : {
+            required : "You must specify attending employers."
         }
     }
 
@@ -264,6 +270,29 @@ $(document).ready(function() {
         height : 146
     });
 
+    if(CAMPUS_ORG_EVENT){
+        $("#id_attending_employers").multiselect({
+            noneSelectedText : 'select employers',
+            classes: 'attending_employers_multiselect',
+            minWidth : 310,
+            height : 210,
+            click: function(e, ui) {
+                $.ajax({
+                    type: 'GET',
+                    url: EMPLOYER_DETAILS_URL,
+                    dataType: "html",
+                    data: {
+                        'employer_name':ui.text,
+                    },
+                    success: function (data) {
+                        $("#attending_employers").append(data);
+                    },
+                    error: errors_in_message_area_handler
+                });
+            },
+        }).multiselectfilter();     
+    }
+    
     $('.datefield').datepicker({
         minDate : 0
     });

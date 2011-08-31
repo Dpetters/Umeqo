@@ -8,18 +8,23 @@
 #event_type_section .errorspace,
 #event_drop_section .errorspace,
 #event_location_section .errorspace,
-#event_description_section .errorspace {
+#event_description_section .errorspace,
+#event_attending_employers_section .errorspace {
     display: inline-block;
     width: 200px;
     position: relative;
     top: 3px;
     left: 5px;
 }
+.attending_employers_multiselect .ui-multiselect-all{
+    display:none;
+}
 #event_name_section,
 #event_type_section,
 #event_drop_section,
 #event_location_section,
-#event_description_section {
+#event_description_section,
+#event_attending_employers_section {
     margin-top: 15px;
 }
 #event_form #id_name, #event_form #id_location {
@@ -279,4 +284,14 @@ input[type=text].datefield_no_bind {
 }
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
+}
+.attending_employer{
+
+}
+.attending_employer .efae-logo{
+    max-height:35px;
+    vertical-align:middle;
+}
+.attending_employer .efae-name{
+    
 }

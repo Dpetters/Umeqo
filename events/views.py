@@ -120,13 +120,11 @@ def event_page(request, id, slug, extra_context=None):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to()
 def event_new(request, form_class=None, extra_context=None):
-    context = {}
+    context = {'TEMPLATE':"event_form.html"}
     if is_recruiter(request.user):
         form_class = EventForm
-        context['TEMPLATE'] = "event_form.html"
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
-        context['TEMPLATE'] = "campus_org_event_form.html"
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
