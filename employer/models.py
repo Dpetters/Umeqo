@@ -36,7 +36,7 @@ class Employer(core_mixins.DateTracking):
         ordering=["name"]
            
     def get_absolute_url(self):
-        return reverse('employers_list') + '?id=' + self.id
+        return '%s?id=%d' % (reverse('employers_list'), self.id)
 
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
