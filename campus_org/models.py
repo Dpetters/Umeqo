@@ -28,37 +28,29 @@ post_save.connect(delete_thumbnail_on_image_delete, sender=CampusOrg)
 
 
 class CampusOrgPreferences(core_mixins.DateTracking):
-    student = models.OneToOneField("student.Student", unique=True, editable=False)
+    campus_org = models.OneToOneField("campus_org.CampusOrg", unique=True, editable=False)
     
-    email_on_invite_to_public_event = models.BooleanField(default=True)
-    email_on_invite_to_private_event = models.BooleanField(default=True)
-    email_on_new_subscribed_employer_event = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = "Student Preferences"
-        verbose_name_plural = "Student Preferences"
+        verbose_name = "Campus Org Preferences"
+        verbose_name_plural = "Camput Org Preferences"
     
     def __unicode__(self):
-        if hasattr(self, "student"):
-            return "Student Preferences for %s" % (self.student,)
+        if hasattr(self, "campus_org"):
+            return "Campus Org Preferences for %s" % (self.campus_org,)
         else:
-            return "Unattached Student Preferences"
+            return "Unattached Campus Org Preferences"
 
 
 class CampusOrgStatistics(core_mixins.DateTracking):
-    student = models.OneToOneField("student.Student", unique=True, editable=False)
-    
-    event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
-    add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
-    resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
-    shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)
+    campus_org = models.OneToOneField("campus_org.CampusOrg", unique=True, editable=False)
 
     class Meta:
-        verbose_name = "Student Statistics"
-        verbose_name_plural = "Student Statistics"
+        verbose_name = "Campus Org Statistics"
+        verbose_name_plural = "Campus Org Statistics"
 
     def __unicode__(self):
-        if hasattr(self, "student"):
-            return "Student Statistics for %s" % (self.student,)
+        if hasattr(self, "campus_org"):
+            return "Campus Org Statistics for %s" % (self.student,)
         else:
-            return "Unattached Student Statistics"
+            return "Unattached Campus Org Statistics"
