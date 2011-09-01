@@ -329,20 +329,6 @@ $(document).ready(function() {
         rules : event_rules,
         messages : messages
     });
-    if( typeof EDIT_FORM != 'undefined' && EDIT_FORM == false) {
-        $('#id_name').rules("add", {
-            remote : {
-                url : CHECK_NAME_AVAILABILITY_URL,
-                error : function(jqXHR, textStatus, errorThrown) {
-                    if(jqXHR.status == 0) {
-                        show_error_dialog(page_check_connection_message);
-                    } else {
-                        show_error_dialog(page_error_message);
-                    }
-                }
-            }
-        });
-    }
 
     $("#id_audience").multiselect({
         noneSelectedText : 'select school years',
