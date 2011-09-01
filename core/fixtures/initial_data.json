@@ -4838,6 +4838,36 @@
   }
  }, 
  {
+  "pk": 152, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-08-31 12:37:39", 
+   "name_and_level": "Tamil (Proficient)", 
+   "last_updated": "2011-08-31 12:37:39", 
+   "name": "Tamil"
+  }
+ }, 
+ {
+  "pk": 151, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-08-31 12:37:39", 
+   "name_and_level": "Tamil (Basic)", 
+   "last_updated": "2011-08-31 12:37:39", 
+   "name": "Tamil"
+  }
+ }, 
+ {
+  "pk": 153, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-08-31 12:37:39", 
+   "name_and_level": "Tamil (Fluent)", 
+   "last_updated": "2011-08-31 12:37:39", 
+   "name": "Tamil"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "core.course", 
   "fields": {
@@ -5335,18 +5365,18 @@
   "pk": 35, 
   "model": "core.course", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:36", 
-   "description": "", 
-   "admin": null, 
+   "website": "http://writing.mit.edu/", 
+   "last_updated": "2011-08-31 18:46:12", 
+   "description": "The MIT Program in Writing and Humanistic Studies gives students the opportunity to learn the techniques, forms, and traditions of several kinds of writing, from basic expository prose to more advanced forms of non-fictional prose, fiction and poetry, science writing, scientific and technical communication and digital media. Our FACULTY consists of novelists, essayists, poets, translators, biographers, historians, engineers and scientists.\r\n \r\nProgram subjects are arranged by three areas: creative writing, science writing and digital media. In each area introductory subjects lead to more specialized advanced subjects. A number of the advanced subjects use writing as a vehicle to explore humanistic and scientific issues in a broad cultural context.\r\n \r\nStudents pursuing a humanities concentration in writing or a minor in writing work mainly within one of the Program's three curricular areas. Students may also major in writing or develop a joint major with another discipline in the humanities or with the Program in Science, Technology, and Society.\r\n \r\nThe Graduate Program in Science Writing is a 12-month course of study leading to a Master of Science degree. Aimed at students who wish to write about science and technology for general readers, the program is built around an intensive two-semester advanced science writing seminar. In addition, students choose one elective each semester, write a substantial thesis, and complete an internship. Links to other MIT programs and departments, such as the Knight Science Journalism Fellowships program, Comparative Media Studies (CMS) and the Program in Science, Technology and Society (STS) provide rich resources for students who come to the Graduate Program in Science Writing from a variety of backgrounds.", 
+   "admin": "", 
    "image": "", 
    "email": "", 
    "thumbnail": "", 
    "num": "21W", 
    "date_created": "2011-05-03 12:27:36", 
-   "ou": null, 
+   "ou": "", 
    "sort_order": 27, 
-   "display": false, 
+   "display": true, 
    "name": "Writing and Humanistic Studies"
   }
  }, 
