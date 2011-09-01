@@ -288,14 +288,11 @@ input[type=text].datefield_no_bind {
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
 }
-    width: 95px;
-    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
-}
 div.attending_employer{
     height:69px;
     line-height:69px;
     width:139px;
 }
 #attending_employers .ef-logo{
-    max-width:140px;
+    max-width:139px;
 }
