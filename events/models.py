@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 from core import mixins as core_mixins
-from core.decorators import is_recruiter
+from core.decorators import is_recruiter, is_campus_org
 from core.managers import ActiveManager
 from core.models import EventType
 from core.view_helpers import english_join
@@ -73,8 +73,12 @@ def send_new_event_notifications(sender, instance, created, raw, **kwargs):
             notify_about_event(instance, 'cancelled_event')
 
 def notify_about_event(instance, notice_type):
+    employers = None
     if is_recruiter(instance.owner):
         employers = [instance.owner.recruiter.employer]
+    if is_campus_org(instance.owner):
+        employers = [instance.attending_employers]
+    if employers:
         subscribers = Student.objects.filter(subscriptions__in=employers)
         to_users = map(lambda n: n.user, subscribers)
         
@@ -104,7 +108,7 @@ def notify_about_event(instance, notice_type):
                     'has_word': has_word,
                     'event': instance,
                 })
-
+        
 @receiver(signals.pre_save, sender=Event)
 def save_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.name)
