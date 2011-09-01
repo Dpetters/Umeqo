@@ -17,7 +17,7 @@ class EventForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter event name', 'tabindex':1}))
     type = forms.ModelChoiceField(queryset = EventType.objects.all(), widget=forms.Select(attrs={'tabindex':2}), empty_label="select event type")
     is_public = forms.TypedChoiceField(coerce=boolean_coerce, choices=PUBLIC_PRIVATE_BOOLEAN_CHOICES, initial=True, widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':3}))
-    is_drop = forms.TypedChoiceField(coerce=boolean_coerce, choices=DROP_BOOLEAN_CHOICES, initial=True, widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':4}))
+    is_drop = forms.TypedChoiceField(coerce=boolean_coerce, choices=DROP_BOOLEAN_CHOICES, initial=False, widget=forms.RadioSelect(renderer=RadioSelectTableRenderer, attrs={'tabindex':4}))
     location = forms.CharField(widget=forms.TextInput(attrs={'autocomplete':'off', 'placeholder':'Enter classroom #, address, etc..', 'tabindex':5}), required=False)
     latitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
     longitude = forms.FloatField(widget=forms.widgets.HiddenInput, required=False)
