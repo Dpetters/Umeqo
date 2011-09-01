@@ -25,9 +25,9 @@
         <a href="{% url event_delete id=event.id %}" class="delete-event-link">Delete</a>
     </div>
     {% endif %}
-    {% if not event.is_owner %}
+    {% if edit and not event.is_owner %}
     <div class="hosted-by">
-      created by {{ event.owner }}
+      created by {{ event.owner.campusorg }}
     </div>
     {% endif %}
     <div class="details">
