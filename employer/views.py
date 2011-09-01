@@ -52,7 +52,6 @@ def employer(request):
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
-    print "hi2"
     try:
         employer = Employer.objects.get(slug=slug)
     except Employer.DoesNotExist:
