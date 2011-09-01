@@ -134,6 +134,7 @@ def event_new(request, form_class=None, extra_context=None):
             event = form.save(commit=False)
             event.owner = request.user
             event.save()
+            form.save_m2m()
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
