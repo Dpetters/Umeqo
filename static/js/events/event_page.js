@@ -92,22 +92,30 @@ $(document).ready(function() {
         $(this).children('.filler').eq(0).animate({
             height: '100%'
         }, function() {
-            $.get(EVENT_RSVP_URL, function(data) {
-                rsvps = data;
-                $.get(CHECKIN_URL, function(data) {
-                    $('#checkins').children().remove();
-                    $.each(data, function() {
-                        var newLi = $('#checkins_li_template').clone();
-                        newLi.children('.name').eq(0).html(this.name);
-                        newLi.children('.email').eq(0).html(this.email);
-                        newLi.attr('id','');
-                        $('#checkins').append(newLi);
+            $.ajax({
+                url:EVENT_RSVP_URL,
+                success: function(data) {
+                    rsvps = data;
+                    $.ajax({
+                        url:CHECKIN_URL,
+                        success: function(data) {
+                            $('#checkins').children().remove();
+                            $.each(data, function() {
+                                var newLi = $('#checkins_li_template').clone();
+                                newLi.children('.name').eq(0).html(this.name);
+                                newLi.children('.email').eq(0).html(this.email);
+                                newLi.attr('id','');
+                                $('#checkins').append(newLi);
+                            });
+                            $('#event_checkin_main').removeClass('hid').animate({
+                                opacity: 1.0
+                            });
+                            $('body').addClass('overflowHidden');
+                        },
+                        error: errors_in_message_area_handler
                     });
-                    $('#event_checkin_main').removeClass('hid').animate({
-                        opacity: 1.0
-                    });
-                    $('body').addClass('overflowHidden');
-                });
+                },
+                error: errors_in_message_area_handler
             });
         });
         $(this).addClass('filled');
