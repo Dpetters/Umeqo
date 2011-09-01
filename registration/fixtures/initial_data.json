@@ -2318,5 +2318,37 @@
    "ip_address": "68.13.70.199", 
    "email": "jabredth@mit.edu"
   }
+ }, 
+ {
+  "pk": 177, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Lawrence", 
+   "last_name": "Diao", 
+   "last_updated": "2011-08-30 21:43:23", 
+   "auto_email": false, 
+   "final": false, 
+   "emailed": false, 
+   "date_created": "2011-08-30 20:36:12", 
+   "summer_plans": null, 
+   "ip_address": "216.239.45.4", 
+   "email": "ldiao@princeton.edu"
+  }
+ }, 
+ {
+  "pk": 178, 
+  "model": "registration.interestedperson", 
+  "fields": {
+   "first_name": "Archit", 
+   "last_name": "Bhise", 
+   "last_updated": "2011-08-30 21:44:06", 
+   "auto_email": true, 
+   "final": false, 
+   "emailed": true, 
+   "date_created": "2011-08-30 21:42:57", 
+   "summer_plans": "", 
+   "ip_address": null, 
+   "email": "archit@mit.edu"
+  }
  }
 ]
