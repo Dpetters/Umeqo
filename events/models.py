@@ -66,7 +66,6 @@ class Event(core_mixins.DateCreatedTracking):
 
 @receiver(signals.m2m_changed, sender=Event.attending_employers.through)
 def send_new_campus_org_event_notifications(sender, instance, action, reverse, model, pk_set, using, **kwargs):
-    print "m2m changed"
     if action=="post_add":
         notify_about_event(instance, 'new_event')
                 
