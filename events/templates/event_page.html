@@ -197,12 +197,16 @@
             </div>
         </div>
     {% endif %}
-    {% if event.is_drop %}
-        {% if dropped_resume %}
-            <a id="event_resume_undrop" class="button" {% if show_admin %}disabled="disabled"{% endif %} href="#">Undo Drop Resume</a>
-        {% else %}
-            <a id="event_resume_drop" class="button" {% if show_admin %}disabled="disabled"{% endif %} href="#">Drop Resume</a>
-        {% endif %}
+    {% if user.is_authenticated %}
+      {% if event.is_drop %}
+          {% if dropped_resume %}
+              <a id="event_resume_undrop" class="button" {% if show_admin %}disabled="disabled"{% endif %} href="#">Undo Drop Resume</a>
+          {% else %}
+              <a id="event_resume_drop" class="button" {% if show_admin %}disabled="disabled"{% endif %} href="#">Drop Resume</a>
+          {% endif %}
+      {% endif %}
+    {% else %}
+      <a id="event_resume_drop" class="button disabled-button" disabled="disabled" href="#">Login to drop your resume</a>
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
