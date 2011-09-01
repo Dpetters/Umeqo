@@ -331,6 +331,12 @@ label.required span.error{
 #promotion p {
     text-align: left;
 }
+#promotion a {
+    color: #BBB;
+}
+#promotion a:hover {
+    color: #EEE;
+}
 #sbc_logo {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
