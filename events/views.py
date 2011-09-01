@@ -160,6 +160,7 @@ def event_edit(request, id=None, extra_context=None):
         if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
             return HttpResponseForbidden('You are not allowed to edit this event.')                
     elif is_campus_org(event.owner):
+        context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
         if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
             return HttpResponseForbidden('You are not allowed to edit this event.') 

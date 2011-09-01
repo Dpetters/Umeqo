@@ -357,6 +357,7 @@ $(document).ready(function() {
             minWidth : 310,
             height : 210,
             click: function(e, ui) {
+                if (ui.checked){
                 $.ajax({
                     type: 'GET',
                     url: EMPLOYER_DETAILS_URL,
@@ -369,7 +370,13 @@ $(document).ready(function() {
                     },
                     error: errors_in_message_area_handler
                 });
+                }else{
+                    $(".attending_employer[data-employer-name='" + ui.text + "']").remove();
+                }
             },
+            uncheckAll: function(){
+                $("#attending_employers").html("");
+            }
         }).multiselectfilter();     
     }
     

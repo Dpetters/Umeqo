@@ -293,6 +293,19 @@ input[type=text].datefield_no_bind {
 
 }
 #attending_employers .ef-logo{
-    max-height:69px;
+    max-width:140px;
     vertical-align:middle;
+}
+#attending_employers .ef-name{
+    padding:20px;
+    width:140px;
+    background:#FAFAFA;
+    border:1px solid #EEE;
+    display:inline-block;
+    font-size:19px;
+    height:69px;
+    line-height:69px;
+    text-align:center;
+    vertical-align:middle;
+    width:139px;
 }

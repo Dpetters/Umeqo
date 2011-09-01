@@ -77,7 +77,7 @@ def notify_about_event(instance, notice_type):
     if is_recruiter(instance.owner):
         employers = [instance.owner.recruiter.employer]
     if is_campus_org(instance.owner):
-        employers = [instance.attending_employers]
+        employers = [instance.attending_employers.all()]
     if employers:
         subscribers = Student.objects.filter(subscriptions__in=employers)
         to_users = map(lambda n: n.user, subscribers)
