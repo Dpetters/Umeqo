@@ -19,10 +19,15 @@
             </span>
         </div>
     </div>
-    {% if edit %}
+    {% if edit and event.is_owner %}
     <div class="edit">
         <a href="{% url event_edit id=event.id %}">Edit</a>
         <a href="{% url event_delete id=event.id %}" class="delete-event-link">Delete</a>
+    </div>
+    {% endif %}
+    {% if edit and not event.is_owner %}
+    <div class="hosted-by">
+      created by {{ event.owner.campusorg }}
     </div>
     {% endif %}
     <div class="details">

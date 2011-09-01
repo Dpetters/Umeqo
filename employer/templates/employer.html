@@ -1,0 +1,7 @@
+{% if employer.logo %}
+<img data-employer-name="{{employer}}" class="ef-logo attending_employer" src="{{MEDIA_URL}}{{employer.logo}}" />
+{% else %}
+<div data-employer-name="{{employer}}" class="attending_employer">
+    <span class="ef-name">{{employer}}</span>    
+</div>
+{% endif %}

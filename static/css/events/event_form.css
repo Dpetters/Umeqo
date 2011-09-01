@@ -8,18 +8,23 @@
 #event_type_section .errorspace,
 #event_drop_section .errorspace,
 #event_location_section .errorspace,
-#event_description_section .errorspace {
+#event_description_section .errorspace,
+#event_attending_employers_section .errorspace {
     display: inline-block;
     width: 200px;
     position: relative;
     top: 3px;
     left: 5px;
 }
+.attending_employers_multiselect .ui-multiselect-all{
+    display:none;
+}
 #event_name_section,
 #event_type_section,
 #event_drop_section,
 #event_location_section,
-#event_description_section {
+#event_description_section,
+#event_attending_employers_section {
     margin-top: 15px;
 }
 #event_form #id_name, #event_form #id_location {
@@ -30,8 +35,9 @@
     width: 310px;
     display: inline-block;
 }
-label[for=id_is_public_0], label[for=id_is_public_1] {
+label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
     margin-left: 7px;
+    padding-right:0px;
 }
 #location_suggestions {
     margin-top: 1px;
@@ -273,10 +279,20 @@ label[for=id_rsvp_message]{
     color: #222;
     cursor: pointer;
 }
+#resume_drop_info{
+    display:inline;
+    float:right;
+    font-size:11.7px;
+}
 input[type=text].datefield_no_bind {
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
 }
-    width: 95px;
-    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
+div.attending_employer{
+    height:69px;
+    line-height:69px;
+    width:139px;
+}
+#attending_employers .ef-logo{
+    max-width:139px;
 }

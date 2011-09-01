@@ -7,7 +7,7 @@ import os
 COMPRESS = False
 
 # Students need an invite code to register
-INVITE_ONLY = True
+INVITE_ONLY = False
 
 # Base page is the landing page
 USE_LANDING_PAGE = True

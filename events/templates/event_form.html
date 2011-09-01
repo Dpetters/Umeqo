@@ -13,6 +13,13 @@
     
     var MEDIUM_AJAX_LOADER = "{% include 'medium_ajax_loader.html' %}";
     
+    {% if user.campusorg %}
+        var CAMPUS_ORG_EVENT = true;
+        var EMPLOYER_DETAILS_URL = "{% url employer %}";
+    {% else %}
+        var CAMPUS_ORG_EVENT = false;
+    {% endif %}
+    
     {% if edit %}
         var EDIT_FORM = true;
     {% else %}
@@ -25,10 +32,17 @@
 {% load compress %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+{% if user.campusorg %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+{% endif %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_form.css" />
 {% endcompress %}
 {% compress js %}
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+{% if user.campusorg %}
+    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+{% endif %}
 <script src="{{ STATIC_URL }}js/events/event_form.js"></script>
 {% endcompress %}
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -130,9 +144,23 @@
             <div class="errorspace"></div>
             <br>
             {{form.is_drop}}
-            <p>Enabling resume drops will allow students to drop their resume without RSVP-ing.<p>
-            <p><strong>Note: </strong>You will be able to see the resumes of students who RSVP regardless of resume drops.</p>
+            <p id="resume_drop_info">(enabling this feature allows students to drop their resume without RSVP-ing)</p>
         </div>
+        {% if user.campusorg %}
+        <div id="event_attending_employers_section">
+            <span class="div_form_above_field_label">Attending Employers</span>
+            <div class="errorspace"></div>
+            <br>
+            {{form.attending_employers}}
+            <div id="attending_employers">
+            {% if edit %}
+                {% for employer in attending_employers.all %}
+                    {% include "employer.html" %}
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+        {% endif %}
         <div id="event_location_section">
             <span class="div_form_above_field_label">Location</span>
             <div class="errorspace"></div>

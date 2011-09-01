@@ -46,22 +46,26 @@
             </div>
         {% endif %}{% endif %}
         {% if posted %}
-                <div class="message">
-                    Thank you for your interest! You will be included in the next round of invitations.
-                </div>
+            <div class="message">
+                Thank you for your interest! You will be included in the next round of invitations.
+            </div>
         {% endif %}
         {% if deactivated %}
-                <div class="message">
-                    Thank you for trying out Umeqo!
-                </div>
+            <div class="message">
+                Thank you for trying out Umeqo!
+            </div>
+        {% endif %}
+        {% if loggedout %}
+            <div class="message">
+                You have been logged out.
+            </div>
         {% endif %}
         <div class="center">
             <h1>Umeqo</h1>
             <h3 class="mit">Coming to MIT Fall 2011</h3>
-
+            <p id="innovative">Umeqo is an innovative recruiting resource for <strong>students</strong> and <strong>employers</strong> to discover one another.</p>
             <div id="lotsaforms" class="row">
                 <div class="col">
-                    <p id="innovative">Umeqo is an innovative recruiting resource for <strong>students</strong> and <strong>employers</strong> to <em>discover one another</em>.</p>
                     <div id="login_module" class="module">
                         <h2>Already have an account?</h2>
                         <form action="{% url login %}" method="POST">
@@ -73,8 +77,8 @@
                         </form>
                         <div class="clearfix"></div>
                         <div id="invite_code">
-                          <h2>Have an invite code?</h2>
-                          <p><a href="{% url student_registration %}" class="black_button">Create your account!</a></p>
+                          <h2>Need an account?</h2>
+                          <p><a href="{% url student_registration %}" class="black_button">Create one now!</a></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -83,21 +87,13 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="working">We're working hard to craft the ultimate experience.</p>
-                    <p>Interested? Help us by participating in the beta!</p>
-                    <h2>Want to get in on the beta?</h2>
-                    <p>Fill in the information below (we won't sell it, rent it, or trade it - promise!) and we'll get in touch when the time comes.</p>
-                    <form action="/" method="POST">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <p>{{field.label_tag}}{{field}}</p>
-                        {% endfor %}
-                        {% if not disabled %}
-                        <input type="submit" value="submit"/> 
-                        {% else %}
-                        <input type="submit" value="thanks!" disabled="disabled" />
-                        {% endif %}
-                    </form>
+                    <p id="working">Featured Event</p>
+                    <div id="promotion">
+                      <h2>Drop your resume for the SBC BBQ!</h2>
+                      <img id="sbc_logo" src="{{STATIC_URL}}images/landing/sbc.jpg" alt="SBC" />
+                      <p>The SBC BBQ will feature dozens of companies including <strong>Cisco</strong> and <strong>Google</strong>.</p>
+                      <p>It starts 2:00pm on Tuesday, September 6 on Kresge Lawn, but you'll be able to get in on the action early by dropping your resume on the <a href="/events/5/sbc-bbq">official Umeqo event page</a>!</p>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>

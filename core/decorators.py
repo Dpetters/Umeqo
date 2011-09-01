@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 def is_campus_org(user):
-    return hasattr(user, "campus_org")
+    return hasattr(user, "campusorg")
     
 def is_student(user):
     return hasattr(user, "student")
@@ -11,7 +11,7 @@ def is_recruiter(user):
     return hasattr(user, "recruiter")
 
 def is_campus_org_or_recruiter(user):
-    return hasattr(user, "recruiter") or hasattr(user, "campus_org")
+    return hasattr(user, "recruiter") or hasattr(user, "campusorg")
 
 def is_student_or_recruiter(user):
     return hasattr(user, "recruiter") or hasattr(user, "student")

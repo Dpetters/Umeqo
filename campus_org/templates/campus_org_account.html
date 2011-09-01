@@ -1,0 +1,35 @@
+{% extends "account_base.html" %}
+
+{% block metadata %}
+    {{block.super}}
+    {% load text_snippet %}
+    {% load compress %}
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_account_settings.css" />
+    {% endcompress %}
+{% endblock %}
+
+
+{% block content_area %}
+<div class="left_side_container">
+    {% include "campus_org_side_nav.html" %}
+</div>
+{{block.super}}
+{% endblock %}
+
+{% block preferences %}
+<form id="preferences_form" method="POST" action="{% url campus_org_account_preferences %}">
+{% csrf_token %}
+    <table id="notification_preferences_table" class="form_table">
+        <tbody>  
+            <tr>
+               <th>Events</th>
+               <th>Email</th>
+           </tr>
+       </tbody>              
+    </table>
+    <h3></h3>
+    <p class="sub_header_message"></p>
+    <table class="form_table">
+        <tbody>
+{% endblock %}

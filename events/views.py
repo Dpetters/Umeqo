@@ -50,7 +50,7 @@ def event_page(request, id, slug, extra_context=None):
         return redirect('student_profile')
     
     event = Event.objects.get(pk=id)
-    if not hasattr(request.user,"recruiter"):
+    if not is_recruiter(request.user) and not is_campus_org(request.user):
         event.view_count += 1
         event.save()
     is_past = event.end_datetime < datetime.now()    
@@ -100,9 +100,12 @@ def event_page(request, id, slug, extra_context=None):
         'is_deadline': is_deadline,
         'google_description': google_description
     }
+    if is_campus_org(event.owner):
+        context['campus_org_event'] = is_campus_org(event.owner)
+        context['attending_employers'] = event.attending_employers
     if len(event.audience.all())>0:
         context['audience'] = event.audience.all()
-    if hasattr(request.user,"student"):
+    if is_student(request.user):
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
@@ -111,7 +114,7 @@ def event_page(request, id, slug, extra_context=None):
         if dropped_resume.exists():
             context['dropped_resume'] = True
         context['can_rsvp'] = True
-    elif hasattr(request.user,"recruiter"):
+    elif is_recruiter(request.user) or is_campus_org(request.user):
         context['show_admin'] = True
     context.update(extra_context or {})
     return context
@@ -120,19 +123,18 @@ def event_page(request, id, slug, extra_context=None):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to()
 def event_new(request, form_class=None, extra_context=None):
-    context = {}
+    context = {'TEMPLATE':"event_form.html"}
     if is_recruiter(request.user):
         form_class = EventForm
-        context['TEMPLATE'] = "event_form.html"
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
-        context['TEMPLATE'] = "campus_org_event_form.html"
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
             event = form.save(commit=False)
             event.owner = request.user
             event.save()
+            form.save_m2m()
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
@@ -146,7 +148,7 @@ def event_new(request, form_class=None, extra_context=None):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
-@render_to()
+@render_to("event_form.html")
 def event_edit(request, id=None, extra_context=None):
     try:
         event = Event.objects.get(pk=id)
@@ -156,13 +158,12 @@ def event_edit(request, id=None, extra_context=None):
     context['event'] = event
     if is_recruiter(event.owner):
         form_class = EventForm
-        context['TEMPLATE'] = "event_form.html"
         if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
             return HttpResponseForbidden('You are not allowed to edit this event.')                
     elif is_campus_org(event.owner):
+        context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
-        context['TEMPLATE'] = "campus_org_event_form.html"
-        if not is_campus_org(request.user) or request.user.campus_org != event.owner.campus_org:
+        if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
             return HttpResponseForbidden('You are not allowed to edit this event.') 
     if request.method == 'POST':
         form = form_class(request.POST, instance=event)
@@ -191,7 +192,7 @@ def event_delete(request, id, extra_context = None):
                 if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
                     return HttpResponseForbidden('You are not allowed to delete this event.')                
             elif is_campus_org(event.owner):
-                if not is_campus_org(request.user) or request.user.campus_org != event.owner.campus_org:
+                if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
                     return HttpResponseForbidden('You are not allowed to delete this event.') 
             event.is_active = False
 
@@ -216,7 +217,7 @@ def event_schedule(request):
 def event_rsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
-    if request.method == 'GET' and hasattr(request.user, 'recruiter'):
+    if request.method == 'GET' and is_recruiter(request.user) or is_campus_org(request.user):
         data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     # if POST then record student's RSVP
@@ -241,7 +242,7 @@ def event_rsvp(request, event_id):
         else:
             return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
     else:
-        return HttpResponseForbidden()
+        return HttpResponseForbidden("You must be a recruiter or campus org to access this view.")
 
 @login_required
 @user_passes_test(is_student)

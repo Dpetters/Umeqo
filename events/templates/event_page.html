@@ -17,6 +17,9 @@
 {% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    {% if campus_org_event %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
+    {% endif %}
 {% endcompress %}
 <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
@@ -97,7 +100,7 @@
                     {% include "events_response_token.html" with student=student %}
                 {% empty %}
                 <div id="event_response_empty">
-                    Nobody has RSVP'd <strong>{{attending_text}}</strong> yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
+                    Nobody has RSVP'd <strong>{{attending_text}}</strong> yet.{% if not campus_org_event %} Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.{% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -134,7 +137,7 @@
     <div id="event_actions">
         <div id="rsvp_div" class="{% if event.is_public %}public{% else %}private{% endif %}">
             {% if is_past %}
-                <a href="javascript:void(0)" id="rsvp-yes-button" class="button disabled-button" title="RSVP disabled.">Event already passed!</a>
+                <a href="javascript:void(0)" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP disabled.">Event already passed!</a>
             {% else %}{% if can_rsvp or show_admin %}
                 {% if event.is_public %}
                     <div class="no-response{% if not responded %} hid{% endif %}">
@@ -142,20 +145,20 @@
                         <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
                     </div>
                     <div class="response{% if responded %} hid{% endif %}">
-                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button{% if not can_rsvp %} disabled-button{% endif %}">RSVP: {{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button" {% if not can_rsvp %}disabled="disabled" {% endif %}>RSVP: {{attending_text}}</a>
                     </div>
                 {% else %}
                     <strong>RSVP:</strong>
                     {% spaceless %}
-                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">{{attending_text}}</a>
-                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}{% if show_admin %} disabled-button{% endif %}">Not {{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if show_admin %}disabled="disabled"{% endif %}>{{attending_text}}</a>
+                        <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if show_admin %}disabled="disabled"{% endif %}>Not {{attending_text}}</a>
                     {% endspaceless %}
                     <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
                 {% endif %}
             {% endif %}{% endif %}
             {% if not user.is_authenticated %}
-                <a href="/login/" id="rsvp-yes-button" class="button" title="RSVP requires login.">
-                    Login to RSVP.
+                <a href="/login/" id="rsvp-yes-button" class="button disabled-button" title="RSVP requires login.">
+                    Login to RSVP
                 </a>
             {% endif %}
         </div>
@@ -194,12 +197,16 @@
             </div>
         </div>
     {% endif %}
-    {% if event.is_drop %}
-        {% if dropped_resume %}
-            <a id="event_resume_undrop" class="button{% if show_admin %} disabled-button{% endif %}"href="#">Undo Drop Resume</a>
-        {% else %}
-            <a id="event_resume_drop" class="button{% if show_admin %} disabled-button{% endif %}"href="#">Drop Resume</a>
-        {% endif %}
+    {% if user.is_authenticated %}
+      {% if event.is_drop %}
+          {% if dropped_resume %}
+              <a id="event_resume_undrop" class="button" {% if show_admin %}disabled="disabled"{% endif %} href="#">Undo Drop Resume</a>
+          {% else %}
+              <a id="event_resume_drop" class="button" {% if show_admin %}disabled="disabled"{% endif %} href="#">Drop Resume</a>
+          {% endif %}
+      {% endif %}
+    {% else %}
+      <a id="event_resume_drop" class="button disabled-button" disabled="disabled" href="#">Login to drop your resume</a>
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
@@ -219,6 +226,18 @@
             {% if event.description %}{{event.description|safe}}{% else %}No description provided.{% endif %}
         </div>
     </div>
+    {% if campus_org_event %}
+    <div id="event_attending_employers" class="main_block">
+        <div class="main_block_header">
+            <span class="main_block_header_title">Attending Employers</span>
+        </div>
+        <div id="attending_employers" class="main_block_content">
+            {% for employer in attending_employers.all %}
+                {% include "employer.html" %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
     <div id="event_side">
         <div id="event_where" class="main_block">
             <div class="main_block_header">
@@ -237,11 +256,15 @@
             </div>
             <div class="main_block_content">
                 <div class="event_company">
-                    <div class="event_company_logo">
-                      <img class="logo" src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
+                    <div class="event_host_logo">
+                        {% if campus_org_event %}
+                            <img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" />                        
+                        {% else %}
+                            <img src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
+                        {% endif %}
                     </div>
                     <div class="event_company_name">
-                      {{ recruiter.name }}
+                      {% if campus_org_event %}{{event.owner.campusorg}}{% else %}{{ recruiter.name }}{% endif %}
                         <a href="{% if not show_admin %}{% url employers_list %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
                             {{event.owner.recruiter.employer}}
                         </a>
