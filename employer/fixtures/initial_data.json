@@ -5,7 +5,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:12:18", 
+   "last_updated": "2011-08-31 18:51:29", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -13,7 +13,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:12:18", 
-   "logo": "", 
+   "logo": "employer/employer/accenture_2011-08-31-18-51-29.png", 
    "careers_website": "", 
    "slug": "accenture", 
    "name": "Accenture"
@@ -65,7 +65,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:19:48", 
+   "last_updated": "2011-08-31 18:54:35", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -73,7 +73,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:19:48", 
-   "logo": "", 
+   "logo": "employer/employer/bain & co._2011-08-31-18-54-35.png", 
    "careers_website": "", 
    "slug": "bain", 
    "name": "Bain & Co."
@@ -211,7 +211,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:09:31", 
+   "last_updated": "2011-08-31 18:56:01", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -219,7 +219,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:09:31", 
-   "logo": "", 
+   "logo": "employer/employer/boston consulting group (bcg)_2011-08-31-18-56-01.png", 
    "careers_website": "", 
    "slug": "bcg", 
    "name": "Boston Consulting Group (BCG)"
@@ -331,7 +331,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:47:38", 
+   "last_updated": "2011-08-31 19:14:09", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -339,7 +339,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:47:38", 
-   "logo": "", 
+   "logo": "employer/employer/cisco_2011-08-31-19-14-09.png", 
    "careers_website": "", 
    "slug": "cisco", 
    "name": "Cisco"
@@ -813,7 +813,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:12:08", 
+   "last_updated": "2011-08-31 18:57:45", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -821,7 +821,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:12:08", 
-   "logo": "", 
+   "logo": "employer/employer/mckinsey & co._2011-08-31-18-57-45.png", 
    "careers_website": "", 
    "slug": "mck", 
    "name": "Mckinsey & Co."
@@ -1025,6 +1025,26 @@
   }
  }, 
  {
+  "pk": 72, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "", 
+   "last_updated": "2011-08-31 18:59:22", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-08-31 18:59:22", 
+   "logo": "employer/employer/optiver trading_2011-08-31-18-59-22.png", 
+   "careers_website": "", 
+   "slug": "optiver", 
+   "name": "Optiver Trading"
+  }
+ }, 
+ {
   "pk": 14, 
   "model": "employer.employer", 
   "fields": {
@@ -1202,7 +1222,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:41:03", 
+   "last_updated": "2011-08-31 19:05:34", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -1210,7 +1230,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:03", 
-   "logo": "", 
+   "logo": "employer/employer/teach for america_2011-08-31-19-05-34.png", 
    "careers_website": "", 
    "slug": "tfa", 
    "name": "Teach for America"
@@ -1282,6 +1302,26 @@
    "careers_website": "", 
    "slug": "UTC", 
    "name": "United Technologies Corporation"
+  }
+ }, 
+ {
+  "pk": 73, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "", 
+   "last_updated": "2011-08-31 19:10:56", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-08-31 19:02:01", 
+   "logo": "employer/employer/upop (undergraduate practice opp. prgm.)_2011-08-31-19-10-56.png", 
+   "careers_website": "", 
+   "slug": "upop", 
+   "name": "UPOP (Undergraduate Practice Opp. Prgm.)"
   }
  }, 
  {

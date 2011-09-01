@@ -4160,54 +4160,6 @@
   }
  }, 
  {
-  "pk": 288, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-08-19 23:17:13", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 6, 
-   "display": false, 
-   "name": "Phi Delta Theta"
-  }
- }, 
- {
-  "pk": 289, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-08-19 23:17:20", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 6, 
-   "display": false, 
-   "name": "Phi Kappa Sigma"
-  }
- }, 
- {
-  "pk": 462, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://pkt.mit.edu/", 
-   "last_updated": "2011-08-29 22:37:18", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
-   "date_created": "2011-08-29 22:37:18", 
-   "type": 6, 
-   "display": false, 
-   "name": "Phi Kappa Theta"
-  }
- }, 
- {
   "pk": 290, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4237,22 +4189,6 @@
    "type": 6, 
    "display": true, 
    "name": "Pi Beta Phi"
-  }
- }, 
- {
-  "pk": 292, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "", 
-   "last_updated": "2011-08-19 23:17:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 6, 
-   "display": false, 
-   "name": "Pi Kappa Alpha Fraternity"
   }
  }, 
  {
