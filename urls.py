@@ -105,7 +105,7 @@ urlpatterns += patterns('student.views',
     (r'^student/resume/$', 'student_resume', {}, 'student_resume'),
 )
 urlpatterns += patterns('employer.views',
-    (r'^employer/', 'employer', {}, 'employer'),                        
+    (r'^employer/$', 'employer', {}, 'employer'),                        
     (r'^employer/signup/$', direct_to_template, {'template': 'employer_registration.html', 'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     (r'^employer/account/$', 'employer_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'employer_account'),
     (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),

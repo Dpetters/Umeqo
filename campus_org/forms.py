@@ -1,6 +1,11 @@
+from django import forms
+
 from campus_org.models import CampusOrg, CampusOrgPreferences
 from core.models import CampusOrgType
-from django import forms
+from core.form_helpers import decorate_bound_field
+
+decorate_bound_field()
+
 
 class CreateCampusOrganizationForm(forms.ModelForm):
     name = forms.CharField(label="Name:", max_length=42)
@@ -14,7 +19,7 @@ class CreateCampusOrganizationForm(forms.ModelForm):
         model = CampusOrg
 
 class CampusOrgProfileForm(CreateCampusOrganizationForm):
-    name = forms.CharField(label="Name", max_length=42)
+    name = forms.CharField(label="Name:", max_length=42)
     type = forms.ModelChoiceField(label="Type:", queryset = CampusOrgType.objects.all())
     email = forms.EmailField(label="E-mail:", required=False)
     website = forms.URLField(label="Website:", required=False)
