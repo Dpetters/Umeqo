@@ -33,6 +33,7 @@
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 {% if user.campusorg %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 {% endif %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_form.css" />

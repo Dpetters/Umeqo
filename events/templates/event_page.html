@@ -17,6 +17,9 @@
 {% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    {% if campus_org_event %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
+    {% endif %}
 {% endcompress %}
 <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
@@ -224,9 +227,9 @@
         <div class="main_block_header">
             <span class="main_block_header_title">Attending Employers</span>
         </div>
-        <div class="main_block_content">
+        <div id="attending_employers" class="main_block_content">
             {% for employer in attending_employers.all %}
-                <img class="ep-logo" src="{{MEDIA_URL}}{{employer.logo}}" />
+                {% include "employer.html" %}
             {% endfor %}
         </div>
     </div>
