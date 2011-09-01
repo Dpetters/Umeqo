@@ -59,6 +59,12 @@
                     <td class="number">{{event.view_count}}</td>
                     <td class="number_label">pageview{{event.view_count|pluralize}}</td>
                 </tr>
+                {% if campus_org_event %}
+                <tr>
+                    <td class="number">{{resume_drops}}</td>
+                    <td class="number_label">resume drop{{resume_drops|pluralize}}</td>
+                </tr>
+                {% endif %}
             </table>
             {% if not is_deadline %}
                 <div id="event_checkin">

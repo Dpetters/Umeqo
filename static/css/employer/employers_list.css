@@ -47,7 +47,7 @@
 #employers_listings .description_preview {
     overflow-x: hidden;
     white-space: nowrap;
-    width: 198px;
+    width: 190px;
     display: inline-block;
     color: #777;
     text-overflow: ellipsis;
