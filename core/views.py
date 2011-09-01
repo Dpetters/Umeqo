@@ -178,6 +178,10 @@ def landing_page(request, extra_context = None):
     disabled = False
     form_error = False
     email_error = False
+    loggedout = False
+
+    if request.GET.get('action', None) == 'logged-out':
+        loggedout = True
     
     if request.method=="POST":
         form = form_class(request.POST)
@@ -204,6 +208,7 @@ def landing_page(request, extra_context = None):
             'form': form,
             'posted': posted,
             'disabled': disabled,
+            'loggedout': loggedout,
             'form_error': form_error,
             'email_error': email_error
     }
@@ -221,7 +226,6 @@ def home(request, extra_context=None):
     if msg:
         context.update(msg = page_messages[msg])
     if request.user.is_authenticated():
-        print is_campus_org(request.user)
         if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
@@ -243,7 +247,7 @@ def home(request, extra_context=None):
             return context
         elif is_recruiter(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(owner=request.user).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
+            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime}).extra(select={'is_owner': "owner_id = %s" % request.user.id})
             context.update({
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
@@ -254,7 +258,6 @@ def home(request, extra_context=None):
             context.update({'TEMPLATE':'employer_home.html'})
             return context
         elif is_campus_org(request.user):
-            print "hi"
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
             your_events = Event.objects.filter(owner=request.user).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             context.update({

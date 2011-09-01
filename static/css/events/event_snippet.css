@@ -59,10 +59,12 @@
 .editable_event_list .details {
     margin-right: 100px;
 }
-.event_list .edit {
+.event_list .edit,
+.event_list .hosted-by {
     position: absolute;
     right: 2px;
     bottom: 2px;
+    color: #666;
 }
 #content_area .event_list .edit a {
     text-align: right;
