@@ -45,7 +45,10 @@
    "last_seen_view_count": 0, 
    "longitude": -71.094556589999996, 
    "latitude": 42.358325180000001, 
-   "edits": [], 
+   "edits": [
+    1, 
+    2
+   ], 
    "is_drop": false, 
    "end_datetime": "2011-09-01 10:00:00", 
    "rsvp_message": "", 
@@ -1335,7 +1338,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-01 09:08:07", 
+   "last_login": "2011-09-01 10:59:23", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1587,7 +1590,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-01 09:08:53", 
+   "last_login": "2011-09-01 11:02:18", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
@@ -3458,6 +3461,26 @@
    "date_created": "2011-09-01 09:08:53", 
    "session_key": "a84ba6ddc33b5560d98b7f18b9c404ae", 
    "last_updated": "2011-09-01 09:08:53", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 293, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 10:59:23", 
+   "session_key": "8b16b55c644519fc26a89fe4e7dbdc09", 
+   "last_updated": "2011-09-01 10:59:23", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 294, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 11:02:18", 
+   "session_key": "0c3e26c8b0f252dfaed56f9758df3e24", 
+   "last_updated": "2011-09-01 11:02:18", 
    "user": 26
   }
  }, 
