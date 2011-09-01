@@ -6,7 +6,7 @@ from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 from core.forms import EmailAuthenticationForm as AuthenticationForm
 from registration.forms import PasswordResetForm, SetPasswordForm
@@ -25,6 +25,7 @@ urlpatterns += patterns('',
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     (r'^notifications/', include('notification.urls')),
+    (r'^sbc-bbq/$', redirect_to, {'url':'/events/7/sbc-barbecue'}),
     (r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH, 'login_form':AuthenticationForm}}, 'password_reset'),
     (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_new.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_confirm'),
     (r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_complete'),

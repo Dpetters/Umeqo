@@ -7,18 +7,14 @@
 {% load compress %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
 {% endcompress %}
 <script>
-    var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
-    
     var NAME_REQUIRED = "{% text_snippet 'campus_org_name_required' %}";
     var TYPE_REQUIRED = "{% text_snippet 'campus_org_type_required' %}";
     var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
 {% endcompress %}
 {% endblock %}
 

@@ -143,8 +143,7 @@
             <div class="errorspace"></div>
             <br>
             {{form.is_drop}}
-            <p>Enabling resume drops will allow students to drop their resume without RSVP-ing.<p>
-            <p><strong>Note: </strong>You will be able to see the resumes of students who RSVP regardless of resume drops.</p>
+            <p id="resume_drop_info">(*enable resume drops to allow students to drop their resume without RSVP-ing)</p>
         </div>
         {% if user.campusorg %}
         <div id="event_attending_employers_section">
@@ -153,6 +152,11 @@
             <br>
             {{form.attending_employers}}
             <div id="attending_employers">
+            {% if edit %}
+                {% for employer in attending_employer %}
+                    <img class="ef-logo" src="{{MEDIA_URL}}{{employer.logo}}" />
+                {% endfor %}
+            {% endif %}
             </div>
         </div>
         {% endif %}

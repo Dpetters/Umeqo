@@ -39,7 +39,8 @@ $(document).ready(function() {
         $('#event_resume_drop').html('Drop Resume');
     }
     $('#rsvp-yes-button').live('click', function(e) {
-        if ($(this).hasClass('selected') || $(this).hasClass('disabled-button')) {
+        var disabled = $(this).attr('disabled');
+        if ($(this).hasClass('selected') || typeof disabled !== 'undefined' && disabled !== false) {
             e.preventDefault();
             return;
         }
@@ -51,7 +52,8 @@ $(document).ready(function() {
         e.preventDefault();
     });
     $('#rsvp-no-button').live('click', function(e) {
-        if ($(this).hasClass('selected') || $(this).hasClass('disabled-button')) {
+        var disabled = $(this).attr('disabled');
+        if ($(this).hasClass('selected') || typeof disabled !== 'undefined' && disabled !== false) {
             e.preventDefault();
             return;
         }
@@ -261,7 +263,8 @@ $(document).ready(function() {
     });
 
     $('#event_resume_drop').live('click', function(e) {
-        if (!$(this).hasClass('disabled-button')) {
+        var disabled = $(this).attr('disabled');
+        if (!(typeof disabled !== 'undefined' && disabled !== false)) {
             $.post(EVENT_DROP_URL, function() {
                 dropResume();
             });
@@ -270,7 +273,8 @@ $(document).ready(function() {
     });
 
     $('#event_resume_undrop').live('click', function(e) {
-        if (!$(this).hasClass('disabled-button')) {
+        var disabled = $(this).attr('disabled');
+        if (!(typeof disabled !== 'undefined' && disabled !== false)) {
             var that = this;
             $.post(EVENT_UNDROP_URL, function() {
                 undropResume();

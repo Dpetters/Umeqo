@@ -83,10 +83,63 @@ $(document).ready(function() {
                 $("#location_suggestions").html("");
             }
         };
-
+        
+        $(".location_suggestion").live("keydown", function(e){
+            if(e.which==13){
+                $(this).click();
+            } 
+        });
+        
         var timeoutID;
         $('#id_location').keydown(function(e) {
-            if(e.which != 9 && e.which != 32) {
+            console.log(e.which);
+            var current = null;
+            var next = null;
+            if(e.which==37 || e.which==39){
+                return false;
+            }
+            if(e.which==40){
+                if($(".selected").length > 0){
+                    current = $($(".selected").get(0));
+                    current.removeClass("selected");
+                    next = current.next();
+                    if (next.length > 0){
+                        next.addClass("selected");
+                    } else {
+                        $($("#location_suggestions .location_suggestion").get(0)).addClass("selected");
+                    }
+                }
+                else{
+                    $($("#location_suggestions .location_suggestion").get(0)).addClass("selected");
+                }
+                e.preventDefault();
+            }else if(e.which==38){
+                if($(".selected").length > 0){
+                    current = $($(".selected").get(0));
+                    current.removeClass("selected");
+                    prev = current.prev();
+                    if (prev.length > 0){
+                        prev.addClass("selected");  
+                    } else {
+                        $($("#location_suggestions .location_suggestion").last().get(0)).addClass("selected");
+                    }
+                }
+                else{
+                    $($("#location_suggestions .location_suggestion").last().get(0)).addClass("selected");
+                }
+                e.preventDefault();
+            }else if(e.which==13){
+                if($(".selected").length > 0){
+                    $($(".selected").get(0)).click();
+                }else{
+                    var suggestions = $("#location_suggestions .location_suggestion");
+                    if (suggestions.length >= 0){
+                        $(suggestions.get(0)).click();
+                    }   
+                }
+                e.preventDefault();
+            }
+            else if(e.which != 9 && e.which != 32) {
                 if( typeof timeoutID != 'undefined')
                     window.clearTimeout(timeoutID);
                 timeoutID = window.setTimeout(get_location_suggestions, 50);
@@ -131,7 +184,11 @@ $(document).ready(function() {
             },
         },
         attending_employers : {
-            required : true,
+            required : {
+                depends : function(element) {
+                    return CAMPUS_ORG_EVENT;
+                }
+            }
         },
         description : {
             required : true,
@@ -173,11 +230,13 @@ $(document).ready(function() {
             required : 'Location is required.'
         },
         attending_employers : {
-            required : "You must specify attending employers."
+            required : "This field is required."
         }
     }
-
+    
     $("#id_type").change(function() {
+        var title = null;
+        var button_text = null;
         var event_type = $("#id_type option:selected").text()
         if(event_type === "Hard Deadline" || event_type === "Rolling Deadline") {
             $($('label[for=id_start_datetime_0]').removeClass('required').children()[0]).remove();
@@ -185,7 +244,12 @@ $(document).ready(function() {
             $("#event_location_section input").attr('disabled', 'disabled');
             $("#event_form input[type=submit]").val("Create Deadline");
             if(event_type === "Rolling Deadline") {
-                $("#event_form_header").html("New Rolling Deadline");
+                if(EDIT_FORM){
+                    title = "Edit Rolling Deadline"
+                } else {
+                    title = "New Rolling Deadline"
+                }
+                $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter rolling deadline name");
                 
                 $("#event_scheduler").css("height", 270);
@@ -195,7 +259,12 @@ $(document).ready(function() {
                 $("#start_datetime_wrapper, #end_datetime_wrapper").slideUp();
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").attr('disabled', 'disabled');
             } else if(event_type === "Hard Deadline") {
-                $("#event_form_header").html("New Hard Deadline");
+                if(EDIT_FORM){
+                    title = "New Hard Deadline"
+                } else {
+                    title = "Edit Hard Deadline"
+                }
+                $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter hard deadline name");
                 
                 $("#event_scheduler").css("height", 230);
@@ -213,6 +282,12 @@ $(document).ready(function() {
             }
         } else {
             $('label[for=id_start_datetime_0]').addClass('required');
+            if(EDIT_FORM){
+                title = "Edit Event"
+            } else {
+                title = "New Event"
+            }
+            $("#event_form_header").html(title);
             if ($('label[for=id_start_datetime_0] span.error').length > 0){
                 $('label[for=id_start_datetime_0] span.error').show();                
             }else{
@@ -227,16 +302,21 @@ $(document).ready(function() {
             }
             $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
             $("#start_datetime_wrapper, #end_datetime_wrapper").slideDown();
-            $("event_form input[type=submit]").val("Create Event");
+            $("#event_form input[type=submit]").val("Create Event");
 
             $("#event_location_section input").removeAttr('disabled');
             $("#event_location_section").slideDown();
+        }
+        if(EDIT_FORM){
+            $("#event_form input[type=submit]").val("Save Changes");
         }
     });
 
     $('#id_type').change();
 
     $("#event_form").submit(function() {
+        for ( instance in CKEDITOR.instances )
+            CKEDITOR.instances[instance].updateElement();
         if(marker && marker.map) {
             $("#id_latitude").val(marker.position.lat());
             $("#id_longitude").val(marker.position.lng());

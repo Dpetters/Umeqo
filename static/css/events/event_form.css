@@ -35,7 +35,7 @@
     width: 310px;
     display: inline-block;
 }
-label[for=id_is_public_0], label[for=id_is_public_1] {
+label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
     margin-left: 7px;
 }
 #location_suggestions {
@@ -278,6 +278,10 @@ label[for=id_rsvp_message]{
     color: #222;
     cursor: pointer;
 }
+#resume_drop_info{
+    display:inline;
+    float:right;
+}
 input[type=text].datefield_no_bind {
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
@@ -285,13 +289,10 @@ input[type=text].datefield_no_bind {
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
 }
-.attending_employer{
+#attending_employers{
 
 }
-.attending_employer .efae-logo{
-    max-height:35px;
+#attending_employers .ef-logo{
+    max-height:69px;
     vertical-align:middle;
-}
-.attending_employer .efae-name{
-    
 }
