@@ -6,8 +6,7 @@ from django.utils.translation import ugettext as _
 from django.core.mail import EmailMessage
 
 from core.form_helpers import decorate_bound_field
-from student.models import Student, StudentPreferences, StudentInvite, \
-                            StudentDeactivation
+from student.models import Student, StudentPreferences, StudentInvite, StudentDeactivation
 from campus_org.form_helpers import campus_org_types_as_choices
 from campus_org.models import CampusOrg
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
