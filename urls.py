@@ -6,7 +6,7 @@ from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 from core.forms import EmailAuthenticationForm as AuthenticationForm
 from registration.forms import PasswordResetForm, SetPasswordForm
@@ -25,6 +25,7 @@ urlpatterns += patterns('',
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     (r'^notifications/', include('notification.urls')),
+    (r'^sbc-bbq/$', redirect_to, {'url':'/events/7/sbc-barbecue'}),
     (r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH, 'login_form':AuthenticationForm}}, 'password_reset'),
     (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_new.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_confirm'),
     (r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_complete'),
@@ -58,6 +59,9 @@ urlpatterns += patterns('core.views',
 urlpatterns += patterns('campus_org.views',
     (r'^campus-org/info/$', 'campus_org_info', {}, 'campus_org_info'),
     (r'^campus-org/check-uniqueness/$', 'check_campus_org_uniqueness', {}, 'check_campus_org_uniqueness'),
+    (r'^campus_org/profile/$', 'campus_org_profile', {}, "campus_org_profile"),
+    (r'^campus-org/account/$', 'campus_org_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'campus_org_account'),
+    (r'^campus-org/account/preferences/$', 'campus_org_account_preferences', {}, 'campus_org_account_preferences'),
 )
 
 urlpatterns += patterns('registration.views',
@@ -101,6 +105,7 @@ urlpatterns += patterns('student.views',
     (r'^student/resume/$', 'student_resume', {}, 'student_resume'),
 )
 urlpatterns += patterns('employer.views',
+    (r'^employer/', 'employer', {}, 'employer'),                        
     (r'^employer/signup/$', direct_to_template, {'template': 'employer_registration.html', 'extra_context': {'login_form':AuthenticationForm}}, 'employer_registration'),
     (r'^employer/account/$', 'employer_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'employer_account'),
     (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),

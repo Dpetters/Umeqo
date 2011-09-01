@@ -10,6 +10,9 @@ password_changed = 'Password changed successfully.'
 
 profile_saved = 'Your profile has been saved.'
 
+# Campus Org Profile Form
+campus_org_name_required = "Organization name is required."
+campus_org_type_required = "Organization type is required."
 
 #Student Profile Form
 first_name_required = 'Enter your first name.'

@@ -221,6 +221,7 @@ def home(request, extra_context=None):
     if msg:
         context.update(msg = page_messages[msg])
     if request.user.is_authenticated():
+        print is_campus_org(request.user)
         if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
@@ -251,6 +252,18 @@ def home(request, extra_context=None):
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'employer_home.html'})
+            return context
+        elif is_campus_org(request.user):
+            print "hi"
+            now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
+            your_events = Event.objects.filter(owner=request.user).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
+            context.update({
+                'notices': Notice.objects.notices_for(request.user),
+                'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
+                'your_events': your_events
+            });
+            context.update(extra_context or {})
+            context.update({'TEMPLATE':'campus_org_home.html'})
             return context
     request.session.set_test_cookie()
     context.update({

@@ -12,13 +12,13 @@ Home |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 {% endcompress %}
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_home.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_home.js"></script>
 {% endcompress %}
 {% endblock %}
 
 {% block content_area %}
 <div class="left_side_container">
-    {% include "employer_side_nav.html" %}
+    {% include "campus_org_side_nav.html" %}
 </div>
 
 <div class="main_block no_top_margin with_side_nav">
@@ -32,26 +32,18 @@ Home |
             <table id="welcome_table">
                 <tr>
                     <td>
-                        <a href="{% url events_list %}"><img src="{{ STATIC_URL }}images/home/launch.png" /></a>
+                        <a href="{% url campus_org_profile %}"><img src="{{ STATIC_URL }}images/co-home/profile.png" /></a>
                     </td>
                     <td>
-                        <p><a href="{% url events_list %}">Browse and search</a> the events that employers have posted.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{% url employers_list %}"><img src="{{ STATIC_URL }}images/home/employers.png" /></a>
-                    </td>
-                    <td>
-                        <p><a href="{% url employers_list %}">Filter through employers</a> on Umeqo - watch this list grow! Subscribe to the ones you're interested in, and we'll send you notifications when they create new events and their events will appear below.</p>
+                        <p><a href="{% url campus_org_profile %}">Edit your organization's profile details</a> and see them as student and employers would.</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="{% url student_profile %}"><img src="{{ STATIC_URL }}images/home/profile.png" /></a>
+                        <a href="{% url event_new %}"><img src="{{ STATIC_URL }}images/co-home/events.png" /></a>
                     </td>
                     <td>
-                        <p><a href="{% url student_profile %}">Edit your profile details</a> and preview yourself as employers would. The more you fill out, the more likely you'll be seen.</p>
+                        <p><a href="{% url event_new %}">Create employer events</a> for students to RSVP to, check them in using Umeqo, and provide the attending employers with a dynamic, filterable set of students for them to create custom resume books out of.</p>
                     </td>
                 </tr>
             </table>
@@ -60,31 +52,6 @@ Home |
     </div>
 </div>
 
-<div class="main_block with_side_nav">
-    <div class="main_block_header">
-        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
-        <span class="main_block_header_title">Browse Students</span>
-        <div class="main_block_header_content">
-            <form id="search_form" method="post" action="/employer/students/">
-                {% csrf_token %}
-                {{search_form.query}}
-                <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
-                <a href="{% url employer_students %}" class="button">Browse Students</a>
-            </form>
-        </div>
-    </div>
-    <div class="main_block_content">
-        <div class="simple_block centered">
-            <p>
-                Search for students above, or let us find them for you by providing your company's default filtering parameters.
-            </p>
-            <br>
-            <p>
-                <a href="{% url employer_students_default_filtering %}"><strong>Setup Automatic Filtering</strong></a>
-            </p>
-        </div>
-    </div>
-</div>
 <div class="main_block with_side_nav">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
@@ -103,9 +70,9 @@ Home |
             {% include "event_snippet.html" with edit='True' %}
         {% endfor %}
         </ul>
-        <div id="no_events_block" class="simple_block" {% if your_events %}style="display:none"{% endif %}>
+        <div id="no_events_block" class="simple_block centered" {% if your_events %}style="display:none"{% endif %}>
             <p>
-                You can post your company's events and deadlines for students to view and add to their calendars.
+                You can post your organization's employer events and deadlines for students to view and add to their calendars.
             </p>
             <p>
                 You currently don't have any upcoming events/deadlines; <a href="{% url event_new %}"><strong>create one now</strong></a>.

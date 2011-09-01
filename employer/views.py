@@ -36,10 +36,23 @@ from employer.views_helper import get_paginator, employer_search_helper, get_emp
 from student import enums as student_enums
 from student.models import Student
 
+@require_GET
+@render_to("employer.html")
+def employer(request):
+    if request.GET.has_key("employer_name"):
+        try:
+            e = Employer.objects.get(name=request.GET['employer_name'])
+            return {'employer': e}
+        except:
+            return HttpResponseNotFound("Employer with name %s does not exist" % (request.GET['name']))
+    else:
+        return HttpResponseBadRequest("Employer name is missing.")
+    
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
+    print "hi2"
     try:
         employer = Employer.objects.get(slug=slug)
     except Employer.DoesNotExist:

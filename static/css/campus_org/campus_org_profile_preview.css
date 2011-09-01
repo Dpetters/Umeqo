@@ -1,0 +1,13 @@
+.campus_org_image{
+    float: left;
+    margin-right: 12px;
+    margin-bottom: 8px;
+    margin-top: 2px;
+    
+}
+.campus_org_info_dialog .dialog_content_wrapper{
+    padding: 10px;
+}
+.campus_org_info_dialog .dialog_content_wrapper p{
+    margin-top: 3px;
+}

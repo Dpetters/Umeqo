@@ -20,13 +20,13 @@
     margin-right: 5px;
     width: 70px;
 }
-#event_description {
+#event_description, #event_attending_employers {
     width: 670px;
     float: left;
 }
 #event_side {
     width: 280px;
-    float: right;
+    margin-left:700px;
 }
 
 #attending-span {
@@ -49,7 +49,9 @@
     margin-top: 3px;
     text-align: right;
 }
-
+#event_attending_employers .ep-logo{
+    max-height:103px;
+}
 #event_audience {
     margin-bottom: 10px;
     color: #666;
@@ -465,7 +467,9 @@
     padding: 5px;
     border-radius: 3px;
 }
-
+.event_host_logo img{
+    max-width:269px;
+}
 .main_block_content p {
 	margin: 0 0 10px;
 }
@@ -481,7 +485,7 @@
 #event_resume_undrop,
 #event_resume_drop {
     display: inline-block;
-    width: 638px;
+    width: 659px;
     float: left;
     margin: 20px 0 0;
     text-align: center;

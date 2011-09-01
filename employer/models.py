@@ -10,7 +10,7 @@ from core.models import Industry, EmploymentType, SchoolYear, GraduationYear, Co
 from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
-
+from employer.managers import EmployerManager
 
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
@@ -28,7 +28,9 @@ class Employer(core_mixins.DateTracking):
     offered_job_types = models.ManyToManyField(EmploymentType, blank=True, null=True) 
     careers_website = models.URLField(verify_exists=False, blank=True, null=True)
     starred_students = models.ManyToManyField("student.Student", blank=True, null=True)
-
+    
+    objects = EmployerManager()
+    
     def __unicode__(self):
         return self.name
     
