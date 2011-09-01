@@ -78,8 +78,8 @@
                         </form>
                         <div class="clearfix"></div>
                         <div id="invite_code">
-                          <h2>Have an invite code?</h2>
-                          <p><a href="{% url student_registration %}" class="black_button">Create your account!</a></p>
+                          <h2>Need an account?</h2>
+                          <p><a href="{% url student_registration %}" class="black_button">Create one now!</a></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -90,19 +90,12 @@
                 <div class="col">
                     <p id="working">We're working hard to craft the ultimate experience.</p>
                     <p>Interested? Help us by participating in the beta!</p>
-                    <h2>Want to get in on the beta?</h2>
-                    <p>Fill in the information below (we won't sell it, rent it, or trade it - promise!) and we'll get in touch when the time comes.</p>
-                    <form action="/" method="POST">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <p>{{field.label_tag}}{{field}}</p>
-                        {% endfor %}
-                        {% if not disabled %}
-                        <input type="submit" value="submit"/> 
-                        {% else %}
-                        <input type="submit" value="thanks!" disabled="disabled" />
-                        {% endif %}
-                    </form>
+                    <div id="promotion">
+                      <h2>Drop your resume for the SBC BBQ!</h2>
+                      <img id="sbc_logo" src="{{STATIC_URL}}images/landing/sbc.jpg" alt="SBC" />
+                      <p>The SBC BBQ will feature dozens of companies including <strong>Cisco</strong> and <strong>Google</strong>.</p>
+                      <p>It starts 2:00pm on Tuesday, September 6 on Kresge Lawn, but you'll be able to get in on the action early by dropping your resume on the official Umeqo event page!</p>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>

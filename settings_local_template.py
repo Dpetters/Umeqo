@@ -7,7 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 COMPRESS = False
 
 # Students need an invite code to register
-INVITE_ONLY = True
+INVITE_ONLY = False
 
 WELCOME_EVENT_ID = 6 
 
