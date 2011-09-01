@@ -103,6 +103,7 @@ def event_page(request, id, slug, extra_context=None):
     if is_campus_org(event.owner):
         context['campus_org_event'] = is_campus_org(event.owner)
         context['attending_employers'] = event.attending_employers
+        context['resume_drops'] = len(event.droppedresume_set.all())
     if len(event.audience.all())>0:
         context['audience'] = event.audience.all()
     if is_student(request.user):
