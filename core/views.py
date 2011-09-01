@@ -178,6 +178,10 @@ def landing_page(request, extra_context = None):
     disabled = False
     form_error = False
     email_error = False
+    loggedout = False
+
+    if request.GET.get('action', None) == 'logged-out':
+        loggedout = True
     
     if request.method=="POST":
         form = form_class(request.POST)
@@ -204,6 +208,7 @@ def landing_page(request, extra_context = None):
             'form': form,
             'posted': posted,
             'disabled': disabled,
+            'loggedout': loggedout,
             'form_error': form_error,
             'email_error': email_error
     }

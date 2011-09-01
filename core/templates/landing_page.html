@@ -46,14 +46,19 @@
             </div>
         {% endif %}{% endif %}
         {% if posted %}
-                <div class="message">
-                    Thank you for your interest! You will be included in the next round of invitations.
-                </div>
+            <div class="message">
+                Thank you for your interest! You will be included in the next round of invitations.
+            </div>
         {% endif %}
         {% if deactivated %}
-                <div class="message">
-                    Thank you for trying out Umeqo!
-                </div>
+            <div class="message">
+                Thank you for trying out Umeqo!
+            </div>
+        {% endif %}
+        {% if loggedout %}
+            <div class="message">
+                You have been logged out.
+            </div>
         {% endif %}
         <div class="center">
             <h1>Umeqo</h1>
