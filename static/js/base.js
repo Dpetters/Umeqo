@@ -55,7 +55,7 @@ function place_table_form_errors(form, errors){
             $(form + " .error_section").html(errors[field][0]);
         }
         else{
-            place_table_form_field_error($("<label for='" + field + "'>" + errors[field] + "</label>"), $("#id_"+field));
+            place_table_form_field_error($("<label class='error' for='" + field + "'>" + errors[field] + "</label>"), $("#id_"+field));
         }
     };
 };

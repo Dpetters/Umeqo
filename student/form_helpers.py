@@ -3,7 +3,6 @@ from __future__ import absolute_import
 
 from student import enums as student_enums
 from events.models import Event
-from core.models import EventType
 from employer.models import Employer
 
 

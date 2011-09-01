@@ -35,7 +35,7 @@ Home |
                         <a href="{% url campus_org_profile %}"><img src="{{ STATIC_URL }}images/co-home/profile.png" /></a>
                     </td>
                     <td>
-                        <p><a href="{% url campus_org_profile %}">Edit your organization's profile details</a> and see them as student and employers would.</p>
+                        <p><a href="{% url campus_org_profile %}">Edit your organization's profile details</a> and <a href="javascript:void(0)" class="campus_org_link" data-campus-org-id="{{user.campusorg.id}}" data-campus-org-name="{{user.campusorg}}">see them</a> as student and employers would.</p>
                     </td>
                 </tr>
                 <tr>
