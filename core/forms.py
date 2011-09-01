@@ -9,6 +9,10 @@ from django.contrib.sites.models import Site
 from registration.models import InterestedPerson
 from core import messages as m
 from core.models import Language
+from core.form_helpers import decorate_bound_field
+
+decorate_bound_field()
+
 
 class EmailAuthenticationForm(AuthenticationForm):
     

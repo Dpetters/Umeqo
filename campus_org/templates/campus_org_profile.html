@@ -33,58 +33,60 @@
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
             <span class="main_block_header_title">Edit Profile</span>
         </div>
-        <table class="form_table">
-            <tr>
-                <th>{{form.name.label}}</th>
-                <td class="grande">
-                    <div class="errorspace"></div>
-                    {{form.name}}
-                </td>
-                <th>{{form.website.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.website}}
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.type.label}}</label></th>
-                <td class="grande">
-                    <div class="errorspace"></div>
-                    {{form.type}}
-                </td>
-                <th>{{form.image.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.image}}
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.email.label_tag}}</th>
-                <td colspan="3">
-                    <div class="errorspace"></div>
-                    {{form.email}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <div class="errorspace"></div>
-                    {{form.description.label_tag}}
-                    {{form.description}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" class="error_section error">
-                </td>
-            </tr>
-            <tr>
-                <td class="button_cell" colspan="4">
-                     <a data-campus-org-name="{{user.campusorg.name}}" data-campus-org-id="{{user.campusorg.id}}" href="javascript:void(0)" class="button campus_org_link">Preview Profile</a>
-                    <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
-                    
-                    <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
-                </td>
-            </tr>
-        </table>
+        <div class="main_block_content">
+            <table class="form_table">
+                <tr>
+                    <th>{{form.name.label_tag}}</th>
+                    <td class="grande">
+                        <div class="errorspace"></div>
+                        {{form.name}}
+                    </td>
+                    <th>{{form.website.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.website}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.type.label_tag}}</label></th>
+                    <td class="grande">
+                        <div class="errorspace"></div>
+                        {{form.type}}
+                    </td>
+                    <th>{{form.email.label_tag}}</th>
+                    <td>
+                        <div class="errorspace"></div>
+                        {{form.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{form.image.label_tag}}</th>
+                    <td colspan="3">
+                        <div class="errorspace"></div>
+                        {{form.image}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="errorspace"></div>
+                        {{form.description.label_tag}}
+                        {{form.description}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="error_section error">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="button_cell" colspan="4">
+                         <a data-campus-org-name="{{user.campusorg.name}}" data-campus-org-id="{{user.campusorg.id}}" href="javascript:void(0)" class="button campus_org_link">Preview Profile</a>
+                        <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
+                        
+                        <img id='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
+                    </td>
+                </tr>
+            </table>    
+        </div>
     </div>
 </li>
 {% endblock %}

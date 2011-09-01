@@ -1,0 +1,32 @@
+#id_description{
+    width:700px;
+}
+#profile_form .main_block_content{
+    padding:10px 20px 20px;
+}
+#profile_form input[type="text"]{
+    width:250px;
+}  
+#profile_form select{
+    width:260px;
+}
+#profile_form .form_table th{
+    padding-left:20px;
+}
+#profile_form label[for=id_description]{
+    margin-left:2px;
+}
+#profile_form #id_description{
+    margin-top:3px;
+}
+#image-clear_id{
+    position:relative;
+    top:2px;
+    margin-left:6px;
+}
+#profile_form label[for=id_image]{
+    margin-bottom:27px;
+}
+#id_image{
+    margin-top:5px;
+}
