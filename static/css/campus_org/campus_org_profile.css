@@ -24,9 +24,10 @@
     top:2px;
     margin-left:6px;
 }
-#profile_form label[for=id_image]{
-    margin-bottom:27px;
-}
 #id_image{
     margin-top:5px;
+}
+#profile_form .error[for=description]{
+    top:20px;
+    left:76px;
 }
