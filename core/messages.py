@@ -14,6 +14,9 @@ profile_saved = 'Your profile has been saved.'
 campus_org_name_required = "Organization name is required."
 campus_org_type_required = "Organization type is required."
 
+#Event Page
+drop_resume_tooltip = "Logged-in students can click this button to drop off their resume."
+
 #Student Profile Form
 first_name_required = 'Enter your first name.'
 last_name_required= 'Enter your last name.'

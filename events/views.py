@@ -56,7 +56,7 @@ def event_page(request, id, slug, extra_context=None):
     is_past = event.end_datetime < datetime.now()    
     #check slug matches event
     if event.slug!=slug:
-        return HttpResponseNotFound()
+        return HttpResponseNotFound("The slug you provided does not match that of the event found using the provided id.")
     current_site = Site.objects.get(id=settings.SITE_ID)
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo

@@ -13,7 +13,7 @@ class CampusOrgAdmin(admin.ModelAdmin):
     ]
     list_display = ('name', 'type', 'display', 'user')
     list_filter = ('type',)
-    search_fields = ['name', 'user']
+    search_fields = ['name', 'user__username']
     date_hierarchy = 'last_updated'
 
     def response_change(self, request, obj):
