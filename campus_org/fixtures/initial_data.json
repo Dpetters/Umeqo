@@ -3893,6 +3893,23 @@
   }
  }, 
  {
+  "pk": 467, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/taekwondo/", 
+   "last_updated": "2011-09-01 16:36:48", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-01 16:36:48", 
+   "type": 11, 
+   "display": false, 
+   "name": "MIT Sport Taekwondo"
+  }
+ }, 
+ {
   "pk": 251, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4420,6 +4437,23 @@
   }
  }, 
  {
+  "pk": 468, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://pbe.mit.edu/", 
+   "last_updated": "2011-09-02 11:01:55", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-02 11:01:55", 
+   "type": 6, 
+   "display": false, 
+   "name": "Phi Beta Epsilon"
+  }
+ }, 
+ {
   "pk": 290, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4876,6 +4910,23 @@
    "type": 1, 
    "display": false, 
    "name": "Satellite Team"
+  }
+ }, 
+ {
+  "pk": 469, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/savetfp/SaveTFP/Home.html", 
+   "last_updated": "2011-09-02 11:28:36", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-02 11:28:36", 
+   "type": 9, 
+   "display": false, 
+   "name": "SaveTFP"
   }
  }, 
  {
@@ -6236,6 +6287,23 @@
    "type": 5, 
    "display": true, 
    "name": "Traders at MIT"
+  }
+ }, 
+ {
+  "pk": 466, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://traders.mit.edu/", 
+   "last_updated": "2011-09-01 16:36:13", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-01 16:36:13", 
+   "type": 5, 
+   "display": false, 
+   "name": "Traders@MIT"
   }
  }, 
  {
