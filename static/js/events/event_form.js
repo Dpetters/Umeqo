@@ -92,7 +92,6 @@ $(document).ready(function() {
         
         var timeoutID;
         $('#id_location').keydown(function(e) {
-            console.log(e.which);
             var current = null;
             var next = null;
             if(e.which==37 || e.which==39){

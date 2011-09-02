@@ -38,6 +38,7 @@ $(document).ready(function() {
         $('#event_resume_undrop').attr('id', 'event_resume_drop');
         $('#event_resume_drop').html('Drop Resume');
     }
+    
     $('#rsvp-yes-button').live('click', function(e) {
         var disabled = $(this).attr('disabled');
         if ($(this).hasClass('selected') || typeof disabled !== 'undefined' && disabled !== false) {
@@ -290,4 +291,6 @@ $(document).ready(function() {
         }
         e.preventDefault()
     });
+    
+    $("#event_resume_drop[disabled=disabled]").tipsy({'gravity':'w', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
 });
