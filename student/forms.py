@@ -13,6 +13,7 @@ from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Indu
 from core.view_helpers import does_email_exist
 from employer.models import Employer
 from core.fields import PdfField
+from registration.models import RegException
 from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages as m
@@ -59,7 +60,7 @@ class StudentRegistrationForm(forms.Form):
         # --Not Connected to the Internet (dev w/o internet)
         # ----Allow registration. An error will be thrown that the email could
         # ----not be sent, but you can go into the admin and activate the user
-        if email[-len("umeqo.com"):] != "umeqo.com":
+        if email[-len("umeqo.com"):] != "umeqo.com" and not RegException.objects.filter(email=email).exists():
             # If after ldap check result==[None], then Im not connected to
             # the internet. If result==[], then I am connected and the email
             # is not a student's. 

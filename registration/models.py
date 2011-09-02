@@ -18,6 +18,8 @@ from notification.models import NoticeType
 from employer.models import Employer
 from notification import models as notification
 
+class RegException(core_mixins.DateCreatedTracking):
+    email = models.EmailField("E-mail to allow:", unique=True)
 
 class InterestedPerson(core_mixins.DateTracking):
     first_name = models.CharField(max_length=200)
