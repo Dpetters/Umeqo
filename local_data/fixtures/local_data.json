@@ -1599,6 +1599,24 @@
   }
  }, 
  {
+  "pk": 27, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "umeqo@mit.edu", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": false, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-09-02 12:00:03", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$a9394$92148c8973a7078a8a6ba5f3eb83c74c668b6bb6", 
+   "email": "umeqo@mit.edu", 
+   "date_joined": "2011-09-02 12:00:03"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -1721,6 +1739,15 @@
   "fields": {
    "is_verified": true, 
    "user": 26, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 26, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 27, 
    "last_password_change_date": null
   }
  }, 
@@ -3508,6 +3535,14 @@
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
    "user": 18
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "0678df3458a47c6ddc21355397d112fa553182be", 
+   "user": 27
   }
  }
 ]
