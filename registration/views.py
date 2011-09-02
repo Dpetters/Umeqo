@@ -19,7 +19,6 @@ from core.view_helpers import get_ip
 from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
-from employer.models import Employer
 
 
 @login_required
