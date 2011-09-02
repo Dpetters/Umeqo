@@ -81,7 +81,6 @@ class StudentRegistrationForm(forms.Form):
                     pass
             if not res or (res[0] != None and res[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
                 raise forms.ValidationError(m.must_be_mit_student)
-        raise forms.ValidationError("gotcha bitch")
         return self.cleaned_data['email']
     
     def clean(self):
