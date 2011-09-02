@@ -56,7 +56,7 @@ def event_page(request, id, slug, extra_context=None):
     is_past = event.end_datetime < datetime.now()    
     #check slug matches event
     if event.slug!=slug:
-        return HttpResponseNotFound()
+        return HttpResponseNotFound("The slug you provided does not match that of the event found using the provided id.")
     current_site = Site.objects.get(id=settings.SITE_ID)
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
@@ -103,6 +103,7 @@ def event_page(request, id, slug, extra_context=None):
     if is_campus_org(event.owner):
         context['campus_org_event'] = is_campus_org(event.owner)
         context['attending_employers'] = event.attending_employers
+        context['resume_drops'] = len(event.droppedresume_set.all())
     if len(event.audience.all())>0:
         context['audience'] = event.audience.all()
     if is_student(request.user):
