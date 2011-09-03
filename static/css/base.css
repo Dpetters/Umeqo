@@ -346,6 +346,9 @@ a:hover {
 .underline {
     text-decoration: underline;
 }
+.no_left_margin{
+    margin-left: 0px !important;
+}
 .no_top_margin {
     margin-top: 0px !important;
 }

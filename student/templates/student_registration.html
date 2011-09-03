@@ -18,6 +18,7 @@ Student Registration |
 
 <script type="text/javascript">
     var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+    var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
     
     var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
     var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
@@ -46,6 +47,7 @@ Student Registration |
                 <td class="info" rowspan="2">
                     <p>Creating an account is simple - all you need to get started is your <strong>MIT email</strong> and a <strong>password</strong>.</p>
                     <br>
+                    <p>Having trouble registering? Click <a href="javascript:void(0)" class="open_registration_help_dialog_link">here</a>.</p>
                     <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="{% url employer_registration %}">here</a>.</p>
                 </td>
             </tr>

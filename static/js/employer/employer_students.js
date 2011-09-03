@@ -737,28 +737,33 @@ $(document).ready(function() {
             $(this).data('init', true);
             var that = this;
             $(this).hoverIntent(function() {
-                $.get(EVENTS_LIST_URL, {student_id: $(this).attr('data-studentid')}, function(events) {
-                    var dropdown = $('<div class="events_dropdown"></div>');
-                    if (events.length == 0) {
-                        dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
-                    } else {
-                        $.each(events, function(k,event) {
-                            var ispublic = event.is_public ? 1 : 0;
-                            var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
-                            var linkText;
-                            if (!ispublic) {
-                                linkText = event.name + ' [private]';
-                            } else {
-                                linkText = event.name + ' [public]';
-                            }
-                            if (event.invited) {
-                                linkText = linkText + ' (invited)';
-                            }
-                            link.html(linkText);
-                            dropdown.append(link);
-                        });
-                    }
-                    $(that).append(dropdown);
+                $.ajax({
+                    url: EVENTS_LIST_URL, 
+                    data: {"student_id": $(this).attr('data-studentid')}, 
+                    success: function(events) {
+                        var dropdown = $('<div class="events_dropdown"></div>');
+                        if (events.length == 0) {
+                            dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
+                        } else {
+                            $.each(events, function(k,event) {
+                                var ispublic = event.is_public ? 1 : 0;
+                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                                var linkText;
+                                if (!ispublic) {
+                                    linkText = event.name + ' [private]';
+                                } else {
+                                    linkText = event.name + ' [public]';
+                                }
+                                if (event.invited) {
+                                    linkText = linkText + ' (invited)';
+                                }
+                                link.html(linkText);
+                                dropdown.append(link);
+                            });
+                        }
+                        $(that).append(dropdown);
+                    },
+                    error: errors_in_message_area_handler
                 });
             }, function() {
                 $(this).children('.events_dropdown').remove();

@@ -15,6 +15,7 @@ $(document).ready( function () {
             li.slideUp(function(){
                 li.remove();
                 if ($('.event_list:eq(0) li').length==0) {
+                    $("#events_header").remove();
                     $('#no_events_block').slideDown();
                 }
             });

@@ -21,6 +21,13 @@ from notification import models as notification
 class RegException(core_mixins.DateCreatedTracking):
     email = models.EmailField("E-mail to allow:", unique=True)
 
+    class Meta:
+        verbose_name = "Registration Exception"
+        verbose_name_plural = "Registration Exceptions"
+        
+    def __unicode__(self):
+        return self.email
+    
 class InterestedPerson(core_mixins.DateTracking):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
