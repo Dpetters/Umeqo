@@ -794,6 +794,42 @@
   }
  }, 
  {
+  "pk": 12, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": null, 
+   "last_updated": "2011-09-02 12:06:59", 
+   "sat_m": null, 
+   "graduation_month": "5", 
+   "older_than_21": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": null, 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": null, 
+   "first_major": null, 
+   "subscriptions": [
+    6
+   ], 
+   "gpa": null, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": false, 
+   "school_year": null, 
+   "graduation_year": null, 
+   "previous_employers": [], 
+   "website": null, 
+   "second_major": null, 
+   "resume": "", 
+   "user": 28, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-09-02 12:06:59"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -875,6 +911,18 @@
    "email_on_invite_to_public_event": false, 
    "student": 7, 
    "date_created": "2011-08-27 21:47:13"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": true, 
+   "last_updated": "2011-09-02 12:06:59", 
+   "email_on_invite_to_private_event": true, 
+   "email_on_invite_to_public_event": true, 
+   "student": 12, 
+   "date_created": "2011-09-02 12:06:59"
   }
  }, 
  {
@@ -966,6 +1014,19 @@
    "add_to_resumebook_count": 0, 
    "student": 7, 
    "date_created": "2011-08-27 21:47:13"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-09-02 12:06:59", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 12, 
+   "date_created": "2011-09-02 12:06:59"
   }
  }, 
  {
@@ -1599,7 +1660,7 @@
   }
  }, 
  {
-  "pk": 27, 
+  "pk": 28, 
   "model": "auth.user", 
   "fields": {
    "username": "umeqo@mit.edu", 
@@ -1608,12 +1669,12 @@
    "is_active": false, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-02 12:00:03", 
+   "last_login": "2011-09-02 12:06:59", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$a9394$92148c8973a7078a8a6ba5f3eb83c74c668b6bb6", 
+   "password": "sha1$91d1a$47caf3395ff662dbfd2bafe3cd64144db43b508a", 
    "email": "umeqo@mit.edu", 
-   "date_joined": "2011-09-02 12:00:03"
+   "date_joined": "2011-09-02 12:06:59"
   }
  }, 
  {
@@ -1743,11 +1804,11 @@
   }
  }, 
  {
-  "pk": 26, 
+  "pk": 27, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": true, 
-   "user": 27, 
+   "user": 28, 
    "last_password_change_date": null
   }
  }, 
@@ -3538,11 +3599,11 @@
   }
  }, 
  {
-  "pk": 7, 
+  "pk": 8, 
   "model": "registration.registrationprofile", 
   "fields": {
-   "activation_key": "0678df3458a47c6ddc21355397d112fa553182be", 
-   "user": 27
+   "activation_key": "c82025c1382f2ff63a470a8b518d23fe7e7f82c8", 
+   "user": 28
   }
  }
 ]
