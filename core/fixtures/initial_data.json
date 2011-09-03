@@ -4868,6 +4868,36 @@
   }
  }, 
  {
+  "pk": 154, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-09-02 09:44:53", 
+   "name_and_level": "Tagalog (Basic)", 
+   "last_updated": "2011-09-02 09:44:53", 
+   "name": "Tagalog"
+  }
+ }, 
+ {
+  "pk": 155, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-09-02 09:44:53", 
+   "name_and_level": "Tagalog (Proficient)", 
+   "last_updated": "2011-09-02 09:44:53", 
+   "name": "Tagalog"
+  }
+ }, 
+ {
+  "pk": 156, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-09-02 09:44:53", 
+   "name_and_level": "Tagalog (Fluent)", 
+   "last_updated": "2011-09-02 09:44:53", 
+   "name": "Tagalog"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "core.course", 
   "fields": {
