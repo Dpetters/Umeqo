@@ -201,7 +201,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'core.middleware.SetRemoteAddrMiddleware',
-    'core.middleware.LogMiddleware'
+    'core.middleware.LogMiddleware',
+    'sentry.client.middleware.Sentry404CatchMiddleware',
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -216,11 +217,28 @@ TEMPLATE_DIRS = (
     ROOT + "/templates/"
 )
 
+SENTRY_SEARCH_ENGINE = 'solr'
+SENTRY_SEARCH_OPTIONS = {
+    'url': 'http://127.0.0.1:8983/solr'
+}
+
 SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+#only allow toolbar from localhost
+INTERNAL_IPS = ('127.0.0.1',)
+
+NOTIFICATION_QUEUE_ALL = True
 
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
@@ -243,20 +261,13 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'campus_org',
-    'ckeditor'
+    'ckeditor',
+    'sentry',
+    'sentry.client',
+    'sentry.plugins.sentry_servers',
+    'sentry.plugins.sentry_sites',
+    'sentry.plugins.sentry_urls',
 )
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
-#only allow toolbar from localhost
-INTERNAL_IPS = ('127.0.0.1',)
-
-NOTIFICATION_QUEUE_ALL = True
 
 try:
     from settings_local import *
