@@ -1,10 +1,8 @@
 import socket
 import os
 
-
-
 # Compress static content?
-COMPRESS = False
+COMPRESS = True
 
 # Students need an invite code to register
 INVITE_ONLY = False
