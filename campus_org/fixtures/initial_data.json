@@ -55,15 +55,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://ieee.scripts.mit.edu/", 
-   "last_updated": "2011-08-30 00:05:48", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
+   "last_updated": "2011-09-03 13:19:11", 
+   "description": "We are a group whose goal is to promote a sense of community within Course 6 (MIT's Department of Electrical Engineering and Computer Science), provide social and intellectual events that work for the undergraduate body, and sponsor various students and groups seeking to advance their research.", 
+   "image": "campus_org/campusorg/acm/ieee_2011-09-03-13-16-33.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/acm/ieee_2011-09-03-13-16-33_thumbnail.png", 
    "user": null, 
    "date_created": "2011-08-30 00:05:48", 
    "type": 1, 
-   "display": false, 
+   "display": true, 
    "name": "ACM/IEEE"
   }
  }, 
@@ -72,15 +72,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/activeminds/", 
-   "last_updated": "2011-07-27 01:35:35", 
-   "description": "Active Minds at MIT is a student-led initiative for better health and wellness, stress relief, and health education.  ", 
+   "last_updated": "2011-09-03 13:20:32", 
+   "description": "Active Minds at MIT is a student-led initiative for better health and wellness, stress relief, and health education. Our goal is to utilize peer outreach (\u201cthe student voice\u201d) to increase students\u2019 awareness of issues of mental health, symptoms of mental illness, and available resources for seeking help and to serve as liaison between students and the administration/mental health community, and become the major point of reference for mental illness and promotion of good mental health.", 
    "image": "campus_org/campusorg/active_minds_at_mit_2011-07-27-01-32-11.png", 
    "email": "activeminds-exec@mit.edu", 
    "thumbnail": "campus_org/campusorg/active_minds_at_mit_2011-07-27-01-32-11_thumbnail.png", 
    "user": null, 
    "date_created": "2011-05-03 12:27:36", 
    "type": 9, 
-   "display": false, 
+   "display": true, 
    "name": "Active Minds at MIT"
   }
  }, 
@@ -660,6 +660,23 @@
    "type": 12, 
    "display": true, 
    "name": "Assistive Technology Club"
+  }
+ }, 
+ {
+  "pk": 471, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/firstyear/associates/responsibilities/", 
+   "last_updated": "2011-09-03 12:48:56", 
+   "description": "Associate Advisors are upperclassmen who team up with freshman advisors to mentor their freshmen throughout their first year at MIT. When you sign up to be an Associate Advisor, you are making a one year commitment to work in either a traditional or seminar-based advising group. Your objective is to provide academic guidance and a social connection for your advisees in their first year. Associate Advisors also support the freshmen within thier dorms and/or affiliated FSILG. All associate advisors within your living group will work as a team to provide peer mentoring for the freshmen in your residential community.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-03 12:12:18", 
+   "type": 9, 
+   "display": true, 
+   "name": "Associate Advisor"
   }
  }, 
  {
@@ -1666,6 +1683,23 @@
   }
  }, 
  {
+  "pk": 472, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/committees/cup/", 
+   "last_updated": "2011-09-03 12:46:16", 
+   "description": "The Committee on the Undergraduate Program exercises oversight for the undergraduate academic program including the freshman year, the General Institute Requirements, and other interdepartmental educational activities. The Committee considers proposals that would establish or change educational policies related to the undergraduate program, and it makes appropriate recommendations on these proposals to the MIT Faculty. One of the CUP\u2019s particular responsibilities is in encouraging innovation and experimentation in undergraduate education and therefore, it has the authority to approve limited educational experiments and grant exceptions to existing policy and procedure in these cases.", 
+   "image": "", 
+   "email": "cup-www@mit.edu", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-03 12:12:55", 
+   "type": 10, 
+   "display": true, 
+   "name": "Committee on the Undergraduate Program"
+  }
+ }, 
+ {
   "pk": 102, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2241,6 +2275,23 @@
    "type": 4, 
    "display": true, 
    "name": "European Club"
+  }
+ }, 
+ {
+  "pk": 470, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/committees/faculty/Rosters/fpc.pdf", 
+   "last_updated": "2011-09-03 12:51:16", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-03 12:11:25", 
+   "type": 10, 
+   "display": false, 
+   "name": "Faculty Policy Committee"
   }
  }, 
  {
@@ -4441,15 +4492,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://pbe.mit.edu/", 
-   "last_updated": "2011-09-02 11:01:55", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
+   "last_updated": "2011-09-03 16:04:56", 
+   "description": "Phi Beta Epsilon fraternity is one of MIT's oldest fraternities and has served as a home away from home for men of the Massachusetts Institute of Technology for over 100 years. With a dedication to enriching the academic, cultural, and social pursuits of its members, PBE shapes the lives of its undergraduates and enjoys the continued support of hundreds of alumni. The current brotherhood comes from a wide range of geographic and cultural backgrounds and is engaged in numerous majors, sports, music and cultural groups, and other extracurricular activities. ", 
+   "image": "campus_org/campusorg/phi_beta_epsilon_2011-09-03-16-04-56.gif", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/phi_beta_epsilon_2011-09-03-16-04-56_thumbnail.gif", 
    "user": null, 
    "date_created": "2011-09-02 11:01:55", 
    "type": 6, 
-   "display": false, 
+   "display": true, 
    "name": "Phi Beta Epsilon"
   }
  }, 
@@ -4658,23 +4709,6 @@
   }
  }, 
  {
-  "pk": 315, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://mit.edu/russian-club/web/", 
-   "last_updated": "2011-08-19 23:50:14", 
-   "description": "The MIT Russian Club supports the MIT community's exploration of Russia and neighboring countries. The club enriches MIT's cultural landscape and paves the way to connect technologies and businesses through its diverse offerings. Over years, we have developed from a social group to a platform that represents at MIT a variety of interests in culture and social entertainment, as well as opportunities in business and technology innovation.", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
-   "user": null, 
-   "date_created": "2011-05-03 12:27:41", 
-   "type": 5, 
-   "display": true, 
-   "name": "REVIEW --- Russian Business Club"
-  }
- }, 
- {
   "pk": 305, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4828,6 +4862,23 @@
   }
  }, 
  {
+  "pk": 315, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://mit.edu/russian-club/web/", 
+   "last_updated": "2011-09-03 13:15:05", 
+   "description": "The MIT Russian Club is a group of MIT students, alumni, faculty, and employees who are passionate about supporting the MIT community's exploration of the cultures, technologies, and businesses of Russia and neighboring countries. The club enriches MIT's landscape through its offerings that respond to diverse interests. We warmly welcome to our club MIT students, alumni, faculty, and employees who share our passion and interests.", 
+   "image": "campus_org/campusorg/review_---_russian_business_club_2011-09-03-13-14-52.gif", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/review_---_russian_business_club_2011-09-03-13-14-52_thumbnail.gif", 
+   "user": null, 
+   "date_created": "2011-05-03 12:27:41", 
+   "type": 5, 
+   "display": true, 
+   "name": "Russian Business Club"
+  }
+ }, 
+ {
   "pk": 316, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4917,15 +4968,15 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/savetfp/SaveTFP/Home.html", 
-   "last_updated": "2011-09-02 11:28:36", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
+   "last_updated": "2011-09-03 15:39:34", 
+   "description": "We\u2019re a student group committed to reducing stress and facilitating student social activities while increasing health awareness and curbing dangerous behaviors at MIT. We host events around high-risk weekends to give students an opportunity to meet others and socialize, get out of their rooms on a Friday night, get some food before partying, and to relax after a long week of classes. SaveTFP recruits students at the end of the semester. Keep your eyes open for an email from us.", 
+   "image": "campus_org/campusorg/savetfp_2011-09-03-15-39-34.png", 
+   "email": "savetfp@mit.edu", 
+   "thumbnail": "campus_org/campusorg/savetfp_2011-09-03-15-39-34_thumbnail.png", 
    "user": null, 
    "date_created": "2011-09-02 11:28:36", 
    "type": 9, 
-   "display": false, 
+   "display": true, 
    "name": "SaveTFP"
   }
  }, 
@@ -6273,36 +6324,19 @@
   }
  }, 
  {
-  "pk": 394, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://traders.mit.edu/", 
-   "last_updated": "2011-07-24 16:11:35", 
-   "description": "The purpose of the Traders @ MIT is to prepare its members for a career in financial markets by exploring differences in various trading desks, to teach the fundamentals of financial products, and to give members a head start in learning the skills necessary to become successful traders through talks, hands-on learning activities, and trading simulations utilizing our state-of-the-art trading software.", 
-   "image": "", 
-   "email": "traders@mit.edu", 
-   "thumbnail": "", 
-   "user": null, 
-   "date_created": "2011-05-03 12:27:43", 
-   "type": 5, 
-   "display": true, 
-   "name": "Traders at MIT"
-  }
- }, 
- {
   "pk": 466, 
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://traders.mit.edu/", 
-   "last_updated": "2011-09-01 16:36:13", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
+   "last_updated": "2011-09-03 13:10:49", 
+   "description": "The purpose of the Traders @ MIT is to prepare its members for a career in financial markets by exploring differences in various trading desks, to teach the fundamentals of financial products, and to give members a head start in learning the skills necessary to become successful traders through talks, hands-on learning activities, and trading simulations utilizing our state-of-the-art trading software.", 
+   "image": "campus_org/campusorg/traders@mit_2011-09-03-13-10-09.png", 
+   "email": "traders@mit.edu", 
+   "thumbnail": "campus_org/campusorg/traders@mit_2011-09-03-13-10-09_thumbnail.png", 
    "user": null, 
    "date_created": "2011-09-01 16:36:13", 
    "type": 5, 
-   "display": false, 
+   "display": true, 
    "name": "Traders@MIT"
   }
  }, 
