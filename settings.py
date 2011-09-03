@@ -80,7 +80,7 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 
 # Emails sent to users will be coming from this email address
-DEFAULT_FROM_EMAIL = 'no-reply@umeqo.com'
+DEFAULT_FROM_EMAIL = 'Umeqo <no-reply@umeqo.com>'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

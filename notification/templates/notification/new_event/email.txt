@@ -1,4 +1,4 @@
-Hey {{name}},
+Hi {% if name %}{{name}}{% else %}there{% endif %},
 
 {{employer_names}} {{has_word}} a new event: {{event.name}}
 
