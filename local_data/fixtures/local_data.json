@@ -1399,7 +1399,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-02 08:52:03", 
+   "last_login": "2011-09-02 21:50:38", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1417,7 +1417,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-01 04:33:32", 
+   "last_login": "2011-09-02 22:35:41", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1615,7 +1615,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-30 14:38:26", 
+   "last_login": "2011-09-02 21:50:54", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$eb726$39ef9db1692bf998982a144a3c48aae500c9cb29", 
@@ -1651,7 +1651,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-01 11:02:18", 
+   "last_login": "2011-09-02 21:49:05", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
@@ -3580,6 +3580,36 @@
    "session_key": "f97da7ee3b37be06f1f0a535e030f461", 
    "last_updated": "2011-09-02 08:52:03", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 296, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 21:49:05", 
+   "session_key": "945ceaa014f543a49299bbeee164e9f8", 
+   "last_updated": "2011-09-02 21:49:05", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 297, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 21:50:38", 
+   "session_key": "3ddab6ebfd32019e2fd9bd5fa601da8d", 
+   "last_updated": "2011-09-02 21:50:38", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 299, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 22:35:41", 
+   "session_key": "87c3c436eb1147edb3aa33da03ec6333", 
+   "last_updated": "2011-09-02 22:35:41", 
+   "user": 2
   }
  }, 
  {
