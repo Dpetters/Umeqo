@@ -22,6 +22,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
+from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext, get_language, activate
 
@@ -281,7 +282,8 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
 
     formats = (
         'short.txt',
-        'full.txt',
+        'email.txt',
+        'email.html',
         'notice.html',
         'full.html',
     ) # TODO make formats configurable
@@ -317,15 +319,22 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
             'message': messages['short.txt'],
         }, context).splitlines())
 
-        body = render_to_string('notification/email_body.txt', {
-            'message': messages['full.txt'],
+        txt_body = render_to_string('notification/email_body.txt', {
+            'message': messages['email.txt'],
         }, context)
 
-        notice = Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
+        html_body = render_to_string('notification/email_body.html', {
+            'message': messages['email.html'],
+        }, context)
+        
+        Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
             notice_type=notice_type, on_site=on_site, sender=sender)
         if should_send(user, notice_type, "1") and user.email and user.is_active: # Email
             recipients.append(user.email)
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+
+        msg = EmailMultiAlternatives(subject, txt_body, settings.DEFAULT_FROM_EMAIL, recipients)
+        msg.attach_alternative(html_body, "text/html")
+        msg.send()
 
     # reset environment to original language
     activate(current_language)
@@ -339,6 +348,7 @@ def send(*args, **kwargs):
     """
     queue_flag = kwargs.pop("queue", False)
     now_flag = kwargs.pop("now", False)
+    print kwargs
     assert not (queue_flag and now_flag), "'queue' and 'now' cannot both be True."
     if queue_flag:
         return queue(*args, **kwargs)

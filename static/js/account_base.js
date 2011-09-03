@@ -1,6 +1,10 @@
 $(document).ready( function () {
     $("#preferences_form_tabs").tabs();
-    
+
+    if (get_parameter_by_name("tab")=="preferences"){
+        $("#preferences_form_tabs").tabs("select", 1);
+    }
+
     $("#global_email_checkbox").click(function(){
         if (this.checked)
             $("#notification_preferences_table input[type=checkbox]").attr('checked', true);

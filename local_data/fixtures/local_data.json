@@ -794,6 +794,42 @@
   }
  }, 
  {
+  "pk": 12, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": null, 
+   "last_updated": "2011-09-02 12:06:59", 
+   "sat_m": null, 
+   "graduation_month": "5", 
+   "older_than_21": null, 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": null, 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": null, 
+   "first_major": null, 
+   "subscriptions": [
+    6
+   ], 
+   "gpa": null, 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": false, 
+   "school_year": null, 
+   "graduation_year": null, 
+   "previous_employers": [], 
+   "website": null, 
+   "second_major": null, 
+   "resume": "", 
+   "user": 28, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-09-02 12:06:59"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -875,6 +911,18 @@
    "email_on_invite_to_public_event": false, 
    "student": 7, 
    "date_created": "2011-08-27 21:47:13"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": true, 
+   "last_updated": "2011-09-02 12:06:59", 
+   "email_on_invite_to_private_event": true, 
+   "email_on_invite_to_public_event": true, 
+   "student": 12, 
+   "date_created": "2011-09-02 12:06:59"
   }
  }, 
  {
@@ -966,6 +1014,19 @@
    "add_to_resumebook_count": 0, 
    "student": 7, 
    "date_created": "2011-08-27 21:47:13"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-09-02 12:06:59", 
+   "event_invite_count": 0, 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 12, 
+   "date_created": "2011-09-02 12:06:59"
   }
  }, 
  {
@@ -1338,7 +1399,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-01 10:59:23", 
+   "last_login": "2011-09-02 08:52:03", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1599,6 +1660,24 @@
   }
  }, 
  {
+  "pk": 28, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "umeqo@mit.edu", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": false, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-09-02 12:06:59", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$91d1a$47caf3395ff662dbfd2bafe3cd64144db43b508a", 
+   "email": "umeqo@mit.edu", 
+   "date_joined": "2011-09-02 12:06:59"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -1721,6 +1800,15 @@
   "fields": {
    "is_verified": true, 
    "user": 26, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 28, 
    "last_password_change_date": null
   }
  }, 
@@ -3485,6 +3573,16 @@
   }
  }, 
  {
+  "pk": 295, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 08:52:03", 
+   "session_key": "f97da7ee3b37be06f1f0a535e030f461", 
+   "last_updated": "2011-09-02 08:52:03", 
+   "user": 1
+  }
+ }, 
+ {
   "pk": 6, 
   "model": "registration.registrationprofile", 
   "fields": {
@@ -3498,6 +3596,14 @@
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
    "user": 18
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "c82025c1382f2ff63a470a8b518d23fe7e7f82c8", 
+   "user": 28
   }
  }
 ]

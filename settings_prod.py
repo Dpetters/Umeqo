@@ -1,10 +1,8 @@
 import socket
 import os
 
-
-
 # Compress static content?
-COMPRESS = False
+COMPRESS = True
 
 # Students need an invite code to register
 INVITE_ONLY = False
@@ -37,7 +35,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),
-    ("Zach", "zdearing@gmail.com"),
+    ("Zac", "zdearing@gmail.com"),
     ("Josh", "me@joshma.com"),
 )
 MANAGERS = ADMINS

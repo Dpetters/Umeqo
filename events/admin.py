@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from events.models import Event
+from events.models import Event, RSVP, Invitee, Attendee, DroppedResume
 from core.models import EventType
 
 
@@ -20,3 +20,19 @@ class EventTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'sort_order')
     ordering = ('-last_updated',)
 admin.site.register(EventType, EventTypeAdmin)
+
+class RSVPAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(RSVP, RSVPAdmin)
+
+class InviteeAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Invitee, InviteeAdmin)
+
+class AttendeeAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Attendee, AttendeeAdmin)
+
+class DroppedResumeAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(DroppedResume, DroppedResumeAdmin)

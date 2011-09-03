@@ -1,1 +1,5 @@
 {{ message }}
+
+{% if recipient.student %}
+Change your notification settings at any time by going to http://{{current_site.domain}}/student/account/?tab=preferences.
+{% endif %}

@@ -10,9 +10,11 @@ class LoginAttemptAdmin(admin.ModelAdmin):
     pass
 admin.site.register(LoginAttempt, LoginAttemptAdmin)
 
+
 class RegExceptionAdmin(admin.ModelAdmin):
     pass
 admin.site.register(RegException, RegExceptionAdmin)
+
 
 class InterestedPersonAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name', 'email', 'summer_plans', 'auto_email', 'final', 'emailed']
