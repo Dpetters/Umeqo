@@ -15,6 +15,5 @@ pyPdf==1.13
 pycrypto==2.3
 pysolr==2.0.15
 python-ldap==2.4.3
-pywin32==216
 reportlab==2.5
 virtualenv==1.6.4
