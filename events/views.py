@@ -136,6 +136,8 @@ def event_new(request, form_class=None, extra_context=None):
             event.owner = request.user
             event.save()
             form.save_m2m()
+            if is_recruiter(request.user):
+                event.attending_employers.add(request.user.recruiter.employer);
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
@@ -406,5 +408,6 @@ def event_invite(request):
         })
         data = { 'valid': True, 'message': 'Invite sent successfully.' }
     else:
-        data = {'valid': False, 'message': _(m.already_invited) }
+        data = {'valid': False, 'message': m.already_invited }
+
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
