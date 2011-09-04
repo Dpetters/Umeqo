@@ -3441,8 +3441,8 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "0.000", 
-   "last_updated": "2011-06-28 01:55:42", 
+   "sort_order": "0.500", 
+   "last_updated": "2011-09-03 21:14:51", 
    "name": "Registration", 
    "slug": "registration"
   }
@@ -3459,74 +3459,132 @@
   }
  }, 
  {
-  "pk": 10, 
+  "pk": 12, 
   "model": "core.topic", 
   "fields": {
-   "date_created": "2011-06-28 01:55:42", 
+   "date_created": "2011-09-03 21:14:10", 
    "sort_order": "2.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Employer Subscriptions", 
-   "slug": "employer_subscriptions"
+   "last_updated": "2011-09-03 21:14:10", 
+   "name": "Profile", 
+   "slug": "profile"
   }
  }, 
  {
-  "pk": 4, 
+  "pk": 11, 
   "model": "core.topic", 
   "fields": {
-   "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "2.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Student Filtering", 
-   "slug": "student-filtering"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "core.topic", 
-  "fields": {
-   "date_created": "2011-06-28 01:55:42", 
+   "date_created": "2011-09-03 21:13:35", 
    "sort_order": "3.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Resumebooks", 
-   "slug": "resumebooks"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "core.topic", 
-  "fields": {
-   "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "4.000", 
-   "last_updated": "2011-06-28 01:55:42", 
+   "last_updated": "2011-09-03 21:14:21", 
    "name": "Events", 
    "slug": "events"
   }
  }, 
  {
-  "pk": 7, 
+  "pk": 10, 
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "5.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Invitations", 
-   "slug": "invitations"
+   "sort_order": "4.000", 
+   "last_updated": "2011-09-03 21:14:16", 
+   "name": "Employer Subscriptions", 
+   "slug": "employer_subscriptions"
   }
  }, 
  {
   "pk": 1, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-06-28 01:55:42", 
+   "last_updated": "2011-09-03 21:16:06", 
    "click_count": 0, 
    "question": "What is Umeqo?", 
    "slug": "what-is-umeqo", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "0.000", 
-   "answer": "Umeqo is a new platform for helping students and employers connect during recruiting season.", 
+   "answer": "Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.", 
    "date_created": "2011-06-28 01:55:42", 
-   "display": false
+   "display": true
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-04 01:51:29", 
+   "click_count": 0, 
+   "question": "What is the difference between a public and private event?", 
+   "slug": "what-difference-between-public-and-private-event", 
+   "topic": 11, 
+   "audience": 3, 
+   "sort_order": "1.000", 
+   "answer": "Anyone can view, RSVP and is welcome to attend a public event. A private event, however, is only visible to those students who are personally invited to it by the host employer.", 
+   "date_created": "2011-09-04 01:51:29", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-03 22:56:28", 
+   "click_count": 0, 
+   "question": "Why should I create yet another profile?", 
+   "slug": "why-should-i-create-yet-another-profile", 
+   "topic": 12, 
+   "audience": 3, 
+   "sort_order": "1.000", 
+   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave comments about you.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
+   "date_created": "2011-09-03 22:56:28", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-03 21:17:13", 
+   "click_count": 0, 
+   "question": "Why was Umeqo created?", 
+   "slug": "why-was-umeqo-created", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "1.000", 
+   "answer": "Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
+   "date_created": "2011-09-03 21:17:13", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-04 02:10:36", 
+   "click_count": 0, 
+   "question": "If a campus organization I\u2019m involved in is not currently listed, what can I do?", 
+   "slug": "if-campus-organization-im-involved-not-currently-listed-what-can-i-do", 
+   "topic": 12, 
+   "audience": 3, 
+   "sort_order": "2.000", 
+   "answer": "To create a new campus organization, go to the third step of the profile form and click the \"Don't see your campus organization? Submit yours to the list.\" link on the right of the fields.", 
+   "date_created": "2011-09-04 02:10:36", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-04 01:49:46", 
+   "click_count": 0, 
+   "question": "Who can see my profile?", 
+   "slug": "who-can-see-my-profile", 
+   "topic": 12, 
+   "audience": 3, 
+   "sort_order": "2.000", 
+   "answer": "Your profile information is viewable only to recruiters that use Umeqo. No other students or campus organizations can view anything but your name and email.", 
+   "date_created": "2011-09-04 01:49:46", 
+   "display": true
   }
  }, 
  {
