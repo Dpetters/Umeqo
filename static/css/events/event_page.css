@@ -201,19 +201,9 @@
     border-radius: 2px;
     border-bottom: 2px solid #F0F0F0;
 }
-.responses .event_rsvp:hover {
-    color: #FFF;
-    background-color: #BBB;
-    border-bottom: 2px solid #BBB;
-    cursor: default;
-}
 .responses .event_rsvp.hoverable {
     background-color: #FFF;
     border-bottom: 2px solid #557389;
-}
-.responses .event_rsvp.hoverable:hover {
-    background-color: #557389;
-    cursor: pointer;
 }
 .responses .event_rsvp .email {
     font-weight: 400;

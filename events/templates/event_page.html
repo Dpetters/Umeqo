@@ -18,6 +18,9 @@
 {% load text_snippet %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    {% if user.recruiter %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
+    {% endif %}
     {% if campus_org_event %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
     {% endif %}
@@ -30,8 +33,9 @@
     var EVENT_UNDROP_URL = "{% url event_undrop event_id=event.id %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    {% if not user.authenticated or user.student %}
+    {% if not user.authenticated or not user.student %}
         var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
+        var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
     {% endif %}
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
@@ -51,7 +55,7 @@
 <div id="event_page_block" class="simple_block no_top_padding">
     {% if show_admin %}
     <div id="event_admin">
-        <h1>Event Admin (visible only to you) <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
+        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you) <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
         <div id="event_admin_side">
             <table id="event_numbers">
                 <tr>
@@ -166,7 +170,7 @@
                 {% endif %}
             {% endif %}{% endif %}
             {% if not user.is_authenticated %}
-                <a href="/login/" id="rsvp-yes-button" class="button disabled-button" title="RSVP requires login.">
+                <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP requires login.">
                     Login to RSVP
                 </a>
             {% endif %}
@@ -215,7 +219,7 @@
           {% endif %}
       {% endif %}
     {% else %}
-      <a id="event_resume_drop" class="button disabled-button" disabled="disabled" href="#">Login to drop your resume</a>
+      <a id="event_resume_drop" class="button" disabled="disabled" href="#">Login to drop your resume</a>
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
