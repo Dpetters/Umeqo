@@ -16,6 +16,7 @@ campus_org_type_required = "Organization type is required."
 
 #Event Page
 drop_resume_tooltip = "Logged-in students can click this button to drop off their resume."
+rsvp_yes_tooltip = "Logged-in students can click this button to RSVP."
 
 #Student Profile Form
 first_name_required = 'Enter your first name.'

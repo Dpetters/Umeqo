@@ -174,10 +174,10 @@ input.button {
     color: #FFF;
     text-shadow: #000 0 -1px 0;
 }
-.button.disabled-button {
+.button[disabled=disabled] {
     color: #888;
 }
-.button.disabled-button:hover {
+.button[disabled=disabled]:hover {
     background: #eeeeee; /* Old browsers */
     background: -moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */

@@ -3,7 +3,7 @@
     {% if not student.account %}
         <span class="email">{{student.email}}</span>
     {% endif %}
-    {% if student.id %}
+    {% if student.id and user.recruiter %}
         <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
             {% csrf_token %}
             <input type="hidden" name="query" value="{{student.name}}" />

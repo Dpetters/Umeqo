@@ -33,12 +33,12 @@ $(document).ready(function() {
 $('#employer_subscribe').live('click', function(e) {
     var loaded_id = $('#loaded_employer_id').val();
     $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax_transparent.gif" />');
-    $(this).addClass('disabled-button');
+    $(this).attr('disabled', 'disabled');
     var that = $(this);
     $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 1}, function(data) {
         that.html('Unsubscribe');
         that.attr('id','employer_unsubscribe');
-        that.removeClass('disabled-button');
+        that.removeAttr('disabled');
         that.addClass('warning-button');
     });
     e.preventDefault();
@@ -48,12 +48,12 @@ $('#employer_unsubscribe').live('click', function(e) {
     var loaded_id = $('#loaded_employer_id').val();
     $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax_transparent.gif" />');
     $(this).removeClass('warning-button');
-    $(this).addClass('disabled-button');
+    $(this).attr('disabled', 'disabled');
     var that = $(this);
     $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 0}, function(data) {
         that.html('Subscribe');
         that.attr('id','employer_subscribe');
-        that.removeClass('disabled-button');
+        that.removeAttr('disabled')
     });
     e.preventDefault();
 });
