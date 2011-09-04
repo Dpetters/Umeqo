@@ -65,13 +65,13 @@ class Event(core_mixins.DateCreatedTracking):
         })
 
 @receiver(signals.m2m_changed, sender=Event.attending_employers.through)
-def send_new_campus_org_event_notifications(sender, instance, action, reverse, model, pk_set, using, **kwargs):
+def send_new_event_notifications(sender, instance, action, reverse, model, pk_set, using, **kwargs):
     if action=="post_add":
         notify_about_event(instance, 'new_event')
                 
 @receiver(signals.post_save, sender=Event)
-def send_new_event_notifications(sender, instance, created, raw, **kwargs):
-    if not created and not instance.is_active:
+def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
+    if not created and not instance.is_active and not raw:
         notify_about_event(instance, 'cancelled_event')
 
 def notify_about_event(instance, notice_type):
