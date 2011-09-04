@@ -3508,6 +3508,22 @@
   }
  }, 
  {
+  "pk": 3, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-03 22:56:28", 
+   "click_count": 0, 
+   "question": "Why should I create yet another profile?", 
+   "slug": "why-should-i-create-yet-another-profile", 
+   "topic": 12, 
+   "audience": 3, 
+   "sort_order": "1.000", 
+   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave comments about you.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
+   "date_created": "2011-09-03 22:56:28", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 2, 
   "model": "core.question", 
   "fields": {
