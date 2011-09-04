@@ -3441,8 +3441,8 @@
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "0.000", 
-   "last_updated": "2011-06-28 01:55:42", 
+   "sort_order": "0.500", 
+   "last_updated": "2011-09-03 21:14:51", 
    "name": "Registration", 
    "slug": "registration"
   }
@@ -3459,74 +3459,68 @@
   }
  }, 
  {
-  "pk": 10, 
+  "pk": 12, 
   "model": "core.topic", 
   "fields": {
-   "date_created": "2011-06-28 01:55:42", 
+   "date_created": "2011-09-03 21:14:10", 
    "sort_order": "2.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Employer Subscriptions", 
-   "slug": "employer_subscriptions"
+   "last_updated": "2011-09-03 21:14:10", 
+   "name": "Profile", 
+   "slug": "profile"
   }
  }, 
  {
-  "pk": 4, 
+  "pk": 11, 
   "model": "core.topic", 
   "fields": {
-   "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "2.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Student Filtering", 
-   "slug": "student-filtering"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "core.topic", 
-  "fields": {
-   "date_created": "2011-06-28 01:55:42", 
+   "date_created": "2011-09-03 21:13:35", 
    "sort_order": "3.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Resumebooks", 
-   "slug": "resumebooks"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "core.topic", 
-  "fields": {
-   "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "4.000", 
-   "last_updated": "2011-06-28 01:55:42", 
+   "last_updated": "2011-09-03 21:14:21", 
    "name": "Events", 
    "slug": "events"
   }
  }, 
  {
-  "pk": 7, 
+  "pk": 10, 
   "model": "core.topic", 
   "fields": {
    "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "5.000", 
-   "last_updated": "2011-06-28 01:55:42", 
-   "name": "Invitations", 
-   "slug": "invitations"
+   "sort_order": "4.000", 
+   "last_updated": "2011-09-03 21:14:16", 
+   "name": "Employer Subscriptions", 
+   "slug": "employer_subscriptions"
   }
  }, 
  {
   "pk": 1, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-06-28 01:55:42", 
+   "last_updated": "2011-09-03 21:16:06", 
    "click_count": 0, 
    "question": "What is Umeqo?", 
    "slug": "what-is-umeqo", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "0.000", 
-   "answer": "Umeqo is a new platform for helping students and employers connect during recruiting season.", 
+   "answer": "Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.", 
    "date_created": "2011-06-28 01:55:42", 
-   "display": false
+   "display": true
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-03 21:17:13", 
+   "click_count": 0, 
+   "question": "Why was Umeqo created?", 
+   "slug": "why-was-umeqo-created", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "1.000", 
+   "answer": "Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
+   "date_created": "2011-09-03 21:17:13", 
+   "display": true
   }
  }, 
  {
