@@ -22,6 +22,7 @@ from core.decorators import render_to, is_student, is_recruiter, is_campus_org
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import does_email_exist
+from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
 from employer.models import Employer, Recruiter
 from events.models import Event
@@ -89,6 +90,13 @@ def faq(request, extra_context = None):
         context.update(extra_context or {})  
         return context
 
+@render_to('about.html')
+def about(request, extra_context = None):    
+    context = {'campus_orgs':CampusOrg.objects.all(),
+               'locations':Location.objects.all(),
+               'courses':Course.objects.all()}
+    context.update(extra_context or {})
+    return context
 
 @render_to('tutorials.html')
 def tutorials(request, extra_context = None):    
