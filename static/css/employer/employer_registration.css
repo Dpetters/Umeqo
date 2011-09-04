@@ -6,7 +6,6 @@
 }
 .right_side_container {
     width: 250px;
-    margin-left: 40px;
 }
 #er-features, #er-overview {
     margin-right: 250px;
@@ -50,6 +49,6 @@ h2 {
 #er-signup, #er-privacy {
     padding-left: 10px;
 }
-#er-signup {
-    margin-bottom: 14px;
+#er-privacy {
+    margin-top:25px;
 }
