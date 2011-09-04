@@ -226,6 +226,11 @@ SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
+PAYPAL_TEST = True           # Testing mode on
+PAYPAL_WPP_USER = "???"      # Get from PayPal
+PAYPAL_WPP_PASSWORD = "???"
+PAYPAL_WPP_SIGNATURE = "???"
+
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 
 CACHES = {
@@ -239,6 +244,20 @@ CACHES = {
 INTERNAL_IPS = ('127.0.0.1',)
 
 NOTIFICATION_QUEUE_ALL = True
+
+PAYPAL_RECEIVER_EMAIL = "Dpetter91@gmail.com"
+PAYPAL_TEST = True
+
+PAYPAL_WPP_USER = ""
+PAYPAL_WPP_PASSWORD = ""
+PAYPAL_WPP_SIGNATURE = ""
+    
+SUBSCRIPTION_PAYPAL_SETTINGS = {
+    'business':'Dpetters91@gmail.com',
+}
+
+# 2 day grace period
+SUBSCRIPTION_GRACE_PERIOD = 2
 
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
@@ -261,6 +280,9 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'campus_org',
+    'paypal.standard.ipn',
+    'paypal.pro',
+    'subscription',
     'ckeditor',
     'sentry',
     'sentry.client',

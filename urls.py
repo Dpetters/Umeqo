@@ -32,6 +32,7 @@ urlpatterns += patterns('',
     (r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_done'),
     (r'^ckeditor/', include('ckeditor.urls')),
     (r'^sentry/', include('sentry.web.urls')),
+    (r'^sub/', include('subscription.urls')),
 )
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
