@@ -1,4 +1,11 @@
-#about_us{
+.right_side_container h2{
+    margin-bottom:10px;
+}
+#au-about{
     margin-left:10px;
     margin-top:20px;  
+    width:700px;
+}
+#au-numbers{
+    margin-top:25px;
 }
