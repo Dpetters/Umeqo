@@ -510,6 +510,23 @@
   }
  }, 
  {
+  "pk": 478, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://arts.mit.edu/about/council/arts-scholars/", 
+   "last_updated": "2011-09-06 15:34:27", 
+   "description": "The mission of the Art Scholars is to foster an active community of undergraduate and 2-year masters students with an exceptional interest in the arts.  The community\u2019s resultant role is that of an arts leadership group, cultivated through events and mentorship.", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-06 14:15:09", 
+   "type": 15, 
+   "display": true, 
+   "name": "Art Scholars"
+  }
+ }, 
+ {
   "pk": 28, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -5743,6 +5760,23 @@
    "type": 8, 
    "display": false, 
    "name": "Student Ambassadors"
+  }
+ }, 
+ {
+  "pk": 479, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://saa.mit.edu/", 
+   "last_updated": "2011-09-06 15:37:52", 
+   "description": "The Student Art Association provides instruction and studio experience in the arts at the novice and intermediate levels in an extensive range of media. The program is designed for MIT students, though all MIT affiliates may participate as space permits. Sign up to develop or refine your art in an open, hands-on, relaxed environment.", 
+   "image": "campus_org/campusorg/student_art_association_2011-09-06-15-37-52.gif", 
+   "email": "saahelp@mit.edu", 
+   "thumbnail": "campus_org/campusorg/student_art_association_2011-09-06-15-37-52_thumbnail.gif", 
+   "user": null, 
+   "date_created": "2011-09-06 14:15:46", 
+   "type": 15, 
+   "display": true, 
+   "name": "Student Art Association"
   }
  }, 
  {
