@@ -6,8 +6,9 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
 from employer.models import Recruiter
+from employer import choices as employer_choices
 from core.decorators import is_recruiter, render_to
-from subscription.models import _TIME_UNIT_CHOICES, Subscription, UserSubscription
+from subscription.models import Subscription, UserSubscription
 from subscription.forms import SubscriptionCancelForm, SubscriptionForm, subscription_dialog_parts
 
 @render_to("subscription_transaction_dialog.html")
@@ -106,86 +107,41 @@ def subscription_cancel(request, recruiter_id, form_class=SubscriptionCancelForm
     return context        
     
 @render_to("subscription_list.html")
-def subscription_list(request, employer_type, extra_context=None):
-    if not employer_type:
-        return HttpResponseBadRequest("Employer type is missing.")
-    context = {'employer_type':employer_type}
-    if employer_type == "nonprofit":
-        context['employer_type'] = "Non-Profit Employer"
-        annual = Subscription.objects.get(name="Non-Profit Annual Subscription")
-        quarterly = Subscription.objects.get(name="Non-Profit Quarterly Subscription")
-        context['annual'] = annual
-        context['quarterly'] = quarterly
-    elif employer_type == "small_employer":
-        context['employer_type'] = "Small Employer"
-        annual = Subscription.objects.get(name="Small Employer Annual Subscription")
-        quarterly = Subscription.objects.get(name="Small Employer Quarterly Subscription")
-        context['annual'] = annual
-        context['quarterly'] = quarterly
-    elif employer_type == "medium_employer":
-        context['employer_type'] = "Medium Employer"
-        annual = Subscription.objects.get(name="Medium Employer Annual Subscription")
-        quarterly = Subscription.objects.get(name="Medium Employer Quarterly Subscription")
-        context['annual'] = annual
-        context['quarterly'] = quarterly
-    elif employer_type == "large_employer":
-        context['employer_type'] = "Large Employer"
-        annual = Subscription.objects.get(name="Large Employer Annual Subscription")
-        quarterly = Subscription.objects.get(name="Large Employer Quarterly Subscription")
-        context['annual'] = annual
-        context['quarterly'] = quarterly
-    context['annual_trial_period'] = annual.trial_period
-    context['annual_trial_unit'] = dict(_TIME_UNIT_CHOICES)[annual.trial_unit]   
-    context['annual_monthly_cost'] = int(annual.price_per_day() * 30)
-    context['quarterly_trial_period'] = quarterly.trial_period
-    context['quarterly_trial_unit'] = dict(_TIME_UNIT_CHOICES)[quarterly.trial_unit]
-    context['quarterly_monthly_cost'] = int(quarterly.price_per_day() * 30)
-
+def subscription_list(request, extra_context=None):
     if request.user.is_authenticated() and is_recruiter(request.user):
+        context = {}
         free_trial = Subscription.objects.get(name="Free Trial")
         try:
             us = request.user.usersubscription_set.get(active=True)
         except UserSubscription.DoesNotExist:
             us = None
-        if us and us.subscription != free_trial:
-            if us.subscription == annual:
-                context['annual_button_text'] = "Cancel Subscription"
-                context['annual_button_action'] = "cancel"
-                context['annual_button_dialog_title'] = subscription_dialog_parts["cancel"]["title"]
+        if us:
+            if us.subscription == free_trial:
+                context['ft_text'] = "Cancel Subscription"
+                context['ft_action'] = "cancel"
+                context['ft_dialog_title'] = "Cancel Suscription"
+                context['ft_class'] = "open_sd_link cancel"
                 
-                context['quarterly_button_text'] = "Downgrade"
-                context['quarterly_button_action'] = "downgrade"
-                context['annual_button_dialog_title'] = subscription_dialog_parts["downgrade"]["title"]
-                                
-            elif us.subscription == quarterly:
-                context['annual_button_text'] = "Upgrade"
-                context['annual_button_action'] = "upgrade"
-                context['annual_button_dialog_title'] = subscription_dialog_parts["upgrade"]["title"]
-                
-                context['quarterly_button_text'] = "Cancel Subscription"
-                context['quarterly_button_action'] = "cancel"
-                context['quarterly_button_dialog_title'] = subscription_dialog_parts["cancel"]["title"]
-        else:
-            context['free_trial_button_text'] = "Cancel Subscription"
-            context['free_trial_button_action'] = "cancel"
-            context['free_trial_button_dialog_title'] = subscription_dialog_parts["cancel"]["title"]
-            
-            context['annual_button_text'] = "Upgrade"
-            context['annual_button_action'] = "upgrade"
-            context['annual_button_dialog_title'] = subscription_dialog_parts["upgrade"]["title"]
-            
-            context['quarterly_button_text'] = "Upgrade"
-            context['quarterly_button_action'] = "upgrade"
-            context['quarterly_button_dialog_title'] = subscription_dialog_parts["upgrade"]["title"]
+                context['a_text'] = "Upgrade"
+                context['a_action'] = "upgrade"
+                context['a_dialog_title'] = "Upgrade Subscription"
+            else:
+                context['a_text'] = "Cancel Subscription"
+                context['a_action'] = "cancel"
+                context['a_dialog_title'] = "Cancel Subscription"
     else:
-        context['free_trial_button_text'] = "Learn More"
-        
-        context['annual_button_action'] = "subscribe"
-        context['annual_button_text'] = "Contact Us"
-        context['annual_button_dialog_title'] = subscription_dialog_parts["subscribe"]["title"]
-                    
-        context['quarterly_button_action'] = "subscribe"
-        context['quarterly_button_text'] = "Contact Us"
-        context['quarterly_button_dialog_title'] = subscription_dialog_parts["subscribe"]["title"]
+        employer_type = None
+        if request.GET.has_key("employer_type"):
+            employer_type = request.GET["employer_type"]
+            print employer_type
+        context = {'employer_type': employer_type, 'employer_sizes':dict(employer_choices.EMPLOYER_TYPE_CHOICES)}
+        if employer_type=="P":
+            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Non-Profit Annual Subscription").price_per_day() * 30)
+        elif employer_type=="S":
+            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Small Employer Annual Subscription").price_per_day() * 30)
+        elif employer_type=="M":
+            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Medium Employer Annual Subscription").price_per_day() * 30)
+        elif employer_type=="L":
+            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Large Employer Annual Subscription").price_per_day() * 30)
     context.update(extra_context or {})
     return context

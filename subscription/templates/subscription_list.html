@@ -18,74 +18,85 @@ Employer Registration |
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_trial_info_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_transaction_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_list.js"></script>
 {% endcompress %}
 {% endblock %}
 {% block content_area %}    
-    <h1>{{employer_type}} Subscription Choices</h1>
-    <div class="grid col3 clearfix">
-        <section class="first">
-            <header>
-                <hgroup class="top">
-                    <h1>Free Trial</h1>
-                </hgroup>
-                <hgroup class="price">
-                    <h2><span class="style1">$</span><span class="style2">0</span><span class="style3">Monthly</span></h2>
-                </hgroup>
-            </header>
-            <footer>
-                <ul>
-                    <li>Access to Event RSVPs and Attendees</li>
-                    <li><strong>Unlimited</strong> Resume Books</li>
-                    <li><strong>Shared</strong> Account</li>
-                    <li>No Event Management Tools</li>
-                    <li>No Invitation Sending</li>
-                    <li>No Automatic Filtering</li>
-                    <li class="last"><a class="btn open_subscription_dialog_link open_free_trial_info_dialog_link {{free_trial_button_type}}" data-name="{{free_trial_button_name}}" data-employer-type="{{employer_type}}"  data-type="free_trial" data-action="{{free_trial_button_type}}" href="javascript:void(0)">{{free_trial_button_text}}</a></li
-                </ul>
-            </footer>
-        </section>
-        <section class="on">
-            <header>
-                <hgroup class="top">
-                    <h1>Quarterly</h1>
-                </hgroup>
-                <hgroup class="price">
-                    <h2><span class="style1">$</span><span class="style2">{{quarterly_monthly_cost}}</span><span class="style3">Monthly</span></h2>
-                </hgroup>
-            </header>
+    <h1>Umeqo Subscription Choices</h1>
+    <div>
+        <div id="subscription_notes" class="left_side_container">
+            <img src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
+            <h2>What is Umeqo?</h2>
+            <p>Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, and post and manage campus events.</p>
+            <img src="{{ STATIC_URL }}images/icons/user-business.png" />
+            <h2>Who else is using Umeqo?</h2>
+            <p>Hundreds of students (soon-to-be the entire campus!), a dozen top firms, and an ever-growing number of campus organizaitons are all using Umeqo to exchange information and help bring about a better recruiting experience for all.</p>
+            <img src="{{ STATIC_URL }}images/icons/wall.png" />
+            <h2>Safety and Security</h2>
+            <p><strong>We understand that your data is sensitive.</strong> <br> That is why we pledge to never track your activity on the site, and are making all of the recruiter sessions run on a secure connection (https).</p>
+        </div>
+        
+        <div class="grid col3">
+            <section class="first">
+                <header>
+                    <hgroup class="top">
+                        <h1>Free Trial</h1>
+                    </hgroup>
+                    <hgroup class="price">
+                        <h2><span class="style1">$</span><span class="style2">0</span><span class="style3">Monthly</span></h2>
+                    </hgroup>
+                </header>
                 <footer>
-                <ul>
-                    <li>Access to <strong>All</strong> Students</li>
-                    <li><strong>Unlimited</strong> Resume Books</li>
-                    <li><strong>Individualized</strong> Accounts</li>
-                    <li><strong>All</strong> Event Management Tools</li>
-                    <li><strong>Unlimited</strong> Invitation</li>
-                    <li><strong>Automatic</strong> Filtering</li>
-                    <li class="last"><a class="btn open_subscription_dialog_link {{quarterly_button_action}}" data-title="{{quarterly_button_dialog_title}}" data-employer-type="{{employer_type}}" data-type="quarterly" data-action="{{quarterly_button_action}}" href="javascript:void(0)">{{quarterly_button_text}} {% if quarterly_trial_period and not no_quarterly_button_trial %}<sup>({{quarterly_trial_period}} {{quarterly_trial_unit}}{{quarterly_trial_period|pluralize}} free)</sup>{% endif %}</a></li>
-                </ul>
-            </footer>
-        </section>
-        <section class="last">
-            <header>
-                <hgroup class="top">
-                    <h1>Annual</h1>
-                </hgroup>
-                <hgroup class="price">
-                    <h2><span class="style1">$</span><span class="style2">{{annual_monthly_cost}}</span><span class="style3">Monthly</span></h2>
-                </hgroup>
-            </header>
-            <footer>
-                <ul>
-                    <li>Access to <strong>All</strong> Students</li>
-                    <li><strong>Unlimited</strong> Resume Books</li>
-                    <li><strong>Individualized</strong> Accounts</li>
-                    <li><strong>All</strong> Event Management Tools</li>
-                    <li><strong>Unlimited</strong> Invitation</li>
-                    <li><strong>Automatic</strong> Filtering</li>
-                    <li class="last"><a class="btn open_subscription_dialog_link {{annual_button_action}}" data-title="{{annual_button_dialog_title}}" data-type="annual" data-employer-type="{{employer_type}}" data-action="{{annual_button_action}}" href="javascript:void(0)">{{annual_button_text}} {% if annual_trial_period and not no_annual_button_trial %}<sup>({{annual_trial_period}} {{annual_trial_unit}}{{annual_trial_period|pluralize}} free)</sup>{% endif %}</a></li>
-                </ul>
-            </footer>
-        </section>
+                    <ul>
+                        <li>Access to Event RSVPs and Attendees</li>
+                        <li><strong>Unlimited</strong> Resume Books</li>
+                        <li><strong>Shared</strong> Recruiter Account</li>
+                        <li>No Event Management Tools</li>
+                        <li>No Invitation Functionality</li>
+                        <li>No Automatic Filtering</li>
+                        <li class="last">
+                            <a href="javascript:void(0)" class="btn {% if ft_class %}{{ft_class}}{% else %}open_ftid_link{% endif %}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
+                        </li
+                    </ul>
+                </footer>
+            </section>
+            <section class="last on">
+                <header>
+                    <hgroup class="top">
+                        <h1>Annual Subscription</h1>
+                    </hgroup>
+                    <hgroup class="price">
+                        <h2>
+                            {% if employer_type %}
+                            <span class="style1">$</span><span class="style2">{{annual_monthly_cost}}</span><span class="style3">Monthly</span>
+                            {% else %}
+                               <div>
+                                    <p>Select firm type to see price.</p>
+                                    <select name="firm_type" id="firm_type">
+                                        {% for key, value in employer_sizes.items %}
+                                        <option value="{{key}}">{{value}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            {% endif %}
+                        </h2>
+                    </hgroup>
+                </header>
+                <footer>
+                    <ul>
+                        <li>Access to <strong>All</strong> Students</li>
+                        <li><strong>Unlimited</strong> Resume Books</li>
+                        <li><strong>Individualized</strong> Recruiter Accounts</li>
+                        <li><strong>All</strong> Event Management Tools</li>
+                        <li><strong>Unlimited</strong> Invitation</li>
+                        <li><strong>Automatic</strong> Filtering</li>
+                        <li class="last">
+                            <a href="javascript:void(0)" {% if employer_type %}disabled="disabled"{% endif %} class="btn open_sd_link {{a_action}}">{% if employer_type %}{% if a_text %}{{a_text}}{% else %}Contact Us{% endif %}{% else %}Select Firm Type{% endif %}</a>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+        </div>
     </div>
 
     <div>

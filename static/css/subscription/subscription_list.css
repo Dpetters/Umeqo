@@ -1,3 +1,16 @@
+#subscription_notes{
+    width:310px;
+    padding:20px 0px;
+}
+#subscription_notes h2{
+    margin-top:15px;
+    display:inline;
+    letter-spacing:-1px;
+}
+#subscription_notes img{
+    margin-top:15px;
+    margin-right:7px;
+}
 .grid a {
     text-decoration: none;
 }
@@ -17,9 +30,7 @@ section, header, hgroup, footer, .grid .btn {
     font-size: 12px;
     color: #000;
     width: 960px;
-    margin-left:auto;
-    margin-right:auto;
-    clear: both;
+    margin-left:340px;
 }
 .grid section {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
@@ -74,7 +85,10 @@ section, header, hgroup, footer, .grid .btn {
     vertical-align: middle\9;
     *vertical-align: middle;
 }
-
+.grid .price p{
+    color:#FFF;
+    font-size:16px;
+}
 .grid .price .style2 {
     font-size: 46px;
 }
@@ -84,8 +98,6 @@ section, header, hgroup, footer, .grid .btn {
     vertical-align: text-top;
     color: #87BEF2;
     text-transform: uppercase;
-    vertical-align: middle\9;
-    *vertical-align: middle;
 }
 
 .grid .price label {
@@ -160,6 +172,9 @@ section, header, hgroup, footer, .grid .btn {
 }
 .btn:hover{
     color:#FFF;
+}
+.btn:disabled{
+    cursor:default;
 }
 .btn sup
 {
@@ -277,4 +292,9 @@ section, header, hgroup, footer, .grid .btn {
 }
 .feature h3{
     font-size:13px;
+}
+#firm_type{
+    position:relative;
+    bottom:12px;
+}  
 }

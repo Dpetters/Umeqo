@@ -16,7 +16,7 @@ $(document).ready( function() {
         return $dialog;
     };
 
-    $('.open_free_trial_info_dialog_link').click( function () {
+    $('.open_ftid_link').click( function () {
         free_trial_info_dialog = open_free_trial_info_dialog();
         free_trial_info_dialog.html(DIALOG_AJAX_LOADER);
 

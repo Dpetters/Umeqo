@@ -35,15 +35,7 @@ from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, Studen
 from employer.views_helper import get_paginator, employer_search_helper, get_employer_events
 from student import enums as student_enums
 from student.models import Student
-from employer import choices as employer_choices
 
-@render_to("employer_registration.html")
-def employer_registration(request, extra_context = None):
-    context = {'employer_sizes':dict(employer_choices.EMPLOYER_SIZE_CHOICES)}
-    print context
-    context.update(extra_context or {})
-    return context
-    
 @require_GET
 @render_to("employer.html")
 def employer(request):

@@ -11,7 +11,7 @@ from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
-from employer.choices import EMPLOYER_SIZE_CHOICES
+from employer.choices import EMPLOYER_TYPE_CHOICES
 
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
@@ -24,7 +24,7 @@ class Employer(core_mixins.DateTracking):
     main_contact_email = models.EmailField("Main Contact Email", blank=True, null=True)
     main_contact_phone = PhoneNumberField("Main Contact Phone #", blank = True, null=True)
     visible = models.BooleanField(default=False)
-    size = models.CharField("Employer Size", max_length=1, choices=EMPLOYER_SIZE_CHOICES, blank=True, null=True)
+    type = models.CharField("Employer Type", max_length=1, choices=EMPLOYER_TYPE_CHOICES, blank=True, null=True)
     
     # Null Fields
     offered_job_types = models.ManyToManyField(EmploymentType, blank=True, null=True) 

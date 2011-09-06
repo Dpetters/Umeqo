@@ -76,7 +76,7 @@
             {% if not is_deadline %}
                 <div id="event_checkin">
                     <h3>Check-in Mode</h3>
-                    <a id="event_checkin_link" href="#">
+                    <a id="event_checkin_link" href="javascript:void(0)">
                         <span class="text">Enable</span>
                         <span class="filler"></span>
                     </a>
@@ -213,13 +213,13 @@
     {% if user.is_authenticated %}
       {% if event.is_drop %}
           {% if dropped_resume %}
-              <a id="event_resume_undrop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="#">Undo Drop Resume</a>
+              <a id="event_resume_undrop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Undo Drop Resume</a>
           {% else %}
-              <a id="event_resume_drop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="#">Drop Resume</a>
+              <a id="event_resume_drop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Drop Resume</a>
           {% endif %}
       {% endif %}
     {% else %}
-      <a id="event_resume_drop" class="button" disabled="disabled" href="#">Login to drop your resume</a>
+      <a id="event_resume_drop" class="button" disabled="disabled" href="javascript:void(0)">Login to drop your resume</a>
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
