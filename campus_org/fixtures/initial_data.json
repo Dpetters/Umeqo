@@ -6086,6 +6086,23 @@
   }
  }, 
  {
+  "pk": 477, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://www.tfchina.org/", 
+   "last_updated": "2011-09-06 11:15:30", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-06 11:15:30", 
+   "type": 9, 
+   "display": false, 
+   "name": "Teach for China"
+  }
+ }, 
+ {
   "pk": 382, 
   "model": "campus_org.campusorg", 
   "fields": {
