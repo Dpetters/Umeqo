@@ -465,24 +465,6 @@ function initiate_ajax_call() {
 };
 
 function handle_deliver_resume_book_button_click() {
-    function show_resume_book_current_delivered_message(){
-        $.ajax({
-            dataType: "html",
-            url: RESUME_BOOK_CURRENT_DELIVERED_URL,
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-                    deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                }else{
-                    deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                }
-            },
-            success: function (data) {
-                deliver_resume_book_dialog.html(data);
-                deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Successfully Delivered');
-            }
-        });
-    }
-
     deliver_resume_book_dialog = open_deliver_resume_book_dialog();
     deliver_resume_book_dialog.html(DIALOG_AJAX_LOADER);
 
@@ -548,9 +530,11 @@ function handle_deliver_resume_book_button_click() {
                                 data : { 'name' : custom_resume_book_name },
                                 dataType: 'html',
                                 beforeSubmit: function (arr, $form, options) {
+                                    $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
                                     show_form_submit_loader("#deliver_resume_book_form");
                                 },
                                 complete: function(jqXHR, textStatus) {
+                                    $("#deliver_resume_book_form input[type=submit]").removeAttr("disabled");
                                     deliver_resume_book_dialog.dialog('option', 'position', 'center');
                                     hide_form_submit_loader("#deliver_resume_book_form");
                                 },
@@ -567,10 +551,25 @@ function handle_deliver_resume_book_button_click() {
                             });
                         } else {
                             show_form_submit_loader("#deliver_resume_book_form");
+                            $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
                             var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL;
                             if (custom_resume_book_name){ download_url = download_url + "?name=" + escape(custom_resume_book_name) }
                             window.location.href = download_url;
-                            show_resume_book_current_delivered_message();
+                            $.ajax({
+                                dataType: "html",
+                                url: RESUME_BOOK_CURRENT_DELIVERED_URL,
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    if(jqXHR.status==0){
+                                        deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                    }else{
+                                        deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
+                                    }
+                                },
+                                success: function (data) {
+                                    deliver_resume_book_dialog.html(data);
+                                    deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
+                                }
+                            });
                         }
                     } else {
                         $("#deliver_resume_book_form .error_section").html("Please wait until the resume book is ready.");
@@ -600,7 +599,7 @@ function handle_deliver_resume_book_button_click() {
                     resume_book_created = true;
                     $("#resume_book_status").html("Ready");
                     $("#resume_book_status").addClass('ready');
-                    $("#resume_book_status").removeClass('warning');                        
+                    $("#resume_book_status").removeClass('error');                        
                 }
             });
         }
