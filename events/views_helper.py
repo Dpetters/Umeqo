@@ -17,10 +17,10 @@ def buildAttendee(obj):
         'email': obj.email,
         'datetime_created': obj.datetime_created.isoformat()
     }
-    if obj.student:
-        output['name'] = obj.student.first_name + ' ' + obj.student.last_name
-        output['account'] = True
-        output['id'] = obj.student.id
+    if obj.student and obj.student.profile_created:
+            output['name'] = obj.student.first_name + ' ' + obj.student.last_name
+            output['account'] = True
+            output['id'] = obj.student.id
     else:
         output['name'] = obj.name
         output['account'] = False
