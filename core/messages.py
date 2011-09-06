@@ -1,5 +1,7 @@
 from django.conf import settings as s
 
+search_filter_find = "Umeqo presents you with not only a student's resume, but also info applicable to your firm, such as event attendance. Potential candidates can be added to custom resume books that can be emailed and/or downloaded."
+
 # Employer Students
 no_students_selected = "No students selected."
 wait_until_resume_book_is_ready = "Please wait until the resume book is ready."

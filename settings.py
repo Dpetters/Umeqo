@@ -40,6 +40,7 @@ AWS_SECRET_ACCESS_KEY = 'FAicXYcGFnCz/CL9+FnhEOyyVLPNsLBOQixlmKzg'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 PROD_DATA_MODELS = {
+    'auth': ['group'],
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
@@ -47,7 +48,8 @@ PROD_DATA_MODELS = {
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
-    'sites':['site']
+    'sites':['site'],
+    'subscription':['subscription']
 }
 LOCAL_DATA_MODELS = {
     'auth': ['user'],
@@ -248,12 +250,12 @@ NOTIFICATION_QUEUE_ALL = True
 PAYPAL_RECEIVER_EMAIL = "Dpetter91@gmail.com"
 PAYPAL_TEST = True
 
-PAYPAL_WPP_USER = ""
-PAYPAL_WPP_PASSWORD = ""
-PAYPAL_WPP_SIGNATURE = ""
+PAYPAL_WPP_USER = "fakedd_1315259764_biz_api1.mit.edu"
+PAYPAL_WPP_PASSWORD = "1315259829"
+PAYPAL_WPP_SIGNATURE = "A49rKagANWdHO0ruyS-cvmxSSgfLAHNOJQFoR2VTHB8MkQRTOuP4FT9Q    "
     
 SUBSCRIPTION_PAYPAL_SETTINGS = {
-    'business':'Dpetters91@gmail.com',
+    'business':'fakedd_1315259764_biz@mit.edu',
 }
 
 # 2 day grace period
@@ -280,8 +282,6 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'campus_org',
-    'paypal.standard.ipn',
-    'paypal.pro',
     'subscription',
     'ckeditor',
     'sentry',

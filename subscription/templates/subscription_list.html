@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}
+Employer Registration |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/free_trial_info_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_transaction_dialog.css" />
+{% endcompress %}
+<script>
+    var FREE_TRIAL_INFO_DIALOG_URL = "{% url free_trial_info_dialog %}";
+    var SUBSCRIPTION_TRANSACTION_URL = "{% url subscription_dialog %}";
+</script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_trial_info_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_transaction_dialog.js"></script>
+{% endcompress %}
+{% endblock %}
+{% block content_area %}    
+    <h1>{{employer_type}} Subscription Choices</h1>
+    <div class="grid col3 clearfix">
+        <section class="first">
+            <header>
+                <hgroup class="top">
+                    <h1>Free Trial</h1>
+                </hgroup>
+                <hgroup class="price">
+                    <h2><span class="style1">$</span><span class="style2">0</span><span class="style3">Monthly</span></h2>
+                </hgroup>
+            </header>
+            <footer>
+                <ul>
+                    <li>Access to Event RSVPs and Attendees</li>
+                    <li><strong>Unlimited</strong> Resume Books</li>
+                    <li><strong>Shared</strong> Account</li>
+                    <li>No Event Management Tools</li>
+                    <li>No Invitation Sending</li>
+                    <li>No Automatic Filtering</li>
+                    <li class="last"><a class="btn open_subscription_dialog_link open_free_trial_info_dialog_link {{free_trial_button_type}}" data-name="{{free_trial_button_name}}" data-employer-type="{{employer_type}}"  data-type="free_trial" data-action="{{free_trial_button_type}}" href="javascript:void(0)">{{free_trial_button_text}}</a></li
+                </ul>
+            </footer>
+        </section>
+        <section class="on">
+            <header>
+                <hgroup class="top">
+                    <h1>Quarterly</h1>
+                </hgroup>
+                <hgroup class="price">
+                    <h2><span class="style1">$</span><span class="style2">{{quarterly_monthly_cost}}</span><span class="style3">Monthly</span></h2>
+                </hgroup>
+            </header>
+                <footer>
+                <ul>
+                    <li>Access to <strong>All</strong> Students</li>
+                    <li><strong>Unlimited</strong> Resume Books</li>
+                    <li><strong>Individualized</strong> Accounts</li>
+                    <li><strong>All</strong> Event Management Tools</li>
+                    <li><strong>Unlimited</strong> Invitation</li>
+                    <li><strong>Automatic</strong> Filtering</li>
+                    <li class="last"><a class="btn open_subscription_dialog_link {{quarterly_button_action}}" data-title="{{quarterly_button_dialog_title}}" data-employer-type="{{employer_type}}" data-type="quarterly" data-action="{{quarterly_button_action}}" href="javascript:void(0)">{{quarterly_button_text}} {% if quarterly_trial_period and not no_quarterly_button_trial %}<sup>({{quarterly_trial_period}} {{quarterly_trial_unit}}{{quarterly_trial_period|pluralize}} free)</sup>{% endif %}</a></li>
+                </ul>
+            </footer>
+        </section>
+        <section class="last">
+            <header>
+                <hgroup class="top">
+                    <h1>Annual</h1>
+                </hgroup>
+                <hgroup class="price">
+                    <h2><span class="style1">$</span><span class="style2">{{annual_monthly_cost}}</span><span class="style3">Monthly</span></h2>
+                </hgroup>
+            </header>
+            <footer>
+                <ul>
+                    <li>Access to <strong>All</strong> Students</li>
+                    <li><strong>Unlimited</strong> Resume Books</li>
+                    <li><strong>Individualized</strong> Accounts</li>
+                    <li><strong>All</strong> Event Management Tools</li>
+                    <li><strong>Unlimited</strong> Invitation</li>
+                    <li><strong>Automatic</strong> Filtering</li>
+                    <li class="last"><a class="btn open_subscription_dialog_link {{annual_button_action}}" data-title="{{annual_button_dialog_title}}" data-type="annual" data-employer-type="{{employer_type}}" data-action="{{annual_button_action}}" href="javascript:void(0)">{{annual_button_text}} {% if annual_trial_period and not no_annual_button_trial %}<sup>({{annual_trial_period}} {{annual_trial_unit}}{{annual_trial_period|pluralize}} free)</sup>{% endif %}</a></li>
+                </ul>
+            </footer>
+        </section>
+    </div>
+
+    <div>
+        <h1 class="center">Umeqo Features At a Glance</h1>
+        <div class="feature no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/magnifier.png" /> Search, Filter, Find</h3>
+            <p>Umeqo presents not only a student’s resume, but also info applicable to your firm, such as event attendance.  Potential candidates can be added to custom resume books that can be emailed and/or downloaded.</p>
+        </div>
+        <div class="feature no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/calendar-medium.png" /> Effectively Plan Events</h3>
+            <p>The Umeqo Event Scheduling Assistant presents you with an overview of both major campus activities and events hosted by other companies, allowing you to schedule your event at an optimal time. Umeqo also handles event check-ins, minimizing headaches and the length of those check-in lines.</p>
+        </div>
+        <div class="feature no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/bank.png" /> Learn About the Campus</h3>
+            <p>With 400+ campus organizations documented, you will be able to click on those that any student is involved in to learn more about them.</p>
+        </div>
+        <div class="feature last no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/medal.png" /> Discover Promising Candidates</h3>
+            <p>Umeqo allows you to annotate students’ profiles, making it easy for you to remember promising candidates and share notes with colleagues.</p>
+        </div>
+    </div>
+{% endblock %}

@@ -93,7 +93,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        '()': { # Stop SQL debug from logging to main logger
+        'django.request': { # Stop SQL debug from logging to main logger
             'handlers': ['sentry', 'file_handler'],
             'level': 'WARNING',
         },

@@ -1,0 +1,12 @@
+.subscription_dialog .dialog_content_wrapper{
+    padding: 10px 25px;
+}
+.subscription_dialog #subscription_form #id_body{
+    width:470px;
+    height:100px;
+    resize:none;
+    margin-top:3px;
+}
+.subscription_dialog #subscription_form th{
+    width:80px;
+}

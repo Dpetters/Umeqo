@@ -5,9 +5,20 @@ Employer Registration |
 {% endblock %}
 
 {% block metadata %}
+{{block.super}}
 {% load compress %}
+{% load text_snippet %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_registration.css" />
+{% endcompress %}
+<script>
+    SMALL_EMPLOYER_URL = "{% url subscription_list type='small_employer' %}";
+    MEDIUM_EMPLOYER_URL = "{% url subscription_list type='medium_employer' %}";
+    LARGE_EMPLOYER_URL = "{% url subscription_list type='large_employer' %}";    
+    NONPROFIT_URL = "{% url subscription_list type='nonprofit' %}";    
+</script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_registration.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -15,7 +26,12 @@ Employer Registration |
 <h1>Employer Registration</h1>
 <div class="right_side_container">
     <div id="er-signup">
-        <h2>Interested? <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact Us!</a></h2>
+        <h2>Select Firm Size to Begin</h2>
+        <select name="firm_size" id="firm_size">
+            {% for key, value in employer_sizes.items %}
+            <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+        </select>
     </div>
     <div id="er-privacy">
         <h2>Safety and Security</h2>
@@ -31,7 +47,7 @@ Employer Registration |
     <div class="er-feature">
         <img src="{{ STATIC_URL }}images/e-reg/filtering.png" />
         <h3>Search, Filter, Find</h3>       
-        <p>Easily discover the perfect candidate from the vast collection of students. We present you with not only a candidate’s resume, but also info applicable to your firm, such as event attendance.  Potential candidates can be added to custom resume books that can be emailed and/or downloaded.</p>
+        <p>{% text_snippet 'search_filter_find' %}</p>
     </div>
     <div class="er-feature">
         <img src="{{ STATIC_URL }}images/e-reg/checkin.png" />
