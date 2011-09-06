@@ -26,6 +26,9 @@ $(document).ready(function() {
         unhighlight : unhighlight,
         errorPlacement : place_table_form_field_error,
         rules : {
+            name : {
+                required : true
+            },
             slug : {
                 required : true
             },
@@ -50,6 +53,7 @@ $(document).ready(function() {
             }
         },
         messages : {
+            name : NAME_REQUIRED,
             slug : SLUG_REQUIRED,
             industries : INDUSTRIES_REQUIRED,
             description : DESCRIPTION_REQUIRED,

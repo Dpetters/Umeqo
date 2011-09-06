@@ -3,7 +3,7 @@
     {% if subbed %}
         <a id="employer_unsubscribe" href="#" class="button warning-button">Unsubscribe</a>
     {% else %}
-        <a id="employer_subscribe" href="#" class="button">Subscribe</a>
+        <a id="employer_subscribe" {% if preview %}disabled="disabled"{% endif %} href="#" class="button">Subscribe</a>
     {% endif %}    
 </div>
 

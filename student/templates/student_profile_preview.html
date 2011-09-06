@@ -11,7 +11,7 @@
     {% if profile_preview %}
     <a class="student_resume_link" href="javascript:void(0)" tabindex="-1">View Resume</a>
     {% else %}
-    <a class="student_resume_link" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}" tabindex="-1">View Resume</a>
+    <a class="student_resume_link" data-student-id="{{student.id}}" target="_blank" href="{{ MEDIA_URL }}{{student.resume}}" tabindex="-1">View Resume</a>
     {% endif %}
     <input name="student_checkbox" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
     <label for="student_checkbox_{{student.id}}" data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</label>

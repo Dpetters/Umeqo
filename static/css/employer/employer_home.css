@@ -8,3 +8,6 @@
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
+#setup_automatic_filtering_link{
+    cursor:default;
+}

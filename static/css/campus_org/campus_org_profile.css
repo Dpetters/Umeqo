@@ -1,6 +1,9 @@
 #id_description{
     width:700px;
 }
+#profile_form .form_table{
+    padding-top:0px;
+}
 #profile_form .main_block_content{
     padding:10px 20px 20px;
 }
@@ -11,7 +14,7 @@
     width:260px;
 }
 #profile_form .form_table th{
-    padding-left:20px;
+    padding-left:10px;
 }
 #profile_form label[for=id_description]{
     margin-left:2px;
