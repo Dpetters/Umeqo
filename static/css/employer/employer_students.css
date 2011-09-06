@@ -80,6 +80,12 @@
 #id_sat_m, #id_sat_v, #id_sat_w {
     width:22px;
 }
+.deliver_reusme_book_dialog #id_emails_th{
+    vertical-align:top;
+}
+.deliver_resume_book_dialog label[for='id_emails']{
+    margin-top:24px;
+}
 #student_deliver_resume_book_button {
     width:68px;
     float:right;
@@ -188,7 +194,7 @@
     margin-left:auto;
     margin-right:auto;
 }
-#deliver_resume_book_form_submit_button{
+#deliver_resume_book_form input[type=submit]{
     width:72px;
 }
 #resume_book_status_div{

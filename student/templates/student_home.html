@@ -19,13 +19,6 @@
 {% endcompress %}
 {% endblock %}
 
-{% block message_area %}
-{{ block.super }}
-{% if msg %}
-    <p>{{ msg }}</p>
-{% endif %}
-{% endblock %}
-
 {% block content_area %}
     <div class="left_side_container">
         {% include "student_side_nav.html" %}

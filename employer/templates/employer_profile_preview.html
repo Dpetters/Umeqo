@@ -7,13 +7,18 @@
 {% block metadata %}
 {{block.super}}
 {% load compress %}
+{% load text_snippet %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 {% endcompress %}
 <script>
+    var SUBSCRIBE_TOOLTIP = "{% text_snippet 'subscribe_tooltip' %}";
     var STATIC_URL = "{{ STATIC_URL }}";
 </script>
+{% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_preview.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block content_area %}
@@ -21,6 +26,6 @@
     {% include "employer_side_nav.html" %}
 </div>
 <div class="with_side_nav no_top_margin">
-    {% include "employers_list_pane.html" with employer=employer events=events isnotajax="True" %}
+    {% include "employers_list_pane.html" with isnotajax="True" %}
 </div>
 {% endblock %}

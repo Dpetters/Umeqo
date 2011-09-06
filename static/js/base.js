@@ -50,6 +50,7 @@ function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
     }
 };
 function place_table_form_errors(form, errors){
+    console.log(errors);
     for (field in errors){
         if (field == "__all__"){
             $(form + " .error_section").html(errors[field][0]);
