@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -42,7 +44,7 @@ class StudentBaseAttributes(models.Model):
         abstract = True
 
 
-class Student(StudentBaseAttributes, core_mixins.DateTracking):
+class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
     user = models.OneToOneField(User, unique=True)
     profile_created = models.BooleanField(default=False)
     
@@ -60,6 +62,8 @@ class Student(StudentBaseAttributes, core_mixins.DateTracking):
     
     website = models.URLField(verify_exists=False, blank = True, null=True)
     older_than_21 = models.CharField(max_length=1, choices = core_choices.SELECT_YES_NO_CHOICES, blank = True, null = True)
+    
+    last_updated = models.DateTimeField(editable=False, default=datetime.datetime.now())
     
     subscriptions = models.ManyToManyField("employer.Employer", blank=True, null=True, related_name="subscriptions")
     
@@ -119,7 +123,6 @@ class StudentPreferences(core_mixins.DateTracking):
 class StudentStatistics(core_mixins.DateTracking):
     student = models.OneToOneField("student.Student", unique=True, editable=False)
     
-    event_invite_count = models.PositiveIntegerField(editable=False, default = 0)
     add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
     resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
     shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)

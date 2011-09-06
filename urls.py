@@ -102,6 +102,7 @@ urlpatterns += patterns('student.views',
     (r'^student/account/preferences/$', 'student_account_preferences', {}, "student_account_preferences"),
     (r'^student/account/deactivate/$', 'student_account_deactivate', {}, "student_account_deactivate"),
     (r'^student/resume/$', 'student_resume', {}, 'student_resume'),
+    (r'^student/resume/increment-view-count/$', 'student_increment_resume_view_count', {}, 'student_increment_resume_view_count')
 )
 urlpatterns += patterns('employer.views',
     (r'^employer/$', 'employer', {}, 'employer'),                        

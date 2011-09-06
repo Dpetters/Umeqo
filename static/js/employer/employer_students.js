@@ -1,6 +1,7 @@
 var window_height_min = 580;
     
 var xhr = null;
+var comment_xhr = null;
 var filtering_ajax_request = null;
 
 function handle_students_in_resume_book_student_list_click() {
@@ -280,7 +281,8 @@ function handle_student_event_attendance_hover(){
 };
 
 function save_student_comment(student_id, comment){
-     $.ajax({
+     if(comment_xhr && comment_xhr.readystate != 4){ comment_xhr.abort(); }  
+     comment_xhr = $.ajax({
         type: 'POST',
         url: STUDENT_COMMENT_URL,
         dataType: "json",
@@ -329,44 +331,44 @@ function handle_results_menu_toggle_details_button_click() {
 }
 
 function handle_results_menu_starred_click(e) {
-    $(".starred_img").each(function() {
+    $(".sprite-star").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
-    $(".unstarred_img").each(function() {
+    $(".sprite-star-empty").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
 };
 
 function handle_results_menu_not_starred_click(e) {
-    $(".starred_img").each(function() {
+    $(".sprite-star").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
-    $(".unstarred_img").each(function() {
+    $(".sprite-star-empty").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
 };
 
 function handle_results_menu_in_resume_book_click(e) {
-    $(".add_to_resume_book_img").each(function() {
+    $(".sprite-plus").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
-    $(".remove_from_resume_book_img").each(function() {
+    $(".sprite-cross").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
 };
 
 function handle_results_menu_not_in_resume_book_click(e) {
-    $(".add_to_resume_book_img").each(function() {
+    $(".sprite-plus").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
-    $(".remove_from_resume_book_img").each(function() {
+    $(".sprite-cross").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
@@ -710,6 +712,7 @@ $(document).ready(function() {
 
     $("#query_field").val(query);
     var timeoutID;
+    
     $('#query_field').keydown( function() {
         if (typeof timeoutID!='undefined')
             window.clearTimeout(timeoutID);
@@ -723,7 +726,7 @@ $(document).ready(function() {
             window.clearTimeout(timeoutID);
         timeoutID = window.setTimeout( function(){
             save_student_comment(id, $(textarea).val());
-        }, 1000);
+        }, 500);
     });
     if ($(window).height()>window_height_min){
         set_up_side_block_scrolling();
@@ -773,7 +776,17 @@ $(document).ready(function() {
     $('.student_invite_to_event_span .student_invite_to_event_link').live('click', function(e) {
         e.preventDefault();
     });
-
+    
+    $(".student_resume_link").live('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: STUDENT_INCREMENT_RESUME_VIEW_COUNT_URL,
+            data: {
+                'student_id': $(this).attr("data-student-id"),
+            },
+        });
+    });
+    
     $('.event_invite_link').live('click', function(e) {
         if ($(this).hasClass('disabled')) {
             return false;

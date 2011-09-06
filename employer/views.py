@@ -193,6 +193,8 @@ def employer_resume_book_current_toggle_student(request):
             data = {'action':employer_enums.REMOVED}  
         else:
             current_resume_book.students.add(student)
+            student.studentstatistics.add_to_resumebook_count += 1
+            student.studentstatistics.save()
             data = {'action':employer_enums.ADDED}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
@@ -211,9 +213,11 @@ def employer_resume_book_current_add_students(request):
             current_resume_book = resume_books.order_by('-date_created')[0]
         if request.POST['student_ids']:
             for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
+                student = Student.objects.get(id=id)
                 if student not in current_resume_book.students.all():
                     current_resume_book.students.add(student)
+                    student.studentstatistics.add_to_resumebook_count += 1
+                    student.studentstatistics.save()
         return HttpResponse()
     else:
         return HttpResponseBadRequest("Student IDs are missing.")
@@ -337,7 +341,7 @@ def employer_students(request, extra_context=None):
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
-            student.save()
+            student.studentstatistics.save()
         
         context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
@@ -430,7 +434,10 @@ def employer_resume_book_current_create(request):
             output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
         resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
         current_resume_book.resume_book_name = resume_book_name
-        file_name = "%semployer/resumebook/%s.tmp" % (s.MEDIA_ROOT, resume_book_name,)
+        file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
+        if not os.path.exists(file_path):
+            os.makedirs(file_path)
+        file_name = "%s%s.tmp" % (file_path, resume_book_name,)
         outputStream = file(file_name, "wb")
         output.write(outputStream)
         outputStream.close()
