@@ -10,6 +10,7 @@
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
 {% endcompress %}
 <script>
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
@@ -22,6 +23,13 @@
 {% block content_area %}
     <div class="left_side_container">
         {% include "student_side_nav.html" %}
+        <div id="statistics_block">
+            <h3 id="statistics_header">Your Statistics</h3>
+            <p><strong>Profile Views: </strong>{{user.student.studentstatistics.shown_in_results_count}}</p>
+            <p><strong>Resume Views: </strong>{{user.student.studentstatistics.resume_view_count}}</p>
+            <p><strong>Resume Book Count: </strong>{{user.student.studentstatistics.add_to_resumebook_count}}</p>
+            <p><strong>Invite Count: </strong>{{user.student.invitee_set.all|length}}</p>
+        </div>
     </div>
     <div class="main_block with_side_nav no_top_margin">
         <div class="main_block_header">

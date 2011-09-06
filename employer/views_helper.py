@@ -280,7 +280,7 @@ def combine_and_order_results(filtering_results, search_results, ordering, query
     else:
         if query == "null":
             if ordering == enums.ORDERING_CHOICES[0][0]:
-                return filtering_results.order_by('last_updated')
+                return filtering_results.order_by('-last_updated')
             else:
                 return filtering_results.order_by(ordering)
         return []

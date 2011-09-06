@@ -180,14 +180,12 @@ def event_edit(request, id=None, extra_context=None):
     context['edit'] = True
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
-    print event.type.name
     if event.type.name == "Hard Deadline":
         context['event_scheduler_date'] = event.end_datetime.strftime('%m/%d/%Y')
     elif event.type.name == "Rolling Deadline":
         context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
     else:
         context['event_scheduler_date'] =  event.start_datetime.strftime('%m/%d/%Y')
-    print context['event_scheduler_date']
     context.update(extra_context or {})
     return context
 
