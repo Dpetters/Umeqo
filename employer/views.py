@@ -60,7 +60,7 @@ def employer_profile_preview(request, slug, extra_context=None):
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
     elif is_recruiter(request.user):
-        context = {'employer':employer, 'events':get_employer_events(employer)}
+        context = {'employer':employer, 'events':get_employer_events(employer), 'preview':True}
         context.update(extra_context or {})
         return context
 
@@ -100,7 +100,7 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter.employer)
         data = []
         if form.is_valid():
             form.save()

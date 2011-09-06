@@ -237,7 +237,7 @@ $(document).ready( function() {
     });
    
     $("#profile_form select, #profile_form input[type=file]").live('change', function() {
-        setTimeout(load_profile_preview, 0);
+        setTimeout(load_profile_preview, 10);
     });
     var timeoutID;
     $('#profile_form input[type=text]').keydown(function(e) {

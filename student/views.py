@@ -4,8 +4,7 @@ from __future__ import absolute_import
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
+from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_http_methods
@@ -207,9 +206,7 @@ def student_registration_complete(request, extra_context = None):
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile.html")
-def student_profile(request,
-                     form_class=StudentProfileForm,
-                     extra_context=None):
+def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)

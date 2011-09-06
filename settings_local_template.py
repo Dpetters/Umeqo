@@ -67,13 +67,27 @@ LOGGING = {
             'level': 'WARNING',
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html':True
+        },
+        'sentry': {
+            'level': 'DEBUG',
+            'class': 'sentry.client.handlers.SentryHandler',
+            'formatter': 'standard'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
         }
     },
     'loggers': {
         'django.request': { # Stop SQL debug from logging to main logger
             'handlers': ['file_handler'],
+            'level': 'WARNING',
+        },
+        'sentry.errors': {
             'level': 'DEBUG',
-            'propagate':True
+            'handlers': ['console'],
+            'propagate': False,
         },
     }
 }
