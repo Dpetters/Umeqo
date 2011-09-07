@@ -22,5 +22,21 @@
    "domain": "umeqo.com", 
    "name": "Umeqo"
   }
+ }, 
+ {
+  "pk": 1, 
+  "model": "auth.group", 
+  "fields": {
+   "name": "recruiter_free_trial", 
+   "permissions": []
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "auth.group", 
+  "fields": {
+   "name": "recruiter_subscribed", 
+   "permissions": []
+  }
  }
 ]
