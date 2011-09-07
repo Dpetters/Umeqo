@@ -1,10 +1,6 @@
 <div class="dialog_content_wrapper">
     <h3>Once your request is processed, you will receive an email from us.</h3>
-    <p>
-    {% ifequal action "subscribe" %}
-        You free 3 day trial will begin upon your receipt of the email, which will include your credentials and an invoice for the amount of ${{cost}}. 
-    {% endifequal %}
-    </p>
+    <p>Attached to email will be all the terms and conditions of the subscription in PDF form.</p>
     {% if form.new_master %}
     <p><strong>Note:</strong>You are the master account for {{user.recruiter.employer}}.</h3>
     <p>Therefore you need to Before you end your subscription, there are firms out there that need you! Note that -</h3>
@@ -18,18 +14,26 @@
                     <div class="errorspace">{{form.name.errors}}</div>
                     {{form.name}}
                 </td>
-                <td rowspan="2">
-                    <div id="email_contacts">
-                        <h3>Email Contact</h3>
-                        <p><b>All Inquries:</b> contact@umeqo.com</p>
-                    </div>
-                </td>
             </tr>
             <tr>
                 <th>{{form.email.label_tag}}</th>
                 <td class="input_cell" colspan="2">
                     <div class="errorspace">{{form.email.errors}}</div>
                     {{form.email}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.employer.label_tag}}</th>
+                <td class="input_cell" colspan="2">
+                    <div class="errorspace">{{form.employer.errors}}</div>
+                    {{form.employer}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.employer_type.label_tag}}</th>
+                <td class="input_cell" colspan="2">
+                    <div class="errorspace">{{form.employer_type.errors}}</div>
+                    {{form.employer_type}}
                 </td>
             </tr>
             {% if form.new_master %}

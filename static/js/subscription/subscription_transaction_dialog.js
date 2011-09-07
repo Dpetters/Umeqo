@@ -21,14 +21,13 @@ $(document).ready( function() {
         subscription_dialog.html(DIALOG_AJAX_LOADER);
 
         var subscription_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-        var action = $(this).attr("data-action");
-        var type = $(this).attr("data-type");
+        var json_data = {'action':$(this).attr("data-action"), 'subscription_type':$(this).attr("data-subscription-type"), 'employer_type':$(this).attr("data-employer-type")}
         
         $.ajax({
             type:'GET',
             dataType: "html",
             url: SUBSCRIPTION_TRANSACTION_URL,
-            data: {'type':type, 'action':action},
+            data: json_data,
             complete: function(jqXHR, textStatus) {
                 clearTimeout(subscription_dialog_timeout);
                 subscription_dialog.dialog('option', 'position', 'center');
@@ -44,16 +43,14 @@ $(document).ready( function() {
                 subscription_dialog.html(data);
                 subscription_form_validator = $("#subscription_form").validate({
                     submitHandler: function (form) {
-                        console.log(type);
-                        console.log(action);
                         $(form).ajaxSubmit({
                             url: SUBSCRIPTION_TRANSACTION_URL,
-                            data: {'type':type, 'action':action},
+                            data: json_data,
                             dataType: 'json',
                             beforeSubmit: function (arr, $form, options) {
                                 $("#subscription_form input[type=submit]").attr("disabled", "disabled");
                                 show_form_submit_loader("#subscription_form");
-                                $("#subscription_form .errorspace, #contact_us_form .error_section").html("");
+                                $("#subscription_form .errorspace, #subscription_form .error_section").html("");
                             },
                             complete : function(jqXHR, textStatus) {
                                 subscription_dialog.dialog('option', 'position', 'center');
@@ -68,12 +65,12 @@ $(document).ready( function() {
                                 }
                             },
                             success: function (data) {
-                                if(data.valid) {
-                                    var success_message = "<div class='message_section'><p>" + data.success_message + "</p></div>";
+                                if(data.errors) {
+                                    place_table_form_errors("#subscription_form", data.errors);
+                                } else {
+                                    var success_message = "<div class='message_section'><p>We have received your request and will get back to you ASAP. Thank you!.</p></div>";
                                     success_message += CLOSE_DIALOG_LINK;
                                     subscription_dialog.html(success_message);
-                                } else {
-                                    place_table_form_errors("#subscription_form", data.errors);
                                 }
                             }
                         });
@@ -90,6 +87,15 @@ $(document).ready( function() {
                             email: true
                         },
                         body: {
+                            required: true
+                        },
+                        employer: {
+                            required: true
+                        },
+                        employer_size: {
+                            required: true
+                        },
+                        employer_type: {
                             required: true
                         }
                     },

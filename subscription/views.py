@@ -2,68 +2,75 @@ from django.http import HttpResponseBadRequest, HttpResponse
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils import simplejson
-from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
+from core.email import send_html_mail
 from employer.models import Recruiter
 from employer import choices as employer_choices
 from core.decorators import is_recruiter, render_to
 from subscription.models import Subscription, UserSubscription
-from subscription.forms import SubscriptionCancelForm, SubscriptionForm, subscription_dialog_parts
+from subscription.forms import SubscriptionCancelForm, SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
 def subscription_dialog(request, extra_context=None):
-    if request.GET.has_key("action") and request.GET.has_key("type"):
-        action = request.GET['action']
-        if action in subscription_dialog_parts:
-            if request.method=="POST":
-                if action=="cancel":
-                    form = SubscriptionCancelForm(data = request.POST)
-                else:
-                    form = SubscriptionForm(data = request.POST)
-                if form.is_valid():
-                    data = {}
-                    if form.cleaned_data.has_key("new_master_recruiter"):
-                        new_master = request.user.recruiter.employer.recruiter_set.get(is_master=True)           
-                        data['new_master'] = new_master
-                    recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                    subject = "%s request" % request.POST['type']
-                    subscription_request_context = {'name': form.cleaned_data['name'], \
-                                                    'email': form.cleaned_data['email'], \
-                                                    'body': form.cleaned_data['body']}
-                    if is_recruiter(request.user):
-                        subscription_request_context['employer'] = request.user.recruiter.employer
-                    body = render_to_string('subscription_request.txt', subscription_request_context)
-                    message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
-                    message.send()
-                    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-                else:
-                    data = {'error':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-            else:
-                initial = {}
-                context = {'type':type}
-                if request.user.is_authenticated():
-                    initial['name'] = "%s %s" % (request.user.first_name, request.user.last_name,)
-                    initial['email'] = request.user.email
-                
-                body_context = {'type':request.GET["type"]}
-                if is_recruiter(request.user):
-                    body_context['employer'] = request.user.recruiter.employer
-                initial['body'] = render_to_string(subscription_dialog_parts[action]['template'], body_context)
-                if type=="subscribe":
-                    cost = Subscription.objects.get()
-                    
-                if type=="cancel":
-                    context['form'] = SubscriptionCancelForm(initial=initial)
-                else:
-                    context['form'] = SubscriptionForm(initial=initial)
-                context.update(extra_context or {})
-                return context
+    if request.method=="POST":
+        print request.POST
+        if request.POST.has_key("action") and request.POST.has_key("employer_type") and request.POST.has_key("subscription_type"):
+            action = request.POST['action']
+            if action not in subscription_templates:
+                return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
+            employer_type = request.POST['employer_type']
+            subscription_type = request.POST['subscription_type']
         else:
-            return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_dialog_parts.keys()))
+            return HttpResponseBadRequest("Subscription transaction type or action is missing.")
+        if action=="cancel":
+            form = SubscriptionCancelForm(data = request.POST)
+        else:
+            form = SubscriptionForm(data = request.POST)
+        
+        if form.is_valid():
+            data = {}
+            if form.cleaned_data.has_key("new_master_recruiter"):
+                new_master = request.user.recruiter.employer.recruiter_set.get(is_master=True)       
+                data['new_master'] = new_master
+            recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+            subject = "[sales] %s subscription request" % subscription_type
+            subscription_request_context = {'name': form.cleaned_data['name'], 'email': form.cleaned_data['email'], 'body': form.cleaned_data['body']}
+            if is_recruiter(request.user):
+                subscription_request_context['employer'] = request.user.recruiter.employer
+            html_body = render_to_string('subscription_body_request.html', subscription_request_context)
+            send_html_mail(subject, html_body, recipients)
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            data = {'error':form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseBadRequest("Subscription transaction type or action is missing.")
+        if request.GET.has_key("action") and request.GET.has_key("employer_type") and request.GET.has_key("subscription_type"):
+            action = request.GET['action']
+            if action not in subscription_templates:
+                return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
+            employer_type = request.GET['employer_type']
+            subscription_type = request.GET['subscription_type']
+        else:
+            return HttpResponseBadRequest("Subscription transaction type or action is missing.")
+        initial = {'employer_type':employer_type}
+        context = {'type':type}
+        if request.user.is_authenticated():
+            initial['name'] = "%s %s" % (request.user.first_name, request.user.last_name,)
+            initial['email'] = request.user.email
+        
+        body_context = {'subscription_type':subscription_type}
+        if is_recruiter(request.user):
+            body_context['employer'] = request.user.recruiter.employer
+        initial['body'] = render_to_string(subscription_templates[action], body_context)
+        if type=="subscribe":
+            cost = Subscription.objects.get()
+        if type=="cancel":
+            context['form'] = SubscriptionCancelForm(initial=initial)
+        else:
+            context['form'] = SubscriptionForm(initial=initial)
+        context.update(extra_context or {})
+        return context
              
 @render_to("free_trial_info_dialog.html")
 def free_trial_info_dialog(request, extra_context=None):
@@ -118,23 +125,24 @@ def subscription_list(request, extra_context=None):
         if us:
             if us.subscription == free_trial:
                 context['ft_text'] = "Cancel Subscription"
-                context['ft_action'] = "cancel"
-                context['ft_dialog_title'] = "Cancel Suscription"
                 context['ft_class'] = "open_sd_link cancel"
+                context['ft_action'] = "cancel"
                 
                 context['a_text'] = "Upgrade"
+                context['a_cancel'] = "open_sd_link upgrade"
                 context['a_action'] = "upgrade"
                 context['a_dialog_title'] = "Upgrade Subscription"
             else:
                 context['a_text'] = "Cancel Subscription"
+                context['a_class'] = "open_sd_link cancel"
                 context['a_action'] = "cancel"
                 context['a_dialog_title'] = "Cancel Subscription"
     else:
         employer_type = None
         if request.GET.has_key("employer_type"):
             employer_type = request.GET["employer_type"]
-            print employer_type
-        context = {'employer_type': employer_type, 'employer_sizes':dict(employer_choices.EMPLOYER_TYPE_CHOICES)}
+        print employer_type
+        context = {'employer_type':employer_type, 'ft_class':'open_ftid_link', 'a_dialog_title':"Subscribe to Umeqo", 'a_action': 'subscribe', 'a_class':"open_sd_link subscribe", 'employer_type': employer_type, 'employer_sizes':dict(employer_choices.EMPLOYER_TYPE_CHOICES)}
         if employer_type=="P":
             context['annual_monthly_cost'] = int(Subscription.objects.get(name="Non-Profit Annual Subscription").price_per_day() * 30)
         elif employer_type=="S":

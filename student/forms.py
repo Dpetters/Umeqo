@@ -21,9 +21,7 @@ from core import messages as m
 decorate_bound_field()
 
 class StudentAccountDeactivationForm(forms.ModelForm):
-    suggestion = forms.CharField(label="If you still wish to deactivate, \
-    please suggest how we can improve:", max_length=16384,
-    widget=forms.Textarea, required=False)
+    suggestion = forms.CharField(label="If you still wish to deactivate, please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
 
     class Meta:
         model = StudentDeactivation
@@ -31,11 +29,8 @@ class StudentAccountDeactivationForm(forms.ModelForm):
     
 class StudentRegistrationForm(forms.Form):
 
-    email = forms.EmailField(label="MIT email:", \
-                             widget=forms.TextInput(attrs={'tabindex':1}))
-    
-    password1 = forms.CharField(label="Password:", \
-    widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
+    email = forms.EmailField(label="MIT email:", widget=forms.TextInput(attrs={'tabindex':1}))
+    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
     
     def clean_email(self):
         email = self.cleaned_data['email']

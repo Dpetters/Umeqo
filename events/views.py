@@ -12,7 +12,6 @@ from django.core.validators import email_re
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.utils import simplejson
-from django.core.mail import EmailMultiAlternatives
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import redirect
 from django.template.loader import render_to_string

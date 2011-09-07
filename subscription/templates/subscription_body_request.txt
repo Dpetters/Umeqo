@@ -1,2 +1,0 @@
-{{name}} ({{email}}{% if employer %}, {{employer}}{% endif %})
-{{body}}

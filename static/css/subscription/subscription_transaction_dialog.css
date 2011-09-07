@@ -3,10 +3,15 @@
 }
 .subscription_dialog #subscription_form #id_body{
     width:470px;
-    height:100px;
+    height:50px;
     resize:none;
     margin-top:3px;
 }
 .subscription_dialog #subscription_form th{
-    width:80px;
+    width:112px;
+}
+.subscription_dialog #subscription_form #id_name,
+.subscription_dialog #subscription_form #id_email,
+.subscription_dialog #subscription_form #id_employer{
+    width:255px;
 }

@@ -55,7 +55,7 @@ Employer Registration |
                         <li>No Invitation Functionality</li>
                         <li>No Automatic Filtering</li>
                         <li class="last">
-                            <a href="javascript:void(0)" class="btn {% if ft_class %}{{ft_class}}{% else %}open_ftid_link{% endif %}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
+                            <a href="javascript:void(0)" data-action="{{ft_action}}" data-title="Cancel Suscription" data-employer-type="{{employer_type}}" data-subscription-type="free_trial" class="btn {{ft_class}}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
                         </li
                     </ul>
                 </footer>
@@ -91,7 +91,7 @@ Employer Registration |
                         <li><strong>Unlimited</strong> Invitation</li>
                         <li><strong>Automatic</strong> Filtering</li>
                         <li class="last">
-                            <a href="javascript:void(0)" {% if employer_type %}disabled="disabled"{% endif %} class="btn open_sd_link {{a_action}}">{% if employer_type %}{% if a_text %}{{a_text}}{% else %}Contact Us{% endif %}{% else %}Select Firm Type{% endif %}</a>
+                            <a href="javascript:void(0)" data-action="{{a_action}}" data-title="{{a_dialog_title}}" data-employer-type="{{employer_type}}" data-subscription-type="annual" {% if employer_type %}disabled="disabled"{% endif %} class="btn {{a_class}}">{% if employer_type %}{% if a_text %}{{a_text}}{% else %}Contact Us{% endif %}{% else %}Select Firm Type{% endif %}</a>
                         </li>
                     </ul>
                 </footer>

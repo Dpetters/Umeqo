@@ -1,1 +1,0 @@
-{% if employer %}{{employer}}{% else %}<Firm Name Here>{% endif %} would like to subscribe to the Umeqo under the {{type}} plan.
