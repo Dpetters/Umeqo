@@ -1,3 +1,3 @@
-Version 0.1.27
+Version 0.1.28
 
 Umeqo - an innovative recruiting resource for students and employers to discover one another.

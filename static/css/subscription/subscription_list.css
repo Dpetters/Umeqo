@@ -6,6 +6,8 @@
     margin-top:15px;
     display:inline;
     letter-spacing:-1px;
+    position:relative;
+    bottom:4px;
 }
 #subscription_notes img{
     margin-top:15px;
