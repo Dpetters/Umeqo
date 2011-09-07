@@ -87,10 +87,10 @@ def commit_prod_data():
         abort("commit_prod_data should only be called on prod")
     with cd(env.directory):
         with prefix(env.activate):
+            run("python manage.py dumpdata sites auth.group --indent=1 > ./initial_data.json")
             for app in settings.PROD_DATA_MODELS:
                 model_labels = []
-                if app == "sites":
-                    run("python manage.py dumpdata sites --indent=1 > ./initial_data.json")
+                if app == "sites" or app == "auth":
                     continue
                 fixtures_dir = "./%s/fixtures" % (app)
                 with fabric_settings(warn_only=True):
