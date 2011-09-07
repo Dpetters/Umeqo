@@ -3336,16 +3336,6 @@
   }
  }, 
  {
-  "pk": 306, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-09-06 08:32:48", 
-   "session_key": "071e31ba3e6c250c7b59f9362cde5a66", 
-   "last_updated": "2011-09-06 08:32:48", 
-   "user": 3
-  }
- }, 
- {
   "pk": 305, 
   "model": "registration.sessionkey", 
   "fields": {
