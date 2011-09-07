@@ -16,7 +16,7 @@ from notification import models as notification
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
     owner = models.ForeignKey(User)
-    name = models.CharField(max_length=42)
+    name = models.CharField(max_length=100)
     end_datetime = models.DateTimeField()
     type = models.ForeignKey(EventType)
     
