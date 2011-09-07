@@ -63,6 +63,10 @@ class Event(core_mixins.DateCreatedTracking):
             'id': self.id,
             'slug': self.slug,
         })
+    
+    def save(self):
+        self.slug = "-".join(slugify(self.name)[:50].split("-")[:-1])
+        super(Event, self).save()
 
 @receiver(signals.m2m_changed, sender=Event.attending_employers.through)
 def send_new_event_notifications(sender, instance, action, reverse, model, pk_set, using, **kwargs):
