@@ -189,6 +189,9 @@
                     {% block below_header_area %}
                     {% endblock %}
                 <div id="message_area">
+                    {% if msg %}
+                        <p>{{ msg }}</p>
+                    {% endif %}
                     {% block message_area %}
                     {% endblock %}
                 </div>

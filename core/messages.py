@@ -20,6 +20,12 @@ campus_org_type_required = "Organization type is required."
 drop_resume_tooltip = "Logged-in students can click this button to drop off their resume."
 rsvp_yes_tooltip = "Logged-in students can click this button to RSVP."
 
+#Employer Profile 
+employer_name_required = "You must specify an employer name"
+
+# Employer Profile Preview
+subscribe_tooltip = "Logged-in students can click this button to subscribe to your employer for new event and deadline notifications."
+
 #Student Profile Form
 first_name_required = 'Enter your first name.'
 last_name_required= 'Enter your last name.'

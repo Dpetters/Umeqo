@@ -588,9 +588,7 @@ $(document).ready(function() {
         }
     }
 
-    $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker({
-        'minDate': null
-    });
+    $('#event_scheduler_day_text').datepicker({'minDate': null});
     $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1, #event_scheduler_day_text').change(renderScheduler);
     renderScheduler();
 

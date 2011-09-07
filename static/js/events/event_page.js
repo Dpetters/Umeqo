@@ -90,6 +90,7 @@ $(document).ready(function() {
     }
     var rsvps, selectedIndex = 0, userText = "";
     $('#event_checkin_link').click(function(e) {
+        window.scroll(0,0);
         $(this).children('.filler').eq(0).animate({
             height: '100%'
         }, function() {

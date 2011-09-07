@@ -32,26 +32,26 @@ Home |
             <table id="welcome_table">
                 <tr>
                     <td>
-                        <a href="{% url events_list %}"><img src="{{ STATIC_URL }}images/home/launch.png" /></a>
+                        <a href="{% url employer_students %}"><img src="{{ STATIC_URL }}images/home/profile.png" /></a>
                     </td>
                     <td>
-                        <p><a href="{% url events_list %}">Browse and search</a> the events that employers have posted.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{% url employers_list %}"><img src="{{ STATIC_URL }}images/home/employers.png" /></a>
-                    </td>
-                    <td>
-                        <p><a href="{% url employers_list %}">Filter through employers</a> on Umeqo - watch this list grow! Subscribe to the ones you're interested in, and we'll send you notifications when they create new events and their events will appear below.</p>
+                        <p><a href="{% url employer_students %}">Browse through the student body</a> and create custom resumebooks out of the students you like!</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="{% url student_profile %}"><img src="{{ STATIC_URL }}images/home/profile.png" /></a>
+                        <a href="{% url employer_profile %}"><img src="{{ STATIC_URL }}images/co-home/profile.png" /></a>
                     </td>
                     <td>
-                        <p><a href="{% url student_profile %}">Edit your profile details</a> and preview yourself as employers would. The more you fill out, the more likely you'll be seen.</p>
+                        <p><a href="{% url employer_profile %}">Edit your organization's profile</a> and <a href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">see it in full</a> as a student would.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="{% url event_new %}"><img src="{{ STATIC_URL }}images/co-home/events.png" /></a>
+                    </td>
+                    <td>
+                        <p><a href="{% url event_new %}">Create events and deadlines</a> for students to view, and RSVP to. Make sure to send out some invitations!</p>
                     </td>
                 </tr>
             </table>
@@ -80,7 +80,7 @@ Home |
             </p>
             <br>
             <p>
-                <a href="{% url employer_students_default_filtering %}"><strong>Setup Automatic Filtering</strong></a>
+                <a href="javascript:void(0)" id="setup_automatic_filtering_link"><strong>Setup Automatic Filtering</strong></a> (Coming Soon)
             </p>
         </div>
     </div>

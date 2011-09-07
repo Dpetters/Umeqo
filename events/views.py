@@ -12,10 +12,12 @@ from django.core.validators import email_re
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.utils import simplejson
+from django.core.mail import EmailMultiAlternatives
 from django.views.decorators.http import require_http_methods
-from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 
+from core.email import send_html_mail
 from core import messages as m
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
 from core.models import Edit
@@ -181,7 +183,12 @@ def event_edit(request, id=None, extra_context=None):
     context['edit'] = True
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
-    context['event_scheduler_date'] = event.start_datetime.strftime('%m/%d/%Y')
+    if event.type.name == "Hard Deadline":
+        context['event_scheduler_date'] = event.end_datetime.strftime('%m/%d/%Y')
+    elif event.type.name == "Rolling Deadline":
+        context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
+    else:
+        context['event_scheduler_date'] =  event.start_datetime.strftime('%m/%d/%Y')
     context.update(extra_context or {})
     return context
 
@@ -326,6 +333,18 @@ def event_checkin(request, event_id):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if not name:
             name = "%s %s" % (user.student.first_name, user.student.last_name)
+        if not student:
+            subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
+            recipients = [email]
+            body_context = {'name':name, 'current_site':Site.objects.get(id=settings.SITE_ID), 'event':event}
+            html_body = render_to_string('checkin_follow_up.html', body_context)
+            send_html_mail(subject, html_body, recipients)
+        if student and not student.profile_created:
+            subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
+            recipients = [email]
+            body_context = {'name':name, 'current_site':Site.objects.get(id=settings.SITE_ID), 'event':event}
+            html_body = render_to_string('checkin_follow_up_profile.html', body_context)
+            send_html_mail(subject, html_body, recipients)
         attendee = Attendee(email=email, name=name, student=student, event=event)
         try:
             attendee.save()

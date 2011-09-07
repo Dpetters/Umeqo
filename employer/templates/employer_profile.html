@@ -9,6 +9,7 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile.css"/>
 {% endcompress %}
 <script>
+    var NAME_REQUIRED = "{% text_snippet 'employer_name_required' %}";
     var SLUG_REQUIRED = "{% text_snippet 'slug_required' %}";
     var INDUSTRIES_REQUIRED = "{% text_snippet 'industries_required' %}";
     var DESCRIPTION_REQUIRED = "{% text_snippet 'description_required' %}";
@@ -49,10 +50,10 @@
         </div>
         <table class="form_table">
             <tr>
-                <th><label>Name:</label></th>
-                <td class="grande">
+                <th><label>{{form.name.label_tag}}</label></th>
+                <td>
                     <div class="errorspace"></div>
-                    <span>{{request.user.recruiter.employer.name}}</span>
+                    {{form.name}}
                 </td>
                 <th>{{form.industries.label_tag}}</th>
                 <td>
@@ -61,10 +62,10 @@
                 </td>
             </tr>
             <tr>
-                <th><label>Slug:</label></th>
-                <td class="grande">
+                <th><label>{{form.slug.label_tag}}</label></th>
+                <td>
                     <div class="errorspace"></div>
-                    <span>www.umeqo.com/{{request.user.recruiter.employer.slug}}/</span>
+                    {{form.slug}} (umeqo.com/slug/)
                 </td>
                 <th>{{form.offered_job_types.label_tag}}</th>
                 <td>
@@ -84,13 +85,10 @@
                 </td>
             </tr>
             <tr>
-                <th><label>Note:</label></th>
-                <td class="grande">
-                    <div class="errorspace"></div>
-                    <span class="epf-note">To change any of the above info, <a href="javascript:void()" class="open_contact_us_dialog_link">contact us</a>.</span>
+                <th><strong>Note:</strong></th>
+                <td colspan="3" class="grande">
+                    <span>To change the logo please email us a the new image to contact@umeqo.com.</span>
                 </td>
-                <th></th>
-                <td></td>
             </tr>
             <tr>
                 <td colspan="4">

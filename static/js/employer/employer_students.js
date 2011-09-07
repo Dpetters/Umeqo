@@ -1,6 +1,7 @@
 var window_height_min = 580;
     
 var xhr = null;
+var comment_xhr = null;
 var filtering_ajax_request = null;
 
 function handle_students_in_resume_book_student_list_click() {
@@ -280,7 +281,8 @@ function handle_student_event_attendance_hover(){
 };
 
 function save_student_comment(student_id, comment){
-     $.ajax({
+     if(comment_xhr && comment_xhr.readystate != 4){ comment_xhr.abort(); }  
+     comment_xhr = $.ajax({
         type: 'POST',
         url: STUDENT_COMMENT_URL,
         dataType: "json",
@@ -329,44 +331,44 @@ function handle_results_menu_toggle_details_button_click() {
 }
 
 function handle_results_menu_starred_click(e) {
-    $(".starred_img").each(function() {
+    $(".sprite-star").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
-    $(".unstarred_img").each(function() {
+    $(".sprite-star-empty").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
 };
 
 function handle_results_menu_not_starred_click(e) {
-    $(".starred_img").each(function() {
+    $(".sprite-star").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
-    $(".unstarred_img").each(function() {
+    $(".sprite-star-empty").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
 };
 
 function handle_results_menu_in_resume_book_click(e) {
-    $(".add_to_resume_book_img").each(function() {
+    $(".sprite-plus").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
-    $(".remove_from_resume_book_img").each(function() {
+    $(".sprite-cross").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
 };
 
 function handle_results_menu_not_in_resume_book_click(e) {
-    $(".add_to_resume_book_img").each(function() {
+    $(".sprite-plus").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
-    $(".remove_from_resume_book_img").each(function() {
+    $(".sprite-cross").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
@@ -465,24 +467,6 @@ function initiate_ajax_call() {
 };
 
 function handle_deliver_resume_book_button_click() {
-    function show_resume_book_current_delivered_message(){
-        $.ajax({
-            dataType: "html",
-            url: RESUME_BOOK_CURRENT_DELIVERED_URL,
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-                    deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                }else{
-                    deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                }
-            },
-            success: function (data) {
-                deliver_resume_book_dialog.html(data);
-                deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Successfully Delivered');
-            }
-        });
-    }
-
     deliver_resume_book_dialog = open_deliver_resume_book_dialog();
     deliver_resume_book_dialog.html(DIALOG_AJAX_LOADER);
 
@@ -548,9 +532,11 @@ function handle_deliver_resume_book_button_click() {
                                 data : { 'name' : custom_resume_book_name },
                                 dataType: 'html',
                                 beforeSubmit: function (arr, $form, options) {
+                                    $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
                                     show_form_submit_loader("#deliver_resume_book_form");
                                 },
                                 complete: function(jqXHR, textStatus) {
+                                    $("#deliver_resume_book_form input[type=submit]").removeAttr("disabled");
                                     deliver_resume_book_dialog.dialog('option', 'position', 'center');
                                     hide_form_submit_loader("#deliver_resume_book_form");
                                 },
@@ -567,10 +553,25 @@ function handle_deliver_resume_book_button_click() {
                             });
                         } else {
                             show_form_submit_loader("#deliver_resume_book_form");
+                            $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
                             var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL;
                             if (custom_resume_book_name){ download_url = download_url + "?name=" + escape(custom_resume_book_name) }
                             window.location.href = download_url;
-                            show_resume_book_current_delivered_message();
+                            $.ajax({
+                                dataType: "html",
+                                url: RESUME_BOOK_CURRENT_DELIVERED_URL,
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    if(jqXHR.status==0){
+                                        deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                    }else{
+                                        deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
+                                    }
+                                },
+                                success: function (data) {
+                                    deliver_resume_book_dialog.html(data);
+                                    deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
+                                }
+                            });
                         }
                     } else {
                         $("#deliver_resume_book_form .error_section").html("Please wait until the resume book is ready.");
@@ -600,7 +601,7 @@ function handle_deliver_resume_book_button_click() {
                     resume_book_created = true;
                     $("#resume_book_status").html("Ready");
                     $("#resume_book_status").addClass('ready');
-                    $("#resume_book_status").removeClass('warning');                        
+                    $("#resume_book_status").removeClass('error');                        
                 }
             });
         }
@@ -711,6 +712,7 @@ $(document).ready(function() {
 
     $("#query_field").val(query);
     var timeoutID;
+    
     $('#query_field').keydown( function() {
         if (typeof timeoutID!='undefined')
             window.clearTimeout(timeoutID);
@@ -724,7 +726,7 @@ $(document).ready(function() {
             window.clearTimeout(timeoutID);
         timeoutID = window.setTimeout( function(){
             save_student_comment(id, $(textarea).val());
-        }, 1000);
+        }, 500);
     });
     if ($(window).height()>window_height_min){
         set_up_side_block_scrolling();
@@ -774,7 +776,17 @@ $(document).ready(function() {
     $('.student_invite_to_event_span .student_invite_to_event_link').live('click', function(e) {
         e.preventDefault();
     });
-
+    
+    $(".student_resume_link").live('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: STUDENT_INCREMENT_RESUME_VIEW_COUNT_URL,
+            data: {
+                'student_id': $(this).attr("data-student-id"),
+            },
+        });
+    });
+    
     $('.event_invite_link').live('click', function(e) {
         if ($(this).hasClass('disabled')) {
             return false;

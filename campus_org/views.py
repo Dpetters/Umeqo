@@ -51,12 +51,12 @@ def campus_org_account_preferences(request, form_class=CampusOrgPreferencesForm)
 def campus_org_profile(request, form_class=CampusOrgProfileForm, extra_context=None):
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.campusorg)
-        data = []
+        data = {}
         if form.is_valid():
             form.save()
         else:
-            data = {'errors':form.errors}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            data['errors'] = form.errors
+        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
         context = {'form':form_class(instance=request.user.campusorg), 'edit':True}
         context.update(extra_context or {})

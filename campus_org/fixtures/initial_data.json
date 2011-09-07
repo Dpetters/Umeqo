@@ -1190,6 +1190,23 @@
   }
  }, 
  {
+  "pk": 474, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-09-05 14:31:39", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-05 14:31:39", 
+   "type": 1, 
+   "display": false, 
+   "name": "Cambridge-MIT Exchange"
+  }
+ }, 
+ {
   "pk": 69, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4233,6 +4250,23 @@
   }
  }, 
  {
+  "pk": 475, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://next.mit.edu/nextexec.php", 
+   "last_updated": "2011-09-05 16:55:22", 
+   "description": "Welcome to Next House! We are one of the largest and friendliest dorms on campus. We are a group of easy-going people who like to hang out, have fun, and enjoy our time together here at MIT.\r\n\r\nSituated right on the banks of the Charles River, Next offers stunning views of the riverfront, downtown Boston, Fenway, and the infamous CITGO sign. The first floor contains our Tastefully Furnished Lounge and our dining hall - offering daily breakfast and dinner. For those who like to keep in shape we also have well-equipped weight and cardio rooms, for those who like music - a music room, and for those who like to launder - a laundry room. For the chefs among us we have a spectacular kitchen. We also have an air hockey table, a pool table, a ping pong table, foosball, an ever-expanding collections of DVD's, as well as an Athena cluster.\r\n\r\nFollowing the spring of 2011, Next House was heavily renovated. Much of our stuff is brand new, including exercise equipment, washers and driers, and appliances! Our courtyard has also been revamped and features a brand new barbecue pit and outdoor speakers.", 
+   "image": "campus_org/campusorg/next_exec_2011-09-05-16-55-22.jpg", 
+   "email": "next-web@mit.edu", 
+   "thumbnail": "campus_org/campusorg/next_exec_2011-09-05-16-55-22_thumbnail.jpg", 
+   "user": null, 
+   "date_created": "2011-09-05 16:01:19", 
+   "type": 10, 
+   "display": false, 
+   "name": "Next Exec"
+  }
+ }, 
+ {
   "pk": 269, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6328,12 +6362,12 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://traders.mit.edu/", 
-   "last_updated": "2011-09-03 13:10:49", 
+   "last_updated": "2011-09-05 16:24:34", 
    "description": "The purpose of the Traders @ MIT is to prepare its members for a career in financial markets by exploring differences in various trading desks, to teach the fundamentals of financial products, and to give members a head start in learning the skills necessary to become successful traders through talks, hands-on learning activities, and trading simulations utilizing our state-of-the-art trading software.", 
    "image": "campus_org/campusorg/traders@mit_2011-09-03-13-10-09.png", 
    "email": "traders@mit.edu", 
    "thumbnail": "campus_org/campusorg/traders@mit_2011-09-03-13-10-09_thumbnail.png", 
-   "user": null, 
+   "user": 181, 
    "date_created": "2011-09-01 16:36:13", 
    "type": 5, 
    "display": true, 
@@ -6610,6 +6644,40 @@
    "type": 9, 
    "display": false, 
    "name": "Unite for Sight"
+  }
+ }, 
+ {
+  "pk": 476, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/urop/", 
+   "last_updated": "2011-09-05 16:52:50", 
+   "description": "The Undergraduate Research Opportunities Program (UROP) cultivates and supports research partnerships between MIT undergraduates and faculty. One of the earliest programs of its kind in the United States, MIT\u2019s UROP invites undergraduates to participate in research as the junior colleagues of Institute faculty. The late Margaret L. A. MacVicar, Professor of Physical Science and Dean for Undergraduate Education, created MIT\u2019s UROP In 1969, inspired by Edwin H. Land. Land, the inventor of instant photography, believed in the power of learning by doing.\r\n\r\nUROP offers the chance to work on cutting edge research\u2014whether you join established research projects or pursue your own ideas. As UROPers, undergraduates participate in each phase of standard research activity: developing research plans, writing proposals, conducting research, analyzing data and presenting research results in oral and written form. UROP projects take place during the academic year, as well as over the summer, and research can be done in any academic department or interdisciplinary laboratory. Projects can last for an entire semester, and many continue for a year or more. UROP students receive academic credit, pay\u2014either Supervisor Funding or Direct UROP Funding (if a MIT or CME student), or work on a voluntary basis. MIT students use their UROP experiences to become familiar with the faculty, learn about potential majors, and investigate areas of interest. UROPers gain practical skills and knowledge they eventually apply to careers after graduation or as graduate students. Most importantly, they become involved in exciting research!", 
+   "image": "campus_org/campusorg/urop_2011-09-05-16-52-50.gif", 
+   "email": "urop@mit.edu", 
+   "thumbnail": "campus_org/campusorg/urop_2011-09-05-16-52-50_thumbnail.gif", 
+   "user": null, 
+   "date_created": "2011-09-05 16:02:57", 
+   "type": 1, 
+   "display": true, 
+   "name": "UROP"
+  }
+ }, 
+ {
+  "pk": 473, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-09-05 14:29:57", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-05 14:29:57", 
+   "type": 11, 
+   "display": false, 
+   "name": "Varisty Crew"
   }
  }, 
  {

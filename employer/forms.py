@@ -19,6 +19,8 @@ from ckeditor.widgets import CKEditorWidget
 decorate_bound_field()
 
 class EmployerProfileForm(forms.ModelForm):
+    name = forms.CharField(label="Name:", max_length=42)
+    slug = forms.SlugField(label="Slug:", max_length=42)
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
     main_contact = forms.CharField("Main Contact:")
@@ -28,7 +30,9 @@ class EmployerProfileForm(forms.ModelForm):
     website = forms.URLField(label="Careers Website:", required=False)
     
     class Meta:
-        fields = ( 'industries',
+        fields = ('name',
+                  'slug', 
+                  'industries',
                    'description',
                    'main_contact',
                    'main_contact_email',

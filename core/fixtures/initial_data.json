@@ -4956,6 +4956,36 @@
   }
  }, 
  {
+  "pk": 157, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-09-05 23:43:19", 
+   "name_and_level": "Albanian (Basic)", 
+   "last_updated": "2011-09-05 23:43:19", 
+   "name": "Albanian"
+  }
+ }, 
+ {
+  "pk": 158, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-09-05 23:43:19", 
+   "name_and_level": "Albanian (Proficient)", 
+   "last_updated": "2011-09-05 23:43:19", 
+   "name": "Albanian"
+  }
+ }, 
+ {
+  "pk": 159, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-09-05 23:43:19", 
+   "name_and_level": "Albanian (Fluent)", 
+   "last_updated": "2011-09-05 23:43:19", 
+   "name": "Albanian"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "core.course", 
   "fields": {

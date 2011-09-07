@@ -60,7 +60,7 @@ def employer_profile_preview(request, slug, extra_context=None):
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
     elif is_recruiter(request.user):
-        context = {'employer':employer, 'events':get_employer_events(employer)}
+        context = {'employer':employer, 'events':get_employer_events(employer), 'preview':True}
         context.update(extra_context or {})
         return context
 
@@ -109,7 +109,7 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter.employer)
         data = []
         if form.is_valid():
             form.save()
@@ -202,6 +202,8 @@ def employer_resume_book_current_toggle_student(request):
             data = {'action':employer_enums.REMOVED}  
         else:
             current_resume_book.students.add(student)
+            student.studentstatistics.add_to_resumebook_count += 1
+            student.studentstatistics.save()
             data = {'action':employer_enums.ADDED}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
@@ -220,9 +222,11 @@ def employer_resume_book_current_add_students(request):
             current_resume_book = resume_books.order_by('-date_created')[0]
         if request.POST['student_ids']:
             for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
+                student = Student.objects.get(id=id)
                 if student not in current_resume_book.students.all():
                     current_resume_book.students.add(student)
+                    student.studentstatistics.add_to_resumebook_count += 1
+                    student.studentstatistics.save()
         return HttpResponse()
     else:
         return HttpResponseBadRequest("Student IDs are missing.")
@@ -346,7 +350,7 @@ def employer_students(request, extra_context=None):
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
-            student.save()
+            student.studentstatistics.save()
         
         context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
@@ -439,7 +443,10 @@ def employer_resume_book_current_create(request):
             output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
         resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
         current_resume_book.resume_book_name = resume_book_name
-        file_name = "%s%s%s.tmp" % (s.MEDIA_ROOT, s.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
+        file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
+        if not os.path.exists(file_path):
+            os.makedirs(file_path)
+        file_name = "%s%s.tmp" % (file_path, resume_book_name,)
         outputStream = file(file_name, "wb")
         output.write(outputStream)
         outputStream.close()
@@ -463,7 +470,14 @@ def employer_resume_book_current_email(request, extra_context=None):
             subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
             body = render_to_string('resume_book_email_body.txt', {})
             message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
-            message.attach_file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name))
+            print "%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name)
+            f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
+            content = f.read()
+            if request.POST.has_key('name'):
+                filename = request.POST['name']
+            else:
+                filename = os.path.basename(current_resume_book.resume_book.name)
+            message.attach("%s.pdf" % (filename), content, "application/pdf")
             message.send()
             context = {}
             context.update(extra_context or {}) 
@@ -484,8 +498,8 @@ def employer_resume_book_current_download(request):
         response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb").read(), mimetype=mimetype)
         filename = os.path.basename(current_resume_book.resume_book.name)
         if request.GET.has_key('name'):
-            filename = request.GET['name']
-        response["Content-Disposition"]= "attachment; filename=%s" % filename
+            filename = request.GET['name']       
+        response["Content-Disposition"]= 'attachment; filename="%s"' % filename
         return response
     else:
         return HttpResponseBadRequest("Request must be a GET")

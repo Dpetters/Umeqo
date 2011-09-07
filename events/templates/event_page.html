@@ -150,7 +150,7 @@
     <div id="event_actions">
         <div id="rsvp_div" class="{% if event.is_public %}public{% else %}private{% endif %}">
             {% if is_past %}
-                <a href="javascript:void(0)" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP disabled.">Event already passed!</a>
+                <a href="javascript:void(0)" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP disabled.">{% if is_deadline %}Deadline{% else %}Event{% endif %} already passed!</a>
             {% else %}{% if can_rsvp or show_admin %}
                 {% if event.is_public %}
                     <div class="no-response{% if not responded %} hid{% endif %}">
@@ -223,7 +223,7 @@
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
-            <span class="main_block_header_title">Event Details</span>
+            <span class="main_block_header_title">{% if is_deadline %}Deadline{% else %}Event{% endif %} Details</span>
         </div>
         <div class="main_block_content">
             {% if audience %}
@@ -252,6 +252,7 @@
     </div>
     {% endif %}
     <div id="event_side">
+        {% if event.location %}
         <div id="event_where" class="main_block">
             <div class="main_block_header">
                 <span class="main_block_header_title">Where</span>
@@ -263,6 +264,7 @@
                 {% endif %}
             </div>
         </div>
+        {% endif %}
         <div id="event_who" class="main_block">
             <div class="main_block_header">
                 <span class="main_block_header_title">Hosted by</span>

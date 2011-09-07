@@ -1,8 +1,0 @@
-<p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
-
-<p>{{employer}} has sent you an invite to the public event "{{event}}":</p>
-
-{% load core_extras %}
-<blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
-
-<p>Check out the event details and respond by clicking <a href="http://{{current_site.domain}}{{event.get_absolute_url}}">here</a>.</p>
