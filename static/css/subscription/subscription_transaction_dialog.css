@@ -1,17 +1,19 @@
 .subscription_dialog .dialog_content_wrapper{
-    padding: 10px 25px;
+    padding: 10px 15px;
 }
 .subscription_dialog #subscription_form #id_body{
-    width:470px;
-    height:50px;
-    resize:none;
-    margin-top:3px;
+    width:340px;
+    height:65px;
 }
-.subscription_dialog #subscription_form th{
-    width:112px;
+.subscription_dialog #subscription_form #body_th{
+    vertical-align:top;
+    padding-top:20px;
 }
 .subscription_dialog #subscription_form #id_name,
 .subscription_dialog #subscription_form #id_email,
 .subscription_dialog #subscription_form #id_employer{
     width:255px;
+}
+#subscription_form{
+    padding-left:10px;
 }

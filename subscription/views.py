@@ -35,9 +35,7 @@ def subscription_dialog(request, extra_context=None):
                 data['new_master'] = new_master
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
             subject = "[sales] %s subscription request" % subscription_type
-            subscription_request_context = {'name': form.cleaned_data['name'], 'email': form.cleaned_data['email'], 'body': form.cleaned_data['body']}
-            if is_recruiter(request.user):
-                subscription_request_context['employer'] = request.user.recruiter.employer
+            subscription_request_context = {'name': form.cleaned_data['name'], 'employer':form.cleaned_data['employer'], 'email': form.cleaned_data['email'], 'body': form.cleaned_data['body']}
             html_body = render_to_string('subscription_body_request.html', subscription_request_context)
             send_html_mail(subject, html_body, recipients)
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")

@@ -12,7 +12,7 @@ class SubscriptionForm(forms.Form):
     email = forms.EmailField(label='Your Email:', widget=forms.TextInput(attrs=dict(maxlength=200)))
     employer = forms.CharField(label='Your Employer:', max_length = 42)
     employer_type = forms.ChoiceField(label='Employer Type:', choices=EMPLOYER_TYPE_CHOICES)
-    body = forms.CharField(label='Subscription Change Request:', widget=forms.Textarea())
+    body = forms.CharField(label='Message:', widget=forms.Textarea())
     
 class SubscriptionCancelForm(SubscriptionForm):
     new_master_recruiter = forms.ModelChoiceField(label="New Master Recruiter:", queryset = Recruiter.objects.all())

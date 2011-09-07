@@ -46,9 +46,9 @@
             </tr>
             {% endif %}
             <tr>
-                <td colspan="3">
+                <th id="body_th">{{form.body.label_tag}}</th>
+                <td colspan="2">
                     <div class="errorspace">{{form.body.errors}}</div>
-                    {{form.body.label_tag}}
                     {{form.body}}
                 </td>
             </tr>
