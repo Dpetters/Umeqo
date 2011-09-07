@@ -1,42 +1,5 @@
 [
  {
-  "pk": 8, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 0, 
-   "start_datetime": "2011-09-06 08:30:00", 
-   "audience": [], 
-   "attending_employers": [
-    6
-   ], 
-   "name": "test", 
-   "is_public": true, 
-   "description": "<p>\r\n\tfesf</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.098349690000006, 
-   "latitude": 42.350392990000003, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-09-06 09:30:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-09-06 08:37:23", 
-   "type": 6, 
-   "slug": "test", 
-   "location": "Student House"
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-06 08:37:37", 
-   "event": 8, 
-   "student": 1
-  }
- }, 
- {
   "pk": 5, 
   "model": "employer.employerstatistics", 
   "fields": {
