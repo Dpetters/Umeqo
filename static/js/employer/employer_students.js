@@ -749,7 +749,7 @@ $(document).ready(function() {
                         } else {
                             $.each(events, function(k,event) {
                                 var ispublic = event.is_public ? 1 : 0;
-                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="javascript:void(0)"></a>');
                                 var linkText;
                                 if (!ispublic) {
                                     linkText = event.name + ' [private]';

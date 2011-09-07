@@ -100,7 +100,7 @@
                         {% endif %}
                         {% ifnotequal current_path "/login/" %}
                         <li id="login_button">
-                            <a class="login_link" tabindex="-1" href="#">Login</a>
+                            <a class="login_link" tabindex="-1" href="javascript:void(0)">Login</a>
                         </li>
                         {% endifnotequal %}
                     {% endif %}
@@ -207,7 +207,7 @@
                     <a id="home" href="{% url home %}" title="home" tabindex="-1">Home</a>
                     <a id="about" href="{% url about %}" title="about" tabindex="-1">About</a>
                     <a id="help" href="{% url help_center %}" title="help" tabindex="-1">Help</a>
-                    <a id="contact" class="open_contact_us_dialog_link" href="#" title="contact" tabindex="-1">Contact Us</a>
+                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact" tabindex="-1">Contact Us</a>
                 </div>
                 <p id="footer_info_block">
                     &copy; 2011 Umeqo. All Rights Reserved.

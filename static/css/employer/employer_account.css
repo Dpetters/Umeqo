@@ -14,3 +14,43 @@
 #id_default_student_results_per_page, #id_default_student_result_ordering{
     width:160px;
 }
+#current_recruiter_info{
+    padding:10px 5px;
+}
+#past_payments table{
+    width: 100%;
+    border-left: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-right: 1px solid #CCC;    
+}
+#past_payments table th, #past_payments table td{
+    padding: .4em;
+    border-bottom: 1px solid #CCC;
+}
+#past_payments table th{
+    background-color:#EEE;
+}
+#past_payments table tr.successful_payment td{
+    background-color:#EFFFED;
+}
+#past_payments table tr.failed_payment td{
+    background-color:#FFE5CE;
+}
+#past_payments table td.date{
+    color:#888;
+}
+#past_payments table td.date{
+    color:#888;
+}
+#receipts table td.amount
+#receipts table tr.success td.amount{
+    color:#0A0;
+    font-weight:bold;
+}
+#receipts table tr.success td.amount{
+    color:#0A0;
+    font-weight:bold;
+}
+#no_past_payments{
+    text-align:center;
+}

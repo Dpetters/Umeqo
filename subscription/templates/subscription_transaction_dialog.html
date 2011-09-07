@@ -1,0 +1,69 @@
+<div class="dialog_content_wrapper">
+    <h3>Once your request is processed, you will receive an email from us.</h3>
+    <p>Attached to email will be all the terms and conditions of the subscription in PDF form.</p>
+    {% if form.new_master %}
+    <p><strong>Note:</strong>You are the master account for {{user.recruiter.employer}}.</h3>
+    <p>Therefore you need to Before you end your subscription, there are firms out there that need you! Note that -</h3>
+    {% endif %}
+    <form id="subscription_form" method='POST'>
+        {% csrf_token %}
+        <table class="form_table">
+            <tr>
+                <th>{{form.name.label_tag}}</th>
+                <td class="input_cell">
+                    <div class="errorspace">{{form.name.errors}}</div>
+                    {{form.name}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.email.label_tag}}</th>
+                <td class="input_cell" colspan="2">
+                    <div class="errorspace">{{form.email.errors}}</div>
+                    {{form.email}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.employer.label_tag}}</th>
+                <td class="input_cell" colspan="2">
+                    <div class="errorspace">{{form.employer.errors}}</div>
+                    {{form.employer}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.employer_type.label_tag}}</th>
+                <td class="input_cell" colspan="2">
+                    <div class="errorspace">{{form.employer_type.errors}}</div>
+                    {{form.employer_type}}
+                </td>
+            </tr>
+            {% if form.new_master %}
+            <tr>
+                <td>
+                    <div class="errorspace">{{ form.recruiters.errors }}</div>
+                    {{ form.recruiters.label_tag }}
+                    {{ form.recruiters }}
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td colspan="3">
+                    <div class="errorspace">{{form.body.errors}}</div>
+                    {{form.body.label_tag}}
+                    {{form.body}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="centered error_section error">
+                    {{form.non_field_errors}}
+                </td>
+            </tr>
+            <tr>
+                <td class="button_cell" colspan="3">
+                    <a href="javascript:void(0)" class="button close_dialog_link">Cancel</a>
+                    <input class="button" type="submit" value="Submit">
+                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

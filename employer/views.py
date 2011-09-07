@@ -68,8 +68,7 @@ def employer_profile_preview(request, slug, extra_context=None):
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account.html")
 @require_GET
-def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
-                     change_password_form_class = PasswordChangeForm, extra_context=None):
+def employer_account(request, preferences_form_class = RecruiterPreferencesForm, change_password_form_class = PasswordChangeForm, extra_context=None):
     context = {}
     msg = request.GET.get('msg', None)
     if msg:
@@ -77,11 +76,21 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
             'password-changed': messages.password_changed,
         }
         context["msg"] = page_messages[msg]
+    
+    us = request.user.usersubscription_set.get(active=True) 
+    
+    if not request.user.recruiter.is_master:
+        context['master'] = False    
+    else:
+        context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(user=request.user)
+        context['master'] = True
+
+    context['user_subscription'] = request.user.usersubscription_set.get(active=True)
     context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
+    
     context.update(extra_context or {})
     return context
-
 
 @login_required
 @user_passes_test(is_recruiter)

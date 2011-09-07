@@ -16,7 +16,10 @@ var open_contact_us_dialog = function () {
 };
 
 $('.open_contact_us_dialog_link').live('click', function (e) {
-    (".dialog").remove();
+    for(var i = 0; i < $(".dialog").length; i++){
+           $($(".dialog")[i]).remove();        
+    
+    }
     contact_us_dialog = open_contact_us_dialog();
     contact_us_dialog.html(DIALOG_AJAX_LOADER);
 

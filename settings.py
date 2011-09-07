@@ -40,6 +40,7 @@ AWS_SECRET_ACCESS_KEY = 'FAicXYcGFnCz/CL9+FnhEOyyVLPNsLBOQixlmKzg'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 PROD_DATA_MODELS = {
+    'auth': ['group'],
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
@@ -47,7 +48,8 @@ PROD_DATA_MODELS = {
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
-    'sites':['site']
+    'sites':['site'],
+    'subscription':['subscription']
 }
 LOCAL_DATA_MODELS = {
     'auth': ['user'],
@@ -226,6 +228,11 @@ SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
+PAYPAL_TEST = True           # Testing mode on
+PAYPAL_WPP_USER = "???"      # Get from PayPal
+PAYPAL_WPP_PASSWORD = "???"
+PAYPAL_WPP_SIGNATURE = "???"
+
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 
 CACHES = {
@@ -239,6 +246,20 @@ CACHES = {
 INTERNAL_IPS = ('127.0.0.1',)
 
 NOTIFICATION_QUEUE_ALL = True
+
+PAYPAL_RECEIVER_EMAIL = "Dpetter91@gmail.com"
+PAYPAL_TEST = True
+
+PAYPAL_WPP_USER = "fakedd_1315259764_biz_api1.mit.edu"
+PAYPAL_WPP_PASSWORD = "1315259829"
+PAYPAL_WPP_SIGNATURE = "A49rKagANWdHO0ruyS-cvmxSSgfLAHNOJQFoR2VTHB8MkQRTOuP4FT9Q    "
+    
+SUBSCRIPTION_PAYPAL_SETTINGS = {
+    'business':'fakedd_1315259764_biz@mit.edu',
+}
+
+# 2 day grace period
+SUBSCRIPTION_GRACE_PERIOD = 2
 
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
@@ -261,6 +282,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'campus_org',
+    'subscription',
     'ckeditor',
     'sentry',
     'sentry.client',

@@ -29,7 +29,7 @@ Account Settings |
 {% endblock %}
 
 {% block content_area %}
-<div id="preferences_form_block" class="main_block no_top_margin with_side_nav">
+<div id="account_settings_block" class="main_block no_top_margin with_side_nav">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/switch.png"/>
         <span class="main_block_header_title">Account Settings</span>
@@ -39,7 +39,7 @@ Account Settings |
             <ul>
                 <li><a href="#tabs-1">Account Overview</a></li>
                 <li id="preferences_tab"><a href="#tabs-2">Preferences</a></li>
-                {% block preferences_form_tab_declarations %}
+                {% block account_settings_tab_declarations %}
                 {% endblock %}
             </ul>
             <div id="tabs-1" class="clearfix">
@@ -119,7 +119,7 @@ Account Settings |
                     </form>
                 </div>
             </div>
-            {% block preferences_form_tab_definitions %}
+            {% block account_settings_tab_definitions %}
             {% endblock %}
         </div>
     </div>

@@ -1,4 +1,4 @@
-#preferences_form_block .main_block_content{
+#account_settings_block .main_block_content{
     padding:0px;
 }
 #preferences_form_tabs{
@@ -30,7 +30,7 @@
     padding-top:5px;
     padding-bottom:5px;
 }
-#account_overview h3, #preferences h3{
+#account_settings_block h3{
     width:720px;
     border-bottom:1px solid #DDD;
     padding-left:2px;

@@ -15,6 +15,13 @@ def is_campus_org_or_recruiter(user):
 
 def is_student_or_recruiter(user):
     return hasattr(user, "recruiter") or hasattr(user, "student")
+
+def is_subscribed_weak(user):
+    return (user.group.filter(name ="recruiter_subscribed") or user.group.filter(name = "recruiter_free_trial")) and not user.subscription.expired()
+
+def is_subscribed_strong(user):
+    return user.groups.filter(name="recruiter_subscribed").exists() and not user.subscription.expired()
+    
 #
 # From django-annoying
 #
