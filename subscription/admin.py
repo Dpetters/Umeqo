@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.html import conditional_escape as esc
 
-from models import Subscription, UserSubscription, Transaction
+from models import Subscription, EmployerSubscription, Transaction
 
 def _pricing(sub): return sub.get_pricing_display()
 def _trial(sub): return sub.get_trial_display()
@@ -26,18 +26,18 @@ def _ipn(trans):
         trans.ipn.pk, trans.ipn.pk )
 _ipn.allow_tags = True
 
-class UserSubscriptionAdminForm(forms.ModelForm):
+class EmployerSubscriptionAdminForm(forms.ModelForm):
     class Meta:
-        model = UserSubscription
+        model = EmployerSubscription
     fix_group_membership = forms.fields.BooleanField(required=False)
     extend_subscription = forms.fields.BooleanField(required=False)
 
-class UserSubscriptionAdmin(admin.ModelAdmin):
+class EmployerSubscriptionAdmin(admin.ModelAdmin):
     list_display = ( '__unicode__', _user, _subscription, 'active', 'expires', 'valid' )
     list_display_links = ( '__unicode__', )
     list_filter = ('active', 'subscription', )
     date_hierarchy = 'expires'
-    form = UserSubscriptionAdminForm
+    form = EmployerSubscriptionAdminForm
     fieldsets = (
         (None, {'fields' : ('user', 'subscription', 'expires', 'active')}),
         ('Actions', {'fields' : ('fix_group_membership', 'extend_subscription'),
@@ -52,18 +52,13 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
         obj.save()
 
     # action for Django-SVN or django-batch-admin app
-    actions = ( 'fix', 'extend', )
-
-    def fix(self, request, queryset):
-        for us in queryset.all():
-            us.fix()
-    fix.short_description = 'Fix group membership'
+    actions = ( 'extend', )
 
     def extend(self, request, queryset):
         for us in queryset.all(): us.extend()
     extend.short_description = 'Extend subscription'
 
-admin.site.register(UserSubscription, UserSubscriptionAdmin)
+admin.site.register(EmployerSubscription, EmployerSubscriptionAdmin)
 
 class TransactionAdmin(admin.ModelAdmin):
     date_hierarchy = 'timestamp'

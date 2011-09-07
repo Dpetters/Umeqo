@@ -8,7 +8,7 @@ from core.email import send_html_mail
 from employer.models import Recruiter
 from employer import choices as employer_choices
 from core.decorators import is_recruiter, render_to
-from subscription.models import Subscription, UserSubscription
+from subscription.models import Subscription
 from subscription.forms import SubscriptionCancelForm, SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
@@ -116,12 +116,9 @@ def subscription_list(request, extra_context=None):
     if request.user.is_authenticated() and is_recruiter(request.user):
         context = {}
         free_trial = Subscription.objects.get(name="Free Trial")
-        try:
-            us = request.user.usersubscription_set.get(active=True)
-        except UserSubscription.DoesNotExist:
-            us = None
-        if us:
-            if us.subscription == free_trial:
+        
+        if request.user.recruiter.employer.subscription:
+            if request.user.reruiter.employer.subscription == free_trial:
                 context['ft_text'] = "Cancel Subscription"
                 context['ft_class'] = "open_sd_link cancel"
                 context['ft_action'] = "cancel"

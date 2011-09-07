@@ -76,16 +76,14 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
             'password-changed': messages.password_changed,
         }
         context["msg"] = page_messages[msg]
-    
-    us = request.user.usersubscription_set.get(active=True) 
-    
+
     if not request.user.recruiter.is_master:
-        context['master'] = False    
+        context['master'] = False   
     else:
         context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(user=request.user)
         context['master'] = True
 
-    context['user_subscription'] = request.user.usersubscription_set.get(active=True)
+    context['subscription'] = request.user.recruiter.employer.usersubscription
     context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     
@@ -279,8 +277,13 @@ def employer_employer_events(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_books(request, extra_context=None):
-    pass
+@render_to("employer_resume_book_history.html")
+def employer_resume_book_history(request, extra_context=None):
+    if request.method == "POST":
+        pass
+    else:
+        context = {"resume_books":request.user.recruiter.resumebook_set.all()}
+    return context
 
 
 @login_required
@@ -408,11 +411,15 @@ def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookFo
         context = {}
         if request.method == 'GET':
             context['deliver_resume_book_form'] = form_class(initial={'emails':request.user.email})
-            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-            if resume_books.exists():
-                context['resume_book'] = resume_books.order_by('-date_created')[0]
+            
+            if request.GET.has_key("resume_book_id"):
+                context['resume_book'] = ResumeBook.objects.get(id=request.GET["resume_book_id"])
             else:
-                context['resume_book'] = ResumeBook.objects.create(recruiter = request.user.recruiter)
+                resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
+                if resume_books.exists():
+                    context['resume_book'] = resume_books.order_by('-date_created')[0]
+                else:
+                    context['resume_book'] = ResumeBook.objects.create(recruiter = request.user.recruiter)
             context.update(extra_context or {})
             return context
         return HttpResponseBadRequest("Request must be a GET")       

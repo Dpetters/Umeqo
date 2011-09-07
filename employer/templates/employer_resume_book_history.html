@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Resume Book History|
+{% endblock %}
+
+{% block metadata %}
+    {{block.super}}
+    {% load compress %}
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/resume_books.css" />
+    {% endcompress %}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}js/employer/resume_books.js"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+
+<div class="main_block no_top_margin with_side_nav">
+    <div class="main_block_content resume_book_list">
+        <h1>Resume Book History</h1>
+        <ul id="notifications_list">
+            {% for resume_book in resume_books %}
+                <li>
+                    <div class="details">
+                        <span>{{ resume_book.name }}</span>
+                        <span>{{ notice.notice_type.display }}</span>
+                    </div>
+                    <a href="javascript:void(0)">Re-Deliver</a>
+                </li>
+            {% empty %}
+                <li class="empty_notices">There are no notifications at this time.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

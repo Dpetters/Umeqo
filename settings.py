@@ -205,6 +205,7 @@ MIDDLEWARE_CLASSES = (
     'core.middleware.SetRemoteAddrMiddleware',
     'core.middleware.LogMiddleware',
     'sentry.client.middleware.Sentry404CatchMiddleware',
+    'middleware.http.HttpResponseNotAllowedMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
