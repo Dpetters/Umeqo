@@ -1,5 +1,42 @@
 [
  {
+  "pk": 8, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-09-06 08:30:00", 
+   "audience": [], 
+   "attending_employers": [
+    6
+   ], 
+   "name": "test", 
+   "is_public": true, 
+   "description": "<p>\r\n\tfesf</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": -71.098349690000006, 
+   "latitude": 42.350392990000003, 
+   "edits": [], 
+   "is_drop": false, 
+   "end_datetime": "2011-09-06 09:30:00", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-09-06 08:37:23", 
+   "type": 6, 
+   "slug": "test", 
+   "location": "Student House"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "events.invitee", 
+  "fields": {
+   "datetime_created": "2011-09-06 08:37:37", 
+   "event": 8, 
+   "student": 1
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.employerstatistics", 
   "fields": {
@@ -183,7 +220,10 @@
    "name": null, 
    "students": [
     1, 
-    2
+    2, 
+    3, 
+    4, 
+    5
    ], 
    "recruiter": 1, 
    "resume_book": "", 
@@ -717,11 +757,10 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-07 20:30:03", 
-   "event_invite_count": 0, 
-   "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "shown_in_results_count": 3, 
+   "last_updated": "2011-09-06 08:38:07", 
+   "resume_view_count": 2, 
+   "add_to_resumebook_count": 2, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
   }
@@ -730,9 +769,8 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 15:25:30", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 3, 
+   "last_updated": "2011-09-06 08:37:32", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 2, 
@@ -743,11 +781,10 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 20:05:56", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 3, 
+   "last_updated": "2011-09-06 08:37:55", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 3, 
    "date_created": "2011-07-10 20:05:56"
   }
@@ -756,11 +793,10 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 20:26:02", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 3, 
+   "last_updated": "2011-09-06 08:37:55", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
   }
@@ -769,11 +805,10 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-23 10:53:54", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 3, 
+   "last_updated": "2011-09-06 08:37:55", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
   }
