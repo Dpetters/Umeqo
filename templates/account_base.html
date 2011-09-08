@@ -21,13 +21,6 @@ Account Settings |
     {% endcompress %}
 {% endblock %}
 
-{% block message_area %}
-{{ block.super }}
-{% if msg %}
-        <p>{{msg}}</p>
-{% endif %}
-{% endblock %}
-
 {% block content_area %}
 <div id="account_settings_block" class="main_block no_top_margin with_side_nav">
     <div class="main_block_header">
