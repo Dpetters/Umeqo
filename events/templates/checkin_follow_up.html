@@ -2,7 +2,7 @@
 
 <p>Thanks for checking into the {{event}}!</p>
 
-<p>Please be aware that until you register, employers will only be able to see your name and email. Nothing else.</p>
+<p>Please be aware that until you register, {% if campus_org_event %}employers{% else %}{{event.owner.recruiter.employer}}{% endif %} will only be able to see your name and email. Nothing else.</p>
 
 <p>You can do so at any time <a href="http://{{current_site.domain}}{% url student_registration %}">here</a>.</p>
 

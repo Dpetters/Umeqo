@@ -25,7 +25,7 @@ from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 from django.core.urlresolvers import reverse
 
-from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import has_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
@@ -49,6 +49,7 @@ def employer(request):
         return HttpResponseBadRequest("Employer name is missing.")
     
 @login_required
+@user_passes_test(has_subscription, login_url=s.SUBSCRIPTIONS_URL)
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):

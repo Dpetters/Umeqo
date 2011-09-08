@@ -72,7 +72,7 @@ urlpatterns += patterns('registration.views',
 urlpatterns += patterns('subscription.views',
     (r'^subscriptions/transaction/$', 'subscription_dialog', {}, 'subscription_dialog'),
     (r'^subscription/free-trial/$', 'free_trial_info_dialog', {}, 'free_trial_info_dialog'), 
-    (r'^subscriptions/$', 'subscription_list', {}, 'subscription_list'),
+    (r'^subscriptions/$', 'subscription_list', {'extra_context': {'login_form':AuthenticationForm}}, 'subscription_list'),
 )
 urlpatterns += patterns('events.views',
     (r'^events/$', 'events_list', {}, 'events_list'),

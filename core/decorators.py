@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from subscription.models import EmployerSubscription, Subscription
+
 def is_campus_org(user):
     return hasattr(user, "campusorg")
     
@@ -16,12 +18,20 @@ def is_campus_org_or_recruiter(user):
 def is_student_or_recruiter(user):
     return hasattr(user, "recruiter") or hasattr(user, "student")
 
-def is_subscribed_weak(user):
-    return (user.group.filter(name ="recruiter_subscribed") or user.group.filter(name = "recruiter_free_trial")) and not user.subscription.expired()
+def has_subscription(user):
+    try:
+        user.recruiter.employer.employersubscription
+        return True
+    except EmployerSubscription.DoesNotExist:
+        return False
 
-def is_subscribed_strong(user):
-    return user.groups.filter(name="recruiter_subscribed").exists() and not user.subscription.expired()
-    
+def has_annual_subscription(user):
+    try:
+        free_trial = Subscription.objects.get(name="Free Trial")
+        return user.recruiter.employer.employersubscription == free_trial
+    except EmployerSubscription.DoesNotExist:
+        return False
+
 #
 # From django-annoying
 #

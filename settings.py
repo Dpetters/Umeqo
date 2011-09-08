@@ -78,7 +78,8 @@ RECAPTCHA_PRIVATE_KEY = "6LeAXMcSAAAAAFKWwcMK94XjO5Wvusu5FOQaYsS-"
 
 # URL to redirect the user to if they try to 
 # access a page and aren't logged in
-LOGIN_URL = '/login'
+LOGIN_URL = '/login/'
+SUBSCRIPTIONS_URL = '/subscriptions/'
 LOGIN_REDIRECT_URL = '/'
 
 # Emails sent to users will be coming from this email address

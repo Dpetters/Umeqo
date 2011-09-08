@@ -27,13 +27,13 @@ Employer Registration |
         <div id="subscription_notes" class="left_side_container">
             <img src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
             <h2>What is Umeqo?</h2>
-            <p>Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, and post and manage campus events.</p>
+            <p>Umeqo is an innovative recruiting resource for students and employers to discover one another. The platform empowers employers to easily filter and search student profiles, create resume books, and post and manage events and deadlines.</p>
             <img src="{{ STATIC_URL }}images/icons/user-business.png" />
             <h2>Who else is using Umeqo?</h2>
-            <p>Hundreds of students (soon-to-be the entire campus!), a dozen top firms, and an ever-growing number of campus organizaitons are all using Umeqo to exchange information and help bring about a better recruiting experience for all.</p>
+            <p>Hundreds of students (soon-to-be the entire campus!), a dozen top firms, and MIT campus organizations are all using Umeqo to exchange information and help bring about a better recruiting experience for all.</p>
             <img src="{{ STATIC_URL }}images/icons/wall.png" />
             <h2>Safety and Security</h2>
-            <p><strong>We understand that your data is sensitive.</strong> <br> That is why we pledge to never track your activity on the site.</p>
+            <p><strong>We understand that your data is sensitive.</strong> <br> That is why we pledge to never track your activity on the site. We will never collect statistics about anything you do, and all your data will say 100% confidential.</p>
         </div>
         
         <div class="grid col3">
@@ -48,12 +48,12 @@ Employer Registration |
                 </header>
                 <footer>
                     <ul>
-                        <li>Access to Event RSVPs and Attendees</li>
-                        <li><strong>Unlimited</strong> Resume Books</li>
-                        <li><strong>Shared</strong> Recruiter Account</li>
+                        <li>Access to Event RSVPs and Check-Ins</li>
+                        <li>Unlimited Custom Resume Book</li>
+                        <li>Email or Download Resume Books</li>
+                        <li>Shared Recruiter Account</li>
                         <li>No Event Management Tools</li>
-                        <li>No Invitation Functionality</li>
-                        <li>No Automatic Filtering</li>
+                        <li>No Student Invitation Functionality</li>
                         <li class="last">
                             <a href="javascript:void(0)" data-action="{{ft_action}}" data-title="Cancel Suscription" data-employer-type="{{employer_type}}" data-subscription-type="free_trial" class="btn {{ft_class}}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
                         </li
@@ -67,6 +67,8 @@ Employer Registration |
                     </hgroup>
                     <hgroup class="price">
                         <h2>
+                            <span id="contact_us_for_pricing" class="style1">Contact Us for Pricing</span>
+                            <!--
                             {% if employer_type %}
                             <span class="style1">$</span><span class="style2">{{annual_monthly_cost}}</span><span class="style3">Monthly</span>
                             {% else %}
@@ -79,6 +81,7 @@ Employer Registration |
                                     </select>
                                 </div>
                             {% endif %}
+                            -->
                         </h2>
                     </hgroup>
                 </header>
@@ -86,10 +89,10 @@ Employer Registration |
                     <ul>
                         <li>Access to <strong>All</strong> Students</li>
                         <li><strong>Unlimited</strong> Resume Books</li>
+                        <li><strong>Email or Download</strong> Resume Books</li>
                         <li><strong>Individualized</strong> Recruiter Accounts</li>
                         <li><strong>All</strong> Event Management Tools</li>
-                        <li><strong>Unlimited</strong> Invitation</li>
-                        <li><strong>Automatic</strong> Filtering</li>
+                        <li><strong>Unlimited</strong> Student Invitation</li>
                         <li class="last">
                             <a href="javascript:void(0)" data-action="{{a_action}}" data-title="{{a_dialog_title}}" data-employer-type="{{employer_type}}" data-subscription-type="annual" {% if employer_type %}disabled="disabled"{% endif %} class="btn {{a_class}}">{% if a_text %}{{a_text}}{% else %}Contact Us{% endif %}</a>
                         </li>
@@ -107,11 +110,11 @@ Employer Registration |
         </div>
         <div class="feature no-margin-bottom">
             <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/calendar-medium.png" /> Effectively Plan Events</h3>
-            <p>The Umeqo Event Scheduling Assistant presents you with an overview of both major campus activities and events hosted by other companies, allowing you to schedule your event at an optimal time. Umeqo also handles event check-ins, minimizing headaches and the length of those check-in lines.</p>
+            <p>Umeqo not only handles check-ins, but also presents you with an overview of both major campus activities and events hosted by other companies, allowing you to pick an optimal time for your event.</p>
         </div>
         <div class="feature no-margin-bottom">
             <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/bank.png" /> Learn About the Campus</h3>
-            <p>With 400+ campus organizations documented, you will be able to click on those that any student is involved in to learn more about them.</p>
+            <p>With 420+ campus organizations documented, you will be able to click on those that any student is involved in to learn more about them.</p>
         </div>
         <div class="feature last no-margin-bottom">
             <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/medal.png" /> Discover Promising Candidates</h3>

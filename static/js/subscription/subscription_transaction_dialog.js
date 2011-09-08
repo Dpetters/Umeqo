@@ -5,7 +5,7 @@ $(document).ready( function() {
             autoOpen: false,
             dialogClass: "subscription_dialog",
             modal:true,
-            width:510,
+            width:540,
             resizable: false,
             close: function() {
                 subscription_dialog.remove();
