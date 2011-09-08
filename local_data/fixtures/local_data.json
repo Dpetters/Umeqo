@@ -179,6 +179,7 @@
   "pk": 1, 
   "model": "employer.resumebook", 
   "fields": {
+   "delivered": false, 
    "last_updated": "2011-08-26 15:32:01", 
    "name": null, 
    "students": [
@@ -194,11 +195,18 @@
   "pk": 2, 
   "model": "employer.resumebook", 
   "fields": {
-   "last_updated": "2011-08-27 17:06:03", 
+   "delivered": false, 
+   "last_updated": "2011-09-07 15:55:24", 
    "name": null, 
-   "students": [], 
+   "students": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5
+   ], 
    "recruiter": 6, 
-   "resume_book": "", 
+   "resume_book": "employer/resumebook/__recruiter1@umeqo.com_2011-09-07-15-55-23.pdf", 
    "date_created": "2011-08-27 17:06:03"
   }
  }, 
@@ -479,9 +487,7 @@
     6
    ], 
    "gpa": "4.800", 
-   "campus_involvement": [
-    394
-   ], 
+   "campus_involvement": [], 
    "languages": [], 
    "profile_created": true, 
    "school_year": 3, 
@@ -527,9 +533,7 @@
    "first_major": 12, 
    "subscriptions": [], 
    "gpa": "4.500", 
-   "campus_involvement": [
-    394
-   ], 
+   "campus_involvement": [], 
    "languages": [
     3, 
     84
@@ -717,10 +721,10 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-07 20:30:03", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
   }
@@ -729,10 +733,10 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 15:25:30", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
   }
@@ -741,10 +745,10 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 20:05:56", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 3, 
    "date_created": "2011-07-10 20:05:56"
   }
@@ -753,10 +757,10 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 20:26:02", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
   }
@@ -765,10 +769,10 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-23 10:53:54", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
   }
@@ -1341,7 +1345,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-28 16:20:52", 
+   "last_login": "2011-09-07 15:32:11", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -3293,6 +3297,16 @@
    "session_key": "1a7af6b29ec2ed64f8ffcca7f8065378", 
    "last_updated": "2011-09-04 13:45:26", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 306, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-07 15:32:11", 
+   "session_key": "56cae493caa385b386e0cb3290c98cd2", 
+   "last_updated": "2011-09-07 15:32:11", 
+   "user": 16
   }
  }
 ]
