@@ -1,0 +1,7 @@
+Hi {% if name %}{{name}}{% else %}there{% endif %},
+
+{{recruiter}} ({{employer}}) has invited you to "{{event}}":
+{% load core_extras %}
+{{invite_message|wordwrapwithindent:80}}
+
+Check out the event details and respond to the invitation at http://{{current_site.domain}}{{permalink}}
