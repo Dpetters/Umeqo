@@ -179,6 +179,7 @@
   "pk": 1, 
   "model": "employer.resumebook", 
   "fields": {
+   "delivered": false, 
    "last_updated": "2011-08-26 15:32:01", 
    "name": null, 
    "students": [
@@ -194,6 +195,7 @@
   "pk": 2, 
   "model": "employer.resumebook", 
   "fields": {
+   "delivered": false, 
    "last_updated": "2011-09-07 15:55:24", 
    "name": null, 
    "students": [
