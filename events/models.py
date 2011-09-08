@@ -142,7 +142,7 @@ class Attendee(models.Model):
         return '%s <%s>' % (self.name, self.email)
 
     class Meta:
-        unique_together = (("email", "event"),)
+        unique_together = (("student", "event"),)
 
 class DroppedResume(models.Model):
     student = models.ForeignKey(Student, null=True)
