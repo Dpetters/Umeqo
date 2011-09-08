@@ -295,20 +295,27 @@
     z-index: 500;
     opacity: 0;
 }
-#event_checkin_main h2 {
-    margin: 0;
-    font-size: 25px;
-    color: #888;
+#event_checkin_header {
     padding: 10px 8px;
     background: #EEE;
     border-bottom: 2px solid #CCC;
 }
-#event_checkin_main h2 span {
+#event_checkin_header h2 {
+    margin: 0;
+    margin-right:250px;
+    font-size: 24px;
+    color: #888;
+
+}
+#event_checkin_count{
+    text-align:center;
+}
+#event_checkin_header span {
     font-size: 20px;
     color: #AAA;
     float: right;
 }
-#event_checkin_main h2 span img {
+#event_checkin_header span img {
     margin: 0 0 -16px -3px;
 }
 #event_checkin_main p {

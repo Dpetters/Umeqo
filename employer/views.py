@@ -83,7 +83,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
         context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(user=request.user)
         context['master'] = True
 
-    context['subscription'] = request.user.recruiter.employer.usersubscription
+    context['subscription'] = request.user.recruiter.employer.employersubscription
     context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     

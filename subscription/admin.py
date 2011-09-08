@@ -16,10 +16,10 @@ def _subscription(trans):
         trans.subscription.pk, esc(trans.subscription) )
 _subscription.allow_tags = True
 
-def _user(trans):
-    return u'<a href="/admin/auth/user/%d/">%s</a>' % (
-        trans.user.pk, esc(trans.user) )
-_user.allow_tags = True
+def _employer(trans):
+    return u'<a href="/admin/employer/employer/%d/">%s</a>' % (
+        trans.employer.pk, esc(trans.employer) )
+_employer.allow_tags = True
 
 def _ipn(trans):
     return u'<a href="/admin/ipn/paypalipn/%d/">#%s</a>' % (
@@ -33,13 +33,13 @@ class EmployerSubscriptionAdminForm(forms.ModelForm):
     extend_subscription = forms.fields.BooleanField(required=False)
 
 class EmployerSubscriptionAdmin(admin.ModelAdmin):
-    list_display = ( '__unicode__', _user, _subscription, 'active', 'expires', 'valid' )
+    list_display = ( '__unicode__', _employer, _subscription, 'active', 'expires' )
     list_display_links = ( '__unicode__', )
     list_filter = ('active', 'subscription', )
     date_hierarchy = 'expires'
     form = EmployerSubscriptionAdminForm
     fieldsets = (
-        (None, {'fields' : ('user', 'subscription', 'expires', 'active')}),
+        (None, {'fields' : ('employer', 'subscription', 'expires', 'active')}),
         ('Actions', {'fields' : ('fix_group_membership', 'extend_subscription'),
                      'classes' : ('collapse',)}),
         )
@@ -62,7 +62,7 @@ admin.site.register(EmployerSubscription, EmployerSubscriptionAdmin)
 
 class TransactionAdmin(admin.ModelAdmin):
     date_hierarchy = 'timestamp'
-    list_display = ('timestamp', 'id', _subscription, _user, _ipn, 'amount', 'comment')
+    list_display = ('timestamp', 'id', _subscription, _employer, _ipn, 'amount', 'comment')
     list_display_links = ('timestamp', 'id')
     list_filter = ('subscription', 'user')
 admin.site.register(Transaction, TransactionAdmin)

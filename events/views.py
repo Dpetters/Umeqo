@@ -315,7 +315,7 @@ def event_checkin(request, event_id):
         attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
         return HttpResponse(simplejson.dumps(attendees), mimetype="application/json")
     else:
-        email = request.POST.get('email', None)
+        email = request.POST.get('email', None).strip()
         if not email or not email_re.match(email):
             data = {
                 'valid': False,
