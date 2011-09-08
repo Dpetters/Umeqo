@@ -53,9 +53,9 @@
 
 {% block content_area %}
 <div id="event_page_block" class="simple_block no_top_padding">
-    {% if show_admin %}
+    {% if can_edit %}
     <div id="event_admin">
-        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you) {% if event.is_owner %} <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a> {% endif %}</h1>
+        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you) <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
         <div id="event_admin_side">
             <table id="event_numbers">
                 <tr>
@@ -152,7 +152,7 @@
             {% if is_past %}
                 <a href="javascript:void(0)" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP disabled.">{% if is_deadline %}Deadline{% else %}Event{% endif %} already passed!</a>
             {% else %}
-                {% if can_rsvp or show_admin %}
+                {% if can_rsvp or can_edit %}
                         {% if event.is_public %}
                             <div class="no-response{% if not responded %} hid{% endif %}">
                                 <span id="attending-span">{{attending_text}}</span>
@@ -164,8 +164,8 @@
                         {% else %}
                             <strong>RSVP:</strong>
                             {% spaceless %}
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if show_admin %}disabled="disabled"{% endif %}>{{attending_text}}</a>
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if show_admin %}disabled="disabled"{% endif %}>Not {{attending_text}}</a>
+                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if can_edit %}disabled="disabled"{% endif %}>{{attending_text}}</a>
+                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if can_edit %}disabled="disabled"{% endif %}>Not {{attending_text}}</a>
                             {% endspaceless %}
                             <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
                         {% endif %}
@@ -284,7 +284,7 @@
                     </div>
                     <div class="event_company_name">
                       {% if campus_org_event %}{{event.owner.campusorg}}{% else %}{{ recruiter.name }}{% endif %}
-                        <a href="{% if not show_admin %}{% url employers_list %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
+                        <a href="{% if not can_edit%}{% url employers_list %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
                             {{event.owner.recruiter.employer}}
                         </a>
                     </div>

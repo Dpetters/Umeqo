@@ -14,10 +14,11 @@ class has_any_subscription(object):
     def __call__(self, request, *args, **kwargs):
         if is_recruiter(request.user):
             try:
+                print "here"
                 s = request.user.recruiter.employer.employersubscription
-                if not s.expired:
-                    pass
-                else:
+                print s
+                print 
+                if not s.expired():
                     return self.orig_func(request, *args, **kwargs)
             except EmployerSubscription.DoesNotExist:
                 pass
@@ -33,10 +34,12 @@ class has_annual_subscription(object):
     def __call__(self, request, *args, **kwargs):
         if is_recruiter(request.user):
             try:
+                print "here"
                 es = request.user.recruiter.employer.employersubscription
                 free_trial = Subscription.objects.get(name="Free Trial")
-                
-                if es.subscription == free_trial and not es.expired:
+                print es.subscription
+                print es.expired
+                if es.subscription != free_trial and not es.expired():
                     return self.orig_func(request, *args, **kwargs)
             except EmployerSubscription.DoesNotExist:
                 pass

@@ -51,15 +51,9 @@ def event_page(request, id, slug, extra_context=None):
         return redirect('student_profile')
     
     event = Event.objects.get(pk=id)
-    if not is_recruiter(request.user) and not is_campus_org(request.user):
-        event.view_count += 1
-        event.save()
+        
     is_past = event.end_datetime < datetime.now()    
     #check slug matches event
-    import logging
-    logger = logging.getLogger("django.request")
-    logger.error("event slug %s" % event.slug, exc_info=True, extra={'url': request.build_absolute_uri()})
-    logger.error("provided slug %s" % slug, exc_info=True, extra={'url': request.build_absolute_uri()})
     if event.slug!=slug:
         return HttpResponseNotFound("The slug you provided does not match that of the event found using the provided id.")
     current_site = Site.objects.get(id=settings.SITE_ID)
@@ -99,29 +93,38 @@ def event_page(request, id, slug, extra_context=None):
         'attending': False,
         'dropped_resume': False,
         'can_rsvp': False,
-        'show_admin': False,
         'is_past': is_past,
         'attending_text': attending_text,
         'is_deadline': is_deadline,
         'google_description': google_description
     }
     if is_campus_org(event.owner):
-        context['campus_org_event'] = is_campus_org(event.owner)
+        context['campus_org_event'] = True
         context['attending_employers'] = event.attending_employers
         context['resume_drops'] = len(event.droppedresume_set.all())
-    if len(event.audience.all())>0:
+        context['can_edit'] = (event.owner == request.user)
+    elif is_recruiter(event.owner):
+        print "LETS DECIE"
+        context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
+    if len(event.audience.all()) > 0:
         context['audience'] = event.audience.all()
+    
     if is_student(request.user):
+        
+        event.view_count += 1
+        event.save()
+        
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
+        
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
             context['responded'] = True
+        
         dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
         if dropped_resume.exists():
             context['dropped_resume'] = True
+        
         context['can_rsvp'] = True
-    elif is_recruiter(request.user) or is_campus_org(request.user):
-        context['show_admin'] = True
     context.update(extra_context or {})
     return context
 

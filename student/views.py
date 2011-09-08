@@ -39,9 +39,6 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
                     change_password_form_class = PasswordChangeForm, 
                     extra_context=None):
     
-    if not request.user.student.profile_created:
-        return redirect('student_profile')
-    
     if request.method == "GET":
         context = {}
         page_messages = {
