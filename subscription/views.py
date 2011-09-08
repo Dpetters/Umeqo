@@ -6,20 +6,17 @@ from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from employer.models import Recruiter
-from employer import choices as employer_choices
 from core.decorators import is_recruiter, render_to
-from subscription.models import Subscription, UserSubscription
+from subscription.models import Subscription, EmployerSubscription
 from subscription.forms import SubscriptionCancelForm, SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
 def subscription_dialog(request, extra_context=None):
     if request.method=="POST":
-        print request.POST
-        if request.POST.has_key("action") and request.POST.has_key("employer_type") and request.POST.has_key("subscription_type"):
+        if request.POST.has_key("action") and request.POST.has_key("subscription_type"):
             action = request.POST['action']
             if action not in subscription_templates:
                 return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
-            employer_type = request.POST['employer_type']
             subscription_type = request.POST['subscription_type']
         else:
             return HttpResponseBadRequest("Subscription transaction type or action is missing.")
@@ -43,30 +40,31 @@ def subscription_dialog(request, extra_context=None):
             data = {'error':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        if request.GET.has_key("action") and request.GET.has_key("employer_type") and request.GET.has_key("subscription_type"):
+        if request.GET.has_key("action") and request.GET.has_key("subscription_type"):
             action = request.GET['action']
             if action not in subscription_templates:
                 return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
-            employer_type = request.GET['employer_type']
             subscription_type = request.GET['subscription_type']
         else:
             return HttpResponseBadRequest("Subscription transaction type or action is missing.")
-        initial = {'employer_type':employer_type}
-        context = {'type':type}
+        
+        initial = {}
         if request.user.is_authenticated():
             initial['name'] = "%s %s" % (request.user.first_name, request.user.last_name,)
             initial['email'] = request.user.email
+            initial['employer'] = request.user.recruiter.employer
         
         body_context = {'subscription_type':subscription_type}
         if is_recruiter(request.user):
             body_context['employer'] = request.user.recruiter.employer
         initial['body'] = render_to_string(subscription_templates[action], body_context)
-        if type=="subscribe":
-            cost = Subscription.objects.get()
+        
+        context = {}
         if type=="cancel":
             context['form'] = SubscriptionCancelForm(initial=initial)
         else:
             context['form'] = SubscriptionForm(initial=initial)
+        
         context.update(extra_context or {})
         return context
              
@@ -114,40 +112,31 @@ def subscription_cancel(request, recruiter_id, form_class=SubscriptionCancelForm
 @render_to("subscription_list.html")
 def subscription_list(request, extra_context=None):
     if request.user.is_authenticated() and is_recruiter(request.user):
-        context = {}
+        context = {'user':request.user }
         free_trial = Subscription.objects.get(name="Free Trial")
         try:
-            us = request.user.usersubscription_set.get(active=True)
-        except UserSubscription.DoesNotExist:
-            us = None
-        if us:
-            if us.subscription == free_trial:
-                context['ft_text'] = "Cancel Subscription"
-                context['ft_class'] = "open_sd_link cancel"
-                context['ft_action'] = "cancel"
-                
-                context['a_text'] = "Upgrade"
-                context['a_cancel'] = "open_sd_link upgrade"
-                context['a_action'] = "upgrade"
-                context['a_dialog_title'] = "Upgrade Subscription"
+            es = request.user.recruiter.employer.employersubscription
+            if es.subscription == free_trial:
+                context['ft_text'] = "Extend Subscription"
+                context['ft_class'] = "open_sd_link extend"
+                context['ft_action'] = "extend"
+                if es.expired:
+                    context['a_text'] = "Upgrade"
+                    context['a_cancel'] = "open_sd_link upgrade"
+                    context['a_action'] = "upgrade"
+                    context['a_dialog_title'] = "Upgrade Subscription"
+                else:
+                    context['ft_text'] = "Cancel Subscription"
+                    context['ft_class'] = "open_sd_link cancel"
+                    context['ft_action'] = "cancel"
             else:
                 context['a_text'] = "Cancel Subscription"
                 context['a_class'] = "open_sd_link cancel"
                 context['a_action'] = "cancel"
                 context['a_dialog_title'] = "Cancel Subscription"
+        except EmployerSubscription.DoesNotExist:
+            context = {'ft_class':'open_ftid_link', 'a_dialog_title':"Subscribe to Umeqo", 'a_action': 'subscribe', 'a_class':"open_sd_link subscribe"}
     else:
-        employer_type = None
-        if request.GET.has_key("employer_type"):
-            employer_type = request.GET["employer_type"]
-        print employer_type
-        context = {'employer_type':employer_type, 'ft_class':'open_ftid_link', 'a_dialog_title':"Subscribe to Umeqo", 'a_action': 'subscribe', 'a_class':"open_sd_link subscribe", 'employer_type': employer_type, 'employer_sizes':dict(employer_choices.EMPLOYER_TYPE_CHOICES)}
-        if employer_type=="P":
-            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Non-Profit Annual Subscription").price_per_day() * 30)
-        elif employer_type=="S":
-            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Small Employer Annual Subscription").price_per_day() * 30)
-        elif employer_type=="M":
-            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Medium Employer Annual Subscription").price_per_day() * 30)
-        elif employer_type=="L":
-            context['annual_monthly_cost'] = int(Subscription.objects.get(name="Large Employer Annual Subscription").price_per_day() * 30)
+        context = {'ft_class':'open_ftid_link', 'a_dialog_title':"Subscribe to Umeqo", 'a_action': 'subscribe', 'a_class':"open_sd_link subscribe"}
     context.update(extra_context or {})
     return context

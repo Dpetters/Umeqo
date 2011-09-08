@@ -38,7 +38,10 @@
     border-top:1px solid white;
 }
 #student_list_section {
-    padding:5px 0px 0px 5px
+    padding:5px 0px 0px 5px;
+}
+#id_student_list{
+    width:318px;
 }
 #resume_book_block .side_block_content{
     padding:5px;

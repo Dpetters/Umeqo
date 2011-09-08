@@ -11,7 +11,7 @@ from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
-from employer.choices import EMPLOYER_TYPE_CHOICES
+
 
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
@@ -24,7 +24,6 @@ class Employer(core_mixins.DateTracking):
     main_contact_email = models.EmailField("Main Contact Email", blank=True, null=True)
     main_contact_phone = PhoneNumberField("Main Contact Phone #", blank = True, null=True)
     visible = models.BooleanField(default=False)
-    type = models.CharField("Employer Type", max_length=1, choices=EMPLOYER_TYPE_CHOICES, blank=True, null=True)
     
     # Null Fields
     offered_job_types = models.ManyToManyField(EmploymentType, blank=True, null=True) 
@@ -72,11 +71,8 @@ class Recruiter(core_mixins.DateTracking):
 
     def __unicode__(self):
         if hasattr(self, "user"):
-            print 1
-            print str(self.user)
             return str(self.user)
         else:
-            print 2
             return "Unattached Recruiter"
 
 @receiver(signals.post_save, sender=Recruiter)
@@ -93,9 +89,13 @@ class ResumeBook(core_mixins.DateTracking):
     resume_book = models.FileField(upload_to=get_resume_book_filename, blank=True, null=True)
     name = models.CharField("Resume Book Name", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     students = models.ManyToManyField("student.Student", blank=True, null=True)
-
+    delivered = models.BooleanField(default=False)
+    
     def __unicode__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return "Resume Book"
 
     class Meta:
         verbose_name = "Resume Book"

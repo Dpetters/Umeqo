@@ -37,7 +37,6 @@ class Subscription(models.Model):
     trial_unit = models.CharField(max_length=1, null=True, choices = (("", "No trial"),) + _TIME_UNIT_CHOICES)
     recurrence_period = models.PositiveIntegerField(null=True, blank=True)
     recurrence_unit = models.CharField(max_length=1, null=True, choices = (("", "No recurrence"),) + _TIME_UNIT_CHOICES)
-    group = models.ForeignKey(auth.models.Group, null=False, blank=False)
 
     _PLURAL_UNITS = {
         'D': 'days',
@@ -65,22 +64,13 @@ class Subscription(models.Model):
         return float(self.price) / (self.recurrence_period*_recurrence_unit_days[self.recurrence_unit])
 
 
-class UserSubscription(models.Model):
-    user = models.OneToOneField(auth.models.User)
-    subscription = models.ForeignKey(Subscription)
+class EmployerSubscription(models.Model):
+    employer = models.OneToOneField("employer.Employer")
+    subscription = models.OneToOneField(Subscription)
     expires = models.DateField(null = True, default=datetime.date.today)
-    active = models.BooleanField(default=True)
-    cancelled = models.BooleanField(default=True)
+    cancelled = models.BooleanField(default=False)
 
     grace_timedelta = datetime.timedelta(getattr(settings, 'SUBSCRIPTION_GRACE_PERIOD', 2))
-
-    class Meta:
-        unique_together = ( ('user','subscription'), )
-
-    def user_is_group_member(self):
-        "Returns True is user is member of subscription's group"
-        return self.subscription.group in self.user.groups.all()
-    user_is_group_member.boolean = True
 
     def expired(self):
         """Returns true if there is more than SUBSCRIPTION_GRACE_PERIOD
@@ -88,36 +78,6 @@ class UserSubscription(models.Model):
         return self.expires is not None and (
             self.expires + self.grace_timedelta < datetime.date.today() )
     expired.boolean = True
-
-    def valid(self):
-        """Validate group membership.
-
-        Returns True if not expired and user is in group, or expired
-        and user is not in group."""
-        if self.expired() or not self.active: return not self.user_is_group_member()
-        else: return self.user_is_group_member()
-    valid.boolean = True
-
-    def unsubscribe(self):
-        """Unsubscribe user."""
-        self.user.groups.remove(self.subscription.group)
-        self.user.save()
-
-    def subscribe(self):
-        """Subscribe user."""
-        self.user.groups.add(self.subscription.group)
-        self.user.save()
-
-    def fix(self):
-        """Fix group membership if not valid()."""
-        if not self.valid():
-            if self.expired() or not self.active:
-                self.unsubscribe()
-                Transaction(user=self.user, subscription=self.subscription, ipn=None, event='subscription expired').save()
-                if self.cancelled:
-                    self.delete()
-                    Transaction(user=self.user, subscription=self.subscription, ipn=None, event='remove subscription (expired)').save()
-            else: self.subscribe()
 
     def extend(self, timedelta=None):
         """Extend subscription by `timedelta' or by subscription's
@@ -133,22 +93,8 @@ class UserSubscription(models.Model):
             else:
                 self.expires = None
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ( 'subscription_usersubscription_detail',
-                 (), dict(object_id=str(self.id)) )
-
     def __unicode__(self):
-        rv = u"%s's %s" % ( self.user, self.subscription )
+        rv = u"%s's %s" % ( self.employer, self.subscription )
         if self.expired():
             rv += u' (expired)'
         return rv
-
-def unsubscribe_expired():
-    """Unsubscribes all users whose subscription has expired.
-
-    Loops through all UserSubscription objects with `expires' field
-    earlier than datetime.date.today() and forces correct group
-    membership."""
-    for us in UserSubscription.objects.get(expires__lt=datetime.date.today()):
-        us.fix()

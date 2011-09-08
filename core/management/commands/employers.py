@@ -10,8 +10,7 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 
 from employer.models import Employer, Recruiter
-from subscription.models import UserSubscription, Subscription
-print "suh"
+
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--update', action='store_true', dest='update', default=False, help='Mark each person (except those marked as final) as someone who will get emailed or not.'),
@@ -31,9 +30,6 @@ class Command(BaseCommand):
                 password = output.split(":")[1].strip()
                 print >> f, "%s %s" % (username, password)
                 user = User.objects.create(username=username, email=username, is_active = True)
-                free_trial = Subscription.objects.get(name="Free Trial")
-                us = UserSubscription.objects.create(user = user, subscription=free_trial)
-                us.subscribe()
                 user.set_password(password)
                 user.save()
                 Recruiter.objects.create(user = user, employer=employer, is_master=True)

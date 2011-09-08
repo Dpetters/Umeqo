@@ -78,7 +78,8 @@ RECAPTCHA_PRIVATE_KEY = "6LeAXMcSAAAAAFKWwcMK94XjO5Wvusu5FOQaYsS-"
 
 # URL to redirect the user to if they try to 
 # access a page and aren't logged in
-LOGIN_URL = '/login'
+LOGIN_URL = '/login/'
+SUBSCRIPTIONS_URL = '/subscriptions/'
 LOGIN_REDIRECT_URL = '/'
 
 # Emails sent to users will be coming from this email address
@@ -205,6 +206,7 @@ MIDDLEWARE_CLASSES = (
     'core.middleware.SetRemoteAddrMiddleware',
     'core.middleware.LogMiddleware',
     'sentry.client.middleware.Sentry404CatchMiddleware',
+    'middleware.http.HttpResponseNotAllowedMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -227,11 +229,6 @@ SENTRY_SEARCH_OPTIONS = {
 SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
-
-PAYPAL_TEST = True           # Testing mode on
-PAYPAL_WPP_USER = "???"      # Get from PayPal
-PAYPAL_WPP_PASSWORD = "???"
-PAYPAL_WPP_SIGNATURE = "???"
 
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 

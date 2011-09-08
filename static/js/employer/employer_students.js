@@ -313,6 +313,11 @@ function initiate_resume_book_summary_update() {
         },
         success: function (data) {
             $("#students_in_resume_book_student_list_link").html(data);
+            if (parseInt($("#students_in_resume_book_num").text())>0){
+                $("#student_deliver_resume_book_button").removeAttr("disabled");
+            }else{
+                $("#student_deliver_resume_book_button").removeAttr("disabled", "disabled");                
+            }
         },
         error: errors_in_message_area_handler
     });
@@ -521,7 +526,6 @@ function handle_deliver_resume_book_button_click() {
                     }
                 }
             });
-
             var deliver_resume_book_form_validator = $("#deliver_resume_book_form").validate({
                 submitHandler: function(form) {
                     if(resume_book_created) {
@@ -557,21 +561,24 @@ function handle_deliver_resume_book_button_click() {
                             var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL;
                             if (custom_resume_book_name){ download_url = download_url + "?name=" + escape(custom_resume_book_name) }
                             window.location.href = download_url;
-                            $.ajax({
-                                dataType: "html",
-                                url: RESUME_BOOK_CURRENT_DELIVERED_URL,
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    if(jqXHR.status==0){
-                                        deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                                    }else{
-                                        deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
+                            setTimeout(function(){
+                                $.ajax({
+                                    dataType: "html",
+                                    url: RESUME_BOOK_CURRENT_DELIVERED_URL,
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        console.log(jqXHR);
+                                        if(jqXHR.status==0){
+                                            deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                        }else{
+                                            deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
+                                        }
+                                    },
+                                    success: function (data) {
+                                        deliver_resume_book_dialog.html(data);
+                                        deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
                                     }
-                                },
-                                success: function (data) {
-                                    deliver_resume_book_dialog.html(data);
-                                    deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
-                                }
-                            });
+                                });
+                            }, 500);
                         }
                     } else {
                         $("#deliver_resume_book_form .error_section").html("Please wait until the resume book is ready.");

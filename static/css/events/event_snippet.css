@@ -26,6 +26,7 @@
 }
 .event_list .datetime {
     display: inline-block;
+    margin-top:2px;
     font-size: 12px;
     float: right;
     color: #555;
@@ -52,7 +53,7 @@
     -moz-border-radius: 2px;
 }
 .event_list .details {
-    margin-top: 3px;
+    margin-top: 5px;
     color: #666;
 }
 

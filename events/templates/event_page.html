@@ -55,7 +55,7 @@
 <div id="event_page_block" class="simple_block no_top_padding">
     {% if show_admin %}
     <div id="event_admin">
-        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you) <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a></h1>
+        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you) {% if event.is_owner %} <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a> {% endif %}</h1>
         <div id="event_admin_side">
             <table id="event_numbers">
                 <tr>

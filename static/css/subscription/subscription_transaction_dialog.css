@@ -17,3 +17,9 @@
 #subscription_form{
     padding-left:10px;
 }
+#subscription_form input[type=submit]{
+    width:100px;
+}
+#subscription_form a.button{
+    width:92px;
+}

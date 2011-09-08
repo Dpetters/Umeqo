@@ -25,13 +25,13 @@ from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 from django.core.urlresolvers import reverse
 
-from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import has_any_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
-from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
+from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
 from employer.views_helper import get_paginator, employer_search_helper, get_employer_events
 from student import enums as student_enums
 from student.models import Student
@@ -50,6 +50,7 @@ def employer(request):
     
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
+@has_any_subscription
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -66,6 +67,7 @@ def employer_profile_preview(request, slug, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@has_any_subscription
 @render_to("employer_account.html")
 @require_GET
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, change_password_form_class = PasswordChangeForm, extra_context=None):
@@ -76,24 +78,24 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
             'password-changed': messages.password_changed,
         }
         context["msg"] = page_messages[msg]
-    
-    us = request.user.usersubscription_set.get(active=True) 
-    
+
     if not request.user.recruiter.is_master:
-        context['master'] = False    
+        context['master'] = False   
     else:
         context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(user=request.user)
         context['master'] = True
 
-    context['user_subscription'] = request.user.usersubscription_set.get(active=True)
+    context['subscription'] = request.user.recruiter.employer.employersubscription
     context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     
     context.update(extra_context or {})
     return context
 
+
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
@@ -104,8 +106,10 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
         data = {'errors': form.errors }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
+
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@has_any_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
@@ -123,6 +127,7 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
         
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_student_toggle_star(request):
     if request.POST.has_key('student_id'):
@@ -140,6 +145,7 @@ def employer_student_toggle_star(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_students_add_star(request):
     if request.POST.has_key('student_ids'):
@@ -154,6 +160,7 @@ def employer_students_add_star(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_students_remove_star(request):
     if request.POST.has_key('student_ids'):
@@ -168,6 +175,7 @@ def employer_students_remove_star(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_student_comment(request):
     if request.POST.has_key('student_id'):
@@ -188,6 +196,7 @@ def employer_student_comment(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_resume_book_current_toggle_student(request):
     if request.POST.has_key('student_id'):
@@ -212,6 +221,7 @@ def employer_resume_book_current_toggle_student(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_resume_book_current_add_students(request):
     if request.POST.has_key('student_ids'):
@@ -233,6 +243,7 @@ def employer_resume_book_current_add_students(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_resume_book_current_remove_students(request):
     if request.POST.has_key('student_ids'):
@@ -253,6 +264,7 @@ def employer_resume_book_current_remove_students(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
     if request.method == "GET":
@@ -270,40 +282,20 @@ def employer_student_event_attendance(request):
 
 @login_required
 @user_passes_test(is_recruiter)
-@render_to('employer_events.html')
-def employer_employer_events(request, extra_context=None):
-    context = {'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.now()).order_by("start_datetime") }
-    context.update(extra_context or {})
-    return context
-
-
-@login_required
-@user_passes_test(is_recruiter)
-def employer_resume_books(request, extra_context=None):
-    pass
-
-
-@login_required
-@user_passes_test(is_recruiter)
-@render_to('employer_students_default_filtering.html')
-def employer_students_default_filtering(request, form_class=StudentDefaultFilteringParametersForm, extra_context = None):
-    if request.method == 'POST':
-        form = form_class(data=request.POST, instance = request.user.recruiter)
-        if form.is_valid():
-            form.save()
-            request.user.recruiter.automatic_filtering_setup_completed = True
-            request.user.recruiter.save()
-        else:
-            return form.errors
+@has_any_subscription
+@render_to("employer_resume_book_history.html")
+def employer_resume_book_history(request, extra_context=None):
+    if request.method == "POST":
+        pass
     else:
-        form = form_class(instance=request.user.recruiter)
-    context = {'form':form}
-    context.update(extra_context or {}) 
+        print request.user.recruiter.resumebook_set.all()
+        context = {"resume_books":request.user.recruiter.resumebook_set.all()}
     return context
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to()
 def employer_students(request, extra_context=None):
     context = {}
@@ -388,31 +380,35 @@ def employer_students(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to('employer_resume_book_current_summary.html')
 def employer_resume_book_current_summary(request, extra_context=None):
-    resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-    if not resume_books.exists():
-        current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-    else:
-        current_resume_book = resume_books.order_by('-date_created')[0]
-    context = {'resume_book': current_resume_book}
+    try:
+        resume_book = ResumeBook.objects.get(delivered=False)
+    except Exception:
+        resume_book = ResumeBook.objects.create()
+    context = {'resume_book': resume_book}
     context.update(extra_context or {}) 
     return context
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
 def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
     if request.is_ajax():
         context = {}
         if request.method == 'GET':
             context['deliver_resume_book_form'] = form_class(initial={'emails':request.user.email})
-            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-            if resume_books.exists():
-                context['resume_book'] = resume_books.order_by('-date_created')[0]
+            
+            if request.GET.has_key("resume_book_id"):
+                context['resume_book'] = ResumeBook.objects.get(id=request.GET["resume_book_id"])
             else:
-                context['resume_book'] = ResumeBook.objects.create(recruiter = request.user.recruiter)
+                try:
+                    resume_book = ResumeBook.objects.get(recruiter=request.user.recrutier, delivered=False)
+                except Exception:
+                    context['resume_book'] = ResumeBook.objects.create(recruiter = request.user.recruiter)
             context.update(extra_context or {})
             return context
         return HttpResponseBadRequest("Request must be a GET")       
@@ -421,9 +417,13 @@ def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookFo
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 def employer_resume_book_current_create(request):
     if request.method == 'POST':
-        current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+        try:
+            current_resume_book = ResumeBook.objects.get(delivered=False)
+        except Exception:
+            return HttpResponseBadRequest("There isn't a resume book ready to be made")
         report_buffer = cStringIO.StringIO() 
         c = Canvas(report_buffer)  
         c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
@@ -460,6 +460,7 @@ def employer_resume_book_current_create(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to("employer_resume_book_current_delivered.html")
 def employer_resume_book_current_email(request, extra_context=None):
     if request.method == 'POST':
@@ -490,6 +491,7 @@ def employer_resume_book_current_email(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 def employer_resume_book_current_download(request):
     if request.method == 'GET':
         current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
@@ -503,15 +505,6 @@ def employer_resume_book_current_download(request):
         return response
     else:
         return HttpResponseBadRequest("Request must be a GET")
-
-
-@login_required
-@user_passes_test(is_recruiter)
-@render_to('employer_invitations.html')
-def employer_invitations(request, extra_context=None):
-    context = {}
-    context.update(extra_context or {})
-    return context
 
 
 @login_required
