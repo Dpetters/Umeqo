@@ -4,7 +4,6 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "group": 1, 
    "name": "Free Trial", 
    "recurrence_unit": "D", 
    "price": "0.00", 
@@ -18,7 +17,6 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "group": 2, 
    "name": "Charter Customer Subscription", 
    "recurrence_unit": "W", 
    "price": "0.00", 
@@ -32,10 +30,9 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "group": 2, 
    "name": "Non-Profit Annual Subscription", 
    "recurrence_unit": "Y", 
-   "price": "99.00", 
+   "price": "299.00", 
    "trial_unit": "D", 
    "trial_period": 3, 
    "recurrence_period": 1
@@ -46,10 +43,9 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "group": 2, 
    "name": "Small Employer Annual Subscription", 
    "recurrence_unit": "Y", 
-   "price": "399.00", 
+   "price": "999.00", 
    "trial_unit": "D", 
    "trial_period": 3, 
    "recurrence_period": 1
@@ -60,10 +56,9 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "group": 2, 
    "name": "Medium Employer Annual Subscription", 
    "recurrence_unit": "Y", 
-   "price": "699.00", 
+   "price": "2999.00", 
    "trial_unit": "D", 
    "trial_period": 3, 
    "recurrence_period": 1
@@ -74,10 +69,9 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "group": 2, 
    "name": "Large Employer Annual Subscription", 
    "recurrence_unit": "Y", 
-   "price": "999.00", 
+   "price": "4999.00", 
    "trial_unit": "D", 
    "trial_period": 3, 
    "recurrence_period": 1
