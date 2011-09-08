@@ -33,9 +33,6 @@ from registration.models import InterestedPerson
 
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
-    if is_student(request.user) and not request.user.student.profile_created:
-        return redirect('student_profile')
-    
     questions = Question.objects.visible()
     if is_recruiter(request.user):
         questions = questions.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
@@ -62,9 +59,6 @@ def account_deactivate(request, extra_context = None):
 
 @render_to('faq.html')
 def faq(request, extra_context = None):
-    if is_student(request.user) and not request.user.student.profile_created:
-        return redirect('student_profile')
-    
     if request.method == "POST":
         if request.POST.has_key("question_id"):
             q = Question.objects.get(id=request.POST["question_id"])
@@ -99,10 +93,7 @@ def about(request, extra_context = None):
     return context
 
 @render_to('tutorials.html')
-def tutorials(request, extra_context = None):    
-    if is_student(request.user) and not request.user.student.profile_created:
-        return redirect('student_profile')
-    
+def tutorials(request, extra_context = None):
     context = {}
     context.update(extra_context or {})
     return context
