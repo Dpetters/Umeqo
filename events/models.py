@@ -65,17 +65,21 @@ class Event(core_mixins.DateCreatedTracking):
         })
     
     def save(self):
-        self.slug = "-".join(slugify(self.name)[:50].split("-")[:-1])
+        print "diiimaa"
+        print slugify(self.name)[:50].split("-")[0:-1]
+        parts = slugify(self.name)[:50].split("-")
+        if len(parts) > 1:
+            self.slug = "-".join(slugify(self.name)[:50].split("-")[:-1])
+        else:
+            self.slug = parts[0]
+        print self.slug
         super(Event, self).save()
 
-@receiver(signals.m2m_changed, sender=Event.attending_employers.through)
-def send_new_event_notifications(sender, instance, action, reverse, model, pk_set, using, **kwargs):
-    if action=="post_add":
-        notify_about_event(instance, 'new_event')
-                
 @receiver(signals.post_save, sender=Event)
-def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
-    if not created and not instance.is_active and not raw:
+def send_event_notifications(sender, instance, created, raw, **kwargs):
+    if created and not raw:
+        notify_about_event(instance, 'new_event')
+    elif not created and not instance.is_active and not raw:
         notify_about_event(instance, 'cancelled_event')
 
 def notify_about_event(instance, notice_type):
