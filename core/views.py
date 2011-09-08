@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 from django.utils import simplejson
 
 from core import enums, messages
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org
+from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import does_email_exist
@@ -133,6 +133,7 @@ def contact_us(request, form_class = AkismetContactForm, fail_silently = False, 
 
 
 @login_required
+@has_annual_subscription
 def get_location_guess(request):
     if request.method == "GET":
         if request.GET.has_key('query'):
@@ -150,6 +151,7 @@ def get_location_guess(request):
 
 
 @login_required
+@has_annual_subscription
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
     if request.GET.has_key('query'):
@@ -168,16 +170,12 @@ def get_location_suggestions(request):
     else:
         return HttpResponseBadRequest("You must pass in either a query or an address to display.")
 
-
 def landing_page_wrapper(request, extra_context=None):
     if request.user.is_authenticated():
         return home(request, extra_context=extra_context)
     else:
         return landing_page(request, extra_context=extra_context)
 
-
-#@cache_page(60 * 15)
-#@csrf_protect
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
     form_class = BetaForm
@@ -225,7 +223,7 @@ def landing_page(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-
+@has_any_subscription
 @render_to()
 def home(request, extra_context=None):
     context = {}

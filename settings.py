@@ -230,11 +230,6 @@ SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
-PAYPAL_TEST = True           # Testing mode on
-PAYPAL_WPP_USER = "???"      # Get from PayPal
-PAYPAL_WPP_PASSWORD = "???"
-PAYPAL_WPP_SIGNATURE = "???"
-
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 
 CACHES = {

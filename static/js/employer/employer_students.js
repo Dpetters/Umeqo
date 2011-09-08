@@ -313,6 +313,11 @@ function initiate_resume_book_summary_update() {
         },
         success: function (data) {
             $("#students_in_resume_book_student_list_link").html(data);
+            if (parseInt($("#students_in_resume_book_num").text())>0){
+                $("#student_deliver_resume_book_button").removeAttr("disabled");
+            }else{
+                $("#student_deliver_resume_book_button").removeAttr("disabled", "disabled");                
+            }
         },
         error: errors_in_message_area_handler
     });

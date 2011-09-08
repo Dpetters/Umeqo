@@ -12,13 +12,13 @@ from django.core.validators import email_re
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.utils import simplejson
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from core import messages as m
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
+from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
 from core.models import Edit
 from events.forms import EventForm, CampusOrgEventForm
 from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume
@@ -127,6 +127,7 @@ def event_page(request, id, slug, extra_context=None):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 @render_to()
 def event_new(request, form_class=None, extra_context=None):
     context = {'TEMPLATE':"event_form.html"}
@@ -156,6 +157,7 @@ def event_new(request, form_class=None, extra_context=None):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 @render_to("event_form.html")
 def event_edit(request, id=None, extra_context=None):
     try:
@@ -196,6 +198,7 @@ def event_edit(request, id=None, extra_context=None):
     return context
 
 @login_required
+@has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 def event_delete(request, id, extra_context = None):
     if request.is_ajax():
@@ -218,6 +221,7 @@ def event_delete(request, id, extra_context = None):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 def event_schedule(request):
     if request.is_ajax():
         schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')))
@@ -227,6 +231,7 @@ def event_schedule(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
+@has_annual_subscription
 def event_rsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
@@ -273,7 +278,7 @@ def event_unrsvp(request, event_id):
 
 @login_required
 @user_passes_test(is_student)
-@require_http_methods(["POST"])
+@require_POST
 def event_drop(request, event_id):
     data = {}
     if not event_id:
@@ -300,7 +305,7 @@ def event_drop(request, event_id):
 
 @login_required
 @user_passes_test(is_student)
-@require_http_methods(["POST"])
+@require_POST
 def event_undrop(request, event_id):
     event = Event.objects.filter(id=event_id)
     DroppedResume.objects.filter(event=event, student=request.user.student).delete()
@@ -308,6 +313,7 @@ def event_undrop(request, event_id):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)
@@ -378,6 +384,7 @@ def event_search(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_annual_subscription
 def events_by_employer(request):
     upcoming_events = request.user.event_set.active().filter(end_datetime__gte=datetime.now())
     student_id = request.GET.get('student_id', None)
@@ -399,7 +406,8 @@ def events_by_employer(request):
 
 @login_required
 @user_passes_test(is_recruiter)
-@require_http_methods(["POST"])
+@has_annual_subscription
+@require_POST
 def event_invite(request):
     event_id = request.POST.get('event_id', None)
     student_id = request.POST.get('student_id', None)

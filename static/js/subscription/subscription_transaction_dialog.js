@@ -21,7 +21,7 @@ $(document).ready( function() {
         subscription_dialog.html(DIALOG_AJAX_LOADER);
 
         var subscription_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-        var json_data = {'action':$(this).attr("data-action"), 'subscription_type':$(this).attr("data-subscription-type"), 'employer_type':$(this).attr("data-employer-type")}
+        var json_data = {'action':$(this).attr("data-action"), 'subscription_type':$(this).attr("data-subscription-type")}
         
         $.ajax({
             type:'GET',
@@ -95,9 +95,6 @@ $(document).ready( function() {
                         employer_size: {
                             required: true
                         },
-                        employer_type: {
-                            required: true
-                        }
                     },
                     messages: {
                         email: {

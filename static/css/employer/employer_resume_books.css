@@ -1,0 +1,42 @@
+#resume_book_list {
+    list-style: none;
+    border-bottom: 1px solid #CCC;
+}
+.notifications_list .see_all {
+    float: right;
+    line-height: 40px;
+    margin-right: 5px;
+    display: inline-block;
+}
+.notifications_list h2 {
+    padding: 10px;
+}
+#resume_book_list li {
+    border-top: 1px solid #CCC;
+    background-color: #EEE;
+    padding: 10px;
+}
+.notifications_list li.unread {
+    background-color: #FFF;
+}
+.notifications_list a {
+    text-decoration: none;
+}
+.notifications_list .type {
+    font-weight: 600;
+    margin-right: 5px;
+    color: #777;
+}
+.notifications_list .details {
+    margin-bottom: 3px;
+    padding: 2px 0;
+}
+.notifications_list .timestamp {
+    float: right;
+}
+.notifications_list .message_quote {
+    color: #444;
+}
+.notifications_list .empty_notices {
+    padding: 10px;
+}

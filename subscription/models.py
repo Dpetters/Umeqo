@@ -68,8 +68,7 @@ class EmployerSubscription(models.Model):
     employer = models.OneToOneField("employer.Employer")
     subscription = models.OneToOneField(Subscription)
     expires = models.DateField(null = True, default=datetime.date.today)
-    active = models.BooleanField(default=True)
-    cancelled = models.BooleanField(default=True)
+    cancelled = models.BooleanField(default=False)
 
     grace_timedelta = datetime.timedelta(getattr(settings, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 

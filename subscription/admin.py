@@ -33,22 +33,15 @@ class EmployerSubscriptionAdminForm(forms.ModelForm):
     extend_subscription = forms.fields.BooleanField(required=False)
 
 class EmployerSubscriptionAdmin(admin.ModelAdmin):
-    list_display = ( '__unicode__', _employer, _subscription, 'active', 'expires' )
+    list_display = ( '__unicode__', _employer, _subscription, 'expires' )
     list_display_links = ( '__unicode__', )
-    list_filter = ('active', 'subscription', )
+    list_filter = ('subscription', )
     date_hierarchy = 'expires'
     form = EmployerSubscriptionAdminForm
-    fieldsets = (
-        (None, {'fields' : ('employer', 'subscription', 'expires', 'active')}),
-        ('Actions', {'fields' : ('fix_group_membership', 'extend_subscription'),
-                     'classes' : ('collapse',)}),
-        )
 
     def save_model(self, request, obj, form, change):
         if form.cleaned_data['extend_subscription']:
             obj.extend()
-        if form.cleaned_data['fix_group_membership']:
-            obj.fix()
         obj.save()
 
     # action for Django-SVN or django-batch-admin app

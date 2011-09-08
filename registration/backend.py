@@ -3,7 +3,7 @@ from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
 
 from registration import signals
-from registration.models import RegistrationProfile, UserAttributes
+from registration.models import RegistrationProfile
 
 
 class RegistrationBackend(object):
