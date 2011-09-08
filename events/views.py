@@ -101,10 +101,10 @@ def event_page(request, id, slug, extra_context=None):
     if is_campus_org(event.owner):
         context['campus_org_event'] = True
         context['attending_employers'] = event.attending_employers
-        context['resume_drops'] = len(event.droppedresume_set.all())
-        context['can_edit'] = (event.owner == request.user)
-    elif is_recruiter(event.owner):
-        print "LETS DECIE"
+        if is_campus_org(request.user):
+            context['resume_drops'] = len(event.droppedresume_set.all())
+            context['can_edit'] = (event.owner == request.user)
+    elif is_recruiter(event.owner) and is_recruiter(request.user):
         context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
     if len(event.audience.all()) > 0:
         context['audience'] = event.audience.all()
