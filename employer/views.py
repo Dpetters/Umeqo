@@ -548,24 +548,15 @@ def employers_list_pane(request, extra_content=None):
     if employer_id and Employer.objects.filter(id=employer_id).exists():
         employer = Employer.objects.get(id=employer_id)
         
-        now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-        events = reduce(
-            lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
-            employer.recruiter_set.all(),
-            []
-        )
-        events = sorted(events, key=attrgetter('end_datetime'), reverse=True)
-
         subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
-
         context = {
             'employer': employer,
-            'events': events,
+            'upcoming_events': employer.event_set.filter(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')).order_by("end_datetime"),
             'subbed': subbed
         }
         return context
-    return HttpResponseBadRequest("Bad request.")
+    return HttpResponseBadRequest("Bad request. Employer id is missing.")
 
 
 @login_required
