@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
     {% if campus_org_event %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
     {% endif %}
 {% endcompress %}
@@ -31,6 +32,7 @@
     var EVENT_UNRSVP_URL = "{% url event_unrsvp event_id=event.id %}";
     var EVENT_DROP_URL = "{% url event_drop event_id=event.id %}";
     var EVENT_UNDROP_URL = "{% url event_undrop event_id=event.id %}";
+    var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
     {% if not user.authenticated or not user.student %}
@@ -43,6 +45,9 @@
 </script>
 {% compress js %}
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    {% if campus_org_event %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+    {% endif %}
 {% endcompress %}    
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}
@@ -277,13 +282,13 @@
                 <div class="event_company">
                     <div class="event_host_logo">
                         {% if campus_org_event %}
-                            <img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" />                        
+                            <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link"><img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" /></a>                        
                         {% else %}
                             <img src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
                         {% endif %}
                     </div>
                     <div class="event_company_name">
-                      {% if campus_org_event %}{{event.owner.campusorg}}{% else %}{{ recruiter.name }}{% endif %}
+                      {% if campus_org_event %}<a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link">{{event.owner.campusorg}}</a>{% else %}{{ recruiter.name }}{% endif %}
                         <a href="{% if not can_edit%}{% url employers_list %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
                             {{event.owner.recruiter.employer}}
                         </a>
