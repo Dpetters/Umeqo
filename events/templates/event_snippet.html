@@ -19,7 +19,7 @@
             </span>
         </div>
     </div>
-    {% if edit and event.is_owner %}
+    {% if edit or event.is_owner %}
     <div class="edit">
         <a href="{% url event_edit id=event.id %}">Edit</a>
         <a href="{% url event_delete id=event.id %}" class="delete-event-link">Delete</a>
