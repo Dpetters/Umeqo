@@ -19,12 +19,18 @@
             </span>
         </div>
     </div>
-    {% if event.owner == user or event.owner.recruiter.employer == user.recruiter.employer %}
-    <div class="edit">
-        <a href="{% url event_edit id=event.id %}">Edit</a>
-        <a href="{% url event_delete id=event.id %}" class="delete-event-link">Delete</a>
-    </div>
+    
+    {% if user.recruiter %}
+        {% if event.owner.recruiter.employer == user.recruiter.employer %}
+            {% include 'event_snippet_edit.html' %}
+        {% endif %}
     {% endif %}
+    {% if user.campus_org %}
+        {% if event.owner == user %}
+            {% include 'event_snippet_edit.html' %}
+        {% endif %}
+    {% endif %}
+    
     <div class="details">
         {% if event.location %}
         <div>
