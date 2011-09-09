@@ -530,7 +530,7 @@ def employers_list(request, extra_content=None):
 
         subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
-
+        
         context.update({
             'employer': employer,
             'upcoming_events': employer.event_set.filter(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')).order_by("end_datetime"),
