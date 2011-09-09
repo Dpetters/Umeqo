@@ -53,8 +53,11 @@
     -moz-border-radius: 2px;
 }
 .event_list .details {
-    margin-top: 5px;
+    margin-top: 3px;
     color: #666;
+}
+.event_list .location_div{
+    margin-bottom:2px;
 }
 
 .editable_event_list .details {
@@ -99,5 +102,4 @@
 .event_list .outdated .name .type {
     background-color: #AAA;
     text-shadow: #888 0 -1px 0;
-}
 }

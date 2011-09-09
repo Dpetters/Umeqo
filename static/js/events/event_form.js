@@ -343,18 +343,18 @@ $(document).ready(function() {
             height : 210,
             click: function(e, ui) {
                 if (ui.checked){
-                $.ajax({
-                    type: 'GET',
-                    url: EMPLOYER_DETAILS_URL,
-                    dataType: "html",
-                    data: {
-                        'employer_name':ui.text,
-                    },
-                    success: function (data) {
-                        $("#attending_employers").append(data);
-                    },
-                    error: errors_in_message_area_handler
-                });
+                    $.ajax({
+                        type: 'GET',
+                        url: EMPLOYER_DETAILS_URL,
+                        dataType: "html",
+                        data: {
+                            'employer_name':ui.text,
+                        },
+                        success: function (data) {
+                            $("#attending_employers").append(data);
+                        },
+                        error: errors_in_message_area_handler
+                    });
                 }else{
                     $(".attending_employer[data-employer-name='" + ui.text + "']").remove();
                 }
@@ -362,13 +362,18 @@ $(document).ready(function() {
             uncheckAll: function(){
                 $("#attending_employers").html("");
             }
-        }).multiselectfilter();     
+        }).multiselectfilter();
     }
     
     $('.datefield').datepicker({
         minDate : 0
     });
-
+    // Fix validation bug
+    $(".attending_employers_multiselect").blur(function(){
+        if($("#id_attending_employers").val()){
+            event_form_validator.element("#id_attending_employers");
+        }
+    });
     // Prevent end datetime from being before start datetime.
     function getStartDate() {
         var start_date = $('#id_start_datetime_0').val().split('/');
