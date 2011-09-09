@@ -25,7 +25,7 @@ from core.view_helpers import does_email_exist
 from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
 from employer.models import Employer
-from events.models import Event
+from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
@@ -207,8 +207,11 @@ def landing_page(request, extra_context = None):
             'disabled': disabled,
             'loggedout': loggedout,
             'form_error': form_error,
-            'email_error': email_error
+            'email_error': email_error,
     }
+    if FeaturedEvent.objects.all().exists():
+        context['featured_event'] = FeaturedEvent.objects.all().order_by("date_created")[0]
+        
     if request.GET.has_key("action") and request.GET['action'] == "account-deactivated":
         context['deactivated'] = True
     context.update(extra_context or {})

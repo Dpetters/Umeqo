@@ -116,7 +116,7 @@
             <div class="side_block_content">
                 {{form.audience.label_tag}}
                 <div>
-                    <div class="errorspace">{{form.audience.error}}</div>
+                    <div class="errorspace">{{form.audience.errors}}</div>
                     {{form.audience}}
                 </div>
                 <div class="errorspace">{{form.rsvp_message.errors}}</div>
@@ -128,20 +128,20 @@
     <div id="event_form_left_col">
         <div id="event_name_section">
             <span class="div_form_above_field_label">Title</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.name.errors}}</div>
             <br>
             {{form.name}}
         </div>
         <div id="event_type_section">
             <span class="div_form_above_field_label">Type</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.type.errors}}</div>
             <br>
             {{form.type}}
             {{form.is_public}}
         </div>
         <div id="event_drop_section">
             <span class="div_form_above_field_label">Resume Drops</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.is_drop.errors}}</div>
             <br>
             {{form.is_drop}}
             <p id="resume_drop_info">(enabling this feature allows students to drop their resume without RSVP-ing)</p>
@@ -149,7 +149,7 @@
         {% if user.campusorg %}
         <div id="event_attending_employers_section">
             <span class="div_form_above_field_label">Attending Employers</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.attending_employers.errors}}</div>
             <br>
             {{form.attending_employers}}
             <div id="attending_employers">
@@ -163,7 +163,7 @@
         {% endif %}
         <div id="event_location_section">
             <span class="div_form_above_field_label">Location</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.location.errors}}</div>
             <br>
             {{form.location}}
             {{form.latitude}}
@@ -174,7 +174,7 @@
         </div>
         <div id="event_description_section">
             <span class="div_form_above_field_label">Description</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.description.errors}}</div>
             {{form.description}}
         </div>
     </div>
