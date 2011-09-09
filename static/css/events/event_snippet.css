@@ -26,7 +26,7 @@
 }
 .event_list .datetime {
     display: inline-block;
-    margin-top:2px;
+    margin-top:4px;
     font-size: 12px;
     float: right;
     color: #555;
