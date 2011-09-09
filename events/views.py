@@ -49,22 +49,25 @@ def event_page_redirect(request, id):
 def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
-    
+
     event = Event.objects.get(pk=id)
-        
-    is_past = event.end_datetime < datetime.now()    
+
     #check slug matches event
     if event.slug!=slug:
         return HttpResponseNotFound("The slug you provided does not match that of the event found using the provided id.")
+
     current_site = Site.objects.get(id=settings.SITE_ID)
+
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
+
     invitees = map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
     rsvps = map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
     no_rsvps = map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
     checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
     checkins.sort(key=lambda n: 0 if n['account'] else 1)
+
     emails_dict = {}
     all_responses = []
     for res in checkins + rsvps + no_rsvps:
@@ -73,11 +76,7 @@ def event_page(request, id, slug, extra_context=None):
             all_responses.append(res)
     all_responses.sort(key=lambda n: n['datetime_created'])
     all_responses.sort(key=lambda n: 0 if n['account'] else 1)
-    is_deadline = (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline'))
-    if is_deadline:
-        attending_text = 'Participating'
-    else:
-        attending_text = 'Attending'
+    
     context = {
         'event': event,
         'invitees': invitees,
@@ -85,32 +84,28 @@ def event_page(request, id, slug, extra_context=None):
         'no_rsvps': no_rsvps,
         'checkins': checkins,
         'all_responses': all_responses,
-        'login_next': page_url,
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
-        'responded': False,
-        'attending': False,
-        'dropped_resume': False,
-        'can_rsvp': False,
-        'is_past': is_past,
-        'attending_text': attending_text,
-        'is_deadline': is_deadline,
+        'is_past': event.end_datetime < datetime.now(),
+        'is_deadline': (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline')),
         'google_description': google_description
     }
+
+    if len(event.audience.all()) > 0:
+        context['audience'] = event.audience.all()
+    
     if is_campus_org(event.owner):
         context['campus_org_event'] = True
         context['attending_employers'] = event.attending_employers
         if is_campus_org(request.user):
             context['resume_drops'] = len(event.droppedresume_set.all())
             context['can_edit'] = (event.owner == request.user)
-    elif is_recruiter(event.owner) and is_recruiter(request.user):
-        context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
-    if len(event.audience.all()) > 0:
-        context['audience'] = event.audience.all()
+    elif is_recruiter(event.owner):
+        if is_recruiter(request.user):
+            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
     
     if is_student(request.user):
-        
         event.view_count += 1
         event.save()
         
