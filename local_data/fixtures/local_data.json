@@ -1,5 +1,121 @@
 [
  {
+  "pk": 1, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 6, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [
+    5
+   ], 
+   "name": "Test Event", 
+   "is_public": true, 
+   "description": "<p>\r\n\tfeaf</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "edits": [], 
+   "is_drop": false, 
+   "end_datetime": "2011-09-08 23:00:00", 
+   "rsvp_message": "", 
+   "owner": 16, 
+   "date_created": "2011-09-08 22:14:45", 
+   "type": 2, 
+   "slug": "test", 
+   "location": ""
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 1, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [
+    5
+   ], 
+   "name": "SIG SBC event", 
+   "is_public": true, 
+   "description": "<p>\r\n\tfeaf</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "edits": [], 
+   "is_drop": false, 
+   "end_datetime": "2011-09-08 23:30:00", 
+   "rsvp_message": "", 
+   "owner": 26, 
+   "date_created": "2011-09-08 22:56:26", 
+   "type": 2, 
+   "slug": "sig-sbc", 
+   "location": ""
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [
+    10, 
+    5
+   ], 
+   "name": "Notification Event", 
+   "is_public": true, 
+   "description": "<p>\r\n\thello</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "edits": [
+    1
+   ], 
+   "is_drop": false, 
+   "end_datetime": "2011-09-08 23:30:00", 
+   "rsvp_message": "", 
+   "owner": 26, 
+   "date_created": "2011-09-08 22:58:38", 
+   "type": 2, 
+   "slug": "notification", 
+   "location": ""
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-09-09 01:00:00", 
+   "audience": [], 
+   "attending_employers": [
+    56, 
+    30
+   ], 
+   "name": "eafesf", 
+   "is_public": true, 
+   "description": "<p>\r\n\tfeaf</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": 7.8141699999999901, 
+   "latitude": 4.7458489999999998, 
+   "edits": [], 
+   "is_drop": false, 
+   "end_datetime": "2011-09-09 02:00:00", 
+   "rsvp_message": "", 
+   "owner": 26, 
+   "date_created": "2011-09-09 01:03:26", 
+   "type": 3, 
+   "slug": "eafesf", 
+   "location": "Efa, Nigeria"
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.employerstatistics", 
   "fields": {
@@ -1147,7 +1263,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-04 13:45:26", 
+   "last_login": "2011-09-08 22:59:28", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1165,7 +1281,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-02 23:01:49", 
+   "last_login": "2011-09-08 22:56:38", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1183,7 +1299,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 17:06:18", 
+   "last_login": "2011-09-08 21:18:21", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1340,12 +1456,12 @@
   "model": "auth.user", 
   "fields": {
    "username": "recruiter1@umeqo.com", 
-   "first_name": "", 
-   "last_name": "", 
+   "first_name": "Eliza", 
+   "last_name": "Woods", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-07 15:32:11", 
+   "last_login": "2011-09-08 22:14:27", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -1363,7 +1479,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-02 21:49:05", 
+   "last_login": "2011-09-09 01:03:12", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
@@ -3307,6 +3423,96 @@
    "session_key": "56cae493caa385b386e0cb3290c98cd2", 
    "last_updated": "2011-09-07 15:32:11", 
    "user": 16
+  }
+ }, 
+ {
+  "pk": 308, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 21:21:13", 
+   "session_key": "88142e354544913571c4a8e631991a3d", 
+   "last_updated": "2011-09-08 21:21:13", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 311, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:12:27", 
+   "session_key": "889bcfd5b852d64af0b79a16087a6a49", 
+   "last_updated": "2011-09-08 22:12:27", 
+   "user": 16
+  }
+ }, 
+ {
+  "pk": 312, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:12:37", 
+   "session_key": "ad6bc6d08ec7d4a45b93181c5506e6f9", 
+   "last_updated": "2011-09-08 22:12:37", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 316, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:53:54", 
+   "session_key": "53363038c66e83f26fb290f70a459ef1", 
+   "last_updated": "2011-09-08 22:53:54", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 314, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:42:04", 
+   "session_key": "ee7ccf5d04f8955308fb5ad2e21d945e", 
+   "last_updated": "2011-09-08 22:42:04", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 317, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:54:01", 
+   "session_key": "88f23f57fe6947dc5dfb0f5eaaf08fe9", 
+   "last_updated": "2011-09-08 22:54:01", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 322, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 01:03:12", 
+   "session_key": "aec73829aebebed6a4647c9008ac0a69", 
+   "last_updated": "2011-09-09 01:03:12", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 320, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:58:06", 
+   "session_key": "0dc8b8b52796bc32eec97e0be5825e23", 
+   "last_updated": "2011-09-08 22:58:06", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 321, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:59:28", 
+   "session_key": "5eca8a9bbdfb27a8af80860ced776642", 
+   "last_updated": "2011-09-08 22:59:28", 
+   "user": 1
   }
  }
 ]
