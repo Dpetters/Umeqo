@@ -60,7 +60,7 @@
             <table id="event_numbers">
                 <tr>
                     <td class="number">{{rsvps|length}}</td>
-                    <td class="number_label">{{attending_text}}</td>
+                    <td class="number_label">{% if is_deadline %}Participating{% else %}Attending{% endif %}</td>
                 </tr>
                 <tr>
                     <td class="number">{{event.view_count}}</td>
@@ -86,11 +86,11 @@
         <div id="event_admin_main">
              <div id="event_tabs">
                 {% if event.is_public %}
-                    <h2 class="current">RSVP'd {{attending_text}}</h2>
+                    <h2 class="current">RSVP'd {% if is_deadline %}Participating{% else %}Attending{% endif %}</h2>
                 {% else %}
                     <h2 class="current">Invited</h2>
-                    <h2>{{attending_text}}</h2>
-                    <h2>Not {{attending_text}}</h2>
+                    <h2>{% if is_deadline %}Participating{% else %}Attending{% endif %}</h2>
+                    <h2>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</h2>
                 {% endif %}
                 {% if not is_deadline %}
                     <h2>Checked-in</h2>
@@ -113,7 +113,7 @@
                     {% include "events_response_token.html" with student=student %}
                 {% empty %}
                 <div id="event_response_empty">
-                    Nobody has RSVP'd <strong>{{attending_text}}</strong> yet.{% if not campus_org_event %} Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.{% endif %}
+                    Nobody has RSVP'd <strong>{% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.{% if not campus_org_event %} Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.{% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -123,7 +123,7 @@
                         {% include "events_response_token.html" with student=student %}
                     {% empty %}
                     <div id="event_response_empty">
-                        Nobody has RSVP'd <strong>Not {{attending_text}}</strong> yet.
+                        Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
                     </div>
                     {% endfor %}
                 </div>
@@ -155,17 +155,17 @@
                 {% if can_rsvp or can_edit %}
                         {% if event.is_public %}
                             <div class="no-response{% if not responded %} hid{% endif %}">
-                                <span id="attending-span">{{attending_text}}</span>
-                                <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {{attending_text}}</a>
+                                <span id="attending-span">{% if is_deadline %}Participating{% else %}Attending{% endif %}</span>
+                                <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
                             </div>
                             <div class="response{% if responded %} hid{% endif %}">
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button" {% if not can_rsvp %}disabled="disabled" {% endif %}>RSVP: {{attending_text}}</a>
+                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button" {% if not can_rsvp %}disabled="disabled" {% endif %}>RSVP: {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
                             </div>
                         {% else %}
                             <strong>RSVP:</strong>
                             {% spaceless %}
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if can_edit %}disabled="disabled"{% endif %}>{{attending_text}}</a>
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if can_edit %}disabled="disabled"{% endif %}>Not {{attending_text}}</a>
+                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if can_edit %}disabled="disabled"{% endif %}>{% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if can_edit %}disabled="disabled"{% endif %}>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
                             {% endspaceless %}
                             <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
                         {% endif %}
