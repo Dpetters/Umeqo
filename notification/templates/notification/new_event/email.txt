@@ -3,3 +3,5 @@ Hi {% if name %}{{name}}{% else %}there{% endif %},
 {{employer_names}} {{has_word}} a new event: {{event.name}}
 
 Check out the event details (and RSVP if interested!) at http://{{current_site.domain}}{{event.get_absolute_url}}
+
+- The Umeqo Team
