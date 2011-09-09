@@ -11,7 +11,7 @@ register = template.Library()
 def google_calendarize(event):
     
     name = urlquote_plus(event.name)
-    description = urlquote_plus(strip_tags(event.description)).replace("&nbsp", "%20")
+  #  description = urlquote_plus(strip_tags(event.description)).replace("&nbsp", "%20")
     
     tfmt = '%Y%m%dT%H%M%S'
     dates = '%s%s%s' % (event.start_datetime.strftime(tfmt), '%2F', event.end_datetime.strftime(tfmt))
@@ -19,7 +19,7 @@ def google_calendarize(event):
     s = ('http://www.google.com/calendar/event?action=TEMPLATE&' +
          'text=' + name + '&' +
          'dates=' + dates + '&' +
-         'details=' + description + '&' +
+         #'details=' + description + '&' +
          'sprop=website:' + urlquote_plus(Site.objects.get_current().domain))
 
     if event.location:
