@@ -8,10 +8,10 @@ from core.email import send_html_mail
 from employer.models import Recruiter
 from core.decorators import is_recruiter, render_to
 from subscription.models import Subscription, EmployerSubscription
-from subscription.forms import SubscriptionCancelForm, SubscriptionForm, subscription_templates
+from subscription.forms import SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
-def subscription_dialog(request, extra_context=None):
+def subscription_dialog(request, form_class = SubscriptionForm, extra_context=None):
     if request.method=="POST":
         if request.POST.has_key("action") and request.POST.has_key("subscription_type"):
             action = request.POST['action']
@@ -20,22 +20,16 @@ def subscription_dialog(request, extra_context=None):
             subscription_type = request.POST['subscription_type']
         else:
             return HttpResponseBadRequest("Subscription transaction type or action is missing.")
-        if action=="cancel":
-            form = SubscriptionCancelForm(data = request.POST)
-        else:
-            form = SubscriptionForm(data = request.POST)
+        
+        form = form_class(data = request.POST)
         
         if form.is_valid():
-            data = {}
-            if form.cleaned_data.has_key("new_master_recruiter"):
-                new_master = request.user.recruiter.employer.recruiter_set.get(is_master=True)       
-                data['new_master'] = new_master
+            data = []
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
             subject = "[sales] %s subscription request" % subscription_type
             subscription_request_context = {'name': form.cleaned_data['name'], 'employer':form.cleaned_data['employer'], 'email': form.cleaned_data['email'], 'body': form.cleaned_data['body']}
             html_body = render_to_string('subscription_body_request.html', subscription_request_context)
             send_html_mail(subject, html_body, recipients)
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             data = {'error':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
@@ -59,11 +53,7 @@ def subscription_dialog(request, extra_context=None):
             body_context['employer'] = request.user.recruiter.employer
         initial['body'] = render_to_string(subscription_templates[action], body_context)
         
-        context = {}
-        if type=="cancel":
-            context['form'] = SubscriptionCancelForm(initial=initial)
-        else:
-            context['form'] = SubscriptionForm(initial=initial)
+        context = {'form':form_class(initial=initial)}
         
         context.update(extra_context or {})
         return context
@@ -74,41 +64,6 @@ def free_trial_info_dialog(request, extra_context=None):
     context.update(extra_context or {})
     return context
 
-@render_to("subscrition_cancel_done.html")
-@login_required
-@user_passes_test(is_recruiter, login_url = s.LOGIN_URL)
-def subscription_cancel_done(request, extra_context=None):
-    try:
-        new_master = request.user.recruiter.employer.recruiter_set.get(is_master=True)
-        context = {'new_master':new_master}
-    except Recruiter.DoesNotExist:
-        pass
-    context.update(extra_context or {})
-    return context
-
-@render_to("subscrition_cancel.html")
-@login_required
-@user_passes_test(is_recruiter, login_url = s.LOGIN_URL)
-def subscription_cancel(request, recruiter_id, form_class=SubscriptionCancelForm, extra_context=None):
-    if recruiter_id == request.user.recruiter.id:
-        own = True
-    if request.method=="POST":
-        data = []
-        form = form_class(data = request.POST)
-        if form.is_valid():
-            new_master = Recruiter.objects.get(id=form.cleaned_data['recruiter'])
-            new_master.is_master = True
-            new_master.save()
-            request.user.unsubscribe()
-        else:
-            data = {'errors': form.errors}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    else:
-        form = form_class(initial={'own': request.user.recruiter.employer.id})
-    context = {'form':form, 'own':own}
-    context.update(extra_context or {})
-    return context        
-    
 @render_to("subscription_list.html")
 def subscription_list(request, extra_context=None):
     if request.user.is_authenticated() and is_recruiter(request.user):

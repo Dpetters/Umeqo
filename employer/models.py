@@ -66,8 +66,6 @@ class EmployerStatistics(core_mixins.DateTracking):
 class Recruiter(core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
     employer = models.ForeignKey("employer.Employer")
-    
-    is_master = models.BooleanField(default=False)
 
     def __unicode__(self):
         if hasattr(self, "user"):

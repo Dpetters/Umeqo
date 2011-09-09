@@ -1,8 +1,12 @@
 from django.contrib import admin
 
-from events.models import Event, RSVP, Invitee, Attendee, DroppedResume
+from events.models import FeaturedEvent, Event, RSVP, Invitee, Attendee, DroppedResume
 from core.models import EventType
 
+
+class FeaturedEventAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(FeaturedEvent, FeaturedEventAdmin)
 
 class EventAdmin(admin.ModelAdmin):
     fieldsets = [

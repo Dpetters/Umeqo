@@ -243,12 +243,13 @@ def home(request, extra_context=None):
             return context
         elif is_recruiter(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).order_by("end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime}).extra(select={'can_edit': "attending_employers__in = (%s)" % request.user.recruiter.employer})
+            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer]))
             context.update({
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'your_events': your_events
+                'upcoming_events': your_events.filter(end_datetime__gte=now_datetime).order_by("end_datetime"),
+                'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'employer_home.html'})

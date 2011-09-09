@@ -104,10 +104,12 @@ def event_page(request, id, slug, extra_context=None):
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
-    
-    if is_student(request.user):
+            
+    if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
         event.save()
+            
+    if is_student(request.user):
         
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
         
@@ -182,9 +184,6 @@ def event_edit(request, id=None, extra_context=None):
             event.edits.add(Edit.objects.create(user=request.user))
             event.save()
             form.save_m2m()
-            print attending_employers_before
-            print list(event.attending_employers.all())
-            print [e for e in list(event.attending_employers.all()) if e not in attending_employers_before]
             notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(attending_employers_before)])
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:

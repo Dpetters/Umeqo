@@ -32,5 +32,5 @@ class Command(BaseCommand):
                 user = User.objects.create(username=username, email=username, is_active = True)
                 user.set_password(password)
                 user.save()
-                Recruiter.objects.create(user = user, employer=employer, is_master=True)
+                Recruiter.objects.create(user = user, employer=employer)
         f.close()                
