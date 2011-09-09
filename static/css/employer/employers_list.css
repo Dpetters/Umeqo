@@ -11,6 +11,9 @@
     position: relative;
     margin-left: 5px;
 }
+#employers_filter_name{
+    width:182px;
+}
 #employers_list_form select, #employers_list_form input[type=checkbox]{
     margin-left:3px;    
 }

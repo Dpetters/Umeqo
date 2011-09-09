@@ -118,7 +118,7 @@ span.img img {
 div.center {
     text-align: center;
     padding-top: 50px;
-    width: 860px;
+    width: 880px;
     margin: 0 auto;
 }
 strong {
@@ -130,7 +130,7 @@ em {
     font-style: italic;
 }
 .col {
-    width: 380px;
+    width: 390px;
     float: left;
     padding: 0 25px;
 }
