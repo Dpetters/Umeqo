@@ -21,7 +21,7 @@ from core import messages as m
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
 from core.models import Edit
 from events.forms import EventForm, CampusOrgEventForm
-from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume
+from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
 from notification import models as notification
 from student.models import Student
@@ -104,10 +104,12 @@ def event_page(request, id, slug, extra_context=None):
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
-    
-    if is_student(request.user):
+            
+    if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
         event.save()
+            
+    if is_student(request.user):
         
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
         
@@ -142,6 +144,7 @@ def event_new(request, form_class=None, extra_context=None):
             form.save_m2m()
             if is_recruiter(request.user):
                 event.attending_employers.add(request.user.recruiter.employer);
+            notify_about_event(event, "new_event", event.attending_employers.all())
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
@@ -174,12 +177,14 @@ def event_edit(request, id=None, extra_context=None):
         if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
             return HttpResponseForbidden('You are not allowed to edit this event.') 
     if request.method == 'POST':
+        attending_employers_before = list(event.attending_employers.all())[:]
         form = form_class(request.POST, instance=event)
         if form.is_valid():
             event = form.save(commit=False)
             event.edits.add(Edit.objects.create(user=request.user))
             event.save()
             form.save_m2m()
+            notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(attending_employers_before)])
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(instance=event)

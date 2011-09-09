@@ -1,4 +1,4 @@
-<li{% ifequal event.upcoming 0 %} class="outdated"{% endifequal %}>
+<li{% if past %} class="outdated"{% endif %}>
     <div class="name">
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
         <div class="datetime">
@@ -19,7 +19,7 @@
             </span>
         </div>
     </div>
-    {% if edit and event.is_owner %}
+    {% if event.owner == user or event.owner.recruiter.employer == user.recruiter.employer %}
     <div class="edit">
         <a href="{% url event_edit id=event.id %}">Edit</a>
         <a href="{% url event_delete id=event.id %}" class="delete-event-link">Delete</a>

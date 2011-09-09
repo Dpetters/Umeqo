@@ -5,3 +5,5 @@ Hi {{name}},
 {{invite_message|wordwrapwithindent:80}}
 
 Check out the event details and respond to the invitation at http://{{current_site.domain}}{{permalink}}
+
+- The Umeqo Team

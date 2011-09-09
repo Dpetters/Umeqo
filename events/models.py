@@ -5,14 +5,47 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 from core import mixins as core_mixins
-from core.decorators import is_recruiter, is_campus_org
 from core.managers import ActiveManager
 from core.models import EventType
-from core.view_helpers import english_join
 from student.models import Student
+from core.view_helpers import english_join
 from notification import models as notification
 
+def notify_about_event(instance, notice_type, employers):
+    subscribers = Student.objects.filter(subscriptions__in=employers)
+    to_users = list(set(map(lambda n: n.user, subscribers)))
+    # Batch the sending by unique groups of subscriptions.
+    # This way someone subscribed to A, B, and C gets only one email.
+    subscribers_by_user = {}
+    employername_table = {}
+    for employer in employers:
+        employername_table[str(employer.id)] = employer.name
+        for to_user in to_users:
+            if to_user.id in subscribers_by_user:
+                subscribers_by_user[to_user.id].append(employer.id)
+            else:
+                subscribers_by_user[to_user.id] = [employer.id]
+    subscription_batches = {}
+    for userid,employerids in subscribers_by_user.items():
+        key = ':'.join(map(lambda n: str(n), employerids))
+        subscription_batches[key] = userid
+    for key,userids in subscription_batches.items():
+        employer_names = map(lambda n: employername_table[n], key.split(':'))
+        has_word = "has" if len(employer_names)==1 else "have"
+        employer_names = english_join(employer_names)
+        for to_user in to_users:
+            notification.send([to_user], notice_type, {
+                'name': to_user.first_name,
+                'employer_names': employer_names,
+                'has_word': has_word,
+                'event': instance,
+            })
 
+class FeaturedEvent(core_mixins.DateCreatedTracking):
+    campus_org = models.ForeignKey("campus_org.CampusOrg")
+    employer = models.ForeignKey("employer.Employer")
+    event = models.ForeignKey("events.Event")
+    
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
     owner = models.ForeignKey(User)
@@ -65,59 +98,18 @@ class Event(core_mixins.DateCreatedTracking):
         })
     
     def save(self):
-        print "diiimaa"
-        print slugify(self.name)[:50].split("-")[0:-1]
         parts = slugify(self.name)[:50].split("-")
         if len(parts) > 1:
             self.slug = "-".join(slugify(self.name)[:50].split("-")[:-1])
         else:
             self.slug = parts[0]
-        print self.slug
         super(Event, self).save()
-
+                
 @receiver(signals.post_save, sender=Event)
-def send_event_notifications(sender, instance, created, raw, **kwargs):
-    if created and not raw:
-        notify_about_event(instance, 'new_event')
-    elif not created and not instance.is_active and not raw:
-        notify_about_event(instance, 'cancelled_event')
+def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
+    if not created and not instance.is_active and not raw:
+        notify_about_event(instance, 'cancelled_event', instance.attending_employers.all())
 
-def notify_about_event(instance, notice_type):
-    employers = None
-    if is_recruiter(instance.owner):
-        employers = [instance.owner.recruiter.employer]
-    if is_campus_org(instance.owner):
-        employers = list(instance.attending_employers.all())
-    if employers:
-        subscribers = Student.objects.filter(subscriptions__in=employers)
-        to_users = list(set(map(lambda n: n.user, subscribers)))
-        # Batch the sending by unique groups of subscriptions.
-        # This way someone subscribed to A, B, and C gets only one email.
-        subscribers_by_user = {}
-        employername_table = {}
-        for employer in employers:
-            employername_table[str(employer.id)] = employer.name
-            for to_user in to_users:
-                if to_user.id in subscribers_by_user:
-                    subscribers_by_user[to_user.id].append(employer.id)
-                else:
-                    subscribers_by_user[to_user.id] = [employer.id]
-        subscription_batches = {}
-        for userid,employerids in subscribers_by_user.items():
-            key = ':'.join(map(lambda n: str(n), employerids))
-            subscription_batches[key] = userid
-        for key,userids in subscription_batches.items():
-            employer_names = map(lambda n: employername_table[n], key.split(':'))
-            has_word = "has" if len(employer_names)==1 else "have"
-            employer_names = english_join(employer_names)
-            for to_user in to_users:
-                print "sending"
-                notification.send([to_user], notice_type, {
-                    'name': to_user.first_name,
-                    'employer_names': employer_names,
-                    'has_word': has_word,
-                    'event': instance,
-                })
 
 class RSVP(models.Model):
     attending = models.BooleanField(default=True)

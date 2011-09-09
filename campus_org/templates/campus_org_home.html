@@ -12,7 +12,7 @@ Home |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 {% endcompress %}
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_home.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/events/delete_event_snippets.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -61,16 +61,23 @@ Home |
         </div>
     </div>
     <div class="main_block_content">
-        {% for event in your_events %}
-        {% ifchanged event.upcoming %}
-        {% if not forloop.first %}</ul>{% endif %}
-        <h3>{% cycle "Upcoming" "Past" %}</h3>
-        <ul class="event_list editable_event_list">
-        {% endifchanged %}
-            {% include "event_snippet.html" with edit='True' %}
-        {% endfor %}
-        </ul>
-        <div id="no_events_block" class="simple_block centered" {% if your_events %}style="display:none"{% endif %}>
+        {% if upcoming_events %}
+            <h3 class="no_top_margin"> Upcoming </h3>
+            <ul class="event_list editable_event_list">
+            {% for event in upcoming_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if past_events %}
+            <h3 id="past_events_header" {% if not upcoming_events %}class="no_top_margin"{% endif %}> Past </h3>
+            <ul class="event_list editable_event_list">
+            {% for event in past_events %}
+                {% include "event_snippet.html" with past='True' %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <div id="no_events_block" class="simple_block centered" {% if upcoming_events or past_events %}style="display:none"{% endif %}>
             <p>
                 You can post your organization's employer events and deadlines for students to view and add to their calendars.
             </p>

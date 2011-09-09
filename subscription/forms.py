@@ -11,10 +11,3 @@ class SubscriptionForm(forms.Form):
     email = forms.EmailField(label='Your Email:', widget=forms.TextInput(attrs=dict(maxlength=200)))
     employer = forms.CharField(label='Employer Name:', max_length = 42)
     body = forms.CharField(label='Message:', widget=forms.Textarea())
-    
-class SubscriptionCancelForm(SubscriptionForm):
-    new_master_recruiter = forms.ModelChoiceField(label="New Master Recruiter:", queryset = Recruiter.objects.all())
-    
-    def __init__(self, *args, **kwargs):
-        super(SubscriptionCancelForm, self).__init__(*args, **kwargs)
-        self.fields['new_master_recruiter'].queryset = Recruiter.objects.exclude(id=kwargs.get('initial').get('recruiter_id', ''))

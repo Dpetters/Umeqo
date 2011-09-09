@@ -24,7 +24,7 @@ from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import does_email_exist
 from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
-from employer.models import Employer, Recruiter
+from employer.models import Employer
 from events.models import Event
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
@@ -230,8 +230,8 @@ def home(request, extra_context=None):
             subscriptions = request.user.student.subscriptions.all()
             if len(subscriptions) > 0:
                 context['has_subscriptions'] = True
-                sub_events = Event.objects.filter(attending_employers__in=subscriptions).filter(end_datetime__gt=datetime.now())
-                sub_events = sub_events.order_by('start_datetime')
+                sub_events = Event.objects.filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now())
+                sub_events = sub_events.order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,
                     'sub_events': sub_events
@@ -243,23 +243,24 @@ def home(request, extra_context=None):
             return context
         elif is_recruiter(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).order_by("start_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime}).extra(select={'is_owner': "owner_id = %s" % request.user.id})
+            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer]))
             context.update({
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'your_events': your_events
+                'upcoming_events': your_events.filter(end_datetime__gte=now_datetime).order_by("end_datetime"),
+                'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'employer_home.html'})
             return context
         elif is_campus_org(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(owner=request.user).order_by("start_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             context.update({
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'your_events': your_events
+                'upcoming_events': Event.objects.filter(owner=request.user, end_datetime__gte=now_datetime).order_by("end_datetime"),
+                'past_events': Event.objects.filter(owner=request.user, end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'campus_org_home.html'})
@@ -272,7 +273,7 @@ def home(request, extra_context=None):
     })
     event_kwargs = {}
     event_kwargs['end_datetime__gt'] = datetime.now()
-    events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")
+    events = Event.objects.filter(**event_kwargs).order_by("end_datetime")
     context['events'] = list(events)[:3]
     context.update(extra_context or {})
     return context
