@@ -25,7 +25,8 @@
             {% include 'event_snippet_edit.html' %}
         {% endif %}
     {% endif %}
-    {% if user.campus_org %}
+
+    {% if user.campusorg %}
         {% if event.owner == user %}
             {% include 'event_snippet_edit.html' %}
         {% endif %}
