@@ -41,6 +41,11 @@ def notify_about_event(instance, notice_type, employers):
                 'event': instance,
             })
 
+class FeaturedEvent(core_mixins.DateCreatedTracking):
+    campus_org = models.ForeignKey("campus_org.CampusOrg")
+    employer = models.ForeignKey("employer.Employer")
+    event = models.ForeignKey("events.Event")
+    
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
     owner = models.ForeignKey(User)
