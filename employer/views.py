@@ -32,7 +32,7 @@ from core import messages
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
 from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
-from employer.views_helper import get_paginator, employer_search_helper, get_employer_events
+from employer.views_helper import get_paginator, employer_search_helper
 from student import enums as student_enums
 from student.models import Student
 
@@ -61,7 +61,7 @@ def employer_profile_preview(request, slug, extra_context=None):
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
     elif is_recruiter(request.user):
-        context = {'employer':employer, 'events':get_employer_events(employer), 'preview':True}
+        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')).order_by("end_datetime"), 'preview':True}
         context.update(extra_context or {})
         return context
 
@@ -533,7 +533,7 @@ def employers_list(request, extra_content=None):
 
         context.update({
             'employer': employer,
-            'events': get_employer_events(employer),
+            'upcoming_events': employer.event_set.filter(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')).order_by("end_datetime"),
             'employer_id': employer_id,
             'subbed': subbed
         })
