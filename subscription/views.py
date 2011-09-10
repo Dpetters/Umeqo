@@ -42,14 +42,12 @@ def subscription_dialog(request, form_class = SubscriptionForm, extra_context=No
                 return HttpResponseBadRequest("Subscription transaction type or action is missing.")
             
             initial = {}
-            if request.user.is_authenticated():
+            if is_recruiter(request.user):
                 initial['name'] = "%s %s" % (request.user.first_name, request.user.last_name,)
                 initial['email'] = request.user.email
                 initial['employer'] = request.user.recruiter.employer
             
             body_context = {'subscription_type':subscription_type}
-            if is_recruiter(request.user):
-                body_context['employer'] = request.user.recruiter.employer
             initial['body'] = render_to_string(subscription_templates[action], body_context)
             
             context = {'form':form_class(initial=initial)}
