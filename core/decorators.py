@@ -14,10 +14,7 @@ class has_any_subscription(object):
     def __call__(self, request, *args, **kwargs):
         if is_recruiter(request.user):
             try:
-                print "here"
                 s = request.user.recruiter.employer.employersubscription
-                print s
-                print 
                 if not s.expired():
                     return self.orig_func(request, *args, **kwargs)
             except EmployerSubscription.DoesNotExist:

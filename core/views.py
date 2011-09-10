@@ -101,27 +101,29 @@ def tutorials(request, extra_context = None):
 
 @render_to('contact_us.html')
 def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
-    if request.method == 'POST':
-        form = form_class(data=request.POST, request=request)
-        if form.is_valid():
-            form.save(fail_silently=fail_silently)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST, request=request)
+            if form.is_valid():
+                form.save(fail_silently=fail_silently)
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            else:
+                data = {'valid':False, 'errors':form.errors}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            data = {'valid':False, 'errors':form.errors}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            if request.user.is_authenticated():
+                form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+            else:
+                form = form_class(request=request)                
+        context = {
+                'form': form,
+                'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
+                }
+        context.update(extra_context or {}) 
+        return context
     else:
-        if request.user.is_authenticated():
-            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
-        else:
-            form = form_class(request=request)                
-    context = {
-            'form': form,
-            'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
-            }
-    context.update(extra_context or {}) 
-    return context
-
+        return HttpResponseBadRequest("Request must be ajax.")
 
 @login_required
 @has_annual_subscription
@@ -251,7 +253,7 @@ def home(request, extra_context=None):
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'upcoming_events': your_events.filter(end_datetime__gte=now_datetime).order_by("end_datetime"),
+                'upcoming_events': your_events.filter(Q(end_datetime__gte=now_datetime) | Q(type__name="Rolling Deadline")).order_by("end_datetime"),
                 'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})

@@ -11,6 +11,7 @@ $(document).ready(function() {
             mapTypeControl : false
         };
         map = new google.maps.Map(document.getElementById("map"), map_options);
+        
 
         function center_map_coord(latitude, longitude) {
             var location = new google.maps.LatLng(latitude, longitude);
@@ -23,7 +24,9 @@ $(document).ready(function() {
             }
             marker.setPosition(location)
         }
-
+        if (typeof(LATITUDE)!="undefined" && typeof(LONGITUDE)!="undefined"){
+            center_map_coord(LATITUDE, LONGITUDE);
+        }
         $(".location_suggestion").live('click', function() {
             $(".location_suggestion").removeClass("selected");
             $(this).addClass("selected");
@@ -251,11 +254,10 @@ $(document).ready(function() {
                 $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter rolling deadline name");
                 
-                $("#event_scheduler").css("height", 270);
+                $("#event_datetime_block").slideUp();
             
                 $($('label[for=id_end_datetime_0]').removeClass('required').children()[0]).hide();
                 
-                $("#start_datetime_wrapper, #end_datetime_wrapper").slideUp();
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").attr('disabled', 'disabled');
             } else if(event_type === "Hard Deadline") {
                 if(EDIT_FORM){
@@ -263,6 +265,7 @@ $(document).ready(function() {
                 } else {
                     title = "Edit Hard Deadline"
                 }
+                $("#event_datetime_block").slideDown();
                 $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter hard deadline name");
                 
@@ -287,6 +290,7 @@ $(document).ready(function() {
                 title = "New Event"
             }
             $("#event_form_header").html(title);
+            $("#event_datetime_block").slideDown();
             if ($('label[for=id_start_datetime_0] span.error').length > 0){
                 $('label[for=id_start_datetime_0] span.error').show();                
             }else{

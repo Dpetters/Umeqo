@@ -55,7 +55,7 @@ Subscription Choices |
                         <li>No Event Management Tools</li>
                         <li>No Student Invitation Functionality</li>
                         <li class="last">
-                            <a href="javascript:void(0)" data-action="{{ft_action}}" data-title="Cancel Suscription" data-subscription-type="free_trial" class="btn {{ft_class}}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
+                            <a href="javascript:void(0)" data-action="{{ft_action}}" data-title="Cancel Suscription" data-subscription-type="free_trial" class="btn {% if ft_class %}{{ft_class}}{% else %}open_ftid_link{% endif %}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
                         </li
                     </ul>
                 </footer>
@@ -67,7 +67,7 @@ Subscription Choices |
                     </hgroup>
                     <hgroup class="price">
                         <h2>
-                            <span id="contact_us_for_pricing" class="style1">Contact Us for Pricing</span>
+                            <span id="contact_us_for_pricing" class="style1">{% ifequal a_action "cancel" %}Subscribed{% else %}Contact Us for Pricing{% endifequal %}</span>
                         </h2>
                     </hgroup>
                 </header>

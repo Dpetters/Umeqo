@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.db.models import Q
 from django.core.cache import cache
 
@@ -9,6 +7,7 @@ from student.models import Student
 from employer import enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
 from student import enums as student_enums
+from events.models import Event
 from core.digg_paginator import DiggPaginator
         
 def check_for_new_student_matches(employer):
@@ -62,13 +61,12 @@ def process_results(recruiter, students):
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}
-    resume_books = ResumeBook.objects.filter(recruiter = recruiter)
-    if not resume_books.exists():
-        latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
-    else:
-        latest_resume_book = resume_books.order_by('-date_created')[0]
+    try:
+        resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
+    except ResumeBook.DoesNotExist:
+        resume_book = ResumeBook.objects.create(recruiter=recruiter)
     for student in students:
-        if student in latest_resume_book.students.all():
+        if student in resume_book.students.all():
             resume_book_dict[student] = True
         else:
             resume_book_dict[student] = False
@@ -145,6 +143,7 @@ def get_cached_filtering_results(request):
                                 
         current_filtering_results = filter_students(request.user.recruiter,
                                                     student_list=request.POST['student_list'],
+                                                    student_list_id=request.POST['student_list_id'],
                                                     gpa=gpa,
                                                     courses = courses,
                                                     school_years = school_years,
@@ -169,6 +168,7 @@ def get_cached_filtering_results(request):
 def get_cached_search_results(request):
     cached_search_results = cache.get('search_results')
     if cached_search_results:
+        print "using cached search results"
         return cached_search_results
     current_search_results = []
     if request.POST['query'] != "null":
@@ -179,6 +179,7 @@ def get_cached_search_results(request):
 
 def filter_students(recruiter,
                     student_list=None,
+                    student_list_id=None,
                     gpa=None,
                     act=None,
                     sat_t=None, 
@@ -199,19 +200,22 @@ def filter_students(recruiter,
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
         students = Student.objects.visible()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
-        students = recruiter.starred_students.all()
+        students = recruiter.employer.starred_students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
-        resume_books = ResumeBook.objects.filter(recruiter = recruiter)
-        if not resume_books.exists():
-            latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
-        else:
-            latest_resume_book = resume_books.order_by('-date_created')[0]
-        students = latest_resume_book.students.all()
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]: # New Default Filtering Matches 
-        pass
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[4][1]: # All Default Filtering Matches
-        pass
-    
+        try:
+            resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
+        except ResumeBook.DoesNotExist:
+            resume_book = ResumeBook.objects.create(recruiter = recruiter)
+        students = resume_book.students.all()
+    else:
+        e = Event.objects.get(id = student_list_id)
+        parts = student_list.split(" ")
+        if parts[-1] == "RSVPs":
+            students = Student.objects.filter(rsvp__in=e.rsvp_set.all())
+        elif parts[-1] == "Attendees" or parts[-1] == "Participants":
+            students = Student.objects.filter(attendee__in=e.attendee_set.all())
+        elif parts[-1] == "Resumebook":
+            students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
     kwargs = {}
     if gpa:
         kwargs['gpa__gte'] = gpa

@@ -3,17 +3,22 @@ import utils
 
 from django.conf import settings
 from django.db import models
-from django.contrib import auth
 
 class Transaction(models.Model):
+    employer = models.ForeignKey("employer.Employer", null=True)
     timestamp = models.DateTimeField(auto_now_add=True, editable=False)
-    subscription = models.ForeignKey('subscription.Subscription', null=True, blank=True, editable=False)
-    user = models.ForeignKey(auth.models.User, null=True, blank=True, editable=False)
-    amount = models.DecimalField(max_digits=64, decimal_places=2, null=True, blank=True, editable=False)
-    comment = models.TextField(blank=True, default='')
-
+    person = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
+    amount = models.DecimalField(max_digits=64, decimal_places=2, null=True)
+    comment = models.TextField()
+    payment = models.BooleanField(default=False)
+    
     class Meta:
         ordering = ('-timestamp',)
+    def save(self):
+        if self.payment:
+            if self.payment > 0:
+                self.payment = True
 
 _recurrence_unit_days = {
     'D' : 1.,
@@ -72,6 +77,9 @@ class EmployerSubscription(models.Model):
 
     grace_timedelta = datetime.timedelta(getattr(settings, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 
+    def free_trial(self):
+        return self.subscription == Subscription.objects.get(name="Free Trial")
+        
     def expired(self):
         """Returns true if there is more than SUBSCRIPTION_GRACE_PERIOD
         days after expiration date."""

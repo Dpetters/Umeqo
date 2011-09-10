@@ -22,6 +22,8 @@
     
     {% if edit %}
         var EDIT_FORM = true;
+        var LATITUDE = "{{event.latitude}}";
+        var LONGITUDE = "{{event.longitude}}";
     {% else %}
         var EDIT_FORM = false;
     {% endif %}

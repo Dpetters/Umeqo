@@ -3,17 +3,19 @@
 {% block metadata %}
 {{block.super}}
 {% load compress %}
+{% load text_snippet %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account.css" />
 {% endcompress %}
 <script>
-CANCEL_SUBSCRIPTION_URL = "{% url cancel_subscription %}";
+    var CREATE_RECRUITER_URL = "{% url employer_recruiter_new %}";
+    var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+    var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
+    var EMPLOYER_OTHER_RECRUITERS_URL = "{% url employer_other_recruiters %}";
+    var EMPLOYER_ACCOUNT_DELETE_URL = "{% url employer_account_delete %}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_account.js"></script>
-{% if user.recruiter.is_master %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_cancel.js"></script>
-{% endif %}
 {% endcompress %}
 {% endblock %}
 
@@ -25,36 +27,13 @@ CANCEL_SUBSCRIPTION_URL = "{% url cancel_subscription %}";
 {% endblock %}
 
 {% block account_settings_tab_declarations %}
-     <li><a href="#tabs-3" id="subscription_link">Subscriptions</a></li>
-     {% if user.recruiter.is_master %}
-     <li><a href="#tabs-4" id="billing_link">Billing</a></li>
-     {% endif %}
+     <li><a href="#tabs-3" id="subscription_link">Subscription & Billing</a></li>
 {% endblock %}
             
 {% block preferences %}
 <form id="preferences_form" method="POST" action="{% url employer_account_preferences %}">
 {% csrf_token %}
-    <table id="notification_preferences_table" class="form_table">
-        <tbody>  
-        <tr>
-           <th>Events</th>
-           <th>Email</th>
-       </tr>
-       <tr>
-          <td>RSVP to Public Event</td>
-          <td class="checkbox email_checkbox">
-              {{preferences_form.email_on_rsvp_to_public_event}}
-          </td>
-       </tr>
-       <tr>
-          <td>RSVP to Private Event</td>
-          <td class="checkbox email_checkbox">
-              {{preferences_form.email_on_rsvp_to_private_event}}
-          </td>
-       </tr>
-           </tbody>              
-    </table>
-    <h3>Search &amp; Filtering Preferences</h3>
+    <h3 class="no_top_margin">Search &amp; Filtering Preferences</h3>
     <p class="sub_header_message">The values chosen here will be set as defaults on the student Search and Filtering page.</p>
     <table id="search_and_filtering_table" class="form_table">
         <tbody>
@@ -72,64 +51,62 @@ CANCEL_SUBSCRIPTION_URL = "{% url cancel_subscription %}";
             </tr>
 {% endblock %}
 
+
+{% block account_overview %}
+    {% if not user.recruiter.employer.employersubscription.expired %}
+        <h3>Create New Account</h3>
+        <p class="sub_header_message">Below are the other recruiter accounts for {{user.recruiter.employer}}. If you would like to give another recruiter access, you can <a class="create_recruiter_link" href="javascript:void(0)">create a new account</a>.</p>
+        {% include 'employer_other_recruiters.html' %}
+        <h3>Delete Your Account</h3>
+        {% if other_recruiters %}
+        <p class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
+        {% else %}
+        <p class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create a new one</a>.</p>
+        {% endif %}
+        
+    {% else %}
+        <br/>
+        <p class="sub_header_message"><a href="{% url subscription_list %}">Extend or upgrade your subscription</a> in order to manage recruiter accounts.</p>
+    {% endif %}
+{% endblock %}
+                    
 {% block account_settings_tab_definitions %}
     <div id="tabs-3" class="clearfix">
         <h3 class="no_top_margin">Your Subscription</h3>
-        <div class="right_side_container">
-            <a href="/employer/subscriptions/{{request.recruiter.employer.size}}" class="button">Cancel</a>
-            <a href="/employer/subscriptions/{{request.recruiter.employer.size}}" class="button">Extend</a>
-            <a href="{% url subscription_detail object_id=user_subscription.subscription.id %}" class="button">Upgrade</a>
+        <div id="subscription_actions" class="right_side_container">
+            <a href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>
         </div>
-        <div id="current_recruiter_info">
-            <h2>{{user_subscription.subscription.name}}</h2>
-            <h4>Expires on: {{user_subscription.expires}}</h4>
-        </div>
-        <h3>Manage Other Accounts</h3>
-        <p class="sub_header_message">Because you are are the master account for {{user.recruiter.employer}}, you can manage other recruiter accounts.</p>
-        {% if master %}
-            {% if other_recruiters %}
-                {% for recruiter in other_recruiters %}
-                    <div class="recruiter_account_li">
-                        <span class="recruter_status">{{recruiter.user.first_name}} {{recruiter.user.last_name}}</span> <span>({{recruiter.user.username}})</span> <span>Subscription:{{recruiter.get_subscription}}</span> <span class="recruter_status">{% if recruiter.get_subscription.active %}{{recruiter.get_subscription.days_left}}{% endif %}<span>
-                    </div>
-                {% endfor %}
+        <div id="subscription_info">
+            {% if subscription %}
+                <span id="subscription_name">{{subscription.subscription.name}}</span>
+                <span class="{{subscription_class}}">{{subscription_text}}</span>
+                <h4 id="subscription_expiration">{% if subscription_class == "grace" or subscription_class == "expired" %}Expired{% else %}Expires{% endif %} on: {{subscription.expires}}</h4>
+            {% else %}
+                <span id="subscription_name">You are not subscribed</span>
             {% endif %}
-        {% else %}
-            {{master.first_name}} {{master.last_name}} ({{master.username}}) manages the account for {{user.recruiter.employer.}}
-        {% endif %}
-    </div>
-    {% if user.recruiter.is_master %}
-        <div id="tabs-4" class="clearfix">
-            <h3 class="no_top_margin">Stored Information</h3>
-            <h3>Payment History</h3>
-            <div id="past_payments">
-                <table>
-                    <tbody>
-                         <tr>
-                             <th>Date</th>
-                             <th>Card</th>
-                             <th>Payment</th>
-                             <th>Amount</th>
-                         </tr>
-                        {% if past_payments %}
-                            {% for p in past_payments %}
-                            <tr class={% if p.successful %}"successful_payment"{% else %}"failed_payment"{% endif %}>
-                                <td class="date">{{p.date}}</td>
-                                <td>{{p.card}}</td>
-                                <td>
-                                    <div>
-                                        <a href="/account/receipt/1459174374">Download Receipt</a>
-                                    </div>
-                                </td>
-                                <td>{{p.amount}}</td>
-                            </tr>
-                            {% endfor %}
-                        {% else %}
-                            <td id="no_past_payments" colspan="4">You have no past payments.</td>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
         </div>
-    {% endif %}
+        <h3>Transaction History</h3>
+        <div id="transactions">
+            <table>
+                <tbody>
+                     <tr>
+                         <th>Date/Time</th>
+                         <th>Person</th>
+                         <th>Amount</th>
+                         <th>Comment</th>
+                     </tr>
+                    {% for tr in transactions %}
+                        <tr class={% if tr.payment %}"payment"{% else %}"refund"{% endif %}>
+                            <td>{{tr.timestamp}}</td>
+                            <td>{{tr.person}} ({{tr.email}})</td>
+                            <td>{{tr.amount}}</td>
+                            <td>{{tr.comment}}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td id="no_past_payments" colspan="4">You have no past transactions.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

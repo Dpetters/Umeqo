@@ -54,8 +54,8 @@ class EmployerSubscriptionAdmin(admin.ModelAdmin):
 admin.site.register(EmployerSubscription, EmployerSubscriptionAdmin)
 
 class TransactionAdmin(admin.ModelAdmin):
+    fields = ['employer', 'person', 'email', 'amount', 'comment']
     date_hierarchy = 'timestamp'
-    list_display = ('timestamp', 'id', _subscription, _employer, _ipn, 'amount', 'comment')
-    list_display_links = ('timestamp', 'id')
-    list_filter = ('subscription', 'user')
+    list_display = ("employer", 'timestamp', 'person', 'email', 'amount', 'payment')
+    list_filter = ('person', 'payment')
 admin.site.register(Transaction, TransactionAdmin)

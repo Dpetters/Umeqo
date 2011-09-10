@@ -34,7 +34,7 @@
 
 <div class="description">{{employer.description|safe}}</div>
 <h2>Upcoming Events</h2>
-<ul class="event_list editable_event_list">
+<ul class="event_list {% if user.campus_org or user.recruiter %}editable_event_list{% endif %}">
     {% for event in upcoming_events %}
         {% include "event_snippet.html" %}
     {% empty %}

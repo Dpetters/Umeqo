@@ -16,8 +16,12 @@
 {% block metadata %}
 {% load compress %}
 {% load text_snippet %}
+{% load google_calendarize %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    {% if user.student %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
+    {% endif %}
     {% if user.recruiter %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
@@ -26,8 +30,9 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
     {% endif %}
 {% endcompress %}
-<script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
 <script type="text/javascript">
+    var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
+    var EVENT_ID = "{{event.id}}";
     var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
     var EVENT_UNRSVP_URL = "{% url event_unrsvp event_id=event.id %}";
     var EVENT_DROP_URL = "{% url event_drop event_id=event.id %}";
@@ -35,10 +40,8 @@
     var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    {% if not user.authenticated or not user.student %}
-        var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
-        var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
-    {% endif %}
+    var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
+    var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
@@ -71,7 +74,7 @@
                     <td class="number">{{event.view_count}}</td>
                     <td class="number_label">pageview{{event.view_count|pluralize}}</td>
                 </tr>
-                {% if campus_org_event %}
+                {% if event.is_drop %}
                 <tr>
                     <td class="number">{{resume_drops}}</td>
                     <td class="number_label">resume drop{{resume_drops|pluralize}}</td>
@@ -175,35 +178,39 @@
                             <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
                         {% endif %}
                 {% else %}
-                    <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP requires login.">
+                    <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" {% if not user.is_authenticated %}title="RSVP requires login."{% endif %}>
                         Login to RSVP
                     </a>
                 {% endif %}
             {% endif %}
         </div>
-        {% if not is_past %}
-        <a title="Add to Google Calendar" class="google-button" href="http://www.google.com/calendar/event?action=TEMPLATE&text={{event.name|urlencode}}{% if not event.start_datetime %}%20({{event.end_datetime|date:"g:i A"}}){% endif %}&dates={% if event.start_datetime %}{{event.start_datetime|date:"Ymd\THis\Z"}}/{{event.end_datetime|date:"Ymd\THis"}}{% else %}{{event.end_datetime|date:"Ymd"}}/{{event.end_datetime|date:"Ymd"}}{% endif %}&sprop=www.{{DOMAIN}}&sprop=name:Umeqo&location={{event.location|urlencode}}">
+        {% if not is_past and not is_rolling_deadline %}
+        <a target="_blank" title="Add to Google Calendar" class="google-button" href="{{ event|google_calendarize }}">
             <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
         </a>
         {% endif %}
     </div>
     <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
     <div id="event_time">
-        {% if event.start_datetime %}
-        <span class="start">{{event.start_datetime|date:"D, F j"}}
+        {% if is_rolling_deadline %}
+            Rolling Deadline
+        {% else %}
+            {% if event.start_datetime %}
+            <span class="start">{{event.start_datetime|date:"D, F j"}}
+            {% endif %}
+            <span class="end">
+                {% ifequal event.start_datetime.day event.end_datetime.day %}
+                {% ifequal event.start_datetime.month event.end_datetime.month %}
+                {% ifequal event.start_datetime.year event.end_datetime.year %}
+                    from {{event.start_datetime|date:"h:i A"}}</span> -
+                    {{event.end_datetime|date:"h:i A"}}
+                {% endifequal %}{% endifequal %}
+                {% else %}
+                    {% if event.start_datetime %}</span> - {% endif %}
+                    {{event.end_datetime|date:"D, F j h:i A"}}
+                {% endifequal %}
+            </span>
         {% endif %}
-        <span class="end">
-            {% ifequal event.start_datetime.day event.end_datetime.day %}
-            {% ifequal event.start_datetime.month event.end_datetime.month %}
-            {% ifequal event.start_datetime.year event.end_datetime.year %}
-                from {{event.start_datetime|date:"h:i A"}}</span> -
-                {{event.end_datetime|date:"h:i A"}}
-            {% endifequal %}{% endifequal %}
-            {% else %}
-                {% if event.start_datetime %}</span> - {% endif %}
-                {{event.end_datetime|date:"D, F j h:i A"}}
-            {% endifequal %}
-        </span>
     </div>
     {% if event.is_public %}
         <div id="event_external_buttons">
@@ -220,15 +227,11 @@
     {% endif %}
 
     {% if event.is_drop %}
-        {% if user.is_authenticated %}
           {% if dropped_resume %}
               <a id="event_resume_undrop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Undo Drop Resume</a>
           {% else %}
-              <a id="event_resume_drop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Drop Resume</a>
+              <a id="event_resume_drop" class="button" {% if not user.is_authenticated %}title="Resume drop requires login."{% endif %} {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Drop Resume</a>
           {% endif %}
-        {% else %}
-            <a id="event_resume_drop" class="button" disabled="disabled" href="javascript:void(0)">Login to drop your resume</a>
-        {% endif %}
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
