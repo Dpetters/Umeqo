@@ -92,7 +92,7 @@ def event_page(request, id, slug, extra_context=None):
         'google_description': google_description
     }
     if event.end_datetime:
-        context['is_past'] = event.end_datetime < datetime.now(),
+        context['is_past'] = event.end_datetime < datetime.now()
     else:
         context['is_rolling_deadline'] = True
         
