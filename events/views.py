@@ -45,7 +45,7 @@ def events_list(request, extra_context=None):
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
-    return redirect(event.get_absolute_url())
+    return redirect("%s/%s/" % (event.get_absolute_url(), event.slug))
 
 @render_to('event_page.html')
 def event_page(request, id, slug, extra_context=None):
