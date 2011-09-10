@@ -93,7 +93,7 @@ class Event(core_mixins.DateCreatedTracking):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('event_page', (), {
+        return ('event_page_redirect', (), {
             'id': self.id
         })
     
