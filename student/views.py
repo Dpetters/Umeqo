@@ -34,6 +34,24 @@ from countries.models import Country
 
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
+@render_to('student_registration_help.html')
+def student_registration_help(request, extra_context=None):
+    if request.is_ajax():
+        return {}
+    else:
+        return HttpResponseBadRequest("Request must be ajax.")
+    
+@login_required
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@render_to('student_profile_unparsable_resume.html')
+def student_profile_unparsable_resume(request, extra_context=None):
+    if request.is_ajax():
+        return {}
+    else:
+        return HttpResponseBadRequest("Request must be ajax.")
+
+@login_required
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
                     change_password_form_class = PasswordChangeForm, 
