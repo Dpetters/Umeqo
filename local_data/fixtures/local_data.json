@@ -1,141 +1,30 @@
 [
  {
-  "pk": 1, 
+  "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 6, 
-   "start_datetime": null, 
-   "audience": [], 
-   "attending_employers": [], 
-   "name": "Test Event", 
-   "is_public": true, 
-   "description": "<p>\r\n\tfeaf</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-09-08 23:00:00", 
-   "rsvp_message": "", 
-   "owner": 16, 
-   "date_created": "2011-09-08 22:14:45", 
-   "type": 2, 
-   "slug": "test", 
-   "location": ""
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 1, 
-   "start_datetime": null, 
-   "audience": [], 
-   "attending_employers": [], 
-   "name": "SIG SBC event", 
-   "is_public": true, 
-   "description": "<p>\r\n\tfeaf</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "edits": [], 
-   "is_drop": false, 
-   "end_datetime": "2011-09-08 23:30:00", 
-   "rsvp_message": "", 
-   "owner": 26, 
-   "date_created": "2011-09-08 22:56:26", 
-   "type": 2, 
-   "slug": "sig-sbc", 
-   "location": ""
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
-   "attending_employers": [], 
-   "name": "Notification Event", 
-   "is_public": true, 
-   "description": "<p>\r\n\thello</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "edits": [
-    1
-   ], 
-   "is_drop": false, 
-   "end_datetime": "2011-09-08 23:30:00", 
-   "rsvp_message": "", 
-   "owner": 26, 
-   "date_created": "2011-09-08 22:58:38", 
-   "type": 2, 
-   "slug": "notification", 
-   "location": ""
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 0, 
-   "start_datetime": "2011-09-21 01:00:00", 
-   "audience": [], 
-   "attending_employers": [
-    33, 
-    56
-   ], 
-   "name": "eafesf", 
-   "is_public": true, 
-   "description": "<p>\r\n\tfeaf</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": 7.8141699999999998, 
-   "latitude": 4.7458489999999998, 
-   "edits": [
-    2
-   ], 
-   "is_drop": false, 
-   "end_datetime": "2011-09-21 02:00:00", 
-   "rsvp_message": "", 
-   "owner": 26, 
-   "date_created": "2011-09-09 01:03:26", 
-   "type": 3, 
-   "slug": "eafesf", 
-   "location": "Efa, Nigeria"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
+   "view_count": 8, 
+   "start_datetime": "2011-09-10 19:00:00", 
    "audience": [], 
    "attending_employers": [
     6
    ], 
-   "name": "hello", 
+   "name": "Introductory Event!", 
    "is_public": true, 
-   "description": "<p>\r\n\teafesf</p>\r\n", 
+   "description": "<p>\r\n\tfirst one</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
+   "longitude": -71.098349690000006, 
+   "latitude": 42.350392990000003, 
    "edits": [], 
    "is_drop": false, 
-   "end_datetime": "2011-09-09 13:00:00", 
+   "end_datetime": "2011-09-10 20:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
-   "date_created": "2011-09-09 12:20:00", 
-   "type": 2, 
-   "slug": "hello", 
-   "location": ""
+   "date_created": "2011-09-10 19:16:38", 
+   "type": 3, 
+   "slug": "introductory-event", 
+   "location": "Student House"
   }
  }, 
  {
@@ -791,22 +680,22 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 10, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-09-09 12:18:54", 
+   "last_updated": "2011-09-10 19:28:06", 
    "sat_m": null, 
    "graduation_month": "5", 
    "older_than_21": "", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
-   "keywords": " zachary dearing campus address hereford boston tel email zdearing mit edu address waverly dallas education massachusetts institute technology june gpa candidate bachelor economics political cambridge relevant coursework principles microeconomics macroeconomics intermediate macroeconomics finance theory accounting statistical economics multivariable calculus episcopal dallas gpa dallas salutatorian national scholar national merit semi finalist goldman sachs financial analyst securities york worked structuring project exploring arbitrage opportunities pricing mortgage backed securities underlying collateral analyzed publicly traded cap undervalued warrant being taken private communication media advisors consulting analyst boutique consulting investment management firm boston staffed due diligence project investment evaluating cable markets southern modeled future revenue streams operating costs growth opportunities based upon trends demographics worked founding partner construct predictive models compendium standard poors development intern technical specialist york developed application manage virtual machines approximately global users application integrating vmware esx servers active directory windows instrumentation management organizing meetings deliverables managing streams application production mccurley orsinger mccurley nelson downing intern administration dallas assisted legal teams preparation investigating witnesses constructing examination questions managed opening accounts thorough evaluating banks handling interactions assisting cash management charged tracking accounts ensure deposit levels maintained maverick financial analyst intern operations hedge fund accounting dallas august parsed information consolidated fund prospectus easier senior traders compiled positions performance data facilitate its quantitative analysis project maintained item fixed asset register supported excel based spreadsheet analysis united states senate washington january june facilitated voting procedure ensuring senators voted informed issue being decided upon provided logistical senators staff assisting needs senate chamber pcs founder owner computer assembly business dallas july september founded total revenue built sold custom computers customers designed website application crm spec custom computers online quotes leadership committee publicity committee member cambridge shared responsibility marketing production mit brass rat committee publicity efforts events combined budget attendance sloan undergraduate management association suma director corporate relations associate cambridge organized mba panel representatives harvard sloan etc secured sponsorship kaplan mit underclassmen giving campaign cambridge october devised innovative fundraising strategy leading fund service trips abroad participation rate interests skills java asp net php javascript html marathon running golf politics architecture chi phi", 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers crafted interactive javascript widgets custom validation jquery plug mail text areas rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined python pil ffmpeg video overlay showed simulation video looking given skewed gaze data translated researched possibility heads display projected windshield laboratory using facelab gaze tracking data correction algorithms user selections visually activities leadership sbc sloan business club entrepreneurship project development leader cambridge feb developer sbconnect django employer interaction webapp featuring events invitations resume creation etc collaborating designer github currently working resume parsing backend ajax filtering consulting client development cambridge nov oct furthered makes non organizations worked internal development mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical java python django javascript jquery extjs css latex languages fluent russian interests ted talks hockey entrepreneurship", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "Dmitrij", 
-   "first_major": 8, 
+   "first_major": 24, 
    "subscriptions": [
     6
    ], 
@@ -819,11 +708,11 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-09-12-18-53.pdf", 
-   "user": 27, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-10-19-28-06.pdf", 
+   "user": 31, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-09-09 12:16:14"
+   "date_created": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -887,15 +776,15 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 10, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-09-09 12:16:14", 
+   "last_updated": "2011-09-10 19:27:50", 
    "email_on_invite_to_private_event": true, 
    "email_on_invite_to_public_event": true, 
-   "student": 6, 
-   "date_created": "2011-09-09 12:16:14"
+   "student": 10, 
+   "date_created": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -959,15 +848,15 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 10, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-09-09 12:16:14", 
+   "last_updated": "2011-09-10 19:27:50", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 6, 
-   "date_created": "2011-09-09 12:16:14"
+   "student": 10, 
+   "date_created": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -1340,7 +1229,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-09 16:13:15", 
+   "last_login": "2011-09-10 19:27:33", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1376,7 +1265,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-09 12:19:52", 
+   "last_login": "2011-09-10 19:21:30", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1565,7 +1454,7 @@
   }
  }, 
  {
-  "pk": 27, 
+  "pk": 31, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
@@ -1574,12 +1463,12 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-09 12:20:18", 
+   "last_login": "2011-09-10 19:27:56", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$c681d$f9a31f7062800cde96b635bb5ec4c8011b02702e", 
+   "password": "sha1$33005$7b14089212139905aaf81e3bfbc54d8583160ea7", 
    "email": "dpetters@mit.edu", 
-   "date_joined": "2011-09-09 12:16:14"
+   "date_joined": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -1691,11 +1580,11 @@
   }
  }, 
  {
-  "pk": 26, 
+  "pk": 30, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": true, 
-   "user": 27, 
+   "user": 31, 
    "last_password_change_date": null
   }
  }, 
@@ -3630,13 +3519,13 @@
   }
  }, 
  {
-  "pk": 327, 
+  "pk": 343, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-09-09 12:20:18", 
-   "session_key": "336bcdba55bc5c10cd265158cf172d0b", 
-   "last_updated": "2011-09-09 12:20:18", 
-   "user": 27
+   "date_created": "2011-09-10 19:27:56", 
+   "session_key": "ea51ecd100e983ae8923e631ef32a799", 
+   "last_updated": "2011-09-10 19:27:56", 
+   "user": 31
   }
  }, 
  {
@@ -3670,11 +3559,91 @@
   }
  }, 
  {
-  "pk": 1, 
+  "pk": 332, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:11:37", 
+   "session_key": "0d52e7eec277dd0f3ce14a4fc3e58285", 
+   "last_updated": "2011-09-10 19:11:37", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 334, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:16:05", 
+   "session_key": "3c674dcedd6588ec24c0fe326f81d5cf", 
+   "last_updated": "2011-09-10 19:16:05", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 335, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:16:22", 
+   "session_key": "0b87c3a880d13d614cd1eadf2bd363cd", 
+   "last_updated": "2011-09-10 19:16:22", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 336, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:19:22", 
+   "session_key": "8eb762f68a097ea1c0348fdc1c3e8980", 
+   "last_updated": "2011-09-10 19:19:22", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 337, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:21:30", 
+   "session_key": "c26d885d1c741cdb4d6c7d7fdf460db4", 
+   "last_updated": "2011-09-10 19:21:30", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 338, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:21:39", 
+   "session_key": "e7c753f7ecf7a687a2c7f8ab41962a86", 
+   "last_updated": "2011-09-10 19:21:39", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 340, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:23:06", 
+   "session_key": "5b8bbcc91371a7306b01f3bffef424b3", 
+   "last_updated": "2011-09-10 19:23:06", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 342, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:27:33", 
+   "session_key": "30d9635eb4775604d9765a6ef297102a", 
+   "last_updated": "2011-09-10 19:27:33", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 5, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 27
+   "user": 31
   }
  }
 ]
