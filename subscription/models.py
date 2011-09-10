@@ -5,11 +5,11 @@ from django.conf import settings
 from django.db import models
 
 class Transaction(models.Model):
-    employer = models.ForeignKey("employer.Employer")
+    employer = models.ForeignKey("employer.Employer", null=True)
     timestamp = models.DateTimeField(auto_now_add=True, editable=False)
-    person = models.CharField(max_length=100)
-    email = models.EmailField()
-    amount = models.DecimalField(max_digits=64, decimal_places=2)
+    person = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
+    amount = models.DecimalField(max_digits=64, decimal_places=2, null=True)
     comment = models.TextField()
     payment = models.BooleanField()
     
