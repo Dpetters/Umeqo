@@ -5,7 +5,6 @@ $(document).ready( function () {
         $.post($(this).attr('href'),function(data) {
             li.slideUp(function(){
                 li.remove();
-                console.log(ul.children());
                 if (ul.children().length == 0)
                 {
                     $("#past_events_header").addClass("no_top_margin");
