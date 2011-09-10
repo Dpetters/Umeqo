@@ -12,11 +12,14 @@ def google_calendarize(event):
     name = urlquote_plus(event.name)
     
     tfmt = '%Y%m%dT%H%M%S'
-    if event.start_datetime:
-        dates = '%s%s%s' % (event.start_datetime.strftime(tfmt), '%2F', event.end_datetime.strftime(tfmt))
-    else:
-        dates = event.end_datetime.strftime(tfmt)
-        
+    
+    start_datetime = event.start_datetime
+    end_datetime = event.end_datetime
+    
+    if not start_datetime:
+        start_datetime = end_datetime
+    dates = '%s%s%s' % (start_datetime.strftime(tfmt), '%2F', end_datetime.strftime(tfmt))
+    
     s = ('http://www.google.com/calendar/event?action=TEMPLATE&' +
          'text=' + name + '&' +
          'dates=' + dates + '&' +

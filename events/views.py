@@ -88,11 +88,14 @@ def event_page(request, id, slug, extra_context=None):
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
-        'is_past': event.end_datetime < datetime.now(),
         'is_deadline': (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline')),
         'google_description': google_description
     }
-
+    if event.end_datetime:
+        context['is_past'] = event.end_datetime < datetime.now(),
+    else:
+        context['is_rolling_deadline'] = True
+        
     if len(event.audience.all()) > 0:
         context['audience'] = event.audience.all()
     

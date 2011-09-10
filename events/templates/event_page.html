@@ -186,7 +186,7 @@
                 {% endif %}
             {% endif %}
         </div>
-        {% if not is_past %}
+        {% if not is_past and not is_rolling_deadline %}
         <a title="Add to Google Calendar" class="google-button" href="{{ event|google_calendarize }}">
             <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
         </a>
@@ -194,21 +194,25 @@
     </div>
     <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
     <div id="event_time">
-        {% if event.start_datetime %}
-        <span class="start">{{event.start_datetime|date:"D, F j"}}
+        {% if is_rolling_deadline %}
+            Rolling Deadline
+        {% else %}
+            {% if event.start_datetime %}
+            <span class="start">{{event.start_datetime|date:"D, F j"}}
+            {% endif %}
+            <span class="end">
+                {% ifequal event.start_datetime.day event.end_datetime.day %}
+                {% ifequal event.start_datetime.month event.end_datetime.month %}
+                {% ifequal event.start_datetime.year event.end_datetime.year %}
+                    from {{event.start_datetime|date:"h:i A"}}</span> -
+                    {{event.end_datetime|date:"h:i A"}}
+                {% endifequal %}{% endifequal %}
+                {% else %}
+                    {% if event.start_datetime %}</span> - {% endif %}
+                    {{event.end_datetime|date:"D, F j h:i A"}}
+                {% endifequal %}
+            </span>
         {% endif %}
-        <span class="end">
-            {% ifequal event.start_datetime.day event.end_datetime.day %}
-            {% ifequal event.start_datetime.month event.end_datetime.month %}
-            {% ifequal event.start_datetime.year event.end_datetime.year %}
-                from {{event.start_datetime|date:"h:i A"}}</span> -
-                {{event.end_datetime|date:"h:i A"}}
-            {% endifequal %}{% endifequal %}
-            {% else %}
-                {% if event.start_datetime %}</span> - {% endif %}
-                {{event.end_datetime|date:"D, F j h:i A"}}
-            {% endifequal %}
-        </span>
     </div>
     {% if event.is_public %}
         <div id="event_external_buttons">
