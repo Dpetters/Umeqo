@@ -99,11 +99,7 @@ class Event(core_mixins.DateCreatedTracking):
         })
     
     def save(self):
-        parts = slugify(self.name)[:50].split("-")
-        if len(parts) > 1:
-            self.slug = "-".join(slugify(self.name)[:50].split("-")[:-1])
-        else:
-            self.slug = parts[0]
+        self.slug = slugify(self.name)[:50]
         super(Event, self).save()
                 
 @receiver(signals.post_save, sender=Event)

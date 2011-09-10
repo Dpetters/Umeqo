@@ -187,7 +187,7 @@
             {% endif %}
         </div>
         {% if not is_past and not is_rolling_deadline %}
-        <a title="Add to Google Calendar" class="google-button" href="{{ event|google_calendarize }}">
+        <a target="_blank" title="Add to Google Calendar" class="google-button" href="{{ event|google_calendarize }}">
             <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
         </a>
         {% endif %}
