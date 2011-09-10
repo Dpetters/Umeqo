@@ -253,7 +253,7 @@ def home(request, extra_context=None):
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'upcoming_events': your_events.filter(end_datetime__gte=now_datetime).order_by("end_datetime"),
+                'upcoming_events': your_events.filter(Q(end_datetime__gte=now_datetime) | Q(type__name="Rolling Deadline")).order_by("end_datetime"),
                 'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})

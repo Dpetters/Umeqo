@@ -70,11 +70,10 @@ def subscription_list(request, extra_context=None):
         free_trial = Subscription.objects.get(name="Free Trial")
         try:
             es = request.user.recruiter.employer.employersubscription
+
             if es.subscription == free_trial:
-                context['ft_text'] = "Extend Subscription"
-                context['ft_class'] = "open_sd_link extend"
-                context['ft_action'] = "extend"
                 if es.expired:
+                    
                     context['a_text'] = "Upgrade"
                     context['a_cancel'] = "open_sd_link upgrade"
                     context['a_action'] = "upgrade"

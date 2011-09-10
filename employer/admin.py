@@ -7,7 +7,7 @@ from employer.models import Employer, EmployerStatistics, ResumeBook, Recruiter,
 
 class ResumeBookAdmin(admin.ModelAdmin):
     fields = ['resume_book', 'name']
-    list_display = ['recruiter', 'name', 'date_created']
+    list_display = ['recruiter', 'name', 'delivered', 'date_created']
     
 admin.site.register(ResumeBook, ResumeBookAdmin)
 

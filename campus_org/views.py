@@ -62,7 +62,6 @@ def campus_org_profile(request, form_class=CampusOrgProfileForm, extra_context=N
         context.update(extra_context or {})
         return context
     
-@login_required
 @render_to('campus_org_info.html')
 def campus_org_info(request, extra_context = None):
     if request.is_ajax():

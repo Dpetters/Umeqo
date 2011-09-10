@@ -40,7 +40,7 @@
     var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    {% if not user.authenticated or not user.student %}
+    {% if not user.is_authenticated or not user.student %}
         var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
         var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
     {% endif %}
@@ -180,7 +180,7 @@
                             <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
                         {% endif %}
                 {% else %}
-                    <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP requires login.">
+                    <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" {% if not user.is_authenticated %}title="RSVP requires login."{% endif %}>
                         Login to RSVP
                     </a>
                 {% endif %}

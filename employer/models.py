@@ -72,7 +72,9 @@ class Recruiter(core_mixins.DateTracking):
             return str(self.user)
         else:
             return "Unattached Recruiter"
-
+    class Meta:
+        ordering=["user__first_name"]
+        
 @receiver(signals.post_save, sender=Recruiter)
 def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

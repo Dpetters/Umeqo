@@ -12,7 +12,8 @@ Student Filtering |
 {% load compress %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_students.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_students.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_deliver_resume_book.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
@@ -20,6 +21,7 @@ Student Filtering |
 {% endcompress %}
 
 {% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_delivery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
@@ -215,7 +217,7 @@ Student Filtering |
             <span class="side_block_header_title">Create Resume Book</span>    
         </div>
         <div class="side_block_content clearfix">
-            <input id="student_deliver_resume_book_button" class="dark_button" disabled="disabled" type="button" value="Deliver">
+            <input class="student_deliver_resume_book_link dark_button" data-resume-book-id="" disabled="disabled" type="button" value="Deliver">
             <div id="students_in_resume_book_student_list_link_section">
                 <strong>Currently Included: </strong><span id="students_in_resume_book_student_list_link"></span>                
                 <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>

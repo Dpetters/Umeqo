@@ -62,13 +62,12 @@ def process_results(recruiter, students):
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}
-    resume_books = ResumeBook.objects.filter(recruiter = recruiter)
-    if not resume_books.exists():
-        latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
-    else:
-        latest_resume_book = resume_books.order_by('-date_created')[0]
+    try:
+        resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
+    except ResumeBook.DoesNotExist:
+        resume_book = ResumeBook.objects.create(recruiter=recruiter, delivered=False)
     for student in students:
-        if student in latest_resume_book.students.all():
+        if student in resume_book.students.all():
             resume_book_dict[student] = True
         else:
             resume_book_dict[student] = False
@@ -199,18 +198,13 @@ def filter_students(recruiter,
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
         students = Student.objects.visible()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
-        students = recruiter.starred_students.all()
+        students = recruiter.employer.starred_students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
-        resume_books = ResumeBook.objects.filter(recruiter = recruiter)
-        if not resume_books.exists():
-            latest_resume_book = ResumeBook.objects.create(recruiter = recruiter)
-        else:
-            latest_resume_book = resume_books.order_by('-date_created')[0]
-        students = latest_resume_book.students.all()
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]: # New Default Filtering Matches 
-        pass
-    elif student_list == student_enums.GENERAL_STUDENT_LISTS[4][1]: # All Default Filtering Matches
-        pass
+        try:
+            resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
+        except ResumeBook.DoesNotExist:
+            resume_book = ResumeBook.objects.create(recruiter = recruiter)
+        students = resume_book.students.all()
     
     kwargs = {}
     if gpa:

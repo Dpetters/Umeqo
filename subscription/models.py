@@ -11,10 +11,14 @@ class Transaction(models.Model):
     email = models.EmailField(null=True)
     amount = models.DecimalField(max_digits=64, decimal_places=2, null=True)
     comment = models.TextField()
-    payment = models.BooleanField()
+    payment = models.BooleanField(default=False)
     
     class Meta:
         ordering = ('-timestamp',)
+    def save(self):
+        if self.payment:
+            if self.payment > 0:
+                self.payment = True
 
 _recurrence_unit_days = {
     'D' : 1.,
@@ -73,6 +77,9 @@ class EmployerSubscription(models.Model):
 
     grace_timedelta = datetime.timedelta(getattr(settings, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 
+    def free_trial(self):
+        return self.subscription == Subscription.objects.get(name="Free Trial")
+        
     def expired(self):
         """Returns true if there is more than SUBSCRIPTION_GRACE_PERIOD
         days after expiration date."""

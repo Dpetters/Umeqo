@@ -77,7 +77,8 @@ Home |
     <div class="main_block_content">
         <div class="simple_block centered">
             <p>
-                You can modify your search and filtering preferences at anytime <a href="{% url employer_account %}">here</a>.
+                Start creating resume books and sending event invitations by browsing for students above.</p>
+                <p>You can modify your search and filtering preferences at anytime <a href="{% url employer_account %}?tab=preferences">here</a>.
             </p>
         </div>
     </div>
@@ -107,7 +108,7 @@ Home |
             {% endfor %}
             </ul>
         {% endif %}
-        <div id="no_events_block" class="simple_block centered" {% if your_events %}style="display:none"{% endif %}>
+        <div id="no_events_block" class="simple_block centered" {% if upcoming_events or past_events %}style="display:none"{% endif %}>
             <p>
                 You can post your company's events and deadlines for students to view and add to their calendars.
             </p>

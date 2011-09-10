@@ -3,8 +3,11 @@
             {% ifequal current_student_list all_students %}
                 No students matched your criteria.
             {% endifequal %}
+            {% ifequal current_student_list starred_students %}
+                You have no starred students.
+            {% endifequal %}
             {% ifequal current_student_list in_resume_book_student_list %}
-                Your current resume book is empty.
+                You have no students in your resume book.
             {% endifequal %}
     </strong>
 </div>
