@@ -84,19 +84,24 @@
   "model": "events.event", 
   "fields": {
    "view_count": 0, 
-   "start_datetime": "2011-09-09 01:00:00", 
+   "start_datetime": "2011-09-21 01:00:00", 
    "audience": [], 
-   "attending_employers": [], 
+   "attending_employers": [
+    33, 
+    56
+   ], 
    "name": "eafesf", 
    "is_public": true, 
    "description": "<p>\r\n\tfeaf</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": 7.8141699999999901, 
+   "longitude": 7.8141699999999998, 
    "latitude": 4.7458489999999998, 
-   "edits": [], 
+   "edits": [
+    2
+   ], 
    "is_drop": false, 
-   "end_datetime": "2011-09-09 02:00:00", 
+   "end_datetime": "2011-09-21 02:00:00", 
    "rsvp_message": "", 
    "owner": 26, 
    "date_created": "2011-09-09 01:03:26", 
@@ -1335,7 +1340,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-09 12:48:14", 
+   "last_login": "2011-09-09 16:13:15", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1353,7 +1358,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-08 22:56:38", 
+   "last_login": "2011-09-09 16:13:04", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1551,7 +1556,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-09 01:03:12", 
+   "last_login": "2011-09-09 16:13:36", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
@@ -3642,6 +3647,26 @@
    "session_key": "858faa41ada124fe5d7690d898281fba", 
    "last_updated": "2011-09-09 12:48:14", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 330, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 16:13:15", 
+   "session_key": "89e6e46647e9fb18395baad53cbc4ce3", 
+   "last_updated": "2011-09-09 16:13:15", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 331, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 16:13:36", 
+   "session_key": "9eaf8d050971708ae0195ab2c3b4bd66", 
+   "last_updated": "2011-09-09 16:13:36", 
+   "user": 26
   }
  }, 
  {
