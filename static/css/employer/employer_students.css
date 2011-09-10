@@ -97,7 +97,7 @@
     -webkit-border-radius: 3px;
     border-radius:3px;
     vertical-align:middle;
-    display:inline;
+    display:inline-block;
     height:24px;
     line-height:24px;
 }

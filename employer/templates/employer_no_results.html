@@ -1,13 +1,25 @@
 <div id='no_results_block'>
     <strong id='no_results_message'>
-            {% ifequal current_student_list all_students %}
-                No students matched your criteria.
-            {% endifequal %}
-            {% ifequal current_student_list starred_students %}
-                You have no starred students.
-            {% endifequal %}
-            {% ifequal current_student_list in_resume_book_student_list %}
-                You have no students in your resume book.
-            {% endifequal %}
+        {% ifequal current_student_list all_students %}
+            No students matched your criteria.
+        {% endifequal %}
+        {% ifequal current_student_list starred_students %}
+            You have no starred students.
+        {% endifequal %}
+        {% ifequal current_student_list in_resume_book_student_list %}
+            You have no students in your resume book.
+        {% endifequal %}
+        {% ifequal type "RSVPs" %}
+            No students have RSVPed to this event.
+        {% endifequal %}
+        {% ifequal type "Attendees" %}
+            No students have checked into this event.
+        {% endifequal %}
+        {% ifequal type "Resumebook" %}
+            No students have dropped off their resume for this event.
+        {% endifequal %}
+        {% ifequal type "Participants" %}
+            No students are participating in this deadline yet.
+        {% endifequal %}
     </strong>
 </div>

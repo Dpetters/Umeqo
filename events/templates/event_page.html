@@ -40,10 +40,8 @@
     var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    {% if not user.is_authenticated or not user.student %}
-        var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
-        var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
-    {% endif %}
+    var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
+    var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
@@ -229,15 +227,11 @@
     {% endif %}
 
     {% if event.is_drop %}
-        {% if user.is_authenticated %}
           {% if dropped_resume %}
               <a id="event_resume_undrop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Undo Drop Resume</a>
           {% else %}
-              <a id="event_resume_drop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Drop Resume</a>
+              <a id="event_resume_drop" class="button" {% if not user.is_authenticated %}title="Resume drop requires login."{% endif %} {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Drop Resume</a>
           {% endif %}
-        {% else %}
-            <a id="event_resume_drop" class="button" disabled="disabled" href="javascript:void(0)">Login to drop your resume</a>
-        {% endif %}
     {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">

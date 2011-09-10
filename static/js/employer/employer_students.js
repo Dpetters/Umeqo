@@ -406,7 +406,7 @@ function initiate_ajax_call() {
     var error_dialog_timeout = setTimeout( function() {
         $("#results_block_info").prepend(two_line_long_load_message);
     }, LOAD_WAIT_TIME);
-
+    console.log(student_list_id);
     xhr = $.ajax({
         type: 'POST',
         url: STUDENTS_URL,
@@ -414,6 +414,7 @@ function initiate_ajax_call() {
         data: {
             'page': page,
             'student_list': student_list,
+            'student_list_id':student_list_id,
             'query': query,
             'gpa' : min_gpa,
             'act': min_act,
@@ -504,6 +505,7 @@ $(document).ready(function() {
     countries_of_citizenship = [];
     campus_orgs = [];
     student_list = $("#id_student_list option:selected").text();
+    student_list_id = $("#id_student_list option:selected").val();
     ordering = $("#id_ordering option:selected").val();
     results_per_page = $("#id_results_per_page option:selected").val();
     older_than_21 = $("#id_older_than_21 option:selected").val();

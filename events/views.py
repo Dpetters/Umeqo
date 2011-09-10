@@ -10,6 +10,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.utils import simplejson
 from django.template import RequestContext
@@ -411,7 +412,7 @@ def event_search(request, extra_context=None):
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 def events_by_employer(request):
-    upcoming_events = request.user.event_set.active().filter(end_datetime__gte=datetime.now())
+    upcoming_events = request.user.event_set.active().filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline"))
     student_id = request.GET.get('student_id', None)
     if not student_id or not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()

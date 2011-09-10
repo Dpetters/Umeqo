@@ -11,7 +11,7 @@ EVENT = 2
 
 STUDENT_LIST_TYPE_CHOICES = (
     (GENERAL, 'General'),
-    (EVENT, 'Event')
+    (EVENT, 'Events')
 )
 
 ALL_STUDENTS = 0

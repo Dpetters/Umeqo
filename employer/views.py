@@ -252,13 +252,10 @@ def employer_student_comment(request):
 def employer_resume_book_current_toggle_student(request):
     if request.POST.has_key('student_id'):
         student = Student.objects.get(id=request.POST['student_id'])
-        print "blah"
-        print student
         try:
             resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         except ResumeBook.DoesNotExist:
             resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-        print resume_book
         if student in resume_book.students.all():
             resume_book.students.remove(student)
             data = {'action':employer_enums.REMOVED}  
@@ -334,13 +331,11 @@ def employer_student_event_attendance(request):
 @login_required
 @user_passes_test(is_recruiter)
 @has_any_subscription
+@require_GET
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
-    if request.method == "POST":
-        pass
-    else:
-        print request.user.recruiter.resumebook_set.all()
-        context = {"resume_books":request.user.recruiter.resumebook_set.all()}
+    context = {"resume_books":request.user.recruiter.resumebook_set.all()}
+    context.update(extra_context, {})
     return context
 
 
@@ -386,8 +381,10 @@ def employer_students(request, extra_context=None):
                         cache.delete('filtering_results')
 
         current_paginator = get_paginator(request)
-        context['page'] = current_paginator.page(request.POST['page'])
-        
+        try:
+            context['page'] = current_paginator.page(request.POST['page'])
+        except Exception:
+            context['page'] = current_paginator.page(1)
         context['current_student_list'] = request.POST['student_list']
         
         # I don't like this method of statistics
@@ -476,7 +473,8 @@ def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookFo
 @has_any_subscription
 @require_POST
 def employer_resume_book_current_create(request):
-    if request.POST.has_key("resume_book_id"):
+    
+    if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
         try:
             current_resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
         except ResumeBook.DoesNotExist:
@@ -525,9 +523,8 @@ def employer_resume_book_current_create(request):
 @render_to("employer_resume_book_current_delivered.html")
 def employer_resume_book_current_email(request, extra_context=None):
     if request.method == 'POST':
-        print request.POST
         if request.POST.has_key('emails'):
-            if request.POST.has_key("resume_book_id"):
+            if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
                 try:
                     current_resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
                 except ResumeBook.DoesNotExist:
@@ -566,7 +563,7 @@ def employer_resume_book_current_email(request, extra_context=None):
 @has_any_subscription
 def employer_resume_book_current_download(request):
     if request.method == 'GET':
-        if request.GET.has_key("resume_book_id"):
+        if request.GET.has_key("resume_book_id") and request.GET['resume_book_id']:
             try:
                 current_resume_book = ResumeBook.objects.get(id=request.GET["resume_book_id"])
             except ResumeBook.DoesNotExist:
