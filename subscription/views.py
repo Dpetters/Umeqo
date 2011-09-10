@@ -1,11 +1,9 @@
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.conf import settings as s
-from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
 from core.email import send_html_mail
-from employer.models import Recruiter
 from core.decorators import is_recruiter, render_to
 from subscription.models import Subscription, EmployerSubscription
 from subscription.forms import SubscriptionForm, subscription_templates

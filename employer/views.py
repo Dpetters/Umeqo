@@ -9,7 +9,6 @@ import re
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.units import cm
 from pyPdf import PdfFileWriter, PdfFileReader
-from operator import attrgetter
 from datetime import datetime 
 
 from django.core.files import File
@@ -34,6 +33,7 @@ from employer.models import ResumeBook, Employer, EmployerStudentComment
 from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
 from employer.views_helper import get_paginator, employer_search_helper
 from student import enums as student_enums
+from subscription.models import EmployerSubscription, Subscription
 from student.models import Student
 
 @require_GET
@@ -67,7 +67,6 @@ def employer_profile_preview(request, slug, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-@has_any_subscription
 @render_to("employer_account.html")
 @require_GET
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, change_password_form_class = PasswordChangeForm, extra_context=None):
@@ -78,8 +77,19 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
             'password-changed': messages.password_changed,
         }
         context["msg"] = page_messages[msg]
-
-    context['subscription'] = request.user.recruiter.employer.employersubscription
+    try:
+        es = request.user.recruiter.employer.employersubscription
+        free_trial = Subscription.objects.get(name="Free Trial")
+        if es == free_trial:
+            if es.expired:
+                context["subscription_button_text"] = "Extend Subscription"
+            else:
+                context["subscription_button_text"] = "Upgrade Subscription"
+        else:
+            context["subscription_button_text"] = "Modify Subscription"
+        context['subscription'] = es
+    except EmployerSubscription.DoesNotExist:
+        context["subscription_button_text"] = "Subscribe"
     context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     

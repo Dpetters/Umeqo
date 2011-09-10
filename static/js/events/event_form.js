@@ -11,6 +11,7 @@ $(document).ready(function() {
             mapTypeControl : false
         };
         map = new google.maps.Map(document.getElementById("map"), map_options);
+        
 
         function center_map_coord(latitude, longitude) {
             var location = new google.maps.LatLng(latitude, longitude);
@@ -23,7 +24,9 @@ $(document).ready(function() {
             }
             marker.setPosition(location)
         }
-
+        if (typeof(LATITUDE)!="undefined" && typeof(LONGITUDE)!="undefined"){
+            center_map_coord(LATITUDE, LONGITUDE);
+        }
         $(".location_suggestion").live('click', function() {
             $(".location_suggestion").removeClass("selected");
             $(this).addClass("selected");

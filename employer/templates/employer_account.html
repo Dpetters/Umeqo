@@ -76,60 +76,45 @@ CANCEL_SUBSCRIPTION_URL = "{% url cancel_subscription %}";
     <div id="tabs-3" class="clearfix">
         <h3 class="no_top_margin">Your Subscription</h3>
         <div class="right_side_container">
-            <a href="/employer/subscriptions/{{request.recruiter.employer.size}}" class="button">Cancel</a>
-            <a href="/employer/subscriptions/{{request.recruiter.employer.size}}" class="button">Extend</a>
-            <a href="{% url subscription_detail object_id=user_subscription.subscription.id %}" class="button">Upgrade</a>
+            <a href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>
         </div>
         <div id="current_recruiter_info">
             <h2>{{user_subscription.subscription.name}}</h2>
             <h4>Expires on: {{user_subscription.expires}}</h4>
         </div>
         <h3>Manage Other Accounts</h3>
-        <p class="sub_header_message">Because you are are the master account for {{user.recruiter.employer}}, you can manage other recruiter accounts.</p>
-        {% if master %}
-            {% if other_recruiters %}
-                {% for recruiter in other_recruiters %}
-                    <div class="recruiter_account_li">
-                        <span class="recruter_status">{{recruiter.user.first_name}} {{recruiter.user.last_name}}</span> <span>({{recruiter.user.username}})</span> <span>Subscription:{{recruiter.get_subscription}}</span> <span class="recruter_status">{% if recruiter.get_subscription.active %}{{recruiter.get_subscription.days_left}}{% endif %}<span>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% else %}
-            {{master.first_name}} {{master.last_name}} ({{master.username}}) manages the account for {{user.recruiter.employer.}}
-        {% endif %}
-    </div>
-    {% if user.recruiter.is_master %}
-        <div id="tabs-4" class="clearfix">
-            <h3 class="no_top_margin">Stored Information</h3>
-            <h3>Payment History</h3>
-            <div id="past_payments">
-                <table>
-                    <tbody>
-                         <tr>
-                             <th>Date</th>
-                             <th>Card</th>
-                             <th>Payment</th>
-                             <th>Amount</th>
-                         </tr>
-                        {% if past_payments %}
-                            {% for p in past_payments %}
-                            <tr class={% if p.successful %}"successful_payment"{% else %}"failed_payment"{% endif %}>
-                                <td class="date">{{p.date}}</td>
-                                <td>{{p.card}}</td>
-                                <td>
-                                    <div>
-                                        <a href="/account/receipt/1459174374">Download Receipt</a>
-                                    </div>
-                                </td>
-                                <td>{{p.amount}}</td>
-                            </tr>
-                            {% endfor %}
-                        {% else %}
-                            <td id="no_past_payments" colspan="4">You have no past payments.</td>
-                        {% endif %}
-                    </tbody>
-                </table>
+        <p class="sub_header_message">Below are all the recruiter accounts for {{user.recruiter.employer}}. Each can deactivate his/her own. You can add another one <a href="javascript:void(0)">here.</a></p>
+        {% for recruiter in other_recruiters %}
+            <div class="recruiter_account_li">
+                <span class="recruter_status">{{recruiter.user.first_name}} {{recruiter.user.last_name}}</span> <span>({{recruiter.user.username}})</span> <span>Subscription:{{recruiter.get_subscription}}</span> <span class="recruter_status">{% if recruiter.get_subscription.active %}{{recruiter.get_subscription.days_left}}{% endif %}<span>
             </div>
+        {% empty %}
+            <p>You are the only recruiter for {{user.recruiter.employer}}. Create a new set of credentials <a href="javascript:void(0)">here</a></p>
+        {% endfor %}
+    </div>
+    <div id="tabs-4" class="clearfix">
+        <h3 class="no_top_margin">Transaction History</h3>
+        <div id="past_payments">
+            <table>
+                <tbody>
+                     <tr>
+                         <th>Date/Time</th>
+                         <th>Person</th>
+                         <th>Amount</th>
+                         <th>Comment</th>
+                     </tr>
+                    {% for tr in past_transactions %}
+                        <tr class={% if td.payment%}"payment"{% else %}"refund"{% endif %}>
+                            <td class="date">{{tr.timestamp}}</td>
+                            <td>{{tr.person}} (tr.email)</td>
+                            <td>{{tr.amount}}</td>
+                            <td>{{tr.comment}}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td id="no_past_payments" colspan="4">You have no past transactions.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endif %}
+    </div>
 {% endblock %}

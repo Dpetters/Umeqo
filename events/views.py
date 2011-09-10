@@ -12,8 +12,9 @@ from django.core.validators import email_re
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.utils import simplejson
-from django.views.decorators.http import require_http_methods, require_POST
-from django.shortcuts import redirect
+from django.template import RequestContext
+from django.views.decorators.http import require_http_methods, require_POST, require_GET
+from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
 
 from core.email import send_html_mail
@@ -375,6 +376,24 @@ def event_checkin(request, event_id):
         else:
             output['name'] = name
         return HttpResponse(simplejson.dumps(output), mimetype="application/json")
+
+@login_required
+@user_passes_test(is_student)
+@require_GET
+def event_rsvp_message(request, extra_context=None):
+    if request.GET.has_key("event_id"):
+        try:
+            e = Event.objects.get(id=request.GET['event_id'])
+            if e.rsvp_message:
+                context = {'event':e}
+                if is_campus_org(e.owner):
+                    context['is_campus_org_event'] = True
+                return render_to_response("event_rsvp_message_dialog.html", context, context_instance=RequestContext(request))
+            else:
+                return HttpResponse()
+        except Event.DoesNotExist:
+            return HttpResponseBadRequest("Event with id %s does not exist." % (request.GET["event_id"]));
+    return HttpResponseBadRequest("Event id is missing");
 
 @login_required
 @user_passes_test(is_student)
