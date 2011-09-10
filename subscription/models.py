@@ -3,15 +3,16 @@ import utils
 
 from django.conf import settings
 from django.db import models
-from django.contrib import auth
 
 class Transaction(models.Model):
+    employer = models.ForeignKey("employer.Employer")
     timestamp = models.DateTimeField(auto_now_add=True, editable=False)
-    subscription = models.ForeignKey('subscription.Subscription', null=True, blank=True, editable=False)
-    user = models.ForeignKey(auth.models.User, null=True, blank=True, editable=False)
-    amount = models.DecimalField(max_digits=64, decimal_places=2, null=True, blank=True, editable=False)
-    comment = models.TextField(blank=True, default='')
-
+    person = models.CharField(max_length=100)
+    email = models.EmailField()
+    amount = models.DecimalField(max_digits=64, decimal_places=2)
+    comment = models.TextField()
+    payment = models.BooleanField()
+    
     class Meta:
         ordering = ('-timestamp',)
 

@@ -38,6 +38,23 @@ $(document).ready(function() {
         $('#event_resume_undrop').attr('id', 'event_resume_drop');
         $('#event_resume_drop').html('Drop Resume');
     }
+
+    function open_rsvp_info_dialog() {
+        var $dialog = $('<div class="dialog"></div>')
+        .dialog({
+            autoOpen: false,
+            title:"RSVP Message",
+            dialogClass: "rsvp_info_dialog",
+            modal:true,
+            width:550,
+            resizable: false,
+            close: function() {
+                rsvp_info_dialog.remove();
+            }
+        });
+        $dialog.dialog('open');
+        return $dialog;
+    };
     
     $('#rsvp-yes-button').live('click', function(e) {
         var disabled = $(this).attr('disabled');
@@ -50,6 +67,17 @@ $(document).ready(function() {
             $('#rsvp_div .selected').removeClass('selected');
             $(this).addClass('selected');
         }
+        $.ajax({
+            data:{'event_id':EVENT_ID},
+            url:RSVP_MESSAGE_URL,
+            success: function(data) {
+                if(data){
+                    rsvp_info_dialog = open_rsvp_info_dialog();
+                    rsvp_info_dialog.html(data);
+                }
+            },
+            error: errors_in_message_area_handler
+        });
         e.preventDefault();
     });
     $('#rsvp-no-button').live('click', function(e) {
