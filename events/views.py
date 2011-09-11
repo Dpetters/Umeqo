@@ -158,6 +158,7 @@ def event_new(request, form_class=None, extra_context=None):
         })
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
+    context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
     context.update(extra_context or {})
     return context
 
@@ -232,7 +233,7 @@ def event_delete(request, id, extra_context = None):
 @has_annual_subscription
 def event_schedule(request):
     if request.is_ajax():
-        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')))
+        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
         return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 

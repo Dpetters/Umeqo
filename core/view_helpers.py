@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 def does_email_exist(email):
     try:
@@ -31,3 +32,16 @@ def get_ip(request):
         return request.META['REMOTE_ADDR']
     else:
         return None
+
+def um_slugify(s):
+    parts = filter(lambda n: n not in ('the', 'a', 'an', 'of', 'for'), s.split(' '))
+    new_s = ' '.join(parts)
+    if len(new_s) > 50:
+        parts = new_s.split(' ')
+        new_len, new_parts, i = 0, [], 0
+        while new_len < 40:
+            new_parts.append(parts[i])
+            new_len += len(parts[i])
+            i += 1
+        new_s = ' '.join(new_parts)
+    return slugify(new_s)

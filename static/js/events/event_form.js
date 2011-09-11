@@ -518,10 +518,16 @@ $(document).ready(function() {
         $('#event_scheduler_nav_forward').removeClass('enabled');
         var event_date_text = $('#event_scheduler_day_text').val();
         $('.event_block').remove();
+        var get_data = {
+            'event_date': event_date_text,
+        };
+        if (EDIT_FORM) {
+            get_data['event_id'] = EVENT_ID;
+        } else {
+            get_data['event_id'] = 0;
+        }
         if (event_date_text){
-            $.get(EVENT_SCHEDULE_URL, {
-                event_date : event_date_text
-            }, function(res) {
+            $.get(EVENT_SCHEDULE_URL, get_data, function(res) {
                 var highest = Infinity;
                 $.each(res, function(i, eventInfo) {
                     var title = eventInfo[0];

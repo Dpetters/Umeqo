@@ -38,10 +38,13 @@ def buildRSVP(obj):
     }
     return output
 
-def get_event_schedule(event_date_string):
+def get_event_schedule(event_date_string, event_id):
     event_date = datetime.strptime(event_date_string, '%m/%d/%Y')
     event_date_tmrw = event_date + timedelta(days=1)
     events = Event.objects.all().filter(start_datetime__gt=event_date).filter(start_datetime__lt=event_date_tmrw)
+    if event_id:
+        event_id = int(event_id)
+        events = events.exclude(id=event_id)
     def buildScheduleItem(event):
         name = event.name
         start = event.start_datetime
