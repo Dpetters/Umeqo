@@ -55,7 +55,7 @@ Subscription Choices |
                         <li>No Event Management Tools</li>
                         <li>No Student Invitation Functionality</li>
                         <li class="last">
-                            <a href="javascript:void(0)" data-action="{{ft_action}}" data-title="Cancel Suscription" data-subscription-type="free_trial" class="btn {% if ft_class %}{{ft_class}}{% else %}open_ftid_link{% endif %}">{% if ft_text %}{{ft_text}{% else %}Learn More{% endif %}</a>
+                            <a href="javascript:void(0)" data-action="{{free_trial_action}}" data-title="{{free_trial_dialog}}" data-subscription-type="free_trial" class="btn {% if free_trial_class_class %}{{free_trial_class}}{% else %}open_ftid_link{% endif %}">{% if free_trial_button %}{{free_trial_button}}{% else %}Learn More{% endif %}</a>
                         </li
                     </ul>
                 </footer>
@@ -67,7 +67,7 @@ Subscription Choices |
                     </hgroup>
                     <hgroup class="price">
                         <h2>
-                            <span id="contact_us_for_pricing" class="style1">{% ifequal a_action "cancel" %}Subscribed{% else %}Contact Us for Pricing{% endifequal %}</span>
+                            <span id="contact_us_for_pricing" class="style1">{{ annual_text }}</span>
                         </h2>
                     </hgroup>
                 </header>
@@ -80,7 +80,7 @@ Subscription Choices |
                         <li><strong>All</strong> Event Management Tools</li>
                         <li><strong>Unlimited</strong> Student Invitation</li>
                         <li class="last">
-                            <a href="javascript:void(0)" data-action="{{a_action}}" data-title="{{a_dialog_title}}" data-subscription-type="annual" class="btn {{a_class}}">{% if a_text %}{{a_text}}{% else %}Contact Us{% endif %}</a>
+                            <a href="javascript:void(0)" data-action="{{annual_action}}" data-title="{{annual_dialog}}" data-subscription-type="annual" class="btn {{annual_class}}">{{annual_text}}</a>
                         </li>
                     </ul>
                 </footer>

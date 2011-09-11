@@ -73,23 +73,44 @@ def subscription_list(request, extra_context=None):
 
             if es.subscription == free_trial:
                 if es.expired:
-                    
-                    context['a_text'] = "Upgrade"
-                    context['a_cancel'] = "open_sd_link upgrade"
-                    context['a_action'] = "upgrade"
-                    context['a_dialog_title'] = "Upgrade Subscription"
+                    context['annual_button'] = "Subscribe"
+                    context['annual_dialog'] = "Subscribe to Umeqo"
+                    context['annual_class'] = "open_sd_link upgrade"
+                    context['annual_action'] = "upgrade"
+                    context['annual_text'] = "Contact Us For Pricing"
                 else:
-                    context['ft_text'] = "Cancel Subscription"
-                    context['ft_class'] = "open_sd_link cancel"
-                    context['ft_action'] = "cancel"
+                    context['free_trial_button'] = "Cancel Subscription"
+                    context['free_trial_dialog'] = "Cancel Subscription"
+                    context['free_trial_class'] = "open_sd_link cancel"
+                    context['free_trial_action'] = "cancel"
             else:
-                context['a_text'] = "Cancel Subscription"
-                context['a_class'] = "open_sd_link cancel"
-                context['a_action'] = "cancel"
-                context['a_dialog_title'] = "Cancel Subscription"
+                if es.expired:
+                    context['annual_button'] = "Extend Subscription"
+                    context['annual_dialog'] = "Extend Subscription"
+                    context['annual_class'] = "open_sd_link extend"
+                    context['annual_action'] = "extend"
+                    context['annual_text'] = "Subscription Expired"
+                else:
+                    context['annual_button'] = "Cancel Subscription"
+                    context['annual_dialog'] = "Cancel Subscription"
+                    context['annual_class'] = "open_sd_link cancel"
+                    context['annual_action'] = "cancel"
+                    context['annual_text'] = "Subscribed"
         except EmployerSubscription.DoesNotExist:
-            context = {'ft_class':'open_ftid_link', 'a_dialog_title':"Subscribe to Umeqo", 'a_action': 'subscribe', 'a_class':"open_sd_link subscribe"}
+                    context['annual_button'] = "Subscribe"
+                    context['annual_dialog'] = "Subscribe to Umeqo"
+                    context['annual_class'] = "open_sd_link subscribe"
+                    context['annual_action'] = "subscribe"
+                    context['annual_text'] = "Contact Us For Pricing"
+
+                    context['free_trial_class'] = "open_ftid_link"
     else:
-        context = {'ft_class':'open_ftid_link', 'a_dialog_title':"Subscribe to Umeqo", 'a_action': 'subscribe', 'a_class':"open_sd_link subscribe"}
+        context = {'free_trial_class':'open_ftid_link',
+                   'annual_button':"Contact Us",
+                   'annual_dialog':"Subscribe to Umeqo", 
+                   'annual_action': 'subscribe', 
+                   'annual_class':"open_sd_link subscribe",
+                   'annual_text':"Contact Us For Pricing"}
+        
     context.update(extra_context or {})
     return context
