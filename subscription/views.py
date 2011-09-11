@@ -20,7 +20,7 @@ def subscription_dialog(request, form_class = SubscriptionForm, extra_context=No
             else:
                 return HttpResponseBadRequest("Subscription transaction type or action is missing.")
             
-            form = form_class(data = request.POST)
+            form = form_class(data = request.POST, user=request.user)
             
             if form.is_valid():
                 data = []
@@ -50,7 +50,7 @@ def subscription_dialog(request, form_class = SubscriptionForm, extra_context=No
             body_context = {'subscription_type':subscription_type}
             initial['body'] = render_to_string(subscription_templates[action], body_context)
             
-            context = {'form':form_class(initial=initial)}
+            context = {'form':form_class(initial=initial, user=request.user)}
             
             context.update(extra_context or {})
             return context
