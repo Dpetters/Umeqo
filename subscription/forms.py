@@ -4,6 +4,7 @@ from core.decorators import is_recruiter
 from employer.models import Employer
 
 subscription_templates = {'upgrade':'subscription_body_upgrade.html',
+                          'extend':'subscription_body_extend.html',
                           'subscribe':'subscription_body_subscribe.html',
                           'cancel':'subscription_body_cancel.html'}
 
