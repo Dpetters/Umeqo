@@ -13,7 +13,8 @@ class CampusOrg(CommonInfo):
     type = models.ForeignKey("core.CampusOrgType")
     image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
-
+    slug = models.SlugField(null=True)
+    
     class Meta(CommonInfo.Meta):
         verbose_name = "On-Campus Organization"
         verbose_name_plural = "On-Campus Organizations"
