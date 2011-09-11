@@ -18,6 +18,8 @@ from django.views.decorators.http import require_http_methods, require_POST, req
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
 
+from campus_org.models import CampusOrg
+from employer.models import Employer
 from core.email import send_html_mail
 from core import messages as m
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
@@ -27,6 +29,28 @@ from events.models import notify_about_event, Attendee, Event, EventType, Invite
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
 from notification import models as notification
 from student.models import Student
+
+@login_required
+def events_shortcut(request, owner_slug, event_slug, extra_context=None):
+    print owner_slug
+    print event_slug
+    try:
+        employer = Employer.objects.get(slug = owner_slug)
+        events = employer.event_set.get(short_slug = event_slug).get_absolute_url()
+    except Employer.DoesNotExist:
+        try:
+            campus_org = CampusOrg.objects.get(slug = owner_slug)
+            events = campus_org.user.event_set
+        except CampusOrg.DoesNotExist:
+            raise Http404
+    try:
+        url = None
+        url = events.get(short_slug = event_slug).get_absolute_url()
+        if url:
+            return redirect(url)
+    except Event.DoesNotExist:
+        pass
+    raise Http404
 
 @login_required
 @user_passes_test(is_student)
@@ -45,7 +69,7 @@ def events_list(request, extra_context=None):
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
-    return redirect("%s%s/" % (event.get_absolute_url(), event.slug))
+    return redirect("%s" % (event.get_absolute_url()))
 
 @render_to('event_page.html')
 def event_page(request, id, slug, extra_context=None):
