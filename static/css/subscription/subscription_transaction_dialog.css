@@ -14,6 +14,9 @@
 .subscription_dialog #subscription_form #id_employer{
     width:255px;
 }
+.subscription_dialog #subscription_form select#id_employer{
+    width:265px;
+}
 #subscription_form{
     padding-left:10px;
 }
