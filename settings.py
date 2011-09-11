@@ -12,7 +12,7 @@ PASSWORD_MIN_LENGTH = 5
 LOAD_WAIT_TIME = 8000
 
 # One-day activation window
-ACCOUNT_ACTIVATION_DAYS = 1
+ACCOUNT_ACTIVATION_DAYS = 99999
 
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4
