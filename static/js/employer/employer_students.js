@@ -296,8 +296,6 @@ function initiate_resume_book_summary_update() {
         },
         success: function (data) {
             $("#students_in_resume_book_student_list_link").html(data);
-            console.log($("#students_in_resume_book_num").text());
-            console.log(parseInt($("#students_in_resume_book_num").text()));
             if (parseInt($("#students_in_resume_book_num").text())>0){
                 $(".student_deliver_resume_book_link").removeAttr("disabled");
             }else{
@@ -406,7 +404,6 @@ function initiate_ajax_call() {
     var error_dialog_timeout = setTimeout( function() {
         $("#results_block_info").prepend(two_line_long_load_message);
     }, LOAD_WAIT_TIME);
-    console.log(student_list_id);
     xhr = $.ajax({
         type: 'POST',
         url: STUDENTS_URL,
