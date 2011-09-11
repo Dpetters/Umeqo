@@ -8,7 +8,9 @@ from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
+from core.decorators import is_recruiter, is_campus_org
 from core.forms import EmailAuthenticationForm as AuthenticationForm
+from events.models import Event
 from registration.forms import PasswordResetForm, SetPasswordForm
 
 admin.autodiscover()
@@ -146,6 +148,18 @@ urlpatterns += patterns('employer.views',
 )
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
+
+events = Event.objects.all()
+for event in events:
+    owner_slug = None
+    if is_recruiter(event.owner):
+        owner_slug = event.owner.recruiter.employer.slug
+    elif is_campus_org(event.owner):
+        owner_slug = event.owner.campusorg.slug
+    if owner_slug and event.short_slug:
+        urlpatterns += patterns('',
+            ('^%s/%s' % (owner_slug, event.short_slug), redirect_to, {'url': event.get_absolute_url()})
+        )
 
 handler500 = 'core.views.handle_500'
 handler404 = 'core.views.handle_404'

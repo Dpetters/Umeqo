@@ -348,7 +348,7 @@ def employer_student_event_attendance(request):
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
     context = {"resume_books":request.user.recruiter.resumebook_set.all()}
-    context.update(extra_context, {})
+    context.update(extra_context or {})
     return context
 
 
