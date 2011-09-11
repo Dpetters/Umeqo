@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest, Http404
 from django.utils import simplejson
 from django.template import RequestContext
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
@@ -56,7 +56,7 @@ def event_page(request, id, slug, extra_context=None):
 
     #check slug matches event
     if event.slug!=slug:
-        return HttpResponseNotFound("The slug you provided does not match that of the event found using the provided id.")
+        raise Http404()
 
     current_site = Site.objects.get(id=settings.SITE_ID)
 
@@ -169,7 +169,7 @@ def event_edit(request, id=None, extra_context=None):
     try:
         event = Event.objects.get(pk=id)
     except Event.DoesNotExist:
-        return HttpResponseNotFound("Event with id %s not found." % id)        
+        raise Http404()
     context = {}
     context['event'] = event
     if is_recruiter(event.owner):
