@@ -18,7 +18,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
@@ -57,7 +57,7 @@ def employer_profile_preview(request, slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug=slug)
     except Employer.DoesNotExist:
-        raise Http404()
+        raise Http404
     
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
