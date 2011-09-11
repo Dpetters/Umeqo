@@ -158,7 +158,7 @@ for event in events:
         owner_slug = event.owner.campusorg.slug
     if owner_slug and event.short_slug:
         urlpatterns += patterns('',
-            ('^%s/%s' % (owner_slug, event.short_slug), redirect_to, {'url': event.get_absolute_url()})
+            (r'^%s/%s' % (owner_slug, event.short_slug), redirect_to, {'url': event.get_absolute_url()})
         )
 
 handler500 = 'core.views.handle_500'
