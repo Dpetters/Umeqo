@@ -77,8 +77,6 @@ function handle_deliver_resume_book_link_click() {
                         var custom_resume_book_name = $("#id_name").val();
                         $("#deliver_resume_book_form .error_section").html("");
                         if($("#id_delivery_type").multiselect("getChecked")[0].value === EMAIL_DELIVERY_TYPE) {
-                            console.log(that.attr("data-resume-book-id"));
-                            console.log(that);
                             $(form).ajaxSubmit({
                                 data : { 'name' : custom_resume_book_name, 'resume_book_id':that.attr("data-resume-book-id")},
                                 dataType: 'html',
@@ -105,10 +103,7 @@ function handle_deliver_resume_book_link_click() {
                         } else {
                             show_form_submit_loader("#deliver_resume_book_form");
                             $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
-                            console.log(that.attr("data-resume-book-id"));
-                            console.log(that);
                             var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL + "?resume_book_id=" + that.attr("data-resume-book-id");
-                            console.log(download_url);
                             if (custom_resume_book_name){ download_url = download_url + "?name=" + escape(custom_resume_book_name) }
                             window.location.href = download_url;
                             setTimeout(function(){
