@@ -234,7 +234,7 @@ def home(request, extra_context=None):
             if len(subscriptions) > 0:
                 context['has_subscriptions'] = True
                 recruiters = Recruiter.objects.filter(employer__in=subscriptions)
-                sub_events = Event.objects.filter(owner__in=[recruiter.user for recruiter in recruiters]).filter(end_datetime__gt=datetime.now())
+                sub_events = Event.objects.filter(Q(owner__in=[recruiter.user for recruiter in recruiters]) | Q(attending_employers__in=[recruiter.employer for recruiter in recruiters])).filter(end_datetime__gt=datetime.now())
                 sub_events = sub_events.order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,
