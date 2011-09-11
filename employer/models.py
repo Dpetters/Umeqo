@@ -12,6 +12,7 @@ from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
 
+
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
     name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters.")
@@ -65,15 +66,15 @@ class EmployerStatistics(core_mixins.DateTracking):
 class Recruiter(core_mixins.DateTracking):
     user = models.OneToOneField(User, unique=True)
     employer = models.ForeignKey("employer.Employer")
-    
-    is_master = models.BooleanField(default=False)
 
     def __unicode__(self):
         if hasattr(self, "user"):
             return str(self.user)
         else:
             return "Unattached Recruiter"
-
+    class Meta:
+        ordering=["user__first_name"]
+        
 @receiver(signals.post_save, sender=Recruiter)
 def create_recruiter_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:
@@ -88,9 +89,13 @@ class ResumeBook(core_mixins.DateTracking):
     resume_book = models.FileField(upload_to=get_resume_book_filename, blank=True, null=True)
     name = models.CharField("Resume Book Name", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     students = models.ManyToManyField("student.Student", blank=True, null=True)
-
+    delivered = models.BooleanField(default=False)
+    
     def __unicode__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return "Resume Book"
 
     class Meta:
         verbose_name = "Resume Book"

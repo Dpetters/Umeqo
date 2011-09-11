@@ -23,8 +23,6 @@
     var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_org %}";
     var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
 
-    var STATIC_URL = "{{STATIC_URL}}";
-    var HOME_URL = "{% url home %}";
     var FILL_OUT_REQUIRED_FIELDS_MESSAGE = "{% include 'student_profile_preview_fill_out_required_fields_message.html' %}";
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
     var PROFILE_PREVIEW_URL = "{% url student_profile_preview %}";
@@ -350,11 +348,11 @@
                 <ul>
                     <li>
                         Don't see your campus organization?
-                        <a href="#" id="create_campus_organization_link">Submit yours to the list.</a>
+                        <a href="javascript:void(0)" id="create_campus_organization_link">Submit yours to the list.</a>
                     </li>
                     <li>
                         Is a language you speak not listed?
-                        <a href="#" id="create_language_link">Submit yours to the list.</a>
+                        <a href="javascript:void(0)" id="create_language_link">Submit yours to the list.</a>
                     </li>
                 </ul>
             </div>

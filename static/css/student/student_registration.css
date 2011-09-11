@@ -6,3 +6,13 @@
     width:140px;
     font-family:"Courier New";
 }
+.dialog_content_wrapper{
+    padding:15px;
+}
+#student_registration_help_list{
+    padding-left:5px;
+    list-style:inside; 
+}
+#student_registration_help_list p{
+    padding-bottom:5px;   
+}

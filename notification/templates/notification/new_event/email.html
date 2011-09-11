@@ -1,0 +1,7 @@
+<p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
+
+<p>{{employer_names}} {{has_word}} a new event: {{event.name}}</p>
+
+<p>Check out the event details (and RSVP if interested!) by clicking <a href="http://{{current_site.domain}}{{event.get_absolute_url}}">here</a>.</p>
+
+<p>- The Umeqo Team</p>

@@ -8,7 +8,6 @@ except ImportError:
 from django.db import models
 from django.db.models.query import QuerySet
 from django.conf import settings
-from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.template import Context
 from django.template.loader import render_to_string
@@ -25,6 +24,7 @@ from django.contrib.contenttypes import generic
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext, get_language, activate
 
+from core.email import send_html_mail
 
 QUEUE_ALL = getattr(settings, "NOTIFICATION_QUEUE_ALL", False)
 
@@ -234,9 +234,6 @@ def get_formatted_messages(formats, label, context):
     Returns a dictionary with the format identifier as the key. The values are
     are fully rendered templates with the given context.
     """
-    import pprint
-    print 'CONTEXT:'
-    print pprint.pformat(context)
     format_templates = {}
     for format in formats:
         # conditionally turn off autoescaping for .txt extensions in format
@@ -281,7 +278,7 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
 
     formats = (
         'short.txt',
-        'full.txt',
+        'email.html',
         'notice.html',
         'full.html',
     ) # TODO make formats configurable
@@ -317,15 +314,17 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
             'message': messages['short.txt'],
         }, context).splitlines())
 
-        body = render_to_string('notification/email_body.txt', {
-            'message': messages['full.txt'],
+        body = render_to_string('notification/email_body.html', {
+            'message': messages['email.html'],
         }, context)
-
-        notice = Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
+        
+        Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
             notice_type=notice_type, on_site=on_site, sender=sender)
+        
         if should_send(user, notice_type, "1") and user.email and user.is_active: # Email
             recipients.append(user.email)
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+            
+        send_html_mail(subject, body, recipients)
 
     # reset environment to original language
     activate(current_language)
@@ -339,6 +338,7 @@ def send(*args, **kwargs):
     """
     queue_flag = kwargs.pop("queue", False)
     now_flag = kwargs.pop("now", False)
+
     assert not (queue_flag and now_flag), "'queue' and 'now' cannot both be True."
     if queue_flag:
         return queue(*args, **kwargs)

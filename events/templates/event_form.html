@@ -22,6 +22,9 @@
     
     {% if edit %}
         var EDIT_FORM = true;
+        var EVENT_ID = "{{event.id}}";
+        var LATITUDE = "{{event.latitude}}";
+        var LONGITUDE = "{{event.longitude}}";
     {% else %}
         var EDIT_FORM = false;
     {% endif %}
@@ -88,10 +91,10 @@
                     </div>
                 </div>
                 <div id="event_scheduler_day">
-                    <label for="event_scheduler_day_text">Event schedule for</label><input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield_no_bind" />
+                    <label for="event_scheduler_day_text">Event schedule for</label><input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield_no_bind" value="{{event_scheduler_date}}">
                     <div id="event_scheduler_nav">
-                        <a id="event_scheduler_nav_back" class="active" href="#">&laquo;</a>
-                        <a id="event_scheduler_nav_forward" class="active" href="#">&raquo;</a>
+                        <a id="event_scheduler_nav_back" class="active" href="javascript:void(0)">&laquo;</a>
+                        <a id="event_scheduler_nav_forward" class="active" href="javascript:void(0)">&raquo;</a>
                     </div>
                 </div>
                 <div id="event_scheduler">
@@ -116,7 +119,7 @@
             <div class="side_block_content">
                 {{form.audience.label_tag}}
                 <div>
-                    <div class="errorspace">{{form.audience.error}}</div>
+                    <div class="errorspace">{{form.audience.errors}}</div>
                     {{form.audience}}
                 </div>
                 <div class="errorspace">{{form.rsvp_message.errors}}</div>
@@ -128,20 +131,20 @@
     <div id="event_form_left_col">
         <div id="event_name_section">
             <span class="div_form_above_field_label">Title</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.name.errors}}</div>
             <br>
             {{form.name}}
         </div>
         <div id="event_type_section">
             <span class="div_form_above_field_label">Type</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.type.errors}}</div>
             <br>
             {{form.type}}
             {{form.is_public}}
         </div>
         <div id="event_drop_section">
             <span class="div_form_above_field_label">Resume Drops</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.is_drop.errors}}</div>
             <br>
             {{form.is_drop}}
             <p id="resume_drop_info">(enabling this feature allows students to drop their resume without RSVP-ing)</p>
@@ -149,7 +152,7 @@
         {% if user.campusorg %}
         <div id="event_attending_employers_section">
             <span class="div_form_above_field_label">Attending Employers</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.attending_employers.errors}}</div>
             <br>
             {{form.attending_employers}}
             <div id="attending_employers">
@@ -163,7 +166,7 @@
         {% endif %}
         <div id="event_location_section">
             <span class="div_form_above_field_label">Location</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.location.errors}}</div>
             <br>
             {{form.location}}
             {{form.latitude}}
@@ -174,7 +177,7 @@
         </div>
         <div id="event_description_section">
             <span class="div_form_above_field_label">Description</span>
-            <div class="errorspace"></div>
+            <div class="errorspace">{{form.description.errors}}</div>
             {{form.description}}
         </div>
     </div>

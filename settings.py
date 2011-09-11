@@ -12,7 +12,7 @@ PASSWORD_MIN_LENGTH = 5
 LOAD_WAIT_TIME = 8000
 
 # One-day activation window
-ACCOUNT_ACTIVATION_DAYS = 1
+ACCOUNT_ACTIVATION_DAYS = 99999
 
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4
@@ -40,6 +40,7 @@ AWS_SECRET_ACCESS_KEY = 'FAicXYcGFnCz/CL9+FnhEOyyVLPNsLBOQixlmKzg'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 PROD_DATA_MODELS = {
+    'auth': ['group'],
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
@@ -47,7 +48,8 @@ PROD_DATA_MODELS = {
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
-    'sites':['site']
+    'sites':['site'],
+    'subscription':['subscription']
 }
 LOCAL_DATA_MODELS = {
     'auth': ['user'],
@@ -76,11 +78,12 @@ RECAPTCHA_PRIVATE_KEY = "6LeAXMcSAAAAAFKWwcMK94XjO5Wvusu5FOQaYsS-"
 
 # URL to redirect the user to if they try to 
 # access a page and aren't logged in
-LOGIN_URL = '/login'
+LOGIN_URL = '/login/'
+SUBSCRIPTIONS_URL = '/subscriptions/'
 LOGIN_REDIRECT_URL = '/'
 
 # Emails sent to users will be coming from this email address
-DEFAULT_FROM_EMAIL = 'no-reply@umeqo.com'
+DEFAULT_FROM_EMAIL = 'Umeqo <no-reply@umeqo.com>'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -201,7 +204,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'core.middleware.SetRemoteAddrMiddleware',
-    'core.middleware.LogMiddleware'
+    'core.middleware.LogMiddleware',
+    'sentry.client.middleware.Sentry404CatchMiddleware',
+    'middleware.http.HttpResponseNotAllowedMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -216,11 +221,42 @@ TEMPLATE_DIRS = (
     ROOT + "/templates/"
 )
 
+SENTRY_SEARCH_ENGINE = 'solr'
+SENTRY_SEARCH_OPTIONS = {
+    'url': 'http://127.0.0.1:8983/solr'
+}
+
 SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+#only allow toolbar from localhost
+INTERNAL_IPS = ('127.0.0.1',)
+
+NOTIFICATION_QUEUE_ALL = True
+
+PAYPAL_RECEIVER_EMAIL = "Dpetter91@gmail.com"
+PAYPAL_TEST = True
+
+PAYPAL_WPP_USER = "fakedd_1315259764_biz_api1.mit.edu"
+PAYPAL_WPP_PASSWORD = "1315259829"
+PAYPAL_WPP_SIGNATURE = "A49rKagANWdHO0ruyS-cvmxSSgfLAHNOJQFoR2VTHB8MkQRTOuP4FT9Q    "
+    
+SUBSCRIPTION_PAYPAL_SETTINGS = {
+    'business':'fakedd_1315259764_biz@mit.edu',
+}
+
+# 2 day grace period
+SUBSCRIPTION_GRACE_PERIOD = 2
 
 INSTALLED_APPS = (
     'django.contrib.contenttypes',
@@ -243,20 +279,14 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'campus_org',
-    'ckeditor'
+    'subscription',
+    'ckeditor',
+    'sentry',
+    'sentry.client',
+    'sentry.plugins.sentry_servers',
+    'sentry.plugins.sentry_sites',
+    'sentry.plugins.sentry_urls',
 )
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
-#only allow toolbar from localhost
-INTERNAL_IPS = ('127.0.0.1',)
-
-NOTIFICATION_QUEUE_ALL = True
 
 try:
     from settings_local import *

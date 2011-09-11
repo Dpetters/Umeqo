@@ -18,13 +18,14 @@ from django.shortcuts import redirect
 from django.utils import simplejson
 
 from core import enums, messages
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org
+from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import does_email_exist
+from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
-from employer.models import Employer, Recruiter
-from events.models import Event
+from employer.models import Employer
+from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
@@ -32,9 +33,6 @@ from registration.models import InterestedPerson
 
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
-    if is_student(request.user) and not request.user.student.profile_created:
-        return redirect('student_profile')
-    
     questions = Question.objects.visible()
     if is_recruiter(request.user):
         questions = questions.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
@@ -61,9 +59,6 @@ def account_deactivate(request, extra_context = None):
 
 @render_to('faq.html')
 def faq(request, extra_context = None):
-    if is_student(request.user) and not request.user.student.profile_created:
-        return redirect('student_profile')
-    
     if request.method == "POST":
         if request.POST.has_key("question_id"):
             q = Question.objects.get(id=request.POST["question_id"])
@@ -89,12 +84,16 @@ def faq(request, extra_context = None):
         context.update(extra_context or {})  
         return context
 
+@render_to('about.html')
+def about(request, extra_context = None):    
+    context = {'campus_orgs':CampusOrg.objects.all(),
+               'locations':Location.objects.all(),
+               'courses':Course.objects.all()}
+    context.update(extra_context or {})
+    return context
 
 @render_to('tutorials.html')
-def tutorials(request, extra_context = None):    
-    if is_student(request.user) and not request.user.student.profile_created:
-        return redirect('student_profile')
-    
+def tutorials(request, extra_context = None):
     context = {}
     context.update(extra_context or {})
     return context
@@ -102,29 +101,32 @@ def tutorials(request, extra_context = None):
 
 @render_to('contact_us.html')
 def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
-    if request.method == 'POST':
-        form = form_class(data=request.POST, request=request)
-        if form.is_valid():
-            form.save(fail_silently=fail_silently)
-            data = {'valid':True}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST, request=request)
+            if form.is_valid():
+                form.save(fail_silently=fail_silently)
+                data = {'valid':True}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            else:
+                data = {'valid':False, 'errors':form.errors}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            data = {'valid':False, 'errors':form.errors}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            if request.user.is_authenticated():
+                form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+            else:
+                form = form_class(request=request)                
+        context = {
+                'form': form,
+                'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
+                }
+        context.update(extra_context or {}) 
+        return context
     else:
-        if request.user.is_authenticated():
-            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
-        else:
-            form = form_class(request=request)                
-    context = {
-            'form': form,
-            'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
-            }
-    context.update(extra_context or {}) 
-    return context
-
+        return HttpResponseBadRequest("Request must be ajax.")
 
 @login_required
+@has_annual_subscription
 def get_location_guess(request):
     if request.method == "GET":
         if request.GET.has_key('query'):
@@ -142,6 +144,7 @@ def get_location_guess(request):
 
 
 @login_required
+@has_annual_subscription
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
     if request.GET.has_key('query'):
@@ -160,16 +163,12 @@ def get_location_suggestions(request):
     else:
         return HttpResponseBadRequest("You must pass in either a query or an address to display.")
 
-
 def landing_page_wrapper(request, extra_context=None):
     if request.user.is_authenticated():
         return home(request, extra_context=extra_context)
     else:
         return landing_page(request, extra_context=extra_context)
 
-
-#@cache_page(60 * 15)
-#@csrf_protect
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
     form_class = BetaForm
@@ -210,14 +209,17 @@ def landing_page(request, extra_context = None):
             'disabled': disabled,
             'loggedout': loggedout,
             'form_error': form_error,
-            'email_error': email_error
+            'email_error': email_error,
     }
+    if FeaturedEvent.objects.all().exists():
+        context['featured_event'] = FeaturedEvent.objects.all().order_by("date_created")[0]
+        
     if request.GET.has_key("action") and request.GET['action'] == "account-deactivated":
         context['deactivated'] = True
     context.update(extra_context or {})
     return context
 
-
+@has_any_subscription
 @render_to()
 def home(request, extra_context=None):
     context = {}
@@ -233,8 +235,7 @@ def home(request, extra_context=None):
             subscriptions = request.user.student.subscriptions.all()
             if len(subscriptions) > 0:
                 context['has_subscriptions'] = True
-                recruiters = Recruiter.objects.filter(employer__in=subscriptions)
-                sub_events = Event.objects.filter(Q(owner__in=[recruiter.user for recruiter in recruiters]) | Q(attending_employers__in=[recruiter.employer for recruiter in recruiters])).filter(end_datetime__gt=datetime.now())
+                sub_events = Event.objects.filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now())
                 sub_events = sub_events.order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,
@@ -242,28 +243,29 @@ def home(request, extra_context=None):
                 })
             else:
                 context['has_subscriptions'] = False
-            context.update(extra_context or {}) 
+            context.update(extra_context or {})
             context.update({'TEMPLATE':'student_home.html'})
             return context
         elif is_recruiter(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime}).extra(select={'is_owner': "owner_id = %s" % request.user.id})
+            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer]))
             context.update({
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'your_events': your_events
+                'upcoming_events': your_events.filter(Q(end_datetime__gte=now_datetime) | Q(type__name="Rolling Deadline")).order_by("end_datetime"),
+                'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'employer_home.html'})
             return context
         elif is_campus_org(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(owner=request.user).order_by("-end_datetime").extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})
             context.update({
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'your_events': your_events
+                'upcoming_events': Event.objects.filter(owner=request.user, end_datetime__gte=now_datetime).order_by("end_datetime"),
+                'past_events': Event.objects.filter(owner=request.user, end_datetime__lt=now_datetime).order_by("-end_datetime")
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'campus_org_home.html'})
@@ -276,7 +278,7 @@ def home(request, extra_context=None):
     })
     event_kwargs = {}
     event_kwargs['end_datetime__gt'] = datetime.now()
-    events = Event.objects.filter(**event_kwargs).order_by("-end_datetime")
+    events = Event.objects.filter(**event_kwargs).order_by("end_datetime")
     context['events'] = list(events)[:3]
     context.update(extra_context or {})
     return context

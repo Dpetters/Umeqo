@@ -77,7 +77,7 @@ class Question(core_mixins.DateTracking):
 class CommonInfo(core_mixins.DateTracking):
     email = models.EmailField("Contact E-mail", blank=True, null=True)
     website = models.URLField(blank=True, null=True, verify_exists=False)
-    description = models.TextField(max_length=500, blank=True, null=True, help_text="Maximum 500 characters.")
+    description = models.TextField(max_length=1000, blank=True, null=True, help_text="Maximum 1000 characters.")
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
 
     class Meta:

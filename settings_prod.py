@@ -1,10 +1,8 @@
 import socket
 import os
 
-
-
 # Compress static content?
-COMPRESS = False
+COMPRESS = True
 
 # Students need an invite code to register
 INVITE_ONLY = False
@@ -37,7 +35,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ("Dmitrij", "Dpetters91@gmail.com"),
-    ("Zach", "zdearing@gmail.com"),
+    ("Zac", "zdearing@gmail.com"),
     ("Josh", "me@joshma.com"),
 )
 MANAGERS = ADMINS
@@ -73,7 +71,7 @@ LOGGING = {
         'file_handler': {
             'level':'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/www/umeqo/logs/umeqo.log',
+            'filename': ROOT + '/logs/umeqo.log',
             'maxBytes': 1024*1024*10,
             'backupCount': 5,
             'formatter':'standard',
@@ -82,13 +80,27 @@ LOGGING = {
             'level': 'WARNING',
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html':True
+        },
+        'sentry': {
+            'level': 'DEBUG',
+            'class': 'sentry.client.handlers.SentryHandler',
+            'formatter': 'standard'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
         }
     },
     'loggers': {
         'django.request': { # Stop SQL debug from logging to main logger
-            'handlers': ['file_handler', 'mail_admins'],
+            'handlers': ['sentry', 'file_handler'],
+            'level': 'WARNING',
+        },
+        'sentry.errors': {
             'level': 'DEBUG',
-            'propagate':True
+            'handlers': ['console'],
+            'propagate': False,
         },
     }
 }

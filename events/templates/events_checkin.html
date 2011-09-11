@@ -1,5 +1,8 @@
 <div id="event_checkin_main" class="hid">
-    <h2>{{event.name}} <span>(powered by <img src="{{ STATIC_URL }}images/logo_dark_small.png" alt="Umeqo" />)</span></h2>
+    <div id="event_checkin_header">
+        <span>(powered by <img src="{{ STATIC_URL }}images/logo_dark_small.png" alt="Umeqo" />)</span>
+        <h2>{{event.name}}</h2> 
+    </div>
     <div id="event_checkin_content">
         <h1>Event Check-in</h1>
         <p>Type in your email! If you have an Umeqo account, <strong>go ahead and hit enter</strong>. Otherwise, please fill in your name!</p>
@@ -24,6 +27,7 @@
             To exit, moving your mouse<br />here will reveal the exit button.<br />
             Click to hide this message.
         </div>
-        <a href="#" id="close_button">exit check-in mode</a>
+        <p id="event_checkin_count"><span id="event_checkin_count_num">{{checkins|length}}</span> Check-Ins</p>
+        <a href="javascript:void(0)" id="close_button">exit check-in mode</a>
     </div>
 </div>

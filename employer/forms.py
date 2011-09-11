@@ -5,6 +5,7 @@ from django import forms
 from django.contrib.localflavor.us.forms import USPhoneNumberField
 from django.conf import settings as s
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 from core.form_helpers import decorate_bound_field
 from core import messages as m
@@ -18,7 +19,22 @@ from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
 
+class RecruiterForm(forms.ModelForm):
+    email = forms.EmailField(label="Username:")
+    first_name = forms.CharField(label="First Name:", max_length=42, required=True)
+    last_name = forms.CharField(label="Last Name:", max_length=42, required=True)
+    password1 = forms.CharField(label="Choose Password:", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Confirm Password:", widget=forms.PasswordInput)
+    
+    class Meta:
+        fields = ('email',
+                  'first_name',
+                  'last_name')
+        model = User
+        
 class EmployerProfileForm(forms.ModelForm):
+    name = forms.CharField(label="Name:", max_length=42)
+    slug = forms.SlugField(label="Slug:", max_length=42)
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
     main_contact = forms.CharField("Main Contact:")
@@ -28,7 +44,9 @@ class EmployerProfileForm(forms.ModelForm):
     website = forms.URLField(label="Careers Website:", required=False)
     
     class Meta:
-        fields = ( 'industries',
+        fields = ('name',
+                  'slug', 
+                  'industries',
                    'description',
                    'main_contact',
                    'main_contact_email',

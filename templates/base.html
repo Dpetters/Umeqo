@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
     <head>
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="Umeqo is an innovative recruiting resource for students and employers to discover one another." />
         {% block meta %}{% endblock %}
@@ -100,7 +101,7 @@
                         {% endif %}
                         {% ifnotequal current_path "/login/" %}
                         <li id="login_button">
-                            <a class="login_link" tabindex="-1" href="#">Login</a>
+                            <a class="login_link" tabindex="-1" href="javascript:void(0)">Login</a>
                         </li>
                         {% endifnotequal %}
                     {% endif %}
@@ -189,6 +190,9 @@
                     {% block below_header_area %}
                     {% endblock %}
                 <div id="message_area">
+                    {% if msg %}
+                        <p>{{ msg }}</p>
+                    {% endif %}
                     {% block message_area %}
                     {% endblock %}
                 </div>
@@ -204,7 +208,7 @@
                     <a id="home" href="{% url home %}" title="home" tabindex="-1">Home</a>
                     <a id="about" href="{% url about %}" title="about" tabindex="-1">About</a>
                     <a id="help" href="{% url help_center %}" title="help" tabindex="-1">Help</a>
-                    <a id="contact" class="open_contact_us_dialog_link" href="#" title="contact" tabindex="-1">Contact Us</a>
+                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact" tabindex="-1">Contact Us</a>
                 </div>
                 <p id="footer_info_block">
                     &copy; 2011 Umeqo. All Rights Reserved.
@@ -220,6 +224,23 @@
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+            
+            var _sf_async_config={uid:28685,domain:"umeqo.com"};
+            (function(){
+              function loadChartbeat() {
+                window._sf_endpt=(new Date()).getTime();
+                var e = document.createElement('script');
+                e.setAttribute('language', 'javascript');
+                e.setAttribute('type', 'text/javascript');
+                e.setAttribute('src',
+                   (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+                   "js/chartbeat.js");
+                document.body.appendChild(e);
+              }
+              var oldonload = window.onload;
+              window.onload = (typeof window.onload != 'function') ?
+                 loadChartbeat : function() { oldonload(); loadChartbeat(); };
             })();
         </script>
     </body>

@@ -1,6 +1,7 @@
 var window_height_min = 580;
     
 var xhr = null;
+var comment_xhr = null;
 var filtering_ajax_request = null;
 
 function handle_students_in_resume_book_student_list_click() {
@@ -29,23 +30,6 @@ function open_event_invitation_dialog() {
     return $dialog;
 };
     
-function open_deliver_resume_book_dialog() {
-    var $dialog = $('<div class="dialog"></div>')
-    .dialog({
-        autoOpen: false,
-        title:"Deliver Resume Book",
-        dialogClass: "deliver_resume_book_dialog",
-        modal:true,
-        width:470,
-        resizable: false,
-        close: function(event, ui) {
-            deliver_resume_book_dialog.remove();
-        }
-    });
-    $dialog.dialog('open');
-    return $dialog;
-};
-
 function handle_student_toggle_star_click(e) {
     var container = this;
     var student_id = $(this).attr('data-student-id');
@@ -280,7 +264,8 @@ function handle_student_event_attendance_hover(){
 };
 
 function save_student_comment(student_id, comment){
-     $.ajax({
+     if(comment_xhr && comment_xhr.readystate != 4){ comment_xhr.abort(); }  
+     comment_xhr = $.ajax({
         type: 'POST',
         url: STUDENT_COMMENT_URL,
         dataType: "json",
@@ -311,6 +296,11 @@ function initiate_resume_book_summary_update() {
         },
         success: function (data) {
             $("#students_in_resume_book_student_list_link").html(data);
+            if (parseInt($("#students_in_resume_book_num").text())>0){
+                $(".student_deliver_resume_book_link").removeAttr("disabled");
+            }else{
+                $(".student_deliver_resume_book_link").attr("disabled", "disabled");                
+            }
         },
         error: errors_in_message_area_handler
     });
@@ -329,44 +319,44 @@ function handle_results_menu_toggle_details_button_click() {
 }
 
 function handle_results_menu_starred_click(e) {
-    $(".starred_img").each(function() {
+    $(".sprite-star").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
-    $(".unstarred_img").each(function() {
+    $(".sprite-star-empty").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
 };
 
 function handle_results_menu_not_starred_click(e) {
-    $(".starred_img").each(function() {
+    $(".sprite-star").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
-    $(".unstarred_img").each(function() {
+    $(".sprite-star-empty").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
 };
 
 function handle_results_menu_in_resume_book_click(e) {
-    $(".add_to_resume_book_img").each(function() {
+    $(".sprite-plus").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
-    $(".remove_from_resume_book_img").each(function() {
+    $(".sprite-cross").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
 };
 
 function handle_results_menu_not_in_resume_book_click(e) {
-    $(".add_to_resume_book_img").each(function() {
+    $(".sprite-plus").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', true);
     });
-    $(".remove_from_resume_book_img").each(function() {
+    $(".sprite-cross").each(function() {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
@@ -414,7 +404,6 @@ function initiate_ajax_call() {
     var error_dialog_timeout = setTimeout( function() {
         $("#results_block_info").prepend(two_line_long_load_message);
     }, LOAD_WAIT_TIME);
-
     xhr = $.ajax({
         type: 'POST',
         url: STUDENTS_URL,
@@ -422,6 +411,7 @@ function initiate_ajax_call() {
         data: {
             'page': page,
             'student_list': student_list,
+            'student_list_id':student_list_id,
             'query': query,
             'gpa' : min_gpa,
             'act': min_act,
@@ -464,148 +454,6 @@ function initiate_ajax_call() {
     });
 };
 
-function handle_deliver_resume_book_button_click() {
-    function show_resume_book_current_delivered_message(){
-        $.ajax({
-            dataType: "html",
-            url: RESUME_BOOK_CURRENT_DELIVERED_URL,
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status==0){
-                    deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                }else{
-                    deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                }
-            },
-            success: function (data) {
-                deliver_resume_book_dialog.html(data);
-                deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Successfully Delivered');
-            }
-        });
-    }
-
-    deliver_resume_book_dialog = open_deliver_resume_book_dialog();
-    deliver_resume_book_dialog.html(DIALOG_AJAX_LOADER);
-
-    var resume_book_created = false;
-
-    var deliver_resume_book_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-    $.ajax({
-        dataType: "html",
-        url: RESUME_BOOK_CURRENT_DELIVER_URL,
-        complete: function(jqXHR, textStatus) {
-            clearTimeout(deliver_resume_book_dialog_timeout);
-            deliver_resume_book_dialog.dialog('option', 'position', 'center');
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            if(jqXHR.status==0){
-                deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-            }else{
-                deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-            }
-        },
-        success: function (data) {
-            deliver_resume_book_dialog.html(data);
-
-            $("label[for=id_emails]").addClass('required');
-            
-            $("#id_emails").autoResize({
-                animateDuration : 0,
-                extraSpace : 18
-            }).live('blur', function(){
-                $(this).height(this.offsetHeight-28); 
-            });
-            
-            $("#id_delivery_type").multiselect({
-                noneSelectedText: "select delivery type",
-                height:53,
-                header:false,
-                minWidth:200,
-                selectedList: 1,
-                multiple: false,
-                click: function(event, ui) {
-                    if($("#id_delivery_type").multiselect("getChecked")[0].value === EMAIL_DELIVERY_TYPE) {
-                        $('.email_delivery_type_only_field').show()
-                        $('#id_emails').rules("add", {
-                            multiemail: true,
-                            required: true
-                        });
-                        $("#deliver_resume_book_form_submit_button").val("Email");
-                    } else {
-                        $('.email_delivery_type_only_field').hide();
-                        $('#id_emails').rules("remove", "email required");
-                        $("#deliver_resume_book_form_submit_button").val("Download");
-                    }
-                }
-            });
-
-            var deliver_resume_book_form_validator = $("#deliver_resume_book_form").validate({
-                submitHandler: function(form) {
-                    if(resume_book_created) {
-                        var custom_resume_book_name = $("#id_name").val();
-                        $("#deliver_resume_book_form .error_section").html("");
-                        if($("#id_delivery_type").multiselect("getChecked")[0].value === EMAIL_DELIVERY_TYPE) {
-                            $(form).ajaxSubmit({
-                                data : { 'name' : custom_resume_book_name },
-                                dataType: 'html',
-                                beforeSubmit: function (arr, $form, options) {
-                                    show_form_submit_loader("#deliver_resume_book_form");
-                                },
-                                complete: function(jqXHR, textStatus) {
-                                    deliver_resume_book_dialog.dialog('option', 'position', 'center');
-                                    hide_form_submit_loader("#deliver_resume_book_form");
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    if(jqXHR.status==0){
-                                         deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                                    }else{
-                                         deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                                    }
-                                },
-                                success: function(data) {
-                                    deliver_resume_book_dialog.html(data);
-                                }
-                            });
-                        } else {
-                            show_form_submit_loader("#deliver_resume_book_form");
-                            var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL;
-                            if (custom_resume_book_name){ download_url = download_url + "?name=" + escape(custom_resume_book_name) }
-                            window.location.href = download_url;
-                            show_resume_book_current_delivered_message();
-                        }
-                    } else {
-                        $("#deliver_resume_book_form .error_section").html("Please wait until the resume book is ready.");
-                    }
-                },
-                highlight: highlight,
-                unhighlight: unhighlight,
-                errorPlacement: place_table_form_field_error,
-                rules: {
-                    delivery_type: {
-                        required: true
-                    }
-                }
-            });
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: RESUME_BOOK_CURRENT_CREATE_URL,
-                error: function(jqXHR, textStatus, errorThrown) {
-                    if(jqXHR.status==0){
-                         deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                    }else{
-                         deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                    }
-                },
-                success: function (data) {
-                    resume_book_created = true;
-                    $("#resume_book_status").html("Ready");
-                    $("#resume_book_status").addClass('ready');
-                    $("#resume_book_status").removeClass('warning');                        
-                }
-            });
-        }
-    });
-};
 var handle_window_scroll = null;
 function set_up_side_block_scrolling() {
     var el = $('#side_block_area');
@@ -654,6 +502,7 @@ $(document).ready(function() {
     countries_of_citizenship = [];
     campus_orgs = [];
     student_list = $("#id_student_list option:selected").text();
+    student_list_id = $("#id_student_list option:selected").val();
     ordering = $("#id_ordering option:selected").val();
     results_per_page = $("#id_results_per_page option:selected").val();
     older_than_21 = $("#id_older_than_21 option:selected").val();
@@ -696,7 +545,6 @@ $(document).ready(function() {
 
     $("#search_form_submit_button").click(initiate_search);
     $(".page_link").live('click', handle_page_link_click);
-    $('#student_deliver_resume_book_button').click(handle_deliver_resume_book_button_click);
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
     $('#results_menu_more_actions').live('click', function() { $('#results_menu_more_actions ul').toggle(); });
     $('#results_menu_checkbox_menu_button').live('click', function() { $('#results_menu_checkbox_menu_button ul').toggle(); });
@@ -711,6 +559,7 @@ $(document).ready(function() {
 
     $("#query_field").val(query);
     var timeoutID;
+    
     $('#query_field').keydown( function() {
         if (typeof timeoutID!='undefined')
             window.clearTimeout(timeoutID);
@@ -724,7 +573,7 @@ $(document).ready(function() {
             window.clearTimeout(timeoutID);
         timeoutID = window.setTimeout( function(){
             save_student_comment(id, $(textarea).val());
-        }, 1000);
+        }, 500);
     });
     if ($(window).height()>window_height_min){
         set_up_side_block_scrolling();
@@ -737,28 +586,33 @@ $(document).ready(function() {
             $(this).data('init', true);
             var that = this;
             $(this).hoverIntent(function() {
-                $.get(EVENTS_LIST_URL, {student_id: $(this).attr('data-studentid')}, function(events) {
-                    var dropdown = $('<div class="events_dropdown"></div>');
-                    if (events.length == 0) {
-                        dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
-                    } else {
-                        $.each(events, function(k,event) {
-                            var ispublic = event.is_public ? 1 : 0;
-                            var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
-                            var linkText;
-                            if (!ispublic) {
-                                linkText = event.name + ' [private]';
-                            } else {
-                                linkText = event.name + ' [public]';
-                            }
-                            if (event.invited) {
-                                linkText = linkText + ' (invited)';
-                            }
-                            link.html(linkText);
-                            dropdown.append(link);
-                        });
-                    }
-                    $(that).append(dropdown);
+                $.ajax({
+                    url: EVENTS_LIST_URL, 
+                    data: {"student_id": $(this).attr('data-studentid')}, 
+                    success: function(events) {
+                        var dropdown = $('<div class="events_dropdown"></div>');
+                        if (events.length == 0) {
+                            dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
+                        } else {
+                            $.each(events, function(k,event) {
+                                var ispublic = event.is_public ? 1 : 0;
+                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="javascript:void(0)"></a>');
+                                var linkText;
+                                if (!ispublic) {
+                                    linkText = event.name + ' [private]';
+                                } else {
+                                    linkText = event.name + ' [public]';
+                                }
+                                if (event.invited) {
+                                    linkText = linkText + ' (invited)';
+                                }
+                                link.html(linkText);
+                                dropdown.append(link);
+                            });
+                        }
+                        $(that).append(dropdown);
+                    },
+                    error: errors_in_message_area_handler
                 });
             }, function() {
                 $(this).children('.events_dropdown').remove();
@@ -769,7 +623,17 @@ $(document).ready(function() {
     $('.student_invite_to_event_span .student_invite_to_event_link').live('click', function(e) {
         e.preventDefault();
     });
-
+    
+    $(".student_resume_link").live('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: STUDENT_INCREMENT_RESUME_VIEW_COUNT_URL,
+            data: {
+                'student_id': $(this).attr("data-student-id"),
+            },
+        });
+    });
+    
     $('.event_invite_link').live('click', function(e) {
         if ($(this).hasClass('disabled')) {
             return false;

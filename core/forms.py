@@ -4,10 +4,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
 from registration.models import InterestedPerson
 from core import messages as m
+from core.email import send_html_mail
 from core.models import Language
 from core.form_helpers import decorate_bound_field
 
@@ -28,6 +30,11 @@ class EmailAuthenticationForm(AuthenticationForm):
         password = self.cleaned_data.get('password')
 
         if username and password:
+            try:
+                user = User.objects.get(email=username)
+                username = user.username
+            except User.DoesNotExist:
+                pass
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(m.incorrect_username_password_combo)
@@ -161,16 +168,13 @@ class ContactForm(forms.Form):
         super(ContactForm, self).__init__(data=data, files=files, *args, **kwargs)
         self.request = request
     
-    name = forms.CharField(max_length=100, widget=forms.TextInput(),
-                           label=u'Your Name:')
-    email = forms.EmailField(widget=forms.TextInput(attrs=dict(maxlength=200)),
-                             label=u'Your Email:')
+    name = forms.CharField(max_length=100, widget=forms.TextInput(), label=u'Your Name:')
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict(maxlength=200)), label=u'Your Email:')
     
     body = forms.CharField(widget=forms.Textarea(), label=u'Message')
-    from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
     subject_template_name = "contact_us_form_subject.txt"
-    template_name = 'contact_us_form.txt'
+    template_name = 'contact_us_form.html'
     _context = None
     
     def message(self):
@@ -187,8 +191,7 @@ class ContactForm(forms.Form):
         """
         Renders the subject of the message to a string.
         """
-        subject = loader.render_to_string(self.subject_template_name,
-                                          self.get_context())
+        subject = loader.render_to_string(self.subject_template_name, self.get_context())
         return ''.join(subject.splitlines())
     
     def get_context(self):
@@ -203,7 +206,7 @@ class ContactForm(forms.Form):
         if not self.is_valid():
             raise ValueError("Message cannot be sent from invalid contact form")
         message_dict = {}
-        for message_part in ('from_email', 'message', 'recipient_list', 'subject'):
+        for message_part in ('message', 'recipient_list', 'subject'):
             attr = getattr(self, message_part)
             message_dict[message_part] = callable(attr) and attr() or attr
         return message_dict
@@ -213,10 +216,7 @@ class ContactForm(forms.Form):
         Builds and sends the email message.
         """
         dictionary = self.get_message_dict()
-        from django.core.mail import EmailMultiAlternatives
-        msg = EmailMultiAlternatives(dictionary['subject'], dictionary['message'], dictionary['from_email'], dictionary['recipient_list'])
-        msg.attach_alternative(dictionary['message'], 'text/html')
-        msg.send() 
+        send_html_mail(dictionary['subject'], dictionary['message'], dictionary['recipient_list'])
 
 class AkismetContactForm(ContactForm):
     """

@@ -9,11 +9,11 @@ from campus_org.models import CampusOrg
 class CampusOrgAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Required Info', {'fields': ['name', 'type']}),
-        ('Extra Info', {'fields': ['user', 'email', 'website', 'image', 'thumbnail', 'description', 'display']}),
+        ('Extra Info', {'fields': ['user', 'slug', 'email', 'website', 'image', 'thumbnail', 'description', 'display']}),
     ]
     list_display = ('name', 'type', 'display', 'user')
     list_filter = ('type',)
-    search_fields = ['name', 'user']
+    search_fields = ['name', 'user__username']
     date_hierarchy = 'last_updated'
 
     def response_change(self, request, obj):

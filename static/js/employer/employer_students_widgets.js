@@ -7,6 +7,7 @@ $(document).ready(function(){
         minWidth:multiselectMinWidth,
         click: function(event, ui) {
             student_list = ui.text;
+            student_list_id = ui.value;
             initiate_ajax_call();
         }
     });

@@ -1,0 +1,11 @@
+.free_trial_info_dialog .dialog_content_wrapper{
+    padding: 10px 25px;
+}
+#free_trial_steps{
+    list-style:decimal;
+    padding-left:30px;
+    margin:10px 0px;
+}
+.free_trial_info_dialog .button.close_dialog_link{
+    width:60px;
+}

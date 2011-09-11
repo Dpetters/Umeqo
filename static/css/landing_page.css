@@ -88,13 +88,6 @@ p {
     text-shadow: 0px -1px 0px #444;
     filter: dropshadow(color=#444444, offx=0, offy=-1);
 }
-p#innovative {
-    font-size: 20px;
-    line-height: 26px;
-    text-align: left;
-    color: #EEE;
-    margin-bottom: 33px;
-}
 p.deets {
     margin-bottom: 20px;
     text-align: justify;
@@ -125,7 +118,7 @@ span.img img {
 div.center {
     text-align: center;
     padding-top: 50px;
-    width: 860px;
+    width: 880px;
     margin: 0 auto;
 }
 strong {
@@ -137,7 +130,7 @@ em {
     font-style: italic;
 }
 .col {
-    width: 380px;
+    width: 390px;
     float: left;
     padding: 0 25px;
 }
@@ -227,11 +220,12 @@ a.black_button:hover {
 label.required span.error{
     display:none;
 }
-#working {
+#working, #innovative {
     font-size: 35px;
     line-height: 30px;
     color: #FFF;
     font-family: 'Rokkitt', serif;
+    text-align:center;
 }
 .message {
     text-align: center;
@@ -337,7 +331,7 @@ label.required span.error{
 #promotion a:hover {
     color: #EEE;
 }
-#sbc_logo {
+#logo {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;

@@ -1,4 +1,7 @@
-import ldap
+try:
+    import ldap
+except:
+    pass
 
 from django import forms
 from django.conf import settings as s
@@ -6,14 +9,14 @@ from django.utils.translation import ugettext as _
 from django.core.mail import EmailMessage
 
 from core.form_helpers import decorate_bound_field
-from student.models import Student, StudentPreferences, StudentInvite, \
-                            StudentDeactivation
+from student.models import Student, StudentPreferences, StudentInvite, StudentDeactivation
 from campus_org.form_helpers import campus_org_types_as_choices
 from campus_org.models import CampusOrg
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
 from core.view_helpers import does_email_exist
 from employer.models import Employer
 from core.fields import PdfField
+from registration.models import RegException
 from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages as m
@@ -21,9 +24,7 @@ from core import messages as m
 decorate_bound_field()
 
 class StudentAccountDeactivationForm(forms.ModelForm):
-    suggestion = forms.CharField(label="If you still wish to deactivate, \
-    please suggest how we can improve:", max_length=16384,
-    widget=forms.Textarea, required=False)
+    suggestion = forms.CharField(label="If you still wish to deactivate, please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
 
     class Meta:
         model = StudentDeactivation
@@ -31,11 +32,8 @@ class StudentAccountDeactivationForm(forms.ModelForm):
     
 class StudentRegistrationForm(forms.Form):
 
-    email = forms.EmailField(label="MIT email:", \
-                             widget=forms.TextInput(attrs={'tabindex':1}))
-    
-    password1 = forms.CharField(label="Password:", \
-    widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
+    email = forms.EmailField(label="MIT email:", widget=forms.TextInput(attrs={'tabindex':1}))
+    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
     
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -60,7 +58,7 @@ class StudentRegistrationForm(forms.Form):
         # --Not Connected to the Internet (dev w/o internet)
         # ----Allow registration. An error will be thrown that the email could
         # ----not be sent, but you can go into the admin and activate the user
-        if email[-len("umeqo.com"):] != "umeqo.com":
+        if email[-len("umeqo.com"):] != "umeqo.com" and not RegException.objects.filter(email=email).exists():
             # If after ldap check result==[None], then Im not connected to
             # the internet. If result==[], then I am connected and the email
             # is not a student's. 

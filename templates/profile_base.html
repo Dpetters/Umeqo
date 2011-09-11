@@ -11,6 +11,7 @@
 {% endcompress %}
 <script>
     var INVALID_URL = "{% text_snippet 'invalid_url' %}";
+    var HOME_URL = "{% url home %}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/profile_base.js"></script>

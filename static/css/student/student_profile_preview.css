@@ -13,6 +13,9 @@
 .student_main_info {
     line-height: 21px;
 }
+.student_main_info .saved_message{
+    vertical-align:top;
+}
 #first_student_main_info {
     border-top: none;
 }

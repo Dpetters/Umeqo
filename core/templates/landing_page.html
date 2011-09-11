@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
         <meta property="og:title" content="Umeqo - Recruiting Made Simple" />
         <meta property="og:url" content="http://umeqo.com" />
         <meta property="og:image" content="http://umeqo.com/static/images/fb_link_image.png" />
@@ -29,13 +30,12 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
         </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
         {% compress js %}
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
             <script src="{{STATIC_URL}}js/landing_page.js"></script>
         {% endcompress %}
     </head>
     <body>
-        <!--Sendgrid-->
         {% if email_error %}
             <div class="message">
                 The email you've submitted has already been recorded. Thank you for your interest!
@@ -63,10 +63,9 @@
         <div class="center">
             <h1>Umeqo</h1>
             <h3 class="mit">Coming to MIT Fall 2011</h3>
-
+            <p id="innovative">Umeqo is an innovative recruiting resource for <strong>students</strong> and <strong>employers</strong> to discover one another.</p>
             <div id="lotsaforms" class="row">
                 <div class="col">
-                    <p id="innovative">Umeqo is an innovative recruiting resource for <strong>students</strong> and <strong>employers</strong> to <em>discover one another</em>.</p>
                     <div id="login_module" class="module">
                         <h2>Already have an account?</h2>
                         <form action="{% url login %}" method="POST">
@@ -88,13 +87,17 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="working">We're working hard to craft the ultimate experience.</p>
-                    <p>Interested? Help us by participating in the beta!</p>
+                    <p id="working">Featured Event</p>
                     <div id="promotion">
-                      <h2>Drop your resume for the SBC BBQ!</h2>
-                      <img id="sbc_logo" src="{{STATIC_URL}}images/landing/sbc.jpg" alt="SBC" />
-                      <p>The SBC BBQ will feature dozens of companies including <strong>Cisco</strong> and <strong>Google</strong>.</p>
-                      <p>It starts 2:00pm on Tuesday, September 6 on Kresge Lawn, but you'll be able to get in on the action early by dropping your resume on the <a href="/events/5/sbc-bbq">official Umeqo event page</a>!</p>
+                      <h2>Traders@MIT Presents: "Arbitrage Trading" with Weiss Asset Management</h2>
+                      {% if featured_event.employer %}
+                      <a href="{{ featured_event.employer.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
+                      {% endif %}
+                      {% if featured_event.campus_org %}
+                      <a href="{{ featured_event.campus_org.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
+                      {% endif %}
+                      <p>You are invited  to hear from Portfolio Manager and Vice President Paul Sherman at Weiss Asset Management, a top hedge fund based locally in Boston.</p>
+                      <p>The event starts at 7:00pm on Wed, Sept 14th in 6-120. {% if featured_event %}You can RSVP on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -126,5 +129,24 @@
                 <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
             </div>
         </div>
+        <script type="text/javascript">
+        var _sf_async_config={uid:28685,domain:"umeqo.com"};
+        (function(){
+          function loadChartbeat() {
+            window._sf_endpt=(new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src',
+               (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+               "js/chartbeat.js");
+            document.body.appendChild(e);
+          }
+          var oldonload = window.onload;
+          window.onload = (typeof window.onload != 'function') ?
+             loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+        
+        </script>
     </body>
 </html>

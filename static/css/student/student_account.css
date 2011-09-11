@@ -16,3 +16,6 @@ label[for=id_suggestion] {
 #notification_preferences_table label {
     font-weight: 400;
 }
+ul#deactivation_consequences{
+   list-style:inside; 
+}

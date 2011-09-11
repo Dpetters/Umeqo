@@ -1,5 +1,7 @@
 from django.conf import settings as s
 
+search_filter_find = "Umeqo presents you with not only a student's resume, but also info applicable to your firm, such as event attendance. Potential candidates can be added to custom resume books that can be emailed and/or downloaded."
+
 # Employer Students
 no_students_selected = "No students selected."
 wait_until_resume_book_is_ready = "Please wait until the resume book is ready."
@@ -13,6 +15,16 @@ profile_saved = 'Your profile has been saved.'
 # Campus Org Profile Form
 campus_org_name_required = "Organization name is required."
 campus_org_type_required = "Organization type is required."
+
+#Event Page
+drop_resume_tooltip = "Logged-in students can click this button to drop off their resume."
+rsvp_yes_tooltip = "Logged-in students can click this button to RSVP."
+
+#Employer Profile 
+employer_name_required = "You must specify an employer name"
+
+# Employer Profile Preview
+subscribe_tooltip = "Logged-in students can click this button to subscribe to your employer for new event and deadline notifications."
 
 #Student Profile Form
 first_name_required = 'Enter your first name.'

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}
+Subscription Choices |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/free_trial_info_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_transaction_dialog.css" />
+{% endcompress %}
+<script>
+    var FREE_TRIAL_INFO_DIALOG_URL = "{% url free_trial_info_dialog %}";
+    var SUBSCRIPTION_TRANSACTION_URL = "{% url subscription_dialog %}";
+</script>
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_trial_info_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_transaction_dialog.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}    
+    <h1>Umeqo Subscription Choices</h1>
+    <div>
+        <div id="subscription_notes" class="left_side_container">
+            <img src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
+            <h2>What is Umeqo?</h2>
+            <p>Umeqo is an innovative recruiting resource for students and employers to discover one another. The platform empowers employers to easily filter and search student profiles, create resume books, and post and manage events and deadlines.</p>
+            <img src="{{ STATIC_URL }}images/icons/user-business.png" />
+            <h2>Who else is using Umeqo?</h2>
+            <p>Hundreds of students (soon-to-be the entire campus!), a dozen top firms, and MIT campus organizations are all using Umeqo to exchange information and help bring about a better recruiting experience for all.</p>
+            <img src="{{ STATIC_URL }}images/icons/wall.png" />
+            <h2>Safety and Security</h2>
+            <p><strong>We understand that your data is sensitive.</strong> <br> That is why we pledge to never track your activity on the site. We will never collect statistics about anything you do, and all your data will say 100% confidential.</p>
+        </div>
+        
+        <div class="grid col3">
+            <section class="first">
+                <header>
+                    <hgroup class="top">
+                        <h1>Free Trial</h1>
+                    </hgroup>
+                    <hgroup class="price">
+                        <h2><span class="style1">$</span><span class="style2">0</span><span class="style3">Monthly</span></h2>
+                    </hgroup>
+                </header>
+                <footer>
+                    <ul>
+                        <li>Access to Event RSVPs and Check-Ins</li>
+                        <li>Unlimited Custom Resume Book</li>
+                        <li>Email or Download Resume Books</li>
+                        <li>Shared Recruiter Account</li>
+                        <li>No Event Management Tools</li>
+                        <li>No Student Invitation Functionality</li>
+                        <li class="last">
+                            <a href="javascript:void(0)" data-action="{{free_trial_action}}" data-title="{{free_trial_dialog}}" data-subscription-type="free_trial" class="btn {% if free_trial_class_class %}{{free_trial_class}}{% else %}open_ftid_link{% endif %}">{% if free_trial_button %}{{free_trial_button}}{% else %}Learn More{% endif %}</a>
+                        </li
+                    </ul>
+                </footer>
+            </section>
+            <section class="last on">
+                <header>
+                    <hgroup class="top">
+                        <h1>Annual Subscription</h1>
+                    </hgroup>
+                    <hgroup class="price">
+                        <h2>
+                            <span id="contact_us_for_pricing" class="style1">{{ annual_text }}</span>
+                        </h2>
+                    </hgroup>
+                </header>
+                <footer>
+                    <ul>
+                        <li>Access to <strong>All</strong> Students</li>
+                        <li><strong>Unlimited</strong> Resume Books</li>
+                        <li><strong>Email or Download</strong> Resume Books</li>
+                        <li><strong>Individualized</strong> Recruiter Accounts</li>
+                        <li><strong>All</strong> Event Management Tools</li>
+                        <li><strong>Unlimited</strong> Student Invitation</li>
+                        <li class="last">
+                            <a href="javascript:void(0)" data-action="{{annual_action}}" data-title="{{annual_dialog}}" data-subscription-type="annual" class="btn {{annual_class}}">{{annual_button}}</a>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+        </div>
+    </div>
+
+    <div>
+        <h1 class="center">Umeqo Features At a Glance</h1>
+        <div class="feature no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/magnifier.png" /> Search, Filter, Find</h3>
+            <p>Umeqo presents not only a student’s resume, but also info applicable to your firm, such as event attendance.  Potential candidates can be added to custom resume books that can be emailed and/or downloaded.</p>
+        </div>
+        <div class="feature no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/calendar-medium.png" /> Effectively Plan Events</h3>
+            <p>Umeqo not only handles check-ins, but also presents you with an overview of both major campus activities and events hosted by other companies, allowing you to pick an optimal time for your event.</p>
+        </div>
+        <div class="feature no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/bank.png" /> Learn About the Campus</h3>
+            <p>With 420+ campus organizations documented, you will be able to click on those that any student is involved in to learn more about them.</p>
+        </div>
+        <div class="feature last no-margin-bottom">
+            <h3><img class="fugue-icon" alt="icon" src="{{ STATIC_URL }}images/icons/16/medal.png" /> Discover Promising Candidates</h3>
+            <p>Umeqo allows you to annotate students’ profiles, making it easy for you to remember promising candidates and share notes with colleagues.</p>
+        </div>
+    </div>
+{% endblock %}

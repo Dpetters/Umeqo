@@ -1,9 +1,9 @@
 <div id="logo_and_buttons" class="right_side_container">
     <img class="logo" src="{{MEDIA_URL}}{{employer.logo}}" />
     {% if subbed %}
-        <a id="employer_unsubscribe" href="#" class="button warning-button">Unsubscribe</a>
+        <a id="employer_unsubscribe" href="javascript:void(0)" class="button warning-button">Unsubscribe</a>
     {% else %}
-        <a id="employer_subscribe" href="#" class="button">Subscribe</a>
+        <a id="employer_subscribe" {% if preview %}disabled="disabled"{% endif %} href="#" class="button">Subscribe</a>
     {% endif %}    
 </div>
 
@@ -34,11 +34,11 @@
 
 <div class="description">{{employer.description|safe}}</div>
 <h2>Upcoming Events</h2>
-<ul class="event_list editable_event_list">
-    {% for event in events %}
+<ul class="event_list {% if user.campus_org or user.recruiter %}editable_event_list{% endif %}">
+    {% for event in upcoming_events %}
         {% include "event_snippet.html" %}
     {% empty %}
-        <li>This employer has no listed events.</li>
+        <li>This employer has no upcoming events.</li>
     {% endfor %}
 </ul>
 {% if isnotajax %}

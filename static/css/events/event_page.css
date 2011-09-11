@@ -201,19 +201,9 @@
     border-radius: 2px;
     border-bottom: 2px solid #F0F0F0;
 }
-.responses .event_rsvp:hover {
-    color: #FFF;
-    background-color: #BBB;
-    border-bottom: 2px solid #BBB;
-    cursor: default;
-}
 .responses .event_rsvp.hoverable {
     background-color: #FFF;
     border-bottom: 2px solid #557389;
-}
-.responses .event_rsvp.hoverable:hover {
-    background-color: #557389;
-    cursor: pointer;
 }
 .responses .event_rsvp .email {
     font-weight: 400;
@@ -234,7 +224,10 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    margin-top: 10px;
+    margin-top: 7px;
+}
+#event_checkin h3{
+    margin-top:0px;
 }
 #event_checkin_link {
     position: relative;
@@ -302,20 +295,27 @@
     z-index: 500;
     opacity: 0;
 }
-#event_checkin_main h2 {
-    margin: 0;
-    font-size: 25px;
-    color: #888;
+#event_checkin_header {
     padding: 10px 8px;
     background: #EEE;
     border-bottom: 2px solid #CCC;
 }
-#event_checkin_main h2 span {
+#event_checkin_header h2 {
+    margin: 0;
+    margin-right:250px;
+    font-size: 24px;
+    color: #888;
+
+}
+#event_checkin_count{
+    text-align:center;
+}
+#event_checkin_header span {
     font-size: 20px;
     color: #AAA;
     float: right;
 }
-#event_checkin_main h2 span img {
+#event_checkin_header span img {
     margin: 0 0 -16px -3px;
 }
 #event_checkin_main p {
@@ -457,7 +457,8 @@
     font-size: 18px;
 }
 #event_title{
-    margin-bottom:10px;
+    margin-bottom: 10px;
+    margin-right: 125px;
 }
 #event_title span {
     font-size: 16px;

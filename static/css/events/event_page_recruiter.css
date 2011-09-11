@@ -1,0 +1,10 @@
+.responses .event_rsvp:hover {
+    color: #FFF;
+    background-color: #BBB;
+    border-bottom: 2px solid #BBB;
+    cursor: default;
+}
+.responses .event_rsvp.hoverable:hover {
+    background-color: #557389;
+    cursor: pointer;
+}

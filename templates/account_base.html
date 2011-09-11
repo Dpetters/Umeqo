@@ -21,15 +21,8 @@ Account Settings |
     {% endcompress %}
 {% endblock %}
 
-{% block message_area %}
-{{ block.super }}
-{% if msg %}
-        <p>{{msg}}</p>
-{% endif %}
-{% endblock %}
-
 {% block content_area %}
-<div id="preferences_form_block" class="main_block no_top_margin with_side_nav">
+<div id="account_settings_block" class="main_block no_top_margin with_side_nav">
     <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/switch.png"/>
         <span class="main_block_header_title">Account Settings</span>
@@ -39,7 +32,7 @@ Account Settings |
             <ul>
                 <li><a href="#tabs-1">Account Overview</a></li>
                 <li id="preferences_tab"><a href="#tabs-2">Preferences</a></li>
-                {% block preferences_form_tab_declarations %}
+                {% block account_settings_tab_declarations %}
                 {% endblock %}
             </ul>
             <div id="tabs-1" class="clearfix">
@@ -94,13 +87,6 @@ Account Settings |
             </div>
             <div id="tabs-2" class="clearfix">
                 <div id="preferences">
-                    <h3 class="no_top_margin">Notification Preferences</h3>
-                    <p class="sub_header_message">Umeqo provides notifications in the form of emails. They will be sent to <strong>{{user.email}}</strong></p>
-                    <p id="global_settings_section">
-                        <span>Global Settings</span>
-                        <label for="global_email_checkbox">Always Email:</label>
-                        <input type="checkbox" id="global_email_checkbox" />
-                    </p>
                     {% block preferences %}
                     {% endblock %}
                                 <tr class="no_bottom_border">
@@ -119,7 +105,7 @@ Account Settings |
                     </form>
                 </div>
             </div>
-            {% block preferences_form_tab_definitions %}
+            {% block account_settings_tab_definitions %}
             {% endblock %}
         </div>
     </div>

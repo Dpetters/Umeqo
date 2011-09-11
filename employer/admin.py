@@ -7,13 +7,13 @@ from employer.models import Employer, EmployerStatistics, ResumeBook, Recruiter,
 
 class ResumeBookAdmin(admin.ModelAdmin):
     fields = ['resume_book', 'name']
-    list_display = ['recruiter', 'name', 'date_created']
+    list_display = ['recruiter', 'name', 'delivered', 'date_created']
     
 admin.site.register(ResumeBook, ResumeBookAdmin)
 
 
 class RecruiterAdmin(admin.ModelAdmin):
-    fields = ['user', 'employer', 'is_master']
+    fields = ['user', 'employer']
     list_display = ('user', 'employer', 'last_updated', 'date_created')
     search_fields = ['employer']
     date_hierarchy = 'date_created'

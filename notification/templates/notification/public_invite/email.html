@@ -1,0 +1,10 @@
+<p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
+
+<p>{{recruiter}} ({{employer}}) has invited you to the "{{event}}":</p>
+
+{% load core_extras %}
+<blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
+
+<p>Check out the event details and respond to the invitation by clicking <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}">here</a>.</p>
+
+<p>- The Umeqo Team</p>

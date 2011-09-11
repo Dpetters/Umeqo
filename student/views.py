@@ -1,14 +1,15 @@
 from __future__ import division
 from __future__ import absolute_import
 
+import datetime
+
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse, HttpResponseForbidden
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
 from django.utils import simplejson
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -20,7 +21,7 @@ from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
-from core.decorators import is_student, render_to
+from core.decorators import is_student, render_to, is_recruiter
 from core.forms import CreateLanguageForm
 from campus_org.forms import CreateCampusOrganizationForm
 from core.models import Language, EmploymentType, Industry
@@ -33,13 +34,28 @@ from countries.models import Country
 
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
+@render_to('student_registration_help.html')
+def student_registration_help(request, extra_context=None):
+    if request.is_ajax():
+        return {}
+    else:
+        return HttpResponseBadRequest("Request must be ajax.")
+    
+@login_required
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@render_to('student_profile_unparsable_resume.html')
+def student_profile_unparsable_resume(request, extra_context=None):
+    if request.is_ajax():
+        return {}
+    else:
+        return HttpResponseBadRequest("Request must be ajax.")
+
+@login_required
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
                     change_password_form_class = PasswordChangeForm, 
                     extra_context=None):
-    
-    if not request.user.student.profile_created:
-        return redirect('student_profile')
     
     if request.method == "GET":
         context = {}
@@ -59,6 +75,16 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
     else:
         return HttpResponseForbidden("Request must be a GET")
 
+@require_POST
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+def student_increment_resume_view_count(request):
+    if request.POST.has_key("student_id"):
+        student = Student.objects.get(id=request.POST['student_id'])
+        student.studentstatistics.resume_view_count += 1
+        student.studentstatistics.save()
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest("Student Id is missing")
 
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
@@ -160,7 +186,10 @@ def student_registration(request, backend = RegistrationBackend(),
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
-            student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
+            if form.cleaned_data.has_key("first_name") and form.cleaned_data.has_key("last_name"):
+                student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
+            else:
+                student = Student(user=new_user)
             umeqo = Employer.objects.get(name="Umeqo")
             student.save()
             if form.cleaned_data.has_key("course"):
@@ -194,22 +223,17 @@ def student_registration(request, backend = RegistrationBackend(),
     context.update(extra_context or {}) 
     return context
 
-
-def student_registration_complete(request,
-            template_name='student_registration_complete.html',
-            extra_context = None):
+@render_to('student_registration_complete.html')
+def student_registration_complete(request, extra_context = None):
     email = request.GET.get('email', None)
     context = {'email': email}
     context.update(extra_context)
-    return render_to_response(template_name, context,
-            context_instance = RequestContext(request))
+    return context
 
 @login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile.html")
-def student_profile(request,
-                     form_class=StudentProfileForm,
-                     extra_context=None):
+def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
@@ -231,6 +255,7 @@ def student_profile(request,
                     data['unparsable_resume'] = True
             if data['valid'] and not data['unparsable_resume']:
                 student.profile_created = True
+                student.last_updated = datetime.datetime.now()
                 student.save()
         else:
             data = {'valid':False,
@@ -314,9 +339,13 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
             errors['id_resume'] = messages.resume_problem
             data['errors'] = errors
         elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
+            request.user.student.last_updated = datetime.datetime.now()
+            request.user.student.save()
             data = {'valid':False}
             data['unparsable_resume'] = True
         else:
+            request.user.student.last_updated = datetime.datetime.now()
+            request.user.student.save()
             data = {'valid':True}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
@@ -361,7 +390,6 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
         return context
     else:
         return HttpResponseForbidden("You must be logged in.")        
-
 
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):

@@ -3,36 +3,31 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 20, 
-   "start_datetime": "2011-12-01 00:00:00", 
+   "view_count": 8, 
+   "start_datetime": "2011-09-10 19:00:00", 
    "audience": [], 
-   "attending_employers": [], 
-   "name": "Umeqo Launch", 
+   "attending_employers": [
+    6
+   ], 
+   "name": "Introductory A The Event!", 
    "is_public": true, 
-   "description": "<p>\r\n\tThis is an example of what employer events will look like!</p>\r\n", 
+   "edits": [
+    3
+   ], 
+   "description": "<p>\r\n\tfirst one</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": -71.098124330000005, 
-   "latitude": 42.355969399999999, 
-   "edits": [], 
+   "longitude": -71.098349690000006, 
+   "latitude": 42.350392990000003, 
+   "short_slug": null, 
    "is_drop": false, 
-   "end_datetime": "2011-12-01 13:30:00", 
-   "rsvp_message": "Bring your party hats!", 
+   "end_datetime": "2011-09-10 20:00:00", 
+   "rsvp_message": "", 
    "owner": 3, 
-   "date_created": "2011-08-27 12:48:16", 
-   "type": 5, 
-   "slug": "umeqo-launch", 
-   "location": "Burton-Conner House"
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 6, 
-   "student": 1, 
-   "datetime_created": "2011-08-28 16:34:44"
+   "date_created": "2011-09-10 19:16:38", 
+   "type": 3, 
+   "slug": "introductory-a-the-event", 
+   "location": "Student House"
   }
  }, 
  {
@@ -146,43 +141,9 @@
   }
  }, 
  {
-  "pk": 1, 
-  "model": "employer.recruiter", 
-  "fields": {
-   "is_master": false, 
-   "date_created": "2011-07-08 00:11:22", 
-   "last_updated": "2011-08-27 16:16:32", 
-   "user": 3, 
-   "employer": 6
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "employer.recruiter", 
-  "fields": {
-   "is_master": false, 
-   "date_created": "2011-07-08 00:11:33", 
-   "last_updated": "2011-08-27 16:16:25", 
-   "user": 8, 
-   "employer": 5
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "employer.recruiter", 
-  "fields": {
-   "is_master": false, 
-   "date_created": "2011-08-27 16:18:31", 
-   "last_updated": "2011-08-27 16:18:31", 
-   "user": 9, 
-   "employer": 5
-  }
- }, 
- {
   "pk": 6, 
   "model": "employer.recruiter", 
   "fields": {
-   "is_master": false, 
    "date_created": "2011-08-27 16:18:23", 
    "last_updated": "2011-08-27 16:18:23", 
    "user": 16, 
@@ -190,10 +151,29 @@
   }
  }, 
  {
+  "pk": 2, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "date_created": "2011-07-08 00:11:33", 
+   "last_updated": "2011-08-27 16:16:25", 
+   "user": 8, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "date_created": "2011-07-08 00:11:22", 
+   "last_updated": "2011-08-27 16:16:32", 
+   "user": 3, 
+   "employer": 6
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.recruiter", 
   "fields": {
-   "is_master": false, 
    "date_created": "2011-07-08 00:12:22", 
    "last_updated": "2011-07-19 00:03:51", 
    "user": 11, 
@@ -204,7 +184,6 @@
   "pk": 8, 
   "model": "employer.recruiter", 
   "fields": {
-   "is_master": false, 
    "date_created": "2011-08-27 16:18:41", 
    "last_updated": "2011-08-27 16:18:41", 
    "user": 10, 
@@ -212,9 +191,20 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "date_created": "2011-08-27 16:18:31", 
+   "last_updated": "2011-08-27 16:18:31", 
+   "user": 9, 
+   "employer": 5
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "employer.resumebook", 
   "fields": {
+   "delivered": false, 
    "last_updated": "2011-08-26 15:32:01", 
    "name": null, 
    "students": [
@@ -230,11 +220,18 @@
   "pk": 2, 
   "model": "employer.resumebook", 
   "fields": {
-   "last_updated": "2011-08-27 17:06:03", 
+   "delivered": false, 
+   "last_updated": "2011-09-07 15:55:24", 
    "name": null, 
-   "students": [], 
+   "students": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5
+   ], 
    "recruiter": 6, 
-   "resume_book": "", 
+   "resume_book": "employer/resumebook/__recruiter1@umeqo.com_2011-09-07-15-55-23.pdf", 
    "date_created": "2011-08-27 17:06:03"
   }
  }, 
@@ -491,7 +488,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-28 20:48:34", 
+   "last_updated": "2011-09-06 05:15:27", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -515,9 +512,7 @@
     6
    ], 
    "gpa": "4.800", 
-   "campus_involvement": [
-    394
-   ], 
+   "campus_involvement": [], 
    "languages": [], 
    "profile_created": true, 
    "school_year": 3, 
@@ -528,7 +523,7 @@
    ], 
    "website": "", 
    "second_major": 8, 
-   "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-08-28-20-48-34.pdf", 
+   "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-09-06-05-15-27.pdf", 
    "user": 2, 
    "industries_of_interest": [
     15, 
@@ -544,7 +539,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Joshi", 
-   "last_updated": "2011-08-27 17:06:22", 
+   "last_updated": "2011-09-06 05:15:19", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -563,9 +558,7 @@
    "first_major": 12, 
    "subscriptions": [], 
    "gpa": "4.500", 
-   "campus_involvement": [
-    394
-   ], 
+   "campus_involvement": [], 
    "languages": [
     3, 
     84
@@ -578,7 +571,7 @@
    ], 
    "website": "", 
    "second_major": 25, 
-   "resume": "student/student/joshi_hrishikesh_student2@umeqo.com_2011-08-23-20-36-01.pdf", 
+   "resume": "student/student/joshi_hrishikesh_student2@umeqo.com_2011-09-06-05-15-19.pdf", 
    "user": 4, 
    "industries_of_interest": [
     40
@@ -592,7 +585,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Kao", 
-   "last_updated": "2011-08-27 17:06:22", 
+   "last_updated": "2011-09-06 05:15:09", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -614,7 +607,7 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": 4, 
-   "resume": "student/student/kao_albert_student3@umeqo.com_2011-08-23-21-01-29.pdf", 
+   "resume": "student/student/kao_albert_student3@umeqo.com_2011-09-06-05-15-09.pdf", 
    "user": 5, 
    "industries_of_interest": [], 
    "act": null, 
@@ -626,7 +619,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Hsu", 
-   "last_updated": "2011-08-27 17:06:22", 
+   "last_updated": "2011-09-06 05:14:53", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -648,7 +641,7 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": 23, 
-   "resume": "student/student/hsu_terence_student4@umeqo.com_2011-08-23-21-01-48.pdf", 
+   "resume": "student/student/hsu_terence_student4@umeqo.com_2011-09-06-05-14-53.pdf", 
    "user": 6, 
    "industries_of_interest": [], 
    "act": null, 
@@ -660,10 +653,10 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Dearing", 
-   "last_updated": "2011-08-27 17:06:22", 
+   "last_updated": "2011-09-06 05:14:41", 
    "sat_m": null, 
    "graduation_month": "4", 
-   "older_than_21": "", 
+   "older_than_21": null, 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
@@ -682,7 +675,7 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/dearing_zachary_student5@umeqo.com_2011-08-23-21-02-16.pdf", 
+   "resume": "student/student/dearing_zachary_student5@umeqo.com_2011-09-06-05-14-41.pdf", 
    "user": 7, 
    "industries_of_interest": [], 
    "act": null, 
@@ -690,45 +683,11 @@
   }
  }, 
  {
-  "pk": 7, 
-  "model": "student.student", 
-  "fields": {
-   "last_name": "Dearing", 
-   "last_updated": "2011-08-27 22:21:33", 
-   "sat_m": null, 
-   "graduation_month": "5", 
-   "older_than_21": "", 
-   "sat_t": null, 
-   "sat_v": null, 
-   "sat_w": null, 
-   "keywords": " zachary dearing campus address hereford boston tel email zdearing mit edu address waverly dallas education massachusetts institute technology june gpa candidate bachelor economics political minor management cambridge relevant coursework principles micro macroeconomics intermediate macro microeconomics economic financial crises finance theory accounting statistical economics multivariable calculus episcopal dallas gpa dallas salutatorian national scholar national merit semi finalist mckinsey business analyst stamford assessed strategic vertically segmenting telecom business customer billion annual revenue address telecom needs healthcare technology customers developed baseline understanding divisions pharmaceutical clients identify divisional differences potential risks opportunities clients prepared integration evaluated business risk opportunity outsourcing offshoring clinical data management india goldman sachs financial analyst securities york structuring project mortgages desk senior partner examining arbitrage spreads mortgage backed security values underlying collateral priced securities using intext implemented proprietary loans model analyzed publicly traded buyout candidate cap using fundamentals determined fairly valued worked critical growth contingency plans psi minority stake facing imminent cash communication media advisors consulting analyst boutique consulting investment management firm boston staffed due diligence project investment evaluating cable markets southern modeled future revenue streams operating costs growth opportunities based upon trends demographics worked founding partner construct predictive models compendium maverick financial analyst intern operations hedge fund accounting dallas august parsed information consolidated funds prospectus easier senior traders compiled positions performance data facilitate its quantitative analysis project maintained item fixed asset register supported excel based spreadsheet analysis united states senate washington january june facilitated voting procedure ensuring senators voted informed issue being decided upon pcs founder owner computer assembly business dallas july september founded total revenue built sold custom computers customers leadership sloan business club sbc president director corporate relations cambridge organization annual budget specifically focusing membership development building sponsorship relations firms organized merger largest business organizations campus suma sebc created marketed sponsorship programs contacted convinced firms commit mit underclassmen giving campaign cambridge october devised innovative fundraising strategy leading participation rate beating previous participation fund service trips abroad committee publicity committee member cambridge shared responsibility marketing production mit brass rat committee publicity efforts events combined budget attendance interests skills java asp net php javascript html marathon running golf politics architecture chi phi", 
-   "looking_for": [], 
-   "countries_of_citizenship": [], 
-   "first_name": "Zachary", 
-   "first_major": 14, 
-   "subscriptions": [], 
-   "gpa": "4.500", 
-   "campus_involvement": [], 
-   "languages": [], 
-   "profile_created": true, 
-   "school_year": 4, 
-   "graduation_year": 1, 
-   "previous_employers": [], 
-   "website": "", 
-   "second_major": null, 
-   "resume": "student/student/dearing_zachary_zdearing@mit.edu_2011-08-27-22-21-32.pdf", 
-   "user": 18, 
-   "industries_of_interest": [], 
-   "act": null, 
-   "date_created": "2011-08-27 21:47:13"
-  }
- }, 
- {
-  "pk": 11, 
+  "pk": 10, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-08-30 14:40:53", 
+   "last_updated": "2011-09-10 19:28:06", 
    "sat_m": null, 
    "graduation_month": "5", 
    "older_than_21": "", 
@@ -739,24 +698,24 @@
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "Dmitrij", 
-   "first_major": 12, 
+   "first_major": 24, 
    "subscriptions": [
     6
    ], 
-   "gpa": "3.400", 
+   "gpa": "4.500", 
    "campus_involvement": [], 
    "languages": [], 
    "profile_created": true, 
    "school_year": 3, 
-   "graduation_year": 2, 
+   "graduation_year": 3, 
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-08-30-14-40-52.pdf", 
-   "user": 25, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-10-19-28-06.pdf", 
+   "user": 31, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-08-30 14:38:11"
+   "date_created": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -820,38 +779,25 @@
   }
  }, 
  {
-  "pk": 11, 
+  "pk": 10, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-08-30 14:38:11", 
+   "last_updated": "2011-09-10 19:27:50", 
    "email_on_invite_to_private_event": true, 
    "email_on_invite_to_public_event": true, 
-   "student": 11, 
-   "date_created": "2011-08-30 14:38:11"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "student.studentpreferences", 
-  "fields": {
-   "email_on_new_subscribed_employer_event": false, 
-   "last_updated": "2011-08-27 21:47:13", 
-   "email_on_invite_to_private_event": false, 
-   "email_on_invite_to_public_event": false, 
-   "student": 7, 
-   "date_created": "2011-08-27 21:47:13"
+   "student": 10, 
+   "date_created": "2011-09-10 19:27:50"
   }
  }, 
  {
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-07 20:30:03", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 1, 
    "date_created": "2011-07-07 20:30:03"
   }
@@ -860,11 +806,10 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 15:25:30", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 2, 
    "date_created": "2011-07-10 15:25:30"
   }
@@ -873,11 +818,10 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 20:05:56", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 3, 
    "date_created": "2011-07-10 20:05:56"
   }
@@ -886,11 +830,10 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-10 20:26:02", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 4, 
    "date_created": "2011-07-10 20:26:02"
   }
@@ -899,39 +842,24 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-07-23 10:53:54", 
-   "event_invite_count": 0, 
+   "shown_in_results_count": 2, 
+   "last_updated": "2011-09-07 15:55:19", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
   }
  }, 
  {
-  "pk": 11, 
+  "pk": 10, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-08-30 14:38:11", 
-   "event_invite_count": 0, 
+   "last_updated": "2011-09-10 19:27:50", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 11, 
-   "date_created": "2011-08-30 14:38:11"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "student.studentstatistics", 
-  "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-08-27 21:47:13", 
-   "event_invite_count": 0, 
-   "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
-   "student": 7, 
-   "date_created": "2011-08-27 21:47:13"
+   "student": 10, 
+   "date_created": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -1304,7 +1232,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-01 02:34:46", 
+   "last_login": "2011-09-11 15:20:19", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1322,7 +1250,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-30 17:18:43", 
+   "last_login": "2011-09-11 11:20:01", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1340,7 +1268,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-27 17:06:18", 
+   "last_login": "2011-09-11 15:22:21", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1497,53 +1425,17 @@
   "model": "auth.user", 
   "fields": {
    "username": "recruiter1@umeqo.com", 
-   "first_name": "", 
-   "last_name": "", 
+   "first_name": "Eliza", 
+   "last_name": "Woods", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-28 16:20:52", 
+   "last_login": "2011-09-08 22:14:27", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
    "email": "recruiter1@umeqo.com", 
    "date_joined": "2011-08-27 16:17:29"
-  }
- }, 
- {
-  "pk": 25, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "dpetters@mit.edu", 
-   "first_name": "Dmitrij", 
-   "last_name": "Petters", 
-   "is_active": true, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-08-30 14:38:26", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$315b3$df74476f04738e9750564cf56d41c98b18150c29", 
-   "email": "dpetters@mit.edu", 
-   "date_joined": "2011-08-30 14:38:10"
-  }
- }, 
- {
-  "pk": 18, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "zdearing@mit.edu", 
-   "first_name": "", 
-   "last_name": "", 
-   "is_active": true, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-08-27 21:48:56", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$e9d0a$722d99370788e4592eb65b1aa91af0bb36f3b17e", 
-   "email": "zdearing@mit.edu", 
-   "date_joined": "2011-08-27 21:47:11"
   }
  }, 
  {
@@ -1556,12 +1448,30 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-01 02:35:32", 
+   "last_login": "2011-09-09 16:13:36", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
    "email": "sbc-exec@mit.edu", 
    "date_joined": "2011-09-01 02:25:42"
+  }
+ }, 
+ {
+  "pk": 31, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "dpetters@mit.edu", 
+   "first_name": "Dmitrij", 
+   "last_name": "Petters", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-09-10 19:27:56", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$33005$7b14089212139905aaf81e3bfbc54d8583160ea7", 
+   "email": "dpetters@mit.edu", 
+   "date_joined": "2011-09-10 19:27:50"
   }
  }, 
  {
@@ -1664,29 +1574,20 @@
   }
  }, 
  {
-  "pk": 24, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "is_verified": true, 
-   "user": 25, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 17, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "is_verified": false, 
-   "user": 18, 
-   "last_password_change_date": null
-  }
- }, 
- {
   "pk": 25, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": true, 
    "user": 26, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 30, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "is_verified": true, 
+   "user": 31, 
    "last_password_change_date": null
   }
  }, 
@@ -2991,16 +2892,6 @@
   }
  }, 
  {
-  "pk": 233, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-08-27 21:48:56", 
-   "session_key": "f65181e16db413eee89af9216096c460", 
-   "last_updated": "2011-08-27 21:48:56", 
-   "user": 18
-  }
- }, 
- {
   "pk": 237, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -3191,13 +3082,13 @@
   }
  }, 
  {
-  "pk": 276, 
+  "pk": 303, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-08-30 14:38:26", 
-   "session_key": "503b010367ecceeea813bed56e7bb5f0", 
-   "last_updated": "2011-08-30 14:38:26", 
-   "user": 25
+   "date_created": "2011-09-02 23:01:49", 
+   "session_key": "0bd48d68684ff73e98cd8894d0110d64", 
+   "last_updated": "2011-09-02 23:01:49", 
+   "user": 2
   }
  }, 
  {
@@ -3361,19 +3252,431 @@
   }
  }, 
  {
-  "pk": 6, 
-  "model": "registration.registrationprofile", 
+  "pk": 284, 
+  "model": "registration.sessionkey", 
   "fields": {
-   "activation_key": "ALREADY_ACTIVATED", 
-   "user": 25
+   "date_created": "2011-09-01 04:29:07", 
+   "session_key": "1a2f13ee3251cc6283408bec19be635a", 
+   "last_updated": "2011-09-01 04:29:07", 
+   "user": 1
   }
  }, 
  {
-  "pk": 2, 
+  "pk": 285, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 04:33:32", 
+   "session_key": "c3f7818810745e424a8fc1c24f7e8021", 
+   "last_updated": "2011-09-01 04:33:32", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 286, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 09:02:35", 
+   "session_key": "71c8f9368a43f2cf2a382a1eefaa1b10", 
+   "last_updated": "2011-09-01 09:02:35", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 287, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 09:02:47", 
+   "session_key": "513645bccb413efc077fbb99a80c73ff", 
+   "last_updated": "2011-09-01 09:02:47", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 288, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 09:02:55", 
+   "session_key": "895885ad496b067989b8a473b38a6a85", 
+   "last_updated": "2011-09-01 09:02:55", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 290, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 09:08:07", 
+   "session_key": "bbdd8f9c77fcc6393f5c341b199174e1", 
+   "last_updated": "2011-09-01 09:08:07", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 292, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 09:08:53", 
+   "session_key": "a84ba6ddc33b5560d98b7f18b9c404ae", 
+   "last_updated": "2011-09-01 09:08:53", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 293, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 10:59:23", 
+   "session_key": "8b16b55c644519fc26a89fe4e7dbdc09", 
+   "last_updated": "2011-09-01 10:59:23", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 294, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-01 11:02:18", 
+   "session_key": "0c3e26c8b0f252dfaed56f9758df3e24", 
+   "last_updated": "2011-09-01 11:02:18", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 295, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 08:52:03", 
+   "session_key": "f97da7ee3b37be06f1f0a535e030f461", 
+   "last_updated": "2011-09-02 08:52:03", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 296, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 21:49:05", 
+   "session_key": "945ceaa014f543a49299bbeee164e9f8", 
+   "last_updated": "2011-09-02 21:49:05", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 297, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 21:50:38", 
+   "session_key": "3ddab6ebfd32019e2fd9bd5fa601da8d", 
+   "last_updated": "2011-09-02 21:50:38", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 299, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 22:35:41", 
+   "session_key": "87c3c436eb1147edb3aa33da03ec6333", 
+   "last_updated": "2011-09-02 22:35:41", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 300, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 22:50:22", 
+   "session_key": "e6f5e124cd98086b0a6bbd1cc0fdec56", 
+   "last_updated": "2011-09-02 22:50:22", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 302, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-02 23:01:11", 
+   "session_key": "91568bb1df7db0089cce208e5b5e5fde", 
+   "last_updated": "2011-09-02 23:01:11", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 305, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-04 13:45:26", 
+   "session_key": "1a7af6b29ec2ed64f8ffcca7f8065378", 
+   "last_updated": "2011-09-04 13:45:26", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 306, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-07 15:32:11", 
+   "session_key": "56cae493caa385b386e0cb3290c98cd2", 
+   "last_updated": "2011-09-07 15:32:11", 
+   "user": 16
+  }
+ }, 
+ {
+  "pk": 308, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 21:21:13", 
+   "session_key": "88142e354544913571c4a8e631991a3d", 
+   "last_updated": "2011-09-08 21:21:13", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 311, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:12:27", 
+   "session_key": "889bcfd5b852d64af0b79a16087a6a49", 
+   "last_updated": "2011-09-08 22:12:27", 
+   "user": 16
+  }
+ }, 
+ {
+  "pk": 312, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:12:37", 
+   "session_key": "ad6bc6d08ec7d4a45b93181c5506e6f9", 
+   "last_updated": "2011-09-08 22:12:37", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 316, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:53:54", 
+   "session_key": "53363038c66e83f26fb290f70a459ef1", 
+   "last_updated": "2011-09-08 22:53:54", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 314, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:42:04", 
+   "session_key": "ee7ccf5d04f8955308fb5ad2e21d945e", 
+   "last_updated": "2011-09-08 22:42:04", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 317, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:54:01", 
+   "session_key": "88f23f57fe6947dc5dfb0f5eaaf08fe9", 
+   "last_updated": "2011-09-08 22:54:01", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 322, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 01:03:12", 
+   "session_key": "aec73829aebebed6a4647c9008ac0a69", 
+   "last_updated": "2011-09-09 01:03:12", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 320, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:58:06", 
+   "session_key": "0dc8b8b52796bc32eec97e0be5825e23", 
+   "last_updated": "2011-09-08 22:58:06", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 321, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-08 22:59:28", 
+   "session_key": "5eca8a9bbdfb27a8af80860ced776642", 
+   "last_updated": "2011-09-08 22:59:28", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 324, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 12:19:27", 
+   "session_key": "13d4d099091c00999b79864749f18822", 
+   "last_updated": "2011-09-09 12:19:27", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 343, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:27:56", 
+   "session_key": "ea51ecd100e983ae8923e631ef32a799", 
+   "last_updated": "2011-09-10 19:27:56", 
+   "user": 31
+  }
+ }, 
+ {
+  "pk": 328, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 12:48:14", 
+   "session_key": "858faa41ada124fe5d7690d898281fba", 
+   "last_updated": "2011-09-09 12:48:14", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 330, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 16:13:15", 
+   "session_key": "89e6e46647e9fb18395baad53cbc4ce3", 
+   "last_updated": "2011-09-09 16:13:15", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 331, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-09 16:13:36", 
+   "session_key": "9eaf8d050971708ae0195ab2c3b4bd66", 
+   "last_updated": "2011-09-09 16:13:36", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 332, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:11:37", 
+   "session_key": "0d52e7eec277dd0f3ce14a4fc3e58285", 
+   "last_updated": "2011-09-10 19:11:37", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 334, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:16:05", 
+   "session_key": "3c674dcedd6588ec24c0fe326f81d5cf", 
+   "last_updated": "2011-09-10 19:16:05", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 335, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:16:22", 
+   "session_key": "0b87c3a880d13d614cd1eadf2bd363cd", 
+   "last_updated": "2011-09-10 19:16:22", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 336, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:19:22", 
+   "session_key": "8eb762f68a097ea1c0348fdc1c3e8980", 
+   "last_updated": "2011-09-10 19:19:22", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 337, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:21:30", 
+   "session_key": "c26d885d1c741cdb4d6c7d7fdf460db4", 
+   "last_updated": "2011-09-10 19:21:30", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 338, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:21:39", 
+   "session_key": "e7c753f7ecf7a687a2c7f8ab41962a86", 
+   "last_updated": "2011-09-10 19:21:39", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 340, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:23:06", 
+   "session_key": "5b8bbcc91371a7306b01f3bffef424b3", 
+   "last_updated": "2011-09-10 19:23:06", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 342, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-10 19:27:33", 
+   "session_key": "30d9635eb4775604d9765a6ef297102a", 
+   "last_updated": "2011-09-10 19:27:33", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 344, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-11 11:20:01", 
+   "session_key": "4c9940dbeb5ce47604f1de217f05003c", 
+   "last_updated": "2011-09-11 11:20:01", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 345, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-11 15:20:19", 
+   "session_key": "994427ce9c601628d504423366abd269", 
+   "last_updated": "2011-09-11 15:20:19", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 346, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-11 15:22:21", 
+   "session_key": "856a0493cf9476d69122ae93db263398", 
+   "last_updated": "2011-09-11 15:22:21", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 5, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 18
+   "user": 31
   }
  }
 ]

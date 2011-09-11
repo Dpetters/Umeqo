@@ -24,7 +24,7 @@ class CampusOrgProfileForm(CreateCampusOrganizationForm):
     email = forms.EmailField(label="E-mail:", required=False)
     website = forms.URLField(label="Website:", required=False)
     image = forms.ImageField(label="Image:", required=False)
-    description = forms.CharField(label="Description", widget=forms.Textarea(), max_length = 500, required=False)
+    description = forms.CharField(label="Description", widget=forms.Textarea(), max_length = 1000, required=False)
     
     class Meta:
         fields = ('name',

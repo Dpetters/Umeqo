@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Resume Book History |
+{% endblock %}
+
+{% block metadata %}
+    {{block.super}}
+    {% load compress %}
+    {% compress css %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_resume_books.css" />
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_deliver_resume_book.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+    {% endcompress %}
+    <script>
+        var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
+        var RESUME_BOOK_CURRENT_CREATE_URL = "{% url employer_resume_book_current_create %}";
+        var RESUME_BOOK_CURRENT_DELIVER_URL = "{% url employer_resume_book_current_deliver %}";
+        var RESUME_BOOK_CURRENT_DOWNLOAD_URL = "{% url employer_resume_book_current_download %}";
+        var RESUME_BOOK_CURRENT_DELIVERED_URL = "{% url employer_resume_book_current_delivered %}";
+    </script>
+    {% compress js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_delivery.js"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+
+<div class="main_block no_top_margin with_side_nav">
+    <div class="main_block_content resume_book_list">
+        <h1>Resume Book History</h1>
+        <ul id="resume_book_list">
+            {% for resume_book in resume_books %}
+                <li>
+                    <div class="details">
+                        <span>{{ resume_book.name }}</span>
+                        <span>{{resume_book.id}}
+                    </div>
+                    <a class="student_deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
+                </li>
+            {% empty %}
+                <li class="empty_notices">You have not created any resume books yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to create one.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

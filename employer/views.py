@@ -9,31 +9,32 @@ import re
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.units import cm
 from pyPdf import PdfFileWriter, PdfFileReader
-from operator import attrgetter
-from datetime import datetime 
+from datetime import datetime, date
 
+from django.db.models import Q
 from django.core.files import File
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 from django.core.urlresolvers import reverse
 
-from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
 from employer import enums as employer_enums
-from employer.models import ResumeBook, Employer, EmployerStudentComment
-from employer.forms import EmployerProfileForm, RecruiterPreferencesForm, StudentFilteringForm, StudentDefaultFilteringParametersForm, StudentSearchForm, DeliverResumeBookForm
-from employer.views_helper import get_paginator, employer_search_helper, get_employer_events
+from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
+from employer.forms import EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
+from employer.views_helper import get_paginator, employer_search_helper
 from student import enums as student_enums
+from subscription.models import EmployerSubscription, Subscription
 from student.models import Student
 
 @require_GET
@@ -50,26 +51,51 @@ def employer(request):
     
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
+@has_any_subscription
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug=slug)
     except Employer.DoesNotExist:
-        return HttpResponseNotFound("No employer with the slug %s exists." % (slug))
+        raise Http404
     
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
     elif is_recruiter(request.user):
-        context = {'employer':employer, 'events':get_employer_events(employer)}
+        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
         context.update(extra_context or {})
         return context
+    
+@login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_recruiter_new.html")
+def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.username = user.email
+                user.save()
+                form.save_m2m()
+                Recruiter.objects.create(user = user, employer = request.user.recruiter.employer)
+                data = {}
+            else:
+                data = {'errors': form.errors }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            form = form_class()
+        context = {'form': form }
+        context.update(extra_context or {}) 
+        return context
+    else:
+        return HttpResponseBadRequest("Request must be ajax.")
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account.html")
 @require_GET
-def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
-                     change_password_form_class = PasswordChangeForm, extra_context=None):
+def employer_account(request, preferences_form_class = RecruiterPreferencesForm, change_password_form_class = PasswordChangeForm, extra_context=None):
     context = {}
     msg = request.GET.get('msg', None)
     if msg:
@@ -77,14 +103,63 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
             'password-changed': messages.password_changed,
         }
         context["msg"] = page_messages[msg]
+    try:
+        es = request.user.recruiter.employer.employersubscription
+        free_trial = Subscription.objects.get(name="Free Trial")
+        if es == free_trial:
+            if not es.expired:
+                context["subscription_button_text"] = "Upgrade Subscription"
+        else:
+            context["subscription_button_text"] = "Modify Subscription"
+        context['subscription'] = es
+        if es.cancelled:
+            context['subscription_text'] = "Cancelled"
+            context['subscription_class'] = "cancelled"
+        elif es.expired():
+            context['subscription_text'] = "Expired"
+            context['subscription_class'] = "expired"
+        else:
+            if es.expires < date.today():
+                context['subscription_text'] = "Grace Period"
+                context['subscription_class'] = "grace"
+            else:
+                context['subscription_text'] = "Active"
+                context['subscription_class'] = "active"
+    except EmployerSubscription.DoesNotExist:
+        context["subscription_button_text"] = "Subscribe"
+    context['transactions'] = request.user.recruiter.employer.transaction_set.all().order_by("timestamp")
+    context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)
     context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     context.update(extra_context or {})
     return context
 
+@login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_account_delete.html")
+def employer_account_delete(request):
+
+    if request.is_ajax():
+        if request.method == "POST":
+                return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+        else:
+            context = {}
+            return context
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_annual_subscription
+@require_GET
+@render_to("employer_other_recruiters.html")
+def employer_other_recruiters(request):
+    context = {'other_recruiters':request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)}
+    return context
+
+@login_required
+@user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
@@ -95,12 +170,14 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
         data = {'errors': form.errors }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
+
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@has_any_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+        form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter.employer)
         data = []
         if form.is_valid():
             form.save()
@@ -114,6 +191,7 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
         
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_student_toggle_star(request):
     if request.POST.has_key('student_id'):
@@ -131,6 +209,7 @@ def employer_student_toggle_star(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_students_add_star(request):
     if request.POST.has_key('student_ids'):
@@ -145,6 +224,7 @@ def employer_students_add_star(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_students_remove_star(request):
     if request.POST.has_key('student_ids'):
@@ -159,6 +239,7 @@ def employer_students_remove_star(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_student_comment(request):
     if request.POST.has_key('student_id'):
@@ -179,20 +260,22 @@ def employer_student_comment(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_resume_book_current_toggle_student(request):
     if request.POST.has_key('student_id'):
         student = Student.objects.get(id=request.POST['student_id'])
-        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-        if not resume_books.exists():
-            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-        else:
-            current_resume_book = resume_books.order_by('-date_created')[0]
-        if student in current_resume_book.students.all():
-            current_resume_book.students.remove(student)
+        try:
+            resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+        except ResumeBook.DoesNotExist:
+            resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+        if student in resume_book.students.all():
+            resume_book.students.remove(student)
             data = {'action':employer_enums.REMOVED}  
         else:
-            current_resume_book.students.add(student)
+            resume_book.students.add(student)
+            student.studentstatistics.add_to_resumebook_count += 1
+            student.studentstatistics.save()
             data = {'action':employer_enums.ADDED}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
@@ -201,38 +284,40 @@ def employer_resume_book_current_toggle_student(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_resume_book_current_add_students(request):
     if request.POST.has_key('student_ids'):
-        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-        if not resume_books.exists():
-            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-        else:
-            current_resume_book = resume_books.order_by('-date_created')[0]
+        try:
+            resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+        except ResumeBook.DoesNotExist:
+            resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
         if request.POST['student_ids']:
             for id in request.POST['student_ids'].split('~'):
-                student = Student.objects.get(id=id)  
-                if student not in current_resume_book.students.all():
-                    current_resume_book.students.add(student)
+                student = Student.objects.get(id=id)
+                if student not in resume_book.students.all():
+                    resume_book.students.add(student)
+                    student.studentstatistics.add_to_resumebook_count += 1
+                    student.studentstatistics.save()
         return HttpResponse()
     else:
         return HttpResponseBadRequest("Student IDs are missing.")
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @require_POST
 def employer_resume_book_current_remove_students(request):
     if request.POST.has_key('student_ids'):
-        resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-        if not resume_books.exists():
-            current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-        else:
-            current_resume_book = resume_books.order_by('-date_created')[0]
+        try:
+            resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+        except ResumeBook.DoesNotExist:
+            resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
         if request.POST['student_ids']:
             for student_id in request.POST['student_ids'].split('~'):
                 student = Student.objects.get(id=student_id)  
-                if student in current_resume_book.students.all():
-                    current_resume_book.students.remove(student)
+                if student in resume_book.students.all():
+                    resume_book.students.remove(student)
         return HttpResponse()
     else:
         return HttpResponseBadRequest("Student IDs are missing.")
@@ -240,6 +325,7 @@ def employer_resume_book_current_remove_students(request):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
     if request.method == "GET":
@@ -257,40 +343,18 @@ def employer_student_event_attendance(request):
 
 @login_required
 @user_passes_test(is_recruiter)
-@render_to('employer_events.html')
-def employer_employer_events(request, extra_context=None):
-    context = {'upcoming_events': request.user.recruiter.event_set.filter(end_datetime__gte=datetime.now()).order_by("start_datetime") }
+@has_any_subscription
+@require_GET
+@render_to("employer_resume_book_history.html")
+def employer_resume_book_history(request, extra_context=None):
+    context = {"resume_books":request.user.recruiter.resumebook_set.all()}
     context.update(extra_context or {})
     return context
 
 
 @login_required
 @user_passes_test(is_recruiter)
-def employer_resume_books(request, extra_context=None):
-    pass
-
-
-@login_required
-@user_passes_test(is_recruiter)
-@render_to('employer_students_default_filtering.html')
-def employer_students_default_filtering(request, form_class=StudentDefaultFilteringParametersForm, extra_context = None):
-    if request.method == 'POST':
-        form = form_class(data=request.POST, instance = request.user.recruiter)
-        if form.is_valid():
-            form.save()
-            request.user.recruiter.automatic_filtering_setup_completed = True
-            request.user.recruiter.save()
-        else:
-            return form.errors
-    else:
-        form = form_class(instance=request.user.recruiter)
-    context = {'form':form}
-    context.update(extra_context or {}) 
-    return context
-
-
-@login_required
-@user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to()
 def employer_students(request, extra_context=None):
     context = {}
@@ -330,14 +394,16 @@ def employer_students(request, extra_context=None):
                         cache.delete('filtering_results')
 
         current_paginator = get_paginator(request)
-        context['page'] = current_paginator.page(request.POST['page'])
-        
+        try:
+            context['page'] = current_paginator.page(request.POST['page'])
+        except Exception:
+            context['page'] = current_paginator.page(1)
         context['current_student_list'] = request.POST['student_list']
         
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
-            student.save()
+            student.studentstatistics.save()
         
         context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
@@ -375,89 +441,129 @@ def employer_students(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to('employer_resume_book_current_summary.html')
 def employer_resume_book_current_summary(request, extra_context=None):
-    resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-    if not resume_books.exists():
-        current_resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-    else:
-        current_resume_book = resume_books.order_by('-date_created')[0]
-    context = {'resume_book': current_resume_book}
+    try:
+        resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+    except ResumeBook.DoesNotExist:
+        resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    context = {'resume_book': resume_book}
     context.update(extra_context or {}) 
     return context
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
 def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
     if request.is_ajax():
         context = {}
         if request.method == 'GET':
             context['deliver_resume_book_form'] = form_class(initial={'emails':request.user.email})
-            resume_books = ResumeBook.objects.filter(recruiter = request.user.recruiter)
-            if resume_books.exists():
-                context['resume_book'] = resume_books.order_by('-date_created')[0]
+            if request.GET.has_key("resume_book_id"):
+                if request.GET["resume_book_id"]:
+                    try:
+                        context['resume_book'] = ResumeBook.objects.get(id=request.GET["resume_book_id"])
+                    except ResumeBook.DoesNotExist:
+                        return HttpResponseBadRequest("No resume book exists with id of %s" % request.GET["resume_book_id"])
+                else:
+                    try:
+                        context['resume_book'] = ResumeBook.objects.get(recruiter=request.user.recruiter, delivered=False)
+                    except ResumeBook.DoesNotExist:
+                        return HttpResponseBadRequest("There isn't a resume book ready to be delivered.")
+                context.update(extra_context or {})
+                return context
             else:
-                context['resume_book'] = ResumeBook.objects.create(recruiter = request.user.recruiter)
-            context.update(extra_context or {})
-            return context
+                return HttpResponseBadRequest("Request is missing a resume book id (it can be none).")   
         return HttpResponseBadRequest("Request must be a GET")       
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
+@require_POST
 def employer_resume_book_current_create(request):
-    if request.method == 'POST':
-        current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
-        report_buffer = cStringIO.StringIO() 
-        c = Canvas(report_buffer)  
-        c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
-        c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
-        c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
-        c.drawString(16*cm, 29*cm, "Created using Umeqo")
-        page_num = 0
-        for student in current_resume_book.students.all():
-            page_num += 1
-            c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
-            c.drawString(16*cm, (22-page_num)*cm, str(page_num))
-        c.showPage()
-        c.save()
-        output = PdfFileWriter()
-        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
-        for student in current_resume_book.students.all():
-            output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
-        resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
-        current_resume_book.resume_book_name = resume_book_name
-        file_name = "%s%s%s.tmp" % (s.MEDIA_ROOT, s.EMPLOYER_RESUME_BOOK_PATH, resume_book_name,)
-        outputStream = file(file_name, "wb")
-        output.write(outputStream)
-        outputStream.close()
-        resume_book_contents = file(file_name, "rb")
-        current_resume_book.resume_book.save(file_name, File(resume_book_contents))
-        resume_book_contents.close()
-        return HttpResponse()
+    
+    if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
+        try:
+            current_resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
+        except ResumeBook.DoesNotExist:
+            return HttpResponseBadRequest("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
-        return HttpResponseBadRequest("Request must be a POST")
+        try:
+            current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+        except Exception:
+            return HttpResponseBadRequest("There isn't a resume book ready to be made")
+            
+    report_buffer = cStringIO.StringIO() 
+    c = Canvas(report_buffer)  
+    c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
+    c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
+    c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
+    c.drawString(16*cm, 29*cm, "Created using Umeqo")
+    page_num = 0
+    for student in current_resume_book.students.all():
+        page_num += 1
+        c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
+        c.drawString(16*cm, (22-page_num)*cm, str(page_num))
+    c.showPage()
+    c.save()
+    output = PdfFileWriter()
+    output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
+    for student in current_resume_book.students.all():
+        output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
+    resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
+    current_resume_book.resume_book_name = resume_book_name
+    file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+    file_name = "%s%s.tmp" % (file_path, resume_book_name,)
+    outputStream = file(file_name, "wb")
+    output.write(outputStream)
+    outputStream.close()
+    resume_book_contents = file(file_name, "rb")
+    current_resume_book.resume_book.save(file_name, File(resume_book_contents))
+    resume_book_contents.close()
+    return HttpResponse()
 
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 @render_to("employer_resume_book_current_delivered.html")
 def employer_resume_book_current_email(request, extra_context=None):
     if request.method == 'POST':
         if request.POST.has_key('emails'):
-            current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+            if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
+                try:
+                    current_resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
+                except ResumeBook.DoesNotExist:
+                    return HttpResponseBadRequest("No resume book exists with id of %s" % request.POST["resume_book_id"])
+            else:
+                try:
+                    current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+                except Exception:
+                    return HttpResponseBadRequest("There isn't a resume book ready to be made")
             reg = re.compile(r"\s*[;, \n]\s*")
             recipients = reg.split(request.POST['emails'])
             subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
             body = render_to_string('resume_book_email_body.txt', {})
             message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
-            message.attach_file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name))
+            f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
+            content = f.read()
+            if request.POST.has_key('name'):
+                filename = request.POST['name']
+            else:
+                filename = os.path.basename(current_resume_book.resume_book.name)
+            message.attach("%s.pdf" % (filename), content, "application/pdf")
             message.send()
+            current_resume_book.delivered = True
+            current_resume_book.save()
             context = {}
-            context.update(extra_context or {}) 
+            context.update(extra_context or {})
             return context
         else:
             return HttpResponseBadRequest("Missing recipient email.")
@@ -467,28 +573,31 @@ def employer_resume_book_current_email(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_any_subscription
 def employer_resume_book_current_download(request):
     if request.method == 'GET':
-        current_resume_book = ResumeBook.objects.filter(recruiter = request.user.recruiter).order_by('-date_created')[0]
+        if request.GET.has_key("resume_book_id") and request.GET['resume_book_id']:
+            try:
+                current_resume_book = ResumeBook.objects.get(id=request.GET["resume_book_id"])
+            except ResumeBook.DoesNotExist:
+                return HttpResponseBadRequest("No resume book exists with id of %s" % request.GET["resume_book_id"])
+        else:
+            try:
+                current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+            except Exception:
+                return HttpResponseBadRequest("There isn't a resume book ready to be made")
         mimetype = mimetypes.guess_type(str(current_resume_book.resume_book))[0]
         if not mimetype: mimetype = "application/octet-stream"
         response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb").read(), mimetype=mimetype)
         filename = os.path.basename(current_resume_book.resume_book.name)
         if request.GET.has_key('name'):
             filename = request.GET['name']
-        response["Content-Disposition"]= "attachment; filename=%s" % filename
+        response["Content-Disposition"]= 'attachment; filename="%s"' % filename
+        current_resume_book.delivered = True
+        current_resume_book.save()
         return response
     else:
         return HttpResponseBadRequest("Request must be a GET")
-
-
-@login_required
-@user_passes_test(is_recruiter)
-@render_to('employer_invitations.html')
-def employer_invitations(request, extra_context=None):
-    context = {}
-    context.update(extra_context or {})
-    return context
 
 
 @login_required
@@ -520,10 +629,10 @@ def employers_list(request, extra_content=None):
 
         subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
-
+        
         context.update({
             'employer': employer,
-            'events': get_employer_events(employer),
+            'upcoming_events': employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")),
             'employer_id': employer_id,
             'subbed': subbed
         })
@@ -538,24 +647,15 @@ def employers_list_pane(request, extra_content=None):
     if employer_id and Employer.objects.filter(id=employer_id).exists():
         employer = Employer.objects.get(id=employer_id)
         
-        now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-        events = reduce(
-            lambda a,b: [a.extend(b.user.event_set.all().extra(select={'upcoming': 'end_datetime > "%s"' % now_datetime})),a][1],
-            employer.recruiter_set.all(),
-            []
-        )
-        events = sorted(events, key=attrgetter('end_datetime'), reverse=True)
-
         subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
-
         context = {
             'employer': employer,
-            'events': events,
+            'upcoming_events': employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")),
             'subbed': subbed
         }
         return context
-    return HttpResponseBadRequest("Bad request.")
+    return HttpResponseBadRequest("Bad request. Employer id is missing.")
 
 
 @login_required

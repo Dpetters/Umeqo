@@ -1,11 +1,13 @@
 from datetime import datetime, timedelta
 
+from django.db.models import Q
+
 from events.models import Event
 from haystack.query import SearchQuerySet
-
+            
 def event_search_helper(request):
     query = request.GET.get('q','')
-    search_results = SearchQuerySet().models(Event).filter(is_public=True).filter(end_datetime__gte=datetime.now()).order_by("start_datetime")
+    search_results = SearchQuerySet().models(Event).filter(is_public=True).filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline")).order_by("end_datetime")
     if query!="":
         for q in query.split(' '):
             if q.strip() != "":
@@ -17,10 +19,10 @@ def buildAttendee(obj):
         'email': obj.email,
         'datetime_created': obj.datetime_created.isoformat()
     }
-    if obj.student:
-        output['name'] = obj.student.first_name + ' ' + obj.student.last_name
-        output['account'] = True
-        output['id'] = obj.student.id
+    if obj.student and obj.student.profile_created:
+            output['name'] = obj.student.first_name + ' ' + obj.student.last_name
+            output['account'] = True
+            output['id'] = obj.student.id
     else:
         output['name'] = obj.name
         output['account'] = False
@@ -36,10 +38,13 @@ def buildRSVP(obj):
     }
     return output
 
-def get_event_schedule(event_date_string):
+def get_event_schedule(event_date_string, event_id):
     event_date = datetime.strptime(event_date_string, '%m/%d/%Y')
     event_date_tmrw = event_date + timedelta(days=1)
     events = Event.objects.all().filter(start_datetime__gt=event_date).filter(start_datetime__lt=event_date_tmrw)
+    if event_id:
+        event_id = int(event_id)
+        events = events.exclude(id=event_id)
     def buildScheduleItem(event):
         name = event.name
         start = event.start_datetime

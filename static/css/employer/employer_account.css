@@ -8,9 +8,127 @@
     text-align: left;
     text-transform: uppercase;
 }
+#search_and_filtering_table th label{
+    margin-bottom:0px;
+}
 #search_and_filtering_table td{
     width:1%;
 }
 #id_default_student_results_per_page, #id_default_student_result_ordering{
     width:160px;
+}
+.event_list .type {
+    color: #FFF;
+    text-shadow: #000 0 -1px 0;
+    background-color: #666;
+}
+.event_list .type,
+.event_list .private_token {
+    font-size: 11px;
+    display: inline-block;
+    padding: 2px 4px;
+    vertical-align: top;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+#subscription_actions{
+    margin-top:5px;
+}
+#subscription_info{
+    padding:5px 5px;
+}
+#subscription_info .active, #subscription_info .expired, 
+#subscription_info .cancelled, #subscription_info .grace {
+    color: #FFF;
+    text-shadow: #000 0 -1px 0;
+    background-color: #666;
+    font-size: 12px;
+    font-weight:bold;
+    margin-left:2px;
+    padding: 2px 4px;
+    vertical-align: top;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+#subscription_info .active{
+    background:green;
+    text-shadow:#222 0 -1px 0;
+}
+#subscription_info .expired, #subscription_info .cancelled{
+    background:#B00;
+    text-shadow:#222 0 -1px 0;
+}
+#subscription_info .grace {
+    background:#EF6700;
+    text-shadow:#222 0 -1px 0;
+}
+#subscription_name{
+    font-size:22px;
+}
+#subscription_expiration{
+    margin-top:5px;
+}
+#delete_account_link{
+    margin-left:5px;
+    color:#990000 !important;
+}
+#employer_other_recruiters{
+    margin-top:5px;
+    list-style:inside none;
+}
+#employer_other_recruiters li{
+    padding:5px 8px;
+    border-top:1px solid #EEE;
+}
+#employer_other_recruiters li.even{
+    background:#EFEFEF;
+}
+#no_recruiter_accounts{
+    padding:10px 0px;
+    text-align:center;
+}
+.create_recruiter_dialog .dialog_content_wrapper{
+    padding:10px;   
+}
+.create_recruiter_dialog .dialog_content_wrapper .note{
+    text-align:center; 
+}
+#create_recruiter_form .form_table{
+    width:100%;
+}
+#create_recruiter_form .button_cell{
+    padding:5px 0px;
+}
+#create_recruiter_form th{
+    width:150px;
+}
+.account_deletion_dialog .dialog_content_wrapper{
+    text-align:center;
+    padding:10px;
+}
+.account_deletion_dialog .button{
+    width:100px;
+}
+#transactions table{
+    width: 100%;
+    border-left: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-right: 1px solid #CCC;    
+}
+#transactions table th, #transactions table td{
+    padding: .4em;
+    border-bottom: 1px solid #CCC;
+}
+#transactions table th{
+    background-color:#EEE;
+}
+#transactions table tr.payment{
+    background-color:#EEFFED;
+}
+#transactions table tr.refund{
+    background-color:#FFEEE0;
+}
+#no_past_payments{
+    text-align:center;
 }

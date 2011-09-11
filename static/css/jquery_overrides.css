@@ -44,9 +44,6 @@
 .ui-dialog-content h3 {
     margin-top:0px;
 }
-.ui-dialog-content ul {
-    list-style:inside;
-}
 .ui-tabs-nav .ui-state-default {
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top, #f0f0f0 0%, #e6e6e6 100%); /* FF3.6+ */

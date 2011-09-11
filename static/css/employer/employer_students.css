@@ -38,7 +38,10 @@
     border-top:1px solid white;
 }
 #student_list_section {
-    padding:5px 0px 0px 5px
+    padding:5px 0px 0px 5px;
+}
+#id_student_list{
+    width:318px;
 }
 #resume_book_block .side_block_content{
     padding:5px;
@@ -80,10 +83,11 @@
 #id_sat_m, #id_sat_v, #id_sat_w {
     width:22px;
 }
-#student_deliver_resume_book_button {
+.student_deliver_resume_book_link {
     width:68px;
     float:right;
     height:28px;
+    line-height:26px;
 }
 #students_in_resume_book_student_list_link_section{
     background:#FFF;
@@ -93,6 +97,7 @@
     -webkit-border-radius: 3px;
     border-radius:3px;
     vertical-align:middle;
+    display:inline-block;
     height:24px;
     line-height:24px;
 }
@@ -174,59 +179,6 @@
 }
 #results {
     border-bottom:1px solid #CCC;
-}
-.deliver_resume_book_dialog .dialog_content_wrapper{
-    padding:10px 0px 18px;
-}
-#deliver_resume_book_form #id_name, #deliver_resume_book_form #id_emails{
-    width:190px;
-}
-#deliver_resume_book_form #id_emails{
-    height:17px;
-}
-#deliver_resume_book_form .form_table{
-    margin-left:auto;
-    margin-right:auto;
-}
-#deliver_resume_book_form_submit_button{
-    width:72px;
-}
-#resume_book_status_div{
-    float:left;
-    width:199px;
-    border-left:1px solid #666;
-    width:92px;
-}
-#resume_book_status_div, #resume_book_contents_div{
-    float:left;
-    height:35px;
-    line-height:17px;
-}
-#resume_book_contents_div{
-    width:133px;
-    padding-right:8px;
-}
-#resume_book_status_div{
-    border-left:1px solid #000;
-    padding-left:8px;
-    width:132px;
-}
-#resume_book_contents_header, #resume_book_status_header{
-    color:#000;
-    font-weight:bold;
-    text-decoration:underline;
-}
-#resume_book_summary{
-    background:#EEE;
-    border-radius:3px;
-    margin-left:auto;
-    margin-right:auto;
-    padding:4px 8px;
-    text-align:center;
-    width:282px;
-}
-.email_delivery_type_only_field{
-    display:none;
 }
 .student_event_attendance_bubble{ 
     position: absolute;

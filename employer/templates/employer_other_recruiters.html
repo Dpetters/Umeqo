@@ -1,0 +1,13 @@
+{% if other_recruiters %}
+<ul id="employer_other_recruiters">
+{% for recruiter in other_recruiters %}
+    <li class="{% cycle 'even' 'odd' %}">
+        <span class="recruiter_info">{{recruiter.user.first_name}} {{recruiter.user.last_name}} ({{recruiter.user.username}})</span>
+    </li>
+{% empty %}
+    <li id="no_recruiter_accounts even">
+        <p>You are the only recruiter for {{user.recruiter.employer}}.</a></p>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}

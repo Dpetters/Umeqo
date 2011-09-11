@@ -1,5 +1,50 @@
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponseForbidden
+
+from subscription.models import EmployerSubscription, Subscription
+
+
+class has_any_subscription(object):
+    def __init__(self, orig_func):
+        self.orig_func = orig_func
+    
+    def __call__(self, request, *args, **kwargs):
+        if is_recruiter(request.user):
+            try:
+                s = request.user.recruiter.employer.employersubscription
+                if not s.expired():
+                    return self.orig_func(request, *args, **kwargs)
+            except EmployerSubscription.DoesNotExist:
+                pass
+            if request.is_ajax():
+                return HttpResponseForbidden("You must have an annual subscription to do that.")
+            return redirect(reverse("subscription_list"))
+        return self.orig_func(request, *args, **kwargs)
+
+class has_annual_subscription(object):
+    def __init__(self, orig_func):
+        self.orig_func = orig_func
+    
+    def __call__(self, request, *args, **kwargs):
+        if is_recruiter(request.user):
+            try:
+                print "here"
+                es = request.user.recruiter.employer.employersubscription
+                free_trial = Subscription.objects.get(name="Free Trial")
+                print es.subscription
+                print es.expired
+                if es.subscription != free_trial and not es.expired():
+                    return self.orig_func(request, *args, **kwargs)
+            except EmployerSubscription.DoesNotExist:
+                pass
+            if request.is_ajax():
+                return HttpResponseForbidden("You must have an annual subscription to do that.")
+            return redirect(reverse("subscription_list"))
+        return self.orig_func(request, *args, **kwargs)
+
 
 def is_campus_org(user):
     return hasattr(user, "campusorg")
@@ -15,8 +60,6 @@ def is_campus_org_or_recruiter(user):
 
 def is_student_or_recruiter(user):
     return hasattr(user, "recruiter") or hasattr(user, "student")
-#
-# From django-annoying
 #
 try:
     from functools import wraps

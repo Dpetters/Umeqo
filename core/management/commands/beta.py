@@ -1,4 +1,7 @@
-import ldap
+try:
+    import ldap
+except:
+    pass
 import random
 import string
 

@@ -11,6 +11,7 @@ $(document).ready(function() {
             mapTypeControl : false
         };
         map = new google.maps.Map(document.getElementById("map"), map_options);
+        
 
         function center_map_coord(latitude, longitude) {
             var location = new google.maps.LatLng(latitude, longitude);
@@ -23,7 +24,9 @@ $(document).ready(function() {
             }
             marker.setPosition(location)
         }
-
+        if (typeof(LATITUDE)!="undefined" && typeof(LONGITUDE)!="undefined"){
+            center_map_coord(LATITUDE, LONGITUDE);
+        }
         $(".location_suggestion").live('click', function() {
             $(".location_suggestion").removeClass("selected");
             $(this).addClass("selected");
@@ -92,7 +95,6 @@ $(document).ready(function() {
         
         var timeoutID;
         $('#id_location').keydown(function(e) {
-            console.log(e.which);
             var current = null;
             var next = null;
             if(e.which==37 || e.which==39){
@@ -252,11 +254,10 @@ $(document).ready(function() {
                 $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter rolling deadline name");
                 
-                $("#event_scheduler").css("height", 270);
+                $("#event_datetime_block").slideUp();
             
                 $($('label[for=id_end_datetime_0]').removeClass('required').children()[0]).hide();
                 
-                $("#start_datetime_wrapper, #end_datetime_wrapper").slideUp();
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").attr('disabled', 'disabled');
             } else if(event_type === "Hard Deadline") {
                 if(EDIT_FORM){
@@ -264,6 +265,7 @@ $(document).ready(function() {
                 } else {
                     title = "Edit Hard Deadline"
                 }
+                $("#event_datetime_block").slideDown();
                 $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter hard deadline name");
                 
@@ -288,6 +290,7 @@ $(document).ready(function() {
                 title = "New Event"
             }
             $("#event_form_header").html(title);
+            $("#event_datetime_block").slideDown();
             if ($('label[for=id_start_datetime_0] span.error').length > 0){
                 $('label[for=id_start_datetime_0] span.error').show();                
             }else{
@@ -344,18 +347,18 @@ $(document).ready(function() {
             height : 210,
             click: function(e, ui) {
                 if (ui.checked){
-                $.ajax({
-                    type: 'GET',
-                    url: EMPLOYER_DETAILS_URL,
-                    dataType: "html",
-                    data: {
-                        'employer_name':ui.text,
-                    },
-                    success: function (data) {
-                        $("#attending_employers").append(data);
-                    },
-                    error: errors_in_message_area_handler
-                });
+                    $.ajax({
+                        type: 'GET',
+                        url: EMPLOYER_DETAILS_URL,
+                        dataType: "html",
+                        data: {
+                            'employer_name':ui.text,
+                        },
+                        success: function (data) {
+                            $("#attending_employers").append(data);
+                        },
+                        error: errors_in_message_area_handler
+                    });
                 }else{
                     $(".attending_employer[data-employer-name='" + ui.text + "']").remove();
                 }
@@ -363,13 +366,18 @@ $(document).ready(function() {
             uncheckAll: function(){
                 $("#attending_employers").html("");
             }
-        }).multiselectfilter();     
+        }).multiselectfilter();
     }
     
     $('.datefield').datepicker({
         minDate : 0
     });
-
+    // Fix validation bug
+    $(".attending_employers_multiselect").blur(function(){
+        if($("#id_attending_employers").val()){
+            event_form_validator.element("#id_attending_employers");
+        }
+    });
     // Prevent end datetime from being before start datetime.
     function getStartDate() {
         var start_date = $('#id_start_datetime_0').val().split('/');
@@ -510,10 +518,16 @@ $(document).ready(function() {
         $('#event_scheduler_nav_forward').removeClass('enabled');
         var event_date_text = $('#event_scheduler_day_text').val();
         $('.event_block').remove();
+        var get_data = {
+            'event_date': event_date_text,
+        };
+        if (EDIT_FORM) {
+            get_data['event_id'] = EVENT_ID;
+        } else {
+            get_data['event_id'] = 0;
+        }
         if (event_date_text){
-            $.get(EVENT_SCHEDULE_URL, {
-                event_date : event_date_text
-            }, function(res) {
+            $.get(EVENT_SCHEDULE_URL, get_data, function(res) {
                 var highest = Infinity;
                 $.each(res, function(i, eventInfo) {
                     var title = eventInfo[0];
@@ -589,9 +603,7 @@ $(document).ready(function() {
         }
     }
 
-    $('#event_scheduler_day_text').val($('#id_start_datetime_0').val()).datepicker({
-        'minDate': null
-    });
+    $('#event_scheduler_day_text').datepicker({'minDate': null});
     $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1, #event_scheduler_day_text').change(renderScheduler);
     renderScheduler();
 

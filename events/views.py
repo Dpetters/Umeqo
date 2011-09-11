@@ -10,20 +10,47 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.core.validators import email_re
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
+from django.db.models import Q
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest, Http404
 from django.utils import simplejson
-from django.views.decorators.http import require_http_methods
-from django.utils.translation import ugettext_lazy as _
-from django.shortcuts import redirect
+from django.template import RequestContext
+from django.views.decorators.http import require_http_methods, require_POST, require_GET
+from django.shortcuts import redirect, render_to_response
+from django.template.loader import render_to_string
 
+from campus_org.models import CampusOrg
+from employer.models import Employer
+from core.email import send_html_mail
 from core import messages as m
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
+from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
 from core.models import Edit
 from events.forms import EventForm, CampusOrgEventForm
-from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume
+from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
 from notification import models as notification
 from student.models import Student
+
+@login_required
+def events_shortcut(request, owner_slug, event_slug, extra_context=None):
+    print owner_slug
+    print event_slug
+    try:
+        employer = Employer.objects.get(slug = owner_slug)
+        events = employer.event_set.get(short_slug = event_slug).get_absolute_url()
+    except Employer.DoesNotExist:
+        try:
+            campus_org = CampusOrg.objects.get(slug = owner_slug)
+            events = campus_org.user.event_set
+        except CampusOrg.DoesNotExist:
+            raise Http404
+    try:
+        url = None
+        url = events.get(short_slug = event_slug).get_absolute_url()
+        if url:
+            return redirect(url)
+    except Event.DoesNotExist:
+        pass
+    raise Http404
 
 @login_required
 @user_passes_test(is_student)
@@ -42,30 +69,31 @@ def events_list(request, extra_context=None):
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
-    return redirect(event.get_absolute_url())
+    return redirect("%s" % (event.get_absolute_url()))
 
 @render_to('event_page.html')
 def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
-    
+
     event = Event.objects.get(pk=id)
-    if not is_recruiter(request.user) and not is_campus_org(request.user):
-        event.view_count += 1
-        event.save()
-    is_past = event.end_datetime < datetime.now()    
+
     #check slug matches event
     if event.slug!=slug:
-        return HttpResponseNotFound()
+        raise Http404
+
     current_site = Site.objects.get(id=settings.SITE_ID)
+
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
+
     invitees = map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
     rsvps = map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
     no_rsvps = map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
     checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
     checkins.sort(key=lambda n: 0 if n['account'] else 1)
+
     emails_dict = {}
     all_responses = []
     for res in checkins + rsvps + no_rsvps:
@@ -74,11 +102,7 @@ def event_page(request, id, slug, extra_context=None):
             all_responses.append(res)
     all_responses.sort(key=lambda n: n['datetime_created'])
     all_responses.sort(key=lambda n: 0 if n['account'] else 1)
-    is_deadline = (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline'))
-    if is_deadline:
-        attending_text = 'Participating'
-    else:
-        attending_text = 'Attending'
+    
     context = {
         'event': event,
         'invitees': invitees,
@@ -86,41 +110,53 @@ def event_page(request, id, slug, extra_context=None):
         'no_rsvps': no_rsvps,
         'checkins': checkins,
         'all_responses': all_responses,
-        'login_next': page_url,
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
-        'responded': False,
-        'attending': False,
-        'dropped_resume': False,
-        'can_rsvp': False,
-        'show_admin': False,
-        'is_past': is_past,
-        'attending_text': attending_text,
-        'is_deadline': is_deadline,
+        'is_deadline': (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline')),
         'google_description': google_description
     }
-    if is_campus_org(event.owner):
-        context['campus_org_event'] = is_campus_org(event.owner)
-        context['attending_employers'] = event.attending_employers
-    if len(event.audience.all())>0:
+    if event.end_datetime:
+        context['is_past'] = event.end_datetime < datetime.now()
+    else:
+        context['is_rolling_deadline'] = True
+        
+    if len(event.audience.all()) > 0:
         context['audience'] = event.audience.all()
+    
+    if is_campus_org(event.owner):
+        context['campus_org_event'] = True
+        context['attending_employers'] = event.attending_employers
+        if is_campus_org(request.user):
+            context['resume_drops'] = len(event.droppedresume_set.all())
+            context['can_edit'] = (event.owner == request.user)
+    elif is_recruiter(event.owner):
+        if is_recruiter(request.user):
+            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
+            
+    if not is_campus_org(request.user) and not is_recruiter(request.user):
+        event.view_count += 1
+        event.save()
+            
     if is_student(request.user):
+        
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
+        
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
             context['responded'] = True
+        
         dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
         if dropped_resume.exists():
             context['dropped_resume'] = True
+        
         context['can_rsvp'] = True
-    elif is_recruiter(request.user) or is_campus_org(request.user):
-        context['show_admin'] = True
     context.update(extra_context or {})
     return context
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 @render_to()
 def event_new(request, form_class=None, extra_context=None):
     context = {'TEMPLATE':"event_form.html"}
@@ -135,6 +171,9 @@ def event_new(request, form_class=None, extra_context=None):
             event.owner = request.user
             event.save()
             form.save_m2m()
+            if is_recruiter(request.user):
+                event.attending_employers.add(request.user.recruiter.employer);
+            notify_about_event(event, "new_event", event.attending_employers.all())
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
@@ -143,17 +182,19 @@ def event_new(request, form_class=None, extra_context=None):
         })
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
+    context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
     context.update(extra_context or {})
     return context
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 @render_to("event_form.html")
 def event_edit(request, id=None, extra_context=None):
     try:
         event = Event.objects.get(pk=id)
     except Event.DoesNotExist:
-        return HttpResponseNotFound("Event with id %s not found." % id)        
+        raise Http404
     context = {}
     context['event'] = event
     if is_recruiter(event.owner):
@@ -166,23 +207,31 @@ def event_edit(request, id=None, extra_context=None):
         if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
             return HttpResponseForbidden('You are not allowed to edit this event.') 
     if request.method == 'POST':
+        attending_employers_before = list(event.attending_employers.all())[:]
         form = form_class(request.POST, instance=event)
         if form.is_valid():
             event = form.save(commit=False)
             event.edits.add(Edit.objects.create(user=request.user))
             event.save()
             form.save_m2m()
+            notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(attending_employers_before)])
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(instance=event)
     context['edit'] = True
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
-    context['event_scheduler_date'] = event.start_datetime.strftime('%m/%d/%Y')
+    if event.type.name == "Hard Deadline":
+        context['event_scheduler_date'] = event.end_datetime.strftime('%m/%d/%Y')
+    elif event.type.name == "Rolling Deadline":
+        context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
+    else:
+        context['event_scheduler_date'] =  event.start_datetime.strftime('%m/%d/%Y')
     context.update(extra_context or {})
     return context
 
 @login_required
+@has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 def event_delete(request, id, extra_context = None):
     if request.is_ajax():
@@ -205,15 +254,17 @@ def event_delete(request, id, extra_context = None):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 def event_schedule(request):
     if request.is_ajax():
-        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')))
+        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
         return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
 @require_http_methods(["GET", "POST"])
+@has_annual_subscription
 def event_rsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
@@ -260,7 +311,7 @@ def event_unrsvp(request, event_id):
 
 @login_required
 @user_passes_test(is_student)
-@require_http_methods(["POST"])
+@require_POST
 def event_drop(request, event_id):
     data = {}
     if not event_id:
@@ -287,7 +338,7 @@ def event_drop(request, event_id):
 
 @login_required
 @user_passes_test(is_student)
-@require_http_methods(["POST"])
+@require_POST
 def event_undrop(request, event_id):
     event = Event.objects.filter(id=event_id)
     DroppedResume.objects.filter(event=event, student=request.user.student).delete()
@@ -295,6 +346,7 @@ def event_undrop(request, event_id):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)
@@ -302,7 +354,7 @@ def event_checkin(request, event_id):
         attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
         return HttpResponse(simplejson.dumps(attendees), mimetype="application/json")
     else:
-        email = request.POST.get('email', None)
+        email = request.POST.get('email', None).strip()
         if not email or not email_re.match(email):
             data = {
                 'valid': False,
@@ -323,6 +375,18 @@ def event_checkin(request, event_id):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if not name:
             name = "%s %s" % (user.student.first_name, user.student.last_name)
+        if not student:
+            subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
+            recipients = [email]
+            body_context = {'name':name, 'current_site':Site.objects.get(id=settings.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
+            html_body = render_to_string('checkin_follow_up.html', body_context)
+            send_html_mail(subject, html_body, recipients)
+        if student and not student.profile_created:
+            subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
+            recipients = [email]
+            body_context = {'name':name, 'current_site':Site.objects.get(id=settings.SITE_ID), 'event':event}
+            html_body = render_to_string('checkin_follow_up_profile.html', body_context)
+            send_html_mail(subject, html_body, recipients)
         attendee = Attendee(email=email, name=name, student=student, event=event)
         try:
             attendee.save()
@@ -344,6 +408,24 @@ def event_checkin(request, event_id):
 
 @login_required
 @user_passes_test(is_student)
+@require_GET
+def event_rsvp_message(request, extra_context=None):
+    if request.GET.has_key("event_id"):
+        try:
+            e = Event.objects.get(id=request.GET['event_id'])
+            if e.rsvp_message:
+                context = {'event':e}
+                if is_campus_org(e.owner):
+                    context['is_campus_org_event'] = True
+                return render_to_response("event_rsvp_message_dialog.html", context, context_instance=RequestContext(request))
+            else:
+                return HttpResponse()
+        except Event.DoesNotExist:
+            return HttpResponseBadRequest("Event with id %s does not exist." % (request.GET["event_id"]));
+    return HttpResponseBadRequest("Event id is missing");
+
+@login_required
+@user_passes_test(is_student)
 @render_to('events_list_ajax.html')
 def event_search(request, extra_context=None):
     events = event_search_helper(request)
@@ -353,8 +435,9 @@ def event_search(request, extra_context=None):
 
 @login_required
 @user_passes_test(is_recruiter)
+@has_annual_subscription
 def events_by_employer(request):
-    upcoming_events = request.user.event_set.active().filter(end_datetime__gte=datetime.now())
+    upcoming_events = request.user.event_set.active().filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline"))
     student_id = request.GET.get('student_id', None)
     if not student_id or not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()
@@ -374,7 +457,8 @@ def events_by_employer(request):
 
 @login_required
 @user_passes_test(is_recruiter)
-@require_http_methods(["POST"])
+@has_annual_subscription
+@require_POST
 def event_invite(request):
     event_id = request.POST.get('event_id', None)
     student_id = request.POST.get('student_id', None)
@@ -405,5 +489,6 @@ def event_invite(request):
         })
         data = { 'valid': True, 'message': 'Invite sent successfully.' }
     else:
-        data = {'valid': False, 'message': _(m.already_invited) }
+        data = {'valid': False, 'message': m.already_invited }
+
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
