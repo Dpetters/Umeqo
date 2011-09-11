@@ -104,7 +104,7 @@ function handle_deliver_resume_book_link_click() {
                             show_form_submit_loader("#deliver_resume_book_form");
                             $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
                             var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL + "?resume_book_id=" + that.attr("data-resume-book-id");
-                            if (custom_resume_book_name){ download_url = download_url + "?name=" + escape(custom_resume_book_name) }
+                            if (custom_resume_book_name){ download_url = download_url + "&name=" + escape(custom_resume_book_name) }
                             window.location.href = download_url;
                             setTimeout(function(){
                                 $.ajax({
