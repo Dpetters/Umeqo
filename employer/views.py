@@ -57,7 +57,7 @@ def employer_profile_preview(request, slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug=slug)
     except Employer.DoesNotExist:
-        return HttpResponseNotFound("No employer with the slug %s exists." % (slug))
+        raise Http404()
     
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
