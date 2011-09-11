@@ -71,7 +71,7 @@ class Subscription(models.Model):
 
 class EmployerSubscription(models.Model):
     employer = models.OneToOneField("employer.Employer")
-    subscription = models.OneToOneField(Subscription)
+    subscription = models.ForeignKey(Subscription)
     expires = models.DateField(null = True, default=datetime.date.today)
     cancelled = models.BooleanField(default=False)
 

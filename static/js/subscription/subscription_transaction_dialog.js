@@ -15,7 +15,7 @@ $(document).ready( function() {
         return $dialog;
     };
 
-    $('.open_sd_link.upgrade, .open_sd_link.subscribe, .open_sd_link.cancel').click( function () {
+    $('.open_sd_link.upgrade, .open_sd_link.extend, .open_sd_link.subscribe, .open_sd_link.cancel').click( function () {
         subscription_dialog = open_subscription_dialog();
         subscription_dialog.dialog("option", "title", $(this).attr("data-title"));
         subscription_dialog.html(DIALOG_AJAX_LOADER);
