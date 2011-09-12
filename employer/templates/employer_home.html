@@ -20,6 +20,10 @@ Home |
 {% block content_area %}
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
+      <div id="statistics_block">
+          <h3 id="statistics_header">Your Statistics</h3>
+          <p><strong>Subscribers:</strong> {{subscribers}}</p>
+      </div>
 </div>
 
 <div class="main_block no_top_margin with_side_nav">

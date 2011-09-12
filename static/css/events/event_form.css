@@ -58,6 +58,9 @@ label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
     color: #444;
     background: #E9E9E9;
 }
+#end_datetime_wrapper {
+    padding-bottom: 15px;
+}
 #map {
     float: right;
     height: 204px;
@@ -147,7 +150,7 @@ label[for=event_scheduler_day_text]{
 }
 #event_scheduler_day {
     padding: 10px 18px;
-    margin-top: 8px;
+    margin-top: -7px;
 }
 #event_scheduler_day span {
     font-weight: 600;

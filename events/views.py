@@ -165,14 +165,17 @@ def event_new(request, form_class=None, extra_context=None):
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
-            event = form.save(commit=False)
-            event.owner = request.user
-            event.save()
-            form.save_m2m()
-            if is_recruiter(request.user):
-                event.attending_employers.add(request.user.recruiter.employer);
-            notify_about_event(event, "new_event", event.attending_employers.all())
-            return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
+            valid_start = (not form.cleaned_data['start_datetime'] or form.cleaned_data['start_datetime'] >= datetime.now())
+            valid_end = (not form.cleaned_data['end_datetime'] or form.cleaned_data['end_datetime'] >= datetime.now())
+            if valid_start and valid_end:
+                event = form.save(commit=False)
+                event.owner = request.user
+                event.save()
+                form.save_m2m()
+                if is_recruiter(request.user):
+                    event.attending_employers.add(request.user.recruiter.employer);
+                notify_about_event(event, "new_event", event.attending_employers.all())
+                return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
             'start_datetime': datetime.now(),
