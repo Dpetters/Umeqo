@@ -1,6 +1,27 @@
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+from core.decorators import is_campus_org, is_recruiter
+from campus_org.models import CampusOrg
+from employer.models import Employer
+
+def employer_campus_org_slug_exists(slug, user):
+    try:
+        campusorg = CampusOrg.objects.get(slug=slug)
+        if is_campus_org(user) and user.campusorg==campusorg:
+            return False
+        return True
+    except CampusOrg.DoesNotExist:
+        pass
+    try:
+        employer = Employer.objects.get(slug=slug)
+        if is_recruiter(user) and user.recruiter.employer == employer :
+            return False
+        return True
+    except:
+        pass
+    return False
+
 def does_email_exist(email):
     try:
         User.objects.get(email=email)

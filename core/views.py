@@ -16,21 +16,35 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.utils import simplejson
+from django.views.decorators.http import require_GET
 
 from core import enums, messages
 from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
-from core.view_helpers import does_email_exist
+from core.view_helpers import employer_campus_org_slug_exists
 from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
-from employer.models import Employer
+
 from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
 
-
+@require_GET
+def check_employer_campus_org_slug_uniqueness(request):
+    if request.is_ajax():
+        if request.GET.has_key("slug"):
+            data = False
+            if not employer_campus_org_slug_exists(request.GET["slug"], request.user):
+                data = True
+            print data
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Request is ")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    
 @render_to('help_center.html')
 def help_center(request, extra_context = None):
     questions = Question.objects.visible()
@@ -302,29 +316,6 @@ def check_password(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
         else:
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
-
-def check_username_existence(request):
-    if request.is_ajax():
-        username = request.GET.get("username", "")
-        try:
-            User.objects.get(username=username)
-        except User.DoesNotExist:
-            try:
-                User.objects.get(email=username)
-            except User.DoesNotExist:
-                try:
-                    Employer.objects.get(name = username)
-                except Employer.DoesNotExist:
-                    return HttpResponse(simplejson.dumps(False), mimetype="application/json")
-        return HttpResponse(simplejson.dumps(True), mimetype="application/json")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
- 
-def check_email_existence(request):
-    if request.is_ajax():
-        return HttpResponse(simplejson.dumps(does_email_exist(request.GET.get("email", ""))), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 

@@ -134,6 +134,19 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     context.update(extra_context or {})
     return context
 
+@login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_account_delete.html")
+def employer_account_delete(request):
+
+    if request.is_ajax():
+        if request.method == "POST":
+                return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+        else:
+            context = {}
+            return context
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
 @login_required
 @user_passes_test(is_recruiter)

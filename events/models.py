@@ -44,14 +44,13 @@ def notify_about_event(instance, notice_type, employers):
 class FeaturedEvent(core_mixins.DateCreatedTracking):
     campus_org = models.ForeignKey("campus_org.CampusOrg", null=True, blank=True)
     employer = models.ForeignKey("employer.Employer", null=True, blank=True)
-    event = models.ForeignKey("events.Event")
-    
+    event = models.ForeignKey("events.Event")    
     
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
     owner = models.ForeignKey(User)
     name = models.CharField(max_length=85)
-    end_datetime = models.DateTimeField()
+    end_datetime = models.DateTimeField(null=True, blank=True)
     type = models.ForeignKey(EventType)
     
     # Won't be used immediately, but might prove useful later to show who
@@ -69,7 +68,7 @@ class Event(core_mixins.DateCreatedTracking):
     
     # Optional Fields
     audience = models.ManyToManyField("core.SchoolYear", blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField()
     rsvp_message = models.TextField(blank=True,null=True)
 
     # Statistics fields for "X new views"
@@ -78,7 +77,7 @@ class Event(core_mixins.DateCreatedTracking):
     
     slug_default = "event-page"
     slug = models.SlugField(default=slug_default)
-    short_slug = models.SlugField(null=True)
+    short_slug = models.SlugField(blank=True, null=True)
     
     is_public = models.BooleanField()
     is_active = models.BooleanField(default=True, editable=False)

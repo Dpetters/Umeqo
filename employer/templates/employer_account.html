@@ -57,11 +57,12 @@
         <h3>Create New Account</h3>
         <p class="sub_header_message">Below are the other recruiter accounts for {{user.recruiter.employer}}. If you would like to give another recruiter access, you can <a class="create_recruiter_link" href="javascript:void(0)">create a new account</a>.</p>
         {% include 'employer_other_recruiters.html' %}
+        
         <h3>Delete Your Account</h3>
         {% if other_recruiters %}
-        <p class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
+            <p class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
         {% else %}
-        <p class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create a new one</a>.</p>
+            <p class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create a new set of credentials</a>.</p>
         {% endif %}
         
     {% else %}

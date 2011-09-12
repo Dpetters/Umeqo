@@ -97,8 +97,18 @@
 #create_recruiter_form .form_table{
     width:100%;
 }
+#create_recruiter_form .button_cell{
+    padding:5px 0px;
+}
 #create_recruiter_form th{
     width:150px;
+}
+.account_deletion_dialog .dialog_content_wrapper{
+    text-align:center;
+    padding:10px;
+}
+.account_deletion_dialog .button{
+    width:100px;
 }
 #transactions table{
     width: 100%;

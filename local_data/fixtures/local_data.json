@@ -9,21 +9,24 @@
    "attending_employers": [
     6
    ], 
-   "name": "Introductory Event!", 
+   "name": "Introductory A The Event!", 
    "is_public": true, 
+   "edits": [
+    3
+   ], 
    "description": "<p>\r\n\tfirst one</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
    "longitude": -71.098349690000006, 
    "latitude": 42.350392990000003, 
-   "edits": [], 
+   "short_slug": null, 
    "is_drop": false, 
    "end_datetime": "2011-09-10 20:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
    "date_created": "2011-09-10 19:16:38", 
    "type": 3, 
-   "slug": "introductory-event", 
+   "slug": "introductory-a-the-event", 
    "location": "Student House"
   }
  }, 
@@ -1229,7 +1232,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-10 19:27:33", 
+   "last_login": "2011-09-11 15:20:19", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1247,7 +1250,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-09 16:13:04", 
+   "last_login": "2011-09-11 11:20:01", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1265,7 +1268,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-10 19:21:30", 
+   "last_login": "2011-09-11 15:22:21", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -3636,6 +3639,36 @@
    "session_key": "30d9635eb4775604d9765a6ef297102a", 
    "last_updated": "2011-09-10 19:27:33", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 344, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-11 11:20:01", 
+   "session_key": "4c9940dbeb5ce47604f1de217f05003c", 
+   "last_updated": "2011-09-11 11:20:01", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 345, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-11 15:20:19", 
+   "session_key": "994427ce9c601628d504423366abd269", 
+   "last_updated": "2011-09-11 15:20:19", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 346, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-11 15:22:21", 
+   "session_key": "856a0493cf9476d69122ae93db263398", 
+   "last_updated": "2011-09-11 15:22:21", 
+   "user": 3
   }
  }, 
  {
