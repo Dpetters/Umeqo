@@ -1,4 +1,12 @@
 $(document).ready( function() {
+    if (ONLY_RECRUITER){
+        $("#delete_account").hide();
+        $("#create_credentials").show()
+    }else{
+        $("#delete_account").show();
+        $("#create_credentials").hide()        
+    }
+    
     function open_account_deletion_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
@@ -133,6 +141,8 @@ $('.create_recruiter_link').click( function () {
                                         },
                                         error: errors_in_message_area_handler
                                     });
+                                    $("#delete_account").show();
+                                    $("#create_credentials").hide() 
                                 }
                             }
                         });

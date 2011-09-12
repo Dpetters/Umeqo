@@ -1,7 +1,7 @@
 import datetime
 
 def get_resume_book_filename(instance, filename):
-    return "%s/%s_%s_%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), instance.recruiter.user.first_name.lower(), instance.recruiter.user.last_name.lower(), instance.recruiter.user, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+    return "%s/%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), str(instance.recruiter.user)[:18], datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
 
 def get_logo_filename(instance, filename):
     extension = filename[filename.find('.'):]

@@ -23,9 +23,9 @@ def check_for_new_student_matches(employer):
     notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
 
 def get_paginator(request):
-    current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
+    filtering, current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
     processed_ordered_results = process_results(request.user.recruiter, current_ordered_results)
-    return DiggPaginator(processed_ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2)
+    return filtering, DiggPaginator(processed_ordered_results, int(request.POST['results_per_page']), body=5, padding=1, margin=2)
 
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
@@ -75,7 +75,7 @@ def get_is_in_resumebook_attributes(recruiter, students):
 def get_cached_filtering_results(request):
     cached_filtering_results = cache.get('filtering_results')
     if cached_filtering_results:
-        return cached_filtering_results
+        return True, cached_filtering_results
     else:
         gpa = None
         if request.POST['gpa'] != "0":
@@ -141,7 +141,7 @@ def get_cached_filtering_results(request):
         if request.POST['campus_orgs']:
             campus_orgs  = request.POST['campus_orgs'].split('~')
                                 
-        current_filtering_results = filter_students(request.user.recruiter,
+        filtering, current_filtering_results = filter_students(request.user.recruiter,
                                                     student_list=request.POST['student_list'],
                                                     student_list_id=request.POST['student_list_id'],
                                                     gpa=gpa,
@@ -162,19 +162,20 @@ def get_cached_filtering_results(request):
                                                     campus_orgs=campus_orgs)
         
         cache.set('filtering_results', current_filtering_results)
-    return current_filtering_results
+    return filtering, current_filtering_results
 
 
 def get_cached_search_results(request):
     cached_search_results = cache.get('search_results')
     if cached_search_results:
-        print "using cached search results"
-        return cached_search_results
+        return True, cached_search_results
     current_search_results = []
+    filtering = False
     if request.POST['query'] != "null":
+        filtering = True
         current_search_results = search_students(request.POST['query'])
     cache.set('search_results', current_search_results)
-    return current_search_results
+    return filtering, current_search_results
 
 
 def filter_students(recruiter,
@@ -198,7 +199,10 @@ def filter_students(recruiter,
                     campus_orgs=None):
 
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
-        students = Student.objects.visible()
+        if recruiter.employer.subscribed_annually():
+            students = Student.objects.visible()
+        else:
+            students = []
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
         students = recruiter.employer.starred_students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
@@ -208,51 +212,71 @@ def filter_students(recruiter,
             resume_book = ResumeBook.objects.create(recruiter = recruiter)
         students = resume_book.students.all()
     else:
-        e = Event.objects.get(id = student_list_id)
         parts = student_list.split(" ")
-        if parts[-1] == "RSVPs":
-            students = Student.objects.filter(rsvp__in=e.rsvp_set.all())
-        elif parts[-1] == "Attendees":
-            students = Student.objects.filter(attendee__in=e.attendee_set.all())
-        elif parts[-1] == "Resumebook":
-            students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
+        if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Resumebook":
+            e = Event.objects.get(id = student_list_id)
+            if parts[-1] == "RSVPs":
+                students = Student.objects.filter(rsvp__in=e.rsvp_set.all())
+            elif parts[-1] == "Attendees":
+                students = Student.objects.filter(attendee__in=e.attendee_set.all())
+            elif parts[-1] == "Resumebook":
+                students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
+        else:
+            students = ResumeBook.objects.get(id = student_list_id).students.all()
+    filtering = False
     kwargs = {}
     if gpa:
+        filtering = True
         kwargs['gpa__gte'] = gpa
     if act:
+        filtering = True
         kwargs['act__gte'] = act
     if sat_t:
+        filtering = True
         kwargs['sat_t__gte'] = sat_t
     if sat_m:
+        filtering = True
         kwargs['sat_m__gte'] = sat_m
     if sat_v:
+        filtering = True
         kwargs['sat_v__gte'] = sat_v
     if sat_w:
+        filtering = True
         kwargs['sat_w__gte'] = sat_w
     if school_years:
+        filtering = True
         kwargs['school_year__id__in'] = school_years
     if graduation_years:
+        filtering = True
         kwargs['graduation_year__id__in'] = graduation_years
     if employment_types:
+        filtering = True
         kwargs['looking_for__id__in'] = employment_types
     if previous_employers:
+        filtering = True
         kwargs['previous_employers__id__in'] = previous_employers
     if industries_of_interest:
+        filtering = True
         kwargs['industries_of_interest__id__in'] = industries_of_interest
     if older_than_21:
+        filtering = True
         kwargs['older_than_21'] = older_than_21
     if languages:
+        filtering = True
         kwargs['languages__id__in'] = languages
     if countries_of_citizenship:
+        filtering = True
         kwargs['countries_of_citizenship__iso__in'] = countries_of_citizenship
     if campus_orgs:
+        filtering = True
         kwargs['campus_involvement__id__in'] = campus_orgs
     filtering_results = students.filter(**kwargs)
 
     if courses:
+        filtering = True
         filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))
     
-    return filtering_results
+    return filtering, filtering_results
 
 
 def search_students(query):
@@ -262,25 +286,29 @@ def search_students(query):
 
 def combine_and_order_results(filtering_results, search_results, ordering, query):
     ordered_results = []
-    if search_results:
+    filtering = filtering_results[0] or search_results[0]
+    
+    search_results_students = search_results[1]
+    filtering_results_students = filtering_results[1]
+    if search_results_students:
         # FIXME(dpetters): should be using the enum, not array indices?
         if ordering == enums.ORDERING_CHOICES[0][0]:
-            for student in search_results:
-                if student in filtering_results:
+            for student in search_results_students:
+                if student in filtering_results_students:
                     ordered_results.append(student)
         else:
-            filtering_results.order_by(ordering)
-            for student in filtering_results:
-                if student in search_results:
+            filtering_results_students.order_by(ordering)
+            for student in filtering_results_students:
+                if student in search_results_students:
                     ordered_results.append(student)
-        return ordered_results
+        return filtering, ordered_results
     else:
         if query == "null":
             if ordering == enums.ORDERING_CHOICES[0][0]:
-                return filtering_results.order_by('-last_updated')
+                return filtering, filtering_results_students.order_by('-last_updated')
             else:
-                return filtering_results.order_by(ordering)
-        return []
+                return filtering, filtering_results_students.order_by(ordering)
+        return filtering, []
 
 def employer_search_helper(request):
     search_results = SearchQuerySet().models(Employer).filter(visible=True)

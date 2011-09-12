@@ -8,10 +8,12 @@ RESUME_PROBLEMS = enum(HACKED = 1, UNPARSABLE = 2)
 
 GENERAL = 0
 EVENT = 2
+RESUME_BOOK_HISTORY = 3
 
 STUDENT_LIST_TYPE_CHOICES = (
     (GENERAL, 'General'),
-    (EVENT, 'Events')
+    (EVENT, 'Events'),
+    (RESUME_BOOK_HISTORY, 'Past Resume Books')
 )
 
 ALL_STUDENTS = 0

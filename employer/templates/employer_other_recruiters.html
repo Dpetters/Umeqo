@@ -1,7 +1,7 @@
 <ul id="employer_other_recruiters">
 {% for recruiter in other_recruiters %}
     <li class="{% cycle 'even' 'odd' %}">
-        <span class="recruiter_info">{{recruiter.user.first_name}} {{recruiter.user.last_name}} ({{recruiter.user.username}})</span>
+        <span class="recruiter_info">{{recruiter.user.first_name}} {{recruiter.user.last_name}} ({{recruiter.user.email}})</span>
     </li>
 {% empty %}
     <li id="no_recruiter_accounts" class="even">

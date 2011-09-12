@@ -13,6 +13,12 @@
     var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
     var EMPLOYER_OTHER_RECRUITERS_URL = "{% url employer_other_recruiters %}";
     var EMPLOYER_ACCOUNT_DELETE_URL = "{% url employer_account_delete %}";
+    
+    {% if other_recruiters %}
+        var ONLY_RECRUITER = false;
+    {% else %}
+        var ONLY_RECRUITER = true;
+    {% endif %}
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_account.js"></script>
@@ -58,11 +64,8 @@
     {% include 'employer_other_recruiters.html' %}
     
     <h3>Delete Your Account</h3>
-    {% if other_recruiters %}
-        <p class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
-    {% else %}
-        <p class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link {% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new set of credentials</a>.</p>
-    {% endif %}
+    <p id="delete_account" class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
+    <p id="create_credentials" class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link {% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new set of credentials</a>.</p>
 {% endblock %}
                     
 {% block account_settings_tab_definitions %}
