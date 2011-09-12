@@ -30,48 +30,9 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "name": "Non-Profit Annual Subscription", 
+   "name": "Annual Subscription", 
    "recurrence_unit": "Y", 
-   "price": "299.00", 
-   "trial_unit": "D", 
-   "trial_period": 3, 
-   "recurrence_period": 1
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "subscription.subscription", 
-  "fields": {
-   "description": "", 
-   "name": "Small Employer Annual Subscription", 
-   "recurrence_unit": "Y", 
-   "price": "999.00", 
-   "trial_unit": "D", 
-   "trial_period": 3, 
-   "recurrence_period": 1
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "subscription.subscription", 
-  "fields": {
-   "description": "", 
-   "name": "Medium Employer Annual Subscription", 
-   "recurrence_unit": "Y", 
-   "price": "2999.00", 
-   "trial_unit": "D", 
-   "trial_period": 3, 
-   "recurrence_period": 1
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "subscription.subscription", 
-  "fields": {
-   "description": "", 
-   "name": "Large Employer Annual Subscription", 
-   "recurrence_unit": "Y", 
-   "price": "4999.00", 
+   "price": "5000.00", 
    "trial_unit": "D", 
    "trial_period": 3, 
    "recurrence_period": 1
