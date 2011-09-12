@@ -209,7 +209,7 @@ $(document).ready(function() {
     };
 
     var messages = {
-        name {
+        name: {
             required : "Name is required.",
         },
         type: {
