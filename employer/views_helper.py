@@ -168,7 +168,6 @@ def get_cached_filtering_results(request):
 def get_cached_search_results(request):
     cached_search_results = cache.get('search_results')
     if cached_search_results:
-        print "using cached search results"
         return True, cached_search_results
     current_search_results = []
     filtering = False
@@ -281,8 +280,6 @@ def search_students(query):
 
 def combine_and_order_results(filtering_results, search_results, ordering, query):
     ordered_results = []
-    print filtering_results
-    print search_results
     filtering = filtering_results[0] or search_results[0]
     
     search_results_students = search_results[1]

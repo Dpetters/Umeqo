@@ -146,18 +146,20 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account_delete.html")
 def employer_account_delete(request):
-
     if request.is_ajax():
-        if request.method == "POST":
-            for sk in request.user.sessionkey_set.all():
-                Session.objects.filter(session_key=sk.session_key).delete()
-            request.user.sessionkey_set.all().delete()
-            request.user.recruiter.delete()
-            request.user.delete()
-            return HttpResponse()
+        if request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id).exists():
+            if request.method == "POST":
+                for sk in request.user.sessionkey_set.all():
+                    Session.objects.filter(session_key=sk.session_key).delete()
+                request.user.sessionkey_set.all().delete()
+                request.user.recruiter.delete()
+                request.user.delete()
+                return HttpResponse()
+            else:
+                context = {}
+                return context
         else:
-            context = {}
-            return context
+            return HttpResponseForbidden("You cannot delete your account when you are the only recruiter with credentials for Umeqo.") 
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
