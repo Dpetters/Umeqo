@@ -193,7 +193,7 @@
     <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
     <div id="event_time">
         {% if is_rolling_deadline %}
-            Rolling Deadline
+            Rolling deadline
         {% else %}
             {% if event.start_datetime %}
             <span class="start">{{event.start_datetime|date:"D, F j"}}
@@ -206,7 +206,7 @@
                     {{event.end_datetime|date:"h:i A"}}
                 {% endifequal %}{% endifequal %}
                 {% else %}
-                    {% if event.start_datetime %}</span> - {% endif %}
+                    {{event.start_datetime|date:"h:i A"}}{% if event.start_datetime %}</span> - {% endif %}
                     {{event.end_datetime|date:"D, F j h:i A"}}
                 {% endifequal %}
             </span>
