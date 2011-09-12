@@ -3644,8 +3644,8 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-07-06 05:54:59", 
-   "name": "Graduate (Masters)"
+   "last_updated": "2011-09-10 17:30:23", 
+   "name": "Graduate - Masters"
   }
  }, 
  {
@@ -3653,8 +3653,8 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "name": "Graduate (PHD)"
+   "last_updated": "2011-09-10 17:30:31", 
+   "name": "Graduate - PHD"
   }
  }, 
  {
