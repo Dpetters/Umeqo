@@ -28,7 +28,7 @@ if is_prod():
     DB_PASSWORD = "H3rcul3s"
     DEBUG = False
 else:
-    UMEQO_RECRUITER_ID = 4
+    UMEQO_RECRUITER_ID = 3
     WELCOME_EVENT_ID = 6
     SITE_ID = 2
     DB_PASSWORD = "Jamb4Juic3"
