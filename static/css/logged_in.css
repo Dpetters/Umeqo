@@ -2,6 +2,16 @@
     color: #FFF;
     background-color: rgba(255,255,255,0.3);
 }
+.must_be_subscribed_annually, .must_be_subscribed{
+    opacity:.5;
+}
+#statistics_block{
+    padding-left:12px;
+    padding-right: 10px;
+}
+#statistics_block p{
+    padding-left:10px;
+}
 #account_dropdown {
     background: -moz-linear-gradient(top, rgba(50,50,50,0.9) 0%, rgba(20,20,20,0.9) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(50,50,50,0.9)), color-stop(100%,rgba(20,20,20,0.9))); /* Chrome,Safari4+ */

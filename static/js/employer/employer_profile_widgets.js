@@ -4,9 +4,9 @@ $(document).ready(function(){
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
         minWidth:250,
-        height:96
+        height:100
     });
-    
+    console.log(MAX_INDUSTRIES);
     $("#id_industries").multiselect({
         noneSelectedText: 'select industries',
         classes: 'industries_multiselect',
@@ -17,7 +17,7 @@ $(document).ready(function(){
         },
         click: function(e) {
             $(".warning").remove();
-            if( $(this).multiselect("widget").find("input:checked").length > INDUSTRIES_MAX ) {
+            if( $(this).multiselect("widget").find("input:checked").length > MAX_INDUSTRIES ) {
                 place_multiselect_warning_table($("#id_industries"), MAX_INDUSTRIES_EXCEEDED);
                 return false;
             }

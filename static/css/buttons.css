@@ -227,14 +227,14 @@ input.button {
 .menu_button.um-active {
     background: #E3E3E3;
 }
-.dropdown_menu_button.pressed {
+.dropdown_menu_button.um-pressed {
     background: none repeat scroll 0 0 #888888;
     border-color: #666;
     border-radius: 3px 3px 0px 0px;
     -webkit-border-radius: 3px 3px 0px 0px;
     -moz-border-radius: 3px 3px 0px 0px;
 }
-.dropdown_menu_button.pressed span {
+.dropdown_menu_button.um-pressed span {
     color: #FFF;
     text-shadow: 0 -1px 0 #000;
 }

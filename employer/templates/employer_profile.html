@@ -17,7 +17,7 @@
     var MAIN_CONTACT_EMAIL_REQUIRED = "{% text_snippet 'main_contact_email_required' %}";
     var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
     var INVALID_PHONE = "{% text_snippet 'invalid_phone' %}";
-    var MAX_INDUSTRIES = "{{industries_max}}";
+    var MAX_INDUSTRIES = "{{max_industries}}";
     var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
     var SLUG_ALREADY_TAKEN = "{% text_snippet 'slug_already_taken' %}";
     var CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL = "{% url check_employer_campus_org_slug_uniqueness %}"
@@ -166,7 +166,7 @@
             <tr>
                 <td class="button_cell" colspan="4">
                     <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-                    <input name="formNext2" type="button" class="open2 button disabled" value="Next" alt="Next" />
+                    <input name="formNext2" type="button" class="open2 button disabled" disabled="disabled" value="Next" alt="Next" />
                     <input class="button" type='submit' value="Save Profile" alt="Save Profile">
                     <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                 </td>                

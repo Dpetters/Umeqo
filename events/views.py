@@ -24,6 +24,7 @@ from core.email import send_html_mail
 from core import messages as m
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
 from core.models import Edit
+from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
@@ -42,12 +43,16 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
             events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
             raise Http404
-    try:
-        url = filter(lambda a: a.short_slug == event_slug, events)[0].get_absolute_url()
-        if url:
-            return redirect(url)
-    except Event.DoesNotExist:
-        pass
+    print events
+    if events != []:
+        try:
+            slug_matches = filter(lambda a: a.short_slug == event_slug, events)
+            if slug_matches:
+                url = slug_matches[0].get_absolute_url()
+                if url:
+                    return redirect(url)
+        except Event.DoesNotExist:
+            pass
     raise Http404
 
 @login_required
@@ -74,6 +79,8 @@ def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
 
+    if not Event.objects.filter(pk=id).exists():
+        raise Http404
     event = Event.objects.get(pk=id)
 
     #check slug matches event
@@ -130,7 +137,7 @@ def event_page(request, id, slug, extra_context=None):
             context['can_edit'] = (event.owner == request.user)
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
-            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
+            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             
     if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
@@ -164,6 +171,7 @@ def event_new(request, form_class=None, extra_context=None):
         form_class = CampusOrgEventForm
     if request.method == 'POST':
         form = form_class(data=request.POST)
+        print form.errors
         if form.is_valid():
             event = form.save(commit=False)
             event.owner = request.user
@@ -175,8 +183,8 @@ def event_new(request, form_class=None, extra_context=None):
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
-            'start_datetime': datetime.now(),
-            'end_datetime': datetime.now() + timedelta(hours=1),
+            'start_datetime': datetime.now() + timedelta(minutes=30),
+            'end_datetime': datetime.now() + timedelta(hours=1, minutes=30),
         })
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
@@ -242,6 +250,17 @@ def event_delete(request, id, extra_context = None):
                 if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
                     return HttpResponseForbidden('You are not allowed to delete this event.') 
             event.is_active = False
+
+            # Notify RSVPS.
+            rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
+            employers = event.attending_employers.all()
+            has_word = "has" if len(employers)==1 else "have"
+            employer_names = english_join(map(lambda n: n.name, employers))
+            notification.send(rsvps, 'cancelled_event', {
+                'employer_names': employer_names,
+                'has_word': has_word,
+                'event': event
+            })
 
             event.save()
             return HttpResponse()
