@@ -5332,8 +5332,8 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://www.mit-sbc.org/", 
-   "slug": null, 
-   "last_updated": "2011-09-01 05:04:52", 
+   "slug": "sbc", 
+   "last_updated": "2011-09-12 13:07:33", 
    "description": "SBC (Sloan Business Club) was founded on the belief that while MIT provides its students with an excellent academic and intellectual foundation, the successful business person requires opportunities and skills that cannot be bestowed in any classroom setting. Through our extensive selection of events, our organization works to provide our 1,600+ members with both an expansive business network and a solid mentorship base, enabling students to fully utilize their academic backgrounds in launching strong businesses.", 
    "image": "campus_org/campusorg/sbc_(sloan_business_club)_2011-09-01-01-57-15.png", 
    "email": "sbc-exec@mit.edu", 
