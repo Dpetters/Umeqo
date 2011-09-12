@@ -318,7 +318,7 @@ $(document).ready(function() {
     $('#id_type').change();
 
     $("#event_form").submit(function() {
-        for ( instance in CKEDITOR.instances )
+        for (instance in CKEDITOR.instances)
             CKEDITOR.instances[instance].updateElement();
         if (marker && marker.map) {
             $("#id_latitude").val(marker.position.lat());
@@ -461,14 +461,30 @@ $(document).ready(function() {
     $('#id_start_datetime_0, #id_end_datetime_0').each(function() {
         $(this).data('prevValue', $(this).val());
     });
-    $('#id_start_datetime_0, #id_end_datetime_0').each(function() {
-        $(this).change(function() {
-            if ($(this).val() == "") {
+    $('#id_start_datetime_0').change(function() {
+        if ($(this).val() == "") {
+            $(this).val($(this).data('prevValue'));
+        } else {
+            var parts = $(this).val().split('/');
+            var day = parts[1];
+            var month = parts[0];
+            var year = parts[2];
+            var start_date = new Date(year, month-1, day, 0, 0, 0, 0);
+            var now_date = removeTime(new Date());
+            if (start_date - now_date < 0) {
                 $(this).val($(this).data('prevValue'));
+                $('#event_scheduler_day_text').val($(this).data('prevValue'));
             } else {
                 $(this).data('prevValue', $(this).val());
             }
-        });
+        }
+    });
+    $('#id_end_datetime_0').change(function() {
+        if ($(this).val() == "") {
+            $(this).val($(this).data('prevValue'));
+        } else {
+            $(this).data('prevValue', $(this).val());
+        }
     });
     // Event scheduler.
     function syncSchedule() {

@@ -25,6 +25,7 @@ from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import employer_campus_org_slug_exists
 from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
+from student.models import Student
 
 from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
@@ -268,7 +269,8 @@ def home(request, extra_context=None):
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
                 'upcoming_events': your_events.filter(Q(end_datetime__gte=now_datetime) | Q(type__name="Rolling Deadline")).order_by("end_datetime"),
-                'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime")
+                'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime"),
+                'subscribers': Student.objects.filter(subscriptions__in=[request.user.recruiter.employer]).count()
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'employer_home.html'})

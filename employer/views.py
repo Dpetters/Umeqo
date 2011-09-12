@@ -610,10 +610,18 @@ def employers_list(request, extra_content=None):
     query = request.GET.get('q', '')
     employers = employer_search_helper(request)
     industries = Industry.objects.all()
+    subscriptions = request.user.student.subscriptions.all()
+    sub_status = {}
+    for employer in employers:
+        if employer in subscriptions:
+            employer.subscribed = True
+        else:
+            employer.subscribed = False
     context = {
         'employers': employers,
         'industries': industries,
-        'query': query
+        'query': query,
+        'sub_status': sub_status
     }
     if len(employers) > 0:
         employer_id = request.GET.get('id', None)
@@ -627,7 +635,6 @@ def employers_list(request, extra_content=None):
             employer = employers[0]
             employer_id = employer.id
 
-        subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
         
         context.update({
