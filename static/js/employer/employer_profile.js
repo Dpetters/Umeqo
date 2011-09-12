@@ -2,7 +2,7 @@ $(document).ready(function() {
     v = $("#profile_form").validate({
         submitHandler : function(form) {
             $(form).ajaxSubmit({
-                dataType : 'json',
+                dataType : 'text',
                 beforeSubmit : function(arr, $form, options) {
                     $("#profile_form input[type=submit]").attr("disabled", "disabled");
                     show_form_submit_loader("#profile_form");
@@ -13,6 +13,7 @@ $(document).ready(function() {
                     hide_form_submit_loader("#profile_form");
                 },
                 success : function(data) {
+                    data = $.parseJSON(data);
                     if(data.errors) {
                         place_table_form_errors("#profile_form", data.errors);
                     } else {

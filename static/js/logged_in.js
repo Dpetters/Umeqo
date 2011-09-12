@@ -1,4 +1,10 @@
 $(document).ready( function() {
+    
+    $(".must_be_subscribed_annually_w").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must have an annual subscription to access this feature", html:true}); 
+    $(".must_be_subscribed_annually_e").tipsy({'gravity':'e', opacity: 0.9, live:true, fallback:"You must have an annual subscription to access this feature", html:true}); 
+    $(".must_be_subscribed_annually_n").tipsy({'gravity':'n', opacity: 0.9, live:true, fallback:"You must have an annual subscription to access this feature", html:true}); 
+    $(".must_be_subscribed_annually_s").tipsy({'gravity':'s', opacity: 0.9, live:true, fallback:"You must have an annual subscription to access this feature", html:true}); 
+               
     $('#account_dropdown').hide();
     $('#account').click(function() {
        $('#account_dropdown').toggle(); 

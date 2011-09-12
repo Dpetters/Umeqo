@@ -17,10 +17,10 @@ decorate_bound_field()
 
 
 class EmailAuthenticationForm(AuthenticationForm):
+    username = forms.EmailField(label="Email:", max_length = 75)
     
     def __init__(self, *args, **kwargs):
         super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].label = "Email:"
         self.fields['username'].error_messages = {'required': m.email_required}
         self.fields['password'].label = "Password:"
         self.fields['password'].error_messages = {'required': m.password_required}

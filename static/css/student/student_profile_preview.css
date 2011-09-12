@@ -87,7 +87,7 @@
 .student_major {
     margin-left: 7px;
 }
-.student_invite_to_event_span {
+.student_invite_to_event_span, .student_invite_to_event_span_disabled {
     float: right;
     position: relative;
     bottom: 1px;

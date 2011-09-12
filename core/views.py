@@ -38,10 +38,9 @@ def check_employer_campus_org_slug_uniqueness(request):
             data = False
             if not employer_campus_org_slug_exists(request.GET["slug"], request.user):
                 data = True
-            print data
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            return HttpResponseBadRequest("Request is ")
+            return HttpResponseBadRequest("Request is missing the slug.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
     
