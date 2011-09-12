@@ -82,17 +82,17 @@ Home |
         <div class="simple_block centered">
             <p>
                 Start creating resume books and sending event invitations by browsing for students above.</p>
-                <p {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually"{% endif %} >You can modify your search and filtering preferences at anytime <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_account %}?tab=preferences">here</a>.
+                <p>You can modify your search and filtering preferences at anytime <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_account %}?tab=preferences">here</a>.
             </p>
         </div>
     </div>
 </div>
-<div class="main_block with_side_nav {% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually{% endif %}">
+<div class="main_block with_side_nav">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Your Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="{% url event_new %}" class="button {% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually_e{% endif %}">New Event</a>
+            <a href="{% url event_new %}" class="button {% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% endif %}">New Event</a>
         </div>
     </div>
     <div class="main_block_content">
@@ -117,7 +117,7 @@ Home |
                 You can post your company's events and deadlines for students to view and add to their calendars.
             </p>
             <p>
-                You currently don't have any upcoming events/deadlines; <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}"><strong>create one now</strong></a>.
+                You currently don't have any upcoming events/deadlines; <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}"><strong>create one now</strong></a>.
             </p>
         </div>
     </div>

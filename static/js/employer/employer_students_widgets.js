@@ -1,9 +1,12 @@
 $(document).ready(function(){
+     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must have an annual subscription to browse through all students.", html:true});
+    
     $("#id_student_list").multiselect({
         header:false,
         multiple: false,
         selectedList: 1,
         height:252,
+        classes: 'student_list_multiselect',
         minWidth:multiselectMinWidth,
         click: function(event, ui) {
             student_list = ui.text;

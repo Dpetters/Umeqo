@@ -10,6 +10,6 @@ def employer_no_results(current_student_list):
     context['all_students'] = student_enums.GENERAL_STUDENT_LISTS[0][1]
     context['starred_students'] = student_enums.GENERAL_STUDENT_LISTS[1][1]
     type = current_student_list.split(" ")[-1]
-    if type == "RSVPs" or type == "Attendees" or type=="Resumebook" or type=="Participants":
+    if type == "RSVPs" or type == "Attendees" or type=="Resumebook":
         context['type'] = type
     return context

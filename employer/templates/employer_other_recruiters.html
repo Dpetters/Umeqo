@@ -1,4 +1,3 @@
-{% if other_recruiters %}
 <ul id="employer_other_recruiters">
 {% for recruiter in other_recruiters %}
     <li class="{% cycle 'even' 'odd' %}">
@@ -6,8 +5,7 @@
     </li>
 {% empty %}
     <li id="no_recruiter_accounts even">
-        <p>You are the only recruiter for {{user.recruiter.employer}}.</a></p>
+        <p class="centered">You are the only recruiter for {{user.recruiter.employer}}.</a></p>
     </li>
 {% endfor %}
 </ul>
-{% endif %}

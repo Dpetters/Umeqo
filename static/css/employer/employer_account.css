@@ -77,6 +77,9 @@
     margin-top:5px;
     list-style:inside none;
 }
+#no_recruiter_accounts{
+    border-bottom:1px solid #EEE;
+}
 #employer_other_recruiters li{
     padding:5px 8px;
     border-top:1px solid #EEE;

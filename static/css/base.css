@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+.tipsy{
+    font-size:12px !important;
+}
 html {
     overflow-y: scroll;
 }
