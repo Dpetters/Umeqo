@@ -1,4 +1,5 @@
 from ckeditor.widgets import CKEditorWidget
+from datetime import datetime
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
@@ -42,13 +43,17 @@ class EventForm(forms.ModelForm):
                   'is_public',)
         model = Event
         
+    def clean_end_datetime(self):
+        if self.cleaned_data['end_datetime'] and self.cleaned_data['end_datetime'] < datetime.now():
+            raise forms.ValidationError(_("End date/time must be in the future."))
+            
     def clean(self):
         if not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline") and not self.cleaned_data["type"]==EventType.objects.get(name="Hard Deadline"):
             if not self.cleaned_data['start_datetime']:
                 raise forms.ValidationError(_(m.start_datetime_required))
         elif not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline"):
             if not self.cleaned_data['end_datetime']:
-                raise forms.ValidationError(_(m.end_datetime_required))            
+                raise forms.ValidationError(_(m.end_datetime_required))
         return self.cleaned_data
 
 class CampusOrgEventForm(EventForm):

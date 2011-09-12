@@ -121,7 +121,7 @@
                                 <li><a href="{% url student_account %}">Account Settings</a></li>
                             {% endif %}
                             {% if user.recruiter %}    
-                                <li><a href="{% url employer_profile %}">Edit Profile</a></li>
+                                <li><a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_e"{% endif %} href="{% url employer_profile %}">Edit Profile</a></li>
                                 <li><a href="{% url employer_account %}">Account Settings</a></li>
                             {% endif %}
                             {% if user.campusorg %}    

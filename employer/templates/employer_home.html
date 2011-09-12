@@ -20,10 +20,10 @@ Home |
 {% block content_area %}
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
-      <div id="statistics_block">
-          <h3 id="statistics_header">Your Statistics</h3>
-          <p><strong>Subscribers:</strong> {{subscribers}}</p>
-      </div>
+    <div id="statistics_block">
+        <h3 id="statistics_header">Your Statistics</h3>
+        <p><strong>Student Subscribers:</strong> {{subscribers}}</p>
+    </div>
 </div>
 
 <div class="main_block no_top_margin with_side_nav">
@@ -53,7 +53,7 @@ Home |
                 </tr>
                 <tr {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually"{% endif %}>
                     <td>
-                        <a href="{% url event_new %}"><img src="{{ STATIC_URL }}images/co-home/events.png" /></a>
+                        <a href="{% url event_new %}"><img {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_s"{% endif %} src="{{ STATIC_URL }}images/co-home/events.png" /></a>
                     </td>
                     <td>
                         <p><a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_s"{% endif %} href="{% url event_new %}">Create events and deadlines</a> for students to view, and RSVP to. Make sure to send out some invitations!</p>

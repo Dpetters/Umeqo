@@ -1,5 +1,5 @@
 $(document).ready(function(){
-     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must have an annual subscription to browse through all students.", html:true});
+     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to browse through all students.", html:true});
     
     $("#id_student_list").multiselect({
         header:false,

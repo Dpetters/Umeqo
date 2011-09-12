@@ -77,9 +77,6 @@
     margin-top:5px;
     list-style:inside none;
 }
-#no_recruiter_accounts{
-    border-bottom:1px solid #EEE;
-}
 #employer_other_recruiters li{
     padding:5px 8px;
     border-top:1px solid #EEE;
@@ -87,9 +84,10 @@
 #employer_other_recruiters li.even{
     background:#EFEFEF;
 }
-#no_recruiter_accounts{
+li#no_recruiter_accounts{
     padding:10px 0px;
     text-align:center;
+    border-bottom:1px solid #EEE;
 }
 .create_recruiter_dialog .dialog_content_wrapper{
     padding:10px;   
