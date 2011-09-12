@@ -41,9 +41,11 @@
    "attending_employers": [
     6
    ], 
-   "name": "The a boo", 
+   "name": "The a boofaefaes fafewa f eaf esafesaf esa fesa fesa fesa faes fesa f esaf esaf esaf ", 
    "is_public": true, 
-   "edits": [], 
+   "edits": [
+    5
+   ], 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -280,6 +282,19 @@
    "recruiter": 1, 
    "resume_book": "employer/resumebook/harry_potter_potter@umeqo.com_2011-09-12-03-54-19.pdf", 
    "date_created": "2011-09-12 03:23:47"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "delivered": false, 
+   "last_updated": "2011-09-12 05:15:18", 
+   "name": null, 
+   "students": [], 
+   "recruiter": 1, 
+   "resume_book": "", 
+   "date_created": "2011-09-12 05:15:18"
   }
  }, 
  {
@@ -852,8 +867,8 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 5, 
-   "last_updated": "2011-09-12 03:54:17", 
+   "shown_in_results_count": 7, 
+   "last_updated": "2011-09-12 05:17:18", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 2, 
    "student": 1, 
@@ -864,8 +879,8 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 4, 
-   "last_updated": "2011-09-12 03:53:58", 
+   "shown_in_results_count": 6, 
+   "last_updated": "2011-09-12 05:17:18", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 2, 
@@ -876,8 +891,8 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 4, 
-   "last_updated": "2011-09-12 03:54:17", 
+   "shown_in_results_count": 6, 
+   "last_updated": "2011-09-12 05:17:18", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 2, 
    "student": 3, 
@@ -888,8 +903,8 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 3, 
-   "last_updated": "2011-09-12 03:53:58", 
+   "shown_in_results_count": 5, 
+   "last_updated": "2011-09-12 05:17:18", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 4, 
@@ -900,8 +915,8 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 3, 
-   "last_updated": "2011-09-12 03:53:58", 
+   "shown_in_results_count": 5, 
+   "last_updated": "2011-09-12 05:17:18", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 5, 
@@ -912,8 +927,8 @@
   "pk": 10, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2011-09-12 03:54:17", 
+   "shown_in_results_count": 4, 
+   "last_updated": "2011-09-12 05:17:18", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 10, 
@@ -1290,7 +1305,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-12 03:24:23", 
+   "last_login": "2011-09-12 05:14:48", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1326,7 +1341,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-12 04:07:44", 
+   "last_login": "2011-09-12 05:15:08", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -3846,6 +3861,36 @@
    "date_created": "2011-09-12 04:07:44", 
    "session_key": "1b0740dcaa0ddbcb6114929f031af1c8", 
    "last_updated": "2011-09-12 04:07:44", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 362, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-12 05:13:01", 
+   "session_key": "fdc64a36d3a97f16d3c0af9ad41fa3b3", 
+   "last_updated": "2011-09-12 05:13:01", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 363, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-12 05:14:48", 
+   "session_key": "559a6a6885e77608ad77656c14621f06", 
+   "last_updated": "2011-09-12 05:14:48", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 364, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-12 05:15:08", 
+   "session_key": "4361e43189ed8be26ef08fe9b3b0c5d9", 
+   "last_updated": "2011-09-12 05:15:08", 
    "user": 3
   }
  }, 
