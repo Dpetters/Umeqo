@@ -14,6 +14,8 @@ from notification import models as notification
 def notify_about_event(instance, notice_type, employers):
     subscribers = Student.objects.filter(subscriptions__in=employers)
     to_users = list(set(map(lambda n: n.user, subscribers)))
+    if not instance.is_public:
+        to_users = filter(lambda u: Invitee.objects.filter(student = u.student, event=instance).exists(), to_users)
     # Batch the sending by unique groups of subscriptions.
     # This way someone subscribed to A, B, and C gets only one email.
     subscribers_by_user = {}

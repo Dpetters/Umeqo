@@ -249,7 +249,7 @@ def home(request, extra_context=None):
             subscriptions = request.user.student.subscriptions.all()
             if len(subscriptions) > 0:
                 context['has_subscriptions'] = True
-                sub_events = Event.objects.filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now())
+                sub_events = Event.objects.filter(Q(is_public=True)|Q(invitee__student__in=[request.user.student])).filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now())
                 sub_events = sub_events.order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,

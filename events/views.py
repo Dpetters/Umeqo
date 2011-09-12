@@ -43,7 +43,6 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
             events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
             raise Http404
-    print events
     if events != []:
         try:
             slug_matches = filter(lambda a: a.short_slug == event_slug, events)
@@ -83,6 +82,21 @@ def event_page(request, id, slug, extra_context=None):
         raise Http404
     event = Event.objects.get(pk=id)
 
+    if not event.is_public:
+        if not request.user.is_authenticated():
+            return HttpResponseForbidden("You don't have permission to view this event.")
+        elif is_campus_org(request.user):
+            if request.user != event.owner:
+                return HttpResponseForbidden("You don't have permission to view this event.")
+        elif is_recruiter(request.user):
+            if request.user.recruiter.employer not in event.attending_employers.all():
+                return HttpResponseForbidden("You don't have permission to view this event.")
+        elif is_student(request.user):
+            try:
+                Invitee.objects.get(event=event, student=request.user.student)
+            except:
+                return HttpResponseForbidden("You don't have permission to view this event.")
+        
     #check slug matches event
     if event.slug!=slug:
         raise Http404
@@ -170,9 +184,7 @@ def event_new(request, form_class=None, extra_context=None):
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
     if request.method == 'POST':
-        print request.POST
         form = form_class(data=request.POST)
-        print form.errors
         if form.is_valid():
             event = form.save(commit=False)
             event.owner = request.user
@@ -455,7 +467,7 @@ def event_search(request, extra_context=None):
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 def events_by_employer(request):
-    upcoming_events = request.user.event_set.active().filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline"))
+    upcoming_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline")).order_by("end_datetime")
     student_id = request.GET.get('student_id', None)
     if not student_id or not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()
