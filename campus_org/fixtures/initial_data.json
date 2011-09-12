@@ -6324,6 +6324,23 @@
   }
  }, 
  {
+  "pk": 480, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-09-10 22:39:16", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-10 22:39:16", 
+   "type": 16, 
+   "display": false, 
+   "name": "The Forum"
+  }
+ }, 
+ {
   "pk": 452, 
   "model": "campus_org.campusorg", 
   "fields": {
