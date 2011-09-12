@@ -30,7 +30,12 @@ $(document).ready(function() {
                 required : true
             },
             slug : {
-                required : true
+                required : true,
+                remote: {
+                    dataType: 'json',
+                    url: CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL,
+                    error: errors_in_message_area_handler
+                }
             },
             industries : {
                 required : true
@@ -54,7 +59,10 @@ $(document).ready(function() {
         },
         messages : {
             name : NAME_REQUIRED,
-            slug : SLUG_REQUIRED,
+            slug : {
+                reguired:SLUG_REQUIRED,
+                remote: SLUG_ALREADY_TAKEN
+            },
             industries : INDUSTRIES_REQUIRED,
             description : DESCRIPTION_REQUIRED,
             website : INVALID_URL,

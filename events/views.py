@@ -31,12 +31,11 @@ from notification import models as notification
 from student.models import Student
 
 @login_required
+@require_GET
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
-    print owner_slug
-    print event_slug
     try:
         employer = Employer.objects.get(slug = owner_slug)
-        events = employer.event_set.get(short_slug = event_slug).get_absolute_url()
+        events = reduce(lambda a,b: [a, a.extend(b.user.event_set.all().order_by("-date_created"))][0], employer.recruiter_set.all(), [])
     except Employer.DoesNotExist:
         try:
             campus_org = CampusOrg.objects.get(slug = owner_slug)
@@ -44,8 +43,7 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
         except CampusOrg.DoesNotExist:
             raise Http404
     try:
-        url = None
-        url = events.get(short_slug = event_slug).get_absolute_url()
+        url = filter(lambda a: a.short_slug == event_slug, events)[0].get_absolute_url()
         if url:
             return redirect(url)
     except Event.DoesNotExist:
