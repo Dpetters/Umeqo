@@ -191,30 +191,6 @@ h3#event_location{
 #event_actions {
     float: right;
 }
-.responses .event_rsvp {
-    display: inline-block;
-    padding: 7px;
-    background-color: #F0F0F0;
-    margin-top: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 2px;
-    border-bottom: 2px solid #F0F0F0;
-}
-.responses .event_rsvp.hoverable {
-    background-color: #FFF;
-    border-bottom: 2px solid #557389;
-}
-.responses .event_rsvp .email {
-    font-weight: 400;
-}
-.responses .event_rsvp .email::before {
-    content: '(';
-}
-.responses .event_rsvp .email::after{
-    content: ')';
-}
-
 #event_checkin {
     width: 150px;
     text-align: center;

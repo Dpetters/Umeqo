@@ -39,11 +39,18 @@
         <ul id="resume_book_list">
             {% for resume_book in resume_books %}
                 <li>
-                    <div class="details">
-                        <span>{{ resume_book.name }}</span>
-                        <span>{{resume_book.id}}
+                    <div class="right_side_container">
+                        <a class="dark_button student_deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
                     </div>
-                    <a class="student_deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
+                    <div class="details">
+                        <h2>{{ resume_book.name }}</h2>
+                        <span><strong>Last Delivery Date/Time:</strong> {{resume_book.last_updated|date:"D, F j"}}, {{resume_book.date_created|date:"Y"}} <em>{{resume_book.date_created|date:"h:i A"}}</em></span>
+                    </div>
+                    <div class="students">
+                    {% for student in resume_book.students.all %}
+                        {% include "events_response_token.html" %}
+                    {% endfor %}
+                    </div>
                 </li>
             {% empty %}
                 <li class="empty_notices">You have not created any resume books yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to create one.</li>

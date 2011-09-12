@@ -16,6 +16,15 @@
     background-color: #EEE;
     padding: 10px;
 }
+.resume_book_list .details{
+    margin-right:100px;
+}
+.resume_book_list .right_side_container{
+    width:80px;
+}
+.resume_book_list .right_side_container .student_deliver_resume_book_link{
+    margin-top:5px;
+}
 .notifications_list li.unread {
     background-color: #FFF;
 }

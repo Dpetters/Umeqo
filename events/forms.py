@@ -46,7 +46,7 @@ class EventForm(forms.ModelForm):
     def clean_end_datetime(self):
         if self.cleaned_data['end_datetime'] and self.cleaned_data['end_datetime'] < datetime.now():
             raise forms.ValidationError(_("End date/time must be in the future."))
-            
+        return self.cleaned_data['end_datetime']
     def clean(self):
         if not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline") and not self.cleaned_data["type"]==EventType.objects.get(name="Hard Deadline"):
             if not self.cleaned_data['start_datetime']:
