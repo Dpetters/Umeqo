@@ -73,7 +73,6 @@ def subscription_list(request, extra_context=None):
         try:
             es = request.user.recruiter.employer.employersubscription
             if es.subscription == free_trial:
-                context['annual_button'] = "Upgrade"
                 context['annual_dialog'] = "Subscribe to Umeqo"
                 context['annual_class'] = "open_sd_link upgrade"
                 context['annual_action'] = "upgrade"
@@ -81,7 +80,9 @@ def subscription_list(request, extra_context=None):
                 
                 if es.expired() or es.expires < date.today():
                     context['free_trial_text'] = "Subscription Expired"
+                    context['annual_button'] = "Contact Us"
                 else:
+                    context['annual_button'] = "Upgrade"
                     context['free_trial_text'] = "Subscribed"
                     context['free_trial_button'] = "Cancel Subscription"
                     context['free_trial_dialog'] = "Cancel Subscription"

@@ -42,12 +42,16 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
             events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
             raise Http404
-    try:
-        url = filter(lambda a: a.short_slug == event_slug, events)[0].get_absolute_url()
-        if url:
-            return redirect(url)
-    except Event.DoesNotExist:
-        pass
+    print events
+    if events != []:
+        try:
+            slug_matches = filter(lambda a: a.short_slug == event_slug, events)
+            if slug_matches:
+                url = slug_matches[0].get_absolute_url()
+                if url:
+                    return redirect(url)
+        except Event.DoesNotExist:
+            pass
     raise Http404
 
 @login_required
@@ -130,7 +134,7 @@ def event_page(request, id, slug, extra_context=None):
             context['can_edit'] = (event.owner == request.user)
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
-            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
+            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             
     if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
@@ -164,18 +168,16 @@ def event_new(request, form_class=None, extra_context=None):
         form_class = CampusOrgEventForm
     if request.method == 'POST':
         form = form_class(data=request.POST)
+        print form.errors
         if form.is_valid():
-            valid_start = (not form.cleaned_data['start_datetime'] or form.cleaned_data['start_datetime'] >= datetime.now())
-            valid_end = (not form.cleaned_data['end_datetime'] or form.cleaned_data['end_datetime'] >= datetime.now())
-            if valid_start and valid_end:
-                event = form.save(commit=False)
-                event.owner = request.user
-                event.save()
-                form.save_m2m()
-                if is_recruiter(request.user):
-                    event.attending_employers.add(request.user.recruiter.employer);
-                notify_about_event(event, "new_event", event.attending_employers.all())
-                return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
+            event = form.save(commit=False)
+            event.owner = request.user
+            event.save()
+            form.save_m2m()
+            if is_recruiter(request.user):
+                event.attending_employers.add(request.user.recruiter.employer);
+            notify_about_event(event, "new_event", event.attending_employers.all())
+            return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
             'start_datetime': datetime.now(),
