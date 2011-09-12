@@ -302,7 +302,7 @@ $(document).ready(function() {
                 $('label[for=id_end_datetime_0]').append("<span class='error'>*</span>");                
             }
             $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
-            $("#start_datetime_wrapper, #end_datetime_wrapper").slideDown();
+            $("#start_datetime_wrapper, #end_datetime_wrapper, #event_scheduler_day, #event_scheduler").slideDown();
             $("#event_form input[type=submit]").val("Create Event");
 
             $("#event_location_section input").removeAttr('disabled');

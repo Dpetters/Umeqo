@@ -175,7 +175,7 @@
                                 <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if can_edit %}disabled="disabled"{% endif %}>{% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
                                 <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if can_edit %}disabled="disabled"{% endif %}>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
                             {% endspaceless %}
-                            <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP and Resume Drop</a></strong>
+                            <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP{% if event.is_drop and attending %} and Resume Drop{% endif %}</a></strong>
                         {% endif %}
                 {% else %}
                     <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" {% if not user.is_authenticated %}title="RSVP requires login."{% endif %}>

@@ -633,7 +633,7 @@ $(document).ready(function() {
                                     linkText = event.name + ' [public]';
                                 }
                                 if (event.invited) {
-                                    linkText = linkText + ' (invited)';
+                                    linkText = linkText + ' (<strong>already invited</strong>)';
                                 }
                                 link.html(linkText);
                                 dropdown.append(link);
@@ -692,7 +692,7 @@ $(document).ready(function() {
         invite_dialog.dialog({
             height: 'auto',
             minHeight: 0,
-            width: 400,
+            width: 415,
             resizable: false,
             modal: true,
             buttons: {

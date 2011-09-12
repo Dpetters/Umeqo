@@ -80,6 +80,7 @@ $(document).ready(function() {
         if ($(this).hasClass('left-group')) {
             $('#rsvp_div .selected').removeClass('selected');
             $(this).addClass('selected');
+            $("#remove-rsvp-button").text("Undo RSVP and Resume Drop");
         }
         $.ajax({
             data:{'event_id':EVENT_ID},
@@ -104,6 +105,7 @@ $(document).ready(function() {
         if ($(this).hasClass('right-group')) {
             $('#rsvp_div .selected').removeClass('selected');
             $(this).addClass('selected');
+            $("#remove-rsvp-button").text("Undo RSVP");
         }
         e.preventDefault();
     });

@@ -2,12 +2,14 @@ from datetime import datetime, timedelta
 
 from django.db.models import Q
 
+from core.decorators import is_student
 from events.models import Event
 from haystack.query import SearchQuerySet
             
 def event_search_helper(request):
     query = request.GET.get('q','')
-    search_results = SearchQuerySet().models(Event).filter(is_public=True).filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline")).order_by("end_datetime")
+    if is_student(request.user):
+        search_results = SearchQuerySet().models(Event).filter(is_public=True).filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline")).order_by("end_datetime")
     if query!="":
         for q in query.split(' '):
             if q.strip() != "":

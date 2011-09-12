@@ -214,7 +214,6 @@
 .events_dropdown a {
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 200px;
     display: inline-block;
     text-align: right;
 }
