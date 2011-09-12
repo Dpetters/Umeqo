@@ -364,7 +364,8 @@ def employer_student_event_attendance(request):
 @require_GET
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
-    context = {"resume_books":request.user.recruiter.resumebook_set.all()}
+    context = {"resume_books":request.user.recruiter.resumebook_set.filter(delivered=True),
+               'email_delivery_type': employer_enums.EMAIL}
     context.update(extra_context or {})
     return context
 
@@ -518,15 +519,13 @@ def employer_resume_book_current_create(request):
             
     report_buffer = cStringIO.StringIO() 
     c = Canvas(report_buffer)  
-    c.drawString(8*cm, 26*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
-    c.drawString(9*cm, 25.5*cm, str(request.user.recruiter))
-    c.drawString(8.5*cm, 25*cm, str(request.user.recruiter.employer))
-    c.drawString(16*cm, 29*cm, "Created using Umeqo")
-    page_num = 0
-    for student in current_resume_book.students.all():
-        page_num += 1
-        c.drawString(4*cm, (22-page_num)*cm, student.first_name + " " + student.last_name)
-        c.drawString(16*cm, (22-page_num)*cm, str(page_num))
+    c.drawString(1*cm, 28.5*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
+    c.drawString(1*cm, 28*cm, str(request.user.recruiter))
+    c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
+    c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
+    for page_num, student in enumerate(current_resume_book.students.all()):
+        c.drawString(4*cm, (25.5-page_num)*cm, student.first_name + " " + student.last_name)
+        c.drawString(16*cm, (25.5-page_num)*cm, str(page_num+1))
     c.showPage()
     c.save()
     output = PdfFileWriter()
@@ -535,6 +534,7 @@ def employer_resume_book_current_create(request):
         output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
     resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
     current_resume_book.resume_book_name = resume_book_name
+    current_resume_book.save()
     file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
     if not os.path.exists(file_path):
         os.makedirs(file_path)
@@ -572,12 +572,13 @@ def employer_resume_book_current_email(request, extra_context=None):
             message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
             f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
             content = f.read()
-            if request.POST.has_key('name'):
+            if request.POST.has_key('name') and request.POST['name']:
                 filename = request.POST['name']
             else:
                 filename = os.path.basename(current_resume_book.resume_book.name)
             message.attach("%s.pdf" % (filename), content, "application/pdf")
             message.send()
+            current_resume_book.name = filename
             current_resume_book.delivered = True
             current_resume_book.save()
             context = {}
@@ -611,6 +612,7 @@ def employer_resume_book_current_download(request):
         if request.GET.has_key('name'):
             filename = request.GET['name']
         response["Content-Disposition"]= 'attachment; filename="%s"' % filename
+        current_resume_book.name = filename
         current_resume_book.delivered = True
         current_resume_book.save()
         return response

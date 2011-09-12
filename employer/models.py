@@ -118,6 +118,7 @@ class ResumeBook(core_mixins.DateTracking):
             return "Resume Book"
 
     class Meta:
+        ordering = ['-last_updated']
         verbose_name = "Resume Book"
         verbose_name_plural = "Resume Books"
         
