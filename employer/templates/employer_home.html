@@ -21,7 +21,7 @@ Home |
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
     <div id="statistics_block">
-        <h3 id="statistics_header">Your Statistics</h3>
+        <h3 {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_profile"{% endif %} id="statistics_header">Your Statistics</h3>
         <p><strong>Student Subscribers:</strong> {{subscribers}}</p>
     </div>
 </div>
@@ -82,7 +82,7 @@ Home |
         <div class="simple_block centered">
             <p>
                 Start creating resume books and sending event invitations by browsing for students above.</p>
-                <p>You can modify your search and filtering preferences at anytime <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_account %}?tab=preferences">here</a>.
+                <p>You can modify your search and filtering preferences at anytime <a href="{% url employer_account %}?tab=preferences">here</a>.
             </p>
         </div>
     </div>

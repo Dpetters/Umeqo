@@ -362,7 +362,7 @@ def employer_student_event_attendance(request):
 @require_GET
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
-    context = {"resume_books":request.user.recruiter.resumebook_set.all(),
+    context = {"resume_books":request.user.recruiter.resumebook_set.filter(delivered=True),
                'email_delivery_type': employer_enums.EMAIL}
     context.update(extra_context or {})
     return context
