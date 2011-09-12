@@ -39,7 +39,7 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     except Employer.DoesNotExist:
         try:
             campus_org = CampusOrg.objects.get(slug = owner_slug)
-            events = campus_org.user.event_set
+            events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
             raise Http404
     try:
