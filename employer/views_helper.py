@@ -1,7 +1,6 @@
 from django.db.models import Q
 from django.core.cache import cache
 
-from notification import models as notification
 from haystack.query import SearchQuerySet
 from student.models import Student
 from employer import enums
@@ -10,18 +9,6 @@ from student import enums as student_enums
 from events.models import Event
 from core.digg_paginator import DiggPaginator
         
-def check_for_new_student_matches(employer):
-    all_student_matches = filter_students(gpa=employer.gpa, act=employer.act, sat = employer.sat)
-    latest_student_matches = []
-    for student in all_student_matches:
-        if student not in employer.last_seen_students.all():
-            latest_student_matches.append(student)
-            
-    employer.latest_student_matches = latest_student_matches
-    employer.save()
-    
-    notification.send([employer.user], 'new_student_matches', {'students':latest_student_matches})
-
 def get_paginator(request):
     filtering, current_ordered_results = combine_and_order_results(get_cached_filtering_results(request), get_cached_search_results(request), request.POST['ordering'], request.POST['query'])
     processed_ordered_results = process_results(request.user.recruiter, current_ordered_results)
@@ -216,7 +203,7 @@ def filter_students(recruiter,
         if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Resumebook":
             e = Event.objects.get(id = student_list_id)
             if parts[-1] == "RSVPs":
-                students = Student.objects.filter(rsvp__in=e.rsvp_set.all())
+                students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True))
             elif parts[-1] == "Attendees":
                 students = Student.objects.filter(attendee__in=e.attendee_set.all())
             elif parts[-1] == "Resumebook":
@@ -297,8 +284,7 @@ def combine_and_order_results(filtering_results, search_results, ordering, query
                 if student in filtering_results_students:
                     ordered_results.append(student)
         else:
-            filtering_results_students.order_by(ordering)
-            for student in filtering_results_students:
+            for student in filtering_results_students.order_by(ordering):
                 if student in search_results_students:
                     ordered_results.append(student)
         return filtering, ordered_results

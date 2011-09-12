@@ -259,7 +259,7 @@ $(document).ready(function(){
         header:false,
         selectedList: 1,
         multiple: false,
-        height: 106,
+        height: 82,
         minWidth:multiselectSingleSelectWidth,
         click: function(event, ui) {
             ordering = ui.value;
