@@ -1,6 +1,6 @@
 <p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
 
-<p>{{recruiter.first_name}} {{recruiter.last_name}} ({{recruiter.email}}, a recruiter from {{employer}}) has invited you to the "{{event}}":</p>
+<p>{{recruiter.first_name}} {{recruiter.last_name}} ({{recruiter.email}}), a recruiter from {{employer}}, has invited you to an event - "{{event}}":</p>
 
 {% load core_extras %}
 <blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
