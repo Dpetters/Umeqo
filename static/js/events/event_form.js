@@ -268,7 +268,6 @@ $(document).ready(function() {
                 $("#event_form_header").html(title);
                 $("#id_name").attr("placeholder", "Enter hard deadline name");
                 
-                $("#event_scheduler").css("height", 230);
                             
                 $("#end_datetime_wrapper").slideDown();
                 $('label[for=id_end_datetime_0]').addClass('required');
@@ -280,7 +279,6 @@ $(document).ready(function() {
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input").attr('disabled', 'disabled');
                 $("#end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
                 $("#start_datetime_wrapper, #event_scheduler_day, #event_scheduler").slideUp();
-                $("#event_scheduler_day").slideUp();
             }
         } else {
             $('label[for=id_start_datetime_0]').addClass('required');

@@ -20,7 +20,7 @@ def student_lists_as_choices(employer_id):
         if student_list_type[0] == student_enums.EVENT:
             events = e.event_set.all()
             for index, event in enumerate(events):
-                if index == 0:
+                if index == 0 and not e.subscribed_annually():
                     student_lists.append([event.id, event.name + " RSVPs", "selected=\"selected\""])
                 else:
                     student_lists.append([event.id, event.name + " RSVPs"])

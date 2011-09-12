@@ -170,6 +170,7 @@ def event_new(request, form_class=None, extra_context=None):
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
     if request.method == 'POST':
+        print request.POST
         form = form_class(data=request.POST)
         print form.errors
         if form.is_valid():
