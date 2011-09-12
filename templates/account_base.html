@@ -84,7 +84,8 @@ Account Settings |
                     {% endblock %}
                 </div>
             </div>
-            {% if user.recruiter and user.recruiter.employer.subscribed %}
+            {% if user.recruiter and not user.recruiter.employer.subscribed %}
+            {% else %}
             <div id="tabs-2" class="clearfix">
                 <div id="preferences">
                     {% block preferences %}
