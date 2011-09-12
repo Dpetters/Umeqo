@@ -50,8 +50,7 @@ urlpatterns += patterns('core.views',
     (r'^unsupported-browser/$', direct_to_template, { 'template' : 'browser_not_supported.html' }, 'unsupported_browser'),
     (r'^course-info/$', 'course_info', {}, 'course_info'),
     (r'^check-email-availability/$', 'check_email_availability', {}, 'check_email_availability'),
-    (r'^check-email-existence/$', 'check_email_existence', {}, 'check_email_existence'),
-    (r'^check-username-existence/$', 'check_username_existence', {}, 'check_username_existence'),
+    (r'^check-employer-campus-org-check-slug-uniqueness/$', 'check_employer_campus_org_slug_uniqueness', {}, 'check_employer_campus_org_slug_uniqueness'),    
     (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website'),
@@ -146,21 +145,14 @@ urlpatterns += patterns('employer.views',
     (r'^employers/subscribe$', 'employer_subscribe', {}, 'employers_subscribe'),
     (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
+
+urlpatterns += patterns('events.views',
+    (r'^(?P<owner_slug>\w+)/(?P<event_slug>\w+)/$', 'events_shortcut', {}, 'events_shortcut')
+)
+
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
-
-events = Event.objects.all()
-for event in events:
-    owner_slug = None
-    if is_recruiter(event.owner):
-        owner_slug = event.owner.recruiter.employer.slug
-    elif is_campus_org(event.owner):
-        owner_slug = event.owner.campusorg.slug
-    if owner_slug and event.short_slug:
-        urlpatterns += patterns('',
-            (r'^%s/%s' % (owner_slug, event.short_slug), redirect_to, {'url': event.get_absolute_url()})
-        )
-
+    
 handler500 = 'core.views.handle_500'
 handler404 = 'core.views.handle_404'
 handler403 = 'core.views.handle_403'

@@ -19,6 +19,8 @@
     var INVALID_PHONE = "{% text_snippet 'invalid_phone' %}";
     var MAX_INDUSTRIES = "{{industries_max}}";
     var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
+    var SLUG_ALREADY_TAKEN = "{% text_snippet 'slug_already_taken' %}";
+    var CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL = "{% url check_employer_campus_org_slug_uniqueness %}"
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile.js"></script>
@@ -50,7 +52,7 @@
         </div>
         <table class="form_table">
             <tr>
-                <th><label>{{form.name.label_tag}}</label></th>
+                <th>{{form.name.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
                     {{form.name}}
@@ -62,7 +64,7 @@
                 </td>
             </tr>
             <tr>
-                <th><label>{{form.slug.label_tag}}</label></th>
+                <th>{{form.slug.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
                     {{form.slug}} (umeqo.com/slug/)

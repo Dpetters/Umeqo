@@ -211,7 +211,6 @@ $(document).ready(function() {
     var messages = {
         name : {
             required : "Name is required.",
-            remote : "Event name already taken."
         },
         type : {
             required : 'Event type is required.'
