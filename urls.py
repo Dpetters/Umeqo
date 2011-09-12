@@ -8,7 +8,9 @@ from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
+from core.decorators import is_recruiter, is_campus_org
 from core.forms import EmailAuthenticationForm as AuthenticationForm
+from events.models import Event
 from registration.forms import PasswordResetForm, SetPasswordForm
 
 admin.autodiscover()
@@ -48,8 +50,7 @@ urlpatterns += patterns('core.views',
     (r'^unsupported-browser/$', direct_to_template, { 'template' : 'browser_not_supported.html' }, 'unsupported_browser'),
     (r'^course-info/$', 'course_info', {}, 'course_info'),
     (r'^check-email-availability/$', 'check_email_availability', {}, 'check_email_availability'),
-    (r'^check-email-existence/$', 'check_email_existence', {}, 'check_email_existence'),
-    (r'^check-username-existence/$', 'check_username_existence', {}, 'check_username_existence'),
+    (r'^check-employer-campus-org-check-slug-uniqueness/$', 'check_employer_campus_org_slug_uniqueness', {}, 'check_employer_campus_org_slug_uniqueness'),    
     (r'^check-language-uniqueness/$', 'check_language_uniqueness', {}, 'check_language_uniqueness'),
     (r'^check-event-name-uniqueness/$', 'check_event_name_uniqueness', {}, 'check_event_name_uniqueness'),
     (r'^check-website/$', 'check_website', {}, 'check_website'),
@@ -117,7 +118,7 @@ urlpatterns += patterns('student.views',
 urlpatterns += patterns('employer.views',
     (r'^employer/$', 'employer', {}, 'employer'),                        
     (r'^employer/account/$', 'employer_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'employer_account'),
-    (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),
+    (r'^employer/account/delete/$', 'employer_account_delete', {}, 'employer_account_delete'),
     (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),
     (r'^employer/profile/$', 'employer_profile', {}, "employer_profile"),
     (r'^employer/recruiters/other/$', 'employer_other_recruiters', {}, 'employer_other_recruiters'),
@@ -144,9 +145,14 @@ urlpatterns += patterns('employer.views',
     (r'^employers/subscribe$', 'employer_subscribe', {}, 'employers_subscribe'),
     (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
+
+urlpatterns += patterns('events.views',
+    (r'^(?P<owner_slug>\w+)/(?P<event_slug>\w+)/$', 'events_shortcut', {}, 'events_shortcut')
+)
+
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
-
+    
 handler500 = 'core.views.handle_500'
 handler404 = 'core.views.handle_404'
 handler403 = 'core.views.handle_403'

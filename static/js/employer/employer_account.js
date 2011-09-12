@@ -6,7 +6,7 @@ $(document).ready( function() {
             title:"Delete Account",
             dialogClass: "account_deletion_dialog",
             modal:true,
-            width:440,
+            width:410,
             resizable: false,
             close: function() {
                 account_deletion_dialog.remove();

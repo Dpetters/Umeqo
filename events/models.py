@@ -1,10 +1,10 @@
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
-from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 from core import mixins as core_mixins
+from core.view_helpers import um_slugify
 from core.managers import ActiveManager
 from core.models import EventType
 from student.models import Student
@@ -44,14 +44,13 @@ def notify_about_event(instance, notice_type, employers):
 class FeaturedEvent(core_mixins.DateCreatedTracking):
     campus_org = models.ForeignKey("campus_org.CampusOrg", null=True, blank=True)
     employer = models.ForeignKey("employer.Employer", null=True, blank=True)
-    event = models.ForeignKey("events.Event")
-    
+    event = models.ForeignKey("events.Event")    
     
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
     owner = models.ForeignKey(User)
     name = models.CharField(max_length=85)
-    end_datetime = models.DateTimeField()
+    end_datetime = models.DateTimeField(null=True, blank=True)
     type = models.ForeignKey(EventType)
     
     # Won't be used immediately, but might prove useful later to show who
@@ -69,14 +68,16 @@ class Event(core_mixins.DateCreatedTracking):
     
     # Optional Fields
     audience = models.ManyToManyField("core.SchoolYear", blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField()
     rsvp_message = models.TextField(blank=True,null=True)
 
     # Statistics fields for "X new views"
     last_seen_view_count = models.PositiveIntegerField(default=0)  
     view_count = models.PositiveIntegerField(default=0)
     
-    slug = models.SlugField(default="event-page")
+    slug_default = "event-page"
+    slug = models.SlugField(default=slug_default)
+    short_slug = models.SlugField(blank=True, null=True)
     
     is_public = models.BooleanField()
     is_active = models.BooleanField(default=True, editable=False)
@@ -93,12 +94,14 @@ class Event(core_mixins.DateCreatedTracking):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('event_page_redirect', (), {
-            'id': self.id
+        return ('event_page', (), {
+            'id': self.id,
+            'slug': self.slug
         })
     
     def save(self):
-        self.slug = slugify(self.name)[:50]
+        if not self.slug or self.slug==self.slug_default:
+            self.slug = um_slugify(self.name)
         super(Event, self).save()
                 
 @receiver(signals.post_save, sender=Event)

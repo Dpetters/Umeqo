@@ -1,4 +1,26 @@
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
+
+from core.decorators import is_campus_org, is_recruiter
+from campus_org.models import CampusOrg
+from employer.models import Employer
+
+def employer_campus_org_slug_exists(slug, user):
+    try:
+        campusorg = CampusOrg.objects.get(slug=slug)
+        if is_campus_org(user) and user.campusorg==campusorg:
+            return False
+        return True
+    except CampusOrg.DoesNotExist:
+        pass
+    try:
+        employer = Employer.objects.get(slug=slug)
+        if is_recruiter(user) and user.recruiter.employer == employer :
+            return False
+        return True
+    except:
+        pass
+    return False
 
 def does_email_exist(email):
     try:
@@ -31,3 +53,16 @@ def get_ip(request):
         return request.META['REMOTE_ADDR']
     else:
         return None
+
+def um_slugify(s):
+    parts = filter(lambda n: n not in ('the', 'a', 'an', 'of', 'for'), s.split(' '))
+    new_s = ' '.join(parts)
+    if len(new_s) > 50:
+        parts = new_s.split(' ')
+        new_len, new_parts, i = 0, [], 0
+        while new_len < 40:
+            new_parts.append(parts[i])
+            new_len += len(parts[i])
+            i += 1
+        new_s = ' '.join(new_parts)
+    return slugify(new_s)

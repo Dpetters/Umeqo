@@ -18,6 +18,8 @@ from django.views.decorators.http import require_http_methods, require_POST, req
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
 
+from campus_org.models import CampusOrg
+from employer.models import Employer
 from core.email import send_html_mail
 from core import messages as m
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
@@ -27,6 +29,26 @@ from events.models import notify_about_event, Attendee, Event, EventType, Invite
 from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
 from notification import models as notification
 from student.models import Student
+
+@login_required
+@require_GET
+def events_shortcut(request, owner_slug, event_slug, extra_context=None):
+    try:
+        employer = Employer.objects.get(slug = owner_slug)
+        events = reduce(lambda a,b: [a, a.extend(b.user.event_set.all().order_by("-date_created"))][0], employer.recruiter_set.all(), [])
+    except Employer.DoesNotExist:
+        try:
+            campus_org = CampusOrg.objects.get(slug = owner_slug)
+            events = campus_org.user.event_set
+        except CampusOrg.DoesNotExist:
+            raise Http404
+    try:
+        url = filter(lambda a: a.short_slug == event_slug, events)[0].get_absolute_url()
+        if url:
+            return redirect(url)
+    except Event.DoesNotExist:
+        pass
+    raise Http404
 
 @login_required
 @user_passes_test(is_student)
@@ -45,7 +67,7 @@ def events_list(request, extra_context=None):
 
 def event_page_redirect(request, id):
     event = Event.objects.get(pk=id)
-    return redirect("%s%s/" % (event.get_absolute_url(), event.slug))
+    return redirect("%s" % (event.get_absolute_url()))
 
 @render_to('event_page.html')
 def event_page(request, id, slug, extra_context=None):
@@ -158,6 +180,7 @@ def event_new(request, form_class=None, extra_context=None):
         })
     context['hours'] = map(lambda x,y: str(x) + y, [12] + range(1,13) + range(1,12), ['am']*12 + ['pm']*12)
     context['form'] = form
+    context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
     context.update(extra_context or {})
     return context
 
@@ -232,7 +255,7 @@ def event_delete(request, id, extra_context = None):
 @has_annual_subscription
 def event_schedule(request):
     if request.is_ajax():
-        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')))
+        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
         return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 

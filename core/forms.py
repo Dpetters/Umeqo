@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
 from registration.models import InterestedPerson
@@ -29,6 +30,11 @@ class EmailAuthenticationForm(AuthenticationForm):
         password = self.cleaned_data.get('password')
 
         if username and password:
+            try:
+                user = User.objects.get(email=username)
+                username = user.username
+            except User.DoesNotExist:
+                pass
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(m.incorrect_username_password_combo)

@@ -134,6 +134,19 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     context.update(extra_context or {})
     return context
 
+@login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_account_delete.html")
+def employer_account_delete(request):
+
+    if request.is_ajax():
+        if request.method == "POST":
+                return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+        else:
+            context = {}
+            return context
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
 @login_required
 @user_passes_test(is_recruiter)
@@ -335,7 +348,7 @@ def employer_student_event_attendance(request):
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
     context = {"resume_books":request.user.recruiter.resumebook_set.all()}
-    context.update(extra_context, {})
+    context.update(extra_context or {})
     return context
 
 
