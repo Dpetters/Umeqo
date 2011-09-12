@@ -37,25 +37,13 @@ $(document).ready( function() {
             },
             success: function (data) {
                 account_deletion_dialog.html(data);
-                $("#student_deactivate_account_link").click(function(){
+                $("#delete_account_confirmation_link").click(function(){
                     $.ajax({
                         type:"POST",
                         dataType: "json",
-                        data:{'suggestion':$("#id_suggestion").val()},
-                        url: STUDENT_ACCOUNT_DEACTIVATE_URL,
-                        beforeSend: function (arr, $form, options) {
-                            show_form_submit_loader("#student_account_deactivation_form");
-                        },
-                        complete : function(jqXHR, textStatus) {
-                            hide_form_submit_loader("#student_account_deactivation_form");
-                            account_deletion_dialog.dialog('option', 'position', 'center');
-                        },
+                        url: EMPLOYER_ACCOUNT_DELETE_URL,
                         success: function (data){
-                            if(data.errors){
-                                place_table_form_errors("#student_account_deactivation_form", data.errors);  
-                            }else{
-                                window.location.href = "/?action=account-deactivated";
-                            }
+                            window.location.href = "/?action=account-deactivated";
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             if(jqXHR.status==0){

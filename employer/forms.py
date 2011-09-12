@@ -15,12 +15,13 @@ from student.form_helpers import student_lists_as_choices
 from student.forms import StudentBaseAttributeForm
 from employer.models import RecruiterPreferences, StudentFilteringParameters, Employer
 from employer import enums as employer_enums
+from core.widgets import UmSelectWidget
 from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
 
 class RecruiterForm(forms.ModelForm):
-    email = forms.EmailField(label="Username:")
+    email = forms.EmailField(label="Username:", max_length = 75)
     first_name = forms.CharField(label="First Name:", max_length=42, required=True)
     last_name = forms.CharField(label="Last Name:", max_length=42, required=True)
     password1 = forms.CharField(label="Choose Password:", widget=forms.PasswordInput)
@@ -31,15 +32,29 @@ class RecruiterForm(forms.ModelForm):
                   'first_name',
                   'last_name')
         model = User
-        
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1", "")
+        password2 = self.cleaned_data["password2"]
+        if password1 != password2:
+            raise forms.ValidationError(_("The two passwords don't match."))
+        return password2
+
+    def save(self, commit=True):
+        user = super(RecruiterForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+                
 class EmployerProfileForm(forms.ModelForm):
     name = forms.CharField(label="Name:", max_length=42)
     slug = forms.SlugField(label="Slug:", max_length=42)
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
-    main_contact = forms.CharField("Main Contact:")
-    main_contact_email = forms.EmailField("Main Contact Email:")
-    main_contact_phone = USPhoneNumberField("Main Contact Phone #:", required=False)
+    main_contact = forms.CharField(label="Main Contact:")
+    main_contact_email = forms.EmailField(label="Contact Email:")
+    main_contact_phone = USPhoneNumberField(label="Contact Phone #:", required=False)
     offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset=EmploymentType.objects.all(), required=False)
     website = forms.URLField(label="Careers Website:", required=False)
     
@@ -103,7 +118,7 @@ class StudentFilteringForm(StudentDefaultFilteringParametersForm):
 
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)
-        self.fields['student_list'] = forms.ChoiceField(choices = student_lists_as_choices(kwargs.get('initial').get('employer_id', '')))
+        self.fields['student_list'] = forms.ChoiceField(widget = UmSelectWidget, choices = student_lists_as_choices(kwargs.get('initial').get('employer_id', '')))
 
 class RecruiterPreferencesForm(forms.ModelForm):
     default_student_result_ordering = forms.ChoiceField(label="Default Student Result Ordering:", choices = employer_enums.ORDERING_CHOICES, required = False)

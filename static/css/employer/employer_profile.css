@@ -11,6 +11,7 @@
 
 #profile_form .form_table{
     padding-left:18px;
+    padding-right:20px;
 }
 #profile_form .form_table th label{
     margin-bottom:6px;
@@ -21,8 +22,8 @@
 #profile_form .form_table th{
     padding-left:10px;
 }
-#pg2 #profile_form .form_table th{
-    min-width:118px;
+#pg2 .form_table th{
+    min-width:105px;
 }
 #profile_form .form_table th.vertical_align_top{
     padding-top:25px;

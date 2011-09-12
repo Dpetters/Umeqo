@@ -43,7 +43,7 @@ Subscription Choices |
                         <h1>Free Trial</h1>
                     </hgroup>
                     <hgroup class="price">
-                        <h2><span class="style1">$</span><span class="style2">0</span><span class="style3">Monthly</span></h2>
+                        <h2><span {% if free_trial_text %}id="free_trial_subscribed_text"{% endif %} class="style1">{% if free_trial_text %}{{ free_trial_text }}{% else %}$</span><span class="style2">0</span><span class="style3">Monthly{% endif %}</span></h2>
                     </hgroup>
                 </header>
                 <footer>
@@ -55,7 +55,7 @@ Subscription Choices |
                         <li>No Event Management Tools</li>
                         <li>No Student Invitation Functionality</li>
                         <li class="last">
-                            <a href="javascript:void(0)" data-action="{{free_trial_action}}" data-title="{{free_trial_dialog}}" data-subscription-type="free_trial" class="btn {% if free_trial_class_class %}{{free_trial_class}}{% else %}open_ftid_link{% endif %}">{% if free_trial_button %}{{free_trial_button}}{% else %}Learn More{% endif %}</a>
+                            <a href="javascript:void(0)" data-action="{{free_trial_action}}" data-title="{{free_trial_dialog}}" data-subscription-type="free_trial" class="btn {% if free_trial_class %}{{free_trial_class}}{% else %}open_ftid_link{% endif %}">{% if free_trial_button %}{{free_trial_button}}{% else %}Learn More{% endif %}</a>
                         </li
                     </ul>
                 </footer>

@@ -2,11 +2,11 @@
     <h3>Students</h3>
     <a href="{% url employer_students %}">Browse Students</a>
     <a href="{% url employer_resume_book_history %}">Resume Book History</a>
-    <h3>Events</h3>
-    <a href="{% url event_new %}">New Event</a>
-    <h3>Profile</h3>
-    <a href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
-    <a href="{% url employer_profile %}">Edit Profile</a>
+    <h3 {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually"{% endif %}>Events</h3>
+    <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}">New Event</a>
+    <h3 {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually"{% endif %}>Profile</h3>
+    <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
+    <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile %}">Edit Profile</a>
     <h3>Account</h3>
     <a href="{% url employer_account %}">Account Settings</a>
     <a href="{% url logout %}">Logout</a>

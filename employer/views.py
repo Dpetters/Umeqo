@@ -18,6 +18,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
+from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -51,7 +52,7 @@ def employer(request):
     
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
-@has_any_subscription
+@has_annual_subscription
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -68,6 +69,7 @@ def employer_profile_preview(request, slug, extra_context=None):
     
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@has_annual_subscription
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
     if request.is_ajax():
@@ -75,7 +77,13 @@ def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None
             form = form_class(data=request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
-                user.username = user.email
+                if len(user.email)>30:
+                    username = user.email.split("@")[0]
+                    if len(username) > 30:
+                        username = username[:30]
+                else:
+                    username = user.email
+                user.username = username
                 user.save()
                 form.save_m2m()
                 Recruiter.objects.create(user = user, employer = request.user.recruiter.employer)
@@ -141,7 +149,12 @@ def employer_account_delete(request):
 
     if request.is_ajax():
         if request.method == "POST":
-                return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+            for sk in request.user.sessionkey_set.all():
+                Session.objects.filter(session_key=sk.session_key).delete()
+            request.user.sessionkey_set.all().delete()
+            request.user.recruiter.delete()
+            request.user.delete()
+            return HttpResponse()
         else:
             context = {}
             return context
@@ -159,7 +172,7 @@ def employer_other_recruiters(request):
 
 @login_required
 @user_passes_test(is_recruiter)
-@has_any_subscription
+@has_annual_subscription
 @require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
@@ -173,7 +186,7 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-@has_any_subscription
+@has_annual_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
@@ -182,10 +195,12 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
         if form.is_valid():
             form.save()
         else:
-            data = {'errors':form.errors}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+            data = {'errors': form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
-        context = {'form':form_class(instance=request.user.recruiter.employer), 'edit':True}
+        context = {'form':form_class(instance=request.user.recruiter.employer),
+                   'max_industries':s.EP_MAX_INDUSTRIES,
+                   'edit':True}
         context.update(extra_context or {})
         return context
         
@@ -610,10 +625,18 @@ def employers_list(request, extra_content=None):
     query = request.GET.get('q', '')
     employers = employer_search_helper(request)
     industries = Industry.objects.all()
+    subscriptions = request.user.student.subscriptions.all()
+    sub_status = {}
+    for employer in employers:
+        if employer in subscriptions:
+            employer.subscribed = True
+        else:
+            employer.subscribed = False
     context = {
         'employers': employers,
         'industries': industries,
-        'query': query
+        'query': query,
+        'sub_status': sub_status
     }
     if len(employers) > 0:
         employer_id = request.GET.get('id', None)
@@ -627,7 +650,6 @@ def employers_list(request, extra_content=None):
             employer = employers[0]
             employer_id = employer.id
 
-        subscriptions = request.user.student.subscriptions.all()
         subbed = employer in subscriptions
         
         context.update({
