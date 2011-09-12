@@ -1,5 +1,19 @@
 $(document).ready(function() {
     if (EVENT_LATITUDE && EVENT_LONGITUDE){
+        if (supports_geolocation()){
+            $(".get_directions_link").append('<a href="#">Get directions</a>');
+            $(".get_directions_link a").live('click', function(e){
+                function getDirections(position){
+                    slat = position.coords.latitude;
+                    slng = position.coords.longitude;
+                    elat = EVENT_LATITUDE;
+                    elng = EVENT_LONGITUDE;
+                    window.location = "http://maps.google.com/?dirflg=r&saddr=" + slat + "," + slng + "&daddr=" + elat + "," +  elng;
+                }
+                navigator.geolocation.getCurrentPosition(getDirections);
+                e.preventDefault();
+            })
+        }
         var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);
         var map_options = {
           zoom: 16,
