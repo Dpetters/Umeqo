@@ -2,12 +2,13 @@ from __future__ import division
 from __future__ import absolute_import
 
 from student import enums as student_enums
-from employer.models import Employer
+from employer.models import Recruiter
 
 
-def student_lists_as_choices(employer_id):
+def student_lists_as_choices(recruiter_id):
     student_list_types = []
-    e = Employer.objects.get(id=employer_id)
+    recruiter = Recruiter.objects.get(id=recruiter_id)
+    e = recruiter.employer
     for student_list_type in student_enums.STUDENT_LIST_TYPE_CHOICES:
         new_student_list_type = []
         student_lists = []
@@ -17,7 +18,7 @@ def student_lists_as_choices(employer_id):
                     student_lists.append([0, student_list[1], "disabled=\"disabled\""])
                 else:
                     student_lists.append([0, student_list[1]])
-        if student_list_type[0] == student_enums.EVENT:
+        elif student_list_type[0] == student_enums.EVENT:
             events = e.event_set.all()
             for index, event in enumerate(events):
                 if index == 0 and not e.subscribed_annually():
@@ -27,6 +28,13 @@ def student_lists_as_choices(employer_id):
                 student_lists.append([event.id, event.name + " Attendees"])
                 if event.is_drop:
                     student_lists.append([event.id, event.name + " Resumebook"])
+        elif student_list_type[0] == student_enums.RESUME_BOOK_HISTORY:
+            rbs = recruiter.resumebook_set.filter(delivered=True)
+            for rb in rbs:
+                if not e.subscribed_annually():
+                    student_lists.append([rb.id, rb.name, "disabled=\"disabled\""])
+                else:
+                    student_lists.append([rb.id, rb.name])
         new_student_list_type = [student_list_type[1], student_lists]
         student_list_types.append(new_student_list_type)
     return student_list_types

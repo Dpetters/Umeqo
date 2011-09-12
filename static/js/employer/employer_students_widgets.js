@@ -1,19 +1,6 @@
 $(document).ready(function(){
-     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to browse through all students.", html:true});
+     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to browse through this student list.", html:true});
     
-    $("#id_student_list").multiselect({
-        header:false,
-        multiple: false,
-        selectedList: 1,
-        height:252,
-        classes: 'student_list_multiselect',
-        minWidth:multiselectMinWidth,
-        click: function(event, ui) {
-            student_list = ui.text;
-            student_list_id = ui.value;
-            initiate_ajax_call();
-        }
-    });
     $("#id_majors").multiselect({
         noneSelectedText: 'Filter By Major',
         selectedText: 'Filtering by # Majors',  

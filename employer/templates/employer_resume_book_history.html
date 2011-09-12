@@ -8,10 +8,10 @@
     {{block.super}}
     {% load compress %}
     {% compress css %}
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_resume_books.css" />
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_resume_book_history.css" />
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_deliver_resume_book.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
     {% endcompress %}
     <script>
         var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
@@ -21,6 +21,7 @@
         var RESUME_BOOK_CURRENT_DELIVERED_URL = "{% url employer_resume_book_current_delivered %}";
     </script>
     {% compress js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_history.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
@@ -43,13 +44,9 @@
                         <a class="dark_button student_deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
                     </div>
                     <div class="details">
-                        <h2>{{ resume_book.name }}</h2>
-                        <span><strong>Last Delivery Date/Time:</strong> {{resume_book.last_updated|date:"D, F j"}}, {{resume_book.date_created|date:"Y"}} <em>{{resume_book.date_created|date:"h:i A"}}</em></span>
-                    </div>
-                    <div class="students">
-                    {% for student in resume_book.students.all %}
-                        {% include "events_response_token.html" %}
-                    {% endfor %}
+                        <h2 class="resume_book_name">{{ resume_book.name }}</h2>
+                        <p><strong>Last Delivery Date/Time:</strong> {{resume_book.last_updated|date:"D, F j"}}, {{resume_book.date_created|date:"Y"}} <em>{{resume_book.date_created|date:"h:i A"}}</em></p>
+                        <p><strong>Size:</strong> <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscription_list %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.all|length}} students</a></p>
                     </div>
                 </li>
             {% empty %}

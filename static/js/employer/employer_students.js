@@ -4,6 +4,10 @@ var xhr = null;
 var comment_xhr = null;
 var filtering_ajax_request = null;
 
+function handle_resume_book_student_list_click(rb_id) {
+    $("#id_student_list").multiselect("widget").find("input[value='" + rb_id + "']").click()
+};
+
 function handle_students_in_resume_book_student_list_click() {
     $("#id_student_list").multiselect("widget").find("input[title='" + IN_RESUME_BOOK_STUDENT_LIST + "']").click()
 };
@@ -506,6 +510,7 @@ $(document).ready(function() {
     ordering = $("#id_ordering option:selected").val();
     results_per_page = $("#id_results_per_page option:selected").val();
     older_than_21 = $("#id_older_than_21 option:selected").val();
+   
 
     $(window).resize(function() {
         if(this.resizeTO) clearTimeout(this.resizeTO);
@@ -578,14 +583,38 @@ $(document).ready(function() {
     if ($(window).height()>window_height_min){
         set_up_side_block_scrolling();
     }
-    initiate_ajax_call();
+    $("#id_student_list").multiselect({
+        header:false,
+        multiple: false,
+        selectedList: 1,
+        height:252,
+        classes: 'student_list_multiselect',
+        minWidth:multiselectMinWidth,
+        click: function(event, ui) {
+            student_list = ui.text;
+            student_list_id = ui.value;
+            initiate_ajax_call();
+        },
+        beforeoptgrouptoggle: function(e, ui){
+            return false;
+        },
+    });
+    
+    var isl = get_parameter_by_name("isl");
+    if (isl){
+        handle_resume_book_student_list_click(isl)
+    }else{
+        initiate_ajax_call();
+    }
     initiate_resume_book_summary_update();
-
+    
     $('.student_invite_to_event_span').live('mouseover', function() {
         if (!$(this).data('init')) {
             $(this).data('init', true);
             var that = this;
-            $(this).hoverIntent(function() {
+            $(this).hoverIntent({
+            sensitivity:4,
+            over:function() {
                 $.ajax({
                     url: EVENTS_LIST_URL, 
                     data: {"student_id": $(this).attr('data-studentid')}, 
@@ -614,8 +643,10 @@ $(document).ready(function() {
                     },
                     error: errors_in_message_area_handler
                 });
-            }, function() {
+            },
+            out:function() {
                 $(this).children('.events_dropdown').remove();
+            }
             });
             $(this).trigger('mouseover');
         }

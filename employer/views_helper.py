@@ -199,7 +199,10 @@ def filter_students(recruiter,
                     campus_orgs=None):
 
     if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]: # All Students
-        students = Student.objects.visible()
+        if recruiter.employer.subscribed_annually():
+            students = Student.objects.visible()
+        else:
+            students = []
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
         students = recruiter.employer.starred_students.all()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
@@ -209,14 +212,17 @@ def filter_students(recruiter,
             resume_book = ResumeBook.objects.create(recruiter = recruiter)
         students = resume_book.students.all()
     else:
-        e = Event.objects.get(id = student_list_id)
         parts = student_list.split(" ")
-        if parts[-1] == "RSVPs":
-            students = Student.objects.filter(rsvp__in=e.rsvp_set.all())
-        elif parts[-1] == "Attendees":
-            students = Student.objects.filter(attendee__in=e.attendee_set.all())
-        elif parts[-1] == "Resumebook":
-            students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
+        if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Resumebook":
+            e = Event.objects.get(id = student_list_id)
+            if parts[-1] == "RSVPs":
+                students = Student.objects.filter(rsvp__in=e.rsvp_set.all())
+            elif parts[-1] == "Attendees":
+                students = Student.objects.filter(attendee__in=e.attendee_set.all())
+            elif parts[-1] == "Resumebook":
+                students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
+        else:
+            students = ResumeBook.objects.get(id = student_list_id).students.all()
     filtering = False
     kwargs = {}
     if gpa:
