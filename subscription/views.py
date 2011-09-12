@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.conf import settings as s
 from django.utils import simplejson
@@ -70,21 +72,23 @@ def subscription_list(request, extra_context=None):
         free_trial = Subscription.objects.get(name="Free Trial")
         try:
             es = request.user.recruiter.employer.employersubscription
-
             if es.subscription == free_trial:
-                if es.expired:
-                    context['annual_button'] = "Subscribe"
-                    context['annual_dialog'] = "Subscribe to Umeqo"
-                    context['annual_class'] = "open_sd_link upgrade"
-                    context['annual_action'] = "upgrade"
-                    context['annual_text'] = "Contact Us For Pricing"
+                context['annual_button'] = "Upgrade"
+                context['annual_dialog'] = "Subscribe to Umeqo"
+                context['annual_class'] = "open_sd_link upgrade"
+                context['annual_action'] = "upgrade"
+                context['annual_text'] = "Contact Us For Pricing"
+                
+                if es.expired() or es.expires < date.today():
+                    context['free_trial_text'] = "Subscription Expired"
                 else:
+                    context['free_trial_text'] = "Subscribed"
                     context['free_trial_button'] = "Cancel Subscription"
                     context['free_trial_dialog'] = "Cancel Subscription"
                     context['free_trial_class'] = "open_sd_link cancel"
                     context['free_trial_action'] = "cancel"
             else:
-                if es.expired:
+                if es.expired() or es.expires < date.today():
                     context['annual_button'] = "Extend Subscription"
                     context['annual_dialog'] = "Extend Subscription"
                     context['annual_class'] = "open_sd_link extend"

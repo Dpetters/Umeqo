@@ -133,6 +133,9 @@ function formatNumber(num,dec,thou,pnt,curr1,curr2,n1,n2)
     var r = curr1+n1+y.join('')+n2+curr2;
     return r;
 }
+function supports_geolocation() {
+  return !!navigator.geolocation;
+}
 Array.max = function (array) {
     return Math.max.apply(Math, array);
 };

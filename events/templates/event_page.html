@@ -270,7 +270,8 @@
                 <span class="main_block_header_title">Where</span>
             </div>
             <div class="main_block_content">
-                <h3>{{ event.location }}</h3>
+                <h3 id="event_location">{{ event.location }}</h3>
+                <p class="get_directions_link"></p>
                 {% if event.latitude and event.longitude %}
                   <div id="map" style="width: 260px; height: 250px"></div>
                 {% endif %}
