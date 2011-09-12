@@ -103,3 +103,10 @@
     background-color: #AAA;
     text-shadow: #888 0 -1px 0;
 }
+#delete-event-dialog {
+    padding: 20px 5px;
+    text-align: center;
+}
+#delete-event-dialog p {
+    margin-bottom: 10px;
+}
