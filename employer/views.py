@@ -146,18 +146,20 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account_delete.html")
 def employer_account_delete(request):
-
     if request.is_ajax():
-        if request.method == "POST":
-            for sk in request.user.sessionkey_set.all():
-                Session.objects.filter(session_key=sk.session_key).delete()
-            request.user.sessionkey_set.all().delete()
-            request.user.recruiter.delete()
-            request.user.delete()
-            return HttpResponse()
+        if request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id).exists():
+            if request.method == "POST":
+                for sk in request.user.sessionkey_set.all():
+                    Session.objects.filter(session_key=sk.session_key).delete()
+                request.user.sessionkey_set.all().delete()
+                request.user.recruiter.delete()
+                request.user.delete()
+                return HttpResponse()
+            else:
+                context = {}
+                return context
         else:
-            context = {}
-            return context
+            return HttpResponseForbidden("You cannot delete your account when you are the only recruiter with credentials for Umeqo.") 
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
@@ -409,7 +411,8 @@ def employer_students(request, extra_context=None):
                         cache.delete('ordered_results')
                         cache.delete('filtering_results')
 
-        current_paginator = get_paginator(request)
+        filtering, current_paginator = get_paginator(request)
+        context['filtering'] = filtering
         try:
             context['page'] = current_paginator.page(request.POST['page'])
         except Exception:
@@ -441,7 +444,7 @@ def employer_students(request, extra_context=None):
         
         # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
-                'employer_id': request.user.recruiter.employer.id,
+                'recruiter_id': request.user.recruiter.id,
                 'ordering': request.user.recruiter.recruiterpreferences.default_student_result_ordering,                           
                 'results_per_page': request.user.recruiter.recruiterpreferences.default_student_results_per_page
         })
@@ -521,8 +524,8 @@ def employer_resume_book_current_create(request):
     c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
     c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
     for page_num, student in enumerate(current_resume_book.students.all()):
-        c.drawString(4*cm, (25.5-page_num)*cm, student.first_name + " " + student.last_name)
-        c.drawString(16*cm, (25.5-page_num)*cm, str(page_num+1))
+        c.drawString(4*cm, (25.5-page_num*.6)*cm, student.first_name + " " + student.last_name)
+        c.drawString(16*cm, (25.5-page_num*.6)*cm, str(page_num+1))
     c.showPage()
     c.save()
     output = PdfFileWriter()

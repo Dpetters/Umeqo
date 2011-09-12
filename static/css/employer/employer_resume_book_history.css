@@ -1,0 +1,21 @@
+#resume_book_list {
+    list-style: none;
+    border-bottom: 1px solid #CCC;
+}
+#resume_book_list li {
+    border-top: 1px solid #CCC;
+    background-color: #EEE;
+    padding: 10px;
+}
+.resume_book_list .resume_book_name{
+    margin-bottom:3px;
+}
+.resume_book_list .details{
+    margin-right:100px;
+}
+.resume_book_list .right_side_container{
+    width:80px;
+}
+.resume_book_list .right_side_container .student_deliver_resume_book_link{
+    margin-top:15px;
+}

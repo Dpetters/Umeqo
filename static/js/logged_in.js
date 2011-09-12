@@ -4,7 +4,7 @@ $(document).ready( function() {
     $(".must_be_subscribed_annually_e").tipsy({'gravity':'e', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to access this feature.", html:true}); 
     $(".must_be_subscribed_annually_n").tipsy({'gravity':'n', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to access this feature.", html:true}); 
     $(".must_be_subscribed_annually_s").tipsy({'gravity':'s', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to access this feature.", html:true}); 
-
+    
     $(".must_be_subscribed_w").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You need either a free trial or a subscription to access this feature.", html:true}); 
     $(".must_be_subscribed_e").tipsy({'gravity':'e', opacity: 0.9, live:true, fallback:"You need either a free trial or a subscription to access this feature.", html:true}); 
     $(".must_be_subscribed_n").tipsy({'gravity':'n', opacity: 0.9, live:true, fallback:"You need either a free trial or a subscription to access this feature.", html:true}); 

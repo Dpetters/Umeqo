@@ -39,7 +39,7 @@
         {% include "student_profile_preview.html" %}
     {% endfor %}
 {% else %}
-    {% employer_no_results current_student_list %}
+    {% employer_no_results current_student_list filtering %}
 {% endif %}
 </div>
 {% include "paging.html" %}
