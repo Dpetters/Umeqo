@@ -408,7 +408,8 @@ def employer_students(request, extra_context=None):
                         cache.delete('ordered_results')
                         cache.delete('filtering_results')
 
-        current_paginator = get_paginator(request)
+        filtering, current_paginator = get_paginator(request)
+        context['filtering'] = filtering
         try:
             context['page'] = current_paginator.page(request.POST['page'])
         except Exception:

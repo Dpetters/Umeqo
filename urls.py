@@ -8,9 +8,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
-from core.decorators import is_recruiter, is_campus_org
 from core.forms import EmailAuthenticationForm as AuthenticationForm
-from events.models import Event
 from registration.forms import PasswordResetForm, SetPasswordForm
 
 admin.autodiscover()
