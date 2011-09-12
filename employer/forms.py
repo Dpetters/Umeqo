@@ -15,6 +15,7 @@ from student.form_helpers import student_lists_as_choices
 from student.forms import StudentBaseAttributeForm
 from employer.models import RecruiterPreferences, StudentFilteringParameters, Employer
 from employer import enums as employer_enums
+from core.widgets import UmSelectWidget
 from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()

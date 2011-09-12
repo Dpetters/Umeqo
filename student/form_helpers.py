@@ -13,14 +13,18 @@ def student_lists_as_choices(employer_id):
         student_lists = []
         if student_list_type[0] == student_enums.GENERAL:
             for student_list in student_enums.GENERAL_STUDENT_LISTS:
-                student_lists.append([0, student_list[1]])
+                if not e.subscribed_annually() and student_list[1] == student_enums.GENERAL_STUDENT_LISTS[0][1]:
+                    student_lists.append([0, student_list[1], "disabled=\"disabled\""])
+                else:
+                    student_lists.append([0, student_list[1]])
         if student_list_type[0] == student_enums.EVENT:
-            for event in e.event_set.all():
-                if event.type.name == "Hard Deadline" or event.type.name == "Rolling Deadline":
-                    student_lists.append([event.id, event.name + " Participants"])
-                else:                                        
+            events = e.event_set.all()
+            for index, event in enumerate(events):
+                if index == 0:
+                    student_lists.append([event.id, event.name + " RSVPs", "selected=\"selected\""])
+                else:
                     student_lists.append([event.id, event.name + " RSVPs"])
-                    student_lists.append([event.id, event.name + " Attendees"])
+                student_lists.append([event.id, event.name + " Attendees"])
                 if event.is_drop:
                     student_lists.append([event.id, event.name + " Resumebook"])
         new_student_list_type = [student_list_type[1], student_lists]
