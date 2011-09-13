@@ -381,7 +381,7 @@ def event_undrop(request, event_id):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
-@has_annual_subscription
+@has_subscription
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)
