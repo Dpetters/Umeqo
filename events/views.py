@@ -299,7 +299,7 @@ def event_schedule(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-@has_annual_subscription
+@has_any_subscription
 def event_rsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
