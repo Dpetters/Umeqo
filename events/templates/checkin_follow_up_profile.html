@@ -1,9 +1,15 @@
 <p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
 
-<p>Thanks for checking into the {{event}}!</p>
+<p>Thanks for checking into the "{{event}}" event!</p>
 
-<p>Please be aware that until you create your profile, employers will only be able to see your name and email. Nothing else.</p>
+<p>Please be aware that until you <a href="http://{{current_site.domain}}{% url student_profile %}">fill out your profile</a>, {% if campus_org_event %}the employers that attended the event{% else %}{{event.owner.recruiter.employer}}{% endif %} will only be able to see your name and email. Nothing else.</p>
 
-<p>You can do so at any time <a href="http://{{current_site.domain}}{% url student_profile %}">here</a>.</p>
+<p>If you fill out your profile, {% if campus_org_event %}they{% else %}{{event.owner.recruiter.employer}}{% endif %} will not only be able to access your resume and profile details, but also add you to custom resume books, star you, and invite you to future events!</p>
+    
+<p>You, on the other hand, will be able to subscribe to the employers you are interested in to receive new event/deadline notifications, among other things.<p>
+
+<p>You can fill out your profile at at any time by visiting <a href="http://{{current_site.domain}}{% url student_profile %}">the profile creation page</a>.</p>
+
+<p>Happy Recruiting!</p>
 
 <p> - The Umeqo Team</p>
