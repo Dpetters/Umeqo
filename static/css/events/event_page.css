@@ -14,6 +14,10 @@
 #event_external_buttons {
     padding: 20px 0 0;
 }
+#view_student_list_link{
+    position:relative;
+    bottom:23px;
+}
 .external_button {
     display: inline-block;
     vertical-align: middle;

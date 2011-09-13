@@ -157,7 +157,7 @@ def event_page(request, id, slug, extra_context=None):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-            
+            context['resume_drops'] = len(event.droppedresume_set.all())
     if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
         event.save()
@@ -406,6 +406,12 @@ def event_checkin(request, event_id):
             data = {
                 'valid': False,
                 'error': "This email isn't registered with Umeqo. Enter your name!"
+            }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        if Attendee.objects.filter(event=event, email=email).exists():
+            data = {
+                'valid': False,
+                'error': 'Duplicate checkin!'
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if not name:
