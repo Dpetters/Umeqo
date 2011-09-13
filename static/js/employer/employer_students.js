@@ -599,13 +599,20 @@ $(document).ready(function() {
             return false;
         },
     });
-    
-    var isl = get_parameter_by_name("isl");
-    if (isl){
-        handle_resume_book_student_list_click(isl)
+
+    var slt = get_parameter_by_name("slt");    
+    if (slt){
+        console.log(decodeURIComponent(slt));
+        $("#id_student_list").multiselect("widget").find("input[title='" + decodeURIComponent(slt)  + "']").click()
     }else{
-        initiate_ajax_call();
+        var isl = get_parameter_by_name("isl");
+        if (isl){
+            handle_resume_book_student_list_click(isl)
+        }else{
+            initiate_ajax_call();
+        }
     }
+
     initiate_resume_book_summary_update();
     
     $('.student_invite_to_event_span').live('mouseover', function() {
