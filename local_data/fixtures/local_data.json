@@ -44,7 +44,8 @@
    "name": "The a boofaefaes fafewa f eaf esafesaf esa fesa fesa fesa faes fesa f esaf esaf esaf ", 
    "is_public": true, 
    "edits": [
-    5
+    5, 
+    7
    ], 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
@@ -52,8 +53,8 @@
    "longitude": -71.094491410000003, 
    "latitude": 42.358755530000003, 
    "short_slug": "booo", 
-   "is_drop": false, 
-   "end_datetime": "2011-09-11 16:30:00", 
+   "is_drop": true, 
+   "end_datetime": "2011-09-28 16:30:00", 
    "rsvp_message": "", 
    "owner": 3, 
    "date_created": "2011-09-11 15:31:17", 
@@ -478,6 +479,17 @@
    "date_created": "2011-08-27 16:20:39", 
    "last_updated": "2011-08-27 16:20:39", 
    "student": 5, 
+   "employer": 6
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-09-13 10:20:11", 
+   "last_updated": "2011-09-13 10:20:11", 
+   "student": 11, 
    "employer": 6
   }
  }, 
@@ -930,8 +942,8 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 7, 
-   "last_updated": "2011-09-12 05:17:18", 
+   "shown_in_results_count": 9, 
+   "last_updated": "2011-09-13 10:20:03", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 2, 
    "student": 1, 
@@ -942,8 +954,8 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 6, 
-   "last_updated": "2011-09-12 05:17:18", 
+   "shown_in_results_count": 8, 
+   "last_updated": "2011-09-13 10:20:03", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 2, 
@@ -954,8 +966,8 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 6, 
-   "last_updated": "2011-09-12 05:17:18", 
+   "shown_in_results_count": 8, 
+   "last_updated": "2011-09-13 10:20:03", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 2, 
    "student": 3, 
@@ -966,8 +978,8 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 5, 
-   "last_updated": "2011-09-12 05:17:18", 
+   "shown_in_results_count": 7, 
+   "last_updated": "2011-09-13 10:20:03", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 4, 
@@ -978,8 +990,8 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 5, 
-   "last_updated": "2011-09-12 05:17:18", 
+   "shown_in_results_count": 7, 
+   "last_updated": "2011-09-13 10:20:03", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 5, 
@@ -990,8 +1002,8 @@
   "pk": 11, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-09-12 16:02:13", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2011-09-13 10:20:11", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 11, 
