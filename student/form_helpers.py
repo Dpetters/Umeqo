@@ -27,7 +27,7 @@ def student_lists_as_choices(recruiter_id):
                     student_lists.append([event.id, event.name + " RSVPs"])
                 student_lists.append([event.id, event.name + " Attendees"])
                 if event.is_drop:
-                    student_lists.append([event.id, event.name + " Resumebook"])
+                    student_lists.append([event.id, event.name + " Resume Drop"])
         elif student_list_type[0] == student_enums.RESUME_BOOK_HISTORY:
             rbs = recruiter.resumebook_set.filter(delivered=True)
             for rb in rbs:
