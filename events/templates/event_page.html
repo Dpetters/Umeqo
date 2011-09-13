@@ -117,7 +117,7 @@
                 </div>
             {% endif %}
             <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">
-                {% if rsvps %}
+                {% if rsvps and user.recruiter %}
                 <div class="right_side_container">
                     <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' RSVPs'|urlencode}}">View all RSVPs</a>
                 </div>
@@ -142,7 +142,7 @@
                 </div>
             {% endif %}
             <div id="event_checkins" class="hid responses">
-                {% if checkins %}
+                {% if checkins and user.recruiter %}
                 <div class="right_side_container">
                     <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View all Attendees</a>
                 </div>
