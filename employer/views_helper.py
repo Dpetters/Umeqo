@@ -200,13 +200,13 @@ def filter_students(recruiter,
         students = resume_book.students.all()
     else:
         parts = student_list.split(" ")
-        if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Resumebook":
+        if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Drop" and parts[-2] == "Resume":
             e = Event.objects.get(id = student_list_id)
             if parts[-1] == "RSVPs":
                 students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True))
             elif parts[-1] == "Attendees":
                 students = Student.objects.filter(attendee__in=e.attendee_set.all())
-            elif parts[-1] == "Resumebook":
+            elif parts[-1] == "Drop" and parts[-2] == "Resume":
                 students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
         else:
             students = ResumeBook.objects.get(id = student_list_id).students.all()
