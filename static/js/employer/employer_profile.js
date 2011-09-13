@@ -89,4 +89,9 @@ $(document).ready(function() {
             current = 1;
         }
     });
+    
+    $("#profile_form").submit(function() {
+        for (instance in CKEDITOR.instances)
+            CKEDITOR.instances[instance].updateElement();
+    });
 });
