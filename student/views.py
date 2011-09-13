@@ -441,11 +441,12 @@ def student_resume(request):
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 def specific_student_resume(request, student_id):
-    student_query = Student.objects.filter(id=student_id)
-    if student_query.exists():
-        student = student_query.get()
-        resume = student.resume.read()
-        response = HttpResponse(resume, mimetype='application/pdf')
-        response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
-        return response
+    if request.user.recruiter.employer.subscribed():
+        student_query = Student.objects.filter(id=student_id)
+        if student_query.exists():
+            student = student_query.get()
+            resume = student.resume.read()
+            response = HttpResponse(resume, mimetype='application/pdf')
+            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
+            return response
     raise Http404
