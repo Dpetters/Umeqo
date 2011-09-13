@@ -5,7 +5,12 @@ var comment_xhr = null;
 var filtering_ajax_request = null;
 
 function handle_resume_book_student_list_click(rb_id) {
-    $("#id_student_list").multiselect("widget").find("input[value='" + rb_id + "']").click()
+    var li = $("#id_student_list").multiselect("widget").find("input[value='" + rb_id + "']")
+    if (li.length!=0){
+        li.click()
+    } else {
+        initiate_ajax_call();
+    }
 };
 
 function handle_students_in_resume_book_student_list_click() {
@@ -599,13 +604,24 @@ $(document).ready(function() {
             return false;
         },
     });
-    
-    var isl = get_parameter_by_name("isl");
-    if (isl){
-        handle_resume_book_student_list_click(isl)
+
+    var slt = get_parameter_by_name("slt");    
+    if (slt){
+        var st = $("#id_student_list").multiselect("widget").find("input[title='" + decodeURIComponent(slt)  + "']")
+        if (st.length != 0){
+            st.click();
+        }else{
+            initiate_ajax_call();
+        }
     }else{
-        initiate_ajax_call();
+        var isl = get_parameter_by_name("isl");
+        if (isl){
+            handle_resume_book_student_list_click(isl)
+        }else{
+            initiate_ajax_call();
+        }
     }
+
     initiate_resume_book_summary_update();
     
     $('.student_invite_to_event_span').live('mouseover', function() {

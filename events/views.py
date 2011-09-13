@@ -157,7 +157,7 @@ def event_page(request, id, slug, extra_context=None):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-            
+            context['resume_drops'] = len(event.droppedresume_set.all())
     if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
         event.save()
