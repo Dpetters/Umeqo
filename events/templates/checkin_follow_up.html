@@ -1,6 +1,6 @@
 <p>{% if name %}Dear {{name}}{% else %}Hi there{% endif %},</p>
 
-<p>Thanks for checking into the <em>"{{event}}"</em> event!</p>
+<p>Thank you for checking into the <em>"{{event}}"</em> event!</p>
 
 <p>Please be aware that until you <a href="http://{{current_site.domain}}{% url student_registration %}">register</a>, {% if campus_org_event %}the employers that attended the event{% else %}{{event.owner.recruiter.employer}}{% endif %} will only be able to see your name and email. Nothing else.</p>
 
