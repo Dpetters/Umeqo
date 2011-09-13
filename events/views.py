@@ -149,9 +149,14 @@ def event_page(request, id, slug, extra_context=None):
         if is_campus_org(request.user):
             context['resume_drops'] = len(event.droppedresume_set.all())
             context['can_edit'] = (event.owner == request.user)
+            context['show_admin'] = (event.owner == request.user)
+        elif is_recruiter(request.user):
+            context['resume_drops'] = len(event.droppedresume_set.all())
+            context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
+            context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             
     if not is_campus_org(request.user) and not is_recruiter(request.user):
         event.view_count += 1
