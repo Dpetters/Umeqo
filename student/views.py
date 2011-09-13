@@ -5,7 +5,7 @@ import datetime
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
@@ -437,3 +437,16 @@ def student_resume(request):
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s.pdf' % (request.user.last_name.lower(), request.user.first_name.lower())
     return response
+
+@login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+def specific_student_resume(request, student_id):
+    if request.user.recruiter.employer.subscribed():
+        student_query = Student.objects.filter(id=student_id)
+        if student_query.exists():
+            student = student_query.get()
+            resume = student.resume.read()
+            response = HttpResponse(resume, mimetype='application/pdf')
+            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
+            return response
+    raise Http404
