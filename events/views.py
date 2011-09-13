@@ -408,6 +408,12 @@ def event_checkin(request, event_id):
                 'error': "This email isn't registered with Umeqo. Enter your name!"
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        if Attendee.objects.filter(event=event, email=email).exists():
+            data = {
+                'valid': False,
+                'error': 'Duplicate checkin!'
+            }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if not name:
             name = "%s %s" % (user.student.first_name, user.student.last_name)
         attendee = Attendee(email=email, name=name, student=student, event=event)
