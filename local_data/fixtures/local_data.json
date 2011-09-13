@@ -105,6 +105,39 @@
   }
  }, 
  {
+  "pk": 2, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 7, 
+   "datetime_created": "2011-09-12 22:26:37", 
+   "email": "Dpetters91@gmail.com", 
+   "student": null, 
+   "name": "John Fluck"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 8, 
+   "datetime_created": "2011-09-12 22:27:20", 
+   "email": "dpetters@mit.edu", 
+   "student": 11, 
+   "name": "Dmitrij Petters"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 7, 
+   "datetime_created": "2011-09-12 22:27:47", 
+   "email": "dpetters@mit.edu", 
+   "student": 11, 
+   "name": "Dmitrij Petters"
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.employerstatistics", 
   "fields": {
@@ -1335,7 +1368,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-12 22:19:49", 
+   "last_login": "2011-09-12 22:26:08", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1371,7 +1404,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-12 05:15:08", 
+   "last_login": "2011-09-12 22:26:20", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -3932,6 +3965,26 @@
    "session_key": "98954e69004e8ecc327945ccc7e39851", 
    "last_updated": "2011-09-12 16:01:46", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 370, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-12 22:26:08", 
+   "session_key": "0282aaf079e41b5c92912729af346a07", 
+   "last_updated": "2011-09-12 22:26:08", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 371, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-12 22:26:20", 
+   "session_key": "92d9b7e4729c4dc82dfe43ad58af17b5", 
+   "last_updated": "2011-09-12 22:26:20", 
+   "user": 3
   }
  }, 
  {
