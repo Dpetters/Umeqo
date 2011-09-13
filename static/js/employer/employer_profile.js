@@ -1,4 +1,11 @@
 $(document).ready(function() {
+    $("#profile_form").submit(function() {
+        console.log("herro");
+        for (instance in CKEDITOR.instances){
+            console.log("wow")
+            CKEDITOR.instances[instance].updateElement();
+        }
+    });
     v = $("#profile_form").validate({
         submitHandler : function(form) {
             $(form).ajaxSubmit({
@@ -89,4 +96,5 @@ $(document).ready(function() {
             current = 1;
         }
     });
+    
 });
