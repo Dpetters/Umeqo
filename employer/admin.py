@@ -15,7 +15,7 @@ admin.site.register(ResumeBook, ResumeBookAdmin)
 class RecruiterAdmin(admin.ModelAdmin):
     fields = ['user', 'employer']
     list_display = ('user', 'employer', 'last_updated', 'date_created')
-    search_fields = ['employer']
+    search_fields = ['employer__name']
     date_hierarchy = 'date_created'
         
 admin.site.register(Recruiter, RecruiterAdmin)
@@ -24,7 +24,7 @@ admin.site.register(Recruiter, RecruiterAdmin)
 class RecruiterStatisticsAdmin(admin.ModelAdmin):
     fields = []
     list_display = ('recruiter', 'last_updated', 'date_created')
-    search_fields = ['recruiter']
+    search_fields = ['recruiter__user__email']
     date_hierarchy = 'date_created'
         
 admin.site.register(RecruiterStatistics, RecruiterStatisticsAdmin)
@@ -33,7 +33,7 @@ admin.site.register(RecruiterStatistics, RecruiterStatisticsAdmin)
 class RecruiterPreferencesAdmin(admin.ModelAdmin):
     fields = ['email_on_rsvp_to_public_event','email_on_rsvp_to_private_event', 'default_student_results_per_page', 'default_student_result_ordering']
     list_display = ('recruiter', 'last_updated', 'date_created')
-    search_fields = ['recruiter']
+    search_fields = ['recruiter__user__email']
     date_hierarchy = 'date_created'
         
 admin.site.register(RecruiterPreferences, RecruiterPreferencesAdmin)
@@ -51,6 +51,6 @@ admin.site.register(Employer, EmployerAdmin)
 class EmployerStatisticsAdmin(admin.ModelAdmin):
     fields = []
     list_display = ('employer', 'last_updated', 'date_created')
-    search_fields = ['employer']
+    search_fields = ['employer__name']
     date_hierarchy = 'date_created'
 admin.site.register(EmployerStatistics, EmployerStatisticsAdmin)
