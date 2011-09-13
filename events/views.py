@@ -22,7 +22,7 @@ from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
 from core import messages as m
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription
+from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm
@@ -299,7 +299,7 @@ def event_schedule(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-@has_annual_subscription
+@has_any_subscription
 def event_rsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
     # if method is GET then get a list of RSVPed students
@@ -381,7 +381,7 @@ def event_undrop(request, event_id):
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
-@has_annual_subscription
+@has_any_subscription
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)
