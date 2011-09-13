@@ -9,7 +9,8 @@ COMPRESS = False
 # Students need an invite code to register
 INVITE_ONLY = False
 
-WELCOME_EVENT_ID = 6 
+WELCOME_EVENT_ID = 6
+UMEQO_RECRUITER_ID = 3
 
 BACKUP_DIR = "backup"
 
