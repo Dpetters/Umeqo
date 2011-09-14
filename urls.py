@@ -23,7 +23,7 @@ if settings.USE_LANDING_PAGE:
     )
 urlpatterns += patterns('',
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^notifications/', include('notification.urls')),
     # Hardcoded urls to eventually get rid of
     (r'^events/1/umeqo-top-of-the-dome/', redirect_to, {'url':"/events/1/umeqo-top-of-the-dome-party/"}),
