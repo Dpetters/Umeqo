@@ -191,25 +191,25 @@ def filter_students(recruiter,
         else:
             students = []
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
-        students = recruiter.employer.starred_students.all()
+        students = recruiter.employer.starred_students.visible()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
         try:
             resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
         except ResumeBook.DoesNotExist:
             resume_book = ResumeBook.objects.create(recruiter = recruiter)
-        students = resume_book.students.all()
+        students = resume_book.students.visible()
     else:
         parts = student_list.split(" ")
         if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Drop" and parts[-2] == "Resume":
             e = Event.objects.get(id = student_list_id)
             if parts[-1] == "RSVPs":
-                students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True))
+                students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
             elif parts[-1] == "Attendees":
-                students = Student.objects.filter(attendee__in=e.attendee_set.all())
+                students = Student.objects.filter(attendee__in=e.attendee_set.all(), profile_created=True)
             elif parts[-1] == "Drop" and parts[-2] == "Resume":
-                students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all())
+                students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
         else:
-            students = ResumeBook.objects.get(id = student_list_id).students.all()
+            students = ResumeBook.objects.get(id = student_list_id).students.visible()
     filtering = False
     kwargs = {}
     if gpa:
