@@ -9,7 +9,7 @@
 <div class="student_main_info" data-student-id="{{student.id}}">
 {% endif %}
     {% if profile_preview %}
-    <a class="student_resume_link" href="{% url student_resume %}" tabindex="-1">View Resume</a>
+    <a class="student_resume_link" href="javascript:void(0)" tabindex="-1">View Resume</a>
     {% else %}
     <a class="student_resume_link" data-student-id="{{student.id}}" target="_blank" href="{% url specific_student_resume student_id=student.id %}" tabindex="-1">View Resume</a>
     {% endif %}
