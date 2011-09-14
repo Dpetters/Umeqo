@@ -6,30 +6,33 @@ from student.enums import RESUME_PROBLEMS
 
 
 def process_resume(student):
-   
-    resume_text = ""
-    resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
-    resume = pyPdf.PdfFileReader(resume_file)
-    page_num = resume.getNumPages()
-    for i in range(0, page_num):
-        resume_text += resume.getPage(i).extractText() + "\n"
-
-    resume_file.close()
+    try:
+        resume_text = ""
+        resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
+        resume = pyPdf.PdfFileReader(resume_file)
+        page_num = resume.getNumPages()
+        for i in range(0, page_num):
+            resume_text += resume.getPage(i).extractText() + "\n"
     
-    # Words that we want to parse out of the resume keywords
-    stopWords = set(open(settings.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
-    
-    # Get rid of stop words
-    fullWords = re.findall(r'[a-zA-Z]{3,}', resume_text)
-    result = ""
-    count = 0
-    for word in fullWords:
-        word = word.lower()
-        if word not in stopWords:
-            count += 1
-            result += " " + word
-    if count > 1000*page_num:
-        return RESUME_PROBLEMS.HACKED
+        resume_file.close()
+        
+        # Words that we want to parse out of the resume keywords
+        stopWords = set(open(settings.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
+        
+        # Get rid of stop words
+        fullWords = re.findall(r'[a-zA-Z]{3,}', resume_text)
+        result = ""
+        count = 0
+        for word in fullWords:
+            word = word.lower()
+            if word not in stopWords:
+                count += 1
+                result += " " + word
+        if count > 1000*page_num:
+            return RESUME_PROBLEMS.HACKED
+    except Exception:
+        count = 0
+        result = ""
     if count == 0:
         student.keywords = result
         student.last_update = datetime.datetime.now()
