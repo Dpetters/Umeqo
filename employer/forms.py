@@ -56,7 +56,7 @@ class EmployerProfileForm(forms.ModelForm):
     main_contact_email = forms.EmailField(label="Contact Email:")
     main_contact_phone = USPhoneNumberField(label="Contact Phone #:", required=False)
     offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset=EmploymentType.objects.all(), required=False)
-    website = forms.URLField(label="Careers Website:", required=False)
+    careers_website = forms.URLField(label="Careers Website:", required=False)
     
     class Meta:
         fields = ('name',
@@ -67,7 +67,7 @@ class EmployerProfileForm(forms.ModelForm):
                    'main_contact_email',
                    'main_contact_phone',
                    'offered_job_types',
-                   'website')
+                   'careers_website')
         model = Employer
     
     def clean_industries(self):
