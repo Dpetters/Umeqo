@@ -222,7 +222,7 @@ $(document).ready(function() {
             //enable submit by enter button
             if (e.which == 13) {
                 clearMatches();
-                $(this).parent('form').submit();
+                $(this).closest('form').submit();
             } else {
                 hideError();
                 $('#checkin_status').removeClass();
@@ -340,4 +340,6 @@ $(document).ready(function() {
     
     $("#rsvp-yes-button[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
     $("#event_resume_drop[disabled=disabled]").tipsy({'gravity':'w', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
+
+    $('#name_input, #email_input').placeholder();
 });
