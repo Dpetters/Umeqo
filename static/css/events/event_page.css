@@ -498,5 +498,5 @@ div.attending_employer {
 }
 
 .placeholder {
-    color: #888;
+    color: #888 !important;
 }
