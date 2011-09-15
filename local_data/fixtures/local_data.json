@@ -95,6 +95,35 @@
   }
  }, 
  {
+  "pk": 9, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": "2011-09-14 22:00:00", 
+   "audience": [], 
+   "attending_employers": [
+    5
+   ], 
+   "name": "Test Event", 
+   "is_public": true, 
+   "edits": [], 
+   "description": "<p>\r\n\tThis is a tes description.</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": -71.092013719999997, 
+   "latitude": 42.35967402, 
+   "short_slug": null, 
+   "is_drop": false, 
+   "end_datetime": "2011-09-14 23:00:00", 
+   "rsvp_message": "", 
+   "owner": 16, 
+   "date_created": "2011-09-14 21:46:59", 
+   "type": 1, 
+   "slug": "test-event", 
+   "location": "10-250"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "events.attendee", 
   "fields": {
@@ -942,8 +971,8 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 9, 
-   "last_updated": "2011-09-13 10:20:03", 
+   "shown_in_results_count": 11, 
+   "last_updated": "2011-09-14 13:00:54", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 2, 
    "student": 1, 
@@ -954,8 +983,8 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 8, 
-   "last_updated": "2011-09-13 10:20:03", 
+   "shown_in_results_count": 10, 
+   "last_updated": "2011-09-14 13:00:54", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 2, 
@@ -966,8 +995,8 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 8, 
-   "last_updated": "2011-09-13 10:20:03", 
+   "shown_in_results_count": 10, 
+   "last_updated": "2011-09-14 13:00:54", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 2, 
    "student": 3, 
@@ -978,8 +1007,8 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 7, 
-   "last_updated": "2011-09-13 10:20:03", 
+   "shown_in_results_count": 9, 
+   "last_updated": "2011-09-14 13:00:54", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 4, 
@@ -990,8 +1019,8 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 7, 
-   "last_updated": "2011-09-13 10:20:03", 
+   "shown_in_results_count": 9, 
+   "last_updated": "2011-09-14 13:00:54", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 1, 
    "student": 5, 
@@ -1380,7 +1409,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-13 19:00:36", 
+   "last_login": "2011-09-14 21:46:25", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1398,7 +1427,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-11 11:20:01", 
+   "last_login": "2011-09-14 21:45:51", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1416,7 +1445,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-12 22:26:20", 
+   "last_login": "2011-09-14 12:59:53", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1578,7 +1607,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-12 02:31:39", 
+   "last_login": "2011-09-14 21:48:14", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -4007,6 +4036,46 @@
    "session_key": "db0b31032c7eb32c87b1cbb30f50aa4f", 
    "last_updated": "2011-09-13 19:00:36", 
    "user": 1
+  }
+ }, 
+ {
+  "pk": 373, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-14 12:59:53", 
+   "session_key": "32b8d99dcd2d98623c745457b32e076b", 
+   "last_updated": "2011-09-14 12:59:53", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 375, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-14 21:46:12", 
+   "session_key": "a98c52718ecd17526512b7ce7fb9df9b", 
+   "last_updated": "2011-09-14 21:46:12", 
+   "user": 16
+  }
+ }, 
+ {
+  "pk": 376, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-14 21:46:25", 
+   "session_key": "39f245544b879a3f8f9bf2d2246128f3", 
+   "last_updated": "2011-09-14 21:46:25", 
+   "user": 1
+  }
+ }, 
+ {
+  "pk": 377, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-14 21:48:14", 
+   "session_key": "f554df8e93ae928258791fcde06ca39a", 
+   "last_updated": "2011-09-14 21:48:14", 
+   "user": 16
   }
  }, 
  {
