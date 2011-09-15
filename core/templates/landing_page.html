@@ -89,15 +89,15 @@
                 <div class="col">
                     <p id="working">Featured Event</p>
                     <div id="promotion">
-                      <h2>Traders@MIT Presents: "Arbitrage Trading" with Weiss Asset Management</h2>
+                      <h2>Google Tech Talk</h2>
                       {% if featured_event.employer %}
                       <a href="{{ featured_event.employer.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
                       {% if featured_event.campus_org %}
                       <a href="{{ featured_event.campus_org.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
                       {% endif %}
-                      <p>You are invited  to hear from Portfolio Manager and Vice President Paul Sherman at Weiss Asset Management, a top hedge fund based locally in Boston.</p>
-                      <p>The event starts at 7:00pm on Wed, Sept 14th in 6-120. {% if featured_event %}You can RSVP on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
+                      <p>You are invited to come learn more about Social at Google from MIT alum Dr. Christopher Wren and about the APM role from Sean Liu.</p>
+                      <p>The event starts at 7:00pm on Thursday, Sept 15th in 34-401. {% if featured_event %}You can RSVP on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
