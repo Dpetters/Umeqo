@@ -14,7 +14,7 @@
 #event_external_buttons {
     padding: 20px 0 0;
 }
-#view_student_list_link{
+#view_student_list_link {
     position:relative;
     bottom:23px;
 }
@@ -53,7 +53,7 @@
     margin-top: 3px;
     text-align: right;
 }
-#event_attending_employers .ep-logo{
+#event_attending_employers .ep-logo {
     max-height:103px;
 }
 #event_audience {
@@ -71,7 +71,7 @@
     margin: 8px 0 5px;
     float: right;
 }
-h3#event_location{
+h3#event_location {
     margin-top:0px;
     margin-bottom:0px;
 }
@@ -287,7 +287,7 @@ h3#event_location{
     color: #888;
 
 }
-#event_checkin_count{
+#event_checkin_count {
     text-align:center;
 }
 #event_checkin_header span {
@@ -338,7 +338,7 @@ h3#event_location{
     background-color: #6E97B9;
     color: #FFF;
 }
-#event_who .main_block_content{
+#event_who .main_block_content {
     padding-top:0px;
 }
 #event_who .event_company {
@@ -436,7 +436,7 @@ h3#event_location{
     -o-border-radius: 2px;
     font-size: 18px;
 }
-#event_title{
+#event_title {
     margin-bottom: 10px;
     margin-right: 125px;
 }
@@ -448,7 +448,7 @@ h3#event_location{
     padding: 5px;
     border-radius: 3px;
 }
-.event_host_logo img{
+.event_host_logo img {
     max-width:269px;
 }
 .main_block_content p {
@@ -474,11 +474,29 @@ h3#event_location{
     line-height: 40px;
     font-size: 16px;
 }
-div.attending_employer{
+div.attending_employer {
     height:74px;
     line-height:74px;
     width:159px;
 }
-#attending_employers .ef-logo{
+#attending_employers .ef-logo {
     max-width:159px;
+}
+
+.checkin_field {
+    display: inline-block;
+}
+.checkin_field label {
+    float: left;
+    font-size: 2em;
+    color: #888;
+    font-weight: 400;
+}
+.checkin_field input {
+    float: left;
+    clear: left;
+}
+
+.placeholder {
+    color: #888 !important;
 }
