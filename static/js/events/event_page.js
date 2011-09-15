@@ -340,4 +340,6 @@ $(document).ready(function() {
     
     $("#rsvp-yes-button[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
     $("#event_resume_drop[disabled=disabled]").tipsy({'gravity':'w', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
+
+    $('#name_input, #email_input').placeholder();
 });

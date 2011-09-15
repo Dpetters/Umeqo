@@ -5,10 +5,15 @@
     </div>
     <div id="event_checkin_content">
         <h1>Event Check-in</h1>
-        <p>Type in your email! If you have an Umeqo account, <strong>go ahead and hit enter</strong>. Otherwise, please fill in your name!</p>
         <form id="checkin_form" action="">
-            <input id="email_input" type="text" name="email" placeholder="email@mit.edu"/>
-            <input id="name_input" type="text" name="name" placeholder="name (if not Umeqo account)"/>
+            <div class="checkin_field">
+                <label for="email_input">MIT email:</label>
+                <input id="email_input" type="text" name="email" placeholder="email@mit.edu"/>
+            </div>
+            <div class="checkin_field">
+                <label for="name_input">Name (if not an Umeqo account):</label>
+                <input id="name_input" type="text" name="name" placeholder="First Last"/>
+            </div>
             <input id="is_registered_input" type="hidden" name="is_registered_input" value="false" />
             <ul id="email_input_autofill"></ul>
         </form>
