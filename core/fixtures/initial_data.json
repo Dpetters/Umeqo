@@ -3492,6 +3492,17 @@
   }
  }, 
  {
+  "pk": 13, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-09-14 22:41:05", 
+   "sort_order": "4.000", 
+   "last_updated": "2011-09-14 22:41:05", 
+   "name": "Student Search & Filtering", 
+   "slug": "student-search-filtering"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "core.question", 
   "fields": {
@@ -3600,6 +3611,22 @@
    "sort_order": "2.000", 
    "answer": "In order to start using those features, you need to fill out the required parts of your profile. These are just the field on the first tab of the create profile page.", 
    "date_created": "2011-09-08 20:48:01", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-14 22:44:07", 
+   "click_count": 0, 
+   "question": "It looks like things are broken. Am I doing something wrong?", 
+   "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "4.000", 
+   "answer": "No, you are not. But you are probably using IE7-8. If this is so, know that we are well aware of the existing issues in those browsers and are working hard to fix them. For now, please let us know of what is broken for you by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
+   "date_created": "2011-09-14 22:44:07", 
    "display": true
   }
  }, 
