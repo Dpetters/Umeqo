@@ -26,11 +26,11 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
     {% if campus_org_event %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
     {% endif %}
 {% endcompress %}
-<script type="text/javascript">
+<script>
     var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
     var EVENT_ID = "{{event.id}}";
     var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
@@ -46,17 +46,18 @@
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
 </script>
+<script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
 {% compress js %}
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
     {% if campus_org_event %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+    <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
     {% endif %}
 {% endcompress %}    
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}
 
 {% block above_header_area %}
-{% include "events_checkin.html" with event=event %}
+    {% include "events_checkin.html" with event=event %}
 {% endblock %}
 
 {% block content_area %}
