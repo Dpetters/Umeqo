@@ -222,7 +222,7 @@ $(document).ready(function() {
             //enable submit by enter button
             if (e.which == 13) {
                 clearMatches();
-                $(this).parent('form').submit();
+                $(this).closest('form').submit();
             } else {
                 hideError();
                 $('#checkin_status').removeClass();
