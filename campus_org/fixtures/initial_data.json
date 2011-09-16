@@ -4824,6 +4824,24 @@
   }
  }, 
  {
+  "pk": 481, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-09-14 16:13:20", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-14 16:13:20", 
+   "type": 6, 
+   "display": false, 
+   "name": "Phi Sigma Kappa"
+  }
+ }, 
+ {
   "pk": 290, 
   "model": "campus_org.campusorg", 
   "fields": {
