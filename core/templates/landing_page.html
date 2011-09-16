@@ -91,7 +91,7 @@
                     <div id="promotion">
                       <h2>Mock Trading Session with Traders from SIG</h2>
                       {% if featured_event.employer %}
-                      <a href="{{ featured_event.employer.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
+                      <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
                       {% if featured_event.campus_org %}
                       <a href="{{ featured_event.campus_org.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
