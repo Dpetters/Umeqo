@@ -260,9 +260,9 @@ $(document).ready(function() {
                 $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").attr('disabled', 'disabled');
             } else if (event_type === "Hard Deadline") {
                 if (EDIT_FORM){
-                    title = "New Hard Deadline"
-                } else {
                     title = "Edit Hard Deadline"
+                } else {
+                    title = "New Hard Deadline"
                 }
                 $("#event_datetime_block").slideDown();
                 $("#event_form_header").html(title);
@@ -301,6 +301,7 @@ $(document).ready(function() {
             } else {
                 $('label[for=id_end_datetime_0]').append("<span class='error'>*</span>");                
             }
+            $("#id_name").attr("placeholder", "Enter event name");
             $("#start_datetime_wrapper select, #start_datetime_wrapper input, #end_datetime_wrapper select, #end_datetime_wrapper input").removeAttr('disabled');
             $("#start_datetime_wrapper, #end_datetime_wrapper, #event_scheduler_day, #event_scheduler").slideDown();
             $("#event_form input[type=submit]").val("Create Event");
