@@ -28,7 +28,9 @@ def logout(request, login_url=None, current_app=None, extra_context=None):
 
 @render_to('login.html')
 def login(request, template_name="login.html", authentication_form=AuthenticationForm, login_url=None, current_app=None, extra_context={}):
-    if request.user.is_authenticated() and not request.user.is_superuser:
+    if request.user.is_superuser:
+        return redirect(reverse('super_login'))
+    elif request.user.is_authenticated():
         return redirect(reverse('home'))
 
     # Log the login attempt.
