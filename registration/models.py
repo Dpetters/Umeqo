@@ -12,6 +12,7 @@ from django.dispatch import receiver
 from student.models import Student
 from core import mixins as core_mixins
 from core.view_helpers import get_ip
+from core.signals import us_user_logged_in
 from events.models import Event
 from registration.managers import RegistrationManager
 from notification.models import NoticeType
@@ -62,7 +63,7 @@ class SessionKey(core_mixins.DateTracking):
 def delete_session_key(sender, request, user, **kwargs):
     SessionKey.objects.filter(user=user, session_key=request.session.session_key).delete()
 
-@receiver(user_logged_in, sender=User)
+@receiver(us_user_logged_in, sender=User)
 def create_session_key(sender, request, user, **kwargs):
     SessionKey.objects.create(user=user, session_key=request.session.session_key)
     

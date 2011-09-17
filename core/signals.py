@@ -1,4 +1,8 @@
+from django.dispatch import Signal
+
 from core.model_helpers import generate_thumbnail
+
+us_user_logged_in = Signal(providing_args=['request', 'user', 'super'])
 
 def create_thumbnail(sender, instance, created, raw, **kwargs):
     if instance.image and not instance.thumbnail:

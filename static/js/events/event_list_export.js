@@ -25,6 +25,8 @@ function handle_export_event_list_link_click(e) {
         event_list_export_dialog.dialog("option", "title", "Export \"" + $(this).attr("data-event-name") + "\" Attendees");
     } else if (event_list == "rsvps"){
         event_list_export_dialog.dialog("option", "title", "Export \"" + $(this).attr("data-event-name") + "\" RSVPs");
+    } else if (event_list == "all"){
+        event_list_export_dialog.dialog("option", "title", "Export \"" + $(this).attr("data-event-name") + "\" All Responses");
     }
     
     var event_list_export_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
