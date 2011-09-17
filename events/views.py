@@ -224,8 +224,8 @@ def export_event_list_csv(file_obj, event, list):
         info.append(student['name'])
         info.append(student['email'])
         if student['account']:
-            info.append(str(student['school_year']))
-            info.append(str(student['graduation_year']))
+            info.append(student['school_year'])
+            info.append(student['graduation_year'])
         writer.writerow(info)
     return filename
 
@@ -273,12 +273,15 @@ def export_event_list_text(file_obj, event, list):
         students.sort(key=lambda n: n['name'])
     for student in students:
         if student['account']:
-            info = "\t".join([student['name'], student['email'], str(student['school_year']), str(student['graduation_year'])])
+            info = "\t".join([student['name'], student['email'], student['school_year'], student['graduation_year']])
         else:
             info = "\t".join([student['name'], student['email']])
         print >> file_obj, info
     return filename
 
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+@has_any_subscription
 def event_list_download(request):
     event = Event.objects.get(id=request.GET["event_id"])
     list = request.GET['event_list']
@@ -294,6 +297,13 @@ def event_list_download(request):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
     return response
 
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+@has_any_subscription
+def event_checkin_count(request):
+    data = {'count':len(Event.objects.get(id=request.GET["event_id"]).attendee_set.all())}
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
@@ -533,8 +543,7 @@ def event_undrop(request, event_id):
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)
     if request.method == 'GET':
-        attendees = map(buildAttendee, event.attendee_set.all().order_by('-datetime_created'))
-        return HttpResponse(simplejson.dumps(attendees), mimetype="application/json")
+        return HttpResponse(simplejson.dumps(get_attendees(event)), mimetype="application/json")
     else:
         email = request.POST.get('email', None).strip()
         if not email or not email_re.match(email):
