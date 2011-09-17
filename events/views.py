@@ -34,7 +34,7 @@ from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
+from events.views_helper import event_search_helper, buildAttendee, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
 from notification import models as notification
 from student.models import Student
 
@@ -113,29 +113,14 @@ def event_page(request, id, slug, extra_context=None):
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
-
-    invitees = map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
-    rsvps = map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
-    no_rsvps = map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
-    checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
-    checkins.sort(key=lambda n: 0 if n['account'] else 1)
-
-    emails_dict = {}
-    all_responses = []
-    for res in checkins + rsvps + no_rsvps:
-        if res['email'] not in emails_dict:
-            emails_dict[res['email']] = 1
-            all_responses.append(res)
-    all_responses.sort(key=lambda n: n['datetime_created'])
-    all_responses.sort(key=lambda n: 0 if n['account'] else 1)
     
     context = {
         'event': event,
-        'invitees': invitees,
-        'rsvps': rsvps,
-        'no_rsvps': no_rsvps,
-        'checkins': checkins,
-        'all_responses': all_responses,
+        'invitees': get_invitees(event),
+        'rsvps': get_rsvps(event),
+        'no_rsvps': get_no_rsvps(event),
+        'checkins': get_attendees(event),
+        'all_responses': get_all_responses(event),
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
@@ -225,25 +210,21 @@ def export_event_list_csv(file_obj, event, list):
     writer.writerow(info)
     if list =="rsvps":
         filename = "%s RSVPs.csv" % (event.name)
-        for rsvp in event.rsvp_set.all():
-            info = []
-            student = rsvp.student
-            info.append("%s %s" % (student.first_name, student.last_name))
-            info.append(student.user.email)
-            info.append("%s" % (student.school_year))
-            info.append("%s" % (student.graduation_year))
-            writer.writerow(info)
+        students = get_rsvps(event)
     elif list == "attendees":
         filename = "%s Attendees.csv" % (event.name)
-        for attn in event.attendee_set.all():
-            info = []
-            info.append(attn.name)
-            info.append(attn.email)
-            if attn.student and attn.student.profile_created==True:
-                student = attn.student
-                info.append("%s" % (student.school_year))
-                info.append("%s" % (student.graduation_year))
-            writer.writerow(info)
+        students = get_attendees(event)
+    elif list == "all":
+        filename = "%s All Responses.csv" % (event.name)
+        students = get_all_responses(event)
+    for student in students:
+        info = []
+        info.append(student['name'])
+        info.append(student['email'])
+        if student['account']:
+            info.append(str(student['school_year']))
+            info.append(str(student['graduation_year']))
+        writer.writerow(info)
     return filename
 
 # Not used currently because Amazon SES doesn't support excel attachements
@@ -251,53 +232,45 @@ def export_event_list_xls(file_obj, event, list):
     wb = xlwt.Workbook()
     if list =="rsvps":
         worksheet_name = "%s RSVPs" % (event.name)
-        ws = wb.add_sheet(worksheet_name)
-        ws.write(0, 0, 'Name')
-        ws.write(0, 1, 'Email')
-        ws.write(0, 2, 'School Year (Graduation Year)')
-        for i, rsvp in enumerate(event.rsvp_set.all(), start=1):
-            student = rsvp.student
-            ws.write(i, 0, "%s %s" % (student.first_name, student.last_name))
-            ws.write(i, 1, student.user.email)            
-            ws.write(i, 2, "%s" % (student.school_year))
-            ws.write(i, 3, "%s" % (student.graduation_year))
+        students = get_rsvps(event)
     elif list == "attendees":
-        worksheet_name = "%s RSVPs" % (event.name)
-        ws = wb.add_sheet(worksheet_name)
-        ws.write(0, 0, 'Name')
-        ws.write(0, 1, 'Email')
-        ws.write(0, 2, 'School Year (Graduation Year)')
-        for i, attn in enumerate(event.attendee_set.all(), start=1):
-            ws.write(i, 0, attn.name)
-            ws.write(i, 1, attn.email)
-            if attn.student and attn.student.profile_created==True:
-                ws.write(i, 2, "%s" % (attn.student.school_year))
-                ws.write(i, 3, "%s" % (attn.student.graduation_year))
+        worksheet_name = "%s Attendees" % (event.name)
+        students = get_attendees(event)
+    elif list == "all":
+        worksheet_name = "%s All Responses" % (event.name)
+        students = get_all_responses(event)
+    ws = wb.add_sheet(worksheet_name)
+    ws.write(0, 0, 'Name')
+    ws.write(0, 1, 'Email')
+    ws.write(0, 2, 'School Year (Graduation Year)')
+    for i, rsvp in enumerate(students, start=1):
+        student = rsvp.student
+        ws.write(i, 0, student['name'])
+        ws.write(i, 1, student['email'])
+        if student['account']:            
+            ws.write(i, 2, student['school_year'])
+            ws.write(i, 3, student['graduation_year'])
     wb.save(file_obj)
     return "%s.xls" % (event.name)
 
 def export_event_list_text(file_obj, event, list):
     info = "\t".join(["Name", "Email", "School Year", "Graduation Year"])
     print >> file_obj, info
-    if list =="rsvps":
+    if list == "all":
+        filename = "%s All Responses.txt" % (event.name)
+        students = get_all_responses(event)
+    if list == "rsvps":
         filename = "%s RSVPs.txt" % (event.name)
-        for rsvp in event.rsvp_set.all():
-            student= rsvp.student
-            name = "%s %s" % (student.first_name, student.last_name)
-            email = student.user.email
-            info = "\t".join([name, student.user.email, str(student.school_year), str(student.graduation_year)])
-            print >> file_obj, info
+        students = get_rsvps(event)
     elif list == "attendees":
         filename = "%s Attendees.txt" % (event.name)
-        for attn in event.attendee_set.all():
-            info = ""
-            name = attn.name
-            email = attn.email
-            if attn.student and attn.student.profile_created==True:
-                info = "\t".join([name, email, str(attn.student.school_year), str(attn.student.graduation_year)])
-            else:
-                info = "\t".join([name, email])
-            print >> file_obj, info
+        students = get_attendees(event)
+    for student in students:
+        if student['account']:
+            info = "\t".join([student['name'], student['email'], str(student['school_year']), str(student['graduation_year'])])
+        else:
+            info = "\t".join([student['name'], student['email']])
+        print >> file_obj, info
     return filename
 
 def event_list_download(request):

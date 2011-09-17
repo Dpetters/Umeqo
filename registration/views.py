@@ -17,6 +17,7 @@ from django.utils import simplejson
 from core.decorators import render_to, is_superuser
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
+from core.signals import us_user_logged_in
 from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
@@ -77,11 +78,13 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
                 'site_name': current_site.name,
             })
             return context
+    response = auth_login_view(request, template_name=template_name, authentication_form=AuthenticationForm, current_app=current_app, extra_context=extra_context)
     if request.user.is_superuser:
         return redirect(reverse('super_login'))
     else:
-        return auth_login_view(request, template_name=template_name, authentication_form=AuthenticationForm, current_app=current_app, extra_context=extra_context)
-
+        us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
+        return response
+    
 @login_required
 @render_to('super_login.html')
 @user_passes_test(is_superuser, login_url=s.LOGIN_URL)
@@ -110,6 +113,7 @@ def password_change(request, password_change_form=PasswordChangeForm, extra_cont
         request.user.sessionkey_set.all().delete()
         request.user.backend = 'django.contrib.auth.backends.ModelBackend'
         auth_login(request, request.user)
+        us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
         data = {'valid':True}
     else:
         data = {'valid':False, 'errors':form.errors}
