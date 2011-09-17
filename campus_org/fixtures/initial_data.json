@@ -7092,6 +7092,24 @@
   }
  }, 
  {
+  "pk": 483, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://mit-uswim.blogspot.com/", 
+   "slug": null, 
+   "last_updated": "2011-09-17 11:31:13", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-17 11:31:13", 
+   "type": 1, 
+   "display": false, 
+   "name": "Undergraduate Society of Women in Mathemat"
+  }
+ }, 
+ {
   "pk": 409, 
   "model": "campus_org.campusorg", 
   "fields": {
