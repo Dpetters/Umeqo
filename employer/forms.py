@@ -14,8 +14,9 @@ from core.models import Industry, EmploymentType
 from student.form_helpers import student_lists_as_choices
 from student.forms import StudentBaseAttributeForm
 from employer.models import RecruiterPreferences, StudentFilteringParameters, Employer
-from employer import enums as employer_enums
+from core import enums as core_enums
 from core.widgets import UmSelectWidget
+from employer import enums as employer_enums
 from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
@@ -76,7 +77,7 @@ class EmployerProfileForm(forms.ModelForm):
         return self.cleaned_data['industries']
 
 class DeliverResumeBookForm(forms.Form):
-    delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = employer_enums.RESUME_BOOK_DELIVERY_CHOICES)
+    delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = core_enums.DELIVERY_CHOICES)
     name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
     emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)
         

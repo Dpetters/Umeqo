@@ -1,0 +1,31 @@
+.email_delivery_type_only_field{
+    display:none;
+}
+.event_list_export_dialog .dialog_content_wrapper{
+    padding:10px 15px 18px;
+}
+#event_list_export_form #id_emails{
+    height:17px;
+}
+#event_list_export_form .form_table{
+    margin-left:auto;
+    margin-right:auto;
+}
+#event_list_export_form #id_emails{
+    width:170px;
+}
+#event_list_export_form #id_emails_td{
+    width:225px;
+}
+#event_list_export_form #id_emails_th{
+    vertical-align:top;
+}
+#event_list_export_form .error_section{
+    padding:8px 0px;
+}
+#event_list_export_form label[for='id_emails']{
+    margin-top:24px;
+}
+#event_list_export_form input[type=submit]{
+    width:72px;
+}

@@ -30,6 +30,7 @@ from core.decorators import has_any_subscription, has_annual_subscription, is_st
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
+from core import enums as core_enums
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.forms import EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
@@ -365,7 +366,7 @@ def employer_student_event_attendance(request):
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
     context = {"resume_books":request.user.recruiter.resumebook_set.filter(delivered=True),
-               'email_delivery_type': employer_enums.EMAIL}
+               'email_delivery_type': core_enums.EMAIL}
     context.update(extra_context or {})
     return context
 
@@ -451,7 +452,7 @@ def employer_students(request, extra_context=None):
         context['student_search_form'] = StudentSearchForm()
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED
-        context['email_delivery_type'] = employer_enums.EMAIL
+        context['email_delivery_type'] = core_enums.EMAIL
         context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
     context['TEMPLATE'] = 'employer_students.html'
     context.update(extra_context or {})

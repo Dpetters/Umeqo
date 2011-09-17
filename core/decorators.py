@@ -6,7 +6,6 @@ from django.http import HttpResponseForbidden
 
 from subscription.models import EmployerSubscription, Subscription
 
-
 class has_any_subscription(object):
     def __init__(self, orig_func):
         self.orig_func = orig_func
@@ -42,6 +41,8 @@ class has_annual_subscription(object):
             return redirect(reverse("subscription_list"))
         return self.orig_func(request, *args, **kwargs)
 
+def is_superuser(user):
+    return user.is_superuser
 
 def is_campus_org(user):
     return hasattr(user, "campusorg")

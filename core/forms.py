@@ -12,6 +12,7 @@ from core import messages as m
 from core.email import send_html_mail
 from core.models import Language
 from core.form_helpers import decorate_bound_field
+from employer.models import Recruiter
 
 decorate_bound_field()
 
@@ -48,6 +49,8 @@ class EmailAuthenticationForm(AuthenticationForm):
         self.check_for_test_cookie()
         return self.cleaned_data
 
+class SuperLoginForm(forms.Form):
+    recruiter = forms.ModelChoiceField(label="Recruiter:", queryset = Recruiter.objects.all())
 
 class ContactForm(forms.Form):
     """

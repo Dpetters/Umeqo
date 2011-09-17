@@ -41,7 +41,7 @@ function handle_deliver_resume_book_link_click() {
         success: function (data) {
             deliver_resume_book_dialog.html(data);
 
-            $("label[for=id_emails]").addClass('required');
+                       $("label[for=id_emails]").addClass('required').append("<span class='error'>*</span>");
             $("#id_emails").autoResize({
                 animateDuration : 0,
                 extraSpace : 18
