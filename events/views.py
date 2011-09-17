@@ -285,7 +285,7 @@ def export_event_list_text(file_obj, event, list):
             student= rsvp.student
             name = "%s %s" % (student.first_name, student.last_name)
             email = student.user.email
-            info = "\t".join([name, student.user.email, student.school_year, student.graduation_year])
+            info = "\t".join([name, student.user.email, str(student.school_year), str(student.graduation_year)])
             print >> file_obj, info
     elif list == "attendees":
         filename = "%s Attendees.txt" % (event.name)
@@ -294,7 +294,7 @@ def export_event_list_text(file_obj, event, list):
             name = attn.name
             email = attn.email
             if attn.student and attn.student.profile_created==True:
-                info = "\t".join([name, email, attn.student.school_year, attn.student.graduation_year])
+                info = "\t".join([name, email, str(attn.student.school_year), str(attn.student.graduation_year)])
             else:
                 info = "\t".join([name, email])
             print >> file_obj, info
