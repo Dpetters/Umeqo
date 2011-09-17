@@ -16,6 +16,41 @@ def event_search_helper(request):
                 search_results = search_results.filter(content_auto=q)
     return map(lambda n: n.object, search_results)
 
+def get_rsvps(event):
+    return map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
+
+def get_no_rsvps(event):
+    return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
+
+def get_attendees(event):
+    attendees = map(buildAttendee, event.attendee_set.all().order_by('name'))
+    attendees.sort(key=lambda n: 0 if n['account'] else 1)
+    return attendees
+
+def get_invitees(event):
+    return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
+    
+def get_all_responses(event):
+    all_responses = []
+    emails_dict = {}
+    students = []
+    attendees = get_attendees(event)
+    if attendees:
+        students.extend(attendees)
+    rsvps = get_rsvps(event)
+    if rsvps:
+        students.extend(rsvps)
+    no_rsvps = get_no_rsvps(event)
+    if no_rsvps:
+        students.extend(no_rsvps) 
+    for res in students:
+        if res['email'] not in emails_dict:
+            emails_dict[res['email']] = 1
+            all_responses.append(res)
+    all_responses.sort(key=lambda n: n['datetime_created'])
+    all_responses.sort(key=lambda n: 0 if n['account'] else 1)
+    return all_responses
+
 def buildAttendee(obj):
     output = {
         'email': obj.email,
@@ -25,6 +60,8 @@ def buildAttendee(obj):
             output['name'] = obj.student.first_name + ' ' + obj.student.last_name
             output['account'] = True
             output['id'] = obj.student.id
+            output['school_year'] = obj.student.school_year
+            output['graduation_year'] = obj.student.graduation_year
     else:
         output['name'] = obj.name
         output['account'] = False
@@ -36,6 +73,8 @@ def buildRSVP(obj):
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.isoformat(),
         'email': obj.student.user.email,
+        'school_year': obj.student.school_year,
+        'graduation_year': obj.student.graduation_year,
         'account': True
     }
     return output
