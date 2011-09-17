@@ -370,7 +370,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
                 data = {'errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            form = form_class(initial={'event_id':request.GET['event_id'], 'event_list':request.GET['event_list']})
+            form = form_class(initial={'emails':request.user.email, 'event_id':request.GET['event_id'], 'event_list':request.GET['event_list']})
         context = {'form': form, 'TEMPLATE':'event_list_export.html'}
         context.update(extra_context or {}) 
         return context
