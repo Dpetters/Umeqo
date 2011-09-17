@@ -22,12 +22,12 @@ def student_lists_as_choices(recruiter_id):
             events = e.event_set.all()
             for index, event in enumerate(events):
                 if index == 0 and not e.subscribed_annually():
-                    student_lists.append([event.id, event.name + " RSVPs", "selected=\"selected\""])
+                    student_lists.append([event.id, event.name.replace("\"", "\'") + " RSVPs", "selected=\"selected\""])
                 else:
-                    student_lists.append([event.id, event.name + " RSVPs"])
-                student_lists.append([event.id, event.name + " Attendees"])
+                    student_lists.append([event.id, event.name.replace("\"", "\'") + " RSVPs"])
+                student_lists.append([event.id, event.name.replace("\"", "\'") + " Attendees"])
                 if event.is_drop:
-                    student_lists.append([event.id, event.name + " Resume Drop"])
+                    student_lists.append([event.id, event.name.replace("\"", "\'") + " Resume Drop"])
         elif student_list_type[0] == student_enums.RESUME_BOOK_HISTORY:
             rbs = recruiter.resumebook_set.filter(delivered=True)
             for rb in rbs:
