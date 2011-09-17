@@ -213,10 +213,10 @@ def export_event_list_csv(file_obj, event, list):
         students = get_rsvps(event)
     elif list == "attendees":
         filename = "%s Attendees.csv" % (event.name)
-        students = get_attendees(event).order_by('student__first_name')
+        students = get_attendees(event).sort(key=lambda n: n['name'])
     elif list == "all":
         filename = "%s All Responses.csv" % (event.name)
-        students = get_all_responses(event).order_by('student__first_name')
+        students = get_all_responses(event).sort(key=lambda n: n['name'])
     for student in students:
         info = []
         info.append(student['name'])
@@ -235,10 +235,10 @@ def export_event_list_xls(file_obj, event, list):
         students = get_rsvps(event)
     elif list == "attendees":
         worksheet_name = "%s Attendees" % (event.name)
-        students = get_attendees(event).order_by('student__first_name')
+        students = get_attendees(event).sort(key=lambda n: n['name'])
     elif list == "all":
         worksheet_name = "%s All Responses" % (event.name)
-        students = get_all_responses(event).order_by('student__first_name')
+        students = get_all_responses(event).sort(key=lambda n: n['name'])
     ws = wb.add_sheet(worksheet_name)
     ws.write(0, 0, 'Name')
     ws.write(0, 1, 'Email')
@@ -258,13 +258,13 @@ def export_event_list_text(file_obj, event, list):
     print >> file_obj, info
     if list == "all":
         filename = "%s All Responses.txt" % (event.name)
-        students = get_all_responses(event).order_by('student__first_name')
+        students = get_all_responses(event).sort(key=lambda n: n['name'])
     if list == "rsvps":
         filename = "%s RSVPs.txt" % (event.name)
         students = get_rsvps(event)
     elif list == "attendees":
         filename = "%s Attendees.txt" % (event.name)
-        students = get_attendees(event).order_by('student__first_name')
+        students = get_attendees(event).sort(key=lambda n: n['name'])
     for student in students:
         if student['account']:
             info = "\t".join([student['name'], student['email'], str(student['school_year']), str(student['graduation_year'])])
