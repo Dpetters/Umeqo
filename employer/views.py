@@ -350,7 +350,7 @@ def employer_student_event_attendance(request):
         if request.GET.has_key('student_id'):
             context={}
             student = Student.objects.visible().get(id=request.GET['student_id'])
-            context['events'] = request.user.event_set.filter(attendee__student=student)
+            context['events'] = request.user.recruiter.employer.event_set.filter(attendee__student=student)
             context['student'] = student
             return context
         else:

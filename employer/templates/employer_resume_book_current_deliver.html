@@ -3,7 +3,7 @@
         <div id="resume_book_summary" class="clearfix">
             <div id="resume_book_contents_div">
                 <p id="resume_book_contents_header">Contents</p>
-                <a href="javascript:void(0)" id="students_in_resume_book_student_list_from_dialog_link">{{resume_book.students.all|length}} student{{resume_book.students.all|pluralize}}</a>
+                <a id="students_in_resume_book_student_list_from_dialog_link" {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscription_list %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.all|length}} students</a>
             </div>
             <div id="resume_book_status_div">
                  <p id="resume_book_status_header">Status</p>
