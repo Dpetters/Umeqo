@@ -239,7 +239,7 @@ def export_event_list_csv(file_obj, event, list):
             info = []
             info.append(attn.name)
             info.append(attn.email)
-            if attn.student:
+            if attn.student and attn.student.profile_created==True:
                 student = attn.student
                 info.append("%s" % (student.school_year))
                 info.append("%s" % (student.graduation_year))
@@ -270,7 +270,7 @@ def export_event_list_xls(file_obj, event, list):
         for i, attn in enumerate(event.attendee_set.all(), start=1):
             ws.write(i, 0, attn.name)
             ws.write(i, 1, attn.email)
-            if attn.student:
+            if attn.student and attn.student.profile_created==True:
                 ws.write(i, 2, "%s" % (attn.student.school_year))
                 ws.write(i, 3, "%s" % (attn.student.graduation_year))
     wb.save(file_obj)
@@ -295,7 +295,7 @@ def export_event_list_text(file_obj, event, list):
             name = attn.name
             email = attn.email
             year = ""
-            if attn.student:
+            if attn.student and attn.student.profile_created==True:
                 student = attn.student
                 year = "%s (%s)" % (student.school_year, student.graduation_year)
             info = "\t".join([name, email, year])
