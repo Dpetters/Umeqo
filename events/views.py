@@ -277,7 +277,7 @@ def export_event_list_xls(file_obj, event, list):
     return "%s.xls" % (event.name)
 
 def export_event_list_text(file_obj, event, list):
-    info = "\t".join(["Name", "Email", "School Year (Graduation Year)"])
+    info = "\t".join(["Name", "Email", "School Year", "Graduation Year"])
     print >> file_obj, info
     if list =="rsvps":
         filename = "%s RSVPs.txt" % (event.name)
@@ -285,8 +285,7 @@ def export_event_list_text(file_obj, event, list):
             student= rsvp.student
             name = "%s %s" % (student.first_name, student.last_name)
             email = student.user.email
-            year = "%s (%s)" % (student.school_year, student.graduation_year)
-            info = "\t".join([name, email, year])
+            info = "\t".join([name, student.user.email, student.school_year, student.graduation_year])
             print >> file_obj, info
     elif list == "attendees":
         filename = "%s Attendees.txt" % (event.name)
@@ -294,11 +293,10 @@ def export_event_list_text(file_obj, event, list):
             info = ""
             name = attn.name
             email = attn.email
-            year = ""
             if attn.student and attn.student.profile_created==True:
-                student = attn.student
-                year = "%s (%s)" % (student.school_year, student.graduation_year)
-            info = "\t".join([name, email, year])
+                info = "\t".join([name, email, attn.student.school_year, attn.student.graduation_year])
+            else:
+                info = "\t".join([name, email])
             print >> file_obj, info
     return filename
 
