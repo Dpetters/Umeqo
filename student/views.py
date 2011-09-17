@@ -234,7 +234,6 @@ def student_registration_complete(request, extra_context = None):
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile.html")
 def student_profile(request, form_class=StudentProfileForm, extra_context=None):
-
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
@@ -290,6 +289,7 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
                     student.sat_t = None
                 
                 context = {'student':student,
+                           'edit' : request.user.student.profile_created,
                            'in_resume_book':False,
                            'starred':False,
                            'comment':messages.comment_text,
