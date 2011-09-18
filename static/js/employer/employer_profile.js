@@ -6,6 +6,7 @@ $(document).ready(function() {
             CKEDITOR.instances[instance].updateElement();
         }
     });
+
     v = $("#profile_form").validate({
         submitHandler : function(form) {
             $(form).ajaxSubmit({
