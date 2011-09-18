@@ -80,7 +80,11 @@ $(document).ready(function() {
         if ($(this).hasClass('left-group')) {
             $('#rsvp_div .selected').removeClass('selected');
             $(this).addClass('selected');
-            $("#remove-rsvp-button").text("Undo RSVP and Resume Drop");
+            if (IS_DROP){
+                $("#remove-rsvp-button").text("Undo RSVP and Resume Drop");
+            }else{
+                $("#remove-rsvp-button").text("Undo RSVP");
+            }
         }
         $.ajax({
             data:{'event_id':EVENT_ID},
