@@ -20,6 +20,30 @@
   }
  }, 
  {
+  "pk": 75, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    40
+   ], 
+   "main_contact_email": "joehuan@mit.edu", 
+   "last_updated": "2011-09-17 20:14:28", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "Joe Huan", 
+   "main_contact_phone": "", 
+   "offered_job_types": [
+    1
+   ], 
+   "date_created": "2011-09-17 20:14:28", 
+   "logo": "employer/employer/allston trading_2011-09-17-20-14-28.png", 
+   "careers_website": "", 
+   "slug": "allston", 
+   "name": "Allston Trading"
+  }
+ }, 
+ {
   "pk": 34, 
   "model": "employer.employer", 
   "fields": {
