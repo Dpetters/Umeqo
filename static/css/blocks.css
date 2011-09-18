@@ -37,7 +37,7 @@
     border-radius: 3px;
     border: 1px solid #DDD !important;
 }
-.main_block_header, .side_block_header {
+.main_block_header, .side_block_header, .cke_skin_kama .cke_dialog_title{
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top, #f0f0f0 0%, #e6e6e6 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#e6e6e6)); /* Chrome,Safari4+ */

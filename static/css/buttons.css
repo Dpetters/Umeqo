@@ -51,7 +51,10 @@ input.button {
 .button span, .button img {
     vertical-align: middle;
 }
-.button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
+.cke_skin_kama a.cke_dialog_ui_button{
+    background:none !important;
+}
+.cke_skin_kama .cke_dialog_footer_buttons span.cke_dialog_ui_button, .button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all {
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top, #f0f0f0 0%, #dddddd 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
@@ -73,6 +76,9 @@ input.button {
     vertical-align: middle;
     font-size: 13px;
     font-family: Arial;
+}
+.cke_skin_kama .cke_dialog_footer_buttons span.cke_dialog_ui_button{
+    padding:5px 0px;
 }
 .left-group.button {
     -moz-border-radius-topleft: 3px;
