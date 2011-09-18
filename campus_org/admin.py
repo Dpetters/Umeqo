@@ -2,9 +2,20 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
+from django import forms
 
+from core.view_helpers import employer_campus_org_slug_exists
 from campus_org.models import CampusOrg
 
+class CampusOrgAdminForm(forms.ModelForm):
+    class Meta:
+        model = CampusOrg
+        
+    def clean_slug(self):
+        if self.cleaned_data['slug']:
+            if employer_campus_org_slug_exists(self.cleaned_data['slug'], campusorg=self.instance):
+                raise forms.ValidationError("A campus organization or employer with the slug %s already exists" % (self.cleaned_data['slug']))
+        return self.cleaned_data['slug']
 
 class CampusOrgAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -15,7 +26,8 @@ class CampusOrgAdmin(admin.ModelAdmin):
     list_filter = ('type',)
     search_fields = ['name', 'user__username']
     date_hierarchy = 'last_updated'
-
+    form = CampusOrgAdminForm
+    
     def response_change(self, request, obj):
         """
         Determines the HttpResponse for the change_view stage.

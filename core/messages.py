@@ -23,7 +23,7 @@ rsvp_yes_tooltip = "Logged-in students can click this button to RSVP."
 
 # Employer Profile 
 employer_name_required = "You must specify an employer name"
-slug_already_taken = "This slug is already taken."
+slug_already_taken = "This short url is already taken."
 
 # Employer Profile Preview
 subscribe_tooltip = "Logged-in students can click this button to subscribe to your employer for new event and deadline notifications."
@@ -39,8 +39,7 @@ gpa_range = 'Your GPA should be between 0 and 5.'
 resume_required = "Please select a PDF version of your resume."
 invalid_url = 'Please enter a valid url.'
 first_second_majors_diff = "Second major must be different from first."
-student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to \
-perform actions over multiple students at once."
+student_profile_preview_checkbox_tooltip = "Employers use these checkboxes to perform actions over multiple students at once."
 max_languages_exceeded = "You can select at most %s languages." % s.SP_MAX_LANGUAGES
 one_language_difficulty = "You can only select one language difficulty."
 max_previous_employers_exceeded = "You can select at most %s employers." % s.SP_MAX_PREVIOUS_EMPLOYERS
@@ -68,7 +67,7 @@ campus_org_already_exists = "This campus organization already exists."
 language_already_exists = "This language already exists."
 
 # Employer Profile Form
-slug_required = "You need to pick a slug!"
+slug_required = "You need to pick a short url!"
 industries_required = "You need to pick 1-5 industries."
 description_required = "A description is required."
 main_contact_required = "You need to specify a main contact."
