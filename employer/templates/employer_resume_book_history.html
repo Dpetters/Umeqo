@@ -19,6 +19,7 @@
         var RESUME_BOOK_CURRENT_DELIVER_URL = "{% url employer_resume_book_current_deliver %}";
         var RESUME_BOOK_CURRENT_DOWNLOAD_URL = "{% url employer_resume_book_current_download %}";
         var RESUME_BOOK_CURRENT_DELIVERED_URL = "{% url employer_resume_book_current_delivered %}";
+        var EMPLOYER_RESUME_BOOK_DELETE_URL = "{% url employer_resume_book_delete %}"
     </script>
     {% compress js %}
         <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_history.js"></script>
@@ -42,6 +43,7 @@
                 <li>
                     <div class="right_side_container">
                         <a class="dark_button student_deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
+                        <a class="delete_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Delete</a>
                     </div>
                     <div class="details">
                         <h2 class="resume_book_name">{{ resume_book.name }}</h2>
@@ -49,9 +51,8 @@
                         <p><strong>Size:</strong> <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscription_list %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.all|length}} students</a></p>
                     </div>
                 </li>
-            {% empty %}
-                <li class="empty_notices">You have not created any resume books yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to create one.</li>
             {% endfor %}
+            <li {% if resume_books %}style="display:none"{% endif %} id="no_resume_books">You have not created any resume books yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to create one.</li>
         </ul>
     </div>
 </div>
