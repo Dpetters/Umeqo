@@ -15,7 +15,16 @@
 }
 .resume_book_list .right_side_container{
     width:80px;
+    text-align:center;
 }
 .resume_book_list .right_side_container .student_deliver_resume_book_link{
-    margin-top:15px;
+    margin-top:9px;
+}
+.resume_book_list .right_side_container .delete_resume_book_link{
+    position:relative;
+    top:2px;
+    color:#990000 !important;
+}
+.resume_book_deletion_dialog .dialog_content_wrapper{
+    padding:20px;
 }

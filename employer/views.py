@@ -165,6 +165,26 @@ def employer_account_delete(request):
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
 @login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_resume_book_delete.html")
+def employer_resume_book_delete(request, extra_context = None):
+    if request.is_ajax():
+        if request.method == "POST":
+            if request.POST.has_key("resume_book_id"):
+                try:
+                    ResumeBook.objects.get(id=request.POST["resume_book_id"]).delete()
+                except ResumeBook.DoesNotExist:
+                    return HttpResponseBadRequest("No resume book exists with id of %s" % request.POST["resume_book_id"])
+                return HttpResponse()
+            return HttpResponseBadRequest("Resume book ID is missing.")
+        else:
+            context = {}
+            context.update(extra_context or {})
+            return context
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
+
+@login_required
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 @require_GET
