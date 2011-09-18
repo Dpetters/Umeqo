@@ -37,6 +37,14 @@ $(document).ready(function() {
             type : {
                 required : true
             },
+            slug : {
+                required : true,
+                remote: {
+                    dataType: 'json',
+                    url: CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL,
+                    error: errors_in_message_area_handler
+                }
+            },
             email : {
                 email : true
             },
@@ -45,6 +53,10 @@ $(document).ready(function() {
             }
         },
         messages : {
+            slug : {
+                reguired:SLUG_REQUIRED,
+                remote: SLUG_ALREADY_TAKEN
+            },
             website : INVALID_URL,
             email : {
                 email : INVALID_EMAIL

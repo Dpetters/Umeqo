@@ -37,7 +37,13 @@ def check_employer_campus_org_slug_uniqueness(request):
     if request.is_ajax():
         if request.GET.has_key("slug"):
             data = False
-            if not employer_campus_org_slug_exists(request.GET["slug"], request.user):
+            campusorg = None
+            employer = None
+            if is_campus_org(request.user):
+                campusorg = request.user.campusorg
+            elif is_recruiter(request.user):
+                employer = request.user.recruiter.employer
+            if not employer_campus_org_slug_exists(request.GET["slug"], campusorg=campusorg, employer=employer):
                 data = True
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
