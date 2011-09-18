@@ -73,6 +73,7 @@ def subscription_list(request, extra_context=None):
         try:
             es = request.user.recruiter.employer.employersubscription
             if es.subscription == free_trial:
+                
                 context['annual_dialog'] = "Subscribe to Umeqo"
                 context['annual_class'] = "open_sd_link upgrade"
                 context['annual_action'] = "upgrade"
@@ -82,12 +83,9 @@ def subscription_list(request, extra_context=None):
                     context['free_trial_text'] = "Subscription Expired"
                     context['annual_button'] = "Contact Us"
                 else:
-                    context['annual_button'] = "Upgrade"
                     context['free_trial_text'] = "Subscribed"
-                    context['free_trial_button'] = "Cancel Subscription"
-                    context['free_trial_dialog'] = "Cancel Subscription"
-                    context['free_trial_class'] = "open_sd_link cancel"
-                    context['free_trial_action'] = "cancel"
+                    context['annual_button'] = "Upgrade"
+                    context['free_trial_class'] = 'open_ftid_link'
             else:
                 if es.expired() or es.expires < date.today():
                     context['annual_button'] = "Extend Subscription"
@@ -96,10 +94,10 @@ def subscription_list(request, extra_context=None):
                     context['annual_action'] = "extend"
                     context['annual_text'] = "Subscription Expired"
                 else:
-                    context['annual_button'] = "Cancel Subscription"
-                    context['annual_dialog'] = "Cancel Subscription"
-                    context['annual_class'] = "open_sd_link cancel"
-                    context['annual_action'] = "cancel"
+                    context['annual_button'] = "Extend Subscription"
+                    context['annual_dialog'] = "Extend Subscription"
+                    context['annual_class'] = "open_sd_link extend"
+                    context['annual_action'] = "extend"
                     context['annual_text'] = "Subscribed"
         except EmployerSubscription.DoesNotExist:
                     context['annual_button'] = "Subscribe"
