@@ -6,7 +6,6 @@ $(document).ready(function(){
         minWidth:250,
         height:100
     });
-    console.log(MAX_INDUSTRIES);
     $("#id_industries").multiselect({
         noneSelectedText: 'select industries',
         classes: 'industries_multiselect',

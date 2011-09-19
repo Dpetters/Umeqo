@@ -24,7 +24,7 @@ $(document).ready(function() {
             }
             marker.setPosition(location)
         }
-        if (typeof(LATITUDE)!="undefined" && typeof(LONGITUDE)!="undefined"){
+        if (typeof(LATITUDE)!="undefined" && typeof(LONGITUDE)!="undefined" && LATITUDE != "None" && LONGITUDE !="None"){
             center_map_coord(LATITUDE, LONGITUDE);
         }
         $(".location_suggestion").live('click', function() {
@@ -322,6 +322,9 @@ $(document).ready(function() {
         if (marker && marker.map) {
             $("#id_latitude").val(marker.position.lat());
             $("#id_longitude").val(marker.position.lng());
+        }else{
+            $("#id_latitude").val("");
+            $("#id_longitude").val("");
         }
     });
     var event_form_validator = $("#event_form").validate({
