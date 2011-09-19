@@ -27,7 +27,7 @@
     40
    ], 
    "main_contact_email": "joehuan@mit.edu", 
-   "last_updated": "2011-09-19 10:52:52", 
+   "last_updated": "2011-09-19 16:07:15", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -622,17 +622,22 @@
   "pk": 43, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:24:47", 
+   "industries": [
+    28, 
+    43
+   ], 
+   "main_contact_email": "Sarah.Jackson@fmr.com", 
+   "last_updated": "2011-09-19 16:07:47", 
    "description": "", 
-   "visible": false, 
+   "visible": true, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Sarah Jackson", 
    "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1
+   ], 
    "date_created": "2011-08-29 11:24:47", 
-   "logo": "", 
+   "logo": "employer/employer/fidelity_2011-09-19-16-06-16.png", 
    "careers_website": "", 
    "slug": "fidelity", 
    "name": "Fidelity"
@@ -682,17 +687,19 @@
   "pk": 54, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:29:27", 
-   "description": "", 
+   "industries": [
+    40
+   ], 
+   "main_contact_email": "aguo@getcollc.com", 
+   "last_updated": "2011-09-19 16:43:27", 
+   "description": "<p>\r\n\tfefeffefefafeafesf</p>\r\n", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Ann Guo", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:29:27", 
-   "logo": "", 
+   "logo": "employer/employer/getco_2011-09-19-16-40-21.png", 
    "careers_website": "", 
    "slug": "getco", 
    "name": "GETCO"
