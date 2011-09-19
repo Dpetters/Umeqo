@@ -726,6 +726,7 @@ $(document).ready(function () {
             height: 'auto',
             minHeight: 0,
             width: 415,
+            title: title,
             resizable: false,
             modal: true,
             buttons: {
