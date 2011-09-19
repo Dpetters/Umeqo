@@ -544,6 +544,7 @@ def employer_resume_book_current_create(request):
     c.drawString(1*cm, 28*cm, str(request.user.recruiter))
     c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
     c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
+    c.drawString(8.5*cm, 26.5*cm, "Table of Contents")
     for page_num, student in enumerate(current_resume_book.students.all()):
         c.drawString(4*cm, (25.5-page_num*.6)*cm, student.first_name + " " + student.last_name)
         c.drawString(16*cm, (25.5-page_num*.6)*cm, str(page_num+1))
@@ -552,7 +553,11 @@ def employer_resume_book_current_create(request):
     output = PdfFileWriter()
     output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
     for student in current_resume_book.students.all():
-        output.addPage(PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")).getPage(0))
+        resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
+        resume = PdfFileReader(resume_file)
+        if resume.getIsEncrypted():
+            resume.decrypt("")
+        output.addPage(resume.getPage(0))
     resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
     current_resume_book.resume_book_name = resume_book_name
     current_resume_book.save()
