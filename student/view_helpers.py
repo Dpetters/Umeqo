@@ -10,6 +10,7 @@ def process_resume(student):
         resume_text = ""
         resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
         resume = pyPdf.PdfFileReader(resume_file)
+        resume.decrypt("")
         page_num = resume.getNumPages()
         for i in range(0, page_num):
             resume_text += resume.getPage(i).extractText() + "\n"
@@ -31,8 +32,7 @@ def process_resume(student):
         if count > 1000*page_num:
             return RESUME_PROBLEMS.HACKED
     except Exception:
-        count = 0
-        result = ""
+        return RESUME_PROBLEMS.HACKED
     if count == 0:
         student.keywords = result
         student.last_update = datetime.datetime.now()

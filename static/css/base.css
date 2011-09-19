@@ -120,7 +120,7 @@ label: not(.required) {
 }
 #logo_beta {
     display: inline-block;
-    left: 173px;
+    left: 176px;
     bottom: 33px;
     position: absolute;
     color: #FAFAFA;
@@ -408,6 +408,7 @@ a:hover {
     text-shadow: #222 0 -1px 0;
     background-color: #B00;
 }
+
 .cke_skin_kama .cke_dialog_contents{
     background:#FFF;
 }
