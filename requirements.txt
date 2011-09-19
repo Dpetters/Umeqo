@@ -15,6 +15,7 @@ django-sentry==1.9.0
 django-ses==0.2
 django-templatetag-sugar==0.1
 eventlet==0.9.16
+greenlet==0.3.1
 paramiko==1.7.7.1
 pyPdf==1.13
 pycrypto==2.3
@@ -22,3 +23,5 @@ pysolr==2.0.15
 python-ldap==2.4.3
 reportlab==2.5
 virtualenv==1.6.4
+wsgiref==0.1.2
+xlwt==0.7.2
