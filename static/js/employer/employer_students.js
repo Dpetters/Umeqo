@@ -25,10 +25,10 @@ function handle_students_in_resume_book_student_list_from_dialog_click() {
 function open_event_invitation_dialog() {
     var $dialog = $('<div class="dialog"></div>').dialog({
         autoOpen: false,
-        title:"Send Event Invitation",
+        title: "Send Event Invitation",
         dialogClass: "event_invitation_dialog",
         modal: true,
-        width:550,
+        width: 550,
         resizable: false,
         close: function (event, ui) {
             event_invitation_dialog.remove();
@@ -158,7 +158,7 @@ function handle_students_invite_click(e) {
                     resizable: false,
                 });
                 if (events.length == 0) {
-                    dialog.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
+                    dialog.html('<span id="student_invite_no_events" class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
                 } else {
                     var students_invite_events = $('<ul id="student_invite_events"></ul>');
                     $.each(events, function (k,event) {
@@ -813,8 +813,7 @@ $(document).ready(function () {
                     }).error(function () {
                         $("#message_area").html('<p>Invite could not be sent. Please try again later.</p>');
                     });
-                    $(that).dialog("close");
-                    invite_dialog.remove();
+                    $('.ui-dialog').dialog("close").remove();
                 },
                 Cancel: function () {
                     $(that).dialog("close");

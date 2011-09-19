@@ -265,6 +265,6 @@ input.button {
     border: 1px solid #FFF;
 }
 .dropdown_menu_button ul li:hover {
-    background: url("images/ui-bg_glow-ball_60_e9e9e9_600x600.png") repeat-x scroll 50% 50% #E9E9E9;
+    background: #E9E9E9;
     border: 1px solid #E9E9E9;
 }
