@@ -6,7 +6,6 @@ var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
 
 function update_ckeditors(){
-    console.log("hi");
     for (instance in CKEDITOR.instances){
         CKEDITOR.instances[instance].updateElement();
     }        

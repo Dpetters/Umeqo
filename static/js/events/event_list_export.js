@@ -63,8 +63,6 @@ function handle_export_event_list_link_click(e) {
                 selectedList: 1,
                 multiple: false,
                 click: function(event, ui) {
-                    console.log($("#id_delivery_type").multiselect("getChecked")[0].value);
-                    console.log(EMAIL_DELIVERY_TYPE);
                     if($("#id_delivery_type").multiselect("getChecked")[0].value === EMAIL_DELIVERY_TYPE) {
                         $('.email_delivery_type_only_field').show()
                         $('#id_emails').rules("add", {

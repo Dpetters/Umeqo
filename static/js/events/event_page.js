@@ -278,7 +278,6 @@ $(document).ready(function() {
                         'event_id': EVENT_ID
                     },
                     success: function (data) {
-                        console.log(data);
                         $("#event_checkin_count_num").html(data.count);
                     },
                     error: errors_in_message_area_handler
