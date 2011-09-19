@@ -45,7 +45,12 @@
    "is_public": true, 
    "edits": [
     5, 
-    7
+    7, 
+    8, 
+    9, 
+    10, 
+    11, 
+    12
    ], 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
@@ -60,7 +65,7 @@
    "date_created": "2011-09-11 15:31:17", 
    "type": 1, 
    "slug": "the-boo", 
-   "location": "Student Center Plaza"
+   "location": "blah blah bl"
   }
  }, 
  {
@@ -1546,7 +1551,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-19 13:55:33", 
+   "last_login": "2011-09-19 17:03:45", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -4186,6 +4191,16 @@
    "date_created": "2011-09-19 12:23:48", 
    "session_key": "cb8689e03a445071e360aebd001d87d9", 
    "last_updated": "2011-09-19 12:23:48", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 388, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-19 17:03:45", 
+   "session_key": "caf49d39d5f127a458f20eb1538dfd97", 
+   "last_updated": "2011-09-19 17:03:45", 
    "user": 3
   }
  }, 
