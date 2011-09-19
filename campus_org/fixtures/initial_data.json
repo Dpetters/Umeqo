@@ -4216,16 +4216,16 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://sailing.mit.edu/", 
-   "slug": null, 
-   "last_updated": "2011-09-16 11:47:08", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
+   "slug": "", 
+   "last_updated": "2011-09-17 21:55:02", 
+   "description": "During the season (from April to mid-November), the club runs beginning sailing classes on Wednesday afternoons. During the summer additional beginning classes are offered on Sunday mornings. In the spring and fall, the coaches run Physical Education sailing classes. During the summer the club administers three racing programs: beginners' racing classes on Monday nights, advanced tech racing on Tuesdays, and intermediate/advanced racing on Thursdays. During the Fall and Spring Intercollegiate seasons, the club holds advanced tech racing on Monday evenings. Summer evening club racing in Techs typically gets all of the boats out on the river. In the summer, the club also teaches sailing to young children in MIT's day camp.", 
+   "image": "campus_org/campusorg/mit_sailing_2011-09-17-21-54-10.jpg", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/mit_sailing_2011-09-17-21-54-10_thumbnail.jpg", 
    "user": null, 
    "date_created": "2011-09-16 11:47:08", 
    "type": 8, 
-   "display": false, 
+   "display": true, 
    "name": "MIT Sailing"
   }
  }, 
@@ -6981,6 +6981,24 @@
    "type": 8, 
    "display": false, 
    "name": "UHF Repeater Assn. W"
+  }
+ }, 
+ {
+  "pk": 483, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://mit-uswim.blogspot.com/", 
+   "slug": "", 
+   "last_updated": "2011-09-17 19:31:17", 
+   "description": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-17 11:31:13", 
+   "type": 1, 
+   "display": false, 
+   "name": "Undergrad Society of Women in Mathematics"
   }
  }, 
  {
