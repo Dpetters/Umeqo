@@ -1,24 +1,27 @@
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
-from core.decorators import is_campus_org, is_recruiter
 from campus_org.models import CampusOrg
 from employer.models import Employer
 
-def employer_campus_org_slug_exists(slug, user):
+def employer_campus_org_slug_exists(slug, campusorg=None, employer=None):
     try:
-        campusorg = CampusOrg.objects.get(slug=slug)
-        if is_campus_org(user) and user.campusorg==campusorg:
+        existing_campusorg = CampusOrg.objects.get(slug=slug)
+        if existing_campusorg==campusorg:
             return False
         return True
     except CampusOrg.DoesNotExist:
+        print "here"
         pass
+    print slug
     try:
-        employer = Employer.objects.get(slug=slug)
-        if is_recruiter(user) and user.recruiter.employer == employer :
+        existing_employer = Employer.objects.get(slug=slug)
+        print existing_employer
+        if existing_employer==employer:
             return False
+        print existing_employer
         return True
-    except:
+    except Employer.DoesNotExist:
         pass
     return False
 

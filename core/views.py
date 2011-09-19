@@ -37,7 +37,13 @@ def check_employer_campus_org_slug_uniqueness(request):
     if request.is_ajax():
         if request.GET.has_key("slug"):
             data = False
-            if not employer_campus_org_slug_exists(request.GET["slug"], request.user):
+            campusorg = None
+            employer = None
+            if is_campus_org(request.user):
+                campusorg = request.user.campusorg
+            elif is_recruiter(request.user):
+                employer = request.user.recruiter.employer
+            if not employer_campus_org_slug_exists(request.GET["slug"], campusorg=campusorg, employer=employer):
                 data = True
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
@@ -245,15 +251,15 @@ def home(request, extra_context=None):
         if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
-
+            private_events = Event.objects.filter(is_public=False).filter(invitee__student__in=[request.user.student]).distinct().filter(end_datetime__gt=datetime.now()).order_by('end_datetime')
+            context['private_events'] = private_events
             subscriptions = request.user.student.subscriptions.all()
             if len(subscriptions) > 0:
                 context['has_subscriptions'] = True
-                sub_events = Event.objects.filter(Q(is_public=True)|Q(invitee__student__in=[request.user.student])).filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now())
-                sub_events = sub_events.order_by('end_datetime')
+                sub_events = Event.objects.filter(is_public=True).filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now()).order_by('end_datetime')
                 context.update({
                     'has_subscriptions': True,
-                    'sub_events': sub_events
+                    'sub_events':sub_events
                 })
             else:
                 context['has_subscriptions'] = False

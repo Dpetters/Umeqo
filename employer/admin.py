@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.db import models
+from django import forms
 
 from ckeditor.widgets import CKEditorWidget
 from employer.models import Employer, EmployerStatistics, ResumeBook, Recruiter, RecruiterStatistics, RecruiterPreferences
-
+from core.view_helpers import employer_campus_org_slug_exists
 
 class ResumeBookAdmin(admin.ModelAdmin):
     fields = ['resume_book', 'name']
@@ -38,13 +39,23 @@ class RecruiterPreferencesAdmin(admin.ModelAdmin):
         
 admin.site.register(RecruiterPreferences, RecruiterPreferencesAdmin)
     
-    
+class EmployerAdminForm(forms.ModelForm):
+    class Meta:
+        model = Employer
+        
+    def clean_slug(self):
+        if self.cleaned_data['slug']:
+            if employer_campus_org_slug_exists(self.cleaned_data['slug'], employer=self.instance):
+                raise forms.ValidationError("A campus organization or employer with the slug %s already exists" % (self.cleaned_data['slug']))
+        return self.cleaned_data['slug']
+
 class EmployerAdmin(admin.ModelAdmin):
     fields = ['name', 'logo', 'description', 'slug', 'offered_job_types', 'industries', 'careers_website', 'main_contact', 'main_contact_phone', 'main_contact_email', 'visible']
     list_display = ('name', 'main_contact', 'main_contact_phone', 'visible', 'date_created')
     search_fields = ['name', 'industries__name', 'main_contact']
     date_hierarchy = 'date_created'
     formfield_overrides = { models.TextField: {'widget': CKEditorWidget(attrs={'class':'ckeditor'})},}
+    form = EmployerAdminForm
 admin.site.register(Employer, EmployerAdmin)
 
 

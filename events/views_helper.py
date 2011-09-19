@@ -60,8 +60,8 @@ def buildAttendee(obj):
             output['name'] = obj.student.first_name + ' ' + obj.student.last_name
             output['account'] = True
             output['id'] = obj.student.id
-            output['school_year'] = obj.student.school_year
-            output['graduation_year'] = obj.student.graduation_year
+            output['school_year'] = str(obj.student.school_year)
+            output['graduation_year'] = str(obj.student.graduation_year)
     else:
         output['name'] = obj.name
         output['account'] = False
@@ -73,8 +73,8 @@ def buildRSVP(obj):
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.isoformat(),
         'email': obj.student.user.email,
-        'school_year': obj.student.school_year,
-        'graduation_year': obj.student.graduation_year,
+        'school_year': str(obj.student.school_year),
+        'graduation_year': str(obj.student.graduation_year),
         'account': True
     }
     return output

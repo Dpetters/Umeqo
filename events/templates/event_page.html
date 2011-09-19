@@ -40,6 +40,7 @@
     var EVENT_LIST_EXPORT_URL = "{% url event_list_export %}";
     var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
     var EVENT_ID = "{{event.id}}";
+    var EVENT_CHECKIN_COUNT_URL = "{% url event_checkin_count %}";
     var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
     var EVENT_UNRSVP_URL = "{% url event_unrsvp event_id=event.id %}";
     var EVENT_DROP_URL = "{% url event_drop event_id=event.id %}";
@@ -52,6 +53,11 @@
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
+    {% if event.is_drop %}
+    var IS_DROP = true;
+    {% else %}
+    var IS_DROP = false;
+    {% endif %}
 </script>
 <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
 {% compress js %}

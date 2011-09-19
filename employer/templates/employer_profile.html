@@ -10,7 +10,6 @@
 {% endcompress %}
 <script>
     var NAME_REQUIRED = "{% text_snippet 'employer_name_required' %}";
-    var SLUG_REQUIRED = "{% text_snippet 'slug_required' %}";
     var INDUSTRIES_REQUIRED = "{% text_snippet 'industries_required' %}";
     var DESCRIPTION_REQUIRED = "{% text_snippet 'description_required' %}";
     var MAIN_CONTACT_REQUIRED = "{% text_snippet 'main_contact_required' %}";
@@ -19,8 +18,9 @@
     var INVALID_PHONE = "{% text_snippet 'invalid_phone' %}";
     var MAX_INDUSTRIES = "{{max_industries}}";
     var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
+    var SLUG_REQUIRED = "{% text_snippet 'slug_required' %}";
     var SLUG_ALREADY_TAKEN = "{% text_snippet 'slug_already_taken' %}";
-    var CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL = "{% url check_employer_campus_org_slug_uniqueness %}"
+    var CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL = "{% url check_employer_campus_org_slug_uniqueness %}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile.js"></script>
@@ -67,7 +67,7 @@
                 <th>{{form.slug.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
-                    {{form.slug}} (umeqo.com/slug/)
+                    {{form.slug}} (umeqo.com/short_url/)
                 </td>
                 <th>{{form.offered_job_types.label_tag}}</th>
                 <td>

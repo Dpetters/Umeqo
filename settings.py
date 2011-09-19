@@ -121,6 +121,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': [
             [      'Undo', 'Redo',
               '-', 'Bold', 'Italic', 'Underline',
+              '-', 'Link', 'Unlink',
             ],
             [      'HorizontalRule',
               '-', 'BulletedList', 'NumberedList',
@@ -133,6 +134,7 @@ CKEDITOR_CONFIGS = {
         'height': 210,
         'skin':'kama',
         'toolbarCanCollapse': False,
+        'removePlugins':'elementspath'
     },
 }
 

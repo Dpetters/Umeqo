@@ -75,9 +75,12 @@
             <span class="main_block_header_title">Events and Deadlines</span>
         </div>
         <div class="main_block_content">
-            {% if has_subscriptions %}
-                {% if sub_events %}
+            {% if has_subscriptions or private_events %}
+                {% if sub_events or private_events %}
                     <ul class="event_list">
+                        {% for event in private_events %}
+                            {% include "event_snippet.html" %}
+                        {% endfor %}
                         {% for event in sub_events %}
                             {% include "event_snippet.html" %}
                         {% endfor %}
@@ -95,7 +98,7 @@
                         When you <a href="{% url employers_list %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
                     </p>
                     <p>
-                        <a href="{% url events_list %}">Browse the full listing</a> to Search and Filtering for Events and Deadlines.
+                        You can also <a href="{% url events_list %}">browse the full listing</a> to search and filtering for public events and deadlines.
                     </p>
                 </div>
             {% endif %}

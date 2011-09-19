@@ -7,6 +7,7 @@ from django.conf import settings as s
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from core.view_helpers import employer_campus_org_slug_exists
 from core.form_helpers import decorate_bound_field
 from core import messages as m
 from core.choices import NO_YES_CHOICES
@@ -50,7 +51,7 @@ class RecruiterForm(forms.ModelForm):
                 
 class EmployerProfileForm(forms.ModelForm):
     name = forms.CharField(label="Name:", max_length=42)
-    slug = forms.SlugField(label="Slug:", max_length=42)
+    slug = forms.SlugField(label="Short URL:", max_length=42)
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
     main_contact = forms.CharField(label="Main Contact:")
@@ -75,6 +76,12 @@ class EmployerProfileForm(forms.ModelForm):
         if len(self.cleaned_data.get("industries")) > s.EP_MAX_INDUSTRIES:
             raise forms.ValidationError(_(m.max_industries_exceeded))
         return self.cleaned_data['industries']
+    
+    def clean_slug(self):
+        if self.cleaned_data['slug']:
+            if employer_campus_org_slug_exists(self.cleaned_data['slug'], employer=self.instance):
+                raise forms.ValidationError(m.slug_already_taken)
+        return self.cleaned_data['slug']
 
 class DeliverResumeBookForm(forms.Form):
     delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = core_enums.DELIVERY_CHOICES)

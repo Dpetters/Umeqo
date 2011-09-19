@@ -80,7 +80,11 @@ $(document).ready(function() {
         if ($(this).hasClass('left-group')) {
             $('#rsvp_div .selected').removeClass('selected');
             $(this).addClass('selected');
-            $("#remove-rsvp-button").text("Undo RSVP and Resume Drop");
+            if (IS_DROP){
+                $("#remove-rsvp-button").text("Undo RSVP and Resume Drop");
+            }else{
+                $("#remove-rsvp-button").text("Undo RSVP");
+            }
         }
         $.ajax({
             data:{'event_id':EVENT_ID},
@@ -267,7 +271,18 @@ $(document).ready(function() {
                 newLi.effect('highlight', {}, 3000);
                 $('#name_input').val('');
                 $('#email_input').val('').focus();
-                $("#event_checkin_count_num").text(1 + parseInt($("#event_checkin_count_num").text()));
+                $.ajax({
+                    url: EVENT_CHECKIN_COUNT_URL,
+                    dataType: "json",
+                    data: {
+                        'event_id': EVENT_ID
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        $("#event_checkin_count_num").html(data.count);
+                    },
+                    error: errors_in_message_area_handler
+                });
             } else {
                 $('#checkin_status').removeClass();
                 $('#checkin_status').addClass('error');

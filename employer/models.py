@@ -17,7 +17,7 @@ from subscription.models import Subscription, EmployerSubscription
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
     name = models.CharField(max_length=42, unique=True, help_text="Maximum 42 characters.")
-    slug = models.SlugField(max_length=20, unique=True, help_text="Maximum 20 characters.", null=True, blank=True)
+    slug = models.SlugField(max_length=20, help_text="Maximum 20 characters.", null=True, blank=True)
     logo = models.ImageField(upload_to=get_logo_filename, null=True, blank=True)
     description = models.TextField(blank=True, null=True)
     industries = models.ManyToManyField(Industry, null=True, blank=True)

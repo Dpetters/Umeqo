@@ -3554,8 +3554,8 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-03 21:17:13", 
-   "click_count": 0, 
+   "last_updated": "2011-09-18 23:12:12", 
+   "click_count": 1, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
@@ -3618,16 +3618,16 @@
   "pk": 8, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-14 22:44:07", 
+   "last_updated": "2011-09-18 17:57:32", 
    "click_count": 0, 
    "question": "It looks like things are broken. Am I doing something wrong?", 
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "No, you are not. But you are probably using IE7-8. If this is so, know that we are well aware of the existing issues in those browsers and are working hard to fix them. For now, please let us know of what is broken for you by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
+   "answer": "No, you are not. But you might be using a really old version of Firefox. If this is so, please let us know of what is broken by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
    "date_created": "2011-09-14 22:44:07", 
-   "display": true
+   "display": false
   }
  }, 
  {
