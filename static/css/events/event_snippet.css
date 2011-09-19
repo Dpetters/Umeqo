@@ -53,7 +53,7 @@
     -moz-border-radius: 2px;
 }
 .event_list .details {
-    margin-top: 3px;
+    margin: 5px 3px;
     color: #666;
 }
 .event_list .location_div{
