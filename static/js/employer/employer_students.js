@@ -27,7 +27,7 @@ function open_event_invitation_dialog() {
         autoOpen: false,
         title:"Send Event Invitation",
         dialogClass: "event_invitation_dialog",
-        modal:true,
+        modal: true,
         width:550,
         resizable: false,
         close: function (event, ui) {
@@ -46,7 +46,7 @@ function handle_student_toggle_star_click() {
         url: STUDENTS_TOGGLE_STAR_URL,
         dataType: "json",
         data: {
-            'student_id':student_id
+            'student_id': student_id
         },
         beforeSend: function (jqXHR, settings) {
             place_TINY_AJAX_LOADER(container);
@@ -130,6 +130,58 @@ function handle_students_remove_star_click(e) {
                 } else {
                     $("#message_area").html("<p>" + student_ids.length + " students unstarred.</p>");
                 }
+            },
+            error: errors_in_message_area_handler
+        });
+    } else {
+        $("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
+    }
+}
+
+function handle_students_invite_click(e) {
+    student_ids = [];
+    $(".student_checkbox").each(function (el) {
+        if (this.checked) {
+            student_ids.push($(this).attr('data-student-id'));
+        }
+    });
+    if (student_ids.length) {   
+        $.ajax({
+            url: EVENTS_LIST_URL, 
+            success: function (events) {
+                var dialog = $('<div class="dialog"></div>').dialog({
+                    autoOpen: false,
+                    title: "Choose an Event",
+                    dialogClass: "event_invitation_dialog",
+                    modal: true,
+                    width: 550,
+                    resizable: false,
+                });
+                if (events.length == 0) {
+                    dialog.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
+                } else {
+                    var students_invite_events = $('<ul id="student_invite_events"></ul>');
+                    $.each(events, function (k,event) {
+                        var ispublic = event.is_public ? 1 : 0;
+                        var student_ids_text = student_ids.join('~');
+                        var link = $('<a data-multiple="' + student_ids_text + '" data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                        var linkText;
+                        if (!ispublic) {
+                            linkText = event.name + ' [private]';
+                        } else {
+                            linkText = event.name + ' [public]';
+                        }
+                        if (event.invited) {
+                            linkText = linkText + ' (<strong>already invited</strong>)';
+                        }
+                        link.html(linkText);
+
+                        var list_item = $('<li></li>');
+                        students_invite_events.append(list_item.append(link));
+                    });
+                    dialog.append(students_invite_events);
+                }
+                dialog.dialog('open');
             },
             error: errors_in_message_area_handler
         });
@@ -425,7 +477,7 @@ function initiate_ajax_call() {
         data: {
             'page': page,
             'student_list': student_list,
-            'student_list_id':student_list_id,
+            'student_list_id': student_list_id,
             'query': query,
             'gpa' : min_gpa,
             'act': min_act,
@@ -538,7 +590,7 @@ $(document).ready(function () {
             $(this).trigger('resizeEnd');
         }, 500);
     });
-    
+   ~
     $(window).bind('resizeEnd', function () {
         if ($(window).height()>window_height_min) { 
             set_up_side_block_scrolling();
@@ -562,6 +614,7 @@ $(document).ready(function () {
     $(".student_toggle_star").live('click', handle_student_toggle_star_click);
     $("#students_add_star").live('click', handle_students_add_star_click);
     $("#students_remove_star").live('click', handle_students_remove_star_click);
+    $("#students_invite").live('click', handle_students_invite_click);
     
     $(".resume_book_current_toggle_student").live('click', handle_resume_book_current_toggle_student_click);
     $("#resume_book_current_add_students").live('click', handle_resume_book_current_add_students_click);
@@ -606,12 +659,12 @@ $(document).ready(function () {
         set_up_side_block_scrolling();
     }
     $("#id_student_list").multiselect({
-        header:false,
+        header: false,
         multiple: false,
         selectedList: 1,
         height:252,
         classes: 'student_list_multiselect',
-        minWidth:multiselectMinWidth,
+        minWidth: multiselectMinWidth,
         click: function (event, ui) {
             student_list = ui.text;
             student_list_id = ui.value;
@@ -647,7 +700,7 @@ $(document).ready(function () {
             var that = this;
             $(this).hoverIntent({
             sensitivity:4,
-            over:function () {
+            over: function () {
                 $.ajax({
                     url: EVENTS_LIST_URL, 
                     data: {"student_id": $(this).attr('data-studentid')}, 
@@ -658,7 +711,7 @@ $(document).ready(function () {
                         } else {
                             $.each(events, function (k,event) {
                                 var ispublic = event.is_public ? 1 : 0;
-                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="javascript:void(0)"></a>');
+                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
                                 var linkText;
                                 if (!ispublic) {
                                     linkText = event.name + ' [private]';
@@ -677,7 +730,7 @@ $(document).ready(function () {
                     error: errors_in_message_area_handler
                 });
             },
-            out:function () {
+            out: function () {
                 $(this).children('.events_dropdown').remove();
             }
             });
@@ -702,23 +755,43 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
             return false;
         }
-        var student_name = $(this).closest('span').attr('data-studentname'),
-        event_name = $(this).attr('data-eventname'),
-        event_id = $(this).attr('data-eventid'),
-        is_public = $(this).attr('data-ispublic') == 1,
-        student_id = $(this).closest('span').attr('data-studentid'),
-        that = this,
-        title,
-        extra_text,
-        invite_dialog = $('<div id="invite-dialog" title="' + title + '"></div>'),
-        msg_input = $('<textarea id="invite_text">Hi ' + student_name + ', I\'d like to invite you to our event.</textarea>');
+        var student_name;
+        var student_id;
+        if ($(this).data('multiple')) {
+            student_name = "The selected students";
+            student_ids = $(this).data('multiple');
+        } else {
+            student_name = $(this).closest('span').data('studentname');
+            student_ids = $(this).closest('span').data('studentid');
+        }
+        var event_name = $(this).data('eventname');
+        var event_id = $(this).data('eventid');
+        var is_public = $(this).data('ispublic') == 1;
+        var that = this;
+        var title, extra_text;
         if (is_public) {
-            title = "Send invite to student?";
+            if ($(this).data('multiple')) {
+                title = "Send invite to students?";
+            } else {
+                title = "Send invite to student?";
+            }
             extra_text = "This event is <strong>public</strong>. Students that aren't explicitly invited can see it as well.";
         } else {
-            title = "Send private invite to student?";
+            if ($(this).data('multiple')) {
+                title = "Send private invite to students?";
+            } else {
+                title = "Send private invite to student?";
+            }
             extra_text = "This event is <strong>private</strong> and only invited students will be able to see it.";
         }
+        var invite_dialog = $('<div id="invite-dialog" title="' + title + '"></div>');
+        var invite_text;
+        if ($(this).data('multiple')) {
+            invite_text = "Hi there, I'd like to invite you to our event.";
+        } else {
+            invite_text = "Hi " + student_name + ", I'd like to invite you to our event.";
+        }
+        var msg_input = $('<textarea id="invite_text">' + invite_text + '</textarea>');
         invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below.</p>');
         invite_dialog.append(msg_input);
         invite_dialog.append('<p>' + extra_text + '</p>');
@@ -733,7 +806,7 @@ $(document).ready(function () {
                     $("#message_area").html('<p>Sending invite...</p>');
                     $.post(EVENT_INVITE_URL, {
                         event_id: event_id,
-                        student_id: student_id,
+                        student_ids: student_ids,
                         message: $('#invite_text').val()
                     }, function (data) {
                         $("#message_area").html('<p>' + data.message + '</p>');

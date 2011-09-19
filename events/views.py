@@ -1,12 +1,10 @@
 from __future__ import division
 from __future__ import absolute_import
 
-import xlwt
 import csv
-import re
 import cStringIO as StringIO
-
 from datetime import datetime, timedelta
+import re
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -23,6 +21,7 @@ from django.views.decorators.http import require_http_methods, require_POST, req
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+import xlwt
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
@@ -620,13 +619,14 @@ def event_search(request, extra_context=None):
 @has_annual_subscription
 def events_by_employer(request):
     upcoming_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline")).order_by("end_datetime")
-    student_id = request.GET.get('student_id', None)
-    if not student_id or not Student.objects.filter(id=student_id).exists():
+    student_id, student = request.GET.get('student_id', None), None
+    if student_id and not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()
-    student = Student.objects.get(id=student_id)
+    elif student_id:
+        student = Student.objects.get(id=student_id)
     def eventMap(event):
         invited = False
-        if Invitee.objects.filter(event=event, student=student).exists():
+        if student and Invitee.objects.filter(event=event, student=student).exists():
             invited = True
         return {
             'id': event.id,
@@ -643,18 +643,32 @@ def events_by_employer(request):
 @require_POST
 def event_invite(request):
     event_id = request.POST.get('event_id', None)
-    student_id = request.POST.get('student_id', None)
+    student_ids = request.POST.get('student_ids', None)
     message = request.POST.get('message', None)
-    if not (event_id and student_id and message):
-        return HttpResponseBadRequest()
+    if not (event_id and student_ids and message):
+        data = { 'valid': False, 'message': 'Missing data!' }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     event = Event.objects.filter(id=event_id)
-    student = Student.objects.filter(id=student_id)
-    if not (student.exists() and event.exists()):
-        return HttpResponseBadRequest()
+    if not event.exists():
+        data = { 'valid': False, 'message': 'Invalid event!' }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     event = event.get()
-    student = student.get()
-    if not Invitee.objects.filter(event=event, student=student).exists():
-        Invitee.objects.create(event=event, student=student)
+    student_ids = student_ids.split('~')
+    students = []
+    for student_id in student_ids:
+        student = Student.objects.filter(id=student_id)
+        if not student.exists():
+            data = { 'valid': False, 'message': 'Invalid students.' }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        students.append(student.get())
+    for student in students:
+        invitee = Invitee.objects.filter(event=event, student=student)
+        if invitee.exists():
+            invitee = invitee.get()
+            invitee.datetime_created = datetime.now()
+            invitee.save()
+        else:
+            Invitee.objects.create(event=event, student=student)
         employer = request.user.recruiter.employer
         if event.is_public:
             notice_type = 'public_invite'
@@ -669,8 +683,6 @@ def event_invite(request):
             'time_added': datetime.now(),
             'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
         })
-        data = { 'valid': True, 'message': 'Invite sent successfully.' }
-    else:
-        data = {'valid': False, 'message': m.already_invited }
 
+    data = { 'valid': True, 'message': 'Invite sent successfully.' }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")

@@ -230,3 +230,10 @@
     display: block;
     margin: 0 auto;
 }
+
+#student_invite_events {
+    margin: 20px 0 20px 30px;
+}
+#student_invite_events li {
+    margin-bottom: 5px;
+}
