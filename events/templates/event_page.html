@@ -22,10 +22,12 @@
     {% if user.student %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
     {% endif %}
-    {% if user.recruiter %}
+    {% if user.recruiter or user.campusorg %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_list_export.css" />
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+    {% endif %}
+    {% if user.recruiter %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
     {% if campus_org_event %}
