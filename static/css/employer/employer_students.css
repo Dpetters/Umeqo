@@ -231,6 +231,10 @@
     margin: 0 auto;
 }
 
+#student_invite_no_events {
+    float: left;
+    margin: 10px;
+}
 #student_invite_events {
     margin: 20px 0 20px 30px;
 }
