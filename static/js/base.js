@@ -5,6 +5,13 @@ var multiselectSingleSelectWidth = 202;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
 
+function update_ckeditors(){
+    console.log("hi");
+    for (instance in CKEDITOR.instances){
+        CKEDITOR.instances[instance].updateElement();
+    }        
+}
+
 function show_long_load_message_in_dialog(dialog) {
     $("#dialog_loader p").html(single_line_long_load_message);
 };

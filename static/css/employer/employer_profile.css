@@ -43,7 +43,10 @@
     padding: 15px 0px 0px 25px;
     vertical-align:top;
 }
-
+#profile_form .error[for=id_description] {
+    top:20px;
+    left:76px;
+}
 
 /* Multiselect Overrides */
 .industries_multiselect .ui-multiselect-all{
