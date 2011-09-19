@@ -10,7 +10,8 @@ def process_resume(student):
         resume_text = ""
         resume_file = file(settings.MEDIA_ROOT + student.resume.name, "rb")
         resume = pyPdf.PdfFileReader(resume_file)
-        resume.decrypt("")
+        if resume.getIsEncrypted():
+            resume.decrypt("")
         page_num = resume.getNumPages()
         for i in range(0, page_num):
             resume_text += resume.getPage(i).extractText() + "\n"
