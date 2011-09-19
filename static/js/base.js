@@ -228,7 +228,7 @@ $(document).ready( function () {
                 valid=valid && jQuery.validator.methods.email.call(this, value, element);
         } 
         return valid;
-    }, "One of the emails you entered is invalid.");
+    }, "One of the emails is invalid.");
     jQuery.validator.addMethod('isMITEmail', function(value, element) {
         // If testing, allow umeqo.com emails as well.
         if (DEBUG)

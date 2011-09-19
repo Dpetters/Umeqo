@@ -23,6 +23,9 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
     {% endif %}
     {% if user.recruiter %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_list_export.css" />
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
     {% if campus_org_event %}
@@ -31,6 +34,10 @@
     {% endif %}
 {% endcompress %}
 <script>
+    var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
+    var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
+    var EVENT_LIST_DOWNLOAD_URL = "{% url event_list_download %}";
+    var EVENT_LIST_EXPORT_URL = "{% url event_list_export %}";
     var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
     var EVENT_ID = "{{event.id}}";
     var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
@@ -48,7 +55,11 @@
 </script>
 <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
 {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_list_export.js"></script>
     {% if campus_org_event %}
     <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
     {% endif %}
@@ -95,15 +106,15 @@
         <div id="event_admin_main">
              <div id="event_tabs">
                 {% if event.is_public %}
-                    <h2 class="current">RSVP'd {% if is_deadline %}Participating{% else %}Attending{% endif %}</h2>
+                    <h2 class="current">RSVP'd {% if is_deadline %}Participating{% else %}Attending{% endif %} ({{rsvps|length}})</h2>
                 {% else %}
-                    <h2 class="current">Invited</h2>
-                    <h2>{% if is_deadline %}Participating{% else %}Attending{% endif %}</h2>
-                    <h2>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</h2>
+                    <h2 class="current">Invited ({{invitees|length}})</h2>
+                    <h2>{% if is_deadline %}Participating{% else %}Attending{% endif %} ({{rsvps|length}})</h2>
+                    <h2>Not {% if is_deadline %}Participating{% else %}Attending{% endif %} ({{no_rsvps|length}})</h2>
                 {% endif %}
                 {% if not is_deadline %}
-                    <h2>Checked-in</h2>
-                    <h2>All</h2>
+                    <h2>Checked-in ({{checkins|length}})</h2>
+                    <h2>All ({{all_responses|length}})</h2>
                 {% endif %}
             </div>
             {% if not event.is_public %}
@@ -119,7 +130,8 @@
             {% endif %}
             <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">
                 {% if rsvps and user.recruiter %}
-                <div class="right_side_container">
+                <div class="commands right_side_container">
+                    <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="rsvps" href="#" class="export_event_list_link">Export</a>
                     <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' RSVPs'|urlencode}}">View all RSVPs</a>
                 </div>
                 {% endif %}
@@ -144,8 +156,9 @@
             {% endif %}
             <div id="event_checkins" class="hid responses">
                 {% if checkins and user.recruiter %}
-                <div class="right_side_container">
-                    <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View all Attendees</a>
+                <div class="commands right_side_container">
+                    <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export</a>
+                    <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View All</a>
                 </div>
                 {% endif %}
                 {% for student in checkins %}
@@ -155,6 +168,9 @@
                 {% endfor %}
             </div>
             <div id="event_all" class="hid responses">
+                <div class="commands right_side_container">
+                    <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="export_event_list_link">Export</a>
+                </div>
                 {% for student in all_responses %}
                     {% include "events_response_token.html" with student=student %}
                 {% empty %}

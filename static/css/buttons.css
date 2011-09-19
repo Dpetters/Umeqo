@@ -39,11 +39,15 @@ input.button {
     height: 32px;
     outline: 0;
 }
-.form_table.grande input[type=submit] {
+.form_table.grande input[type=submit]{
     font-size: 16px;
     height: 40px;
     padding: 0 10px;
 }
+.form_table.grande a.button{
+    line-height:38px;
+    height: 38px;
+} 
 .button span, .button img {
     vertical-align: middle;
 }

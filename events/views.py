@@ -1,9 +1,14 @@
 from __future__ import division
 from __future__ import absolute_import
 
+import xlwt
+import csv
+import re
+import cStringIO as StringIO
+
 from datetime import datetime, timedelta
 
-from django.conf import settings
+from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -17,17 +22,19 @@ from django.template import RequestContext
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
 from core import messages as m
+from core import enums as core_enums
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
-from events.forms import EventForm, CampusOrgEventForm
+from events.forms import EventForm, CampusOrgEventForm, EventExportForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.views_helper import event_search_helper, buildAttendee, buildRSVP, get_event_schedule
+from events.views_helper import event_search_helper, buildAttendee, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
 from notification import models as notification
 from student.models import Student
 
@@ -101,34 +108,19 @@ def event_page(request, id, slug, extra_context=None):
     if event.slug!=slug:
         raise Http404
 
-    current_site = Site.objects.get(id=settings.SITE_ID)
+    current_site = Site.objects.get(id=s.SITE_ID)
 
     page_url = 'http://' + current_site.domain + event.get_absolute_url()
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
-
-    invitees = map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
-    rsvps = map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
-    no_rsvps = map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
-    checkins = map(buildAttendee, event.attendee_set.all().order_by('name'))
-    checkins.sort(key=lambda n: 0 if n['account'] else 1)
-
-    emails_dict = {}
-    all_responses = []
-    for res in checkins + rsvps + no_rsvps:
-        if res['email'] not in emails_dict:
-            emails_dict[res['email']] = 1
-            all_responses.append(res)
-    all_responses.sort(key=lambda n: n['datetime_created'])
-    all_responses.sort(key=lambda n: 0 if n['account'] else 1)
     
     context = {
         'event': event,
-        'invitees': invitees,
-        'rsvps': rsvps,
-        'no_rsvps': no_rsvps,
-        'checkins': checkins,
-        'all_responses': all_responses,
+        'invitees': get_invitees(event),
+        'rsvps': get_rsvps(event),
+        'no_rsvps': get_no_rsvps(event),
+        'checkins': get_attendees(event),
+        'all_responses': get_all_responses(event),
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
@@ -175,6 +167,8 @@ def event_page(request, id, slug, extra_context=None):
             context['dropped_resume'] = True
         
         context['can_rsvp'] = True
+    else:
+        context['email_delivery_type'] = core_enums.EMAIL
     context.update(extra_context or {})
     return context
 
@@ -209,6 +203,153 @@ def event_new(request, form_class=None, extra_context=None):
     context['event_scheduler_date'] = datetime.now().strftime('%m/%d/%Y')
     context.update(extra_context or {})
     return context
+
+def export_event_list_csv(file_obj, event, list):
+    writer = csv.writer(file_obj)
+    info = ["Name", "Email", "School Year", "Graduation Year"]
+    writer.writerow(info)
+    if list =="rsvps":
+        filename = "%s RSVPs.csv" % (event.name)
+        students = get_rsvps(event)
+    elif list == "attendees":
+        filename = "%s Attendees.csv" % (event.name)
+        students = get_attendees(event)
+    elif list == "all":
+        filename = "%s All Responses.csv" % (event.name)
+        students = get_all_responses(event)
+    for student in students:
+        info = []
+        info.append(student['name'])
+        info.append(student['email'])
+        if student['account']:
+            info.append(str(student['school_year']))
+            info.append(str(student['graduation_year']))
+        writer.writerow(info)
+    return filename
+
+# Not used currently because Amazon SES doesn't support excel attachements
+def export_event_list_xls(file_obj, event, list):
+    wb = xlwt.Workbook()
+    if list =="rsvps":
+        worksheet_name = "%s RSVPs" % (event.name)
+        students = get_rsvps(event)
+    elif list == "attendees":
+        worksheet_name = "%s Attendees" % (event.name)
+        students = get_attendees(event)
+    elif list == "all":
+        worksheet_name = "%s All Responses" % (event.name)
+        students = get_all_responses(event)
+    ws = wb.add_sheet(worksheet_name)
+    ws.write(0, 0, 'Name')
+    ws.write(0, 1, 'Email')
+    ws.write(0, 2, 'School Year (Graduation Year)')
+    for i, rsvp in enumerate(students, start=1):
+        student = rsvp.student
+        ws.write(i, 0, student['name'])
+        ws.write(i, 1, student['email'])
+        if student['account']:            
+            ws.write(i, 2, student['school_year'])
+            ws.write(i, 3, student['graduation_year'])
+    wb.save(file_obj)
+    return "%s.xls" % (event.name)
+
+def export_event_list_text(file_obj, event, list):
+    info = "\t".join(["Name", "Email", "School Year", "Graduation Year"])
+    print >> file_obj, info
+    if list == "all":
+        filename = "%s All Responses.txt" % (event.name)
+        students = get_all_responses(event)
+    if list == "rsvps":
+        filename = "%s RSVPs.txt" % (event.name)
+        students = get_rsvps(event)
+    elif list == "attendees":
+        filename = "%s Attendees.txt" % (event.name)
+        students = get_attendees(event)
+    for student in students:
+        if student['account']:
+            info = "\t".join([student['name'], student['email'], str(student['school_year']), str(student['graduation_year'])])
+        else:
+            info = "\t".join([student['name'], student['email']])
+        print >> file_obj, info
+    return filename
+
+def event_list_download(request):
+    event = Event.objects.get(id=request.GET["event_id"])
+    list = request.GET['event_list']
+    if request.GET['export_format'] == core_enums.CSV:
+        response = HttpResponse(mimetype='text/csv')
+        filename = export_event_list_csv(response, event, list)
+    elif request.GET['export_format'] == core_enums.XLS:
+        response = HttpResponse(mimetype="application/ms-excel")
+        filename = export_event_list_xls(response, event, list)
+    elif request.GET['export_format'] == core_enums.TEXT:
+        response = HttpResponse(mimetype="text/plain")
+        filename = export_event_list_text(response, event, list)
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    return response
+
+
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+@has_any_subscription
+@render_to('event_list_export_completed.html')
+def event_list_export_completed(request, extra_context = None):
+    context = {'list':request.GET['list']}
+    context.update(extra_context or {})
+    return context
+
+
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+@has_any_subscription
+@render_to()
+def event_list_export(request, form_class = EventExportForm, extra_context=None):
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                format = form.cleaned_data["export_format"]
+                event = Event.objects.get(id=form.cleaned_data["event_id"])
+                list = form.cleaned_data['event_list']
+                
+                reg = re.compile(r"\s*[;, \n]\s*")
+                recipients = reg.split(request.POST['emails'])
+                
+                subject = ''.join(render_to_string('event_list_export_email_subject.txt', {}).splitlines())
+                
+                body = render_to_string('event_list_export_email_body.html', {})
+                
+                message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
+
+                file = StringIO.StringIO()                
+                if format == core_enums.CSV:
+                    filename = export_event_list_csv(file, event, list)
+                    file_contents = file.getvalue()                    
+                    message.attach("%s" % (filename), file_contents, "text/csv")
+                elif format == core_enums.XLS:
+                    filename = export_event_list_xls(file, event, list)
+                    file_contents = file.getvalue()                    
+                    message.attach("%s" % (filename), file_contents, "application/vnd.ms-excel")
+                elif format == core_enums.TEXT:
+                    filename = export_event_list_text(file, event, list)
+                    file_contents = file.getvalue()
+                    message.attach("%s" % (filename), file_contents, "text/plain")
+                message.send()
+
+                context = {'list': list, 'TEMPLATE':'event_list_export_completed.html'}
+                context.update(extra_context or {})
+                return context
+            else:
+                data = {'errors':form.errors}
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            form = form_class(initial={'event_id':request.GET['event_id'], 'event_list':request.GET['event_list']})
+        context = {'form': form, 'TEMPLATE':'event_list_export.html'}
+        context.update(extra_context or {}) 
+        return context
+    else:
+        raise HttpResponseForbidden()
+
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
@@ -428,13 +569,13 @@ def event_checkin(request, event_id):
         if not student:
             subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
             recipients = [email]
-            body_context = {'name':name, 'current_site':Site.objects.get(id=settings.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
+            body_context = {'name':name, 'current_site':Site.objects.get(id=s.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
             html_body = render_to_string('checkin_follow_up.html', body_context)
             send_html_mail(subject, html_body, recipients)
         if student and not student.profile_created:
             subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
             recipients = [email]
-            body_context = {'name':name, 'current_site':Site.objects.get(id=settings.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
+            body_context = {'name':name, 'current_site':Site.objects.get(id=s.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
             html_body = render_to_string('checkin_follow_up_profile.html', body_context)
             send_html_mail(subject, html_body, recipients)
         output = {

@@ -75,8 +75,8 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}css/IE7.css" />
             <script src="{{ STATIC_URL }}lib/IE7/ie7-squish.js"></script>
         <![endif]-->
-        <!--[if lte IE 6]>
-            <script src="{{ STATIC_URL }}javascript/unsupported-browser.js" type="text/javascript"></script>
+        <!--[if lte IE 8]>
+            <script src="{{ STATIC_URL }}js/unsupported_browser.js" type="text/javascript"></script>
         <![endif]-->
         <!--[if lte IE 8]>
             <script src="{{ STATIC_URL }}lib/IE7/IE9.js"></script>
@@ -91,7 +91,7 @@
         <div id="header_area">
             <div class="width_container">
                 <ul id="navigation_block">
-                    {% if not user.is_authenticated or not user.student and not user.recruiter and not user.campusorg %}
+                    {% if not user.is_authenticated or not user.student and not user.recruiter and not user.campusorg and not user.is_superuser %}
                         {% if registration_open %}
                             {% ifnotequal current_path "/signup/"%}
                             <li id="signup_button">

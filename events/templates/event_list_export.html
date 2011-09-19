@@ -1,0 +1,43 @@
+<div class="dialog_content_wrapper">
+    <p>Select delivery format and type below. Each student's name, email (and school year if they are a Umeqo user) will be included.</p>
+    <form id="event_list_export_form" method='POST' action="{% url event_list_export %}">
+        {% csrf_token %}
+        <table class="form_table">
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <tr>
+                <th>{{form.export_format.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.export_format}}
+                </td>
+            </tr>
+            <tr>
+                <th>{{form.delivery_type.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.delivery_type}}
+                </td>
+            </tr>
+            <tr class="email_delivery_type_only_field">
+                <th id="id_emails_th">{{form.emails.label_tag}}</th>
+                <td class="id_emails_td">
+                    <div class="errorspace"></div>
+                    {{form.emails}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error_section error centered">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input class="button" type='submit' value='Download'>
+                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

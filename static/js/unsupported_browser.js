@@ -1,1 +1,1 @@
-document.location = "/browser-not-supported";
+document.location = "/unsupported-browser/";

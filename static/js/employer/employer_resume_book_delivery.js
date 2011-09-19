@@ -41,7 +41,7 @@ function handle_deliver_resume_book_link_click() {
         success: function (data) {
             deliver_resume_book_dialog.html(data);
 
-            $("label[for=id_emails]").addClass('required');
+                       $("label[for=id_emails]").addClass('required').append("<span class='error'>*</span>");
             $("#id_emails").autoResize({
                 animateDuration : 0,
                 extraSpace : 18
@@ -122,7 +122,7 @@ function handle_deliver_resume_book_link_click() {
                                         deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
                                     }
                                 });
-                            }, 500);
+                            }, 1000);
                         }
                         if(typeof(ADD_TO_RESUME_BOOK_IMG)!="undefined"){
                             $(".resume_book_current_toggle_student").html(ADD_TO_RESUME_BOOK_IMG);

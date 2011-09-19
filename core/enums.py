@@ -13,3 +13,18 @@ TOPIC_AUDIENCE_CHOICES = (
     (EMPLOYER, 'Employer'),
     (CAMPUS_ORG, 'Campus Org')
 )
+
+DOWNLOAD = "d"
+EMAIL = "e"
+DELIVERY_CHOICES = (
+(DOWNLOAD, "Download"),
+(EMAIL, "Email")
+)
+
+CSV = "c"
+XLS = "x"
+TEXT = "t"
+EXPORT_CHOICES = (
+(CSV, "CSV"),
+(TEXT, "Text")
+)

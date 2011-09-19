@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Super Login |
+{% endblock %}
+
+{% block metadata %}
+{{ block.super }}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/core/super_login.css" />
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div class="simple_block centered">
+    <h1>Choose a Recruiter</h1>
+    <form id="login_form" class="centered" method="POST" action="" autocomplete="off">
+    {% csrf_token %}
+        <table class="form_table grande">
+            {% for field in form %}
+            <tr>
+                <th>{{ field.label_tag }}</th>
+                <td>
+                    <div class="errorspace">{{ field.errors }}</div> 
+                    {{ field }}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th></th>
+                <td class="error_section error">
+                    {{form.non_field_errors}}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                    <td>
+                    <input class="button" type='submit' value='Login'>
+                    <a href="/admin/" class="button">Admin</a>
+                    <a href="/sentry/" class="button">Sentry</a>
+                    <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

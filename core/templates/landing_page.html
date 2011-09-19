@@ -19,6 +19,9 @@
         <!--[if lt IE 8]>
             <link href="{{STATIC_URL}}css/landing_page_lt_ie8.css" rel="stylesheet" type="text/css" />
         <![endif]-->
+        <!--[if lte IE 8]>
+            <script src="{{ STATIC_URL }}js/unsupported_browser.js" type="text/javascript"></script>
+        <![endif]-->
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-22946783-1']);

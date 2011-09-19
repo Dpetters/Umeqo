@@ -11,6 +11,7 @@ from core.widgets import ImprovedSplitDateTimeWidget
 from events.choices import PUBLIC_PRIVATE_BOOLEAN_CHOICES, DROP_BOOLEAN_CHOICES
 from events.models import Event, EventType
 from core import messages as m
+from core import enums as core_enums
 from employer.models import Employer
 
 decorate_bound_field()
@@ -74,3 +75,10 @@ class CampusOrgEventForm(EventForm):
                   'rsvp_message',
                   'is_public',)
         model = Event
+
+class EventExportForm(forms.Form):
+    event_id = forms.CharField(max_length = 10, widget=forms.HiddenInput)
+    event_list = forms.CharField(max_length=10, widget=forms.HiddenInput)
+    export_format = forms.ChoiceField(label="Export Format:", choices = core_enums.EXPORT_CHOICES)
+    delivery_type = forms.ChoiceField(label="Delivery Type:", choices = core_enums.DELIVERY_CHOICES)
+    emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)

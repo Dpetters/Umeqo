@@ -14,9 +14,16 @@
 #event_external_buttons {
     padding: 20px 0 0;
 }
-#view_student_list_link {
+#view_student_list_link, #event_admin_main .export_event_list_link{
     position:relative;
     bottom:23px;
+}
+#event_admin_main .commands{
+    position:relative;
+    left:5px;
+}
+#event_admin_main .commands a{
+    margin-left:4px;
 }
 .external_button {
     display: inline-block;

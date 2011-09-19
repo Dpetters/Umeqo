@@ -13,13 +13,6 @@ ORDERING_CHOICES = (
 ("-gpa", "Highest GPA First"),
 )
 
-DOWNLOAD = "d"
-EMAIL = "e"
-RESUME_BOOK_DELIVERY_CHOICES = (
-(DOWNLOAD, "Download"),
-(EMAIL, "Email")
-)
-
 ADDED = "a"
 REMOVED = "r"
 STUDENT_RESUME_BOOK_ACTIONS = (
