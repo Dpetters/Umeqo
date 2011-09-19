@@ -262,7 +262,7 @@ def filter_students(recruiter,
     if courses:
         filtering = True
         filtering_results = filtering_results.filter(Q(first_major__id__in=courses) | Q(second_major__id__in=courses))
-    
+    print filtering_results.distinct()
     return filtering, filtering_results
 
 
