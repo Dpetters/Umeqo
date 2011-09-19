@@ -154,7 +154,7 @@ function handle_students_invite_click(e) {
                     title: "Choose an Event",
                     dialogClass: "event_invitation_dialog",
                     modal: true,
-                    width:550,
+                    width: 550,
                     resizable: false,
                 });
                 if (events.length == 0) {
@@ -180,7 +180,6 @@ function handle_students_invite_click(e) {
                         students_invite_events.append(list_item.append(link));
                     });
                     dialog.append(students_invite_events);
-                    console.log(dialog);
                 }
                 dialog.dialog('open');
             },

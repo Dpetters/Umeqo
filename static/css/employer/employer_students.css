@@ -232,5 +232,8 @@
 }
 
 #student_invite_events {
-    margin: 10px 0 0 20px;
+    margin: 20px 0 20px 30px;
+}
+#student_invite_events li {
+    margin-bottom: 5px;
 }
