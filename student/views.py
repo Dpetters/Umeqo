@@ -25,6 +25,7 @@ from core.decorators import is_student, render_to, is_recruiter
 from core.forms import CreateLanguageForm
 from campus_org.forms import CreateCampusOrganizationForm
 from core.models import Language, EmploymentType, Industry
+from events.models import Attendee
 from campus_org.models import CampusOrg
 from core import messages
 from employer.models import Employer
@@ -256,6 +257,9 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
                 student.profile_created = True
                 student.last_updated = datetime.datetime.now()
                 student.save()
+                for a in Attendee.objects.filter(email=student.user.email):
+                    a.student = student
+                    a.save()
         else:
             data = {'valid':False,
                     'errors':form.errors}
