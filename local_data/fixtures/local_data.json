@@ -3,7 +3,7 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 9, 
+   "view_count": 10, 
    "start_datetime": "2011-09-10 19:00:00", 
    "audience": [], 
    "attending_employers": [
@@ -160,16 +160,6 @@
  }, 
  {
   "pk": 1, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 8, 
-   "student": 11, 
-   "datetime_created": "2011-09-19 18:41:39"
-  }
- }, 
- {
-  "pk": 1, 
   "model": "events.invitee", 
   "fields": {
    "datetime_created": "2011-09-19 12:24:15", 
@@ -245,24 +235,13 @@
   }
  }, 
  {
-  "pk": 3, 
-  "model": "events.attendee", 
-  "fields": {
-   "event": 8, 
-   "datetime_created": "2011-09-12 22:27:20", 
-   "email": "dpetters@mit.edu", 
-   "student": 11, 
-   "name": "Dmitrij Petters"
-  }
- }, 
- {
-  "pk": 4, 
+  "pk": 5, 
   "model": "events.attendee", 
   "fields": {
    "event": 7, 
-   "datetime_created": "2011-09-12 22:27:47", 
+   "datetime_created": "2011-09-19 22:02:20", 
    "email": "dpetters@mit.edu", 
-   "student": 11, 
+   "student": 12, 
    "name": "Dmitrij Petters"
   }
  }, 
@@ -448,8 +427,7 @@
     2, 
     3, 
     4, 
-    5, 
-    11
+    5
    ], 
    "recruiter": 1, 
    "resume_book": "employer/resumebook/potter@umeqo.com_2011-09-19-14-06-42.pdf", 
@@ -615,28 +593,6 @@
    "last_updated": "2011-08-27 16:20:39", 
    "student": 5, 
    "employer": 6
-  }
- }, 
- {
-  "pk": 12, 
-  "model": "employer.employerstudentcomment", 
-  "fields": {
-   "comment": "", 
-   "date_created": "2011-09-13 10:20:11", 
-   "last_updated": "2011-09-13 10:20:11", 
-   "student": 11, 
-   "employer": 6
-  }
- }, 
- {
-  "pk": 13, 
-  "model": "employer.employerstudentcomment", 
-  "fields": {
-   "comment": "", 
-   "date_created": "2011-09-19 13:32:28", 
-   "last_updated": "2011-09-19 13:32:28", 
-   "student": 11, 
-   "employer": 5
   }
  }, 
  {
@@ -977,18 +933,18 @@
   }
  }, 
  {
-  "pk": 11, 
+  "pk": 12, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-09-19 13:55:26", 
+   "last_updated": "2011-09-19 22:02:20", 
    "sat_m": null, 
    "graduation_month": "5", 
    "older_than_21": "", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
-   "keywords": "", 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun aug designed developed splunk aggregation analytics linux node cluster using hadoop hbase hive flume thrift zookeeper used django allowed sql querying terabytes data user etc mapreduce jobs massive sets tick data cpu times jobs running condor cluster athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended scrums planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder cambridge feb umeqo innovative recruiting resource students employers discover another launched mit september django app uses fabric virtualenv apache solr hosted using apache nginx mod wsgi linode collaborating github traders mit exec cambridge nov oct developing trading annual trading competition upgrading website content management udx mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical python django java html css javascript jquery extjs latex bash knowledge languages fluent russian english interests ted talks hockey running entrepreneurship", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "Dmitrij", 
@@ -1001,15 +957,15 @@
    "languages": [], 
    "profile_created": true, 
    "school_year": 3, 
-   "graduation_year": 1, 
+   "graduation_year": 2, 
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-19-13-55-26.pdf", 
-   "user": 32, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-19-22-02-19.pdf", 
+   "user": 33, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-09-12 16:02:13"
+   "date_created": "2011-09-19 22:01:46"
   }
  }, 
  {
@@ -1073,15 +1029,15 @@
   }
  }, 
  {
-  "pk": 11, 
+  "pk": 12, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-09-12 16:02:13", 
+   "last_updated": "2011-09-19 22:01:46", 
    "email_on_invite_to_private_event": true, 
    "email_on_invite_to_public_event": true, 
-   "student": 11, 
-   "date_created": "2011-09-12 16:02:13"
+   "student": 12, 
+   "date_created": "2011-09-19 22:01:46"
   }
  }, 
  {
@@ -1145,15 +1101,15 @@
   }
  }, 
  {
-  "pk": 11, 
+  "pk": 12, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 8, 
-   "last_updated": "2011-09-19 14:22:24", 
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-09-19 22:01:46", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 2, 
-   "student": 11, 
-   "date_created": "2011-09-12 16:02:13"
+   "add_to_resumebook_count": 0, 
+   "student": 12, 
+   "date_created": "2011-09-19 22:01:46"
   }
  }, 
  {
@@ -1526,7 +1482,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-19 18:34:51", 
+   "last_login": "2011-09-19 21:59:00", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1562,7 +1518,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-19 17:56:36", 
+   "last_login": "2011-09-19 21:59:32", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1751,7 +1707,7 @@
   }
  }, 
  {
-  "pk": 32, 
+  "pk": 33, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
@@ -1760,12 +1716,12 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-19 18:41:22", 
+   "last_login": "2011-09-19 22:01:59", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$fa514$ae5b83a53e42d12b89349f42bb0c6e2b3cfe3cda", 
+   "password": "sha1$c58a1$cee71e8aa13d5273e7dc477c3210c016cec53263", 
    "email": "dpetters@mit.edu", 
-   "date_joined": "2011-09-12 16:02:13"
+   "date_joined": "2011-09-19 22:01:46"
   }
  }, 
  {
@@ -1877,11 +1833,11 @@
   }
  }, 
  {
-  "pk": 31, 
+  "pk": 32, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": true, 
-   "user": 32, 
+   "user": 33, 
    "last_password_change_date": null
   }
  }, 
@@ -4236,11 +4192,11 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 7, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 32
+   "user": 33
   }
  }
 ]
