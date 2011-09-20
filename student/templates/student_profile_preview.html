@@ -188,7 +188,7 @@
                     <p class="student_detailed_info_header">On-Campus Involvement</p>
                     {% for campus_org in campus_involvement %}
                         {% if campus_org.display %}
-                            <li><a href="javascript:void(0)" class="campus_org_link" data-campus-org-id="{{campus_org.id}}" tabindex="-1">{{campus_org}}</a></li>
+                            <li><a href="javascript:void(0)" class="campus_org_link" data-campus-org-name="{{campus_org.name}}" data-campus-org-id="{{campus_org.id}}" tabindex="-1">{{campus_org}}</a></li>
                         {% else %}
                             <li>{{campus_org}}</li>
                         {% endif %}
