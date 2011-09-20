@@ -9,7 +9,7 @@ class Command(BaseCommand):
         for i in Attendee.objects.all():
             if not i.student:
                 try:
-                    s = Student.objects.get(user__username=i.email)
+                    s = Student.objects.get(user__username=i.email, profile_created = True)
                     i.student = s
                     i.save()
                 except Student.DoesNotExist:
