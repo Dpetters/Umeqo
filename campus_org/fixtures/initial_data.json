@@ -1422,6 +1422,24 @@
   }
  }, 
  {
+  "pk": 485, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://civil.mit.edu/ceesa", 
+   "slug": "", 
+   "last_updated": "2011-09-19 21:17:45", 
+   "description": "The Civil and Environmental Engineering Student Association (CEESA) is the official MIT student chapter of the American Society of Civil Engineers (ASCE). CEESA welcomes all undergraduate and graduate students in Course 1 at MIT. CEESA of MIT strives to uphold the values of excellence in academic and professional environments. Through service projects, educational programs and social functions, we aim to foster a vibrant and supportive community that enables every student to reach his or her highest potential.", 
+   "image": "", 
+   "email": "ceesa-exec@mit.edu", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-19 21:14:47", 
+   "type": 1, 
+   "display": true, 
+   "name": "CEESA"
+  }
+ }, 
+ {
   "pk": 77, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -7197,6 +7215,24 @@
    "type": 11, 
    "display": false, 
    "name": "Varisty Crew"
+  }
+ }, 
+ {
+  "pk": 484, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-09-19 20:58:42", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-19 20:58:42", 
+   "type": 11, 
+   "display": false, 
+   "name": "Varsity Cross Country"
   }
  }, 
  {
