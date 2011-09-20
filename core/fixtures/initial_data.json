@@ -3538,14 +3538,14 @@
   "pk": 3, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-03 22:56:28", 
+   "last_updated": "2011-09-19 23:17:58", 
    "click_count": 0, 
    "question": "Why should I create yet another profile?", 
    "slug": "why-should-i-create-yet-another-profile", 
    "topic": 12, 
    "audience": 3, 
    "sort_order": "1.000", 
-   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave comments about you.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
+   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
    "date_created": "2011-09-03 22:56:28", 
    "display": true
   }
@@ -3554,14 +3554,14 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-18 23:12:12", 
+   "last_updated": "2011-09-19 23:16:22", 
    "click_count": 1, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "1.000", 
-   "answer": "Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
+   "answer": "Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them, having events cancelled on us with no notification, and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
    "date_created": "2011-09-03 21:17:13", 
    "display": true
   }
@@ -3586,14 +3586,14 @@
   "pk": 4, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-04 01:49:46", 
+   "last_updated": "2011-09-19 23:18:19", 
    "click_count": 0, 
    "question": "Who can see my profile?", 
    "slug": "who-can-see-my-profile", 
    "topic": 12, 
    "audience": 3, 
    "sort_order": "2.000", 
-   "answer": "Your profile information is viewable only to recruiters that use Umeqo. No other students or campus organizations can view anything but your name and email.", 
+   "answer": "Your profile information is viewable only to recruiters that use Umeqo. No other students or campus organizations can view anything but your name, email and school year.", 
    "date_created": "2011-09-04 01:49:46", 
    "display": true
   }
@@ -3602,7 +3602,7 @@
   "pk": 7, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-08 20:48:01", 
+   "last_updated": "2011-09-19 23:18:30", 
    "click_count": 0, 
    "question": "Why do I keep getting redirected back to the create profile page when I click the \"Browse Event\" and \"Browse Employers\" links? ", 
    "slug": "why-do-i-keep-getting-redirected-back-create-profile-page-when-i-click-browse-event-and-browse-emplo", 
@@ -3611,6 +3611,22 @@
    "sort_order": "2.000", 
    "answer": "In order to start using those features, you need to fill out the required parts of your profile. These are just the field on the first tab of the create profile page.", 
    "date_created": "2011-09-08 20:48:01", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-19 23:29:06", 
+   "click_count": 0, 
+   "question": "Why are there only 12 employers?", 
+   "slug": "why-are-there-only-12-employers", 
+   "topic": 10, 
+   "audience": 3, 
+   "sort_order": "3.000", 
+   "answer": "The included 12 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!", 
+   "date_created": "2011-09-19 23:29:06", 
    "display": true
   }
  }, 
@@ -3627,6 +3643,38 @@
    "sort_order": "4.000", 
    "answer": "No, you are not. But you might be using a really old version of Firefox. If this is so, please let us know of what is broken by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
    "date_created": "2011-09-14 22:44:07", 
+   "display": false
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-19 23:22:25", 
+   "click_count": 0, 
+   "question": "Can I send multiple invitations out at once?", 
+   "slug": "can-i-send-multiple-invitations-out-once", 
+   "topic": 11, 
+   "audience": 4, 
+   "sort_order": "5.000", 
+   "answer": "Yes! Just checkbox the students whom you want to invite and hit \"Send Invite\" in the \"More Actions\" dropdown above the student results. Then pick the event to which you want to invite students to and add a custom invite message. \r\n\r\nNote that you can invite a maximum of 50 students to any single event or deadline. We also advise recruiters to invite students one by one in order to include more personalized invite messages. This makes it more likely that the student will actually take the time to RSVP.", 
+   "date_created": "2011-09-19 23:22:25", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-19 23:26:59", 
+   "click_count": 0, 
+   "question": "I saw that an event page that had a map included along with the location! How come mine doesn't?", 
+   "slug": "i-saw-event-page-had-map-included-along-location-how-come-mine-doesnt", 
+   "topic": 11, 
+   "audience": 4, 
+   "sort_order": "6.000", 
+   "answer": "When you go to create your event, you will see suggestions showing up below the field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!", 
+   "date_created": "2011-09-19 23:26:59", 
    "display": false
   }
  }, 
