@@ -704,7 +704,7 @@ def employers_list_pane(request, extra_content=None):
         subbed = employer in subscriptions
         context = {
             'employer': employer,
-            'upcoming_events': employer.event_set.filter(Q(is_public=True)|Q(invitee__student__in=[request.user.student])).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")),
+            'upcoming_events': employer.event_set.filter(Q(is_public=True)|Q(invitee__student__in=[request.user.student])).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).distinct(),
             'subbed': subbed
         }
         return context
