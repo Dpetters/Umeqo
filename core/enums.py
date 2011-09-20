@@ -4,14 +4,16 @@ AUTHENTICATED = 2
 STUDENT = 3
 EMPLOYER = 4
 CAMPUS_ORG = 5
+CAMPUS_ORGS_AND_EMPLOYERS = 6
 
 TOPIC_AUDIENCE_CHOICES = (
     (ALL, 'All'),
     (ANONYMOUS, 'Anonymous'),
     (AUTHENTICATED, 'Authenticated'),
-    (STUDENT, 'Student'),
-    (EMPLOYER, 'Employer'),
-    (CAMPUS_ORG, 'Campus Org')
+    (STUDENT, 'Students'),
+    (EMPLOYER, 'Employers'),
+    (CAMPUS_ORG, 'Campus Orgs'),
+    (CAMPUS_ORGS_AND_EMPLOYERS, 'Campus Orgs & Employers')
 )
 
 DOWNLOAD = "d"
