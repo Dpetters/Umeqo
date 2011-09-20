@@ -50,13 +50,14 @@
     9, 
     10, 
     11, 
-    12
+    12, 
+    13
    ], 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": -71.094491410000003, 
-   "latitude": 42.358755530000003, 
+   "longitude": null, 
+   "latitude": null, 
    "short_slug": "booo", 
    "is_drop": true, 
    "end_datetime": "2011-09-28 16:30:00", 
@@ -65,14 +66,14 @@
    "date_created": "2011-09-11 15:31:17", 
    "type": 1, 
    "slug": "the-boo", 
-   "location": "blah blah bl"
+   "location": "blah blah b"
   }
  }, 
  {
   "pk": 8, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
+   "view_count": 1, 
    "start_datetime": "2011-09-22 20:30:00", 
    "audience": [], 
    "attending_employers": [
@@ -132,7 +133,7 @@
   "pk": 10, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
+   "view_count": 1, 
    "start_datetime": "2011-09-19 14:30:00", 
    "audience": [], 
    "attending_employers": [
@@ -155,6 +156,16 @@
    "type": 1, 
    "slug": "test-event", 
    "location": "Building NW13"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 8, 
+   "student": 11, 
+   "datetime_created": "2011-09-19 18:41:39"
   }
  }, 
  {
@@ -1515,7 +1526,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-17 15:33:57", 
+   "last_login": "2011-09-19 18:34:51", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1551,7 +1562,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-19 17:03:45", 
+   "last_login": "2011-09-19 17:56:36", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1731,7 +1742,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-12 22:20:20", 
+   "last_login": "2011-09-19 18:41:44", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
@@ -1749,7 +1760,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-19 13:54:00", 
+   "last_login": "2011-09-19 18:41:22", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$fa514$ae5b83a53e42d12b89349f42bb0c6e2b3cfe3cda", 
@@ -4195,13 +4206,13 @@
   }
  }, 
  {
-  "pk": 388, 
+  "pk": 391, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-09-19 17:03:45", 
-   "session_key": "caf49d39d5f127a458f20eb1538dfd97", 
-   "last_updated": "2011-09-19 17:03:45", 
-   "user": 3
+   "date_created": "2011-09-19 18:41:44", 
+   "session_key": "6120b0ee70526bc4ca759a23f72aed62", 
+   "last_updated": "2011-09-19 18:41:44", 
+   "user": 26
   }
  }, 
  {
@@ -4211,6 +4222,16 @@
    "date_created": "2011-09-19 13:55:33", 
    "session_key": "85a878ecaeb7263c66293d40db49c039", 
    "last_updated": "2011-09-19 13:55:33", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 389, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-19 17:56:36", 
+   "session_key": "fb942bcf8c00fcd174ac08ec7f0c9135", 
+   "last_updated": "2011-09-19 17:56:36", 
    "user": 3
   }
  }, 
