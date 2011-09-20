@@ -55,13 +55,13 @@ def check_employer_campus_org_slug_uniqueness(request):
 def help_center(request, extra_context = None):
     questions = Question.objects.visible()
     if is_recruiter(request.user):
-        questions = questions.filter(Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
     elif is_student(request.user):
-        questions = questions.filter(Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
     elif is_campus_org(request.user):
-        questions = questions.filter(Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
     else:
-        questions = questions.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
     context = {'top_questions':questions.order_by("-click_count")[:10]}
     context.update(extra_context or {})
     return context
