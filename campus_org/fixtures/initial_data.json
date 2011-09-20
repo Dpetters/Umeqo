@@ -4860,6 +4860,24 @@
   }
  }, 
  {
+  "pk": 486, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-09-20 15:06:43", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-20 15:06:43", 
+   "type": 6, 
+   "display": false, 
+   "name": "Phi Kappa Theta"
+  }
+ }, 
+ {
   "pk": 481, 
   "model": "campus_org.campusorg", 
   "fields": {

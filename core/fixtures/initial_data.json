@@ -3631,6 +3631,22 @@
   }
  }, 
  {
+  "pk": 12, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-09-20 00:03:18", 
+   "click_count": 0, 
+   "question": "Can students see the comments that I leave about them? Do they know whether I starred them or not?", 
+   "slug": "can-students-see-comments-i-leave-about-them-do-they-know-whether-i-starred-them-or-not", 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "4.000", 
+   "answer": "Student cannot see the comments - they are only for your internal use, as are the stars. The only feedback that the students get is in the form of a set of aggregate statistics with no mention of any individual company. All your activity on the site is private and none of it is tracked.", 
+   "date_created": "2011-09-20 00:03:18", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 8, 
   "model": "core.question", 
   "fields": {
@@ -3666,16 +3682,16 @@
   "pk": 10, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:26:59", 
+   "last_updated": "2011-09-20 00:00:19", 
    "click_count": 0, 
-   "question": "I saw that an event page that had a map included along with the location! How come mine doesn't?", 
+   "question": "I saw an event page that had a map included along with the location! How come mine doesn't have one?", 
    "slug": "i-saw-event-page-had-map-included-along-location-how-come-mine-doesnt", 
    "topic": 11, 
-   "audience": 4, 
+   "audience": 6, 
    "sort_order": "6.000", 
    "answer": "When you go to create your event, you will see suggestions showing up below the field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!", 
    "date_created": "2011-09-19 23:26:59", 
-   "display": false
+   "display": true
   }
  }, 
  {
