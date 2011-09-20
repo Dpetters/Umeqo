@@ -8,7 +8,6 @@
 {% else %}
 <div class="student_main_info" data-student-id="{{student.id}}">
 {% endif %}
-    {{edit}}
     {% if profile_preview %}
     <a class="student_resume_link" href="{% if edit %}{% url student_resume %}{% else %}javascript:void(0){% endif %}" tabindex="-1">View Resume</a>
     {% else %}
