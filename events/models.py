@@ -131,7 +131,7 @@ class Invitee(models.Model):
 class Attendee(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=200, null=True)
-    student = models.ForeignKey(Student, null=True)
+    student = models.ForeignKey(Student, null=True, blank=True)
     event = models.ForeignKey(Event)
     datetime_created = models.DateTimeField(auto_now=True)
 
