@@ -496,12 +496,19 @@ div.attending_employer {
 .checkin_field label {
     float: left;
     font-size: 2em;
-    color: #888;
-    font-weight: 400;
+    color: #555;
+    font-weight: 600;
 }
 .checkin_field input {
     float: left;
     clear: left;
+}
+#enter_info {
+    display: inline-block;
+    font-size: 30px;
+    line-height: 50px;
+    vertical-align: bottom;
+    margin: 0 0 0 10px;
 }
 
 .placeholder {
