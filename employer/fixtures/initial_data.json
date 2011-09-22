@@ -253,20 +253,27 @@
   "pk": 63, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:43:21", 
-   "description": "", 
+   "industries": [
+    36
+   ], 
+   "main_contact_email": "mmcternan@broadwaytechnology.com", 
+   "last_updated": "2011-09-21 15:20:11", 
+   "description": "<p>\r\n\tBroadway Technology is a leading provider of advanced high-performance financial trading solutions for electronic fixed income markets. Our proprietary software platform is an open, flexible, complete solution for screen and automated trading operations of any size and complexity. We&#39;ve delivered some of the world&rsquo;s most advanced trading systems to premier global banks, proprietary trading groups, and hedge funds. Our software manages billions of dollars in transactions across five continents daily.</p>\r\n<p style=\"margin-top: 0px; \">\r\n\tWe hire developers who thrive on building the most advanced technology. We take a rapid, methodical approach to development, and we focus on creating solutions that solve our clients&rsquo; immediate needs, yet can evolve and scale as needs change.</p>\r\n<p style=\"margin-top: 0px; \">\r\n\tWe also believe that creating the best technology is not enough. We have a deep commitment to providing the best service and support in the industry. We partner with our customers to solve the hardest problems they face and ensure they achieve their goals. We are hands-on and solutions-oriented, and we understand that we succeed only when our customers succeed.</p>\r\n", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
-   "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "main_contact": "Melissa McTernan", 
+   "main_contact_phone": "646-912-6450", 
+   "offered_job_types": [
+    1, 
+    3, 
+    2, 
+    4
+   ], 
    "date_created": "2011-08-29 11:43:21", 
-   "logo": "", 
-   "careers_website": "", 
+   "logo": "employer/employer/broadway technology_2011-09-21-15-20-11.png", 
+   "careers_website": "http://broadwaytechnology.com/job-opportunities", 
    "slug": "broadway", 
-   "name": "Broadway Technologies"
+   "name": "Broadway Technology"
   }
  }, 
  {
@@ -500,19 +507,20 @@
     36
    ], 
    "main_contact_email": "albert@dropbox.com", 
-   "last_updated": "2011-09-20 18:24:18", 
-   "description": "<p>\r\n\tThe web is a giant place, and Dropbox is working to make the gap between computers and the internet much smaller. Dropbox is one of the fastest growing startups on the internet, and we&#39;re being used by companies, schools, and people worldwide.</p>\r\n<p style=\"cursor: auto; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 0px; line-height: 1.7em; font-size: 12px; \">\r\n\tWhen it comes down to it, you want to work on things you enjoy. You&#39;re free to choose what you work on at Dropbox because we want you to own a project and feel passionate about it. Since we don&#39;t wait for product cycles, this means that you can start a project on Monday and have it seen by millions on Friday.</p>\r\n<p style=\"cursor: auto; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 0px; line-height: 1.7em; font-size: 12px; \">\r\n\tDropbox is working on big problems; the kind of challenges that give you bragging rights. We deliver petabytes of data across Windows, Mac OSX, Linux, Android, iOS, BlackBerry, and browsers all over the world. We have millions of users and only a handful of engineers, and we&#39;re looking for more people to join us!</p>\r\n", 
-   "visible": false, 
+   "last_updated": "2011-09-22 10:44:27", 
+   "description": "<p class=\"blocktext\">\r\n\thttps://www.dropbox.com/mit</p>\r\n", 
+   "visible": true, 
    "starred_students": [], 
    "main_contact": "Albert Ni", 
    "main_contact_phone": "", 
    "offered_job_types": [
     1, 
-    2
+    2, 
+    4
    ], 
    "date_created": "2011-08-29 11:25:59", 
    "logo": "employer/employer/dropbox_2011-09-20-18-24-02.png", 
-   "careers_website": "http://www.dropbox.com/jobs", 
+   "careers_website": "https://www.dropbox.com/mit", 
    "slug": "dropbox", 
    "name": "Dropbox"
   }
