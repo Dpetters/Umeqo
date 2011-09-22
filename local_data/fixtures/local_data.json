@@ -35,7 +35,7 @@
   "pk": 7, 
   "model": "events.event", 
   "fields": {
-   "view_count": 5, 
+   "view_count": 6, 
    "start_datetime": "2011-09-12 15:30:00", 
    "audience": [], 
    "attending_employers": [
@@ -232,6 +232,17 @@
    "email": "Dpetters91@gmail.com", 
    "student": null, 
    "name": "John Fluck"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "events.attendee", 
+  "fields": {
+   "event": 10, 
+   "datetime_created": "2011-09-22 04:43:36", 
+   "email": "joshma@mit.edu", 
+   "student": null, 
+   "name": "test"
   }
  }, 
  {
@@ -1680,7 +1691,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-19 14:26:35", 
+   "last_login": "2011-09-22 04:43:16", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -3892,13 +3903,13 @@
   }
  }, 
  {
-  "pk": 387, 
+  "pk": 396, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-09-19 14:26:42", 
-   "session_key": "66d053cad9abf5ec30ff16cb675e5331", 
-   "last_updated": "2011-09-19 14:26:42", 
-   "user": 2
+   "date_created": "2011-09-22 04:43:16", 
+   "session_key": "6a239f41271c46566e394b1433a335f1", 
+   "last_updated": "2011-09-22 04:43:16", 
+   "user": 16
   }
  }, 
  {
