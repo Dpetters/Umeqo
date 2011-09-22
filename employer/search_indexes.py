@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from employer.models import Employer
-from events.models import Event
+
 from haystack import indexes, site
+from django.db.models import Q
 
 class EmployerIndex(indexes.RealTimeSearchIndex):
     text = indexes.CharField(use_template=True, document=True)
@@ -15,7 +18,7 @@ class EmployerIndex(indexes.RealTimeSearchIndex):
     
     def prepare_has_events(self, obj):
         # First part counts events created by a campus org, second part counts the employer's events
-        return obj.event_set.active().count() > 0 or Event.objects.filter(owner__in=[recruiter.user for recruiter in obj.recruiter_set.all()]).count() > 0
+        return obj.event_set.filter(is_public=True).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).distinct().count() > 0
     
     def prepare_subscribers(self, obj):
         return [u.user.id for u in obj.subscriptions.all()]
