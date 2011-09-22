@@ -356,5 +356,41 @@ $(document).ready(function() {
     $("#rsvp-yes-button[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
     $("#event_resume_drop[disabled=disabled]").tipsy({'gravity':'w', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
 
-    $('#name_input, #email_input').placeholder();
+    $('#email_input, #name_input').placeholder();
+
+    // Used to move cursor to beginning of field.
+    function setSelectionRange(input, selectionStart, selectionEnd) {
+        if (input.setSelectionRange) {
+            input.focus();
+            input.setSelectionRange(selectionStart, selectionEnd);
+        }
+        else if (input.createTextRange) {
+            var range = input.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', selectionEnd);
+            range.moveStart('character', selectionStart);
+            range.select();
+        }
+    }
+    $('#email_input').mouseup(function(e) {
+        var text_value = $.trim($(this).val());
+        var email_suffix = '@mit.edu';
+        if (text_value == '' || text_value == email_suffix) {
+            if (this.value != email_suffix) {
+                this.value = email_suffix;
+            }
+            if (this.setSelectionRange) {
+                this.setSelectionRange(0, 0);
+                this.focus();
+            }
+            else if (this.createTextRange) {
+                var range = this.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', 0);
+                range.moveStart('character', 0);
+                range.select();
+                this.focus();
+            }
+        }
+    });
 });
