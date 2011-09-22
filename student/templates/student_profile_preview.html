@@ -29,7 +29,7 @@
     <p class="student_gpa">
         <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
     </p>
-    <a data-student-id="{{student.id}}" class="resume_book_current_toggle_student" href="javascript:void(0)" tabindex="-1">{% student_resume_book in_resume_book %}</a>
+    <a data-student-id="{{student.id}}" class="resume_book_current_toggle_student" href="javascript:void(0)" tabindex="-1">{% include 'student_resume_book.html' %}</a>
     <span class="student_major">
         <strong>First Major:</strong>
         {% if student.first_major.display %}

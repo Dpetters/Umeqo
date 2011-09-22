@@ -309,8 +309,12 @@ def employer_resume_book_current_toggle_student(request):
             resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
         if student in resume_book.students.all():
             resume_book.students.remove(student)
-            data = {'action':employer_enums.REMOVED}  
+            data = {'action':employer_enums.REMOVED}
         else:
+            print len(resume_book.students.all())
+            print s.RESUME_BOOK_CAPACITY
+            if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
+                return HttpResponseForbidden("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
             resume_book.students.add(student)
             student.studentstatistics.add_to_resumebook_count += 1
             student.studentstatistics.save()
@@ -328,6 +332,8 @@ def employer_resume_book_current_add_students(request):
     if request.POST.has_key('student_ids'):
         try:
             resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+            if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
+                return HttpResponseForbidden("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
         except ResumeBook.DoesNotExist:
             resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
         if request.POST['student_ids']:
@@ -444,6 +450,10 @@ def employer_students(request, extra_context=None):
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
+            
+        resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
+        if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
+            context['resume_book_capacity_reached'] = True
         
         context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
@@ -488,7 +498,7 @@ def employer_resume_book_current_summary(request, extra_context=None):
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-    context = {'resume_book': resume_book}
+    context = {'resume_book': resume_book, 'resume_book_capacity':s.RESUME_BOOK_CAPACITY}
     context.update(extra_context or {}) 
     return context
 

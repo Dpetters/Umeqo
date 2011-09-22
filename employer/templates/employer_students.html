@@ -40,7 +40,9 @@ Student Filtering |
     {% endif %}
     
     var STATIC_URL = "{{STATIC_URL}}";
-
+    
+    var RESUME_BOOK_CAPACITY = "{{resume_book_capacity}}";
+    
     var NO_STUDENTS_SELECTED_MESSAGE = "{{ page_messages.NO_STUDENTS_SELECTED_MESSAGE }}";
     var WAIT_UNTIL_RESUME_BOOK_IS_READY_MESSAGE = "{{ page_messages.wait_until_resume_book_is_ready }}";
     var ADDED = "{{ added }}";
@@ -218,7 +220,7 @@ Student Filtering |
         </div>
         <div class="side_block_content clearfix">
             <div id="students_in_resume_book_student_list_link_section">
-                <strong>Currently Included: </strong><span id="students_in_resume_book_student_list_link"></span>                
+                <strong>Currently Included: </strong><span id="students_in_resume_book_student_list_link"></span>
                 <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
             </div>
             <input class="student_deliver_resume_book_link dark_button" data-resume-book-id="" disabled="disabled" type="button" value="Deliver">

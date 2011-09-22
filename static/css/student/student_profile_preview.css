@@ -70,12 +70,15 @@
 .student_resume_link {
     float: right;
 }
-.resume_book_current_toggle_student, .student_toggle_star{
+.resume_book_current_toggle_student, .student_toggle_star {
     min-width: 16px;
     margin-left: 7px;
     display:inline-block;
     min-width: 14px;
     position: relative;
+}
+.resume_book_capacity_reached{
+    opacity: .3;
 }
 .resume_book_current_toggle_student{
     top: 2px;

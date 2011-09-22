@@ -26,14 +26,13 @@ import xlwt
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
-from core import messages as m
 from core import enums as core_enums
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.views_helper import event_search_helper, buildAttendee, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
+from events.views_helper import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
 from notification import models as notification
 from student.models import Student
 
@@ -76,7 +75,10 @@ def events_list(request, extra_context=None):
     return context
 
 def event_page_redirect(request, id):
-    event = Event.objects.get(pk=id)
+    try:
+        event = Event.objects.get(pk=id)
+    except Event.DoesNotExist:
+        raise Http404
     return redirect("%s" % (event.get_absolute_url()))
 
 @render_to('event_page.html')
