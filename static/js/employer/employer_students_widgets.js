@@ -1,5 +1,6 @@
 $(document).ready(function(){
-     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You must be a subscribed employer to browse through this student list.", html:true});
+    $(".resume_book_capacity_reached, .resume_book_capacity_reached_menu_button").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:RESUME_BOOK_CAPACITY_REACHED, html:true});
+    $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:STUDENT_LIST_REQUIRES_SUBSCRIPTION, html:true});
     
     $("#id_majors").multiselect({
         noneSelectedText: 'Filter By Major',
