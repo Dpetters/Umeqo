@@ -1,1 +1,4 @@
-<a href="javascript:void(0)" id="switch_to_students_in_resume_book_student_list_link"><span id="students_in_resume_book_num">{{resume_book.students.all|length}}</span> / {{resume_book_capacity}} student{{resume_book.students.all|pluralize}}</a>
+<span id="current_resume_book_level" style="width:{{float_percentage}}%"></span>
+<span id="current_resume_book_text">
+    <strong>{{int_precentage}}% Full </strong><a href="#" id="show_current_resume_book_contents">(<span id="students_in_resume_book_num">{{student_num}}</span> student{{student_num|pluralize}})</a>    
+</span>

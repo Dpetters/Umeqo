@@ -59,7 +59,9 @@ private events."
 view_resume_tooltip = "Apart from creating resume books, recruiters can also \
 view and download your resume individually."
 
-
+# Resume Book Creation
+resume_book_capacity_reached = "Your current resume book is full."
+student_list_requires_subscription = "You must be a subscribed employer to browse through this student list."
 # Create campus org dialog
 campus_org_already_exists = "This campus organization already exists."
 

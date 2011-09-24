@@ -79,6 +79,7 @@
 }
 .resume_book_capacity_reached{
     opacity: .3;
+    cursor:default;
 }
 .resume_book_current_toggle_student{
     top: 2px;

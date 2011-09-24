@@ -1,8 +1,3 @@
-$(document).ready(function(){
-    $(".resume_book_capacity_reached").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:"You have reached the max number of students allowed per resume book. Please remove some students before adding others. <br><strong>Hint:</strong> Select the <em>Current Resume Book</em> student list to view only the students in the current resume book.", html:true});
-});
-
-
 function handle_student_hide_details_link_click() {
     var id = $(this).attr('data-student-id');
     $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
