@@ -3,8 +3,8 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 10, 
-   "start_datetime": "2011-09-10 19:00:00", 
+   "view_count": 12, 
+   "start_datetime": "2011-09-30 19:00:00", 
    "audience": [], 
    "attending_employers": [
     6
@@ -13,7 +13,8 @@
    "is_public": true, 
    "edits": [
     3, 
-    4
+    4, 
+    14
    ], 
    "description": "<p>\r\n\tfirst one</p>\r\n", 
    "is_active": true, 
@@ -22,7 +23,7 @@
    "latitude": 42.350392990000003, 
    "short_slug": "booo", 
    "is_drop": false, 
-   "end_datetime": "2011-09-10 20:00:00", 
+   "end_datetime": "2011-09-30 20:00:00", 
    "rsvp_message": "", 
    "owner": 3, 
    "date_created": "2011-09-10 19:16:38", 
@@ -156,6 +157,16 @@
    "type": 1, 
    "slug": "test-event", 
    "location": "Building NW13"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 6, 
+   "student": 21, 
+   "datetime_created": "2011-09-26 10:16:17"
   }
  }, 
  {
@@ -974,11 +985,11 @@
   }
  }, 
  {
-  "pk": 20, 
+  "pk": 21, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-09-26 09:45:11", 
+   "last_updated": "2011-09-26 10:15:23", 
    "sat_m": null, 
    "graduation_month": "5", 
    "older_than_21": "", 
@@ -989,7 +1000,7 @@
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "Dmitrij", 
-   "first_major": 26, 
+   "first_major": 3, 
    "subscriptions": [
     6
    ], 
@@ -997,16 +1008,16 @@
    "campus_involvement": [], 
    "languages": [], 
    "profile_created": true, 
-   "school_year": 3, 
-   "graduation_year": 2, 
+   "school_year": 2, 
+   "graduation_year": 3, 
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-26-09-45-11.pdf", 
-   "user": 41, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-09-26-10-15-23.pdf", 
+   "user": 42, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-09-26 09:43:54"
+   "date_created": "2011-09-26 10:14:30"
   }
  }, 
  {
@@ -1070,15 +1081,15 @@
   }
  }, 
  {
-  "pk": 20, 
+  "pk": 21, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-09-26 09:43:54", 
+   "last_updated": "2011-09-26 10:14:30", 
    "email_on_invite_to_private_event": true, 
    "email_on_invite_to_public_event": true, 
-   "student": 20, 
-   "date_created": "2011-09-26 09:43:54"
+   "student": 21, 
+   "date_created": "2011-09-26 10:14:30"
   }
  }, 
  {
@@ -1147,16 +1158,16 @@
   }
  }, 
  {
-  "pk": 20, 
+  "pk": 21, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-09-26 09:43:54", 
+   "last_updated": "2011-09-26 10:14:30", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 20, 
+   "student": 21, 
    "raffles_won": 0, 
-   "date_created": "2011-09-26 09:43:54"
+   "date_created": "2011-09-26 10:14:30"
   }
  }, 
  {
@@ -1529,7 +1540,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-26 09:47:24", 
+   "last_login": "2011-09-26 10:14:00", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1565,7 +1576,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-26 09:34:14", 
+   "last_login": "2011-09-26 10:15:38", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1754,7 +1765,7 @@
   }
  }, 
  {
-  "pk": 41, 
+  "pk": 42, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
@@ -1763,12 +1774,12 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-26 09:44:17", 
+   "last_login": "2011-09-26 10:16:05", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$32c03$63ddedbaaf52daaae0f6e96768bb0c6a1623d9d2", 
+   "password": "sha1$20776$84e46097d5a770b88f64d45aabdaea6d6d5e3ded", 
    "email": "dpetters@mit.edu", 
-   "date_joined": "2011-09-26 09:43:54"
+   "date_joined": "2011-09-26 10:14:30"
   }
  }, 
  {
@@ -1880,11 +1891,11 @@
   }
  }, 
  {
-  "pk": 40, 
+  "pk": 41, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": true, 
-   "user": 41, 
+   "user": 42, 
    "last_password_change_date": null
   }
  }, 
@@ -4279,11 +4290,21 @@
   }
  }, 
  {
-  "pk": 15, 
+  "pk": 404, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-26 10:16:05", 
+   "session_key": "2ae5be654ee2a735776dee0553ce1176", 
+   "last_updated": "2011-09-26 10:16:05", 
+   "user": 42
+  }
+ }, 
+ {
+  "pk": 16, 
   "model": "registration.registrationprofile", 
   "fields": {
    "activation_key": "ALREADY_ACTIVATED", 
-   "user": 41
+   "user": 42
   }
  }
 ]
