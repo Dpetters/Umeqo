@@ -151,7 +151,7 @@
     27
    ], 
    "main_contact_email": "Jessica.Barth@blackstone.com", 
-   "last_updated": "2011-09-20 16:38:51", 
+   "last_updated": "2011-09-25 13:02:20", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -507,7 +507,7 @@
     36
    ], 
    "main_contact_email": "albert@dropbox.com", 
-   "last_updated": "2011-09-22 10:44:27", 
+   "last_updated": "2011-09-26 02:24:22", 
    "description": "<p class=\"blocktext\">\r\n\thttps://www.dropbox.com/mit</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -576,7 +576,7 @@
     31
    ], 
    "main_contact_email": "peter.m.adornato@exxonmobil.com", 
-   "last_updated": "2011-09-20 15:07:40", 
+   "last_updated": "2011-09-24 13:48:05", 
    "description": "<p>\r\n\tExxonMobil is the world&#39;s premier petroleum and petrochemicals company. &nbsp;Our Upstream Division finds, develops, and produces crude oil and natural gas in over 50 countries. &nbsp;Our Downstream Division produces and markets some 8 million barrels per day of gasoline and other refined products under the Esso, Mobil and Exxon brands in over 190 countries. &nbsp;As global energy demand rises, we need your creative energy to find ways to meet it. &nbsp;Ways that support economic, environmental, and social progress according to our core values: &nbsp;discipline, integrity, reliability, and a commitment to technology. &nbsp;The world faces enormous energy challenges. &nbsp;This is where you come in, because the biggest challenges attract the best. &nbsp;Join ExxonMobil in tackling the world&#39;s toughest energy challenges!</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -725,17 +725,26 @@
   "pk": 25, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:40:09", 
+   "industries": [
+    27, 
+    28, 
+    43, 
+    34, 
+    40
+   ], 
+   "main_contact_email": "elizabeth.floyd@gs.com", 
+   "last_updated": "2011-09-26 02:24:45", 
    "description": "", 
-   "visible": false, 
+   "visible": true, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Liz Floyd", 
    "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1, 
+    2
+   ], 
    "date_created": "2011-08-29 10:40:09", 
-   "logo": "", 
+   "logo": "employer/employer/goldman sachs_2011-09-23-03-41-19.jpg", 
    "careers_website": "", 
    "slug": "gs", 
    "name": "Goldman Sachs"
@@ -750,7 +759,7 @@
     36
    ], 
    "main_contact_email": "lizarnold@google.com", 
-   "last_updated": "2011-09-20 14:45:52", 
+   "last_updated": "2011-09-26 02:24:27", 
    "description": "<p>\r\n\t<em>&ldquo;Google is organized around the ability to&nbsp;attract and leverage the talent of exceptional&nbsp;technologists and business people.&quot; </em></p>\r\n<p>\r\n\t<em>-&nbsp;</em>Larry Page, Google Co-founder and CEO</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<div>\r\n\t<div>\r\n\t\tAt Google, you will find smart people, big&nbsp;challenges, and opportunities to make a real&nbsp;difference in the world. Engineers at Google are&nbsp;key players in our daily innovation, and we are&nbsp;looking for the brightest minds to join these&nbsp;teams. Opportunities are available to work on&nbsp;Search, Ads, Chrome, Commerce,&nbsp;Infrastructure, Mobile, Social, YouTube, and&nbsp;other exciting projects.&nbsp;</div>\r\n\t<div>\r\n\t\t&nbsp;</div>\r\n\t<div>\r\n\t\tDiscover Google news and updates especially&nbsp;for students at&nbsp;<a href=\"http://googleforstudents.blogspot.com/\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">googleforstudents.blogspot.com</a><wbr />&nbsp;and follow us on Twitter at&nbsp;<a href=\"http://www.twitter.com/googlestudents\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">www.twitter.com/<wbr />googlestudents</a>.</div>\r\n</div>\r\n<p>\r\n\t&nbsp;</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -883,7 +892,7 @@
     36
    ], 
    "main_contact_email": "bedrll@microsoft.com", 
-   "last_updated": "2011-09-20 14:46:13", 
+   "last_updated": "2011-09-26 02:24:35", 
    "description": "<p>\r\n\tMicrosoft is the worldwide leader in software, services and solutions that help people and businesses realize their full potential. &nbsp;We&#39;re motivated and inspired by how our customers and partners use our software to find creative solutions to business problems, develop breakthrough ideas and stay connected to what&#39;s important to them.&nbsp;</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWe run our company in much the same way. Our employees come as they are and do what they love. &nbsp;We&rsquo;re a global company, located in over 100 countries, but we often act like a startup. We do software &mdash; but we also do hardware, services, research, and community outreach. We work hard, but we value work/life balance, and each of us defines what that means to us. So why not explore what we do, where we do it, and what life is really like at Microsoft? You just might be surprised.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1053,7 +1062,7 @@
     37
    ], 
    "main_contact_email": "katherine.campbell@oliverwyman.com", 
-   "last_updated": "2011-09-20 16:39:16", 
+   "last_updated": "2011-09-23 10:19:17", 
    "description": "<p>\r\n\tWith offices in 50+ cities across 25 countries, Oliver Wyman is a leading global management consulting firm that combines deep industry knowledge with specialized expertise in strategy, operations, risk management, organizational transformation, and leadership development. &nbsp;The firm&#39;s 3,000 professionals help clients optimize their businesses, improve their operations and risk profile, and accelerate their organizational performance to seize the most attractive opportunities.</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tOliver Wyman is a rapidly growing, entrepreneurial organization committed to building a dynamic environment full of individuals who share our passion for delivering results for our clients. The work you will do at Oliver Wyman has real impact. As a consultant, you will be charged with responsibility for finding new and meaningful perspectives on some of the toughest problems.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tConsultants on the Financial Services track specialize in the industry and become content experts early in their careers, which affords high responsibility. Financial services is one of the largest and most dynamic industries in the world. Strategic challenges in retail banking, investment banking, trading, insurance, asset management, the new regulatory environment and risk represent the largest sampling of financial services project work. &nbsp;Primary practice areas for this group, includes Corporate &amp; Institutional Banking, Retail &amp; Business Banking, Wealth &amp; Asset Management, Insurance, Finance &amp; Risk, Corporate Finance &amp; Advisory, Strategic IT &amp; Operations, and Public Policy.</div>\r\n", 
    "visible": true, 
    "starred_students": [
@@ -1104,7 +1113,7 @@
     36
    ], 
    "main_contact_email": "kimberley.tanksley@oracle.com", 
-   "last_updated": "2011-09-20 10:21:10", 
+   "last_updated": "2011-09-26 02:24:37", 
    "description": "<p>\r\n\tOracle provides the world&rsquo;s most complete, open, and integrated business software and hardware systems. With the full software and hardware portfolio at its disposal, only Oracle designs and integrates everything from the semiconductor chip to the entire software stack to achieve performance levels that are unmatched in the industry.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1249,7 +1258,7 @@
     40
    ], 
    "main_contact_email": "Gina.Vaglia@sig.com", 
-   "last_updated": "2011-09-20 16:39:23", 
+   "last_updated": "2011-09-22 22:53:42", 
    "description": "<p>\r\n\tSusquehanna International Group (SIG) is a world-leading technology-empowered financial trading firm. Founded in 1987, SIG has grown from an options trading firm on the Philadelphia Stock Exchange to one of the world&rsquo;s largest privately held financial institutions. Today, with offices around the world, the firm trades virtually every major financial product and is recognized for its disciplined and quantitative trading approach, as well as its leading-edge trading systems. SIG&rsquo;s structured Development Programs introduce university hires to its unique approach to decision making and prepare them to become independent thinkers within a collaborative environment.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1296,7 +1305,7 @@
     36
    ], 
    "main_contact_email": "ed.tilford@thomsonreuters.com", 
-   "last_updated": "2011-09-20 10:21:19", 
+   "last_updated": "2011-09-26 02:24:42", 
    "description": "<p>\r\n\tThomson Reuters is the world&rsquo;s leading source of intelligent information for businesses and professionals. The firm combines industry expertise with innovative technology to keep leading decision makers in the financial, legal, scientific, media and other sectors informed and up-to-date. Its variety of internships and full-time opportunities allow students to step into the challenging and fast-paced environment of a truly global organization. Those that do will be encouraged to engineer fresh solutions to problems old as well as new and will find that at Thomson Reuters, there are no limits on where creative thinking and a willingness to learn takes bright minds.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1310,6 +1319,26 @@
    "careers_website": "http://careers.thomsonreuters.com/students/", 
    "slug": "tr", 
    "name": "Thomson Reuters"
+  }
+ }, 
+ {
+  "pk": 76, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-24 17:29:38", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-24 17:29:38", 
+   "logo": "employer/employer/tower research capital_2011-09-24-17-29-38.png", 
+   "careers_website": "", 
+   "slug": "tower", 
+   "name": "Tower Research Capital"
   }
  }, 
  {
