@@ -224,6 +224,30 @@
   }
  }, 
  {
+  "pk": 10, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "Dmitrij Petters", 
+   "datetime_created": "2011-09-26 15:31:00", 
+   "email": "Dpetters91@gmail.com", 
+   "student": null, 
+   "won_raffle": true, 
+   "event": 8
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "Dmitrij Petters", 
+   "datetime_created": "2011-09-26 15:31:02", 
+   "email": "Dpetters91@mit.edu", 
+   "student": null, 
+   "won_raffle": true, 
+   "event": 8
+  }
+ }, 
+ {
   "pk": 8, 
   "model": "events.attendee", 
   "fields": {
@@ -373,6 +397,26 @@
    "last_updated": "2011-09-26 09:44:51", 
    "resumes_viewed": 0, 
    "employer": 78
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-09-26 15:27:34", 
+   "last_updated": "2011-09-26 15:27:34", 
+   "resumes_viewed": 0, 
+   "employer": 79
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-09-26 15:32:19", 
+   "last_updated": "2011-09-26 15:32:19", 
+   "resumes_viewed": 0, 
+   "employer": 80
   }
  }, 
  {
@@ -1540,7 +1584,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-26 10:14:00", 
+   "last_login": "2011-09-26 15:27:48", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1756,7 +1800,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-26 09:47:48", 
+   "last_login": "2011-09-26 15:28:15", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
@@ -4290,13 +4334,23 @@
   }
  }, 
  {
-  "pk": 404, 
+  "pk": 405, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-09-26 10:16:05", 
-   "session_key": "2ae5be654ee2a735776dee0553ce1176", 
-   "last_updated": "2011-09-26 10:16:05", 
-   "user": 42
+   "date_created": "2011-09-26 15:27:44", 
+   "session_key": "c657e68e8ddd8ddde9dcc44c0cd2d52a", 
+   "last_updated": "2011-09-26 15:27:44", 
+   "user": 26
+  }
+ }, 
+ {
+  "pk": 406, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-26 15:28:15", 
+   "session_key": "2d784330595a2dac265b557fd69532ff", 
+   "last_updated": "2011-09-26 15:28:15", 
+   "user": 26
   }
  }, 
  {
