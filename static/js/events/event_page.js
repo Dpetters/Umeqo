@@ -24,7 +24,7 @@ $(document).ready(function() {
         var marker = new google.maps.Marker({ map: map }); 
         marker.setPosition(location);
     }
-
+    
     function rsvp(isAttending) {
         $.post($(this).attr('href'), {
             isAttending: isAttending
@@ -99,6 +99,9 @@ $(document).ready(function() {
         });
         e.preventDefault();
     });
+    if (get_parameter_by_name("rsvp")=="true"){
+        $("#rsvp-yes-button").click();
+    }
     $('#rsvp-no-button').live('click', function(e) {
         var disabled = $(this).attr('disabled');
         if ($(this).hasClass('selected') || typeof disabled !== 'undefined' && disabled !== false) {
@@ -113,6 +116,9 @@ $(document).ready(function() {
         }
         e.preventDefault();
     });
+    if (get_parameter_by_name("rsvp")=="false"){
+        $("#rsvp-no-button").click();
+    }
     $('#remove-rsvp-button').live('click', function(e) {
         $.post($(this).attr('href'), function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
