@@ -188,16 +188,17 @@ def student_registration(request, backend = RegistrationBackend(),
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
-            if form.cleaned_data.has_key("first_name") and form.cleaned_data.has_key("last_name"):
-                student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
-            else:
-                student = Student(user=new_user)
-            umeqo = Employer.objects.get(name="Umeqo")
-            student.save()
-            if form.cleaned_data.has_key("course"):
-                student.first_major=form.cleaned_data["course"]
-            student.subscriptions.add(umeqo)
-            student.save()
+            if not Student.objects.filter(user=new_user).exists():
+                if form.cleaned_data.has_key("first_name") and form.cleaned_data.has_key("last_name"):
+                    student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
+                else:
+                    student = Student(user=new_user)
+                umeqo = Employer.objects.get(name="Umeqo")
+                student.save()
+                if form.cleaned_data.has_key("course"):
+                    student.first_major=form.cleaned_data["course"]
+                student.subscriptions.add(umeqo)
+                student.save()
             if s.INVITE_ONLY:
                 i=StudentInvite.objects.get(code=form.cleaned_data['invite_code'])
                 i.recipient = student

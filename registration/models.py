@@ -82,7 +82,7 @@ class UserAttributes(models.Model):
 @receiver(post_save, sender=User)
 def create_userattributes(sender, instance, created, raw, **kwargs):
     if created and not raw:
-        UserAttributes.objects.create(user=instance, is_verified=True)
+        UserAttributes.objects.create(user=instance, is_verified=False)
 
 
 class RegistrationProfile(models.Model):
@@ -142,9 +142,16 @@ class RegistrationProfile(models.Model):
                (self.user.date_joined + expiration_date <= datetime.datetime.now())
     activation_key_expired.boolean = True
 
-    def send_activation_email(self, site):
-        subject = "Umeqo Registration Confirmation Link"
-        context = { 'activation_key': self.activation_key, 'site': site }
+    def send_activation_email(self, site, first_name, last_name):
+        print "a"
+        print first_name
+        print "b"
+        print last_name
+        print "c"
+        print self.user.email
+        print "d"
+        subject = "Umeqo Account Activation"
+        context = { 'activation_key': self.activation_key, 'site': site, 'first_name':first_name, 'last_name':last_name}
         message = render_to_string('activation_email.html', context)
         send_html_mail(subject, message, [self.user.email])
 

@@ -35,7 +35,7 @@ class CreateEmployerForm(forms.ModelForm):
         name = self.cleaned_data['name']
         try:
             Employer.objects.get(name=name)
-            raise forms.ValidationError("Employer with the name %s already exists." % (name))
+            raise forms.ValidationError("This employer already exists.")
         except Employer.DoesNotExist:
             pass
         return self.cleaned_data['name']
@@ -43,7 +43,7 @@ class CreateEmployerForm(forms.ModelForm):
     def clean_industries(self):
         industries = self.cleaned_data['industries']
         if len(industries) > s.EP_MAX_INDUSTRIES:
-            raise forms.ValidationError("An employer cannot be in more than 5 industries")
+            raise forms.ValidationError("An employer cannot be in more than 5 industries.")
         return self.cleaned_data['industries']
             
 class RecruiterForm(forms.ModelForm):

@@ -334,25 +334,22 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
                 recipients = reg.split(request.POST['emails'])
                 
                 subject = ''.join(render_to_string('event_list_export_email_subject.txt', {}).splitlines())
-                
-                body = render_to_string('event_list_export_email_body.html', {})
-                
-                message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
 
-                file = StringIO.StringIO()                
+                body = render_to_string('event_list_export_email_body.html', {'name':request.user.first_name})
+
+                file = StringIO.StringIO()
                 if format == core_enums.CSV:
                     filename = export_event_list_csv(file, event, list)
-                    file_contents = file.getvalue()                    
-                    message.attach("%s" % (filename), file_contents, "text/csv")
+                    file_contents = file.getvalue()
+                    send_html_mail(subject, body, recipients, "%s" % (filename), file_contents, "text/csv")
                 elif format == core_enums.XLS:
                     filename = export_event_list_xls(file, event, list)
-                    file_contents = file.getvalue()                    
-                    message.attach("%s" % (filename), file_contents, "application/vnd.ms-excel")
+                    file_contents = file.getvalue()
+                    send_html_mail(subject, body, recipients, "%s" % (filename), file_contents, "application/vnd.ms-excel")
                 elif format == core_enums.TEXT:
                     filename = export_event_list_text(file, event, list)
                     file_contents = file.getvalue()
-                    message.attach("%s" % (filename), file_contents, "text/plain")
-                message.send()
+                    send_html_mail(subject, body, recipients, "%s" % (filename), file_contents, "text/plain")
 
                 context = {'list': list, 'TEMPLATE':'event_list_export_completed.html'}
                 context.update(extra_context or {})
@@ -607,17 +604,15 @@ def event_checkin(request, event_id):
                 'error': 'Duplicate checkin!'
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        if not student:
-            subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
+        if not student or student and not student.profile_created:
+            if not student:
+                template = 'checkin_follow_up.html'
+            if student and not student.profile_created:
+                template = 'checkin_follow_up_profile.html'
+            subject = "[Umeqo] Event Check-In Follow-up"
             recipients = [email]
             body_context = {'name':name, 'current_site':Site.objects.get(id=s.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
-            html_body = render_to_string('checkin_follow_up.html', body_context)
-            send_html_mail(subject, html_body, recipients)
-        if student and not student.profile_created:
-            subject = "[umeqo.com] %s Check-In Follow-up" % str(event)
-            recipients = [email]
-            body_context = {'name':name, 'current_site':Site.objects.get(id=s.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
-            html_body = render_to_string('checkin_follow_up_profile.html', body_context)
+            html_body = render_to_string(template, body_context)
             send_html_mail(subject, html_body, recipients)
         output = {
             'valid': True,

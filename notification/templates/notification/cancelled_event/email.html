@@ -1,5 +1,12 @@
-<p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
+{% extends "email_base.html" %}
 
-<p>This is to just let you know that {{employer_names}} {{has_word}} cancelled their event: {{event.name}}</p>
+{% block email_body %}
+    <h2 style="margin-top:0">Cancelled Event</h2>
+    
+    <p>Hey {{name}},</p>
+        
+    <p>This is to just let you know that {{employer_names}} {{has_word}} cancelled their event: "{{event.name}}"</p>
 
-<p>- The Umeqo Team</p>
+    <br>
+    <small>Change your notification settings at any time <a href="http://{{current_site.domain}}/student/account/?tab=preferences">here</a>.</small>
+{% endblock %}

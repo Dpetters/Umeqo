@@ -1,7 +1,19 @@
-<p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
+{% extends "email_base.html" %}
 
-<p>{{employer_names}} {{has_word}} a new event: {{event.name}}</p>
-
-<p>Check out the event details (and RSVP if interested!) by clicking <a href="http://{{current_site.domain}}{{event.get_absolute_url}}">here</a>.</p>
-
-<p>- The Umeqo Team</p>
+{% block email_body %}
+    <h2 style="margin-top:0">New Event</h2>
+    
+    <p>Hey {{name}},</p>
+        
+    <p>This is just to let you know that {{employer_names}} {{has_word}} a new event: "{{event.name}}"</p>
+    
+    <p>
+        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#41B554;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0 auto 30px;padding:6px 15px;text-decoration:none" target="_blank">
+        RSVP Attending
+        </a>
+        <br>
+        You can see the details of the event here: http://{{current_site.domain}}{{ event.get_absolute_url }}
+    </p>
+    <br>
+    <small>Change your notification settings at any time <a href="http://{{current_site.domain}}/student/account/?tab=preferences">here</a>.</small>
+{% endblock %}
