@@ -822,7 +822,7 @@ $(document).ready(function () {
             invite_text = "Hi " + student_name + ", I'd like to invite you to our event.";
         }
         var msg_input = $('<textarea id="invite_text">' + invite_text + '</textarea>');
-        invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below.</p>');
+        invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below. <em>Try to make your message more personalized - students will be more likely to respond!</em></p>');
         invite_dialog.append(msg_input);
         invite_dialog.append('<p>' + extra_text + '</p>');
         invite_dialog.dialog({
