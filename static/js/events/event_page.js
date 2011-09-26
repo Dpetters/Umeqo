@@ -270,7 +270,7 @@ $(document).ready(function() {
 
                 newLi.effect('highlight', {}, 3000);
                 $('#name_input').val('');
-                $('#email_input').val('').focus();
+                $('#email_input').val('').focus().trigger('mouseup');
                 $.ajax({
                     url: EVENT_CHECKIN_COUNT_URL,
                     dataType: "json",

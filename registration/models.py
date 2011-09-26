@@ -143,14 +143,7 @@ class RegistrationProfile(models.Model):
     activation_key_expired.boolean = True
 
     def send_activation_email(self, site, first_name, last_name):
-        print "a"
-        print first_name
-        print "b"
-        print last_name
-        print "c"
-        print self.user.email
-        print "d"
-        subject = "Umeqo Account Activation"
+        subject = "[Umeqo] Account Activation"
         context = { 'activation_key': self.activation_key, 'site': site, 'first_name':first_name, 'last_name':last_name}
         message = render_to_string('activation_email.html', context)
         send_html_mail(subject, message, [self.user.email])
@@ -178,7 +171,8 @@ def send_first_notice(sender, instance, created, raw, **kwargs):
                 'employer': employer,
                 'recruiter': recruiter,
                 'invite_message': invite_message,
-                'event': event
+                'event': event,
+                'name': instance.user.first_name
             })
         except Event.DoesNotExist:
             pass
