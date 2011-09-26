@@ -4,13 +4,20 @@
 {{event.name}} |
 {% endblock %}
 
+{% block headattr %}prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# mitumeqo: http://ogp.me/ns/fb/mitumeqo#"{% endblock %}
+
 {% block meta %}
-<meta property="og:title" content="{{event.name}}" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="{{page_url}}" />
-<meta property="og:image" content="{{current_site}}{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
-<meta property="og:site_name" content="Umeqo" />
-<meta property="fb:admins" content="502728220" />
+  {% load core_extras %}
+  <meta property="fb:app_id"                content="119497238132973"> 
+  <meta property="og:type"                  content="mitumeqo:event"> 
+  <meta property="og:url"                   content="{{ page_url }}"> 
+  <meta property="og:title"                 content="{{ event.name }}"> 
+  <meta property="og:description"           content="{{ event_description_shortened|striptags|stripspaces }}">
+  <meta property="og:image"                 content="{{ current_site }}{{ MEDIA_URL }}{% if campus_org_event %}{{event.owner.campusorg.image}}{% else %}{{event.owner.recruiter.employer.logo}}{% endif %}">
+  <meta property="mitumeqo:where:latitude"  content="{{ event.latitude }}">
+  <meta property="mitumeqo:where:longitude" content="{{ event.longitude }}">
+  <meta property="mitumeqo:where:altitude"  content="3.1415926535"> 
+  <meta property="mitumeqo:when"            content="{{ event.start_datetime|date:"c" }}">
 {% endblock %}
 
 {% block metadata %}

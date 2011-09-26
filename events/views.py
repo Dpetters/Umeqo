@@ -117,6 +117,7 @@ def event_page(request, id, slug, extra_context=None):
     
     context = {
         'event': event,
+        'event_description_shortened': event.description[:100],
         'invitees': get_invitees(event),
         'rsvps': get_rsvps(event),
         'no_rsvps': get_no_rsvps(event),
