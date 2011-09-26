@@ -1727,7 +1727,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-20 15:39:00", 
+   "last_login": "2011-09-22 11:01:28", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$c58a1$cee71e8aa13d5273e7dc477c3210c016cec53263", 
@@ -4213,13 +4213,13 @@
   }
  }, 
  {
-  "pk": 395, 
+  "pk": 397, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-09-20 19:28:49", 
-   "session_key": "dcbd4c6c736c7dadd4157a3d4883729e", 
-   "last_updated": "2011-09-20 19:28:49", 
-   "user": 3
+   "date_created": "2011-09-22 11:01:28", 
+   "session_key": "0520611775e73990e1918e2dd34ac6ba", 
+   "last_updated": "2011-09-22 11:01:28", 
+   "user": 33
   }
  }, 
  {
