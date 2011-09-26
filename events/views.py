@@ -183,6 +183,7 @@ def event_new(request, form_class=None, extra_context=None):
         form_class = EventForm
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
+        context['max_industries'] = s.EP_MAX_INDUSTRIES
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -384,6 +385,7 @@ def event_edit(request, id=None, extra_context=None):
         if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
             return HttpResponseForbidden('You are not allowed to edit this event.')                
     elif is_campus_org(event.owner):
+        context['max_industries'] = s.EP_MAX_INDUSTRIES
         context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
         if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
@@ -536,6 +538,29 @@ def event_undrop(request, event_id):
     event = Event.objects.filter(id=event_id)
     DroppedResume.objects.filter(event=event, student=request.user.student).delete()
     return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
+
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
+@require_GET
+def event_raffle_winner(request, extra_context=None):
+    if request.is_ajax():
+        if request.GET.has_key("event_id"):
+            data = {}
+            winners = Attendee.objects.filter(event__id=request.GET['event_id'], won_raffle=False)
+            if winners.exists():
+                winner = winners[0]
+                winner.won_raffle = True
+                winner.save()
+                if winner.student:
+                    winner.student.studentstatistics.raffles_won += 1
+                    winner.student.studentstatistics.save()
+                data['name'] = winner.name
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Request is missing the event id.")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)

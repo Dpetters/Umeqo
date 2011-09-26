@@ -45,6 +45,7 @@ def campus_org_account_preferences(request, form_class=CampusOrgPreferencesForm)
         data = {'errors': form.errors }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
+
 @login_required
 @user_passes_test(is_campus_org, login_url=s.LOGIN_URL)
 @render_to("campus_org_profile.html")

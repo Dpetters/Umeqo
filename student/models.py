@@ -126,7 +126,8 @@ class StudentStatistics(core_mixins.DateTracking):
     add_to_resumebook_count = models.PositiveIntegerField(editable=False, default = 0)
     resume_view_count = models.PositiveIntegerField(editable=False, default = 0)
     shown_in_results_count = models.PositiveIntegerField(editable=False, default = 0)
-
+    raffles_won = models.PositiveIntegerField(editable=False, default = 0)
+    
     class Meta:
         verbose_name = "Student Statistics"
         verbose_name_plural = "Student Statistics"

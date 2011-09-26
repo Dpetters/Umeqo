@@ -227,9 +227,6 @@ input.button {
     margin-left: 1px;
     font-weight: bold;
 }
-.dropdown_menu_button ul{
-    text-align:left;
-}
 .menu_button.disabled, .dropdown_menu_button.disabled{
     color: #AAA;
     cursor:default;
@@ -263,6 +260,7 @@ input.button {
     list-style: none;
     padding: 2px;
     background: #FFF;
+    text-align:left;
     min-width: 100px;
     display: block;
     position: absolute;

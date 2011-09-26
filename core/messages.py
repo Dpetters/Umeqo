@@ -28,6 +28,9 @@ slug_already_taken = "This short url is already taken."
 # Employer Profile Preview
 subscribe_tooltip = "Logged-in students can click this button to subscribe to your employer for new event and deadline notifications."
 
+# New Employer Form
+employer_already_exists = "This employer already exists."
+
 #Student Profile Form
 first_name_required = 'Enter your first name.'
 last_name_required= 'Enter your last name.'
@@ -50,7 +53,7 @@ star_toggle_tooltip = "If you stand out, a recruiter can star you! You will \
 appear as such to all the other recruiters at that company."
 resume_book_current_toggle_tooltip = "Recruiters can toggle you in and out of \
 the custom resume book they're creating."
-comment_text = "Recruiters write comments about you for later referral!"
+comment_text = "Recruiters can write comments about you for later referral!"
 event_attendance_tooltip = "A company's recruiters only see this icon on your \
 profile if you attended at least one of their events. Upon hover they see a \
 summary of the events which you attended."

@@ -433,8 +433,8 @@ h3#event_location {
     line-height: 18px;
     text-align: left;
 }
-#close_button {
-    display: inline-block;
+#close_button, #get_raffle_winner_link{
+    display: block;
     padding: 4px 8px;
     background-color: #EEE;
     border-radius: 2px;
@@ -442,6 +442,12 @@ h3#event_location {
     -webkit-border-radius: 2px;
     -o-border-radius: 2px;
     font-size: 18px;
+    text-align:center;
+}
+#get_raffle_winner_link{
+    color:green;
+    margin-bottom:5px;
+    background:#EEFFCC;
 }
 #event_title {
     margin-bottom: 10px;

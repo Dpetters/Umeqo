@@ -33,7 +33,7 @@ from core import messages
 from core import enums as core_enums
 from employer import enums as employer_enums
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
-from employer.forms import EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
+from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
 from employer.views_helper import get_paginator, employer_search_helper
 from student import enums as student_enums
 from subscription.models import EmployerSubscription, Subscription
@@ -67,7 +67,34 @@ def employer_profile_preview(request, slug, extra_context=None):
         context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
         context.update(extra_context or {})
         return context
-    
+
+
+@render_to("employer_new.html")
+def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
+    if request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student"):
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                new_employer = form.save()
+                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+                subject = "New Employer: %s" % (new_employer) 
+                body = render_to_string('employer_new_email_body.html', \
+                                        {'email':request.user.email, \
+                                         'new_employer':new_employer})
+                send_html_mail(subject, body, recipients)
+                data = {"name": new_employer.name, "id": new_employer.id}
+            else:
+                data = {'errors': form.errors }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            form = form_class()
+        context = {'form': form }
+        context.update(extra_context or {}) 
+        return context
+    else:
+        return HttpResponseForbidden("You must be logged in.")
+
+
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @has_annual_subscription
@@ -99,6 +126,7 @@ def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None
         return context
     else:
         return HttpResponseBadRequest("Request must be ajax.")
+
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
@@ -143,6 +171,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     context.update(extra_context or {})
     return context
 
+
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account_delete.html")
@@ -164,6 +193,7 @@ def employer_account_delete(request):
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
+
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_resume_book_delete.html")
@@ -184,6 +214,7 @@ def employer_resume_book_delete(request, extra_context = None):
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
+
 @login_required
 @user_passes_test(is_recruiter)
 @has_annual_subscription
@@ -192,6 +223,7 @@ def employer_resume_book_delete(request, extra_context = None):
 def employer_other_recruiters(request):
     context = {'other_recruiters':request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)}
     return context
+
 
 @login_required
 @user_passes_test(is_recruiter)
@@ -226,7 +258,8 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
                    'edit':True}
         context.update(extra_context or {})
         return context
-        
+
+
 @login_required
 @user_passes_test(is_recruiter)
 @has_any_subscription
@@ -296,6 +329,7 @@ def employer_student_comment(request):
     else:
         return HttpResponseBadRequest("Student ID is missing.")
 
+
 @login_required
 @user_passes_test(is_recruiter)
 @has_any_subscription
@@ -346,6 +380,7 @@ def employer_resume_book_current_add_students(request):
         return HttpResponse()
     else:
         return HttpResponseBadRequest("Student IDs are missing.")
+
 
 @login_required
 @user_passes_test(is_recruiter)

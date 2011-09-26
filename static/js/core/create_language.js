@@ -65,7 +65,9 @@ $(document).ready( function() {
                                 }
                             },
                             success: function(data) {
-                                if(data.valid) {
+                                if(data.errors) {
+                                    place_table_form_errors("#create_language_form", data.errors);
+                                }else{
                                     var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The language \"" + data.name + "\" has been created successfully!</p>";
                                     if( $("#id_languages").multiselect("widget").find("input:checked").length <= LANGUAGES_MAX-1 ) {
                                         success_message += "<p><a class='select_basic_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Basic)\" to your Languages & Close Dialog</a></p>";
@@ -101,8 +103,6 @@ $(document).ready( function() {
                                             create_language_dialog.dialog('destroy');
                                         });
                                     }
-                                } else {
-                                    place_table_form_errors("#create_language_form", data.errors);
                                 }
                             }
                         });

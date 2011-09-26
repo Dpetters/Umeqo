@@ -26,7 +26,7 @@ from core.view_helpers import employer_campus_org_slug_exists
 from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
 from student.models import Student
-
+from employer.models import Employer
 from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
@@ -48,6 +48,21 @@ def check_employer_campus_org_slug_uniqueness(request):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             return HttpResponseBadRequest("Request is missing the slug.")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@require_GET
+def check_employer_uniqueness(request):
+    if request.is_ajax():
+        if request.GET.has_key("name"):
+            try:
+                Employer.objects.get(name=request.GET['name'])
+                data = False
+            except Employer.DoesNotExist:
+                data = True
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")            
+        else:
+            return HttpResponseBadRequest("Request is missing the employer name.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
     
