@@ -345,8 +345,6 @@ def employer_resume_book_current_toggle_student(request):
             resume_book.students.remove(student)
             data = {'action':employer_enums.REMOVED}
         else:
-            print len(resume_book.students.all())
-            print s.RESUME_BOOK_CAPACITY
             if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
                 return HttpResponseForbidden("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
             resume_book.students.add(student)
@@ -652,7 +650,6 @@ def employer_resume_book_current_email(request, extra_context=None):
             reg = re.compile(r"\s*[;, \n]\s*")
             recipients = reg.split(request.POST['emails'])
             subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
-            print request.user.first_name
             body = render_to_string('resume_book_email_body.html', {'name':request.user.first_name})
             f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
             content = f.read()
