@@ -2,18 +2,23 @@
     color: #FFF;
     background-color: rgba(255,255,255,0.3);
 }
-.must_be_subscribed_annually, .must_be_subscribed{
+.must_be_subscribed_annually, .must_be_subscribed {
     opacity:.5;
 }
 .responses .event_rsvp {
     display: inline-block;
     padding: 7px;
     background-color: #F0F0F0;
-    margin-top: 5px;
+    margin: 5px 5px 0 0;
     font-size: 12px;
     font-weight: bold;
     border-radius: 2px;
-    border-bottom: 2px solid #F0F0F0;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border: 1px solid #CCC;
+    width: 230px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .responses .event_rsvp.hoverable {
     background-color: #FFF;
@@ -25,15 +30,15 @@
 .responses .event_rsvp .email::before {
     content: '(';
 }
-.responses .event_rsvp .email::after{
+.responses .event_rsvp .email::after {
     content: ')';
 }
-#statistics_block{
-    padding-left:12px;
+#statistics_block {
+    padding-left: 12px;
     padding-right: 10px;
 }
-#statistics_block p{
-    padding-left:10px;
+#statistics_block p {
+    padding-left: 10px;
 }
 #account_dropdown {
     background: -moz-linear-gradient(top, rgba(50,50,50,0.9) 0%, rgba(20,20,20,0.9) 100%); /* FF3.6+ */
@@ -111,7 +116,7 @@
     -webkit-border-radius: 3px;
     background-position: 5px -60px;
     border-radius: 3px;
-    z-index:100;
+    z-index: 100;
     border: 1px solid #AAA;
 }
 #notifications_number {
@@ -202,17 +207,17 @@
     color: #555;
     margin: 0 20px 15px;
 }
-#welcome_table{
-    margin-top:2px;
-    margin-bottom:5px;
+#welcome_table {
+    margin-top: 2px;
+    margin-bottom: 5px;
 }
 #welcome_table td {
-    vertical-align:top;
+    vertical-align: top;
 }
-#welcome_table td img{
-    margin-bottom:6px;
-    margin-left:10px;
-    margin-right:12px;
-    max-width:100px;
-    border:1px solid #EEE;
+#welcome_table td img {
+    margin-bottom: 6px;
+    margin-left: 10px;
+    margin-right: 12px;
+    max-width: 100px;
+    border: 1px solid #EEE;
 }

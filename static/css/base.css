@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
 }
-.tipsy{
-    font-size:12px !important;
+.tipsy {
+    font-size: 12px !important;
 }
 html {
     overflow-y: scroll;
@@ -40,7 +40,7 @@ p {
     margin: 20px 0;
 }
 .grande span {
-    font-size:14px;
+    font-size: 14px;
 }
 .content p {
     padding: 5px 0;
@@ -48,7 +48,7 @@ p {
 .light {
     color: #888;
 }
-.centered{
+.centered {
     text-align: center !important;
 }
 .ready {
@@ -62,10 +62,10 @@ label {
 label: not(.required) {
     padding-right: 8px;
 }
-#message_area{
+#message_area {
     text-align: center;
 }
-#message_area p{
+#message_area p {
     display: inline;
     background: #7AA7CC;
     border-radius: 3px 3px 0px 0px;
@@ -109,10 +109,10 @@ label: not(.required) {
     text-align: center;
     height: 60px;
 }
-#header_area .width_container{
+#header_area .width_container {
     text-align: left;
     position: relative;
-    z-index:300;
+    z-index: 300;
 }
 #logo_block {
     position: relative;
@@ -194,7 +194,7 @@ label: not(.required) {
 #signup_button {
     float: left;
 }
-#below_header_area{
+#below_header_area {
     min-height: 17px;
 }
 #content_area {
@@ -238,7 +238,7 @@ label: not(.required) {
     color: #FFF;
     background-color: #BBB;
 }
-.div_form_above_field_label{
+.div_form_above_field_label {
     font-size: 15px;
     display: inline-block;
     margin-bottom: 3px;
@@ -255,7 +255,7 @@ input[type=text], input[type=password], select, textarea {
     font-family: Arial;
     font-size: 12px;
 }
-select{
+select {
     padding-top: 3px;
     padding-bottom: 3px;
 }
@@ -275,11 +275,11 @@ input[type=text], input[type=password] {
     margin-top: 6px;
     position: absolute;
 }
-.form_table.grande #ajax_form_submit_loader{
+.form_table.grande #ajax_form_submit_loader {
     margin-left: 10px;
     margin-top: 10px;
 }
-.form_table .button_cell{
+.form_table .button_cell {
     text-align: center;
     border-bottom: none !important;
 }
@@ -287,7 +287,7 @@ input[type=text], input[type=password] {
     margin-top: 20px;
     text-align: center;
 }
-.back_to_link{
+.back_to_link {
     float: right;
     margin-top: 5px;
 }
@@ -298,11 +298,11 @@ input[type=text], input[type=password] {
     vertical-align: bottom;
     text-align: right;
 }
-.form_table th label{
+.form_table th label {
     margin-bottom: 7px;
     display: block;
 }
-.sub_header_message{
+.sub_header_message {
     padding-left: 6px;
 }
 .form_table .info {
@@ -324,7 +324,7 @@ input[type=text], input[type=password] {
     margin-left: auto;
     margin-right: auto;
 }
-.form_table.grande th label{
+.form_table.grande th label {
     margin-bottom: 6px;
 }
 .form_table.grande input[type=text], .form_table.grande input[type=password] {
@@ -349,7 +349,7 @@ a:hover {
 .underline {
     text-decoration: underline;
 }
-.no_left_margin{
+.no_left_margin {
     margin-left: 0px !important;
 }
 .no_top_margin {
@@ -358,20 +358,20 @@ a:hover {
 .no_bottom_margin {
     margin-bottom: 0px !important;
 }
-.no_top_padding{
+.no_top_padding {
     padding-top: 0px !important;
 }
-.no_top_border{
+.no_top_border {
     border-top: 0 !important;
 }
-.no_right_padding{
-    padding-right:0px;
+.no_right_padding {
+    padding-right: 0px;
 }
-.no_bottom_border{
+.no_bottom_border {
     border-bottom: 0 !important;
 }
-.vertical_align_top{
-    vertical-align:top !important;
+.vertical_align_top {
+    vertical-align: top !important;
 }
 .anchor {
     clear: both;
@@ -380,7 +380,7 @@ a:hover {
     margin-top: 30px;
     text-align: center;
 }
-#dialog_long_load_message{
+#dialog_long_load_message {
     margin-bottom: 10px;
     min-height: 17px;
 }
@@ -408,42 +408,42 @@ a:hover {
     text-shadow: #222 0 -1px 0;
     background-color: #B00;
 }
-.cke_skin_kama .cke_dialog_contents{
-    background:#FFF;
+.cke_skin_kama .cke_dialog_contents {
+    background: #FFF;
 }
-.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button{
-    background:none !important;
+.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
+    background: none !important;
 }
-.cke_skin_kama .cke_dialog_body{
-    padding:0.2em !important;
+.cke_skin_kama .cke_dialog_body {
+    padding: 0.2em !important;
 }
 #cke_33_uiElement, .cke_dialog_tabs, .cke_dialog_close_button .cke_label, .cke_skin_kama .cke_dialog_footer .cke_resizer, .cke_dialog_ui_button[title="Browse Server"]{
-    display:none !important;
+    display: none !important;
 }
-.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button{
-    display:inline !important;
-    background-image:url("/static/lib/jquery_ui_custom/css/ui-lightness/images/ui-icons_303030_256x240.png?b50dc31bccb2") !important;
+.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
+    display: inline !important;
+    background-image: url("/static/lib/jquery_ui_custom/css/ui-lightness/images/ui-icons_303030_256x240.png?b50dc31bccb2") !important;
     background-position:-94px -128px !important;
 }
-.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button{
-    top:10px !important;
+.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
+    top: 10px !important;
 }
-.cke_dialog_background_cover{
-    background:url("/static/lib/jquery_ui_custom/css/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png?b50dc31bccb2") repeat-x scroll 50% 50% #AAAAAA !important;
+.cke_dialog_background_cover {
+    background: url("/static/lib/jquery_ui_custom/css/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png?b50dc31bccb2") repeat-x scroll 50% 50% #AAAAAA !important;
     opacity: 0.3 !important;
 }
-.cke_skin_kama .cke_dialog_title{
-    padding:8px 10px !important;
+.cke_skin_kama .cke_dialog_title {
+    padding: 8px 10px !important;
 }
-.cke_dialog_contents{
-    margin-top:0px !important;
-    background:#FFF !important;
+.cke_dialog_contents {
+    margin-top: 0px !important;
+    background: #FFF !important;
 }
-.cke_dialog_contents{
-    height:50px !important;
-    padding:0px 10px !important;
+.cke_dialog_contents {
+    height: 50px !important;
+    padding: 0px 10px !important;
 }
-.cke_dialog_footer{
-    background:#FFF !important;
-    text-align:center !important;
+.cke_dialog_footer {
+    background: #FFF !important;
+    text-align: center !important;
 }
