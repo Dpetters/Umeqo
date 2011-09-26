@@ -106,15 +106,16 @@ $(document).ready( function() {
                                     $(selector).multiselect("refresh");
                                     $(selector).multiselect("widget").find(".ui-multiselect-optgroup-label").show();
                                     // Marks the new employer as selected on the actual select field, updates the widget, and then closes the dialog
-                                    if( $("#id_previous_employers").multiselect("widget").find("input:checked").length <= PREVIOUS_EMPLOYERS_MAX-1 ) {
-                                        $(".select_new_employer_link").click(function(e) {
-                                            $(selector).find('option[name="' + data.name + '"]').attr('selected', true);
-                                            $(selector).multiselect("refresh");
-                                            $(selector).multiselect("widget").find(".ui-multiselect-optgroup-label").show();
-                                            create_employer_dialog.remove();
-                                            e.preventDefault();
-                                        });
-                                    }
+                                    $(".select_new_employer_link").click(function(e) {
+                                        $(selector).find('option[name="' + data.name + '"]').attr('selected', true);
+                                        $(selector).multiselect("refresh");
+                                        $(selector).multiselect("widget").find(".ui-multiselect-optgroup-label").show();
+                                        create_employer_dialog.remove();
+                                        if (typeof(EVENT)!="undefined"){
+                                            display_attending_employer(data.name);
+                                        }
+                                        e.preventDefault();
+                                    });
                                 }
                             }
                         });
