@@ -213,39 +213,27 @@
   }
  }, 
  {
-  "pk": 1, 
+  "pk": 7, 
   "model": "events.attendee", 
   "fields": {
    "name": "Dmitrij Petters", 
-   "datetime_created": "2011-09-12 22:21:54", 
-   "email": "Dpetters91@gmail.com", 
-   "student": null, 
-   "won_raffle": false, 
-   "event": 8
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "John Fluck", 
-   "datetime_created": "2011-09-12 22:26:37", 
-   "email": "Dpetters91@gmail.com", 
-   "student": null, 
-   "won_raffle": false, 
+   "datetime_created": "2011-09-26 09:38:15", 
+   "email": "dpetters@mit.edu", 
+   "student": 19, 
+   "won_raffle": true, 
    "event": 7
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 8, 
   "model": "events.attendee", 
   "fields": {
-   "name": "test", 
-   "datetime_created": "2011-09-22 04:43:36", 
-   "email": "joshma@mit.edu", 
+   "name": "Dmitrij Petters", 
+   "datetime_created": "2011-09-26 09:38:21", 
+   "email": "Dpetters91@gmail.com", 
    "student": null, 
-   "won_raffle": false, 
-   "event": 10
+   "won_raffle": true, 
+   "event": 7
   }
  }, 
  {
@@ -436,6 +424,38 @@
    "last_updated": "2011-08-27 16:18:31", 
    "user": 9, 
    "employer": 5
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "delivered": true, 
+   "last_updated": "2011-09-26 09:30:45", 
+   "name": "potter@umeqo.com_2011-09-26-09-30-36", 
+   "students": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5
+   ], 
+   "recruiter": 1, 
+   "resume_book": "employer/resumebook/potter@umeqo.com_2011-09-26-09-30-37.pdf", 
+   "date_created": "2011-09-26 09:30:21"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "delivered": false, 
+   "last_updated": "2011-09-26 09:30:45", 
+   "name": null, 
+   "students": [], 
+   "recruiter": 1, 
+   "resume_book": "", 
+   "date_created": "2011-09-26 09:30:45"
   }
  }, 
  {
@@ -956,11 +976,11 @@
   }
  }, 
  {
-  "pk": 14, 
+  "pk": 19, 
   "model": "student.student", 
   "fields": {
    "last_name": "Petters", 
-   "last_updated": "2011-09-26 04:04:35", 
+   "last_updated": "2011-09-26 04:13:30", 
    "sat_m": null, 
    "graduation_month": "5", 
    "older_than_21": null, 
@@ -985,10 +1005,10 @@
    "website": null, 
    "second_major": null, 
    "resume": "", 
-   "user": 35, 
+   "user": 40, 
    "industries_of_interest": [], 
    "act": null, 
-   "date_created": "2011-09-26 04:09:14"
+   "date_created": "2011-09-26 09:33:50"
   }
  }, 
  {
@@ -1052,25 +1072,25 @@
   }
  }, 
  {
-  "pk": 14, 
+  "pk": 19, 
   "model": "student.studentpreferences", 
   "fields": {
    "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-09-26 04:09:14", 
+   "last_updated": "2011-09-26 09:33:50", 
    "email_on_invite_to_private_event": true, 
    "email_on_invite_to_public_event": true, 
-   "student": 14, 
-   "date_created": "2011-09-26 04:09:14"
+   "student": 19, 
+   "date_created": "2011-09-26 09:33:50"
   }
  }, 
  {
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 21, 
-   "last_updated": "2011-09-19 14:22:25", 
+   "shown_in_results_count": 22, 
+   "last_updated": "2011-09-26 09:30:24", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 4, 
+   "add_to_resumebook_count": 5, 
    "student": 1, 
    "raffles_won": 0, 
    "date_created": "2011-07-07 20:30:03"
@@ -1080,10 +1100,10 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 20, 
-   "last_updated": "2011-09-19 14:22:25", 
+   "shown_in_results_count": 21, 
+   "last_updated": "2011-09-26 09:30:25", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 3, 
+   "add_to_resumebook_count": 4, 
    "student": 2, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 15:25:30"
@@ -1093,10 +1113,10 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 20, 
-   "last_updated": "2011-09-19 14:22:25", 
+   "shown_in_results_count": 21, 
+   "last_updated": "2011-09-26 09:30:27", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 4, 
+   "add_to_resumebook_count": 5, 
    "student": 3, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 20:05:56"
@@ -1106,10 +1126,10 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 19, 
-   "last_updated": "2011-09-19 14:22:25", 
+   "shown_in_results_count": 20, 
+   "last_updated": "2011-09-26 09:30:29", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 3, 
+   "add_to_resumebook_count": 4, 
    "student": 4, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 20:26:02"
@@ -1119,26 +1139,26 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 19, 
-   "last_updated": "2011-09-19 14:22:25", 
+   "shown_in_results_count": 20, 
+   "last_updated": "2011-09-26 09:30:32", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 3, 
+   "add_to_resumebook_count": 4, 
    "student": 5, 
    "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
   }
  }, 
  {
-  "pk": 14, 
+  "pk": 19, 
   "model": "student.studentstatistics", 
   "fields": {
    "shown_in_results_count": 0, 
-   "last_updated": "2011-09-26 04:09:14", 
+   "last_updated": "2011-09-26 09:38:15", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
-   "student": 14, 
-   "raffles_won": 0, 
-   "date_created": "2011-09-26 04:09:14"
+   "student": 19, 
+   "raffles_won": 1, 
+   "date_created": "2011-09-26 09:33:50"
   }
  }, 
  {
@@ -1511,7 +1531,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-26 04:08:55", 
+   "last_login": "2011-09-26 09:33:22", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1547,7 +1567,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-20 19:28:49", 
+   "last_login": "2011-09-26 09:34:14", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
@@ -1736,7 +1756,7 @@
   }
  }, 
  {
-  "pk": 35, 
+  "pk": 40, 
   "model": "auth.user", 
   "fields": {
    "username": "dpetters@mit.edu", 
@@ -1745,12 +1765,12 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-26 04:09:14", 
+   "last_login": "2011-09-26 09:34:05", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$16997$cd2019cc2d06be69c3fcccd2b8be95d4da386a65", 
+   "password": "sha1$2e18b$ceae3cfe0722a1165180ea05cc294083ad7439c3", 
    "email": "dpetters@mit.edu", 
-   "date_joined": "2011-09-26 04:09:14"
+   "date_joined": "2011-09-26 09:33:50"
   }
  }, 
  {
@@ -1862,11 +1882,11 @@
   }
  }, 
  {
-  "pk": 34, 
+  "pk": 39, 
   "model": "registration.userattributes", 
   "fields": {
    "is_verified": false, 
-   "user": 35, 
+   "user": 40, 
    "last_password_change_date": null
   }
  }, 
@@ -4231,11 +4251,21 @@
   }
  }, 
  {
-  "pk": 9, 
+  "pk": 399, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-26 09:30:18", 
+   "session_key": "33ac70c15008b1371e00a365cbdb23cb", 
+   "last_updated": "2011-09-26 09:30:18", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 14, 
   "model": "registration.registrationprofile", 
   "fields": {
-   "activation_key": "79bca4c6cae5dfc0696f831c602b2f58ee5ea37f", 
-   "user": 35
+   "activation_key": "ALREADY_ACTIVATED", 
+   "user": 40
   }
  }
 ]
