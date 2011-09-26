@@ -10,13 +10,14 @@
     {% load core_extras %}
     <blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
     <p>
-        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0 auto 30px;padding:6px 15px;text-decoration:none" target="_blank">
+        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
         RSVP Attending
         </a>
-        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=false" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0 auto 30px;padding:6px 15px;text-decoration:none" target="_blank">
+        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=false" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
         RSVP Not Attending
         </a>
-        <br>
+    </p>
+    <p>
         You can see the details of the event here: http://{{current_site.domain}}{{ event.get_absolute_url }}
     </p>
     <br>
