@@ -17,7 +17,7 @@
   <meta property="mitumeqo:where:latitude"  content="{{ event.latitude }}">
   <meta property="mitumeqo:where:longitude" content="{{ event.longitude }}">
   <meta property="mitumeqo:where:altitude"  content="3.1415926535"> 
-  <meta property="mitumeqo:when"            content="{{ event.start_datetime|date:"c" }}">
+  <meta property="mitumeqo:when"            content="{% if event.start_datetime %}{{ event.start_datetime|date:"c" }}{% else %}{{ event.end_datetime|date:"c" }}{% endif %}">
 {% endblock %}
 
 {% block metadata %}
