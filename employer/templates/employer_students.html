@@ -10,6 +10,8 @@ Student Filtering |
 {% block metadata %}
 {{block.super}}
 {% load compress %}
+{% load text_snippet %}
+
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_students.css" />
@@ -40,7 +42,9 @@ Student Filtering |
     {% endif %}
     
     var STATIC_URL = "{{STATIC_URL}}";
-
+    
+    var RESUME_BOOK_CAPACITY = "{{resume_book_capacity}}";
+    
     var NO_STUDENTS_SELECTED_MESSAGE = "{{ page_messages.NO_STUDENTS_SELECTED_MESSAGE }}";
     var WAIT_UNTIL_RESUME_BOOK_IS_READY_MESSAGE = "{{ page_messages.wait_until_resume_book_is_ready }}";
     var ADDED = "{{ added }}";
@@ -49,6 +53,7 @@ Student Filtering |
     var STARRED = "{{ starred }}";
     var UNSTARRED = "{{ unstarred }}";
     
+    var RESUME_BOOK_CAPACITY = "{{resume_book_capacity}}";
     var REMOVE_FROM_RESUME_BOOK_IMG = "{% student_resume_book 'True' %}";
     var ADD_TO_RESUME_BOOK_IMG = "{% student_resume_book '' %}";
     
@@ -74,7 +79,7 @@ Student Filtering |
     var STUDENTS_REMOVE_STAR_URL = "{% url employer_students_remove_star %}";
     var RESUME_BOOK_CURRENT_REMOVE_STUDENTS_URL = "{% url employer_resume_book_current_remove_students %}";
     var RESUME_BOOK_CURRENT_ADD_STUDENTS_URL = "{% url employer_resume_book_current_add_students %}";
-    var RESUME_BOOK_CURRENT_TOGGLE_STUDENT_URL = "{% url employer_resume_book_current_toggle_student %}";
+    var RESUME_BOOK_CURRENT_STUDENT_TOGGLE_URL = "{% url employer_resume_book_current_toggle_student %}";
     var RESUME_BOOK_CURRENT_SUMMARY_URL = "{% url employer_resume_book_current_summary %}";
     var RESUME_BOOK_CURRENT_CREATE_URL = "{% url employer_resume_book_current_create %}";
     var RESUME_BOOK_CURRENT_DELIVER_URL = "{% url employer_resume_book_current_deliver %}";
@@ -83,6 +88,9 @@ Student Filtering |
     var RESUME_BOOK_CURRENT_DELIVERED_URL = "{% url employer_resume_book_current_delivered %}";
     var STUDENT_INCREMENT_RESUME_VIEW_COUNT_URL = "{% url student_increment_resume_view_count %}";
     var EVENT_NEW_URL = "{% url event_new %}";
+    
+    var RESUME_BOOK_CAPACITY_REACHED = "{% text_snippet 'resume_book_capacity_reached' %}";
+    var STUDENT_LIST_REQUIRES_SUBSCRIPTION  = "{% text_snippet 'student_list_requires_subscription' %}"
 </script>
 {% endblock %}
 
@@ -214,14 +222,11 @@ Student Filtering |
     <div id="resume_book_block" class="side_block">
         <div class="side_block_header">
             <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
-            <span class="side_block_header_title">Create Resume Book</span>    
+            <span class="side_block_header_title">Current Resume Book</span>    
         </div>
         <div class="side_block_content clearfix">
-            <div id="students_in_resume_book_student_list_link_section">
-                <strong>Currently Included: </strong><span id="students_in_resume_book_student_list_link"></span>                
-                <img id='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
-            </div>
-            <input class="student_deliver_resume_book_link dark_button" data-resume-book-id="" disabled="disabled" type="button" value="Deliver">
+            <span id="current_resume_book_contents_section"></span>
+            <input class="deliver_resume_book_link dark_button" data-resume-book-id="" disabled="disabled" type="button" value="Deliver">
         </div>
     </div>
 </div>

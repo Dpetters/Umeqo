@@ -45,15 +45,14 @@ class RegistrationManager(models.Manager):
                 return False
             if not profile.activation_key_expired():
                 user = profile.user
-                user.is_active = True
-                user.save()
+                user.userattributes.is_verified = True
+                user.userattributes.save()
                 profile.activation_key = self.model.ACTIVATED
                 profile.save()
                 return user
         return False
     
-    def create_inactive_user(self, username, email, password,
-                             site, send_email=True):
+    def create_inactive_user(self, username, email, first_name, last_name, password, site, send_email=True):
         """
         Create a new, inactive ``User``, generate a
         ``RegistrationProfile`` and email its activation key to the
@@ -63,16 +62,22 @@ class RegistrationManager(models.Manager):
         user. To disable this, pass ``send_email=False``.
         
         """
-        new_user = User.objects.create_user(username, email, password)
-        new_user.is_active = False
-        new_user.save()
 
-        registration_profile = self.create_profile(new_user)
+        try:
+            user = User.objects.get(email=email)
+            registration_profile = user.registrationprofile_set.all()[0]
+        except User.DoesNotExist:
+            user = User.objects.create_user(username, email, password)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.is_active = True
+            user.save()
+            registration_profile = self.create_profile(user)
 
         if send_email:
-            registration_profile.send_activation_email(site)
+            registration_profile.send_activation_email(site, first_name=first_name, last_name=last_name)
 
-        return new_user
+        return user
     create_inactive_user = transaction.commit_on_success(create_inactive_user)
 
     def create_profile(self, user):
@@ -87,8 +92,7 @@ class RegistrationManager(models.Manager):
         """
         salt = sha_constructor(str(random.random())).hexdigest()[:5]
         activation_key = sha_constructor(salt+user.username).hexdigest()
-        return self.create(user=user,
-                           activation_key=activation_key)
+        return self.create(user=user, activation_key=activation_key)
         
     def delete_expired_users(self):
         """

@@ -1,10 +1,25 @@
-<p>Hi {% if name %}{{name}}{% else %}there{% endif %},</p>
+{% extends "email_base.html" %}
 
-<p>{{recruiter.first_name}} {{recruiter.last_name}} ({{recruiter.email}}), a recruiter from {{employer}}, has sent you an exclusive invite to a private event - "{{event}}":</p>
+{% block email_body %}
+    <h2 style="margin-top:0">Private Event Invite</h2>
+    
+    <p>Hey {{name}},</p>
+        
+    <p>{{recruiter.first_name}} {{recruiter.last_name}} ({{recruiter.email}}), a recruiter from {{employer}}, has sent you an exclusive invite to a private event - "{{event}}":</p>
 
-{% load core_extras %}
-<blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
-
-<p>Check out the event details and respond to the invitation by clicking <a href="http://{{current_site.domain}}{{permalink}}">here</a>.</p>
-
-<p>- The Umeqo Team</p>
+    {% load core_extras %}
+    <blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
+    <p>
+        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
+        RSVP Attending
+        </a>
+        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=false" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
+        RSVP Not Attending
+        </a>
+    </p>
+    <p>
+        You can see the details of the event here: http://{{current_site.domain}}{{ event.get_absolute_url }}
+    </p>
+    <br>
+    <small>Change your notification settings at any time <a href="http://{{current_site.domain}}/student/account/?tab=preferences">here</a>.</small>
+{% endblock %}

@@ -1,6 +1,16 @@
-<p>Thank you for signing up for Umeqo!</p>
+{% extends "email_base.html" %}
 
-<p>Activate your account by visiting this link:</p>
-<p>http://{{site}}/activation/{{activation_key}}/</p>
+{% block email_body %}
+    <h2 style="margin-top:0">Activate Account</h2>
+    
+    <p>Hey {{first_name}},</p>
+        
+    <p>Your Umeqo account is ready. All we need to to do is make sure that this is your email address.</p>
 
-<p>- The Umeqo Team</p>
+    <p>
+        <a href="http://{{site}}/activation/{{activation_key}}/" style="border-radius:3px;background:#41B554;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
+        Click here to verify your email address
+        </a>
+    </p>
+    <p>If you did not register for Umeqo, you can simply ignore this email.</p>
+{% endblock %}

@@ -299,3 +299,6 @@ div.attending_employer{
 #attending_employers .ef-logo{
     max-width:139px;
 }
+#create_employer_span{
+    margin-left:5px;
+}

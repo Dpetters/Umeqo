@@ -23,6 +23,7 @@ from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
 from core.decorators import is_student, render_to, is_recruiter
 from core.forms import CreateLanguageForm
+from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
 from core.models import Language, EmploymentType, Industry
 from events.models import Attendee
@@ -187,16 +188,17 @@ def student_registration(request, backend = RegistrationBackend(),
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
             new_user = backend.register(request, **form.cleaned_data)
-            if form.cleaned_data.has_key("first_name") and form.cleaned_data.has_key("last_name"):
-                student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
-            else:
-                student = Student(user=new_user)
-            umeqo = Employer.objects.get(name="Umeqo")
-            student.save()
-            if form.cleaned_data.has_key("course"):
-                student.first_major=form.cleaned_data["course"]
-            student.subscriptions.add(umeqo)
-            student.save()
+            if not Student.objects.filter(user=new_user).exists():
+                if form.cleaned_data.has_key("first_name") and form.cleaned_data.has_key("last_name"):
+                    student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
+                else:
+                    student = Student(user=new_user)
+                umeqo = Employer.objects.get(name="Umeqo")
+                student.save()
+                if form.cleaned_data.has_key("course"):
+                    student.first_major=form.cleaned_data["course"]
+                student.subscriptions.add(umeqo)
+                student.save()
             if s.INVITE_ONLY:
                 i=StudentInvite.objects.get(code=form.cleaned_data['invite_code'])
                 i.recipient = student
@@ -272,7 +274,8 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
                     'campus_involvement_max': s.SP_MAX_CAMPUS_INVOLVEMENT,
                     'languages_max':s.SP_MAX_LANGUAGES,
                     'countries_of_citizenship_max':s.SP_MAX_COUNTRIES_OF_CITIZENSHIP,
-                    'previous_employers_max':s.SP_MAX_PREVIOUS_EMPLOYERS}
+                    'previous_employers_max':s.SP_MAX_PREVIOUS_EMPLOYERS,
+                    'max_industries':s.EP_MAX_INDUSTRIES}
         context.update(extra_context or {})
         return context
 
@@ -372,28 +375,25 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
                 new_campus_org = form.save()
                 recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
                 subject = "New Campus Org: %s" % (new_campus_org) 
-                body = render_to_string('student_new_campus_org_email_body.txt', \
+                body = render_to_string('new_campus_org_email_body.html', \
                                         {'first_name':request.user.student.first_name, \
                                         'last_name':request.user.student.last_name, \
                                         'email':request.user.email, \
                                         'new_campus_org':new_campus_org})
-                message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
-                message.send()
-                data = {"valid":True,
-                        "type": new_campus_org.type.name,
+                send_html_mail(subject, body, recipients)
+                data = {"type": new_campus_org.type.name,
                         "name": new_campus_org.name,
                         "id": new_campus_org.id}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                data = {'valid':False, 'errors': form.errors }
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                data = {'errors': form.errors }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             form = form_class()
         context =  {'form': form }
         context.update(extra_context or {}) 
         return context
     else:
-        return HttpResponseForbidden("You must be logged in.")        
+        return HttpResponseForbidden("You must be logged in.")
 
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
@@ -407,23 +407,19 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
                 fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
                 recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
                 subject = "New Language: %s" % (new_language_name) 
-                body = render_to_string('student_new_language_email_body.txt', \
+                body = render_to_string('new_language_email_body.html', \
                                         {'first_name':request.user.student.first_name, \
                                         'last_name':request.user.student.last_name, \
                                         'email':request.user.email, \
                                         'new_language':new_language_name})
-                message = EmailMessage(subject, body, s.DEFAULT_FROM_EMAIL, recipients)
-                message.send()
-                data = {"valid":True, 
-                        "name":new_language_name, 
+                send_html_mail(subject, body, recipients)
+                data = {"name":new_language_name, 
                         "fluent_id":fluent.id, 
                         "proficient_id":proficient.id, 
                         "basic_id":basic.id}  
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
-                data = {'valid':False}
-                data['errors'] = form.errors
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                data = {'errors':form.errors}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             form = form_class()
             

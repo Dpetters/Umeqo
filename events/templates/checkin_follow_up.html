@@ -1,15 +1,17 @@
-<p>{% if name %}Dear {{name}}{% else %}Hi there{% endif %},</p>
+{% extends "email_base.html" %}
 
-<p>Thank you for checking into the <em>"{{event}}"</em> event!</p>
-
-<p>Please be aware that until you <a href="http://{{current_site.domain}}{% url student_registration %}">register</a>, {% if campus_org_event %}the employers that attended the event{% else %}{{event.owner.recruiter.employer}}{% endif %} will only be able to see your name and email. Nothing else.</p>
-
-<p>If you sign up for a Umeqo account, {% if campus_org_event %}they{% else %}{{event.owner.recruiter.employer}}{% endif %} will not only be able to access your resume and profile details, but also add you to custom resume books, star you, and invite you to future events!</p>
+{% block email_body %}
+    <h2 style="margin-top:0">Event Check-In Follow-Up</h2>
     
-<p>You, on the other hand, will be able to subscribe to the employers you are interested in to receive new event/deadline notifications, among other things.<p>
+    <p>Hi {{name}},</p>
+        
+    <p>Thank you for checking into the <em>"{{event}}"</em> event! Please be aware that until you <a href="http://{{current_site.domain}}{% url student_registration %}">register</a>, {% if campus_org_event %}the employers that attended the event{% else %}{{event.owner.recruiter.employer}}{% endif %} will only be able to see your name and email. Nothing else.</p>
 
-<p>You can register at any time by visiting <a href="http://{{current_site.domain}}{% url student_registration %}">the registration page</a>.</p>
-
-<p>Happy Recruiting!</p>
-
-<p> - The Umeqo Team</p>
+    <p>If you sign up for a Umeqo account, {% if campus_org_event %}they{% else %}{{event.owner.recruiter.employer}}{% endif %} will not only be able to view your resume and profile details, but also add you to custom resume books and invite you to future events! You, on the other hand, will be able to subscribe to the employers you are interested in to receive new event/deadline notifications, among other things.</p>
+    <p style="margin-top:15px;">
+        <a href="http://{{current_site.domain}}{% url student_registration %}" style="border-radius:3px;background:#41B554;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
+        Register for Umeqo
+        </a>
+    </p>
+    <p>You can also use this link to register: http://{{current_site.domain}}{% url student_registration %}</p>
+{% endblock %}

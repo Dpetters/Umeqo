@@ -118,8 +118,7 @@ def password_change(request, password_change_form=PasswordChangeForm, extra_cont
     else:
         data = {'valid':False, 'errors':form.errors}
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
-
+    
 @render_to('invalid_activation_link.html')
 def activate_user(request, backend = RegistrationBackend(), success_url=None, extra_context=None, **context):
     user = backend.activate(request, **context)

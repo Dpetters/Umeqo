@@ -1,1 +1,9 @@
-See Attached
+{% extends "email_base.html" %}
+
+{% block email_body %}
+    <h2 style="margin-top:0">Event List Export</h2>
+    
+    <p>Hi {{name}},</p>
+        
+    <p>The event list you requested is attached.</p>
+{% endblock %}

@@ -6,6 +6,7 @@
 
 {% block metadata %}
 {{ block.super }}
+{% load text_snippet %}
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
@@ -14,8 +15,14 @@
     var MEDIUM_AJAX_LOADER = "{% include 'medium_ajax_loader.html' %}";
     
     {% if user.campusorg %}
+        var EVENT = true
         var CAMPUS_ORG_EVENT = true;
         var EMPLOYER_DETAILS_URL = "{% url employer %}";
+        var EMPLOYER_NEW_URL = "{% url employer_new %}";
+        var CHECK_EMPLOYER_UNIQUENESS_URL = "{% url check_employer_uniqueness %}";
+        var EMPLOYER_ALREADY_EXISTS = "{% text_snippet 'employer_already_exists' %}";
+        var MAX_INDUSTRIES = "{{max_industries}}";
+        var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
     {% else %}
         var CAMPUS_ORG_EVENT = false;
     {% endif %}
@@ -37,6 +44,7 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 {% if user.campusorg %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 {% endif %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_form.css" />
@@ -44,6 +52,7 @@
 {% compress js %}
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 {% if user.campusorg %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_new.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 {% endif %}
 <script src="{{ STATIC_URL }}js/events/event_form.js"></script>
@@ -155,6 +164,7 @@
             <div class="errorspace">{{form.attending_employers.errors}}</div>
             <br>
             {{form.attending_employers}}
+            <span id="create_employer_span">Don't see the employer you need? <a href="#" class="create_employer_link">Create it!</a></span>
             <div id="attending_employers">
             {% if edit %}
                 {% for employer in attending_employers.all %}

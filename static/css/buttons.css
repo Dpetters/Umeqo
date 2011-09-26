@@ -217,8 +217,8 @@ input.button {
     background: linear-gradient(top, #f9f9f9 0%,#e3e3e3 100%); /* W3C */
     cursor: pointer;
     padding: 0px 5px;
-    height: 23px;
-    line-height: 23px;
+    height:24px;
+    line-height: 25px;
     display: inline-block;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -227,12 +227,19 @@ input.button {
     margin-left: 1px;
     font-weight: bold;
 }
+.menu_button.disabled, .dropdown_menu_button.disabled{
+    color: #AAA;
+    cursor:default;
+}
 .dropdown_menu_button {
     font-weight: normal;
     position: relative;
 }
 .menu_button:hover, .dropdown_menu_button:hover {
     border: 1px solid #888;
+}
+.menu_button.disabled:hover, .dropdown_menu_button.disabled:hover{
+    border: 1px solid #BBBBBB;
 }
 .menu_button.um-active {
     background: #E3E3E3;
@@ -253,6 +260,7 @@ input.button {
     list-style: none;
     padding: 2px;
     background: #FFF;
+    text-align:left;
     min-width: 100px;
     display: block;
     position: absolute;

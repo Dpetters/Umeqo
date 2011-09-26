@@ -24,7 +24,7 @@ $(document).ready(function() {
         var marker = new google.maps.Marker({ map: map }); 
         marker.setPosition(location);
     }
-
+    
     function rsvp(isAttending) {
         $.post($(this).attr('href'), {
             isAttending: isAttending
@@ -99,6 +99,9 @@ $(document).ready(function() {
         });
         e.preventDefault();
     });
+    if (get_parameter_by_name("rsvp")=="true"){
+        $("#rsvp-yes-button").click();
+    }
     $('#rsvp-no-button').live('click', function(e) {
         var disabled = $(this).attr('disabled');
         if ($(this).hasClass('selected') || typeof disabled !== 'undefined' && disabled !== false) {
@@ -113,6 +116,9 @@ $(document).ready(function() {
         }
         e.preventDefault();
     });
+    if (get_parameter_by_name("rsvp")=="false"){
+        $("#rsvp-no-button").click();
+    }
     $('#remove-rsvp-button').live('click', function(e) {
         $.post($(this).attr('href'), function(data) {
             if (typeof data.valid != 'undefined' && data.valid == true) {
@@ -270,7 +276,7 @@ $(document).ready(function() {
 
                 newLi.effect('highlight', {}, 3000);
                 $('#name_input').val('');
-                $('#email_input').val('').focus();
+                $('#email_input').val('').focus().trigger('mouseup');
                 $.ajax({
                     url: EVENT_CHECKIN_COUNT_URL,
                     dataType: "json",
@@ -392,5 +398,19 @@ $(document).ready(function() {
                 this.focus();
             }
         }
+    });
+    $("#get_raffle_winner_link").live('click', function(){
+        $.ajax({
+            data:{'event_id':EVENT_ID},
+            url:EVENT_RAFFLE_WINNER_URL,
+            success: function(data) {
+                if(data.name){
+                    alert(data.name);
+                }else{
+                    alert("You ran out of attendees!");
+                }
+            },
+            error: errors_in_message_area_handler
+        });
     });
 });

@@ -17,6 +17,9 @@ ACCOUNT_ACTIVATION_DAYS = 99999
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4
 
+# Max number of students allowed in any one resume book.
+RESUME_BOOK_CAPACITY = 50
+
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
 SP_MAX_CAMPUS_INVOLVEMENT = 12;
