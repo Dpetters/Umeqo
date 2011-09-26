@@ -250,6 +250,7 @@
 }
 #invite_text {
     width: 380px;
+    height: 80px;
     display: block;
     margin: 0 auto;
 }

@@ -166,7 +166,7 @@ $(document).ready(function() {
                             $('#event_checkin_main').removeClass('hid').animate({
                                 opacity: 1.0
                             });
-                            $('body').addClass('overflowHidden');
+                            $('html').addClass('overflowHidden');
                         },
                         error: errors_in_message_area_handler
                     });
@@ -317,16 +317,6 @@ $(document).ready(function() {
             }
         }
     );
-    $('#close_button').click(function(e) {
-        $('#event_checkin_main').addClass('hid').animate({
-            opacity: 0
-        });
-        $('body').removeClass('overflowHidden');
-        $('#event_checkin_link').children('.filler').eq(0).animate({
-            height: '0%'
-        });
-        $('#event_checkin_link').removeClass('filled');
-    });
     
     $('#event_tabs h2').each(function(i) {
         $(this).click(function() {
@@ -336,6 +326,15 @@ $(document).ready(function() {
             $(this).addClass('current');
         });
     });
+
+    if (window.location.hash == '#checkin') {
+        var i = 1;
+        $('.responses').addClass('hid');
+        $('.responses').eq(i).removeClass('hid');
+        $('.current').removeClass('current');
+        $('#event_tabs h2').eq(i).addClass('current');
+    }
+    
 
     $('#event_resume_drop').live('click', function(e) {
         var disabled = $(this).attr('disabled');
