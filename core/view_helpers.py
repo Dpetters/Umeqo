@@ -11,15 +11,11 @@ def employer_campus_org_slug_exists(slug, campusorg=None, employer=None):
             return False
         return True
     except CampusOrg.DoesNotExist:
-        print "here"
         pass
-    print slug
     try:
         existing_employer = Employer.objects.get(slug=slug)
-        print existing_employer
         if existing_employer==employer:
             return False
-        print existing_employer
         return True
     except Employer.DoesNotExist:
         pass

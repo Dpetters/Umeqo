@@ -69,7 +69,6 @@ class RegistrationBackend(object):
         class of this backend as the sender.
 
         """
-        print kwargs
         username, first_name, last_name,  email, password = kwargs['username'], kwargs['first_name'], kwargs['last_name'], kwargs['email'], kwargs['password1']
 
         if Site._meta.installed:
