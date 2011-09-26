@@ -497,6 +497,28 @@
   }
  }, 
  {
+  "pk": 79, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    18
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-26 15:03:53", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-26 14:49:04", 
+   "logo": "employer/employer/diagnostics for all_2011-09-26-15-03-53.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Diagnostics for ALL"
+  }
+ }, 
+ {
   "pk": 48, 
   "model": "employer.employer", 
   "fields": {
@@ -1211,6 +1233,28 @@
   }
  }, 
  {
+  "pk": 78, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    12
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-26 15:08:25", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-26 14:48:05", 
+   "logo": "employer/employer/selco india_2011-09-26-15-08-25.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "SELCO India"
+  }
+ }, 
+ {
   "pk": 68, 
   "model": "employer.employer", 
   "fields": {
@@ -1484,6 +1528,28 @@
    "careers_website": "", 
    "slug": "vecna", 
    "name": "Vecna"
+  }
+ }, 
+ {
+  "pk": 77, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    15
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-26 15:05:11", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-26 14:47:34", 
+   "logo": "employer/employer/venture for america_2011-09-26-15-05-11.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Venture For America"
   }
  }, 
  {
