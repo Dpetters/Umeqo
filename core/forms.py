@@ -43,6 +43,8 @@ class EmailAuthenticationForm(AuthenticationForm):
                 return forms.ValidationError(m.staff_member_login_not_allowed)
             if not self.user_cache.userattributes.is_verified and not self.user_cache.is_active:
                 raise forms.ValidationError(m.account_suspended)
+            if not self.user_cache.userattributes.is_verified and self.user_cache.is_active:
+                raise forms.ValidationError(m.not_activated)
             if not self.user_cache.is_active:
                 self.user_cache.is_active = True
                 self.user_cache.save()

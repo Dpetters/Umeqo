@@ -314,9 +314,7 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
             'message': messages['short.txt'],
         }, context).splitlines())
 
-        body = render_to_string('notification/email_body.html', {
-            'message': messages['email.html'],
-        }, context)
+        body = messages['email.html']
         
         Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
             notice_type=notice_type, on_site=on_site, sender=sender)
