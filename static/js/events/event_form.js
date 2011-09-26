@@ -332,8 +332,9 @@ $(document).ready(function() {
     $('#id_type').change();
 
     $("#event_form").submit(function() {
-        for (instance in CKEDITOR.instances)
+        for (instance in CKEDITOR.instances) {
             CKEDITOR.instances[instance].updateElement();
+        }
         if (marker && marker.map) {
             $("#id_latitude").val(marker.position.lat());
             $("#id_longitude").val(marker.position.lng());
@@ -357,7 +358,7 @@ $(document).ready(function() {
     });
 
     if (CAMPUS_ORG_EVENT){
-        $("#id_attending_employers").multiselect({
+        $('#id_attending_employers').multiselect({
             noneSelectedText: 'select employers',
             classes: 'attending_employers_multiselect',
             minWidth: 310,
@@ -373,6 +374,11 @@ $(document).ready(function() {
                 $("#attending_employers").html("");
             }
         }).multiselectfilter();
+        for (instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].on('focus', function() {
+                $('#id_attending_employers').multiselect('close');
+            });
+        }
     }
     
     $('.datefield').datepicker({

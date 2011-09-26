@@ -285,7 +285,6 @@ input[type=text], input[type=password] {
 }
 .button_wrapper_with_margins {
     margin-top: 20px;
-    text-align: center;
 }
 .back_to_link {
     float: right;
