@@ -11,6 +11,7 @@ from registration.models import InterestedPerson
 from core import messages as m
 from core.email import send_html_mail
 from core.models import Language
+from core.decorators import is_student
 from core.form_helpers import decorate_bound_field
 from employer.models import Recruiter
 
@@ -43,7 +44,8 @@ class EmailAuthenticationForm(AuthenticationForm):
                 return forms.ValidationError(m.staff_member_login_not_allowed)
             if not self.user_cache.userattributes.is_verified and not self.user_cache.is_active:
                 raise forms.ValidationError(m.account_suspended)
-            if not self.user_cache.userattributes.is_verified and self.user_cache.is_active:
+            # We only care about verified if the user is a student
+            if is_student(self.user_cache) and not self.user_cache.userattributes.is_verified and self.user_cache.is_active:
                 raise forms.ValidationError(m.not_activated)
             if not self.user_cache.is_active:
                 self.user_cache.is_active = True
