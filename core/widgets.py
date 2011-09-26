@@ -29,7 +29,6 @@ class ImprovedSplitDateTimeWidget(forms.MultiWidget):
 
 class UmSelectWidget(forms.Select):
     def render_option(self, selected_choices, option_value, option_label, extra=""):
-        print extra
         option_value = force_unicode(option_value)
         selected_html = (option_value in selected_choices) and u' selected="selected"' or ''
         return u'<option value="%s"%s %s>%s</option>' % (
