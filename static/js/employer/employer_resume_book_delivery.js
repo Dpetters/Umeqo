@@ -15,6 +15,12 @@ function open_deliver_resume_book_dialog() {
     return $dialog;
 };
 
+function post_delivery_cleanup(){
+    if(typeof(update_resume_book_contents_summary)!="undefined"){
+        update_resume_book_contents_summary();
+        $(".resume_book_current_toggle_student").html(ADD_TO_RESUME_BOOK_IMG);
+    }
+}
 
 function handle_deliver_resume_book_link_click() {
     deliver_resume_book_dialog = open_deliver_resume_book_dialog();
@@ -98,6 +104,7 @@ function handle_deliver_resume_book_link_click() {
                                 },
                                 success: function(data) {
                                     deliver_resume_book_dialog.html(data);
+                                    post_delivery_cleanup();
                                 }
                             });
                         } else {
@@ -122,12 +129,8 @@ function handle_deliver_resume_book_link_click() {
                                         deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
                                     }
                                 });
+                                post_delivery_cleanup();
                             }, 1000);
-                        }
-                        if(typeof(ADD_TO_RESUME_BOOK_IMG)!="undefined"){
-                            $(".resume_book_current_toggle_student").html(ADD_TO_RESUME_BOOK_IMG);
-                            $("#students_in_resume_book_num").text("0")
-                            $(".student_deliver_resume_book_link").attr("disabled", "disabled");
                         }
                     } else {
                         $("#deliver_resume_book_form .error_section").html("Please wait until the resume book is ready.");
@@ -165,5 +168,5 @@ function handle_deliver_resume_book_link_click() {
     });
 };
 $(document).ready(function(){
-    $('.student_deliver_resume_book_link').click(handle_deliver_resume_book_link_click);
+    $('.deliver_resume_book_link').click(handle_deliver_resume_book_link_click);
 });

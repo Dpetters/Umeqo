@@ -22,6 +22,30 @@ from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
 
+class CreateEmployerForm(forms.ModelForm):
+    name = forms.CharField(label="Name:", max_length=42)
+    industries = forms.ModelMultipleChoiceField(label="Industries:", queryset = Industry.objects.all())
+    
+    class Meta:
+        fields = ('name',
+                  'industries')
+        model = Employer
+    
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        try:
+            Employer.objects.get(name=name)
+            raise forms.ValidationError("Employer with the name %s already exists." % (name))
+        except Employer.DoesNotExist:
+            pass
+        return self.cleaned_data['name']
+
+    def clean_industries(self):
+        industries = self.cleaned_data['industries']
+        if len(industries) > s.EP_MAX_INDUSTRIES:
+            raise forms.ValidationError("An employer cannot be in more than 5 industries")
+        return self.cleaned_data['industries']
+            
 class RecruiterForm(forms.ModelForm):
     email = forms.EmailField(label="Username:", max_length = 75)
     first_name = forms.CharField(label="First Name:", max_length=42, required=True)

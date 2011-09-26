@@ -42,12 +42,12 @@
             {% for resume_book in resume_books %}
                 <li>
                     <div class="right_side_container">
-                        <a class="dark_button student_deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
+                        <a class="dark_button deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
                         <a class="delete_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Delete</a>
                     </div>
                     <div class="details">
                         <h2 class="resume_book_name">{{ resume_book.name }}</h2>
-                        <p><strong>Last Delivery Date/Time:</strong> {{resume_book.last_updated|date:"D, F j"}}, {{resume_book.date_created|date:"Y"}} <em>{{resume_book.date_created|date:"h:i A"}}</em></p>
+                        <p><strong>Last Delivery Date/Time:</strong> {{resume_book.last_updated|date:"D, F j"}}, {{resume_book.last_updated|date:"Y"}} <em>{{resume_book.last_updated|date:"h:i A"}}</em></p>
                         <p><strong>Size:</strong> <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscription_list %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.all|length}} students</a></p>
                     </div>
                 </li>

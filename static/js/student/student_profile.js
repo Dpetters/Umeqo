@@ -275,11 +275,11 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
-            $("#id_industries_of_interest").change();
             if( $(this).multiselect("widget").find("input:checked").length > INDUSTRIES_OF_INTEREST_MAX ) {
                 place_multiselect_warning_table($("#id_industries_of_interest"), MAX_INDUSTRIES_OF_INTEREST_EXCEEDED);
                 return false;
             }
+            $("#id_industries_of_interest").change();
         },
         uncheckAll: function(){
             $("#id_industries_of_interest").trigger("change");
@@ -297,11 +297,11 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
-            $("#id_previous_employers").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > PREVIOUS_EMPLOYERS_MAX ) {
                 place_multiselect_warning_table($("#id_previous_employers"), MAX_PREVIOUS_EMPLOYERS_EXCEEDED);
                 return false;
             }
+            $("#id_previous_employers").trigger("change");
         },
         uncheckAll: function(){
             $("#id_previous_employers").trigger("change");
@@ -326,11 +326,11 @@ $(document).ready( function() {
         },
         click: function(e, ui) {
             $(".warning").remove();
-            $("#id_campus_involvement").trigger("change");
             if( ui.checked && $(this).multiselect("widget").find("input:checked").length > CAMPUS_INVOLVEMENT_MAX ) {
                 place_multiselect_warning_table($("#id_campus_involvement"), MAX_CAMPUS_INVOLVEMENT_EXCEEDED);
                 return false;
             }
+            $("#id_campus_involvement").trigger("change");
         },
         uncheckAll: function(){
             $("#id_campus_involvement").trigger("change");
@@ -348,7 +348,6 @@ $(document).ready( function() {
         },
         click: function(event, ui) {
             $(".warning").remove();
-            $("#id_languages").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > LANGUAGES_MAX ) {
                 place_multiselect_warning_table($("#id_languages"), MAX_LANGUAGES_EXCEEDED);
                 return false;
@@ -361,6 +360,7 @@ $(document).ready( function() {
                    place_table_form_field_error($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>" + ONE_LANGUAGE_DIFFICULTY + "</label>"), $("#id_languages"));
                    return false;
                }
+             $("#id_languages").trigger("change");
         },
         uncheckAll: function(){
             $("#id_languages").trigger("change");
@@ -379,11 +379,11 @@ $(document).ready( function() {
         },
         click: function(e) {
             $(".warning").remove();
-            $("#id_countries_of_citizenship").trigger("change");
             if( $(this).multiselect("widget").find("input:checked").length > COUNTRIES_OF_CITIZENSHIP_MAX ) {
-                place_multiselect_warning_table($("#id_countries_of_citizenship"), COUNTRIES_OF_CITIZENSHIP_MAX);
+                place_multiselect_warning_table($("#id_countries_of_citizenship"), MAX_COUNTRIES_OF_CITIZENSHIP_EXCEEDED);
                 return false;
             }
+            $("#id_countries_of_citizenship").trigger("change");
         },
         uncheckAll: function(){
             $("#id_countries_of_citizenship").trigger("change");

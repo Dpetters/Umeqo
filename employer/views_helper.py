@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.core.cache import cache
+from django.http import Http404
 
 from haystack.query import SearchQuerySet
 from student.models import Student
@@ -201,7 +202,10 @@ def filter_students(recruiter,
     else:
         parts = student_list.split(" ")
         if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Drop" and parts[-2] == "Resume":
-            e = Event.objects.get(id = student_list_id)
+            try:
+                e = Event.objects.get(id = student_list_id)
+            except:
+                raise Http404
             if parts[-1] == "RSVPs":
                 students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
             elif parts[-1] == "Attendees":

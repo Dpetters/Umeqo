@@ -24,7 +24,7 @@ function hide_form_submit_loader(container) {
     if (container)
         $(container + " #ajax_form_submit_loader").hide();
 };
-function place_TINY_AJAX_LOADER(container) {
+function place_tiny_ajax_loader(container) {
     container = typeof(container) != 'undefined' ? container : "";
     if (container)
         $(container).html(TINY_AJAX_LOADER);
@@ -70,6 +70,7 @@ function place_table_form_errors(form, errors){
  * should not change the parameters to be non-jquery objects.
  */
 function place_table_form_field_error($error, $element) {
+    console.log($element);
     if ($element.prev().get(0).tagName=='DIV') {
         $element.prev().html($error);
     } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
@@ -181,23 +182,25 @@ $(document).ready( function () {
                 $(this).removeClass('um-active');
             }
     });
-    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, \
-    .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
-        $(this).addClass("um-focus");
+    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
+        if(!$(this).hasClass('disabled')){
+            $(this).addClass("um-focus");
+        }
     });
-    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, \
-    .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
+    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
         $(this).removeClass("um-focus");
     });
     $('.button, .menu_button, .dark_button, #notifications_count').live('mousedown', function() {
-        $(this).addClass('um-active');
+        if(!$(this).hasClass('disabled')){
+            $(this).addClass('um-active');
+        }
     });
     $('.button, .menu_button, .dark_button, #notifications_count').live('mouseup', function(){
-        if ($(this).hasClass('um-active'))
+        if ($(this).hasClass('um-active') || $(this).hasClass('disabled'))
             $(this).removeClass('um-active');
     });
     $('.dropdown_menu_button').live('click', function() {
-        if ($(this).hasClass('um-pressed'))
+        if ($(this).hasClass('um-pressed') || $(this).hasClass('disabled'))
             $(this).removeClass('um-pressed');
         else
             $(this).addClass('um-pressed');

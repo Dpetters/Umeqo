@@ -393,4 +393,18 @@ $(document).ready(function() {
             }
         }
     });
+    $("#get_raffle_winner_link").live('click', function(){
+        $.ajax({
+            data:{'event_id':EVENT_ID},
+            url:EVENT_RAFFLE_WINNER_URL,
+            success: function(data) {
+                if(data.name){
+                    alert(data.name);
+                }else{
+                    alert("You ran out of attendees!");
+                }
+            },
+            error: errors_in_message_area_handler
+        });
+    });
 });

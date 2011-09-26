@@ -6,16 +6,16 @@
 <div id="results_menu">
     <div id="results_menu_checkbox_menu_button" class="dropdown_menu_button">
         <input id="results_menu_checkbox" type="checkbox"/>
-        <img src="{% get_static_prefix %}images/icons/dropdown_png.png"/>
+        <img id="results_menu_checkbox_down_triangle" src="{% get_static_prefix %}images/icons/dropdown_png.png"/>
         <ul>
             <li id="results_menu_all_on_page">All on page</li>
             <li id="results_menu_starred">Starred</li>
             <li id="results_menu_not_starred">Not starred</li>
             <li id="results_menu_in_resume_book">In Resume Book</li>
-            <li id="results_menu_not_in_resume_book">Not in Resume Book</li>        
+            <li id="results_menu_not_in_resume_book">Not in Resume Book</li>
         </ul>
     </div>
-    <div id="resume_book_current_add_students" class="menu_button">
+    <div id="resume_book_current_add_students" class="menu_button {% if resume_book_capacity_reached %}disabled resume_book_capacity_reached_menu_button{% endif %}">
         <span>Add to Resume Book</span>
     </div>
     <div id="resume_book_current_remove_students" class="menu_button">

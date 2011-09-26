@@ -134,6 +134,7 @@ class Attendee(models.Model):
     student = models.ForeignKey(Student, null=True, blank=True)
     event = models.ForeignKey(Event)
     datetime_created = models.DateTimeField(auto_now=True)
+    won_raffle = models.BooleanField(default=False)
 
     def __unicode__(self):
         return '%s <%s>' % (self.name, self.email)

@@ -1,0 +1,20 @@
+.create_campus_org_dialog .dialog_content_wrapper{
+    padding: 15px;
+    text-align:center;
+}
+#create_campus_org_form .form_table{
+    margin-left:auto;
+    margin-right:auto;
+}
+.create_campus_org_dialog .message_section p{
+    line-height:21px;
+}
+#create_campus_org_form input[type=submit]{
+    width:90px;
+}
+#create_campus_org_form #id_name, #create_campus_org_form #id_website {
+    width:250px;
+}
+#create_campus_org_form #id_type{
+    width:260px;
+}

@@ -9,6 +9,9 @@
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/create_language_dialog.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/create_campus_org_dialog.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/course_profile_preview.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
@@ -64,6 +67,12 @@
     var STARRED_IMG = "{% student_star 'True' %}";
     var UNSTARRED_IMG = "{% student_star '' %}";
     
+    var EMPLOYER_NEW_URL = "{% url employer_new %}";
+    var CHECK_EMPLOYER_UNIQUENESS_URL = "{% url check_employer_uniqueness %}";
+    var EMPLOYER_ALREADY_EXISTS = "{% text_snippet 'employer_already_exists' %}";
+    var MAX_INDUSTRIES = "{{max_industries}}";
+    var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
+        
     {% if edit %}
         var EDIT = true;
     {% else %}
@@ -73,8 +82,9 @@
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_create_campus_org.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_create_language.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_new.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/create_campus_org.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/core/create_language.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
@@ -271,6 +281,10 @@
                 <h3>Give us a hint of your academics & work experience.</h3>
                 <ul>
                     <li>These pages are <strong>optional</strong>, but every extra detail helps employers find you!</li>
+                    <li>
+                        Don't see your previous employer?
+                        <a href="javascript:void(0)" class="create_employer_link">Submit it to the list!</a>
+                    </li>
                     <li>Yes, some employers still care about standardized test scores.</li>
                 </ul>
             </div>

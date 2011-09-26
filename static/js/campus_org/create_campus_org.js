@@ -37,7 +37,7 @@ $('#create_campus_organization_link').click( function () {
                     create_campus_org_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
-            success: function (data) {             
+            success: function (data) {
                 create_campus_org_dialog.html(data);
                 
                 $("#id_name").focus();
@@ -64,7 +64,9 @@ $('#create_campus_organization_link').click( function () {
                                 }
                             },
                             success: function(data) {
-                                if (data.valid) {
+                                if (data.errors) {
+                                    place_table_form_errors("#create_campus_org_form", data.errors);
+                                } else {
                                     var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p>";
                                     if( $("#id_campus_involvement").multiselect("widget").find("input:checked").length <= CAMPUS_INVOLVEMENT_MAX-1 ) {
                                         success_message += "<p><a id='select_new_campus_org_link' href='javascript:void(0)'>Add it to your Campus Involvement  & Close Dialog</a></p>";
@@ -78,15 +80,13 @@ $('#create_campus_organization_link').click( function () {
                                     $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
                                     if( $("#id_campus_involvement").multiselect("widget").find("input:checked").length <= CAMPUS_INVOLVEMENT_MAX-1 ) {
                                         // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
-                                        $("#select_new_campus_org_link").live('click', function() {
+                                        $("#select_new_campus_org_link").click(function() {
                                             $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
                                             $("#id_campus_involvement").multiselect("refresh");
                                             $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
                                             create_campus_org_dialog.dialog('destroy');
                                         });
                                     }
-                                }else{
-                                    place_table_form_errors("#create_campus_org_form", data.errors);
                                 }
                             }
                         });

@@ -26,14 +26,13 @@ import xlwt
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
-from core import messages as m
 from core import enums as core_enums
 from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.views_helper import event_search_helper, buildAttendee, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
+from events.views_helper import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
 from notification import models as notification
 from student.models import Student
 
@@ -76,7 +75,10 @@ def events_list(request, extra_context=None):
     return context
 
 def event_page_redirect(request, id):
-    event = Event.objects.get(pk=id)
+    try:
+        event = Event.objects.get(pk=id)
+    except Event.DoesNotExist:
+        raise Http404
     return redirect("%s" % (event.get_absolute_url()))
 
 @render_to('event_page.html')
@@ -181,6 +183,7 @@ def event_new(request, form_class=None, extra_context=None):
         form_class = EventForm
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
+        context['max_industries'] = s.EP_MAX_INDUSTRIES
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -382,6 +385,7 @@ def event_edit(request, id=None, extra_context=None):
         if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
             return HttpResponseForbidden('You are not allowed to edit this event.')                
     elif is_campus_org(event.owner):
+        context['max_industries'] = s.EP_MAX_INDUSTRIES
         context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
         if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
@@ -534,6 +538,29 @@ def event_undrop(request, event_id):
     event = Event.objects.filter(id=event_id)
     DroppedResume.objects.filter(event=event, student=request.user.student).delete()
     return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
+
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+@has_annual_subscription
+@require_GET
+def event_raffle_winner(request, extra_context=None):
+    if request.is_ajax():
+        if request.GET.has_key("event_id"):
+            data = {}
+            winners = Attendee.objects.filter(event__id=request.GET['event_id'], won_raffle=False)
+            if winners.exists():
+                winner = winners[0]
+                winner.won_raffle = True
+                winner.save()
+                if winner.student:
+                    winner.student.studentstatistics.raffles_won += 1
+                    winner.student.studentstatistics.save()
+                data['name'] = winner.name
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Request is missing the event id.")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
