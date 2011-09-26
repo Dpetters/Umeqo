@@ -12,7 +12,7 @@
   <meta property="og:type" content="mitumeqo:event"> 
   <meta property="og:url" content="{{ page_url }}"> 
   <meta property="og:title" content="{{ event.name }}"> 
-  <meta property="og:description" content="{{ event_description_shortened|striptags|stripspaces }}">
+  <meta property="og:description" content="{{ event.description|striptags|safe|stripspaces }}">
   <meta property="og:image" content="{{ current_site }}{{ MEDIA_URL }}{% if campus_org_event %}{{event.owner.campusorg.image}}{% else %}{{event.owner.recruiter.employer.logo}}{% endif %}">
   {% if event.latitude and event.longitude %}
     <meta property="mitumeqo:where:latitude" content="{{ event.latitude }}">
