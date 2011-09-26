@@ -216,44 +216,48 @@
   "pk": 1, 
   "model": "events.attendee", 
   "fields": {
-   "event": 8, 
+   "name": "Dmitrij Petters", 
    "datetime_created": "2011-09-12 22:21:54", 
    "email": "Dpetters91@gmail.com", 
    "student": null, 
-   "name": "Dmitrij Petters"
+   "won_raffle": false, 
+   "event": 8
   }
  }, 
  {
   "pk": 2, 
   "model": "events.attendee", 
   "fields": {
-   "event": 7, 
+   "name": "John Fluck", 
    "datetime_created": "2011-09-12 22:26:37", 
    "email": "Dpetters91@gmail.com", 
    "student": null, 
-   "name": "John Fluck"
+   "won_raffle": false, 
+   "event": 7
   }
  }, 
  {
   "pk": 6, 
   "model": "events.attendee", 
   "fields": {
-   "event": 10, 
+   "name": "test", 
    "datetime_created": "2011-09-22 04:43:36", 
    "email": "joshma@mit.edu", 
    "student": null, 
-   "name": "test"
+   "won_raffle": false, 
+   "event": 10
   }
  }, 
  {
   "pk": 5, 
   "model": "events.attendee", 
   "fields": {
-   "event": 7, 
+   "name": "Dmitrij Petters", 
    "datetime_created": "2011-09-19 22:02:20", 
    "email": "dpetters@mit.edu", 
    "student": 12, 
-   "name": "Dmitrij Petters"
+   "won_raffle": false, 
+   "event": 7
   }
  }, 
  {
@@ -364,6 +368,16 @@
    "last_updated": "2011-08-28 16:02:51", 
    "resumes_viewed": 0, 
    "employer": 14
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "employer.employerstatistics", 
+  "fields": {
+   "date_created": "2011-09-26 00:08:49", 
+   "last_updated": "2011-09-26 00:08:49", 
+   "resumes_viewed": 0, 
+   "employer": 76
   }
  }, 
  {
@@ -1060,6 +1074,7 @@
    "resume_view_count": 0, 
    "add_to_resumebook_count": 4, 
    "student": 1, 
+   "raffles_won": 0, 
    "date_created": "2011-07-07 20:30:03"
   }
  }, 
@@ -1072,6 +1087,7 @@
    "resume_view_count": 0, 
    "add_to_resumebook_count": 3, 
    "student": 2, 
+   "raffles_won": 0, 
    "date_created": "2011-07-10 15:25:30"
   }
  }, 
@@ -1084,6 +1100,7 @@
    "resume_view_count": 0, 
    "add_to_resumebook_count": 4, 
    "student": 3, 
+   "raffles_won": 0, 
    "date_created": "2011-07-10 20:05:56"
   }
  }, 
@@ -1096,6 +1113,7 @@
    "resume_view_count": 0, 
    "add_to_resumebook_count": 3, 
    "student": 4, 
+   "raffles_won": 0, 
    "date_created": "2011-07-10 20:26:02"
   }
  }, 
@@ -1108,6 +1126,7 @@
    "resume_view_count": 0, 
    "add_to_resumebook_count": 3, 
    "student": 5, 
+   "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
   }
  }, 
@@ -1120,6 +1139,7 @@
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 12, 
+   "raffles_won": 0, 
    "date_created": "2011-09-19 22:01:46"
   }
  }, 
