@@ -1,6 +1,21 @@
+function display_attending_employer(name){
+    $.ajax({
+        type: 'GET',
+        url: EMPLOYER_DETAILS_URL,
+        dataType: "html",
+        data: {
+            'employer_name':name,
+        },
+        success: function (data) {
+            $("#attending_employers").append(data);
+        },
+        error: errors_in_message_area_handler
+    });
+}
+    
 $(document).ready(function() {
     var xhr, map, geocodes, marker, map_options, mit_location;
-
+    
     if ( typeof (google) !== "undefined") {
         mit_location = new google.maps.LatLng(42.35967402, -71.09201372);
         map_options = {
@@ -349,18 +364,7 @@ $(document).ready(function() {
             height: 210,
             click: function(e, ui) {
                 if (ui.checked){
-                    $.ajax({
-                        type: 'GET',
-                        url: EMPLOYER_DETAILS_URL,
-                        dataType: "html",
-                        data: {
-                            'employer_name':ui.text,
-                        },
-                        success: function (data) {
-                            $("#attending_employers").append(data);
-                        },
-                        error: errors_in_message_area_handler
-                    });
+                    display_attending_employer(ui.text);
                 } else {
                     $(".attending_employer[data-employer-name='" + ui.text + "']").remove();
                 }
