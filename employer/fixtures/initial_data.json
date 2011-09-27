@@ -27,7 +27,7 @@
     40
    ], 
    "main_contact_email": "joehuan@mit.edu", 
-   "last_updated": "2011-09-20 10:20:57", 
+   "last_updated": "2011-09-26 11:25:06", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -151,7 +151,7 @@
     27
    ], 
    "main_contact_email": "Jessica.Barth@blackstone.com", 
-   "last_updated": "2011-09-20 10:21:35", 
+   "last_updated": "2011-09-26 11:25:08", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -253,20 +253,27 @@
   "pk": 63, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:43:21", 
-   "description": "", 
-   "visible": false, 
+   "industries": [
+    36
+   ], 
+   "main_contact_email": "mmcternan@broadwaytechnology.com", 
+   "last_updated": "2011-09-26 13:59:45", 
+   "description": "<p>\r\n\tBroadway Technology is a leading provider of advanced high-performance financial trading solutions for electronic fixed income markets. Our proprietary software platform is an open, flexible, complete solution for screen and automated trading operations of any size and complexity. We&#39;ve delivered some of the world&rsquo;s most advanced trading systems to premier global banks, proprietary trading groups, and hedge funds. Our software manages billions of dollars in transactions across five continents daily.</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tWe hire developers who thrive on building the most advanced technology. We take a rapid, methodical approach to development, and we focus on creating solutions that solve our clients&rsquo; immediate needs, yet can evolve and scale as needs change.</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tWe also believe that creating the best technology is not enough. We have a deep commitment to providing the best service and support in the industry. We partner with our customers to solve the hardest problems they face and ensure they achieve their goals. We are hands-on and solutions-oriented, and we understand that we succeed only when our customers succeed.</p>\r\n", 
+   "visible": true, 
    "starred_students": [], 
-   "main_contact": "", 
-   "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "main_contact": "Melissa McTernan", 
+   "main_contact_phone": "646-912-6450", 
+   "offered_job_types": [
+    1, 
+    3, 
+    2, 
+    4
+   ], 
    "date_created": "2011-08-29 11:43:21", 
-   "logo": "", 
-   "careers_website": "", 
+   "logo": "employer/employer/broadway technology_2011-09-21-15-20-11.png", 
+   "careers_website": "http://broadwaytechnology.com/job-opportunities", 
    "slug": "broadway", 
-   "name": "Broadway Technologies"
+   "name": "Broadway Technology"
   }
  }, 
  {
@@ -490,21 +497,52 @@
   }
  }, 
  {
-  "pk": 48, 
+  "pk": 79, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
+   "industries": [
+    18
+   ], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:25:59", 
+   "last_updated": "2011-09-26 15:03:53", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
    "main_contact": "", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
-   "date_created": "2011-08-29 11:25:59", 
-   "logo": "", 
+   "date_created": "2011-09-26 14:49:04", 
+   "logo": "employer/employer/diagnostics for all_2011-09-26-15-03-53.png", 
    "careers_website": "", 
+   "slug": "", 
+   "name": "Diagnostics for ALL"
+  }
+ }, 
+ {
+  "pk": 48, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    13, 
+    15, 
+    20, 
+    36
+   ], 
+   "main_contact_email": "albert@dropbox.com", 
+   "last_updated": "2011-09-26 11:25:11", 
+   "description": "<p class=\"blocktext\">\r\n\thttps://www.dropbox.com/mit</p>\r\n", 
+   "visible": true, 
+   "starred_students": [], 
+   "main_contact": "Albert Ni", 
+   "main_contact_phone": "", 
+   "offered_job_types": [
+    1, 
+    2, 
+    4
+   ], 
+   "date_created": "2011-08-29 11:25:59", 
+   "logo": "employer/employer/dropbox_2011-09-20-18-24-02.png", 
+   "careers_website": "https://www.dropbox.com/mit", 
    "slug": "dropbox", 
    "name": "Dropbox"
   }
@@ -560,7 +598,7 @@
     31
    ], 
    "main_contact_email": "peter.m.adornato@exxonmobil.com", 
-   "last_updated": "2011-09-20 15:07:40", 
+   "last_updated": "2011-09-26 11:25:13", 
    "description": "<p>\r\n\tExxonMobil is the world&#39;s premier petroleum and petrochemicals company. &nbsp;Our Upstream Division finds, develops, and produces crude oil and natural gas in over 50 countries. &nbsp;Our Downstream Division produces and markets some 8 million barrels per day of gasoline and other refined products under the Esso, Mobil and Exxon brands in over 190 countries. &nbsp;As global energy demand rises, we need your creative energy to find ways to meet it. &nbsp;Ways that support economic, environmental, and social progress according to our core values: &nbsp;discipline, integrity, reliability, and a commitment to technology. &nbsp;The world faces enormous energy challenges. &nbsp;This is where you come in, because the biggest challenges attract the best. &nbsp;Join ExxonMobil in tackling the world&#39;s toughest energy challenges!</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -627,7 +665,7 @@
     43
    ], 
    "main_contact_email": "Sarah.Jackson@fmr.com", 
-   "last_updated": "2011-09-19 16:07:47", 
+   "last_updated": "2011-09-26 11:25:17", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -709,18 +747,27 @@
   "pk": 25, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:40:09", 
-   "description": "", 
-   "visible": false, 
+   "industries": [
+    27, 
+    28, 
+    43, 
+    34, 
+    40
+   ], 
+   "main_contact_email": "elizabeth.floyd@gs.com", 
+   "last_updated": "2011-09-26 13:52:39", 
+   "description": "<p>\r\n\tThe Goldman Sachs Group, Inc. is a leading global investment banking, securities and investment management firm that provides a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals. Founded in 1869, the firm is headquartered in New York and maintains offices in London, Frankfurt, Tokyo, Hong Kong and other major financial centers around the world.</p>\r\n", 
+   "visible": true, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Liz Floyd", 
    "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1, 
+    2
+   ], 
    "date_created": "2011-08-29 10:40:09", 
-   "logo": "", 
-   "careers_website": "", 
+   "logo": "employer/employer/goldman sachs_2011-09-23-03-41-19.jpg", 
+   "careers_website": "http://goldmansachs.com/", 
    "slug": "gs", 
    "name": "Goldman Sachs"
   }
@@ -734,7 +781,7 @@
     36
    ], 
    "main_contact_email": "lizarnold@google.com", 
-   "last_updated": "2011-09-20 14:45:52", 
+   "last_updated": "2011-09-26 11:25:22", 
    "description": "<p>\r\n\t<em>&ldquo;Google is organized around the ability to&nbsp;attract and leverage the talent of exceptional&nbsp;technologists and business people.&quot; </em></p>\r\n<p>\r\n\t<em>-&nbsp;</em>Larry Page, Google Co-founder and CEO</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<div>\r\n\t<div>\r\n\t\tAt Google, you will find smart people, big&nbsp;challenges, and opportunities to make a real&nbsp;difference in the world. Engineers at Google are&nbsp;key players in our daily innovation, and we are&nbsp;looking for the brightest minds to join these&nbsp;teams. Opportunities are available to work on&nbsp;Search, Ads, Chrome, Commerce,&nbsp;Infrastructure, Mobile, Social, YouTube, and&nbsp;other exciting projects.&nbsp;</div>\r\n\t<div>\r\n\t\t&nbsp;</div>\r\n\t<div>\r\n\t\tDiscover Google news and updates especially&nbsp;for students at&nbsp;<a href=\"http://googleforstudents.blogspot.com/\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">googleforstudents.blogspot.com</a><wbr />&nbsp;and follow us on Twitter at&nbsp;<a href=\"http://www.twitter.com/googlestudents\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">www.twitter.com/<wbr />googlestudents</a>.</div>\r\n</div>\r\n<p>\r\n\t&nbsp;</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -800,7 +847,7 @@
     34
    ], 
    "main_contact_email": "jessica.a.bevers@jpmorgan.com", 
-   "last_updated": "2011-09-20 14:46:03", 
+   "last_updated": "2011-09-26 11:25:24", 
    "description": "<p>\r\n\t<strong>What is J.P. Morgan?</strong></p>\r\n<div>\r\n\tJ.P. Morgan is a leading global investment bank with one of the largest client bases in the world, including corporations, governments, states, municipalities, healthcare organizations, education institutions, banks and investors. We operate in more than 100 countries and offer a complete range of financial services to help clients achieve their goals. &nbsp;We provide strategic advice, lend money, raise capital, help manage risk, and extend liquidity, and hold global leadership positions in all of our major business lines. &nbsp; &nbsp;&nbsp;</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tAcross our business, our goal is to help clients succeed, contribute to orderly and well functioning markets, and support global economic growth. One of the most important functions we serve is extending credit to companies to help them grow.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\t<strong>What does J.P. Morgan look for?</strong></div>\r\n<div>\r\n\tThe work is fastpaced, demanding and intellectually stimulating. We look for candidates with excellent quantitative, analytical and communication skills. You must have the ability to work well under pressure and tight deadlines, and have the aptitude to synthesize large amounts of information and develop innovative solutions. You should also be adaptable, able to manage projects independently and ready to assume a high level of responsibility as a member of a team. A well-rounded academic background with coursework in finance or economics is recommended. Candidates must demonstrate academic strength &ndash; a minimum 3.2 GPA for juniors and a minimum 3.5 GPA for freshmen and sophomores, strong teamwork, communication skills and a high energy level.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tAn aptitude for numbers is a must, even if you&rsquo;re a liberal arts major. If you don&rsquo;t have a strong financial or business background, be sure you can tell your story; be able to demonstrate your quantitative aptitude, both scholastically and practically (previous work experience, for example) and be ready to articulate how your background will enhance your career at J.P. Morgan.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -867,7 +914,7 @@
     36
    ], 
    "main_contact_email": "bedrll@microsoft.com", 
-   "last_updated": "2011-09-20 14:46:13", 
+   "last_updated": "2011-09-26 11:25:26", 
    "description": "<p>\r\n\tMicrosoft is the worldwide leader in software, services and solutions that help people and businesses realize their full potential. &nbsp;We&#39;re motivated and inspired by how our customers and partners use our software to find creative solutions to business problems, develop breakthrough ideas and stay connected to what&#39;s important to them.&nbsp;</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWe run our company in much the same way. Our employees come as they are and do what they love. &nbsp;We&rsquo;re a global company, located in over 100 countries, but we often act like a startup. We do software &mdash; but we also do hardware, services, research, and community outreach. We work hard, but we value work/life balance, and each of us defines what that means to us. So why not explore what we do, where we do it, and what life is really like at Microsoft? You just might be surprised.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1037,7 +1084,7 @@
     37
    ], 
    "main_contact_email": "katherine.campbell@oliverwyman.com", 
-   "last_updated": "2011-09-14 21:01:43", 
+   "last_updated": "2011-09-26 11:25:29", 
    "description": "<p>\r\n\tWith offices in 50+ cities across 25 countries, Oliver Wyman is a leading global management consulting firm that combines deep industry knowledge with specialized expertise in strategy, operations, risk management, organizational transformation, and leadership development. &nbsp;The firm&#39;s 3,000 professionals help clients optimize their businesses, improve their operations and risk profile, and accelerate their organizational performance to seize the most attractive opportunities.</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tOliver Wyman is a rapidly growing, entrepreneurial organization committed to building a dynamic environment full of individuals who share our passion for delivering results for our clients. The work you will do at Oliver Wyman has real impact. As a consultant, you will be charged with responsibility for finding new and meaningful perspectives on some of the toughest problems.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tConsultants on the Financial Services track specialize in the industry and become content experts early in their careers, which affords high responsibility. Financial services is one of the largest and most dynamic industries in the world. Strategic challenges in retail banking, investment banking, trading, insurance, asset management, the new regulatory environment and risk represent the largest sampling of financial services project work. &nbsp;Primary practice areas for this group, includes Corporate &amp; Institutional Banking, Retail &amp; Business Banking, Wealth &amp; Asset Management, Insurance, Finance &amp; Risk, Corporate Finance &amp; Advisory, Strategic IT &amp; Operations, and Public Policy.</div>\r\n", 
    "visible": true, 
    "starred_students": [
@@ -1088,7 +1135,7 @@
     36
    ], 
    "main_contact_email": "kimberley.tanksley@oracle.com", 
-   "last_updated": "2011-09-20 10:21:10", 
+   "last_updated": "2011-09-26 11:25:34", 
    "description": "<p>\r\n\tOracle provides the world&rsquo;s most complete, open, and integrated business software and hardware systems. With the full software and hardware portfolio at its disposal, only Oracle designs and integrates everything from the semiconductor chip to the entire software stack to achieve performance levels that are unmatched in the industry.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1186,6 +1233,28 @@
   }
  }, 
  {
+  "pk": 78, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    12
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-26 15:08:25", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-26 14:48:05", 
+   "logo": "employer/employer/selco india_2011-09-26-15-08-25.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "SELCO India"
+  }
+ }, 
+ {
   "pk": 68, 
   "model": "employer.employer", 
   "fields": {
@@ -1233,7 +1302,7 @@
     40
    ], 
    "main_contact_email": "Gina.Vaglia@sig.com", 
-   "last_updated": "2011-09-20 10:21:15", 
+   "last_updated": "2011-09-26 11:25:31", 
    "description": "<p>\r\n\tSusquehanna International Group (SIG) is a world-leading technology-empowered financial trading firm. Founded in 1987, SIG has grown from an options trading firm on the Philadelphia Stock Exchange to one of the world&rsquo;s largest privately held financial institutions. Today, with offices around the world, the firm trades virtually every major financial product and is recognized for its disciplined and quantitative trading approach, as well as its leading-edge trading systems. SIG&rsquo;s structured Development Programs introduce university hires to its unique approach to decision making and prepare them to become independent thinkers within a collaborative environment.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1280,7 +1349,7 @@
     36
    ], 
    "main_contact_email": "ed.tilford@thomsonreuters.com", 
-   "last_updated": "2011-09-20 10:21:19", 
+   "last_updated": "2011-09-26 11:25:36", 
    "description": "<p>\r\n\tThomson Reuters is the world&rsquo;s leading source of intelligent information for businesses and professionals. The firm combines industry expertise with innovative technology to keep leading decision makers in the financial, legal, scientific, media and other sectors informed and up-to-date. Its variety of internships and full-time opportunities allow students to step into the challenging and fast-paced environment of a truly global organization. Those that do will be encouraged to engineer fresh solutions to problems old as well as new and will find that at Thomson Reuters, there are no limits on where creative thinking and a willingness to learn takes bright minds.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1294,6 +1363,26 @@
    "careers_website": "http://careers.thomsonreuters.com/students/", 
    "slug": "tr", 
    "name": "Thomson Reuters"
+  }
+ }, 
+ {
+  "pk": 76, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-24 17:29:38", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-24 17:29:38", 
+   "logo": "employer/employer/tower research capital_2011-09-24-17-29-38.png", 
+   "careers_website": "", 
+   "slug": "tower", 
+   "name": "Tower Research Capital"
   }
  }, 
  {
@@ -1442,6 +1531,28 @@
   }
  }, 
  {
+  "pk": 77, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    15
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-09-26 15:05:11", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-09-26 14:47:34", 
+   "logo": "employer/employer/venture for america_2011-09-26-15-05-11.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Venture For America"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "employer.employer", 
   "fields": {
@@ -1450,7 +1561,7 @@
     40
    ], 
    "main_contact_email": "daniel.valmas@weissasset.com", 
-   "last_updated": "2011-09-20 10:21:21", 
+   "last_updated": "2011-09-26 11:25:40", 
    "description": "<p>\r\n\tWeiss Asset Management manages over $1 billion combining a value-based, quantitative strategy with econometric analysis of data. Trades are made throughout the world; the countries in which we have traded range from Vietnam, South Africa, and Ukraine to the United Kingdom, Switzerland and France. The Founder, President and Chief Investment Officer, Andrew Weiss, is an Emeritus Professor of economics who works closely with all WAM employees and interns. Our team includes people with advanced training in economics, computer science, physics, law, and mathematics, but we welcome applications from truly exceptional individuals with other backgrounds.</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tAt Weiss Asset Management, we do things a little differently. We don&rsquo;t believe in hierarchy. New hires will work alongside the founder and CIO and other senior staff. They are often assisted by interns. We encourage questions and discussions. If you want to hide in an office, this is not the firm for you. If you want to be intellectually challenged by extremely able coworkers, you will enjoy working for us.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tThe team is a group of exceptionally intelligent high achievers, whose academic backgrounds include economics, engineering, mathematics, physics, political science, computer science and law. Many of our professionals have degrees in two or more of these fields, and have earned graduate degrees from leading universities including Stanford, Caltech, MIT and Harvard. They rarely have backgrounds in finance.&nbsp;</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWeiss is looking for highly intelligent and self-motivated interns who want to work in an intellectually challenging environment. We are currently hiring top talent for paid part-time internships in operations, programming, and research. Interns work with analysts, traders, and software developers to research investments, support trading and settlement processes, develop in-house financial software, and maintain existing proprietary software. Interns may have an opportunity for full-time employment after graduation and will have tremendous growth potential, as they will be joining a small and growing team with a superb track record and great potential for continued future successes. Demonstrated, strong quantitative skills are required. Programming ability is a plus. Must be available at least 15 hours per week during the school year. Full-time availability during the winter break and summer vacation is a plus. &nbsp;Candidates should have experience and interest in econometrics, statistics, computer science, or other quantitative field.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [
