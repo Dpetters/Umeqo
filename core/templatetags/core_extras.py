@@ -9,3 +9,9 @@ def wordwrapwithindent(value, arg):
     lines = wrap(value, int(arg)).split('\n')
     return '    ' + '\n    '.join(lines)
 wordwrapwithindent.is_safe = True
+
+@register.filter(name='stripspaces')
+@template.defaultfilters.stringfilter
+def stripspaces(value):
+    return value.strip()
+wordwrapwithindent.is_safe = True

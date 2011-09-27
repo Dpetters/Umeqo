@@ -14,16 +14,9 @@
 #event_external_buttons {
     padding: 20px 0 0;
 }
-#view_student_list_link, #event_admin_main .export_event_list_link{
-    position:relative;
-    bottom:23px;
-}
-#event_admin_main .commands{
-    position:relative;
-    left:5px;
-}
-#event_admin_main .commands a{
-    margin-left:4px;
+#event_admin_main .commands {
+    margin-top: -25px;
+    margin: -22px -4px 0 0;
 }
 .external_button {
     display: inline-block;
@@ -37,7 +30,7 @@
 }
 #event_side {
     width: 280px;
-    margin-left:700px;
+    margin-left: 700px;
 }
 
 #attending-span {
@@ -61,7 +54,7 @@
     text-align: right;
 }
 #event_attending_employers .ep-logo {
-    max-height:103px;
+    max-height: 103px;
 }
 #event_audience {
     margin-bottom: 10px;
@@ -79,8 +72,8 @@
     float: right;
 }
 h3#event_location {
-    margin-top:0px;
-    margin-bottom:0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #rsvp_div {
@@ -214,7 +207,7 @@ h3#event_location {
     margin-top: 7px;
 }
 #event_checkin h3{
-    margin-top:0px;
+    margin-top: 0px;
 }
 #event_checkin_link {
     position: relative;
@@ -289,13 +282,13 @@ h3#event_location {
 }
 #event_checkin_header h2 {
     margin: 0;
-    margin-right:250px;
+    margin-right: 250px;
     font-size: 24px;
     color: #888;
 
 }
 #event_checkin_count {
-    text-align:center;
+    text-align: center;
 }
 #event_checkin_header span {
     font-size: 20px;
@@ -346,7 +339,7 @@ h3#event_location {
     color: #FFF;
 }
 #event_who .main_block_content {
-    padding-top:0px;
+    padding-top: 0px;
 }
 #event_who .event_company {
     margin-bottom: 10px;
@@ -433,7 +426,7 @@ h3#event_location {
     line-height: 18px;
     text-align: left;
 }
-#close_button, #get_raffle_winner_link{
+#close_button, #get_raffle_winner_link {
     display: block;
     padding: 4px 8px;
     background-color: #EEE;
@@ -442,12 +435,12 @@ h3#event_location {
     -webkit-border-radius: 2px;
     -o-border-radius: 2px;
     font-size: 18px;
-    text-align:center;
+    text-align: center;
 }
-#get_raffle_winner_link{
-    color:green;
-    margin-bottom:5px;
-    background:#EEFFCC;
+#get_raffle_winner_link {
+    color: green;
+    margin-bottom: 5px;
+    background: #EEFFCC;
 }
 #event_title {
     margin-bottom: 10px;
@@ -462,7 +455,7 @@ h3#event_location {
     border-radius: 3px;
 }
 .event_host_logo img {
-    max-width:269px;
+    max-width: 269px;
 }
 .main_block_content p {
 	margin: 0 0 10px;
@@ -488,12 +481,12 @@ h3#event_location {
     font-size: 16px;
 }
 div.attending_employer {
-    height:74px;
-    line-height:74px;
-    width:159px;
+    height: 74px;
+    line-height: 74px;
+    width: 159px;
 }
 #attending_employers .ef-logo {
-    max-width:159px;
+    max-width: 159px;
 }
 
 .checkin_field {
