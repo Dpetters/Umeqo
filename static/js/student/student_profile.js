@@ -253,9 +253,6 @@ $(document).ready( function() {
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
         height:'auto',
-        click: function(){
-            $("#id_looking_for").trigger("change");
-        },
         checkAll: function(){
             $("#id_looking_for").trigger("change");
         },
@@ -279,7 +276,6 @@ $(document).ready( function() {
                 place_multiselect_warning_table($("#id_industries_of_interest"), MAX_INDUSTRIES_OF_INTEREST_EXCEEDED);
                 return false;
             }
-            $("#id_industries_of_interest").change();
         },
         uncheckAll: function(){
             $("#id_industries_of_interest").trigger("change");
@@ -301,7 +297,6 @@ $(document).ready( function() {
                 place_multiselect_warning_table($("#id_previous_employers"), MAX_PREVIOUS_EMPLOYERS_EXCEEDED);
                 return false;
             }
-            $("#id_previous_employers").trigger("change");
         },
         uncheckAll: function(){
             $("#id_previous_employers").trigger("change");
@@ -330,7 +325,6 @@ $(document).ready( function() {
                 place_multiselect_warning_table($("#id_campus_involvement"), MAX_CAMPUS_INVOLVEMENT_EXCEEDED);
                 return false;
             }
-            $("#id_campus_involvement").trigger("change");
         },
         uncheckAll: function(){
             $("#id_campus_involvement").trigger("change");
@@ -360,7 +354,6 @@ $(document).ready( function() {
                    place_table_form_field_error($("<label class='warning' for'" + $("#id_languages").attr("id") + "'>" + ONE_LANGUAGE_DIFFICULTY + "</label>"), $("#id_languages"));
                    return false;
                }
-             $("#id_languages").trigger("change");
         },
         uncheckAll: function(){
             $("#id_languages").trigger("change");
@@ -383,7 +376,6 @@ $(document).ready( function() {
                 place_multiselect_warning_table($("#id_countries_of_citizenship"), MAX_COUNTRIES_OF_CITIZENSHIP_EXCEEDED);
                 return false;
             }
-            $("#id_countries_of_citizenship").trigger("change");
         },
         uncheckAll: function(){
             $("#id_countries_of_citizenship").trigger("change");
