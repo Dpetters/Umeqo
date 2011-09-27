@@ -5,12 +5,12 @@
     <p>If you keep this resume, you will only show up in search results if a recruiter searches by your name (first or last). Filtering will be unaffected.</p>
     <br>
     <p>We suggest using Microsoft Word, OpenOffice or Latex to create your resume and then save it to PDF.</p>
-    <div class="button_wrapper_with_margins">
+    <div class="button_wrapper_with_margins centered">
         {% ifequal request.GET.home "true" %}
         <a class="button close_dialog_link">Got it!</a>
         {% else %}
         <a class="button close_dialog_link">Choose Another</a>
         <a class="button save_profile_link">Save Profile</a>
-        {% endifequal %}        
+        {% endifequal %}
     </div>
 </div>
