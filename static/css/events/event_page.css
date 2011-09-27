@@ -1,4 +1,4 @@
-#event_page_block {
+\#event_page_block {
     border: 0;
 }
 #event_page_block .main_block_header {
@@ -444,7 +444,7 @@ h3#event_location {
 }
 #event_title {
     margin-bottom: 10px;
-    margin-right: 125px;
+    margin-right: 140px;
 }
 #event_title span {
     font-size: 16px;
