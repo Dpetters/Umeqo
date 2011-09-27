@@ -27,7 +27,7 @@
     40
    ], 
    "main_contact_email": "joehuan@mit.edu", 
-   "last_updated": "2011-09-26 11:25:06", 
+   "last_updated": "2011-09-27 00:25:19", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -151,7 +151,7 @@
     27
    ], 
    "main_contact_email": "Jessica.Barth@blackstone.com", 
-   "last_updated": "2011-09-26 11:25:08", 
+   "last_updated": "2011-09-27 00:25:17", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -257,7 +257,7 @@
     36
    ], 
    "main_contact_email": "mmcternan@broadwaytechnology.com", 
-   "last_updated": "2011-09-26 13:59:45", 
+   "last_updated": "2011-09-26 19:48:52", 
    "description": "<p>\r\n\tBroadway Technology is a leading provider of advanced high-performance financial trading solutions for electronic fixed income markets. Our proprietary software platform is an open, flexible, complete solution for screen and automated trading operations of any size and complexity. We&#39;ve delivered some of the world&rsquo;s most advanced trading systems to premier global banks, proprietary trading groups, and hedge funds. Our software manages billions of dollars in transactions across five continents daily.</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tWe hire developers who thrive on building the most advanced technology. We take a rapid, methodical approach to development, and we focus on creating solutions that solve our clients&rsquo; immediate needs, yet can evolve and scale as needs change.</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tWe also believe that creating the best technology is not enough. We have a deep commitment to providing the best service and support in the industry. We partner with our customers to solve the hardest problems they face and ensure they achieve their goals. We are hands-on and solutions-oriented, and we understand that we succeed only when our customers succeed.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -665,7 +665,7 @@
     43
    ], 
    "main_contact_email": "Sarah.Jackson@fmr.com", 
-   "last_updated": "2011-09-26 11:25:17", 
+   "last_updated": "2011-09-27 00:25:14", 
    "description": "", 
    "visible": true, 
    "starred_students": [], 
@@ -755,7 +755,7 @@
     40
    ], 
    "main_contact_email": "elizabeth.floyd@gs.com", 
-   "last_updated": "2011-09-26 13:52:39", 
+   "last_updated": "2011-09-27 00:25:12", 
    "description": "<p>\r\n\tThe Goldman Sachs Group, Inc. is a leading global investment banking, securities and investment management firm that provides a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals. Founded in 1869, the firm is headquartered in New York and maintains offices in London, Frankfurt, Tokyo, Hong Kong and other major financial centers around the world.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1369,18 +1369,27 @@
   "pk": 76, 
   "model": "employer.employer", 
   "fields": {
-   "industries": [], 
+   "industries": [
+    20, 
+    27, 
+    40
+   ], 
    "main_contact_email": "", 
-   "last_updated": "2011-09-24 17:29:38", 
-   "description": "", 
+   "last_updated": "2011-09-26 23:56:05", 
+   "description": "<p>\r\n\tTower Research Capital LLC, a high-frequency proprietary trading firm founded in 1998, continues to enhance the in-house trading system that has positioned the firm as a leader in the thriving field of quantitative trading. Today, Tower&rsquo;s robust, resilient, and blindingly fast system enables the firm to execute algorithmic trading strategies based on patterns in market behavior. While Tower offers challenges and rewards rivaling those of any Wall Street firm, Tower&rsquo;s laid-back work environment reflects the premium the firm places on quality of life.</p>\r\n", 
    "visible": false, 
    "starred_students": [], 
    "main_contact": "", 
    "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1, 
+    3, 
+    2, 
+    4
+   ], 
    "date_created": "2011-09-24 17:29:38", 
    "logo": "employer/employer/tower research capital_2011-09-24-17-29-38.png", 
-   "careers_website": "", 
+   "careers_website": "http://www.tower-research.com/Careers.html", 
    "slug": "tower", 
    "name": "Tower Research Capital"
   }

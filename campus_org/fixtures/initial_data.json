@@ -5688,6 +5688,24 @@
   }
  }, 
  {
+  "pk": 488, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-09-26 21:07:31", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-09-26 21:07:31", 
+   "type": 5, 
+   "display": false, 
+   "name": "Sloan Quantitative Finance Club"
+  }
+ }, 
+ {
   "pk": 335, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6448,8 +6466,8 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://web.mit.edu/tabletennis/", 
-   "slug": null, 
-   "last_updated": "2011-07-24 18:42:45", 
+   "slug": "", 
+   "last_updated": "2011-09-27 00:21:24", 
    "description": "The Table Tennis Club is part of the MIT Sports Club Council.  We are devoted to providing an environment in which members can play both competitively and recreationally.\r\nThe club offers quality coaching to its members under the guidance of Coach Liang Liung and Coach Carlos Espinoza-Toro. Both are certified Table Tennis coaches. Coach Liang handles the training of club members while Coach Carlos handles the training of the intercollegiate team. They are assisted by Coach Alex Landsman.\r\n\r\nThe club offers members 14 quality Butterfly Europa Tables that are in very good condition. In addition, a large number of balls and rackets are available for practice although we do encourage members to bring their own rackets to practice. The club also has a 'Robo Pong' robot to help with team practice sessions.\r\n\r\nThe MIT team has done very well at the divisional level over the last couple of years, coming in at 3rd place both years. Team practices are held three times a week and consist of various drills and excercises along with 'one on one' coaching with our team coach Carlos. The club has open practice sessions twice a week which we encourage members to take advantage of. \r\n\r\nEvery Saturday, the club holds an internal tournament which is open to all members. It is held in a Knockout format with the winner receiving a Club Prize (a club T-shirt, Paddle, etc). Each participant gets a certain number of points from each tournament depending on their performance.  At the end of each semester, the person with the most number of points is felicitated.", 
    "image": "campus_org/campusorg/table_tennis_team_2011-07-24-18-42-45.gif", 
    "email": "tabletennisclub@mit.edu", 
@@ -6458,7 +6476,7 @@
    "date_created": "2011-05-03 12:27:42", 
    "type": 11, 
    "display": true, 
-   "name": "Table Tennis Team"
+   "name": "Table Tennis Club"
   }
  }, 
  {
