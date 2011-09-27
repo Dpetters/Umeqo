@@ -48,7 +48,7 @@ $(document).ready( function() {
             dragenter : function (e) {
                 up.noop(e);
                 up.$dropbox.removeClass('success').removeClass('error').addClass('hover');
-                up.$status.html("Drop PDF File Here");
+                up.$status.html("Drag & Drop PDF File Here");
                 return false;
             },
             dragleave : function (e) {
