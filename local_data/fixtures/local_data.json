@@ -1671,7 +1671,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-26 10:16:05", 
+   "last_login": "2011-09-27 12:07:43", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$20776$84e46097d5a770b88f64d45aabdaea6d6d5e3ded", 
@@ -1794,6 +1794,26 @@
    "is_verified": true, 
    "user": 42, 
    "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-27 12:07:03", 
+   "session_key": "bb64c6cca3d67792c663045c05add30d", 
+   "last_updated": "2011-09-27 12:07:03", 
+   "user": 42
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-09-27 12:07:43", 
+   "session_key": "504858fd67fab5be1e0b947b46835284", 
+   "last_updated": "2011-09-27 12:07:43", 
+   "user": 42
   }
  }, 
  {
