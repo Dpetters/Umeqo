@@ -18,6 +18,9 @@
     margin-top: -25px;
     margin: -22px -4px 0 0;
 }
+#event_admin_main .commands a{
+    margin-left:2px;
+}
 .external_button {
     display: inline-block;
     vertical-align: middle;
