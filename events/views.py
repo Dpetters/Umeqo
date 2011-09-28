@@ -36,7 +36,6 @@ from events.views_helper import event_search_helper, get_event_schedule, get_att
 from notification import models as notification
 from student.models import Student
 
-@login_required
 @require_GET
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     try:
