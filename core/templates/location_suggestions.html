@@ -1,3 +1,6 @@
 {% for suggestion in suggestions %}
     <p class="location_suggestion" data-latitude="{{suggestion.lat}}" data-longitude="{{suggestion.lng}}">{{suggestion.name}}</p>
 {% endfor %}
+{% if suggestions %}
+<p id="suggestion_tip">Pick a location by clicking on it &#8593;</p>
+{% endif %}

@@ -24,12 +24,13 @@ class Country(models.Model):
     printable_name = models.CharField(_('Country name'), max_length=128)
     iso3 = models.CharField(_('ISO alpha-3'), max_length=3, null=True)
     numcode = models.PositiveSmallIntegerField(_('ISO numeric'), null=True)
+    sort_order = models.FloatField(_('Sort Order'), null=True, blank=True, help_text=_('Countries will be ordered by the sort order, then name.'))
     
     class Meta:
         db_table = 'country'
         verbose_name = _('Country')
         verbose_name_plural = _('Countries')
-        ordering = ('name',)
+        ordering = ('-sort_order', 'name')
         
     class Admin:
         list_display = ('printable_name', 'iso',)
