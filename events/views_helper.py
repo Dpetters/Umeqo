@@ -24,7 +24,6 @@ def get_no_rsvps(event):
 
 def get_attendees(event):
     attendees = map(buildAttendee, event.attendee_set.all().order_by('name'))
-    attendees.sort(key=lambda n: 0 if n['account'] else 1)
     return attendees
 
 def get_invitees(event):

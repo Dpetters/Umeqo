@@ -299,7 +299,8 @@ h3#event_location {
     float: right;
 }
 #event_checkin_header span img {
-    margin: 0 0 -16px -3px;
+    margin: -1px 0 -17px -2px;
+    height:40px;
 }
 #event_checkin_main p {
     font-size: 20px;
