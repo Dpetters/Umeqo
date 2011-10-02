@@ -220,7 +220,7 @@
 }
 .events_dropdown {
     position: absolute;
-    padding: 5px;
+    padding: 5px 5px 1px 5px;
     background-color: #FFF;
     border-radius: 3px;
     -moz-border-radius: 3px;

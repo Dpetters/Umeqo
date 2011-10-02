@@ -9,7 +9,7 @@ def get_resume_filename(instance, filename):
     return "%s/%s_%s_%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), instance.last_name.lower(), instance.first_name.lower(), str(instance.user).lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
 
 def get_image_filename(instance, filename):
-    extension = filename[filename.find('.'):]
+    extension = os.path.splitext(filename)[1]
     return "%s/%s_%s%s" % (str(type(instance)._meta).replace(".", "/"), instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def get_thumbnail_filename(instance, filename):
@@ -23,7 +23,7 @@ def generate_thumbnail(image):
     ratio = min(float(settings.MAX_DIALOG_IMAGE_WIDTH)/width, float(settings.MAX_DIALOG_IMAGE_HEIGHT)/height)
     size = (int(ratio * width), int(ratio * height))
     image.thumbnail(size, Image.ANTIALIAS)
-    extension = image_path[image_path.find('.'):]
+    extension = os.path.splitext(image_path)[1]
     thumbnail_full_path = "%s/%s_tmp%s" % (os.path.dirname(image_path), os.path.basename(image_path).split(".")[0], extension)
     image.save(thumbnail_full_path)
     return thumbnail_full_path, File(file(thumbnail_full_path, "rb"))

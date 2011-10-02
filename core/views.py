@@ -183,14 +183,15 @@ def get_location_guess(request):
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
     if request.GET.has_key('query'):
+        num_of_suggestions = 7
         query = request.GET['query']
         suggestions = []
         if len(query.split("-")) > 1 and query.split("-")[1] and Location.objects.filter(building_num=query.split("-")[0]).exists():
-            locations = Location.objects.filter(building_num__iexact=query.split("-")[0])[:8]
+            locations = Location.objects.filter(building_num__iexact=query.split("-")[0])[:num_of_suggestions]
             for l in locations:
                 suggestions.append({'name':"%s" % query, 'lat':l.latitude, 'lng':l.longitude})
         else:
-            locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:8]
+            locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:num_of_suggestions]
             for l in locations:
                 suggestions.append({'name':"%s" % str(l.object), 'lat':l.object.latitude, 'lng':l.object.longitude})
         context = {'suggestions': suggestions}

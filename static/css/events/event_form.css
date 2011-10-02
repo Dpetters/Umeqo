@@ -48,8 +48,10 @@ label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
     margin-left: 140px;
     margin-top: 55px;
 }
-.location_suggestion {
+.location_suggestion, #suggestion_tip{
     padding: 2px 7px;
+}
+.location_suggestion {
     background: #F2F2F2;
     margin-top: 1px;
     cursor: pointer;
@@ -57,6 +59,12 @@ label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
 .location_suggestion:hover, .location_suggestion.selected {
     color: #444;
     background: #E9E9E9;
+}
+#suggestion_tip{
+    color:#444444;
+    font-weight:bold;
+}
+    
 }
 #end_datetime_wrapper {
     padding-bottom: 15px;
