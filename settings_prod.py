@@ -25,13 +25,13 @@ if is_prod():
     UMEQO_RECRUITER_ID = 4
     WELCOME_EVENT_ID = 1
     SITE_ID = 1
-    DB_PASSWORD = "H3rcul3s"
+    DB_PASSWORD = "Incub4t1ng"
     DEBUG = False
 else:
     UMEQO_RECRUITER_ID = 3
     WELCOME_EVENT_ID = 6
     SITE_ID = 2
-    DB_PASSWORD = "Jamb4Juic3"
+    DB_PASSWORD = "Ang3lInvest1ng"
     DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
