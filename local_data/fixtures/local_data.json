@@ -365,6 +365,16 @@
   }
  }, 
  {
+  "pk": 1, 
+  "model": "employer.recruiter", 
+  "fields": {
+   "date_created": "2011-07-08 00:11:22", 
+   "last_updated": "2011-09-12 03:17:46", 
+   "user": 3, 
+   "employer": 6
+  }
+ }, 
+ {
   "pk": 6, 
   "model": "employer.recruiter", 
   "fields": {
@@ -382,16 +392,6 @@
    "last_updated": "2011-08-27 16:16:25", 
    "user": 8, 
    "employer": 5
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "employer.recruiter", 
-  "fields": {
-   "date_created": "2011-07-08 00:11:22", 
-   "last_updated": "2011-09-12 03:17:46", 
-   "user": 3, 
-   "employer": 6
   }
  }, 
  {
@@ -872,42 +872,6 @@
   }
  }, 
  {
-  "pk": 22, 
-  "model": "student.student", 
-  "fields": {
-   "last_name": "Petters", 
-   "last_updated": "2011-09-27 20:26:21", 
-   "sat_m": null, 
-   "graduation_month": "5", 
-   "older_than_21": null, 
-   "sat_t": null, 
-   "sat_v": null, 
-   "sat_w": null, 
-   "keywords": null, 
-   "looking_for": [], 
-   "countries_of_citizenship": [], 
-   "first_name": "Dmitrij", 
-   "first_major": null, 
-   "subscriptions": [
-    6
-   ], 
-   "gpa": null, 
-   "campus_involvement": [], 
-   "languages": [], 
-   "profile_created": false, 
-   "school_year": null, 
-   "graduation_year": null, 
-   "previous_employers": [], 
-   "website": null, 
-   "second_major": null, 
-   "resume": "", 
-   "user": 43, 
-   "industries_of_interest": [], 
-   "act": null, 
-   "date_created": "2011-09-27 20:26:51"
-  }
- }, 
- {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -965,18 +929,6 @@
    "email_on_invite_to_public_event": false, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
-  }
- }, 
- {
-  "pk": 22, 
-  "model": "student.studentpreferences", 
-  "fields": {
-   "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-09-27 20:26:51", 
-   "email_on_invite_to_private_event": true, 
-   "email_on_invite_to_public_event": true, 
-   "student": 22, 
-   "date_created": "2011-09-27 20:26:51"
   }
  }, 
  {
@@ -1042,19 +994,6 @@
    "student": 5, 
    "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
-  }
- }, 
- {
-  "pk": 22, 
-  "model": "student.studentstatistics", 
-  "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-09-27 20:26:51", 
-   "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
-   "student": 22, 
-   "raffles_won": 0, 
-   "date_created": "2011-09-27 20:26:51"
   }
  }, 
  {
@@ -1427,7 +1366,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-09-27 20:26:23", 
+   "last_login": "2011-10-02 16:16:08", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1457,17 +1396,17 @@
   "pk": 3, 
   "model": "auth.user", 
   "fields": {
-   "username": "potter@umeqo.com", 
-   "first_name": "Harry", 
-   "last_name": "Potter", 
+   "username": "bitdiddle@umeqo.com", 
+   "first_name": "Ben", 
+   "last_name": "Bitdiddle", 
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-26 10:15:38", 
+   "last_login": "2011-10-02 02:32:09", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$268ed$a939ecfdc0c9920d048c3bd5ef7bde253764742b", 
-   "email": "potter@umeqo.com", 
+   "password": "sha1$bd7f3$00ac6e9fb053373d262df04c62f1b529dc16b0c9", 
+   "email": "bitdiddle@umeqo.com", 
    "date_joined": "2011-07-07 22:03:05"
   }
  }, 
@@ -1652,24 +1591,6 @@
   }
  }, 
  {
-  "pk": 43, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "dpetters@mit.edu", 
-   "first_name": "Dmitrij", 
-   "last_name": "Petters", 
-   "is_active": true, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-09-27 20:26:51", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$6929d$738de636ebf3792a96036af4d379fd148e828fe2", 
-   "email": "dpetters@mit.edu", 
-   "date_joined": "2011-09-27 20:26:51"
-  }
- }, 
- {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -1778,20 +1699,13 @@
   }
  }, 
  {
-  "pk": 42, 
-  "model": "registration.userattributes", 
+  "pk": 3, 
+  "model": "registration.sessionkey", 
   "fields": {
-   "is_verified": false, 
-   "user": 43, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 17, 
-  "model": "registration.registrationprofile", 
-  "fields": {
-   "activation_key": "0f9bcdcb77c1ca1de29c8f8e3fdcf757a5a55888", 
-   "user": 43
+   "date_created": "2011-10-02 02:32:09", 
+   "session_key": "73b9a88913bb19028d09ebc743693483", 
+   "last_updated": "2011-10-02 02:32:09", 
+   "user": 3
   }
  }
 ]
