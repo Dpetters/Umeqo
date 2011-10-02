@@ -114,12 +114,16 @@ def event_page(request, id, slug, extra_context=None):
     #google_description is the description + stuff to link back to umeqo
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     
+    all_attendees = get_attendees(event)
+    cutoff = len(all_attendees)/3
     context = {
         'event': event,
         'invitees': get_invitees(event),
         'rsvps': get_rsvps(event),
         'no_rsvps': get_no_rsvps(event),
-        'checkins': get_attendees(event),
+        'first_third_attendees': all_attendees[:cutoff],
+        'second_third_attendees': all_attendees[cutoff:2*cutoff],
+        'last_third_attendees': all_attendees[2*cutoff:],
         'all_responses': get_all_responses(event),
         'page_url': page_url,
         'DOMAIN': current_site.domain,

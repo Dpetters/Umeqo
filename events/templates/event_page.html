@@ -183,9 +183,21 @@
                     {% endif %}
                 </div>
                 {% endif %}
-                {% for student in checkins %}
-                    {% include "events_response_token.html" with student=student %}
-                {% empty %}
+                <div>
+                    {% for student in first_third_checkins %}
+                        {% include "events_response_token.html" with student=student %}
+                    {% empty %}
+                </div>
+                <div>
+                    {% for student in second_third_checkins %}
+                        {% include "events_response_token.html" with student=student %}
+                    {% empty %}
+                </div>
+                <div>
+                    {% for student in last_third_checkins %}
+                        {% include "events_response_token.html" with student=student %}
+                    {% empty %}
+                </div>
                 <div id="event_response_empty">There are no check-ins yet.</div>
                 {% endfor %}
             </div>
