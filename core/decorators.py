@@ -16,7 +16,7 @@ class agreed_to_terms(object):
     
     def __call__(self, request, *args, **kwargs):
         if request.user.is_authenticated():
-            if request.user.userattributes.agreed_to_terms:
+            if request.user.is_staff or request.user.userattributes.agreed_to_terms:
                 return self.orig_func(request, *args, **kwargs)
         return redirect(reverse("terms_of_service"))
     
