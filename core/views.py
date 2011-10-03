@@ -60,7 +60,10 @@ def terms_of_service(request):
         request.user.userattributes.save()
         return redirect(reverse('home'))
     else:
-        context = {'agreed':request.user.userattributes.agreed_to_terms}
+        if request.user.is_authenticated():
+            context = {'agreed': request.user.userattributes.agreed_to_terms}
+        else:
+            context = {'agreed': True}
         return context
 
 @require_GET
