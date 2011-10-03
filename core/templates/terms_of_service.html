@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Terms of Service |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/core/terms_of_service.css" />
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div id="terms_block" class="simple_block">
+    <h1>Umeqo Terms of Service</h1>
+    <h2>Last Revision: September 3rd, 2011</h2>
+    <div id="terms_text">
+        {% include 'terms_of_service_text.html' %}
+    </div>
+    {% if not agreed %}
+        <form id="terms_of_service_form" method="POST" action="">
+        {% csrf_token %}
+            <table class="form_table grande">
+                <tr>
+                    <th></th>
+                        <td>
+                        <input class="dark_button" type='submit' value='Accept Terms'>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

@@ -11,7 +11,6 @@ from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_http_methods, require_POST
 from django.utils import simplejson
-from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
 from notification.models import NoticeSetting, NoticeType, EMAIL
@@ -21,7 +20,7 @@ from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
 from registration.backend import RegistrationBackend
-from core.decorators import is_student, render_to, is_recruiter
+from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
 from core.forms import CreateLanguageForm
 from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
@@ -53,6 +52,7 @@ def student_profile_unparsable_resume(request, extra_context=None):
         return HttpResponseBadRequest("Request must be ajax.")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
@@ -89,6 +89,7 @@ def student_increment_resume_view_count(request):
         return HttpResponseBadRequest("Student Id is missing")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
@@ -123,6 +124,7 @@ def student_account_deactivate(request, form_class=StudentAccountDeactivationFor
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, 
                                 extra_context = None):
@@ -234,6 +236,7 @@ def student_registration_complete(request, extra_context = None):
     return context
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile.html")
 def student_profile(request, form_class=StudentProfileForm, extra_context=None):
@@ -281,6 +284,7 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm,
@@ -333,6 +337,7 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
         return HttpResponseForbidden("You must be logged in.")     
 
 @login_required
+@agreed_to_terms
 @require_http_methods(["POST"])
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_update_resume(request, form_class=StudentUpdateResumeForm):
@@ -358,6 +363,7 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
 
 
 @login_required
+@agreed_to_terms
 @require_http_methods(["GET"])
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_update_resume_info(request):
@@ -395,6 +401,7 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
     else:
         return HttpResponseForbidden("You must be logged in.")
 
+@agreed_to_terms
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "student"):
@@ -430,6 +437,7 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
         return HttpResponseForbidden("You must be logged in.")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 def student_resume(request):
     # Show the student his/her resume

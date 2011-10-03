@@ -16,10 +16,11 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.utils import simplejson
+from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
 
 from core import enums, messages
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
+from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import employer_campus_org_slug_exists
@@ -50,6 +51,17 @@ def check_employer_campus_org_slug_uniqueness(request):
             return HttpResponseBadRequest("Request is missing the slug.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@render_to('terms_of_service.html')
+def terms_of_service(request):
+    if request.method == "POST":
+        request.user.userattributes.agreed_to_terms = True
+        request.user.userattributes.agreed_to_terms_date = datetime.now()
+        request.user.userattributes.save()
+        return redirect(reverse('home'))
+    else:
+        context = {'agreed':request.user.userattributes.agreed_to_terms}
+        return context
 
 @require_GET
 def check_employer_uniqueness(request):
@@ -256,6 +268,7 @@ def landing_page(request, extra_context = None):
     return context
 
 @has_any_subscription
+@agreed_to_terms
 @render_to()
 def home(request, extra_context=None):
     context = {}
