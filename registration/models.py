@@ -84,7 +84,7 @@ class UserAttributes(models.Model):
 @receiver(post_save, sender=User)
 def create_userattributes(sender, instance, created, raw, **kwargs):
     if created and not raw:
-        UserAttributes.objects.create(user=instance, is_verified=False)
+        UserAttributes.objects.create(user=instance, is_verified=False, agreed_to_terms=True)
 
 
 class RegistrationProfile(models.Model):
