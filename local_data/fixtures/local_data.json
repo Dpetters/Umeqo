@@ -1594,8 +1594,10 @@
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 2, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1603,8 +1605,10 @@
   "pk": 2, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 3, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1612,8 +1616,10 @@
   "pk": 3, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 4, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1621,8 +1627,10 @@
   "pk": 4, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 5, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1630,8 +1638,10 @@
   "pk": 5, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 6, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1639,8 +1649,10 @@
   "pk": 6, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 7, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1648,8 +1660,10 @@
   "pk": 7, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 8, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1657,8 +1671,10 @@
   "pk": 8, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 9, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1666,8 +1682,10 @@
   "pk": 9, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 10, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1675,8 +1693,10 @@
   "pk": 10, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 11, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1684,8 +1704,10 @@
   "pk": 15, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": false, 
    "user": 16, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
@@ -1693,8 +1715,10 @@
   "pk": 25, 
   "model": "registration.userattributes", 
   "fields": {
+   "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 26, 
+   "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
  }, 
