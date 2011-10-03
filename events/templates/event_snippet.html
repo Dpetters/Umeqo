@@ -1,6 +1,27 @@
 <li{% if past %} class="outdated"{% endif %}>
     <div class="name">
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
+        {% if event.location %}
+        <div class="location_div">
+            <strong>Location:</strong>
+            <span class="location">{{event.location}}</span>
+        </div>
+        {% endif %}
+    </div>
+    
+    {% if user.recruiter %}
+        {% if event.owner.recruiter.employer == user.recruiter.employer %}
+            {% include 'event_snippet_edit.html' %}
+        {% endif %}
+    {% endif %}
+
+    {% if user.campusorg %}
+        {% if event.owner == user %}
+            {% include 'event_snippet_edit.html' %}
+        {% endif %}
+    {% endif %}
+    
+    <div class="details">
         {% if event.end_datetime %}
             <div class="datetime">
                 {% if event.start_datetime %}
@@ -19,27 +40,6 @@
                     {% endifequal %}
                 </span>
             </div>
-        {% endif %}
-    </div>
-    
-    {% if user.recruiter %}
-        {% if event.owner.recruiter.employer == user.recruiter.employer %}
-            {% include 'event_snippet_edit.html' %}
-        {% endif %}
-    {% endif %}
-
-    {% if user.campusorg %}
-        {% if event.owner == user %}
-            {% include 'event_snippet_edit.html' %}
-        {% endif %}
-    {% endif %}
-    
-    <div class="details">
-        {% if event.location %}
-        <div class="location_div">
-            <strong>Location:</strong>
-            <span class="location">{{event.location}}</span>
-        </div>
         {% endif %}
         {% if event.description %}
         <div>{{event.description|striptags|safe|truncatewords:50}}</div>
