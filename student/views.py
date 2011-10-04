@@ -33,7 +33,6 @@ from student.enums import RESUME_PROBLEMS
 from countries.models import Country
         
 
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to('student_registration_help.html')
 def student_registration_help(request, extra_context=None):
     if request.is_ajax():
