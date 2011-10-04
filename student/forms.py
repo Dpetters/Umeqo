@@ -34,7 +34,7 @@ class StudentRegistrationForm(forms.Form):
 
     email = forms.EmailField(label="MIT email:", widget=forms.TextInput(attrs={'tabindex':1}))
     password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
-    
+
     def clean_email(self):
         email = self.cleaned_data['email']
         

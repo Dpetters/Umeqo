@@ -2,6 +2,8 @@ import traceback
 import socket
 import logging
 
+from django.shortcuts import render_to_response
+
 class LogMiddleware(object):
     def process_exception(self, request, exception):
         
@@ -19,8 +21,8 @@ class LogMiddleware(object):
             traceback   = tb_text,
         ) 
         logger.error(exception_info)
-      
-   
+
+
 class SetRemoteAddrMiddleware(object):
     def process_request(self, request):
         if not request.META.has_key('REMOTE_ADDR'):

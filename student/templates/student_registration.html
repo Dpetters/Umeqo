@@ -69,6 +69,12 @@ Student Registration |
             {% endif %}
             <tr>
                 <th></th>
+                <td>
+                    <p id="terms">By signing up, you are agreeing to our <a href="{% url terms_of_service %}">terms</a>.<p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
                 <td class="error_section error">
                     {{form.non_field_errors}}
                 </td>

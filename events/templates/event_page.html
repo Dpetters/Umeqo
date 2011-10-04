@@ -131,7 +131,7 @@
                     <h2>Not {% if is_deadline %}Participating{% else %}Attending{% endif %} ({{no_rsvps|length}})</h2>
                 {% endif %}
                 {% if not is_deadline %}
-                    <h2>Checked-in ({{checkins|length}})</h2>
+                    <h2>Checked-in ({{attendees|length}})</h2>
                     <h2>All ({{all_responses|length}})</h2>
                 {% endif %}
             </div>
@@ -183,10 +183,10 @@
                     {% endif %}
                 </div>
                 {% endif %}
-                {% for student in checkins %}
-                    {% include "events_response_token.html" with student=student %}
+                {% for attendee in attendees %}
+                    {% include "events_response_token.html" with student=attendee %}
                 {% empty %}
-                <div id="event_response_empty">There are no check-ins yet.</div>
+                    <div id="event_response_empty">There are no check-ins yet.</div>
                 {% endfor %}
             </div>
             <div id="event_all" class="hid responses">

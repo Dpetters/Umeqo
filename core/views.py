@@ -16,10 +16,11 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.utils import simplejson
+from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
 
 from core import enums, messages
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
+from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
 from core.view_helpers import employer_campus_org_slug_exists
@@ -50,6 +51,20 @@ def check_employer_campus_org_slug_uniqueness(request):
             return HttpResponseBadRequest("Request is missing the slug.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@render_to('terms_of_service.html')
+def terms_of_service(request):
+    if request.method == "POST":
+        request.user.userattributes.agreed_to_terms = True
+        request.user.userattributes.agreed_to_terms_date = datetime.now()
+        request.user.userattributes.save()
+        return redirect(reverse('home'))
+    else:
+        if request.user.is_authenticated() and not request.user.is_staff:
+            context = {'agreed': request.user.userattributes.agreed_to_terms}
+        else:
+            context = {'agreed': True}
+        return context
 
 @require_GET
 def check_employer_uniqueness(request):
@@ -183,14 +198,15 @@ def get_location_guess(request):
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
     if request.GET.has_key('query'):
+        num_of_suggestions = 7
         query = request.GET['query']
         suggestions = []
         if len(query.split("-")) > 1 and query.split("-")[1] and Location.objects.filter(building_num=query.split("-")[0]).exists():
-            locations = Location.objects.filter(building_num__iexact=query.split("-")[0])[:8]
+            locations = Location.objects.filter(building_num__iexact=query.split("-")[0])[:num_of_suggestions]
             for l in locations:
                 suggestions.append({'name':"%s" % query, 'lat':l.latitude, 'lng':l.longitude})
         else:
-            locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:8]
+            locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:num_of_suggestions]
             for l in locations:
                 suggestions.append({'name':"%s" % str(l.object), 'lat':l.object.latitude, 'lng':l.object.longitude})
         context = {'suggestions': suggestions}
@@ -255,6 +271,7 @@ def landing_page(request, extra_context = None):
     return context
 
 @has_any_subscription
+@agreed_to_terms
 @render_to()
 def home(request, extra_context=None):
     context = {}

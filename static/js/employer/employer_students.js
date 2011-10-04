@@ -25,22 +25,6 @@ function show_current_resume_book_contents_dialog(e) {
     $(".dialog").remove();
     show_current_resume_book_contents(e);
 }
-
-function open_event_invitation_dialog() {
-    var $dialog = $('<div class="dialog"></div>').dialog({
-        autoOpen: false,
-        title: "Send Event Invitation",
-        dialogClass: "event_invitation_dialog",
-        modal: true,
-        width: 550,
-        resizable: false,
-        close: function (event, ui) {
-            event_invitation_dialog.remove();
-        }
-    });
-    $dialog.dialog('open');
-    return $dialog;
-}
     
 function handle_student_toggle_star() {
     var container = this;
@@ -477,10 +461,6 @@ function handle_menu_all_on_page_click() {
     });
 }
 
-function handle_event_invitation_link_click() {
-    open_event_invitation_dialog();
-}
-
 function handle_page_link_click() {
     page = $(this).attr("id").substring(5);
     initiate_ajax_call();
@@ -631,7 +611,6 @@ $(document).ready(function () {
         }
     });
     
-    $(".event_invitation_link").live('click', handle_event_invitation_link_click);
     $("#results_menu_in_resume_book").live('click', handle_results_menu_in_resume_book_click);
     $("#results_menu_not_in_resume_book").live('click', handle_results_menu_not_in_resume_book_click);
     $("#results_menu_not_starred").live('click', handle_results_menu_not_starred_click);
@@ -705,7 +684,7 @@ $(document).ready(function () {
         }
     });
 
-    var slt = get_parameter_by_name("slt");    
+    var slt = get_parameter_by_name("slt");
     if (slt) {
         var st = $("#id_student_list").multiselect("widget").find("input[title='" + decodeURIComponent(slt)  + "']");
         if (st.length != 0) {
@@ -729,16 +708,20 @@ $(document).ready(function () {
             $(this).data('init', true);
             var that = this;
             $(this).hoverIntent({
-            sensitivity:4,
+            sensitivity:2,
             over: function () {
-                $.ajax({
+                $(that).append('<div class="events_dropdown"></div>');
+                place_tiny_ajax_loader('.events_dropdown');
+                if (xhr && xhr.readystate != 4) { xhr.abort(); }
+                xhr = $.ajax({
                     url: EVENTS_LIST_URL, 
                     data: {"student_id": $(this).attr('data-studentid')}, 
                     success: function (events) {
-                        var dropdown = $('<div class="events_dropdown"></div>');
+                        var dropdown = $(".events_dropdown");
                         if (events.length == 0) {
                             dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
                         } else {
+                            dropdown.html('');
                             $.each(events, function (k,event) {
                                 var ispublic = event.is_public ? 1 : 0;
                                 var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
@@ -755,7 +738,6 @@ $(document).ready(function () {
                                 dropdown.append(link);
                             });
                         }
-                        $(that).append(dropdown);
                     },
                     error: errors_in_message_area_handler
                 });

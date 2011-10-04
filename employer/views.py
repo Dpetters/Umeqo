@@ -26,7 +26,7 @@ from django.views.decorators.http import require_POST, require_GET
 from django.core.urlresolvers import reverse
 
 from core.email import send_html_mail
-from core.decorators import has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import agreed_to_terms, has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.models import Industry
 from registration.forms import PasswordChangeForm
 from core import messages
@@ -40,6 +40,7 @@ from subscription.models import EmployerSubscription, Subscription
 from student.models import Student
 
 @require_GET
+@agreed_to_terms
 @render_to("employer.html")
 def employer(request):
     if request.GET.has_key("employer_name"):
@@ -54,6 +55,7 @@ def employer(request):
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
 @has_annual_subscription
+@agreed_to_terms
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -68,7 +70,7 @@ def employer_profile_preview(request, slug, extra_context=None):
         context.update(extra_context or {})
         return context
 
-
+@agreed_to_terms
 @render_to("employer_new.html")
 def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
     if request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student"):
@@ -98,6 +100,7 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @has_annual_subscription
+@agreed_to_terms
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
     if request.is_ajax():
@@ -129,6 +132,7 @@ def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account.html")
 @require_GET
@@ -173,6 +177,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account_delete.html")
 def employer_account_delete(request):
@@ -195,6 +200,7 @@ def employer_account_delete(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_resume_book_delete.html")
 def employer_resume_book_delete(request, extra_context = None):
@@ -216,6 +222,7 @@ def employer_resume_book_delete(request, extra_context = None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 @require_GET
@@ -226,6 +233,7 @@ def employer_other_recruiters(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -240,6 +248,7 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @has_annual_subscription
 @render_to("employer_profile.html")
@@ -261,6 +270,7 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -279,6 +289,7 @@ def employer_student_toggle_star(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -294,6 +305,7 @@ def employer_students_add_star(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -309,6 +321,7 @@ def employer_students_remove_star(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -331,6 +344,7 @@ def employer_student_comment(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -357,6 +371,7 @@ def employer_resume_book_current_toggle_student(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -381,6 +396,7 @@ def employer_resume_book_current_add_students(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -401,6 +417,7 @@ def employer_resume_book_current_remove_students(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to('employer_student_attendance.html')
@@ -419,6 +436,7 @@ def employer_student_event_attendance(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_GET
@@ -431,6 +449,7 @@ def employer_resume_book_history(request, extra_context=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to()
@@ -524,6 +543,7 @@ def employer_students(request, extra_context=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to('employer_resume_book_current_summary.html')
@@ -543,6 +563,7 @@ def employer_resume_book_current_summary(request, extra_context=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
@@ -571,6 +592,7 @@ def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookFo
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -629,6 +651,7 @@ def employer_resume_book_current_create(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to("employer_resume_book_current_delivered.html")
@@ -674,6 +697,7 @@ def employer_resume_book_current_email(request, extra_context=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 def employer_resume_book_current_download(request):
@@ -709,6 +733,7 @@ def employer_resume_book_current_download(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @render_to('employers_list.html')
 def employers_list(request, extra_content=None):
@@ -755,6 +780,7 @@ def employers_list(request, extra_content=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @render_to('employers_list_pane.html')
 def employers_list_pane(request, extra_content=None):
@@ -774,6 +800,7 @@ def employers_list_pane(request, extra_content=None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @render_to('employers_list_ajax.html')
 def employer_list_ajax(request):
@@ -783,6 +810,7 @@ def employer_list_ajax(request):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 def employer_subscribe(request):
     employer_id = request.POST.get('id', None)

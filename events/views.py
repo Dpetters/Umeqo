@@ -20,14 +20,13 @@ from django.template import RequestContext
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
 import xlwt
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
 from core import enums as core_enums
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
+from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm
@@ -36,7 +35,9 @@ from events.views_helper import event_search_helper, get_event_schedule, get_att
 from notification import models as notification
 from student.models import Student
 
+
 @require_GET
+@agreed_to_terms
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug = owner_slug)
@@ -59,6 +60,7 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     raise Http404
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @render_to('events_list.html')
 def events_list(request, extra_context=None):
@@ -81,6 +83,7 @@ def event_page_redirect(request, id):
     return redirect("%s" % (event.get_absolute_url()))
 
 @render_to('event_page.html')
+@agreed_to_terms
 def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
@@ -119,7 +122,7 @@ def event_page(request, id, slug, extra_context=None):
         'invitees': get_invitees(event),
         'rsvps': get_rsvps(event),
         'no_rsvps': get_no_rsvps(event),
-        'checkins': get_attendees(event),
+        'attendees': get_attendees(event),
         'all_responses': get_all_responses(event),
         'page_url': page_url,
         'DOMAIN': current_site.domain,
@@ -175,6 +178,7 @@ def event_page(request, id, slug, extra_context=None):
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
+@agreed_to_terms
 @render_to()
 def event_new(request, form_class=None, extra_context=None):
     context = {'TEMPLATE':"event_form.html"}
@@ -281,6 +285,7 @@ def export_event_list_text(file_obj, event, list):
     return filename
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 def event_list_download(request):
@@ -307,6 +312,7 @@ def event_checkin_count(request):
     
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @render_to('event_list_export_completed.html')
@@ -317,6 +323,7 @@ def event_list_export_completed(request, extra_context = None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @render_to()
@@ -366,6 +373,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 @render_to("event_form.html")
@@ -411,6 +419,7 @@ def event_edit(request, id=None, extra_context=None):
     return context
 
 @login_required
+@agreed_to_terms
 @has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 def event_delete(request, id, extra_context = None):
@@ -444,6 +453,7 @@ def event_delete(request, id, extra_context = None):
 
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 def event_schedule(request):
@@ -454,6 +464,7 @@ def event_schedule(request):
 
 
 @login_required
+@agreed_to_terms
 @require_http_methods(["GET", "POST"])
 @has_any_subscription
 def event_rsvp(request, event_id):
@@ -487,6 +498,7 @@ def event_rsvp(request, event_id):
         return HttpResponseForbidden("You must be a recruiter or campus org to access this view.")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 def event_unrsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
@@ -501,6 +513,7 @@ def event_unrsvp(request, event_id):
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @require_POST
 def event_drop(request, event_id):
@@ -528,6 +541,7 @@ def event_drop(request, event_id):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @require_POST
 def event_undrop(request, event_id):
@@ -536,6 +550,7 @@ def event_undrop(request, event_id):
     return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 @require_GET
@@ -559,6 +574,7 @@ def event_raffle_winner(request, extra_context=None):
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @require_http_methods(["GET", "POST"])
@@ -624,6 +640,7 @@ def event_checkin(request, event_id):
         return HttpResponse(simplejson.dumps(output), mimetype="application/json")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @require_GET
 def event_rsvp_message(request, extra_context=None):
@@ -642,6 +659,7 @@ def event_rsvp_message(request, extra_context=None):
     return HttpResponseBadRequest("Event id is missing");
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_student)
 @render_to('events_list_ajax.html')
 def event_search(request, extra_context=None):
@@ -651,6 +669,7 @@ def event_search(request, extra_context=None):
     return context
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 def events_by_employer(request):
@@ -674,6 +693,7 @@ def events_by_employer(request):
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
 
 @login_required
+@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 @require_POST
@@ -719,6 +739,5 @@ def event_invite(request):
             'time_added': datetime.now(),
             'message': '<strong>%s</strong> has invited you to their event: "%s"' % (employer.name, event.name),
         })
-
     data = { 'valid': True, 'message': 'Invite sent successfully.' }
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")

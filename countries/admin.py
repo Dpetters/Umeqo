@@ -3,6 +3,6 @@ from django.contrib import admin
 from countries.models import Country
 
 class CountryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('printable_name', 'iso', 'sort_order')
         
 admin.site.register(Country, CountryAdmin)
