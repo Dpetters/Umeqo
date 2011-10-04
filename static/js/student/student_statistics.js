@@ -40,7 +40,7 @@ $(document).ready(function() {
         },
         tooltip : {
             formatter : function() {
-                return '' + this.x + ': ' + this.y + '';
+                return '' + this.x + ': ' + Highcharts.numberFormat(this.y, 2) + '';
             }
         },
         legend:{
