@@ -3554,14 +3554,14 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:41:28", 
+   "last_updated": "2011-10-04 10:08:35", 
    "click_count": 1, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "1.000", 
-   "answer": "Umeqo was created by three current MIT undergraduates (Dmitrij Petters, Zac Dearing, and Josh Ma) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them, having events cancelled on us with no notification, and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
+   "answer": "Umeqo was created by three current MIT undergraduates (<a href=\"https://www.facebook.com/dpetters\">Dmitrij Petters</a>, <a href=\"http://www.linkedin.com/pub/zachary-dearing/25/1b8/b76\">Zac Dearing</a>, and <a href=\"http://www.linkedin.com/pub/joshua-ma/26/595/a34\">Josh Ma</a>) to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employer recruit, and thus developed Umeqo to solve these problems.", 
    "date_created": "2011-09-03 21:17:13", 
    "display": true
   }
@@ -3586,8 +3586,8 @@
   "pk": 13, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:31:59", 
-   "click_count": 1, 
+   "last_updated": "2011-10-04 10:29:52", 
+   "click_count": 2, 
    "question": "Where did the title Umeqo come from and how is it pronounced?", 
    "slug": "where-did-title-umeqo-come-and-how-it-pronounced", 
    "topic": 1, 
@@ -3682,14 +3682,14 @@
   "pk": 17, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:31:26", 
+   "last_updated": "2011-10-04 09:52:20", 
    "click_count": 0, 
    "question": "Can you send me a copy of my password without resetting it?", 
    "slug": "can-you-send-me-copy-my-password-without-resetting-it", 
    "topic": 9, 
    "audience": 1, 
    "sort_order": "4.000", 
-   "answer": "For security reasons, Umeqo does not have the ability to send you a copy of your current password. However, you can always reset it using the reset password link on the login form.", 
+   "answer": "For security reasons, Umeqo does not have the ability to send you a copy of your current password. However, you can always reset it on the <a href=\"/password/reset/\">password reset page</a>.", 
    "date_created": "2011-10-04 09:31:26", 
    "display": true
   }
@@ -3698,14 +3698,14 @@
   "pk": 15, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:28:49", 
+   "last_updated": "2011-10-04 10:04:31", 
    "click_count": 0, 
    "question": "How do I change my login email address?", 
    "slug": "how-do-i-change-my-login-email-address", 
    "topic": 9, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "Let us know what you would like to change it to by clicking the \"Contact Us\" link at the bottom of the page. Note that recruiters can make additional credentials for their co-workers using the \"Create New Account\" link on the \"Account Settings\" page.", 
+   "answer": "You need to <a class=\"open_contact_us_dialog_link\" href=\"#\">contact us</a> and let us know what you would it changed to. Note that recruiters can make additional credentials for their co-workers using the \"Create New Account\" link on the \"Account Settings\" page.", 
    "date_created": "2011-10-04 09:28:49", 
    "display": true
   }
@@ -3714,15 +3714,31 @@
   "pk": 8, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:32:13", 
+   "last_updated": "2011-10-04 10:07:48", 
    "click_count": 2, 
    "question": "It looks like things are broken. Am I doing something wrong?", 
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "No, you are not. But you might be using an older browser. If this is so, please let us know of what is broken by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
+   "answer": "No, you are not. But you might be using an older browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. Thank you for your patience!", 
    "date_created": "2011-09-14 22:44:07", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 10:27:52", 
+   "click_count": 0, 
+   "question": "Why am I hitting the a page with the Terms of Service when I log in?", 
+   "slug": "why-am-i-hitting-page-terms-service-when-i-log", 
+   "topic": 1, 
+   "audience": 2, 
+   "sort_order": "4.000", 
+   "answer": "Whenever we make any changes to our terms of service, we want you to be aware of them. Thus, in all future cases, we will summarize the changes at the top of the <a href=\"/terms/\">terms of service page</a> and redirect you to it when you log in to review the changes. The button to accept will always be at the bottom.", 
+   "date_created": "2011-10-04 10:20:57", 
    "display": true
   }
  }, 
@@ -3746,14 +3762,14 @@
   "pk": 16, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:29:33", 
+   "last_updated": "2011-10-04 09:53:48", 
    "click_count": 0, 
    "question": "I deactivated my account. How do I reactivate it?", 
    "slug": "i-deactivated-my-account-how-do-i-reactivate-it", 
    "topic": 9, 
    "audience": 1, 
    "sort_order": "5.000", 
-   "answer": "If you deactivated your account, you can reactivate it at any time simply by logging in with your login email address and password.", 
+   "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login_link\" href=\"#\">logging in</a> with your login email address and password.", 
    "date_created": "2011-10-04 09:29:33", 
    "display": true
   }
