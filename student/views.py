@@ -33,7 +33,6 @@ from student.enums import RESUME_PROBLEMS
 from countries.models import Country
         
 
-@login_required
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to('student_registration_help.html')
 def student_registration_help(request, extra_context=None):
@@ -93,7 +92,6 @@ def student_increment_resume_view_count(request):
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
-
     if request.is_ajax():
         if request.method == "POST":
             form = form_class(data = request.POST)

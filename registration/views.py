@@ -79,7 +79,7 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
             })
             return context
     response = auth_login_view(request, template_name=template_name, authentication_form=AuthenticationForm, current_app=current_app, extra_context=extra_context)
-    if request.user.is_superuser:
+    if request.user.is_staff:
         return redirect(reverse('super_login'))
     else:
         us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
@@ -125,6 +125,7 @@ def activate_user(request, backend = RegistrationBackend(), success_url=None, ex
     if user:
         user.backend = s.AUTHENTICATION_BACKENDS[0]
         auth_login(request, user)
+        us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
         if success_url is None:
             to, args, context = backend.post_activation_redirect(request, user)
             return redirect(to, *args, **context)
