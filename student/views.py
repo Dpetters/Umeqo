@@ -475,6 +475,8 @@ def student_body_statistics(request):
                     data['categories'].append("%s" % school_year.name_plural)
                     sum = 0
                     for s in students:
+                        print s.gpa
+                        print s.gpa != 0
                         if s.gpa != 0:
                             sum += s.gpa
                     data['series']['data'].append(float(sum)/len(students))
