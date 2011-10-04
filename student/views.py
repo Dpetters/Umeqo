@@ -474,12 +474,12 @@ def student_body_statistics(request):
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
                     sum = 0
+                    num = 0
                     for s in students:
-                        print s.gpa
-                        print s.gpa != 0
                         if s.gpa != 0:
+                            num += 1
                             sum += s.gpa
-                    data['series']['data'].append(float(sum)/len(students))
+                    data['series']['data'].append(float(sum)/num)
         elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
             data['name'] = "# of Previous Employers vs. School Year"
             data['y_axis_text'] = "# of Previous Employers"
