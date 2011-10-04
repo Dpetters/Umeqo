@@ -1508,6 +1508,30 @@
   }
  }, 
  {
+  "pk": 85, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    27, 
+    28, 
+    34
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-10-04 07:47:59", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-04 07:47:59", 
+   "logo": "employer/employer/ubs_2011-10-04-07-47-59.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "UBS"
+  }
+ }, 
+ {
   "pk": 6, 
   "model": "employer.employer", 
   "fields": {

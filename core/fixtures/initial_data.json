@@ -3522,12 +3522,12 @@
   "pk": 5, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-04 01:51:29", 
-   "click_count": 0, 
+   "last_updated": "2011-10-04 09:32:19", 
+   "click_count": 1, 
    "question": "What is the difference between a public and private event?", 
    "slug": "what-difference-between-public-and-private-event", 
    "topic": 11, 
-   "audience": 3, 
+   "audience": 0, 
    "sort_order": "1.000", 
    "answer": "Anyone can view, RSVP and is welcome to attend a public event. A private event, however, is only visible to those students who are personally invited to it by the host employer.", 
    "date_created": "2011-09-04 01:51:29", 
@@ -3538,12 +3538,12 @@
   "pk": 3, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:17:58", 
+   "last_updated": "2011-10-04 09:09:22", 
    "click_count": 0, 
    "question": "Why should I create yet another profile?", 
    "slug": "why-should-i-create-yet-another-profile", 
    "topic": 12, 
-   "audience": 3, 
+   "audience": 7, 
    "sort_order": "1.000", 
    "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
    "date_created": "2011-09-03 22:56:28", 
@@ -3583,6 +3583,22 @@
   }
  }, 
  {
+  "pk": 13, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:31:59", 
+   "click_count": 1, 
+   "question": "Where did the title Umeqo come from and how is it pronounced?", 
+   "slug": "where-did-title-umeqo-come-and-how-it-pronounced", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "2.000", 
+   "answer": "The word is Zulu for \"leap\". It is pronounced [you-me-co], as in you + me + company.", 
+   "date_created": "2011-10-04 09:22:06", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 4, 
   "model": "core.question", 
   "fields": {
@@ -3615,17 +3631,33 @@
   }
  }, 
  {
+  "pk": 14, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:27:01", 
+   "click_count": 0, 
+   "question": "I can't remember my log in email.", 
+   "slug": "i-cant-remember-my-log-email", 
+   "topic": 9, 
+   "audience": 0, 
+   "sort_order": "3.000", 
+   "answer": "The log in email is typically the one that you use most often. For students, it's your MIT email. For campus orgs, it's the public version of your email address (e.g. traders@mit.edu, sbc@mit.edu). For recruiters, it's your work email.", 
+   "date_created": "2011-10-04 09:27:01", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 11, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:29:06", 
+   "last_updated": "2011-10-04 09:10:53", 
    "click_count": 0, 
-   "question": "Why are there only 12 employers?", 
+   "question": "Why are there only 14 employers?", 
    "slug": "why-are-there-only-12-employers", 
    "topic": 10, 
    "audience": 3, 
    "sort_order": "3.000", 
-   "answer": "The included 12 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!", 
+   "answer": "The included 14 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!", 
    "date_created": "2011-09-19 23:29:06", 
    "display": true
   }
@@ -3634,7 +3666,7 @@
   "pk": 12, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-20 00:03:18", 
+   "last_updated": "2011-10-04 09:11:41", 
    "click_count": 0, 
    "question": "Can students see the comments that I leave about them? Do they know whether I starred them or not?", 
    "slug": "can-students-see-comments-i-leave-about-them-do-they-know-whether-i-starred-them-or-not", 
@@ -3647,26 +3679,58 @@
   }
  }, 
  {
+  "pk": 17, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:31:26", 
+   "click_count": 0, 
+   "question": "Can you send me a copy of my password without resetting it?", 
+   "slug": "can-you-send-me-copy-my-password-without-resetting-it", 
+   "topic": 9, 
+   "audience": 1, 
+   "sort_order": "4.000", 
+   "answer": "For security reasons, Umeqo does not have the ability to send you a copy of your current password. However, you can always reset it using the reset password link on the login form.", 
+   "date_created": "2011-10-04 09:31:26", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:28:49", 
+   "click_count": 0, 
+   "question": "How do I change my login email address?", 
+   "slug": "how-do-i-change-my-login-email-address", 
+   "topic": 9, 
+   "audience": 0, 
+   "sort_order": "4.000", 
+   "answer": "Let us know what you would like to change it to by clicking the \"Contact Us\" link at the bottom of the page. Note that recruiters can make additional credentials for their co-workers using the \"Create New Account\" link on the \"Account Settings\" page.", 
+   "date_created": "2011-10-04 09:28:49", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 8, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-18 17:57:32", 
-   "click_count": 0, 
+   "last_updated": "2011-10-04 09:32:13", 
+   "click_count": 2, 
    "question": "It looks like things are broken. Am I doing something wrong?", 
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "No, you are not. But you might be using a really old version of Firefox. If this is so, please let us know of what is broken by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
+   "answer": "No, you are not. But you might be using an older browser. If this is so, please let us know of what is broken by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
    "date_created": "2011-09-14 22:44:07", 
-   "display": false
+   "display": true
   }
  }, 
  {
   "pk": 9, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:22:25", 
+   "last_updated": "2011-10-04 09:11:48", 
    "click_count": 0, 
    "question": "Can I send multiple invitations out at once?", 
    "slug": "can-i-send-multiple-invitations-out-once", 
@@ -3679,17 +3743,33 @@
   }
  }, 
  {
+  "pk": 16, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:29:33", 
+   "click_count": 0, 
+   "question": "I deactivated my account. How do I reactivate it?", 
+   "slug": "i-deactivated-my-account-how-do-i-reactivate-it", 
+   "topic": 9, 
+   "audience": 1, 
+   "sort_order": "5.000", 
+   "answer": "If you deactivated your account, you can reactivate it at any time simply by logging in with your login email address and password.", 
+   "date_created": "2011-10-04 09:29:33", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 10, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-20 00:00:19", 
+   "last_updated": "2011-10-04 09:12:07", 
    "click_count": 0, 
    "question": "I saw an event page that had a map included along with the location! How come mine doesn't have one?", 
    "slug": "i-saw-event-page-had-map-included-along-location-how-come-mine-doesnt", 
    "topic": 11, 
    "audience": 6, 
    "sort_order": "6.000", 
-   "answer": "When you go to create your event, you will see suggestions showing up below the field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!", 
+   "answer": "When you go to create your event, you will see suggestions showing up below the location field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!", 
    "date_created": "2011-09-19 23:26:59", 
    "display": true
   }
