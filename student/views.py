@@ -473,13 +473,14 @@ def student_body_statistics(request):
                 students = Student.objects.filter(school_year = school_year)
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
-                    sum = 0
-                    num = 0
+                    num_of_students = 0
+                    gpa_sum = 0
                     for s in students:
                         if s.gpa != 0:
-                            num += 1
-                            sum += s.gpa
-                    data['series']['data'].append(float(sum)/num)
+                            num_of_students += 1
+                            gpa_sum += s.gpa
+                    if num_of_students != 0:
+                        data['series']['data'].append(float(gpa_sum)/num_of_students)
         elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
             data['name'] = "# of Previous Employers vs. School Year"
             data['y_axis_text'] = "# of Previous Employers"
