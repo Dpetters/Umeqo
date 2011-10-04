@@ -40,6 +40,7 @@ $('#employer_subscribe').live('click', function(e) {
         that.attr('id','employer_unsubscribe');
         that.removeAttr('disabled');
         that.addClass('warning-button');
+        $(".employer_id[value="+ loaded_id + "]").parent().addClass("subscribed");
     });
     e.preventDefault();
 });
@@ -54,6 +55,7 @@ $('#employer_unsubscribe').live('click', function(e) {
         that.html('Subscribe');
         that.attr('id','employer_subscribe');
         that.removeAttr('disabled')
+        $(".employer_id[value="+ loaded_id + "]").parent().removeClass("subscribed");
     });
     e.preventDefault();
 });
