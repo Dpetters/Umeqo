@@ -15,6 +15,9 @@ Terms of Service |
 <div id="terms_block" class="simple_block">
     <h1>Umeqo Terms of Service</h1>
     <h2>Last Revision: September 3rd, 2011</h2>
+    {% if not agreed %}
+    <p id="tip"><strong>Please Note:</strong> The button to accept is at the bottom.</p>
+    {% endif %}
     <div id="terms_text">
         {% include 'terms_of_service_text.html' %}
     </div>
