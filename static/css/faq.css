@@ -1,7 +1,9 @@
+p.link_to_top{
+    margin-bottom:15px;
+}
 .faq-question{
     margin-left:5px;
     display:inline;
-    margin-top:5px;
 }
 .faq-question-icon{
     position:relative;
