@@ -1,8 +1,22 @@
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.db.models import Q
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
+from core.decorators import is_student, is_recruiter, is_campus_org
+from core import enums
+
+def filter_faq_questions(user, questions):
+    if is_recruiter(user):
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+    elif is_student(user):
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
+    elif is_campus_org(user):
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
+    else:
+        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+    return questions
 
 def employer_campus_org_slug_exists(slug, campusorg=None, employer=None):
     try:

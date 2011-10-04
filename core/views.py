@@ -19,11 +19,11 @@ from django.utils import simplejson
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
 
-from core import enums, messages
+from core import messages
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Topic, Location, Question
-from core.view_helpers import employer_campus_org_slug_exists
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
 from student.models import Student
@@ -80,22 +80,13 @@ def check_employer_uniqueness(request):
             return HttpResponseBadRequest("Request is missing the employer name.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-    
+
 @render_to('help_center.html')
+@require_GET
 def help_center(request, extra_context = None):
-    questions = Question.objects.visible()
-    if is_recruiter(request.user):
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-    elif is_student(request.user):
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-    elif is_campus_org(request.user):
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
-    else:
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
-    context = {'top_questions':questions.order_by("-click_count")[:10]}
+    context = {'top_questions': filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:10]}
     context.update(extra_context or {})
     return context
-
 
 def account_deactivate(request, extra_context = None):
     context = {}
@@ -106,7 +97,7 @@ def account_deactivate(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-
+@require_GET
 @render_to('faq.html')
 def faq(request, extra_context = None):
     if request.method == "POST":
@@ -120,15 +111,7 @@ def faq(request, extra_context = None):
     else:
         context = {'topics':[]}
         for topic in Topic.objects.all():
-            questions = topic.question_set.visible()         
-            if is_recruiter(request.user):
-                questions = questions.filter(Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-            elif is_student(request.user):
-                questions = questions.filter(Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-            elif is_campus_org(request.user):
-                questions = questions.filter(Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
-            else:
-                questions = questions.filter(Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
+            questions = filter_faq_questions(request.user, topic.question_set.visible())
             if questions:
                 context['topics'].append({'name': topic, 'questions':questions})
         context.update(extra_context or {})  
