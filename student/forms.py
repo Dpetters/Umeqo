@@ -17,6 +17,7 @@ from core.view_helpers import does_email_exist
 from employer.models import Employer
 from core.fields import PdfField
 from registration.models import RegException
+from student import enums as student_enums
 from countries.models import Country
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core import messages as m
@@ -148,7 +149,10 @@ class StudentBaseAttributeForm(forms.ModelForm):
         super(StudentBaseAttributeForm, self).__init__(*args, **kwargs)
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
 
-
+class StudentBodyStatisticsForm(forms.Form):
+    y_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_Y_AXIS, initial=student_enums.GPA)
+    x_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_X_AXIS, initial=student_enums.SCHOOL_YEAR)
+        
 class StudentProfileForm(StudentBaseAttributeForm):
     # Required Info
     first_name = forms.CharField(label="First name:", max_length = 20)

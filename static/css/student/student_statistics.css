@@ -1,0 +1,9 @@
+#controls{
+    margin-top:10px;
+}
+#id_y_axis, #id_x_axis{
+    min-width:150px;
+}
+#student_body_graph_container{
+    margin-top:20px;
+}

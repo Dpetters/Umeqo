@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Statistics |
+{% endblock %}
+
+{% block metadata %}
+{{ block.super }}
+{% load text_snippet %}
+{% load compress %}
+    {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_statistics.css">
+    {% endcompress %}
+
+    <script>
+        var STUDENT_BODY_STATISTICS_URL = "{% url student_body_statistics %}";
+    </script>    
+    {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}lib/highcharts/js/highcharts.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_statistics.js"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<h1>Student Body Statistics</h1>
+<div id="controls">
+    <span>Plot</span>
+    {{student_body_statistics_form.y_axis}}
+    <span>vs</span>
+    {{student_body_statistics_form.x_axis}}
+</div>
+<div id="student_body_graph_container"></div>
+{% endblock %}
