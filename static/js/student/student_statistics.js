@@ -18,6 +18,9 @@ function update_student_body_statistics() {
             student_body_statistics_series = data.series;
             student_body_statistics_series = student_body_statistics_chart.addSeries(student_body_statistics_series);
             student_body_statistics_chart.xAxis[0].setCategories(data.categories);
+            console.log(data.y_axis_min);
+            console.log(data.y_axis_max);
+            student_body_statistics_chart.yAxis[0].setExtremes(data.y_axis_min, data.y_axis_max);
             student_body_statistics_chart.yAxis[0].axisTitle.attr({
                 text: data.y_axis_text
             });
