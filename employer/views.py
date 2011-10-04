@@ -805,6 +805,12 @@ def employers_list_pane(request, extra_content=None):
 @render_to('employers_list_ajax.html')
 def employer_list_ajax(request):
     employers = employer_search_helper(request)
+    subscriptions = request.user.student.subscriptions.all()
+    for employer in employers:
+        if employer in subscriptions:
+            employer.subscribed = True
+        else:
+            employer.subscribed = False
     context = {'employers': employers}
     return context
 
