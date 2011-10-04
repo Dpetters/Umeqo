@@ -97,7 +97,6 @@ def account_deactivate(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
-@require_GET
 @render_to('faq.html')
 def faq(request, extra_context = None):
     if request.method == "POST":
