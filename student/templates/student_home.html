@@ -29,7 +29,7 @@
             <p><strong>Resume Views:</strong> {{user.student.studentstatistics.resume_view_count}}</p>
             <p><strong>Resume Book Count:</strong> {{user.student.studentstatistics.add_to_resumebook_count}}</p>
             <p><strong>Invite Count:</strong> {{user.student.invitee_set.all|length}}</p>
-            <p><a href="{% url student_statistics %}">Campus Statistics &raquo;</a></p>
+            <p id="campus_statistics_link"><a href="{% url student_statistics %}">Campus Statistics &raquo;</a></p>
         </div>
     </div>
     <div class="main_block with_side_nav no_top_margin">

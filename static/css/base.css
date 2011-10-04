@@ -275,6 +275,9 @@ input[type=text], input[type=password] {
     margin-top: 6px;
     position: absolute;
 }
+.inline{
+    display:inline;
+}
 .form_table.grande #ajax_form_submit_loader {
     margin-left: 10px;
     margin-top: 10px;

@@ -86,7 +86,7 @@ class CommonInfo(core_mixins.DateTracking):
  
 class SchoolYear(core_mixins.DateTracking):
     name = models.CharField("School Year", max_length=42, unique=True, help_text="Maximum 42 characters.")
-
+    name_plural = models.CharField("School Year Verbose", max_length=43, unique=True, help_text="Maximum 42 characters.", null=True)
     class Meta:
         verbose_name = "School Year"
         verbose_name_plural = "School Years"
