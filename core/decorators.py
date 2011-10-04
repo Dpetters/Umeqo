@@ -15,9 +15,8 @@ class agreed_to_terms(object):
         return self.__class__.__name__
     
     def __call__(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            if request.user.is_staff or request.user.userattributes.agreed_to_terms:
-                return self.orig_func(request, *args, **kwargs)
+        if not request.user.is_authenticated() or request.user.is_staff or request.user.userattributes.agreed_to_terms:
+            return self.orig_func(request, *args, **kwargs)
         return redirect(reverse("terms_of_service"))
     
 class has_any_subscription(object):
