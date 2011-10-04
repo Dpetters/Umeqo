@@ -4266,6 +4266,42 @@
   }
  }, 
  {
+  "pk": 490, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/mitso/", 
+   "slug": "", 
+   "last_updated": "2011-10-02 23:24:27", 
+   "description": "The central mission of the MIT Symphony Orchestra is the cultural enhancement of education at MIT by promoting music performance at the highest level of artistic excellence among MIT students, by nurturing new works and young artists, by developing and sustaining the widest possible audience. The orchestra's repertoire centers around post-romantic masterpieces and twentieth-century classics as well as works by MIT composers.\r\n\r\nThe students in the MIT Symphony Orchestra come from a variety of fields including: Electrical Engineering and Computer Science, Mechanical Engineering, Biology, Mathematics, Brain & Cognitive Sciences, Civil Engineering, Chemistry, Physics, Aeronautics and Astronautics, Management, Architecture, and Materials Science & Engineering. Very few students at MIT actually major in music. Some students pursue double majors in music and science or music and engineering, but most students pursue music as an extracurricular activity.", 
+   "image": "campus_org/campusorg/mit_symphony_orchestra_2011-10-02-23-24-27.jpg", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/mit_symphony_orchestra_2011-10-02-23-24-27_thumbnail.jpg", 
+   "user": null, 
+   "date_created": "2011-10-02 18:51:20", 
+   "type": 2, 
+   "display": true, 
+   "name": "MIT Symphony Orchestra"
+  }
+ }, 
+ {
+  "pk": 489, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-10-02 18:51:04", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-02 18:51:04", 
+   "type": 2, 
+   "display": false, 
+   "name": "MIT Wind Ensemble"
+  }
+ }, 
+ {
   "pk": 251, 
   "model": "campus_org.campusorg", 
   "fields": {
