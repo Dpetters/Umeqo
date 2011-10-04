@@ -3506,7 +3506,7 @@
   "pk": 1, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-03 21:16:06", 
+   "last_updated": "2011-10-04 09:41:09", 
    "click_count": 0, 
    "question": "What is Umeqo?", 
    "slug": "what-is-umeqo", 
@@ -3538,14 +3538,14 @@
   "pk": 3, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:09:22", 
+   "last_updated": "2011-10-04 09:42:27", 
    "click_count": 0, 
    "question": "Why should I create yet another profile?", 
    "slug": "why-should-i-create-yet-another-profile", 
    "topic": 12, 
    "audience": 7, 
    "sort_order": "1.000", 
-   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
+   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  You can sign up by clicking <a href=\"/signup/\">here</a>.", 
    "date_created": "2011-09-03 22:56:28", 
    "display": true
   }
@@ -3554,14 +3554,14 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:16:22", 
+   "last_updated": "2011-10-04 09:41:28", 
    "click_count": 1, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "1.000", 
-   "answer": "Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them, having events cancelled on us with no notification, and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
+   "answer": "Umeqo was created by three current MIT undergraduates (Dmitrij Petters, Zac Dearing, and Josh Ma) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them, having events cancelled on us with no notification, and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
    "date_created": "2011-09-03 21:17:13", 
    "display": true
   }
