@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequ
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from django.core.urlresolvers import reverse
-from django.views.decorators.http import require_http_methods, require_POST
+from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
@@ -24,12 +24,13 @@ from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
 from core.forms import CreateLanguageForm
 from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
-from core.models import Language, EmploymentType, Industry
+from core.models import Language, EmploymentType, Industry, SchoolYear
 from events.models import Attendee
 from campus_org.models import CampusOrg
+from student.forms import StudentBodyStatisticsForm
 from core import messages
 from employer.models import Employer
-from student.enums import RESUME_PROBLEMS
+from student import enums as student_enums
 from countries.models import Country
         
 
@@ -248,11 +249,11 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
             data = {'valid':True, 'unparsable_resume':False}
             if request.FILES.has_key('resume'):
                 resume_status = process_resume(request.user.student)
-                if resume_status == RESUME_PROBLEMS.HACKED:
+                if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
                     data = {'valid':False}
                     errors = {'resume': messages.resume_problem}
                     data['errors'] = errors
-                elif resume_status == RESUME_PROBLEMS.UNPARSABLE and request.POST['ingore_unparsable_resume'] == "false":
+                elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ingore_unparsable_resume'] == "false":
                     data = {'valid':False}
                     data['unparsable_resume'] = True
             if data['valid'] and not data['unparsable_resume']:
@@ -343,11 +344,11 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
         form.save()
         resume_status = process_resume(request.user.student)
         errors = {}
-        if resume_status == RESUME_PROBLEMS.HACKED:
+        if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
             data = {'valid':False}
             errors['id_resume'] = messages.resume_problem
             data['errors'] = errors
-        elif resume_status == RESUME_PROBLEMS.UNPARSABLE:
+        elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE:
             request.user.student.last_updated = datetime.datetime.now()
             request.user.student.save()
             data = {'valid':False}
@@ -442,6 +443,46 @@ def student_resume(request):
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s.pdf' % (request.user.last_name.lower(), request.user.first_name.lower())
     return response
+
+@login_required
+@agreed_to_terms
+@require_GET
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@render_to("student_statistics.html")
+def student_statistics(request):
+    context = {'student_body_statistics_form': StudentBodyStatisticsForm()}
+    return context
+
+@login_required
+@agreed_to_terms
+@require_GET
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
+def student_body_statistics(request):
+    data = {}
+    data['title'] = ""
+    if request.GET['x_axis'] == student_enums.SCHOOL_YEAR:
+        school_years = SchoolYear.objects.all()
+        if request.GET['y_axis'] == student_enums.GPA:
+            data['name'] = "GPA vs. School Year"
+            data['y_axis_text'] = "GPA"
+            data['categories'] = []
+            data['series'] = {'data':[]}
+            for school_year in school_years:
+                students = Student.objects.filter(school_year = school_year)
+                if students:
+                    data['categories'].append("%ss" % school_year.name)
+                    data['series']['data'].append(float(sum([s.gpa for s in students]))/len(students))
+        elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
+            data['name'] = "# of Previous Employers vs. School Year"
+            data['y_axis_text'] = "# of Previous Employers"
+            data['categories'] = []
+            data['series'] = {'data':[]}
+            for school_year in school_years:
+                students = Student.objects.filter(school_year = school_year)
+                if students:
+                    data['categories'].append("%ss" % school_year.name)
+                    data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
