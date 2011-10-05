@@ -21,7 +21,7 @@
     position:relative;
     top:2px;
 }
-#employers_list_form #ajax_form_submit_loader{
+#employers_list_form .ajax_form_submit_loader{
     margin-left:10px;
     margin-top:11px;
 }

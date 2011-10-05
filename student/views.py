@@ -15,7 +15,7 @@ from django.template.loader import render_to_string
 
 from notification.models import NoticeSetting, NoticeType, EMAIL
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm,\
-                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm
+                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm, StatisticsSecondMajorForm
 from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -24,7 +24,7 @@ from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
 from core.forms import CreateLanguageForm
 from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
-from core.models import Language, EmploymentType, Industry, SchoolYear
+from core.models import Language, EmploymentType, Industry, SchoolYear, Course
 from events.models import Attendee
 from campus_org.models import CampusOrg
 from student.forms import StudentBodyStatisticsForm
@@ -450,8 +450,24 @@ def student_resume(request):
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_statistics.html")
 def student_statistics(request):
-    context = {'student_body_statistics_form': StudentBodyStatisticsForm()}
+    context = {'student_body_statistics_form': StudentBodyStatisticsForm(),
+               'second_major_form':StatisticsSecondMajorForm()}
     return context
+
+@login_required
+@agreed_to_terms
+@require_GET
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
+def student_statistics_second_major(request):
+    data = {}
+    first_major = Course.objects.get(id=request.GET['first_major'])
+    data['title'] = "Second Major Statistics for %s" % first_major.name
+    courses = list(Course.objects.all())
+    data['categories'] = ['None'] + [c.num for c in courses]
+    data['series'] = {'data':[len(Student.objects.filter(first_major = first_major, second_major = None))]}
+    for second_major in courses:
+        data['series']['data'].append(len(Student.objects.filter(first_major = first_major, second_major = second_major)))
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
 @agreed_to_terms

@@ -24,6 +24,9 @@ from core import messages as m
 
 decorate_bound_field()
 
+class StatisticsSecondMajorForm(forms.Form):
+    first_major = forms.ModelChoiceField(queryset = Course.objects.all(), initial = Course.objects.get(num=18), required = False, empty_label = "select course")
+    
 class StudentAccountDeactivationForm(forms.ModelForm):
     suggestion = forms.CharField(label="If you still wish to deactivate, please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
 
