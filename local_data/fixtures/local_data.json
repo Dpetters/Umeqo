@@ -1384,7 +1384,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-03 19:35:21", 
+   "last_login": "2011-10-04 16:59:08", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1749,6 +1749,16 @@
    "date_created": "2011-10-03 19:35:21", 
    "session_key": "6e49a9d6f43a6d507ec51d3f664fe17d", 
    "last_updated": "2011-10-03 19:35:21", 
+   "user": 2
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-04 16:59:08", 
+   "session_key": "41dd38db34783b91f8356c9ef8064d34", 
+   "last_updated": "2011-10-04 16:59:08", 
    "user": 2
   }
  }
