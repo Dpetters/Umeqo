@@ -462,7 +462,7 @@ def student_statistics_second_major(request):
     data = {}
     first_major = Course.objects.get(id=request.GET['first_major'])
     data['title'] = "Second Major Statistics for %s" % first_major.name
-    courses = list(Course.objects.all())
+    courses = list(Course.objects.all().exclude(name=first_major.name))
     data['categories'] = ['None'] + [c.num for c in courses]
     data['series'] = {'data':[len(Student.objects.filter(first_major = first_major, second_major = None))]}
     for second_major in courses:

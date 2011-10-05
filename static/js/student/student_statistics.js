@@ -99,7 +99,6 @@ $(document).ready(function() {
             title: {
                 text: '# of students'
             },
-            tickInterval: 1
         },
         plotOptions : {
             column : {
