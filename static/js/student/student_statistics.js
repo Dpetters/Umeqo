@@ -25,6 +25,13 @@ function update_student_body_statistics() {
             data.series.color = "#4572A7";
             student_body_statistics_series = student_body_statistics_chart.addSeries(data.series);
             student_body_statistics_chart.xAxis[0].setCategories(data.categories);
+            var x_axis_label_rotation;
+            if (x_axis == "major"){
+                x_axis_label_rotation = 0;
+            }else{
+                x_axis_label_rotation = -45;
+            }
+            student_body_statistics_chart.xAxis[0].options.labels.rotation = x_axis_label_rotation;
             student_body_statistics_chart.yAxis[0].setExtremes(data.y_axis_min, data.y_axis_max);
             student_body_statistics_chart.yAxis[0].axisTitle.attr({
                 text: data.y_axis_text

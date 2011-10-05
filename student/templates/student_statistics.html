@@ -26,6 +26,7 @@ Statistics |
 <h1 class="inline">Student Body Statistics</h1>
 <a class="back_to_link" href="{% url home %}" tabindex="-1">&laquo; Back to Home</a>
 <p><strong>Please Note:</strong> This page is a very early work in progress. We want your input on what kind of statistics you want to see, so feel free to <a class="open_contact_us_dialog_link" href="#">let us know</a>!</p>
+<h2 class="chart_header">Custom Statistics</h2>
 <div id="custom_statistics_controls" class="controls">
     <span>Plot </span>
     {{student_body_statistics_form.y_axis}}
@@ -34,7 +35,7 @@ Statistics |
     <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
 </div>
 <div id="student_body_chart_container"></div>
-<h2>Second Major Picks</h2>
+<h2 class="chart_header">Second Major Picks</h2>
 <div id="second_major_statistics_controls" class="controls">
     <span>Choose First Major: </span>
     {{second_major_form.first_major}}
