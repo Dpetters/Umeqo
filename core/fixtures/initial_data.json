@@ -3634,14 +3634,14 @@
   "pk": 14, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:27:01", 
+   "last_updated": "2011-10-04 20:28:04", 
    "click_count": 0, 
-   "question": "I can't remember my log in email.", 
+   "question": "I can't remember my login email.", 
    "slug": "i-cant-remember-my-log-email", 
    "topic": 9, 
    "audience": 0, 
    "sort_order": "3.000", 
-   "answer": "The log in email is typically the one that you use most often. For students, it's your MIT email. For campus orgs, it's the public version of your email address (e.g. traders@mit.edu, sbc@mit.edu). For recruiters, it's your work email.", 
+   "answer": "The login email is typically the one that you use most often. For students, it's your MIT email. For campus orgs, it's the public version of your email address (e.g. traders@mit.edu, sbc@mit.edu). For recruiters, it's your work email.", 
    "date_created": "2011-10-04 09:27:01", 
    "display": true
   }
@@ -3795,8 +3795,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Freshman"
+   "last_updated": "2011-10-04 17:53:04", 
+   "name": "Freshman", 
+   "name_plural": "Freshmen"
   }
  }, 
  {
@@ -3804,8 +3805,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Sophomore"
+   "last_updated": "2011-10-04 17:53:09", 
+   "name": "Sophomore", 
+   "name_plural": "Sophomores"
   }
  }, 
  {
@@ -3813,8 +3815,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Junior"
+   "last_updated": "2011-10-04 17:53:15", 
+   "name": "Junior", 
+   "name_plural": "Juniors"
   }
  }, 
  {
@@ -3822,8 +3825,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Senior"
+   "last_updated": "2011-10-04 17:53:22", 
+   "name": "Senior", 
+   "name_plural": "Seniors"
   }
  }, 
  {
@@ -3831,8 +3835,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-09-10 17:30:23", 
-   "name": "Graduate - Masters"
+   "last_updated": "2011-10-04 17:52:58", 
+   "name": "Graduate - Masters", 
+   "name_plural": "Graduate - Masters"
   }
  }, 
  {
@@ -3840,8 +3845,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-09-10 17:30:31", 
-   "name": "Graduate - PHD"
+   "last_updated": "2011-10-04 17:52:50", 
+   "name": "Graduate - PHD", 
+   "name_plural": "Graduate - PHDs"
   }
  }, 
  {
