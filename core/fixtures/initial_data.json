@@ -3602,8 +3602,8 @@
   "pk": 4, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:18:19", 
-   "click_count": 0, 
+   "last_updated": "2011-10-04 23:10:34", 
+   "click_count": 1, 
    "question": "Who can see my profile?", 
    "slug": "who-can-see-my-profile", 
    "topic": 12, 

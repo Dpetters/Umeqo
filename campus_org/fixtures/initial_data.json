@@ -4014,6 +4014,24 @@
   }
  }, 
  {
+  "pk": 491, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-10-05 00:45:36", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-05 00:45:36", 
+   "type": 11, 
+   "display": false, 
+   "name": "Men's Fencing"
+  }
+ }, 
+ {
   "pk": 238, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6696,24 +6714,6 @@
   }
  }, 
  {
-  "pk": 386, 
-  "model": "campus_org.campusorg", 
-  "fields": {
-   "website": "http://tech.mit.edu/", 
-   "slug": null, 
-   "last_updated": "2011-07-24 16:32:45", 
-   "description": "The Tech is MIT's oldest and largest newspaper. We have provided MIT faculty, staff, and students with continuous news service since 1881. We publish on Tuesdays and Fridays during the regular school year, weekly during the month of January, and monthly during the summer.\r\n\r\nThe Tech is published by the students of the Massachusetts Institute of Technology. Our staff is composed of undergraduate and graduate student volunteers, although a number of alumni lurk around our offices from time to time.", 
-   "image": "campus_org/campusorg/tech,_the_2011-07-24-16-32-45.png", 
-   "email": "general@tech.mit.edu", 
-   "thumbnail": "campus_org/campusorg/tech,_the_2011-07-24-16-32-45_thumbnail.png", 
-   "user": null, 
-   "date_created": "2011-05-03 12:27:43", 
-   "type": 15, 
-   "display": true, 
-   "name": "Tech, The"
-  }
- }, 
- {
   "pk": 387, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -6837,6 +6837,24 @@
    "type": 16, 
    "display": false, 
    "name": "The Forum"
+  }
+ }, 
+ {
+  "pk": 386, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://tech.mit.edu/", 
+   "slug": "", 
+   "last_updated": "2011-10-04 23:09:42", 
+   "description": "The Tech is MIT's oldest and largest newspaper. We have provided MIT faculty, staff, and students with continuous news service since 1881. We publish on Tuesdays and Fridays during the regular school year, weekly during the month of January, and monthly during the summer.\r\n\r\nThe Tech is published by the students of the Massachusetts Institute of Technology. Our staff is composed of undergraduate and graduate student volunteers, although a number of alumni lurk around our offices from time to time.", 
+   "image": "campus_org/campusorg/tech,_the_2011-07-24-16-32-45.png", 
+   "email": "general@tech.mit.edu", 
+   "thumbnail": "campus_org/campusorg/tech,_the_2011-07-24-16-32-45_thumbnail.png", 
+   "user": null, 
+   "date_created": "2011-05-03 12:27:43", 
+   "type": 15, 
+   "display": true, 
+   "name": "The Tech"
   }
  }, 
  {
