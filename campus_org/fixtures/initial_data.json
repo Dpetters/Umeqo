@@ -2466,6 +2466,24 @@
   }
  }, 
  {
+  "pk": 493, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://bakerfoundation.mit.edu/foundation/", 
+   "slug": null, 
+   "last_updated": "2011-10-05 13:51:42", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-05 13:51:42", 
+   "type": 9, 
+   "display": false, 
+   "name": "Everett Moore Baker Memorial Foundation"
+  }
+ }, 
+ {
   "pk": 470, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2643,6 +2661,24 @@
    "type": 16, 
    "display": false, 
    "name": "Footnotes"
+  }
+ }, 
+ {
+  "pk": 494, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-10-05 14:53:53", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-05 14:53:53", 
+   "type": 3, 
+   "display": false, 
+   "name": "Formula SAE"
   }
  }, 
  {
@@ -3669,6 +3705,24 @@
    "type": 8, 
    "display": false, 
    "name": "Laboratory for Chocolate Science"
+  }
+ }, 
+ {
+  "pk": 492, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://www.mit-lca.org/", 
+   "slug": null, 
+   "last_updated": "2011-10-05 11:36:28", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-05 11:36:28", 
+   "type": 6, 
+   "display": false, 
+   "name": "Lambda Chi Alpha"
   }
  }, 
  {
