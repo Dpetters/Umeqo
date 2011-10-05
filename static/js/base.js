@@ -17,12 +17,12 @@ function show_long_load_message_in_dialog(dialog) {
 function show_form_submit_loader(container) {
     var container = typeof(container) != 'undefined' ? container : "";
     if (container)
-        $(container + " #ajax_form_submit_loader").show();
+        $(container + " .ajax_form_submit_loader").show();
 };
 function hide_form_submit_loader(container) {
     var container = typeof(container) != 'undefined' ? container : "";
     if (container)
-        $(container + " #ajax_form_submit_loader").hide();
+        $(container + " .ajax_form_submit_loader").hide();
 };
 function place_tiny_ajax_loader(container) {
     container = typeof(container) != 'undefined' ? container : "";

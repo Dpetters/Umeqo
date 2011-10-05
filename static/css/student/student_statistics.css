@@ -1,9 +1,14 @@
-#controls{
+.controls{
+    position:relative;
     margin-top:10px;
+    margin-bottom:10px;
+}
+.controls .ajax_form_submit_loader{
+    top:-2px;
 }
 #id_y_axis, #id_x_axis{
     min-width:150px;
 }
-#student_body_graph_container{
+#student_body_chart_container{
     margin-top:20px;
 }
