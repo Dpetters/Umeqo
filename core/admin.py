@@ -51,7 +51,7 @@ class IndustryAdmin(admin.ModelAdmin):
     search_fields = ['name']
       
 class SchoolYearAdmin(admin.ModelAdmin):
-    fields = ['name']
+    fields = ['name', 'name_plural']
     ordering = ('-last_updated',)
 
 class GraduationYearAdmin(admin.ModelAdmin):

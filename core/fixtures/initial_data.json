@@ -3506,7 +3506,7 @@
   "pk": 1, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-03 21:16:06", 
+   "last_updated": "2011-10-04 09:41:09", 
    "click_count": 0, 
    "question": "What is Umeqo?", 
    "slug": "what-is-umeqo", 
@@ -3522,12 +3522,12 @@
   "pk": 5, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-04 01:51:29", 
-   "click_count": 0, 
+   "last_updated": "2011-10-04 09:32:19", 
+   "click_count": 1, 
    "question": "What is the difference between a public and private event?", 
    "slug": "what-difference-between-public-and-private-event", 
    "topic": 11, 
-   "audience": 3, 
+   "audience": 0, 
    "sort_order": "1.000", 
    "answer": "Anyone can view, RSVP and is welcome to attend a public event. A private event, however, is only visible to those students who are personally invited to it by the host employer.", 
    "date_created": "2011-09-04 01:51:29", 
@@ -3538,14 +3538,14 @@
   "pk": 3, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:17:58", 
+   "last_updated": "2011-10-04 09:42:27", 
    "click_count": 0, 
    "question": "Why should I create yet another profile?", 
    "slug": "why-should-i-create-yet-another-profile", 
    "topic": 12, 
-   "audience": 3, 
+   "audience": 7, 
    "sort_order": "1.000", 
-   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  By subscribing to employers you are interested in, you can automatically receive notifications when they are having new events and deadlines on campus. Finally, we are partnering with on-campus organizations to bring you simpler, more efficient resume drop and event check in systems.", 
+   "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  You can sign up by clicking <a href=\"/signup/\">here</a>.", 
    "date_created": "2011-09-03 22:56:28", 
    "display": true
   }
@@ -3554,14 +3554,14 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:16:22", 
+   "last_updated": "2011-10-04 10:08:35", 
    "click_count": 1, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "1.000", 
-   "answer": "Umeqo was created by three current MIT undergraduates (Zac Dearing, Josh Ma, and Dmitrij Petters) who were all too familiar with the pains of recruiting at MIT. We were frustrated about missing recruiting events because we didn\u2019t hear about them, having events cancelled on us with no notification, and having to drop our resumes in a gazillion different places. Leveraging these experiences and the knowledge we gained by helping employers recruit at MIT, we developed Umeqo to solve these problems.", 
+   "answer": "Umeqo was created by three current MIT undergraduates (<a href=\"https://www.facebook.com/dpetters\">Dmitrij Petters</a>, <a href=\"http://www.linkedin.com/pub/zachary-dearing/25/1b8/b76\">Zac Dearing</a>, and <a href=\"http://www.linkedin.com/pub/joshua-ma/26/595/a34\">Josh Ma</a>) to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employer recruit, and thus developed Umeqo to solve these problems.", 
    "date_created": "2011-09-03 21:17:13", 
    "display": true
   }
@@ -3579,6 +3579,22 @@
    "sort_order": "2.000", 
    "answer": "To create a new campus organization, go to the third step of the profile form and click the \"Don't see your campus organization? Submit yours to the list.\" link on the right of the fields.", 
    "date_created": "2011-09-04 02:10:36", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 10:29:52", 
+   "click_count": 2, 
+   "question": "Where did the title Umeqo come from and how is it pronounced?", 
+   "slug": "where-did-title-umeqo-come-and-how-it-pronounced", 
+   "topic": 1, 
+   "audience": 0, 
+   "sort_order": "2.000", 
+   "answer": "The word is Zulu for \"leap\". It is pronounced [you-me-co], as in you + me + company.", 
+   "date_created": "2011-10-04 09:22:06", 
    "display": true
   }
  }, 
@@ -3615,17 +3631,33 @@
   }
  }, 
  {
+  "pk": 14, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 20:28:04", 
+   "click_count": 0, 
+   "question": "I can't remember my login email.", 
+   "slug": "i-cant-remember-my-log-email", 
+   "topic": 9, 
+   "audience": 0, 
+   "sort_order": "3.000", 
+   "answer": "The login email is typically the one that you use most often. For students, it's your MIT email. For campus orgs, it's the public version of your email address (e.g. traders@mit.edu, sbc@mit.edu). For recruiters, it's your work email.", 
+   "date_created": "2011-10-04 09:27:01", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 11, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:29:06", 
+   "last_updated": "2011-10-04 09:10:53", 
    "click_count": 0, 
-   "question": "Why are there only 12 employers?", 
+   "question": "Why are there only 14 employers?", 
    "slug": "why-are-there-only-12-employers", 
    "topic": 10, 
    "audience": 3, 
    "sort_order": "3.000", 
-   "answer": "The included 12 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!", 
+   "answer": "The included 14 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!", 
    "date_created": "2011-09-19 23:29:06", 
    "display": true
   }
@@ -3634,7 +3666,7 @@
   "pk": 12, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-20 00:03:18", 
+   "last_updated": "2011-10-04 09:11:41", 
    "click_count": 0, 
    "question": "Can students see the comments that I leave about them? Do they know whether I starred them or not?", 
    "slug": "can-students-see-comments-i-leave-about-them-do-they-know-whether-i-starred-them-or-not", 
@@ -3647,26 +3679,74 @@
   }
  }, 
  {
+  "pk": 17, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:52:20", 
+   "click_count": 0, 
+   "question": "Can you send me a copy of my password without resetting it?", 
+   "slug": "can-you-send-me-copy-my-password-without-resetting-it", 
+   "topic": 9, 
+   "audience": 1, 
+   "sort_order": "4.000", 
+   "answer": "For security reasons, Umeqo does not have the ability to send you a copy of your current password. However, you can always reset it on the <a href=\"/password/reset/\">password reset page</a>.", 
+   "date_created": "2011-10-04 09:31:26", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 10:04:31", 
+   "click_count": 0, 
+   "question": "How do I change my login email address?", 
+   "slug": "how-do-i-change-my-login-email-address", 
+   "topic": 9, 
+   "audience": 0, 
+   "sort_order": "4.000", 
+   "answer": "You need to <a class=\"open_contact_us_dialog_link\" href=\"#\">contact us</a> and let us know what you would it changed to. Note that recruiters can make additional credentials for their co-workers using the \"Create New Account\" link on the \"Account Settings\" page.", 
+   "date_created": "2011-10-04 09:28:49", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 8, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-18 17:57:32", 
-   "click_count": 0, 
+   "last_updated": "2011-10-04 10:07:48", 
+   "click_count": 2, 
    "question": "It looks like things are broken. Am I doing something wrong?", 
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "No, you are not. But you might be using a really old version of Firefox. If this is so, please let us know of what is broken by clicking \"Contact Us\" in the footer, and/or upgrade to the latest version of Firefox or Chrome. Or at the very least IE9. Thank you for your patience!", 
+   "answer": "No, you are not. But you might be using an older browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. Thank you for your patience!", 
    "date_created": "2011-09-14 22:44:07", 
-   "display": false
+   "display": true
+  }
+ }, 
+ {
+  "pk": 18, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 10:27:52", 
+   "click_count": 0, 
+   "question": "Why am I hitting the a page with the Terms of Service when I log in?", 
+   "slug": "why-am-i-hitting-page-terms-service-when-i-log", 
+   "topic": 1, 
+   "audience": 2, 
+   "sort_order": "4.000", 
+   "answer": "Whenever we make any changes to our terms of service, we want you to be aware of them. Thus, in all future cases, we will summarize the changes at the top of the <a href=\"/terms/\">terms of service page</a> and redirect you to it when you log in to review the changes. The button to accept will always be at the bottom.", 
+   "date_created": "2011-10-04 10:20:57", 
+   "display": true
   }
  }, 
  {
   "pk": 9, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:22:25", 
+   "last_updated": "2011-10-04 09:11:48", 
    "click_count": 0, 
    "question": "Can I send multiple invitations out at once?", 
    "slug": "can-i-send-multiple-invitations-out-once", 
@@ -3679,17 +3759,33 @@
   }
  }, 
  {
+  "pk": 16, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-04 09:53:48", 
+   "click_count": 0, 
+   "question": "I deactivated my account. How do I reactivate it?", 
+   "slug": "i-deactivated-my-account-how-do-i-reactivate-it", 
+   "topic": 9, 
+   "audience": 1, 
+   "sort_order": "5.000", 
+   "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login_link\" href=\"#\">logging in</a> with your login email address and password.", 
+   "date_created": "2011-10-04 09:29:33", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 10, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-20 00:00:19", 
+   "last_updated": "2011-10-04 09:12:07", 
    "click_count": 0, 
    "question": "I saw an event page that had a map included along with the location! How come mine doesn't have one?", 
    "slug": "i-saw-event-page-had-map-included-along-location-how-come-mine-doesnt", 
    "topic": 11, 
    "audience": 6, 
    "sort_order": "6.000", 
-   "answer": "When you go to create your event, you will see suggestions showing up below the field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!", 
+   "answer": "When you go to create your event, you will see suggestions showing up below the location field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!", 
    "date_created": "2011-09-19 23:26:59", 
    "display": true
   }
@@ -3699,8 +3795,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Freshman"
+   "last_updated": "2011-10-04 17:53:04", 
+   "name": "Freshman", 
+   "name_plural": "Freshmen"
   }
  }, 
  {
@@ -3708,8 +3805,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Sophomore"
+   "last_updated": "2011-10-04 17:53:09", 
+   "name": "Sophomore", 
+   "name_plural": "Sophomores"
   }
  }, 
  {
@@ -3717,8 +3815,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Junior"
+   "last_updated": "2011-10-04 17:53:15", 
+   "name": "Junior", 
+   "name_plural": "Juniors"
   }
  }, 
  {
@@ -3726,8 +3825,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-05-03 12:27:34", 
-   "name": "Senior"
+   "last_updated": "2011-10-04 17:53:22", 
+   "name": "Senior", 
+   "name_plural": "Seniors"
   }
  }, 
  {
@@ -3735,8 +3835,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "last_updated": "2011-09-10 17:30:23", 
-   "name": "Graduate - Masters"
+   "last_updated": "2011-10-04 17:52:58", 
+   "name": "Graduate - Masters", 
+   "name_plural": "Graduate - Masters"
   }
  }, 
  {
@@ -3744,8 +3845,9 @@
   "model": "core.schoolyear", 
   "fields": {
    "date_created": "2011-05-03 12:27:35", 
-   "last_updated": "2011-09-10 17:30:31", 
-   "name": "Graduate - PHD"
+   "last_updated": "2011-10-04 17:52:50", 
+   "name": "Graduate - PHD", 
+   "name_plural": "Graduate - PHDs"
   }
  }, 
  {

@@ -465,13 +465,22 @@ def student_body_statistics(request):
         if request.GET['y_axis'] == student_enums.GPA:
             data['name'] = "GPA vs. School Year"
             data['y_axis_text'] = "GPA"
+            data['y_axis_min'] = 0
+            data['y_axis_max'] = 5
             data['categories'] = []
             data['series'] = {'data':[]}
             for school_year in school_years:
                 students = Student.objects.filter(school_year = school_year)
                 if students:
-                    data['categories'].append("%ss" % school_year.name)
-                    data['series']['data'].append(float(sum([s.gpa for s in students]))/len(students))
+                    data['categories'].append("%s" % school_year.name_plural)
+                    num_of_students = 0
+                    gpa_sum = 0
+                    for s in students:
+                        if s.gpa != 0:
+                            num_of_students += 1
+                            gpa_sum += s.gpa
+                    if num_of_students != 0:
+                        data['series']['data'].append(float(gpa_sum)/num_of_students)
         elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
             data['name'] = "# of Previous Employers vs. School Year"
             data['y_axis_text'] = "# of Previous Employers"
@@ -480,7 +489,7 @@ def student_body_statistics(request):
             for school_year in school_years:
                 students = Student.objects.filter(school_year = school_year)
                 if students:
-                    data['categories'].append("%ss" % school_year.name)
+                    data['categories'].append("%s" % school_year.name_plural)
                     data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
