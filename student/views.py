@@ -462,7 +462,7 @@ def student_statistics_second_major(request):
     data = {}
     first_major = Course.objects.get(id=request.GET['first_major'])
     data['title'] = "Second Major Statistics for %s" % first_major.name
-    courses = list(Course.objects.all())
+    courses = list(Course.objects.all().exclude(name=first_major.name))
     data['categories'] = ['None'] + [c.num for c in courses]
     data['series'] = {'data':[len(Student.objects.filter(first_major = first_major, second_major = None))]}
     for second_major in courses:
@@ -506,6 +506,37 @@ def student_body_statistics(request):
                 students = Student.objects.filter(school_year = school_year)
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
+                    data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
+    if request.GET['x_axis'] == student_enums.MAJOR:
+        courses = Course.objects.all()
+        if request.GET['y_axis'] == student_enums.GPA:
+            data['name'] = "GPA vs. Major"
+            data['y_axis_text'] = "GPA"
+            data['y_axis_min'] = 0
+            data['y_axis_max'] = 5
+            data['categories'] = []
+            data['series'] = {'data':[]}
+            for course in courses:
+                students = Student.objects.filter(first_major = course)
+                if students:
+                    data['categories'].append("%s" % course.num)
+                    num_of_students = 0
+                    gpa_sum = 0
+                    for s in students:
+                        if s.gpa != 0:
+                            num_of_students += 1
+                            gpa_sum += s.gpa
+                    if num_of_students != 0:
+                        data['series']['data'].append(float(gpa_sum)/num_of_students)
+        elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
+            data['name'] = "# of Previous Employers vs. Major"
+            data['y_axis_text'] = "# of Previous Employers"
+            data['categories'] = []
+            data['series'] = {'data':[]}
+            for course in courses:
+                students = Student.objects.filter(first_major = course)
+                if students:
+                    data['categories'].append("%s" % course.num)
                     data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
