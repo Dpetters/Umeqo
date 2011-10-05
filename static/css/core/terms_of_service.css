@@ -27,3 +27,6 @@
 #terms_text p{
     font-size:11px;
 }
+input[type="submit"]{
+    margin-top:15px;
+}
