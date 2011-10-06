@@ -486,7 +486,7 @@ def student_body_statistics(request):
             data['categories'] = []
             data['series'] = {'data':[]}
             for school_year in school_years:
-                students = Student.objects.filter(school_year = school_year)
+                students = Student.objects.filter(school_year = school_year, profile_created=True)
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
                     num_of_students = 0
@@ -503,7 +503,7 @@ def student_body_statistics(request):
             data['categories'] = []
             data['series'] = {'data':[]}
             for school_year in school_years:
-                students = Student.objects.filter(school_year = school_year)
+                students = Student.objects.filter(school_year = school_year, profile_created=True)
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
                     data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
@@ -517,7 +517,7 @@ def student_body_statistics(request):
             data['categories'] = []
             data['series'] = {'data':[]}
             for course in courses:
-                students = Student.objects.filter(first_major = course)
+                students = Student.objects.filter(first_major = course, profile_created=True)
                 if students:
                     data['categories'].append("%s" % course.num)
                     num_of_students = 0
@@ -534,7 +534,7 @@ def student_body_statistics(request):
             data['categories'] = []
             data['series'] = {'data':[]}
             for course in courses:
-                students = Student.objects.filter(first_major = course)
+                students = Student.objects.filter(first_major = course, profile_created=True)
                 if students:
                     data['categories'].append("%s" % course.num)
                     data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))

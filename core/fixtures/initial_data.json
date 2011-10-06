@@ -3602,8 +3602,8 @@
   "pk": 4, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-09-19 23:18:19", 
-   "click_count": 0, 
+   "last_updated": "2011-10-04 23:10:34", 
+   "click_count": 1, 
    "question": "Who can see my profile?", 
    "slug": "who-can-see-my-profile", 
    "topic": 12, 
@@ -5192,6 +5192,36 @@
    "name_and_level": "Albanian (Fluent)", 
    "last_updated": "2011-09-05 23:43:19", 
    "name": "Albanian"
+  }
+ }, 
+ {
+  "pk": 160, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-05 16:27:04", 
+   "name_and_level": "Nepali (Basic)", 
+   "last_updated": "2011-10-05 16:27:04", 
+   "name": "Nepali"
+  }
+ }, 
+ {
+  "pk": 161, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-05 16:27:04", 
+   "name_and_level": "Nepali (Proficient)", 
+   "last_updated": "2011-10-05 16:27:04", 
+   "name": "Nepali"
+  }
+ }, 
+ {
+  "pk": 162, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-05 16:27:04", 
+   "name_and_level": "Nepali (Fluent)", 
+   "last_updated": "2011-10-05 16:27:04", 
+   "name": "Nepali"
   }
  }, 
  {

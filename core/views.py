@@ -53,7 +53,7 @@ def check_employer_campus_org_slug_uniqueness(request):
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 @render_to('terms_of_service.html')
-def terms_of_service(request):
+def terms_of_service(request, extra_context = None):
     if request.method == "POST":
         request.user.userattributes.agreed_to_terms = True
         request.user.userattributes.agreed_to_terms_date = datetime.now()
@@ -64,6 +64,7 @@ def terms_of_service(request):
             context = {'agreed': request.user.userattributes.agreed_to_terms}
         else:
             context = {'agreed': True}
+        context.update(extra_context or {})
         return context
 
 @require_GET
