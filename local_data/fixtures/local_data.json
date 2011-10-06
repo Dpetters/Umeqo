@@ -1753,16 +1753,6 @@
   }
  }, 
  {
-  "pk": 6, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-04 16:59:08", 
-   "session_key": "41dd38db34783b91f8356c9ef8064d34", 
-   "last_updated": "2011-10-04 16:59:08", 
-   "user": 2
-  }
- }, 
- {
   "pk": 7, 
   "model": "registration.sessionkey", 
   "fields": {
