@@ -36,9 +36,7 @@ else:
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ("Dmitrij", "Dpetters91@gmail.com"),
-    ("Zac", "zdearing@gmail.com"),
-    ("Josh", "me@joshma.com"),
+    ("Umeqo Team", "umeqo@mit.edu"),
 )
 MANAGERS = ADMINS
 
