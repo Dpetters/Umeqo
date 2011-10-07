@@ -6,6 +6,6 @@ class ActiveManager(models.Manager):
     def active(self):
         return self.filter(is_active=True)
 
-class QuestionManager(models.Manager):
+class VisibleManager(models.Manager):
     def visible(self):
         return self.filter(display=True)

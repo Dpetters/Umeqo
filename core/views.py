@@ -19,19 +19,20 @@ from django.utils import simplejson
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
 
+from campus_org.models import CampusOrg
+from core import enums as core_enums
 from core import messages
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
-from core.models import Course, Language, Topic, Location, Question
+from core.models import Course, Language, Topic, Tutorial, Location, Question
 from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
-from campus_org.models import CampusOrg
 from employer.forms import StudentSearchForm
-from student.models import Student
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
+from student.models import Student
 
 @require_GET
 def check_employer_campus_org_slug_uniqueness(request):
@@ -128,6 +129,29 @@ def about(request, extra_context = None):
 @render_to('tutorials.html')
 def tutorials(request, extra_context = None):
     context = {}
+    user = request.user
+    anonymous = not user.is_authenticated()
+    if anonymous or is_student(user):
+        if Tutorial.objects.filter(audience = core_enums.STUDENT).visible().exists():
+            context['any_student_tutorials'] = True
+    if anonymous or is_campus_org(user):
+        if Tutorial.objects.filter(audience = core_enums.CAMPUS_ORG).visible().exists():
+            context['any_campus_org_tutorials'] = True
+    if anonymous or is_recruiter(user):
+        if Tutorial.objects.filter(audience = core_enums.EMPLOYER).visible().exists():
+            context['any_recruiter_tutorials'] = True
+            
+            sd_topic = Topic.objects.get(name="Student Discovery")
+            context['recruiter_sd_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=sd_topic)
+
+            subs_topic = Topic.objects.get(name="Subscriptions")
+            context['recruiter_subs_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=subs_topic)
+            
+            events_topic = Topic.objects.get(name="Events")
+            context['recruiter_event_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=events_topic)
+            
+            cm_topic = Topic.objects.get(name="Credentials Management")
+            context['recruiter_cm_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=cm_topic)
     context.update(extra_context or {})
     return context
 

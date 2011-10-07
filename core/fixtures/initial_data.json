@@ -1,5 +1,113 @@
 [
  {
+  "pk": 2, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 13:52:53", 
+   "description": "Learn how to filter and search students to find the right candidates for your firm.", 
+   "sort_order": "1.000", 
+   "date_created": "2011-10-06 20:47:44", 
+   "slug": "browsing-students", 
+   "name": "Browsing Students"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 12:40:06", 
+   "description": "Learn how to create events and deadlines.", 
+   "sort_order": "2.000", 
+   "date_created": "2011-10-07 12:40:06", 
+   "slug": "creating-events-deadlines", 
+   "name": "Creating Events & Deadlines"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 12:39:46", 
+   "description": "Learn how to send event invitations.", 
+   "sort_order": "3.000", 
+   "date_created": "2011-10-07 12:39:46", 
+   "slug": "sending-event-invitations", 
+   "name": "Sending Event Invitations"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 12:40:32", 
+   "description": "Learn how to check in attendees.", 
+   "sort_order": "4.000", 
+   "date_created": "2011-10-07 12:40:32", 
+   "slug": "checking-attendees", 
+   "name": "Checking in Attendees"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 13:52:32", 
+   "description": "Learn how to create credentials for your co-workers and manage credentials that already exist.", 
+   "sort_order": "5.000", 
+   "date_created": "2011-10-06 20:46:33", 
+   "slug": "managing-credentials", 
+   "name": "Managing Credentials"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 13:51:40", 
+   "description": "Learn how to browse event RSVPs and attendees.", 
+   "sort_order": "5.000", 
+   "date_created": "2011-10-07 12:40:57", 
+   "slug": "browsing-attendees-rsvps", 
+   "name": "Browsing Attendees & RSVPs"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 13:51:53", 
+   "description": "Learn the details of the annual subscription program.", 
+   "sort_order": "6.000", 
+   "date_created": "2011-10-07 12:43:04", 
+   "slug": "getting-annual-subscription", 
+   "name": "Getting an Annual Subscription"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 13:51:13", 
+   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers.", 
+   "sort_order": "7.000", 
+   "date_created": "2011-10-07 12:41:35", 
+   "slug": "creating-delivering-resume-books", 
+   "name": "Creating & Delivering Resume Books"
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-07 13:52:04", 
+   "description": "Learn how you can get free access to Umeqo.", 
+   "sort_order": "8.000", 
+   "date_created": "2011-10-07 12:42:31", 
+   "slug": "getting-free-trial-subscription", 
+   "name": "Getting a Free Trial Subscription"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "core.campusorgtype", 
   "fields": {
@@ -3475,20 +3583,9 @@
   "fields": {
    "date_created": "2011-09-03 21:13:35", 
    "sort_order": "3.000", 
-   "last_updated": "2011-09-03 21:14:21", 
+   "last_updated": "2011-10-07 13:45:38", 
    "name": "Events", 
    "slug": "events"
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "core.topic", 
-  "fields": {
-   "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "4.000", 
-   "last_updated": "2011-09-03 21:14:16", 
-   "name": "Employer Subscriptions", 
-   "slug": "employer_subscriptions"
   }
  }, 
  {
@@ -3497,9 +3594,20 @@
   "fields": {
    "date_created": "2011-09-14 22:41:05", 
    "sort_order": "4.000", 
-   "last_updated": "2011-09-14 22:41:05", 
-   "name": "Student Search & Filtering", 
-   "slug": "student-search-filtering"
+   "last_updated": "2011-10-07 13:43:59", 
+   "name": "Student Discovery", 
+   "slug": "student-discovery"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "4.000", 
+   "last_updated": "2011-10-07 13:44:39", 
+   "name": "Subscriptions", 
+   "slug": "subscriptions"
   }
  }, 
  {
@@ -3515,6 +3623,38 @@
    "sort_order": "0.000", 
    "answer": "Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.", 
    "date_created": "2011-06-28 01:55:42", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 19, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-06 18:23:47", 
+   "click_count": 0, 
+   "question": "As a student, do I have to use my Athena password to register?", 
+   "slug": "student-do-i-have-use-my-athena-password-register", 
+   "topic": 8, 
+   "audience": 1, 
+   "sort_order": "1.000", 
+   "answer": "No, you can use whichever password you want. Our system is totally separate from anything that currently exists at MIT.", 
+   "date_created": "2011-10-06 18:23:47", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-06 19:47:10", 
+   "click_count": 1, 
+   "question": "The registration form says that I am not a student - why can I not register?", 
+   "slug": "registration-form-says-i-am-not-student-why-can-i-not-register", 
+   "topic": 8, 
+   "audience": 1, 
+   "sort_order": "1.000", 
+   "answer": "<p>There are a few possible reasons for why you cannot register.</p>\r\n<p>The first is that you are not a student. The student side of Umeqo is for students only. This means that employers, affiliates, group lists, professors and alumni are all not eligible to register as students. <p>The second possiblity is that you are a freshman or a student taking a temporary leave from MIT. For these reasons, you may be marked as an affiliate in the MIT database. If this is so, please <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a>.</p>\r\n<p>Overall, judge for yourself as to whether recruiters should be able to see you alongside other students, and <a href=\"#\" class=\"open_contact_us_dialog_link\">let us know</a> of your situation.</p>", 
+   "date_created": "2011-10-06 19:47:00", 
    "display": true
   }
  }, 
@@ -3714,14 +3854,14 @@
   "pk": 8, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 10:07:48", 
+   "last_updated": "2011-10-06 12:47:18", 
    "click_count": 2, 
    "question": "It looks like things are broken. Am I doing something wrong?", 
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "No, you are not. But you might be using an older browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. Thank you for your patience!", 
+   "answer": "No, you are not. But you might be using an old browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. We appreciate your patience while we make the site work with older browsers!", 
    "date_created": "2011-09-14 22:44:07", 
    "display": true
   }
@@ -5222,6 +5362,36 @@
    "name_and_level": "Nepali (Fluent)", 
    "last_updated": "2011-10-05 16:27:04", 
    "name": "Nepali"
+  }
+ }, 
+ {
+  "pk": 163, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-06 17:38:11", 
+   "name_and_level": "Ukrainian (Basic)", 
+   "last_updated": "2011-10-06 17:38:11", 
+   "name": "Ukrainian"
+  }
+ }, 
+ {
+  "pk": 164, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-06 17:38:11", 
+   "name_and_level": "Ukrainian (Proficient)", 
+   "last_updated": "2011-10-06 17:38:11", 
+   "name": "Ukrainian"
+  }
+ }, 
+ {
+  "pk": 165, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-06 17:38:11", 
+   "name_and_level": "Ukrainian (Fluent)", 
+   "last_updated": "2011-10-06 17:38:11", 
+   "name": "Ukrainian"
   }
  }, 
  {
