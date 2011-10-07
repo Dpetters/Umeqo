@@ -4,8 +4,8 @@ from django.db.models.signals import post_save, post_syncdb
 from django.dispatch import receiver
 
 from core.model_helpers import get_image_filename, get_thumbnail_filename
-from core import enums
-from core.managers import QuestionManager
+from core import enums as core_enums
+from core.managers import VisibleManager
 from core import mixins as core_mixins
 from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
 from notification import models as notification
@@ -58,14 +58,14 @@ class Topic(core_mixins.DateTracking):
 class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
-    audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
+    audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
     sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
     click_count = models.PositiveIntegerField(default=0)
 
-    objects = QuestionManager()
+    objects = VisibleManager()
     
     class Meta:
         ordering = ['sort_order', 'question']
@@ -141,13 +141,18 @@ post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 class Tutorial(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
+    topic = models.ForeignKey(Topic, null=True, blank=True)
+    audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
     sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     description = models.CharField(max_length = 300)
+    display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
 
+    objects = VisibleManager()
+    
     class Meta:
         verbose_name = "Tutorial"
         verbose_name_plural = "Tutorials"
-        ordering = ['sort_order']
+        ordering = ['audience', 'topic', 'sort_order']
 
     def __unicode__(self):
         return self.name

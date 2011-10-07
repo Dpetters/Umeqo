@@ -13,26 +13,48 @@ Tutorials |
 {% endblock %}
 
 {% block help_content %}
-<h1>Tutorials</h1>
-<h1 id="coming_soon">Coming Soon</h1>
-<!--
-    <div>
-    <h2>Recruiter Tutorials</h2>
-    {% for tutorial in recruiter_tutorials %}
-        {% include "tutorial_snippet.html" %}
-    {% endfor %}
+<h1>Umeqo Tutorials</h1>
+<div>
+    <h2>For Recruiters</h2>
+    {% if any_recruiter_tutorials %}
+        <div class="left_side_container">
+            {% if recruiter_sd_tutorials %}
+                <h3>Student Discovery</h3>
+                {% for tutorial in recruiter_sd_tutorials %}
+                    {% include "tutorial_snippet.html" %}
+                {% endfor %}
+            {% endif %}
+            {% if recruiter_event_tutorials %}
+                <h3>Events</h3>
+                {% for tutorial in recruiter_event_tutorials %}
+                    {% include "tutorial_snippet.html" %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="left_side_container">
+            {% if recruiter_am_tutorials %}
+                <h3>Events</h3>
+                {% for tutorial in recruiter_am_tutorials %}
+                    {% include "tutorial_snippet.html" %}
+                {% endfor %}
+            {% endif %}
+            {% if recruiter_subs_tutorials %}
+                <h3>Events</h3>
+                {% for tutorial in recruiter_subs_tutorials %}
+                    {% include "tutorial_snippet.html" %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% else %}
+        <h3>Coming Soon</h3>
+    {% endif %}
 </div>
 <div>
-    <h2>Student Tutorials</h2>
-    {% for tutorial in student_tutorials %}
-        {% include "tutorial_snippet.html" %}
-    {% endfor %}
+    <h2>For Students</h2>
+    <h3>Coming Soon</h3>
 </div>
 <div>
-    <h2>Campus Organization Tutorials</h2>
-    {% for tutorial in campus_organization_tutorials %}
-        {% include "tutorial_snippet.html" %}
-    {% endfor %}
+    <h2>For Campus Organization</h2>
+    <h3>Coming Soon</h3>
 </div>
--->
 {% endblock %}
