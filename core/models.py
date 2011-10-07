@@ -138,6 +138,20 @@ post_save.connect(create_thumbnail, sender=Course)
 post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 
 
+class Tutorial(core_mixins.DateTracking):
+    name = models.CharField(max_length=150)
+    slug = models.SlugField(max_length=150)
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    description = models.CharField(max_length = 300)
+
+    class Meta:
+        verbose_name = "Tutorial"
+        verbose_name_plural = "Tutorials"
+        ordering = ['sort_order']
+
+    def __unicode__(self):
+        return self.name
+
 class EmploymentType(core_mixins.DateTracking):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
     sort_order = models.IntegerField("sort order", default=0, help_text='EmploymentTypes will be ordered by the sort order. (Smallest at top.)')
