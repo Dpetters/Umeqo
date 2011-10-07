@@ -47,7 +47,7 @@ PROD_DATA_MODELS = {
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
-    'core':['campusorgtype', 'location', 'topic', \
+    'core':['tutorial', 'campusorgtype', 'location', 'topic', \
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
