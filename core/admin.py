@@ -8,7 +8,11 @@ from django.http import HttpResponseRedirect
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
-from core.models import CampusOrgType, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType, Location
+from core.models import Tutorial, CampusOrgType, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType, Location
+
+class TutorialAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
+admin.site.register(Tutorial, TutorialAdmin)
 
 class LocationAdmin(admin.ModelAdmin):
     fields = ['name', 'display_name', 'building_num', 'latitude', 'longitude', 'keywords', 'image_url']
