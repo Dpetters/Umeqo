@@ -2322,6 +2322,24 @@
   }
  }, 
  {
+  "pk": 497, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://arts.mit.edu/emerson-scholarships-in-music/", 
+   "slug": null, 
+   "last_updated": "2011-10-06 18:16:11", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-06 18:16:11", 
+   "type": 2, 
+   "display": false, 
+   "name": "Emerson Scholarship"
+  }
+ }, 
+ {
   "pk": 134, 
   "model": "campus_org.campusorg", 
   "fields": {
