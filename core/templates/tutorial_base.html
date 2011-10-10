@@ -1,0 +1,40 @@
+{% extends "help_center.html" %}
+
+{% block title %}
+Tutorials |
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+{% load compress %}
+{% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/tutorials.css" />
+{% endcompress %}
+{% endblock %}
+
+{% block help_content %}
+    <h1>{% block tutorial_title %}{% endblock %} Tutorial</h1>
+    <h2>Table of Contents</h2>
+    <ul class="h-list">
+        <li><a href="#instructions">Instructions</a></li>
+        <li><a href="#things_to_note">Things to Note</a></li>
+        <li><a href="#tips_and_tricks">Tips and Tricks</a></li>
+    </ul>
+    
+    <h2 id="instructions">Instructions</h2>
+    <div id="instructions_div">
+        {% block instructions %}
+        {% endblock %}
+    </div>
+    <h2 id="things_to_note">Things to Note</h2>
+    <div>
+        {% block things_to_note %}
+        {% endblock %}
+    </div>
+    
+    <h2 id="tips_and_tricks">Tips and Tricks</h2>
+    <div>
+        {% block tips_and_tricks %}
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Creating and Delivery Resume Books
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, begin by searching by keyword or clicking "Browse Students".</p>
+<p>There is also a "Browse Students" link in the side navigation menu on the right.</p>
+<img src="{{STATIC_URL}}images/tutorials/browse_students/1.png">
+<p class="header" id="filter"><span class="num">Step 2:</span> Filter students by a variety of attributes grouped into four different categories.</p>
+<p>Use this to find students who satisfy a particular requirement, such as speaking a language or being a graduating senior.</p> 
+<img src="{{STATIC_URL}}images/tutorials/browse_students/3.png">
+<p class="header"><span class="num">Step 3:</span> Search students' resumes by keyword/skills, or search for individuals by first/last name.</p>
+<p>Results will by default be ordered by relevance. However, you can also <a href="#order_and_num">modify in what order and how many results appear</a>.</p>
+<img src="{{STATIC_URL}}images/tutorials/browse_students/4.png">
+<p id="add_remove_students" class="header"><span class="num">Step 4:</span> Add and remove students to and from your custom resume book one by one or in batches.</p>
+<p>Students will never know that you added them or removed them from any resume book. Nothing that you do is recorded.</p>
+<img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/1.png">
+<img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/2.png">
+<p class="header" id="view_contents"><span class="num">Step 5:</span> View the contents of the resume book that you are currently making, or any past resume book.</p>
+<img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/4.png">
+<p class="header"><span class="num">Step 6:</span> Once you are satisfied with your selections, click "Deliver" to open the resume book delivery dialog.</p>
+<p>Students will never know that you added them or removed them from any resume book. Nothing that you do is recorded.</p>
+<img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/4.png">
+<p class="header"><span class="num">Step 7:</span> Download your resume book or email it to one or more email addresses.</p>
+<img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/4.png">
+<p class="header"><span class="num">Step 8:</span> Re-deliver or delete any of your past resume books.</p>
+<p>All re-delivered resume books will have the latest copies of all the included students' resumes.</p>
+<img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/4.png">
+{% endblock %}
+
+{% block things_to_note %}
+<p>1. If your resume book contains close to 50 students, it might take a few minutes in order for it to arrive.</p>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<p>1. The easiest way to clear the contents of a resume book that you are currently making is to <a href="#view_contents">view its contents</a>, and then <a href="#add_remove_students">remove all included students in a batch</a>.</p>
+{% endblock %}

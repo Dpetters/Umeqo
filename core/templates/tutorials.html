@@ -13,11 +13,11 @@ Tutorials |
 {% endblock %}
 
 {% block help_content %}
-<h1>Umeqo Tutorials</h1>
+<h1>Tutorials</h1>
 <div>
     <h2>For Recruiters</h2>
     {% if any_recruiter_tutorials %}
-        <div class="left_side_container">
+        <div class="tutorials_column">
             {% if recruiter_sd_tutorials %}
                 <h3>Student Discovery</h3>
                 {% for tutorial in recruiter_sd_tutorials %}
@@ -26,35 +26,44 @@ Tutorials |
             {% endif %}
             {% if recruiter_event_tutorials %}
                 <h3>Events</h3>
+                <p>Coming Soon</p>
+                <!--
                 {% for tutorial in recruiter_event_tutorials %}
                     {% include "tutorial_snippet.html" %}
                 {% endfor %}
+                -->
             {% endif %}
         </div>
-        <div class="left_side_container">
+        <div class="tutorials_column">
             {% if recruiter_am_tutorials %}
-                <h3>Events</h3>
+                <h3>Account Management</h3>
+                <p>Coming Soon</p>
+                <!--
                 {% for tutorial in recruiter_am_tutorials %}
                     {% include "tutorial_snippet.html" %}
                 {% endfor %}
+                -->
             {% endif %}
             {% if recruiter_subs_tutorials %}
-                <h3>Events</h3>
+                <h3>Subscriptions</h3>
+                <p>Coming Soon</p>
+                <!--
                 {% for tutorial in recruiter_subs_tutorials %}
                     {% include "tutorial_snippet.html" %}
                 {% endfor %}
+                -->
             {% endif %}
         </div>
     {% else %}
-        <h3>Coming Soon</h3>
+        <p>Coming Soon</p>
     {% endif %}
 </div>
 <div>
     <h2>For Students</h2>
-    <h3>Coming Soon</h3>
+    <p>Coming Soon</p>
 </div>
 <div>
     <h2>For Campus Organization</h2>
-    <h3>Coming Soon</h3>
+    <p>Coming Soon</p>
 </div>
 {% endblock %}
