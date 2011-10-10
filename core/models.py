@@ -156,10 +156,6 @@ class Tutorial(core_mixins.DateTracking):
 
     @models.permalink
     def get_absolute_url(self):
-        print "here"
-        print ('tutorial', (), {
-            'slug': self.slug
-        })
         return ('tutorial', (), {
             'slug': self.slug
         })

@@ -140,13 +140,13 @@ def tutorials(request, extra_context = None):
     context = {}
     user = request.user
     anonymous = not user.is_authenticated()
-    if anonymous or is_student(user):
+    if user.is_staff or anonymous or is_student(user):
         if Tutorial.objects.filter(audience = core_enums.STUDENT, display=True).exists():
             context['any_student_tutorials'] = True
-    if anonymous or is_campus_org(user):
+    if user.is_staff or anonymous or is_campus_org(user):
         if Tutorial.objects.filter(audience = core_enums.CAMPUS_ORG, display=True).exists():
             context['any_campus_org_tutorials'] = True
-    if anonymous or is_recruiter(user):
+    if user.is_staff or anonymous or is_recruiter(user):
         if Tutorial.objects.filter(audience = core_enums.EMPLOYER, display=True).exists():
             context['any_recruiter_tutorials'] = True
             try:
