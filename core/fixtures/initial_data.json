@@ -123,9 +123,9 @@
   "pk": 5, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:14:33", 
+   "last_updated": "2011-10-10 16:39:17", 
    "name": "Checking Students In", 
-   "display": true, 
+   "display": false, 
    "topic": 11, 
    "audience": 6, 
    "sort_order": "4.000", 
