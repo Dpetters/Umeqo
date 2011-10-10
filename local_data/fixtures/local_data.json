@@ -69,7 +69,7 @@
    "attending_employers": [
     56
    ], 
-   "name": "Info Session", 
+   "name": "Consulting & Co Info Session", 
    "is_public": true, 
    "edits": [], 
    "description": "<p>\r\n\tfeafea</p>\r\n", 
@@ -77,7 +77,7 @@
    "last_seen_view_count": 0, 
    "longitude": -71.083760710000007, 
    "latitude": 42.361504269999998, 
-   "short_slug": null, 
+   "short_slug": "", 
    "is_drop": false, 
    "end_datetime": "2011-09-22 21:30:00", 
    "rsvp_message": "", 
@@ -89,61 +89,91 @@
   }
  }, 
  {
-  "pk": 9, 
+  "pk": 11, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": "2011-09-14 22:00:00", 
-   "audience": [], 
-   "attending_employers": [
-    5
+   "view_count": 6, 
+   "start_datetime": "2012-02-09 13:30:00", 
+   "audience": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    6
    ], 
-   "name": "Test Event", 
+   "attending_employers": [
+    6
+   ], 
+   "name": "Umeqo Consulting Panel", 
    "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tThis is a tes description.</p>\r\n", 
+   "edits": [
+    2
+   ], 
+   "description": "<p>\r\n\tAre you interested in launching a career in consulting? Join Umeqo consultants and recruiters for a careers presentation and interactive&nbsp;panel&nbsp;discussion. Attendees will learn about:</p>\r\n<p>\r\n\t&bull; Accenture business areas</p>\r\n<p>\r\n\t&bull; Career paths and development</p>\r\n<p>\r\n\t&bull; Company culture, values, and commitment to corporate citizenship</p>\r\n<p>\r\n\tRefreshments will be served and casual attire is welcome. We look forward to seeing you there!</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": -71.092013719999997, 
-   "latitude": 42.35967402, 
+   "longitude": -71.092923220000003, 
+   "latitude": 42.358714519999999, 
    "short_slug": null, 
    "is_drop": false, 
-   "end_datetime": "2011-09-14 23:00:00", 
+   "end_datetime": "2012-02-09 15:30:00", 
    "rsvp_message": "", 
-   "owner": 16, 
-   "date_created": "2011-09-14 21:46:59", 
-   "type": 1, 
-   "slug": "test-event", 
-   "location": "10-250"
+   "owner": 3, 
+   "date_created": "2011-10-10 13:16:48", 
+   "type": 3, 
+   "slug": "umeqo-consulting-panel", 
+   "location": "5-324"
   }
  }, 
  {
-  "pk": 10, 
-  "model": "events.event", 
+  "pk": 3, 
+  "model": "events.rsvp", 
   "fields": {
-   "view_count": 1, 
-   "start_datetime": "2011-09-19 14:30:00", 
-   "audience": [], 
-   "attending_employers": [
-    5
-   ], 
-   "name": "Test Event", 
-   "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tHello</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.09736187, 
-   "latitude": 42.359884899999997, 
-   "short_slug": null, 
-   "is_drop": false, 
-   "end_datetime": "2011-09-20 15:00:00", 
-   "rsvp_message": "", 
-   "owner": 16, 
-   "date_created": "2011-09-19 13:40:59", 
-   "type": 1, 
-   "slug": "test-event", 
-   "location": "Building NW13"
+   "attending": true, 
+   "event": 11, 
+   "student": 1, 
+   "datetime_created": "2011-10-10 13:39:05"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 2, 
+   "datetime_created": "2011-10-10 13:40:37"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 3, 
+   "datetime_created": "2011-10-10 13:40:54"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 4, 
+   "datetime_created": "2011-10-10 14:07:02"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 5, 
+   "datetime_created": "2011-10-10 14:07:19"
   }
  }, 
  {
@@ -189,15 +219,6 @@
    "datetime_created": "2011-09-19 12:24:15", 
    "event": 7, 
    "student": 5
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 13:41:10", 
-   "event": 10, 
-   "student": 1
   }
  }, 
  {
@@ -698,7 +719,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Madison", 
-   "last_updated": "2011-10-08 16:10:43", 
+   "last_updated": "2011-10-10 13:38:59", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -711,7 +732,7 @@
     4
    ], 
    "countries_of_citizenship": [
-    "LV"
+    "AF"
    ], 
    "first_name": "James", 
    "first_major": 31, 
@@ -727,7 +748,10 @@
     48, 
     396
    ], 
-   "languages": [], 
+   "languages": [
+    3, 
+    35
+   ], 
    "profile_created": true, 
    "school_year": 3, 
    "graduation_year": 2, 
@@ -736,13 +760,12 @@
     4
    ], 
    "website": "", 
-   "second_major": 8, 
+   "second_major": 25, 
    "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-09-27-02-11-29.pdf", 
    "user": 2, 
    "industries_of_interest": [
-    15, 
-    36, 
-    40
+    12, 
+    13
    ], 
    "act": 34, 
    "date_created": "2011-07-07 20:30:03"
@@ -753,17 +776,16 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Jefferson", 
-   "last_updated": "2011-09-06 05:15:19", 
+   "last_updated": "2011-10-10 13:40:25", 
    "sat_m": null, 
    "graduation_month": "4", 
-   "older_than_21": "Y", 
+   "older_than_21": "N", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
    "keywords": " university address hrishikesh joshi address vassar hjoshi mit edu inwood cambridge woburn education massachusetts institute technology mit cambridge candidate computer mathematics june gpa minors economics management plano senior plano gpa rank june research laboratory nuclear department physics mit cambridge undergraduate researcher detection jan used ccd camera data statistical analysis detector images sources background alpha particle radiation detector used unix operating latex emacs data analysis department biology university texas dallas richardson research intern june july studied crucial role rna editing mitochondrial gene expression physarum polycephalum methods used centrifugation gel electrophoresis polymerase chain reaction dna rna priming amplification techniques southern blot nucleotide sequencing software etc plano independent researcher aug mar implemented awards leadership texas youth honor society vice president secretary aug skeptical society founder vice president aug computer aug winner annual hewlett packard competition computer uil president uil programming examinations ranked texas mathematics aug mar american invitational mathematics examination qualifier ranked interests theory prime distribution riemann functions etc aug mar texas qualifier prize winner dallas regional contestants discovery scientist challenge semi finalist skills technical python java latex gnu emacs microsoft windows foreign languages fluent hindi marathi years french", 
    "looking_for": [
-    2, 
-    4
+    2
    ], 
    "countries_of_citizenship": [
     "IN"
@@ -772,22 +794,27 @@
    "first_major": 12, 
    "subscriptions": [], 
    "gpa": "4.500", 
-   "campus_involvement": [], 
+   "campus_involvement": [
+    45, 
+    480
+   ], 
    "languages": [
     3, 
     84
    ], 
    "profile_created": true, 
-   "school_year": 3, 
-   "graduation_year": 2, 
+   "school_year": 2, 
+   "graduation_year": 1, 
    "previous_employers": [
+    33, 
     4
    ], 
    "website": "", 
-   "second_major": 25, 
+   "second_major": 23, 
    "resume": "student/student/joshi_hrishikesh_student2@umeqo.com_2011-09-27-02-11-21.pdf", 
    "user": 4, 
    "industries_of_interest": [
+    15, 
     40
    ], 
    "act": null, 
@@ -1391,7 +1418,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-10-08 15:01:34", 
+   "last_login": "2011-10-10 13:36:56", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1409,7 +1436,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-08 16:09:02", 
+   "last_login": "2011-10-10 13:37:13", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1427,7 +1454,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-08 16:36:49", 
+   "last_login": "2011-10-10 13:36:37", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$bd7f3$00ac6e9fb053373d262df04c62f1b529dc16b0c9", 
@@ -1445,7 +1472,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-05 16:06:23", 
+   "last_login": "2011-10-10 13:40:33", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$700c1$f3e9a729d56257e9983b8d03016c8ed1efd30350", 
@@ -1463,7 +1490,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:15", 
+   "last_login": "2011-10-10 13:40:45", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a5b4$bb54c8d442d35f36e2c61256d313f5c001d59ab9", 
@@ -1481,7 +1508,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:38", 
+   "last_login": "2011-10-10 14:06:51", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$619a8$3fa6b73dfcdaf0c14e82262cc4f8e92633087334", 
@@ -1499,7 +1526,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:59", 
+   "last_login": "2011-10-10 14:07:10", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9c07a$fd3f12380a532976c6795f2e9e2dc24c0a890eb6", 
@@ -1652,10 +1679,10 @@
   "pk": 4, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 5, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-10 13:40:50", 
    "last_password_change_date": null
   }
  }, 
@@ -1663,10 +1690,10 @@
   "pk": 5, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 6, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-10 14:06:55", 
    "last_password_change_date": null
   }
  }, 
@@ -1674,10 +1701,10 @@
   "pk": 6, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 7, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-10 14:07:14", 
    "last_password_change_date": null
   }
  }, 
@@ -1825,6 +1852,26 @@
    "session_key": "3f09e7e67b3af2f62ef401cbfe866f2a", 
    "last_updated": "2011-10-08 16:36:49", 
    "user": 3
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-10 13:13:53", 
+   "session_key": "ee9fd8b84d7acf718161cc8acb0d6bd7", 
+   "last_updated": "2011-10-10 13:13:53", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-10 14:07:10", 
+   "session_key": "53b45580dbb200489c6ec177ae5bfc1c", 
+   "last_updated": "2011-10-10 14:07:10", 
+   "user": 7
   }
  }
 ]
