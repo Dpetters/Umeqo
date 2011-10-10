@@ -3564,6 +3564,24 @@
   }
  }, 
  {
+  "pk": 498, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://kappasigma.mit.edu/", 
+   "slug": null, 
+   "last_updated": "2011-10-09 00:03:55", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-09 00:03:55", 
+   "type": 6, 
+   "display": false, 
+   "name": "Kappa Sigma"
+  }
+ }, 
+ {
   "pk": 208, 
   "model": "campus_org.campusorg", 
   "fields": {

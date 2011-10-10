@@ -1,20 +1,5 @@
 [
  {
-  "pk": 7, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-10-07 13:51:13", 
-   "name": "Creating & Delivering Resume Books", 
-   "display": false, 
-   "topic": null, 
-   "audience": 0, 
-   "sort_order": "7.000", 
-   "date_created": "2011-10-07 12:41:35", 
-   "slug": "creating-delivering-resume-books", 
-   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers."
-  }
- }, 
- {
   "pk": 1, 
   "model": "core.tutorial", 
   "fields": {
@@ -63,8 +48,8 @@
   "pk": 6, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:46", 
-   "name": "Viewing Attendees & RSVPs", 
+   "last_updated": "2011-10-10 13:33:22", 
+   "name": "Browsing Attendees & RSVPs", 
    "display": false, 
    "topic": 11, 
    "audience": 4, 
@@ -78,9 +63,9 @@
   "pk": 2, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:44:02", 
+   "last_updated": "2011-10-10 11:14:30", 
    "name": "Browsing Students", 
-   "display": false, 
+   "display": true, 
    "topic": 13, 
    "audience": 4, 
    "sort_order": "1.000", 
@@ -90,12 +75,27 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-10 11:18:30", 
+   "name": "Creating & Delivering Resume Books", 
+   "display": true, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "7.000", 
+   "date_created": "2011-10-07 12:41:35", 
+   "slug": "creating-delivering-resume-books", 
+   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers."
+  }
+ }, 
+ {
   "pk": 10, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:49", 
+   "last_updated": "2011-10-10 11:14:45", 
    "name": "Getting an Annual Subscription", 
-   "display": false, 
+   "display": true, 
    "topic": 10, 
    "audience": 4, 
    "sort_order": "6.000", 
@@ -108,9 +108,9 @@
   "pk": 9, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:53", 
+   "last_updated": "2011-10-10 11:14:43", 
    "name": "Getting a Free Trial Subscription", 
-   "display": false, 
+   "display": true, 
    "topic": 10, 
    "audience": 4, 
    "sort_order": "8.000", 
@@ -123,9 +123,9 @@
   "pk": 5, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:44:39", 
+   "last_updated": "2011-10-10 11:14:33", 
    "name": "Checking Students In", 
-   "display": false, 
+   "display": true, 
    "topic": 11, 
    "audience": 6, 
    "sort_order": "4.000", 
