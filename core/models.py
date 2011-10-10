@@ -99,7 +99,7 @@ class SchoolYear(core_mixins.DateTracking):
 class Edit(core_mixins.DateCreatedTracking):
     user = models.ForeignKey(User)
 
-    
+
 class GraduationYear(core_mixins.DateTracking):
     year = models.PositiveSmallIntegerField("Graduation Year", unique=True)
 
@@ -118,7 +118,7 @@ class Language(core_mixins.DateTracking):
     def __unicode__(self):
         return self.name_and_level
 
-    
+
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
@@ -127,13 +127,13 @@ class Course(CommonInfo):
     sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True)
-    
+
     def __unicode__(self):
         return "%s (%s)" % (self.name, self.num)
     
     class Meta:
         ordering = ['sort_order']
-        
+
 post_save.connect(create_thumbnail, sender=Course)
 post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 
