@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 from django.core.validators import URLValidator
 from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
@@ -126,32 +126,51 @@ def about(request, extra_context = None):
     context.update(extra_context or {})
     return context
 
+@render_to()
+def tutorial(request, slug, extra_context = None):
+    tutorial = get_object_or_404(Tutorial, slug=slug)
+    context = {
+       'tutorial':tutorial,
+       'TEMPLATE': '%s.html' % tutorial.slug.replace("-", "_")
+    }
+    return context
+
 @render_to('tutorials.html')
 def tutorials(request, extra_context = None):
     context = {}
     user = request.user
     anonymous = not user.is_authenticated()
     if anonymous or is_student(user):
-        if Tutorial.objects.filter(audience = core_enums.STUDENT).visible().exists():
+        if Tutorial.objects.filter(audience = core_enums.STUDENT, display=True).exists():
             context['any_student_tutorials'] = True
     if anonymous or is_campus_org(user):
-        if Tutorial.objects.filter(audience = core_enums.CAMPUS_ORG).visible().exists():
+        if Tutorial.objects.filter(audience = core_enums.CAMPUS_ORG, display=True).exists():
             context['any_campus_org_tutorials'] = True
     if anonymous or is_recruiter(user):
-        if Tutorial.objects.filter(audience = core_enums.EMPLOYER).visible().exists():
+        if Tutorial.objects.filter(audience = core_enums.EMPLOYER, display=True).exists():
             context['any_recruiter_tutorials'] = True
+            try:
+                sd_topic = Topic.objects.get(name="Student Discovery")
+                context['recruiter_sd_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=sd_topic, display=True)
+            except Topic.DoesNotExist:
+                pass
             
-            sd_topic = Topic.objects.get(name="Student Discovery")
-            context['recruiter_sd_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=sd_topic)
-
-            subs_topic = Topic.objects.get(name="Subscriptions")
-            context['recruiter_subs_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=subs_topic)
+            try:
+                subs_topic = Topic.objects.get(name="Subscriptions")
+                context['recruiter_subs_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=subs_topic, display=True)
+            except Topic.DoesNotExist:
+                pass            
             
-            events_topic = Topic.objects.get(name="Events")
-            context['recruiter_event_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=events_topic)
-            
-            cm_topic = Topic.objects.get(name="Credentials Management")
-            context['recruiter_cm_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=cm_topic)
+            try:
+                events_topic = Topic.objects.get(name="Events & Deadlines")
+                context['recruiter_event_tutorials'] = Tutorial.objects.filter(topic=events_topic, display=True).filter(Q(audience=core_enums.EMPLOYER)|Q(audience=core_enums.CAMPUS_ORGS_AND_EMPLOYERS))
+            except Topic.DoesNotExist:
+                pass
+            try:
+                am_topic = Topic.objects.get(name="Account Management")
+                context['recruiter_am_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=am_topic, display=True)
+            except Topic.DoesNotExist:
+                pass
     context.update(extra_context or {})
     return context
 

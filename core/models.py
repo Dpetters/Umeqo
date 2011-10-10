@@ -154,6 +154,16 @@ class Tutorial(core_mixins.DateTracking):
         verbose_name_plural = "Tutorials"
         ordering = ['audience', 'topic', 'sort_order']
 
+    @models.permalink
+    def get_absolute_url(self):
+        print "here"
+        print ('tutorial', (), {
+            'slug': self.slug
+        })
+        return ('tutorial', (), {
+            'slug': self.slug
+        })
+        
     def __unicode__(self):
         return self.name
 
