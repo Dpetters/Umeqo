@@ -15,8 +15,10 @@ Tutorials |
 {% block help_content %}
 <h1>Tutorials</h1>
 <div>
-    <h2>For Recruiters</h2>
-    {% if any_recruiter_tutorials %}
+    {% if user.is_anonymous or user.recruiter %}
+        {% if user.is_anonymous %}
+            <h2>For Recruiters</h2>
+        {% endif %}
         <div class="tutorials_column">
             <h3>Student Discovery</h3>
             {% for tutorial in recruiter_sd_tutorials %}
@@ -45,16 +47,22 @@ Tutorials |
                 <p>Coming Soon</p>
             {% endfor %}
         </div>
-    {% else %}
+    {% endif %}
+</div>
+<div>
+    {% if user.is_anonymous or user.student %}
+        {% if user.is_anonymous %}
+            <h2>For Students</h2>
+        {% endif %}
         <p>Coming Soon</p>
     {% endif %}
 </div>
 <div>
-    <h2>For Students</h2>
-    <p>Coming Soon</p>
-</div>
-<div>
-    <h2>For Campus Organization</h2>
-    <p>Coming Soon</p>
+    {% if user.is_anonymous or user.campusorg %}
+        {% if user.is_anonymous %}
+        <h2>For Campus Organization</h2>
+        {% endif %}
+        <p>Coming Soon</p>
+    {% endif %}
 </div>
 {% endblock %}

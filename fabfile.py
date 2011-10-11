@@ -7,7 +7,6 @@ fabric_django.settings_module('settings')
 from django.conf import settings
 from south.models import MigrationHistory
 
-
 __all__= ["staging", "prod", "restart", "restart_apache", "create_database", "load_prod_data",
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
@@ -152,7 +151,6 @@ def update():
                     run("git pull origin master")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
-                run("echo 'y'|python manage.py rebuild_index")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
                 with fabric_settings(warn_only=True):
@@ -161,5 +159,5 @@ def update():
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
                     run("echo 'yes'|python manage.py collectstatic")
-                    run("echo 'y'|python manage.py rebuild_index")
+                run("echo 'y'|python manage.py rebuild_index")
                 restart_apache()
