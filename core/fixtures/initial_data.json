@@ -48,9 +48,9 @@
   "pk": 6, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 13:33:22", 
+   "last_updated": "2011-10-10 17:54:36", 
    "name": "Browsing Attendees & RSVPs", 
-   "display": false, 
+   "display": true, 
    "topic": 11, 
    "audience": 4, 
    "sort_order": "5.000", 
@@ -63,7 +63,7 @@
   "pk": 2, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:14:30", 
+   "last_updated": "2011-10-10 17:54:24", 
    "name": "Browsing Students", 
    "display": true, 
    "topic": 13, 
