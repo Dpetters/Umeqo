@@ -179,7 +179,7 @@
                 <div class="commands right_side_container">
                     <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export</a>
                     {% if user.recruiter %}
-                    <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View All</a>
+                    <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View All Attendees</a>
                     {% endif %}
                 </div>
                 {% endif %}

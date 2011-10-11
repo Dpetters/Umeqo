@@ -47,7 +47,7 @@ class CreateEmployerForm(forms.ModelForm):
         return self.cleaned_data['industries']
             
 class RecruiterForm(forms.ModelForm):
-    email = forms.EmailField(label="Username:", max_length = 75)
+    email = forms.EmailField(label="Email:", max_length = 75)
     first_name = forms.CharField(label="First Name:", max_length=42, required=True)
     last_name = forms.CharField(label="Last Name:", max_length=42, required=True)
     password1 = forms.CharField(label="Choose Password:", widget=forms.PasswordInput)

@@ -38,9 +38,11 @@
    "attending_employers": [
     6
    ], 
-   "name": "The a boofaefaes fafewa f eaf esafesaf esa fesa fesa fesa faes fesa f esaf esaf esaf ", 
+   "name": "All-Star Event", 
    "is_public": true, 
-   "edits": [], 
+   "edits": [
+    1
+   ], 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -48,7 +50,7 @@
    "latitude": null, 
    "short_slug": "booo", 
    "is_drop": true, 
-   "end_datetime": "2011-09-28 16:30:00", 
+   "end_datetime": "2011-10-09 16:30:00", 
    "rsvp_message": "", 
    "owner": 3, 
    "date_created": "2011-09-11 15:31:17", 
@@ -67,7 +69,7 @@
    "attending_employers": [
     56
    ], 
-   "name": "Info Session", 
+   "name": "Consulting & Co Info Session", 
    "is_public": true, 
    "edits": [], 
    "description": "<p>\r\n\tfeafea</p>\r\n", 
@@ -75,7 +77,7 @@
    "last_seen_view_count": 0, 
    "longitude": -71.083760710000007, 
    "latitude": 42.361504269999998, 
-   "short_slug": null, 
+   "short_slug": "", 
    "is_drop": false, 
    "end_datetime": "2011-09-22 21:30:00", 
    "rsvp_message": "", 
@@ -87,61 +89,91 @@
   }
  }, 
  {
-  "pk": 9, 
+  "pk": 11, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": "2011-09-14 22:00:00", 
-   "audience": [], 
-   "attending_employers": [
-    5
+   "view_count": 6, 
+   "start_datetime": "2012-02-09 13:30:00", 
+   "audience": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    6
    ], 
-   "name": "Test Event", 
+   "attending_employers": [
+    6
+   ], 
+   "name": "Umeqo Consulting Panel", 
    "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tThis is a tes description.</p>\r\n", 
+   "edits": [
+    2
+   ], 
+   "description": "<p>\r\n\tAre you interested in launching a career in consulting? Join Umeqo consultants and recruiters for a careers presentation and interactive&nbsp;panel&nbsp;discussion. Attendees will learn about:</p>\r\n<p>\r\n\t&bull; Accenture business areas</p>\r\n<p>\r\n\t&bull; Career paths and development</p>\r\n<p>\r\n\t&bull; Company culture, values, and commitment to corporate citizenship</p>\r\n<p>\r\n\tRefreshments will be served and casual attire is welcome. We look forward to seeing you there!</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
-   "longitude": -71.092013719999997, 
-   "latitude": 42.35967402, 
+   "longitude": -71.092923220000003, 
+   "latitude": 42.358714519999999, 
    "short_slug": null, 
    "is_drop": false, 
-   "end_datetime": "2011-09-14 23:00:00", 
+   "end_datetime": "2012-02-09 15:30:00", 
    "rsvp_message": "", 
-   "owner": 16, 
-   "date_created": "2011-09-14 21:46:59", 
-   "type": 1, 
-   "slug": "test-event", 
-   "location": "10-250"
+   "owner": 3, 
+   "date_created": "2011-10-10 13:16:48", 
+   "type": 3, 
+   "slug": "umeqo-consulting-panel", 
+   "location": "5-324"
   }
  }, 
  {
-  "pk": 10, 
-  "model": "events.event", 
+  "pk": 3, 
+  "model": "events.rsvp", 
   "fields": {
-   "view_count": 1, 
-   "start_datetime": "2011-09-19 14:30:00", 
-   "audience": [], 
-   "attending_employers": [
-    5
-   ], 
-   "name": "Test Event", 
-   "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tHello</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.09736187, 
-   "latitude": 42.359884899999997, 
-   "short_slug": null, 
-   "is_drop": false, 
-   "end_datetime": "2011-09-20 15:00:00", 
-   "rsvp_message": "", 
-   "owner": 16, 
-   "date_created": "2011-09-19 13:40:59", 
-   "type": 1, 
-   "slug": "test-event", 
-   "location": "Building NW13"
+   "attending": true, 
+   "event": 11, 
+   "student": 1, 
+   "datetime_created": "2011-10-10 13:39:05"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 2, 
+   "datetime_created": "2011-10-10 13:40:37"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 3, 
+   "datetime_created": "2011-10-10 13:40:54"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 4, 
+   "datetime_created": "2011-10-10 14:07:02"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 11, 
+   "student": 5, 
+   "datetime_created": "2011-10-10 14:07:19"
   }
  }, 
  {
@@ -187,15 +219,6 @@
    "datetime_created": "2011-09-19 12:24:15", 
    "event": 7, 
    "student": 5
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 13:41:10", 
-   "event": 10, 
-   "student": 1
   }
  }, 
  {
@@ -422,6 +445,25 @@
    "last_updated": "2011-08-27 16:18:31", 
    "user": 9, 
    "employer": 5
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "delivered": false, 
+   "last_updated": "2011-10-08 14:59:32", 
+   "name": null, 
+   "students": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5
+   ], 
+   "recruiter": 1, 
+   "resume_book": "", 
+   "date_created": "2011-10-08 14:59:32"
   }
  }, 
  {
@@ -676,8 +718,8 @@
   "pk": 1, 
   "model": "student.student", 
   "fields": {
-   "last_name": "Petters", 
-   "last_updated": "2011-09-06 05:15:27", 
+   "last_name": "Madison", 
+   "last_updated": "2011-10-10 13:38:59", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -690,9 +732,9 @@
     4
    ], 
    "countries_of_citizenship": [
-    "LV"
+    "AF"
    ], 
-   "first_name": "Dmitrij", 
+   "first_name": "James", 
    "first_major": 31, 
    "subscriptions": [
     10, 
@@ -701,8 +743,15 @@
     6
    ], 
    "gpa": "4.800", 
-   "campus_involvement": [], 
-   "languages": [], 
+   "campus_involvement": [
+    463, 
+    48, 
+    396
+   ], 
+   "languages": [
+    3, 
+    35
+   ], 
    "profile_created": true, 
    "school_year": 3, 
    "graduation_year": 2, 
@@ -711,13 +760,12 @@
     4
    ], 
    "website": "", 
-   "second_major": 8, 
+   "second_major": 25, 
    "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-09-27-02-11-29.pdf", 
    "user": 2, 
    "industries_of_interest": [
-    15, 
-    36, 
-    40
+    12, 
+    13
    ], 
    "act": 34, 
    "date_created": "2011-07-07 20:30:03"
@@ -727,42 +775,46 @@
   "pk": 2, 
   "model": "student.student", 
   "fields": {
-   "last_name": "Joshi", 
-   "last_updated": "2011-09-06 05:15:19", 
+   "last_name": "Jefferson", 
+   "last_updated": "2011-10-10 13:40:25", 
    "sat_m": null, 
    "graduation_month": "4", 
-   "older_than_21": "Y", 
+   "older_than_21": "N", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
    "keywords": " university address hrishikesh joshi address vassar hjoshi mit edu inwood cambridge woburn education massachusetts institute technology mit cambridge candidate computer mathematics june gpa minors economics management plano senior plano gpa rank june research laboratory nuclear department physics mit cambridge undergraduate researcher detection jan used ccd camera data statistical analysis detector images sources background alpha particle radiation detector used unix operating latex emacs data analysis department biology university texas dallas richardson research intern june july studied crucial role rna editing mitochondrial gene expression physarum polycephalum methods used centrifugation gel electrophoresis polymerase chain reaction dna rna priming amplification techniques southern blot nucleotide sequencing software etc plano independent researcher aug mar implemented awards leadership texas youth honor society vice president secretary aug skeptical society founder vice president aug computer aug winner annual hewlett packard competition computer uil president uil programming examinations ranked texas mathematics aug mar american invitational mathematics examination qualifier ranked interests theory prime distribution riemann functions etc aug mar texas qualifier prize winner dallas regional contestants discovery scientist challenge semi finalist skills technical python java latex gnu emacs microsoft windows foreign languages fluent hindi marathi years french", 
    "looking_for": [
-    2, 
-    4
+    2
    ], 
    "countries_of_citizenship": [
     "IN"
    ], 
-   "first_name": "Hrishikesh", 
+   "first_name": "Thomas", 
    "first_major": 12, 
    "subscriptions": [], 
    "gpa": "4.500", 
-   "campus_involvement": [], 
+   "campus_involvement": [
+    45, 
+    480
+   ], 
    "languages": [
     3, 
     84
    ], 
    "profile_created": true, 
-   "school_year": 3, 
-   "graduation_year": 2, 
+   "school_year": 2, 
+   "graduation_year": 1, 
    "previous_employers": [
+    33, 
     4
    ], 
    "website": "", 
-   "second_major": 25, 
+   "second_major": 23, 
    "resume": "student/student/joshi_hrishikesh_student2@umeqo.com_2011-09-27-02-11-21.pdf", 
    "user": 4, 
    "industries_of_interest": [
+    15, 
     40
    ], 
    "act": null, 
@@ -773,7 +825,7 @@
   "pk": 3, 
   "model": "student.student", 
   "fields": {
-   "last_name": "Kao", 
+   "last_name": "Adams", 
    "last_updated": "2011-09-06 05:15:09", 
    "sat_m": null, 
    "graduation_month": "4", 
@@ -784,7 +836,7 @@
    "keywords": " address albert kao address memorial alkao mit edu wisteria hong qiao cambridge shanghai china education massachusetts institute technology cambridge expected graduation candidate chemical biological engineering minor management gpa relevant coursework differential equations microeconomics organic chemistry thermodynamics kinetics introduction chemical engineering disease society america american ethical conflicts political choices phillips exeter academy exeter graduated cum laude june mit belcher lab cambridge june undergraduate researcher worked belcher lab biologically catalyzed sequestration remove convert carbonate minerals implemented lab techniques amplifying cloning vectors yeast created matlab simulations theoretical values carbonate precipitation compiled data experiments presented data lab audience mit mechanical engineering lab cambridge february june undergraduate researcher worked graduate correlations different snps neurological diseases plots manhattan plots compiled analyzed amount categorical data hua shan hospital shanghai china intern translated patient information chinese speaking doctors attended patients per deloitte touche tohmatsu shanghai china august intern helped translate accounting training materials chinese english created communication optimized interactions within skills fluent oral mandarin proficient matlab competent excel powerpoint leadership phi beta epsilon fraternity cambridge october treasurer solely responsible residence including recruiting fifty responsible transactions including payments vendors taxes contract negotiation chef payment collection sixty members organized financial files filing locating documents efficient kesem counselor merrowvista march cared parents cancer helped attending chinese club cambridge january secretary compiled events into calendar semester helped publicize events mit assisted organizing annual banquet attracts around activities sloan undergraduate management association eagle scout basketball troupe mit undergraduate opportunities program mit leadershape", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
-   "first_name": "Albert", 
+   "first_name": "John", 
    "first_major": 7, 
    "subscriptions": [], 
    "gpa": "4.800", 
@@ -807,7 +859,7 @@
   "pk": 4, 
   "model": "student.student", 
   "fields": {
-   "last_name": "Hsu", 
+   "last_name": "Lincoln", 
    "last_updated": "2011-09-06 05:14:53", 
    "sat_m": 800, 
    "graduation_month": "4", 
@@ -818,7 +870,7 @@
    "keywords": " terencehsuuniversityaddress memorialdrive cambridge homeaddress leestreet brookline terenceh mit edueducationmassachusettsinstituteoftechnologycambridge macandidateforas inmathematicswithcomputerscienceexpectedgraduation june candidateforas inmanagementsciencegpa candidateforaminorineconomicscourseworkinmathematics calculusi linearalgebra probabilityandrandomvariables principlesofappliedmathematicscourseworkinfinance microeconomics macroeconomics financetheoryi managementcommunicationbuckinghambrowne nicholsschoolcambridge madiplomawithhonorsgpa wsep june leadership peertutorpresidentcommunityserviceclubpresidentorchestraconcertmasterexperiencerackemann sawyer brewsterboston malitigationinternsummer servedasaresearchspecialistforthelitigationdepartment focusingontwomainprojectswithregardstocommercialrealestatelitigation firstprojectinvolvedaccountingoftaxesanddeedsofanestateinnantucket workinvolvedonlineresearch collectingdocumentsfromcourthouses aswellascompilingadatabase secondprojectwasavaluationofpropertyholdingsofparkinggaragesinboston theanalysisprimarilycalledformodelingcashwsoftheoperation natixixprivateequityasialimited npea beijing chinaanalystsummer dutiesforgrowthcapitalconcentratedonindustryresearchandanalysisfortwodevelopingdeals withsecondarygoalonmaintainingdeal investeedatabases aswellasmodelingantsystemformonitoringandupdatingmovementontheshenzhenandsouthkoreanexchanges taskedbydealteamtoresearchthefertilizerandcolorizedfertilizerbagindustryinchina regardingnpea sprospectivesyntheticmaterialscompany analysisfocusedonexportpotential overseasregulations andcompetitiveanglesagainstindianmanufacturersandrivalchinesecompanies underseconddealteam analyzedr dpotentialforansuppliesmanufacturerforapremiumbrand nameamericancompany afterresearch gainedperspectiveonmanyexportingchinesemanufacturers commonfailuretoestablishbrandrecognitionbeyondtheimportingbrandnamesandworkedwithdealteamtoconsultinvesteeonhowtoestablishindependencebeyondtheo leadershipandactivitiesphibetaepsilonfraternity activebrother presenterships pledgesocialchairfall literarychairfall sloanundergraduatemanagementassocation boardmember presentasajuniorprojectmanager primarygoalistoplannetworkingexclusivesforbusiness mindedmitstudents importantaspectofevent planningcallsforforgingandmaintainingcrucialsponsorsandsupportamongcompaniesinterestedincultivatingstudents interestinthevariousindustriesinmitresonanceacapella assistantdirector presentresponsiblesolelyforthemusicalaspectanddirectionofthegroup whichcallsforleadingtrainingexercises choosingconcertsetlists reviewingandapprovingarrangements conductingprivateteachingsessions andusingownmusicalinsightandexperiencetoleadthegrouptotopperformancequality volunteerwork tenacity tennisinstructor graham parksschool tutor awardsandhonorshighschoolawards cumlaudesocietymember ncitationofhonorsrecipient nationalapscholarwinner musicawards harvardmusicalassociationawardsgrandprize piano mtnanationalcompositioncompetitionthirdplace mtnanortheastcompositioncompetitionfirstplace mmtastatepianocompetitionpodiumwinner skillsandinterestsprogramming pythonhtmlmatlablatexsoftware excelmicrosoftadobephotoshopadobedreamweaveridleforeignlanguages englishcantonese conversational french advanced mandarin advanced generalinterests pianoviolincompositionsingingtenniscyclingscubadiving", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
-   "first_name": "Terence", 
+   "first_name": "Abraham", 
    "first_major": 25, 
    "subscriptions": [], 
    "gpa": "4.400", 
@@ -841,7 +893,7 @@
   "pk": 5, 
   "model": "student.student", 
   "fields": {
-   "last_name": "Dearing", 
+   "last_name": "Washington", 
    "last_updated": "2011-09-06 05:14:41", 
    "sat_m": null, 
    "graduation_month": "4", 
@@ -852,7 +904,7 @@
    "keywords": " zachary dearing campus address hereford boston tel email zdearing mit edu address waverly dallas education massachusetts institute technology june gpa candidate bachelor economics political cambridge relevant coursework principles microeconomics macroeconomics intermediate macroeconomics finance theory accounting statistical economics multivariable calculus episcopal dallas gpa dallas salutatorian national scholar national merit semi finalist goldman sachs financial analyst securities york worked structuring project exploring arbitrage opportunities pricing mortgage backed securities underlying collateral analyzed publicly traded cap undervalued warrant being taken private communication media advisors consulting analyst boutique consulting investment management firm boston staffed due diligence project investment evaluating cable markets southern modeled future revenue streams operating costs growth opportunities based upon trends demographics worked founding partner construct predictive models compendium standard poors development intern technical specialist york developed application manage virtual machines approximately global users application integrating vmware esx servers active directory windows instrumentation management organizing meetings deliverables managing streams application production mccurley orsinger mccurley nelson downing intern administration dallas assisted legal teams preparation investigating witnesses constructing examination questions managed opening accounts thorough evaluating banks handling interactions assisting cash management charged tracking accounts ensure deposit levels maintained maverick financial analyst intern operations hedge fund accounting dallas august parsed information consolidated fund prospectus easier senior traders compiled positions performance data facilitate its quantitative analysis project maintained item fixed asset register supported excel based spreadsheet analysis united states senate washington january june facilitated voting procedure ensuring senators voted informed issue being decided upon provided logistical senators staff assisting needs senate chamber pcs founder owner computer assembly business dallas july september founded total revenue built sold custom computers customers designed website application crm spec custom computers online quotes leadership committee publicity committee member cambridge shared responsibility marketing production mit brass rat committee publicity efforts events combined budget attendance sloan undergraduate management association suma director corporate relations associate cambridge organized mba panel representatives harvard sloan etc secured sponsorship kaplan mit underclassmen giving campaign cambridge october devised innovative fundraising strategy leading fund service trips abroad participation rate interests skills java asp net php javascript html marathon running golf politics architecture chi phi", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
-   "first_name": "Zachary", 
+   "first_name": "George", 
    "first_major": 14, 
    "subscriptions": [], 
    "gpa": "4.700", 
@@ -935,10 +987,10 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 22, 
-   "last_updated": "2011-09-26 09:30:24", 
+   "shown_in_results_count": 43, 
+   "last_updated": "2011-10-08 18:21:14", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 5, 
+   "add_to_resumebook_count": 10, 
    "student": 1, 
    "raffles_won": 0, 
    "date_created": "2011-07-07 20:30:03"
@@ -948,10 +1000,10 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 21, 
-   "last_updated": "2011-09-26 09:30:25", 
+   "shown_in_results_count": 41, 
+   "last_updated": "2011-10-08 18:21:14", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 4, 
+   "add_to_resumebook_count": 9, 
    "student": 2, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 15:25:30"
@@ -961,10 +1013,10 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 21, 
-   "last_updated": "2011-09-26 09:30:27", 
+   "shown_in_results_count": 42, 
+   "last_updated": "2011-10-08 18:21:14", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 5, 
+   "add_to_resumebook_count": 7, 
    "student": 3, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 20:05:56"
@@ -974,10 +1026,10 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 20, 
-   "last_updated": "2011-09-26 09:30:29", 
+   "shown_in_results_count": 39, 
+   "last_updated": "2011-10-08 18:21:14", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 4, 
+   "add_to_resumebook_count": 5, 
    "student": 4, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 20:26:02"
@@ -987,10 +1039,10 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 20, 
-   "last_updated": "2011-09-26 09:30:32", 
+   "shown_in_results_count": 40, 
+   "last_updated": "2011-10-08 18:21:14", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 4, 
+   "add_to_resumebook_count": 5, 
    "student": 5, 
    "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
@@ -1366,7 +1418,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-10-03 19:36:52", 
+   "last_login": "2011-10-10 14:48:17", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1384,7 +1436,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-04 16:59:08", 
+   "last_login": "2011-10-10 13:37:13", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1402,7 +1454,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-02 02:32:09", 
+   "last_login": "2011-10-10 13:36:37", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$bd7f3$00ac6e9fb053373d262df04c62f1b529dc16b0c9", 
@@ -1420,7 +1472,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:00", 
+   "last_login": "2011-10-10 13:40:33", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$700c1$f3e9a729d56257e9983b8d03016c8ed1efd30350", 
@@ -1438,7 +1490,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:15", 
+   "last_login": "2011-10-10 13:40:45", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a5b4$bb54c8d442d35f36e2c61256d313f5c001d59ab9", 
@@ -1456,7 +1508,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:38", 
+   "last_login": "2011-10-10 14:06:51", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$619a8$3fa6b73dfcdaf0c14e82262cc4f8e92633087334", 
@@ -1474,7 +1526,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-08-23 21:01:59", 
+   "last_login": "2011-10-10 14:07:10", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9c07a$fd3f12380a532976c6795f2e9e2dc24c0a890eb6", 
@@ -1605,10 +1657,10 @@
   "pk": 2, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 3, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-08 14:59:29", 
    "last_password_change_date": null
   }
  }, 
@@ -1616,10 +1668,10 @@
   "pk": 3, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 4, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-05 16:06:34", 
    "last_password_change_date": null
   }
  }, 
@@ -1627,10 +1679,10 @@
   "pk": 4, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 5, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-10 13:40:50", 
    "last_password_change_date": null
   }
  }, 
@@ -1638,10 +1690,10 @@
   "pk": 5, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 6, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-10 14:06:55", 
    "last_password_change_date": null
   }
  }, 
@@ -1649,10 +1701,10 @@
   "pk": 6, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 7, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-10-10 14:07:14", 
    "last_password_change_date": null
   }
  }, 
@@ -1753,13 +1805,73 @@
   }
  }, 
  {
-  "pk": 6, 
+  "pk": 8, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-10-04 16:59:08", 
-   "session_key": "41dd38db34783b91f8356c9ef8064d34", 
-   "last_updated": "2011-10-04 16:59:08", 
-   "user": 2
+   "date_created": "2011-10-08 14:57:19", 
+   "session_key": "d9073f12b7a7108c7cfd11fe27a8542f", 
+   "last_updated": "2011-10-08 14:57:19", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-05 16:06:23", 
+   "session_key": "7aa03790446c07beefdf8cbdeec7af85", 
+   "last_updated": "2011-10-05 16:06:23", 
+   "user": 4
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-08 14:59:26", 
+   "session_key": "4a8e1b639316b6e6b44ab92ca634d289", 
+   "last_updated": "2011-10-08 14:59:26", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-08 15:03:32", 
+   "session_key": "8abf37ea9be8196bfaac4db0fddbcd33", 
+   "last_updated": "2011-10-08 15:03:32", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-08 16:36:49", 
+   "session_key": "3f09e7e67b3af2f62ef401cbfe866f2a", 
+   "last_updated": "2011-10-08 16:36:49", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-10 13:13:53", 
+   "session_key": "ee9fd8b84d7acf718161cc8acb0d6bd7", 
+   "last_updated": "2011-10-10 13:13:53", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-10 14:07:10", 
+   "session_key": "53b45580dbb200489c6ec177ae5bfc1c", 
+   "last_updated": "2011-10-10 14:07:10", 
+   "user": 7
   }
  }
 ]

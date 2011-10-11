@@ -1,5 +1,6 @@
 {% extends "account_base.html" %}
 
+
 {% block metadata %}
 {{block.super}}
 {% load compress %}
@@ -8,9 +9,11 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account.css" />
 {% endcompress %}
 <script>
+    var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
+    var PASSWORD_DONT_MATCH = "{% text_snippet 'passwords_dont_match' %}";
+
     var CREATE_RECRUITER_URL = "{% url employer_recruiter_new %}";
     var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
-    var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
     var EMPLOYER_OTHER_RECRUITERS_URL = "{% url employer_other_recruiters %}";
     var EMPLOYER_ACCOUNT_DELETE_URL = "{% url employer_account_delete %}";
     
@@ -25,6 +28,7 @@
 {% endcompress %}
 {% endblock %}
 
+
 {% block content_area %}
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
@@ -32,10 +36,12 @@
 {{block.super}}
 {% endblock %}
 
+
 {% block account_settings_tab_declarations %}
      <li><a href="#tabs-3" id="subscription_link">Subscription & Billing</a></li>
 {% endblock %}
-            
+
+
 {% block preferences %}
 <form id="preferences_form" method="POST" action="{% url employer_account_preferences %}">
 {% csrf_token %}
@@ -60,14 +66,15 @@
 
 {% block account_overview %}
     <h3>Create New Account</h3>
-    <p class="sub_header_message">Below are the other recruiter accounts for {{user.recruiter.employer}}. If you would like to give another recruiter access, you can <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link {% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new account</a>.</p>
+    <p class="sub_header_message">Below are the other recruiter accounts for {{user.recruiter.employer}}. If you would like to give another recruiter access, you can <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link{% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new account</a>.</p>
     {% include 'employer_other_recruiters.html' %}
     
     <h3>Delete Your Account</h3>
     <p id="delete_account" class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
     <p id="create_credentials" class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link {% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new set of credentials</a>.</p>
 {% endblock %}
-                    
+
+
 {% block account_settings_tab_definitions %}
     <div id="tabs-3" class="clearfix">
         <h3 class="no_top_margin">Your Subscription</h3>
