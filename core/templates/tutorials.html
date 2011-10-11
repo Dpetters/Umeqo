@@ -18,40 +18,32 @@ Tutorials |
     <h2>For Recruiters</h2>
     {% if any_recruiter_tutorials %}
         <div class="tutorials_column">
-            {% if recruiter_sd_tutorials %}
-                <h3>Student Discovery</h3>
-                {% for tutorial in recruiter_sd_tutorials %}
-                    {% include "tutorial_snippet.html" %}
-                {% empty %}
-                    <p>Coming Soon</p>
-                {% endfor %}
-            {% endif %}
-            {% if recruiter_event_tutorials %}
-                <h3>Events</h3>
-                {% for tutorial in recruiter_event_tutorials %}
-                    {% include "tutorial_snippet.html" %}
-                {% empty %}
-                    <p>Coming Soon</p>
-                {% endfor %}
-            {% endif %}
+            <h3>Student Discovery</h3>
+            {% for tutorial in recruiter_sd_tutorials %}
+                {% include "tutorial_snippet.html" %}
+            {% empty %}
+                <p>Coming Soon</p>
+            {% endfor %}
+            <h3>Events</h3>
+            {% for tutorial in recruiter_event_tutorials %}
+                {% include "tutorial_snippet.html" %}
+            {% empty %}
+                <p>Coming Soon</p>
+            {% endfor %}
         </div>
         <div class="tutorials_column">
-            {% if recruiter_am_tutorials %}
-                <h3>Account Management</h3>
-                {% for tutorial in recruiter_am_tutorials %}
-                    {% include "tutorial_snippet.html" %}
-                {% empty %}
-                    <p>Coming Soon</p>
-                {% endfor %}
-            {% endif %}
-            {% if recruiter_subs_tutorials %}
-                <h3>Subscriptions</h3>
-                {% for tutorial in recruiter_subs_tutorials %}
-                    {% include "tutorial_snippet.html" %}
-                {% empty %}
-                    <p>Coming Soon</p>
-                {% endfor %}
-            {% endif %}
+            <h3>Account Management</h3>
+            {% for tutorial in recruiter_am_tutorials %}
+                {% include "tutorial_snippet.html" %}
+            {% empty %}
+                <p>Coming Soon</p>
+            {% endfor %}
+            <h3>Subscriptions</h3>
+            {% for tutorial in recruiter_subs_tutorials %}
+                {% include "tutorial_snippet.html" %}
+            {% empty %}
+                <p>Coming Soon</p>
+            {% endfor %}
         </div>
     {% else %}
         <p>Coming Soon</p>

@@ -133,6 +133,7 @@ def tutorial(request, slug, extra_context = None):
        'tutorial':tutorial,
        'TEMPLATE': '%s.html' % tutorial.slug.replace("-", "_")
     }
+    context.update(extra_context or {})
     return context
 
 @render_to('tutorials.html')
