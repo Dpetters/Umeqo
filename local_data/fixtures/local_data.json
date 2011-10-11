@@ -258,6 +258,78 @@
   }
  }, 
  {
+  "pk": 11, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "James Madison", 
+   "datetime_created": "2011-10-11 03:08:27", 
+   "email": "student1@umeqo.com", 
+   "student": 1, 
+   "won_raffle": false, 
+   "event": 11
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "Thomas Jefferson", 
+   "datetime_created": "2011-10-11 03:08:30", 
+   "email": "student2@umeqo.com", 
+   "student": 2, 
+   "won_raffle": false, 
+   "event": 11
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "John Adams", 
+   "datetime_created": "2011-10-11 03:08:34", 
+   "email": "student3@umeqo.com", 
+   "student": 3, 
+   "won_raffle": false, 
+   "event": 11
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "Abraham Lincoln", 
+   "datetime_created": "2011-10-11 03:08:37", 
+   "email": "student4@umeqo.com", 
+   "student": 4, 
+   "won_raffle": false, 
+   "event": 11
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "George Washington", 
+   "datetime_created": "2011-10-11 03:08:41", 
+   "email": "student5@umeqo.com", 
+   "student": 5, 
+   "won_raffle": false, 
+   "event": 11
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "events.attendee", 
+  "fields": {
+   "name": "Dmitrij Petters", 
+   "datetime_created": "2011-10-11 03:08:46", 
+   "email": "dpetters@mit.edu", 
+   "student": null, 
+   "won_raffle": false, 
+   "event": 11
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "employer.employerstatistics", 
   "fields": {
@@ -1412,9 +1484,9 @@
   "pk": 1, 
   "model": "auth.user", 
   "fields": {
-   "username": "root", 
-   "first_name": "", 
-   "last_name": "", 
+   "username": "root@umeqo.com", 
+   "first_name": "Ben", 
+   "last_name": "Bitdiddle", 
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
@@ -1454,7 +1526,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-10 13:36:37", 
+   "last_login": "2011-10-11 03:08:18", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$bd7f3$00ac6e9fb053373d262df04c62f1b529dc16b0c9", 
@@ -1872,6 +1944,16 @@
    "session_key": "53b45580dbb200489c6ec177ae5bfc1c", 
    "last_updated": "2011-10-10 14:07:10", 
    "user": 7
+  }
+ }, 
+ {
+  "pk": 21, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-11 03:08:18", 
+   "session_key": "4f85485049c7673fac08bc66c30ae845", 
+   "last_updated": "2011-10-11 03:08:18", 
+   "user": 3
   }
  }
 ]
