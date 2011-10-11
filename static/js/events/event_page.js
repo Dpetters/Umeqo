@@ -1,3 +1,16 @@
+function update_checkin_count(){
+    $.ajax({
+        url: EVENT_CHECKIN_COUNT_URL,
+        dataType: "json",
+        data: {
+            'event_id': EVENT_ID
+        },
+        success: function (data) {
+            $("#event_checkin_count_num").html(data.count);
+        },
+        error: errors_in_message_area_handler
+    });
+}
 $(document).ready(function() {
     if (EVENT_LATITUDE && EVENT_LONGITUDE){
         if (supports_geolocation()){
@@ -170,6 +183,7 @@ $(document).ready(function() {
                         },
                         error: errors_in_message_area_handler
                     });
+                    update_checkin_count();
                 },
                 error: errors_in_message_area_handler
             });
@@ -277,17 +291,7 @@ $(document).ready(function() {
                 newLi.effect('highlight', {}, 3000);
                 $('#name_input').val('');
                 $('#email_input').val('').focus().trigger('mouseup');
-                $.ajax({
-                    url: EVENT_CHECKIN_COUNT_URL,
-                    dataType: "json",
-                    data: {
-                        'event_id': EVENT_ID
-                    },
-                    success: function (data) {
-                        $("#event_checkin_count_num").html(data.count);
-                    },
-                    error: errors_in_message_area_handler
-                });
+                update_checkin_count();
             } else {
                 $('#checkin_status').removeClass();
                 $('#checkin_status').addClass('error');
@@ -296,7 +300,7 @@ $(document).ready(function() {
         });
         e.preventDefault();
     });
-
+    
     var hasClickedClose = false;
     $('#close_box').click(function() {
         if (!hasClickedClose) {

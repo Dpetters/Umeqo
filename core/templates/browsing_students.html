@@ -5,40 +5,78 @@ Browsing Students
 {% endblock %}
 
 {% block instructions %}
-<p class="header"><span class="num">Step 1:</span> From your homepage, begin by searching by keyword or clicking "Browse Students".</p>
-<p>There is also a "Browse Students" link in the side navigation menu on the right.</p>
+<p class="header"><span class="num">Step 1:</span> From your homepage, begin by searching
+     by keyword or clicking "Browse Students".</p>
+<p>There is also a "Browse Students" link in the left side navigation menu.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/1.png">
-<p class="header"><span class="num">Step 2:</span> Click "Show Details" to view a student's details or click "Show All Details" to see everyone's.</p>
+
+<p class="header"><span class="num">Step 2:</span> Click "Show Details" to view a 
+    student's details or click "Show All Details" to see everyone's.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/2.png">
-<p class="header" id="filter"><span class="num">Step 3:</span> Filter students by a variety of attributes grouped into four different categories.</p>
-<p>Use this to find students who satisfy a particular requirement, such as speaking a language or being a graduating senior.</p> 
+
+<p class="header" id="filter"><span class="num">Step 3:</span> Filter students by a 
+    variety of attributes grouped into four different categories.</p>
+<p>Use this to find students who satisfy a particular requirement, such as speaking a 
+    language or being a graduating senior.</p> 
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/3.png">
-<p class="header"><span class="num">Step 4:</span> Search students' resumes by keyword/skills, or search for individuals by first/last name.</p>
-<p>Results will by default be ordered by relevance. However, you can also <a href="#order_and_num">modify in what order and how many results appear</a>.</p>
+
+<p class="header"><span class="num">Step 4:</span> Search students' resumes by 
+    keyword/skills, or search for individuals by first/last name.</p>
+<p>Results will by default be ordered by relevance. However, you can also 
+    <a href="#order_and_num">modify in what order and how many results appear</a>.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/4.png">
-<p class="header"><span class="num">Step 5:</span> Star students for easy later referral by clicking on the blank star below their name.</p>
-<p>Any student that you star will also appear starred to other recruiters at your firm. The student will never know that you starred him/her.</p>
+
+<p class="header"><span class="num">Step 5:</span> Star and unstar students for easy 
+    later referral by clicking on the star icon below their name.</p>
+<p>Alternatively, star and unstar multiple students at once by selecting the checkboxes on 
+    the left of their name and clicking the appropriate dropdown choice. Any student that 
+    you star will also appear starred to other recruiters at your firm. The student will 
+    never know that you starred him/her.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/5.png">
-<p class="header"><span class="num">Step 6:</span> To view starred students, select the "Starred Students" student under "Choose Student List".</p>
+
+<p class="header"><span class="num">Step 6:</span> To view starred students, select the 
+    "Starred Students" student under "Choose Student List".</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/6.png">
-<p class="header" id="comment"><span class="num">Step 7:</span> Leave comments on students' profiles for your and your coworkers' later referral.</p>
-<p>Anything that you write will only be visible to you and other recruiters at your firm. The student will never know what you wrote.</p>
+
+<p class="header" id="comment"><span class="num">Step 7:</span> Leave comments on 
+    students' profiles for your and your coworkers' later referral.</p>
+<p>Anything that you write will only be visible to you and other recruiters at your firm.
+     The student will never know what you wrote.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/7.png">
-<p class="header"><span class="num">Step 8:</span> Learn about campus orgs and majors by clicking on the ones that are links.</p>
+
+<p class="header"><span class="num">Step 8:</span> Learn about campus orgs and majors by 
+    clicking on the ones that are links.</p>
 <p>The number of campus organizations about which we have info will go up with time.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/8.png">
-<p class="header"><span class="num">Step 9:</span> See which students have attended your events in the past by noting the icon by their name.</p>
-<p>Hovering over the icon will show you which events and when that student attended.</p>
+
+<p class="header"><span class="num">Step 9:</span> See which students have attended your 
+    events in the past by noting the icon by their name.</p>
+<p>Hovering over the icon will show you which events that student attended and on what date.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_students/10.png">
-<p class="header" id="order_and_num"><span class="num">Step 10:</span> Modify the order in which and how many results appear.</p>
+
+<p class="header" id="order_and_num"><span class="num">Step 10:</span> Modify the order 
+    in which and how many results appear.</p>
 <img class="no_bottom_margin" src="{{STATIC_URL}}images/tutorials/browsing_students/9.png">
 {% endblock %}
 
 {% block things_to_note %}
-<p>1. If you <a href="#filter">filter by an attribute</a> which a student has not yet filled out, that student will not appear in the results. e.g. If you filter for students with an SAT of 2000 or above, any student who hasn't specified his/her SAT will not appear in the results.</p>
-<p>2. If you have a free trial subscription, then you will only be able to <a href="{% url tutorial slug='browsing-attendees-rsvps' %}">search and browse your events' RSVPs and attendees</a>.</p>
+<p>1. If you <a href="#filter">filter by an attribute</a> which a student has not yet 
+    filled out, that student will not appear in the results. e.g. If you filter for 
+    students with an SAT of 2000 or above, any student who hasn't specified his/her SAT 
+    will not appear in the results.</p>
+<p>2. If you have a free trial subscription, then you will only be able to 
+    <a href="{% url tutorial slug='browsing-attendees-rsvps' %}">search and browse your 
+        events' RSVPs and attendees</a>.</p>
+<p>3. Results will by default be ordered by relevance. For search, this means relevance 
+    towards your query. For filtering, it means that the most recently updated profiles 
+    will appear at the top.</p>
 {% endblock %}
 
 {% block tips_and_tricks %}
-<p>1. The easiest way to share your observations and notes about students is to <a href="#comment">comment</a> on their profiles and then {% if user.recruiter %}<a href="{% url employer_account %}?action=new_recruiter_credentials">create credentials</a>{% else %}create credentials{% endif %} for your fellow co-workers. All users from your firm will see each other's comments and any students that one stars will also appear starred to everybody else.</p>
+<p>1. The easiest way to share your observations and notes about students is to 
+    <a href="#comment">comment</a> on their profiles and then {% if user.recruiter %}
+    <a href="{% url employer_account %}?action=new_recruiter_credentials">create credentials</a>
+    {% else %}create credentials{% endif %} for your fellow co-workers. All users from 
+    your firm will see each other's comments and any students that one stars will also 
+    appear starred to everybody else.</p>
 {% endblock %}

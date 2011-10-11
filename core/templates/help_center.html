@@ -38,17 +38,20 @@ Help |
         <h2>Didn't find an answer?</h2>
         <p>Feel free to <a href="javascript:void(0)" class="open_contact_us_dialog_link">contact us!</a></p>
     </div>
+    {% if user.is_anonymous or user.recruiter %}
+        <h2 class="h-header"><strong>New!</strong> Check out the <a href="{% url tutorials %}">tutorials &raquo;</a></h2>
+    {% endif %}
     <div id="getting_started_div">
         <h2 class="h-header"><u>Getting Started</u></h2>
         <div class="h-content">
+            <p>Umeqo was created to save you time, so getting started is a snap!</p>
             {% if user.is_authenticated %}
-                <p>Umeqo was made to save you time, so getting started is a snap.</p>
-                <h3>Get going in three easy steps:</h3>
+                <h3>Start in 3 easy steps:</h3>
                 <ul class="h-list">
                      {% if user.student %}
                         <li>Fill out your profile to the fullest extent possible.</li>
-                        <li>Look through the <a href="{% url employers_list %}">employers</a> and subscribe to the ones you are interested in.</li>
-                        <li>Browse through the <a href="{% url events_list %}">upcoming events</a> and make sure you don't miss anything!</li>
+                        <li><a href="{% url employers_list %}">Look through the employers</a> and subscribe to the ones you are interested in.</li>
+                        <li><a href="{% url events_list %}">Browse through the upcoming events</a> and make sure you don't miss anything!</li>
                      {% endif %}
                      {% if user.recruiter %}
                         <li>Browse through the student body, create custom resume books, and learn about the campus <a href="{% url employer_students %}">here</a>.</li>
@@ -62,12 +65,11 @@ Help |
                      {% endif %}
                 </ul>
              {% else %}
-                <p>Umeqo was created to save you time, so getting started is a snap!</p>
                 <p>To get rolling, please <a class="login_link" href="javascript:void(0)">log in</a>, or select who you are below to sign up.</p> 
                 <p id="h-usrselect">
                     <span><strong>I am a </strong></span>
                     <a href="{% url student_registration %}"<button class="button h-usrtype">Student</button></a>
-                    <a href="{% url subscription_list %}"<button class="button h-usrtype">Recruiter</button></a>      
+                    <a href="{% url subscription_list %}"<button class="button h-usrtype">Recruiter</button></a>
                 </p>
              {% endif %}
         </div>

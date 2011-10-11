@@ -18,7 +18,7 @@
   "pk": 4, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:24", 
+   "last_updated": "2011-10-11 01:49:34", 
    "name": "Creating Events & Deadlines", 
    "display": false, 
    "topic": 11, 
@@ -33,14 +33,14 @@
   "pk": 3, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:30", 
+   "last_updated": "2011-10-11 01:49:36", 
    "name": "Sending Invitations", 
    "display": false, 
    "topic": 11, 
    "audience": 4, 
    "sort_order": "3.000", 
    "date_created": "2011-10-07 12:39:46", 
-   "slug": "sending-event-invitations", 
+   "slug": "sending-invitations", 
    "description": "Learn how to send event invitations."
   }
  }, 
@@ -48,9 +48,9 @@
   "pk": 6, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 13:33:22", 
+   "last_updated": "2011-10-11 01:49:38", 
    "name": "Browsing Attendees & RSVPs", 
-   "display": false, 
+   "display": true, 
    "topic": 11, 
    "audience": 4, 
    "sort_order": "5.000", 
@@ -63,7 +63,7 @@
   "pk": 2, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:14:30", 
+   "last_updated": "2011-10-11 01:49:39", 
    "name": "Browsing Students", 
    "display": true, 
    "topic": 13, 
@@ -78,7 +78,7 @@
   "pk": 7, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:18:30", 
+   "last_updated": "2011-10-11 01:49:41", 
    "name": "Creating & Delivering Resume Books", 
    "display": true, 
    "topic": 13, 
@@ -93,9 +93,9 @@
   "pk": 10, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:14:45", 
+   "last_updated": "2011-10-11 01:49:42", 
    "name": "Getting an Annual Subscription", 
-   "display": true, 
+   "display": false, 
    "topic": 10, 
    "audience": 4, 
    "sort_order": "6.000", 
@@ -108,9 +108,9 @@
   "pk": 9, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:14:43", 
+   "last_updated": "2011-10-11 01:49:43", 
    "name": "Getting a Free Trial Subscription", 
-   "display": true, 
+   "display": false, 
    "topic": 10, 
    "audience": 4, 
    "sort_order": "8.000", 
@@ -123,9 +123,9 @@
   "pk": 5, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-10 11:14:33", 
+   "last_updated": "2011-10-11 01:49:44", 
    "name": "Checking Students In", 
-   "display": true, 
+   "display": false, 
    "topic": 11, 
    "audience": 6, 
    "sort_order": "4.000", 
