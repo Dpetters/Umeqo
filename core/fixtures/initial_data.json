@@ -3657,8 +3657,8 @@
   "pk": 19, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-06 18:23:47", 
-   "click_count": 0, 
+   "last_updated": "2011-10-13 02:11:55", 
+   "click_count": 1, 
    "question": "As a student, do I have to use my Athena password to register?", 
    "slug": "student-do-i-have-use-my-athena-password-register", 
    "topic": 8, 

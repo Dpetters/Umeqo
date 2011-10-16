@@ -54,6 +54,24 @@
   }
  }, 
  {
+  "pk": 499, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://acadteachinit.scripts.mit.edu/Home.html", 
+   "slug": null, 
+   "last_updated": "2011-10-12 17:19:38", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-12 17:19:38", 
+   "type": 9, 
+   "display": false, 
+   "name": "Academic Teaching Initiative"
+  }
+ }, 
+ {
   "pk": 463, 
   "model": "campus_org.campusorg", 
   "fields": {
