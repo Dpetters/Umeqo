@@ -12,7 +12,7 @@ INVITE_ONLY = False
 WELCOME_EVENT_ID = 6
 UMEQO_RECRUITER_ID = 3
 
-BACKUP_DIR = "backup"
+BACKUP_DIR = ""
 
 # Base page is the landing page
 USE_LANDING_PAGE = True

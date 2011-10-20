@@ -36,7 +36,7 @@ else:
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ("Umeqo Team", "umeqo@mit.edu"),
+    ("Umeqo Team", "contact@umeqo.com"),
 )
 MANAGERS = ADMINS
 
