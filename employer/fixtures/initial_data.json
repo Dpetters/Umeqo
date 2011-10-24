@@ -1766,7 +1766,9 @@
    "description": "<p>\r\n\tUmeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.</p>\r\n", 
    "visible": true, 
    "starred_students": [
-    117
+    117, 
+    430, 
+    566
    ], 
    "main_contact": "Ben Bitdiddle", 
    "main_contact_phone": "", 
