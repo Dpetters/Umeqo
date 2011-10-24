@@ -149,7 +149,7 @@ def update():
                 elif env.host=="umeqo.com":
                     commit_prod_data()
                     run("git pull origin master")
-                run("python manage.py migrate --all --no-initial-data")
+                run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
@@ -157,7 +157,7 @@ def update():
                     result = run("python manage.py test --setting=settings_test")
                 if result.failed:
                     run("git reset --hard master@{1}")
-                    run("python manage.py migrate --all --no-initial-data")
+                    run("python manage.py migrate --all")
                     run("echo 'yes'|python manage.py collectstatic")
                 run("echo 'y'|python manage.py rebuild_index")
                 restart_apache()
