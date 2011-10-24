@@ -9,6 +9,7 @@ Help |
 {% load compress %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/help/help.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/help/help_center.css" />
 {% endcompress %}
 {% compress js %}
     <script src="{{ STATIC_URL }}js/help/help.js"></script>
@@ -21,70 +22,82 @@ Help |
         <h3>Help</h3>
         <a href="{% url help_center %}">Help Center</a>
         <a href="{% url faq %}">FAQ</a>
-        <a href="{% url tutorials %}">Tutorials</a>
     </div>
-    {% if user.student %}
-        {% include "student_side_nav.html" %}
-    {% endif %}
-    {% if user.recruiter %}
-        {% include "employer_side_nav.html" %}    
-    {% endif %}
 </div>
 
-<div id="help_content" class="simple_block no_top_padding grande with_side_nav">
+<div id="help_content" class="simple_block no_top_padding with_side_nav">
     {% block help_content %}
     <h1>Help Center</h1>
-    <div class="right_side_container">
+    <div class="right_side_container grande">
         <h2>Didn't find an answer?</h2>
         <p>Feel free to <a href="javascript:void(0)" class="open_contact_us_dialog_link">contact us!</a></p>
     </div>
-    {% if user.is_anonymous or user.recruiter %}
-        <h2 class="h-header"><strong>New!</strong> Check out the <a href="{% url tutorials %}">tutorials &raquo;</a></h2>
-    {% endif %}
     <div id="getting_started_div">
-        <h2 class="h-header"><u>Getting Started</u></h2>
-        <div class="h-content">
-            <p>Umeqo was created to save you time, so getting started is a snap!</p>
-            {% if user.is_authenticated %}
-                <h3>Start in 3 easy steps:</h3>
-                <ul class="h-list">
-                     {% if user.student %}
-                        <li>Fill out your profile to the fullest extent possible.</li>
-                        <li><a href="{% url employers_list %}">Look through the employers</a> and subscribe to the ones you are interested in.</li>
-                        <li><a href="{% url events_list %}">Browse through the upcoming events</a> and make sure you don't miss anything!</li>
-                     {% endif %}
-                     {% if user.recruiter %}
-                        <li>Browse through the student body, create custom resume books, and learn about the campus <a href="{% url employer_students %}">here</a>.</li>
-                        <li><a href="{% url event_new %}">Create</a> an event, <a href="{% url employer_students %}">invite</a> high potential candidates, and check attendees in by activating the "Checkin Mode" on the event page.</li>
-                        <li>After the event, visit the original event page and browse or export the RSVPs and Attendees.</li>
-                     {% endif %}
-                     {% if user.campusorg %}
-                        <li>Reach out to some of your employer contacts and plan a campus event.</li>
-                        <li>Create the event through Umeqo and specify which employers are attending.</li>
-                        <li>Check students in using Umeqo and let the attending employers browse through the attendees!</li>
-                     {% endif %}
-                </ul>
-             {% else %}
-                <p>To get rolling, please <a class="login_link" href="javascript:void(0)">log in</a>, or select who you are below to sign up.</p> 
-                <p id="h-usrselect">
-                    <span><strong>I am a </strong></span>
-                    <a href="{% url student_registration %}"<button class="button h-usrtype">Student</button></a>
-                    <a href="{% url subscription_list %}"<button class="button h-usrtype">Recruiter</button></a>
-                </p>
-             {% endif %}
-        </div>
+        <h2 class="help_header"><u>Tutorials</u></h2>
+        {% if user.is_anonymous %}
+            <p>Please <a href="#" class="login_link">log-in</a> to see the tutorials.</p>
+        {% else %}
+            {% if user.recruiter %}
+                <div class="tutorial_column">
+                    <h3>Student Discovery</h3>
+                    {% if student_discovery_tutorials %}
+                        <ul class="tutorial_list">
+                        {% for tutorial in student_discovery_tutorials %}
+                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Coming Soon</p>
+                    {% endif %}
+                    
+                    <h3>Events & Deadlines</h3>
+                    {% if student_discovery_tutorials %}
+                        <ul class="tutorial_list">
+                        {% for tutorial in event_and_deadline_tutorials %}
+                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Coming Soon</p>
+                    {% endif %}
+                </div>
+                <div class="tutorial_column">
+                    <h3>Account Management</h3>
+                    {% for tutorial in account_management_tutorials %}
+                        <p><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></p>
+                    {% empty %}
+                        <p>Coming Soon</p>
+                    {% endfor %}
+                    <h3>Subscriptions</h3>
+                    {% for tutorial in subscription_tutorials %}
+                        <p><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></p>
+                    {% empty %}
+                        <p>Coming Soon</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if user.student %}
+                <p>Coming Soon</p>
+            {% endif %}
+            
+            {% if user.campusorg %}
+                <p>Coming Soon</p>
+            {% endif %}
+        {% endif %}
     </div>
-    <div id="top_questions_div" class="simple_block no_top_padding">
-        <h2 class="h-header"><u>Top 10 Questions</u></h2>
+    <div class="simple_block no_top_padding">
+        <h2 class="help_header"><u>Top {{top_questions|length}} Questions</u></h2>
         {% if top_questions %}
-            <ul class="h-content h-list">
+            <ul class="help_content help_list">
                 {% for question in top_questions %}
                     <li><a href="{% url faq %}#{{question.slug}}">{{question.question}}</a></li>
-                {% endfor %}            
+                {% endfor %}
             </ul>
         {% else %}
             <p>There are no questions yet.</p>
         {% endif %}
+        <p id="view_all_faqs"><a href="{% url faq %}">View all &raquo;</a></p>
     </div>
     {% endblock %}
 </div>

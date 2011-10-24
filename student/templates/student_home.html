@@ -1,8 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %}
-{{user.email}} | 
-{% endblock %}
+{% extends "home_base.html" %}
 
 {% block metadata %}
 {{block.super}}
@@ -20,64 +16,54 @@
 {% endcompress %}
 {% endblock %}
 
-{% block content_area %}
-    <div class="left_side_container">
-        {% include "student_side_nav.html" %}
-        <div id="statistics_block">
-            <h3 id="statistics_header">Your Statistics</h3>
-            <p><strong>Profile Views:</strong> {{user.student.studentstatistics.shown_in_results_count}}</p>
-            <p><strong>Resume Views:</strong> {{user.student.studentstatistics.resume_view_count}}</p>
-            <p><strong>Resume Book Count:</strong> {{user.student.studentstatistics.add_to_resumebook_count}}</p>
-            <p><strong>Invite Count:</strong> {{user.student.invitee_set.all|length}}</p>
-            <p id="campus_statistics_link"><a href="{% url student_statistics %}">Campus Statistics &raquo;</a></p>
-        </div>
+{% block left_side_container %}
+    {% include "student_side_nav.html" %}
+    <div id="statistics_block">
+        <h3 id="statistics_header">Your Statistics</h3>
+        <p><strong>Profile Views:</strong> {{user.student.studentstatistics.shown_in_results_count}}</p>
+        <p><strong>Resume Views:</strong> {{user.student.studentstatistics.resume_view_count}}</p>
+        <p><strong>Resume Book Count:</strong> {{user.student.studentstatistics.add_to_resumebook_count}}</p>
+        <p><strong>Invite Count:</strong> {{user.student.invitee_set.all|length}}</p>
+        <p id="campus_statistics_link"><a href="{% url student_statistics %}">Campus Statistics &raquo;</a></p>
     </div>
-    <div class="main_block with_side_nav no_top_margin">
-        <div class="main_block_header">
-            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
-            <span class="main_block_header_title">Welcome!</span>
-        </div>
-        <div class="main_block_content">
-            <div id="welcome_block">
-                <p><strong>Thank you for beta testing Umeqo!</strong> Explore the site and check out some of the features:</p>
-                <table id="welcome_table">
-                    <tr>
-                        <td>
-                            <a href="{% url events_list %}"><img src="{{ STATIC_URL }}images/home/launch.png" /></a>
-                        </td>
-                        <td>
-                            <p><a href="{% url events_list %}">Browse and search events</a> that employers have posted.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="{% url employers_list %}"><img src="{{ STATIC_URL }}images/home/employers.png" /></a>
-                        </td>
-                        <td>
-                            <p><a href="{% url employers_list %}">Subscribe to employers</a> that you are interested in and we'll send you notifications when they create new events and deadlines.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="{% url student_profile %}"><img src="{{ STATIC_URL }}images/home/profile.png" /></a>
-                        </td>
-                        <td>
-                            <p><a href="{% url student_profile %}">Edit your profile details</a> and preview yourself as employers would. The more you fill out, the more likely you'll be seen and invited to events.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="{% url student_statistics %}"><img src="{{ STATIC_URL }}images/home/statistics.png" /></a>
-                        </td>
-                        <td>
-                            <p>Check out the <a href="{% url student_statistics %}">campus statistics</a> and use the "contact us" link on that page to tell us which statistics you would like to see us add.</p>
-                        </td>
-                    </tr>
-                </table>
-                <p>Again, please remember this is just a beta and there may (read: definitely) be things that are broken. Please do <a href="javascript:void(0)" class="open_contact_us_dialog_link">report bugs</a> you see - there's a "Contact Us" link at the bottom of every page.</p>
-            </div>
-        </div>
-    </div>
+{% endblock %}
+
+{% block welcome_table %}
+<tr>
+    <td>
+        <a href="{% url student_statistics %}"><img src="{{ STATIC_URL }}images/icons/fire.png" /></a>
+    </td>
+    <td>
+        <p><strong>New! </strong><a href="{% url student_statistics %}">View campus statistics</a> - see how you match up against your classmates.</p>
+    </td>
+</tr>
+<tr>
+    <td>
+        <a href="{% url events_list %}"><img src="{{ STATIC_URL }}images/icons/calendar-day.png" /></a>
+    </td>
+    <td>
+        <p><a href="{% url events_list %}">Browse employer events</a> - RSVP to ones you like and add them to you GCal.</p>
+    </td>
+</tr>
+<tr>
+    <td>
+        <a href="{% url employers_list %}"><img src="{{ STATIC_URL }}images/icons/plus-circle.png" /></a>
+    </td>
+    <td>
+        <p><a href="{% url employers_list %}">Subscribe to employers</a> - you will receive notifications about new events and deadlines.</p>
+    </td>
+</tr>
+<tr>
+    <td>
+        <a href="{% url student_profile %}"><img src="{{ STATIC_URL }}images/icons/card-address.png" /></a>
+    </td>
+    <td>
+        <p><a href="{% url student_profile %}">Update your profile</a> - doing so boosts your result ranking!</p>
+    </td>
+</tr>
+{% endblock %}
+
+{% block content %}
     <div class="main_block with_side_nav">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />

@@ -1,21 +1,23 @@
-<li{% if past %} class="outdated"{% endif %}>
+<li {% if past %}class="outdated"{% endif %} >
     <div class="name">
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
         {% if event.location %}
         <div class="location_div">
-            <strong>Location:</strong>
-            <span class="location">{{event.location}}</span>
+            <span class="location">
+                <strong>Location:</strong> {{event.location}}
+            </span>
+            <a class="get_directions_link" data-latitude="{{event.latitude}}" data-longitude="{{event.longitude}}" href="#"><img title="Get Directions" alt="Directions" src="{{STATIC_URL}}images/icons/direction--arrow.png" /></a>
         </div>
         {% endif %}
     </div>
     
-    {% if user.recruiter %}
+    {% if user.recruiter and not past %}
         {% if event.owner.recruiter.employer == user.recruiter.employer %}
             {% include 'event_snippet_edit.html' %}
         {% endif %}
     {% endif %}
 
-    {% if user.campusorg %}
+    {% if user.campusorg and not past %}
         {% if event.owner == user %}
             {% include 'event_snippet_edit.html' %}
         {% endif %}

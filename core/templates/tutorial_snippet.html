@@ -1,7 +1,0 @@
-<div class="tutorial_snippet" id="{{tutorial.id}}">
-    {% if tutorial.icon %}
-        <img class="tutorial_snippet_icon" src="{{ STATIC_URL }}{{tutorial.icon}}" />
-    {% endif %}
-    <a href="{{tutorial.get_absolute_url}}"><span class="tutorial_name">{{tutorial.name}}</span></a>
-    <span class="tutorial.short_description">{{tutorial.short_description}}</span>
-</div>

@@ -86,7 +86,35 @@ def check_employer_uniqueness(request):
 @render_to('help_center.html')
 @require_GET
 def help_center(request, extra_context = None):
-    context = {'top_questions': filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:10]}
+    context = {}
+    if is_student(request.user):
+        pass
+    if is_campus_org(request.user):
+        pass
+    if is_recruiter(request.user):
+        try:
+            sd_topic = Topic.objects.get(name="Student Discovery")
+            context['student_discovery_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=sd_topic, display=True)
+        except Topic.DoesNotExist:
+            pass
+        
+        try:
+            subs_topic = Topic.objects.get(name="Subscriptions")
+            context['subscription_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=subs_topic, display=True)
+        except Topic.DoesNotExist:
+            pass
+        
+        try:
+            events_topic = Topic.objects.get(name="Events & Deadlines")
+            context['event_and_deadline_tutorials'] = Tutorial.objects.filter(topic=events_topic, display=True).filter(Q(audience=core_enums.EMPLOYER)|Q(audience=core_enums.CAMPUS_ORGS_AND_EMPLOYERS))
+        except Topic.DoesNotExist:
+            pass
+        try:
+            am_topic = Topic.objects.get(name="Account Management")
+            context['account_management_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=am_topic, display=True)
+        except Topic.DoesNotExist:
+            pass
+    context['top_questions'] = filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:s.TOP_QUESTIONS_NUM]
     context.update(extra_context or {})
     return context
 
@@ -135,46 +163,6 @@ def tutorial(request, slug, extra_context = None):
     }
     context.update(extra_context or {})
     return context
-
-@render_to('tutorials.html')
-def tutorials(request, extra_context = None):
-    context = {}
-    user = request.user
-    anonymous = not user.is_authenticated()
-    if user.is_staff or anonymous or is_student(user):
-        if Tutorial.objects.filter(audience = core_enums.STUDENT, display=True).exists():
-            context['any_student_tutorials'] = True
-    if user.is_staff or anonymous or is_campus_org(user):
-        if Tutorial.objects.filter(audience = core_enums.CAMPUS_ORG, display=True).exists():
-            context['any_campus_org_tutorials'] = True
-    if user.is_staff or anonymous or is_recruiter(user):
-        if Tutorial.objects.filter(audience = core_enums.EMPLOYER, display=True).exists():
-            context['any_recruiter_tutorials'] = True
-            try:
-                sd_topic = Topic.objects.get(name="Student Discovery")
-                context['recruiter_sd_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=sd_topic, display=True)
-            except Topic.DoesNotExist:
-                pass
-            
-            try:
-                subs_topic = Topic.objects.get(name="Subscriptions")
-                context['recruiter_subs_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=subs_topic, display=True)
-            except Topic.DoesNotExist:
-                pass            
-            
-            try:
-                events_topic = Topic.objects.get(name="Events & Deadlines")
-                context['recruiter_event_tutorials'] = Tutorial.objects.filter(topic=events_topic, display=True).filter(Q(audience=core_enums.EMPLOYER)|Q(audience=core_enums.CAMPUS_ORGS_AND_EMPLOYERS))
-            except Topic.DoesNotExist:
-                pass
-            try:
-                am_topic = Topic.objects.get(name="Account Management")
-                context['recruiter_am_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=am_topic, display=True)
-            except Topic.DoesNotExist:
-                pass
-    context.update(extra_context or {})
-    return context
-
 
 @render_to('contact_us.html')
 def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):

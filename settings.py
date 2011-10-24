@@ -20,6 +20,9 @@ INVITE_CODE_COUNT = 4
 # Max number of students allowed in any one resume book.
 RESUME_BOOK_CAPACITY = 50
 
+# Number of top FAQ questions to display
+TOP_QUESTIONS_NUM = 10
+
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
 SP_MAX_CAMPUS_INVOLVEMENT = 12;

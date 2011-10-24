@@ -1,23 +1,15 @@
 .grande p{
     margin:10px 0px;
 }
-.h-header{
+.help_header{
     margin-top: 20px;
     margin-bottom: 10px;
 }
-.h-usrtype{
-    margin-left: 5px;
-}
-.h-content{
+.help_content{
     padding-left: 5px;
 }
-.h-list{
+.help_list{
     margin-top:5px;
     list-style:decimal inside;
     line-height: 20px;
-}
-#h-usrselect{
-    margin-top: 20px;
-    text-align: center;
-    width: 370px;
 }

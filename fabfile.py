@@ -57,7 +57,7 @@ def create_database():
                 if env.host=="umeqo.com":
                     run("python manage.py syncdb --noinput --migrate")
                 else:
-                    run("python manage.py syncdb --noinput --migrate")                    
+                    run("python manage.py syncdb --noinput --migrate")
                 run("python copy_media.py prod in")
                 
 def schemamigrate():
@@ -157,7 +157,7 @@ def update():
                     result = run("python manage.py test --setting=settings_test")
                 if result.failed:
                     run("git reset --hard master@{1}")
-                    run("python manage.py migrate --all")
+                    run("python manage.py migrate --all --no-initial-data")
                     run("echo 'yes'|python manage.py collectstatic")
                 run("echo 'y'|python manage.py rebuild_index")
                 restart_apache()
