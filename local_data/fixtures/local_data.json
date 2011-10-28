@@ -40,9 +40,7 @@
    ], 
    "name": "All-Star Event", 
    "is_public": true, 
-   "edits": [
-    1
-   ], 
+   "edits": [], 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -107,9 +105,7 @@
    ], 
    "name": "Umeqo Consulting Panel", 
    "is_public": true, 
-   "edits": [
-    2
-   ], 
+   "edits": [], 
    "description": "<p>\r\n\tAre you interested in launching a career in consulting? Join Umeqo consultants and recruiters for a careers presentation and interactive&nbsp;panel&nbsp;discussion. Attendees will learn about:</p>\r\n<p>\r\n\t&bull; Accenture business areas</p>\r\n<p>\r\n\t&bull; Career paths and development</p>\r\n<p>\r\n\t&bull; Company culture, values, and commitment to corporate citizenship</p>\r\n<p>\r\n\tRefreshments will be served and casual attire is welcome. We look forward to seeing you there!</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -1490,7 +1486,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-10-10 14:48:17", 
+   "last_login": "2011-10-24 19:49:28", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
@@ -1508,7 +1504,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-11 03:43:07", 
+   "last_login": "2011-10-24 19:50:13", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1526,7 +1522,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-11 03:25:22", 
+   "last_login": "2011-10-24 19:49:53", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$bd7f3$00ac6e9fb053373d262df04c62f1b529dc16b0c9", 
@@ -1964,6 +1960,16 @@
    "session_key": "64a7e624c81eb35ad38488a9483bce13", 
    "last_updated": "2011-10-11 03:25:49", 
    "user": 2
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-10-24 19:48:52", 
+   "session_key": "bee9f5a19a93916373121c092b03317c", 
+   "last_updated": "2011-10-24 19:48:52", 
+   "user": 3
   }
  }
 ]
