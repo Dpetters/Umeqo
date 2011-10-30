@@ -4,12 +4,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-09-18 22:36:12", 
+   "main_contact_email": "helen.goldman@accenture.com", 
+   "last_updated": "2011-10-29 17:41:46", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Helen Goldman", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:12:18", 
@@ -44,6 +44,26 @@
   }
  }, 
  {
+  "pk": 98, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "rdean@altvil.com", 
+   "last_updated": "2011-10-29 17:50:15", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "Ryan Dean", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-29 17:50:15", 
+   "logo": "", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Altman Vilandrie"
+  }
+ }, 
+ {
   "pk": 34, 
   "model": "employer.employer", 
   "fields": {
@@ -68,12 +88,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-29 11:19:56", 
+   "main_contact_email": "jchurch@apple.com", 
+   "last_updated": "2011-10-29 17:49:41", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Jamie Church", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:19:56", 
@@ -110,12 +130,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-08-31 18:54:35", 
+   "main_contact_email": "sarah.goodwin@bain.com", 
+   "last_updated": "2011-10-29 17:43:37", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Sarah Goodwin", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:19:48", 
@@ -130,12 +150,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-09-11 12:40:47", 
+   "main_contact_email": "michelle.landau@bankofamerica.com", 
+   "last_updated": "2011-10-29 17:50:31", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Michelle Landau", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:30:15", 
@@ -278,19 +298,19 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-09-03 23:54:27", 
+   "main_contact_email": "baldwin.monica@bcg.com", 
+   "last_updated": "2011-10-29 17:44:00", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Monica Baldwin", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:09:31", 
    "logo": "employer/employer/boston consulting group (bcg)_2011-09-03-23-54-27.png", 
    "careers_website": "", 
    "slug": "bcg", 
-   "name": "Boston Consulting Group (BCG)"
+   "name": "Boston Consulting Group"
   }
  }, 
  {
@@ -301,9 +321,9 @@
     36
    ], 
    "main_contact_email": "mmcternan@broadwaytechnology.com", 
-   "last_updated": "2011-10-15 20:28:19", 
+   "last_updated": "2011-10-29 12:13:30", 
    "description": "<p>\r\n\tBroadway Technology is a leading provider of advanced high-performance financial trading solutions for electronic fixed income markets. Our proprietary software platform is an open, flexible, complete solution for screen and automated trading operations of any size and complexity. We&#39;ve delivered some of the world&rsquo;s most advanced trading systems to premier global banks, proprietary trading groups, and hedge funds. Our software manages billions of dollars in transactions across five continents daily.</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tWe hire developers who thrive on building the most advanced technology. We take a rapid, methodical approach to development, and we focus on creating solutions that solve our clients&rsquo; immediate needs, yet can evolve and scale as needs change.</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tWe also believe that creating the best technology is not enough. We have a deep commitment to providing the best service and support in the industry. We partner with our customers to solve the hardest problems they face and ensure they achieve their goals. We are hands-on and solutions-oriented, and we understand that we succeed only when our customers succeed.</p>\r\n", 
-   "visible": true, 
+   "visible": false, 
    "starred_students": [], 
    "main_contact": "Melissa McTernan", 
    "main_contact_phone": "646-912-6450", 
@@ -405,12 +425,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-09-04 00:06:25", 
+   "main_contact_email": "crparson@cisco.com", 
+   "last_updated": "2011-10-29 17:44:13", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Crescent Paul", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:47:38", 
@@ -634,6 +654,26 @@
   }
  }, 
  {
+  "pk": 101, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "", 
+   "last_updated": "2011-10-29 17:52:29", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-29 17:52:29", 
+   "logo": "", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Evercore"
+  }
+ }, 
+ {
   "pk": 24, 
   "model": "employer.employer", 
   "fields": {
@@ -730,8 +770,8 @@
     28, 
     43
    ], 
-   "main_contact_email": "Sarah.Jackson@fmr.com", 
-   "last_updated": "2011-10-23 21:57:19", 
+   "main_contact_email": "sarah.jackson@fmr.com", 
+   "last_updated": "2011-10-29 17:44:49", 
    "description": "<p>\r\n\tA Fidelity internship is more than a summer job. Building your resume, networking, and gaining relevant work experience are just a few benefits of participating in a paid internship or co-op at Fidelity Investments.&nbsp;Our goal is provide interns experiences that will take you far beyond the classroom and&nbsp;top performers may be offered full-time employment&nbsp;upon graduation.&nbsp;</p>\r\n<p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 4px; padding-right: 0px; padding-bottom: 10px; padding-left: 0px; font-size: 12px; \">\r\n\tWith multiple U.S. locations, we offer a range of opportunities&nbsp;with significant work assignments for undergraduate and graduate students.&nbsp;Co-ops, which are full-time positions lasting between four and six months, may also be available for college credit.&nbsp;While most of our internships and co-ops are offered in the summer, year-round opportunities may also be available.&nbsp;Positions may support a direct business unit or function or be&nbsp;a precursor to a&nbsp;formalized program and are available for both undergrad and graduate students.&nbsp;We can help provide the foundation for a lasting career.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -843,11 +883,11 @@
     40
    ], 
    "main_contact_email": "elizabeth.floyd@gs.com", 
-   "last_updated": "2011-10-23 21:56:57", 
+   "last_updated": "2011-10-29 18:15:02", 
    "description": "<p>\r\n\tThe Goldman Sachs Group, Inc. is a leading global investment banking, securities and investment management firm that provides a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals. Founded in 1869, the firm is headquartered in New York and maintains offices in London, Frankfurt, Tokyo, Hong Kong and other major financial centers around the world.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
-   "main_contact": "Liz Floyd", 
+   "main_contact": "Elizabeth Floyd", 
    "main_contact_phone": "", 
    "offered_job_types": [
     1, 
@@ -855,7 +895,7 @@
    ], 
    "date_created": "2011-08-29 10:40:09", 
    "logo": "employer/employer/goldman sachs_2011-09-23-03-41-19.jpg", 
-   "careers_website": "http://goldmansachs.com/", 
+   "careers_website": "http://www2.goldmansachs.com/careers/", 
    "slug": "gs", 
    "name": "Goldman Sachs"
   }
@@ -939,19 +979,39 @@
     20, 
     36
    ], 
-   "main_contact_email": null, 
-   "last_updated": "2011-10-01 16:08:14", 
-   "description": null, 
+   "main_contact_email": "suzi.brannan@hp.com", 
+   "last_updated": "2011-10-29 17:51:58", 
+   "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": null, 
-   "main_contact_phone": null, 
+   "main_contact": "Suzi Brannan", 
+   "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-10-01 16:08:14", 
    "logo": "", 
-   "careers_website": null, 
-   "slug": null, 
+   "careers_website": "", 
+   "slug": "", 
    "name": "HP"
+  }
+ }, 
+ {
+  "pk": 100, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "dshah@hubspot.com", 
+   "last_updated": "2011-10-29 17:52:15", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "Dharmesh Shah", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-29 17:52:15", 
+   "logo": "", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Hubspot"
   }
  }, 
  {
@@ -972,6 +1032,26 @@
    "careers_website": "", 
    "slug": "ibm", 
    "name": "IBM"
+  }
+ }, 
+ {
+  "pk": 99, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "annemarie@inkling.com", 
+   "last_updated": "2011-10-29 17:50:46", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "Annemarie Mogan", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-29 17:50:46", 
+   "logo": "", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Inkling"
   }
  }, 
  {
@@ -1355,12 +1435,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-09-04 00:01:38", 
+   "main_contact_email": "courtneycollier@optiver.com", 
+   "last_updated": "2011-10-29 17:47:08", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Collier Courtney", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-31 18:59:22", 
@@ -1395,6 +1475,26 @@
    "careers_website": "http://www.oracle.com/us/corporate/careers/college/index.html", 
    "slug": "oracle", 
    "name": "Oracle"
+  }
+ }, 
+ {
+  "pk": 102, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "", 
+   "last_updated": "2011-10-29 17:52:38", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-29 17:52:38", 
+   "logo": "", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Palantir"
   }
  }, 
  {
@@ -1548,18 +1648,18 @@
    "industries": [
     20
    ], 
-   "main_contact_email": null, 
-   "last_updated": "2011-09-27 15:03:44", 
-   "description": null, 
+   "main_contact_email": "", 
+   "last_updated": "2011-10-29 17:41:01", 
+   "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": null, 
-   "main_contact_phone": null, 
+   "main_contact": "", 
+   "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-09-27 15:03:44", 
    "logo": "", 
-   "careers_website": null, 
-   "slug": null, 
+   "careers_website": "", 
+   "slug": "", 
    "name": "Sony Corporation"
   }
  }, 
@@ -1635,12 +1735,12 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [], 
-   "main_contact_email": "", 
-   "last_updated": "2011-09-04 00:02:44", 
+   "main_contact_email": "mike.heffner@teachforamerica.org", 
+   "last_updated": "2011-10-29 17:47:21", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Mike Heffner", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:03", 
@@ -1726,6 +1826,26 @@
    "careers_website": null, 
    "slug": null, 
    "name": "TriZetto"
+  }
+ }, 
+ {
+  "pk": 97, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [], 
+   "main_contact_email": "jun.lee@twosigma.com", 
+   "last_updated": "2011-10-29 17:49:24", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "Jun Lee", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-10-29 17:49:24", 
+   "logo": "", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Two Sigma Investments"
   }
  }, 
  {

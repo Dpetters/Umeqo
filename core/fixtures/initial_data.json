@@ -108,14 +108,14 @@
   "pk": 9, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:43", 
-   "name": "Getting a Free Trial Subscription", 
+   "last_updated": "2011-10-29 21:45:59", 
+   "name": "Getting an Event Subscription", 
    "display": false, 
    "topic": 10, 
    "audience": 4, 
    "sort_order": "8.000", 
    "date_created": "2011-10-07 12:42:31", 
-   "slug": "getting-free-trial-subscription", 
+   "slug": "getting-event-subscription", 
    "description": "Learn how you can get free access to Umeqo."
   }
  }, 
@@ -3721,14 +3721,14 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 20:41:13", 
-   "click_count": 1, 
+   "last_updated": "2011-10-29 18:41:43", 
+   "click_count": 2, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "1.000", 
-   "answer": "Umeqo was created by three current MIT undergraduates (<a href=\"https://www.facebook.com/dpetters\">Dmitrij Petters</a>, <a href=\"http://www.linkedin.com/pub/zachary-dearing/25/1b8/b76\">Zac Dearing</a>, and <a href=\"http://www.linkedin.com/pub/joshua-ma/26/595/a34\">Josh Ma</a>) to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.", 
+   "answer": "Umeqo was created by current MIT undergraduates to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.", 
    "date_created": "2011-09-03 21:17:13", 
    "display": true
   }
