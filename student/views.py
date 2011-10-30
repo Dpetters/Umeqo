@@ -4,11 +4,11 @@ from __future__ import absolute_import
 import datetime
 
 from django.conf import settings as s
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
-from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.utils import simplejson
 from django.template.loader import render_to_string
@@ -32,7 +32,7 @@ from core import messages
 from employer.models import Employer
 from student import enums as student_enums
 from countries.models import Country
-        
+
 
 @render_to('student_registration_help.html')
 def student_registration_help(request, extra_context=None):

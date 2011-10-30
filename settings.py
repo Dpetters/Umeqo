@@ -294,6 +294,7 @@ INSTALLED_APPS = (
     'sentry.plugins.sentry_servers',
     'sentry.plugins.sentry_sites',
     'sentry.plugins.sentry_urls',
+    'concurrent_server'
 )
 
 try:

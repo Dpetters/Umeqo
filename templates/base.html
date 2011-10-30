@@ -22,7 +22,7 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}css/blocks.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/side_nav.css" />
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/contact_us.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/contact_us_dialog.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_ui_custom/css/ui-lightness/jquery-ui-1.8.12.custom.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_tipsy/stylesheets/tipsy.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery_overrides.css" />
@@ -217,11 +217,14 @@
             </div>
             <div id="footer_area">
                 <div id="footer_navigation_block">
-                    <a id="home" href="{% url home %}" title="home" tabindex="-1">Home</a>
-                    <a id="about" href="{% url about %}" title="about" tabindex="-1">About</a>
-                    <a id="help" href="{% url help_center %}" title="help" tabindex="-1">Help</a>
-                    <a id="terms_of_service" href="{% url terms_of_service %}" title="Terms of Service" tabindex="-1">Terms</a>
-                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" title="contact" tabindex="-1">Contact Us</a>
+                    <a id="home" href="{% url home %}" tabindex="-1">Home</a>
+                    <a id="about" href="{% url about %}" tabindex="-1">About</a>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url subscription_list %}" tabindex="-1">For Recruiters</a>
+                    {% endif %}
+                    <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
+                    <a id="terms_of_service" href="{% url terms_of_service %}" tabindex="-1">Terms</a>
+                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" tabindex="-1">Contact Us</a>
                 </div>
                 <p id="footer_info_block">
                     &copy; 2011 Umeqo. All Rights Reserved.

@@ -6,38 +6,38 @@ import mimetypes
 import os
 import re
 
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.units import cm
 from pyPdf import PdfFileWriter, PdfFileReader
 from datetime import datetime, date
+from reportlab.lib.units import cm
+from reportlab.pdfgen.canvas import Canvas
 
 from django.db.models import Q
-from django.core.files import File
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files import File
+from django.core.urlresolvers import reverse
 from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
-from django.core.urlresolvers import reverse
 
-from core.email import send_html_mail
 from core.decorators import agreed_to_terms, has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.email import send_html_mail
 from core.models import Industry
-from registration.forms import PasswordChangeForm
-from core import messages
 from core import enums as core_enums
+from core import messages
 from employer import enums as employer_enums
-from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
-from employer.views_helper import get_paginator, employer_search_helper
+from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
+from employer.view_helpers import get_paginator, employer_search_helper
+from registration.forms import PasswordChangeForm
 from student import enums as student_enums
-from subscription.models import EmployerSubscription, Subscription
 from student.models import Student
+from subscription.models import EmployerSubscription, Subscription
 
 @require_GET
 @agreed_to_terms
@@ -52,85 +52,6 @@ def employer(request):
     else:
         return HttpResponseBadRequest("Employer name is missing.")
     
-@login_required
-@user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
-@has_annual_subscription
-@agreed_to_terms
-@render_to("employer_profile_preview.html")
-def employer_profile_preview(request, slug, extra_context=None):
-    try:
-        employer = Employer.objects.get(slug=slug)
-    except Employer.DoesNotExist:
-        raise Http404
-    
-    if is_student(request.user):
-        return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
-    elif is_recruiter(request.user):
-        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
-        context.update(extra_context or {})
-        return context
-
-@agreed_to_terms
-@render_to("employer_new.html")
-def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
-    if request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student"):
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
-            if form.is_valid():
-                new_employer = form.save()
-                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                subject = "New Employer: %s" % (new_employer) 
-                body = render_to_string('employer_new_email_body.html', \
-                                        {'email':request.user.email, \
-                                         'new_employer':new_employer})
-                send_html_mail(subject, body, recipients)
-                data = {"name": new_employer.name, "id": new_employer.id}
-            else:
-                data = {'errors': form.errors }
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            form = form_class()
-        context = {'form': form }
-        context.update(extra_context or {}) 
-        return context
-    else:
-        return HttpResponseForbidden("You must be logged in.")
-
-
-@login_required
-@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-@has_annual_subscription
-@agreed_to_terms
-@render_to("employer_recruiter_new.html")
-def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
-            if form.is_valid():
-                user = form.save(commit=False)
-                if len(user.email)>30:
-                    username = user.email.split("@")[0]
-                    if len(username) > 30:
-                        username = username[:30]
-                else:
-                    username = user.email
-                user.username = username
-                user.save()
-                form.save_m2m()
-                Recruiter.objects.create(user = user, employer = request.user.recruiter.employer)
-                data = {}
-            else:
-                data = {'errors': form.errors }
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            form = form_class()
-        context = {'form': form }
-        context.update(extra_context or {}) 
-        return context
-    else:
-        return HttpResponseBadRequest("Request must be ajax.")
-
-
 @login_required
 @agreed_to_terms
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
@@ -175,6 +96,82 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     context.update(extra_context or {})
     return context
 
+@agreed_to_terms
+@render_to("employer_new.html")
+def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
+    if request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student"):
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                new_employer = form.save()
+                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+                subject = "New Employer: %s" % (new_employer) 
+                body = render_to_string('employer_new_email_body.html', \
+                                        {'email':request.user.email, \
+                                         'new_employer':new_employer})
+                send_html_mail(subject, body, recipients)
+                data = {"name": new_employer.name, "id": new_employer.id}
+            else:
+                data = {'errors': form.errors }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            form = form_class()
+        context = {'form': form }
+        context.update(extra_context or {}) 
+        return context
+    else:
+        return HttpResponseForbidden("You must be logged in.")
+    
+@login_required
+@user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
+@has_annual_subscription
+@agreed_to_terms
+@render_to("employer_profile_preview.html")
+def employer_profile_preview(request, slug, extra_context=None):
+    try:
+        employer = Employer.objects.get(slug=slug)
+    except Employer.DoesNotExist:
+        raise Http404
+    
+    if is_student(request.user):
+        return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
+    elif is_recruiter(request.user):
+        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
+        context.update(extra_context or {})
+        return context
+
+@login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@has_annual_subscription
+@agreed_to_terms
+@render_to("employer_recruiter_new.html")
+def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
+    if request.is_ajax():
+        if request.method == 'POST':
+            form = form_class(data=request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                if len(user.email)>30:
+                    username = user.email.split("@")[0]
+                    if len(username) > 30:
+                        username = username[:30]
+                else:
+                    username = user.email
+                user.username = username
+                user.save()
+                form.save_m2m()
+                Recruiter.objects.create(user = user, employer = request.user.recruiter.employer)
+                data = {}
+            else:
+                data = {'errors': form.errors }
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            form = form_class()
+        context = {'form': form }
+        context.update(extra_context or {}) 
+        return context
+    else:
+        return HttpResponseBadRequest("Request must be ajax.")
 
 @login_required
 @agreed_to_terms
@@ -489,20 +486,17 @@ def employer_students(request, extra_context=None):
                         cache.delete('paginator')
                         cache.delete('ordered_results')
                         cache.delete('filtering_results')
-
         filtering, current_paginator = get_paginator(request)
         context['filtering'] = filtering
-        try:
-            context['page'] = current_paginator.page(request.POST['page'])
-        except Exception:
-            context['page'] = current_paginator.page(1)
+        context['page'] = current_paginator.page(request.POST['page'])
         context['current_student_list'] = request.POST['student_list']
         
+        """
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-            
+        """
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True

@@ -14,6 +14,7 @@
 }
 .asterisk, .error {
     color: #FF7B7B;
+    font-weight: bold;
 }
 .errorspace, .error_section {
 	position: relative;
@@ -21,7 +22,6 @@
 .errorspace {
     min-height: 20px;
     font-size: 12px;
-    font-weight: bold;
 }
 .error_section {
     padding: 8px 0px;
@@ -31,7 +31,6 @@
 .dialog .error_section, .form_table.grande .error_section{
     padding:5px 0px;
     width:250px;
-    font-weight:bold;
 }
 .errorspace label, .errorlist {
     color: #FF7B7B;
