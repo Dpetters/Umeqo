@@ -1,10 +1,23 @@
 [
  {
+  "pk": 7, 
+  "model": "subscription.subscription", 
+  "fields": {
+   "description": "", 
+   "name": "Career Fair Subscription", 
+   "recurrence_unit": "D", 
+   "price": "0.00", 
+   "trial_unit": "M", 
+   "trial_period": 1, 
+   "recurrence_period": 0
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "name": "Free Trial", 
+   "name": "Event Subscription", 
    "recurrence_unit": "D", 
    "price": "0.00", 
    "trial_unit": "W", 
