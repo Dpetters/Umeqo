@@ -6,7 +6,7 @@ var open_contact_us_dialog = function () {
         dialogClass: "contact_us_dialog",
         resizable: false,
         modal: true,
-        width: 600,
+        width: 610,
         close: function() {
             contact_us_dialog.remove();
         }

@@ -1,4 +1,5 @@
 RESULTS_PER_PAGE_CHOICES = (
+(1,1),
 (5, 5),
 (10, 10),
 (20, 20),

@@ -8,33 +8,37 @@ Tutorials |
 {{block.super}}
 {% load compress %}
 {% compress css %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/tutorials.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/help/tutorial_base.css" />
 {% endcompress %}
 {% endblock %}
 
 {% block help_content %}
     <h1>{% block tutorial_title %}{% endblock %} Tutorial</h1>
-    <h2>Table of Contents</h2>
-    <ul class="h-list">
+    <h2><u>Table of Contents</u></h2>
+    <ul class="tutorial_toc">
         <li><a href="#instructions">Instructions</a></li>
         <li><a href="#things_to_note">Things to Note</a></li>
         <li><a href="#tips_and_tricks">Tips and Tricks</a></li>
     </ul>
     
-    <h2 id="instructions">Instructions</h2>
+    <h2 id="instructions"><u>Instructions</u></h2>
     <div id="instructions_div">
         {% block instructions %}
         {% endblock %}
     </div>
-    <h2 id="things_to_note">Things to Note</h2>
+    <h2 id="things_to_note"><u>Things to Note</u></h2>
     <div>
+        <ul id="things_to_note_list">
         {% block things_to_note %}
         {% endblock %}
+        </ul>
     </div>
     
-    <h2 id="tips_and_tricks">Tips and Tricks</h2>
+    <h2 id="tips_and_tricks"><u>Tips and Tricks</u></h2>
     <div>
+        <ul id="tips_and_tricks_list">
         {% block tips_and_tricks %}
         {% endblock %}
+        </ul>
     </div>
 {% endblock %}

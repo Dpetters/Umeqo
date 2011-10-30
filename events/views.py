@@ -5,6 +5,7 @@ import csv
 import cStringIO as StringIO
 from datetime import datetime, timedelta
 import re
+import xlwt
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -20,7 +21,6 @@ from django.template import RequestContext
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
-import xlwt
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
@@ -31,10 +31,9 @@ from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.views_helper import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
+from events.view_helpers import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
 from notification import models as notification
 from student.models import Student
-
 
 @require_GET
 @agreed_to_terms

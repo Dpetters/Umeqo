@@ -54,6 +54,10 @@ section, header, hgroup, footer, .grid .btn {
     text-align: center;
     position: relative;
 }
+.grid .price h2 span{
+    position:relative;
+    top:7px;
+}
 .grid .top {
     border: solid 1px #000000;
     background-position: left top;

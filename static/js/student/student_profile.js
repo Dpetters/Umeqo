@@ -1,5 +1,6 @@
 $(document).ready( function() {
     function load_profile_preview(){
+        $("#message_area").html("");
         var required_fields_filled_out = true;
         $("label.required").each(function(){
             required_fields_filled_out = required_fields_filled_out && $("#" + $(this).attr("for")).val();
@@ -18,19 +19,17 @@ $(document).ready( function() {
                     error: errors_in_message_area_handler,
                     success: function (data) {
                         $("#student_profile_preview").html(data);
-
                         $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
-
                         $(".resume_book_current_toggle_student").hover(function(){
-                            $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");    
+                            $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");
                         }, function(){
-                            $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");     
+                            $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");
                         }).tipsy({'gravity':'e', opacity: 0.9, title:function(){return resume_book_current_toggle_tooltip;}, html:true});
                         
                         $(".student_toggle_star").hover(function(){
-                            $($(this).children()[0]).removeClass("sprite-star-empty").addClass("sprite-star");    
+                            $($(this).children()[0]).removeClass("sprite-star-empty").addClass("sprite-star");
                         }, function(){
-                            $($(this).children()[0]).removeClass("sprite-star").addClass("sprite-star-empty");   
+                            $($(this).children()[0]).removeClass("sprite-star").addClass("sprite-star-empty");
                         }).tipsy({'gravity':'e', opacity: 0.9, fallback:star_toggle_tooltip, html:true});
                         
                         $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:event_attendance_tooltip, html:true});
@@ -64,6 +63,7 @@ $(document).ready( function() {
             dataType: 'text',
             data:{'ingore_unparsable_resume':ignore_unparsable_resume},
             beforeSubmit: function (arr, $form, options) {
+                $("#message_area").html("");
                 $("#profile_form input[type=submit]").attr("disabled", "disabled");
                 show_form_submit_loader("#profile_form");
                 $("#profile_form .error_section").html("");

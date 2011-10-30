@@ -179,6 +179,9 @@ input[type="text"]:focus {
 input[type="submit"] {
     float: left;
 }
+.black_button{
+    margin-top:5px;
+}
 input[type="submit"],
 a.black_button {
     display: inline-block;
@@ -279,19 +282,17 @@ label.required span.error {
     clear: both;
 }
 #fb-like {
-    
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     padding: 7px 7px 0;
     background: #B8C5CF;
-    margin-top: 25px;
+    margin-top: 17px;
     height: 30px;
 }
 .module {
-    
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 25px;
     background-color: rgba(255,255,255,0.1);
     border-radius: 3px;
     -webkit-border-radius: 3px;

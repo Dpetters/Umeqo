@@ -88,7 +88,7 @@ empty_resume = "We could not extract any keywords out of your resume."
 already_invited = "Student has already been invited."
 
 # Login Form
-incorrect_username_password_combo = "The username and password combo that you \
+incorrect_username_password_combo = "The username/password combo that you \
 entered is invalid. Please note that both fields are case-sensitive."
 staff_member_login_not_allowed = "Staff users cannot login. They can only \
 access the admin pages."
