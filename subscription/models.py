@@ -35,6 +35,7 @@ _TIME_UNIT_CHOICES=(
 )
 
 class Subscription(models.Model):
+    uid = models.PositiveIntegerField(unique=True, null=True)
     name = models.CharField(max_length=100, unique=True, null=False)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=64, decimal_places=2)
