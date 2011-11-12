@@ -4,12 +4,13 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "name": "Career Fair Subscription", 
    "recurrence_unit": "D", 
    "price": "0.00", 
    "trial_unit": "M", 
    "trial_period": 1, 
-   "recurrence_period": 0
+   "name": "Career Fair Subscription", 
+   "recurrence_period": 0, 
+   "uid": null
   }
  }, 
  {
@@ -17,12 +18,13 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "name": "Event Subscription", 
    "recurrence_unit": "D", 
    "price": "0.00", 
    "trial_unit": "W", 
    "trial_period": 2, 
-   "recurrence_period": null
+   "name": "Event Subscription", 
+   "recurrence_period": null, 
+   "uid": null
   }
  }, 
  {
@@ -30,12 +32,13 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "name": "Charter Customer Subscription", 
    "recurrence_unit": "W", 
    "price": "0.00", 
    "trial_unit": "M", 
    "trial_period": 4, 
-   "recurrence_period": null
+   "name": "Charter Customer Subscription", 
+   "recurrence_period": null, 
+   "uid": null
   }
  }, 
  {
@@ -43,12 +46,13 @@
   "model": "subscription.subscription", 
   "fields": {
    "description": "", 
-   "name": "Annual Subscription", 
    "recurrence_unit": "Y", 
    "price": "5000.00", 
    "trial_unit": "D", 
    "trial_period": 3, 
-   "recurrence_period": 1
+   "name": "Annual Subscription", 
+   "recurrence_period": 1, 
+   "uid": null
   }
  }
 ]

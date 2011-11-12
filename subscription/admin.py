@@ -8,7 +8,8 @@ def _pricing(sub): return sub.get_pricing_display()
 def _trial(sub): return sub.get_trial_display()
 
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('name', _pricing, _trial)
+    fields = ['uid', 'name', 'description', 'price', 'trial_period', 'trial_unit', 'recurrence_period', 'recurrence_unit']
+    list_display = ('uid', 'name', _pricing, _trial)
 admin.site.register(Subscription, SubscriptionAdmin)
 
 def _subscription(trans):
