@@ -23,6 +23,12 @@ RESUME_BOOK_CAPACITY = 50
 # Number of top FAQ questions to display
 TOP_QUESTIONS_NUM = 10
 
+# Subscription UIDs
+ANNUAL_SUBSCRIPTION_UID = 0
+CAREER_FAIR_SUBSCRIPTION_UID = 1
+EVENT_SUBSCRIPTION_UID = 2
+CHARTER_CUSTOMER_SUBSCRIPTION_UID = 3
+
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
 SP_MAX_CAMPUS_INVOLVEMENT = 12;

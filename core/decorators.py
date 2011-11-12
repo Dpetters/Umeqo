@@ -42,15 +42,11 @@ class has_annual_subscription(object):
     
     def __call__(self, request, *args, **kwargs):
         if is_recruiter(request.user):
-            try:
-                es = request.user.recruiter.employer.employersubscription
-                free_trial = Subscription.objects.get(name="Free Trial")
-                if es.subscription != free_trial and not es.expired():
-                    return self.orig_func(request, *args, **kwargs)
-            except EmployerSubscription.DoesNotExist:
-                pass
+            return self.orig_func(request, *args, **kwargs)
+            """
             if request.is_ajax():
                 return HttpResponseForbidden("You must have an annual subscription to do that.")
+            """
             return redirect(reverse("subscription_list"))
         return self.orig_func(request, *args, **kwargs)
 

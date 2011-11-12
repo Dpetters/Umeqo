@@ -54,9 +54,9 @@ class Employer(core_mixins.DateTracking):
     def subscribed_annually(self):
         try:
             es = self.employersubscription
-            free_trial = Subscription.objects.get(name="Free Trial")
-            if es.subscription != free_trial and not es.expired():
-                return True
+            #free_trial = Subscription.objects.get(name="Free Trial")
+            #if es.subscription != free_trial and not es.expired():
+            return True
         except EmployerSubscription.DoesNotExist:
             pass
         return False
