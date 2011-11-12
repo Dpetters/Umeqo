@@ -10,7 +10,7 @@
    "trial_period": 1, 
    "name": "Career Fair Subscription", 
    "recurrence_period": 0, 
-   "uid": null
+   "uid": 1
   }
  }, 
  {
@@ -24,7 +24,7 @@
    "trial_period": 2, 
    "name": "Event Subscription", 
    "recurrence_period": null, 
-   "uid": null
+   "uid": 2
   }
  }, 
  {
@@ -38,7 +38,7 @@
    "trial_period": 4, 
    "name": "Charter Customer Subscription", 
    "recurrence_period": null, 
-   "uid": null
+   "uid": 3
   }
  }, 
  {
@@ -52,7 +52,7 @@
    "trial_period": 3, 
    "name": "Annual Subscription", 
    "recurrence_period": 1, 
-   "uid": null
+   "uid": 0
   }
  }
 ]
