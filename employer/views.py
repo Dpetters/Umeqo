@@ -57,22 +57,25 @@ def employer(request):
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 @render_to("employer_account.html")
 @require_GET
-def employer_account(request, preferences_form_class = RecruiterPreferencesForm, change_password_form_class = PasswordChangeForm, extra_context=None):
+def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
+                     change_password_form_class = PasswordChangeForm, extra_context=None):
     context = {}
+    recruiter = request.user.recruiter
+    employer = request.user.recruiter.employer
+    
     msg = request.GET.get('msg', None)
     if msg:
         page_messages = {
             'password-changed': messages.password_changed,
         }
         context["msg"] = page_messages[msg]
+    
     try:
-        es = request.user.recruiter.employer.employersubscription
-        free_trial = Subscription.objects.get(name="Free Trial")
-        if es == free_trial:
-            if not es.expired:
-                context["subscription_button_text"] = "Upgrade Subscription"
-        else:
-            context["subscription_button_text"] = "Modify Subscription"
+        es = employer.employersubscription
+    except EmployerSubscription.DoesNotExist:
+        context["subscription_button_text"] = "Subscribe"
+    else:
+        context["subscription_button_text"] = "Modify Subscription"
         context['subscription'] = es
         if es.cancelled:
             context['subscription_text'] = "Cancelled"
@@ -87,11 +90,10 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
             else:
                 context['subscription_text'] = "Active"
                 context['subscription_class'] = "active"
-    except EmployerSubscription.DoesNotExist:
-        context["subscription_button_text"] = "Subscribe"
-    context['transactions'] = request.user.recruiter.employer.transaction_set.all().order_by("timestamp")
-    context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)
-    context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
+
+    context['transactions'] = employer.transaction_set.all().order_by("timestamp")
+    context['other_recruiters'] = employer.recruiter_set.exclude(id=recruiter.id)
+    context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     context.update(extra_context or {})
     return context

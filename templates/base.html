@@ -13,6 +13,7 @@
         
         <link href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
         {% load compress %}
+        {% load text_snippet %}
 
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
@@ -34,6 +35,11 @@
         {% endcompress %}
 
         <script>
+            {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
+                var MUST_BE_SUBSCRIBED_ANNUALLY = "{% text_snippet 'must_be_subscribed_annually' %}";
+                var MUST_BE_SUBSCRIBED = "{% text_snippet 'must_be_subscribed' %}";
+            {% endif %}
+            
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";
             var LONG_HORIZONTAL_AJAX_LOADER = "{% include 'long_horizontal_ajax_loader.html' %}";
             var DIALOG_AJAX_LOADER = "{% include 'dialog_ajax_loader.html' %}";

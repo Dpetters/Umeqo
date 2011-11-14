@@ -66,12 +66,45 @@
 
 {% block account_overview %}
     <h3>Create New Account</h3>
-    <p class="sub_header_message">Below are the other recruiter accounts for {{user.recruiter.employer}}. If you would like to give another recruiter access, you can <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link{% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new account</a>.</p>
+    <p class="sub_header_message">Below are the other recruiter accounts for 
+        {{user.recruiter.employer}}. If you would like to give another recruiter access, 
+        you can <a class="
+        {% if not user.recruiter.employer.subscribed_annually %}
+            must_be_subscribed_annually must_be_subscribed_annually_e
+        {% else %}
+            create_recruiter_link
+        {% endif %}
+        " href="
+        {% if user.recruiter.employer.subscribed_annually %}
+            javascript:void(0)
+        {% else %}
+            {% url subscription_list %}
+        {% endif %}
+        ">create a new account</a>.
+    </p>
+    
     {% include 'employer_other_recruiters.html' %}
     
     <h3>Delete Your Account</h3>
-    <p id="delete_account" class="sub_header_message">By deleting your account you lose your login credentials and resume book history. <a id="delete_account_link" href="javascript:void(0)">Delete Account</a></p>
-    <p id="create_credentials" class="sub_header_message">You are the only recruiter for {{user.recruiter.employer}}. Before deleting your account, you need to <a class="{% if not user.recruiter.employer.subscribed_annually %}must_be_subscribed_annually must_be_subscribed_annually_e{% else %}create_recruiter_link {% endif %}" href="{% if user.recruiter.employer.subscribed_annually %}javascript:void(0){% else %}{% url subscription_list %}{% endif %}">create a new set of credentials</a>.</p>
+    <p id="delete_account" class="sub_header_message">By deleting your account you lose 
+        your login credentials and resume book history. 
+        <a id="delete_account_link" href="javascript:void(0)">Delete Account</a>
+    </p>
+    
+    <p id="create_credentials" class="sub_header_message">You are the only recruiter for 
+        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="
+        {% if not user.recruiter.employer.subscribed_annually %}
+            must_be_subscribed_annually must_be_subscribed_annually_e
+        {% else %}
+            create_recruiter_link
+        {% endif %}
+        " href="
+        {% if user.recruiter.employer.subscribed_annually %}
+            javascript:void(0)
+        {% else %}
+            {% url subscription_list %}
+        {% endif %}">create a new set of credentials</a>.
+    </p>
 {% endblock %}
 
 

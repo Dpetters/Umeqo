@@ -1,7 +1,7 @@
 import datetime
 import utils
 
-from django.conf import settings
+from django.conf import settings as s
 from django.db import models
 
 class Transaction(models.Model):
@@ -76,10 +76,23 @@ class EmployerSubscription(models.Model):
     expires = models.DateField(null = True, default=datetime.date.today)
     cancelled = models.BooleanField(default=False)
 
-    grace_timedelta = datetime.timedelta(getattr(settings, 'SUBSCRIPTION_GRACE_PERIOD', 2))
+    grace_timedelta = datetime.timedelta(getattr(s, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 
-    def free_trial(self):
-        return self.subscription == Subscription.objects.get(name="Free Trial")
+    def annual_subscription(self):
+        try:
+            annual_subscription = Subscription.objects.get(uid=s.ANNUAL_SUBSCRIPTION_UID)
+        except:
+            return False
+        else:
+            return self.subscription == annual_subscription
+        
+    def event_subscription(self):
+        try:
+            event_subscription = Subscription.objects.get(uid=s.EVENT_SUBSCRIPTION_UID)
+        except:
+            return False
+        else:
+            return self.subscription == event_subscription
         
     def expired(self):
         """Returns true if there is more than SUBSCRIPTION_GRACE_PERIOD
