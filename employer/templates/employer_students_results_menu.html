@@ -10,7 +10,11 @@
             <li id="results_menu_not_in_resume_book">Not in Resume Book</li>
         </ul>
     </div>
-    <div id="resume_book_current_add_students" class="menu_button {% if resume_book_capacity_reached %}disabled resume_book_capacity_reached_menu_button{% endif %}">
+    <div id="resume_book_current_add_students" class="menu_button
+        {% if resume_book_capacity_reached %}
+            disabled resume_book_capacity_reached_menu_button
+        {% endif %}
+        ">
         <span>Add to Resume Book</span>
     </div>
     <div id="resume_book_current_remove_students" class="menu_button">
@@ -22,7 +26,13 @@
         <ul>
             <li id="students_add_star">Add Star</li>
             <li id="students_remove_star">Remove Star</li>
-            <li id="students_invite">Invite to Event</li>
+            <li
+            {% if user.recruiter.employer.subscribed_annually %}
+                id="students_invite"
+            {% else %}
+                class="must_be_subscribed_annually_e must_be_subscribed_annually"
+            {% endif %} 
+            >Invite to Event</li>
         </ul>
     </div>
     <div id="results_menu_toggle_details" class="menu_button">

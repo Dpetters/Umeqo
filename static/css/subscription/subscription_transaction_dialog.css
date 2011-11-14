@@ -1,20 +1,20 @@
-.subscription_dialog .dialog_content_wrapper{
+.transaction_dialog .dialog_content_wrapper{
     padding: 14px 25px;
 }
-.subscription_dialog #subscription_form #id_body{
+.transaction_dialog #subscription_form #id_body{
     width:340px;
     height:65px;
 }
-.subscription_dialog #subscription_form #body_th{
+.transaction_dialog #subscription_form #body_th{
     vertical-align:top;
     padding-top:20px;
 }
-.subscription_dialog #subscription_form #id_name,
-.subscription_dialog #subscription_form #id_email,
-.subscription_dialog #subscription_form #id_employer{
+.transaction_dialog #subscription_form #id_name,
+.transaction_dialog #subscription_form #id_email,
+.transaction_dialog #subscription_form #id_employer{
     width:255px;
 }
-.subscription_dialog #subscription_form select#id_employer{
+.transaction_dialog #subscription_form select#id_employer{
     width:265px;
 }
 #subscription_form{

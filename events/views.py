@@ -374,7 +374,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
 @login_required
 @agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
-@has_annual_subscription
+@has_any_subscription
 @render_to("event_form.html")
 def event_edit(request, id=None, extra_context=None):
     try:

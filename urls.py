@@ -80,8 +80,8 @@ urlpatterns += patterns('registration.views',
     (r'^activation/(?P<activation_key>\w+)/$', 'activate_user', {'extra_context': {'login_form': AuthenticationForm}}, 'student_activation'),
 )
 urlpatterns += patterns('subscription.views',
-    (r'^subscriptions/transaction/$', 'subscription_dialog', {}, 'subscription_dialog'),
-    (r'^subscription/free-trial/$', 'free_trial_info_dialog', {}, 'free_trial_info_dialog'), 
+    (r'^subscriptions/transaction/$', 'subscription_transaction_dialog', {}, 'subscription_transaction_dialog'),
+    (r'^subscriptions/free-subscription/$', 'free_subscription_info_dialog', {}, 'free_subscription_info_dialog'), 
     (r'^subscriptions/$', 'subscription_list', {'extra_context': {'login_form':AuthenticationForm}}, 'subscription_list'),
 )
 urlpatterns += patterns('events.views',

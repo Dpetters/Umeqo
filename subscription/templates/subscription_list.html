@@ -8,15 +8,15 @@ Subscription Choices |
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_list.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/free_trial_info_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/free_subscription_info_dialog.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_transaction_dialog.css" />
 {% endcompress %}
 <script>
-    var FREE_TRIAL_INFO_DIALOG_URL = "{% url free_trial_info_dialog %}";
-    var SUBSCRIPTION_TRANSACTION_URL = "{% url subscription_dialog %}";
+    var FREE_SUBSCRIPTION_INFO_DIALOG_URL = "{% url free_subscription_info_dialog %}";
+    var SUBSCRIPTION_TRANSACTION_URL = "{% url subscription_transaction_dialog %}";
 </script>
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_trial_info_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_subscription_info_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_transaction_dialog.js"></script>
 {% endcompress %}
 {% endblock %}
@@ -44,7 +44,13 @@ Subscription Choices |
                     </hgroup>
                     <hgroup class="price">
                         <h2>
-                            <span {% if free_trial_text %}id="free_trial_subscribed_text"{% endif %} class="style1">{% if free_trial_text %}{{ free_trial_text }}{% else %}Free!{% endif %}</span>
+                            <span class="style1">
+                            {% if free_subscription_text %}
+                                {{ free_subscription_text }}
+                            {% else %}
+                                Free!
+                            {% endif %}
+                            </span>
                         </h2>
                     </hgroup>
                 </header>
@@ -57,8 +63,9 @@ Subscription Choices |
                         <li>No Event Management Tools</li>
                         <li>No Student Invitation Functionality</li>
                         <li class="last">
-                            <a href="javascript:void(0)" data-action="{{free_trial_action}}" data-title="{{free_trial_dialog}}" data-subscription-type="free_trial" class="btn {% if free_trial_class %}{{free_trial_class}}{% else %}open_ftid_link{% endif %}">{% if free_trial_button %}{{free_trial_button}}{% else %}Learn More{% endif %}</a>
-                        </li
+                            <a href="javascript:void(0)" 
+                            class="btn open_free_subscription_info_dialog_link">Learn More</a>
+                        </li>
                     </ul>
                 </footer>
             </section>
@@ -69,7 +76,7 @@ Subscription Choices |
                     </hgroup>
                     <hgroup class="price">
                         <h2>
-                            <span class="style1">{{ annual_text }}</span>
+                            <span class="style1">{{ paid_subscription_text }}</span>
                         </h2>
                     </hgroup>
                 </header>
@@ -82,7 +89,12 @@ Subscription Choices |
                         <li><strong>All</strong> Event Management Tools</li>
                         <li><strong>Unlimited</strong> Student Invitation</li>
                         <li class="last">
-                            <a href="javascript:void(0)" data-action="{{annual_action}}" data-title="{{annual_dialog}}" data-subscription-type="annual" class="btn {{annual_class}}">{{annual_button}}</a>
+                            <a href="javascript:void(0)" 
+                            data-action="{{paid_subscription_action}}" 
+                            data-title="{{paid_transaction_dialog_title}}"
+                            data-subscription-type="annual" 
+                            class="btn {{paid_subscription_class}}">
+                            {{paid_subscription_button_text}}</a>
                         </li>
                     </ul>
                 </footer>

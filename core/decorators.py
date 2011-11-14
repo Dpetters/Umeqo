@@ -60,7 +60,7 @@ class has_annual_subscription(object):
             employer = request.user.recruiter.employer
             try:
                 subscription = employer.employersubscription
-                if subscription.annual_subscription() and not s.expired():
+                if subscription.annual_subscription() and not subscription.expired():
                     return self.orig_func(request, *args, **kwargs)
             except:
                 pass

@@ -1,26 +1,26 @@
 $(document).ready( function() {
-    function open_subscription_dialog() {
+    function open_transaction_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            dialogClass: "subscription_dialog",
+            dialogClass: "transaction_dialog",
             modal:true,
-            width:560,
+            width:575,
             resizable: false,
             close: function() {
-                subscription_dialog.remove();
+                transaction_dialog.remove();
             }
         });
         $dialog.dialog('open');
         return $dialog;
     };
 
-    $('.open_sd_link.upgrade, .open_sd_link.extend, .open_sd_link.subscribe, .open_sd_link.cancel').click( function () {
-        subscription_dialog = open_subscription_dialog();
-        subscription_dialog.dialog("option", "title", $(this).attr("data-title"));
-        subscription_dialog.html(DIALOG_AJAX_LOADER);
+    $('.open_transaction_dialog_link.upgrade, .open_transaction_dialog_link.extend, .open_transaction_dialog_link.subscribe, .open_transaction_dialog_link.cancel').click( function () {
+        transaction_dialog = open_transaction_dialog();
+        transaction_dialog.dialog("option", "title", $(this).attr("data-title"));
+        transaction_dialog.html(DIALOG_AJAX_LOADER);
 
-        var subscription_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+        var transaction_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         var json_data = {'action':$(this).attr("data-action"), 'subscription_type':$(this).attr("data-subscription-type")}
         
         $.ajax({
@@ -29,18 +29,18 @@ $(document).ready( function() {
             url: SUBSCRIPTION_TRANSACTION_URL,
             data: json_data,
             complete: function(jqXHR, textStatus) {
-                clearTimeout(subscription_dialog_timeout);
-                subscription_dialog.dialog('option', 'position', 'center');
+                clearTimeout(transaction_dialog_timeout);
+                transaction_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-                    subscription_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                    transaction_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                 }else{
-                    subscription_dialog.html(ERROR_MESSAGE_DIALOG);
+                    transaction_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {
-                subscription_dialog.html(data);
+                transaction_dialog.html(data);
                 subscription_form_validator = $("#subscription_form").validate({
                     submitHandler: function (form) {
                         $(form).ajaxSubmit({
@@ -53,15 +53,15 @@ $(document).ready( function() {
                                 $("#subscription_form .errorspace, #subscription_form .error_section").html("");
                             },
                             complete : function(jqXHR, textStatus) {
-                                subscription_dialog.dialog('option', 'position', 'center');
+                                transaction_dialog.dialog('option', 'position', 'center');
                                 $("#subscription_form input[type=submit]").removeAttr("disabled");
                                 hide_form_submit_loader("#subscription_form");
                             },
                             error: function(jqXHR, textStatus, errorThrown){
                                 if(jqXHR.status==0){
-                                    $(".subscription_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
+                                    $(".transaction_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
                                 }else{
-                                    $(".subscription_dialog .error_section").html(ERROR_MESSAGE);
+                                    $(".transaction_dialog .error_section").html(ERROR_MESSAGE);
                                 }
                             },
                             success: function (data) {
@@ -70,7 +70,7 @@ $(document).ready( function() {
                                 } else {
                                     var success_message = "<div class='message_section'><p>We have received your request and will get back to you ASAP. Thank you!.</p></div>";
                                     success_message += CLOSE_DIALOG_LINK;
-                                    subscription_dialog.html(success_message);
+                                    transaction_dialog.html(success_message);
                                 }
                             }
                         });
