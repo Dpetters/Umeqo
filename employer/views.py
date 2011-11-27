@@ -256,7 +256,9 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter.employer)
         data = []
         if form.is_valid():
-            form.save()
+            employer = form.save()
+            # Update index
+            employer.save()
         else:
             data = {'errors': form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
@@ -829,8 +831,7 @@ def employer_subscribe(request):
             student.subscriptions.remove(employer)
         else:
             return HttpResponseBadRequest("Bad request.")
-        student.save()
-        # Force save employer to have Haystack update index
+        # Update index
         employer.save()
         data = {'valid':True,'subscribe':subscribe}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
