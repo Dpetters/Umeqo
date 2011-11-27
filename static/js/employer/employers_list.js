@@ -15,13 +15,13 @@ $(document).ready(function() {
         var query = $('#employers_filter_name').val();
         var industry = $('#employers_filter_industry').val();
         var has_events = $('#employers_filter_has_events').attr('checked');
-        var in_subscriptions = $('#employers_filter_in_subscriptions').attr('checked');
+        var subscribed = $('#employers_filter_in_subscriptions').attr('checked');
         show_form_submit_loader("#employers_list_form");
         $.get(SEARCH_URL, {
             'q': query,
             'i': industry,
-            'h': has_events,
-            's': in_subscriptions
+            'has_public_events': has_events,
+            'subscribed': subscribed
         }, function(data) {
             $('#employers_listings').html(data);
             bindLoadEmployerHandlers();

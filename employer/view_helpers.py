@@ -301,12 +301,13 @@ def combine_and_order_results(filtering_results, search_results, ordering, query
 
 def employer_search_helper(request):
     search_results = SearchQuerySet().models(Employer).filter(visible=True)
-    in_subscriptions = True if request.GET.get('s', 'false')=='true' else False
-    if in_subscriptions:
+
+    if request.GET.get('subscribed', False)=='true':
         search_results = search_results.filter(subscribers=request.user.id)
-    has_events = True if request.GET.get('h', 'false')=='true' else False
-    if has_events:
-        search_results = search_results.filter(has_events=True)
+
+    if request.GET.get('has_public_events', False)=="true":
+        search_results = search_results.filter(has_public_events=True)
+        
     industry_id = request.GET.get('i', None)
     if industry_id:
         search_results = search_results.filter(industries=industry_id)

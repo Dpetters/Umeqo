@@ -11,7 +11,7 @@ from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
-from subscription.models import Subscription, EmployerSubscription
+from subscription.models import EmployerSubscription
 
 
 class Employer(core_mixins.DateTracking): 

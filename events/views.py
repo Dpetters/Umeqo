@@ -178,10 +178,11 @@ def event_page(request, id, slug, extra_context=None):
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 @agreed_to_terms
-@render_to()
+@render_to("event_form.html")
 def event_new(request, form_class=None, extra_context=None):
-    context = {'TEMPLATE':"event_form.html"}
+    context = {}
     if is_recruiter(request.user):
+        employer = request.user.recruiter.employer
         form_class = EventForm
     elif is_campus_org(request.user):
         form_class = CampusOrgEventForm
@@ -194,7 +195,9 @@ def event_new(request, form_class=None, extra_context=None):
             event.save()
             form.save_m2m()
             if is_recruiter(request.user):
-                event.attending_employers.add(request.user.recruiter.employer);
+                event.attending_employers.add(employer);
+                # Update index
+                employer.save();
             notify_about_event(event, "new_event", event.attending_employers.all())
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
