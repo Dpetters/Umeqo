@@ -14,9 +14,6 @@ class EmployerIndex(indexes.RealTimeSearchIndex):
     visible = indexes.BooleanField(model_attr="visible")
 
     def prepare_industries(self, obj):
-        print "INDUSTRIES PREP"
-        print obj
-        print obj.industries.all()
         return [industry.id for industry in obj.industries.all()]
     
     def prepare_has_public_events(self, obj):
