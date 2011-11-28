@@ -32,6 +32,8 @@ urlpatterns += patterns('',
     (r'^events/8/oliver-wyman-full-time-application/$', redirect_to, {'url':"/events/8/oliver-wyman-full-time-application-deadline/"}),
     (r'^events/7/oliver-wyman-financial-services-management-consulting-information-session-consultant-panel/$', redirect_to, {'url':"/events/7/oliver-wyman-financial-services-management-consult/"}),
     (r'^sbc-bbq/$', redirect_to, {'url':'/events/6/'}),
+    (r'^employer/signup/$', redirect_to, {'url':'/subscriptions/'}),
+    
     (r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH, 'login_form':AuthenticationForm}}, 'password_reset'),
     (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_new.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_confirm'),
     (r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_complete'),
