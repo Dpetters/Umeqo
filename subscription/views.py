@@ -68,6 +68,7 @@ def free_subscription_info_dialog(request, extra_context=None):
 @render_to("subscription_list.html")
 def subscription_list(request, extra_context=None):
     context = {}
+    subscription=None
     if request.user.is_authenticated() and is_recruiter(request.user):
         context['user'] = request.user
         employer = request.user.recruiter.employer
