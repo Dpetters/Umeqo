@@ -37,7 +37,7 @@ from employer.view_helpers import get_paginator, employer_search_helper
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
 from student.models import Student
-from subscription.models import EmployerSubscription, Subscription
+from subscription.models import EmployerSubscription
 
 @require_GET
 @agreed_to_terms
@@ -50,7 +50,7 @@ def employer(request):
         except:
             return HttpResponseNotFound("Employer with name %s does not exist" % (request.GET['name']))
     else:
-        return HttpResponseBadRequest("Employer name is missing.")
+        raise Http404
     
 @login_required
 @agreed_to_terms
