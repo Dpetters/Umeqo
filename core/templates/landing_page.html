@@ -94,15 +94,15 @@
                 <div class="col">
                     <p id="working">Featured Event</p>
                     <div id="promotion">
-                      <h2>Getting Jobs in Algorithmic Trading</h2>
+                      <h2>Introduction to Event Driven Trading and Merger Arbitrage</h2>
                       {% if featured_event.employer %}
                       <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
                       {% if featured_event.campus_org %}
                       <a href="{{ featured_event.campus_org.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
                       {% endif %}
-                      <p>You are invited join Traders@MIT, Brennan Hughes and Rob Khoury, founders of World Wide Financial Recruiting Services, LLC in a candid discussion about getting a job in algorithmic trading.</p>
-                      <p>The event starts at 6:00pm on Monday, Oct 17th in 4-159. {% if featured_event %}You can RSVP on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
+                      <p>Join Jefferies’ Event Driven Strategist, Ted Chen (MIT Sloan ’06), for a discussion on event-driven investing and merger arbitrage, followed by a networking session with several representatives.</p>
+                      <p>The event starts at 6:30pm on Wed, Nov 30th in 3-133. {% if featured_event %}You can RSVP on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
