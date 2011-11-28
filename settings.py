@@ -132,6 +132,7 @@ CKEDITOR_CONFIGS = {
             [      'Undo', 'Redo',
               '-', 'Bold', 'Italic', 'Underline',
               '-', 'Link', 'Unlink',
+              '-', 'Maximize',
             ],
             [      'HorizontalRule',
               '-', 'BulletedList', 'NumberedList',
