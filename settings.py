@@ -216,10 +216,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'core.middleware.SetRemoteAddrMiddleware',
-    'core.middleware.LogMiddleware',
+    'middleware.generic.SetRemoteAddrMiddleware',
+    'middleware.log.LogMiddleware',
     'sentry.client.middleware.Sentry404CatchMiddleware',
-    'middleware.http.HttpResponseNotAllowedMiddleware'
+    'middleware.http.HttpResponseNotAllowedMiddleware',
+    'middleware.http.Http403Middleware',
 )
 
 AUTH_PROFILE_MODULE = "student.Student"

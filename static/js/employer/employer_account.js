@@ -190,6 +190,8 @@ $(document).ready( function() {
 
     if (get_parameter_by_name("action")=="new_recruiter_credentials"){
         create_recruiter_credentials_link_click_handler();
+    } else if (get_parameter_by_name("action")=="delete_account"){
+        delete_account_link_click_handler();
     }
 
     $('#delete_account_link').click( delete_account_link_click_handler);

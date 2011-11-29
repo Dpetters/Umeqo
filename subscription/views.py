@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.conf import settings as s
 from django.utils import simplejson
