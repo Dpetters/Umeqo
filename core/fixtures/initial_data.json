@@ -3,9 +3,9 @@
   "pk": 1, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:35", 
+   "last_updated": "2011-11-28 21:20:29", 
    "name": "Managing Credentials", 
-   "display": false, 
+   "display": true, 
    "topic": 9, 
    "audience": 4, 
    "sort_order": "5.000", 
@@ -3897,9 +3897,9 @@
   "pk": 18, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 10:27:52", 
+   "last_updated": "2011-11-28 18:03:56", 
    "click_count": 0, 
-   "question": "Why am I hitting the a page with the Terms of Service when I log in?", 
+   "question": "Why am I hitting a page with the Terms of Service when I log in?", 
    "slug": "why-am-i-hitting-page-terms-service-when-i-log", 
    "topic": 1, 
    "audience": 2, 
