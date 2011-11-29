@@ -3,9 +3,9 @@
   "pk": 1, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-07 14:48:35", 
+   "last_updated": "2011-11-28 21:20:29", 
    "name": "Managing Credentials", 
-   "display": false, 
+   "display": true, 
    "topic": 9, 
    "audience": 4, 
    "sort_order": "5.000", 
@@ -18,9 +18,9 @@
   "pk": 4, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:34", 
+   "last_updated": "2011-11-29 16:16:48", 
    "name": "Creating Events & Deadlines", 
-   "display": false, 
+   "display": true, 
    "topic": 11, 
    "audience": 4, 
    "sort_order": "2.000", 
@@ -117,6 +117,21 @@
    "date_created": "2011-10-07 12:42:31", 
    "slug": "getting-event-subscription", 
    "description": "Learn how you can get free access to Umeqo."
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-11-29 15:52:44", 
+   "name": "Cancelling Events and Deadlines", 
+   "display": false, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "4.000", 
+   "date_created": "2011-11-29 15:52:44", 
+   "slug": "cancelling-events-and-deadlines", 
+   "description": "Learn how to cancel events and deadlines."
   }
  }, 
  {
@@ -3897,9 +3912,9 @@
   "pk": 18, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 10:27:52", 
+   "last_updated": "2011-11-28 18:03:56", 
    "click_count": 0, 
-   "question": "Why am I hitting the a page with the Terms of Service when I log in?", 
+   "question": "Why am I hitting a page with the Terms of Service when I log in?", 
    "slug": "why-am-i-hitting-page-terms-service-when-i-log", 
    "topic": 1, 
    "audience": 2, 
@@ -6564,6 +6579,15 @@
   }
  }, 
  {
+  "pk": 45, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-11-28 21:45:33", 
+   "last_updated": "2011-11-28 21:45:33", 
+   "name": "Internet"
+  }
+ }, 
+ {
   "pk": 27, 
   "model": "core.industry", 
   "fields": {
@@ -6660,6 +6684,15 @@
    "date_created": "2011-07-06 18:44:12", 
    "last_updated": "2011-07-06 18:44:12", 
    "name": "Software Development"
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-11-28 21:45:27", 
+   "last_updated": "2011-11-28 21:45:27", 
+   "name": "Telecommunication"
   }
  }, 
  {
