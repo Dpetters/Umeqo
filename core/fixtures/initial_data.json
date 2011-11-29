@@ -120,6 +120,21 @@
   }
  }, 
  {
+  "pk": 11, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-11-29 15:52:44", 
+   "name": "Cancelling Events and Deadlines", 
+   "display": false, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "4.000", 
+   "date_created": "2011-11-29 15:52:44", 
+   "slug": "cancelling-events-and-deadlines", 
+   "description": "Learn how to cancel events and deadlines."
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "core.tutorial", 
   "fields": {
@@ -6564,6 +6579,15 @@
   }
  }, 
  {
+  "pk": 45, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-11-28 21:45:33", 
+   "last_updated": "2011-11-28 21:45:33", 
+   "name": "Internet"
+  }
+ }, 
+ {
   "pk": 27, 
   "model": "core.industry", 
   "fields": {
@@ -6660,6 +6684,15 @@
    "date_created": "2011-07-06 18:44:12", 
    "last_updated": "2011-07-06 18:44:12", 
    "name": "Software Development"
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-11-28 21:45:27", 
+   "last_updated": "2011-11-28 21:45:27", 
+   "name": "Telecommunication"
   }
  }, 
  {
