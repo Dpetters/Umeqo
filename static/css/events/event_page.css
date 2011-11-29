@@ -109,9 +109,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#888888', endColorstr='#666666',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #888888 0%,#666666 100%); /* W3C */
 }
-#event_admin h1 .dark_button {
+#event_admin h1 a {
     float: right;
     font-size: 12px;
+    margin-left:5px;
     font-weight: normal;
     height: 18px;
     line-height: 20px;

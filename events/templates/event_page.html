@@ -28,6 +28,10 @@
 {% load google_calendarize %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+    {% if is_deadline %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
+    {% endif %}
     {% if user.student %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
     {% endif %}
@@ -73,11 +77,12 @@
 </script>
 <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
 {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/events/event_directions.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+    <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+    <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+    <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_list_export.js"></script>
     {% if campus_org_event %}
     <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
@@ -94,7 +99,12 @@
 <div id="event_page_block" class="simple_block no_top_padding">
     {% if show_admin %}
     <div id="event_admin">
-        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you) {% if can_edit and not is_past %} <a href="{% url event_edit id=event.id %}" class="dark_button">Edit Event</a>{% endif %}</h1>
+        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you)
+            {% if can_edit and not is_past %}
+                <a href="{% url event_cancel %}" data-event-id="{{event.id}}" class="cancel_event_link caution_button">Cancel {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+                <a href="{% url event_edit id=event.id %}" class="dark_button">Edit {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+            {% endif %}
+         </h1>
         <div id="event_admin_side">
             <table id="event_numbers">
                 <tr>
@@ -234,7 +244,7 @@
                 {% endif %}
             {% endif %}
         </div>
-        {% if not is_past and not is_rolling_deadline %}
+        {% if not is_past and not event.is_rolling_deadline %}
         <a target="_blank" title="Add to Google Calendar" class="google-button" href="{{ event|google_calendarize }}">
             <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
         </a>
@@ -242,7 +252,7 @@
     </div>
     <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
     <div id="event_time">
-        {% if is_rolling_deadline %}
+        {% if event.is_rolling_deadline %}
             Rolling deadline
         {% else %}
             {% if event.start_datetime %}

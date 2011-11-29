@@ -1,9 +1,8 @@
-from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseForbidden
+from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseForbidden
-from django.conf import settings as s
 
 from subscription.models import EmployerSubscription
 
@@ -42,10 +41,11 @@ class has_any_subscription(object):
             employer = request.user.recruiter.employer
             try:
                 subscription = employer.employersubscription
-                if not subscription.expired():
-                    return self.orig_func(request, *args, **kwargs)
             except EmployerSubscription.DoesNotExist:
                 pass
+            else:
+                if not subscription.expired():
+                    return self.orig_func(request, *args, **kwargs)
             if request.is_ajax():
                 return HttpResponseForbidden("You must have an annual subscription to do that.")
             return redirect(reverse("subscription_list"))
@@ -60,10 +60,11 @@ class has_annual_subscription(object):
             employer = request.user.recruiter.employer
             try:
                 subscription = employer.employersubscription
+            except EmployerSubscription.DoesNotExist:
+                pass
+            else:
                 if subscription.annual_subscription() and not subscription.expired():
                     return self.orig_func(request, *args, **kwargs)
-            except:
-                pass
             if request.is_ajax():
                 return HttpResponseForbidden("You must have an annual subscription to do that.")
             return redirect(reverse("subscription_list"))
