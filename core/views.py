@@ -343,10 +343,12 @@ def landing_page(request, extra_context = None):
 @render_to()
 def home(request, extra_context=None):
     context = {}
-    page_messages = { 'profile-saved': messages.profile_saved }
-    msg = request.GET.get('msg',None)
+    page_messages = { 'profile-saved': messages.profile_saved,
+                      'event-cancelled':messages.event_cancelled,
+                      'deadline-cancelled':messages.deadline_cancelled }
+    msg = request.GET.get('msg', None)
     if msg:
-        context.update(msg = page_messages[msg])
+        context.update(msg = page_messages.get(msg))
     if request.user.is_authenticated():
         if is_student(request.user):
             if not request.user.student.profile_created:

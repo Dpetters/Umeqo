@@ -1,82 +1,60 @@
 {% extends 'tutorial_base.html' %}
 
 {% block tutorial_title %}
+{% block tutorial_title_tab %}
 Creating Events and Deadlines
+{% endblock %}
 {% endblock %}
 
 {% block instructions %}
-<p class="header"><span class="num">Step 1:</span> From your homepage, begin by searching
-     by keyword or clicking "Browse Students".</p>
-<p>There is also a "Browse Students" link in the left side navigation menu.</p>
-<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/1.png"></a>
+<p class="header"><span class="num">Step 1:</span> From your homepage, begin by clicking on a link or button leading to the new event form.</p>
+<p>There is also a "New Event" link in the left side navigation menu.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/1.png"></a>
 
-<p class="header"><span class="num">Step 2:</span> Click "Show Details" to view a 
-    student's details or click "Show All Details" to see everyone's.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/2.png"></a>
+<p class="header"><span class="num">Step 2:</span> Choose a name, type, and a privacy level for your event or deadline.</p>
+<p>Private events are only visible to students whom you <a href="{% url tutorial slug="sending-invitations" %}">send invitations to</a>. Public events and deadlines are visible to everybody.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/2.png"></a>
 
-<p class="header" id="filter"><span class="num">Step 3:</span> Filter students by a 
-    variety of attributes grouped into four different categories.</p>
-<p>Use this to find students who satisfy a particular requirement, such as speaking a 
-    language or being a graduating senior.</p> 
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/3.png"></a>
+<p class="header" id="filter"><span class="num">Step 3:</span> Decide whether you want students to be able to drop off their resumes without RSVP-ing.</p>
+<p> If the resume drop is enabled, there will be an additional list of students for you to browse through called "<em>Event Name</em> Resume Drop".</p> 
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/3.png"></a>
 
-<p class="header"><span class="num">Step 4:</span> Search students' resumes by 
-    keyword/skills, or search for individuals by first/last name.</p>
-<p>Results will by default be ordered by relevance. However, you can also 
-    <a href="#order_and_num">modify in what order and how many results appear</a>.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/4.png"></a>
+<p class="header"><span class="num">Step 4:</span> Add a map to your event by typing the location and clicking on a matching suggestion.</p>
+<p>If you chose a type of deadline as the event type, then a location is not require and the field will be entirely hidden.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/4.png"></a>
+<p>If none of the suggestions match the location, simply don't select any of them. The only difference is that your event page will not include a map.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/5.png"></a>
 
-<p class="header"><span class="num">Step 5:</span> Star and unstar students for easy 
-    later referral by clicking on the star icon below their name.</p>
-<p>Alternatively, star and unstar multiple students at once by selecting the checkboxes on 
-    the left of their name and selecting a dropdown option under "More Actions". Any student that 
-    you star will also appear starred to other recruiters at your firm. <strong>The student will 
-    never know that you starred him/her</strong>.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/5.png"></a>
+<p class="header"><span class="num">Step 5:</span> Fill in the description for your event or deadline.</p>
+<p>There is no need to mention the intended audience of the event in the description. That can be done in <a href="#intended_audience">step 8</a>.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/6.png"></a>
 
-<p class="header"><span class="num">Step 6:</span> To view starred students, select the 
-    "Starred Students" student under "Choose Student List".</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/6.png"></a>
+<p class="header"><span class="num">Step 6:</span> Look over the existing events when picking a time and date to avoid possible conflicts.</p>
+<p>Ideally your event will not fall in the same timespan as another event that might attract a similar audience.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/7.png"></a>
 
-<p class="header" id="comment"><span class="num">Step 7:</span> Leave comments on 
-    students' profiles for your and your coworkers' later referral.</p>
-<p>Anything that you write will only be visible to you and other recruiters at your firm.
-     The student will never know what you wrote.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/7.png"></a>
+<p class="header" id="comment"><span class="num">Step 7:</span> Select the date and time of your choice.</p>
+<p>Note that the event can't start in the past.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/8.png"></a>
 
-<p class="header"><span class="num">Step 8:</span> Learn about campus orgs and majors by 
-    clicking on the ones that are links.</p>
-<p>The number of campus organizations about which we have info will go up with time.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/8.png"></a>
+<p class="header"><span id="intended_audience" class="num">Step 8:</span> Pick the intended audience for your event by selecting one or more school years.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/9.png"></a>
 
-<p class="header"><span class="num">Step 9:</span> See which students have attended your 
-    events in the past by noting the icon by their name.</p>
-<p>Hovering over the icon will show you which events that student attended and on what date.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/10.png"></a>
+<p class="header"><span class="num">Step 9:</span> If there is important info that everyone who RSVPs should know, put it in the RSVP field.</p>
+<p>When a student RSVPs, the information you include in this field will be displayed to them in the form of a dialog.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/10.png"></a>
 
-<p class="header" id="order_and_num"><span class="num">Step 10:</span> Modify the order 
-    in which and how many results appear.</p>
-<a target="_blank" href="{% url employer_students %}"><img class="no_bottom_margin" src="{{STATIC_URL}}images/tutorials/browsing_students/9.png"></a>
+<p class="header"><span class="num">Step 10:</span> Create the event or deadline by clicking the button at the bottom.</p>
+<p>The students subscribed to your firm for updates will receive an email notifying them of this new event or deadline.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/11.png"></a>
+
 {% endblock %}
 
 {% block things_to_note %}
-<li>If you <a href="#filter">filter by an attribute</a> which a student has not yet 
-    filled out, that student will not appear in the results. e.g. If you filter for 
-    students with an SAT of 2000 or above, any student who hasn't specified his/her SAT 
-    will not appear in the results.</li>
-<li>If you have a free trial subscription, then you will only be able to 
-    <a href="{% url tutorial slug='browsing-attendees-rsvps' %}">search and browse your 
-        events' RSVPs and attendees</a>.</p>
-<li>Results will by default be ordered by relevance. For search, this means relevance 
-    towards your query. For filtering, it means that the most recently updated profiles 
-    will appear at the top.</li>
+<li>Clicking on a location suggestion and thus including a map along with the location allows students to get directions from anywhere they are.</li>
 {% endblock %}
 
 {% block tips_and_tricks %}
-<li>The easiest way to share your observations and notes about students is to 
-    <a href="#comment">comment</a> on their profiles and then {% if user.recruiter %}
-    <a href="{% url employer_account %}?action=new_recruiter_credentials">create credentials</a>
-    {% else %}create credentials{% endif %} for your fellow co-workers. All users from 
-    your firm will see each other's comments and any students that one stars will also 
-    appear starred to everybody else.</li>
+<li>Nothing increases the chances of a student attending like a personal invitation from a recruiter. After creating the event or deadline, make sure to <a href="{% url tutorial slug="sending-invitations" %}">send some invites</a>.</li>
+<li>Check the new event form prior to deciding on a date and time and securing a location for your event to make sure there are no conflicts.</li>
 {% endblock %}
