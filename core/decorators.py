@@ -74,7 +74,7 @@ def is_superuser(user):
 
 def is_campus_org(user):
     return hasattr(user, "campusorg")
-    
+
 def is_student(user):
     return hasattr(user, "student")
     

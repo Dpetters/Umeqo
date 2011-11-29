@@ -25,7 +25,7 @@ from core import messages
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, get_audiences
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
@@ -266,12 +266,19 @@ def faq(request, extra_context = None):
         return context
 
 @render_to()
+@login_required
 def tutorial(request, slug, extra_context = None):
     tutorial = get_object_or_404(Tutorial, slug=slug)
+    audience = tutorial.audience
+    if audience not in get_audiences(request.user):
+        return HttpResponseForbidden()
     context = {
        'tutorial':tutorial,
        'TEMPLATE': 'tutorials/%s.html' % tutorial.slug.replace("-", "_")
     }
+    if is_recruiter(request.user):
+        context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)
+    
     context.update(extra_context or {})
     return context
 

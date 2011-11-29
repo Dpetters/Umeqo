@@ -63,17 +63,27 @@ Help |
                 </div>
                 <div class="tutorial_column">
                     <h3>Account Management</h3>
-                    {% for tutorial in account_management_tutorials %}
-                        <p><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></p>
-                    {% empty %}
+                    {% if account_management_tutorials %}
+                        <ul class="tutorial_list">
+                        {% for tutorial in account_management_tutorials %}
+                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
                         <p>Coming Soon</p>
-                    {% endfor %}
+                    {% endif %}
                     <h3>Subscriptions</h3>
-                    {% for tutorial in subscription_tutorials %}
-                        <p><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></p>
-                    {% empty %}
+                    {% if subscription_tutorials %}
+                        <ul class="tutorial_list">
+                        {% for tutorial in subscription_tutorials %}
+                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
                         <p>Coming Soon</p>
-                    {% endfor %}
+                    {% endif %}
+                    
+
                 </div>
             {% endif %}
             
@@ -83,6 +93,9 @@ Help |
             
             {% if user.campusorg %}
                 <p>Coming Soon</p>
+            {% endif %}
+            {% if user.is_staff %}
+                <p>You are logged in as an admin. Please login as a regular user to see the tutorials.</p>
             {% endif %}
         {% endif %}
     </div>
