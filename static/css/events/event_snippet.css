@@ -13,15 +13,6 @@
     position: relative;
     min-height: 30px;
 }
-/* THIS IS IMPORTANT SO THAT .edit DOESN'T OVERFLOW INTO NEXT <li> IF IT IS TALLER THAN .details
-.event_list li::after {
-    clear: both;
-    content: ".";
-    height: 0px;
-    visibility: hidden;
-    display: block;
-}
-*/
 .event_list .name {
     font-size: 16px;
 }
@@ -85,14 +76,6 @@
 .event_list .edit a:hover {
     background-color: #EEE;
 }
-
 .event_list .outdated {
     opacity:.5;
-}
-#delete-event-dialog {
-    padding: 20px 5px;
-    text-align: center;
-}
-#delete-event-dialog p {
-    margin-bottom: 10px;
 }

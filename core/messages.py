@@ -10,6 +10,9 @@ search_filter_find = "Umeqo presents you with not only a student's resume, but a
 no_students_selected = "No students selected."
 wait_until_resume_book_is_ready = "Please wait until the resume book is ready."
 
+event_cancelled = "Your event has been successfully cancelled."
+deadline_cancelled = "Your deadline has been successfully cancelled."
+
 # Account Settinggs
 password_changed = 'Password changed successfully.'
 

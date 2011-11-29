@@ -105,7 +105,13 @@ class Event(core_mixins.DateCreatedTracking):
         if not self.slug or self.slug==self.slug_default:
             self.slug = um_slugify(self.name)
         super(Event, self).save()
-                
+    
+    def is_deadline(self):
+        return self.is_rolling_deadline() or self.type == EventType.objects.get(name='Hard Deadline')
+    
+    def is_rolling_deadline(self):
+        return self.type == EventType.objects.get(name="Rolling Deadline")
+
 @receiver(signals.post_save, sender=Event)
 def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
     if not created and not instance.is_active and not raw:
