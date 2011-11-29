@@ -393,6 +393,12 @@ a:hover {
     height: 0;
     visibility: hidden;
 }
+.caution,  .ui-widget-content .caution {
+    color:#990000 !important;
+}
+.caution:hover, .ui-widget-content .caution:hover{
+    color:#830000 !important;
+}
 .hid {
     display: none !important;
 }

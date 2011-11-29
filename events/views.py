@@ -131,8 +131,6 @@ def event_page(request, id, slug, extra_context=None):
     }
     if event.end_datetime:
         context['is_past'] = event.end_datetime < datetime.now()
-    else:
-        context['is_rolling_deadline'] = True
         
     if len(event.audience.all()) > 0:
         context['audience'] = event.audience.all()
@@ -194,6 +192,14 @@ def event_new(request, form_class=None, extra_context=None):
             event.owner = request.user
             event.save()
             form.save_m2m()
+            print event.type
+            rolling_deadline = EventType.objects.get(name="Rolling Deadline")
+            print rolling_deadline
+            print event.type == rolling_deadline
+            print datetime.now() + timedelta(weeks=1000)
+            if event.type == EventType.objects.get(name="Rolling Deadline"):
+                event.end_datetime = datetime.now() + timedelta(weeks=1000)
+                event.save()
             if is_recruiter(request.user):
                 event.attending_employers.add(employer);
                 # Update index
@@ -424,34 +430,82 @@ def event_edit(request, id=None, extra_context=None):
 @agreed_to_terms
 @has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
-def event_delete(request, id, extra_context = None):
+def event_end(request, id, extra_context = None):
     if request.is_ajax():
         try:
             event = Event.objects.get(pk=id)
-            if is_recruiter(event.owner):
-                if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-                    return HttpResponseForbidden('You are not allowed to delete this event.')                
-            elif is_campus_org(event.owner):
-                if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-                    return HttpResponseForbidden('You are not allowed to delete this event.') 
-            event.is_active = False
-
-            # Notify RSVPS.
-            rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
-            employers = event.attending_employers.all()
-            has_word = "has" if len(employers)==1 else "have"
-            employer_names = english_join(map(lambda n: n.name, employers))
-            notification.send(rsvps, 'cancelled_event', {
-                'employer_names': employer_names,
-                'has_word': has_word,
-                'event': event
-            })
-
-            event.save()
-            return HttpResponse()
         except Event.DoesNotExist:
             return HttpResponseNotFound("Event with id %s not found." % id)
+        else:
+            if not event.is_rolling_deadline():
+                return HttpResponseForbidden('You cannot end anything other than a rolling deadline.')
+            if is_recruiter(event.owner):
+                if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
+                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+            elif is_campus_org(event.owner):
+                if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
+                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+            event.end_date = datetime.now()
+            event.save()
+            return HttpResponse()
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+
+@login_required
+@agreed_to_terms
+@has_annual_subscription
+@user_passes_test(is_campus_org_or_recruiter)
+@render_to("event_cancel_dialog.html")
+def event_cancel(request, extra_context = None):
+    if request.is_ajax():
+        if request.method == "POST":
+            event_id = request.POST.get("event_id")
+            if not event_id:
+                return HttpResponseBadRequest("Request is missing event id.")
+            try:
+                event = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                return HttpResponseNotFound("Event with id %s not found." % event_id)
+            else:
+                if is_recruiter(event.owner):
+                    if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
+                        return HttpResponseForbidden('You are not allowed to delete this event.')
+                elif is_campus_org(event.owner):
+                    if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
+                        return HttpResponseForbidden('You are not allowed to delete this event.')
+                event.is_active = False
+    
+                # Notify RSVPS.
+                rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
+                employers = event.attending_employers.all()
+                has_word = "has" if len(employers)==1 else "have"
+                employer_names = english_join(map(lambda n: n.name, employers))
+                notification.send(rsvps, 'cancelled_event', {
+                    'employer_names': employer_names,
+                    'has_word': has_word,
+                    'event': event
+                })
+                
+                event.save()
+                
+                data = {}
+                if event.is_deadline():
+                    data['type'] = "deadline"
+                else:
+                    data['type'] = "event"
+                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            event_id = request.GET.get("event_id")
+            if not event_id:
+                return HttpResponseBadRequest("Request is missing event id.")
+            try:
+                event = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                return HttpResponseNotFound("Event with id %s not found." % event_id)
+            context = {'event':event}
+            context.update(extra_context or {})
+            return context
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
 
 
 @login_required

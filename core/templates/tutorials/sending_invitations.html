@@ -1,0 +1,55 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Sending Invitations
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, click on the event whose RSVPs and attendees you wish to browse.</p>
+<p>All of your upcoming and past events and deadlines are at the bottom, with past ones 
+    dimmed out.</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/1.png">
+
+<p class="header"><span class="num">Step 2:</span> You can either click a "View All" link
+     or click on the students one by one.</p>
+<p>Browse RSVPs....</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/2.png">
+<p>...and Attendees.</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/3.png">
+<p>Note that some students appear grayed out. These students do not yet have Umeqo
+    accounts and thus are not filterable/searchable. However, you can always <a href="#export">export their
+    info</a>.</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/5.png">
+
+<p class="header" id="filter"><span class="num">Step 3:</span> Switch to other event student
+    lists quickly using the "Choose Student List" section.</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/4.png">
+
+<p class="header" id="export"><span class="num">Step 4:</span> Instead of browsing through
+    an event student list, you can also export it.</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/6.png">
+<p>Simply select between a text and excel-compatible CSV format and decide whether you 
+    want to email or download the file.</p>
+<img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/7.png">
+
+<p class="header"><span class="num">Step 5:</span> Once you have jumped to the event list you want, you can start <a href="{% url tutorial slug='browsing-students' %}">browsing the students</a>.</p>
+{% endblock %}
+
+{% block things_to_note %}
+<li>If you <a href="#filter">filter by an attribute</a> which a student has not yet 
+    filled out, that student will not appear in the results. e.g. If you filter for 
+    students with an SAT of 2000 or above, any student who hasn't specified his/her SAT 
+    will not appear in the results.</li>
+<li>Not every student has a Umeqo account, so the attendee count may be higher than the 
+    number of results. Those who are not have already received an email telling them that 
+    {% if user.recruiter %}{{user.recruiter.employer}}{% else %}you{% endif %} can only 
+    see their name and email until they register.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>The easiest way to share your observations and notes about students is to <a href="{% url employer_students %}#comment">comment</a> on their profiles and then {% if user.recruiter %}
+    <a href="{% url employer_account %}?action=new_recruiter_credentials">create credentials</a>
+    {% else %}create credentials{% endif %} for your fellow co-workers. 
+    All users from your firm will see each other's comments and any students that one 
+    stars will also appear starred to everybody else.</li>
+{% endblock %}

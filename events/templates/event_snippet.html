@@ -24,7 +24,7 @@
     {% endif %}
     
     <div class="details">
-        {% if event.end_datetime %}
+        {% if not event.is_rolling_deadline %}
             <div class="datetime">
                 {% if event.start_datetime %}
                 <span class="start"><strong>{{event.start_datetime|date:"D F j"}}</strong>, {{event.start_datetime|date:"Y"}}
