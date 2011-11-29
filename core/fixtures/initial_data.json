@@ -18,9 +18,9 @@
   "pk": 4, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:34", 
+   "last_updated": "2011-11-29 16:16:48", 
    "name": "Creating Events & Deadlines", 
-   "display": false, 
+   "display": true, 
    "topic": 11, 
    "audience": 4, 
    "sort_order": "2.000", 
