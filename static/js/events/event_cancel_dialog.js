@@ -56,7 +56,7 @@ $(document).ready( function () {
                         },
                         success: function (data){
                             event_cancel_dialog.remove();
-                            if (li == []){
+                            if (li != []){
                                 li.slideUp(function(){
                                     li.remove();
                                     if (ul.children().length == 0)
