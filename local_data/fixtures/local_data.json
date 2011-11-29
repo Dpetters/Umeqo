@@ -123,64 +123,6 @@
   }
  }, 
  {
-  "pk": 12, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 0, 
-   "start_datetime": "2011-11-29 17:00:00", 
-   "audience": [], 
-   "attending_employers": [
-    6
-   ], 
-   "name": "Fortune 500 Panel", 
-   "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tJoin us!</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.092923220000003, 
-   "latitude": 42.358714519999999, 
-   "short_slug": null, 
-   "is_drop": false, 
-   "end_datetime": "2011-11-29 18:30:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-11-28 23:41:43", 
-   "type": 3, 
-   "slug": "fortune-500-panel", 
-   "location": "5-232"
-  }
- }, 
- {
-  "pk": 15, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
-   "attending_employers": [
-    6
-   ], 
-   "name": "Test Rolling Deadline", 
-   "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tdwqdwq</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
-   "is_drop": false, 
-   "end_datetime": null, 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-11-29 01:36:03", 
-   "type": 10, 
-   "slug": "test-rolling-deadline", 
-   "location": ""
-  }
- }, 
- {
   "pk": 3, 
   "model": "events.rsvp", 
   "fields": {
@@ -1605,7 +1547,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-11-27 17:31:37", 
+   "last_login": "2011-11-29 16:04:58", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7f354$b61b46da9f58f28b33c69de7e825fe9abfd73f92", 
@@ -1641,7 +1583,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-11-28 21:58:10", 
+   "last_login": "2011-11-29 16:05:12", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$e7c6e$c634f9c3d9354f7e11837f1363ce4040c42f8278", 
@@ -1803,7 +1745,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-22 04:43:16", 
+   "last_login": "2011-11-29 15:57:58", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -1961,10 +1903,10 @@
   "pk": 15, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": false, 
    "user": 16, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2011-11-29 15:59:31", 
    "last_password_change_date": null
   }
  }, 
@@ -2177,6 +2119,16 @@
    "date_created": "2011-11-28 21:58:10", 
    "session_key": "2c4d3a337ef059fbc1c267048c70f01b", 
    "last_updated": "2011-11-28 21:58:10", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-11-29 16:05:12", 
+   "session_key": "bbda151cdac2cb78e981d27e785ea6a6", 
+   "last_updated": "2011-11-29 16:05:12", 
    "user": 3
   }
  }, 
