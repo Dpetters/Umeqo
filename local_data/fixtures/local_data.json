@@ -1547,7 +1547,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-11-29 16:04:58", 
+   "last_login": "2011-11-29 17:14:17", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7f354$b61b46da9f58f28b33c69de7e825fe9abfd73f92", 
@@ -1583,7 +1583,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-11-29 16:05:12", 
+   "last_login": "2011-11-29 17:14:03", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$e7c6e$c634f9c3d9354f7e11837f1363ce4040c42f8278", 
@@ -2129,6 +2129,16 @@
    "date_created": "2011-11-29 16:05:12", 
    "session_key": "bbda151cdac2cb78e981d27e785ea6a6", 
    "last_updated": "2011-11-29 16:05:12", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-11-29 17:14:03", 
+   "session_key": "a98b6b364a87347dba84257acd21dc0c", 
+   "last_updated": "2011-11-29 17:14:03", 
    "user": 3
   }
  }, 
