@@ -3816,8 +3816,8 @@
   "pk": 14, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 20:28:04", 
-   "click_count": 0, 
+   "last_updated": "2011-11-29 19:31:58", 
+   "click_count": 1, 
    "question": "I can't remember my login email.", 
    "slug": "i-cant-remember-my-log-email", 
    "topic": 9, 
