@@ -495,12 +495,12 @@ def employer_students(request, extra_context=None):
         context['page'] = current_paginator.page(request.POST['page'])
         context['current_student_list'] = request.POST['student_list']
         
-        """
+
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-        """
+
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True
