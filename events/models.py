@@ -82,7 +82,7 @@ class Event(core_mixins.DateCreatedTracking):
     short_slug = models.SlugField(blank=True, null=True)
     
     is_public = models.BooleanField()
-    is_active = models.BooleanField(default=True, editable=False)
+    is_active = models.BooleanField(default=True)
     is_drop = models.BooleanField()
     
     # manager which returns only active events
