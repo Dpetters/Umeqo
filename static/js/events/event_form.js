@@ -661,4 +661,9 @@ $(document).ready(function() {
         }
         e.preventDefault();
     });
+    $('#id_name').placeholder();
+    $('#id_location').placeholder();
+    $("#id_rsvp_message").placeholder();
+    $("#event_scheduler tr:nth-child(odd) td").css("border-color", "#DDD #EEE #EEE");
+    $("#event_scheduler tr:nth-child(even) td").css("border-color", "#EEE #EEE #DDD");
 });

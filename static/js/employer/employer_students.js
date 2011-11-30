@@ -521,7 +521,8 @@ function initiate_ajax_call() {
             // Results Menu Styles
             $('.dropdown_menu_button ul').hide();
 
-
+            $(".student_comment").placeholder();
+    
             // Bring the opacity back to normal and hide the ajax loader
             $("#results_block_content").css('opacity', 1);
             $("#results_block_info_section").css('display', 'none');
@@ -636,7 +637,7 @@ $(document).ready(function () {
     $('#results_menu_more_actions').live('click', function () { $('#results_menu_more_actions ul').toggle(); });
     $('#results_menu_checkbox_menu_button').live('click', function () { $('#results_menu_checkbox_menu_button ul').toggle(); });
     $('.student_event_attendance').live('hover', handle_student_event_attendance_hover);
-
+    
     // Make the filtering block an accordion
     a = $("#filtering_accordion").accordion({
         autoHeight: false,
@@ -837,4 +838,6 @@ $(document).ready(function () {
         $('#invite_text').focus().select();
         e.preventDefault();
     });
+    
+    $("#query_field").placeholder();
 });

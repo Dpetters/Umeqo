@@ -1,6 +1,6 @@
 <div class="dialog_content_wrapper">
     <div>
-        <div id="resume_book_summary" class="clearfix">
+        <div id="resume_book_summary">
             <div id="resume_book_contents_div">
                 <p id="resume_book_contents_header">Contents</p>
                 <a id="show_current_resume_book_contents_dialog" {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscription_list %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.all|length}} students</a>
@@ -9,6 +9,7 @@
                  <p id="resume_book_status_header">Status</p>
                  <p id="resume_book_status" class="error">Being Created</p>
             </div>
+            <div class="clearfix"></div>
         </div>
     </div>
     <form id="deliver_resume_book_form" method='POST' action="{% url employer_resume_book_current_email %}">

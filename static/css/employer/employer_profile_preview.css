@@ -21,6 +21,7 @@ div .employer_name {
 }
 #logo_and_buttons{
     text-align: center;
+    width:150px;
 }
 #employer_subscribe, #employer_unsubscribe {
     margin: 5px 0;
