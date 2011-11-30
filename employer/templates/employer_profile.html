@@ -38,7 +38,7 @@
 {% block profile_pages %}
 <li id="pg1">
     <a href='#' class="ui-accordion-link"></a>
-    <div class="main_block clearfix">
+    <div class="main_block">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
             <span class="main_block_header_title">Edit Profile</span>
@@ -64,12 +64,12 @@
                 </td>
             </tr>
             <tr>
-                <th>{{form.slug.label_tag}}</th>
+                <th id="short_url_label_cell">{{form.slug.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
                     {{form.slug}} (umeqo.com/short_url/)
                 </td>
-                <th>{{form.offered_job_types.label_tag}}</th>
+                <th id="offered_job_types_label_cell">{{form.offered_job_types.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
                     {{form.offered_job_types}}
@@ -112,11 +112,12 @@
                 </td>
             </tr>
         </table>
+        <div class="clearfix"></div>
     </div>
 </li>
 <li id="pg2">
     <a href='#' class="ui-accordion-link"></a>
-    <div class="main_block clearfix">
+    <div class="main_block">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
             <span class="main_block_header_title">Edit Profile</span>
@@ -172,7 +173,7 @@
                 </td>                
             </tr>
         </table>
-
+        <div class="clearfix"></div>
     </div>
 </li>
 {% endblock %}

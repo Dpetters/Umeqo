@@ -75,8 +75,9 @@
     var IS_DROP = false;
     {% endif %}
 </script>
-<script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
+
 {% compress js %}
+    <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>

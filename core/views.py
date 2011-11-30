@@ -406,7 +406,6 @@ def home(request, extra_context=None):
     context.update(extra_context or {})
     return context
 
-
 def check_website(request):
     if request.is_ajax():
         url_validator =  URLValidator(verify_exists = False)

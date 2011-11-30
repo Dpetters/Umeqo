@@ -20,8 +20,7 @@
     height:17px;
 }
 #deliver_resume_book_form .form_table{
-    margin-left:auto;
-    margin-right:auto;
+    width:100%;
 }
 #deliver_resume_book_form input[type=submit]{
     width:72px;

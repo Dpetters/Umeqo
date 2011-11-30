@@ -130,6 +130,7 @@ label[for=event_scheduler_day_text]{
     border-top: 1px solid #808080;
 }
 #event_scheduler {
+    border-top:1px solid #EEE;
     height: 390px;
     overflow-y: scroll;
     position: relative;
@@ -161,15 +162,9 @@ label[for=event_scheduler_day_text]{
 #event_scheduler td {
     height: 15px;
 }
-#event_scheduler tr:nth-child(odd) td {
+#event_scheduler tr td {
     border-style: solid;
     border-width: 1px;
-    border-color: #DDD #EEE #EEE;
-}
-#event_scheduler tr:nth-child(even) td {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #EEE #EEE #DDD;
 }
 .event_block {
     position: absolute;

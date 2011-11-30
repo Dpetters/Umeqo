@@ -8,10 +8,10 @@
     padding:10px 20px 20px;
 }
 #profile_form input[type="text"]{
-    width:250px;
+    width:230px;
 }  
 #profile_form select{
-    width:260px;
+    width:240px;
 }
 #profile_form .form_table th{
     padding-left:10px;
@@ -20,7 +20,7 @@
     margin-left:2px;
 }
 #profile_form #id_slug{
-    width:100px;
+    width:80px;
 }
 #profile_form #id_description{
     margin-top:3px;

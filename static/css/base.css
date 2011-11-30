@@ -82,7 +82,7 @@ label: not(.required) {
     background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* W3C */
     text-shadow: 0 1px 0 #FFF;
     text-align: center;
@@ -138,6 +138,7 @@ label: not(.required) {
     margin-top: 6px;
     margin-left: 8px;
     height: 52px;
+    position:relative;
 }
 #navigation_block {
     text-shadow: 0 -1px 0 black;
@@ -172,7 +173,7 @@ label: not(.required) {
 #navigation_block a:hover {
     background: transparent;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#19FFFFFF,endColorstr=#19FFFFFF)"; /* IE8 */
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19FFFFFF,endColorstr=#19FFFFFF);   /* IE6 & 7 */
+        /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19FFFFFF,endColorstr=#19FFFFFF);   /* IE6 & 7 */
           zoom: 1;
     background-color: rgba(255,255,255,0.1);
 }
@@ -212,6 +213,8 @@ label: not(.required) {
     float: left;
 }
 #footer_area {
+    margin-top:10px;
+    clear:both;
     line-height: 18px;
     padding-top: 5px;
     border-top: 1px solid #c9c9c9;
@@ -345,6 +348,9 @@ a {
 a:hover {
     color: #557389;
 }
+.clearfix {
+    clear: both;
+}
 .nounderline {
     text-decoration: none;
 }
@@ -385,13 +391,6 @@ a:hover {
 #dialog_long_load_message {
     margin-bottom: 10px;
     min-height: 17px;
-}
-.clearfix::after {
-    clear: both;
-    content: '';
-    display: block;
-    height: 0;
-    visibility: hidden;
 }
 .caution,  .ui-widget-content .caution {
     color:#990000 !important;

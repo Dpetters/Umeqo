@@ -1,10 +1,6 @@
 #fb-like{
     height:42px;
 }
-input[type="password"],
-input[type="text"] {
-    line-height:30px;
-}
 #login_module{
     margin-bottom:25px;
 }
