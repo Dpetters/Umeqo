@@ -475,8 +475,13 @@ function initiate_ajax_call() {
     if (xhr && xhr.readystate != 4) { xhr.abort(); }
     $("#message_area").html("");
     $("#results_block_content").css('opacity', 0.25);
+    $("#results_block_content").css('zoom', 1);
+    $("#results_block_content").css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=25)');
+    $("#results_block_content").css('-ms-filter', '"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)"');
     $("#results_block_info_section").css('display', 'block');
     $("#results_block_info").html(LONG_HORIZONTAL_AJAX_LOADER);
+    $('.student_event_attendance').die('hover');
+    
     var error_dialog_timeout = setTimeout(function () {
         $("#results_block_info").prepend(two_line_long_load_message);
     }, LOAD_WAIT_TIME);
@@ -513,6 +518,8 @@ function initiate_ajax_call() {
         },
         success: function (data) {
             $('#results_block_content').html(data);
+            
+            $('.student_event_attendance').live('hover', handle_student_event_attendance_hover);
             
             $(".student_comment").autoResize({
                 animateDuration : 0,
@@ -636,7 +643,6 @@ $(document).ready(function () {
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
     $('#results_menu_more_actions').live('click', function () { $('#results_menu_more_actions ul').toggle(); });
     $('#results_menu_checkbox_menu_button').live('click', function () { $('#results_menu_checkbox_menu_button ul').toggle(); });
-    $('.student_event_attendance').live('hover', handle_student_event_attendance_hover);
     
     // Make the filtering block an accordion
     a = $("#filtering_accordion").accordion({

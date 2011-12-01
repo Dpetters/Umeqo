@@ -59,11 +59,11 @@
 .student_name {
     font-size: 20px;
     margin-left: 7px;
-    position:relative;
+    background:#FFF;
 }
 .student_year {
     font-size: 20px;
-    position:relative;
+    background:#FFF;
 }
 .student_event_attendance_span{
     position: relative;
@@ -71,13 +71,14 @@
 }
 .student_resume_link {
     float: right;
+    background:#FFF;
 }
 .resume_book_current_toggle_student, .student_star{
     min-width: 16px;
     margin-left: 7px;
     display:inline-block;
     min-width: 14px;
-    position: relative;
+    background:#FFF;
 }
 .resume_book_capacity_reached{
     opacity: .3;
@@ -92,17 +93,16 @@
 }
 .student_major {
     margin-left: 7px;
-    position:relative;
+    background:#FFF;
 }
 .student_invite_to_event_span, .student_invite_to_event_span_disabled {
     float: right;
-    position: relative;
-    bottom: 1px;
+    line-height:19px;
 }
 .student_gpa {
     float: right;
     margin-right: 78px;
-    position:relative;
+    background:#FFF;
 }
 .no_detailed_info{
     text-align: center;
@@ -113,13 +113,13 @@
     font-size: 12px;
     margin-left: 7px;
     padding: 2px 0 0 5px;
-    position: relative;
-    top: 2px;
     width: 451px;
+    margin-top:2px;
     height: 17px;
 }
 .student_toggle_detailed_info_link {
     float: right;
+    background:#FFF;
 }
 .student_detailed_info {
     display: none;
@@ -154,6 +154,7 @@
 }
 .student_hide_details_link {
     margin-top: 2px;
+    background:#FFF;
     clear: right;
     text-align: center;
 }
