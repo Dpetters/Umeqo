@@ -3,8 +3,8 @@
   "pk": 14, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-12-01 15:25:41", 
-   "name": "Changing Your Password Tutorial", 
+   "last_updated": "2011-12-01 18:20:19", 
+   "name": "Changing Your Password", 
    "display": false, 
    "topic": 9, 
    "audience": 2, 
@@ -108,15 +108,15 @@
   "pk": 15, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-12-01 18:12:29", 
-   "name": "Re-Deliver Past Resume Books", 
+   "last_updated": "2011-12-01 18:21:21", 
+   "name": "Re-Delivering Past Resume Books", 
    "display": false, 
    "topic": 13, 
    "audience": 4, 
    "sort_order": "3.000", 
    "date_created": "2011-12-01 18:11:21", 
-   "slug": "re-deliver-past-resume-books", 
-   "description": "Learn how to re-deliver past resume books."
+   "slug": "re-delivering-past-resume-books", 
+   "description": "Learn how to re-delivering past resume books."
   }
  }, 
  {
