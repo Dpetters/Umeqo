@@ -182,20 +182,20 @@ $(document).ready( function () {
                 $(this).removeClass('um-active');
             }
     });
-    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
+    $(".button, .dark_button, .caution_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
         if(!$(this).hasClass('disabled')){
             $(this).addClass("um-focus");
         }
     });
-    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
+    $(".button, .dark_button, .caution_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
         $(this).removeClass("um-focus");
     });
-    $('.button, .menu_button, .dark_button, #notifications_count').live('mousedown', function() {
+    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count').live('mousedown', function() {
         if(!$(this).hasClass('disabled')){
             $(this).addClass('um-active');
         }
     });
-    $('.button, .menu_button, .dark_button, #notifications_count').live('mouseup', function(){
+    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count').live('mouseup', function(){
         if ($(this).hasClass('um-active') || $(this).hasClass('disabled'))
             $(this).removeClass('um-active');
     });

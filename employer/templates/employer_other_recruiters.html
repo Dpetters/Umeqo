@@ -1,4 +1,4 @@
-<ul id="employer_other_recruiters">
+<ul class="{% if not sa %}must_be_subscribed_annually {% endif %}" id="employer_other_recruiters">
 {% for recruiter in other_recruiters %}
     <li class="{% cycle 'even' 'odd' %}">
         <span class="recruiter_info">{{recruiter.user.first_name}} {{recruiter.user.last_name}} ({{recruiter.user.email}})</span>

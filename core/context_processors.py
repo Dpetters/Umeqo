@@ -1,5 +1,7 @@
 from django.conf import settings
 
+from core.decorators import is_recruiter
+
 def next(request):
     return {
         'login_next': request.GET.get('next', '/')
@@ -19,3 +21,11 @@ def load_wait_time(request):
     return {
         'load_wait_time':settings.LOAD_WAIT_TIME
     }
+    
+def employer_subscription(request):
+    if is_recruiter(request.user):
+        return {
+        'sa': request.user.recruiter.employer.subscribed_annually,
+        'subs':request.user.recruiter.employer.subscribed
+        }
+    return {}

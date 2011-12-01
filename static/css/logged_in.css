@@ -3,6 +3,10 @@
     background-color: rgba(255,255,255,0.3);
 }
 .must_be_subscribed_annually, .must_be_subscribed {
+    background: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    zoom: 1;
     opacity:.5;
 }
 .responses .event_rsvp {

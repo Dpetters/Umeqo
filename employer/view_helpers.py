@@ -165,7 +165,13 @@ def get_cached_search_results(request):
     cache.set('search_results', current_search_results)
     return filtering, current_search_results
 
-
+def get_students_in_resume_book(recruiter):
+    try:
+        resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
+    except ResumeBook.DoesNotExist:
+        resume_book = ResumeBook.objects.create(recruiter = recruiter)
+    return resume_book.students.visible()
+        
 def filter_students(recruiter,
                     student_list=None,
                     student_list_id=None,
@@ -190,7 +196,7 @@ def filter_students(recruiter,
         if recruiter.employer.subscribed_annually():
             students = Student.objects.visible()
         else:
-            students = []
+            students = get_students_in_resume_book(recruiter)
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]: # Starred Students
         students = recruiter.employer.starred_students.visible()
     elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]: # Students In Current Resume Book
