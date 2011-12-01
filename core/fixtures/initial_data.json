@@ -105,6 +105,21 @@
   }
  }, 
  {
+  "pk": 15, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 18:12:29", 
+   "name": "Re-Deliver Past Resume Books", 
+   "display": false, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "3.000", 
+   "date_created": "2011-12-01 18:11:21", 
+   "slug": "re-deliver-past-resume-books", 
+   "description": "Learn how to re-deliver past resume books."
+  }
+ }, 
+ {
   "pk": 7, 
   "model": "core.tutorial", 
   "fields": {
@@ -132,21 +147,6 @@
    "date_created": "2011-10-07 12:43:04", 
    "slug": "getting-annual-subscription", 
    "description": "Learn the details of the annual subscription program."
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-10-29 21:45:59", 
-   "name": "Getting an Event Subscription", 
-   "display": false, 
-   "topic": 10, 
-   "audience": 4, 
-   "sort_order": "8.000", 
-   "date_created": "2011-10-07 12:42:31", 
-   "slug": "getting-event-subscription", 
-   "description": "Learn how you can get free access to Umeqo."
   }
  }, 
  {
