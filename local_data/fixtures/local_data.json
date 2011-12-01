@@ -470,9 +470,9 @@
   "model": "employer.recruiter", 
   "fields": {
    "date_created": "2011-08-27 16:18:23", 
-   "last_updated": "2011-08-27 16:18:23", 
+   "last_updated": "2011-11-30 16:28:50", 
    "user": 16, 
-   "employer": 5
+   "employer": 6
   }
  }, 
  {
@@ -1547,7 +1547,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-11-29 17:14:17", 
+   "last_login": "2011-11-30 16:28:18", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7f354$b61b46da9f58f28b33c69de7e825fe9abfd73f92", 
@@ -1745,7 +1745,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-11-30 01:28:35", 
+   "last_login": "2011-11-30 16:29:05", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -2149,6 +2149,16 @@
    "date_created": "2011-11-30 01:28:35", 
    "session_key": "5b970f3a0867f49172326119d094f40d", 
    "last_updated": "2011-11-30 01:28:35", 
+   "user": 16
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-11-30 16:29:05", 
+   "session_key": "9ebce6d49287cb1322fb62b2a308a462", 
+   "last_updated": "2011-11-30 16:29:05", 
    "user": 16
   }
  }, 
