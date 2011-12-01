@@ -1,0 +1,60 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+{% block tutorial_title_tab %}
+Cancelling Upcoming Events & Deadlines
+{% endblock %}
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, navigate to the upcoming event or deadline that you wish to cancel.</p>
+<p>All of the upcoming events are under the "Upcoming" header in the "Your Events and Deadlines" block.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Choose a name, type, and a privacy level for your event or deadline.</p>
+<p>Private events are only visible to students whom you <a href="{% url tutorial slug="sending-invitations" %}">send invitations to</a>. Public events and deadlines are visible to everybody.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/2.png"></a>
+
+<p class="header" id="filter"><span class="num">Step 3:</span> Decide whether you want students to be able to drop off their resumes without RSVP-ing.</p>
+<p> If the resume drop is enabled, there will be an additional list of students for you to browse through called "<em>Event Name</em> Resume Drop".</p> 
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/3.png"></a>
+
+<p class="header"><span class="num">Step 4:</span> Add a map to your event by typing the location and clicking on a matching suggestion.</p>
+<p>If you chose a type of deadline as the event type, then a location is not require and the field will be entirely hidden.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/4.png"></a>
+<p>If none of the suggestions match the location, simply don't select any of them. The only difference is that your event page will not include a map.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/5.png"></a>
+
+<p class="header"><span class="num">Step 5:</span> Fill in the description for your event or deadline.</p>
+<p>There is no need to mention the intended audience of the event in the description. That can be done in <a href="#intended_audience">step 8</a>.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/6.png"></a>
+
+<p class="header"><span class="num">Step 6:</span> Look over the existing events when picking a time and date to avoid possible conflicts.</p>
+<p>Ideally your event will not fall in the same timespan as another event that might attract a similar audience.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/7.png"></a>
+
+<p class="header" id="comment"><span class="num">Step 7:</span> Select the date and time of your choice.</p>
+<p>Note that the event can't start in the past.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/8.png"></a>
+
+<p class="header"><span id="intended_audience" class="num">Step 8:</span> Pick the intended audience for your event by selecting one or more school years.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/9.png"></a>
+
+<p class="header"><span class="num">Step 9:</span> If there is important info that everyone who RSVPs should know, put it in the RSVP field.</p>
+<p>When a student RSVPs, the information you include in this field will be displayed to them in the form of a dialog.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/10.png"></a>
+
+<p class="header"><span class="num">Step 10:</span> Create the event or deadline by clicking the button at the bottom.</p>
+<p>The students subscribed to your firm for updates will receive an email notifying them of this new event or deadline.</p>
+<a target="_blank" href="{% url event_new %}"><img src="{{STATIC_URL}}images/tutorials/creating_events_deadlines/11.png"></a>
+
+{% endblock %}
+
+{% block things_to_note %}
+<li>Clicking on a location suggestion and thus including a map along with the location allows students to get directions from anywhere they are.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>Nothing increases the chances of a student attending like a personal invitation from a recruiter. After creating the event or deadline, make sure to <a href="{% url tutorial slug="sending-invitations" %}">send some invites</a>.</li>
+<li>Check the new event form prior to deciding on a date and time and securing a location for your event to make sure there are no conflicts.</li>
+{% endblock %}
