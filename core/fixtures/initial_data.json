@@ -1,5 +1,20 @@
 [
  {
+  "pk": 14, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 14:43:06", 
+   "name": "Change Your Password Tutorial", 
+   "display": false, 
+   "topic": 9, 
+   "audience": 2, 
+   "sort_order": "1.000", 
+   "date_created": "2011-12-01 14:43:06", 
+   "slug": "change-your-password-tutorial", 
+   "description": "Learn how to change your password."
+  }
+ }, 
+ {
   "pk": 13, 
   "model": "core.tutorial", 
   "fields": {
@@ -135,21 +150,6 @@
   }
  }, 
  {
-  "pk": 5, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-10-11 01:49:44", 
-   "name": "Checking Students In", 
-   "display": false, 
-   "topic": 11, 
-   "audience": 6, 
-   "sort_order": "4.000", 
-   "date_created": "2011-10-07 12:40:32", 
-   "slug": "checking-students-in", 
-   "description": "Learn how to check in attendees."
-  }
- }, 
- {
   "pk": 11, 
   "model": "core.tutorial", 
   "fields": {
@@ -177,6 +177,21 @@
    "date_created": "2011-11-30 19:08:45", 
    "slug": "deleting-past-or-cancelled-events", 
    "description": "Learn how to delete past or cancelled events"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-11 01:49:44", 
+   "name": "Checking Students In", 
+   "display": false, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "4.000", 
+   "date_created": "2011-10-07 12:40:32", 
+   "slug": "checking-students-in", 
+   "description": "Learn how to check in attendees."
   }
  }, 
  {
