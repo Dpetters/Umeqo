@@ -72,7 +72,7 @@
 .student_resume_link {
     float: right;
 }
-.resume_book_current_toggle_student, .student_toggle_star {
+.resume_book_current_toggle_student, .student_star{
     min-width: 16px;
     margin-left: 7px;
     display:inline-block;
@@ -86,7 +86,7 @@
 .resume_book_current_toggle_student{
     top: 2px;
 }
-.student_toggle_star{
+.student_star{
     vertical-align: top;
     top: 4px;
 }
