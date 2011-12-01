@@ -16,7 +16,7 @@ def student_lists_as_choices(recruiter_id):
             for student_list in student_enums.GENERAL_STUDENT_LISTS:
                 if not e.subscribed_annually() and ( student_list[1] == student_enums.GENERAL_STUDENT_LISTS[0][1] or student_list[1] == student_enums.GENERAL_STUDENT_LISTS[1][1]):
                     student_lists.append([0, student_list[1], "disabled=\"disabled\""])
-                elif student_list[1] == student_enums.GENERAL_STUDENT_LISTS[2][1]:
+                elif not e.subscribed_annually() and student_list[1] == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                     student_lists.append([0, student_list[1], "selected=\"selected\""])
                 else:
                     student_lists.append([0, student_list[1]])

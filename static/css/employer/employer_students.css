@@ -166,6 +166,7 @@
 }
 #no_results_message {
     vertical-align:middle;
+    position:relative;
 }
 #results_block {
     margin-left:320px;

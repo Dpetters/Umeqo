@@ -192,12 +192,8 @@ def event_new(request, form_class=None, extra_context=None):
             event.owner = request.user
             event.save()
             form.save_m2m()
-            print event.type
             rolling_deadline = EventType.objects.get(name="Rolling Deadline")
-            print rolling_deadline
-            print event.type == rolling_deadline
-            print datetime.now() + timedelta(weeks=1000)
-            if event.type == EventType.objects.get(name="Rolling Deadline"):
+            if event.type == rolling_deadline:
                 event.end_datetime = datetime.now() + timedelta(weeks=1000)
                 event.save()
             if is_recruiter(request.user):
