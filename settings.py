@@ -206,7 +206,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.next',
     'core.context_processors.get_current_path',
     'core.context_processors.registration',
-    'core.context_processors.load_wait_time'
+    'core.context_processors.load_wait_time',
+    'core.context_processors.employer_subscription'
 )
 
 MIDDLEWARE_CLASSES = (

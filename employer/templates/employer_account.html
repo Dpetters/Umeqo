@@ -66,16 +66,16 @@
 
 {% block account_overview %}
     <h3>Create New Account</h3>
-    <p class="sub_header_message">Below are the other recruiter accounts for 
+    <p class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">Below are the other recruiter accounts for 
         {{user.recruiter.employer}}. If you would like to give another recruiter access, 
         you can <a class="
-        {% if not user.recruiter.employer.subscribed_annually %}
-            must_be_subscribed_annually must_be_subscribed_annually_e
+        {% if not sa %}
+            must_be_subscribed_annually_e
         {% else %}
             create_recruiter_link
         {% endif %}
         " href="
-        {% if user.recruiter.employer.subscribed_annually %}
+        {% if sa %}
             javascript:void(0)
         {% else %}
             {% url subscription_list %}
@@ -91,15 +91,15 @@
         <a id="delete_account_link" class="caution" href="javascript:void(0)">Delete Account</a>
     </p>
     
-    <p id="create_credentials" class="sub_header_message">You are the only recruiter for 
+    <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only recruiter for 
         {{user.recruiter.employer}}. Before deleting your account, you need to <a class="
-        {% if not user.recruiter.employer.subscribed_annually %}
+        {% if not sa %}
             must_be_subscribed_annually must_be_subscribed_annually_e
         {% else %}
             create_recruiter_link
         {% endif %}
         " href="
-        {% if user.recruiter.employer.subscribed_annually %}
+        {% if not sa %}
             javascript:void(0)
         {% else %}
             {% url subscription_list %}
@@ -109,7 +109,7 @@
 
 
 {% block account_settings_tab_definitions %}
-    <div id="tabs-3" class="clearfix">
+    <div id="tabs-3">
         <h3 class="no_top_margin">Your Subscription</h3>
         <div id="subscription_actions" class="right_side_container">
             <a href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>

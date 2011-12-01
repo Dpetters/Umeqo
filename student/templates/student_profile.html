@@ -100,7 +100,7 @@
 {% block profile_pages %}
     <li id="pg1">
         <a href='#' class="ui-accordion-link"></a>
-        <div class="main_block clearfix">
+        <div class="main_block">
             <div class="main_block_header">
                 <div class="main_block_header_content">
                     <span>
@@ -189,11 +189,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
     </li>
     <li id="pg2">
         <a href='#' class="ui-accordion-link"></a>
-        <div class="main_block clearfix">
+        <div class="main_block">
             <div class="main_block_header">
                 <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
                 <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
@@ -285,11 +286,12 @@
                     <li>Yes, some employers still care about standardized test scores.</li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
     </li>
     <li id="pg3">
         <a href='#' class="ui-accordion-link"></a>
-        <div class="main_block clearfix">
+        <div class="main_block">
             <div class="main_block_header">
                 <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
                 <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
@@ -367,16 +369,18 @@
                     </li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
     </li>
 {% endblock %}
 
 {% block preview %}
-<div id="student_profile_preview_section_block" class="clearfix">
+<div id="student_profile_preview_section_block">
     <div id="student_profile_preview">
     </div>
     <div id="student_profile_preview_info">
         <h2>Profile Preview</h2>
     </div>
+    <div class="clearfix"></div>
 </div>
 {% endblock %}

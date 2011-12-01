@@ -840,4 +840,5 @@ $(document).ready(function () {
     });
     
     $("#query_field").placeholder();
+    $("#side_block_area .slider_section input.readonly").attr("readonly", "readonly");
 });

@@ -30,11 +30,11 @@ Account Settings |
         <div id="preferences_form_tabs">
             <ul>
                 <li><a href="#tabs-1">Account Overview</a></li>
-                <li {% if user.recruiter and not user.recruiter.employer.subscribed %}class="must_be_subscribed must_be_subscribed_w"{% endif %} id="preferences_tab"><a {% if user.recruiter and not user.recruiter.employer.subscribed %}{% else %}href="#tabs-2"{% endif %}>Preferences</a></li>
+                <li {% if user.recruiter and not subs %}class="must_be_subscribed must_be_subscribed_w"{% endif %} id="preferences_tab"><a {% if user.recruiter and not subs %}{% else %}href="#tabs-2"{% endif %}>Preferences</a></li>
                 {% block account_settings_tab_declarations %}
                 {% endblock %}
             </ul>
-            <div id="tabs-1" class="clearfix">
+            <div id="tabs-1">
                 <div id="account_overview">
                     <h3 class="no_top_margin">Basic Info</h3>
                     <table id="basic_info_table">
@@ -86,7 +86,7 @@ Account Settings |
             </div>
             {% if user.recruiter and not user.recruiter.employer.subscribed %}
             {% else %}
-            <div id="tabs-2" class="clearfix">
+            <div id="tabs-2">
                 <div id="preferences">
                     {% block preferences %}
                     {% endblock %}
