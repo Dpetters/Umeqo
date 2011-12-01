@@ -3,14 +3,14 @@
   "pk": 14, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-12-01 14:43:06", 
-   "name": "Change Your Password Tutorial", 
+   "last_updated": "2011-12-01 15:25:41", 
+   "name": "Changing Your Password Tutorial", 
    "display": false, 
    "topic": 9, 
    "audience": 2, 
    "sort_order": "1.000", 
    "date_created": "2011-12-01 14:43:06", 
-   "slug": "change-your-password-tutorial", 
+   "slug": "changing-your-password", 
    "description": "Learn how to change your password."
   }
  }, 
