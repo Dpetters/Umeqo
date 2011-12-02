@@ -3,9 +3,9 @@
   "pk": 14, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-12-01 18:20:19", 
+   "last_updated": "2011-12-01 22:52:15", 
    "name": "Changing Your Password", 
-   "display": false, 
+   "display": true, 
    "topic": 9, 
    "audience": 2, 
    "sort_order": "1.000", 
@@ -15,45 +15,45 @@
   }
  }, 
  {
-  "pk": 13, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-11-30 19:10:40", 
-   "name": "Deleting Your Account", 
-   "display": false, 
-   "topic": 9, 
-   "audience": 4, 
-   "sort_order": "4.000", 
-   "date_created": "2011-11-30 19:10:40", 
-   "slug": "deleting-your-account", 
-   "description": "Learn how to delete your account."
-  }
- }, 
- {
   "pk": 1, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-11-30 19:11:01", 
+   "last_updated": "2011-12-01 22:52:19", 
    "name": "Creating Accounts for Co-Workers", 
    "display": true, 
    "topic": 9, 
    "audience": 4, 
-   "sort_order": "5.000", 
+   "sort_order": "2.000", 
    "date_created": "2011-10-06 20:46:33", 
    "slug": "creating-accounts-for-co-workers", 
    "description": "Learn how to create credentials for your co-workers and manage credentials that already exist."
   }
  }, 
  {
+  "pk": 13, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:34", 
+   "name": "Deleting Your Account", 
+   "display": true, 
+   "topic": 9, 
+   "audience": 4, 
+   "sort_order": "3.000", 
+   "date_created": "2011-11-30 19:10:40", 
+   "slug": "deleting-your-account", 
+   "description": "Learn how to delete your account."
+  }
+ }, 
+ {
   "pk": 4, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-11-29 16:16:48", 
+   "last_updated": "2011-12-01 22:52:59", 
    "name": "Creating Events & Deadlines", 
    "display": true, 
    "topic": 11, 
    "audience": 4, 
-   "sort_order": "2.000", 
+   "sort_order": "1.000", 
    "date_created": "2011-10-07 12:40:06", 
    "slug": "creating-events-deadlines", 
    "description": "Learn how to create events and deadlines."
@@ -63,9 +63,9 @@
   "pk": 3, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:36", 
+   "last_updated": "2011-12-01 22:53:11", 
    "name": "Sending Invitations", 
-   "display": false, 
+   "display": true, 
    "topic": 11, 
    "audience": 4, 
    "sort_order": "3.000", 
@@ -78,7 +78,7 @@
   "pk": 6, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:38", 
+   "last_updated": "2011-12-01 22:51:17", 
    "name": "Browsing Attendees & RSVPs", 
    "display": true, 
    "topic": 11, 
@@ -93,7 +93,7 @@
   "pk": 2, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:39", 
+   "last_updated": "2011-12-01 22:51:19", 
    "name": "Browsing Students", 
    "display": true, 
    "topic": 13, 
@@ -105,12 +105,27 @@
   }
  }, 
  {
+  "pk": 7, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:01", 
+   "name": "Creating & Delivering Resume Books", 
+   "display": true, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "2.000", 
+   "date_created": "2011-10-07 12:41:35", 
+   "slug": "creating-delivering-resume-books", 
+   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers."
+  }
+ }, 
+ {
   "pk": 15, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-12-01 18:21:21", 
+   "last_updated": "2011-12-01 22:52:07", 
    "name": "Re-Delivering Past Resume Books", 
-   "display": false, 
+   "display": true, 
    "topic": 13, 
    "audience": 4, 
    "sort_order": "3.000", 
@@ -120,70 +135,40 @@
   }
  }, 
  {
-  "pk": 7, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-10-11 01:49:41", 
-   "name": "Creating & Delivering Resume Books", 
-   "display": true, 
-   "topic": 13, 
-   "audience": 4, 
-   "sort_order": "7.000", 
-   "date_created": "2011-10-07 12:41:35", 
-   "slug": "creating-delivering-resume-books", 
-   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers."
-  }
- }, 
- {
   "pk": 10, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:42", 
+   "last_updated": "2011-12-01 22:52:41", 
    "name": "Getting an Annual Subscription", 
-   "display": false, 
+   "display": true, 
    "topic": 10, 
    "audience": 4, 
-   "sort_order": "6.000", 
+   "sort_order": "1.000", 
    "date_created": "2011-10-07 12:43:04", 
    "slug": "getting-annual-subscription", 
    "description": "Learn the details of the annual subscription program."
   }
  }, 
  {
-  "pk": 16, 
+  "pk": 5, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-12-01 20:03:02", 
-   "name": "Exporting Attendee & RSVP Info", 
-   "display": false, 
+   "last_updated": "2011-12-01 22:53:44", 
+   "name": "Checking Students In", 
+   "display": true, 
    "topic": 11, 
    "audience": 6, 
-   "sort_order": "3.000", 
-   "date_created": "2011-12-01 19:54:03", 
-   "slug": "exporting-attendee-rsvp-info", 
-   "description": "Learn about how to export Attendee & RSVP info to excel (csv) or text."
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-11-30 19:07:35", 
-   "name": "Cancelling Upcoming Events and Deadlines", 
-   "display": false, 
-   "topic": 11, 
-   "audience": 6, 
-   "sort_order": "4.000", 
-   "date_created": "2011-11-29 15:52:44", 
-   "slug": "cancelling-upcoming-events-and-deadlines", 
-   "description": "Learn how to cancel events and deadlines."
+   "sort_order": "2.000", 
+   "date_created": "2011-10-07 12:40:32", 
+   "slug": "checking-students-in", 
+   "description": "Learn how to check in attendees."
   }
  }, 
  {
   "pk": 12, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-11-30 19:08:45", 
+   "last_updated": "2011-12-01 22:51:35", 
    "name": "Deleting Past or Cancelled Events", 
    "display": false, 
    "topic": 11, 
@@ -195,18 +180,33 @@
   }
  }, 
  {
-  "pk": 5, 
+  "pk": 16, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-11 01:49:44", 
-   "name": "Checking Students In", 
-   "display": false, 
+   "last_updated": "2011-12-01 22:54:02", 
+   "name": "Exporting Attendee & RSVP Info", 
+   "display": true, 
    "topic": 11, 
    "audience": 6, 
-   "sort_order": "4.000", 
-   "date_created": "2011-10-07 12:40:32", 
-   "slug": "checking-students-in", 
-   "description": "Learn how to check in attendees."
+   "sort_order": "5.000", 
+   "date_created": "2011-12-01 19:54:03", 
+   "slug": "exporting-attendee-rsvp-info", 
+   "description": "Learn about how to export Attendee & RSVP info to excel (csv) or text."
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:53:52", 
+   "name": "Cancelling Upcoming Events and Deadlines", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "6.000", 
+   "date_created": "2011-11-29 15:52:44", 
+   "slug": "cancelling-upcoming-events-and-deadlines", 
+   "description": "Learn how to cancel events and deadlines."
   }
  }, 
  {
