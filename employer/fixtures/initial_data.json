@@ -640,12 +640,12 @@
    "industries": [
     40
    ], 
-   "main_contact_email": "", 
-   "last_updated": "2011-11-27 20:50:40", 
+   "main_contact_email": "michele.hughes@eladian.com", 
+   "last_updated": "2011-12-01 23:53:48", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Michele Hughes", 
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-11-27 19:09:23", 
@@ -1282,12 +1282,12 @@
     20, 
     36
    ], 
-   "main_contact_email": "bedrll@microsoft.com", 
-   "last_updated": "2011-11-30 19:40:10", 
+   "main_contact_email": "abbyw@microsoft.com", 
+   "last_updated": "2011-12-02 04:25:27", 
    "description": "<p>\r\n\tMicrosoft is the worldwide leader in software, services and solutions that help people and businesses realize their full potential. &nbsp;We&#39;re motivated and inspired by how our customers and partners use our software to find creative solutions to business problems, develop breakthrough ideas and stay connected to what&#39;s important to them.&nbsp;</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWe run our company in much the same way. Our employees come as they are and do what they love. &nbsp;We&rsquo;re a global company, located in over 100 countries, but we often act like a startup. We do software &mdash; but we also do hardware, services, research, and community outreach. We work hard, but we value work/life balance, and each of us defines what that means to us. So why not explore what we do, where we do it, and what life is really like at Microsoft? You just might be surprised.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [], 
-   "main_contact": "Belinda Drllevich", 
+   "main_contact": "Abby Weinberg", 
    "main_contact_phone": "", 
    "offered_job_types": [
     1, 
@@ -1881,6 +1881,31 @@
    "careers_website": "", 
    "slug": "tfa", 
    "name": "Teach for America"
+  }
+ }, 
+ {
+  "pk": 109, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    2, 
+    13
+   ], 
+   "main_contact_email": "krandall@teslamotors.com", 
+   "last_updated": "2011-12-02 02:57:14", 
+   "description": "<p>\r\n\tTesla Motors designs and manufactures the most advanced electric vehicles and electric powertrains in the world. We do not compromise on innovation, performance, or appeal. Nor do we compromise our commitment to hiring and developing the best from around the world.</p>\r\n<p>\r\n\t<br />\r\n\tWe work in small, focused teams which, much like our products, are agile, efficient, and focused on excellence. We are driven by work that contributes to a global impact and are passionate about our future in the automotive industry. The pace is fast, the work is stimulating, structure is limited, and innovation is expected.&nbsp;<br />\r\n\t<br />\r\n\tDo you question tradition and constantly think of ways to improve status quo? Do you thrive in environments where brilliance is common and challenge is the norm? Are you excited by challenge because you&rsquo;re amongst the best in your field? If so, you&rsquo;d be in good company at Tesla Motors.</p>\r\n", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "Kate Randall", 
+   "main_contact_phone": "650-681-5254", 
+   "offered_job_types": [
+    1
+   ], 
+   "date_created": "2011-12-02 02:54:10", 
+   "logo": "employer/employer/tesla motors_2011-12-02-02-54-10.png", 
+   "careers_website": "http://www.teslamotors.com/about/careers", 
+   "slug": "tesla", 
+   "name": "Tesla Motors"
   }
  }, 
  {
