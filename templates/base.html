@@ -61,6 +61,7 @@
             var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
         </script>
         {% compress js %}
+            <script src="{{ STATIC_URL }}lib/modernizr/modernizr.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_ui_custom/jquery-ui-1.8.12.custom.min.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
