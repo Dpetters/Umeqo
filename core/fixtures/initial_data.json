@@ -1,5 +1,20 @@
 [
  {
+  "pk": 14, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 18:20:19", 
+   "name": "Changing Your Password", 
+   "display": false, 
+   "topic": 9, 
+   "audience": 2, 
+   "sort_order": "1.000", 
+   "date_created": "2011-12-01 14:43:06", 
+   "slug": "changing-your-password", 
+   "description": "Learn how to change your password."
+  }
+ }, 
+ {
   "pk": 13, 
   "model": "core.tutorial", 
   "fields": {
@@ -90,6 +105,21 @@
   }
  }, 
  {
+  "pk": 15, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 18:21:21", 
+   "name": "Re-Delivering Past Resume Books", 
+   "display": false, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "3.000", 
+   "date_created": "2011-12-01 18:11:21", 
+   "slug": "re-delivering-past-resume-books", 
+   "description": "Learn how to re-delivering past resume books."
+  }
+ }, 
+ {
   "pk": 7, 
   "model": "core.tutorial", 
   "fields": {
@@ -120,33 +150,18 @@
   }
  }, 
  {
-  "pk": 9, 
+  "pk": 16, 
   "model": "core.tutorial", 
   "fields": {
-   "last_updated": "2011-10-29 21:45:59", 
-   "name": "Getting an Event Subscription", 
-   "display": false, 
-   "topic": 10, 
-   "audience": 4, 
-   "sort_order": "8.000", 
-   "date_created": "2011-10-07 12:42:31", 
-   "slug": "getting-event-subscription", 
-   "description": "Learn how you can get free access to Umeqo."
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "core.tutorial", 
-  "fields": {
-   "last_updated": "2011-10-11 01:49:44", 
-   "name": "Checking Students In", 
+   "last_updated": "2011-12-01 20:03:02", 
+   "name": "Exporting Attendee & RSVP Info", 
    "display": false, 
    "topic": 11, 
    "audience": 6, 
-   "sort_order": "4.000", 
-   "date_created": "2011-10-07 12:40:32", 
-   "slug": "checking-students-in", 
-   "description": "Learn how to check in attendees."
+   "sort_order": "3.000", 
+   "date_created": "2011-12-01 19:54:03", 
+   "slug": "exporting-attendee-rsvp-info", 
+   "description": "Learn about how to export Attendee & RSVP info to excel (csv) or text."
   }
  }, 
  {
@@ -177,6 +192,21 @@
    "date_created": "2011-11-30 19:08:45", 
    "slug": "deleting-past-or-cancelled-events", 
    "description": "Learn how to delete past or cancelled events"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-10-11 01:49:44", 
+   "name": "Checking Students In", 
+   "display": false, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "4.000", 
+   "date_created": "2011-10-07 12:40:32", 
+   "slug": "checking-students-in", 
+   "description": "Learn how to check in attendees."
   }
  }, 
  {

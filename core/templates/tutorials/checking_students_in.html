@@ -1,0 +1,41 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Checking Students In
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, click on an upcoming event to which you wish to check students in.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/checking_students_in/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Click the big "ENABLE" button under "Check-In Mode".</p>
+<img src="{{STATIC_URL}}images/tutorials/checking_students_in/2.png">
+
+<p class="header"><span class="num">Step 3:</span> Click "F11" on your keyboard to make the check-in screen full-screen.</p>
+<img src="{{STATIC_URL}}images/tutorials/checking_students_in/3.png">
+
+<p class="header"><span class="num">Step 4:</span> Click on the message at the bottom right of the screen to hide it.</p>
+<img src="{{STATIC_URL}}images/tutorials/checking_students_in/4.png">
+
+<p class="header"><span class="num">Step 5:</span> See the check-in count at anytime by moving the mouse to the bottom right corner.</p>
+<img src="{{STATIC_URL}}images/tutorials/checking_students_in/5.png">
+
+<p class="header" id="raffle"><span class="num">Step 6:</span> Raffling away prizes? Randomly query the checkins for winners by clicking "raffle winner!".</p>
+<img src="{{STATIC_URL}}images/tutorials/checking_students_in/6.png">
+
+<p class="header"><span class="num">Step 7:</span> Exit check-in mode by clicking "exit check-in" mode.</p>
+<img src="{{STATIC_URL}}images/tutorials/checking_students_in/7.png">
+
+<p class="header"><span class="num">Step 8:</span> Follow the <a href="{% url tutorial slug="browsing-attendees-rsvps" %}">"Browse Attendees and RSVPs Tutorial"</a> to browse through attendees.</p>
+{% endblock %}
+
+{% block things_to_note %}
+<li>It is possible, and even encouraged, to set up this check-in screen on multiple laptops at once.</li>
+<li>The laptop which you use for checkins must be connected to the internet the entire time.</li>
+<li>If for some reason a student cannot check-in, first check if the line below the input fields turns red when he/she clicks enter. If it does, then they have already checked-in. If it does not, check whether you are still connected to the internet.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>Giving out prizes through a raffle? Simply use the <a href="#raffle">raffle feature</a> mentioned above to pick winners randomly out of the students who checked in!</li>
+<li>Remember that you can see who checked into an event of yours by noting an event icon by their name on the student browsing page, as note <a href="{% url tutorial slug="browsing-students" %}#attendance">here</a>.</li>
+{% endblock %}

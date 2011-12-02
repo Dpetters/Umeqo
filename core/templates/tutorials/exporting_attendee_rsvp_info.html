@@ -1,0 +1,30 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Exporting Attendee & RSVP Info
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, click on the event whose RSVPs and attendees you wish to browse.</p>
+<p>All of your upcoming and past events and deadlines are at the bottom, with past ones 
+    dimmed out.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/exporting_attendee_rsvp_info/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Choose which group of students you wish to export.</p>
+<p>Note that the groups (and thus tabs) are titled slighly differently for deadlines and private events.</p>
+<img src="{{STATIC_URL}}images/tutorials/exporting_attendee_rsvp_info/2.png">
+
+<p class="header" id="export"><span class="num">Step 3:</span> Click "export" on the top right of the event admin of the group you wish to export.</p>
+<img src="{{STATIC_URL}}images/tutorials/exporting_attendee_rsvp_info/3.png">
+
+<p class="header" id="export"><span class="num">Step 3:</span> Select an export format and the way in which you want the file delivered.</p>
+<img src="{{STATIC_URL}}images/tutorials/exporting_attendee_rsvp_info/4.png">
+{% endblock %}
+
+{% block things_to_note %}
+<li>Students who have a Umeqo account will have their school year and graduation year exported along with their name and email.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>Exporting the names and emails of the attendees allows you to use in-house scripts to follow up with everyone in-batch. However, if you only wish to invite select students to future events, check out how you can do so using Umeqo by reading the <a href="{% url tutorial slug="sending-invitations"%}">sending invitations tutorial</a>.</li>
+{% endblock %}

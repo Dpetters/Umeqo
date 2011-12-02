@@ -19,7 +19,7 @@ Creating and Delivering Resume Books
 <p class="header"><span class="num">Step 3:</span> Search students' resumes by 
     keyword/skills, or search for individuals by first/last name.</p>
 <p>Results will by default be ordered by relevance. However, you can also 
-    <a href="#order_and_num">modify in what order and how many results appear</a>.</p>
+    <a href="{% url tutorial slug="browsing-students" %}#order_and_num">modify in what order and how many results appear</a>.</p>
 <a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/4.png"></a>
 <p id="add_remove_students" class="header"><span class="num">Step 4:</span> Add and remove
      students to and from your custom resume book one by one or in batches.</p>
@@ -27,7 +27,7 @@ Creating and Delivering Resume Books
     Nothing that you do is recorded.</p>
 <p>To toggle students in and out of the resume book one by one, click on the little green
      pluses and red crosses, respectively.</p>
-<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/1.png">
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/1.png"></a>
 <p>To add and remove multiple students from the resume book at once, check the checkboxes
      next to their name and click the corresponding button. Checking the checkbox in the 
      menu bar (on the left of the "Add to Resume Book" button) selects all students on 
@@ -58,15 +58,6 @@ Creating and Delivering Resume Books
 <p>Select "email" as the delivery type to email the resume book to one or more email
      addresses.</p>
 <a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/8.png"></a>
-
-<p class="header"><span class="num">Step 8:</span> Re-deliver or delete any of your past
-     resume books.</p>
-<p>The easiest way to access past resume book is to use the "Resume Book History" link on
-     the homepage.</p>
-<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/9.png"></a>
-<p>All re-delivered resume books will have the latest copies of all the included
-     students' resumes.</p>
-<a target="_blank" href="{% url employer_resume_book_history %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/10.png"></a>
 {% endblock %}
 
 {% block things_to_note %}

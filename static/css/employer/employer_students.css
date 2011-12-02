@@ -239,14 +239,13 @@
 .events_dropdown a {
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: inline-block;
+    display: block;
     text-align: right;
 }
 .events_dropdown a.disabled,
 .events_dropdown a.disabled:hover {
     color: #AAA;
 }
-
 #invite-dialog p {
     padding: 10px 5px;
 }
@@ -256,7 +255,6 @@
     display: block;
     margin: 0 auto;
 }
-
 #student_invite_no_events {
     float: left;
     margin: 10px;

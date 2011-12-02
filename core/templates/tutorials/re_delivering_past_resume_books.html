@@ -1,0 +1,22 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Re-Delivering Past Resume Books
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, begin by clicking on the "Past Resume Books" link.</p>
+<p>It is located in the side navigation menu on the left.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/re_delivering_past_resume_books/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Re-deliver or delete any of your past resume books by using the controls on the right.</p>
+<a target="_blank" href="{% url employer_resume_book_history %}"><img src="{{STATIC_URL}}images/tutorials/re_delivering_past_resume_books/2.png"></a>
+{% endblock %}
+
+{% block things_to_note %}
+<li>All re-delivered resume books will have the latest copies of all the included students' resumes instead of the ones included in the resume book the first time it was delivered.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>You should try to give each resume book that you create as specific of a name as possible, so that when you are looking at all past resume books, the one you are looking for is easy to find.</li>
+{% endblock %}

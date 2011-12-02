@@ -11,7 +11,17 @@
 <script>
     var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
     var PASSWORD_DONT_MATCH = "{% text_snippet 'passwords_dont_match' %}";
-
+    {% if sa %}
+        var SUBSA = true;
+    {% else %}
+        var SUBSA = false;
+    {% endif %}
+    
+    {% if subs %}
+        var SUBS = true;
+    {% else %}
+        var SUBS = false;
+    {% endif %}
     var CREATE_RECRUITER_URL = "{% url employer_recruiter_new %}";
     var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
     var EMPLOYER_OTHER_RECRUITERS_URL = "{% url employer_other_recruiters %}";
@@ -100,9 +110,9 @@
         {% endif %}
         " href="
         {% if not sa %}
-            javascript:void(0)
-        {% else %}
             {% url subscription_list %}
+        {% else %}
+            javascript:void(0)
         {% endif %}">create one for another recruiter at your firm</a>.
     </p>
 {% endblock %}

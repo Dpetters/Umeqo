@@ -80,29 +80,30 @@ def subscription_list(request, extra_context=None):
             if subscription.event_subscription():
                 context['free_subscription_text'] = "Subscription Expired"
                 context['free_subscription_class'] = 'open_free_subscription_info_dialog_link'
-                context['paid_subscription_button_text'] = "Contact Us"
                 context['transaction_dialog_title'] = "Subscribe to Umeqo" 
-                context['paid_subscription_action'] = 'subscribe' 
-                context['paid_subscription_class'] = "open_transaction_dialog_link subscribe"
-                context['paid_subscription_text'] = "Contact Us For Pricing"
+                context['paid_subscription_class'] = "subscribe"
             else:
                 context['paid_subscription_button_text'] = "Extend Subscription"
                 context['transaction_dialog_title'] = "Extend Subscription"
-                context['paid_subscription_class'] = "open_transaction_dialog_link extend"
+                context['paid_subscription_class'] = "extend"
                 context['paid_subscription_action'] = "extend"
                 context['paid_subscription_text'] = "Subscription Expired"
         else:
-            context['paid_subscription_button_text'] = "Extend Subscription"
-            context['transaction_dialog_title'] = "Extend Subscription"
-            context['paid_subscription_class'] = "open_transaction_dialog_link extend"
-            context['paid_subscription_action'] = "extend"
-            context['paid_subscription_text'] = "Subscribed"
+            if subscription.event_subscription():
+                context['paid_subscription_button_text'] = "Upgrade to Annual Plan"
+                context['transaction_dialog_title'] = "Upgrade to Annual Subscription"
+                context['paid_subscription_class'] = "upgrade"
+                context['paid_subscription_action'] = "upgrade"
+                context['free_subscription_text'] = "Subscribed"
+            else:
+                context['paid_subscription_button_text'] = "Extend Subscription"
+                context['transaction_dialog_title'] = "Extend Subscription"
+                context['paid_subscription_class'] = "extend"
+                context['paid_subscription_action'] = "extend"
+                context['paid_subscription_text'] = "Subscribed"
     else:
         context['free_subscription_class'] = 'open_free_subscription_info_dialog_link'
-        context['paid_subscription_button_text'] = "Contact Us"
         context['transaction_dialog_title'] = "Subscribe to Umeqo" 
-        context['paid_subscription_action'] = 'subscribe' 
-        context['paid_subscription_class'] = "open_transaction_dialog_link subscribe"
-        context['paid_subscription_text'] = "Contact Us For Pricing"
+        context['paid_subscription_class'] = "subscribe"
     context.update(extra_context or {})
     return context
