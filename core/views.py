@@ -20,7 +20,6 @@ from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
 
 from campus_org.models import CampusOrg
-from core import enums as core_enums
 from core import messages
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
@@ -208,19 +207,19 @@ def help_center(request, extra_context = None):
     if is_recruiter(request.user):
         tutorials = Tutorial.objects.filter(audience__in = get_audiences(request.user), display=True)
         try:
-            context['student_discovery_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Student Discovery"))
+            context['student_discovery_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Student Discovery")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
         try:
-            context['subscription_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Subscriptions"))
+            context['subscription_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
         try:
-            context['event_and_deadline_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Events & Deadlines"))
+            context['event_and_deadline_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
         try:
-            context['account_management_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Account Management"))
+            context['account_management_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Account Management")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
     context['top_questions'] = filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:s.TOP_QUESTIONS_NUM]
