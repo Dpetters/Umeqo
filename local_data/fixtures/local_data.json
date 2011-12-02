@@ -258,7 +258,7 @@
   "model": "events.attendee", 
   "fields": {
    "name": "James Madison", 
-   "datetime_created": "2011-10-11 03:08:27", 
+   "datetime_created": "2011-12-01 22:40:49", 
    "email": "student1@umeqo.com", 
    "student": 1, 
    "won_raffle": false, 
@@ -270,7 +270,7 @@
   "model": "events.attendee", 
   "fields": {
    "name": "Thomas Jefferson", 
-   "datetime_created": "2011-10-11 03:08:30", 
+   "datetime_created": "2011-12-01 22:41:11", 
    "email": "student2@umeqo.com", 
    "student": 2, 
    "won_raffle": false, 
@@ -282,7 +282,7 @@
   "model": "events.attendee", 
   "fields": {
    "name": "John Adams", 
-   "datetime_created": "2011-10-11 03:08:34", 
+   "datetime_created": "2011-12-01 22:41:27", 
    "email": "student3@umeqo.com", 
    "student": 3, 
    "won_raffle": false, 
@@ -294,7 +294,7 @@
   "model": "events.attendee", 
   "fields": {
    "name": "Abraham Lincoln", 
-   "datetime_created": "2011-10-11 03:08:37", 
+   "datetime_created": "2011-12-01 22:41:46", 
    "email": "student4@umeqo.com", 
    "student": 4, 
    "won_raffle": false, 
@@ -306,7 +306,7 @@
   "model": "events.attendee", 
   "fields": {
    "name": "George Washington", 
-   "datetime_created": "2011-10-11 03:08:41", 
+   "datetime_created": "2011-12-01 22:42:09", 
    "email": "student5@umeqo.com", 
    "student": 5, 
    "won_raffle": false, 
@@ -787,14 +787,14 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Madison", 
-   "last_updated": "2011-10-10 13:38:59", 
+   "last_updated": "2011-12-01 22:40:49", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
    "sat_t": 2310, 
    "sat_v": 770, 
    "sat_w": 740, 
-   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun hadoop cluster dozen windows nodes currently using mrjob workflows structured unstructured data goal performance mapreduce tasks traditional implementations running existing condor setup python bash scripts nightly caches condor cluster nodes using mysql data logged daily workflows athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder developer cambridge feb launching recruiting resource students employers september beta available parties july developed initial foundation site collaborating zach dearing joshua github traders mit exec cambridge nov oct developing otc trading client used trading simulation annual traders mit competition november mit bhs outdoor indoor varsity runner cambridge aug bellevue improvement previous skills interests technical java python django javascript jquery extjs css latex minor bash batch languages fluent russian interests ted talks poker hockey entrepreneurship", 
+   "keywords": " address albert kao address memorial alkao mit edu wisteria hong qiao cambridge shanghai china education massachusetts institute technology cambridge expected graduation candidate chemical biological engineering minor management gpa relevant coursework differential equations microeconomics organic chemistry thermodynamics kinetics introduction chemical engineering disease society america american ethical conflicts political choices phillips exeter academy exeter graduated cum laude june mit belcher lab cambridge june undergraduate researcher worked belcher lab biologically catalyzed sequestration remove convert carbonate minerals implemented lab techniques amplifying cloning vectors yeast created matlab simulations theoretical values carbonate precipitation compiled data experiments presented data lab audience mit mechanical engineering lab cambridge february june undergraduate researcher worked graduate correlations different snps neurological diseases plots manhattan plots compiled analyzed amount categorical data hua shan hospital shanghai china intern translated patient information chinese speaking doctors attended patients per deloitte touche tohmatsu shanghai china august intern helped translate accounting training materials chinese english created communication optimized interactions within skills fluent oral mandarin proficient matlab competent excel powerpoint leadership phi beta epsilon fraternity cambridge october treasurer solely responsible residence including recruiting fifty responsible transactions including payments vendors taxes contract negotiation chef payment collection sixty members organized financial files filing locating documents efficient kesem counselor merrowvista march cared parents cancer helped attending chinese club cambridge january secretary compiled events into calendar semester helped publicize events mit assisted organizing annual banquet attracts around activities sloan undergraduate management association eagle scout basketball troupe mit undergraduate opportunities program mit leadershape", 
    "looking_for": [
     2, 
     4
@@ -829,7 +829,7 @@
    ], 
    "website": "", 
    "second_major": 25, 
-   "resume": "student/student/petters_dmitrij_student1@umeqo.com_2011-09-27-02-11-29.pdf", 
+   "resume": "student/student/madison_james_student1@umeqo.com_2011-12-01-22-40-49.pdf", 
    "user": 2, 
    "industries_of_interest": [
     12, 
@@ -844,14 +844,14 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Jefferson", 
-   "last_updated": "2011-10-10 13:40:25", 
+   "last_updated": "2011-12-01 22:41:11", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "N", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
-   "keywords": " university address hrishikesh joshi address vassar hjoshi mit edu inwood cambridge woburn education massachusetts institute technology mit cambridge candidate computer mathematics june gpa minors economics management plano senior plano gpa rank june research laboratory nuclear department physics mit cambridge undergraduate researcher detection jan used ccd camera data statistical analysis detector images sources background alpha particle radiation detector used unix operating latex emacs data analysis department biology university texas dallas richardson research intern june july studied crucial role rna editing mitochondrial gene expression physarum polycephalum methods used centrifugation gel electrophoresis polymerase chain reaction dna rna priming amplification techniques southern blot nucleotide sequencing software etc plano independent researcher aug mar implemented awards leadership texas youth honor society vice president secretary aug skeptical society founder vice president aug computer aug winner annual hewlett packard competition computer uil president uil programming examinations ranked texas mathematics aug mar american invitational mathematics examination qualifier ranked interests theory prime distribution riemann functions etc aug mar texas qualifier prize winner dallas regional contestants discovery scientist challenge semi finalist skills technical python java latex gnu emacs microsoft windows foreign languages fluent hindi marathi years french", 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa bachelor computer electrical engineering mathematics cambridge sep math physic awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun hadoop cluster dozen windows nodes currently using mrjob workflows structured unstructured data goal performance mapreduce tasks traditional implementations running existing condor setup python bash scripts nightly caches condor cluster nodes using mysql data logged daily workflows athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend extjs plugin export gridpanels its subclasses csv xls thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder developer cambridge feb launching recruiting resource students employers september beta available parties july developed initial foundation site collaborating zach dearing joshua github traders mit exec cambridge nov oct developing otc trading client used trading simulation annual traders mit competition november mit bhs outdoor indoor varsity runner cambridge aug bellevue improvement previous skills interests technical java python django javascript jquery extjs css latex minor bash batch languages fluent russian interests ted talks poker hockey entrepreneurship", 
    "looking_for": [
     2
    ], 
@@ -879,7 +879,7 @@
    ], 
    "website": "", 
    "second_major": 23, 
-   "resume": "student/student/joshi_hrishikesh_student2@umeqo.com_2011-09-27-02-11-21.pdf", 
+   "resume": "student/student/jefferson_thomas_student2@umeqo.com_2011-12-01-22-41-11.pdf", 
    "user": 4, 
    "industries_of_interest": [
     15, 
@@ -894,14 +894,14 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Adams", 
-   "last_updated": "2011-09-06 05:15:09", 
+   "last_updated": "2011-12-01 22:41:27", 
    "sat_m": null, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
-   "keywords": " address albert kao address memorial alkao mit edu wisteria hong qiao cambridge shanghai china education massachusetts institute technology cambridge expected graduation candidate chemical biological engineering minor management gpa relevant coursework differential equations microeconomics organic chemistry thermodynamics kinetics introduction chemical engineering disease society america american ethical conflicts political choices phillips exeter academy exeter graduated cum laude june mit belcher lab cambridge june undergraduate researcher worked belcher lab biologically catalyzed sequestration remove convert carbonate minerals implemented lab techniques amplifying cloning vectors yeast created matlab simulations theoretical values carbonate precipitation compiled data experiments presented data lab audience mit mechanical engineering lab cambridge february june undergraduate researcher worked graduate correlations different snps neurological diseases plots manhattan plots compiled analyzed amount categorical data hua shan hospital shanghai china intern translated patient information chinese speaking doctors attended patients per deloitte touche tohmatsu shanghai china august intern helped translate accounting training materials chinese english created communication optimized interactions within skills fluent oral mandarin proficient matlab competent excel powerpoint leadership phi beta epsilon fraternity cambridge october treasurer solely responsible residence including recruiting fifty responsible transactions including payments vendors taxes contract negotiation chef payment collection sixty members organized financial files filing locating documents efficient kesem counselor merrowvista march cared parents cancer helped attending chinese club cambridge january secretary compiled events into calendar semester helped publicize events mit assisted organizing annual banquet attracts around activities sloan undergraduate management association eagle scout basketball troupe mit undergraduate opportunities program mit leadershape", 
+   "keywords": " university address hrishikesh joshi address vassar hjoshi mit edu inwood cambridge woburn education massachusetts institute technology mit cambridge candidate computer mathematics june gpa minors economics management plano senior plano gpa rank june research laboratory nuclear department physics mit cambridge undergraduate researcher detection jan used ccd camera data statistical analysis detector images sources background alpha particle radiation detector used unix operating latex emacs data analysis department biology university texas dallas richardson research intern june july studied crucial role rna editing mitochondrial gene expression physarum polycephalum methods used centrifugation gel electrophoresis polymerase chain reaction dna rna priming amplification techniques southern blot nucleotide sequencing software etc plano independent researcher aug mar implemented awards leadership texas youth honor society vice president secretary aug skeptical society founder vice president aug computer aug winner annual hewlett packard competition computer uil president uil programming examinations ranked texas mathematics aug mar american invitational mathematics examination qualifier ranked interests theory prime distribution riemann functions etc aug mar texas qualifier prize winner dallas regional contestants discovery scientist challenge semi finalist skills technical python java latex gnu emacs microsoft windows foreign languages fluent hindi marathi years french", 
    "looking_for": [], 
    "countries_of_citizenship": [], 
    "first_name": "John", 
@@ -916,7 +916,7 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": 4, 
-   "resume": "student/student/kao_albert_student3@umeqo.com_2011-09-27-02-11-12.pdf", 
+   "resume": "student/student/adams_john_student3@umeqo.com_2011-12-01-22-41-27.pdf", 
    "user": 5, 
    "industries_of_interest": [], 
    "act": null, 
@@ -928,7 +928,7 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Lincoln", 
-   "last_updated": "2011-09-06 05:14:53", 
+   "last_updated": "2011-12-01 22:41:46", 
    "sat_m": 800, 
    "graduation_month": "4", 
    "older_than_21": "Y", 
@@ -950,7 +950,7 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": 23, 
-   "resume": "student/student/hsu_terence_student4@umeqo.com_2011-09-27-02-11-02.pdf", 
+   "resume": "student/student/lincoln_abraham_student4@umeqo.com_2011-12-01-22-41-45.pdf", 
    "user": 6, 
    "industries_of_interest": [], 
    "act": null, 
@@ -962,10 +962,10 @@
   "model": "student.student", 
   "fields": {
    "last_name": "Washington", 
-   "last_updated": "2011-09-06 05:14:41", 
+   "last_updated": "2011-12-01 22:42:08", 
    "sat_m": null, 
    "graduation_month": "4", 
-   "older_than_21": null, 
+   "older_than_21": "", 
    "sat_t": null, 
    "sat_v": null, 
    "sat_w": null, 
@@ -984,7 +984,7 @@
    "previous_employers": [], 
    "website": "", 
    "second_major": null, 
-   "resume": "student/student/dearing_zachary_student5@umeqo.com_2011-09-27-02-10-49.pdf", 
+   "resume": "student/student/washington_george_student5@umeqo.com_2011-12-01-22-42-08.pdf", 
    "user": 7, 
    "industries_of_interest": [], 
    "act": null, 
@@ -1055,8 +1055,8 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 43, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 45, 
+   "last_updated": "2011-12-01 22:39:55", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 10, 
    "student": 1, 
@@ -1068,9 +1068,9 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 41, 
-   "last_updated": "2011-10-08 18:21:14", 
-   "resume_view_count": 0, 
+   "shown_in_results_count": 43, 
+   "last_updated": "2011-12-01 22:39:59", 
+   "resume_view_count": 1, 
    "add_to_resumebook_count": 9, 
    "student": 2, 
    "raffles_won": 0, 
@@ -1081,8 +1081,8 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 42, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 44, 
+   "last_updated": "2011-12-01 22:39:55", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 7, 
    "student": 3, 
@@ -1094,8 +1094,8 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 39, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 41, 
+   "last_updated": "2011-12-01 22:39:55", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 5, 
    "student": 4, 
@@ -1107,8 +1107,8 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 40, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 42, 
+   "last_updated": "2011-12-01 22:39:55", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 5, 
    "student": 5, 
@@ -1486,10 +1486,10 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-10-24 19:49:28", 
+   "last_login": "2011-12-01 22:38:15", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$a84d8$7be712b49d307b765fefaf8377ae8fb4765590e3", 
+   "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095", 
    "email": "", 
    "date_joined": "2011-05-22 19:39:52"
   }
@@ -1504,7 +1504,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-24 19:50:13", 
+   "last_login": "2011-12-01 22:40:33", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$caddb$5acae38f0241ef6f3134f30edb27eaa3040420c0", 
@@ -1522,10 +1522,10 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-28 16:37:03", 
+   "last_login": "2011-12-01 22:39:12", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$bd7f3$00ac6e9fb053373d262df04c62f1b529dc16b0c9", 
+   "password": "sha1$cf34b$ad09836d202a4c55c9eb4650df41739887c1d9e6", 
    "email": "bitdiddle@umeqo.com", 
    "date_joined": "2011-07-07 22:03:05"
   }
@@ -1540,7 +1540,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-10 13:40:33", 
+   "last_login": "2011-12-01 22:41:00", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$700c1$f3e9a729d56257e9983b8d03016c8ed1efd30350", 
@@ -1558,7 +1558,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-10 13:40:45", 
+   "last_login": "2011-12-01 22:41:19", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9a5b4$bb54c8d442d35f36e2c61256d313f5c001d59ab9", 
@@ -1576,7 +1576,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-10 14:06:51", 
+   "last_login": "2011-12-01 22:41:38", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$619a8$3fa6b73dfcdaf0c14e82262cc4f8e92633087334", 
@@ -1594,7 +1594,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-10-10 14:07:10", 
+   "last_login": "2011-12-01 22:41:59", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$9c07a$fd3f12380a532976c6795f2e9e2dc24c0a890eb6", 
@@ -1853,16 +1853,6 @@
   }
  }, 
  {
-  "pk": 3, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-02 02:32:09", 
-   "session_key": "73b9a88913bb19028d09ebc743693483", 
-   "last_updated": "2011-10-02 02:32:09", 
-   "user": 3
-  }
- }, 
- {
   "pk": 5, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -1873,16 +1863,6 @@
   }
  }, 
  {
-  "pk": 8, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-08 14:57:19", 
-   "session_key": "d9073f12b7a7108c7cfd11fe27a8542f", 
-   "last_updated": "2011-10-08 14:57:19", 
-   "user": 3
-  }
- }, 
- {
   "pk": 7, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -1890,46 +1870,6 @@
    "session_key": "7aa03790446c07beefdf8cbdeec7af85", 
    "last_updated": "2011-10-05 16:06:23", 
    "user": 4
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-08 14:59:26", 
-   "session_key": "4a8e1b639316b6e6b44ab92ca634d289", 
-   "last_updated": "2011-10-08 14:59:26", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-08 15:03:32", 
-   "session_key": "8abf37ea9be8196bfaac4db0fddbcd33", 
-   "last_updated": "2011-10-08 15:03:32", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 13, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-08 16:36:49", 
-   "session_key": "3f09e7e67b3af2f62ef401cbfe866f2a", 
-   "last_updated": "2011-10-08 16:36:49", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 14, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-10-10 13:13:53", 
-   "session_key": "ee9fd8b84d7acf718161cc8acb0d6bd7", 
-   "last_updated": "2011-10-10 13:13:53", 
-   "user": 3
   }
  }, 
  {
@@ -1963,22 +1903,22 @@
   }
  }, 
  {
-  "pk": 25, 
+  "pk": 36, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-10-24 19:48:52", 
-   "session_key": "bee9f5a19a93916373121c092b03317c", 
-   "last_updated": "2011-10-24 19:48:52", 
-   "user": 3
+   "date_created": "2011-12-01 22:41:59", 
+   "session_key": "2ee36c0d0d6bff4a3f752e70e62bbfac", 
+   "last_updated": "2011-12-01 22:41:59", 
+   "user": 7
   }
  }, 
  {
-  "pk": 28, 
+  "pk": 31, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-10-28 16:37:03", 
-   "session_key": "4a639c7e226a154f3ee5a92b695e1ee2", 
-   "last_updated": "2011-10-28 16:37:03", 
+   "date_created": "2011-12-01 22:37:58", 
+   "session_key": "287509d9618ceeac0c435190d9033857", 
+   "last_updated": "2011-12-01 22:37:58", 
    "user": 3
   }
  }
