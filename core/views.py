@@ -206,25 +206,21 @@ def help_center(request, extra_context = None):
     if is_campus_org(request.user):
         pass
     if is_recruiter(request.user):
+        tutorials = Tutorial.objects.filter(audience__in = get_audiences(request.user), display=True)
         try:
-            sd_topic = Topic.objects.get(name="Student Discovery")
-            context['student_discovery_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=sd_topic, display=True)
-        except Topic.DoesNotExist:
-            pass
-        
-        try:
-            subs_topic = Topic.objects.get(name="Subscriptions")
-            context['subscription_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=subs_topic, display=True)
+            context['student_discovery_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Student Discovery"))
         except Topic.DoesNotExist:
             pass
         try:
-            events_topic = Topic.objects.get(name="Events & Deadlines")
-            context['event_and_deadline_tutorials'] = Tutorial.objects.filter(topic=events_topic, display=True).filter(Q(audience=core_enums.EMPLOYER)|Q(audience=core_enums.CAMPUS_ORGS_AND_EMPLOYERS))
+            context['subscription_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Subscriptions"))
         except Topic.DoesNotExist:
             pass
         try:
-            am_topic = Topic.objects.get(name="Account Management")
-            context['account_management_tutorials'] = Tutorial.objects.filter(audience = core_enums.EMPLOYER, topic=am_topic, display=True)
+            context['event_and_deadline_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Events & Deadlines"))
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['account_management_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Account Management"))
         except Topic.DoesNotExist:
             pass
     context['top_questions'] = filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:s.TOP_QUESTIONS_NUM]

@@ -47,7 +47,6 @@ def get_all_responses(event):
             emails_dict[res['email']] = 1
             all_responses.append(res)
     all_responses.sort(key=lambda n: n['name'])
-    all_responses.sort(key=lambda n: 0 if n['account'] else 1)
     return all_responses
 
 def buildAttendee(obj):

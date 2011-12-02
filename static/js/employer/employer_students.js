@@ -139,14 +139,14 @@ function handle_students_invite_click(e) {
             success: function (events) {
                 var dialog = $('<div class="dialog"></div>').dialog({
                     autoOpen: false,
-                    title: "Choose an Event",
+                    title: "Choose an Upcoming Event or Deadline",
                     dialogClass: "event_invitation_dialog",
                     modal: true,
                     width: 550,
                     resizable: false,
                 });
                 if (events.length == 0) {
-                    dialog.html('<span id="student_invite_no_events" class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
+                    dialog.html('<span id="student_invite_no_events" class="nowrap">You have no upcoming events or deadlines! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
                 } else {
                     var students_invite_events = $('<ul id="student_invite_events"></ul>');
                     $.each(events, function (k,event) {
@@ -811,7 +811,7 @@ $(document).ready(function () {
             invite_text = "Hi " + student_name + ", I'd like to invite you to our event.";
         }
         var msg_input = $('<textarea id="invite_text">' + invite_text + '</textarea>');
-        invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below. <em>Try to make your message more personalized - students will be more likely to respond!</em></p>');
+        invite_dialog.html('<p>' + student_name + ' will get an invite for your event, <strong>' + event_name + '</strong>, with your name and company included with the message below. <em>Try to make your message as personalized as possible - students will be more likely to respond!</em></p>');
         invite_dialog.append(msg_input);
         invite_dialog.append('<p>' + extra_text + '</p>');
         invite_dialog.dialog({

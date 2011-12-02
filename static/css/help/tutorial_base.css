@@ -20,7 +20,7 @@ p{
     margin-top:10px;
     opacity:.8;
 }
-#instructions_div img:hover{
+#instructions_div a img:hover{
     opacity:1;
 }
 #instructions_div .header{

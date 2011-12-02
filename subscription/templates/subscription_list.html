@@ -18,6 +18,7 @@ Subscription Choices |
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_subscription_info_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_transaction_dialog.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_list.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -76,7 +77,13 @@ Subscription Choices |
                     </hgroup>
                     <hgroup class="price">
                         <h2>
-                            <span class="style1">{{ paid_subscription_text }}</span>
+                            <span class="style1">
+                                {% if paid_subscription_text %}
+                                    {{ paid_subscription_text }}
+                                {% else %}
+                                    Contact Us For Pricing
+                                {% endif %}
+                            </span>
                         </h2>
                     </hgroup>
                 </header>
@@ -90,11 +97,16 @@ Subscription Choices |
                         <li><strong>Unlimited</strong> Student Invitation</li>
                         <li class="last">
                             <a href="javascript:void(0)" 
-                            data-action="{{paid_subscription_action}}" 
+                            data-action="{% if paid_subscription_action %}{{paid_subscription_action}}{% else %}subscribe{% endif %}" 
                             data-title="{{transaction_dialog_title}}"
                             data-subscription-type="annual" 
-                            class="btn {{paid_subscription_class}}">
-                            {{paid_subscription_button_text}}</a>
+                            class="btn open_transaction_dialog_link {{paid_subscription_class}}">
+                            {% if paid_subscription_button_text %}
+                                {{paid_subscription_button_text}}
+                            {% else %}
+                                Contact Us
+                            {% endif %}
+                            </a>
                         </li>
                     </ul>
                 </footer>
