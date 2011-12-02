@@ -123,6 +123,42 @@
   }
  }, 
  {
+  "pk": 12, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "audience": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    6
+   ], 
+   "attending_employers": [
+    6
+   ], 
+   "name": "Umeqo Resume Drop Deadline", 
+   "is_public": true, 
+   "edits": [], 
+   "description": "<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\tDon&#39;t miss MIT&#39;s BIGGEST internship networking event of the year. We&nbsp;have the largest firms in finance, consulting, and engineering coming&nbsp;to MIT to specifically meet potential interns. That means YOU -&nbsp;especially if you are graduating in 2013 and 2014. Firms will be&nbsp;selecting students from the resumes submitted and will meet them in an&nbsp;intimate environment.&nbsp;Drop&nbsp;your&nbsp;resume&nbsp;online ASAP</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "short_slug": null, 
+   "is_drop": true, 
+   "end_datetime": "2011-12-15 04:30:00", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-12-01 03:11:55", 
+   "type": 2, 
+   "slug": "umeqo-resume-drop-deadline", 
+   "location": ""
+  }
+ }, 
+ {
   "pk": 3, 
   "model": "events.rsvp", 
   "fields": {
@@ -309,18 +345,6 @@
    "datetime_created": "2011-10-11 03:08:41", 
    "email": "student5@umeqo.com", 
    "student": 5, 
-   "won_raffle": false, 
-   "event": 11
-  }
- }, 
- {
-  "pk": 16, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Dmitrij Petters", 
-   "datetime_created": "2011-11-27 17:25:56", 
-   "email": "dpetters@mit.edu", 
-   "student": 6, 
    "won_raffle": false, 
    "event": 11
   }
@@ -992,42 +1016,6 @@
   }
  }, 
  {
-  "pk": 6, 
-  "model": "student.student", 
-  "fields": {
-   "last_name": "Petters", 
-   "last_updated": "2011-11-27 17:25:56", 
-   "sat_m": null, 
-   "graduation_month": "5", 
-   "older_than_21": "", 
-   "sat_t": null, 
-   "sat_v": null, 
-   "sat_w": null, 
-   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa candidate bachelor electrical engineering computer cambridge sep math physics awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems analysis algorithms bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun aug designed developed splunk aggregation analytics linux node cluster using hadoop hbase hive flume thrift zookeeper used django allowed sql querying terabytes data user etc mapreduce jobs massive sets tick data cpu times jobs running condor cluster athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended scrums planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder cambridge feb umeqo innovative recruiting resource students employers discover another launched mit september django app uses fabric virtualenv apache solr hosted using apache nginx mod wsgi linode collaborating github traders mit exec cambridge nov oct developing trading annual trading competition upgrading website content management mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical python django java html css javascript jquery extjs latex bash knowledge languages fluent russian english interests ted talks hockey running entrepreneurship", 
-   "looking_for": [], 
-   "countries_of_citizenship": [], 
-   "first_name": "Dmitrij", 
-   "first_major": 12, 
-   "subscriptions": [
-    6
-   ], 
-   "gpa": "4.800", 
-   "campus_involvement": [], 
-   "languages": [], 
-   "profile_created": true, 
-   "school_year": 2, 
-   "graduation_year": 2, 
-   "previous_employers": [], 
-   "website": "", 
-   "second_major": null, 
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-11-27-17-25-55.pdf", 
-   "user": 27, 
-   "industries_of_interest": [], 
-   "act": null, 
-   "date_created": "2011-11-27 17:25:07"
-  }
- }, 
- {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -1088,23 +1076,11 @@
   }
  }, 
  {
-  "pk": 6, 
-  "model": "student.studentpreferences", 
-  "fields": {
-   "email_on_new_subscribed_employer_event": true, 
-   "last_updated": "2011-11-27 17:25:07", 
-   "email_on_invite_to_private_event": true, 
-   "email_on_invite_to_public_event": true, 
-   "student": 6, 
-   "date_created": "2011-11-27 17:25:07"
-  }
- }, 
- {
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 43, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 51, 
+   "last_updated": "2011-12-01 21:09:30", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 10, 
    "student": 1, 
@@ -1116,8 +1092,8 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 41, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 49, 
+   "last_updated": "2011-12-01 21:09:30", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 9, 
    "student": 2, 
@@ -1129,8 +1105,8 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 42, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 50, 
+   "last_updated": "2011-12-01 21:09:30", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 7, 
    "student": 3, 
@@ -1142,8 +1118,8 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 39, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 47, 
+   "last_updated": "2011-12-01 21:09:30", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 5, 
    "student": 4, 
@@ -1155,26 +1131,13 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 40, 
-   "last_updated": "2011-10-08 18:21:14", 
+   "shown_in_results_count": 48, 
+   "last_updated": "2011-12-01 21:09:30", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 5, 
    "student": 5, 
    "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "student.studentstatistics", 
-  "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-11-27 17:25:07", 
-   "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
-   "student": 6, 
-   "raffles_won": 0, 
-   "date_created": "2011-11-27 17:25:07"
   }
  }, 
  {
@@ -1547,7 +1510,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-11-30 16:28:18", 
+   "last_login": "2011-12-01 21:00:07", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7f354$b61b46da9f58f28b33c69de7e825fe9abfd73f92", 
@@ -1583,7 +1546,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-11-29 17:14:03", 
+   "last_login": "2011-12-01 21:00:21", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$e7c6e$c634f9c3d9354f7e11837f1363ce4040c42f8278", 
@@ -1745,7 +1708,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-11-30 16:29:05", 
+   "last_login": "2011-12-01 03:07:00", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -1769,24 +1732,6 @@
    "password": "sha1$9a360$c25f0c73ce04edec98c6b6ca62807dcfcc6f3736", 
    "email": "sbc-exec@mit.edu", 
    "date_joined": "2011-09-01 02:25:42"
-  }
- }, 
- {
-  "pk": 27, 
-  "model": "auth.user", 
-  "fields": {
-   "username": "dpetters@mit.edu", 
-   "first_name": "Dmitrij", 
-   "last_name": "Petters", 
-   "is_active": true, 
-   "is_superuser": false, 
-   "is_staff": false, 
-   "last_login": "2011-11-27 17:25:21", 
-   "groups": [], 
-   "user_permissions": [], 
-   "password": "sha1$2dbdf$0365ca3b117e68d6b09e95ba3068dcce6deff969", 
-   "email": "dpetters@mit.edu", 
-   "date_joined": "2011-11-27 17:25:07"
   }
  }, 
  {
@@ -1917,17 +1862,6 @@
    "agreed_to_terms": false, 
    "is_verified": true, 
    "user": 26, 
-   "agreed_to_terms_date": null, 
-   "last_password_change_date": null
-  }
- }, 
- {
-  "pk": 26, 
-  "model": "registration.userattributes", 
-  "fields": {
-   "agreed_to_terms": true, 
-   "is_verified": true, 
-   "user": 27, 
    "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
@@ -2163,11 +2097,23 @@
   }
  }, 
  {
-  "pk": 1, 
-  "model": "registration.registrationprofile", 
+  "pk": 42, 
+  "model": "registration.sessionkey", 
   "fields": {
-   "activation_key": "ALREADY_ACTIVATED", 
-   "user": 27
+   "date_created": "2011-12-01 03:06:09", 
+   "session_key": "3d54fc15642cec09d38fe4d2a2c2b0eb", 
+   "last_updated": "2011-12-01 03:06:09", 
+   "user": 16
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-12-01 03:08:46", 
+   "session_key": "42b830999205ca4ed664b5aa9f2e5d57", 
+   "last_updated": "2011-12-01 03:08:46", 
+   "user": 3
   }
  }
 ]
