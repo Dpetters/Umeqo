@@ -206,7 +206,7 @@ function handle_resume_book_students_remove(e) {
     student_ids = [];
     $(".student_checkbox").each(function (el) {
         if (this.checked) {
-            student_ids.push($(this).attr('data-student-id'));
+            student_ids.push($(this).data('student-id'));
         }
     });
     if (student_ids.length) {
@@ -249,7 +249,7 @@ function handle_resume_book_students_add(e) {
         student_ids = [];
         $(".student_checkbox").each(function (el) {
             if (this.checked) {
-                student_ids.push($(this).attr('data-student-id'));
+                student_ids.push($(this).data('student-id'));
             }
         });
         if (student_ids.length){
@@ -443,13 +443,13 @@ function handle_results_menu_not_in_resume_book_click(e) {
 }
         
 function handle_results_menu_checkbox_click(e) {
-    if ($("#results_menu_checkbox").attr('checked')==false) {
-        $(".student_checkbox:checked").each(function () {
-            $(this).attr('checked', false);
-        });
-    } else {
+    if ($("#results_menu_checkbox").prop('checked')) {
         $(".student_checkbox").not(':checked').each(function () {
-            $(this).attr('checked', true);
+            $(this).prop('checked', true);
+        });
+    }else{
+        $(".student_checkbox:checked").each(function () {
+            $(this).prop('checked', false);
         });
     }
     e.stopPropagation();
