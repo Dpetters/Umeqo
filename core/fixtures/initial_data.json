@@ -150,6 +150,21 @@
   }
  }, 
  {
+  "pk": 16, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 19:54:03", 
+   "name": "Export RSVP & Attendee Info", 
+   "display": false, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "3.000", 
+   "date_created": "2011-12-01 19:54:03", 
+   "slug": "export-rsvp-attendee-info", 
+   "description": "Learn about how to export RSVP & Attendee info to excel (csv) or text."
+  }
+ }, 
+ {
   "pk": 11, 
   "model": "core.tutorial", 
   "fields": {
