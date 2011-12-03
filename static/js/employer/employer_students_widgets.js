@@ -250,7 +250,7 @@ $(document).ready(function(){
         selectedList: 1,
         multiple: false,
         height: 53,
-        minWidth: multiselectYesNoSingleSelectWidth,
+        minWidth:multiselectYesNoSingleSelectWidth,
         click: function(event, ui) {
             older_than_21 = ui.value;
             initiate_ajax_call();

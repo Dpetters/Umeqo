@@ -61,6 +61,7 @@
             var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
         </script>
         {% compress js %}
+            <script src="{{ STATIC_URL }}lib/modernizr/modernizr.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_ui_custom/jquery-ui-1.8.12.custom.min.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
@@ -68,7 +69,6 @@
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
-            <script src="{{ STATIC_URL }}lib/modernizr/modernizr.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}js/base.js"></script>
             <script src="{{ STATIC_URL }}js/contact_us_dialog.js"></script>
             
@@ -78,10 +78,6 @@
                 <script type="text/javascript" src="{{ STATIC_URL }}js/anonymous.js"></script>
             {% endif %}
         {% endcompress %}
-        <!--[if IE 7]>
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/IE7.css" />
-            <script src="{{ STATIC_URL }}lib/IE7/ie7-squish.js"></script>
-        <![endif]-->
         <!--[if lt IE 7]>
             <script src="{{ STATIC_URL }}js/unsupported_browser.js" type="text/javascript"></script>
         <![endif]-->
