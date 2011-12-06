@@ -1,7 +1,7 @@
 {% extends "email_base.html" %}
 
 {% block email_body %}
-    <h2 style="margin-top:0">Cancelled Event</h2>
+    <h2 style="margin-top:0">Cancelled {% if event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
     
     <p>Hey {{name}},</p>
         
