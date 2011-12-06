@@ -87,42 +87,6 @@
   }
  }, 
  {
-  "pk": 11, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 6, 
-   "start_datetime": "2012-02-09 13:30:00", 
-   "audience": [
-    1, 
-    2, 
-    3, 
-    4, 
-    5, 
-    6
-   ], 
-   "attending_employers": [
-    6
-   ], 
-   "name": "Umeqo Consulting Panel", 
-   "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tAre you interested in launching a career in consulting? Join Umeqo consultants and recruiters for a careers presentation and interactive&nbsp;panel&nbsp;discussion. Attendees will learn about:</p>\r\n<p>\r\n\t&bull; Accenture business areas</p>\r\n<p>\r\n\t&bull; Career paths and development</p>\r\n<p>\r\n\t&bull; Company culture, values, and commitment to corporate citizenship</p>\r\n<p>\r\n\tRefreshments will be served and casual attire is welcome. We look forward to seeing you there!</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.092923220000003, 
-   "latitude": 42.358714519999999, 
-   "short_slug": null, 
-   "is_drop": false, 
-   "end_datetime": "2012-02-09 15:30:00", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-10-10 13:16:48", 
-   "type": 3, 
-   "slug": "umeqo-consulting-panel", 
-   "location": "5-324"
-  }
- }, 
- {
   "pk": 12, 
   "model": "events.event", 
   "fields": {
@@ -293,35 +257,6 @@
   }
  }, 
  {
-  "pk": 18, 
-  "model": "events.event", 
-  "fields": {
-   "view_count": 4, 
-   "start_datetime": null, 
-   "audience": [], 
-   "attending_employers": [
-    6
-   ], 
-   "name": "Test Deadline emails", 
-   "is_public": true, 
-   "edits": [], 
-   "description": "<p>\r\n\tiuhiuh</p>\r\n", 
-   "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
-   "is_drop": false, 
-   "end_datetime": "2031-02-04 13:38:19", 
-   "rsvp_message": "", 
-   "owner": 3, 
-   "date_created": "2011-12-06 13:38:19", 
-   "type": 10, 
-   "slug": "test-deadline-emails", 
-   "location": ""
-  }
- }, 
- {
   "pk": 3, 
   "model": "events.rsvp", 
   "fields": {
@@ -372,13 +307,23 @@
   }
  }, 
  {
-  "pk": 10, 
+  "pk": 11, 
   "model": "events.rsvp", 
   "fields": {
-   "attending": true, 
+   "attending": false, 
    "event": 18, 
    "student": 6, 
-   "datetime_created": "2011-12-06 13:39:38"
+   "datetime_created": "2011-12-06 16:34:14"
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": false, 
+   "event": 11, 
+   "student": 6, 
+   "datetime_created": "2011-12-06 16:34:22"
   }
  }, 
  {
@@ -424,6 +369,24 @@
    "datetime_created": "2011-09-19 12:24:15", 
    "event": 7, 
    "student": 5
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "events.invitee", 
+  "fields": {
+   "datetime_created": "2011-12-06 16:33:04", 
+   "event": 18, 
+   "student": 6
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "events.invitee", 
+  "fields": {
+   "datetime_created": "2011-12-06 16:33:08", 
+   "event": 11, 
+   "student": 6
   }
  }, 
  {
@@ -850,6 +813,17 @@
    "date_created": "2011-08-27 16:20:39", 
    "last_updated": "2011-08-27 16:20:39", 
    "student": 5, 
+   "employer": 6
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2011-12-06 16:29:39", 
+   "last_updated": "2011-12-06 16:29:39", 
+   "student": 6, 
    "employer": 6
   }
  }, 
@@ -1792,7 +1766,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-12-06 13:38:06", 
+   "last_login": "2011-12-06 16:29:33", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cf34b$ad09836d202a4c55c9eb4650df41739887c1d9e6", 
@@ -2269,6 +2243,16 @@
    "session_key": "20b50d0d70c4008a9142e30ad61d9cd0", 
    "last_updated": "2011-12-06 13:38:57", 
    "user": 27
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-12-06 16:29:33", 
+   "session_key": "e9c866bcba3b13bfa57aed9250c69b21", 
+   "last_updated": "2011-12-06 16:29:33", 
+   "user": 3
   }
  }, 
  {
