@@ -1,0 +1,1 @@
+Cancelled {% if event.is_deadline %}Deadline{% else %}Event{% endif %}

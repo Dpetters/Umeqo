@@ -281,7 +281,8 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
         'email.html',
         'notice.html',
         'full.html',
-    ) # TODO make formats configurable
+        'email_subject.txt'
+    )
 
     for user in users:
         recipients = []
@@ -310,12 +311,13 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
         messages = get_formatted_messages(formats, label, context)
 
         # Strip newlines from subject
+        # messages['notice.html']
         subject = ''.join(render_to_string('notification/email_subject.txt', {
-            'message': messages['short.txt'],
+            'message': messages['email_subject.txt'],
         }, context).splitlines())
 
         body = messages['email.html']
-        
+
         Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
             notice_type=notice_type, on_site=on_site, sender=sender)
         
