@@ -3764,8 +3764,8 @@
   "pk": 5, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-11-14 16:48:53", 
-   "click_count": 2, 
+   "last_updated": "2011-12-04 23:46:53", 
+   "click_count": 3, 
    "question": "What is the difference between a public and private event?", 
    "slug": "what-difference-between-public-and-private-event", 
    "topic": 11, 
@@ -3876,8 +3876,8 @@
   "pk": 14, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-11-29 19:31:58", 
-   "click_count": 1, 
+   "last_updated": "2011-12-04 23:46:44", 
+   "click_count": 2, 
    "question": "I can't remember my login email.", 
    "slug": "i-cant-remember-my-log-email", 
    "topic": 9, 
