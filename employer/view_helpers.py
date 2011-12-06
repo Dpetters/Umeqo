@@ -267,6 +267,7 @@ def filter_students(recruiter,
     if campus_orgs:
         filtering = True
         kwargs['campus_involvement__id__in'] = campus_orgs
+    print campus_orgs
     filtering_results = students.filter(**kwargs)
 
     if courses:
