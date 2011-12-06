@@ -1,1 +1,1 @@
-<strong>{{ employer_names }}</strong> {{ has_word }} a new event: "{{ event.name }}"
+<strong>{{ employer_names }}</strong> {{ has_word }} a new {% if event.is_deadline %}deadline{% else %}event{% endif %}: "{{ event.name }}"
