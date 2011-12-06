@@ -32,6 +32,7 @@ urlpatterns += patterns('',
     (r'^events/8/oliver-wyman-full-time-application/$', redirect_to, {'url':"/events/8/oliver-wyman-full-time-application-deadline/"}),
     (r'^events/7/oliver-wyman-financial-services-management-consulting-information-session-consultant-panel/$', redirect_to, {'url':"/events/7/oliver-wyman-financial-services-management-consult/"}),
     (r'^events/9/tradersmit-presents-arbitrage-tradin/', redirect_to, {'url':"/events/9/"}),
+    (r'^events/32/investment-banking-and-sales-trading-summer-analyst', redirect_to, {'url':"/events/32/"}),
     (r'^sbc-bbq/$', redirect_to, {'url':'/events/6/'}),
     (r'^employer/signup/$', redirect_to, {'url':'/subscriptions/'}),
     
