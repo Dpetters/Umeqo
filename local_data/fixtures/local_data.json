@@ -123,6 +123,118 @@
   }
  }, 
  {
+  "pk": 12, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [], 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
+   "is_public": true, 
+   "edits": [
+    1
+   ], 
+   "description": "<p>\r\n\ttest</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "short_slug": null, 
+   "is_drop": false, 
+   "end_datetime": "2011-12-06 14:00:00", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-12-06 12:52:29", 
+   "type": 2, 
+   "slug": "investment-banking-and-sales-trading-summer-analys", 
+   "location": ""
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [], 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
+   "is_public": true, 
+   "edits": [], 
+   "description": "<p>\r\n\tfef</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "short_slug": null, 
+   "is_drop": false, 
+   "end_datetime": "2011-12-06 14:30:00", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-12-06 13:07:25", 
+   "type": 2, 
+   "slug": "investment-banking-and-sales-trading-summer-analys", 
+   "location": ""
+  }
+ }, 
+ {
+  "pk": 14, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [
+    6
+   ], 
+   "name": "Investment Banking and Sales & Trading", 
+   "is_public": true, 
+   "edits": [], 
+   "description": "<p>\r\n\tfef</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "short_slug": null, 
+   "is_drop": false, 
+   "end_datetime": "2011-12-06 14:30:00", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-12-06 13:09:45", 
+   "type": 2, 
+   "slug": "investment-banking-and-sales-trading", 
+   "location": ""
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 0, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [], 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline Duh Cmon T", 
+   "is_public": true, 
+   "edits": [], 
+   "description": "<p>\r\n\tfeafaes</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "short_slug": null, 
+   "is_drop": false, 
+   "end_datetime": "2011-12-06 14:30:00", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-12-06 13:10:47", 
+   "type": 2, 
+   "slug": "investment-banking-and-sales-trading-summer-analys", 
+   "location": ""
+  }
+ }, 
+ {
   "pk": 3, 
   "model": "events.rsvp", 
   "fields": {
@@ -318,9 +430,9 @@
   "model": "events.attendee", 
   "fields": {
    "name": "Dmitrij Petters", 
-   "datetime_created": "2011-10-11 03:08:46", 
+   "datetime_created": "2011-12-06 12:51:01", 
    "email": "dpetters@mit.edu", 
-   "student": null, 
+   "student": 6, 
    "won_raffle": false, 
    "event": 11
   }
@@ -992,6 +1104,42 @@
   }
  }, 
  {
+  "pk": 6, 
+  "model": "student.student", 
+  "fields": {
+   "last_name": "Petters", 
+   "last_updated": "2011-12-06 12:51:01", 
+   "sat_m": null, 
+   "graduation_month": "5", 
+   "older_than_21": "", 
+   "sat_t": null, 
+   "sat_v": null, 
+   "sat_w": null, 
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa candidate bachelor electrical engineering computer cambridge sep math physics awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems analysis algorithms bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun mozilla corporation native android mobile firefox engineer jan feb helping prototype firefox android susquehanna international technology intern bala cynwyd jun aug designed developed splunk aggregation analytics linux node cluster using hadoop hbase hive flume thrift zookeeper used django allowed sql querying terabytes data user etc mapreduce jobs massive sets tick data cpu times jobs running condor cluster athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended scrums planning meetings developed data mining script used extract pertinent info tens thousands logs rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder cambridge feb umeqo innovative recruiting resource students employers discover another launched mit september django app uses fabric virtualenv apache solr hosted using apache nginx mod wsgi linode collaborating github traders mit exec cambridge nov oct developing trading annual trading competition upgrading website content management mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical python django java html css javascript jquery extjs latex bash knowledge languages fluent russian english interests ted talks hockey running entrepreneurship", 
+   "looking_for": [], 
+   "countries_of_citizenship": [], 
+   "first_name": "Dmitrij", 
+   "first_major": 24, 
+   "subscriptions": [
+    6
+   ], 
+   "gpa": "5.000", 
+   "campus_involvement": [], 
+   "languages": [], 
+   "profile_created": true, 
+   "school_year": 3, 
+   "graduation_year": 4, 
+   "previous_employers": [], 
+   "website": "", 
+   "second_major": null, 
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2011-12-06-12-51-00.pdf", 
+   "user": 27, 
+   "industries_of_interest": [], 
+   "act": null, 
+   "date_created": "2011-12-06 12:50:33"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "student.studentpreferences", 
   "fields": {
@@ -1049,6 +1197,18 @@
    "email_on_invite_to_public_event": false, 
    "student": 5, 
    "date_created": "2011-07-23 10:53:54"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "student.studentpreferences", 
+  "fields": {
+   "email_on_new_subscribed_employer_event": true, 
+   "last_updated": "2011-12-06 12:50:33", 
+   "email_on_invite_to_private_event": true, 
+   "email_on_invite_to_public_event": true, 
+   "student": 6, 
+   "date_created": "2011-12-06 12:50:33"
   }
  }, 
  {
@@ -1114,6 +1274,19 @@
    "student": 5, 
    "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "student.studentstatistics", 
+  "fields": {
+   "shown_in_results_count": 0, 
+   "last_updated": "2011-12-06 12:50:33", 
+   "resume_view_count": 0, 
+   "add_to_resumebook_count": 0, 
+   "student": 6, 
+   "raffles_won": 0, 
+   "date_created": "2011-12-06 12:50:33"
   }
  }, 
  {
@@ -1486,7 +1659,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-12-06 00:20:26", 
+   "last_login": "2011-12-06 12:51:20", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095", 
@@ -1522,7 +1695,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-12-06 00:32:54", 
+   "last_login": "2011-12-06 12:52:12", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cf34b$ad09836d202a4c55c9eb4650df41739887c1d9e6", 
@@ -1711,6 +1884,24 @@
   }
  }, 
  {
+  "pk": 27, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "dpetters@mit.edu", 
+   "first_name": "Dmitrij", 
+   "last_name": "Petters", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-12-06 12:50:43", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$6baa3$acc0f7565dfdc34b338a073f84f61947028c22c6", 
+   "email": "dpetters@mit.edu", 
+   "date_joined": "2011-12-06 12:50:33"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -1843,6 +2034,17 @@
   }
  }, 
  {
+  "pk": 26, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "agreed_to_terms": true, 
+   "is_verified": true, 
+   "user": 27, 
+   "agreed_to_terms_date": null, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
   "pk": 4, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -1953,13 +2155,31 @@
   }
  }, 
  {
-  "pk": 40, 
+  "pk": 41, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-12-06 00:32:54", 
-   "session_key": "b69a7b5c5d02810f99317b89d80f760d", 
-   "last_updated": "2011-12-06 00:32:54", 
+   "date_created": "2011-12-06 12:50:43", 
+   "session_key": "437190fcc7b38e705e5db711c9bfb59e", 
+   "last_updated": "2011-12-06 12:50:43", 
+   "user": 27
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2011-12-06 12:52:12", 
+   "session_key": "5662efd3dd14d1f598da6aa1ad82b7da", 
+   "last_updated": "2011-12-06 12:52:12", 
    "user": 3
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "registration.registrationprofile", 
+  "fields": {
+   "activation_key": "ALREADY_ACTIVATED", 
+   "user": 27
   }
  }
 ]
