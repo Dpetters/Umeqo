@@ -13,7 +13,7 @@ from notification import models as notification
 
 class CampusOrgType(core_mixins.DateTracking):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    sort_order = models.IntegerField("sort order", default=0, help_text='CampusOrgTypes will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
  
     class Meta:
         verbose_name = "On-Campus Organization Type"
@@ -124,7 +124,7 @@ class Course(CommonInfo):
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
     image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
-    sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True)
 
@@ -165,7 +165,7 @@ class Tutorial(core_mixins.DateTracking):
 
 class EmploymentType(core_mixins.DateTracking):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    sort_order = models.IntegerField("sort order", default=0, help_text='EmploymentTypes will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
    
     class Meta:
         verbose_name = "Employment Type"
@@ -192,7 +192,7 @@ class Industry(core_mixins.DateTracking):
 class EventType(core_mixins.DateTracking):
     name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
     
-    sort_order = models.IntegerField("sort order", default=0, help_text='EventTypes will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
 
     class Meta:
         verbose_name = "Event Type"
