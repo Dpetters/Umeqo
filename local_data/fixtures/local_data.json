@@ -182,7 +182,7 @@
   "pk": 14, 
   "model": "events.event", 
   "fields": {
-   "view_count": 5, 
+   "view_count": 8, 
    "start_datetime": null, 
    "audience": [], 
    "attending_employers": [
@@ -293,6 +293,35 @@
   }
  }, 
  {
+  "pk": 18, 
+  "model": "events.event", 
+  "fields": {
+   "view_count": 4, 
+   "start_datetime": null, 
+   "audience": [], 
+   "attending_employers": [
+    6
+   ], 
+   "name": "Test Deadline emails", 
+   "is_public": true, 
+   "edits": [], 
+   "description": "<p>\r\n\tiuhiuh</p>\r\n", 
+   "is_active": true, 
+   "last_seen_view_count": 0, 
+   "longitude": null, 
+   "latitude": null, 
+   "short_slug": null, 
+   "is_drop": false, 
+   "end_datetime": "2031-02-04 13:38:19", 
+   "rsvp_message": "", 
+   "owner": 3, 
+   "date_created": "2011-12-06 13:38:19", 
+   "type": 10, 
+   "slug": "test-deadline-emails", 
+   "location": ""
+  }
+ }, 
+ {
   "pk": 3, 
   "model": "events.rsvp", 
   "fields": {
@@ -340,6 +369,16 @@
    "event": 11, 
    "student": 5, 
    "datetime_created": "2011-10-10 14:07:19"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "events.rsvp", 
+  "fields": {
+   "attending": true, 
+   "event": 18, 
+   "student": 6, 
+   "datetime_created": "2011-12-06 13:39:38"
   }
  }, 
  {
@@ -1753,7 +1792,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-12-06 12:52:12", 
+   "last_login": "2011-12-06 13:38:06", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cf34b$ad09836d202a4c55c9eb4650df41739887c1d9e6", 
@@ -1951,7 +1990,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-12-06 13:27:39", 
+   "last_login": "2011-12-06 13:38:57", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$6baa3$acc0f7565dfdc34b338a073f84f61947028c22c6", 
@@ -2223,12 +2262,12 @@
   }
  }, 
  {
-  "pk": 43, 
+  "pk": 45, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-12-06 13:27:39", 
-   "session_key": "5bdc6bd58d1defb990ed4f759d2a2aaf", 
-   "last_updated": "2011-12-06 13:27:39", 
+   "date_created": "2011-12-06 13:38:57", 
+   "session_key": "20b50d0d70c4008a9142e30ad61d9cd0", 
+   "last_updated": "2011-12-06 13:38:57", 
    "user": 27
   }
  }, 
