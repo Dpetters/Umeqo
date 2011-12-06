@@ -105,10 +105,6 @@ def event_page(request, id, slug, extra_context=None):
                 Invitee.objects.get(event=event, student=request.user.student)
             except:
                 return HttpResponseForbidden("You don't have permission to view this event.")
-        
-    #check slug matches event
-    if event.slug!=slug:
-        raise Http404
 
     current_site = Site.objects.get(id=s.SITE_ID)
 
