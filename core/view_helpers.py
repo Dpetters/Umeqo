@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from django.db.models import Q
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
@@ -71,13 +70,13 @@ def get_ip(request):
 
 def um_slugify(s):
     parts = filter(lambda n: n not in ('the', 'a', 'an', 'of', 'for'), s.split(' '))
-    new_s = ' '.join(parts)
+    new_s = slugify(' '.join(parts))
     if len(new_s) > 50:
-        parts = new_s.split(' ')
+        parts = new_s.split('-')
         new_len, new_parts, i = 0, [], 0
-        while new_len < 40:
+        while len(new_parts) + len(parts[i]) + new_len <= 50:
             new_parts.append(parts[i])
             new_len += len(parts[i])
             i += 1
-        new_s = ' '.join(new_parts)
-    return slugify(new_s)
+        new_s = '-'.join(new_parts)
+    return new_s
