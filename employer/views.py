@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files import File
+from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
 from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, Http404
@@ -492,15 +493,22 @@ def employer_students(request, extra_context=None):
                         cache.delete('filtering_results')
         filtering, current_paginator = get_paginator(request)
         context['filtering'] = filtering
-        context['page'] = current_paginator.page(request.POST['page'])
+        
+        try:
+            context['page'] = current_paginator.page(request.POST['page'])
+        except EmptyPage:
+            context['page'] = current_paginator.page(1)
+            
         context['current_student_list'] = request.POST['student_list']
         
 
         # I don't like this method of statistics
+        """
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-
+        """
+        
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True

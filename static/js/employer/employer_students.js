@@ -485,6 +485,7 @@ function initiate_ajax_call() {
     var error_dialog_timeout = setTimeout(function () {
         $("#results_block_info").prepend(two_line_long_load_message);
     }, LOAD_WAIT_TIME);
+    console.log(campus_orgs.join('~'));
     xhr = $.ajax({
         type: 'POST',
         url: STUDENTS_URL,
