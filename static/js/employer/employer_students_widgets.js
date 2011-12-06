@@ -211,6 +211,14 @@ $(document).ready(function(){
             initiate_ajax_call();
         }
     }).multiselectfilter();
+    
+    $("#id_campus_involvement").bind("multiselectoptgrouptoggle", function(event, ui){
+        page = 1;
+        campus_orgs = $("#id_campus_involvement").multiselect("getChecked").map( function() {
+            return this.value;
+        }).get();
+        initiate_ajax_call();
+    });
 
     $("#id_languages").multiselect({
         noneSelectedText: 'Filter By Languages',
