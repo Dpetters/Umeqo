@@ -5,7 +5,7 @@
     
     <p>Hey {{name}},</p>
         
-    <p>This is to just let you know that {{employer_names}} {{has_word}} cancelled their event: "{{event.name}}"</p>
+    <p>This is to just let you know that {{employer_names}} {{has_word}} cancelled their {% if event.is_deadline %}deadline{% else %}event{% endif %}: "{{event.name}}"</p>
 
     <br>
     <small>Change your notification settings at any time <a href="http://{{current_site.domain}}/student/account/?tab=preferences">here</a>.</small>

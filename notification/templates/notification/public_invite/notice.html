@@ -1,1 +1,1 @@
-<a href="{{ employer.get_absolute_url }}"><strong>{{ employer }}</strong></a>  has sent you an invite to the public event <a href="{{ event.get_absolute_url }}"><strong>{{ event.name }}</strong></a>.
+<a href="{{ employer.get_absolute_url }}"><strong>{{ employer }}</strong></a>  has sent you an invite to the {% if event.is_deadline %}deadline{% else %}event{% endif %} <a href="{{ event.get_absolute_url }}"><strong>{{ event.name }}</strong></a>.

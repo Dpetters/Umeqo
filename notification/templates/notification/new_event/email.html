@@ -8,8 +8,8 @@
     <p>This is just to let you know that {{employer_names}} {{has_word}} a new {% if event.is_deadline %}deadline{% else %}event{% endif %}: "{{event.name}}"</p>
     
     <p>
-        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#f0f0f0;border:1px solid #888888;color:#6e97b9;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
-        RSVP Attending
+        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target=" target="_blank">
+        RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}
         </a>
     </p>
     <p>
