@@ -167,6 +167,7 @@ label[for=event_scheduler_day_text]{
     border-width: 1px;
 }
 .event_block {
+    font-size:10px;
     position: absolute;
     left: 10px;
     right: 13px;
@@ -176,8 +177,8 @@ label[for=event_scheduler_day_text]{
     box-shadow: rgba(0,0,0,0.4) 2px 2px 2px 0;
 }
 .gray {
-    background-color: #CCC;
-    border: 2px dashed #666;
+    background-color: #AC725E;
+    border: 2px dashed #000;
     left: 60px;
     right: 150px;
     z-index: 1;
@@ -186,7 +187,7 @@ label[for=event_scheduler_day_text]{
     z-index: 3;
 }
 .green {
-    background-color: #B08B59;
+    background-color: #72BF42;
     border: 2px dashed #000;
     left: 192px;
     z-index: 2;
@@ -223,6 +224,9 @@ label[for=id_rsvp_message]{
     height: 20px;
     float: right;
     margin-left: 10px;
+}
+#event_scheduler_today{
+    margin-left:2px;
 }
 #event_scheduler_nav {
     float: right;
