@@ -5497,6 +5497,25 @@
   }
  }, 
  {
+  "pk": 50, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-12-06 18:26:10", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "2-OE", 
+   "date_created": "2011-12-06 18:26:10", 
+   "ou": "", 
+   "sort_order": 0, 
+   "display": false, 
+   "name": "Mechanical and Ocean Engineering"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "core.course", 
   "fields": {
