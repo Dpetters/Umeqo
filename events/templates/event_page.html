@@ -302,8 +302,8 @@
             {% if audience %}
             <div id="event_audience">
                 <span class="label">Audience:</span>
-                {% for a in audience %}
-                    {{a}}{% if not forloop.last %},{% endif %}
+                {% for audience in audience %}
+                    {{audience.name_plural}}{% if not forloop.last %},{% endif %}
                 {% endfor %}
                 </ul>
                 <div class="clearfix"></div>
