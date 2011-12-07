@@ -2556,6 +2556,24 @@
   }
  }, 
  {
+  "pk": 500, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/fje/www/", 
+   "slug": null, 
+   "last_updated": "2011-12-07 17:25:41", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-12-07 17:25:41", 
+   "type": 2, 
+   "display": false, 
+   "name": "Festival Jazz Ensemble"
+  }
+ }, 
+ {
   "pk": 144, 
   "model": "campus_org.campusorg", 
   "fields": {
