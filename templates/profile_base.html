@@ -13,11 +13,11 @@
     var INVALID_URL = "{% text_snippet 'invalid_url' %}";
     var HOME_URL = "{% url home %}";
 </script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 {% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_masked_input/jquery_masked_input.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/profile_base.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 {% endcompress %}
 {% endblock %}
 
