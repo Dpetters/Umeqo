@@ -75,7 +75,7 @@
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
                 <script src="{{ STATIC_URL }}js/logged_in.js"></script>
             {% else %}
-                <script type="text/javascript" src="{{ STATIC_URL }}js/anonymous.js"></script>
+                <script src="{{ STATIC_URL }}js/anonymous.js"></script>
             {% endif %}
         {% endcompress %}
         <!--[if lt IE 7]>
