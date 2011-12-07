@@ -263,19 +263,16 @@
    "view_count": 0, 
    "start_datetime": null, 
    "audience": [
-    1, 
-    2, 
-    3, 
-    4, 
-    5, 
-    6
+    1
    ], 
    "attending_employers": [
     6
    ], 
    "name": "Test hardline", 
    "is_public": true, 
-   "edits": [], 
+   "edits": [
+    4
+   ], 
    "description": "<p>\r\n\tfefe</p>\r\n", 
    "is_active": true, 
    "last_seen_view_count": 0, 
@@ -2269,16 +2266,6 @@
    "session_key": "437190fcc7b38e705e5db711c9bfb59e", 
    "last_updated": "2011-12-06 12:50:43", 
    "user": 27
-  }
- }, 
- {
-  "pk": 49, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-07 15:09:19", 
-   "session_key": "8813e05429840e0035f9766e68c5704d", 
-   "last_updated": "2011-12-07 15:09:19", 
-   "user": 3
   }
  }, 
  {
