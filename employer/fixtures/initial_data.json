@@ -1,5 +1,27 @@
 [
  {
+  "pk": 113, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    38
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:38:32", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:23:27", 
+   "logo": "employer/employer/10gen_2011-12-12-05-38-32.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "10gen"
+  }
+ }, 
+ {
   "pk": 19, 
   "model": "employer.employer", 
   "fields": {
@@ -17,6 +39,28 @@
    "careers_website": "", 
    "slug": "accenture", 
    "name": "Accenture"
+  }
+ }, 
+ {
+  "pk": 117, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:40:14", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:25:36", 
+   "logo": "employer/employer/adobe_2011-12-12-05-40-14.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Adobe"
   }
  }, 
  {
@@ -89,7 +133,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "jchurch@apple.com", 
-   "last_updated": "2011-10-29 17:49:41", 
+   "last_updated": "2011-12-12 05:41:47", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -97,7 +141,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:19:56", 
-   "logo": "", 
+   "logo": "employer/employer/apple_2011-12-12-05-41-47.png", 
    "careers_website": "", 
    "slug": "apple", 
    "name": "Apple"
@@ -183,6 +227,28 @@
    "careers_website": "", 
    "slug": "barcap", 
    "name": "Barclays Capital"
+  }
+ }, 
+ {
+  "pk": 114, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:42:48", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:24:01", 
+   "logo": "employer/employer/bazaar voice_2011-12-12-05-42-48.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Bazaar Voice"
   }
  }, 
  {
@@ -401,6 +467,28 @@
   }
  }, 
  {
+  "pk": 121, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": null, 
+   "last_updated": "2011-12-12 05:26:44", 
+   "description": null, 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": null, 
+   "main_contact_phone": null, 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:26:44", 
+   "logo": "", 
+   "careers_website": null, 
+   "slug": null, 
+   "name": "CEO in a box"
+  }
+ }, 
+ {
   "pk": 66, 
   "model": "employer.employer", 
   "fields": {
@@ -520,6 +608,28 @@
    "careers_website": "", 
    "slug": "cs", 
    "name": "Credit Suisse"
+  }
+ }, 
+ {
+  "pk": 123, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:48:32", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:27:12", 
+   "logo": "employer/employer/crittercism_2011-12-12-05-48-32.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Crittercism"
   }
  }, 
  {
@@ -794,7 +904,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-08-29 10:41:48", 
+   "last_updated": "2011-12-12 05:49:30", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -802,7 +912,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:48", 
-   "logo": "", 
+   "logo": "employer/employer/facebook_2011-12-12-05-49-30.png", 
    "careers_website": "", 
    "slug": "fb", 
    "name": "Facebook"
@@ -851,6 +961,28 @@
    "careers_website": "http://jobs.fidelity.com/student/undergrad/index.shtml", 
    "slug": "fidelity", 
    "name": "Fidelity"
+  }
+ }, 
+ {
+  "pk": 119, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:52:17", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:26:12", 
+   "logo": "employer/employer/fusion-io_2011-12-12-05-52-17.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Fusion-io"
   }
  }, 
  {
@@ -975,7 +1107,7 @@
     36
    ], 
    "main_contact_email": "lizarnold@google.com", 
-   "last_updated": "2011-12-05 17:07:51", 
+   "last_updated": "2011-12-12 06:09:11", 
    "description": "<p>\r\n\t<em>&ldquo;Google is organized around the ability to&nbsp;attract and leverage the talent of exceptional&nbsp;technologists and business people.&quot; </em></p>\r\n<p>\r\n\t<em>-&nbsp;</em>Larry Page, Google Co-founder and CEO</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<div>\r\n\t<div>\r\n\t\tAt Google, you will find smart people, big&nbsp;challenges, and opportunities to make a real&nbsp;difference in the world. Engineers at Google are&nbsp;key players in our daily innovation, and we are&nbsp;looking for the brightest minds to join these&nbsp;teams. Opportunities are available to work on&nbsp;Search, Ads, Chrome, Commerce,&nbsp;Infrastructure, Mobile, Social, YouTube, and&nbsp;other exciting projects.&nbsp;</div>\r\n\t<div>\r\n\t\t&nbsp;</div>\r\n\t<div>\r\n\t\tDiscover Google news and updates especially&nbsp;for students at&nbsp;<a href=\"http://googleforstudents.blogspot.com/\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">googleforstudents.blogspot.com</a><wbr />&nbsp;and follow us on Twitter at&nbsp;<a href=\"http://www.twitter.com/googlestudents\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">www.twitter.com/<wbr />googlestudents</a>.</div>\r\n</div>\r\n<p>\r\n\t&nbsp;</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -986,7 +1118,7 @@
     2
    ], 
    "date_created": "2011-08-28 15:31:37", 
-   "logo": "employer/employer/google_2011-08-28-15-31-37.png", 
+   "logo": "employer/employer/google_2011-12-12-06-09-11.png", 
    "careers_website": "http://www.google.com/students/eng", 
    "slug": "google", 
    "name": "Google"
@@ -1012,6 +1144,28 @@
    "careers_website": null, 
    "slug": null, 
    "name": "Group One Trading, LP"
+  }
+ }, 
+ {
+  "pk": 112, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:01:09", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:22:58", 
+   "logo": "employer/employer/grubhub_2011-12-12-06-01-09.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "GrubHub"
   }
  }, 
  {
@@ -1255,6 +1409,28 @@
   }
  }, 
  {
+  "pk": 116, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:02:26", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:25:22", 
+   "logo": "employer/employer/mathworks_2011-12-12-06-02-26.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "MathWorks"
+  }
+ }, 
+ {
   "pk": 18, 
   "model": "employer.employer", 
   "fields": {
@@ -1272,6 +1448,72 @@
    "careers_website": "", 
    "slug": "mck", 
    "name": "Mckinsey & Company"
+  }
+ }, 
+ {
+  "pk": 120, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:16:49", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:26:31", 
+   "logo": "employer/employer/mds lavastorm analytics_2011-12-12-06-16-49.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "MDS Lavastorm Analytics"
+  }
+ }, 
+ {
+  "pk": 124, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:15:14", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:27:35", 
+   "logo": "employer/employer/medtronic_2011-12-12-06-15-14.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Medtronic"
+  }
+ }, 
+ {
+  "pk": 115, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    6
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:50:47", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:24:22", 
+   "logo": "employer/employer/merck_2011-12-12-05-50-47.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Merck"
   }
  }, 
  {
@@ -1372,18 +1614,18 @@
    "industries": [
     36
    ], 
-   "main_contact_email": null, 
-   "last_updated": "2011-10-08 18:38:17", 
-   "description": null, 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:13:54", 
+   "description": "", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": null, 
-   "main_contact_phone": null, 
+   "main_contact": "", 
+   "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-10-08 18:38:17", 
-   "logo": "", 
-   "careers_website": null, 
-   "slug": null, 
+   "logo": "employer/employer/mozilla_2011-12-12-06-13-54.png", 
+   "careers_website": "", 
+   "slug": "", 
    "name": "Mozilla"
   }
  }, 
@@ -1616,7 +1858,7 @@
   "fields": {
    "industries": [], 
    "main_contact_email": "", 
-   "last_updated": "2011-10-29 17:52:38", 
+   "last_updated": "2011-12-12 05:53:33", 
    "description": "", 
    "visible": false, 
    "starred_students": [], 
@@ -1624,7 +1866,7 @@
    "main_contact_phone": "", 
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:52:38", 
-   "logo": "", 
+   "logo": "employer/employer/palantir_2011-12-12-05-53-33.png", 
    "careers_website": "", 
    "slug": "", 
    "name": "Palantir"
@@ -1733,6 +1975,28 @@
   }
  }, 
  {
+  "pk": 110, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    12
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:05:25", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:20:41", 
+   "logo": "employer/employer/schlumberger_2011-12-12-06-05-25.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Schlumberger"
+  }
+ }, 
+ {
   "pk": 78, 
   "model": "employer.employer", 
   "fields": {
@@ -1752,6 +2016,28 @@
    "careers_website": "", 
    "slug": "", 
    "name": "SELCO India"
+  }
+ }, 
+ {
+  "pk": 111, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    42
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:59:36", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:21:57", 
+   "logo": "employer/employer/sequoia capital_2011-12-12-05-59-36.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Sequoia Capital"
   }
  }, 
  {
@@ -2201,6 +2487,28 @@
   }
  }, 
  {
+  "pk": 118, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 05:56:34", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:25:49", 
+   "logo": "employer/employer/vmware_2011-12-12-05-56-34.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "VMWare"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "employer.employer", 
   "fields": {
@@ -2270,6 +2578,28 @@
    "careers_website": "", 
    "slug": "", 
    "name": "World Wide Financial Recruiting Services"
+  }
+ }, 
+ {
+  "pk": 122, 
+  "model": "employer.employer", 
+  "fields": {
+   "industries": [
+    45
+   ], 
+   "main_contact_email": "", 
+   "last_updated": "2011-12-12 06:11:59", 
+   "description": "", 
+   "visible": false, 
+   "starred_students": [], 
+   "main_contact": "", 
+   "main_contact_phone": "", 
+   "offered_job_types": [], 
+   "date_created": "2011-12-12 05:26:57", 
+   "logo": "employer/employer/zanbato_2011-12-12-06-11-59.png", 
+   "careers_website": "", 
+   "slug": "", 
+   "name": "Zanbato"
   }
  }, 
  {
