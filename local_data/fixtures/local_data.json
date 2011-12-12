@@ -1763,7 +1763,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-12-06 12:51:20", 
+   "last_login": "2011-12-11 22:22:05", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095", 
@@ -2006,6 +2006,24 @@
   }
  }, 
  {
+  "pk": 28, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "techfair@mit.edu", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2011-12-11 22:22:41", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "sha1$65edb$a0f80b5597e55069503587dc1dcf4d4c233fc51c", 
+   "email": "", 
+   "date_joined": "2011-12-11 22:22:41"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.userattributes", 
   "fields": {
@@ -2144,6 +2162,17 @@
    "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 27, 
+   "agreed_to_terms_date": null, 
+   "last_password_change_date": null
+  }
+ }, 
+ {
+  "pk": 27, 
+  "model": "registration.userattributes", 
+  "fields": {
+   "agreed_to_terms": true, 
+   "is_verified": false, 
+   "user": 28, 
    "agreed_to_terms_date": null, 
    "last_password_change_date": null
   }
