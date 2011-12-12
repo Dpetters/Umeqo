@@ -3,531 +3,296 @@
   "pk": 6, 
   "model": "events.event", 
   "fields": {
-   "view_count": 12, 
-   "start_datetime": "2012-09-30 19:00:00", 
-   "audience": [], 
+   "short_slug": "booo", 
    "attending_employers": [
     6
    ], 
-   "name": "Introductory A The Event!", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 12, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "Student House", 
+   "latitude": 42.350392990000003, 
+   "type": 3, 
+   "start_datetime": "2012-09-30 19:00:00", 
    "description": "<p>\r\n\tfirst one</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.098349690000006, 
-   "latitude": 42.350392990000003, 
-   "short_slug": "booo", 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "introductory-a-the-event", 
+   "name": "Introductory A The Event!", 
+   "longitude": -71.098349690000006, 
+   "audience": [], 
    "end_datetime": "2011-09-30 20:00:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-09-10 19:16:38", 
-   "type": 3, 
-   "slug": "introductory-a-the-event", 
-   "location": "Student House"
+   "include_and_more": false
   }
  }, 
  {
   "pk": 7, 
   "model": "events.event", 
   "fields": {
-   "view_count": 6, 
-   "start_datetime": "2011-09-12 15:30:00", 
-   "audience": [], 
+   "short_slug": "booo", 
    "attending_employers": [
     6
    ], 
-   "name": "All-Star Event", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 6, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "blah blah b", 
+   "latitude": null, 
+   "type": 1, 
+   "start_datetime": "2011-09-12 15:30:00", 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": "booo", 
    "is_drop": true, 
+   "is_public": true, 
+   "slug": "the-boo", 
+   "name": "All-Star Event", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-10-09 16:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-09-11 15:31:17", 
-   "type": 1, 
-   "slug": "the-boo", 
-   "location": "blah blah b"
+   "include_and_more": false
   }
  }, 
  {
   "pk": 8, 
   "model": "events.event", 
   "fields": {
-   "view_count": 1, 
-   "start_datetime": "2011-09-22 20:30:00", 
-   "audience": [], 
+   "short_slug": "", 
    "attending_employers": [
     56
    ], 
-   "name": "Consulting & Co Info Session", 
-   "is_public": true, 
+   "owner": 26, 
+   "view_count": 1, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "Eastgate Resident Lot", 
+   "latitude": 42.361504269999998, 
+   "type": 3, 
+   "start_datetime": "2011-09-22 20:30:00", 
    "description": "<p>\r\n\tfeafea</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": -71.083760710000007, 
-   "latitude": 42.361504269999998, 
-   "short_slug": "", 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "info-session", 
+   "name": "Consulting & Co Info Session", 
+   "longitude": -71.083760710000007, 
+   "audience": [], 
    "end_datetime": "2011-09-22 21:30:00", 
    "rsvp_message": "", 
-   "owner": 26, 
    "date_created": "2011-09-12 22:20:35", 
-   "type": 3, 
-   "slug": "info-session", 
-   "location": "Eastgate Resident Lot"
+   "include_and_more": false
   }
  }, 
  {
   "pk": 12, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
+   "short_slug": null, 
    "attending_employers": [], 
-   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
-   "is_public": true, 
-   "edits": [
-    1
-   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\ttest</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "investment-banking-and-sales-trading-summer-analys", 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-12-06 14:00:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-06 12:52:29", 
-   "type": 2, 
-   "slug": "investment-banking-and-sales-trading-summer-analys", 
-   "location": ""
+   "include_and_more": false
   }
  }, 
  {
   "pk": 13, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
+   "short_slug": null, 
    "attending_employers": [], 
-   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 0, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\tfef</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "investment-banking-and-sales-trading-summer-analys", 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-06 13:07:25", 
-   "type": 2, 
-   "slug": "investment-banking-and-sales-trading-summer-analys", 
-   "location": ""
+   "include_and_more": false
   }
  }, 
  {
   "pk": 14, 
   "model": "events.event", 
   "fields": {
-   "view_count": 8, 
-   "start_datetime": null, 
-   "audience": [], 
+   "short_slug": null, 
    "attending_employers": [
     6
    ], 
-   "name": "Investment Banking and Sales & Trading", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 8, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\tfef</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "investment-banking-and-sales-trading", 
+   "name": "Investment Banking and Sales & Trading", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-06 13:09:45", 
-   "type": 2, 
-   "slug": "investment-banking-and-sales-trading", 
-   "location": ""
+   "include_and_more": false
   }
  }, 
  {
   "pk": 15, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
+   "short_slug": null, 
    "attending_employers": [], 
-   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline Duh Cmon T", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 0, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\tfeafaes</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "investment-banking-and-sales-trading-summer-analys", 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline Duh Cmon T", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-06 13:10:47", 
-   "type": 2, 
-   "slug": "investment-banking-and-sales-trading-summer-analys", 
-   "location": ""
+   "include_and_more": false
   }
  }, 
  {
   "pk": 16, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
+   "short_slug": null, 
    "attending_employers": [
     6
    ], 
-   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 0, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\ttest</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "investment-banking-and-sales-trading-summer", 
+   "name": "Investment Banking and Sales & Trading Summer Analyst Application Deadline", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-06 13:26:17", 
-   "type": 2, 
-   "slug": "investment-banking-and-sales-trading-summer", 
-   "location": ""
+   "include_and_more": false
   }
  }, 
  {
   "pk": 17, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [], 
+   "short_slug": null, 
    "attending_employers": [
     6
    ], 
-   "name": "Investment Banking and Sales & Trading feaf2 32r Reaylly", 
-   "is_public": true, 
+   "owner": 3, 
+   "view_count": 0, 
+   "last_seen_view_count": 0, 
    "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\tfeasf</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "investment-banking-and-sales-trading-feaf2-32r", 
+   "name": "Investment Banking and Sales & Trading feaf2 32r Reaylly", 
+   "longitude": null, 
+   "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-06 13:26:46", 
-   "type": 2, 
-   "slug": "investment-banking-and-sales-trading-feaf2-32r", 
-   "location": ""
+   "include_and_more": false
   }
  }, 
  {
   "pk": 19, 
   "model": "events.event", 
   "fields": {
-   "view_count": 0, 
-   "start_datetime": null, 
-   "audience": [
-    1
-   ], 
+   "short_slug": null, 
    "attending_employers": [
     6
    ], 
-   "name": "Test hardline", 
-   "is_public": true, 
-   "edits": [
-    4
-   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 2, 
+   "start_datetime": null, 
    "description": "<p>\r\n\tfefe</p>\r\n", 
    "is_active": true, 
-   "last_seen_view_count": 0, 
-   "longitude": null, 
-   "latitude": null, 
-   "short_slug": null, 
    "is_drop": false, 
+   "is_public": true, 
+   "slug": "test-hardline", 
+   "name": "Test hardline", 
+   "longitude": null, 
+   "audience": [
+    1
+   ], 
    "end_datetime": "2011-12-07 16:30:00", 
    "rsvp_message": "", 
-   "owner": 3, 
    "date_created": "2011-12-07 15:09:37", 
-   "type": 2, 
-   "slug": "test-hardline", 
-   "location": ""
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 11, 
-   "student": 1, 
-   "datetime_created": "2011-10-10 13:39:05"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 11, 
-   "student": 2, 
-   "datetime_created": "2011-10-10 13:40:37"
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 11, 
-   "student": 3, 
-   "datetime_created": "2011-10-10 13:40:54"
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 11, 
-   "student": 4, 
-   "datetime_created": "2011-10-10 14:07:02"
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": true, 
-   "event": 11, 
-   "student": 5, 
-   "datetime_created": "2011-10-10 14:07:19"
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": false, 
-   "event": 18, 
-   "student": 6, 
-   "datetime_created": "2011-12-06 16:34:14"
-  }
- }, 
- {
-  "pk": 12, 
-  "model": "events.rsvp", 
-  "fields": {
-   "attending": false, 
-   "event": 11, 
-   "student": 6, 
-   "datetime_created": "2011-12-06 16:34:22"
-  }
- }, 
- {
-  "pk": 1, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 12:24:15", 
-   "event": 7, 
-   "student": 1
-  }
- }, 
- {
-  "pk": 2, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 12:24:15", 
-   "event": 7, 
-   "student": 2
-  }
- }, 
- {
-  "pk": 3, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 12:24:15", 
-   "event": 7, 
-   "student": 3
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 12:24:15", 
-   "event": 7, 
-   "student": 4
-  }
- }, 
- {
-  "pk": 5, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-09-19 12:24:15", 
-   "event": 7, 
-   "student": 5
-  }
- }, 
- {
-  "pk": 6, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-12-06 16:33:04", 
-   "event": 18, 
-   "student": 6
-  }
- }, 
- {
-  "pk": 7, 
-  "model": "events.invitee", 
-  "fields": {
-   "datetime_created": "2011-12-06 16:33:08", 
-   "event": 11, 
-   "student": 6
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Dmitrij Petters", 
-   "datetime_created": "2011-09-26 15:31:00", 
-   "email": "Dpetters91@gmail.com", 
-   "student": null, 
-   "won_raffle": true, 
-   "event": 8
-  }
- }, 
- {
-  "pk": 9, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Dmitrij Petters", 
-   "datetime_created": "2011-09-26 15:31:02", 
-   "email": "Dpetters91@mit.edu", 
-   "student": null, 
-   "won_raffle": true, 
-   "event": 8
-  }
- }, 
- {
-  "pk": 8, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Dmitrij Petters", 
-   "datetime_created": "2011-09-26 09:38:21", 
-   "email": "Dpetters91@gmail.com", 
-   "student": null, 
-   "won_raffle": true, 
-   "event": 7
-  }
- }, 
- {
-  "pk": 11, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "James Madison", 
-   "datetime_created": "2011-12-01 22:40:49", 
-   "email": "student1@umeqo.com", 
-   "student": 1, 
-   "won_raffle": false, 
-   "event": 11
-  }
- }, 
- {
-  "pk": 12, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Thomas Jefferson", 
-   "datetime_created": "2011-12-01 22:41:11", 
-   "email": "student2@umeqo.com", 
-   "student": 2, 
-   "won_raffle": false, 
-   "event": 11
-  }
- }, 
- {
-  "pk": 13, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "John Adams", 
-   "datetime_created": "2011-12-01 22:41:27", 
-   "email": "student3@umeqo.com", 
-   "student": 3, 
-   "won_raffle": false, 
-   "event": 11
-  }
- }, 
- {
-  "pk": 14, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Abraham Lincoln", 
-   "datetime_created": "2011-12-01 22:41:46", 
-   "email": "student4@umeqo.com", 
-   "student": 4, 
-   "won_raffle": false, 
-   "event": 11
-  }
- }, 
- {
-  "pk": 15, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "George Washington", 
-   "datetime_created": "2011-12-01 22:42:09", 
-   "email": "student5@umeqo.com", 
-   "student": 5, 
-   "won_raffle": false, 
-   "event": 11
-  }
- }, 
- {
-  "pk": 16, 
-  "model": "events.attendee", 
-  "fields": {
-   "name": "Dmitrij Petters", 
-   "datetime_created": "2011-12-06 12:51:01", 
-   "email": "dpetters@mit.edu", 
-   "student": 6, 
-   "won_raffle": false, 
-   "event": 11
+   "include_and_more": false
   }
  }, 
  {
@@ -1763,7 +1528,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2011-12-11 22:22:05", 
+   "last_login": "2011-12-12 14:08:10", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095", 
