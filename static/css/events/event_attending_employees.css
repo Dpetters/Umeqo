@@ -9,10 +9,20 @@ div.attending_employer{
 }
 #attending_employers .ef-logo{
     vertical-align:middle;
-    margin-top:3px;
+    margin-bottom:3px;
 }
 #attending_employers .ef-name{
     display:inline-block;
     vertical-align:middle;
     line-height:20px
+}
+#and_more{
+    width:139px;
+    display:inline-block;
+}
+#and_more p{
+    margin-left:12px;
+    margin-top:12px;
+    margin-bottom:12px;
+    font-size:18px;
 }

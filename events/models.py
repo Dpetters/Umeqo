@@ -54,13 +54,14 @@ class Event(core_mixins.DateCreatedTracking):
     name = models.CharField(max_length=85)
     end_datetime = models.DateTimeField(null=True, blank=True)
     type = models.ForeignKey(EventType)
-    
+
     # Won't be used immediately, but might prove useful later to show who
     # modified the event and when they did so.
     edits = models.ManyToManyField("core.Edit", null=True, blank=True)
     
     # Events Created by Campus Orgs will need to know which Employers are coming
     attending_employers = models.ManyToManyField("employer.Employer", null=True, blank=True)
+    include_and_more = models.BooleanField(default=False)
 
     # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
@@ -72,7 +73,7 @@ class Event(core_mixins.DateCreatedTracking):
     audience = models.ManyToManyField("core.SchoolYear", blank=True, null=True)
     description = models.TextField()
     rsvp_message = models.TextField(blank=True,null=True)
-
+    
     # Statistics fields for "X new views"
     last_seen_view_count = models.PositiveIntegerField(default=0)  
     view_count = models.PositiveIntegerField(default=0)

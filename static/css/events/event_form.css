@@ -1,12 +1,7 @@
 #event_form_left_col {
-    width: 575px;
+    width: 576px;
 }
-#event_name_section .errorspace,
-#event_type_section .errorspace,
-#event_drop_section .errorspace,
-#event_location_section .errorspace,
-#event_description_section .errorspace,
-#event_attending_employers_section .errorspace {
+.event_field_section .errorspace{
     display: inline-block;
     width: 200px;
     position: relative;
@@ -16,13 +11,18 @@
 .attending_employers_multiselect .ui-multiselect-all{
     display:none;
 }
-#event_name_section,
-#event_type_section,
-#event_drop_section,
-#event_location_section,
-#event_description_section,
-#event_attending_employers_section {
+.event_field_section{
     margin-top: 15px;
+}
+#event_short_url{
+    margin-left:2px;
+}
+#id_include_and_more{
+    position:relative;
+    top:1px;
+}
+#include_and_more{
+    margin-top:5px;
 }
 #event_form #id_name, #event_form #id_location {
     font-size: 16px;
@@ -31,6 +31,9 @@
 #event_form #id_type {
     width: 310px;
     display: inline-block;
+}
+#event_form #id_short_slug{
+    width:135px;
 }
 label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
     margin-left: 7px;
@@ -276,11 +279,6 @@ label[for=id_rsvp_message]{
 input[type=text].datefield_no_bind {
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
-}
-div.attending_employer{
-    height:69px;
-    line-height:69px;
-    width:139px;
 }
 #attending_employers .ef-logo{
     max-width:139px;

@@ -182,24 +182,29 @@ $(document).ready( function () {
                 $(this).removeClass('um-active');
             }
     });
-    $(".button, .dark_button, .caution_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
+    /*
+    $(".button, .dark_button, .caution_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all, #signup_button").live("focus", function(){
+        alert("boya");
         if(!$(this).hasClass('disabled')){
             $(this).addClass("um-focus");
         }
     });
-    $(".button, .dark_button, .caution_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
+    $(".button, .dark_button, .caution_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all, #login_button, #signup_button").live("focusout", function(){
         $(this).removeClass("um-focus");
     });
-    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count').live('mousedown', function() {
+    */
+    
+    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mousedown', function() {
         if(!$(this).hasClass('disabled')){
             $(this).addClass('um-active');
         }
     });
-    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count').live('mouseup', function(){
+    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mouseup', function(){
         if ($(this).hasClass('um-active') || $(this).hasClass('disabled'))
             $(this).removeClass('um-active');
     });
-    $('.dropdown_menu_button').live('click', function() {
+    
+    $('.dropdown_menu_button, #login_button a').live('click', function() {
         if ($(this).hasClass('um-pressed') || $(this).hasClass('disabled'))
             $(this).removeClass('um-pressed');
         else
@@ -209,8 +214,9 @@ $(document).ready( function () {
         if (!$(event.target).closest('.dropdown_menu_button').length && !$(event.target).closest('.dropdown menu_button ul').length) {
             $('.dropdown_menu_button ul').hide();
             $('.dropdown_menu_button').removeClass('um-pressed');
-        };
+        }
     });
+    
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
         if (val.length == 0) { return true; }

@@ -203,7 +203,7 @@ def help_center(request, extra_context = None):
     if is_student(request.user):
         pass
     if is_campus_org(request.user):
-        pass
+        tutorials = Tutorial.objects.filter(audience__in = get_audiences(request.user), display=True)
     if is_recruiter(request.user):
         tutorials = Tutorial.objects.filter(audience__in = get_audiences(request.user), display=True)
         try:
@@ -214,6 +214,7 @@ def help_center(request, extra_context = None):
             context['subscription_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
+    if tutorials:
         try:
             context['event_and_deadline_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
         except Topic.DoesNotExist:

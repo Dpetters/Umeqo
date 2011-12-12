@@ -51,7 +51,7 @@ Help |
                     {% endif %}
                     
                     <h3>Events & Deadlines</h3>
-                    {% if student_discovery_tutorials %}
+                    {% if event_and_deadline_tutorials %}
                         <ul class="tutorial_list">
                         {% for tutorial in event_and_deadline_tutorials %}
                             <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
@@ -82,8 +82,6 @@ Help |
                     {% else %}
                         <p>Coming Soon</p>
                     {% endif %}
-                    
-
                 </div>
             {% endif %}
             
@@ -92,7 +90,30 @@ Help |
             {% endif %}
             
             {% if user.campusorg %}
-                <p>Coming Soon</p>
+                <div class="tutorial_column">
+                    <h3>Events & Deadlines</h3>
+                    {% if event_and_deadline_tutorials %}
+                        <ul class="tutorial_list">
+                        {% for tutorial in event_and_deadline_tutorials %}
+                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Coming Soon</p>
+                    {% endif %}
+                </div>
+                <div class="tutorial_column">
+                    <h3>Account Management</h3>
+                    {% if account_management_tutorials %}
+                        <ul class="tutorial_list">
+                        {% for tutorial in account_management_tutorials %}
+                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Coming Soon</p>
+                    {% endif %}
+                </div>
             {% endif %}
             {% if user.is_staff %}
                 <p>You are logged in as an admin. Please login as a regular user to see the tutorials.</p>

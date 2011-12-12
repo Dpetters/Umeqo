@@ -40,10 +40,12 @@ from student.models import Student
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug = owner_slug)
+        print employer
         events = reduce(lambda a,b: [a, a.extend(b.user.event_set.all().order_by("-date_created"))][0], employer.recruiter_set.all(), [])
     except Employer.DoesNotExist:
         try:
             campus_org = CampusOrg.objects.get(slug = owner_slug)
+            print campus_org
             events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
             raise Http404

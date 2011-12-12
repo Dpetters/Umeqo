@@ -140,7 +140,6 @@ post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 
 class Tutorial(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
-    new_field = models.CharField(max_length=150)
     
     slug = models.SlugField(max_length=150)
     topic = models.ForeignKey(Topic, null=True, blank=True)

@@ -8,6 +8,7 @@ $(document).ready( function () {
     $(document).click(function(e) {
         if ($(e.target).parents('#login_wrapper').length == 0 && !$(e.target).hasClass("login_link")) {
             $('#login_wrapper').hide();
+            $("#login_button a").removeClass("um-pressed");
         }
     });
 });

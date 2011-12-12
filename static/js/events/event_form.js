@@ -7,7 +7,7 @@ function display_attending_employer(name){
             'employer_name':name,
         },
         success: function (data) {
-            $("#attending_employers").append(data);
+            $("#attending_employers").prepend(data);
         },
         error: errors_in_message_area_handler
     });
@@ -566,6 +566,17 @@ $(document).ready(function() {
     });
 
     if (CAMPUS_ORG_EVENT){
+        $("#id_include_and_more").live('click', function(e){
+            if($(e.target).attr("checked")=="checked"){
+                $("#attending_employers").append('<div id="and_more"><p>and more...</p></div>');
+            }else{
+                $("#and_more").remove();
+            }
+            if($(".attending_employer").length==0){
+                $("#and_more").hide();
+            }
+        });
+        
         $('#id_attending_employers').multiselect({
             noneSelectedText: 'select employers',
             classes: 'attending_employers_multiselect',
@@ -574,8 +585,12 @@ $(document).ready(function() {
             click: function(e, ui) {
                 if (ui.checked){
                     display_attending_employer(ui.text);
+                    $("#and_more").show();
                 } else {
                     $(".attending_employer[data-employer-name='" + ui.text + "']").remove();
+                    if($(".attending_employer").length==0){
+                        $("#and_more").hide();
+                    }
                 }
             },
             uncheckAll: function(){
@@ -680,4 +695,7 @@ $(document).ready(function() {
     $("#id_rsvp_message").placeholder();
     $("#event_scheduler tr:nth-child(odd) td").css("border-color", "#DDD #EEE #EEE");
     $("#event_scheduler tr:nth-child(even) td").css("border-color", "#EEE #EEE #DDD");
+    if(EDIT_FORM && $("#id_include_and_more").attr("checked")=="checked"){
+        $("#attending_employers").append('<div id="and_more"><p>and more...</p></div>');
+    }
 });

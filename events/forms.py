@@ -33,7 +33,8 @@ class EventForm(forms.ModelForm):
         fields = ('name', 
                   'start_datetime', 
                   'end_datetime', 
-                  'type', 
+                  'type',
+                  'short_slug',
                   'is_drop', 
                   'location', 
                   'latitude', 
@@ -41,13 +42,14 @@ class EventForm(forms.ModelForm):
                   'audience', 
                   'description', 
                   'rsvp_message', 
-                  'is_public',)
+                  'is_public')
         model = Event
-        
+
     def clean_end_datetime(self):
         if self.cleaned_data['end_datetime'] and self.cleaned_data['end_datetime'] < datetime.now():
             raise forms.ValidationError(_("End date/time must be in the future."))
         return self.cleaned_data['end_datetime']
+
     def clean(self):
         if not self.cleaned_data["type"]==EventType.objects.get(name="Rolling Deadline") and not self.cleaned_data["type"]==EventType.objects.get(name="Hard Deadline"):
             if not self.cleaned_data['start_datetime']:
@@ -57,20 +59,23 @@ class EventForm(forms.ModelForm):
                 raise forms.ValidationError(_(m.end_datetime_required))
         return self.cleaned_data
 
+
 class CampusOrgEventForm(EventForm):
     attending_employers = forms.ModelMultipleChoiceField(label="Attending Employers:", widget=forms.SelectMultiple(attrs={'tabindex':9}), queryset = Employer.objects.all(), required=False)
-    
+
     class Meta:
         fields = ('name', 
                   'start_datetime', 
                   'end_datetime', 
-                  'type', 
+                  'type',
+                  'short_slug',
                   'is_drop',
                   'attending_employers',
-                  'location', 
-                  'latitude', 
+                  'include_and_more',
+                  'location',
+                  'latitude',
                   'longitude', 
-                  'audience', 
+                  'audience',
                   'description', 
                   'rsvp_message',
                   'is_public',)
