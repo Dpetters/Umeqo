@@ -28,6 +28,8 @@ $(document).ready(function() {
     }
     
     function rsvp(isAttending) {
+        console.log($(this).attr('href'));
+        console.log(isAttending);
         $.post($(this).attr('href'), {
             isAttending: isAttending
         }, function(data) {
@@ -41,9 +43,9 @@ $(document).ready(function() {
             }
         }, "json");
         if (isAttending) {
-            dropResume();
+            $("#event_resume_drop").click();
         } else {
-            undropResume();
+            $("#event_resume_undrop").click();
         }
     }
     function dropResume() {
@@ -73,6 +75,7 @@ $(document).ready(function() {
     };
     
     $('#rsvp-yes-button').live('click', function(e) {
+        console.log("yes");
         var disabled = $(this).attr('disabled');
         if ($(this).hasClass('selected') || typeof disabled !== 'undefined' && disabled !== false) {
             e.preventDefault();
@@ -88,6 +91,7 @@ $(document).ready(function() {
                 $("#remove-rsvp-button").text("Undo RSVP");
             }
         }
+
         $.ajax({
             data:{'event_id':EVENT_ID},
             url:RSVP_MESSAGE_URL,
