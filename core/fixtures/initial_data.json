@@ -150,6 +150,21 @@
   }
  }, 
  {
+  "pk": 17, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-12 05:14:54", 
+   "name": "Creating Events & Deadlines", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 5, 
+   "sort_order": "1.000", 
+   "date_created": "2011-12-12 05:14:54", 
+   "slug": "creating-campus-org-events-deadlines", 
+   "description": "learn how to create events"
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "core.tutorial", 
   "fields": {
