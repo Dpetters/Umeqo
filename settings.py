@@ -70,7 +70,8 @@ LOCAL_DATA_MODELS = {
                 'resumebook', 'studentfilteringparameters', \
                 'employerstudentcomment', 'recruiterpreferences', \
                 'recruiterstatistics'],
-    'events':['event', 'rsvp', 'invitee', 'attendee']
+    'events':['event', 'rsvp', 'invitee', 'attendee'],
+    'subscription':['employersubscription', 'transaction']
 }
 
 MAX_DIALOG_IMAGE_WIDTH = 200
