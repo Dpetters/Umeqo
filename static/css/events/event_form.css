@@ -1,6 +1,7 @@
 #event_form_left_col {
     width: 576px;
 }
+#event_location_section .errorspace,
 .event_field_section .errorspace{
     display: inline-block;
     width: 200px;
@@ -11,6 +12,7 @@
 .attending_employers_multiselect .ui-multiselect-all{
     display:none;
 }
+#event_location_section,
 .event_field_section{
     margin-top: 15px;
 }
