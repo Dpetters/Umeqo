@@ -445,6 +445,20 @@ def student_resume(request):
     return response
 
 @login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+def specific_student_resume(request, student_id):
+    if request.user.recruiter.employer.subscribed():
+        student_query = Student.objects.filter(id=student_id)
+        if student_query.exists():
+            student = student_query.get()
+            resume = student.resume.read()
+            response = HttpResponse(resume, mimetype='application/pdf')
+            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
+            return response
+    raise Http404
+
+"""
+@login_required
 @agreed_to_terms
 @require_GET
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
@@ -539,16 +553,4 @@ def student_body_statistics(request):
                     data['categories'].append("%s" % course.num)
                     data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
-@login_required
-@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-def specific_student_resume(request, student_id):
-    if request.user.recruiter.employer.subscribed():
-        student_query = Student.objects.filter(id=student_id)
-        if student_query.exists():
-            student = student_query.get()
-            resume = student.resume.read()
-            response = HttpResponse(resume, mimetype='application/pdf')
-            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
-            return response
-    raise Http404
+"""

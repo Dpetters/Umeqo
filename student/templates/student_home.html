@@ -13,6 +13,8 @@
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
+<script src="{{STATIC_URL}}/js/events/event_snippet_directions.js"></script>
+<script src="{{STATIC_URL}}/js/events/event_directions.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -24,19 +26,10 @@
         <p><strong>Resume Views:</strong> {{user.student.studentstatistics.resume_view_count}}</p>
         <p><strong>Resume Book Count:</strong> {{user.student.studentstatistics.add_to_resumebook_count}}</p>
         <p><strong>Invite Count:</strong> {{user.student.invitee_set.all|length}}</p>
-        <p id="campus_statistics_link"><a href="{% url student_statistics %}">Campus Statistics &raquo;</a></p>
     </div>
 {% endblock %}
 
 {% block welcome_table %}
-<tr>
-    <td>
-        <a href="{% url student_statistics %}"><img src="{{ STATIC_URL }}images/icons/fire.png" /></a>
-    </td>
-    <td>
-        <p><strong>New! </strong><a href="{% url student_statistics %}">View campus statistics</a> - see how you match up against your classmates.</p>
-    </td>
-</tr>
 <tr>
     <td>
         <a href="{% url events_list %}"><img src="{{ STATIC_URL }}images/icons/calendar-day.png" /></a>
