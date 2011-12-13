@@ -54,6 +54,24 @@
   }
  }, 
  {
+  "pk": 502, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/6.470", 
+   "slug": null, 
+   "last_updated": "2011-12-13 00:55:33", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-12-13 00:55:33", 
+   "type": 3, 
+   "display": false, 
+   "name": "6.470 Web Design Competition"
+  }
+ }, 
+ {
   "pk": 499, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -4443,6 +4461,24 @@
    "type": 2, 
    "display": true, 
    "name": "MIT Symphony Orchestra"
+  }
+ }, 
+ {
+  "pk": 501, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-12-13 00:51:53", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-12-13 00:51:53", 
+   "type": 11, 
+   "display": false, 
+   "name": "MIT Varsity Sailing"
   }
  }, 
  {

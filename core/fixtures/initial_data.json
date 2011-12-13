@@ -3731,8 +3731,8 @@
   "pk": 1, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:41:09", 
-   "click_count": 0, 
+   "last_updated": "2011-12-12 18:48:32", 
+   "click_count": 1, 
    "question": "What is Umeqo?", 
    "slug": "what-is-umeqo", 
    "topic": 1, 
