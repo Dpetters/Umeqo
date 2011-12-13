@@ -30,10 +30,12 @@ h3 {
     color: #555;
     margin: 10px 0 5px;
 }
+p, span{
+    color: #666;
+}
 p{
     font-size: 12px;
     line-height: 17px;
-    color: #666;
 }
 .grande p {
     font-size: 14px;

@@ -30,8 +30,8 @@ div .employer_name {
 #employer_info {
     margin-right: 150px;
 }
-.description {
-    padding: 10px 0 20px 0;
+#employer_description {
+    padding: 10px 0 10px 0;
     clear: both;
     margin-top: 10px;
     line-height: 17px;

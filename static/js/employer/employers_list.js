@@ -14,18 +14,23 @@ $(document).ready(function() {
     function filterEmployers() {
         var query = $('#employers_filter_name').val();
         var industry = $('#employers_filter_industry').val();
-        var has_events = $('#employers_filter_has_events').attr('checked');
-        var subscribed = $('#employers_filter_in_subscriptions').attr('checked');
+        var has_public_events_deadlines = $('#employers_filter_has_events').attr('checked')=="checked";
+        var subscribed = $('#employers_filter_in_subscriptions').attr('checked')=="checked";
         show_form_submit_loader("#employers_list_form");
-        $.get(SEARCH_URL, {
-            'q': query,
-            'i': industry,
-            'has_public_events': has_events,
-            'subscribed': subscribed
-        }, function(data) {
-            $('#employers_listings').html(data);
-            bindLoadEmployerHandlers();
-            hide_form_submit_loader("#employers_list_form");
+        $.ajax({
+        	url:SEARCH_URL,
+        	data:{
+            	'q': query,
+            	'i': industry,
+            	'has_public_events_deadlines': has_public_events_deadlines,
+            	'subscribed': subscribed
+        	},
+        	success:function(data) {
+	            $('#employers_listings').html(data);
+	            bindLoadEmployerHandlers();
+	            hide_form_submit_loader("#employers_list_form");
+        	},
+        	error:errors_in_message_area_handler,
         });
     }
 });
@@ -84,7 +89,7 @@ function loadEmployer(target, id, noPush) {
     }
     show_form_submit_loader("#employers_list_form");
     $.get(EMPLOYERS_LIST_PANE_URL, {id: id}, function(data) {
-        $('#employers_detail').html(data);
+        $('#employer_details').html(data);
         if (!disablePush) {
             var stateObj = {id: id};
             history.pushState(stateObj, "employer "+id, EMPLOYERS_LIST_URL+"?id="+id);

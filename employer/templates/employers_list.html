@@ -6,9 +6,12 @@ Employers |
 
 {% block metadata %}
 {{block.super}}
+{% load compress %}
+{% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers_list.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+{% endcompress %}
 <script>
     var EMPLOYERS_LIST_PANE_URL = "{% url employers_list_pane %}";
     var EMPLOYERS_LIST_URL = "{% url employers_list %}"
@@ -17,7 +20,11 @@ Employers |
     var SUBSCRIBE_URL = "{% url employers_subscribe %}";
     var STATIC_URL = "{{ STATIC_URL }}";
 </script>
+{% compress js %}
 <script src="{{ STATIC_URL }}js/employer/employers_list.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block content_area %}
@@ -46,7 +53,7 @@ Employers |
                 {% include "employers_list_li.html" %}
             {% endfor %}
         </div>
-        <div id="employers_detail">
+        <div id="employer_details">
             {% include "employers_list_pane.html" with employer=employer events=events isnotajax="True" %}
         </div>
     </div>

@@ -23,6 +23,7 @@
 {% endblock %}
 
 {% block metadata %}
+{{ block super }}
 {% load compress %}
 {% load text_snippet %}
 {% load google_calendarize %}
@@ -78,11 +79,12 @@
 
 {% compress js %}
     <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
-    <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_list_export.js"></script>
     {% if campus_org_event %}

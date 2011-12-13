@@ -32,13 +32,16 @@
     {% endif %}
 </div>
 
-<div class="description">{{employer.description|safe}}</div>
+<div id="employer_description">
+	{{employer.description|safe}}
+</div>
+
 <h2>Upcoming Events</h2>
 <ul class="event_list {% if user.campus_org or user.recruiter %}editable_event_list{% endif %}">
     {% for event in upcoming_events %}
         {% include "event_snippet.html" %}
     {% empty %}
-        <li>This employer has no upcoming events.</li>
+        <li id="no_upcoming_events_or_deadlines">This employer has no upcoming events or deadlines.</li>
     {% endfor %}
 </ul>
 {% if isnotajax %}

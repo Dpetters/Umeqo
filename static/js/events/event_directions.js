@@ -1,5 +1,4 @@
 $(".get_directions_link").live('click', function(e){
-    console.log("clicked");
     var that = this;
     function getDirections(position){
         slat = position.coords.latitude;

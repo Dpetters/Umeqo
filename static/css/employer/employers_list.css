@@ -1,11 +1,13 @@
 #employers_list_block .main_block_content {
     padding: 0;
     position: relative;
+    background:#EEE;
 }
 #employers_list_form_wrapper {
-    height: 40px;
-    line-height: 40px;
+    height: 43px;
+    line-height: 43px;
     background-color: #EEE;
+    border-bottom:1px solid #DDD;
 }
 #employers_list_form {
     position: relative;
@@ -30,19 +32,33 @@
     background-color: #EEE;
     padding: 0 0 10px;
     width: 200px;
+    min-height:410px;
+}
+#employers_listings #no_employer_matches {
+	text-align:center;
+	margin-top:5px;
 }
 #employers_listings .employers_listing {
     padding: 5px;
+    border-top: 1px solid #EEE;
+    border-left: 1px solid #EEE;
+    border-bottom:1px solid #EEE;
+    border-right: 1px solid #E0E0E0;
 }
 #employers_listings .employers_listing:hover {
     background-color: #F6F6F6;
+    border:1px solid #CCC;
     cursor: pointer;
 }
 #employers_listings .selected {
     background-color: #FFF;
+    border-right:1px solid #FFF;
+    border-top:1px solid #E0E0E0;
+    border-bottom:1px solid #E0E0E0;
 }
 #employers_listings .selected:hover {
     background-color: #FFF;
+    cursor:default;
 }
 #employers_listings .employers_listing h2 {
     font-size: 14px;
@@ -55,13 +71,17 @@
     color: #777;
     text-overflow: ellipsis;
 }
-#employers_detail {
+#employer_details {
     margin-left: 200;
     min-height: 400px;
-    padding: 10px;
+    padding: 8px 13px;
     overflow: hidden;
     width: 760px;
+    background:#FFF;
 }
 .subscribed {
     background-color: #C5E3BF;
+}
+#no_upcoming_events_or_deadlines{
+	margin-top:12px;
 }

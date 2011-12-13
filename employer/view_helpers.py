@@ -312,7 +312,7 @@ def employer_search_helper(request):
     if request.GET.get('subscribed', False)=='true':
         search_results = search_results.filter(subscribers=request.user.id)
 
-    if request.GET.get('has_public_events', False)=="true":
+    if request.GET.get('has_public_events_deadlines', False)=="true":
         search_results = search_results.filter(has_public_events=True)
         
     industry_id = request.GET.get('i', None)
