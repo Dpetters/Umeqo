@@ -738,11 +738,12 @@ def employer_resume_book_current_download(request):
         return HttpResponseBadRequest("Request must be a GET")
 
 
+
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
-@render_to('employers_list.html')
-def employers_list(request, extra_content=None):
+@render_to()
+def employers(request, extra_content=None):
     if not request.user.student.profile_created:
         return redirect('student_profile')
     
@@ -750,7 +751,6 @@ def employers_list(request, extra_content=None):
     employers = employer_search_helper(request)
     industries = Industry.objects.all()
     subscriptions = request.user.student.subscriptions.all()
-    sub_status = {}
     for employer in employers:
         if employer in subscriptions:
             employer.subscribed = True
@@ -760,8 +760,11 @@ def employers_list(request, extra_content=None):
         'employers': employers,
         'industries': industries,
         'query': query,
-        'sub_status': sub_status
     }
+    if request.is_ajax():
+            context['TEMPLATE'] = "employer_li.html"
+            return context
+        
     if len(employers) > 0:
         employer_id = request.GET.get('id', None)
         if employer_id:
@@ -803,23 +806,6 @@ def employers_list_pane(request, extra_content=None):
         }
         return context
     return HttpResponseBadRequest("Bad request. Employer id is missing.")
-
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
-@render_to('employers_list_ajax.html')
-def employer_list_ajax(request):
-    employers = employer_search_helper(request)
-    subscriptions = request.user.student.subscriptions.all()
-    for employer in employers:
-        if employer in subscriptions:
-            employer.subscribed = True
-        else:
-            employer.subscribed = False
-    context = {'employers': employers}
-    return context
-
 
 @login_required
 @agreed_to_terms

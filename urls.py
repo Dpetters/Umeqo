@@ -154,7 +154,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/current/remove-students/$', 'employer_resume_book_current_remove_students', {}, 'employer_resume_book_current_remove_students'),
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
     (r'^employers/pane/$', 'employers_list_pane', {}, 'employers_list_pane'),
-    (r'^employers/$', 'employers_list', {}, 'employers_list'),
+    (r'^employers/$', 'employers', {}, 'employers'),
     (r'^employers/ajax$', 'employer_list_ajax', {}, 'employers_list_ajax'),
     (r'^employers/subscribe$', 'employer_subscribe', {}, 'employers_subscribe'),
     (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
