@@ -74,10 +74,7 @@
         New Event
     {% endif %}
     </h1>
-    {% if edit %}
-        <a id="view_event_button" href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1" class="dark_button">View Event</a>
-    {% endif %}
-    <a class="back_to_link" href="{% url home %}#events" tabindex="-1">&laquo; Back to Events</a>
+    <a class="back_to_link" href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1">&laquo; Back to Event</a>
 </div>
 <form id="event_form" method="POST" action="">
     {% csrf_token %}
@@ -177,7 +174,7 @@
             <div id="attending_employers">
             {% if edit %}
                 {% for employer in attending_employers.all %}
-                    {% include "employer.html" %}
+                    {% include "employer_logo.html" %}
                 {% endfor %}
             {% endif %}
             </div>

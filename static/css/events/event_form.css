@@ -224,12 +224,6 @@ label[for=id_rsvp_message]{
     width: 231px;
     height: 36px;
 }
-#view_event_button {
-    line-height: 20px;
-    height: 20px;
-    float: right;
-    margin-left: 10px;
-}
 #event_scheduler_today{
     margin-left:2px;
 }

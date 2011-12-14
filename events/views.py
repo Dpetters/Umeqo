@@ -520,34 +520,32 @@ def event_schedule(request):
 @require_http_methods(["GET", "POST"])
 @has_any_subscription
 def event_rsvp(request, event_id):
-    event = Event.objects.get(pk=event_id)
-    # if method is GET then get a list of RSVPed students
-    if request.method == 'GET' and is_recruiter(request.user) or is_campus_org(request.user):
-        data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    # if POST then record student's RSVP
-    elif request.method == 'POST' and hasattr(request.user, 'student'):
-        isAttending = request.POST.get('isAttending', 'true')
-        isAttending = True if isAttending=='true' else False
-        rsvp = RSVP.objects.filter(student=request.user.student, event=event)
-        if rsvp.exists():
-            rsvp = rsvp.get()
+    try:
+        event = Event.objects.get(pk=event_id)
+    except:
+        return HttpResponseBadRequest("An event with the id %d does not exist." % event_id)
+    else:
+        # if method is GET then get a list of RSVPed students
+        if request.method == 'GET' and is_recruiter(request.user) or is_campus_org(request.user):
+            data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        # if POST then record student's RSVP
+        elif request.method == 'POST' and is_student(request.user):
+            isAttending = request.POST.get('isAttending', 'true')
+            isAttending = True if isAttending=='true' else False
+            rsvp, created = RSVP.objects.get_or_create(student=request.user.student, event=event)
             rsvp.attending = isAttending
+            rsvp.save()
             if isAttending:
-                # Also "drop" the resume.
                 DroppedResume.objects.get_or_create(event=event, student=request.user.student)
             else:
-                # Also "undrop" the resume.
-                DroppedResume.objects.filter(event=event, student=request.user.student).delete()
-            rsvp.save()
+                RSVP.objects.create(student=request.user.student, event=event, attending=isAttending)
+            if request.is_ajax():
+                return HttpResponse()
+            else:
+                return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
         else:
-            RSVP.objects.create(student=request.user.student, event=event, attending=isAttending)
-        if request.is_ajax():
-            return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
-        else:
-            return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
-    else:
-        return HttpResponseForbidden("You must be a recruiter or campus org to access this view.")
+            return HttpResponseForbidden("You do not have access to this view.")
 
 @login_required
 @agreed_to_terms
@@ -556,11 +554,8 @@ def event_unrsvp(request, event_id):
     event = Event.objects.get(pk=event_id)
     rsvp = RSVP.objects.filter(student=request.user.student, event=event)
     rsvp.delete()
-
-    # Also "undrop" the resume.
-    DroppedResume.objects.filter(event=event, student=request.user.student).delete()
     if request.is_ajax():
-        return HttpResponse(simplejson.dumps({"valid":True}), mimetype="application/json")
+        return HttpResponse()
     else:
         return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
 

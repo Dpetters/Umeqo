@@ -34,22 +34,22 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4E6D84', endColorstr='#4E6D84',GradientType=0 ); /* IE6-9 */
 }
 .caution_button{
-    background: #b70000; /* Old browsers */
-    background: -moz-linear-gradient(top,  #b70000 0%, #890000 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b70000), color-stop(100%,#890000)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #b70000 0%,#890000 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #b70000 0%,#890000 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #b70000 0%,#890000 100%); /* IE10+ */
-    background: linear-gradient(top,  #b70000 0%,#890000 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b70000', endColorstr='#890000',GradientType=0 ); /* IE6-9 */
+	background: #b26767; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b26767 0%, #844444 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b26767), color-stop(100%,#844444)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #b26767 0%,#844444 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #b26767 0%,#844444 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #b26767 0%,#844444 100%); /* IE10+ */
+	background: linear-gradient(top,  #b26767 0%,#844444 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b26767', endColorstr='#844444',GradientType=0 ); /* IE6-9 */
     border: 1px solid #000;
 }
 .caution_button:hover, .caution_button.um-focus {
     box-shadow: #333 0 0 2px;
 }
 .caution_button.um-active {
-    background: #7F0000;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7F0000', endColorstr='#7F0000',GradientType=0 ); /* IE6-9 */
+    background: #844444;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#844444', endColorstr='#844444',GradientType=0 ); /* IE6-9 */
 }
 a.button, .button{
     height: 31px;

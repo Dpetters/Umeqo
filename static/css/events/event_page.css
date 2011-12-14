@@ -25,7 +25,17 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
-    width: 70px;
+}
+#facebook_button{
+	position:relative;
+	bottom:2px;
+	width:120px;
+}
+#gplusone_button{
+	width:70px;
+}
+#twitter_button{
+	width:70px;
 }
 #event_description, #event_attending_employers {
     width: 670px;

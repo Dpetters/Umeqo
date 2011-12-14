@@ -23,7 +23,6 @@
 {% endblock %}
 
 {% block metadata %}
-{{ block super }}
 {% load compress %}
 {% load text_snippet %}
 {% load google_calendarize %}
@@ -84,6 +83,9 @@
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_rsvp.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_resume_drop.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_checkin.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_list_export.js"></script>
@@ -277,14 +279,14 @@
     </div>
     {% if event.is_public %}
         <div id="event_external_buttons">
-            <div class="external_button">
+            <div id="facebook_button" class="external_button">
+                <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+            </div>
+            <div id="gplusone_button" class="external_button">
                 <g:plusone size="medium"></g:plusone>
             </div>
-            <div class="external_button">
+            <div id="twitter_button" class="external_button">
                 <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="umeqo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-            </div>
-            <div class="external_button">
-                <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
             </div>
         </div>
     {% endif %}
@@ -321,7 +323,7 @@
         </div>
         <div id="attending_employers" class="main_block_content">
             {% for employer in attending_employers.all %}
-                {% include "employer.html" %}
+                {% include "employer_logo.html" %}
             {% endfor %}
             {% if event.include_and_more %}
                 <div id="and_more"><p>and more...</p></div>

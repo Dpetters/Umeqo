@@ -22,7 +22,6 @@ function update_student_body_statistics() {
             if (typeof(student_body_statistics_series) != "undefined"){
                 student_body_statistics_series.remove();
             }
-            console.log(data);
             data.series.color = "#4572A7";
             student_body_statistics_series = student_body_statistics_chart.addSeries(data.series);
             student_body_statistics_chart.xAxis[0].setCategories(data.categories);
