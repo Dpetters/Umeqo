@@ -23,7 +23,6 @@ class TutorialAdmin(admin.ModelAdmin):
                     'obj': force_unicode(obj)})
             all_tutorials = list(obj.__class__.objects.all())
             next = all_tutorials[all_tutorials.index(obj)+1:]
-            print next
             if next:
                 self.message_user(request, msg)
                 return HttpResponseRedirect("../%s/" % next[0].pk)

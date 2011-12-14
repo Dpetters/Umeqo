@@ -4,9 +4,11 @@ from django.contrib.sites.models import Site
 from core.decorators import is_recruiter
 
 def next(request):
-    return {
-        'login_next': request.GET.get('next', '/')
-        } if 'next' in request.GET else {}
+    if request.GET.has_key('next'):
+        login_next = request.GET['next']
+    else:
+        login_next = request.get_full_path()
+    return {'login_next': login_next}
         
 def get_current_path(request):
     return {

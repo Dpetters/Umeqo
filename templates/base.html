@@ -174,7 +174,7 @@
                     {% ifnotequal current_path "/login/" %}
                         <div id="login_wrapper">
                             <div id="login_wrapper_pointer"></div>
-                            <form id="login_form" action="/login/" method='POST'>
+                            <form id="login_form" action="/login/?next={{login_next}}" method='POST'>
                                 {% csrf_token %}
                                 <div class="errorspace"></div>
                                 <div id="username" class="input_div">
