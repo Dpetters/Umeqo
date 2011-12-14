@@ -8,20 +8,20 @@ Employers |
 {{block.super}}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 {% endcompress %}
 <script>
-    var EMPLOYERS_LIST_PANE_URL = "{% url employers_list_pane %}";
-    var EMPLOYERS_LIST_URL = "{% url employers_list %}"
+    var EMPLOYER_DETAILS_URL = "{% url employer_details %}";
+    var EMPLOYERS_URL = "{% url employers %}"
     var FIRST_EMPLOYER_ID = {{employer.id}};
-    var SEARCH_URL = "{% url employer__list_ajax %}";
-    var SUBSCRIBE_URL = "{% url employers_subscribe %}";
+    var SEARCH_URL = "{% url employers %}";
+    var SUBSCRIBE_URL = "{% url employer_subscribe %}";
     var STATIC_URL = "{{ STATIC_URL }}";
 </script>
 {% compress js %}
-<script src="{{ STATIC_URL }}js/employer/employers_list.js"></script>
+<script src="{{ STATIC_URL }}js/employer/employers.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
 {% endcompress %}
@@ -30,10 +30,10 @@ Employers |
 {% block content_area %}
 <h1 class="inline">Employers Listing</h1>
 <a class="back_to_link" href="{% url home %}">&laquo; Back to Home</a>
-<div id="employers_list_block" class="main_block">
+<div id="employers_block" class="main_block">
     <div class="main_block_content">
-        <div id="employers_list_form_wrapper">
-            <form id="employers_list_form">
+        <div id="employers_form_wrapper">
+            <form id="employers_form">
                 <input type="text" name="q" placeholder="Search by name, keyword, etc.." id="employers_filter_name" value="{{ query }}"/>
                 <select name="i" id="employers_filter_industry">
                     <option value="">Filter by industry</option>
@@ -48,13 +48,13 @@ Employers |
                 <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
             </form>
         </div>
-        <div id="employers_listings">
+        <div id="employer_snippets">
             {% for employer in employers %}
-                {% include "employers_list_li.html" %}
+                {% include "employer_snippet.html" %}
             {% endfor %}
         </div>
         <div id="employer_details">
-            {% include "employers_list_pane.html" with employer=employer events=events isnotajax="True" %}
+            {% include "employer_details.html" with employer=employer events=events isnotajax="True" %}
         </div>
     </div>
 </div>

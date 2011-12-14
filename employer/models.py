@@ -40,7 +40,7 @@ class Employer(core_mixins.DateTracking):
         ordering=["name"]
            
     def get_absolute_url(self):
-        return '%s?id=%d' % (reverse('employers_list'), self.id)
+        return '%s?id=%d' % (reverse('employers'), self.id)
     
     def subscribed(self):
         try:

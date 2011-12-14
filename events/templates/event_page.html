@@ -345,7 +345,7 @@
                     </div>
                     <div class="event_company_name">
                       {% if campus_org_event %}<a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link">{{event.owner.campusorg}}</a>{% else %}{{ recruiter.name }}{% endif %}
-                        <a href="{% if not can_edit%}{% url employers_list %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
+                        <a href="{% if not can_edit%}{% url employers %}?id={{event.owner.recruiter.employer.id}}{% else %}#{% endif %}" class="employer">
                             {{event.owner.recruiter.employer}}
                         </a>
                     </div>

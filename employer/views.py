@@ -42,8 +42,8 @@ from subscription.models import EmployerSubscription
 
 @require_GET
 @agreed_to_terms
-@render_to("employer.html")
-def employer(request):
+@render_to("employer_logo.html")
+def employer_logo(request):
     if request.GET.has_key("employer_name"):
         try:
             e = Employer.objects.get(name=request.GET['employer_name'])
@@ -137,7 +137,7 @@ def employer_profile_preview(request, slug, extra_context=None):
         raise Http404
     
     if is_student(request.user):
-        return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
+        return HttpResponseRedirect("%s?id=%s" % (reverse("employers"), employer.id))
     elif is_recruiter(request.user):
         context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
         context.update(extra_context or {})
@@ -762,7 +762,7 @@ def employers(request, extra_content=None):
         'query': query,
     }
     if request.is_ajax():
-            context['TEMPLATE'] = "employer_li.html"
+            context['TEMPLATE'] = "employer_snippets.html"
             return context
         
     if len(employers) > 0:
@@ -772,7 +772,7 @@ def employers(request, extra_content=None):
                 employer_id = int(employer_id)
                 employer = Employer.objects.get(id=employer_id)
             except (ValueError, ObjectDoesNotExist):
-                return redirect('employers_list')
+                return redirect('employers')
         else:
             employer = employers[0]
             employer_id = employer.id
@@ -785,14 +785,15 @@ def employers(request, extra_content=None):
             'employer_id': employer_id,
             'subbed': subbed
         })
+    context['TEMPLATE'] = "employers.html"
     return context
 
 
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
-@render_to('employers_list_pane.html')
-def employers_list_pane(request, extra_content=None):
+@render_to('employer_details.html')
+def employer_details(request, extra_content=None):
     employer_id = request.GET.get('id',None)
     if employer_id and Employer.objects.filter(id=employer_id).exists():
         employer = Employer.objects.get(id=employer_id)

@@ -128,8 +128,10 @@ urlpatterns += patterns('student.views',
     (r'^student/resume/increment-view-count/$', 'student_increment_resume_view_count', {}, 'student_increment_resume_view_count')
 )
 urlpatterns += patterns('employer.views',
-    (r'^employer/$', 'employer', {}, 'employer'),
+    (r'^employer/logo/$', 'employer_logo', {}, 'employer_logo'),
     (r'^employer/new/$', 'employer_new', {}, 'employer_new'),
+    (r'^employer/details/$', 'employer_details', {}, 'employer_details'),
+    (r'^employer/subscribe/$', 'employer_subscribe', {}, 'employer_subscribe'),
     (r'^employer/account/$', 'employer_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'employer_account'),
     (r'^employer/account/delete/$', 'employer_account_delete', {}, 'employer_account_delete'),
     (r'^employer/account/preferences/$', 'employer_account_preferences', {}, 'employer_account_preferences'),
@@ -153,10 +155,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/current/add-students/$', 'employer_resume_book_current_add_students', {}, 'employer_resume_book_current_add_students'),
     (r'^employer/resume-books/current/remove-students/$', 'employer_resume_book_current_remove_students', {}, 'employer_resume_book_current_remove_students'),
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
-    (r'^employers/pane/$', 'employers_list_pane', {}, 'employers_list_pane'),
     (r'^employers/$', 'employers', {}, 'employers'),
-    (r'^employers/ajax$', 'employer_list_ajax', {}, 'employers_list_ajax'),
-    (r'^employers/subscribe$', 'employer_subscribe', {}, 'employers_subscribe'),
     (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
 
