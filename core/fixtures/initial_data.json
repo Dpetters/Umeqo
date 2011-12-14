@@ -4026,7 +4026,7 @@
    "topic": 9, 
    "audience": 1, 
    "sort_order": "5.000", 
-   "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login_link\" href=\"#\">logging in</a> with your login email address and password.", 
+   "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login\" href=\"#\">logging in</a> with your login email address and password.", 
    "date_created": "2011-10-04 09:29:33", 
    "display": true
   }

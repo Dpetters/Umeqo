@@ -51,9 +51,6 @@ $(document).ready(function() {
         $('.current').removeClass('current');
         $('#event_tabs h2').eq(i).addClass('current');
     }
-    
-    $("#rsvp_yes_button[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
-    $("#event_resume_drop[disabled=disabled]").tipsy({'gravity':'w', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
 
     $('#email_input, #name_input').placeholder();
 

@@ -526,8 +526,6 @@ function initiate_ajax_call() {
                 animateDuration : 0,
                 extraSpace : 18
             });
-            // Results Menu Styles
-            $('.dropdown_button ul').hide();
 
             $(".student_comment").placeholder();
     

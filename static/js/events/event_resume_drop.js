@@ -1,3 +1,4 @@
+var resume_drop_mouseout = false;
 function resume_drop(drop){
 	var that = this;
     $.ajax({
@@ -6,10 +7,21 @@ function resume_drop(drop){
     	data: {'drop':drop},
     	beforeSend: function(){
     		$(that).html("processing...");
+    		$("#drop_resume").live('mouseout', function(){
+				resume_drop_mouseout = true;
+			});
+    		$("#drop_resume").live('mouseover', function(){
+				resume_drop_mouseout = false;
+			});
     	},
     	success:function() {
     		if (drop){
-    			$(that).attr("id", "undrop_resume").addClass("resume_dropped").html("Resume Dropped");
+    			$(that).attr("id", "undrop_resume").addClass("resume_dropped");
+    			if(resume_drop_mouseout){
+    				$(that).html("Resume Dropped");
+    			}else{
+    				$(that).html("Undrop Resume");
+    			}
     		}else{
     			$(that).attr("id", "drop_resume").removeClass("resume_dropped").html("Drop Resume");	    			
     		}
@@ -31,10 +43,14 @@ $('#undrop_resume').live('click', function(e) {
     	resume_drop.apply(this, [false]);
     }
 });
-/*
+
 $(".resume_dropped").live('mouseover', function(){
 	$(this).html("Undrop Resume");
 });
 $(".resume_dropped").live('mouseout', function(){
 	$(this).html("Resume Dropped");
-});*/
+});
+$(document).ready(function(){
+	    $("#resume_drop_requires_login").tipsy({'gravity':'e', opacity: 0.9, fallback:"Resume drop requires login.", html:true});
+	    $("#drop_resume[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
+});

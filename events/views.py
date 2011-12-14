@@ -163,8 +163,6 @@ def event_page(request, id, slug, extra_context=None):
         dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
         if dropped_resume.exists():
             context['dropped_resume'] = True
-        
-        context['can_rsvp'] = True
     else:
         context['email_delivery_type'] = core_enums.EMAIL
     context.update(extra_context or {})

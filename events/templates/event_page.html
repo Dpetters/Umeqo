@@ -226,56 +226,59 @@
             {% if is_past %}
                 <a href="javascript:void(0)" id="rsvp_yes_button" class="button" disabled="disabled" title="RSVP disabled.">{% if is_deadline %}Deadline{% else %}Event{% endif %} already passed!</a>
             {% else %}
-                {% if can_rsvp or can_edit %}
-                        {% if event.is_public %}
+                {% if event.is_public %}
+                	{% if user.is_anonymous %}
+	                	<div id="rsvp_requires_login" class="login gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>                	
+        			{% else %}
+	        			{% if user.student %}
 	                    	{% if responded %}
 	                    		{% if attending %}
-		                            <div id="rsvp_not_attending" class="attending gray_button">Attending</div>
+		                            <div id="rsvp_no" class="attending gray_button">{% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
 	                    		{% else %}
-		                            <div id="rsvp_attending" class="not_attending gray_button">Not Attending</div>
+		                            <div id="rsvp_yes" class="not_attending gray_button">{% if is_deadline %}Not Participating{% else %}Not Attending{% endif %}</div>
 	                    		{% endif %}
 	                    	{% else %}
-	                    		<div id="rsvp_attending" class="gray_button">RSVP Attending</div>
+	                    		<div id="rsvp_yes" class="gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
 	                    	{% endif %}
-                        	<!--
-                            <div id="rsvp_attending" class="gray_button">Attending</div>
-                            
-                            <div class="no-response{% if not responded %} hid{% endif %}">
-                                <span id="attending-span">{% if is_deadline %}Participating{% else %}Attending{% endif %}</span>
-                                <a href=""  id="remove-rsvp-button">RSVP: Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
-                            </div>
-                            <div class="response{% if responded %} hid{% endif %}">
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp_yes_button" {% if not can_rsvp %}disabled="disabled" {% endif %}>RSVP: {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
-                            </div>-->
-                        {% else %}
-                        	{% if responded %}
-                        		{% if attending %}
-		                            <div class="attending gray_button">Attending</div>
-                        		{% else %}
-		                            <div class="not_attending gray_button">Not Attending</div>
-                        		{% endif %}
-                        	{% else %}
-                            <div class="dropdown_button">
-                            	<span>RSVP</span>
-        						<img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+	                    {% else %}
+		                	<div class="gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+		                {% endif %}
+		            {% endif %}
+                {% else %}
+        			{% if user.student %}
+                    	{% if responded %}
+                    		{% if attending %}
+	                            <div id="rsvp_no" class="attending gray_button">{% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                    		{% else %}
+	                            <div id="rsvp_yes" class="not_attending gray_button">Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                    		{% endif %}
+                    	{% else %}
+	                        <div class="dropdown gray_button">
+	                        	<span>RSVP</span>
+	    						<img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
 						        <ul>
-						            <li id="dropdown_rsvp_attending">Attending</li>
-						            <li id="dropdown_rsvp_not_attending">Not Attending</li>
+						            <li id="rsvp_yes">{% if is_deadline %}Participating{% else %}Attending{% endif %}</li>
+						            <li id="rsvp_no">Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</li>
 						        </ul>
 						    </div>
-						    {% endif %}
-                        {% endif %}
-                {% else %}
-                    <a href="/login/" id="rsvp_yes_button" disabled="disabled" {% if not user.is_authenticated %}title="RSVP requires login."{% endif %}>
-                        Login to RSVP
-                    </a>
+					    {% endif %}
+                    {% else %}
+	                	<div id="rsvp_choices" class="gray_button dropdown" disabled="disabled">
+	                		 <span>RSVP</span>
+    						<img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+	                	</div>
+	                {% endif %}
                 {% endif %}
             {% endif %}
             {% if event.is_drop %}
-            	{% if dropped_resume %}
-					<div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>
-				{% else %}
-					<div id="drop_resume" class="gray_button" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</div>
+            	{% if user.is_anonymous %}
+					<div id="resume_drop_requires_login" class="login gray_button" disabled="disabled">Drop Resume</div>
+				{% else %}	            		
+            		{% if dropped_resume %}
+						<div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>
+					{% else %}
+						<div id="drop_resume" class="gray_button" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</div>
+					{% endif %}
 				{% endif %}
 		    {% endif %}
         </div>
@@ -304,8 +307,8 @@
             </span>
         {% endif %}
     </div>
-    {% if event.is_public %}
-        <div id="event_external_buttons">
+    <div id="event_external_buttons">
+    	{% if event.is_public %}
             <div id="facebook_button" class="external_button">
                 <fb:like href="" send="true" layout="button_count" width="100" show_faces="false" font=""></fb:like>
             </div>
@@ -315,9 +318,8 @@
             <div id="twitter_button" class="external_button">
                 <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="umeqo">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
             </div>
-        </div>
-    {% endif %}
-
+    	{% endif %}
+	</div>
     <div id="event_description" class="main_block">
         <div class="main_block_header">
             <span class="main_block_header_title">{% if is_deadline %}Deadline{% else %}Event{% endif %} Details</span>

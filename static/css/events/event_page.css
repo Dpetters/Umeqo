@@ -12,7 +12,8 @@
     margin-top: 5px;
 }
 #event_external_buttons {
-    padding: 20px 0 0;
+    padding: 17px 0 0;
+    min-height:19px;
 }
 #event_admin_main .commands {
     margin-top: -25px;
@@ -56,19 +57,9 @@
     -moz-border-radius: 2px;
     width: 100px;
 }
-#event_actions {
-    margin-top: 5px;
-    text-align: left;
-}
 #add_to_google_calendar{
 	margin-top:5px;
 	float:right;
-}
-#remove-rsvp-button {
-    display: block;
-    font-size: 12px;
-    margin-top: 3px;
-    text-align: right;
 }
 #event_attending_employers .ep-logo {
     max-height: 103px;
@@ -82,7 +73,6 @@
     font-weight: bold;
     color: #222;
 }
-
 .google-button {
     display: inline-block;
     margin: 8px 0 5px;

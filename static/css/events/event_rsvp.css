@@ -1,9 +1,4 @@
-#rsvp_div .dropdown_button{
-	width:130px;
-	height:30px;
-	line-height:29px;
-}
-#rsvp_div .gray_button, #rsvp_div .dropdown_button{
+#rsvp_div .gray_button{
 	margin-bottom:7px;
 	display:block;
     height:30px;
@@ -34,8 +29,8 @@
 	border: 1px solid #CC3333;
 	color:#FFF;
 }
-.not_responded ul{
-	left:0px;
-	top:32px;
+#rsvp_div .dropdown ul{
+	left:-1px;
+	top:30px;
     min-width:136px;	
 }
