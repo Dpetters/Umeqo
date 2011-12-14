@@ -89,9 +89,10 @@ def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
 
-    if not Event.objects.filter(pk=id).exists():
+    try:
+        event = Event.objects.get(pk=id)
+    except:
         raise Http404
-    event = Event.objects.get(pk=id)
 
     if not event.is_public:
         if not request.user.is_authenticated():

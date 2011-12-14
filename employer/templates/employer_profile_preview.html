@@ -17,7 +17,9 @@
     var STATIC_URL = "{{ STATIC_URL }}";
 </script>
 {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_preview.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
 {% endcompress %}
 {% endblock %}
 
