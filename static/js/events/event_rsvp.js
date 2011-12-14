@@ -15,56 +15,67 @@ function open_rsvp_info_dialog() {
     return $dialog;
 };
 
-function rsvp(isAttending) {
+function rsvp(attending) {
+	var that = this;
     $.ajax({
-    	url:$(this).attr('href'),
-    	data:{ isAttending: isAttending },
+        type:'POST',
+    	url: RSVP_URL,
+    	data:{ attending: attending },
+    	beforeSend:function(){
+    		$(that).html("processing...");
+    	},
     	success: function(data) {
-        	if ($('.response').length > 0) {
-            	$('.no-response').removeClass('hid');
-            	$('.response').addClass('hid');
-        	} else {
-            	$('.no-response').removeClass('hid');
-        	}
+    		var $dropdown_button = $(that).parents(".dropdown_button");
+    		if($dropdown_button){
+    			$dropdown_button.removeClass("dropdown_button").addClass("gray_button");
+    		}
+			if(attending){
+				$(that).removeClass("not_attending").addClass("attending").attr("id", "rsvp_not_attending").html("RSVP Not Attending");
+			}else{
+				$(that).removeClass("attending").addClass("not_attending").attr("id", "rsvp_attending").html("RSVP Attending");
+			}
     	},
     	error: errors_in_message_area_handler
     });
     
-    if (isAttending) {
-        $("#event_resume_drop").click();
+    if (attending) {
+        $("#drop_resume").click();
     }
 }
 
-$('#rsvp-yes-button').live('click', function(e) {
-    var disabled = $(this).attr('disabled');
-    if (!$(this).hasClass('selected') && (typeof disabled == 'undefined' || disabled !== true)) {
-        rsvp.apply(this, [true]);
-        $('#rsvp_div .selected').removeClass('selected');
-        $(this).addClass('selected');
+function show_rsvp_message(){
+    $.ajax({
+        data:{'event_id':EVENT_ID},
+        url:RSVP_MESSAGE_URL,
+        success: function(data) {
+            if(data){
+                rsvp_info_dialog = open_rsvp_info_dialog();
+                rsvp_info_dialog.html(data);
+            }
+        },
+        error: errors_in_message_area_handler
+    });
+}
 
-        $.ajax({
-            data:{'event_id':EVENT_ID},
-            url:RSVP_MESSAGE_URL,
-            success: function(data) {
-                if(data){
-                    rsvp_info_dialog = open_rsvp_info_dialog();
-                    rsvp_info_dialog.html(data);
-                }
-            },
-            error: errors_in_message_area_handler
-        });
-    }
-    e.preventDefault();
+$(".attending").live('mouseenter', function(){
+	$(this).html("RSVP Not Attending");
+});
+$(".attending").live('mouseleave', function(){
+	$(this).html("Attending");
 });
 
-$('#rsvp-no-button').live('click', function(e) {
-    var disabled = $(this).attr('disabled');
-    if (!$(this).hasClass('selected') && (typeof disabled == 'undefined' && disabled !== true)) {
-    	rsvp.apply(this, [false]);
-        $('#rsvp_div .selected').removeClass('selected');
-        $(this).addClass('selected');
-    }
-    e.preventDefault();
+$(".not_attending").live('mouseenter', function(){
+	$(this).html("RSVP Attending");
+});
+$(".not_attending").live('mouseleave', function(){
+	$(this).html("Not Attending");
+});
+
+$('#rsvp_attending').live('click', function(e) {
+    rsvp.apply(this, [true]);
+});
+$('#rsvp_not_attending').live('click', function(e) {
+    rsvp.apply(this, [false]);
 });
 
 $('#remove-rsvp-button').live('click', function(e) {
@@ -82,7 +93,7 @@ $('#remove-rsvp-button').live('click', function(e) {
     
 $(document).ready(function(){
 	if (get_parameter_by_name("rsvp")=="true"){
-        $("#rsvp-yes-button").click();
+        $("#rsvp_yes_button").click();
     }
     if (get_parameter_by_name("rsvp")=="false"){
         $("#rsvp-no-button").click();

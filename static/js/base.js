@@ -173,8 +173,8 @@ $(document).ready( function () {
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
     });
-    $("a, .button, .dark_button, .dropdown_menu_button, \
-    .dropdown_menu_button ul li, .menu_button, .current_page_link, \
+    $("a, .button, .dark_button, .dropdown_button, \
+    .dropdown_button ul li, .gray_button, .current_page_link, \
     .page_link, .disabled_page_link, #logo_beta, #notifications_count").live({
         mouseleave:
             function(){
@@ -193,29 +193,38 @@ $(document).ready( function () {
     });
     */
     
-    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mousedown', function() {
+    $('.button, .gray_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mousedown', function() {
         if(!$(this).hasClass('disabled')){
             $(this).addClass('um-active');
         }
     });
-    $('.button, .menu_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mouseup', function(){
+    $('.button, .gray_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mouseup', function(){
         if ($(this).hasClass('um-active') || $(this).hasClass('disabled'))
             $(this).removeClass('um-active');
     });
     
-    $('.dropdown_menu_button, #login_button a').live('click', function() {
+    $('.dropdown_button, #login_button a').live('click', function() {
         if ($(this).hasClass('um-pressed') || $(this).hasClass('disabled'))
             $(this).removeClass('um-pressed');
         else
             $(this).addClass('um-pressed');
+            
     });
     $('body').live('click', function(event) {
-        if (!$(event.target).closest('.dropdown_menu_button').length && !$(event.target).closest('.dropdown menu_button ul').length) {
-            $('.dropdown_menu_button ul').hide();
-            $('.dropdown_menu_button').removeClass('um-pressed');
+        if (!$(event.target).closest('.dropdown_button').length && !$(event.target).closest('.dropdown gray_button ul').length) {
+            $('.dropdown_button ul').hide();
+            $('.dropdown_button').removeClass('um-pressed');
         }
     });
     
+    $('.dropdown_button').live('click', 
+    	function (e) { 
+    		if($(e.target).parent().hasClass("dropdown_button")){
+    			$(e.target).nextAll('ul').toggle();
+			} else {
+    			$(e.target).children('ul').toggle();
+			}
+	});
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
         if (val.length == 0) { return true; }

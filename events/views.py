@@ -155,7 +155,7 @@ def event_page(request, id, slug, extra_context=None):
     if is_student(request.user):
         
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
-        
+        print rsvp
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
             context['responded'] = True
@@ -526,20 +526,19 @@ def event_rsvp(request, event_id):
         return HttpResponseBadRequest("An event with the id %d does not exist." % event_id)
     else:
         # if method is GET then get a list of RSVPed students
-        if request.method == 'GET' and is_recruiter(request.user) or is_campus_org(request.user):
+        if request.method == 'GET' and is_campus_org_or_recruiter(request.user):
             data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         # if POST then record student's RSVP
         elif request.method == 'POST' and is_student(request.user):
-            isAttending = request.POST.get('isAttending', 'true')
+            isAttending = request.POST.get('attending', 'true')
             isAttending = True if isAttending=='true' else False
             rsvp, created = RSVP.objects.get_or_create(student=request.user.student, event=event)
             rsvp.attending = isAttending
             rsvp.save()
+            print rsvp
             if isAttending:
                 DroppedResume.objects.get_or_create(event=event, student=request.user.student)
-            else:
-                RSVP.objects.create(student=request.user.student, event=event, attending=isAttending)
             if request.is_ajax():
                 return HttpResponse()
             else:
@@ -550,51 +549,21 @@ def event_rsvp(request, event_id):
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
-def event_unrsvp(request, event_id):
-    event = Event.objects.get(pk=event_id)
-    rsvp = RSVP.objects.filter(student=request.user.student, event=event)
-    rsvp.delete()
-    if request.is_ajax():
-        return HttpResponse()
-    else:
-        return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
 @require_POST
 def event_drop(request, event_id):
-    data = {}
     if not event_id:
-        data.update({
-            'valid': False,
-            'message': 'Invalid event id.'
-        })
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    event = Event.objects.filter(id=event_id)
-    if not event.exists():
-        data.update({
-            'valid': False,
-            'message': 'Invalid event id.'
-        })
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    event = event.get()
-    student = request.user.student
-    DroppedResume.objects.get_or_create(event=event, student=student)
-    data.update({
-        'valid': True,
-        'message': 'Resume dropped.'
-    })
-    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
-@require_POST
-def event_undrop(request, event_id):
-    event = Event.objects.filter(id=event_id)
-    DroppedResume.objects.filter(event=event, student=request.user.student).delete()
-    return HttpResponse(simplejson.dumps({'valid': True}), mimetype="application/json")
+        return HttpResponseBadRequest("Event id is missing.")
+    try:
+        event = Event.objects.get(id=event_id)
+    except Event.DoesNotExist:
+        return HttpResponseBadRequest("Event with id %d does not exist." % event_id)
+    if  not request.POST.has_key("drop"):
+        return HttpResponseBadRequest("Request post is missing a 'drop' boolean.")
+    if request.POST["drop"]=="true":
+        DroppedResume.objects.get_or_create(event=event, student=request.user.student)
+    else:
+        DroppedResume.objects.filter(event=event, student=request.user.student).delete()
+    return HttpResponse()
 
 @login_required
 @agreed_to_terms

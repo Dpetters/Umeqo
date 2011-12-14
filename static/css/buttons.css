@@ -229,7 +229,7 @@ input.button {
     padding: 0 10px;
     font-size: 16px;
 }
-.menu_button, .dropdown_menu_button {
+.gray_button, .dropdown_button {
     background: #eeeeee; /* Old browsers */
     background: -moz-linear-gradient(top, #f9f9f9 0%, #e3e3e3 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f9f9), color-stop(100%,#e3e3e3)); /* Chrome,Safari4+ */
@@ -250,25 +250,21 @@ input.button {
     margin-left: 1px;
     font-weight: bold;
 }
-.menu_button.disabled, .dropdown_menu_button.disabled{
+.gray_button:hover, .dropdown_button:hover {
+    border: 1px solid #888;
+}
+.gray_button.disabled, .dropdown_button.disabled{
     color: #AAA;
     cursor:default;
 }
-.menu_button, .dropdown_menu_button {
-    font-weight: normal;
-    position: relative;
-}
-.menu_button:hover, .dropdown_menu_button:hover {
-    border: 1px solid #888;
-}
-.menu_button.disabled:hover, .dropdown_menu_button.disabled:hover{
+.gray_button.disabled:hover, .dropdown_button.disabled:hover{
     border: 1px solid #BBBBBB;
 }
-.menu_button.um-active {
+.gray_button.um-active {
     background: #E3E3E3;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E3E3E3', endColorstr='#E3E3E3',GradientType=0 ); /* IE6-9 */
 }
-.dropdown_menu_button.um-pressed {
+.dropdown_button.um-pressed {
     background: #888888;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#888888', endColorstr='#888888',GradientType=0 ); /* IE6-9 */
     border-color: #666;
@@ -276,18 +272,18 @@ input.button {
     -webkit-border-radius: 3px 3px 0px 0px;
     -moz-border-radius: 3px 3px 0px 0px;
 }
-.dropdown_menu_button.um-pressed span {
+.dropdown_button.um-pressed span {
     color: #FFF;
     text-shadow: 0 -1px 0 #000;
 }
-.dropdown_menu_button ul{
+.dropdown_button ul{
     box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
     list-style: none;
     padding: 2px;
     background: #FFF;
     text-align:left;
     min-width: 100px;
-    display: block;
+    display: none;
     position: absolute;
     left: -1px;
     top: 23px;
@@ -297,13 +293,13 @@ input.button {
     border: 1px solid #888;
     z-index: 100;
 }
-.dropdown_menu_button ul li {
+.dropdown_button ul li {
     line-height: 18px;
     padding: 1px 3px;
     font-size: 12px;
     border: 1px solid #FFF;
 }
-.dropdown_menu_button ul li:hover {
+.dropdown_button ul li:hover {
     background: #E9E9E9;
     border: 1px solid #E9E9E9;
 }

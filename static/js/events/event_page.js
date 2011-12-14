@@ -52,30 +52,7 @@ $(document).ready(function() {
         $('#event_tabs h2').eq(i).addClass('current');
     }
     
-
-    $('#event_resume_drop').live('click', function(e) {
-        var disabled = $(this).attr('disabled');
-        if (!(typeof disabled !== 'undefined' && disabled !== false)) {
-            $.post(EVENT_DROP_URL, function() {
-                dropResume();
-            });
-        }
-        e.preventDefault()
-    });
-
-    $('#event_resume_undrop').live('click', function(e) {
-        var disabled = $(this).attr('disabled');
-        if (!(typeof disabled !== 'undefined' && disabled !== false)) {
-            var that = this;
-            $.post(EVENT_UNDROP_URL, function() {
-                undropResume();
-            });
-        }
-        e.preventDefault()
-    });
-    
-    
-    $("#rsvp-yes-button[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
+    $("#rsvp_yes_button[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
     $("#event_resume_drop[disabled=disabled]").tipsy({'gravity':'w', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
 
     $('#email_input, #name_input').placeholder();

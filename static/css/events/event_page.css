@@ -60,6 +60,10 @@
     margin-top: 5px;
     text-align: left;
 }
+#add_to_google_calendar{
+	margin-top:5px;
+	float:right;
+}
 #remove-rsvp-button {
     display: block;
     font-size: 12px;
@@ -96,6 +100,7 @@
 #rsvp_div {
     position: relative;
     text-align: center;
+    margin-top:10px;
 }
 #event_admin {
     padding: 5px;

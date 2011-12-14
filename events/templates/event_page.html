@@ -47,8 +47,10 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
     {% endif %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp.css" />
 {% endcompress %}
 <script>
+	var RSVP_URL = "{% url event_rsvp event_id=event.id %}";
     var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
     var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
     var EVENT_LIST_DOWNLOAD_URL = "{% url event_list_download %}";
@@ -56,10 +58,8 @@
     var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
     var EVENT_ID = "{{event.id}}";
     var EVENT_CHECKIN_COUNT_URL = "{% url event_checkin_count %}";
-    var EVENT_RSVP_URL = "{% url event_rsvp event_id=event.id %}";
-    var EVENT_UNRSVP_URL = "{% url event_unrsvp event_id=event.id %}";
-    var EVENT_DROP_URL = "{% url event_drop event_id=event.id %}";
-    var EVENT_UNDROP_URL = "{% url event_undrop event_id=event.id %}";
+    var RSVP_URL = "{% url event_rsvp event_id=event.id %}";
+    var RESUME_DROP_URL = "{% url event_drop event_id=event.id %}";
     var EVENT_RAFFLE_WINNER_URL = "{% url event_raffle_winner %}";
     var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
@@ -69,6 +69,7 @@
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
+    var STATIC_URL = "{{STATIC_URL}}";
     {% if event.is_drop %}
     var IS_DROP = true;
     {% else %}
@@ -221,39 +222,65 @@
     </div>
     {% endif %}
     <div id="event_actions">
-        <div id="rsvp_div" class="{% if event.is_public %}public{% else %}private{% endif %}">
+        <div id="rsvp_div">
             {% if is_past %}
-                <a href="javascript:void(0)" id="rsvp-yes-button" class="button" disabled="disabled" title="RSVP disabled.">{% if is_deadline %}Deadline{% else %}Event{% endif %} already passed!</a>
+                <a href="javascript:void(0)" id="rsvp_yes_button" class="button" disabled="disabled" title="RSVP disabled.">{% if is_deadline %}Deadline{% else %}Event{% endif %} already passed!</a>
             {% else %}
                 {% if can_rsvp or can_edit %}
                         {% if event.is_public %}
+	                    	{% if responded %}
+	                    		{% if attending %}
+		                            <div id="rsvp_not_attending" class="attending gray_button">Attending</div>
+	                    		{% else %}
+		                            <div id="rsvp_attending" class="not_attending gray_button">Not Attending</div>
+	                    		{% endif %}
+	                    	{% else %}
+	                    		<div id="rsvp_attending" class="gray_button">RSVP Attending</div>
+	                    	{% endif %}
+                        	<!--
+                            <div id="rsvp_attending" class="gray_button">Attending</div>
+                            
                             <div class="no-response{% if not responded %} hid{% endif %}">
                                 <span id="attending-span">{% if is_deadline %}Participating{% else %}Attending{% endif %}</span>
-                                <a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">RSVP: Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                                <a href=""  id="remove-rsvp-button">RSVP: Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
                             </div>
                             <div class="response{% if responded %} hid{% endif %}">
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="button" {% if not can_rsvp %}disabled="disabled" {% endif %}>RSVP: {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
-                            </div>
+                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp_yes_button" {% if not can_rsvp %}disabled="disabled" {% endif %}>RSVP: {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                            </div>-->
                         {% else %}
-                            <strong>RSVP:</strong>
-                            {% spaceless %}
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-yes-button" class="left-group button{% if attending %} selected{% endif %}"{% if can_edit %}disabled="disabled"{% endif %}>{% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
-                                <a href="{% url event_rsvp event_id=event.id %}" id="rsvp-no-button" class="right-group button{% if responded and not attending %} selected{% endif %}" {% if can_edit %}disabled="disabled"{% endif %}>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</a>
-                            {% endspaceless %}
-                            <strong class="no-response{% if not responded %} hid{% endif %}"><a href="{% url event_unrsvp event_id=event.id %}" id="remove-rsvp-button">Undo RSVP{% if event.is_drop and attending %} and Resume Drop{% endif %}</a></strong>
+                        	{% if responded %}
+                        		{% if attending %}
+		                            <div class="attending gray_button">Attending</div>
+                        		{% else %}
+		                            <div class="not_attending gray_button">Not Attending</div>
+                        		{% endif %}
+                        	{% else %}
+                            <div class="dropdown_button">
+                            	<span>RSVP</span>
+        						<img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+						        <ul>
+						            <li id="dropdown_rsvp_attending">Attending</li>
+						            <li id="dropdown_rsvp_not_attending">Not Attending</li>
+						        </ul>
+						    </div>
+						    {% endif %}
                         {% endif %}
                 {% else %}
-                    <a href="/login/" id="rsvp-yes-button" class="button" disabled="disabled" {% if not user.is_authenticated %}title="RSVP requires login."{% endif %}>
+                    <a href="/login/" id="rsvp_yes_button" disabled="disabled" {% if not user.is_authenticated %}title="RSVP requires login."{% endif %}>
                         Login to RSVP
                     </a>
                 {% endif %}
             {% endif %}
+            {% if event.is_drop %}
+            	{% if dropped_resume %}
+					<div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>
+				{% else %}
+					<div id="drop_resume" class="gray_button" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</div>
+				{% endif %}
+		    {% endif %}
         </div>
-        {% if not is_past and not event.is_rolling_deadline %}
-        <a target="_blank" title="Add to Google Calendar" class="google-button" href="{{ event|google_calendarize }}">
-            <img src="http://buttons.googlesyndication.com/fusion/add.gif" alt="Add to Google"/>
-        </a>
-        {% endif %}
+        
+        {% if not is_past and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}">Add to Google Calendar</a>{% endif %}
     </div>
     <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
     <div id="event_time">
@@ -291,13 +318,6 @@
         </div>
     {% endif %}
 
-    {% if event.is_drop %}
-          {% if dropped_resume %}
-              <a id="event_resume_undrop" class="button" {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Undo Drop Resume</a>
-          {% else %}
-              <a id="event_resume_drop" class="button" {% if not user.is_authenticated %}title="Resume drop requires login."{% endif %} {% if not user.student %}disabled="disabled"{% endif %} href="javascript:void(0)">Drop Resume</a>
-          {% endif %}
-    {% endif %}
     <div id="event_description" class="main_block">
         <div class="main_block_header">
             <span class="main_block_header_title">{% if is_deadline %}Deadline{% else %}Event{% endif %} Details</span>
