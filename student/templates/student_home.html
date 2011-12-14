@@ -13,6 +13,8 @@
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -38,10 +40,10 @@
 </tr>
 <tr>
     <td>
-        <a href="{% url employers_list %}"><img src="{{ STATIC_URL }}images/icons/plus-circle.png" /></a>
+        <a href="{% url employers %}"><img src="{{ STATIC_URL }}images/icons/plus-circle.png" /></a>
     </td>
     <td>
-        <p><a href="{% url employers_list %}">Subscribe to employers</a> - you will receive notifications about new events and deadlines.</p>
+        <p><a href="{% url employers %}">Subscribe to employers</a> - you will receive notifications about new events and deadlines.</p>
     </td>
 </tr>
 <tr>
@@ -74,14 +76,14 @@
                 {% else %}
                     <div class="simple_block centered">
                             <p>You have no upcoming events from the employers that you are subscribed to!</p>
-                            <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers_list %}">subscribing to some more employers</a>.
+                            <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers %}">subscribing to some more employers</a>.
                         </p>
                     </div>
                 {% endif %}
             {% else %}
                 <div class="simple_block centered">
                     <p>
-                        When you <a href="{% url employers_list %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
+                        When you <a href="{% url employers %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
                     </p>
                     <p>
                         You can also <a href="{% url events_list %}">browse the full listing</a> to search and filtering for public events and deadlines.

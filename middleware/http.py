@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseNotAllowed, HttpResponseForbidden
 from django.template import RequestContext
 from django.template import loader
@@ -19,7 +20,9 @@ class Http403Middleware(object):
         # function
         if isinstance(response, HttpResponseForbidden) and set(dir(response)) == set(dir(HttpResponseForbidden())):
             t = loader.get_template('403.html')
-            template_values = {}
-            template_values['request'] = request
-            return HttpResponseForbidden(t.render(RequestContext(request, template_values)))
+            context = {}
+            if request.user.is_anonymous():
+                context['login_form'] = AuthenticationForm
+            context['request'] = request
+            return HttpResponseForbidden(t.render(RequestContext(request, context)))
         return response

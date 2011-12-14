@@ -1,0 +1,5 @@
+<div class="employer_snippet {% if employer_id == employer.id %}selected{% endif %}{% if employer.subscribed %} subscribed{% endif %}">
+    <h2>{{employer.name}}</h2>
+    <div class="employer_description_preview">{{employer.description|striptags|safe}}</div>
+    <input type="hidden" class="employer_id" value="{{employer.id}}" /> 
+</div>

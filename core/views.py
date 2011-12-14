@@ -486,11 +486,3 @@ def handle_404(request, extra_context = None):
         context = {'login_form': AuthenticationForm}
     context.update(extra_context or {})
     return context
-
-@render_to('403.html')
-def handle_403(request, extra_context = None):
-    context = {}
-    if not request.user.is_authenticated():
-        context = {'login_form': AuthenticationForm}
-    context.update(extra_context or {})
-    return context

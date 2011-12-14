@@ -1,0 +1,87 @@
+#employers_block .main_block_content {
+    padding: 0;
+    position: relative;
+    background:#EEE;
+}
+#employers_form_wrapper {
+    height: 43px;
+    line-height: 43px;
+    background-color: #EEE;
+}
+#employers_form {
+    position: relative;
+    margin-left: 5px;
+}
+#employers_filter_name{
+    width:182px;
+}
+#employers_form select, #employers_form input[type=checkbox]{
+    margin-left:3px;    
+}
+#employers_form input[type=checkbox]{
+    position:relative;
+    top:2px;
+}
+#employers_form .ajax_form_submit_loader{
+    margin-left:10px;
+    margin-top:11px;
+}
+#employer_snippets {
+    float: left;
+    background-color: #EEE;
+    padding: 0 0 10px;
+    width: 200px;
+    min-height:410px;
+}
+#employer_snippets #no_employer_matches {
+	text-align:center;
+	margin-top:5px;
+}
+#employer_snippets .employer_snippet {
+    padding: 5px;
+    border-top: 1px solid #EEE;
+    border-left: 1px solid #EEE;
+    border-bottom:1px solid #EEE;
+    border-right: 1px solid #E0E0E0;
+}
+#employer_snippets .employer_snippet:hover {
+    background-color: #F6F6F6;
+    border:1px solid #CCC;
+    cursor: pointer;
+}
+#employer_snippets .employer_snippet h2 {
+    font-size: 14px;
+}
+#employer_snippets .employer_snippet .employer_description_preview {
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 190px;
+    display: inline-block;
+    color: #777;
+    text-overflow: ellipsis;
+}
+#employer_snippets .selected {
+    background-color: #FFF;
+    border-right:1px solid #FFF;
+    border-top:1px solid #E0E0E0;
+    border-bottom:1px solid #E0E0E0;
+}
+#employer_snippets .selected:hover {
+    background-color: #FFF;
+    cursor:default;
+}
+#employer_snippets .subscribed {
+    background-color: #C5E3BF;
+}
+#no_upcoming_events_or_deadlines{
+	margin-top:12px;
+}
+#employer_details {
+    margin-left: 200;
+    border-top:1px solid #E0E0E0;
+    min-height: 400px;
+    padding: 8px 13px;
+    overflow: hidden;
+    width: 760px;
+    background:#FFF;
+}

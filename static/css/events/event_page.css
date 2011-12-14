@@ -12,7 +12,8 @@
     margin-top: 5px;
 }
 #event_external_buttons {
-    padding: 20px 0 0;
+    padding: 17px 0 0;
+    min-height:19px;
 }
 #event_admin_main .commands {
     margin-top: -25px;
@@ -25,7 +26,17 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
-    width: 70px;
+}
+#facebook_button{
+	position:relative;
+	bottom:2px;
+	width:120px;
+}
+#gplusone_button{
+	width:70px;
+}
+#twitter_button{
+	width:70px;
 }
 #event_description, #event_attending_employers {
     width: 670px;
@@ -46,15 +57,9 @@
     -moz-border-radius: 2px;
     width: 100px;
 }
-#event_actions {
-    margin-top: 5px;
-    text-align: left;
-}
-#remove-rsvp-button {
-    display: block;
-    font-size: 12px;
-    margin-top: 3px;
-    text-align: right;
+#add_to_google_calendar{
+	margin-top:5px;
+	float:right;
 }
 #event_attending_employers .ep-logo {
     max-height: 103px;
@@ -68,7 +73,6 @@
     font-weight: bold;
     color: #222;
 }
-
 .google-button {
     display: inline-block;
     margin: 8px 0 5px;
@@ -86,6 +90,7 @@
 #rsvp_div {
     position: relative;
     text-align: center;
+    margin-top:10px;
 }
 #event_admin {
     padding: 5px;

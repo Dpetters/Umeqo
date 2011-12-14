@@ -1,0 +1,6 @@
+{% for employer in employers %}
+    {% include "employer_snippet.html" %}
+{% empty %}
+	<p id="no_employer_matches">No employers matched your query</p>
+{% endfor %}
+<div class="clearfix"></div>

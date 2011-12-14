@@ -31,9 +31,9 @@ h3 {
     margin: 10px 0 5px;
 }
 p{
+	color: #666;
     font-size: 12px;
     line-height: 17px;
-    color: #666;
 }
 .grande p {
     font-size: 14px;
@@ -294,7 +294,7 @@ input[type=text], input[type=password] {
 }
 .back_to_link {
     float: right;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 .form_table td {
     text-align: left;

@@ -1,35 +1,3 @@
-$(document).ready(function() {
-
-    bindLoadEmployerHandlers();
-
-    $('#employers_filter_name').keydown(function() {
-        if (typeof timeoutID!='undefined') window.clearTimeout(timeoutID);
-        timeoutID = window.setTimeout(filterEmployers,200);
-    });
-
-    $('#employers_filter_industry, #employers_filter_has_events, #employers_filter_in_subscriptions').change(function() {
-        filterEmployers();
-    });
-
-    function filterEmployers() {
-        var query = $('#employers_filter_name').val();
-        var industry = $('#employers_filter_industry').val();
-        var has_events = $('#employers_filter_has_events').attr('checked');
-        var subscribed = $('#employers_filter_in_subscriptions').attr('checked');
-        show_form_submit_loader("#employers_list_form");
-        $.get(SEARCH_URL, {
-            'q': query,
-            'i': industry,
-            'has_public_events': has_events,
-            'subscribed': subscribed
-        }, function(data) {
-            $('#employers_listings').html(data);
-            bindLoadEmployerHandlers();
-            hide_form_submit_loader("#employers_list_form");
-        });
-    }
-});
-
 $('#employer_subscribe').live('click', function(e) {
     var loaded_id = $('#loaded_employer_id').val();
     $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax_transparent.gif" />');
@@ -60,7 +28,7 @@ $('#employer_unsubscribe').live('click', function(e) {
     e.preventDefault();
 });
 function bindLoadEmployerHandlers() {
-    $('.employers_listing').each(function() {
+    $('.employer_snippet').each(function() {
         $(this).click(function() {
             var id = $(this).children('.employer_id').eq(0).val();
             loadEmployer(this, getID(this));
@@ -70,11 +38,12 @@ function bindLoadEmployerHandlers() {
 function getID(el) {
     return $(el).children('.employer_id').eq(0).val();
 }
+
 function loadEmployer(target, id, noPush) {
     var disablePush = noPush || false;
     var listing;
     if (!target) {
-        $('.employers_listing').each(function() {
+        $('.employer_snippet').each(function() {
             if (getID(this) == id) {
                 listing = this;
             }
@@ -82,16 +51,16 @@ function loadEmployer(target, id, noPush) {
     } else {
         listing = target;
     }
-    show_form_submit_loader("#employers_list_form");
-    $.get(EMPLOYERS_LIST_PANE_URL, {id: id}, function(data) {
-        $('#employers_detail').html(data);
+    show_form_submit_loader("#employers_form");
+    $.get(EMPLOYER_DETAILS_URL, {id: id}, function(data) {
+        $('#employer_details').html(data);
         if (!disablePush) {
             var stateObj = {id: id};
-            history.pushState(stateObj, "employer "+id, EMPLOYERS_LIST_URL+"?id="+id);
+            history.pushState(stateObj, "employer "+id, EMPLOYERS_URL+"?id="+id);
         }
         $('.selected').removeClass('selected');
         $(listing).addClass('selected');
-        hide_form_submit_loader("#employers_list_form");
+        hide_form_submit_loader("#employers_form");
     });
 }
 
@@ -103,3 +72,40 @@ window.onpopstate = function(event) {
         loadEmployer(null, FIRST_EMPLOYER_ID, true);
     }
 }
+
+$(document).ready(function() {
+
+    bindLoadEmployerHandlers();
+
+    $('#employers_filter_name').keydown(function() {
+        if (typeof timeoutID!='undefined') window.clearTimeout(timeoutID);
+        timeoutID = window.setTimeout(filterEmployers,200);
+    });
+
+    $('#employers_filter_industry, #employers_filter_has_events, #employers_filter_in_subscriptions').change(function() {
+        filterEmployers();
+    });
+
+    function filterEmployers() {
+        var query = $('#employers_filter_name').val();
+        var industry = $('#employers_filter_industry').val();
+        var has_public_events_deadlines = $('#employers_filter_has_events').attr('checked')=="checked";
+        var subscribed = $('#employers_filter_in_subscriptions').attr('checked')=="checked";
+        show_form_submit_loader("#employers_form");
+        $.ajax({
+        	url:SEARCH_URL,
+        	data:{
+            	'q': query,
+            	'i': industry,
+            	'has_public_events_deadlines': has_public_events_deadlines,
+            	'subscribed': subscribed
+        	},
+        	success:function(data) {
+	            $('#employer_snippets').html(data);
+	            bindLoadEmployerHandlers();
+	            hide_form_submit_loader("#employers_form");
+        	},
+        	error:errors_in_message_area_handler,
+        });
+    }
+});
