@@ -224,7 +224,17 @@
     <div id="event_actions">
         <div id="rsvp_div">
             {% if is_past %}
-                <a href="javascript:void(0)" id="rsvp_yes_button" class="button" disabled="disabled" title="RSVP disabled.">{% if is_deadline %}Deadline{% else %}Event{% endif %} already passed!</a>
+            	{% if user.student and responded %}
+            		{% if responded %}
+	            		{% if attending %}
+	            			<div class="gray_button" disabled="disabled">You {% if is_deadline %}Participated{% else %}Attended{% endif %}</div> 
+	            		{% else %}
+	            			<div class="gray_button" disabled="disabled">You didn't {% if is_deadline %}participate{% else %}attend{% endif %}</div> 
+	            		{% endif %}
+	            	{% endif %}
+	            {% else %}
+        			<div class="gray_button" disabled="disabled">{% if is_deadline %}Deadline{% else %}Event{% endif %} has passed</div> 
+	            {% endif %}
             {% else %}
                 {% if event.is_public %}
                 	{% if user.is_anonymous %}
