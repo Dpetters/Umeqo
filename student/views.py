@@ -9,13 +9,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
-from django.views.decorators.http import require_http_methods, require_POST, require_GET
+from django.views.decorators.http import require_http_methods, require_POST
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
 from notification.models import NoticeSetting, NoticeType, EMAIL
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm,\
-                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm, StatisticsSecondMajorForm
+                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm
 from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -24,10 +24,9 @@ from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
 from core.forms import CreateLanguageForm
 from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
-from core.models import Language, EmploymentType, Industry, SchoolYear, Course
+from core.models import Language, EmploymentType, Industry
 from events.models import Attendee
 from campus_org.models import CampusOrg
-from student.forms import StudentBodyStatisticsForm
 from core import messages
 from employer.models import Employer
 from student import enums as student_enums
@@ -241,6 +240,7 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
+            print request.POST
             student = form.save()
             if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                 student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
@@ -291,6 +291,7 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
             if form.is_valid():
+                print request.POST
                 student = form.save(commit=False)
                 if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                     student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
@@ -305,18 +306,18 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
                            'num_of_events_attended':1,
                            'profile_preview':True}
                 
-                if request.POST.has_key('multiselect_id_looking_for'):
-                    context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('multiselect_id_looking_for'))
-                if request.POST.has_key('multiselect_id_industries_of_interest'):
-                    context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('multiselect_id_industries_of_interest'))
-                if request.POST.has_key('multiselect_id_previous_employers'):
-                    context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('multiselect_id_previous_employers'))
-                if request.POST.has_key('multiselect_id_campus_involvement'):
-                    context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('multiselect_id_campus_involvement'))
-                if request.POST.has_key('multiselect_id_languages'):
-                    context['languages'] = Language.objects.filter(id__in=request.POST.getlist('multiselect_id_languages'))
-                if request.POST.has_key('multiselect_id_countries_of_citizenship'):
-                    context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('multiselect_id_countries_of_citizenship'))
+                if request.POST.has_key('looking_for'):
+                    context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('looking_for'))
+                if request.POST.has_key('industries_of_interest'):
+                    context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('industries_of_interest'))
+                if request.POST.has_key('previous_employers'):
+                    context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('previous_employers'))
+                if request.POST.has_key('campus_involvement'):
+                    context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('campus_involvement'))
+                if request.POST.has_key('languages'):
+                    context['languages'] = Language.objects.filter(id__in=request.POST.getlist('languages'))
+                if request.POST.has_key('countries_of_citizenship'):
+                    context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('countries_of_citizenship'))
                                     
                 context.update(extra_context or {})
                 return context
