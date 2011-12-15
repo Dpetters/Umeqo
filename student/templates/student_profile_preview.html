@@ -40,7 +40,7 @@
     </span>
     <br />
     <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="javascript:void(0)" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
-    <a data-student-id="{{student.id}}" class="{% if not sa or user.student %}must_be_subscribed_annually_e must_be_subscribed_annually{% else %}student_toggle_star{% endif %} student_star" href="javascript:void(0)" tabindex="-1">{% student_star starred %}</a>
+    <a data-student-id="{{student.id}}" class="{% if not sa and not user.student %}must_be_subscribed_annually_e must_be_subscribed_annually{% else %}student_toggle_star{% endif %} student_star" href="javascript:void(0)" tabindex="-1">{% student_star starred %}</a>
     <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note (only visible to users from your company)" tabindex="-1">{{comment}}</textarea>
     <span data-student-id="{{student.id}}" class="saved_message light hid">Saved</span>
 </div>
@@ -76,7 +76,7 @@
             {% if student.website %}
                 <p class="student_website">
                     <strong>Website:</strong>
-                    <a href="{{student.website}}" tabindex="-1">{{student.website}}</a>
+                    <a target="_blank" href="{{student.website}}" tabindex="-1">{{student.website}}</a>
                 </p>
             {% endif %}
 
