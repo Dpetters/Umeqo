@@ -5,37 +5,40 @@ Updating Your Company Profile
 {% endblock %}
 
 {% block instructions %}
-<p class="header"><span class="num">Step 1:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
+<p class="header"><span class="num">Step 1:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown.</p>
 <p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
 <a target="_blank" href="{% url employer_profile %}"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/1.png"></a>
 
-<p class="header"><span class="num">Step 2:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
-<p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
+<p class="header"><span class="num">Step 2:</span> Make sure your company's name is up to date and all relevant industries are selected.</p>
+<p>Note that you can select up to five industries at a time.</p>
 <a target="_blank" href="{% url employer_profile %}"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/2.png"></a>
 
-<p class="header"><span class="num">Step 3:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
-<p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
+<p class="header"><span class="num">Step 3:</span> Choose which job opportunities your firm provides and add a link to your firm's career page.</p>
+<p>Offered job types are an important criteria by which students decide whether they should subscribe to your firm.</p>
 <a target="_blank" href="{% url employer_profile %}"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/3.png"></a>
 
-<p class="header"><span class="num">Step 4:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
-<p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
+<p class="header"><span class="num">Step 4:</span> Choose a custom short url for your firm.</p>
+<p>This value will be prepended to anything related to your firm, such as the custom event and deadline urs which you create. For example, if Facebook decided to host a hackathon and picked its short url to be "<strong>fb</strong>", then the url might be "umeqo.com/<strong>fb</strong>/hackathon".</p>
 <a target="_blank" href="{% url employer_profile %}"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/4.png"></a>
 
-<p class="header"><span class="num">Step 5:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
-<p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
+<p class="header"><span class="num">Step 5:</span> Fill out your company's description to the fullest extent possible.</p>
+<p>Please note that if you paste anything, it will get stripped of its styling. We allow very limited custom styling of your company's description, for which you can use the controls at the top of the field.</p>
 <a target="_blank" href="{% url employer_profile %}"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/5.png"></a>
 
-<p class="header"><span class="num">Step 6:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
-<p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
+<p class="header"><span class="num">Step 6:</span> Switch from editing public info to editing private info by clicking the "Private" tab.</p>
+<p>Private information is only for our internal uses. Students will never see any of the information.</p>
 <a target="_blank" href="{% url employer_profile %}?tab=private"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/6.png"></a>
 
-<p class="header"><span class="num">Step 7:</span> Access the edit company profile form by clicking "Edit Profile" from the "Account" dropdown on the upper right.</p>
-<p>There is also an "Edit Profile" link in the side navigation menu on the left, underneath "Profile".</p>
+<p class="header"><span class="num">Step 7:</span> Fill out the name and contact info of the person who should be out point person at your firm.</p>
+<p>This is the person to whom we will reach out to should such ever be necessary.</p>
 <a target="_blank" href="{% url employer_profile %}?tab=private"><img src="{{STATIC_URL}}images/tutorials/updating_your_company_profile/7.png"></a>
+
+<p class="header"><span class="num">Step 8:</span> Click save at the bottom of the page to save the changes you made.</p>
 {% endblock %}
 
 {% block things_to_note %}
 <li>Your company is allowed to be marked under at most five industries. Try to find all five that fit it best in order to be noticed by (and hopefully subscribed to) by as many people as possible.</li>
+<li>We allow very limited custom styling of your company's description. If you paste anything fancy, it will get converted to plain text. What we do allow is bolding, italisizing, underlining, links and numbered or normal bullet points</li>
 {% endblock %}
 
 {% block tips_and_tricks %}
