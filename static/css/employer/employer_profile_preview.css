@@ -35,8 +35,14 @@ div .employer_name {
     clear: both;
     margin-top: 10px;
     line-height: 17px;
-    color: #444;
     font-size: 12px;
+}
+#employer_description * {
+	color:#666;
+}
+#employer_description ul{
+	list-style:inside;
+	margin-left:10px;
 }
 #offered_job_types {
     font-size: 14px;

@@ -1,7 +1,15 @@
 {% if employer.logo %}
-{% if not can_edit and not user.recruiter and employer.visible %}<a href="{{employer.get_absolute_url}}">{% endif %}<img data-employer-name="{{employer}}" class="ef-logo attending_employer" src="{{MEDIA_URL}}{{employer.logo}}" />{% if not can_edit and employer.visible %}</a>{% endif %}
+	<div data-employer-name="{{employer}}" class="attending_employer">
+		{% if not can_edit and not user.recruiter and employer.visible %}
+		<a href="{{employer.get_absolute_url}}">
+		{% endif %}
+		<img src="{{MEDIA_URL}}{{employer.logo}}" />
+		{% if not can_edit and employer.visible %}
+		</a>
+		{% endif %}
+	</div>
 {% else %}
-<div data-employer-name="{{employer}}" class="attending_employer">
-    <span class="ef-name">{{employer}}</span>    
-</div>
+	<div data-employer-name="{{employer}}" class="no_logo attending_employer">
+    	<span>{{employer}}</span>
+	</div>
 {% endif %}

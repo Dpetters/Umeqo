@@ -19,7 +19,7 @@
     {% if user.campusorg %}
         var EVENT = true
         var CAMPUS_ORG_EVENT = true;
-        var EMPLOYER_DETAILS_URL = "{% url employer %}";
+        var EMPLOYER_DETAILS_URL = "{% url employer_logo %}";
         var EMPLOYER_NEW_URL = "{% url employer_new %}";
         var CHECK_EMPLOYER_UNIQUENESS_URL = "{% url check_employer_uniqueness %}";
         var EMPLOYER_ALREADY_EXISTS = "{% text_snippet 'employer_already_exists' %}";
@@ -45,7 +45,7 @@
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 {% if user.campusorg %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_form_attending_employers.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 {% endif %}

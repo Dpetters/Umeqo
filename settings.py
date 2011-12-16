@@ -146,6 +146,7 @@ CKEDITOR_CONFIGS = {
         'height': 210,
         'skin':'kama',
         'toolbarCanCollapse': False,
+        'forcepasteasplaintext': True,
         'removePlugins':'elementspath'
     },
 }

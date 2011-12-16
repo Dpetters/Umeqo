@@ -34,7 +34,6 @@ $(document).ready(function() {
         });
     });
     
-    
     $('#event_tabs h2').each(function(i) {
         $(this).click(function() {
             $('.responses').addClass('hid');
