@@ -1,3 +1,6 @@
+#event_actions {
+    float: right;
+}
 #event_admin_main .commands {
     margin: -20px -4px 0 0;
 }
