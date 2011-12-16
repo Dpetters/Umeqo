@@ -10,8 +10,7 @@
    "audience": 2, 
    "sort_order": "1.000", 
    "date_created": "2011-12-01 14:43:06", 
-   "slug": "changing-your-password", 
-   "description": "Learn how to change your password."
+   "slug": "changing-your-password"
   }
  }, 
  {
@@ -25,8 +24,7 @@
    "audience": 4, 
    "sort_order": "1.000", 
    "date_created": "2011-12-16 08:13:35", 
-   "slug": "updating-your-company-profile", 
-   "description": "LEarn how to update your company profile"
+   "slug": "updating-your-company-profile"
   }
  }, 
  {
@@ -40,8 +38,7 @@
    "audience": 4, 
    "sort_order": "2.000", 
    "date_created": "2011-10-06 20:46:33", 
-   "slug": "creating-accounts-for-co-workers", 
-   "description": "Learn how to create credentials for your co-workers and manage credentials that already exist."
+   "slug": "creating-accounts-for-co-workers"
   }
  }, 
  {
@@ -55,8 +52,7 @@
    "audience": 4, 
    "sort_order": "3.000", 
    "date_created": "2011-11-30 19:10:40", 
-   "slug": "deleting-your-account", 
-   "description": "Learn how to delete your account."
+   "slug": "deleting-your-account"
   }
  }, 
  {
@@ -70,8 +66,7 @@
    "audience": 4, 
    "sort_order": "1.000", 
    "date_created": "2011-10-07 12:40:06", 
-   "slug": "creating-events-deadlines", 
-   "description": "Learn how to create events and deadlines."
+   "slug": "creating-events-deadlines"
   }
  }, 
  {
@@ -85,8 +80,7 @@
    "audience": 4, 
    "sort_order": "3.000", 
    "date_created": "2011-10-07 12:39:46", 
-   "slug": "sending-invitations", 
-   "description": "Learn how to send event invitations."
+   "slug": "sending-invitations"
   }
  }, 
  {
@@ -100,8 +94,7 @@
    "audience": 4, 
    "sort_order": "5.000", 
    "date_created": "2011-10-07 12:40:57", 
-   "slug": "browsing-attendees-rsvps", 
-   "description": "Learn how to browse event RSVPs and attendees."
+   "slug": "browsing-attendees-rsvps"
   }
  }, 
  {
@@ -115,8 +108,7 @@
    "audience": 4, 
    "sort_order": "1.000", 
    "date_created": "2011-10-06 20:47:44", 
-   "slug": "browsing-students", 
-   "description": "Learn how to filter and search students to find the right candidates for your firm."
+   "slug": "browsing-students"
   }
  }, 
  {
@@ -130,8 +122,7 @@
    "audience": 4, 
    "sort_order": "2.000", 
    "date_created": "2011-10-07 12:41:35", 
-   "slug": "creating-delivering-resume-books", 
-   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers."
+   "slug": "creating-delivering-resume-books"
   }
  }, 
  {
@@ -145,8 +136,7 @@
    "audience": 4, 
    "sort_order": "3.000", 
    "date_created": "2011-12-01 18:11:21", 
-   "slug": "re-delivering-past-resume-books", 
-   "description": "Learn how to re-delivering past resume books."
+   "slug": "re-delivering-past-resume-books"
   }
  }, 
  {
@@ -160,8 +150,7 @@
    "audience": 4, 
    "sort_order": "1.000", 
    "date_created": "2011-10-07 12:43:04", 
-   "slug": "getting-annual-subscription", 
-   "description": "Learn the details of the annual subscription program."
+   "slug": "getting-annual-subscription"
   }
  }, 
  {
@@ -175,8 +164,7 @@
    "audience": 5, 
    "sort_order": "1.000", 
    "date_created": "2011-12-12 05:14:54", 
-   "slug": "creating-campus-org-events-deadlines", 
-   "description": "learn how to create events"
+   "slug": "creating-campus-org-events-deadlines"
   }
  }, 
  {
@@ -190,8 +178,7 @@
    "audience": 6, 
    "sort_order": "2.000", 
    "date_created": "2011-10-07 12:40:32", 
-   "slug": "checking-students-in", 
-   "description": "Learn how to check in attendees."
+   "slug": "checking-students-in"
   }
  }, 
  {
@@ -205,8 +192,7 @@
    "audience": 6, 
    "sort_order": "4.000", 
    "date_created": "2011-11-30 19:08:45", 
-   "slug": "deleting-past-or-cancelled-events", 
-   "description": "Learn how to delete past or cancelled events"
+   "slug": "deleting-past-or-cancelled-events"
   }
  }, 
  {
@@ -220,8 +206,7 @@
    "audience": 6, 
    "sort_order": "5.000", 
    "date_created": "2011-12-01 19:54:03", 
-   "slug": "exporting-attendee-rsvp-info", 
-   "description": "Learn about how to export Attendee & RSVP info to excel (csv) or text."
+   "slug": "exporting-attendee-rsvp-info"
   }
  }, 
  {
@@ -235,8 +220,7 @@
    "audience": 6, 
    "sort_order": "6.000", 
    "date_created": "2011-11-29 15:52:44", 
-   "slug": "cancelling-upcoming-events-and-deadlines", 
-   "description": "Learn how to cancel events and deadlines."
+   "slug": "cancelling-upcoming-events-and-deadlines"
   }
  }, 
  {

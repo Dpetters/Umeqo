@@ -145,7 +145,6 @@ class Tutorial(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic, null=True, blank=True)
     audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
     sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
-    description = models.CharField(max_length = 300)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
 
     objects = VisibleManager()

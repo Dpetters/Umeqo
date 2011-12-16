@@ -92,4 +92,8 @@ $(document).ready(function() {
             current = 1;
         }
     });
+    
+    if (get_parameter_by_name("tab")=="private"){
+        $('#pg1 .open1').click();
+    }
 });
