@@ -83,7 +83,7 @@ class CampusOrgEventForm(EventForm):
 
 class EventExportForm(forms.Form):
     event_id = forms.CharField(max_length = 10, widget=forms.HiddenInput)
-    event_list = forms.CharField(max_length=10, widget=forms.HiddenInput)
+    event_list = forms.CharField(max_length=20, widget=forms.HiddenInput)
     export_format = forms.ChoiceField(label="Export Format:", choices = core_enums.EXPORT_CHOICES)
     delivery_type = forms.ChoiceField(label="Delivery Type:", choices = core_enums.DELIVERY_CHOICES)
     emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)

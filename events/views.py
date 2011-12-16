@@ -1,11 +1,9 @@
 from __future__ import division
 from __future__ import absolute_import
 
-import csv
 import cStringIO as StringIO
 from datetime import datetime, timedelta
 import re
-import xlwt
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -31,7 +29,7 @@ from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm
 from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.view_helpers import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses
+from events.view_helpers import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
 from student.models import Student
 
@@ -120,6 +118,7 @@ def event_page(request, id, slug, extra_context=None):
         'invitees': get_invitees(event),
         'rsvps': get_rsvps(event),
         'no_rsvps': get_no_rsvps(event),
+        'dropped_resumes': get_dropped_resumes(event),
         'attendees': get_attendees(event),
         'all_responses': get_all_responses(event),
         'page_url': page_url,
@@ -211,99 +210,37 @@ def event_new(request, form_class=None, extra_context=None):
     context.update(extra_context or {})
     return context
 
-def export_event_list_csv(file_obj, event, list):
-    writer = csv.writer(file_obj)
-    info = ["Name", "Email", "School Year", "Graduation Year"]
-    writer.writerow(info)
-    if list =="rsvps":
-        filename = "%s RSVPs.csv" % (event.name)
-        students = get_rsvps(event)
-    elif list == "attendees":
-        filename = "%s Attendees.csv" % (event.name)
-        students = get_attendees(event)
-        students.sort(key=lambda n: n['name'])
-    elif list == "all":
-        filename = "%s All Responses.csv" % (event.name)
-        students = get_all_responses(event)
-        students.sort(key=lambda n: n['name'])
-    for student in students:
-        info = []
-        info.append(student['name'])
-        info.append(student['email'])
-        if student['account']:
-            info.append(student['school_year'])
-            info.append(student['graduation_year'])
-        writer.writerow(info)
-    return filename
-
-# Not used currently because Amazon SES doesn't support excel attachements
-def export_event_list_xls(file_obj, event, list):
-    wb = xlwt.Workbook()
-    if list =="rsvps":
-        worksheet_name = "%s RSVPs" % (event.name)
-        students = get_rsvps(event)
-    elif list == "attendees":
-        worksheet_name = "%s Attendees" % (event.name)
-        students = get_attendees(event)
-        students.sort(key=lambda n: n['name'])
-    elif list == "all":
-        worksheet_name = "%s All Responses" % (event.name)
-        students = get_all_responses(event)
-        students.sort(key=lambda n: n['name'])
-    ws = wb.add_sheet(worksheet_name)
-    ws.write(0, 0, 'Name')
-    ws.write(0, 1, 'Email')
-    ws.write(0, 2, 'School Year (Graduation Year)')
-    for i, rsvp in enumerate(students, start=1):
-        student = rsvp.student
-        ws.write(i, 0, student['name'])
-        ws.write(i, 1, student['email'])
-        if student['account']:            
-            ws.write(i, 2, student['school_year'])
-            ws.write(i, 3, student['graduation_year'])
-    wb.save(file_obj)
-    return "%s.xls" % (event.name)
-
-def export_event_list_text(file_obj, event, list):
-    info = "\t".join(["Name", "Email", "School Year", "Graduation Year"])
-    print >> file_obj, info
-    if list == "all":
-        filename = "%s All Responses.txt" % (event.name)
-        students = get_all_responses(event)
-        students.sort(key=lambda n: n['name'])
-    if list == "rsvps":
-        filename = "%s RSVPs.txt" % (event.name)
-        students = get_rsvps(event)
-    elif list == "attendees":
-        filename = "%s Attendees.txt" % (event.name)
-        students = get_attendees(event)
-        students.sort(key=lambda n: n['name'])
-    for student in students:
-        if student['account']:
-            info = "\t".join([student['name'], student['email'], student['school_year'], student['graduation_year']])
-        else:
-            info = "\t".join([student['name'], student['email']])
-        print >> file_obj, info
-    return filename
-
 @login_required
 @agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 def event_list_download(request):
-    event = Event.objects.get(id=request.GET["event_id"])
-    list = request.GET['event_list']
-    if request.GET['export_format'] == core_enums.CSV:
-        response = HttpResponse(mimetype='text/csv')
-        filename = export_event_list_csv(response, event, list)
-    elif request.GET['export_format'] == core_enums.XLS:
-        response = HttpResponse(mimetype="application/ms-excel")
-        filename = export_event_list_xls(response, event, list)
-    elif request.GET['export_format'] == core_enums.TEXT:
-        response = HttpResponse(mimetype="text/plain")
-        filename = export_event_list_text(response, event, list)
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-    return response
+    if not request.GET.has_key("event_id"):
+        return HttpResponseBadRequest("Request is missing the event id.")
+    else:
+        try:
+            event = Event.objects.get(id=request.GET["event_id"])
+        except Event.DoesNotExist:
+            return HttpResponseBadRequest("Event with the id %d" % request.GET['event_id'])
+        else:
+            list = request.GET['event_list']
+            if not request.GET.has_key('export_format'):
+                return HttpResponseBadRequest("The request is missing the file format.")
+            if request.GET['export_format'] == core_enums.CSV:
+                response = HttpResponse(mimetype='text/csv')
+                filename = "%s.csv" % export_event_list_csv(response, event, list)
+            #elif request.GET['export_format'] == core_enums.XLS:
+            #    response = HttpResponse(mimetype="application/ms-excel")
+            #    filename = export_event_list_xls(response, event, list)
+            elif request.GET['export_format'] == core_enums.TEXT:
+                response = HttpResponse(mimetype="text/plain")
+                filename = "%s.txt" % export_event_list_text(response, event, list)
+            else:
+                return HttpResponseBadRequest("The file format % isn't one we support." % request.GET['export_format'])
+            response['Content-Disposition'] = 'attachment; filename="%s"' % filename
+            print response['Content-Disposition']
+            return response
+
 
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
@@ -319,7 +256,24 @@ def event_checkin_count(request):
 @has_any_subscription
 @render_to('event_list_export_completed.html')
 def event_list_export_completed(request, extra_context = None):
-    context = {'list':request.GET['list']}
+    if not request.GET.has_key("event_list"):
+        return HttpResponseBadRequest("Filename is missing from the request.")
+    if not request.GET.has_key("event_id"):
+        return HttpResponseBadRequest("Event id is missing from the request.")        
+    try:
+        event = Event.objects.get(id=request.GET["event_id"])
+    except Event.DoesNotExist:
+        return HttpResponseBadRequest("Event with the id %d" % request.GET['event_id'])
+    list = request.GET['event_list']
+    if list == "all":
+        filename = "%s Respondees" % (event.name)
+    elif list == "rsvps":
+        filename = "%s RSVPs" % (event.name)
+    elif list == "dropped_resumes":
+        filename = "%s Resume Drops" % (event.name)
+    elif list == "attendees":
+        filename = "%s Attendees" % (event.name)    
+    context = {'filename':filename}
     context.update(extra_context or {})
     return context
 
@@ -337,29 +291,29 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
                 format = form.cleaned_data["export_format"]
                 event = Event.objects.get(id=form.cleaned_data["event_id"])
                 list = form.cleaned_data['event_list']
-                
                 reg = re.compile(r"\s*[;, \n]\s*")
                 recipients = reg.split(request.POST['emails'])
-                
                 subject = ''.join(render_to_string('event_list_export_email_subject.txt', {}).splitlines())
-
                 body = render_to_string('event_list_export_email_body.html', {'name':request.user.first_name})
-
                 file = StringIO.StringIO()
                 if format == core_enums.CSV:
                     filename = export_event_list_csv(file, event, list)
+                    extension = "csv"
                     file_contents = file.getvalue()
-                    send_html_mail(subject, body, recipients, "%s" % (filename), file_contents, "text/csv")
-                elif format == core_enums.XLS:
-                    filename = export_event_list_xls(file, event, list)
-                    file_contents = file.getvalue()
-                    send_html_mail(subject, body, recipients, "%s" % (filename), file_contents, "application/vnd.ms-excel")
+                    mimetype = "text/csv"
+                #elif format == core_enums.XLS:
+                #    filename = export_event_list_xls(file, event, list)
+                #    file_contents = file.getvalue()
+                #    mimetype = "application/vnd.ms-excel"
                 elif format == core_enums.TEXT:
                     filename = export_event_list_text(file, event, list)
+                    extension = "txt"
                     file_contents = file.getvalue()
-                    send_html_mail(subject, body, recipients, "%s" % (filename), file_contents, "text/plain")
-
-                context = {'list': list, 'TEMPLATE':'event_list_export_completed.html'}
+                    mimetype = "text/plain"
+                else:
+                    return HttpResponseBadRequest("The request format '%s' is not supported" % format)
+                send_html_mail(subject, body, recipients, "%s.%s" % (filename, extension), file_contents, mimetype)
+                context = {'filename': filename, 'TEMPLATE':'event_list_export_completed.html'}
                 context.update(extra_context or {})
                 return context
             else:

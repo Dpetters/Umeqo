@@ -1,11 +1,99 @@
-from datetime import datetime, timedelta
+import csv
 
-from django.db.models import Q
+from datetime import datetime, timedelta
 
 from core.decorators import is_student
 from events.models import Event
 from haystack.query import SearchQuerySet
-            
+
+def export_event_list_csv(file_obj, event, list):
+    writer = csv.writer(file_obj)
+    info = ["Name", "Email", "School Year", "Graduation Year"]
+    writer.writerow(info)
+    if list =="rsvps":
+        filename = "%s RSVPs" % (event.name)
+        students = get_rsvps(event)
+    elif list == "attendees":
+        filename = "%s Attendees" % (event.name)
+        students = get_attendees(event)
+        students.sort(key=lambda n: n['name'])
+    elif list == "dropped_resumes":
+        filename = "%s Resume Drops" % (event.name)
+        students = get_dropped_resumes(event)
+        students.sort(key=lambda n: n['name'])
+    elif list == "all":
+        filename = "%s Respondees" % (event.name)
+        students = get_all_responses(event)
+        students.sort(key=lambda n: n['name'])
+    for student in students:
+        info = []
+        info.append(student['name'])
+        info.append(student['email'])
+        if student['account']:
+            info.append(student['school_year'])
+            info.append(student['graduation_year'])
+        writer.writerow(info)
+    return filename
+
+def export_event_list_text(file_obj, event, list):
+    info = "\t".join(["Name", "Email", "School Year", "Graduation Year"])
+    print >> file_obj, info
+    if list == "all":
+        filename = "%s Respondees" % (event.name)
+        students = get_all_responses(event)
+        students.sort(key=lambda n: n['name'])
+    elif list == "rsvps":
+        filename = "%s RSVPs" % (event.name)
+        students = get_rsvps(event)
+    elif list == "dropped_resumes":
+        filename = "%s Resume Drops" % (event.name)
+        students = get_dropped_resumes(event)
+        students.sort(key=lambda n: n['name'])
+    elif list == "attendees":
+        filename = "%s Attendees" % (event.name)
+        students = get_attendees(event)
+        students.sort(key=lambda n: n['name'])
+    for student in students:
+        if student['account']:
+            info = "\t".join([student['name'], student['email'], student['school_year'], student['graduation_year']])
+        else:
+            info = "\t".join([student['name'], student['email']])
+        print >> file_obj, info
+    return filename
+
+"""
+def export_event_list_xls(file_obj, event, list):
+    wb = xlwt.Workbook()
+    if list =="rsvps":
+        worksheet_name = "%s RSVPs" % (event.name)
+        students = get_rsvps(event)
+    elif list == "attendees":
+        worksheet_name = "%s Attendees" % (event.name)
+        students = get_attendees(event)
+        students.sort(key=lambda n: n['name'])
+    elif list == "dropped_resumes":
+        worksheet_name = "%s Resume Drop" % (event.name)
+        students = get_dropped_resumes(event)
+        students.sort(key=lambda n: n['name'])
+    elif list == "all":
+        worksheet_name = "%s All Responses" % (event.name)
+        students = get_all_responses(event)
+        students.sort(key=lambda n: n['name'])
+    ws = wb.add_sheet(worksheet_name)
+    ws.write(0, 0, 'Name')
+    ws.write(0, 1, 'Email')
+    ws.write(0, 2, 'School Year (Graduation Year)')
+    for i, rsvp in enumerate(students, start=1):
+        student = rsvp.student
+        ws.write(i, 0, student['name'])
+        ws.write(i, 1, student['email'])
+        if student['account']:            
+            ws.write(i, 2, student['school_year'])
+            ws.write(i, 3, student['graduation_year'])
+    wb.save(file_obj)
+    return "%s.xls" % (event.name)
+"""
+
 def event_search_helper(request):
     query = request.GET.get('q','')
     if is_student(request.user):
@@ -28,6 +116,9 @@ def get_attendees(event):
 
 def get_invitees(event):
     return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
+
+def get_dropped_resumes(event):
+    return map(buildRSVP, event.droppedresume_set.all().order_by('student__first_name'))
     
 def get_all_responses(event):
     all_responses = []

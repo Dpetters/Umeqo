@@ -48,6 +48,8 @@
     background: linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* W3C */
     border-top: 1px solid #FFF;
     border-bottom: 1px solid #DDD;
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #DDD;
 }
 .main_block_header_icon , .side_block_header_icon {
     vertical-align: middle;
