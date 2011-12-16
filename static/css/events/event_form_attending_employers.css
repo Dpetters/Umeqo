@@ -1,0 +1,38 @@
+#attending_employers{
+	padding:12px;
+}
+.attending_employer{
+    display:inline-block;
+    font-size:18px;
+    text-align:center;
+    vertical-align:middle;
+    margin-bottom:4px;
+}
+.attending_employer.no_logo{
+	background:#FAFAFA;
+    border:1px solid #DDD;
+    height:67px;
+    line-height:67px;
+}
+
+.attending_employer.no_logo, #and_more{
+    width:133px;
+}
+.attending_employer img{
+    max-width:135px;
+}
+
+.attending_employer span{
+	display:inline-block;
+	line-height:20px;
+	vertical-align:middle;
+}
+#and_more{
+    display:inline-block;
+}
+#and_more p{
+    margin-left:20px;
+    margin-top:12px;
+    margin-bottom:12px;
+    font-size:18px;
+}
