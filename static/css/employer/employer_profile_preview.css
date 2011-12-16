@@ -65,10 +65,12 @@ div .employer_name {
 }
 #employer_description * {
 	color:#666;
+	line-height:16px;
 }
 #employer_description ul{
 	list-style:inside;
 	margin-left:10px;
+	font-size:12px;
 }
 #offered_job_types {
     font-size: 14px;
