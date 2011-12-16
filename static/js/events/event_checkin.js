@@ -64,7 +64,7 @@ $(document).ready(function(){
             height: '100%'
         }, function() {
             $.ajax({
-                url:EVENT_RSVP_URL,
+                url:RSVP_URL,
                 success: function(data) {
                     rsvps = data;
                     $.ajax({

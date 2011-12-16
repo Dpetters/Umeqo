@@ -73,16 +73,21 @@ function getSchedulerDate() {
 }
     
 function setDate(datetime, field_id) {
+	console.log("called me!");
+	console.log(field_id);
+	console.log(datetime);
     // Don't forget JavaScript months are 0-indexed.
     var month = datetime.getMonth() + 1;
     if (month < 10) {
         month = '0' + month;
     }
+    
     var day = datetime.getDate();
     if (day < 10) {
         day = '0' + day;
     }
     var date = month + '/' + day + '/' + datetime.getFullYear();
+    console.log(date);
     if ($('#' + field_id)[0].nodeName == 'SPAN') {
         $('#' + field_id).html(date);
     } else {
@@ -457,7 +462,29 @@ $(document).ready(function() {
             required: "This field is required."
         }
     }
-    
+	
+	function check_short_slug_uniqueness(){
+		$.ajax({
+			url: EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL,
+			data: {'short_slug':$("#id_short_slug").val()},
+			beforeSend: function(){
+				$("#short_url_field_section .errorspace").html("");
+			},
+			success:function(data){
+				if(data.used){
+					place_multiselect_warning_table($("#id_short_slug"), "You already have an event or deadline at this short url. If you use it, it will no longer point to that old event or deadline, but instead to this new one.");
+				}
+			}
+		})
+	}
+    var timeoutID;
+    $('#id_short_slug').keydown(function(e) {
+        if(e.which != 9) {
+            if( typeof timeoutID != 'undefined')
+                window.clearTimeout(timeoutID);
+            timeoutID = window.setTimeout(check_short_slug_uniqueness, 400);
+        }
+    });
     $("#id_type").change(function() {
         var title = null;
         var button_text = null;
@@ -673,7 +700,11 @@ $(document).ready(function() {
     $('#event_scheduler_nav_back').click(function(e) {
         if ($(this).hasClass('enabled')) {
             var date = getSchedulerDate();
+            console.log(date);
+            console.log(date.getDate() - 1);
+            console.log(date.setDate);
             date.setDate(date.getDate() - 1);
+            console.log("here");
             setEventDate(date);
             renderScheduler();
         }

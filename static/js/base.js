@@ -70,6 +70,9 @@ function place_table_form_errors(form, errors){
  * should not change the parameters to be non-jquery objects.
  */
 function place_table_form_field_error($error, $element) {
+	if($element.prev().length == 0){
+		$element = $element.parent();
+	}
     if ($element.prev().get(0).tagName=='DIV') {
         $element.prev().html($error);
     } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
