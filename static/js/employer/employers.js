@@ -1,32 +1,62 @@
-$('#employer_subscribe').live('click', function(e) {
-    var loaded_id = $('#loaded_employer_id').val();
-    $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax_transparent.gif" />');
-    $(this).attr('disabled', 'disabled');
-    var that = $(this);
-    $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 1}, function(data) {
-        that.html('Unsubscribe');
-        that.attr('id','employer_unsubscribe');
-        that.removeAttr('disabled');
-        that.addClass('warning-button');
-        $(".employer_id[value="+ loaded_id + "]").parent().addClass("subscribed");
+var subscribe_to_employer_mouseout = false;
+
+function subscribe_to_employer(subscribe){
+    var that = this;
+    var loaded_employer_id = $("#loaded_employer_id").val();
+    $.ajax({
+    	url:SUBSCRIBE_URL,
+    	type:"POST",
+    	data:{id: loaded_employer_id},
+    	beforeSend: function(){
+    		$(that).html("processing...");
+	    	$("#subscribe, #unsubscribe").live('mouseout', function(){
+				subscribe_to_employer_mouseout = true;
+			});
+    		$("#unsubsribe, #subscribe").live('mouseover', function(){
+				subscribe_to_employer_mouseout = false;
+			});
+    	},
+    	success: function(data) {
+			if(subscribe){
+				$(".employer_id[value=" + loaded_employer_id + "]").parent().addClass("subscribed");
+				$(that).addClass("subscribed").attr("id", "unsubscribe");
+				if(subscribe_to_employer_mouseout){
+					$(that).html("Subscribed");
+				}else{
+					$(that).html("RSVP Unsubscribe");	
+				}
+			}else{
+				$(".employer_id[value=" + loaded_employer_id + "]").parent().removeClass("subscribed");
+				$(that).removeClass("subscribed").attr("id", "subscribe").html("Subscribe");
+			}
+    	},
+        error: errors_in_message_area_handler
     });
+}
+$('#unsubscribe').live('click', function(e) {
+    var disabled = $(this).attr('disabled');
+    if (!(typeof disabled !== 'undefined' && disabled !== false)) {
+		subscribe_to_employer.apply(this, [false]);
+	}
     e.preventDefault();
 });
 
-$('#employer_unsubscribe').live('click', function(e) {
-    var loaded_id = $('#loaded_employer_id').val();
-    $(this).html('<img src="' + STATIC_URL + 'images/loaders/s_ajax_transparent.gif" />');
-    $(this).removeClass('warning-button');
-    $(this).attr('disabled', 'disabled');
-    var that = $(this);
-    $.post(SUBSCRIBE_URL, {id: loaded_id, subscribe: 0}, function(data) {
-        that.html('Subscribe');
-        that.attr('id','employer_subscribe');
-        that.removeAttr('disabled')
-        $(".employer_id[value="+ loaded_id + "]").parent().removeClass("subscribed");
-    });
+$('#subscribe').live('click', function(e) {
+	var disabled = $(this).attr('disabled');
+    if (!(typeof disabled !== 'undefined' && disabled !== false)) {
+		subscribe_to_employer.apply(this, [true]);
+	}
     e.preventDefault();
 });
+
+
+$("#logo_and_buttons .subscribed").live('mouseenter', function(){
+	$(this).html("Unsubscribe");
+});
+$("#logo_and_buttons .subscribed").live('mouseleave', function(){
+	$(this).html("Subscribed");
+});
+
 function bindLoadEmployerHandlers() {
     $('.employer_snippet').each(function() {
         $(this).click(function() {

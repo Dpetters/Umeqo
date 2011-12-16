@@ -812,22 +812,19 @@ def employer_details(request, extra_content=None):
 @agreed_to_terms
 @user_passes_test(is_student)
 def employer_subscribe(request):
-    employer_id = request.POST.get('id', None)
-    if employer_id and Employer.objects.filter(id=employer_id).exists():
-        employer = Employer.objects.get(id=employer_id)
-        student = request.user.student
-        subscribe = request.POST.get('subscribe', None)
-        if not subscribe:
-            return HttpResponseBadRequest("Bad request.")
-        subscribe = bool(int(subscribe))
-        if subscribe:
-            student.subscriptions.add(employer)
-        elif employer in student.subscriptions.all() and not subscribe:
-            student.subscriptions.remove(employer)
+    if not request.POST.has_key("id"):
+        return HttpResponseBadRequest("Employer id is missing")
+    else:
+        id = request.POST["id"]
+    try:
+        employer = Employer.objects.get(id=id)
+    except Employer.DoesNotExist:
+        return HttpResponseBadRequest("Employer with id %s was not found." % id)
+    else:
+        if employer in request.user.student.subscriptions.all():
+            request.user.student.subscriptions.remove(employer)            
         else:
-            return HttpResponseBadRequest("Bad request.")
+            request.user.student.subscriptions.add(employer) 
         # Update index
         employer.save()
-        data = {'valid':True,'subscribe':subscribe}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return HttpResponseBadRequest("Bad request.")
+        return HttpResponse()

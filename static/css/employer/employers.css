@@ -38,15 +38,16 @@
 	margin-top:5px;
 }
 #employer_snippets .employer_snippet {
-    padding: 5px;
+    padding: 5px 5px 5px 8px;
     border-top: 1px solid #EEE;
-    border-left: 1px solid #EEE;
+    border-left: 3px solid #DDD;
     border-bottom:1px solid #EEE;
     border-right: 1px solid #E0E0E0;
 }
 #employer_snippets .employer_snippet:hover {
     background-color: #F6F6F6;
     border:1px solid #CCC;
+    border-left:3px solid #AAA;
     cursor: pointer;
 }
 #employer_snippets .employer_snippet h2 {
@@ -61,17 +62,22 @@
     text-overflow: ellipsis;
 }
 #employer_snippets .selected {
-    background-color: #FFF;
+    background-color: #FFF !important;
     border-right:1px solid #FFF;
     border-top:1px solid #E0E0E0;
     border-bottom:1px solid #E0E0E0;
+    border-left: 3px solid #AAA;
 }
 #employer_snippets .selected:hover {
-    background-color: #FFF;
+    background-color: #FFF !important;
+    border-right:1px solid #FFF;
+    border-top:1px solid #E0E0E0;
+    border-bottom:1px solid #E0E0E0;
+    border-left:3px solid #EEE;    
     cursor:default;
 }
 #employer_snippets .subscribed {
-    background-color: #C5E3BF;
+    border-left:3px solid #00AE3E;
 }
 #no_upcoming_events_or_deadlines{
 	margin-top:15px;
