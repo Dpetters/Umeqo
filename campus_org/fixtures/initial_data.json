@@ -2524,28 +2524,16 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://bakerfoundation.mit.edu/foundation/", 
-<<<<<<< HEAD
-   "slug": null, 
-   "last_updated": "2011-10-05 13:51:42", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-=======
    "slug": "", 
    "last_updated": "2011-10-05 23:46:37", 
    "description": "The Everett Moore Baker Memorial Foundation is an MIT Presidential Institute Committee. The Foundation serves to perpetuate the memory of Dean Everett Moore Baker, a staunch protagonist for the consideration of human beings as individuals, a vigorous proponent of a broad educational policy, a dynamic extra-curricular program, and a congenial physical and intellectual environment at MIT and an ardent worker toward friendly relations among the peoples of all nations. The Foundation strives to fulfill this goal by pursuing long-term initiatives, encouraging and supporting student initiatives, awarding the Baker Excellence in Teaching Award, funding Baker Fellowships, and reporting on the status of the Institute in our Annual Report.", 
    "image": "", 
    "email": "baker_foundation@mit.edu", 
->>>>>>> master
    "thumbnail": "", 
    "user": null, 
    "date_created": "2011-10-05 13:51:42", 
    "type": 9, 
-<<<<<<< HEAD
-   "display": false, 
-=======
    "display": true, 
->>>>>>> master
    "name": "Everett Moore Baker Memorial Foundation"
   }
  }, 
@@ -3832,21 +3820,12 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://www.mit-lca.org/", 
-<<<<<<< HEAD
-   "slug": null, 
-   "last_updated": "2011-10-05 11:36:28", 
-   "description": null, 
-   "image": "", 
-   "email": null, 
-   "thumbnail": "", 
-=======
    "slug": "", 
    "last_updated": "2011-10-05 23:57:42", 
    "description": "At LCA, we believe that living MIT to the Max includes balancing the academic and extracurricular responsibilities with an active social life. Over the course of the year, we host dozens of social events that give the brothers and students from neighboring schools a chance to mingle and unwind.", 
    "image": "campus_org/campusorg/lambda_chi_alpha_2011-10-05-23-57-42.png", 
    "email": "", 
    "thumbnail": "campus_org/campusorg/lambda_chi_alpha_2011-10-05-23-57-42_thumbnail.png", 
->>>>>>> master
    "user": null, 
    "date_created": "2011-10-05 11:36:28", 
    "type": 6, 
