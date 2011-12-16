@@ -5,6 +5,7 @@
 #recruiter_signup_link{
     position:relative;
     bottom:3px;
+    font-weight:bold;
 }
 #id_invite_code{
     width:140px;

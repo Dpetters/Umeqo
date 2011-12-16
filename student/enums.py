@@ -35,7 +35,9 @@ STUDENT_BODY_STATISTICS_Y_AXIS = (
 )
 
 SCHOOL_YEAR = "school_year"
+MAJOR = "major"
 
 STUDENT_BODY_STATISTICS_X_AXIS = (
     (SCHOOL_YEAR, "School Year"),
+    (MAJOR, "First Major")
 )

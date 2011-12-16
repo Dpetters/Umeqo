@@ -1,39 +1,8 @@
 {% load employer_no_results %}
-{% load static %}
 
 <span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
 {% include "paging.html" %}
-<div id="results_menu">
-    <div id="results_menu_checkbox_menu_button" class="dropdown_menu_button">
-        <input id="results_menu_checkbox" type="checkbox"/>
-        <img id="results_menu_checkbox_down_triangle" src="{% get_static_prefix %}images/icons/dropdown_png.png"/>
-        <ul>
-            <li id="results_menu_all_on_page">All on page</li>
-            <li id="results_menu_starred">Starred</li>
-            <li id="results_menu_not_starred">Not starred</li>
-            <li id="results_menu_in_resume_book">In Resume Book</li>
-            <li id="results_menu_not_in_resume_book">Not in Resume Book</li>
-        </ul>
-    </div>
-    <div id="resume_book_current_add_students" class="menu_button {% if resume_book_capacity_reached %}disabled resume_book_capacity_reached_menu_button{% endif %}">
-        <span>Add to Resume Book</span>
-    </div>
-    <div id="resume_book_current_remove_students" class="menu_button">
-        <span>Remove from Resume Book</span>
-    </div>
-    <div id="results_menu_more_actions" class="dropdown_menu_button">
-        <span>More Actions</span>
-        <img src="{% get_static_prefix %}images/icons/dropdown_png.png"/>
-        <ul>
-            <li id="students_add_star">Add Star</li>
-            <li id="students_remove_star">Remove Star</li>        
-            <li id="students_invite">Invite to Event</li>        
-        </ul>
-    </div>
-    <div id="results_menu_toggle_details" class="menu_button">
-        <span>Show All Details</span>
-    </div>
-</div>
+{% include "employer_students_results_menu.html" %}
 <div id="results">
 {% if page.object_list %}
     {% for student, in_resume_book, starred, comment, num_of_events_attended in page.object_list %}
@@ -44,4 +13,3 @@
 {% endif %}
 </div>
 {% include "paging.html" %}
-

@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.conf import settings as s
 from django.utils import simplejson
@@ -7,11 +5,11 @@ from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
-from subscription.models import Subscription, EmployerSubscription
+from subscription.models import EmployerSubscription
 from subscription.forms import SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
-def subscription_dialog(request, form_class = SubscriptionForm, extra_context=None):
+def subscription_transaction_dialog(request, form_class = SubscriptionForm, extra_context=None):
     if request.is_ajax():
         if request.method=="POST":
             if request.POST.has_key("action") and request.POST.has_key("subscription_type"):
@@ -59,61 +57,53 @@ def subscription_dialog(request, form_class = SubscriptionForm, extra_context=No
     else:
         return HttpResponseBadRequest("Request must be ajax.")
              
-@render_to("free_trial_info_dialog.html")
-def free_trial_info_dialog(request, extra_context=None):
+@render_to("event_subscription_info_dialog.html")
+def free_subscription_info_dialog(request, extra_context=None):
     context = {}
     context.update(extra_context or {})
     return context
 
 @render_to("subscription_list.html")
 def subscription_list(request, extra_context=None):
+    context = {}
+    subscription=None
     if request.user.is_authenticated() and is_recruiter(request.user):
-        context = {'user':request.user }
-        free_trial = Subscription.objects.get(name="Free Trial")
+        context['user'] = request.user
+        employer = request.user.recruiter.employer
         try:
-            es = request.user.recruiter.employer.employersubscription
-            if es.subscription == free_trial:
-                
-                context['annual_dialog'] = "Subscribe to Umeqo"
-                context['annual_class'] = "open_sd_link upgrade"
-                context['annual_action'] = "upgrade"
-                context['annual_text'] = "Contact Us For Pricing"
-                
-                if es.expired() or es.expires < date.today():
-                    context['free_trial_text'] = "Subscription Expired"
-                    context['annual_button'] = "Contact Us"
-                else:
-                    context['free_trial_text'] = "Subscribed"
-                    context['annual_button'] = "Upgrade"
-                    context['free_trial_class'] = 'open_ftid_link'
-            else:
-                if es.expired() or es.expires < date.today():
-                    context['annual_button'] = "Extend Subscription"
-                    context['annual_dialog'] = "Extend Subscription"
-                    context['annual_class'] = "open_sd_link extend"
-                    context['annual_action'] = "extend"
-                    context['annual_text'] = "Subscription Expired"
-                else:
-                    context['annual_button'] = "Extend Subscription"
-                    context['annual_dialog'] = "Extend Subscription"
-                    context['annual_class'] = "open_sd_link extend"
-                    context['annual_action'] = "extend"
-                    context['annual_text'] = "Subscribed"
+            subscription = employer.employersubscription
         except EmployerSubscription.DoesNotExist:
-                    context['annual_button'] = "Subscribe"
-                    context['annual_dialog'] = "Subscribe to Umeqo"
-                    context['annual_class'] = "open_sd_link subscribe"
-                    context['annual_action'] = "subscribe"
-                    context['annual_text'] = "Contact Us For Pricing"
-
-                    context['free_trial_class'] = "open_ftid_link"
+            subscription = None
+    
+    if subscription:
+        if subscription.expired():
+            if subscription.event_subscription():
+                context['free_subscription_text'] = "Subscription Expired"
+                context['free_subscription_class'] = 'open_free_subscription_info_dialog_link'
+                context['transaction_dialog_title'] = "Subscribe to Umeqo" 
+                context['paid_subscription_class'] = "subscribe"
+            else:
+                context['paid_subscription_button_text'] = "Extend Subscription"
+                context['transaction_dialog_title'] = "Extend Subscription"
+                context['paid_subscription_class'] = "extend"
+                context['paid_subscription_action'] = "extend"
+                context['paid_subscription_text'] = "Subscription Expired"
+        else:
+            if subscription.event_subscription():
+                context['paid_subscription_button_text'] = "Upgrade to Annual Plan"
+                context['transaction_dialog_title'] = "Upgrade to Annual Subscription"
+                context['paid_subscription_class'] = "upgrade"
+                context['paid_subscription_action'] = "upgrade"
+                context['free_subscription_text'] = "Subscribed"
+            else:
+                context['paid_subscription_button_text'] = "Extend Subscription"
+                context['transaction_dialog_title'] = "Extend Subscription"
+                context['paid_subscription_class'] = "extend"
+                context['paid_subscription_action'] = "extend"
+                context['paid_subscription_text'] = "Subscribed"
     else:
-        context = {'free_trial_class':'open_ftid_link',
-                   'annual_button':"Contact Us",
-                   'annual_dialog':"Subscribe to Umeqo", 
-                   'annual_action': 'subscribe', 
-                   'annual_class':"open_sd_link subscribe",
-                   'annual_text':"Contact Us For Pricing"}
-        
+        context['free_subscription_class'] = 'open_free_subscription_info_dialog_link'
+        context['transaction_dialog_title'] = "Subscribe to Umeqo" 
+        context['paid_subscription_class'] = "subscribe"
     context.update(extra_context or {})
     return context

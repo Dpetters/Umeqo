@@ -23,16 +23,17 @@ Student Filtering |
 {% endcompress %}
 
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_delivery.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_students.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_hoverIntent/jquery.hoverIntent.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_students_widgets.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
+<script src="{{ STATIC_URL }}js/employer/employer_resume_book_delivery.js"></script>
+<script src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+<script src="{{ STATIC_URL }}js/employer/employer_students.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_hoverIntent/jquery.hoverIntent.js"></script>
+<script src="{{ STATIC_URL }}js/employer/employer_students_widgets.js"></script>
 {% endcompress %}
 
 <script type="text/javascript">
@@ -144,7 +145,7 @@ Student Filtering |
                 <h3>
                 <a href="javascript:void(0)">Test Scores</a>
                 </h3>
-                <div id="test_scores_section" class="clearfix">
+                <div id="test_scores_section">
                     <div id="act_filter_section" class="slider_section">
                         <div></div>
                         {{student_filtering_form.act.label_tag}}
@@ -170,11 +171,12 @@ Student Filtering |
                         {{student_filtering_form.sat_w.label_tag}}
                         {{student_filtering_form.sat_w}}
                     </div>
+                    <div class="clearfix"></div>
                 </div>
                 <h3>
                 <a href="javascript:void(0)">Work Info</a>
                 </h3>
-                <div class="clearfix">
+                <div>
                     <div>
                         {{student_filtering_form.employment_types}}
                     </div>
@@ -184,11 +186,12 @@ Student Filtering |
                     <div>
                         {{student_filtering_form.industries_of_interest}}
                     </div>
+                    <div class="clearfix"></div>
                 </div>
                 <h3>
                 <a href="javascript:void(0)">Miscellaneous Info</a>
                 </h3>
-                <div class="clearfix">
+                <div>
                     <div>
                         {{student_filtering_form.campus_involvement}}
                     </div>
@@ -202,11 +205,12 @@ Student Filtering |
                         {{student_filtering_form.older_than_21.label_tag}}
                         {{student_filtering_form.older_than_21}}
                     </div>
+                    <div class="clearfix"></div>
                 </div>
                 <h3>
                 <a href="javascript:void(0)">Search Options</a>
                 </h3>
-                <div class="clearfix">
+                <div>
                     <div class="select_wrapper">
                         {{student_filtering_form.ordering.label_tag}}
                         {{student_filtering_form.ordering}}
@@ -215,6 +219,7 @@ Student Filtering |
                         {{student_filtering_form.results_per_page.label_tag}}
                         {{student_filtering_form.results_per_page}}
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
@@ -222,7 +227,7 @@ Student Filtering |
     <div id="resume_book_block" class="side_block">
         <div class="side_block_header">
             <img class="side_block_header_icon" src="{{ STATIC_URL }}images/icons/book.png" />
-            <span class="side_block_header_title">Current Resume Book</span>    
+            <span class="side_block_header_title">Current Resume Book</span>
         </div>
         <div class="side_block_content clearfix">
             <span id="current_resume_book_contents_section"></span>

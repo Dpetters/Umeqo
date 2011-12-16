@@ -1,0 +1,25 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Deleting Your Account
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span id="create_account" class="num">Step 1:</span> Access your account settings from the "Account" dropdown on the upper right.</p>
+<p>There is also a "Account Settings" link in the side navigation menu on the left, underneath "Account".</p>
+<a target="_blank" href="{% url employer_account %}"><img src="{{STATIC_URL}}images/tutorials/deleting_your_account/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Delete your account by clicking on the "Delete Account" link.</p>
+<p>Please note that if you are the only recruiter with an account at your firm, you cannot delete your account. If such is the case, then you have to create an account for a co-worker before deleting yours, so that your firm does not lose access to the site.</p>
+<a target="_blank" href="{% url employer_account %}"><img src="{{STATIC_URL}}images/tutorials/deleting_your_account/2.png"></a>
+<p>The screenshot below is not clickable if you are the only recruiter with an account at your firm and thus unable to delete your account.</p>
+{% if other_recruiters %}<a target="_blank" href="{% url employer_account %}?action=delete_account">{% endif %}<img {% if not other_recruiters %}title="This image is not clickable because you are the only recruiter with an account at your firm and thus cannot delete your account."{% endif %} src="{{STATIC_URL}}images/tutorials/deleting_your_account/3.png">{% if other_recruiters %}</a>{% endif %}
+{% endblock %}
+
+{% block things_to_note %}
+<li>If you are the only recruiter with an account at your firm, you cannot delete your account. <a href="{% url tutorial slug="creating-accounts-for-co-workers" %}">Create an account</a> for a co-worker before deleting yours, so that your firm does not lose access to the site. There is no way cancel a subscription since it is paid for up front.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>If you would like to change your password, check out the tutorial on how to <a href="{% url tutorial slug="changing-your-password" %}">change your password</a>.</li>
+{% endblock %}

@@ -70,7 +70,9 @@ function place_table_form_errors(form, errors){
  * should not change the parameters to be non-jquery objects.
  */
 function place_table_form_field_error($error, $element) {
-    console.log($element);
+	if($element.prev().length == 0){
+		$element = $element.parent();
+	}
     if ($element.prev().get(0).tagName=='DIV') {
         $element.prev().html($error);
     } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
@@ -174,43 +176,52 @@ $(document).ready( function () {
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
     });
-    $("a, .button, .dark_button, .dropdown_menu_button, \
-    .dropdown_menu_button ul li, .menu_button, .current_page_link, \
+    $("a, .button, .dark_button, \
+    .dropdown ul li, .gray_button, .current_page_link, \
     .page_link, .disabled_page_link, #logo_beta, #notifications_count").live({
         mouseleave:
             function(){
                 $(this).removeClass('um-active');
             }
     });
-    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focus", function(){
-        if(!$(this).hasClass('disabled')){
-            $(this).addClass("um-focus");
-        }
-    });
-    $(".button, .dark_button, .ui-multiselect-menu .ui-multiselect-none, .ui-multiselect-menu .ui-multiselect-all").live("focusout", function(){
-        $(this).removeClass("um-focus");
-    });
-    $('.button, .menu_button, .dark_button, #notifications_count').live('mousedown', function() {
+    
+    $('.button, .gray_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mousedown', function() {
         if(!$(this).hasClass('disabled')){
             $(this).addClass('um-active');
         }
     });
-    $('.button, .menu_button, .dark_button, #notifications_count').live('mouseup', function(){
+    $('.button, .gray_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mouseup', function(){
         if ($(this).hasClass('um-active') || $(this).hasClass('disabled'))
             $(this).removeClass('um-active');
     });
-    $('.dropdown_menu_button').live('click', function() {
-        if ($(this).hasClass('um-pressed') || $(this).hasClass('disabled'))
+    
+    $('.dropdown, #login_button a').live('click', function() {
+        if ($(this).hasClass('um-pressed') || $(this).attr('disabled'))
             $(this).removeClass('um-pressed');
         else
             $(this).addClass('um-pressed');
+            
     });
     $('body').live('click', function(event) {
-        if (!$(event.target).closest('.dropdown_menu_button').length && !$(event.target).closest('.dropdown menu_button ul').length) {
-            $('.dropdown_menu_button ul').hide();
-            $('.dropdown_menu_button').removeClass('um-pressed');
-        };
+        if (!$(event.target).closest('.dropdown').length && !$(event.target).closest('.dropdown gray_button ul').length) {
+            $('.dropdown ul').hide();
+            $('.dropdown').removeClass('um-pressed');
+        }
     });
+    
+    $('.dropdown').live('click', 
+    	function (e) {
+    		if($(e.target).parent().hasClass("dropdown")){
+    			var disabled = $(e.target).parent().attr('disabled');
+    			if (!$(e.target).parent().attr('disabled')) {
+    				$(e.target).nextAll('ul').toggle();
+    			}
+			} else {
+    			if (!$(e.target).attr('disabled')) {
+    				$(e.target).children('ul').toggle();
+    			}
+			}
+	});
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
         if (val.length == 0) { return true; }

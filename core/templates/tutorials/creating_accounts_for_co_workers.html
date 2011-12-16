@@ -1,0 +1,26 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Creating Accounts for Co-Workers
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span id="create_account" class="num">Step 1:</span> Access your account settings from the "Account" dropdown on the upper right.</p>
+<p>There is also a "Account Settings" link in the side navigation menu on the left, underneath "Account".</p>
+<a target="_blank" href="{% url employer_account %}"><img src="{{STATIC_URL}}images/tutorials/creating_accounts_for_co_workers/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Open the account creation dialog by clicking on the links at the bottom.</p>
+<a target="_blank" href="{% url employer_account %}?action=new_recruiter_credentials"><img src="{{STATIC_URL}}images/tutorials/creating_accounts_for_co_workers/2.png"></a>
+
+<p class="header"><span class="num">Step 3:</span> Create an account for a co-worker by filling out all the fields.</p>
+<p>The account will be immediately available for use, meaning that your co-worker can use the credentials right after you submit the form.</p>
+<a target="_blank" href="{% url employer_account %}?action=new_recruiter_credentials"><img src="{{STATIC_URL}}images/tutorials/creating_accounts_for_co_workers/3.png"></a>
+{% endblock %}
+
+{% block things_to_note %}
+<li>You can create as many accounts as you wish for your firm, all of which will be valid as long as the firm's subscription remains active.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>To allow your co-workers to comment and star students, as well as see the comments that you have written and the student that you have starred, <a href="#create_account">create accounts</a> for them. All the info is shared accross all accounts at your firm.</li>
+{% endblock %}

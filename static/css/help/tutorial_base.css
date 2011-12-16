@@ -1,0 +1,35 @@
+h2{
+    margin-top:20px;
+}
+p{
+    color:#000;
+}
+.tutorial_toc{
+    list-style:inside;
+    line-height: 20px;
+    margin-bottom:15px;
+}
+#things_to_note_list, #tips_and_tricks_list{
+    list-style:inside;
+    line-height: 18px;
+}
+#instructions_div img{
+    border:2px solid #DEDEDE;
+    max-width:778px;
+    margin-bottom:20px;
+    margin-top:10px;
+    opacity:.8;
+}
+#instructions_div a img:hover{
+    opacity:1;
+}
+#instructions_div .header{
+    font-weight:bold;
+    color:#333;
+    font-size:16px;
+    margin-top:15px;
+    margin-bottom:3px;
+}
+#instructions_div .header .num{
+    font-size:19px;
+}

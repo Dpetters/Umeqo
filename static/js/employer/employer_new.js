@@ -11,7 +11,6 @@ $(document).ready( function() {
             width:430,
             resizable: false,
             close: function() {
-                console.log("removing");
                 create_employer_dialog.remove();
             }
         });

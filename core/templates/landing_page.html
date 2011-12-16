@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
         <meta property="og:title" content="Umeqo - Recruiting Made Simple" />
         <meta property="og:url" content="http://umeqo.com" />
         <meta property="og:image" content="http://umeqo.com/static/images/fb_link_image.png" />
@@ -9,6 +8,7 @@
         <meta property="og:description" content="Umeqo is an innovative recruiting resource for students and employers to discover one another." />
         <meta property="og:site_name" content="Umeqo" /> 
         <meta property="fb:app_id" content="119497238132973" />
+        
         <link rel="icon" href="/favicon.ico" />
         <title>Umeqo</title>
         <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
@@ -16,12 +16,20 @@
         {% compress css %}
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
+        <!--[if lte IE 8]>
+            <link href="{{STATIC_URL}}css/landing_page_lte_ie8.css" rel="stylesheet" type="text/css" />
+        <![endif]-->
         <!--[if lt IE 8]>
             <link href="{{STATIC_URL}}css/landing_page_lt_ie8.css" rel="stylesheet" type="text/css" />
         <![endif]-->
-        <!--[if lte IE 8]>
+        <!--[if lte IE 7]>
             <script src="{{ STATIC_URL }}js/unsupported_browser.js" type="text/javascript"></script>
         <![endif]-->
+        {% compress js %}
+            <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
+            <script src="{{STATIC_URL}}js/landing_page.js"></script>
+        {% endcompress %}
+        
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-22946783-1']);
@@ -33,10 +41,6 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
         </script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
-        {% compress js %}
-            <script src="{{STATIC_URL}}js/landing_page.js"></script>
-        {% endcompress %}
     </head>
     <body>
         {% if email_error %}
@@ -65,8 +69,8 @@
         {% endif %}
         <div class="center">
             <h1>Umeqo</h1>
-            <h3 class="tagline"><em>[you-ME-co]</em>, noun. <strong>Recruiting Made Simple</strong>.</h3>
-            <p id="innovative">Umeqo is a new recruiting resource for <strong>students</strong> and <strong>employers</strong> to discover one another.</p>
+            <h3 class="tagline"><em>/you-'ME-co/</em>, noun. <strong>Recruiting Made Simple</strong>.</h3>
+            <p id="innovative">Umeqo is a new recruiting resource for students and employers <br/> to <strong>discover</strong> one another.</p>
             <div id="lotsaforms" class="row">
                 <div class="col">
                     <div id="login_module" class="module">
@@ -76,7 +80,7 @@
                             {% for field in login_form %}
                                 <p>{{field.label_tag}}{{field}}</p>
                             {% endfor %}
-                            <input type="submit" value="login"/> 
+                            <input type="submit" value="Login"/> 
                         </form>
                         <div class="clearfix"></div>
                         <div id="invite_code">
@@ -90,17 +94,17 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="working">Featured Event</p>
+                    <p id="working">Featured Deadline</p>
                     <div id="promotion">
-                      <h2>Oracle Information Session</h2>
+                      <h2>J.P. Morgan Investment Banking Analyst Summer Program Application Deadline</h2>
                       {% if featured_event.employer %}
                       <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
                       {% if featured_event.campus_org %}
                       <a href="{{ featured_event.campus_org.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
                       {% endif %}
-                      <p>You are invited to learn about Oracle and how the firm places its future in the hands of talented students such as yourself. Six students will each walk away with $250! </p>
-                      <p>The event starts at 7:30pm on Thursday, Oct 6th in 32-123. {% if featured_event %}You can RSVP on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
+                      <p>J.P. Morgan invites all juniors to apply for its Investment Banking Analyst Summer Program. The program features an intense four-to-five day orientation and the opportunity to work hands-on at a desk.</p>
+                      <p>The application deadlines is at 11:30pm on January 29th. {% if featured_event %}You can RSVP Participating on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo deadline page</a>!{% endif %}</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -110,7 +114,7 @@
                 <div class="col">
                     <p class="deets top">
                         <span class="img"><img src="{{ STATIC_URL }}images/landing/event.png" /></span>
-                        <span>Streamlined Events.</span> Add events to Google Calendar with a click of a button, view and print location maps - never again be misinformed of what to bring and what to wear.
+                        <span>Streamlined Events/Deadlines.</span> Add events and deadlines to Google Calendar with a click of a button, get directions using Google Maps - never again be misinformed of what to bring and what to wear.
                     </p>
                     <p class="deets bottom">
                         <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>

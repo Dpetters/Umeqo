@@ -7,7 +7,6 @@ fabric_django.settings_module('settings')
 from django.conf import settings
 from south.models import MigrationHistory
 
-
 __all__= ["staging", "prod", "restart", "restart_apache", "create_database", "load_prod_data",
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
@@ -58,7 +57,7 @@ def create_database():
                 if env.host=="umeqo.com":
                     run("python manage.py syncdb --noinput --migrate")
                 else:
-                    run("python manage.py syncdb --noinput --migrate")                    
+                    run("python manage.py syncdb --noinput --migrate")
                 run("python copy_media.py prod in")
                 
 def schemamigrate():
@@ -160,4 +159,5 @@ def update():
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
                     run("echo 'yes'|python manage.py collectstatic")
+                run("echo 'y'|python manage.py rebuild_index")
                 restart_apache()

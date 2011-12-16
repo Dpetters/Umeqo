@@ -1,0 +1,13 @@
+.free_subscription_info_dialog .dialog_content_wrapper{
+    padding: 10px 25px;
+}
+#campus_organizations, #free_trial_steps{
+    padding-left:30px;
+    margin:10px 0px;
+}
+#free_subscription_steps{
+    list-style:decimal;
+}
+.free_subscription_info_dialog .button.close_dialog_link{
+    width:60px;
+}

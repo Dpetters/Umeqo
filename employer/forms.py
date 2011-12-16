@@ -47,7 +47,7 @@ class CreateEmployerForm(forms.ModelForm):
         return self.cleaned_data['industries']
             
 class RecruiterForm(forms.ModelForm):
-    email = forms.EmailField(label="Username:", max_length = 75)
+    email = forms.EmailField(label="Email:", max_length = 75)
     first_name = forms.CharField(label="First Name:", max_length=42, required=True)
     last_name = forms.CharField(label="Last Name:", max_length=42, required=True)
     password1 = forms.CharField(label="Choose Password:", widget=forms.PasswordInput)
@@ -117,12 +117,12 @@ class StudentSearchForm(forms.Form):
     
 class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
     older_than_21 = forms.ChoiceField(label="Must be older than 21:", choices = NO_YES_CHOICES, required = False)
-    gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
-    act = forms.IntegerField(label="Minimum ACT:", max_value = 36, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
-    sat_t = forms.IntegerField(label="Minimum SAT:", max_value = 2400, min_value = 600, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
-    sat_m = forms.IntegerField(label="Minimum SAT Math:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
-    sat_v = forms.IntegerField(label="Minimum SAT Verbal:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
-    sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'disabled':'disabled'}), required = False)
+    gpa = forms.DecimalField(label="Minimum GPA:", min_value = 0, max_value = 5, max_digits=5, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
+    act = forms.IntegerField(label="Minimum ACT:", max_value = 36, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
+    sat_t = forms.IntegerField(label="Minimum SAT:", max_value = 2400, min_value = 600, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
+    sat_m = forms.IntegerField(label="Minimum SAT Math:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
+    sat_v = forms.IntegerField(label="Minimum SAT Verbal:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
+    sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
 
     class Meta:
         fields = ( 'majors',
@@ -140,8 +140,7 @@ class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
                    'campus_involvement',
                    'languages',
                    'countries_of_citizenship',
-                   'older_than_21'
-                    )
+                   'older_than_21')
         model = StudentFilteringParameters
 
 class StudentFilteringForm(StudentDefaultFilteringParametersForm):

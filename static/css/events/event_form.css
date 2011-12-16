@@ -1,12 +1,8 @@
 #event_form_left_col {
-    width: 575px;
+    width: 576px;
 }
-#event_name_section .errorspace,
-#event_type_section .errorspace,
-#event_drop_section .errorspace,
 #event_location_section .errorspace,
-#event_description_section .errorspace,
-#event_attending_employers_section .errorspace {
+.event_field_section .errorspace{
     display: inline-block;
     width: 200px;
     position: relative;
@@ -16,13 +12,22 @@
 .attending_employers_multiselect .ui-multiselect-all{
     display:none;
 }
-#event_name_section,
-#event_type_section,
-#event_drop_section,
+#short_url_field_section .errorspace{
+	width:425px;
+}
 #event_location_section,
-#event_description_section,
-#event_attending_employers_section {
+.event_field_section{
     margin-top: 15px;
+}
+#event_short_url{
+    margin-left:2px;
+}
+#id_include_and_more{
+    position:relative;
+    top:1px;
+}
+#include_and_more{
+    margin-top:5px;
 }
 #event_form #id_name, #event_form #id_location {
     font-size: 16px;
@@ -31,6 +36,9 @@
 #event_form #id_type {
     width: 310px;
     display: inline-block;
+}
+#event_form #id_short_slug{
+    width:135px;
 }
 label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
     margin-left: 7px;
@@ -60,8 +68,6 @@ label[for=id_is_public_0], label[for=id_is_public_1], label[for=id_is_drop_1] {
 #suggestion_tip{
     color:#444444;
     font-weight:bold;
-}
-    
 }
 #end_datetime_wrapper {
     padding-bottom: 15px;
@@ -132,7 +138,8 @@ label[for=event_scheduler_day_text]{
     border-top: 1px solid #808080;
 }
 #event_scheduler {
-    height: 410px;
+    border-top:1px solid #EEE;
+    height: 390px;
     overflow-y: scroll;
     position: relative;
     width: 378px;
@@ -154,29 +161,21 @@ label[for=event_scheduler_day_text]{
     font-size: 11px;
 }
 #event_scheduler_day {
-    padding: 10px 18px;
+    padding: 10px 16px;
     margin-top: -7px;
 }
 #event_scheduler_day span {
     font-weight: 600;
 }
-#event_additional_info_block .side_block_content {
-    padding-top: 0px;
-}
 #event_scheduler td {
     height: 15px;
 }
-#event_scheduler tr:nth-child(odd) td {
+#event_scheduler tr td {
     border-style: solid;
     border-width: 1px;
-    border-color: #DDD #EEE #EEE;
-}
-#event_scheduler tr:nth-child(even) td {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #EEE #EEE #DDD;
 }
 .event_block {
+    font-size:10px;
     position: absolute;
     left: 10px;
     right: 13px;
@@ -186,8 +185,8 @@ label[for=event_scheduler_day_text]{
     box-shadow: rgba(0,0,0,0.4) 2px 2px 2px 0;
 }
 .gray {
-    background-color: #CCC;
-    border: 2px dashed #666;
+    background-color: #AC725E;
+    border: 2px dashed #000;
     left: 60px;
     right: 150px;
     z-index: 1;
@@ -196,7 +195,7 @@ label[for=event_scheduler_day_text]{
     z-index: 3;
 }
 .green {
-    background-color: #B08B59;
+    background-color: #72BF42;
     border: 2px dashed #000;
     left: 192px;
     z-index: 2;
@@ -210,21 +209,8 @@ label[for=event_scheduler_day_text]{
 .clipBottom {
     border-bottom: 2px solid transparent;
 }
-#event1 {
-    top: 421px;
-    height: 24px;
-}
-#event2 {
-    top: 486px;
-    height: 40px;
-}
-#event3 {
-    top: 598px;
-    height: 40px;
-}
-#yourevent {
-    top: 549px;
-    height: 29px;
+#event_additional_info_block .side_block_content {
+    padding-top: 0px;
 }
 #id_audience {
     width: 210px;
@@ -238,14 +224,11 @@ label[for=id_rsvp_message]{
     vertical-align: top;
 }
 #id_rsvp_message {
-    width: 231px;
+    width: 225px;
     height: 36px;
 }
-#view_event_button {
-    line-height: 20px;
-    height: 20px;
-    float: right;
-    margin-left: 10px;
+#event_scheduler_today{
+    margin-left:2px;
 }
 #event_scheduler_nav {
     float: right;
@@ -295,11 +278,6 @@ label[for=id_rsvp_message]{
 input[type=text].datefield_no_bind {
     width: 95px;
     background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
-}
-div.attending_employer{
-    height:69px;
-    line-height:69px;
-    width:139px;
 }
 #attending_employers .ef-logo{
     max-width:139px;

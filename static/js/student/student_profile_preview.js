@@ -17,4 +17,4 @@ function handle_student_toggle_detailed_info_link_click() {
     
 $(".student_toggle_detailed_info_link").live('click', handle_student_toggle_detailed_info_link_click);
 $(".student_hide_details_link").live('click', handle_student_hide_details_link_click);
-$(".student_comment").live('blur', function(){ $(this).height(17); }); 
+$(".student_comment").live('blur', function(){ $(this).height(17); });

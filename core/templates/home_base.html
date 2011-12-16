@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{user.email}} | 
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/core/home_anonymous.css" />
+{% endcompress %}
+{% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+    <div class="left_side_container">
+        {% block left_side_container %}
+        
+        {% endblock %}
+    </div>
+    
+    <div class="main_block with_side_nav no_top_margin">
+        <div class="main_block_header">
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
+            <span class="main_block_header_title">Welcome!</span>
+        </div>
+        <div class="main_block_content">
+            <div id="welcome_block">
+                <p><strong>Thank you for beta testing Umeqo!</strong> Get started with one of the following -</p>
+                <table id="welcome_table">
+                    {% block welcome_table %}
+                    {% endblock %}
+                </table>
+                <p>Also, please <a href="javascript:void(0)" class="open_contact_us_dialog_link">report any bugs</a> you find - there's a "Contact Us" link at the bottom of every page.</p>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+{% endblock %}

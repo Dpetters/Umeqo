@@ -4,18 +4,18 @@ from __future__ import absolute_import
 import datetime
 
 from django.conf import settings as s
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
-from django.core.urlresolvers import reverse
-from django.views.decorators.http import require_http_methods, require_POST, require_GET
+from django.views.decorators.http import require_http_methods, require_POST
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
 from notification.models import NoticeSetting, NoticeType, EMAIL
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm,\
-                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm, StatisticsSecondMajorForm
+                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm
 from student.models import Student, StudentDeactivation, StudentInvite
 from student.view_helpers import process_resume
 from registration.forms import PasswordChangeForm
@@ -24,15 +24,14 @@ from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
 from core.forms import CreateLanguageForm
 from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
-from core.models import Language, EmploymentType, Industry, SchoolYear, Course
+from core.models import Language, EmploymentType, Industry
 from events.models import Attendee
 from campus_org.models import CampusOrg
-from student.forms import StudentBodyStatisticsForm
 from core import messages
 from employer.models import Employer
 from student import enums as student_enums
 from countries.models import Country
-        
+
 
 @render_to('student_registration_help.html')
 def student_registration_help(request, extra_context=None):
@@ -241,6 +240,7 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
+            print request.POST
             student = form.save()
             if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                 student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
@@ -291,6 +291,7 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
             if form.is_valid():
+                print request.POST
                 student = form.save(commit=False)
                 if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                     student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
@@ -305,18 +306,18 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
                            'num_of_events_attended':1,
                            'profile_preview':True}
                 
-                if request.POST.has_key('multiselect_id_looking_for'):
-                    context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('multiselect_id_looking_for'))
-                if request.POST.has_key('multiselect_id_industries_of_interest'):
-                    context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('multiselect_id_industries_of_interest'))
-                if request.POST.has_key('multiselect_id_previous_employers'):
-                    context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('multiselect_id_previous_employers'))
-                if request.POST.has_key('multiselect_id_campus_involvement'):
-                    context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('multiselect_id_campus_involvement'))
-                if request.POST.has_key('multiselect_id_languages'):
-                    context['languages'] = Language.objects.filter(id__in=request.POST.getlist('multiselect_id_languages'))
-                if request.POST.has_key('multiselect_id_countries_of_citizenship'):
-                    context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('multiselect_id_countries_of_citizenship'))
+                if request.POST.has_key('looking_for'):
+                    context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('looking_for'))
+                if request.POST.has_key('industries_of_interest'):
+                    context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('industries_of_interest'))
+                if request.POST.has_key('previous_employers'):
+                    context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('previous_employers'))
+                if request.POST.has_key('campus_involvement'):
+                    context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('campus_involvement'))
+                if request.POST.has_key('languages'):
+                    context['languages'] = Language.objects.filter(id__in=request.POST.getlist('languages'))
+                if request.POST.has_key('countries_of_citizenship'):
+                    context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('countries_of_citizenship'))
                                     
                 context.update(extra_context or {})
                 return context
@@ -445,6 +446,20 @@ def student_resume(request):
     return response
 
 @login_required
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+def specific_student_resume(request, student_id):
+    if request.user.recruiter.employer.subscribed():
+        student_query = Student.objects.filter(id=student_id)
+        if student_query.exists():
+            student = student_query.get()
+            resume = student.resume.read()
+            response = HttpResponse(resume, mimetype='application/pdf')
+            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
+            return response
+    raise Http404
+
+"""
+@login_required
 @agreed_to_terms
 @require_GET
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
@@ -486,7 +501,7 @@ def student_body_statistics(request):
             data['categories'] = []
             data['series'] = {'data':[]}
             for school_year in school_years:
-                students = Student.objects.filter(school_year = school_year)
+                students = Student.objects.filter(school_year = school_year, profile_created=True)
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
                     num_of_students = 0
@@ -503,21 +518,40 @@ def student_body_statistics(request):
             data['categories'] = []
             data['series'] = {'data':[]}
             for school_year in school_years:
-                students = Student.objects.filter(school_year = school_year)
+                students = Student.objects.filter(school_year = school_year, profile_created=True)
                 if students:
                     data['categories'].append("%s" % school_year.name_plural)
                     data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
+    if request.GET['x_axis'] == student_enums.MAJOR:
+        courses = Course.objects.all()
+        if request.GET['y_axis'] == student_enums.GPA:
+            data['name'] = "GPA vs. Major"
+            data['y_axis_text'] = "GPA"
+            data['y_axis_min'] = 0
+            data['y_axis_max'] = 5
+            data['categories'] = []
+            data['series'] = {'data':[]}
+            for course in courses:
+                students = Student.objects.filter(first_major = course, profile_created=True)
+                if students:
+                    data['categories'].append("%s" % course.num)
+                    num_of_students = 0
+                    gpa_sum = 0
+                    for s in students:
+                        if s.gpa != 0:
+                            num_of_students += 1
+                            gpa_sum += s.gpa
+                    if num_of_students != 0:
+                        data['series']['data'].append(float(gpa_sum)/num_of_students)
+        elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
+            data['name'] = "# of Previous Employers vs. Major"
+            data['y_axis_text'] = "# of Previous Employers"
+            data['categories'] = []
+            data['series'] = {'data':[]}
+            for course in courses:
+                students = Student.objects.filter(first_major = course, profile_created=True)
+                if students:
+                    data['categories'].append("%s" % course.num)
+                    data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
-@login_required
-@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-def specific_student_resume(request, student_id):
-    if request.user.recruiter.employer.subscribed():
-        student_query = Student.objects.filter(id=student_id)
-        if student_query.exists():
-            student = student_query.get()
-            resume = student.resume.read()
-            response = HttpResponse(resume, mimetype='application/pdf')
-            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
-            return response
-    raise Http404
+"""

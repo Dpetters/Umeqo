@@ -1,0 +1,79 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Creating and Delivering Resume Books
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, begin by searching 
+    by keyword or clicking "Browse Students".</p>
+<p>There is also a "Browse Students" link in the side navigation menu on the left.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/1.png"></a>
+
+<p class="header" id="filter"><span class="num">Step 2:</span> Filter students by a 
+    variety of attributes grouped into four different categories.</p>
+<p>Use this to find students who satisfy a particular requirement, such as speaking a 
+    language or being a graduating senior.</p> 
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/3.png"></a>
+
+<p class="header"><span class="num">Step 3:</span> Search students' resumes by 
+    keyword/skills, or search for individuals by first/last name.</p>
+<p>Results will by default be ordered by relevance. However, you can also 
+    <a href="{% url tutorial slug="browsing-students" %}#order_and_num">modify in what order and how many results appear</a>.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/browsing_students/4.png"></a>
+<p id="add_remove_students" class="header"><span class="num">Step 4:</span> Add and remove
+     students to and from your custom resume book one by one or in batches.</p>
+<p>Students will never know that you added them or removed them from any resume book. 
+    Nothing that you do is recorded.</p>
+<p>To toggle students in and out of the resume book one by one, click on the little green
+     pluses and red crosses, respectively.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/1.png"></a>
+<p>To add and remove multiple students from the resume book at once, check the checkboxes
+     next to their name and click the corresponding button. Checking the checkbox in the 
+     menu bar (on the left of the "Add to Resume Book" button) selects all students on 
+     the page.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/2.png"></a>
+
+<p class="header" id="view_contents"><span class="num">Step 5:</span> View the contents 
+    of any resume book.</p>
+<p>Select the "Current Resume Book" student list or click the student count to view 
+    students in the current resume book.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/3.png"></a>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/4.png"></a>
+<p>Select the name of any past resume book under "Choose Student List" to see its 
+    contents.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/5.png"></a>
+
+<p class="header"><span class="num">Step 6:</span> Once you are satisfied with your 
+    selections, click "Deliver" to open the resume book delivery dialog.</p>
+<p>Students will never know that you added them or removed them from any resume book. 
+    Nothing that you do is recorded.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/6.png"></a>
+
+<p class="header"><span class="num">Step 7:</span> Download your resume book or email it 
+    to one or more email addresses.</p>
+<p>For ease of reference, try to give each resume book as specific of a custom name as
+     possible.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/7.png"></a>
+<p>Select "email" as the delivery type to email the resume book to one or more email
+     addresses.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/creating_delivering_resume_books/8.png"></a>
+{% endblock %}
+
+{% block things_to_note %}
+<li>There is a 50 student limit on any single resume book. If an event RSVP or attendee 
+    list which you wish to turn into a resume book has more students than that, consider 
+    filtering it down to less than 50 students. Alternatively you can 
+    <a href="{% url tutorial slug='browsing-attendees-rsvps' %}#export">export the 
+        names and emails of those students</a>.</li>
+<li>Not every student has a Umeqo account, so the attendee count may be higher than the 
+    number of results. Those who are not have already received an email telling them that 
+    {{user.recruiter.employer}} can only see their name and email until they register.</li>
+<li>If you delete a past resume book, it cannot be recovered.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>The easiest way to clear the contents of a resume book that you are currently making 
+    is to <a href="#view_contents">view its contents</a>, and then 
+    <a href="#add_remove_students">remove all included students in a batch</a>.</li>
+{% endblock %}

@@ -1,22 +1,23 @@
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from django.db.models import Q
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.decorators import is_student, is_recruiter, is_campus_org
-from core import enums
+from core import enums as core_enums
+
+def get_audiences(user):
+    if is_student(user):
+        return [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_STUDENTS, core_enums.STUDENT]
+    elif is_recruiter(user):
+        return [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
+    elif is_campus_org(user):
+        return [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_CAMPUS_ORGS, core_enums.CAMPUS_ORG, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
+    else:
+        return [core_enums.ALL, core_enums.ANONYMOUS, core_enums.ANONYMOUS_AND_CAMPUS_ORGS, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.ANONYMOUS_AND_STUDENTS]
 
 def filter_faq_questions(user, questions):
-    if is_recruiter(user):
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.EMPLOYER) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-    elif is_student(user):
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.STUDENT) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))
-    elif is_campus_org(user):
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience=enums.CAMPUS_ORGS_AND_EMPLOYERS) | Q(audience=enums.CAMPUS_ORG) | Q(audience=enums.AUTHENTICATED) | Q(audience=enums.ALL))            
-    else:
-        questions = questions.filter(Q(audience = enums.ANONYMOUS_AND_CAMPUS_ORGS) | Q(audience = enums.ANONYMOUS_AND_EMPLOYERS) | Q(audience = enums.ANONYMOUS_AND_STUDENTS) | Q(audience=enums.ANONYMOUS) | Q(audience=enums.ALL))
-    return questions
+    return questions.filter(audience__in = get_audiences(user))
 
 def employer_campus_org_slug_exists(slug, campusorg=None, employer=None):
     try:
@@ -69,13 +70,13 @@ def get_ip(request):
 
 def um_slugify(s):
     parts = filter(lambda n: n not in ('the', 'a', 'an', 'of', 'for'), s.split(' '))
-    new_s = ' '.join(parts)
+    new_s = slugify(' '.join(parts))
     if len(new_s) > 50:
-        parts = new_s.split(' ')
+        parts = new_s.split('-')
         new_len, new_parts, i = 0, [], 0
-        while new_len < 40:
+        while len(new_parts) + len(parts[i]) + new_len <= 50:
             new_parts.append(parts[i])
             new_len += len(parts[i])
             i += 1
-        new_s = ' '.join(new_parts)
-    return slugify(new_s)
+        new_s = '-'.join(new_parts)
+    return new_s

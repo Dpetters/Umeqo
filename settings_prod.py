@@ -25,20 +25,18 @@ if is_prod():
     UMEQO_RECRUITER_ID = 4
     WELCOME_EVENT_ID = 1
     SITE_ID = 1
-    DB_PASSWORD = "Incub4t1ng"
+    DB_PASSWORD = "Bl4ckVelv3t"
     DEBUG = False
 else:
     UMEQO_RECRUITER_ID = 3
     WELCOME_EVENT_ID = 6
     SITE_ID = 2
-    DB_PASSWORD = "Ang3lInvest1ng"
+    DB_PASSWORD = "Perf3ctP0ur"
     DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ("Dmitrij", "Dpetters91@gmail.com"),
-    ("Zac", "zdearing@gmail.com"),
-    ("Josh", "me@joshma.com"),
+    ("Umeqo Team", "contact@umeqo.com"),
 )
 MANAGERS = ADMINS
 

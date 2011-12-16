@@ -9,15 +9,18 @@
 {% load text_snippet %}
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
+    var EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL = "{% url events_check_short_slug_uniqueness %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
     var GET_LOCATION_SUGGESTIONS_URL = "{% url get_location_suggestions %}";
     
     var MEDIUM_AJAX_LOADER = "{% include 'medium_ajax_loader.html' %}";
     
+    var TODAY = "{{today}}";
+
     {% if user.campusorg %}
         var EVENT = true
         var CAMPUS_ORG_EVENT = true;
-        var EMPLOYER_DETAILS_URL = "{% url employer %}";
+        var EMPLOYER_DETAILS_URL = "{% url employer_logo %}";
         var EMPLOYER_NEW_URL = "{% url employer_new %}";
         var CHECK_EMPLOYER_UNIQUENESS_URL = "{% url check_employer_uniqueness %}";
         var EMPLOYER_ALREADY_EXISTS = "{% text_snippet 'employer_already_exists' %}";
@@ -43,7 +46,7 @@
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 {% if user.campusorg %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_attending_employees.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_form_attending_employers.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 {% endif %}
@@ -73,9 +76,10 @@
     {% endif %}
     </h1>
     {% if edit %}
-        <a id="view_event_button" href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1" class="dark_button">View Event</a>
+    <a class="back_to_link" href="{% url event_page id=event.id, slug=event.slug %}" tabindex="-1">&laquo; Back to Event</a>
+    {% else %}
+    <a class="back_to_link" href="{% url home %}#events" tabindex="-1">&laquo; Back to Events</a>    
     {% endif %}
-    <a class="back_to_link" href="{% url home %}#events" tabindex="-1">&laquo; Back to Events</a>
 </div>
 <form id="event_form" method="POST" action="">
     {% csrf_token %}
@@ -101,9 +105,10 @@
                 </div>
                 <div id="event_scheduler_day">
                     <label for="event_scheduler_day_text">Event schedule for</label><input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield_no_bind" value="{{event_scheduler_date}}">
+                    <a href="#" id="event_scheduler_today">Today</a>
                     <div id="event_scheduler_nav">
-                        <a id="event_scheduler_nav_back" class="active" href="javascript:void(0)">&laquo;</a>
-                        <a id="event_scheduler_nav_forward" class="active" href="javascript:void(0)">&raquo;</a>
+                        <a id="event_scheduler_nav_back" class="active" href="#">&laquo;</a>
+                        <a id="event_scheduler_nav_forward" class="active" href="#">&raquo;</a>
                     </div>
                 </div>
                 <div id="event_scheduler">
@@ -138,28 +143,34 @@
         </div>
     </div>
     <div id="event_form_left_col">
-        <div id="event_name_section">
+        <div class="event_field_section">
             <span class="div_form_above_field_label">Title</span>
             <div class="errorspace">{{form.name.errors}}</div>
             <br>
             {{form.name}}
         </div>
-        <div id="event_type_section">
+        <div class="event_field_section">
             <span class="div_form_above_field_label">Type</span>
             <div class="errorspace">{{form.type.errors}}</div>
             <br>
             {{form.type}}
             {{form.is_public}}
         </div>
-        <div id="event_drop_section">
-            <span class="div_form_above_field_label">Resume Drops</span>
+        <div id="short_url_field_section" class="event_field_section">
+            <span class="div_form_above_field_label">Short URL</span>
+            <div class="errorspace">{{form.short_slug.errors}}</div>
+            <br>
+            <span id="event_short_url">http://{{current_site}}/{% if user.campusorg %}{{user.campusorg.slug}}{% else %}{{user.recruiter.employer.slug}}{% endif %}/{{form.short_slug}}</span>
+        </div>
+        <div class="event_field_section">
+            <span class="div_form_above_field_label">Resume Drop</span>
             <div class="errorspace">{{form.is_drop.errors}}</div>
             <br>
             {{form.is_drop}}
             <p id="resume_drop_info">(enabling this feature allows students to drop their resume without RSVP-ing)</p>
         </div>
         {% if user.campusorg %}
-        <div id="event_attending_employers_section">
+        <div class="event_field_section">
             <span class="div_form_above_field_label">Attending Employers</span>
             <div class="errorspace">{{form.attending_employers.errors}}</div>
             <br>
@@ -168,10 +179,11 @@
             <div id="attending_employers">
             {% if edit %}
                 {% for employer in attending_employers.all %}
-                    {% include "employer.html" %}
+                    {% include "employer_logo.html" %}
                 {% endfor %}
             {% endif %}
             </div>
+            <p id="include_and_more">{{form.include_and_more}} Display <strong>"and more..."</strong> beneath the company logos.</p>
         </div>
         {% endif %}
         <div id="event_location_section">
@@ -185,13 +197,13 @@
             <div id="location_suggestions">
             </div>
         </div>
-        <div id="event_description_section">
+        <div class="event_field_section">
             <span class="div_form_above_field_label">Description</span>
             <div class="errorspace">{{form.description.errors}}</div>
             {{form.description}}
         </div>
     </div>
-    <div class="button_wrapper_with_margins">
+    <div class="button_wrapper_with_margins centered">
         <input class="button" tabindex="8" type='submit' value='{% if edit %}Save Changes{% else %}Create Event{% endif %}'>
     </div>
 </form>

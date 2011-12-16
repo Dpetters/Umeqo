@@ -8,14 +8,16 @@ Events |
 {{block.super}}
 {% load compress %}
 {% compress css %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/events_list.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/events_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 {% endcompress %}
 <script>
     var SEARCH_URL = "{% url event_search %}";
 </script>
 {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/events/events_list.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/events/events_list.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
 {% endcompress %}
 {% endblock %}
 

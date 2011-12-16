@@ -1,5 +1,4 @@
-#login_button a,
-#signup_button a {
+#login_button a, #signup_button a {
     background: #555555; /* Old browsers */
     background: -moz-linear-gradient(top, #555555 0%, #333333 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#333333)); /* Chrome,Safari4+ */
@@ -8,40 +7,26 @@
     background: -ms-linear-gradient(top, #555555 0%,#333333 100%); /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #555555 0%,#333333 100%); /* W3C */
-    color: #68BBFF;
-    text-shadow: #000 0 -1px 0;
-}
-#login_button a,
-#signup_button a {
+    color: #FFF;
     border: 1px solid #333;
+    border-radius:3px;
     -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3);
 }
-#login_button a:hover, #login_button a.um-focus,
-#signup_button a:hover, #signup_button a.um-focus {
-    background: #707070; /* Old browsers */
-    background: -moz-linear-gradient(top, #707070 0%, #333333 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#707070), color-stop(100%,#333333)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #707070 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #707070 0%,#333333 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, #707070 0%,#333333 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#707070', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
-    background: linear-gradient(top, #707070 0%,#333333 100%); /* W3C */
-    color: #49ADFF;
+#login_button a:hover, #signup_button a:hover{
+    background: #555555; /* Old browsers */
+    background: -moz-linear-gradient(top,  #555555 0%, #444444 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#444444)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #555555 0%,#444444 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #555555 0%,#444444 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #555555 0%,#444444 100%); /* IE10+ */
+    background: linear-gradient(top,  #555555 0%,#444444 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#444444',GradientType=0 ); /* IE6-9 */
 }
-#login_button a.um-active,
-#signup_button a.um-active {
-    background: #333333; /* Old browsers */
-    background: -moz-linear-gradient(top, #333333 0%, #555555 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333333), color-stop(100%,#555555)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #333333 0%,#555555 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #333333 0%,#555555 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, #333333 0%,#555555 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#555555',GradientType=0 ); /* IE6-9 */
-    background: linear-gradient(top, #333333 0%,#555555 100%); /* W3C */
-    color: #49ADFF;
-    text-shadow: #000 0 -1px 0;
+#login_button a.um-active, #login_button a.um-pressed, #signup_button a.um-active {
+    background: #333333;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
 }
 #login_wrapper {
     -moz-border-radius: 3px;
@@ -58,8 +43,7 @@
     z-index:100;
     display:none;
 }
-#login_wrapper:before {
-    content: ' ';  
+#login_wrapper_pointer{
     position: absolute;  
     width: 0;  
     height: 0;  
@@ -67,11 +51,13 @@
     top: -12px;
     border: 10px solid;  
     border-color: transparent transparent #CCC #CCC;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-0.70710678, M12=-0.70710678, M21=0.70710678, M22=-0.70710678,sizingMethod='auto expand')";
-    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-0.70710678, M12=-0.70710678, M21=0.70710678, M22=-0.70710678,sizingMethod='auto expand');
-    -moz-transform:  matrix(-0.70710678, 0.70710678, -0.70710678, -0.70710678, 0, 0);
-    -webkit-transform:  matrix(-0.70710678, 0.70710678, -0.70710678, -0.70710678, 0, 0);
-    -o-transform:  matrix(-0.70710678, 0.70710678, -0.70710678, -0.70710678, 0, 0);
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-0.7071067811865475, M12=-0.7071067811865476, M21=0.7071067811865476, M22=-0.7071067811865475, sizingMethod='auto expand');
+    zoom: 1;
 }
 #login_wrapper #login_form input {
     margin: 3px 0;

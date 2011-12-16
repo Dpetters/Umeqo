@@ -1,3 +1,9 @@
+.form_table.grande input[type="text"], .form_table.grande input[type="password"]{
+    width:254px;
+}
+#create_account{
+    margin-top:20px;
+}
 #recaptcha_widget_div {
     position:relative;
     right:3px;

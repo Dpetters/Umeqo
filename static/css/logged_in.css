@@ -3,20 +3,24 @@
     background-color: rgba(255,255,255,0.3);
 }
 .must_be_subscribed_annually, .must_be_subscribed {
+    background: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    zoom: 1;
     opacity:.5;
 }
 .responses .event_rsvp {
     display: inline-block;
     padding: 7px;
     background-color: #F0F0F0;
-    margin: 5px 5px 0 0;
+    margin: 5px 3px 0 0;
     font-size: 12px;
     font-weight: bold;
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border: 1px solid #CCC;
-    width: 230px;
+    width: 240px;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -109,7 +113,7 @@
     display: inline-block;
     background: url(/static/images/icons/csg-4e56b27a2c8f1.png) no-repeat center;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF)"; /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF);   /* IE6 & 7 */
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF);   /* IE6 & 7 */
     zoom: 1;
     background: url(/static/images/icons/csg-4e56b27a2c8f1.png) no-repeat center rgba(255,255,255,0.2);
     -moz-border-radius: 3px;
@@ -196,28 +200,4 @@
 }
 .notifications_list .empty_notices {
     padding: 10px;
-}
-
-#welcome_block p {
-    margin: 0 0 10px;
-    font-size: 13px;
-}
-#welcome_list {
-    font-size: 13px;
-    color: #555;
-    margin: 0 20px 15px;
-}
-#welcome_table {
-    margin-top: 2px;
-    margin-bottom: 5px;
-}
-#welcome_table td {
-    vertical-align: top;
-}
-#welcome_table td img {
-    margin-bottom: 6px;
-    margin-left: 10px;
-    margin-right: 12px;
-    max-width: 100px;
-    border: 1px solid #EEE;
 }

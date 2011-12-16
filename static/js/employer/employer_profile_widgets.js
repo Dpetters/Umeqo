@@ -3,14 +3,12 @@ $(document).ready(function(){
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
-        minWidth:250,
         height:100
     });
     $("#id_industries").multiselect({
         noneSelectedText: 'select industries',
         classes: 'industries_multiselect',
         uncheckAllText: multiselectUncheckAllText,
-        minWidth:250,
         beforeclose: function() {
             $(".warning").remove();
         },

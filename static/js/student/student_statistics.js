@@ -128,6 +128,13 @@ $(document).ready(function() {
             enabled: false,
         },
         xAxis: {
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    font: 'normal 10px Verdana, sans-serif'
+                }
+            }
         },
         yAxis: {
         },

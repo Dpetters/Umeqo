@@ -11,7 +11,7 @@ from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
-from subscription.models import Subscription, EmployerSubscription
+from subscription.models import EmployerSubscription
 
 
 class Employer(core_mixins.DateTracking): 
@@ -40,25 +40,26 @@ class Employer(core_mixins.DateTracking):
         ordering=["name"]
            
     def get_absolute_url(self):
-        return '%s?id=%d' % (reverse('employers_list'), self.id)
+        return '%s?id=%d' % (reverse('employers'), self.id)
     
     def subscribed(self):
         try:
-            s = self.employersubscription
-            if s.expired():
-                return False
+            subscription = self.employersubscription
         except EmployerSubscription.DoesNotExist:
             return False
-        return True
+        else:
+            if not subscription.expired():
+                return True
+        return False
 
     def subscribed_annually(self):
         try:
-            es = self.employersubscription
-            free_trial = Subscription.objects.get(name="Free Trial")
-            if es.subscription != free_trial and not es.expired():
-                return True
+            subscription = self.employersubscription
         except EmployerSubscription.DoesNotExist:
-            pass
+            return False
+        else:
+            if subscription.annual_subscription() and not subscription.expired():
+                return True
         return False
         
 @receiver(signals.post_save, sender=Employer)

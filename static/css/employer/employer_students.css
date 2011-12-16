@@ -9,9 +9,6 @@
     float:right;
     margin-right:4px;
 }
-#side_block_area .select_wrapper select {
-    width:180px;
-}
 #side_block_area .slider_section {
     margin-bottom:5px;
     padding-left:3px;
@@ -51,8 +48,8 @@
     padding:5px 0px 5px 4px
 }
 #query_field {
-
     height:22px;
+    line-height:22px;
     vertical-align:middle;
     width:95%;
     padding-left:6px;
@@ -116,7 +113,7 @@
     background: -webkit-linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d0d0', endColorstr='#c0c0c0',GradientType=0 ); /* IE6-9 */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d0d0', endColorstr='#c0c0c0',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* W3C */
 }
 #current_resume_book_text{
@@ -134,6 +131,7 @@
 #num_of_results {
     margin-left:1px;
     font-size:26px;
+    position:relative;
 }
 #results_block_info_section {
     display:none;
@@ -165,6 +163,7 @@
 }
 #no_results_message {
     vertical-align:middle;
+    position:relative;
 }
 #results_block {
     margin-left:320px;
@@ -179,8 +178,8 @@
     padding-top:7px;
     border-bottom:1px solid #CCC;
 }
-#results_menu_checkbox_menu_button ul {
-    width:123px
+#results_menu_checkbox_gray_button ul {
+    width:125px
 }
 #results_menu_checkbox {
     margin-left:1px;
@@ -237,14 +236,13 @@
 .events_dropdown a {
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: inline-block;
+    display: block;
     text-align: right;
 }
 .events_dropdown a.disabled,
 .events_dropdown a.disabled:hover {
     color: #AAA;
 }
-
 #invite-dialog p {
     padding: 10px 5px;
 }
@@ -254,7 +252,6 @@
     display: block;
     margin: 0 auto;
 }
-
 #student_invite_no_events {
     float: left;
     margin: 10px;

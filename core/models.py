@@ -4,8 +4,8 @@ from django.db.models.signals import post_save, post_syncdb
 from django.dispatch import receiver
 
 from core.model_helpers import get_image_filename, get_thumbnail_filename
-from core import enums
-from core.managers import QuestionManager
+from core import enums as core_enums
+from core.managers import VisibleManager
 from core import mixins as core_mixins
 from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
 from notification import models as notification
@@ -13,7 +13,7 @@ from notification import models as notification
 
 class CampusOrgType(core_mixins.DateTracking):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    sort_order = models.IntegerField("sort order", default=0, help_text='CampusOrgTypes will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
  
     class Meta:
         verbose_name = "On-Campus Organization Type"
@@ -58,14 +58,14 @@ class Topic(core_mixins.DateTracking):
 class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
-    audience = models.IntegerField(choices = enums.TOPIC_AUDIENCE_CHOICES, default=enums.ALL)
+    audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
     sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
     click_count = models.PositiveIntegerField(default=0)
 
-    objects = QuestionManager()
+    objects = VisibleManager()
     
     class Meta:
         ordering = ['sort_order', 'question']
@@ -99,7 +99,7 @@ class SchoolYear(core_mixins.DateTracking):
 class Edit(core_mixins.DateCreatedTracking):
     user = models.ForeignKey(User)
 
-    
+
 class GraduationYear(core_mixins.DateTracking):
     year = models.PositiveSmallIntegerField("Graduation Year", unique=True)
 
@@ -118,29 +118,55 @@ class Language(core_mixins.DateTracking):
     def __unicode__(self):
         return self.name_and_level
 
-    
+
 class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
     image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
-    sort_order = models.IntegerField("sort order", default=0, help_text='Courses will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True)
-    
+
     def __unicode__(self):
         return "%s (%s)" % (self.name, self.num)
     
     class Meta:
         ordering = ['sort_order']
-        
+
 post_save.connect(create_thumbnail, sender=Course)
 post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 
 
+class Tutorial(core_mixins.DateTracking):
+    name = models.CharField(max_length=150)
+    
+    slug = models.SlugField(max_length=150)
+    topic = models.ForeignKey(Topic, null=True, blank=True)
+    audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    description = models.CharField(max_length = 300)
+    display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
+
+    objects = VisibleManager()
+    
+    class Meta:
+        verbose_name = "Tutorial"
+        verbose_name_plural = "Tutorials"
+        ordering = ['audience', 'topic', 'sort_order']
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('tutorial', (), {
+            'slug': self.slug
+        })
+        
+    def __unicode__(self):
+        return self.name
+
 class EmploymentType(core_mixins.DateTracking):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    sort_order = models.IntegerField("sort order", default=0, help_text='EmploymentTypes will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
    
     class Meta:
         verbose_name = "Employment Type"
@@ -167,7 +193,7 @@ class Industry(core_mixins.DateTracking):
 class EventType(core_mixins.DateTracking):
     name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
     
-    sort_order = models.IntegerField("sort order", default=0, help_text='EventTypes will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
 
     class Meta:
         verbose_name = "Event Type"
@@ -180,6 +206,6 @@ class EventType(core_mixins.DateTracking):
 @receiver(post_syncdb, sender=notification)
 def create_notice_types(app, created_models, verbosity, **kwargs):
     notification.create_notice_type('new_event', 'New Event', "an employer you're subscribed to has created a new event")
-    notification.create_notice_type('public_invite', 'Public Event Invite', 'an employer has invited you to an event')
+    notification.create_notice_type('public_invite', 'Event Invite', 'an employer has invited you to an event')
     notification.create_notice_type('private_invite', 'Private Event Invite', 'an employer has invited you to an event')
     notification.create_notice_type('cancelled_event', 'Cancelled Event', 'an employer has cancelled an event')

@@ -1,0 +1,35 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Sending Invitations
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, begin by searching by keyword or clicking "Browse Students".</p>
+<p>There is also a "Browse Students" link in the left side navigation menu.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/sending_invitations/1.png"></a>
+
+<p class="header" id="filter"><span class="num">Step 2:</span> Switch to other student lists quickly using the "Choose Student List" section.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/sending_invitations/2.png"></a>
+
+<p class="header"><span class="num">Step 3:</span> <a href="{% url tutorial slug="browsing-students" %}">Browse through students</a> to find the ones that you wish to invite.</p>
+<p>To invite a single student, click on the "Invite to Event" link on the right of the student result.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/sending_invitations/3.png"></a>
+
+<p>To invite multiple students at once, check the checkboxes and select "Send Invitations" from the "More Actions" dropdown above the results.
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/sending_invitations/4.png"></a>
+
+<p>If inviting multiple students, make sure to also select which upcoming event or deadline you wish to invite them to.
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/sending_invitations/5.png"></a>
+
+<p class="header"><span class="num">Step 4:</span> Come up with a personalized message for the student(s) and send the invitation.</p>
+<a target="_blank" href="{% url employer_students %}"><img src="{{STATIC_URL}}images/tutorials/sending_invitations/6.png"></a>
+{% endblock %}
+
+{% block things_to_note %}
+<li>Students are not obligated to respond or even RSVP, so always invite more students than your quota, by about a factor of 1.5-2.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>Nothing makes it more likely that a student will respond, attend, or participate than a personal invitation from a recruiter. We thus encourage for invitations to be sent to each student individually, rather than as a group.</li>
+{% endblock %}

@@ -1,10 +1,235 @@
 [
  {
+  "pk": 14, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:15", 
+   "name": "Changing Your Password", 
+   "display": true, 
+   "topic": 9, 
+   "audience": 2, 
+   "sort_order": "1.000", 
+   "date_created": "2011-12-01 14:43:06", 
+   "slug": "changing-your-password", 
+   "description": "Learn how to change your password."
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:19", 
+   "name": "Creating Accounts for Co-Workers", 
+   "display": true, 
+   "topic": 9, 
+   "audience": 4, 
+   "sort_order": "2.000", 
+   "date_created": "2011-10-06 20:46:33", 
+   "slug": "creating-accounts-for-co-workers", 
+   "description": "Learn how to create credentials for your co-workers and manage credentials that already exist."
+  }
+ }, 
+ {
+  "pk": 13, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:34", 
+   "name": "Deleting Your Account", 
+   "display": true, 
+   "topic": 9, 
+   "audience": 4, 
+   "sort_order": "3.000", 
+   "date_created": "2011-11-30 19:10:40", 
+   "slug": "deleting-your-account", 
+   "description": "Learn how to delete your account."
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:59", 
+   "name": "Creating Events & Deadlines", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 4, 
+   "sort_order": "1.000", 
+   "date_created": "2011-10-07 12:40:06", 
+   "slug": "creating-events-deadlines", 
+   "description": "Learn how to create events and deadlines."
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:53:11", 
+   "name": "Sending Invitations", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 4, 
+   "sort_order": "3.000", 
+   "date_created": "2011-10-07 12:39:46", 
+   "slug": "sending-invitations", 
+   "description": "Learn how to send event invitations."
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:51:17", 
+   "name": "Browsing Attendees & RSVPs", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 4, 
+   "sort_order": "5.000", 
+   "date_created": "2011-10-07 12:40:57", 
+   "slug": "browsing-attendees-rsvps", 
+   "description": "Learn how to browse event RSVPs and attendees."
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:51:19", 
+   "name": "Browsing Students", 
+   "display": true, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "1.000", 
+   "date_created": "2011-10-06 20:47:44", 
+   "slug": "browsing-students", 
+   "description": "Learn how to filter and search students to find the right candidates for your firm."
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:01", 
+   "name": "Creating & Delivering Resume Books", 
+   "display": true, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "2.000", 
+   "date_created": "2011-10-07 12:41:35", 
+   "slug": "creating-delivering-resume-books", 
+   "description": "Learn how to create custom resume books and deliver them to yourself and/or your co-workers."
+  }
+ }, 
+ {
+  "pk": 15, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:07", 
+   "name": "Re-Delivering Past Resume Books", 
+   "display": true, 
+   "topic": 13, 
+   "audience": 4, 
+   "sort_order": "3.000", 
+   "date_created": "2011-12-01 18:11:21", 
+   "slug": "re-delivering-past-resume-books", 
+   "description": "Learn how to re-delivering past resume books."
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:52:41", 
+   "name": "Getting an Annual Subscription", 
+   "display": true, 
+   "topic": 10, 
+   "audience": 4, 
+   "sort_order": "1.000", 
+   "date_created": "2011-10-07 12:43:04", 
+   "slug": "getting-annual-subscription", 
+   "description": "Learn the details of the annual subscription program."
+  }
+ }, 
+ {
+  "pk": 17, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-12 05:14:54", 
+   "name": "Creating Events & Deadlines", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 5, 
+   "sort_order": "1.000", 
+   "date_created": "2011-12-12 05:14:54", 
+   "slug": "creating-campus-org-events-deadlines", 
+   "description": "learn how to create events"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:53:44", 
+   "name": "Checking Students In", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "2.000", 
+   "date_created": "2011-10-07 12:40:32", 
+   "slug": "checking-students-in", 
+   "description": "Learn how to check in attendees."
+  }
+ }, 
+ {
+  "pk": 12, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:51:35", 
+   "name": "Deleting Past or Cancelled Events", 
+   "display": false, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "4.000", 
+   "date_created": "2011-11-30 19:08:45", 
+   "slug": "deleting-past-or-cancelled-events", 
+   "description": "Learn how to delete past or cancelled events"
+  }
+ }, 
+ {
+  "pk": 16, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:54:02", 
+   "name": "Exporting Attendee & RSVP Info", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "5.000", 
+   "date_created": "2011-12-01 19:54:03", 
+   "slug": "exporting-attendee-rsvp-info", 
+   "description": "Learn about how to export Attendee & RSVP info to excel (csv) or text."
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.tutorial", 
+  "fields": {
+   "last_updated": "2011-12-01 22:53:52", 
+   "name": "Cancelling Upcoming Events and Deadlines", 
+   "display": true, 
+   "topic": 11, 
+   "audience": 6, 
+   "sort_order": "6.000", 
+   "date_created": "2011-11-29 15:52:44", 
+   "slug": "cancelling-upcoming-events-and-deadlines", 
+   "description": "Learn how to cancel events and deadlines."
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:46:46", 
    "name": "Academic"
   }
@@ -14,7 +239,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:46:54", 
    "name": "Religious"
   }
@@ -24,7 +249,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 17:07:00", 
    "name": "Technology"
   }
@@ -34,7 +259,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 17:07:11", 
    "name": "Sports"
   }
@@ -44,7 +269,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:48:22", 
    "name": "Governance"
   }
@@ -54,7 +279,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:52:44", 
    "name": "Service and Advocacy"
   }
@@ -64,7 +289,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:51:39", 
    "name": "Hobbies"
   }
@@ -74,7 +299,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Living Group"
   }
@@ -84,7 +309,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 17:06:44", 
    "name": "Fraternity/Sorority"
   }
@@ -94,7 +319,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 17:06:51", 
    "name": "Business/Finance "
   }
@@ -104,7 +329,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:47:15", 
    "name": "Cultural and Gender"
   }
@@ -114,7 +339,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:36", 
    "name": "Competition"
   }
@@ -124,7 +349,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:36", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:51:55", 
    "name": "Music, Dance, and Theater"
   }
@@ -134,7 +359,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-07-17 15:18:01", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-17 15:18:01", 
    "name": "Visual Arts and Publications"
   }
@@ -144,7 +369,7 @@
   "model": "core.campusorgtype", 
   "fields": {
    "date_created": "2011-07-24 18:56:25", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-24 18:56:25", 
    "name": "Other"
   }
@@ -3475,20 +3700,9 @@
   "fields": {
    "date_created": "2011-09-03 21:13:35", 
    "sort_order": "3.000", 
-   "last_updated": "2011-09-03 21:14:21", 
-   "name": "Events", 
+   "last_updated": "2011-10-07 14:41:54", 
+   "name": "Events & Deadlines", 
    "slug": "events"
-  }
- }, 
- {
-  "pk": 10, 
-  "model": "core.topic", 
-  "fields": {
-   "date_created": "2011-06-28 01:55:42", 
-   "sort_order": "4.000", 
-   "last_updated": "2011-09-03 21:14:16", 
-   "name": "Employer Subscriptions", 
-   "slug": "employer_subscriptions"
   }
  }, 
  {
@@ -3497,17 +3711,28 @@
   "fields": {
    "date_created": "2011-09-14 22:41:05", 
    "sort_order": "4.000", 
-   "last_updated": "2011-09-14 22:41:05", 
-   "name": "Student Search & Filtering", 
-   "slug": "student-search-filtering"
+   "last_updated": "2011-10-07 13:43:59", 
+   "name": "Student Discovery", 
+   "slug": "student-discovery"
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "core.topic", 
+  "fields": {
+   "date_created": "2011-06-28 01:55:42", 
+   "sort_order": "4.000", 
+   "last_updated": "2011-10-07 13:44:39", 
+   "name": "Subscriptions", 
+   "slug": "subscriptions"
   }
  }, 
  {
   "pk": 1, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:41:09", 
-   "click_count": 0, 
+   "last_updated": "2011-12-12 18:48:32", 
+   "click_count": 1, 
    "question": "What is Umeqo?", 
    "slug": "what-is-umeqo", 
    "topic": 1, 
@@ -3519,11 +3744,43 @@
   }
  }, 
  {
+  "pk": 19, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-13 02:11:55", 
+   "click_count": 1, 
+   "question": "As a student, do I have to use my Athena password to register?", 
+   "slug": "student-do-i-have-use-my-athena-password-register", 
+   "topic": 8, 
+   "audience": 1, 
+   "sort_order": "1.000", 
+   "answer": "No, you can use whichever password you want. Our system is totally separate from anything that currently exists at MIT.", 
+   "date_created": "2011-10-06 18:23:47", 
+   "display": true
+  }
+ }, 
+ {
+  "pk": 20, 
+  "model": "core.question", 
+  "fields": {
+   "last_updated": "2011-10-06 19:47:10", 
+   "click_count": 1, 
+   "question": "The registration form says that I am not a student - why can I not register?", 
+   "slug": "registration-form-says-i-am-not-student-why-can-i-not-register", 
+   "topic": 8, 
+   "audience": 1, 
+   "sort_order": "1.000", 
+   "answer": "<p>There are a few possible reasons for why you cannot register.</p>\r\n<p>The first is that you are not a student. The student side of Umeqo is for students only. This means that employers, affiliates, group lists, professors and alumni are all not eligible to register as students. <p>The second possiblity is that you are a freshman or a student taking a temporary leave from MIT. For these reasons, you may be marked as an affiliate in the MIT database. If this is so, please <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a>.</p>\r\n<p>Overall, judge for yourself as to whether recruiters should be able to see you alongside other students, and <a href=\"#\" class=\"open_contact_us_dialog_link\">let us know</a> of your situation.</p>", 
+   "date_created": "2011-10-06 19:47:00", 
+   "display": true
+  }
+ }, 
+ {
   "pk": 5, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:32:19", 
-   "click_count": 1, 
+   "last_updated": "2011-12-04 23:46:53", 
+   "click_count": 3, 
    "question": "What is the difference between a public and private event?", 
    "slug": "what-difference-between-public-and-private-event", 
    "topic": 11, 
@@ -3554,14 +3811,14 @@
   "pk": 2, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 20:41:13", 
-   "click_count": 1, 
+   "last_updated": "2011-10-29 18:41:43", 
+   "click_count": 2, 
    "question": "Why was Umeqo created?", 
    "slug": "why-was-umeqo-created", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "1.000", 
-   "answer": "Umeqo was created by three current MIT undergraduates (<a href=\"https://www.facebook.com/dpetters\">Dmitrij Petters</a>, <a href=\"http://www.linkedin.com/pub/zachary-dearing/25/1b8/b76\">Zac Dearing</a>, and <a href=\"http://www.linkedin.com/pub/joshua-ma/26/595/a34\">Josh Ma</a>) to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.", 
+   "answer": "Umeqo was created by current MIT undergraduates to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.", 
    "date_created": "2011-09-03 21:17:13", 
    "display": true
   }
@@ -3634,8 +3891,8 @@
   "pk": 14, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 20:28:04", 
-   "click_count": 0, 
+   "last_updated": "2011-12-04 23:46:44", 
+   "click_count": 2, 
    "question": "I can't remember my login email.", 
    "slug": "i-cant-remember-my-log-email", 
    "topic": 9, 
@@ -3714,14 +3971,14 @@
   "pk": 8, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 10:07:48", 
+   "last_updated": "2011-10-06 12:47:18", 
    "click_count": 2, 
    "question": "It looks like things are broken. Am I doing something wrong?", 
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong", 
    "topic": 1, 
    "audience": 0, 
    "sort_order": "4.000", 
-   "answer": "No, you are not. But you might be using an older browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. Thank you for your patience!", 
+   "answer": "No, you are not. But you might be using an old browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. We appreciate your patience while we make the site work with older browsers!", 
    "date_created": "2011-09-14 22:44:07", 
    "display": true
   }
@@ -3730,9 +3987,9 @@
   "pk": 18, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 10:27:52", 
+   "last_updated": "2011-11-28 18:03:56", 
    "click_count": 0, 
-   "question": "Why am I hitting the a page with the Terms of Service when I log in?", 
+   "question": "Why am I hitting a page with the Terms of Service when I log in?", 
    "slug": "why-am-i-hitting-page-terms-service-when-i-log", 
    "topic": 1, 
    "audience": 2, 
@@ -3769,7 +4026,7 @@
    "topic": 9, 
    "audience": 1, 
    "sort_order": "5.000", 
-   "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login_link\" href=\"#\">logging in</a> with your login email address and password.", 
+   "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login\" href=\"#\">logging in</a> with your login email address and password.", 
    "date_created": "2011-10-04 09:29:33", 
    "display": true
   }
@@ -5195,21 +5452,81 @@
   }
  }, 
  {
+  "pk": 160, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-05 16:27:04", 
+   "name_and_level": "Nepali (Basic)", 
+   "last_updated": "2011-10-05 16:27:04", 
+   "name": "Nepali"
+  }
+ }, 
+ {
+  "pk": 161, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-05 16:27:04", 
+   "name_and_level": "Nepali (Proficient)", 
+   "last_updated": "2011-10-05 16:27:04", 
+   "name": "Nepali"
+  }
+ }, 
+ {
+  "pk": 162, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-05 16:27:04", 
+   "name_and_level": "Nepali (Fluent)", 
+   "last_updated": "2011-10-05 16:27:04", 
+   "name": "Nepali"
+  }
+ }, 
+ {
+  "pk": 163, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-06 17:38:11", 
+   "name_and_level": "Ukrainian (Basic)", 
+   "last_updated": "2011-10-06 17:38:11", 
+   "name": "Ukrainian"
+  }
+ }, 
+ {
+  "pk": 164, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-06 17:38:11", 
+   "name_and_level": "Ukrainian (Proficient)", 
+   "last_updated": "2011-10-06 17:38:11", 
+   "name": "Ukrainian"
+  }
+ }, 
+ {
+  "pk": 165, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-10-06 17:38:11", 
+   "name_and_level": "Ukrainian (Fluent)", 
+   "last_updated": "2011-10-06 17:38:11", 
+   "name": "Ukrainian"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "core.course", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-08-30 16:35:17", 
-   "description": "", 
-   "admin": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://cee.mit.edu/", 
+   "last_updated": "2011-12-15 15:52:03", 
+   "description": "The MIT Department of Civil and Environmental Engineering (CEE) is dedicated to balancing the built environment with the natural world. In our research, we seek to understand natural systems, to foster the intelligent use of resources and to design sustainable infrastructure systems. We provide leadership in the field by focusing on technological innovations, seeking advances in basic knowledge and taking a systems perspective. We concentrate our efforts on quantitative and analytical approaches, novel experiment-based modeling, and the development and/or use of appropriate tools and technology. CEE is an innovative and vibrant place of learning, where undergraduates, graduate students and postdoctoral researchers pursue their educational and research interests in order to lead the next generation in transforming the disciplines of civil and environmental engineering. Our research and graduate education programs coalesce around three fields of inquiry: environmental science and engineering; mechanics, materials and structures; and transportation. We offer ABET-accredited undergraduate degree programs in civil engineering and environmental engineering science.", 
+   "admin": "Professor Andrew Whittle", 
+   "image": "core/course/civil_and_environmental_engineering_2011-12-15-15-52-03.png", 
+   "email": "ajwhittl@mit.edu", 
+   "thumbnail": "core/course/civil_and_environmental_engineering_2011-12-15-15-52-03_thumbnail.png", 
    "num": "1", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "CIVIL AND ENVIRONMENTAL ENG", 
-   "sort_order": 1, 
-   "display": false, 
+   "sort_order": "1.000", 
+   "display": true, 
    "name": "Civil and Environmental Engineering"
   }
  }, 
@@ -5227,9 +5544,47 @@
    "num": "2", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "MECHANICAL ENGINEERING", 
-   "sort_order": 2, 
+   "sort_order": "2.000", 
    "display": false, 
    "name": "Mechanical Engineering"
+  }
+ }, 
+ {
+  "pk": 51, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-12-06 19:28:11", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "2-A", 
+   "date_created": "2011-12-06 19:28:11", 
+   "ou": "", 
+   "sort_order": "2.250", 
+   "display": false, 
+   "name": "Mechanical Engineering (Flexible)"
+  }
+ }, 
+ {
+  "pk": 50, 
+  "model": "core.course", 
+  "fields": {
+   "website": "", 
+   "last_updated": "2011-12-06 19:27:23", 
+   "description": "", 
+   "admin": "", 
+   "image": "", 
+   "email": "", 
+   "thumbnail": "", 
+   "num": "2-OE", 
+   "date_created": "2011-12-06 18:26:10", 
+   "ou": "", 
+   "sort_order": "2.750", 
+   "display": false, 
+   "name": "Mechanical and Ocean Engineering"
   }
  }, 
  {
@@ -5246,7 +5601,7 @@
    "num": "3", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "MATERIALS SCIENCE AND ENG", 
-   "sort_order": 3, 
+   "sort_order": "3.000", 
    "display": false, 
    "name": "Materials Science and Engineering"
   }
@@ -5265,7 +5620,7 @@
    "num": "4", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "ARCHITECTURE", 
-   "sort_order": 4, 
+   "sort_order": "4.000", 
    "display": false, 
    "name": "Architecture"
   }
@@ -5284,7 +5639,7 @@
    "num": "5", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 5, 
+   "sort_order": "5.000", 
    "display": false, 
    "name": "Chemistry"
   }
@@ -5293,18 +5648,18 @@
   "pk": 16, 
   "model": "core.course", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "description": "", 
-   "admin": null, 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://www.eecs.mit.edu/", 
+   "last_updated": "2011-12-15 15:55:50", 
+   "description": "The primary mission of the department is the education of its students. Its three undergraduate programs traditionally have attracted over 30% of all MIT undergraduates, and its doctoral programs are highly ranked and selective. A leader in cooperative education, the department has operated the highly successful VI-A Internship Program since 1917. In 1993 it established a five-year Master of Engineering program, under which undergraduate students stay for a fifth year and receive simultaneously a Bachelor's degree and a Master of Engineering degree. The five-year curriculum is structured and seamless across the traditional boundary between undergraduate and graduate student, and seamless across the traditional disciplines of Electrical Engineering and Computer Science.", 
+   "admin": "Anne Hunter", 
+   "image": "core/course/electrical_science_and_engineering_2011-12-15-15-55-50.gif", 
+   "email": "anneh@mit.edu", 
+   "thumbnail": "core/course/electrical_science_and_engineering_2011-12-15-15-55-50_thumbnail.gif", 
    "num": "6-1", 
    "date_created": "2011-05-03 12:27:35", 
-   "ou": null, 
-   "sort_order": 6, 
-   "display": false, 
+   "ou": "", 
+   "sort_order": "6.000", 
+   "display": true, 
    "name": "Electrical Science and Engineering"
   }
  }, 
@@ -5312,18 +5667,18 @@
   "pk": 15, 
   "model": "core.course", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-05-03 12:27:35", 
-   "description": "", 
-   "admin": null, 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://www.eecs.mit.edu/", 
+   "last_updated": "2011-12-15 15:56:33", 
+   "description": "The primary mission of the department is the education of its students. Its three undergraduate programs traditionally have attracted over 30% of all MIT undergraduates, and its doctoral programs are highly ranked and selective. A leader in cooperative education, the department has operated the highly successful VI-A Internship Program since 1917. In 1993 it established a five-year Master of Engineering program, under which undergraduate students stay for a fifth year and receive simultaneously a Bachelor's degree and a Master of Engineering degree. The five-year curriculum is structured and seamless across the traditional boundary between undergraduate and graduate student, and seamless across the traditional disciplines of Electrical Engineering and Computer Science.", 
+   "admin": "Anne Hunter", 
+   "image": "core/course/electrical_engineering_&_computer_science_2011-12-15-15-56-33.gif", 
+   "email": "anneh@mit.edu", 
+   "thumbnail": "core/course/electrical_engineering_&_computer_science_2011-12-15-15-56-33_thumbnail.gif", 
    "num": "6-2", 
    "date_created": "2011-05-03 12:27:35", 
-   "ou": null, 
-   "sort_order": 7, 
-   "display": false, 
+   "ou": "", 
+   "sort_order": "7.000", 
+   "display": true, 
    "name": "Electrical Engineering & Computer Science"
   }
  }, 
@@ -5331,18 +5686,18 @@
   "pk": 12, 
   "model": "core.course", 
   "fields": {
-   "website": "", 
-   "last_updated": "2011-08-20 12:43:12", 
-   "description": "", 
-   "admin": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://www.eecs.mit.edu/", 
+   "last_updated": "2011-12-15 15:56:46", 
+   "description": "The primary mission of the department is the education of its students. Its three undergraduate programs traditionally have attracted over 30% of all MIT undergraduates, and its doctoral programs are highly ranked and selective. A leader in cooperative education, the department has operated the highly successful VI-A Internship Program since 1917. In 1993 it established a five-year Master of Engineering program, under which undergraduate students stay for a fifth year and receive simultaneously a Bachelor's degree and a Master of Engineering degree. The five-year curriculum is structured and seamless across the traditional boundary between undergraduate and graduate student, and seamless across the traditional disciplines of Electrical Engineering and Computer Science.", 
+   "admin": "Anne Hunter", 
+   "image": "core/course/computer_science_and_engineering_2011-12-15-15-56-16.gif", 
+   "email": "anneh@mit.edu", 
+   "thumbnail": "core/course/computer_science_and_engineering_2011-12-15-15-56-16_thumbnail.gif", 
    "num": "6-3", 
    "date_created": "2011-05-03 12:27:35", 
-   "ou": null, 
-   "sort_order": 8, 
-   "display": false, 
+   "ou": "", 
+   "sort_order": "8.000", 
+   "display": true, 
    "name": "Computer Science and Engineering"
   }
  }, 
@@ -5360,7 +5715,7 @@
    "num": "7", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "BIOLOGY", 
-   "sort_order": 9, 
+   "sort_order": "9.000", 
    "display": false, 
    "name": "Biology"
   }
@@ -5379,7 +5734,7 @@
    "num": "8", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "PHYSICS", 
-   "sort_order": 10, 
+   "sort_order": "10.000", 
    "display": false, 
    "name": "Physics"
   }
@@ -5398,7 +5753,7 @@
    "num": "9", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "BRAIN AND COGNITIVE SCIENCES", 
-   "sort_order": 11, 
+   "sort_order": "11.000", 
    "display": false, 
    "name": "Brain and Cognitive Sciences"
   }
@@ -5417,7 +5772,7 @@
    "num": "10", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "CHEMICAL ENGINEERING", 
-   "sort_order": 12, 
+   "sort_order": "12.000", 
    "display": false, 
    "name": "Chemical Engineering"
   }
@@ -5436,7 +5791,7 @@
    "num": "11", 
    "date_created": "2011-05-03 12:27:36", 
    "ou": "URBAN STUDIES AND PLANNING", 
-   "sort_order": 13, 
+   "sort_order": "13.000", 
    "display": false, 
    "name": "Urban Studies and Planning"
   }
@@ -5455,7 +5810,7 @@
    "num": "12", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 14, 
+   "sort_order": "14.000", 
    "display": false, 
    "name": "Earth, Atmosphere & Planetary Sciences"
   }
@@ -5474,7 +5829,7 @@
    "num": "13", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "", 
-   "sort_order": 15, 
+   "sort_order": "15.000", 
    "display": false, 
    "name": "Ocean Engineering"
   }
@@ -5493,7 +5848,7 @@
    "num": "14", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "14", 
-   "sort_order": 16, 
+   "sort_order": "16.000", 
    "display": false, 
    "name": "Economics"
   }
@@ -5512,7 +5867,7 @@
    "num": "15", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "MANAGEMENT", 
-   "sort_order": 17, 
+   "sort_order": "17.000", 
    "display": false, 
    "name": "Management"
   }
@@ -5531,7 +5886,7 @@
    "num": "16", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "AERONAUTICS AND ASTRONAUTICS", 
-   "sort_order": 18, 
+   "sort_order": "18.000", 
    "display": false, 
    "name": "Aeronautics and Astronautics"
   }
@@ -5550,7 +5905,7 @@
    "num": "17", 
    "date_created": "2011-05-03 12:27:36", 
    "ou": "17", 
-   "sort_order": 19, 
+   "sort_order": "19.000", 
    "display": false, 
    "name": "Political Science"
   }
@@ -5569,7 +5924,7 @@
    "num": "18", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "MATHEMATICS", 
-   "sort_order": 20, 
+   "sort_order": "20.000", 
    "display": false, 
    "name": "Mathematics"
   }
@@ -5588,7 +5943,7 @@
    "num": "20", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "20", 
-   "sort_order": 21, 
+   "sort_order": "21.000", 
    "display": false, 
    "name": "Biological Engineering"
   }
@@ -5607,7 +5962,7 @@
    "num": "21A", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 22, 
+   "sort_order": "22.000", 
    "display": false, 
    "name": "Anthropology"
   }
@@ -5626,7 +5981,7 @@
    "num": "21F", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 23, 
+   "sort_order": "23.000", 
    "display": false, 
    "name": "Foreign Languages and Literatures"
   }
@@ -5645,7 +6000,7 @@
    "num": "21H", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 24, 
+   "sort_order": "24.000", 
    "display": false, 
    "name": "History"
   }
@@ -5664,7 +6019,7 @@
    "num": "21L", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 25, 
+   "sort_order": "25.000", 
    "display": false, 
    "name": "Literature"
   }
@@ -5683,7 +6038,7 @@
    "num": "21M", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 26, 
+   "sort_order": "26.000", 
    "display": false, 
    "name": "Music and Theater Arts"
   }
@@ -5702,7 +6057,7 @@
    "num": "21W", 
    "date_created": "2011-05-03 12:27:36", 
    "ou": "", 
-   "sort_order": 27, 
+   "sort_order": "27.000", 
    "display": true, 
    "name": "Writing and Humanistic Studies"
   }
@@ -5721,7 +6076,7 @@
    "num": "22", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "22", 
-   "sort_order": 28, 
+   "sort_order": "28.000", 
    "display": false, 
    "name": "Nuclear Engineering"
   }
@@ -5740,7 +6095,7 @@
    "num": "24", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "24", 
-   "sort_order": 29, 
+   "sort_order": "29.000", 
    "display": false, 
    "name": "Linguistics and Philosophy"
   }
@@ -5759,7 +6114,7 @@
    "num": "CMS", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 30, 
+   "sort_order": "30.000", 
    "display": false, 
    "name": "Comparable Media Studies"
   }
@@ -5778,7 +6133,7 @@
    "num": "CSB", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 31, 
+   "sort_order": "31.000", 
    "display": false, 
    "name": "Computational and Systems Biology"
   }
@@ -5797,7 +6152,7 @@
    "num": "ESD", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": null, 
-   "sort_order": 32, 
+   "sort_order": "32.000", 
    "display": false, 
    "name": "Engineering Systems"
   }
@@ -5816,7 +6171,7 @@
    "num": "HST", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "HEALTH SCIENCES & TECHNOLOGY", 
-   "sort_order": 33, 
+   "sort_order": "33.000", 
    "display": false, 
    "name": "Health Sciences and Technology"
   }
@@ -5835,7 +6190,7 @@
    "num": "STS", 
    "date_created": "2011-05-03 12:27:36", 
    "ou": null, 
-   "sort_order": 34, 
+   "sort_order": "34.000", 
    "display": false, 
    "name": "Science, Technology, and Society"
   }
@@ -5854,7 +6209,7 @@
    "num": "MAS", 
    "date_created": "2011-05-03 12:27:35", 
    "ou": "MEDIA ARTS AND SCIENCES", 
-   "sort_order": 35, 
+   "sort_order": "35.000", 
    "display": false, 
    "name": "Media Arts and Sciences"
   }
@@ -5873,7 +6228,7 @@
    "num": "CDO", 
    "date_created": "2011-07-17 14:44:37", 
    "ou": null, 
-   "sort_order": 36, 
+   "sort_order": "36.000", 
    "display": false, 
    "name": "Computation for Design and Optimization"
   }
@@ -5892,7 +6247,7 @@
    "num": "CRE", 
    "date_created": "2011-07-17 14:45:07", 
    "ou": null, 
-   "sort_order": 37, 
+   "sort_order": "37.000", 
    "display": false, 
    "name": "Center for Real Estate Program"
   }
@@ -5911,7 +6266,7 @@
    "num": "ESD", 
    "date_created": "2011-07-17 14:45:34", 
    "ou": null, 
-   "sort_order": 39, 
+   "sort_order": "39.000", 
    "display": false, 
    "name": "Engineering Systems Division"
   }
@@ -5930,7 +6285,7 @@
    "num": "LGO", 
    "date_created": "2011-07-17 14:46:27", 
    "ou": null, 
-   "sort_order": 40, 
+   "sort_order": "40.000", 
    "display": false, 
    "name": "Leaders for Global Operations"
   }
@@ -5949,7 +6304,7 @@
    "num": "MLOG", 
    "date_created": "2011-07-17 14:46:49", 
    "ou": null, 
-   "sort_order": 41, 
+   "sort_order": "41.000", 
    "display": false, 
    "name": "Masters of Engineering in Logistics"
   }
@@ -5968,7 +6323,7 @@
    "num": "Naval Eng", 
    "date_created": "2011-07-17 14:47:26", 
    "ou": null, 
-   "sort_order": 42, 
+   "sort_order": "42.000", 
    "display": false, 
    "name": "Naval Engineering"
   }
@@ -5987,7 +6342,7 @@
    "num": "Op Res Cen", 
    "date_created": "2011-07-17 14:47:58", 
    "ou": null, 
-   "sort_order": 43, 
+   "sort_order": "43.000", 
    "display": false, 
    "name": "Operations Research Center"
   }
@@ -6006,7 +6361,7 @@
    "num": "SDM", 
    "date_created": "2011-07-17 14:48:23", 
    "ou": null, 
-   "sort_order": 44, 
+   "sort_order": "44.000", 
    "display": false, 
    "name": "System Design and Management Program"
   }
@@ -6025,7 +6380,7 @@
    "num": "Sloan Fel", 
    "date_created": "2011-07-17 14:48:47", 
    "ou": null, 
-   "sort_order": 45, 
+   "sort_order": "45.000", 
    "display": false, 
    "name": "Sloan Fellows"
   }
@@ -6044,7 +6399,7 @@
    "num": "STS", 
    "date_created": "2011-07-17 14:50:55", 
    "ou": null, 
-   "sort_order": 46, 
+   "sort_order": "46.000", 
    "display": false, 
    "name": "Program in Science, Technology, and Societ"
   }
@@ -6063,7 +6418,7 @@
    "num": "TPP", 
    "date_created": "2011-07-17 14:51:51", 
    "ou": null, 
-   "sort_order": 47, 
+   "sort_order": "47.000", 
    "display": false, 
    "name": "The Technology and Policy Program"
   }
@@ -6082,7 +6437,7 @@
    "num": "WHOI ", 
    "date_created": "2011-07-17 14:52:18", 
    "ou": null, 
-   "sort_order": 48, 
+   "sort_order": "48.000", 
    "display": false, 
    "name": "WHOI Oceanographic Institute"
   }
@@ -6101,7 +6456,7 @@
    "num": "CSB", 
    "date_created": "2011-07-17 14:52:48", 
    "ou": null, 
-   "sort_order": 49, 
+   "sort_order": "49.000", 
    "display": false, 
    "name": "Computation and Systems Biology"
   }
@@ -6120,7 +6475,7 @@
    "num": "SCM", 
    "date_created": "2011-07-17 14:53:41", 
    "ou": null, 
-   "sort_order": 50, 
+   "sort_order": "50.000", 
    "display": false, 
    "name": "Supply Chain Management "
   }
@@ -6130,7 +6485,7 @@
   "model": "core.employmenttype", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-07 15:34:18", 
    "name": "Full-Time"
   }
@@ -6140,7 +6495,7 @@
   "model": "core.employmenttype", 
   "fields": {
    "date_created": "2011-05-07 15:29:00", 
-   "sort_order": 1, 
+   "sort_order": "1.000", 
    "last_updated": "2011-05-07 15:34:04", 
    "name": "Part-Time"
   }
@@ -6150,7 +6505,7 @@
   "model": "core.employmenttype", 
   "fields": {
    "date_created": "2011-05-03 12:27:34", 
-   "sort_order": 2, 
+   "sort_order": "2.000", 
    "last_updated": "2011-05-07 15:33:43", 
    "name": "Internship"
   }
@@ -6160,7 +6515,7 @@
   "model": "core.employmenttype", 
   "fields": {
    "date_created": "2011-05-07 15:29:11", 
-   "sort_order": 3, 
+   "sort_order": "3.000", 
    "last_updated": "2011-05-07 15:33:29", 
    "name": "Externship"
   }
@@ -6337,6 +6692,15 @@
   }
  }, 
  {
+  "pk": 45, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-11-28 21:45:33", 
+   "last_updated": "2011-11-28 21:45:33", 
+   "name": "Internet"
+  }
+ }, 
+ {
   "pk": 27, 
   "model": "core.industry", 
   "fields": {
@@ -6436,6 +6800,15 @@
   }
  }, 
  {
+  "pk": 44, 
+  "model": "core.industry", 
+  "fields": {
+   "date_created": "2011-11-28 21:45:27", 
+   "last_updated": "2011-11-28 21:45:27", 
+   "name": "Telecommunication"
+  }
+ }, 
+ {
   "pk": 40, 
   "model": "core.industry", 
   "fields": {
@@ -6467,7 +6840,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Info Session"
   }
@@ -6477,7 +6850,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-31 11:30:28", 
    "name": "Hard Deadline"
   }
@@ -6487,7 +6860,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Panel"
   }
@@ -6497,7 +6870,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Presentation"
   }
@@ -6507,7 +6880,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Workshop"
   }
@@ -6517,7 +6890,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Conference"
   }
@@ -6527,7 +6900,7 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-05-03 12:27:43", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-05-03 12:27:43", 
    "name": "Networking"
   }
@@ -6537,9 +6910,19 @@
   "model": "core.eventtype", 
   "fields": {
    "date_created": "2011-07-31 11:30:37", 
-   "sort_order": 0, 
+   "sort_order": "0.000", 
    "last_updated": "2011-07-31 11:30:37", 
    "name": "Rolling Deadline"
+  }
+ }, 
+ {
+  "pk": 11, 
+  "model": "core.eventtype", 
+  "fields": {
+   "date_created": "2011-12-11 14:41:19", 
+   "sort_order": "0.000", 
+   "last_updated": "2011-12-11 14:41:27", 
+   "name": "Expo"
   }
  }
 ]

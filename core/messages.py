@@ -1,11 +1,17 @@
 from django.conf import settings as s
 
+must_be_subscribed_annually = "You must have an active annual subscription to access this feature."
+must_be_subscribed = "You must have an active subscription to access this feature."
+
 # Features
 search_filter_find = "Umeqo presents you with not only a student's resume, but also info applicable to your firm, such as event attendance. Potential candidates can be added to custom resume books that can be emailed and/or downloaded."
 
 # Employer Students
 no_students_selected = "No students selected."
 wait_until_resume_book_is_ready = "Please wait until the resume book is ready."
+
+event_cancelled = "Your event has been successfully cancelled."
+deadline_cancelled = "Your deadline has been successfully cancelled."
 
 # Account Settinggs
 password_changed = 'Password changed successfully.'
@@ -88,7 +94,7 @@ empty_resume = "We could not extract any keywords out of your resume."
 already_invited = "Student has already been invited."
 
 # Login Form
-incorrect_username_password_combo = "The username and password combo that you \
+incorrect_username_password_combo = "The username/password combo that you \
 entered is invalid. Please note that both fields are case-sensitive."
 staff_member_login_not_allowed = "Staff users cannot login. They can only \
 access the admin pages."

@@ -1,0 +1,8 @@
+.rolling_deadline_end_dialog .dialog_content_wrapper{
+    padding: 20px 5px;
+    text-align:center;
+}
+.rolling_deadline_end_dialog .form_table{
+    margin-top:15px;
+    width:100%;
+}

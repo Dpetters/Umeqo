@@ -20,6 +20,13 @@ INVITE_CODE_COUNT = 4
 # Max number of students allowed in any one resume book.
 RESUME_BOOK_CAPACITY = 50
 
+# Number of top FAQ questions to display
+TOP_QUESTIONS_NUM = 10
+
+# Subscription UIDs
+ANNUAL_SUBSCRIPTION_UID = 0
+EVENT_SUBSCRIPTION_UID = 1
+
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
 SP_MAX_CAMPUS_INVOLVEMENT = 12;
@@ -47,7 +54,7 @@ PROD_DATA_MODELS = {
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
-    'core':['campusorgtype', 'location', 'topic', \
+    'core':['tutorial', 'campusorgtype', 'location', 'topic', \
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
@@ -63,14 +70,15 @@ LOCAL_DATA_MODELS = {
                 'resumebook', 'studentfilteringparameters', \
                 'employerstudentcomment', 'recruiterpreferences', \
                 'recruiterstatistics'],
-    'events':['event', 'rsvp', 'invitee', 'attendee']
+    'events':['event', 'rsvp', 'invitee', 'attendee'],
+    'subscription':['employersubscription', 'transaction']
 }
 
 MAX_DIALOG_IMAGE_WIDTH = 200
 MAX_DIALOG_IMAGE_HEIGHT = 140
 
-PROD_PASSWORD = 'Incub4t1ng'
-STAGING_PASSWORD = 'Ang3lInvest1ng'
+PROD_PASSWORD = 'AHol3InOn3'
+STAGING_PASSWORD = 'Bulle1tN3at'
 
 #Akismet Settings
 AKISMET_API_KEY = "40daad1e6eb7"
@@ -125,6 +133,7 @@ CKEDITOR_CONFIGS = {
             [      'Undo', 'Redo',
               '-', 'Bold', 'Italic', 'Underline',
               '-', 'Link', 'Unlink',
+              '-', 'Maximize',
             ],
             [      'HorizontalRule',
               '-', 'BulletedList', 'NumberedList',
@@ -137,6 +146,7 @@ CKEDITOR_CONFIGS = {
         'height': 210,
         'skin':'kama',
         'toolbarCanCollapse': False,
+        'forcepasteasplaintext': True,
         'removePlugins':'elementspath'
     },
 }
@@ -198,7 +208,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.next',
     'core.context_processors.get_current_path',
     'core.context_processors.registration',
-    'core.context_processors.load_wait_time'
+    'core.context_processors.load_wait_time',
+    'core.context_processors.employer_subscription',
+    'core.context_processors.current_site'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -208,10 +220,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'core.middleware.SetRemoteAddrMiddleware',
-    'core.middleware.LogMiddleware',
+    'middleware.generic.SetRemoteAddrMiddleware',
+    'middleware.log.LogMiddleware',
     'sentry.client.middleware.Sentry404CatchMiddleware',
-    'middleware.http.HttpResponseNotAllowedMiddleware'
+    'middleware.http.HttpResponseNotAllowedMiddleware',
+    'middleware.http.Http403Middleware',
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -291,6 +304,7 @@ INSTALLED_APPS = (
     'sentry.plugins.sentry_servers',
     'sentry.plugins.sentry_sites',
     'sentry.plugins.sentry_urls',
+    'concurrent_server'
 )
 
 try:

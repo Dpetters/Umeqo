@@ -65,7 +65,7 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
     
     last_updated = models.DateTimeField(editable=False, default=datetime.datetime.now())
     
-    subscriptions = models.ManyToManyField("employer.Employer", blank=True, null=True, related_name="subscriptions")
+    subscriptions = models.ManyToManyField("employer.Employer", blank=True, null=True, related_name="subscribers")
     
     objects = StudentManager()
     

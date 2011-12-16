@@ -9,4 +9,5 @@ $(document).ready( function () {
             e.preventDefault();
         }
     });
+    $("#query_field").placeholder();
 });

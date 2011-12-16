@@ -3,28 +3,30 @@
 {% block metadata %}
 {{block.super}}
 {% load text_snippet %}
-{% load student_star %}
 {% load student_resume_book %}
+{% load student_star %}
 {% load compress %}
 {% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/create_campus_org_dialog.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/create_language_dialog.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/course_profile_preview.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/create_language_dialog.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/create_campus_org_dialog.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/course_profile_preview.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile_preview.css"/>
 {% endcompress %}
-<script type="text/javascript">
-    var COURSE_INFO_URL = "{% url course_info %}";
+<script>
     var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
-    var SHOW_DETAILS_LINK = "{% include 'student_profile_show_details_link.html' %}";    
-    var HIDE_DETAILS_LINK = "{% include 'student_hide_details_link.html' %}";
     var CHECK_CAMPUS_ORG_UNIQUENESS_URL = "{% url check_campus_org_uniqueness %}";
     var CHECK_LANGUAGE_UNIQUENESS_URL = "{% url check_language_uniqueness %}";
+    var COURSE_INFO_URL = "{% url course_info %}";
     var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_org %}";
     var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
+    var EMPLOYER_NEW_URL = "{% url employer_new %}";
+    var HIDE_DETAILS_LINK = "{% include 'student_hide_details_link.html' %}";
+    var SHOW_DETAILS_LINK = "{% include 'student_profile_show_details_link.html' %}";    
+
 
     var FILL_OUT_REQUIRED_FIELDS_MESSAGE = "{% include 'student_profile_preview_fill_out_required_fields_message.html' %}";
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
@@ -39,8 +41,9 @@
     var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
     var FIRST_SECOND_MAJORS_DIFF = "{% text_snippet 'first_second_majors_diff' %}";
     var PREVIEW_AJAX_LOADER = "{% include 'student_profile_preview_ajax_loader.html' %}"; 
+    
     var PREVIEW_CHECKBOX_TOOLTIP = "{% text_snippet 'student_profile_preview_checkbox_tooltip' %}";
-    var resume_book_current_toggle_tooltip = "{% text_snippet 'resume_book_current_toggle_tooltip' %}";
+    var RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP = "{% text_snippet 'resume_book_current_toggle_tooltip' %}";
     var star_toggle_tooltip = "{% text_snippet 'star_toggle_tooltip' %}";
     var event_attendance_tooltip = "{% text_snippet 'event_attendance_tooltip' %}";
     var view_resume_tooltip = "{% text_snippet 'view_resume_tooltip' %}";
@@ -48,11 +51,12 @@
     
     var ONE_LANGUAGE_DIFFICULTY = "{% text_snippet 'one_language_difficulty'%}";
     
-    var LANGUAGES_MAX = "{{languages_max}}";
     var CAMPUS_INVOLVEMENT_MAX = "{{campus_involvement_max}}";
-    var INDUSTRIES_OF_INTEREST_MAX = "{{industries_of_interest_max}}";
-    var PREVIOUS_EMPLOYERS_MAX = "{{previous_employers_max}}";
     var COUNTRIES_OF_CITIZENSHIP_MAX = "{{countries_of_citizenship_max}}";
+    var INDUSTRIES_OF_INTEREST_MAX = "{{industries_of_interest_max}}";
+    var LANGUAGES_MAX = "{{languages_max}}";
+    var PREVIOUS_EMPLOYERS_MAX = "{{previous_employers_max}}";
+    
     var MAX_LANGUAGES_EXCEEDED= "{% text_snippet 'max_languages_exceeded' %}";
     var MAX_CAMPUS_INVOLVEMENT_EXCEEDED = "{% text_snippet 'max_campus_involvement_exceeded' %}";
     var MAX_INDUSTRIES_OF_INTEREST_EXCEEDED = "{% text_snippet 'max_industries_of_interest_exceeded' %}";
@@ -67,7 +71,6 @@
     var STARRED_IMG = "{% student_star 'True' %}";
     var UNSTARRED_IMG = "{% student_star '' %}";
     
-    var EMPLOYER_NEW_URL = "{% url employer_new %}";
     var CHECK_EMPLOYER_UNIQUENESS_URL = "{% url check_employer_uniqueness %}";
     var EMPLOYER_ALREADY_EXISTS = "{% text_snippet 'employer_already_exists' %}";
     var MAX_INDUSTRIES = "{{max_industries}}";
@@ -81,15 +84,16 @@
     
 </script>
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_new.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/create_campus_org.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/core/create_language.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
+<script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/campus_org/create_campus_org.js"></script>
+<script src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/core/create_language.js"></script>
+<script src="{{ STATIC_URL }}js/employer/employer_new.js"></script>
+<script src="{{ STATIC_URL }}js/student/student_profile.js"></script>
+<script src="{{ STATIC_URL }}js/student/student_profile_widgets.js"></script>
+<script src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -100,7 +104,7 @@
 {% block profile_pages %}
     <li id="pg1">
         <a href='#' class="ui-accordion-link"></a>
-        <div class="main_block clearfix">
+        <div class="main_block">
             <div class="main_block_header">
                 <div class="main_block_header_content">
                     <span>
@@ -189,11 +193,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
     </li>
     <li id="pg2">
         <a href='#' class="ui-accordion-link"></a>
-        <div class="main_block clearfix">
+        <div class="main_block">
             <div class="main_block_header">
                 <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
                 <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
@@ -285,11 +290,12 @@
                     <li>Yes, some employers still care about standardized test scores.</li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
     </li>
     <li id="pg3">
         <a href='#' class="ui-accordion-link"></a>
-        <div class="main_block clearfix">
+        <div class="main_block">
             <div class="main_block_header">
                 <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
                 <span class="main_block_header_title">{% if edit %}Edit Your Profile{% else %}Create Your Profile{% endif %}</span>
@@ -367,16 +373,18 @@
                     </li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
         </div>
     </li>
 {% endblock %}
 
 {% block preview %}
-<div id="student_profile_preview_section_block" class="clearfix">
+<div id="student_profile_preview_section_block">
     <div id="student_profile_preview">
     </div>
     <div id="student_profile_preview_info">
         <h2>Profile Preview</h2>
     </div>
+    <div class="clearfix"></div>
 </div>
 {% endblock %}

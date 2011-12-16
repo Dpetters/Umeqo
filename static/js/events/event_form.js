@@ -7,10 +7,223 @@ function display_attending_employer(name){
             'employer_name':name,
         },
         success: function (data) {
-            $("#attending_employers").append(data);
+            $("#attending_employers").prepend(data);
         },
         error: errors_in_message_area_handler
     });
+}
+
+function python_to_js_datetime(python_datetime){
+    var date_parts = python_datetime.split('/');
+    var month = date_parts[0];
+    var day = date_parts[1];
+    var year = date_parts[2];
+    return new Date(year, month-1, day, 0, 0, 0, 0);    
+}
+
+function setEventDate(datetime) {
+    setDate(python_to_js_datetime(TODAY), 'event_scheduler_day_text');
+    renderScheduler();
+}
+
+function syncSchedule() {
+    $('#event_scheduler_day_text').val($('#id_start_datetime_0').val());
+    renderScheduler();
+}
+
+function removeTime(datetime) {
+    var date = new Date(datetime);
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+    return date;
+}
+
+function getCurrentEventItem() {
+    var name = $('#id_name').val();
+
+    var start = getStartDate();
+    var start_hour = start.getHours() + start.getMinutes() / 60;
+    var start_px = 1 + 32 * start_hour;
+
+    var start_date = removeTime(start);
+    var end = getEndDate();
+    var end_date = removeTime(end);
+    var end_hour = end.getHours() + end.getMinutes() / 60;
+    var end_px = 1 + 32 * end_hour;
+
+    return {
+        'start_date': start_date,
+        'end_date': end_date,
+        'name': name,
+        'top': start_px,
+        'bottom': end_px
+    };
+}
+
+function getSchedulerDate() {
+    var schedule_date_parts = $('#event_scheduler_day_text').val().split('/');
+    var month = schedule_date_parts[0];
+    var day = schedule_date_parts[1];
+    var year = schedule_date_parts[2];
+    // Months are 0-indexed!
+    var schedule_date = new Date(year, month-1, day, 0, 0, 0, 0);
+    return schedule_date;
+}
+    
+function setDate(datetime, field_id) {
+	console.log("called me!");
+	console.log(field_id);
+	console.log(datetime);
+    // Don't forget JavaScript months are 0-indexed.
+    var month = datetime.getMonth() + 1;
+    if (month < 10) {
+        month = '0' + month;
+    }
+    
+    var day = datetime.getDate();
+    if (day < 10) {
+        day = '0' + day;
+    }
+    var date = month + '/' + day + '/' + datetime.getFullYear();
+    console.log(date);
+    if ($('#' + field_id)[0].nodeName == 'SPAN') {
+        $('#' + field_id).html(date);
+    } else {
+        $('#' + field_id).val(date);
+    }
+}
+
+function getStartDate() {
+    var start_date = $('#id_start_datetime_0').val().split('/');
+    var month = start_date[0];
+    var day = start_date[1];
+    var year = start_date[2];
+    var start_time = $('#id_start_datetime_1').val().split(':');
+    var hour = start_time[0];
+    var minute = start_time[1];
+    var start = new Date(year, month-1, day, hour, minute, 0);
+    return start;
+}
+
+function getEndDate() {
+    var end_date = $('#id_end_datetime_0').val().split('/');
+    var month = end_date[0];
+    var day = end_date[1];
+    var year = end_date[2];
+    var end_time = $('#id_end_datetime_1').val().split(':');
+    var hour = end_time[0];
+    var minute = end_time[1];
+    var end = new Date(year, month-1, day, hour, minute, 0);
+    return end;
+}
+
+function setTime(datetime, field_id) {
+    var hours = datetime.getHours();
+    if (hours < 10) {
+        hours = '0' + hours;
+    }
+    var minutes = datetime.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes;
+    }
+    var time = hours + ':' + minutes;
+    $('#' + field_id).val(time);
+}
+    
+function renderScheduler() {
+    $('#event_scheduler_nav_back').removeClass('enabled');
+    $('#event_scheduler_nav_forward').removeClass('enabled');
+    var event_date_text = $('#event_scheduler_day_text').val();
+    $('.event_block').remove();
+    var get_data = {
+        'event_date': event_date_text,
+    };
+    if (EDIT_FORM) {
+        get_data['event_id'] = EVENT_ID;
+    } else {
+        get_data['event_id'] = 0;
+    }
+    if (event_date_text){
+        $.get(EVENT_SCHEDULE_URL, get_data, function(res) {
+            var highest = Infinity;
+            $.each(res, function(i, eventInfo) {
+                var title = eventInfo[0];
+                var top = eventInfo[1];
+                var height = eventInfo[2];
+                var newEvent = $('<div>' + title + '</div>').addClass('event_block').addClass('gray');
+                newEvent.css('top', top).css('height', height - 8);
+                $('#event_scheduler').append(newEvent);
+                if (top < highest) {
+                    highest = top;
+                }
+            });
+
+            var thisEventInfo = getCurrentEventItem();
+            var schedule_date = removeTime(getSchedulerDate());
+            var start_date = thisEventInfo.start_date;
+            var end_date = thisEventInfo.end_date;
+
+            var clipTop = false;
+            var clipBottom = false;
+            //Defaults to Infinity.
+            var top = Infinity;
+            // If event starts before displayed schedule, start from top.
+            if (start_date - schedule_date < 0) {
+                top = 0;
+                clipTop = true;
+                // If event starts on displayed schedule, start from proper place.
+            } else if (start_date - schedule_date == 0) {
+                top = thisEventInfo.top;
+            }
+
+            //Height defaults to Infinity.
+            var height = Infinity;
+            // If event ends after displayed schedule, end at bottom.
+            if (end_date - schedule_date > 0) {
+                height = (1 + 32 * 24) - top;
+                clipBottom = true;
+                // If event ends on displayed schedule, end at proper place.
+            } else if (end_date - schedule_date == 0) {
+                height = thisEventInfo.bottom - top;
+            }
+
+            if (top != Infinity && height != Infinity) {
+                var name = thisEventInfo.name;
+                if (name == '') {
+                    name = 'New Event';
+                }
+                var thisEvent = $('<div>' + name + '</div>').addClass('event_block').addClass('green');
+                thisEvent.css('top', top).css('height', height - 8);
+                if (clipTop) {
+                    thisEvent.addClass('clipTop');
+                }
+                if (clipBottom) {
+                    thisEvent.addClass('clipBottom');
+                }
+                $('#event_scheduler').append(thisEvent);
+                thisEvent.click(function() {
+                    $('#id_name').focus();
+                });
+                if (top < highest) {
+                    highest = top;
+                }
+            }
+
+            if (highest < Infinity) {
+                $('#event_scheduler').scrollTop(highest - 32);
+            } else {
+                $('#event_scheduler').scrollTop(0);
+            }
+            $('#event_scheduler_nav_back').addClass('enabled');
+            $('#event_scheduler_nav_forward').addClass('enabled');
+        });
+    }
+}
+    
+function handle_event_scheduler_today_click(e){
+    setEventDate(TODAY);
 }
     
 $(document).ready(function() {
@@ -249,7 +462,29 @@ $(document).ready(function() {
             required: "This field is required."
         }
     }
-    
+	
+	function check_short_slug_uniqueness(){
+		$.ajax({
+			url: EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL,
+			data: {'short_slug':$("#id_short_slug").val()},
+			beforeSend: function(){
+				$("#short_url_field_section .errorspace").html("");
+			},
+			success:function(data){
+				if(data.used){
+					place_multiselect_warning_table($("#id_short_slug"), "You already have an event or deadline at this short url. If you use it, it will no longer point to that old event or deadline, but instead to this new one.");
+				}
+			}
+		})
+	}
+    var timeoutID;
+    $('#id_short_slug').keydown(function(e) {
+        if(e.which != 9) {
+            if( typeof timeoutID != 'undefined')
+                window.clearTimeout(timeoutID);
+            timeoutID = window.setTimeout(check_short_slug_uniqueness, 400);
+        }
+    });
     $("#id_type").change(function() {
         var title = null;
         var button_text = null;
@@ -358,6 +593,17 @@ $(document).ready(function() {
     });
 
     if (CAMPUS_ORG_EVENT){
+        $("#id_include_and_more").live('click', function(e){
+            if($(e.target).attr("checked")=="checked"){
+                $("#attending_employers").append('<div id="and_more"><p>and more...</p></div>');
+            }else{
+                $("#and_more").remove();
+            }
+            if($(".attending_employer").length==0){
+                $("#and_more").hide();
+            }
+        });
+        
         $('#id_attending_employers').multiselect({
             noneSelectedText: 'select employers',
             classes: 'attending_employers_multiselect',
@@ -366,8 +612,12 @@ $(document).ready(function() {
             click: function(e, ui) {
                 if (ui.checked){
                     display_attending_employer(ui.text);
+                    $("#and_more").show();
                 } else {
                     $(".attending_employer[data-employer-name='" + ui.text + "']").remove();
+                    if($(".attending_employer").length==0){
+                        $("#and_more").hide();
+                    }
                 }
             },
             uncheckAll: function(){
@@ -390,62 +640,6 @@ $(document).ready(function() {
             event_form_validator.element("#id_attending_employers");
         }
     });
-    // Prevent end datetime from being before start datetime.
-    function getStartDate() {
-        var start_date = $('#id_start_datetime_0').val().split('/');
-        var month = start_date[0];
-        var day = start_date[1];
-        var year = start_date[2];
-        var start_time = $('#id_start_datetime_1').val().split(':');
-        var hour = start_time[0];
-        var minute = start_time[1];
-        var start = new Date(year, month-1, day, hour, minute, 0);
-        return start;
-    }
-
-    function getEndDate() {
-        var end_date = $('#id_end_datetime_0').val().split('/');
-        var month = end_date[0];
-        var day = end_date[1];
-        var year = end_date[2];
-        var end_time = $('#id_end_datetime_1').val().split(':');
-        var hour = end_time[0];
-        var minute = end_time[1];
-        var end = new Date(year, month-1, day, hour, minute, 0);
-        return end;
-    }
-
-    function setDate(datetime, field_id) {
-        // Don't forget JavaScript months are 0-indexed.
-        var month = datetime.getMonth() + 1;
-        if (month < 10) {
-            month = '0' + month;
-        }
-        var day = datetime.getDate();
-        if (day < 10) {
-            day = '0' + day;
-        }
-        var date = month + '/' + day + '/' + datetime.getFullYear();
-        if ($('#' + field_id)[0].nodeName == 'SPAN') {
-            $('#' + field_id).html(date);
-        } else {
-            $('#' + field_id).val(date);
-        }
-    }
-
-    function setTime(datetime, field_id) {
-        var hours = datetime.getHours();
-        if (hours < 10) {
-            hours = '0' + hours;
-        }
-        var minutes = datetime.getMinutes();
-        if (minutes < 10) {
-            minutes = '0' + minutes;
-        }
-        var time = hours + ':' + minutes;
-        $('#' + field_id).val(time);
-    }
-
 
     $('#id_start_datetime_0, #id_start_datetime_1').change(function() {
         var start = getStartDate();
@@ -498,146 +692,6 @@ $(document).ready(function() {
             $(this).data('prevValue', $(this).val());
         }
     });
-    // Event scheduler.
-    function syncSchedule() {
-        $('#event_scheduler_day_text').val($('#id_start_datetime_0').val());
-        renderScheduler();
-    }
-
-    function removeTime(datetime) {
-        var date = new Date(datetime);
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
-        date.setMilliseconds(0);
-        return date;
-    }
-
-    function getCurrentEventItem() {
-        var name = $('#id_name').val();
-
-        var start = getStartDate();
-        var start_hour = start.getHours() + start.getMinutes() / 60;
-        var start_px = 1 + 32 * start_hour;
-
-        var start_date = removeTime(start);
-        var end = getEndDate();
-        var end_date = removeTime(end);
-        var end_hour = end.getHours() + end.getMinutes() / 60;
-        var end_px = 1 + 32 * end_hour;
-
-        return {
-            'start_date': start_date,
-            'end_date': end_date,
-            'name': name,
-            'top': start_px,
-            'bottom': end_px
-        };
-    }
-
-    function getSchedulerDate() {
-        var schedule_date_parts = $('#event_scheduler_day_text').val().split('/');
-        var month = schedule_date_parts[0];
-        var day = schedule_date_parts[1];
-        var year = schedule_date_parts[2];
-        // Months are 0-indexed!
-        var schedule_date = new Date(year, month-1, day, 0, 0, 0, 0);
-        return schedule_date;
-    }
-
-    function setEventDate(datetime) {
-        setDate(datetime, 'event_scheduler_day_text');
-    }
-
-    function renderScheduler() {
-        $('#event_scheduler_nav_back').removeClass('enabled');
-        $('#event_scheduler_nav_forward').removeClass('enabled');
-        var event_date_text = $('#event_scheduler_day_text').val();
-        $('.event_block').remove();
-        var get_data = {
-            'event_date': event_date_text,
-        };
-        if (EDIT_FORM) {
-            get_data['event_id'] = EVENT_ID;
-        } else {
-            get_data['event_id'] = 0;
-        }
-        if (event_date_text){
-            $.get(EVENT_SCHEDULE_URL, get_data, function(res) {
-                var highest = Infinity;
-                $.each(res, function(i, eventInfo) {
-                    var title = eventInfo[0];
-                    var top = eventInfo[1];
-                    var height = eventInfo[2];
-                    var newEvent = $('<div>' + title + '</div>').addClass('event_block').addClass('gray');
-                    newEvent.css('top', top).css('height', height - 8);
-                    $('#event_scheduler').append(newEvent);
-                    if (top < highest) {
-                        highest = top;
-                    }
-                });
-    
-                var thisEventInfo = getCurrentEventItem();
-                var schedule_date = removeTime(getSchedulerDate());
-                var start_date = thisEventInfo.start_date;
-                var end_date = thisEventInfo.end_date;
-    
-                var clipTop = false;
-                var clipBottom = false;
-                //Defaults to Infinity.
-                var top = Infinity;
-                // If event starts before displayed schedule, start from top.
-                if (start_date - schedule_date < 0) {
-                    top = 0;
-                    clipTop = true;
-                    // If event starts on displayed schedule, start from proper place.
-                } else if (start_date - schedule_date == 0) {
-                    top = thisEventInfo.top;
-                }
-    
-                //Height defaults to Infinity.
-                var height = Infinity;
-                // If event ends after displayed schedule, end at bottom.
-                if (end_date - schedule_date > 0) {
-                    height = (1 + 32 * 24) - top;
-                    clipBottom = true;
-                    // If event ends on displayed schedule, end at proper place.
-                } else if (end_date - schedule_date == 0) {
-                    height = thisEventInfo.bottom - top;
-                }
-    
-                if (top != Infinity && height != Infinity) {
-                    var name = thisEventInfo.name;
-                    if (name == '') {
-                        name = 'New Event';
-                    }
-                    var thisEvent = $('<div>' + name + '</div>').addClass('event_block').addClass('green');
-                    thisEvent.css('top', top).css('height', height - 8);
-                    if (clipTop) {
-                        thisEvent.addClass('clipTop');
-                    }
-                    if (clipBottom) {
-                        thisEvent.addClass('clipBottom');
-                    }
-                    $('#event_scheduler').append(thisEvent);
-                    thisEvent.click(function() {
-                        $('#id_name').focus();
-                    });
-                    if (top < highest) {
-                        highest = top;
-                    }
-                }
-    
-                if (highest < Infinity) {
-                    $('#event_scheduler').scrollTop(highest - 32);
-                } else {
-                    $('#event_scheduler').scrollTop(0);
-                }
-                $('#event_scheduler_nav_back').addClass('enabled');
-                $('#event_scheduler_nav_forward').addClass('enabled');
-            });
-        }
-    }
 
     $('#event_scheduler_day_text').datepicker({'minDate': null});
     $('#id_name, #id_start_datetime_0, #id_start_datetime_1, #id_end_datetime_0, #id_end_datetime_1, #event_scheduler_day_text').change(renderScheduler);
@@ -646,7 +700,11 @@ $(document).ready(function() {
     $('#event_scheduler_nav_back').click(function(e) {
         if ($(this).hasClass('enabled')) {
             var date = getSchedulerDate();
+            console.log(date);
+            console.log(date.getDate() - 1);
+            console.log(date.setDate);
             date.setDate(date.getDate() - 1);
+            console.log("here");
             setEventDate(date);
             renderScheduler();
         }
@@ -661,4 +719,14 @@ $(document).ready(function() {
         }
         e.preventDefault();
     });
+    $("#event_scheduler_today").click(handle_event_scheduler_today_click);
+    
+    $('#id_name').placeholder();
+    $('#id_location').placeholder();
+    $("#id_rsvp_message").placeholder();
+    $("#event_scheduler tr:nth-child(odd) td").css("border-color", "#DDD #EEE #EEE");
+    $("#event_scheduler tr:nth-child(even) td").css("border-color", "#EEE #EEE #DDD");
+    if(EDIT_FORM && $("#id_include_and_more").attr("checked")=="checked"){
+        $("#attending_employers").append('<div id="and_more"><p>and more...</p></div>');
+    }
 });

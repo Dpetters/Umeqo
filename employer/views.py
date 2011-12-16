@@ -6,43 +6,44 @@ import mimetypes
 import os
 import re
 
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.units import cm
 from pyPdf import PdfFileWriter, PdfFileReader
 from datetime import datetime, date
+from reportlab.lib.units import cm
+from reportlab.pdfgen.canvas import Canvas
 
 from django.db.models import Q
-from django.core.files import File
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files import File
+from django.core.paginator import EmptyPage
+from django.core.urlresolvers import reverse
 from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
-from django.core.urlresolvers import reverse
 
-from core.email import send_html_mail
 from core.decorators import agreed_to_terms, has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.email import send_html_mail
 from core.models import Industry
-from registration.forms import PasswordChangeForm
-from core import messages
 from core import enums as core_enums
+from core import messages
 from employer import enums as employer_enums
-from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
-from employer.views_helper import get_paginator, employer_search_helper
+from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
+from employer.view_helpers import get_paginator, employer_search_helper
+from registration.forms import PasswordChangeForm
 from student import enums as student_enums
-from subscription.models import EmployerSubscription, Subscription
 from student.models import Student
+from subscription.models import EmployerSubscription
 
 @require_GET
 @agreed_to_terms
-@render_to("employer.html")
-def employer(request):
+@render_to("employer_logo.html")
+def employer_logo(request):
     if request.GET.has_key("employer_name"):
         try:
             e = Employer.objects.get(name=request.GET['employer_name'])
@@ -50,25 +51,53 @@ def employer(request):
         except:
             return HttpResponseNotFound("Employer with name %s does not exist" % (request.GET['name']))
     else:
-        return HttpResponseBadRequest("Employer name is missing.")
-    
-@login_required
-@user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
-@has_annual_subscription
-@agreed_to_terms
-@render_to("employer_profile_preview.html")
-def employer_profile_preview(request, slug, extra_context=None):
-    try:
-        employer = Employer.objects.get(slug=slug)
-    except Employer.DoesNotExist:
         raise Http404
     
-    if is_student(request.user):
-        return HttpResponseRedirect("%s?id=%s" % (reverse("employers_list"), employer.id))
-    elif is_recruiter(request.user):
-        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
-        context.update(extra_context or {})
-        return context
+@login_required
+@agreed_to_terms
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@render_to("employer_account.html")
+@require_GET
+def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
+                     change_password_form_class = PasswordChangeForm, extra_context=None):
+    context = {}
+    recruiter = request.user.recruiter
+    employer = request.user.recruiter.employer
+    
+    msg = request.GET.get('msg', None)
+    if msg:
+        page_messages = {
+            'password-changed': messages.password_changed,
+        }
+        context["msg"] = page_messages[msg]
+    
+    try:
+        es = employer.employersubscription
+    except EmployerSubscription.DoesNotExist:
+        context["subscription_button_text"] = "Subscribe"
+    else:
+        context["subscription_button_text"] = "Modify Subscription"
+        context['subscription'] = es
+        if es.cancelled:
+            context['subscription_text'] = "Cancelled"
+            context['subscription_class'] = "cancelled"
+        elif es.expired():
+            context['subscription_text'] = "Expired"
+            context['subscription_class'] = "expired"
+        else:
+            if es.expires < date.today():
+                context['subscription_text'] = "Grace Period"
+                context['subscription_class'] = "grace"
+            else:
+                context['subscription_text'] = "Active"
+                context['subscription_class'] = "active"
+
+    context['transactions'] = employer.transaction_set.all().order_by("timestamp")
+    context['other_recruiters'] = employer.recruiter_set.exclude(id=recruiter.id)
+    context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
+    context['change_password_form'] = change_password_form_class(request.user)
+    context.update(extra_context or {})
+    return context
 
 @agreed_to_terms
 @render_to("employer_new.html")
@@ -95,7 +124,24 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
         return context
     else:
         return HttpResponseForbidden("You must be logged in.")
-
+    
+@login_required
+@user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
+@has_annual_subscription
+@agreed_to_terms
+@render_to("employer_profile_preview.html")
+def employer_profile_preview(request, slug, extra_context=None):
+    try:
+        employer = Employer.objects.get(slug=slug)
+    except Employer.DoesNotExist:
+        raise Http404
+    
+    if is_student(request.user):
+        return HttpResponseRedirect("%s?id=%s" % (reverse("employers"), employer.id))
+    elif is_recruiter(request.user):
+        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
+        context.update(extra_context or {})
+        return context
 
 @login_required
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
@@ -129,52 +175,6 @@ def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None
         return context
     else:
         return HttpResponseBadRequest("Request must be ajax.")
-
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-@render_to("employer_account.html")
-@require_GET
-def employer_account(request, preferences_form_class = RecruiterPreferencesForm, change_password_form_class = PasswordChangeForm, extra_context=None):
-    context = {}
-    msg = request.GET.get('msg', None)
-    if msg:
-        page_messages = {
-            'password-changed': messages.password_changed,
-        }
-        context["msg"] = page_messages[msg]
-    try:
-        es = request.user.recruiter.employer.employersubscription
-        free_trial = Subscription.objects.get(name="Free Trial")
-        if es == free_trial:
-            if not es.expired:
-                context["subscription_button_text"] = "Upgrade Subscription"
-        else:
-            context["subscription_button_text"] = "Modify Subscription"
-        context['subscription'] = es
-        if es.cancelled:
-            context['subscription_text'] = "Cancelled"
-            context['subscription_class'] = "cancelled"
-        elif es.expired():
-            context['subscription_text'] = "Expired"
-            context['subscription_class'] = "expired"
-        else:
-            if es.expires < date.today():
-                context['subscription_text'] = "Grace Period"
-                context['subscription_class'] = "grace"
-            else:
-                context['subscription_text'] = "Active"
-                context['subscription_class'] = "active"
-    except EmployerSubscription.DoesNotExist:
-        context["subscription_button_text"] = "Subscribe"
-    context['transactions'] = request.user.recruiter.employer.transaction_set.all().order_by("timestamp")
-    context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)
-    context['preferences_form'] = preferences_form_class(instance=request.user.recruiter.recruiterpreferences)
-    context['change_password_form'] = change_password_form_class(request.user)
-    context.update(extra_context or {})
-    return context
-
 
 @login_required
 @agreed_to_terms
@@ -257,7 +257,9 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter.employer)
         data = []
         if form.is_valid():
-            form.save()
+            employer = form.save()
+            # Update index
+            employer.save()
         else:
             data = {'errors': form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
@@ -489,20 +491,24 @@ def employer_students(request, extra_context=None):
                         cache.delete('paginator')
                         cache.delete('ordered_results')
                         cache.delete('filtering_results')
-
         filtering, current_paginator = get_paginator(request)
         context['filtering'] = filtering
+        
         try:
             context['page'] = current_paginator.page(request.POST['page'])
-        except Exception:
+        except EmptyPage:
             context['page'] = current_paginator.page(1)
+            
         context['current_student_list'] = request.POST['student_list']
         
+
         # I don't like this method of statistics
+        """
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-            
+        """
+        
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True
@@ -732,11 +738,12 @@ def employer_resume_book_current_download(request):
         return HttpResponseBadRequest("Request must be a GET")
 
 
+
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
-@render_to('employers_list.html')
-def employers_list(request, extra_content=None):
+@render_to()
+def employers(request, extra_content=None):
     if not request.user.student.profile_created:
         return redirect('student_profile')
     
@@ -744,7 +751,6 @@ def employers_list(request, extra_content=None):
     employers = employer_search_helper(request)
     industries = Industry.objects.all()
     subscriptions = request.user.student.subscriptions.all()
-    sub_status = {}
     for employer in employers:
         if employer in subscriptions:
             employer.subscribed = True
@@ -754,8 +760,11 @@ def employers_list(request, extra_content=None):
         'employers': employers,
         'industries': industries,
         'query': query,
-        'sub_status': sub_status
     }
+    if request.is_ajax():
+            context['TEMPLATE'] = "employer_snippets.html"
+            return context
+        
     if len(employers) > 0:
         employer_id = request.GET.get('id', None)
         if employer_id:
@@ -763,7 +772,7 @@ def employers_list(request, extra_content=None):
                 employer_id = int(employer_id)
                 employer = Employer.objects.get(id=employer_id)
             except (ValueError, ObjectDoesNotExist):
-                return redirect('employers_list')
+                return redirect('employers')
         else:
             employer = employers[0]
             employer_id = employer.id
@@ -776,14 +785,15 @@ def employers_list(request, extra_content=None):
             'employer_id': employer_id,
             'subbed': subbed
         })
+    context['TEMPLATE'] = "employers.html"
     return context
 
 
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
-@render_to('employers_list_pane.html')
-def employers_list_pane(request, extra_content=None):
+@render_to('employer_details.html')
+def employer_details(request, extra_content=None):
     employer_id = request.GET.get('id',None)
     if employer_id and Employer.objects.filter(id=employer_id).exists():
         employer = Employer.objects.get(id=employer_id)
@@ -798,44 +808,23 @@ def employers_list_pane(request, extra_content=None):
         return context
     return HttpResponseBadRequest("Bad request. Employer id is missing.")
 
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
-@render_to('employers_list_ajax.html')
-def employer_list_ajax(request):
-    employers = employer_search_helper(request)
-    subscriptions = request.user.student.subscriptions.all()
-    for employer in employers:
-        if employer in subscriptions:
-            employer.subscribed = True
-        else:
-            employer.subscribed = False
-    context = {'employers': employers}
-    return context
-
-
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
 def employer_subscribe(request):
-    employer_id = request.POST.get('id', None)
-    if employer_id and Employer.objects.filter(id=employer_id).exists():
-        employer = Employer.objects.get(id=employer_id)
-        student = request.user.student
-        subscribe = request.POST.get('subscribe', None)
-        if not subscribe:
-            return HttpResponseBadRequest("Bad request.")
-        subscribe = bool(int(subscribe))
-        if subscribe:
-            student.subscriptions.add(employer)
-        elif employer in student.subscriptions.all() and not subscribe:
-            student.subscriptions.remove(employer)
+    if not request.POST.has_key("id"):
+        return HttpResponseBadRequest("Employer id is missing")
+    else:
+        id = request.POST["id"]
+    try:
+        employer = Employer.objects.get(id=id)
+    except Employer.DoesNotExist:
+        return HttpResponseBadRequest("Employer with id %s was not found." % id)
+    else:
+        if employer in request.user.student.subscriptions.all():
+            request.user.student.subscriptions.remove(employer)            
         else:
-            return HttpResponseBadRequest("Bad request.")
-        student.save()
-        # Force save employer to have Haystack update index
+            request.user.student.subscriptions.add(employer) 
+        # Update index
         employer.save()
-        data = {'valid':True,'subscribe':subscribe}
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    return HttpResponseBadRequest("Bad request.")
+        return HttpResponse()

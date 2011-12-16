@@ -54,13 +54,14 @@ class Event(core_mixins.DateCreatedTracking):
     name = models.CharField(max_length=85)
     end_datetime = models.DateTimeField(null=True, blank=True)
     type = models.ForeignKey(EventType)
-    
+
     # Won't be used immediately, but might prove useful later to show who
     # modified the event and when they did so.
     edits = models.ManyToManyField("core.Edit", null=True, blank=True)
     
     # Events Created by Campus Orgs will need to know which Employers are coming
     attending_employers = models.ManyToManyField("employer.Employer", null=True, blank=True)
+    include_and_more = models.BooleanField(default=False)
 
     # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
@@ -72,7 +73,7 @@ class Event(core_mixins.DateCreatedTracking):
     audience = models.ManyToManyField("core.SchoolYear", blank=True, null=True)
     description = models.TextField()
     rsvp_message = models.TextField(blank=True,null=True)
-
+    
     # Statistics fields for "X new views"
     last_seen_view_count = models.PositiveIntegerField(default=0)  
     view_count = models.PositiveIntegerField(default=0)
@@ -82,7 +83,7 @@ class Event(core_mixins.DateCreatedTracking):
     short_slug = models.SlugField(blank=True, null=True)
     
     is_public = models.BooleanField()
-    is_active = models.BooleanField(default=True, editable=False)
+    is_active = models.BooleanField(default=True)
     is_drop = models.BooleanField()
     
     # manager which returns only active events
@@ -105,7 +106,13 @@ class Event(core_mixins.DateCreatedTracking):
         if not self.slug or self.slug==self.slug_default:
             self.slug = um_slugify(self.name)
         super(Event, self).save()
-                
+    
+    def is_deadline(self):
+        return self.is_rolling_deadline() or self.type == EventType.objects.get(name='Hard Deadline')
+    
+    def is_rolling_deadline(self):
+        return self.type == EventType.objects.get(name="Rolling Deadline")
+
 @receiver(signals.post_save, sender=Event)
 def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
     if not created and not instance.is_active and not raw:

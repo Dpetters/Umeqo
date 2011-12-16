@@ -1,0 +1,53 @@
+<div id="results_menu">
+    <div id="results_menu_checkbox_gray_button" class="dropdown gray_button">
+        <input id="results_menu_checkbox" type="checkbox"/>
+        <img id="results_menu_checkbox_down_triangle" src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+        <ul>
+            <li id="results_menu_all_on_page">All on page</li>
+            <li id="results_menu_starred">Starred</li>
+            <li id="results_menu_not_starred">Not starred</li>
+            <li id="results_menu_in_resume_book">In Resume Book</li>
+            <li id="results_menu_not_in_resume_book">Not in Resume Book</li>
+        </ul>
+    </div>
+    <div id="resume_book_current_add_students" class="gray_button
+        {% if resume_book_capacity_reached %}
+            disabled resume_book_capacity_reached_gray_button
+        {% endif %}
+        ">
+        <span>Add to Resume Book</span>
+    </div>
+    <div id="resume_book_current_remove_students" class="gray_button">
+        <span>Remove from Resume Book</span>
+    </div>
+    <div id="results_menu_more_actions" class="dropdown gray_button">
+        <span>More Actions</span>
+        <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+        <ul>
+            <li 
+            {% if sa %}
+                id="students_add_star"
+            {% else %}
+                class="must_be_subscribed_annually_e must_be_subscribed_annually"
+            {% endif %} 
+            >Add Star</li>
+            <li
+            {% if sa %}
+                id="students_remove_star"
+            {% else %}
+                class="must_be_subscribed_annually_e must_be_subscribed_annually"
+            {% endif %}  
+            >Remove Star</li>
+            <li
+            {% if sa %}
+                id="students_invite"
+            {% else %}
+                class="must_be_subscribed_annually_e must_be_subscribed_annually"
+            {% endif %} 
+            >Invite to Event</li>
+        </ul>
+    </div>
+    <div id="results_menu_toggle_details" class="gray_button">
+        <span>Show All Details</span>
+    </div>
+</div>

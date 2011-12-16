@@ -1,0 +1,22 @@
+.tutorial_snippet{
+    padding:4px 2px;
+}
+.tutorial_column{
+    width:275px;
+    display:inline-block;
+    vertical-align:top;
+}
+.tutorial_column h3{
+    display:inline;
+}
+.tutorial_column .tutorial_list,.tutorial_column p{
+    line-height:18px;
+    margin-bottom:10px;
+    margin-top:3px;
+}
+.tutorial_column .tutorial_list{
+    list-style: inside;
+}
+#view_all_faqs{
+    margin-top:7px;
+}

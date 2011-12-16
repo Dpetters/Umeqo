@@ -7,31 +7,97 @@ import operator
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.validators import URLValidator
 from django.db.models import Q
+from django.contrib.auth.decorators import user_passes_test
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET
 
+from campus_org.models import CampusOrg
 from core import messages
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
-from core.models import Course, Language, Topic, Location, Question
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
-from campus_org.models import CampusOrg
+from core.models import Course, Language, Location, Question, Topic, Tutorial
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, get_audiences
 from employer.forms import StudentSearchForm
-from student.models import Student
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
+from student.models import Student
+
+@render_to('about.html')
+def about(request, extra_context=None):
+    context = {'campus_orgs':CampusOrg.objects.all(),
+               'courses':Course.objects.all(),
+               'employers':Employer.objects.all(),
+               'languages':Language.objects.all(),
+               'locations':Location.objects.all()}
+    context.update(extra_context or {})
+    return context
+
+@require_GET
+@user_passes_test(is_student, login_url=s.LOGIN_URL)
+def account_deactivate(request, extra_context=None):
+    context = {}
+    if hasattr(request.user, "student"):
+        context['TEMPLATE'] = "student_account_deactivate.html"
+    context.update(extra_context or {})
+    return context
+
+@render_to('cache_status.html')
+def cache_status(request, extra_context = None):
+    try:
+        import memcache
+    except ImportError:
+        raise Http404
+
+    if not (request.user.is_authenticated() and request.user.is_staff):
+        raise Http404
+    
+    cache_location = s.CACHES['default']['LOCATION']
+    host = memcache._Host(cache_location)
+    host.connect()
+    host.send_cmd("stats")
+
+    class Stats:
+        pass
+
+    stats = Stats()
+
+    while True:
+        line = host.readline().split(None, 2)
+        if line[0] == "END":
+            break
+        stat, key, value = line
+        try:
+            # convert to native type, if possible
+            value = int(value)
+            if key == "uptime":
+                value = timedelta(seconds=value)
+            elif key == "time":
+                value = datetime.fromtimestamp(value)
+        except ValueError:
+            pass
+        setattr(stats, key, value)
+
+    host.close_socket()
+
+    context = {
+        'stats': stats,
+        'time': datetime.now()
+    }
+    if stats.cmd_get:
+        context['hit_rate'] = 100 * stats.get_hits / stats.cmd_get
+
+    return context
 
 @require_GET
 def check_employer_campus_org_slug_uniqueness(request):
@@ -51,21 +117,7 @@ def check_employer_campus_org_slug_uniqueness(request):
             return HttpResponseBadRequest("Request is missing the slug.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
-@render_to('terms_of_service.html')
-def terms_of_service(request):
-    if request.method == "POST":
-        request.user.userattributes.agreed_to_terms = True
-        request.user.userattributes.agreed_to_terms_date = datetime.now()
-        request.user.userattributes.save()
-        return redirect(reverse('home'))
-    else:
-        if request.user.is_authenticated() and not request.user.is_staff:
-            context = {'agreed': request.user.userattributes.agreed_to_terms}
-        else:
-            context = {'agreed': True}
-        return context
-
+    
 @require_GET
 def check_employer_uniqueness(request):
     if request.is_ajax():
@@ -75,69 +127,19 @@ def check_employer_uniqueness(request):
                 data = False
             except Employer.DoesNotExist:
                 data = True
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")            
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
             return HttpResponseBadRequest("Request is missing the employer name.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
-@render_to('help_center.html')
-@require_GET
-def help_center(request, extra_context = None):
-    context = {'top_questions': filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:10]}
-    context.update(extra_context or {})
-    return context
-
-def account_deactivate(request, extra_context = None):
-    context = {}
-    if hasattr(request.user, "student"):
-        context['TEMPLATE'] = "student_account_deactivate.html"
-    elif hasattr(request.user, "employer"):
-        context['TEMPLATE'] = "student_account_deactivate.html"        
-    context.update(extra_context or {})
-    return context
-
-@render_to('faq.html')
-def faq(request, extra_context = None):
-    if request.method == "POST":
-        if request.POST.has_key("question_id"):
-            q = Question.objects.get(id=request.POST["question_id"])
-            q.click_count += 1
-            q.save()
-            return HttpResponse()
-        else:
-            return HttpResponseBadRequest("Question id is missing.")
-    else:
-        context = {'topics':[]}
-        for topic in Topic.objects.all():
-            questions = filter_faq_questions(request.user, topic.question_set.visible())
-            if questions:
-                context['topics'].append({'name': topic, 'questions':questions})
-        context.update(extra_context or {})  
-        return context
-
-@render_to('about.html')
-def about(request, extra_context = None):    
-    context = {'campus_orgs':CampusOrg.objects.all(),
-               'locations':Location.objects.all(),
-               'courses':Course.objects.all()}
-    context.update(extra_context or {})
-    return context
-
-@render_to('tutorials.html')
-def tutorials(request, extra_context = None):
-    context = {}
-    context.update(extra_context or {})
-    return context
-
-
-@render_to('contact_us.html')
-def contact_us(request, form_class = AkismetContactForm, fail_silently = False, extra_context=None):
+@render_to('contact_us_dialog.html')
+def contact_us(request, form_class = AkismetContactForm, extra_context=None):
     if request.is_ajax():
         if request.method == 'POST':
             form = form_class(data=request.POST, request=request)
             if form.is_valid():
-                form.save(fail_silently=fail_silently)
+                form.save()
                 data = {'valid':True}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
             else:
@@ -147,7 +149,7 @@ def contact_us(request, form_class = AkismetContactForm, fail_silently = False, 
             if request.user.is_authenticated():
                 form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
             else:
-                form = form_class(request=request)                
+                form = form_class(request=request)
         context = {
                 'form': form,
                 'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
@@ -157,24 +159,22 @@ def contact_us(request, form_class = AkismetContactForm, fail_silently = False, 
     else:
         return HttpResponseBadRequest("Request must be ajax.")
 
+@require_GET
 @login_required
 @has_annual_subscription
 def get_location_guess(request):
-    if request.method == "GET":
-        if request.GET.has_key('query'):
-            sqs = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
-            if not sqs or len(sqs) > 1:
-                data = {'single':False, 'query':request.GET['query']}
-            else:
-                location = sqs[0].object
-                data = {'single':True, 'latitude':location.latitude,
-                        'longitude':location.longitude}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if request.GET.has_key('query'):
+        sqs = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
+        if not sqs or len(sqs) > 1:
+            data = {'single':False, 'query':request.GET['query']}
         else:
-            return HttpResponseBadRequest("Term for which to find suggestions is missing.")
-    return HttpResponseForbidden("Request must be a GET")
+            loc = sqs[0].object
+            data = {'single':True, 'latitude':loc.latitude, 'longitude':loc.longitude}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        return HttpResponseBadRequest("Term for which to find suggestions is missing.")
 
-
+@require_GET
 @login_required
 @has_annual_subscription
 @render_to("location_suggestions.html")
@@ -195,6 +195,83 @@ def get_location_suggestions(request):
         return context
     else:
         return HttpResponseBadRequest("You must pass in either a query or an address to display.")
+
+@render_to('help_center.html')
+@require_GET
+def help_center(request, extra_context = None):
+    context = {}
+    tutorials = Tutorial.objects.filter(audience__in = get_audiences(request.user), display=True)
+    if tutorials:
+        try:
+            context['student_discovery_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Student Discovery")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['subscription_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['event_and_deadline_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['account_management_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Account Management")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+    context['top_questions'] = filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:s.TOP_QUESTIONS_NUM]
+    context.update(extra_context or {})
+    return context
+
+@render_to('terms_of_service.html')
+def terms_of_service(request, extra_context = None):
+    if request.method == "POST":
+        request.user.userattributes.agreed_to_terms = True
+        request.user.userattributes.agreed_to_terms_date = datetime.now()
+        request.user.userattributes.save()
+        return redirect(reverse('home'))
+    else:
+        if request.user.is_authenticated() and not request.user.is_staff:
+            context = {'agreed': request.user.userattributes.agreed_to_terms}
+        else:
+            context = {'agreed': True}
+        context.update(extra_context or {})
+        return context
+
+@render_to('faq.html')
+def faq(request, extra_context = None):
+    if request.method == "POST":
+        if request.POST.has_key("question_id"):
+            q = Question.objects.get(id=request.POST["question_id"])
+            q.click_count += 1
+            q.save()
+            return HttpResponse()
+        else:
+            return HttpResponseBadRequest("Question id is missing.")
+    else:
+        context = {'topics':[]}
+        for topic in Topic.objects.all():
+            questions = filter_faq_questions(request.user, topic.question_set.visible())
+            if questions:
+                context['topics'].append({'name': topic, 'questions':questions})
+        context.update(extra_context or {})  
+        return context
+
+@render_to()
+@login_required
+def tutorial(request, slug, extra_context = None):
+    tutorial = get_object_or_404(Tutorial, slug=slug)
+    audience = tutorial.audience
+    if audience not in get_audiences(request.user):
+        return HttpResponseForbidden()
+    context = {
+       'tutorial':tutorial,
+       'TEMPLATE': 'tutorials/%s.html' % tutorial.slug.replace("-", "_")
+    }
+    if is_recruiter(request.user):
+        context['other_recruiters'] = request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id)
+    
+    context.update(extra_context or {})
+    return context
 
 def landing_page_wrapper(request, extra_context=None):
     if request.user.is_authenticated():
@@ -257,10 +334,12 @@ def landing_page(request, extra_context = None):
 @render_to()
 def home(request, extra_context=None):
     context = {}
-    page_messages = { 'profile-saved': messages.profile_saved }
-    msg = request.GET.get('msg',None)
+    page_messages = { 'profile-saved': messages.profile_saved,
+                      'event-cancelled':messages.event_cancelled,
+                      'deadline-cancelled':messages.deadline_cancelled }
+    msg = request.GET.get('msg', None)
     if msg:
-        context.update(msg = page_messages[msg])
+        context.update(msg = page_messages.get(msg))
     if request.user.is_authenticated():
         if is_student(request.user):
             if not request.user.student.profile_created:
@@ -317,7 +396,6 @@ def home(request, extra_context=None):
     context['events'] = list(events)[:3]
     context.update(extra_context or {})
     return context
-
 
 def check_website(request):
     if request.is_ajax():
@@ -407,60 +485,4 @@ def handle_404(request, extra_context = None):
     if not request.user.is_authenticated():
         context = {'login_form': AuthenticationForm}
     context.update(extra_context or {})
-    return context
-
-@render_to('403.html')
-def handle_403(request, extra_context = None):
-    context = {}
-    if not request.user.is_authenticated():
-        context = {'login_form': AuthenticationForm}
-    context.update(extra_context or {})
-    return context
-
-@render_to('cache_status.html')
-def cache_status(request, extra_context = None):
-    try:
-        import memcache
-    except ImportError:
-        raise Http404
-
-    if not (request.user.is_authenticated() and request.user.is_staff):
-        raise Http404
-    
-    cache_location = s.CACHES['default']['LOCATION']
-    host = memcache._Host(cache_location)
-    host.connect()
-    host.send_cmd("stats")
-
-    class Stats:
-        pass
-
-    stats = Stats()
-
-    while True:
-        line = host.readline().split(None, 2)
-        if line[0] == "END":
-            break
-        stat, key, value = line
-        try:
-            # convert to native type, if possible
-            value = int(value)
-            if key == "uptime":
-                value = timedelta(seconds=value)
-            elif key == "time":
-                value = datetime.fromtimestamp(value)
-        except ValueError:
-            pass
-        setattr(stats, key, value)
-
-    host.close_socket()
-
-    hit_rate = 100 * stats.get_hits / stats.cmd_get if stats.cmd_get else 'NaN'
-
-    context = {
-        'stats': stats,
-        'hit_rate': '%.3f' % hit_rate,
-        'time': datetime.now()
-    }
-
     return context

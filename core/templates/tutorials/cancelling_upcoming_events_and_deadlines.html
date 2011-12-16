@@ -1,0 +1,33 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+{% block tutorial_title_tab %}
+Cancelling Upcoming Events & Deadlines
+{% endblock %}
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span class="num">Step 1:</span> From your homepage, navigate to the upcoming event or deadline that you wish to cancel.</p>
+<p>All of the upcoming events are under the "Upcoming" header in the "Your Events and Deadlines" section of your homepage.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/1.png"></a>
+
+<p class="header"><span class="num">Step 2:</span> Click "Cancel" on the bottom right of the event or deadline snippet.</p>
+<p>Note that you can only cancel upcoming events, not past ones.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/2.png"></a>
+<p>You can also click the "Cancel" button in the event section of any upcoming event or deadline page.</p>
+<img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/3.png">
+
+<p class="header"><span class="num">Step 3:</span> Confirm the cancellation by clicking "Yes, cancel it".</p>
+<p>Please remember that the action is final and cannot be undone.</p>
+<img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/4.png">
+
+{% endblock %}
+
+{% block things_to_note %}
+<li>All RSVPs or participants of the event or deadline (respectively) which you cancel will be emailed, notifying them of the cancellation.</li>
+<li>If you wish to change the time or date of an event, never cancel the existing one and create a new one. RSVPs will be notified of the cancellation and will assume that the event or deadline is no longer happening. Instead, simply edit the event.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>We will eventually allow for you to view all the events that you have cancelled and recreate them as you see fit.</li>
+{% endblock %}

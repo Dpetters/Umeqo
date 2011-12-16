@@ -25,8 +25,8 @@ FAQ |
         <p>There are no topics yet.</p>
     {% endif %}
     {% for topic in topics %}
-        <a href="#{{topic.slug}}"><h2 class="h-header">{{topic.name}}</h2></a>
-        <ul class="h-content h-list">
+        <a href="#{{topic.slug}}"><h2 class="help_header">{{topic.name}}</h2></a>
+        <ul class="help_content help_list">
         {% for question in topic.questions %}
              <li><a class="question_link" data-id="{{question.id}}" href="#{{question.slug}}">{{question.question}}</a></li>
         {% endfor %}
@@ -35,9 +35,9 @@ FAQ |
     
     {% for topic in topics %}
         <a id="{{topic.slug}}"></a>
-        <h2 class="h-header">{{topic.name}}</h2>
+        <h2 class="help_header">{{topic.name}}</h2>
             {% for question in topic.questions %}
-                <div class="h-content">
+                <div class="help-content">
                     <a id="{{question.slug}}"></a>
                     <img class="faq-question-icon" src="{{ STATIC_URL }}images/icons/question.png" /><h3 class="faq-question">{{question.question}}</h3>
                     <p>{{question.answer|safe}}</p>

@@ -54,6 +54,42 @@
   }
  }, 
  {
+  "pk": 502, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/6.470", 
+   "slug": "6470", 
+   "last_updated": "2011-12-15 15:11:05", 
+   "description": "MIT 6.470 is a web programming class and competition that takes place over the IAP period at MIT. We are student-run with generous support from professors, administrators, and external sponsors. This is our 4th year running the competition. We've made huge strides from the first time that 6.470 was run and look to make it even bigger and better this year.Our #1 goal is to teach students how to build a dynamic database-backed website from the ground up. Building a website requires understanding and utilizing a variety of technologies. While we're certain everyone at MIT has what it takes to understand and navigate the space, doing so can be a long and tedious process. We streamline the process, by teaching the core essentials and pointing out where advanced technologies fit into the mix. We also aim to make 6.470 accessible to as wide a variety of students as possible (including those with limited or no programming experience). There are many components of a website that don't require hardcore programming experience, e.g. graphic design, UI/UX, SEO, etc. Non-programmers are often times just as good, if not better at these areas. Some of the better 6.470 teams have successfully matched talents in such ways to achieve success.", 
+   "image": "campus_org/campusorg/6.470_web_design_competition_2011-12-15-12-27-00.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/6.470_web_design_competition_2011-12-15-12-27-01_thumbnail.png", 
+   "user": null, 
+   "date_created": "2011-12-13 00:55:33", 
+   "type": 3, 
+   "display": true, 
+   "name": "6.470 Web Design Competition"
+  }
+ }, 
+ {
+  "pk": 499, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://acadteachinit.scripts.mit.edu/Home.html", 
+   "slug": "ati", 
+   "last_updated": "2011-12-15 15:34:33", 
+   "description": "The MIT Academic Teaching Initiative (ATI) was founded in early 2011 by a group of undergraduates who sought to continue and expand the community service initiative that began with MIT ESP\u2019s SATPrep Program.  As a new student group at the Massachusetts Institute of Technology, ATI aims to administer multiple academic-based programs that will benefit middle and high school students in the greater Boston/Cambridge area, and we hope to soon offer various other programs to help prepare students for either standardized tests or the college admissions process.", 
+   "image": "", 
+   "email": "ati-officers@mit.edu", 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-12 17:19:38", 
+   "type": 9, 
+   "display": true, 
+   "name": "Academic Teaching Initiative"
+  }
+ }, 
+ {
   "pk": 463, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -273,17 +309,17 @@
   "pk": 14, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "slug": null, 
-   "last_updated": "2011-07-27 01:52:43", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://mit.edu/skiing/www/index.html", 
+   "slug": "alpine", 
+   "last_updated": "2011-12-15 15:42:41", 
+   "description": "The MIT Alpine Ski Team promotes the sport of men's and women's alpine ski racing at MIT in the disciplines of slalom and giant slalom. The team is a student-run club sport that competes in the MacConnell division of the United States Collegiate Ski and Snowboard Association (USCSA).", 
+   "image": "campus_org/campusorg/alpine_ski_club_2011-12-15-15-42-41.JPG", 
+   "email": "alpinecaptains@mit.edu", 
+   "thumbnail": "campus_org/campusorg/alpine_ski_club_2011-12-15-15-42-41_thumbnail.JPG", 
    "user": null, 
    "date_created": "2011-05-03 12:27:36", 
    "type": 11, 
-   "display": false, 
+   "display": true, 
    "name": "Alpine Ski Club"
   }
  }, 
@@ -309,17 +345,17 @@
   "pk": 16, 
   "model": "campus_org.campusorg", 
   "fields": {
-   "website": "", 
-   "slug": null, 
-   "last_updated": "2011-07-27 01:55:22", 
-   "description": "", 
-   "image": "", 
-   "email": "", 
-   "thumbnail": "", 
+   "website": "http://jiu-jitsu.scripts.mit.edu/wiki/index.php?title=Main_Page", 
+   "slug": "jiujitsu", 
+   "last_updated": "2011-12-15 15:45:17", 
+   "description": "American Jiu-Jitsu Club has been at MIT since 1994. We learn and practice Jiu-Jitsu (jujutsu, ju-jitsu), or the \"Gentle Art,\" consisting of a wide variety of techniques: joint locks, submission holds, throws, strikes, weapons use and unarmed weapon defense (gun, knife, blunt weapons), and ground-defense - not to mention de-escalation techniques and strategies. Jiu-Jitsu does not rely on brute strength, but rather on flexible response and the use of an attacker's own energy. Jiu-Jitsu prepares a person for any situation, including stand-up and ground fighting with and without weapons, and multiple attacks. ", 
+   "image": "campus_org/campusorg/american_jiu_jitsu_@_mit_2011-12-15-15-45-17.png", 
+   "email": "self-defense@mit.edu", 
+   "thumbnail": "campus_org/campusorg/american_jiu_jitsu_@_mit_2011-12-15-15-45-17_thumbnail.png", 
    "user": null, 
    "date_created": "2011-05-03 12:27:36", 
    "type": 11, 
-   "display": false, 
+   "display": true, 
    "name": "American Jiu Jitsu @ MIT"
   }
  }, 
@@ -2322,6 +2358,24 @@
   }
  }, 
  {
+  "pk": 497, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://arts.mit.edu/emerson-scholarships-in-music/", 
+   "slug": null, 
+   "last_updated": "2011-10-06 18:16:11", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-06 18:16:11", 
+   "type": 2, 
+   "display": false, 
+   "name": "Emerson Scholarship"
+  }
+ }, 
+ {
   "pk": 134, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -2470,16 +2524,28 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://bakerfoundation.mit.edu/foundation/", 
+<<<<<<< HEAD
    "slug": null, 
    "last_updated": "2011-10-05 13:51:42", 
    "description": null, 
    "image": "", 
    "email": null, 
+=======
+   "slug": "", 
+   "last_updated": "2011-10-05 23:46:37", 
+   "description": "The Everett Moore Baker Memorial Foundation is an MIT Presidential Institute Committee. The Foundation serves to perpetuate the memory of Dean Everett Moore Baker, a staunch protagonist for the consideration of human beings as individuals, a vigorous proponent of a broad educational policy, a dynamic extra-curricular program, and a congenial physical and intellectual environment at MIT and an ardent worker toward friendly relations among the peoples of all nations. The Foundation strives to fulfill this goal by pursuing long-term initiatives, encouraging and supporting student initiatives, awarding the Baker Excellence in Teaching Award, funding Baker Fellowships, and reporting on the status of the Institute in our Annual Report.", 
+   "image": "", 
+   "email": "baker_foundation@mit.edu", 
+>>>>>>> master
    "thumbnail": "", 
    "user": null, 
    "date_created": "2011-10-05 13:51:42", 
    "type": 9, 
+<<<<<<< HEAD
    "display": false, 
+=======
+   "display": true, 
+>>>>>>> master
    "name": "Everett Moore Baker Memorial Foundation"
   }
  }, 
@@ -2517,6 +2583,24 @@
    "type": 1, 
    "display": true, 
    "name": "Falun Dafa Club"
+  }
+ }, 
+ {
+  "pk": 500, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://web.mit.edu/fje/www/", 
+   "slug": null, 
+   "last_updated": "2011-12-07 17:25:41", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-12-07 17:25:41", 
+   "type": 2, 
+   "display": false, 
+   "name": "Festival Jazz Ensemble"
   }
  }, 
  {
@@ -3276,6 +3360,24 @@
   }
  }, 
  {
+  "pk": 496, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://ihouse.scripts.mit.edu/iHouse/", 
+   "slug": "", 
+   "last_updated": "2011-10-05 23:30:32", 
+   "description": "We are a living group focused on international development and the celebration of diversity in all of its forms. We welcome people from all over the world! Our members have devoted their lives to service towards the international community. We have sent people of all backgrounds to many interesting and unique places in the developing world with the intention of improving the quality of life of others. Read about our Projects", 
+   "image": "campus_org/campusorg/ihouse_-_international_development_house_2011-10-05-23-30-31.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/ihouse_-_international_development_house_2011-10-05-23-30-32_thumbnail.png", 
+   "user": null, 
+   "date_created": "2011-10-05 23:17:37", 
+   "type": 7, 
+   "display": true, 
+   "name": "iHouse - International Development House"
+  }
+ }, 
+ {
   "pk": 190, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -3528,6 +3630,24 @@
   }
  }, 
  {
+  "pk": 498, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "http://kappasigma.mit.edu/", 
+   "slug": null, 
+   "last_updated": "2011-10-09 00:03:55", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-09 00:03:55", 
+   "type": 6, 
+   "display": false, 
+   "name": "Kappa Sigma"
+  }
+ }, 
+ {
   "pk": 208, 
   "model": "campus_org.campusorg", 
   "fields": {
@@ -3712,12 +3832,21 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://www.mit-lca.org/", 
+<<<<<<< HEAD
    "slug": null, 
    "last_updated": "2011-10-05 11:36:28", 
    "description": null, 
    "image": "", 
    "email": null, 
    "thumbnail": "", 
+=======
+   "slug": "", 
+   "last_updated": "2011-10-05 23:57:42", 
+   "description": "At LCA, we believe that living MIT to the Max includes balancing the academic and extracurricular responsibilities with an active social life. Over the course of the year, we host dozens of social events that give the brothers and students from neighboring schools a chance to mingle and unwind.", 
+   "image": "campus_org/campusorg/lambda_chi_alpha_2011-10-05-23-57-42.png", 
+   "email": "", 
+   "thumbnail": "campus_org/campusorg/lambda_chi_alpha_2011-10-05-23-57-42_thumbnail.png", 
+>>>>>>> master
    "user": null, 
    "date_created": "2011-10-05 11:36:28", 
    "type": 6, 
@@ -4353,6 +4482,24 @@
    "type": 2, 
    "display": true, 
    "name": "MIT Symphony Orchestra"
+  }
+ }, 
+ {
+  "pk": 501, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-12-13 00:51:53", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-12-13 00:51:53", 
+   "type": 11, 
+   "display": false, 
+   "name": "MIT Varsity Sailing"
   }
  }, 
  {
@@ -6772,17 +6919,17 @@
   "model": "campus_org.campusorg", 
   "fields": {
    "website": "http://techfair.mit.edu/", 
-   "slug": null, 
-   "last_updated": "2011-07-24 16:29:52", 
+   "slug": "techfair", 
+   "last_updated": "2011-12-12 04:02:38", 
    "description": "TechFair is completely student run, led by passionate and dedicated students at the Massachusetts Institute of Technology. Members of the board are split into seven committees: Corporate Relations, Finance, Human Resources, Information Technology, Logistics, Marketing, and THINK.", 
-   "image": "campus_org/campusorg/techfair_2011-07-24-16-29-45.png", 
+   "image": "campus_org/campusorg/techfair_2011-12-12-04-01-04.png", 
    "email": "techfair-exec@mit.edu", 
-   "thumbnail": "campus_org/campusorg/techfair_2011-07-24-16-29-45_thumbnail.png", 
-   "user": null, 
+   "thumbnail": "campus_org/campusorg/techfair_2011-12-12-04-02-38_thumbnail.png", 
+   "user": 713, 
    "date_created": "2011-05-03 12:27:43", 
    "type": 12, 
    "display": true, 
-   "name": "TechFair"
+   "name": "Techfair"
   }
  }, 
  {
@@ -7377,6 +7524,24 @@
    "type": 11, 
    "display": false, 
    "name": "Varsity Cross Country"
+  }
+ }, 
+ {
+  "pk": 495, 
+  "model": "campus_org.campusorg", 
+  "fields": {
+   "website": "", 
+   "slug": null, 
+   "last_updated": "2011-10-05 21:10:09", 
+   "description": null, 
+   "image": "", 
+   "email": null, 
+   "thumbnail": "", 
+   "user": null, 
+   "date_created": "2011-10-05 21:10:09", 
+   "type": 11, 
+   "display": false, 
+   "name": "Varsity Tennis"
   }
  }, 
  {

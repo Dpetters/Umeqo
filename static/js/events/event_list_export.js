@@ -27,6 +27,8 @@ function handle_export_event_list_link_click(e) {
         event_list_export_dialog.dialog("option", "title", "Export \"" + $(this).attr("data-event-name") + "\" RSVPs");
     } else if (event_list == "all"){
         event_list_export_dialog.dialog("option", "title", "Export \"" + $(this).attr("data-event-name") + "\" All Responses");
+    } else if (event_list == "dropped_resumes"){
+        event_list_export_dialog.dialog("option", "title", "Export \"" + $(this).attr("data-event-name") + "\" Dropped Resumes");
     }
     
     var event_list_export_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
@@ -120,7 +122,7 @@ function handle_export_event_list_link_click(e) {
                         setTimeout(function(){
                             $.ajax({
                                 dataType: "html",
-                                url: EVENT_LIST_EXPORT_COMPLETED_URL + "?list=" + event_list,
+                                url: EVENT_LIST_EXPORT_COMPLETED_URL + "?event_list=" + event_list + "&event_id=" + event_id,
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     if(jqXHR.status==0){
                                         event_list_export_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);

@@ -1,0 +1,35 @@
+{% extends 'tutorial_base.html' %}
+
+{% block tutorial_title %}
+Getting an Annual Subscription
+{% endblock %}
+
+{% block instructions %}
+<p class="header"><span id="create_account" class="num">Step 1:</span> Access your account settings from the "Account" dropdown on the upper right.</p>
+<p>There is also a "Account Settings" link in the side navigation menu on the left, underneath "Account".</p>
+<a target="_blank" href="{% url employer_account %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/1.png"></a>
+
+<p class="header"><span id="create_account" class="num">Step 2:</span> Click on the "Subscription & Billing" tab to view your current subscription plan.</p>
+<p>Take note of the current status of your subscription so that you know whether you are upgrading, renewing, or extending your subscription.</p>
+<a target="_blank" href="{% url employer_account %}?tab=subscription"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/2.png"></a>
+
+
+<p class="header"><span class="num">Step 3:</span> Click the "Modify Subscription" button.</p>
+<a target="_blank" href="{% url employer_account %}?tab=subscription"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/3.png"></a>
+
+<p class="header"><span class="num">Step 4:</span> Click the "Contact Us" or "Upgrade to Annual Plan" in the annual subscription block.</p>
+<p>The exact wording of the button depends on whether you are currently subscribed and whether your subscription is active or not.</p>
+<a target="_blank" href="{% url subscription_list %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/4.png"></a>
+
+<p class="header"><span class="num">Step 5:</span> Fill out the subscription request form and we will send you further instructions.</p>
+<p>In particular, we will send you the price and terms of the subscription, terms of service, and instructions on how to make payment.</p>
+<a target="_blank" href="{% url subscription_list %}?action=open_transaction_dialog"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/5.png"></a>
+{% endblock %}
+
+{% block things_to_note %}
+<li>Access to the site is only granted once payment is received, so there will typically be a few business day delay between you making the request and gaining full access to the site.</li>
+{% endblock %}
+
+{% block tips_and_tricks %}
+<li>If you are unsure of whether you wish to subscribe annually, feel free to first try out a free trial event subscription. To learn about how to get one, visit the <a href="{% url subscription_list %}">subscriptions</a> page anc click "Learn More" in the Event Subscription block.</li>
+{% endblock %}
