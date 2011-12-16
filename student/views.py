@@ -240,7 +240,6 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
     if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
         if form.is_valid():
-            print request.POST
             student = form.save()
             if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                 student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])

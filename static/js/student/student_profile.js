@@ -1,3 +1,5 @@
+var profile_preview_timeout = null;
+
 function setup_widgets(){
     $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
     $(".resume_book_current_toggle_student").tipsy({'gravity':'e', opacity: 0.9, title:function(){return RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP;}, html:true});
@@ -13,10 +15,12 @@ function setup_widgets(){
 
 function submit_profile_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
+    console.log("submitting form");
     $(form).ajaxSubmit({
         dataType: 'text',
         data:{'ingore_unparsable_resume':ignore_unparsable_resume},
         beforeSubmit: function (arr, $form, options) {
+            console.log("yes");
             $("#message_area").html("");
             $("#profile_form input[type=submit]").attr("disabled", "disabled");
             show_form_submit_loader("#profile_form");
@@ -82,6 +86,7 @@ function submit_profile_form(form, ignore_unparsable_resume){
 }
 
 function load_profile_preview(){
+	console.log("loading profilke preview");
     $("#message_area").html("");
     var required_fields_filled_out = true;
     $("label.required").each(function(){
@@ -90,6 +95,7 @@ function load_profile_preview(){
     if(required_fields_filled_out){
         if ($("#profile_form").valid()){
             var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
+            console.log("I'm here");
             $("#profile_form").ajaxSubmit({
                 type:"POST",
                 dataType: "html",
@@ -100,7 +106,6 @@ function load_profile_preview(){
                 },
                 error: errors_in_message_area_handler,
                 success: function (data) {
-                	console.log("loading the new preview!");
                     $("#student_profile_preview").html(data);
 
                     if (student_detailed_info_visible){
@@ -187,8 +192,73 @@ $(document).ready( function() {
             timeoutID = window.setTimeout(load_profile_preview, 400);
         }
     });
-    
+	v = $("#profile_form").validate({
+        submitHandler: function (form) {
+            submit_profile_form(form, false);
+        },
+        highlight: highlight,
+        unhighlight: unhighlight,
+        errorPlacement: place_table_form_field_error,
+        rules: {
+            first_name: {
+                required: true
+            },
+            last_name: {
+                required: true
+            },
+            school_year: {
+                required: true
+            },
+            graduation_year: {
+                required: true
+            },
+            first_major: {
+                required: true
+            },
+            gpa: {
+                required: true,
+                range: [0, 5.0],
+                maxlength: 4
+            },
+            resume:{
+                accept: "pdf"
+            },
+            website:{
+                complete_url: true
+            },
+            sat_m: {
+                range: [200, 800],
+                maxlength: 3
+            },
+            sat_w: {
+                range: [200, 800],
+                maxlength: 3
+            },
+            sat_v: {
+                range: [200, 800],
+                maxlength: 3
+            },
+            act: {
+                range: [0, 36],
+                maxlength: 2
+            }
+        },
+        messages: {
+            first_name: FIRST_NAME_REQUIRED,
+            last_name: LAST_NAME_REQUIRED,
+            school_year: SCHOOL_YEAR_REQUIRED,
+            graduation_year: GRADUATION_YEAR_REQUIRED,
+            first_major: FIRST_MAJOR_REQUIRED,
+            gpa: {
+                required: GPA_REQUIRED,
+                range: GPA_RANGE
+            },
+            resume: RESUME_REQUIRED,
+            website: INVALID_URL
+        }
+    });
+	
     $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
-    var profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
+    profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
     load_profile_preview();
 });
