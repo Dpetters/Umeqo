@@ -12,6 +12,9 @@
 .attending_employers_multiselect .ui-multiselect-all{
     display:none;
 }
+#short_url_field_section .errorspace{
+	width:425px;
+}
 #event_location_section,
 .event_field_section{
     margin-top: 15px;
@@ -221,7 +224,7 @@ label[for=id_rsvp_message]{
     vertical-align: top;
 }
 #id_rsvp_message {
-    width: 231px;
+    width: 225px;
     height: 36px;
 }
 #event_scheduler_today{

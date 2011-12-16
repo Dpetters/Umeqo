@@ -9,13 +9,14 @@
 {% load text_snippet %}
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
+    var EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL = "{% url events_check_short_slug_uniqueness %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
     var GET_LOCATION_SUGGESTIONS_URL = "{% url get_location_suggestions %}";
     
     var MEDIUM_AJAX_LOADER = "{% include 'medium_ajax_loader.html' %}";
     
     var TODAY = "{{today}}";
-    
+
     {% if user.campusorg %}
         var EVENT = true
         var CAMPUS_ORG_EVENT = true;
@@ -106,8 +107,8 @@
                     <label for="event_scheduler_day_text">Event schedule for</label><input type="text" name="event_scheduler_day_text" id="event_scheduler_day_text" class="datefield_no_bind" value="{{event_scheduler_date}}">
                     <a href="#" id="event_scheduler_today">Today</a>
                     <div id="event_scheduler_nav">
-                        <a id="event_scheduler_nav_back" class="active" href="javascript:void(0)">&laquo;</a>
-                        <a id="event_scheduler_nav_forward" class="active" href="javascript:void(0)">&raquo;</a>
+                        <a id="event_scheduler_nav_back" class="active" href="#">&laquo;</a>
+                        <a id="event_scheduler_nav_forward" class="active" href="#">&raquo;</a>
                     </div>
                 </div>
                 <div id="event_scheduler">
@@ -155,7 +156,7 @@
             {{form.type}}
             {{form.is_public}}
         </div>
-        <div class="event_field_section">
+        <div id="short_url_field_section" class="event_field_section">
             <span class="div_form_above_field_label">Short URL</span>
             <div class="errorspace">{{form.short_slug.errors}}</div>
             <br>

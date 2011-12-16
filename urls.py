@@ -83,6 +83,7 @@ urlpatterns += patterns('subscription.views',
 )
 urlpatterns += patterns('events.views',
     (r'^events/$', 'events_list', {}, 'events_list'),
+    (r'^events/short-slug-uniqueness/$', 'events_check_short_slug_uniqueness', {}, 'events_check_short_slug_uniqueness'),
     (r'^events/(?P<id>\d+)/(?P<slug>[0-9a-zA-Z-]+)/$', 'event_page', {'extra_context': {'login_form':AuthenticationForm}}, 'event_page'),
     (r'^events/(?P<id>\d+)/$', 'event_page_redirect', {}, 'event_page_redirect'),
     (r'^events/export/$', 'event_list_export', {}, 'event_list_export'),

@@ -117,7 +117,7 @@ def check_employer_campus_org_slug_uniqueness(request):
             return HttpResponseBadRequest("Request is missing the slug.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-
+    
 @require_GET
 def check_employer_uniqueness(request):
     if request.is_ajax():

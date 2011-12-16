@@ -1,9 +1,9 @@
 <div id="logo_and_buttons" class="right_side_container">
     <img class="logo" src="{{MEDIA_URL}}{{employer.logo}}" />
     {% if subbed %}
-        <a id="employer_unsubscribe" href="javascript:void(0)" class="button warning-button">Unsubscribe</a>
+        <div id="unsubscribe" class="gray_button subscribed">Subscribed</div>
     {% else %}
-        <a id="employer_subscribe" {% if preview %}disabled="disabled"{% endif %} href="#" class="button">Subscribe</a>
+        <div id="subscribe" {% if preview %}disabled="disabled"{% endif %} class="gray_button">Subscribe</div>
     {% endif %}    
 </div>
 

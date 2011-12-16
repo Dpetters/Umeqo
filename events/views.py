@@ -33,17 +33,35 @@ from events.view_helpers import event_search_helper, get_event_schedule, get_att
 from notification import models as notification
 from student.models import Student
 
+
+@require_GET
+@login_required
+@user_passes_test(is_campus_org_or_recruiter)
+def events_check_short_slug_uniqueness(request):
+    if request.is_ajax():
+        if request.GET.has_key("short_slug"):
+            data = {'used':False}
+            if is_campus_org(request.user):
+                if Event.objects.filter(short_slug = request.GET['short_slug'], owner=request.user).exists():
+                    data['used'] = True
+            elif is_recruiter(request.user):
+                if Event.objects.filter(short_slug = request.GET['short_slug'], owner__recruiter__employer=request.user.recruiter.employer).exists():
+                    data['used'] = True
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+        else:
+            return HttpResponseBadRequest("Request is missing the short slug.")
+    else:
+        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    
 @require_GET
 @agreed_to_terms
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug = owner_slug)
-        print employer
         events = reduce(lambda a,b: [a, a.extend(b.user.event_set.all().order_by("-date_created"))][0], employer.recruiter_set.all(), [])
     except Employer.DoesNotExist:
         try:
             campus_org = CampusOrg.objects.get(slug = owner_slug)
-            print campus_org
             events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
             raise Http404
