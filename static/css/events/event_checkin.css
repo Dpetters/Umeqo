@@ -80,28 +80,6 @@
     margin-bottom: 5px;
     background: #EEFFCC;
 }
-.event_host_logo img {
-    max-width: 269px;
-}
-.main_block_content p {
-	margin: 0 0 10px;
-}
-.main_block_content ol,
-.main_block_content ul {
-	margin: 5px 0 5px 20px;
-}
-.main_block_content ul li {
-	color: #666;
-	margin-bottom: 10px;
-}
-div.attending_employer {
-    height: 74px;
-    line-height: 74px;
-    width: 157px;
-}
-#attending_employers .ef-logo {
-    max-width: 159px;
-}
 .checkin_field {
     display: inline-block;
 }
@@ -121,7 +99,4 @@ div.attending_employer {
     line-height: 50px;
     vertical-align: bottom;
     margin: 0 0 0 10px;
-}
-.placeholder {
-    color: #888 !important;
 }
