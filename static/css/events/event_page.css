@@ -41,6 +41,20 @@
     width: 670px;
     float: left;
 }
+.event_host_logo img {
+    max-width: 262px;
+}
+.main_block_content p {
+	margin: 0 0 10px;
+}
+.main_block_content ol,
+.main_block_content ul {
+	margin: 5px 0 5px 20px;
+}
+.main_block_content ul li {
+	color: #666;
+	margin-bottom: 10px;
+}
 #event_side {
     width: 280px;
     margin-left: 700px;

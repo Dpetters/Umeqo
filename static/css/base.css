@@ -75,6 +75,12 @@ label: not(.required) {
     padding: 3px 11px 2px;
     position: relative;
 }
+::-webkit-input-placeholder {
+    color: #888 !important;
+}
+:-moz-placeholder {
+    color: #888 !important;
+}
 .below_header_message {
     background: rgb(255,255,255); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 100%); /* FF3.6+ */
