@@ -21,8 +21,13 @@ function python_to_js_datetime(python_datetime){
     return new Date(year, month-1, day, 0, 0, 0, 0);    
 }
 
-function setEventDate(datetime) {
+function set_event_date_python(datetime) {
     setDate(python_to_js_datetime(TODAY), 'event_scheduler_day_text');
+    renderScheduler();
+}
+
+function set_event_date(datetime) {
+    setDate(datetime, 'event_scheduler_day_text');
     renderScheduler();
 }
 
@@ -73,9 +78,6 @@ function getSchedulerDate() {
 }
     
 function setDate(datetime, field_id) {
-	console.log("called me!");
-	console.log(field_id);
-	console.log(datetime);
     // Don't forget JavaScript months are 0-indexed.
     var month = datetime.getMonth() + 1;
     if (month < 10) {
@@ -87,7 +89,6 @@ function setDate(datetime, field_id) {
         day = '0' + day;
     }
     var date = month + '/' + day + '/' + datetime.getFullYear();
-    console.log(date);
     if ($('#' + field_id)[0].nodeName == 'SPAN') {
         $('#' + field_id).html(date);
     } else {
@@ -223,7 +224,7 @@ function renderScheduler() {
 }
     
 function handle_event_scheduler_today_click(e){
-    setEventDate(TODAY);
+    set_event_date_python(TODAY);
 }
     
 $(document).ready(function() {
@@ -700,13 +701,8 @@ $(document).ready(function() {
     $('#event_scheduler_nav_back').click(function(e) {
         if ($(this).hasClass('enabled')) {
             var date = getSchedulerDate();
-            console.log(date);
-            console.log(date.getDate() - 1);
-            console.log(date.setDate);
             date.setDate(date.getDate() - 1);
-            console.log("here");
-            setEventDate(date);
-            renderScheduler();
+            set_event_date(date);
         }
         e.preventDefault();
     });
@@ -714,8 +710,7 @@ $(document).ready(function() {
         if ($(this).hasClass('enabled')) {
             var date = getSchedulerDate();
             date.setDate(date.getDate() + 1);
-            setEventDate(date);
-            renderScheduler();
+            set_event_date(date);
         }
         e.preventDefault();
     });

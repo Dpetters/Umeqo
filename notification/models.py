@@ -314,6 +314,7 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
         # messages['notice.html']
         subject = ''.join(render_to_string('notification/email_subject.txt', {
             'message': messages['email_subject.txt'],
+            'current_site_name':current_site.name
         }, context).splitlines())
 
         body = messages['email.html']
