@@ -5511,6 +5511,36 @@
   }
  }, 
  {
+  "pk": 166, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-12-17 19:04:52", 
+   "name_and_level": "Navajo (Basic)", 
+   "last_updated": "2011-12-17 19:04:52", 
+   "name": "Navajo"
+  }
+ }, 
+ {
+  "pk": 167, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-12-17 19:04:52", 
+   "name_and_level": "Navajo (Proficient)", 
+   "last_updated": "2011-12-17 19:04:52", 
+   "name": "Navajo"
+  }
+ }, 
+ {
+  "pk": 168, 
+  "model": "core.language", 
+  "fields": {
+   "date_created": "2011-12-17 19:04:52", 
+   "name_and_level": "Navajo (Fluent)", 
+   "last_updated": "2011-12-17 19:04:52", 
+   "name": "Navajo"
+  }
+ }, 
+ {
   "pk": 9, 
   "model": "core.course", 
   "fields": {
