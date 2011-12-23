@@ -1,5 +1,6 @@
 #event_actions {
     float: right;
+    text-align:center;
 }
 #event_admin_main .commands {
     margin: -20px -4px 0 0;
@@ -75,9 +76,6 @@
     margin-top:10px;
     margin-bottom:8px;
 }
-#add_to_google_calendar{
-	float:right;
-}
 #add_to_google_calendar span{
 	margin-left:5px;
 	position:relative;
@@ -105,9 +103,6 @@
 }
 #event_where .get_directions_link{
     display:none;
-}
-#event_where #map{
-    margin-top:9px;
 }
 #event_checkin_main {
     position: absolute;

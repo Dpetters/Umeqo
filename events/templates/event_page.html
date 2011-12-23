@@ -424,7 +424,7 @@
                 <h3 id="event_location">{{ event.location }}</h3>
                 <a class="get_directions_link" data-latitude="{{event.latitude}}" data-longitude="{{event.longitude}}" href="#"><img title="Get Directions" alt="Directions" src="{{STATIC_URL}}images/icons/direction--arrow.png" /></a>
                 {% if event.latitude and event.longitude %}
-                    <div id="map" style="width: 260px; height: 250px"></div>
+                    <div id="map"></div>
                 {% endif %}
             </div>
         </div>

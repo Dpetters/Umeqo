@@ -12,7 +12,7 @@ function update_checkin_count(){
     });
 }
 $(document).ready(function() {
-    if (EVENT_LATITUDE && EVENT_LONGITUDE){
+    if (typeof(google)!= "undefined" && EVENT_LATITUDE && EVENT_LONGITUDE){
         if (supports_geolocation()){
             $(".get_directions_link").show();
         }
@@ -25,6 +25,10 @@ $(document).ready(function() {
         var map = new google.maps.Map(document.getElementById("map"), map_options);
         var marker = new google.maps.Marker({ map: map }); 
         marker.setPosition(location);
+        $("#event_where #map").css("margin-top", "9px");
+    }else{
+    	// No internet connection
+    	$("#event_external_buttons").html("");
     }
 
     $('.event_rsvp').each(function() {
