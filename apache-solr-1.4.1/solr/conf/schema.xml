@@ -104,27 +104,65 @@
     <dynamicField name="*_dt" type="date"    indexed="true"  stored="true"/>
     
 
+    <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
+
+    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
+
+    <field name="sat_t" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="visible" type="boolean" indexed="true" stored="true" multiValued="false" />
+
+    <field name="sat_v" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="sat_w" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="content_auto" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
+
+    <field name="looking_for" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="countries_of_citizenship" type="text" indexed="true" stored="true" multiValued="true" />
+
     <field name="industries" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="first_major" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
+
+    <field name="campus_involvement" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="languages" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="school_year" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="graduation_year" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="previous_employers" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="start_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
     <field name="has_public_events" type="boolean" indexed="true" stored="true" multiValued="false" />
 
-    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="second_major" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="building_num" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="visible" type="boolean" indexed="true" stored="true" multiValued="false" />
-
-    <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />
-
     <field name="subscribers" type="text" indexed="true" stored="true" multiValued="true" />
-
-    <field name="content_auto" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
     <field name="is_public" type="boolean" indexed="true" stored="true" multiValued="false" />
 
-    <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="obj_id" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="industries_of_interest" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />
+
+    <field name="act" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
 
   </fields>
 
