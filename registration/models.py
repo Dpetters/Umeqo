@@ -145,7 +145,7 @@ class RegistrationProfile(models.Model):
     activation_key_expired.boolean = True
 
     def send_activation_email(self, site, first_name, last_name):
-        subject = "[Umeqo] Account Activation"
+        subject = "[umeqo.com] Account Activation"
         context = { 'activation_key': self.activation_key, 'site': site, 'first_name':first_name, 'last_name':last_name}
         message = render_to_string('activation_email.html', context)
         send_html_mail(subject, message, [self.user.email])

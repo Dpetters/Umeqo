@@ -173,7 +173,6 @@ def event_page(request, id, slug, extra_context=None):
     if is_student(request.user):
         
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
-        print rsvp
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
             context['responded'] = True
@@ -256,7 +255,6 @@ def event_list_download(request):
             else:
                 return HttpResponseBadRequest("The file format % isn't one we support." % request.GET['export_format'])
             response['Content-Disposition'] = 'attachment; filename="%s"' % filename
-            print response['Content-Disposition']
             return response
 
 
@@ -507,7 +505,6 @@ def event_rsvp(request, event_id):
             rsvp, created = RSVP.objects.get_or_create(student=request.user.student, event=event)
             rsvp.attending = isAttending
             rsvp.save()
-            print rsvp
             if isAttending:
                 DroppedResume.objects.get_or_create(event=event, student=request.user.student)
             if request.is_ajax():
