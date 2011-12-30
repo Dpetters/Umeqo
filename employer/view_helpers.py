@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.core.cache import cache
 from django.http import Http404
 
-from haystack.query import SearchQuerySet
+from haystack.query import SearchQuerySet, SQ
 from student.models import Student
 from employer import enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
@@ -164,8 +164,7 @@ def get_cached_results(request):
         if request.GET.has_key('courses'):
             am_filtering = True
             courses = request.GET['courses'].split('~')
-            #FIXME
-            students = students.filter_and(first_major__in = courses).filter_or(second_major__in = courses)
+            students = students.filter(SQ(first_major__in = courses)|SQ(second_major__in = courses))
         
         if request.GET.has_key('query'):
             students = students.filter(content_auto = request.GET['query'])

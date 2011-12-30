@@ -25,7 +25,7 @@ class StudentIndex(indexes.RealTimeSearchIndex):
     countries_of_citizenship = indexes.MultiValueField()
     previous_employers = indexes.MultiValueField()
     industries_of_interest = indexes.MultiValueField()
-
+    
     older_than_21 = indexes.BooleanField(model_attr="older_than_21")
     
     last_updated = indexes.DateTimeField(model_attr='last_updated')
