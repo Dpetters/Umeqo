@@ -486,34 +486,53 @@ function initiate_ajax_call() {
         $("#results_block_info").prepend(two_line_long_load_message);
     }, LOAD_WAIT_TIME);
     
+    data = {
+        'page': page,
+        'student_list': student_list,
+        'student_list_id': student_list_id,
+        'older_than_21' : older_than_21,
+        'ordering': ordering,
+        'results_per_page': results_per_page
+        }
+ 	
+ 	if (query)
+ 		data['query'] = query
+ 	if (min_gpa != 0)
+ 		data['gpa'] = min_gpa
+ 	if (min_act != 0)
+ 		data['act'] = min_act
+ 	if (min_sat_t != 600)
+       data['sat_t'] = min_sat_t
+    if (min_sat_m != 200)
+    	data['sat_m'] = min_sat_m
+    if (min_sat_v != 200)
+    	data['sat_v'] = min_sat_v
+    if (min_sat_w != 200)
+    	data['sat_w'] = min_sat_w
+	if (courses.length != 0)
+		data['courses'] = courses.join('~')
+	if (school_years.length != 0)
+		data['school_years'] = school_years.join('~')
+	if (graduation_years.length != 0)
+		data['graduation_years'] =  graduation_years.join('~')
+	if (employment_types.length != 0)
+        data['employment_types'] = employment_types.join('~')
+    if (previous_employers.length != 0)
+        data['previous_employers'] = previous_employers.join('~')
+    if (industries_of_interest.length != 0)
+        data['industries_of_interest'] = industries_of_interest.join('~')
+    if (campus_orgs.length != 0)
+        data['campus_orgs'] = campus_orgs.join('~')
+    if (languages.length != 0)
+        data['languages'] = languages.join('~')
+    if (countries_of_citizenship.length != 0)
+    	data['countries_of_citizenship'] = countries_of_citizenship.join('~')
+        
     xhr = $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: STUDENTS_URL,
         dataType: "html",
-        data: {
-            'page': page,
-            'student_list': student_list,
-            'student_list_id': student_list_id,
-            'query': query,
-            'gpa' : min_gpa,
-            'act': min_act,
-            'sat_t' : min_sat_t,
-            'sat_m' : min_sat_m,
-            'sat_v' : min_sat_v,
-            'sat_w' : min_sat_w,
-            'courses' : courses.join('~'),
-            'school_years' : school_years.join('~'),
-            'graduation_years' : graduation_years.join('~'),
-            'employment_types' : employment_types.join('~'),
-            'previous_employers' : previous_employers.join('~'),
-            'industries_of_interest' : industries_of_interest.join('~'),
-            'campus_orgs' : campus_orgs.join('~'),
-            'languages' : languages.join('~'),
-            'countries_of_citizenship' : countries_of_citizenship.join('~'),
-            'older_than_21' : older_than_21,
-            'ordering': ordering,
-            'results_per_page': results_per_page
-        },
+        data: data,
         complete: function (jqXHR, textStatus) {
             clearTimeout(error_dialog_timeout);
         },

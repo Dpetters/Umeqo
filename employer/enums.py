@@ -8,6 +8,10 @@ RESULTS_PER_PAGE_CHOICES = (
 (100, 100),
 )
 
+RELEVANCY = "relevancy"
+GPA_A = "gpa"
+GPA_D = "-gpa"
+
 ORDERING_CHOICES = (
 ("relevancy", "Relevancy"),
 ("gpa", "Lowest GPA First"),

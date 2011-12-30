@@ -454,52 +454,49 @@ def employer_resume_book_history(request, extra_context=None):
 @agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
+@require_GET
 @render_to()
 def employer_students(request, extra_context=None):
     context = {}
     if request.is_ajax():
         cached_page = cache.get('page')
-        if cached_page and cached_page != int(request.POST['page']):
-            cache.set('page', int(request.POST['page']))
+        if cached_page and cached_page != int(request.GET['page']):
+            cache.set('page', int(request.GET['page']))
         else:
-            if request.POST['page'] and not cached_page:
-                cache.set('page', int(request.POST['page']))
+            if request.GET['page'] and not cached_page:
+                cache.set('page', int(request.GET['page']))
             cached_results_per_page = cache.get('results_per_page')
-            if cached_results_per_page and cached_results_per_page != int(request.POST['results_per_page']):
-                cache.set('results_per_page', int(request.POST['results_per_page']))
+            if cached_results_per_page and cached_results_per_page != int(request.GET['results_per_page']):
+                cache.set('results_per_page', int(request.GET['results_per_page']))
                 cache.delete('paginator')
             else:
-                if int(request.POST['results_per_page']) and not cached_results_per_page:
-                    cache.set('results_per_page', int(request.POST['results_per_page']))
+                if int(request.GET['results_per_page']) and not cached_results_per_page:
+                    cache.set('results_per_page', int(request.GET['results_per_page']))
                 cached_ordering = cache.get('ordering')
-                if cached_ordering and cached_ordering != request.POST['ordering']:
-                    cache.set('ordering', request.POST['ordering'])
+                if cached_ordering and cached_ordering != request.GET['ordering']:
+                    cache.set('ordering', request.GET['ordering'])
                     cache.delete('paginator')
                     cache.delete('ordered_results')
                 else:
-                    if request.POST['ordering'] and not cached_ordering:
-                        cache.set('ordering', request.POST['ordering'])
-                    cached_query = cache.get('query')
-                    if cached_query and cached_query != request.POST['query']:
-                        cache.set('query', request.POST['query'])
+                    if request.GET['ordering'] and not cached_ordering:
+                        cache.set('ordering', request.GET['ordering'])
                         cache.delete('paginator')
                         cache.delete('ordered_results')
-                        cache.delete('search_results')
                     else:
-                        if request.POST['query'] and not cached_query:
-                            cache.set('query', request.POST['query'])
+                        cache.delete('results')
                         cache.delete('paginator')
                         cache.delete('ordered_results')
                         cache.delete('filtering_results')
+
         filtering, current_paginator = get_paginator(request)
         context['filtering'] = filtering
         
         try:
-            context['page'] = current_paginator.page(request.POST['page'])
+            context['page'] = current_paginator.page(request.GET['page'])
         except EmptyPage:
             context['page'] = current_paginator.page(1)
             
-        context['current_student_list'] = request.POST['student_list']
+        context['current_student_list'] = request.GET['student_list']
         
 
         # I don't like this method of statistics

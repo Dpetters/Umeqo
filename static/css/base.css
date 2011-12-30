@@ -88,7 +88,7 @@ label: not(.required) {
     background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* IE10+ */
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(242,242,242,1) 100%); /* W3C */
     text-shadow: 0 1px 0 #FFF;
     text-align: center;
@@ -420,43 +420,4 @@ a:hover {
     color: #FFF;
     text-shadow: #222 0 -1px 0;
     background-color: #B00;
-}
-.cke_skin_kama .cke_dialog_contents {
-    background: #FFF;
-}
-.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
-    background: none !important;
-}
-.cke_skin_kama .cke_dialog_body {
-    padding: 0.2em !important;
-}
-#cke_33_uiElement, .cke_dialog_tabs, .cke_dialog_close_button .cke_label, .cke_skin_kama .cke_dialog_footer .cke_resizer, .cke_dialog_ui_button[title="Browse Server"]{
-    display: none !important;
-}
-.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
-    display: inline !important;
-    background-image: url("/static/lib/jquery_ui_custom/css/ui-lightness/images/ui-icons_303030_256x240.png?b50dc31bccb2") !important;
-    background-position:-94px -128px !important;
-}
-.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
-    top: 10px !important;
-}
-.cke_dialog_background_cover {
-    background: url("/static/lib/jquery_ui_custom/css/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png?b50dc31bccb2") repeat-x scroll 50% 50% #AAAAAA !important;
-    opacity: 0.3 !important;
-}
-.cke_skin_kama .cke_dialog_title {
-    padding: 8px 10px !important;
-}
-.cke_dialog_contents {
-    margin-top: 0px !important;
-    background: #FFF !important;
-}
-.cke_dialog_contents {
-    height: 50px !important;
-    padding: 0px 10px !important;
-}
-.cke_dialog_footer {
-    background: #FFF !important;
-    text-align: center !important;
 }
