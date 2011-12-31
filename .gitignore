@@ -1,6 +1,5 @@
 .git
 *.class
-*.exe
 *.pyc
 *.pyo
 *.db
