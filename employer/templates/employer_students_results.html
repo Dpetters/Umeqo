@@ -1,11 +1,11 @@
 {% load employer_no_results %}
 
-<span id="num_of_results">Student Matches ({{page.paginator.count}})</span>
+<span id="num_of_results">Student Matches ({{total_results_num}})</span>
 {% include "paging.html" %}
 {% include "employer_students_results_menu.html" %}
 <div id="results">
-{% if page.object_list %}
-    {% for student, in_resume_book, starred, comment, num_of_events_attended in page.object_list %}
+{% if results %}
+    {% for student, in_resume_book, starred, comment, num_of_events_attended in results %}
         {% include "student_profile_preview.html" %}
     {% endfor %}
 {% else %}
