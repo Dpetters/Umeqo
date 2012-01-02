@@ -28,9 +28,12 @@ class StudentIndex(indexes.RealTimeSearchIndex):
     
     older_than_21 = indexes.BooleanField(model_attr="older_than_21", null=True)
     
+    visible = indexes.BooleanField()
     last_updated = indexes.DateTimeField(model_attr='last_updated')
         
-
+    def prepare_visible(self, obj):
+        return obj.user.is_active and obj.user.userattributes.is_verified and obj.profile_created
+    
     def prepare_looking_for(self, obj):
         return [employment_type.id for employment_type in obj.looking_for.all()]
     

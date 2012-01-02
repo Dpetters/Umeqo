@@ -96,7 +96,6 @@ def cache_status(request, extra_context = None):
     }
     if stats.cmd_get:
         context['hit_rate'] = 100 * stats.get_hits / stats.cmd_get
-
     return context
 
 @require_GET

@@ -34,7 +34,7 @@ from core import messages
 from employer import enums as employer_enums
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
-from employer.view_helpers import get_paginator, employer_search_helper
+from employer.view_helpers import get_cached_paginator, employer_search_helper, process_results
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
 from student.models import Student
@@ -459,44 +459,43 @@ def employer_resume_book_history(request, extra_context=None):
 def employer_students(request, extra_context=None):
     context = {}
     if request.is_ajax():
-        cached_page = cache.get('page')
+        cached_page = cache.get("page")
         if cached_page and cached_page != int(request.GET['page']):
-            cache.set('page', int(request.GET['page']))
+            cache.set("page", int(request.GET['page']))
         else:
-            if request.GET['page'] and not cached_page:
-                cache.set('page', int(request.GET['page']))
+            if not cached_page:
+                cache.set("page", int(request.GET['page']))
             cached_results_per_page = cache.get('results_per_page')
             if cached_results_per_page and cached_results_per_page != int(request.GET['results_per_page']):
                 cache.set('results_per_page', int(request.GET['results_per_page']))
                 cache.delete('paginator')
             else:
-                if int(request.GET['results_per_page']) and not cached_results_per_page:
+                if not cached_results_per_page:
                     cache.set('results_per_page', int(request.GET['results_per_page']))
                 cached_ordering = cache.get('ordering')
                 if cached_ordering and cached_ordering != request.GET['ordering']:
                     cache.set('ordering', request.GET['ordering'])
                     cache.delete('paginator')
-                    cache.delete('ordered_results')
+                    cache.delete('processed_ordered_results')
                 else:
-                    if request.GET['ordering'] and not cached_ordering:
-                        cache.set('ordering', request.GET['ordering'])
-                        cache.delete('paginator')
-                        cache.delete('ordered_results')
-                    else:
-                        cache.delete('results')
-                        cache.delete('paginator')
-                        cache.delete('ordered_results')
-                        cache.delete('filtering_results')
+                    if not cached_ordering:
+                        cache.set('ordering', request.GET['ordering'])                    
+                    cache.delete('paginator')
+                    cache.delete('processed_ordered_results')
+                    cache.delete('results')
 
-        filtering, current_paginator = get_paginator(request)
+        filtering, current_paginator = get_cached_paginator(request)
         context['filtering'] = filtering
         
         try:
-            context['page'] = current_paginator.page(request.GET['page'])
+            page = current_paginator.page(request.GET['page'])
         except EmptyPage:
-            context['page'] = current_paginator.page(1)
-            
+            page = current_paginator.page(1)
+        
+        context['page'] = page
+        context['results'] = process_results(request.user.recruiter, page)
         context['current_student_list'] = request.GET['student_list']
+        context['total_results_num'] = page.paginator.count
         
 
         # I don't like this method of statistics

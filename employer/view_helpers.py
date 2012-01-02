@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.core.cache import cache
 from django.http import Http404
 
@@ -10,97 +9,67 @@ from student import enums as student_enums
 from events.models import Event
 from core.digg_paginator import DiggPaginator
         
-def get_paginator(request):
-    am_filtering, results = get_cached_results(request)
-    ordered_results = order_results(results, request)
-    processed_ordered_results = process_results(request.user.recruiter, [student.object for student in ordered_results])
-    return am_filtering, DiggPaginator(processed_ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
+def get_cached_paginator(request):
+    cached_paginator = cache.get('paginator')
+    if cached_paginator:
+        return cache.get("filtering"), cached_paginator
+    else:
+        filtering, cached_ordered_results = get_cached_ordered_results(request)
+        paginator = DiggPaginator(cached_ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
+        cache.set("paginator", paginator)
+        return filtering, paginator
 
-def get_is_starred_attributes(recruiter, students):
-    starred_attr_dict = {}
-    for student in students:
-        if student in recruiter.employer.starred_students.all():
-            starred_attr_dict[student] = True
-        else:
-            starred_attr_dict[student] = False
-    return starred_attr_dict
+def get_cached_ordered_results(request):
+    cached_ordered_results = cache.get("ordered_results")
+    if cached_ordered_results:
+        return cache.get("filtering"), cached_ordered_results
+    else:
+        filtering, cached_results = get_cached_results(request)
+        ordered_results = [search_result.object for search_result in order_results(cached_results, request).load_all()]
+        cache.set("ordered_results", ordered_results)
+        return filtering, ordered_results
 
-def get_comments(recruiter, students):
-    comments_dict = {}
-    for student in students:
-        try:
-            comments_dict[student] = EmployerStudentComment.objects.get(employer=recruiter.employer, student=student).comment
-        except EmployerStudentComment.DoesNotExist:
-            EmployerStudentComment.objects.create(employer=recruiter.employer, student=student, comment="")
-            comments_dict[student] = ""   
-    return comments_dict
-
-def get_num_of_events_attended_dict(recruiter, students):
-    num_of_events_attended_dict = {}
-    for student in students:
-        num_of_events_attended_dict[student] = len(recruiter.user.event_set.filter(attendee__student=student))
-    return num_of_events_attended_dict
-
-def process_results(recruiter, students):
-    is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, students)
-    is_starred_attributes = get_is_starred_attributes(recruiter, students)
-    comments = get_comments(recruiter, students)
-    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, students)
-    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student], num_of_events_attended_dict[student]) for student in students]
-
-def get_is_in_resumebook_attributes(recruiter, students):
-    resume_book_dict = {}
-    try:
-        resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
-    except ResumeBook.DoesNotExist:
-        resume_book = ResumeBook.objects.create(recruiter=recruiter)
-    for student in students:
-        if student in resume_book.students.all():
-            resume_book_dict[student] = True
-        else:
-            resume_book_dict[student] = False
-    return resume_book_dict
-         
 def get_cached_results(request):
-    results = cache.get('filtering_results')
+    results = cache.get('results')
     if results:
-        return results
+        return cache.get("filtering"), results
     else:
         student_list = request.GET['student_list']
         student_list_id = request.GET['student_list_id']
         recruiter = request.user.recruiter
-        
-        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
-            if recruiter.employer.subscribed_annually():
-                students = Student.objects.visible()
-            else:
-                students = get_students_in_resume_book(recruiter)
-        elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-            students = recruiter.employer.starred_students.visible()
-        elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
-            try:
-                resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
-            except ResumeBook.DoesNotExist:
-                resume_book = ResumeBook.objects.create(recruiter = recruiter)
-            students = resume_book.students.visible()
+
+        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1] and recruiter.employer.subscribed_annually():
+            students = SearchQuerySet().models(Student).filter(visible=True)
         else:
-            parts = student_list.split(" ")
-            if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Drop" and parts[-2] == "Resume":
+            if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
+                students = get_students_in_resume_book(recruiter)
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
+                students = recruiter.employer.starred_students.visible()
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 try:
-                    e = Event.objects.get(id = student_list_id)
-                except:
-                    raise Http404
-                if parts[-1] == "RSVPs":
-                    students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
-                elif parts[-1] == "Attendees":
-                    students = Student.objects.filter(attendee__in=e.attendee_set.all(), profile_created=True)
-                elif parts[-1] == "Drop" and parts[-2] == "Resume":
-                    students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
+                    resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
+                except ResumeBook.DoesNotExist:
+                    resume_book = ResumeBook.objects.create(recruiter = recruiter)
+                students = resume_book.students.visible()
             else:
-                students = ResumeBook.objects.get(obj_id = student_list_id).students.visible()
-        
+                parts = student_list.split(" ")
+                if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Drop" and parts[-2] == "Resume":
+                    try:
+                        e = Event.objects.get(id = student_list_id)
+                    except:
+                        raise Http404
+                    if parts[-1] == "RSVPs":
+                        students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
+                    elif parts[-1] == "Attendees":
+                        students = Student.objects.filter(attendee__in=e.attendee_set.all(), profile_created=True)
+                    elif parts[-1] == "Drop" and parts[-2] == "Resume":
+                        students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
+                else:
+                    students = ResumeBook.objects.get(obj_id = student_list_id).students.visible()
+            students = SearchQuerySet().models(Student).filter(obj_id__in = [student.id for student in students])
+                
         am_filtering = False
-        students = SearchQuerySet().models(Student).filter(obj_id__in = [student.id for student in students])
+
         if request.GET.has_key('gpa'):
             am_filtering = True
             students = students.filter(gpa__gte = request.GET['gpa'])
@@ -168,8 +137,58 @@ def get_cached_results(request):
         
         if request.GET.has_key('query'):
             students = students.filter(content_auto = request.GET['query'])
-        
-        return am_filtering, students
+
+        cache.set("results", students)
+        return am_filtering, students
+    
+def get_is_starred_attributes(recruiter, students):
+    starred_attr_dict = {}
+    starred_students = recruiter.employer.starred_students.all()
+    for student in students:
+        if student in starred_students:
+            starred_attr_dict[student] = True
+        else:
+            starred_attr_dict[student] = False
+    return starred_attr_dict
+
+def get_comments(recruiter, students):
+    comments_dict = {}
+    employer_comments = EmployerStudentComment.objects.filter(employer=recruiter.employer)
+    for student in students:
+        try:
+            comments_dict[student] = employer_comments.get(student=student).comment
+        except EmployerStudentComment.DoesNotExist:
+            EmployerStudentComment.objects.create(employer=recruiter.employer, student=student, comment="")
+            comments_dict[student] = ""   
+    return comments_dict
+
+def get_num_of_events_attended_dict(recruiter, students):
+    num_of_events_attended_dict = {}
+    recruiter_events = recruiter.user.event_set.all()
+    for student in students:
+        num_of_events_attended_dict[student] = len(recruiter_events.filter(attendee__student=student))
+    return num_of_events_attended_dict
+
+def process_results(recruiter, page):
+    is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, page.object_list)
+    is_starred_attributes = get_is_starred_attributes(recruiter, page.object_list)
+    comments = get_comments(recruiter, page.object_list)
+    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, page.object_list)
+    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student], num_of_events_attended_dict[student]) for student in page.object_list]
+
+def get_is_in_resumebook_attributes(recruiter, students):
+    resume_book_dict = {}
+    try:
+        resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
+    except ResumeBook.DoesNotExist:
+        resume_book = ResumeBook.objects.create(recruiter=recruiter)
+    resume_book_students = resume_book.students.all()
+    for student in students:
+        if student in resume_book_students:
+            resume_book_dict[student] = True
+        else:
+            resume_book_dict[student] = False
+    return resume_book_dict
     
 def get_students_in_resume_book(recruiter):
     try:
