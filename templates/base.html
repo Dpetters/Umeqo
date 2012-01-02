@@ -169,9 +169,15 @@
             </div>
         </div>
         <div id="below_header_area">
+        	<div id="warning_bar">
+		        {% for warning in warnings %}
+	            	<p>{{warning|safe}}</p>
+	        	{% endfor %}        		
+        	</div>
+
             <!-- z-index is there to fix IE7 z-index bug -->
             <div style="z-index:200" class="width_container">
-                {% if not user.is_authenticated or not user.student and not user.recruiter and not user.campusorg %}
+                {% if not user.is_authenticated %}
                     {% ifnotequal current_path "/login/" %}
                         <div id="login_wrapper">
                             <div id="login_wrapper_pointer"></div>
@@ -201,12 +207,14 @@
                         </div>
                     {% endifnotequal %}
                 {% endif %}
-                    {% block below_header_area %}
-                    {% endblock %}
+                
+                {% block below_header_area %}
+                {% endblock %}
                 <div id="message_area">
                     {% if msg %}
-                        <p>{{ msg }}</p>
+                        <p>{{msg|safe}}</p>
                     {% endif %}
+                	
                     {% block message_area %}
                     {% endblock %}
                 </div>

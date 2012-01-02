@@ -1,5 +1,6 @@
 from django.conf import settings as s
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 
 from core.decorators import is_recruiter
 
@@ -37,3 +38,12 @@ def employer_subscription(request):
         'subs':request.user.recruiter.employer.subscribed
         }
     return {}
+
+def warnings(request):
+    warnings = []
+    if is_recruiter(request.user):        
+        employer_subscription = request.user.recruiter.employer.employersubscription
+        subscription_path = reverse("subscription_list")
+        if employer_subscription.in_grace_period() and request.get_full_path() != subscription_path:
+            warnings.append("Your subscription has expired - you have {0} of access left. <a href='{1}'>Renew now</a>.".format((employer_subscription.time_left()), subscription_path))
+    return {'warnings':warnings}
