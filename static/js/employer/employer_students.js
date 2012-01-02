@@ -660,13 +660,6 @@ $(document).ready(function () {
     $(".page_link").live('click', handle_page_link_click);
     $("#initiate_ajax_call").live('click', initiate_ajax_call);
     
-    // Make the filtering block an accordion
-    a = $("#filtering_accordion").accordion({
-        autoHeight: false,
-        clearStyle: true,
-        collapsible: true
-    });
-
     $("#query_field").val(query);
     var timeoutID;
     

@@ -133,4 +133,8 @@ $(document).ready(function(){
             $("#id_countries_of_citizenship").trigger("change");
         }
     }).multiselectfilter();
+	
+	/* Need all widgets to load before anything is hidden.
+	 * Therefore accordion is loaded on event trigger */
+	$(document).trigger('widgetsLoaded');
 });
