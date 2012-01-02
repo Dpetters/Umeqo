@@ -476,12 +476,12 @@ def employer_students(request, extra_context=None):
                 if cached_ordering and cached_ordering != request.GET['ordering']:
                     cache.set('ordering', request.GET['ordering'])
                     cache.delete('paginator')
-                    cache.delete('processed_ordered_results')
+                    cache.delete('ordered_results')
                 else:
                     if not cached_ordering:
-                        cache.set('ordering', request.GET['ordering'])                    
+                        cache.set('ordering', request.GET['ordering'])                  
                     cache.delete('paginator')
-                    cache.delete('processed_ordered_results')
+                    cache.delete('ordered_results')
                     cache.delete('results')
 
         filtering, current_paginator = get_cached_paginator(request)
