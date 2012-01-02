@@ -12,23 +12,22 @@ from core.digg_paginator import DiggPaginator
 def get_cached_paginator(request):
     cached_paginator = cache.get('paginator')
     if cached_paginator:
-        return cache.get("filtering)"), cached_paginator
+        return cache.get("filtering"), cached_paginator
     else:
-        filtering, cached_processed_ordered_results = get_cached_processed_ordered_results(request)
-        paginator = DiggPaginator(cached_processed_ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
+        filtering, cached_ordered_results = get_cached_ordered_results(request)
+        paginator = DiggPaginator(cached_ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
         cache.set("paginator", paginator)
         return filtering, paginator
 
-def get_cached_processed_ordered_results(request):
-    cached_processed_ordered_results = cache.get("processed_ordered_results")
-    if cached_processed_ordered_results:
-        return cache.get("filtering"), cached_processed_ordered_results
+def get_cached_ordered_results(request):
+    cached_ordered_results = cache.get("ordered_results")
+    if cached_ordered_results:
+        return cache.get("filtering"), cached_ordered_results
     else:
         filtering, cached_results = get_cached_results(request)
-        ordered_results = order_results(cached_results, request)
-        processed_ordered_results = process_results(request.user.recruiter, [student.object for student in ordered_results])
-        cache.set("processed_ordered_results", processed_ordered_results)
-        return filtering, processed_ordered_results
+        ordered_results = [search_result.object for search_result in order_results(cached_results, request).load_all()]
+        cache.set("ordered_results", ordered_results)
+        return filtering, ordered_results
 
 def get_cached_results(request):
     results = cache.get('results')
@@ -138,15 +137,15 @@ def get_cached_results(request):
         
         if request.GET.has_key('query'):
             students = students.filter(content_auto = request.GET['query'])
-        
-        cache.set("filtering", am_filtering)
+
         cache.set("results", students)
         return am_filtering, students
     
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
+    starred_students = recruiter.employer.starred_students.all()
     for student in students:
-        if student in recruiter.employer.starred_students.all():
+        if student in starred_students:
             starred_attr_dict[student] = True
         else:
             starred_attr_dict[student] = False
@@ -154,9 +153,10 @@ def get_is_starred_attributes(recruiter, students):
 
 def get_comments(recruiter, students):
     comments_dict = {}
+    employer_comments = EmployerStudentComment.objects.filter(employer=recruiter.employer)
     for student in students:
         try:
-            comments_dict[student] = EmployerStudentComment.objects.get(employer=recruiter.employer, student=student).comment
+            comments_dict[student] = employer_comments.get(student=student).comment
         except EmployerStudentComment.DoesNotExist:
             EmployerStudentComment.objects.create(employer=recruiter.employer, student=student, comment="")
             comments_dict[student] = ""   
@@ -164,16 +164,17 @@ def get_comments(recruiter, students):
 
 def get_num_of_events_attended_dict(recruiter, students):
     num_of_events_attended_dict = {}
+    recruiter_events = recruiter.user.event_set.all()
     for student in students:
-        num_of_events_attended_dict[student] = len(recruiter.user.event_set.filter(attendee__student=student))
+        num_of_events_attended_dict[student] = len(recruiter_events.filter(attendee__student=student))
     return num_of_events_attended_dict
 
-def process_results(recruiter, students):
-    is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, students)
-    is_starred_attributes = get_is_starred_attributes(recruiter, students)
-    comments = get_comments(recruiter, students)
-    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, students)
-    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student], num_of_events_attended_dict[student]) for student in students]
+def process_results(recruiter, page):
+    is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, page.object_list)
+    is_starred_attributes = get_is_starred_attributes(recruiter, page.object_list)
+    comments = get_comments(recruiter, page.object_list)
+    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, page.object_list)
+    return [(student, is_in_resume_book_attributes[student], is_starred_attributes[student], comments[student], num_of_events_attended_dict[student]) for student in page.object_list]
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}
@@ -181,8 +182,9 @@ def get_is_in_resumebook_attributes(recruiter, students):
         resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter=recruiter)
+    resume_book_students = resume_book.students.all()
     for student in students:
-        if student in resume_book.students.all():
+        if student in resume_book_students:
             resume_book_dict[student] = True
         else:
             resume_book_dict[student] = False

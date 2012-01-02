@@ -1,4 +1,5 @@
 from django.core.management.base import CommandError
+from django.db.models import AutoField
 
 def parse_apps_and_models(label):
     apps_and_models = []
@@ -22,3 +23,7 @@ def get_model_cls(appname, modelname):
                 (appname, modelname))
     else:
         return model
+    
+def copy_model_instance(obj):
+    initial = dict([(f.name, getattr(obj, f.name)) for f in obj._meta.fields if not isinstance(f, AutoField) and not f in obj._meta.parents.values()])
+    return obj.__class__(**initial)
