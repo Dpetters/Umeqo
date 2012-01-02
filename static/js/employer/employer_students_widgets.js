@@ -312,7 +312,7 @@ $(document).ready(function(){
         header:false,
         selectedList: 1,
         multiple: false,
-        height: 106,
+        height: 78,
         minWidth:multiselectSingleSelectWidth,
         click: function(event, ui) {
             if(results_per_page != ui.value){
@@ -412,4 +412,13 @@ $(document).ready(function(){
     $("#id_sat_m").val($("#sat_m_filter_section div").slider("value"));
     $("#id_sat_v").val($("#sat_v_filter_section div").slider("value"));
     $("#id_sat_w").val($("#sat_w_filter_section div").slider("value"));
+
+
+	/* Need all widgets to load before anything is hidden.
+	 * Therefore this must come after all widget activations */
+    a = $("#filtering_accordion").accordion({
+        autoHeight: false,
+        clearStyle: true,
+        collapsible: true
+    });
 });

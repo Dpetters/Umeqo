@@ -1,4 +1,6 @@
 from haystack import indexes, site
+
+from registration.models import UserAttributes
 from student.models import Student
 
 class StudentIndex(indexes.RealTimeSearchIndex):
@@ -32,8 +34,10 @@ class StudentIndex(indexes.RealTimeSearchIndex):
     last_updated = indexes.DateTimeField(model_attr='last_updated')
         
     def prepare_visible(self, obj):
-        return obj.user.is_active and obj.user.userattributes.is_verified and obj.profile_created
-    
+        try:
+            return obj.user.is_active and obj.user.userattributes.is_verified and obj.profile_created
+        except UserAttributes.DoesNotExist:
+            return False
     def prepare_looking_for(self, obj):
         return [employment_type.id for employment_type in obj.looking_for.all()]
     

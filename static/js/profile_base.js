@@ -1,5 +1,4 @@
-$(document).ready(function(){
-    // Set up accordion and validation
+$(document).bind("widgetsLoaded", function(e){
     var current = 0;  // Current Page
     accordion = $("#stepForm").accordion({
         autoHeight:false,

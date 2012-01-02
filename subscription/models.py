@@ -4,6 +4,8 @@ import utils
 from django.conf import settings as s
 from django.db import models
 
+from core.texttime import stringify
+
 class Transaction(models.Model):
     employer = models.ForeignKey("employer.Employer", null=True)
     timestamp = models.DateTimeField(auto_now_add=True, editable=False)
@@ -93,7 +95,14 @@ class EmployerSubscription(models.Model):
             return False
         else:
             return self.subscription == event_subscription
-        
+    
+    def time_left(self):
+        return stringify(self.expires + self.grace_timedelta - datetime.date.today())
+    
+    def in_grace_period(self):
+        over = datetime.date.today() - self.expires
+        return over > datetime.timedelta() and over < self.grace_timedelta
+    
     def expired(self):
         """Returns true if there is more than SUBSCRIPTION_GRACE_PERIOD
         days after expiration date."""

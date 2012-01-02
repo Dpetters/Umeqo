@@ -15,12 +15,10 @@ function setup_widgets(){
 
 function submit_profile_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
-    console.log("submitting form");
     $(form).ajaxSubmit({
         dataType: 'text',
         data:{'ingore_unparsable_resume':ignore_unparsable_resume},
         beforeSubmit: function (arr, $form, options) {
-            console.log("yes");
             $("#message_area").html("");
             $("#profile_form input[type=submit]").attr("disabled", "disabled");
             show_form_submit_loader("#profile_form");
@@ -86,7 +84,6 @@ function submit_profile_form(form, ignore_unparsable_resume){
 }
 
 function load_profile_preview(){
-	console.log("loading profilke preview");
     $("#message_area").html("");
     var required_fields_filled_out = true;
     $("label.required").each(function(){
@@ -95,7 +92,6 @@ function load_profile_preview(){
     if(required_fields_filled_out){
         if ($("#profile_form").valid()){
             var student_detailed_info_visible = $(".student_detailed_info").is(":visible");
-            console.log("I'm here");
             $("#profile_form").ajaxSubmit({
                 type:"POST",
                 dataType: "html",
