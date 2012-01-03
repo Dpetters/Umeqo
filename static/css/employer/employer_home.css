@@ -2,13 +2,29 @@
     height: 22px;
     line-height:22px;
     vertical-align: middle;
-    width: 300px;
+    width: 350px;
     padding-left: 6px;
     font-size: 15px;
     box-shadow: inset 2px 2px 2px #DDDDDD;
     -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
     -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
 }
-#setup_automatic_filtering_link{
-    cursor:default;
+#search_form_submit_button{
+	margin-right:3px;
+	width:72px;
+}
+#featured_content #tutorials{
+	background:#F3C849;
+}
+#featured_content #students{
+	background:#9FC238;
+}
+#featured_content #events{
+	background:#C03947;
+}
+#featured_content #profile{
+	background:#299FFF;
+}
+#featured_content div:hover{
+	background:#BEBEBE !important;
 }

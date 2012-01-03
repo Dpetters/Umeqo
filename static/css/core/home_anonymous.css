@@ -1,18 +1,28 @@
-#welcome_block p {
-    margin: 0 0 10px;
-    font-size: 13px;
+#featured_content{
+	margin-bottom:10px;
+	margin-top:10px;
 }
-#welcome_list {
-    font-size: 13px;
-    color: #555;
-    margin: 0 20px 15px;
+#featured_content div{
+    display:inline-block;
+    text-align:center;
+    vertical-align:middle;
+	height:166px;
+	line-height:65px;
+	width:179px;
+	margin-right:4px;
+	margin-left:4px;
 }
-#welcome_table {
-    margin-top: 2px;
-    margin-bottom: 5px;
+#featured_content div img{
+	position:relative;
+	top:25px;
 }
-#welcome_table td img {
-    margin-bottom: 6px;
-    margin-left: 10px;
-    margin-right: 12px;
+#featured_content span {
+	line-height:20px;
+	text-align:center;
+	font-weight:bold;
+	color:white;
+	font-size:20px;
+	display:inline-block;
+	vertical-align:middle;
+	width:100%;
 }
