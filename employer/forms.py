@@ -113,7 +113,7 @@ class DeliverResumeBookForm(forms.Form):
     emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)
         
 class StudentSearchForm(forms.Form):
-    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by keyword, skill, etc..'}))
+    query = forms.CharField(max_length = 50, widget=forms.TextInput(attrs={'id':'query_field', 'placeholder':'Search by name, keyword, skill, etc..'}))
     
 class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
     older_than_21 = forms.ChoiceField(label="Must be older than 21:", choices = NO_YES_CHOICES, required = False)

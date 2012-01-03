@@ -52,7 +52,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#844444', endColorstr='#844444',GradientType=0 ); /* IE6-9 */
 }
 a.button, .button{
-    height: 31px;
+    height: 30px;
     line-height: 29px;
 }
 input.button {

@@ -16,7 +16,7 @@ $(document).ready(function() {
         if (supports_geolocation()){
             $(".get_directions_link").show();
         }
-        $("#event_where #map").width(260).height(260).css("margin-top", "9px");;
+        $("#event_where #map").width(260).height(260).css("margin-top", "9px");
         
         var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);
         var map_options = {
