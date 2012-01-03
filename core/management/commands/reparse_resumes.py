@@ -23,6 +23,9 @@ class Command(BaseCommand):
         for student in Student.objects.filter(profile_created=True):
             pdf_file_path = settings.MEDIA_ROOT + student.resume.name
             txt_file_path = pdf_file_path.replace(".pdf", ".txt")
+            print pdf_file_path
+            print txt_file_path
+            print command
             subprocess.call([command, pdf_file_path, txt_file_path])
             txt_file = open(txt_file_path, "r")
             resume_text = txt_file.read()
