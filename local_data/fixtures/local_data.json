@@ -45,10 +45,10 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-02 16:29:36", 
+   "last_login": "2012-01-03 05:10:45", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$cf34b$ad09836d202a4c55c9eb4650df41739887c1d9e6", 
+   "password": "sha1$22998$f8947697f11ac378ba6870476d27c8a0fa74d2c6", 
    "email": "bitdiddle@umeqo.com", 
    "date_joined": "2011-07-07 22:03:05"
   }
@@ -33333,8 +33333,8 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 45, 
-   "last_updated": "2011-12-01 22:39:55", 
+   "shown_in_results_count": 47, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 10, 
    "student": 1, 
@@ -33346,8 +33346,8 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 43, 
-   "last_updated": "2011-12-28 20:25:36", 
+   "shown_in_results_count": 45, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 2, 
    "add_to_resumebook_count": 9, 
    "student": 2, 
@@ -33359,8 +33359,8 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 44, 
-   "last_updated": "2011-12-01 22:39:55", 
+   "shown_in_results_count": 45, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 7, 
    "student": 3, 
@@ -33372,8 +33372,8 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 41, 
-   "last_updated": "2011-12-01 22:39:55", 
+   "shown_in_results_count": 42, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 5, 
    "student": 4, 
@@ -33385,8 +33385,8 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 42, 
-   "last_updated": "2011-12-01 22:39:55", 
+   "shown_in_results_count": 43, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 5, 
    "student": 5, 
@@ -33398,8 +33398,8 @@
   "pk": 6, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2011-12-28 20:26:41", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 02:21:39", 
    "resume_view_count": 1, 
    "add_to_resumebook_count": 0, 
    "student": 6, 
@@ -33411,8 +33411,8 @@
   "pk": 7, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:02", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 7, 
@@ -33424,8 +33424,8 @@
   "pk": 8, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:02", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 8, 
@@ -33437,8 +33437,8 @@
   "pk": 9, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:02", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 9, 
@@ -33450,8 +33450,8 @@
   "pk": 10, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 10, 
@@ -33463,8 +33463,8 @@
   "pk": 11, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 05:00:41", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 11, 
@@ -33476,8 +33476,8 @@
   "pk": 12, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 02:21:48", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 12, 
@@ -33489,8 +33489,8 @@
   "pk": 13, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 02:21:48", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 13, 
@@ -33502,8 +33502,8 @@
   "pk": 14, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 02:21:48", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 14, 
@@ -45992,46 +45992,6 @@
   }
  }, 
  {
-  "pk": 31, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-01 22:37:58", 
-   "session_key": "287509d9618ceeac0c435190d9033857", 
-   "last_updated": "2011-12-01 22:37:58", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 37, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-02 14:49:18", 
-   "session_key": "4bd6979b597b24786f02724e8702941b", 
-   "last_updated": "2011-12-02 14:49:18", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 38, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-02 14:54:26", 
-   "session_key": "90048d0da5241fe16d82e861a081b140", 
-   "last_updated": "2011-12-02 14:54:26", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 39, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-06 00:20:19", 
-   "session_key": "312546376062b3f76881692c713b37cf", 
-   "last_updated": "2011-12-06 00:20:19", 
-   "user": 3
-  }
- }, 
- {
   "pk": 41, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46039,16 +45999,6 @@
    "session_key": "437190fcc7b38e705e5db711c9bfb59e", 
    "last_updated": "2011-12-06 12:50:43", 
    "user": 27
-  }
- }, 
- {
-  "pk": 46, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-06 16:29:33", 
-   "session_key": "e9c866bcba3b13bfa57aed9250c69b21", 
-   "last_updated": "2011-12-06 16:29:33", 
-   "user": 3
   }
  }, 
  {
@@ -46062,16 +46012,6 @@
   }
  }, 
  {
-  "pk": 54, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-12 14:42:44", 
-   "session_key": "8b033a7aecad808b2425f2ae8e7bc34e", 
-   "last_updated": "2011-12-12 14:42:44", 
-   "user": 3
-  }
- }, 
- {
   "pk": 55, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46082,42 +46022,12 @@
   }
  }, 
  {
-  "pk": 63, 
+  "pk": 74, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2011-12-29 22:08:28", 
-   "session_key": "56c8223b8f592447dda18bb9ffe10205", 
-   "last_updated": "2011-12-29 22:08:28", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 57, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2011-12-28 20:25:12", 
-   "session_key": "e5994252f3c0803e40e7873f56ca858f", 
-   "last_updated": "2011-12-28 20:25:12", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 64, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2012-01-02 01:41:13", 
-   "session_key": "10f877684caee6c60b40c4e70b411239", 
-   "last_updated": "2012-01-02 01:41:13", 
-   "user": 3
-  }
- }, 
- {
-  "pk": 67, 
-  "model": "registration.sessionkey", 
-  "fields": {
-   "date_created": "2012-01-02 16:29:36", 
-   "session_key": "98e2acca80c7e6062abe9d3732b947d0", 
-   "last_updated": "2012-01-02 16:29:36", 
+   "date_created": "2012-01-03 05:10:45", 
+   "session_key": "5760dd29bfcbb7c4a34c1a8199465757", 
+   "last_updated": "2012-01-03 05:10:45", 
    "user": 3
   }
  }, 
