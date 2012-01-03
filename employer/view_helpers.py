@@ -136,8 +136,8 @@ def get_cached_results(request):
             students = students.filter(SQ(first_major__in = courses)|SQ(second_major__in = courses))
         
         if request.GET.has_key('query'):
-            students = students.filter(content_auto = request.GET['query'])
-
+            students = students.filter(content = request.GET['query'])
+        
         cache.set("results", students)
         return am_filtering, students
     

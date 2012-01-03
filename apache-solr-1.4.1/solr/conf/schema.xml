@@ -136,7 +136,7 @@
 
     <field name="school_year" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="graduation_year" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="previous_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
@@ -147,6 +147,8 @@
     <field name="has_public_events" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="second_major" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="graduation_year" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="building_num" type="text" indexed="true" stored="true" multiValued="false" />
 
@@ -161,8 +163,6 @@
     <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
     <field name="act" type="slong" indexed="true" stored="true" multiValued="false" />
-
-    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
 
   </fields>
 

@@ -1,9 +1,9 @@
 <div class="event_rsvp{% if student.id %} hoverable{% endif %}" id="{{student.id}}" title="{{student.email}}">
     {{student.name}} <span class="email">{{student.email}}</span>
     {% if student.id and user.recruiter %}
-        <form id="f-{{student.id}}" action="{% url employer_students %}" method="POST" target="_blank">
+        <form id="f-{{student.id}}" action="{% url employer_students %}" method="GET" target="_blank">
             {% csrf_token %}
-            <input type="hidden" name="query" value="{{student.name}}" />
+            <input type="hidden" name="query" value="{{student.email}}" />
         </form>
     {% endif %}
 </div>

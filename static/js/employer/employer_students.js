@@ -467,7 +467,8 @@ function handle_page_link_click() {
 }
 
 function initiate_search() {
-    query = $("#query_field").val().replace(/[^a-z\d ]+/ig,'');
+    query = $("#query_field").val().replace(/[^a-z@.-_\d ]+/ig,'');
+    console.log(query);
     initiate_ajax_call();
 }
 
