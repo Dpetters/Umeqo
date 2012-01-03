@@ -9,7 +9,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2012-01-02 12:41:11", 
+   "last_login": "2012-01-03 16:06:00", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095", 
@@ -207,7 +207,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-09-22 04:43:16", 
+   "last_login": "2012-01-03 16:08:34", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -9414,7 +9414,7 @@
   "model": "employer.recruiter", 
   "fields": {
    "date_created": "2011-08-27 16:18:23", 
-   "last_updated": "2011-08-27 16:18:23", 
+   "last_updated": "2012-01-03 16:06:32", 
    "user": 16, 
    "employer": 5
   }
@@ -9424,9 +9424,9 @@
   "model": "employer.recruiter", 
   "fields": {
    "date_created": "2011-07-08 00:11:33", 
-   "last_updated": "2011-08-27 16:16:25", 
+   "last_updated": "2012-01-03 16:06:42", 
    "user": 8, 
-   "employer": 5
+   "employer": 12
   }
  }, 
  {
@@ -9444,9 +9444,9 @@
   "model": "employer.recruiter", 
   "fields": {
    "date_created": "2011-08-27 16:18:41", 
-   "last_updated": "2011-08-27 16:18:41", 
+   "last_updated": "2012-01-03 16:06:54", 
    "user": 10, 
-   "employer": 4
+   "employer": 11
   }
  }, 
  {
@@ -9454,9 +9454,9 @@
   "model": "employer.recruiter", 
   "fields": {
    "date_created": "2011-08-27 16:18:31", 
-   "last_updated": "2011-08-27 16:18:31", 
+   "last_updated": "2012-01-03 16:07:00", 
    "user": 9, 
-   "employer": 5
+   "employer": 11
   }
  }, 
  {
@@ -40381,10 +40381,10 @@
   "pk": 15, 
   "model": "registration.userattributes", 
   "fields": {
-   "agreed_to_terms": false, 
+   "agreed_to_terms": true, 
    "is_verified": true, 
    "user": 16, 
-   "agreed_to_terms_date": null, 
+   "agreed_to_terms_date": "2012-01-03 16:10:47", 
    "last_password_change_date": null
   }
  }, 
@@ -46022,6 +46022,16 @@
   }
  }, 
  {
+  "pk": 76, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-03 16:08:34", 
+   "session_key": "3d491d82fa35d0a52fa6aa1c985ce075", 
+   "last_updated": "2012-01-03 16:08:34", 
+   "user": 16
+  }
+ }, 
+ {
   "pk": 75, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46485,6 +46495,36 @@
    "subscription": 5, 
    "expires": "2012-01-01", 
    "employer": 6
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "subscription.employersubscription", 
+  "fields": {
+   "cancelled": false, 
+   "subscription": 5, 
+   "expires": "2013-01-03", 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "subscription.employersubscription", 
+  "fields": {
+   "cancelled": false, 
+   "subscription": 5, 
+   "expires": "2010-01-03", 
+   "employer": 12
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "subscription.employersubscription", 
+  "fields": {
+   "cancelled": false, 
+   "subscription": 1, 
+   "expires": "2012-01-03", 
+   "employer": 11
   }
  }
 ]
