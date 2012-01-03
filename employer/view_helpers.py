@@ -65,7 +65,7 @@ def get_cached_results(request):
                     elif parts[-1] == "Drop" and parts[-2] == "Resume":
                         students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
                 else:
-                    students = ResumeBook.objects.get(obj_id = student_list_id).students.visible()
+                    students = ResumeBook.objects.get(id = student_list_id).students.visible()
             students = SearchQuerySet().models(Student).filter(obj_id__in = [student.id for student in students])
                 
         am_filtering = False
