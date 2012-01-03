@@ -23,39 +23,10 @@
     </div>
 {% endblock %}
 
-{% block welcome_table %}
-<tr>
-    <td>
-        <a href="{% url help_center %}"><img src="{{ STATIC_URL }}images/icons/fire.png" /></a>
-    </td>
-    <td>
-        <p><strong>New! </strong><a href="{% url help_center %}">View the tutorials</a> - learn all the capabilities of Umeqo, step by step.</p>
-    </td>
-</tr>
-<tr>
-    <td>
-        <a href="{% url employer_students %}"><img src="{{ STATIC_URL }}images/icons/magnifier-zoom.png" /></a>
-    </td>
-    <td>
-        <p><a href="{% url employer_students %}">Browse through students</a> - create and deliver custom resume books out of ones you like.</p>
-    </td>
-</tr>
-<tr>
-    <td>
-        <a {% if not sa %}class="must_be_subscribed_annually"{% endif %} href="{% url event_new %}"><img {% if not sa %}class="must_be_subscribed_annually_w must_be_subscribed_annually"{% endif %} src="{{ STATIC_URL }}images/icons/calendar-day.png" /></a>
-    </td>
-    <td>
-        <p {% if not sa %}class="must_be_subscribed_annually"{% endif %} ><a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}">Create events and deadlines</a> - make sure to send out some invitations too!</p>
-    </td>
-</tr>
-<tr>
-    <td>
-        <a {% if not sa %}class="must_be_subscribed_annually"{% endif %} href="{% url employer_profile %}"><img {% if not sa %}class="must_be_subscribed_annually_w must_be_subscribed_annually"{% endif %} src="{{ STATIC_URL }}images/icons/card-address.png" /></a>
-    </td>
-    <td>
-        <p {% if not sa %}class="must_be_subscribed_annually"{% endif %}><a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile %}">Update your organization's profile</a> - students can view it and subscribe.</p>
-    </td>
-</tr>
+{% block featured_content %}
+<a href="{% url employer_students %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/magnifier_64.png" /><span>Browse students</span></div></a>
+<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/calendar_64.png" /><span>Create events & deadlines</span></div></a>
+<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/man_64.png" /><span>Update company profile</span></div></a>
 {% endblock %}
 
 {% block content %}
@@ -70,14 +41,6 @@
                 <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
                 <a href="{% url employer_students %}" class="button">Browse Students</a>
             </form>
-        </div>
-    </div>
-    <div class="main_block_content">
-        <div class="simple_block centered">
-            <p>
-                Start creating resume books and sending event invitations by browsing for students above.</p>
-                <p>You can modify your search and filtering preferences at anytime <a href="{% url employer_account %}?tab=preferences">here</a>.
-            </p>
         </div>
     </div>
 </div>

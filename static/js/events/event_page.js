@@ -16,6 +16,8 @@ $(document).ready(function() {
         if (supports_geolocation()){
             $(".get_directions_link").show();
         }
+        $("#event_where #map").width(260).height(260).css("margin-top", "9px");
+        
         var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);
         var map_options = {
           zoom: 16,
@@ -25,7 +27,6 @@ $(document).ready(function() {
         var map = new google.maps.Map(document.getElementById("map"), map_options);
         var marker = new google.maps.Marker({ map: map }); 
         marker.setPosition(location);
-        $("#event_where #map").css("margin-top", "9px");
     }else{
     	// No internet connection
     	$("#event_external_buttons").html("");

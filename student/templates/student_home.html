@@ -29,31 +29,11 @@
     </div>
 {% endblock %}
 
-{% block welcome_table %}
-<tr>
-    <td>
-        <a href="{% url events_list %}"><img src="{{ STATIC_URL }}images/icons/calendar-day.png" /></a>
-    </td>
-    <td>
-        <p><a href="{% url events_list %}">Browse employer events</a> - RSVP to ones you like and add them to you GCal.</p>
-    </td>
-</tr>
-<tr>
-    <td>
-        <a href="{% url employers %}"><img src="{{ STATIC_URL }}images/icons/plus-circle.png" /></a>
-    </td>
-    <td>
-        <p><a href="{% url employers %}">Subscribe to employers</a> - you will receive notifications about new events and deadlines.</p>
-    </td>
-</tr>
-<tr>
-    <td>
-        <a href="{% url student_profile %}"><img src="{{ STATIC_URL }}images/icons/card-address.png" /></a>
-    </td>
-    <td>
-        <p><a href="{% url student_profile %}">Update your profile</a> - doing so boosts your result ranking!</p>
-    </td>
-</tr>
+
+{% block featured_content %}
+<a href="{% url employers %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/checkmark_64.png" /><span>Subscribe to employers</span></div></a>
+<a href="{% url events_list %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/calendar_64.png" /><span>Browse events & deadlines</span></div></a>
+<a href="{% url student_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/man_64.png" /><span>Update profile</span></div></a>
 {% endblock %}
 
 {% block content %}
