@@ -45,10 +45,10 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-03 05:10:45", 
+   "last_login": "2012-01-03 05:12:57", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$22998$f8947697f11ac378ba6870476d27c8a0fa74d2c6", 
+   "password": "sha1$6c28f$c9d3fc2f646dacc27e5317f86612adc9b9cabdf6", 
    "email": "bitdiddle@umeqo.com", 
    "date_joined": "2011-07-07 22:03:05"
   }
@@ -46022,12 +46022,12 @@
   }
  }, 
  {
-  "pk": 74, 
+  "pk": 75, 
   "model": "registration.sessionkey", 
   "fields": {
-   "date_created": "2012-01-03 05:10:45", 
+   "date_created": "2012-01-03 05:12:57", 
    "session_key": "5760dd29bfcbb7c4a34c1a8199465757", 
-   "last_updated": "2012-01-03 05:10:45", 
+   "last_updated": "2012-01-03 05:12:57", 
    "user": 3
   }
  }, 
