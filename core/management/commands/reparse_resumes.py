@@ -3,11 +3,10 @@ import re
 import subprocess
 
 from datetime import datetime
+from optparse import make_option
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-
-from optparse import make_option
 
 from student.models import Student
 
@@ -21,11 +20,15 @@ class Command(BaseCommand):
         if options["win"]:
             command = "pdftotext_win"
         for student in Student.objects.filter(profile_created=True):
+            print student
             pdf_file_path = settings.MEDIA_ROOT + student.resume.name
             txt_file_path = pdf_file_path.replace(".pdf", ".txt")
-            txt_file = open(txt_file_path, "w")
-            txt_file.close()
+            
+            print pdf_file_path
+            print txt_file_path
+            
             subprocess.call([command, pdf_file_path, txt_file_path])
+            
             txt_file = open(txt_file_path, "r")
             resume_text = txt_file.read()
             # Words that we want to parse out of the resume keywords
@@ -41,8 +44,6 @@ class Command(BaseCommand):
                     count += 1
                     result += " " + word
 
-            txt_file.close()
-            
             student.keywords = result
             student.last_update = datetime.now()
             student.save()
