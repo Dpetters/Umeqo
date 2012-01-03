@@ -4,8 +4,7 @@ from registration.models import UserAttributes
 from student.models import Student
 
 class StudentIndex(indexes.RealTimeSearchIndex):
-    text = indexes.CharField(use_template=True, document=True)
-    content_auto = indexes.EdgeNgramField(use_template = True)
+    text = indexes.EdgeNgramField(use_template=True, document=True)
     
     obj_id = indexes.IntegerField(model_attr="id")
     

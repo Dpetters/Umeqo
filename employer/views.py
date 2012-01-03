@@ -499,11 +499,9 @@ def employer_students(request, extra_context=None):
         
 
         # I don't like this method of statistics
-        """
-        for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['page'].object_list:
+        for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-        """
         
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
@@ -515,18 +513,15 @@ def employer_students(request, extra_context=None):
     else:
         cache.delete('paginator')
         cache.delete('ordered_results')
-        cache.delete('filtering_results')
-        cache.delete('search_results')
+        cache.delete('results')
 
         page_messages = {
             'NO_STUDENTS_SELECTED_MESSAGE': messages.no_students_selected,
             'WAIT_UNTIL_RESUME_BOOK_IS_READY_MESSAGE': messages.wait_until_resume_book_is_ready
         }
         context['page_messages'] = page_messages
-
-        if request.method == "POST" and request.POST.has_key('query'):
-            context['query'] = request.POST.get('query', '')
-        
+        context['query'] = request.GET.get('query', '')
+                
         # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
                 'recruiter_id': request.user.recruiter.id,
