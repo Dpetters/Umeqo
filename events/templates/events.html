@@ -23,13 +23,11 @@ Events & Deadlines |
 
 {% block content_area %}
 <div class="left_side_container">
-    {% include "student_side_nav.html" %}
+    {% block left_side_container %}{% endblock %}
 </div>
-<div class="main_block no_top_margin with_side_nav">
-    <div class="main_block_header">
-        <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
-        <span class="main_block_header_title">Public Events and Deadlines</span>
-    </div>
+<h1 class="inline">Events & Deadlines</h1>
+<a class="back_to_link" href="{% url home %}">&laquo; Back to Home</a>
+<div id="employers_block" class="main_block with_side_nav no_top_margin">
     <div class="main_block_content">
         <form id="event_search_form" action="">
             <label for="event_search_query">Filter Events:</label><input type="text" id="event_search_query" name="q" value="{{query}}"/>

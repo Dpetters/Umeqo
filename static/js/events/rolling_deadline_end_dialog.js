@@ -1,61 +1,60 @@
 $(document).ready( function () {
-    function open_event_cancel_dialog() {
+    function open_rolling_deadline_end_dialog() {
         var $dialog = $('<div class="dialog"></div>')
         .dialog({
             autoOpen: false,
-            title:"Confirm Cancellation",
-            dialogClass: "event_cancel_dialog",
+            title:"Confirm Rolling Deadline Ending",
+            dialogClass: "rolling_deadline_end_dialog",
             modal:true,
             width:410,
             resizable: false,
             close: function() {
-                event_cancel_dialog.remove();
+                rolling_deadline_end_dialog.remove();
             }
         });
         $dialog.dialog('open');
         return $dialog;
     };
 
-    $('.cancel_event_link').click( function (e) {
+    $('.end_rolling_deadline_link').click( function (e) {
         var that = this;
-        event_cancel_dialog = open_event_cancel_dialog();
-        event_cancel_dialog.html(DIALOG_AJAX_LOADER);
+        rolling_deadline_end_dialog = open_rolling_deadline_end_dialog();
+        rolling_deadline_end_dialog.html(DIALOG_AJAX_LOADER);
 
-        var event_cancel_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+        var rolling_deadline_end_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
         $.ajax({
             dataType: "html",
             data:{'event_id':$(that).data("event-id")},
             url: $(that).attr("href"),
             complete: function(jqXHR, textStatus) {
-                clearTimeout(event_cancel_dialog_timeout);
-                event_cancel_dialog.dialog('option', 'position', 'center');
+                clearTimeout(rolling_deadline_end_dialog_timeout);
+                rolling_deadline_end_dialog.dialog('option', 'position', 'center');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if(jqXHR.status==0){
-                    event_cancel_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                    rolling_deadline_end_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
                 }else{
-                    event_cancel_dialog.html(ERROR_MESSAGE_DIALOG);
+                    rolling_deadline_end_dialog.html(ERROR_MESSAGE_DIALOG);
                 }
             },
             success: function (data) {
-                event_cancel_dialog.html(data);
-                $('#event_cancel_confirm_link').click(function(e) {
+                rolling_deadline_end_dialog.html(data);
+                $('#rolling_deadline_end_confirm_link').click(function(e) {
                     var li = $(that).parents("li");
                     var ul = li.parent();
                     $.ajax({
                         type:"POST",
                         dataType: "json",
-                        data:{'event_id':$(that).data("event-id")},
                         url: $(that).attr("href"),
                         beforeSend: function (arr, $form, options) {
-                            show_form_submit_loader("#event_cancel_form");
+                            show_form_submit_loader("#rolling_deadline_end_form");
                         },
                         complete : function(jqXHR, textStatus) {
-                            hide_form_submit_loader("#event_cancel_form");
-                            event_cancel_dialog.dialog('option', 'position', 'center');
+                            hide_form_submit_loader("#rolling_deadline_end_form");
+                            rolling_deadline_end_dialog.dialog('option', 'position', 'center');
                         },
                         success: function (data){
-                            event_cancel_dialog.remove();
+                            rolling_deadline_end_dialog.remove();
                             if (li.length != 0){
                                 li.slideUp(function(){
                                     li.remove();
@@ -69,12 +68,9 @@ $(document).ready( function () {
                                         $('#no_events_block').slideDown();
                                     }
                                 });
-                                if(data.type=="event")
-                                   $("#message_area").html("<p>" + EVENT_CANCELLED + "</p>");
-                            	else
-                                   $("#message_area").html("<p>" + DEADLINE_CANCELLED + "</p>");                            	
+                                $("#message_area").html("<p>" + ROLLING_DEADLINE_ENDED + "</p>");
                             }else{
-                                window.location.href="/?msg=" + data.type + "-cancelled";
+                                window.location.href="/?msg=rolling-deadline-ended";
                             }
                             
                         }

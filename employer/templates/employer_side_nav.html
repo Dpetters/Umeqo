@@ -19,13 +19,14 @@
     {% if not user.recruiter.employer.subscribed %}
         class="must_be_subscribed_annually"
     {% endif %}
-    >Events</h3>
+    >Events & Deadlines</h3>
     <a 
     {% if not user.recruiter.employer.subscribed_annually %}
         class="must_be_subscribed_annually must_be_subscribed_annually_w"
     {% endif %}
-    href="{% url event_new %}">New Event</a>
-    
+    href="{% url event_new %}">Create New</a>
+    <a href="{% url events %}">Browse All</a>
+        
     <h3
     {% if not user.recruiter.employer.subscribed %}
         class="must_be_subscribed_annually"

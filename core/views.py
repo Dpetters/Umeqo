@@ -335,6 +335,7 @@ def home(request, extra_context=None):
     context = {}
     page_messages = { 'profile-saved': messages.profile_saved,
                       'event-cancelled':messages.event_cancelled,
+                      'rolling-deadline-ended':messages.rolling_deadline_ended,
                       'deadline-cancelled':messages.deadline_cancelled }
     msg = request.GET.get('msg', None)
     if msg:
@@ -360,13 +361,12 @@ def home(request, extra_context=None):
             return context
         elif is_recruiter(request.user):
             now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
-            your_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer]))
+            all_employer_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer]))
             context.update({
                 'search_form': StudentSearchForm(),
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'upcoming_events': your_events.filter(Q(end_datetime__gte=now_datetime) | Q(type__name="Rolling Deadline")).order_by("end_datetime"),
-                'past_events': your_events.filter(end_datetime__lt=now_datetime).order_by("-end_datetime"),
+                'upcoming_events': all_employer_events.filter(cancelled=False, archived=False, end_datetime__gte=now_datetime).order_by("end_datetime"),
                 'subscribers': Student.objects.filter(subscriptions__in=[request.user.recruiter.employer]).count()
             });
             context.update(extra_context or {})

@@ -92,6 +92,9 @@
     <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_list_export.js"></script>
+	{% if event.is_rolling_deadline %}
+    <script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
+    {% endif %}
     {% if campus_org_event %}
     <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
     {% endif %}
@@ -108,9 +111,14 @@
     {% if show_admin %}
     <div id="event_admin">
         <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you)
-            {% if can_edit and not is_past %}
-                <a href="{% url event_cancel %}" data-event-id="{{event.id}}" class="cancel_event_link caution_button">Cancel {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
-                <a href="{% url event_edit id=event.id %}" class="dark_button">Edit {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+            {% if can_edit and not event.cancelled %}
+            	{% if not is_past %}
+	                <a href="{% url event_cancel id=event.id %}" class="cancel_event_link caution_button">Cancel {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+	                {% if event.is_rolling_deadline %}
+				        <a title="End the rolling deadline" href="{% url rolling_deadline_end id=event.id %}" class="end_rolling_deadline_link caution_button">End Deadline</a>
+				    {% endif %}
+	                <a href="{% url event_edit id=event.id %}" class="dark_button">Edit {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+            	{% endif %}
             {% endif %}
          </h1>
         <div id="event_admin_side">
@@ -259,7 +267,11 @@
 	            {% else %}
         			<div class="gray_button" disabled="disabled">{% if is_deadline %}Deadline{% else %}Event{% endif %} has passed</div> 
 	            {% endif %}
-            {% else %}
+	        {% endif %}
+	        {% if event.cancelled %}
+	        	<div class="cancelled">Cancelled</div>
+	        {% endif %}
+            {% if not is_past and not event.cancelled %}
                 {% if event.is_public %}
                 	{% if user.is_anonymous %}
 	                	<div id="rsvp_requires_login" class="login gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>                	
@@ -324,21 +336,23 @@
         {% if event.is_rolling_deadline %}
             Rolling deadline
         {% else %}
-            {% if event.start_datetime %}
-            <span class="start">{{event.start_datetime|date:"D, F j"}}
-            {% endif %}
-            <span class="end">
-                {% ifequal event.start_datetime.day event.end_datetime.day %}
-                {% ifequal event.start_datetime.month event.end_datetime.month %}
-                {% ifequal event.start_datetime.year event.end_datetime.year %}
-                    from {{event.start_datetime|date:"h:i A"}}</span> -
-                    {{event.end_datetime|date:"h:i A"}}
-                {% endifequal %}{% endifequal %}
-                {% else %}
-                    {{event.start_datetime|date:"h:i A"}}{% if event.start_datetime %}</span> - {% endif %}
-                    {{event.end_datetime|date:"D, F j h:i A"}}
-                {% endifequal %}
-            </span>
+        	{% if event.cancelled %}<strike>{% endif %}
+	            {% if event.start_datetime %}
+	            <span class="start">{{event.start_datetime|date:"D, F j"}}
+	            {% endif %}
+	            <span class="end">
+	                {% ifequal event.start_datetime.day event.end_datetime.day %}
+	                {% ifequal event.start_datetime.month event.end_datetime.month %}
+	                {% ifequal event.start_datetime.year event.end_datetime.year %}
+	                    from {{event.start_datetime|date:"h:i A"}}</span> -
+	                    {{event.end_datetime|date:"h:i A"}}
+	                {% endifequal %}{% endifequal %}
+	                {% else %}
+	                    {{event.start_datetime|date:"h:i A"}}{% if event.start_datetime %}</span> - {% endif %}
+	                    {{event.end_datetime|date:"D, F j h:i A"}}
+	                {% endifequal %}
+	            </span>
+	        {% if event.cancelled %}</strike>{% endif %}
         {% endif %}
     </div>
     <div id="event_external_buttons">

@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 from core import mixins as core_mixins
 from core.view_helpers import um_slugify
-from core.managers import ActiveManager
 from core.models import EventType
 from student.models import Student
 from core.view_helpers import english_join
@@ -83,11 +82,9 @@ class Event(core_mixins.DateCreatedTracking):
     short_slug = models.SlugField(blank=True, null=True)
     
     is_public = models.BooleanField()
-    is_active = models.BooleanField(default=True)
+    cancelled = models.BooleanField(default=False)
+    archived = models.BooleanField(default=False)
     is_drop = models.BooleanField()
-    
-    # manager which returns only active events
-    objects = ActiveManager()
     
     def __unicode__(self):
         return self.name
@@ -115,7 +112,7 @@ class Event(core_mixins.DateCreatedTracking):
 
 @receiver(signals.post_save, sender=Event)
 def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
-    if not created and not instance.is_active and not raw:
+    if not created and instance.cancelled and not raw:
         notify_about_event(instance, 'cancelled_event', instance.attending_employers.all())
 
 
