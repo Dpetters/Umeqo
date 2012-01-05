@@ -207,7 +207,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-03 16:08:34", 
+   "last_login": "2012-01-03 21:06:32", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$11937$7c2e28d42ddde8dd88fb3306fac9da66c505e8e0", 
@@ -9460,6 +9460,43 @@
   }
  }, 
  {
+  "pk": 3, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "delivered": false, 
+   "last_updated": "2012-01-03 21:25:56", 
+   "name": null, 
+   "students": [], 
+   "recruiter": 6, 
+   "resume_book": "", 
+   "date_created": "2012-01-03 21:25:56"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "employer.resumebook", 
+  "fields": {
+   "delivered": true, 
+   "last_updated": "2012-01-03 21:25:55", 
+   "name": "recruiter1@umeqo.com_2012-01-03-21-25-54", 
+   "students": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    7, 
+    8, 
+    9, 
+    10, 
+    11
+   ], 
+   "recruiter": 6, 
+   "resume_book": "employer/resumebook/recruiter1@umeqo.c_2012-01-03-21-25-55.pdf", 
+   "date_created": "2012-01-03 21:07:21"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "employer.resumebook", 
   "fields": {
@@ -9872,6 +9909,292 @@
    "last_updated": "2012-01-02 01:49:46", 
    "student": 31, 
    "employer": 6
+  }
+ }, 
+ {
+  "pk": 37, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:07:22", 
+   "last_updated": "2012-01-03 21:07:22", 
+   "student": 7, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 38, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:07:22", 
+   "last_updated": "2012-01-03 21:07:22", 
+   "student": 8, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 39, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:07:22", 
+   "last_updated": "2012-01-03 21:07:22", 
+   "student": 9, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 40, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:07:22", 
+   "last_updated": "2012-01-03 21:07:22", 
+   "student": 10, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 41, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:07:22", 
+   "last_updated": "2012-01-03 21:07:22", 
+   "student": 11, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 42, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:06", 
+   "last_updated": "2012-01-03 21:54:06", 
+   "student": 6, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 43, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:11", 
+   "last_updated": "2012-01-03 21:54:11", 
+   "student": 12, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 44, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:11", 
+   "last_updated": "2012-01-03 21:54:11", 
+   "student": 13, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 45, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 14, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 46, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 15, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 47, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 16, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 48, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 17, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 49, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 18, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 50, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 19, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 51, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 20, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 52, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:31", 
+   "last_updated": "2012-01-03 21:54:31", 
+   "student": 21, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 53, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 22, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 54, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 23, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 55, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 24, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 56, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 25, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 57, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 26, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 58, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 27, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 59, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 28, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 60, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 29, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 61, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 30, 
+   "employer": 5
+  }
+ }, 
+ {
+  "pk": 62, 
+  "model": "employer.employerstudentcomment", 
+  "fields": {
+   "comment": "", 
+   "date_created": "2012-01-03 21:54:34", 
+   "last_updated": "2012-01-03 21:54:34", 
+   "student": 31, 
+   "employer": 5
   }
  }, 
  {
@@ -33333,10 +33656,10 @@
   "pk": 1, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 47, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 56, 
+   "last_updated": "2012-01-03 21:54:49", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 10, 
+   "add_to_resumebook_count": 11, 
    "student": 1, 
    "raffles_won": 0, 
    "date_created": "2011-07-07 20:30:03"
@@ -33346,10 +33669,10 @@
   "pk": 2, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 45, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 52, 
+   "last_updated": "2012-01-03 21:54:41", 
    "resume_view_count": 2, 
-   "add_to_resumebook_count": 9, 
+   "add_to_resumebook_count": 10, 
    "student": 2, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 15:25:30"
@@ -33359,10 +33682,10 @@
   "pk": 3, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 45, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 53, 
+   "last_updated": "2012-01-03 21:54:41", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 7, 
+   "add_to_resumebook_count": 8, 
    "student": 3, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 20:05:56"
@@ -33372,10 +33695,10 @@
   "pk": 4, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 42, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 49, 
+   "last_updated": "2012-01-03 21:54:41", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 5, 
+   "add_to_resumebook_count": 6, 
    "student": 4, 
    "raffles_won": 0, 
    "date_created": "2011-07-10 20:26:02"
@@ -33385,10 +33708,10 @@
   "pk": 5, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 43, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 51, 
+   "last_updated": "2012-01-03 21:54:41", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 5, 
+   "add_to_resumebook_count": 6, 
    "student": 5, 
    "raffles_won": 0, 
    "date_created": "2011-07-23 10:53:54"
@@ -33398,8 +33721,8 @@
   "pk": 6, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2012-01-03 02:21:39", 
+   "shown_in_results_count": 3, 
+   "last_updated": "2012-01-03 21:54:06", 
    "resume_view_count": 1, 
    "add_to_resumebook_count": 0, 
    "student": 6, 
@@ -33411,10 +33734,10 @@
   "pk": 7, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 11, 
+   "last_updated": "2012-01-03 21:54:49", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 7, 
    "raffles_won": 0, 
    "date_created": "2012-01-02 01:43:02"
@@ -33424,10 +33747,10 @@
   "pk": 8, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 11, 
+   "last_updated": "2012-01-03 21:54:49", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 8, 
    "raffles_won": 0, 
    "date_created": "2012-01-02 01:43:02"
@@ -33437,10 +33760,10 @@
   "pk": 9, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 11, 
+   "last_updated": "2012-01-03 21:54:49", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 9, 
    "raffles_won": 0, 
    "date_created": "2012-01-02 01:43:02"
@@ -33450,10 +33773,10 @@
   "pk": 10, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 11, 
+   "last_updated": "2012-01-03 21:54:49", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 10, 
    "raffles_won": 0, 
    "date_created": "2012-01-02 01:43:03"
@@ -33463,10 +33786,10 @@
   "pk": 11, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 2, 
-   "last_updated": "2012-01-03 05:00:41", 
+   "shown_in_results_count": 11, 
+   "last_updated": "2012-01-03 21:54:50", 
    "resume_view_count": 0, 
-   "add_to_resumebook_count": 0, 
+   "add_to_resumebook_count": 1, 
    "student": 11, 
    "raffles_won": 0, 
    "date_created": "2012-01-02 01:43:03"
@@ -33476,8 +33799,8 @@
   "pk": 12, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 1, 
-   "last_updated": "2012-01-03 02:21:48", 
+   "shown_in_results_count": 4, 
+   "last_updated": "2012-01-03 21:54:50", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 12, 
@@ -33489,8 +33812,8 @@
   "pk": 13, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 1, 
-   "last_updated": "2012-01-03 02:21:48", 
+   "shown_in_results_count": 4, 
+   "last_updated": "2012-01-03 21:54:50", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 13, 
@@ -33502,8 +33825,8 @@
   "pk": 14, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 1, 
-   "last_updated": "2012-01-03 02:21:48", 
+   "shown_in_results_count": 3, 
+   "last_updated": "2012-01-03 21:54:50", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 14, 
@@ -33515,8 +33838,8 @@
   "pk": 15, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 2, 
+   "last_updated": "2012-01-03 21:54:50", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 15, 
@@ -33528,8 +33851,8 @@
   "pk": 16, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:31", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 16, 
@@ -33541,8 +33864,8 @@
   "pk": 17, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:31", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 17, 
@@ -33554,8 +33877,8 @@
   "pk": 18, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:31", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 18, 
@@ -33567,8 +33890,8 @@
   "pk": 19, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:31", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 19, 
@@ -33580,8 +33903,8 @@
   "pk": 20, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:31", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 20, 
@@ -33593,8 +33916,8 @@
   "pk": 21, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:31", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 21, 
@@ -33606,8 +33929,8 @@
   "pk": 22, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 22, 
@@ -33619,8 +33942,8 @@
   "pk": 23, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:03", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 23, 
@@ -33632,8 +33955,8 @@
   "pk": 24, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 24, 
@@ -33645,8 +33968,8 @@
   "pk": 25, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 25, 
@@ -33658,8 +33981,8 @@
   "pk": 26, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 26, 
@@ -33671,8 +33994,8 @@
   "pk": 27, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 27, 
@@ -33684,8 +34007,8 @@
   "pk": 28, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 28, 
@@ -33697,8 +34020,8 @@
   "pk": 29, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 29, 
@@ -33710,8 +34033,8 @@
   "pk": 30, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 30, 
@@ -33723,8 +34046,8 @@
   "pk": 31, 
   "model": "student.studentstatistics", 
   "fields": {
-   "shown_in_results_count": 0, 
-   "last_updated": "2012-01-02 01:43:04", 
+   "shown_in_results_count": 1, 
+   "last_updated": "2012-01-03 21:54:34", 
    "resume_view_count": 0, 
    "add_to_resumebook_count": 0, 
    "student": 31, 
@@ -46022,6 +46345,16 @@
   }
  }, 
  {
+  "pk": 77, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-03 21:06:32", 
+   "session_key": "c3543c0ff4301c23eb5e37a5bdef93ee", 
+   "last_updated": "2012-01-03 21:06:32", 
+   "user": 16
+  }
+ }, 
+ {
   "pk": 76, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46059,6 +46392,7 @@
    ], 
    "owner": 3, 
    "view_count": 12, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "Student House", 
@@ -46066,7 +46400,6 @@
    "type": 3, 
    "start_datetime": "2012-09-30 19:00:00", 
    "description": "<p>\r\n\tfirst one</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "introductory-a-the-event", 
@@ -46075,6 +46408,7 @@
    "audience": [], 
    "end_datetime": "2011-09-30 20:00:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-09-10 19:16:38", 
    "include_and_more": false
   }
@@ -46089,6 +46423,7 @@
    ], 
    "owner": 3, 
    "view_count": 6, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "blah blah b", 
@@ -46096,7 +46431,6 @@
    "type": 1, 
    "start_datetime": "2011-09-12 15:30:00", 
    "description": "<p>\r\n\tfeafs</p>\r\n", 
-   "is_active": true, 
    "is_drop": true, 
    "is_public": true, 
    "slug": "the-boo", 
@@ -46105,6 +46439,7 @@
    "audience": [], 
    "end_datetime": "2011-10-09 16:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-09-11 15:31:17", 
    "include_and_more": false
   }
@@ -46119,6 +46454,7 @@
    ], 
    "owner": 26, 
    "view_count": 1, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "Eastgate Resident Lot", 
@@ -46126,7 +46462,6 @@
    "type": 3, 
    "start_datetime": "2011-09-22 20:30:00", 
    "description": "<p>\r\n\tfeafea</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "info-session", 
@@ -46135,6 +46470,7 @@
    "audience": [], 
    "end_datetime": "2011-09-22 21:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-09-12 22:20:35", 
    "include_and_more": false
   }
@@ -46147,6 +46483,7 @@
    "attending_employers": [], 
    "owner": 3, 
    "view_count": 0, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46154,7 +46491,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\ttest</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "investment-banking-and-sales-trading-summer-analys", 
@@ -46163,6 +46499,7 @@
    "audience": [], 
    "end_datetime": "2011-12-06 14:00:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-06 12:52:29", 
    "include_and_more": false
   }
@@ -46175,6 +46512,7 @@
    "attending_employers": [], 
    "owner": 3, 
    "view_count": 0, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46182,7 +46520,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\tfef</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "investment-banking-and-sales-trading-summer-analys", 
@@ -46191,6 +46528,7 @@
    "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-06 13:07:25", 
    "include_and_more": false
   }
@@ -46205,6 +46543,7 @@
    ], 
    "owner": 3, 
    "view_count": 8, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46212,7 +46551,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\tfef</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "investment-banking-and-sales-trading", 
@@ -46221,6 +46559,7 @@
    "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-06 13:09:45", 
    "include_and_more": false
   }
@@ -46233,6 +46572,7 @@
    "attending_employers": [], 
    "owner": 3, 
    "view_count": 0, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46240,7 +46580,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\tfeafaes</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "investment-banking-and-sales-trading-summer-analys", 
@@ -46249,6 +46588,7 @@
    "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-06 13:10:47", 
    "include_and_more": false
   }
@@ -46263,6 +46603,7 @@
    ], 
    "owner": 3, 
    "view_count": 0, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46270,7 +46611,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\ttest</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "investment-banking-and-sales-trading-summer", 
@@ -46279,6 +46619,7 @@
    "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-06 13:26:17", 
    "include_and_more": false
   }
@@ -46293,6 +46634,7 @@
    ], 
    "owner": 3, 
    "view_count": 0, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46300,7 +46642,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\tfeasf</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "investment-banking-and-sales-trading-feaf2-32r", 
@@ -46309,6 +46650,7 @@
    "audience": [], 
    "end_datetime": "2011-12-06 14:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-06 13:26:46", 
    "include_and_more": false
   }
@@ -46323,6 +46665,7 @@
    ], 
    "owner": 3, 
    "view_count": 0, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
@@ -46330,7 +46673,6 @@
    "type": 2, 
    "start_datetime": null, 
    "description": "<p>\r\n\tfefe</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "test-hardline", 
@@ -46341,6 +46683,7 @@
    ], 
    "end_datetime": "2011-12-07 16:30:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-07 15:09:37", 
    "include_and_more": false
   }
@@ -46355,6 +46698,7 @@
    ], 
    "owner": 3, 
    "view_count": 4, 
+   "archived": false, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "Student Center Plaza", 
@@ -46362,7 +46706,6 @@
    "type": 3, 
    "start_datetime": "2012-03-09 15:00:00", 
    "description": "<p>\r\n\tfefef</p>\r\n", 
-   "is_active": true, 
    "is_drop": false, 
    "is_public": true, 
    "slug": "umeqo-consulting-panel", 
@@ -46371,6 +46714,7 @@
    "audience": [], 
    "end_datetime": "2012-03-09 16:00:00", 
    "rsvp_message": "", 
+   "cancelled": false, 
    "date_created": "2011-12-12 14:40:42", 
    "include_and_more": false
   }
