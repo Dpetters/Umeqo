@@ -23,7 +23,7 @@ function subscribe_to_employer(subscribe){
 				if(subscribe_to_employer_mouseout){
 					$(that).html("Subscribed");
 				}else{
-					$(that).html("RSVP Unsubscribe");	
+					$(that).html("Unsubscribe");	
 				}
 			}else{
 				$(".employer_id[value=" + loaded_employer_id + "]").parent().removeClass("subscribed");
