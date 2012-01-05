@@ -22,8 +22,12 @@ class EventIndex(indexes.RealTimeSearchIndex):
         return [employer.id for employer in obj.attending_employers.all()]
         
     def prepare_attendees(self, obj):
-        return [attendee.student.user.id for attendee in obj.attendee_set.all()]
-
+        ids = []
+        for attendee in obj.attendee_set.all():
+            if attendee.student:
+                ids.append(attendee.student.user.id)
+        return ids
+    
     def prepare_invitees(self, obj):
         return [invitee.student.user.id for invitee in obj.invitee_set.all()]            
 
