@@ -15,8 +15,7 @@ $(document).ready( function () {
         $dialog.dialog('open');
         return $dialog;
     };
-
-    $('.cancel_event_link').click( function (e) {
+    $('.cancel_event_link').live('click', function (e) {
         var that = this;
         event_cancel_dialog = open_event_cancel_dialog();
         event_cancel_dialog.html(DIALOG_AJAX_LOADER);
@@ -59,16 +58,14 @@ $(document).ready( function () {
                             if (li.length != 0){
                                 li.slideUp(function(){
                                     li.remove();
-                                    if (ul.children().length == 0)
-                                    {
-                                        $("#past_events_header").addClass("no_top_margin");
-                                        ul.prev().remove();
-                                        ul.remove();
-                                    }
-                                    if ($('.event_list li').length==0) {
-                                        $('#no_events_block').slideDown();
-                                    }
+				                    if ($('.event_list li').length==0){
+					                    $('#event_filtering_no_results').slideDown();
+					                }
                                 });
+                                if(data.type=="event")
+                                   $("#message_area").html("<p>" + EVENT_CANCELLED + "</p>");
+                            	else
+                                   $("#message_area").html("<p>" + DEADLINE_CANCELLED + "</p>");                            	
                             }else{
                                 window.location.href="/?msg=" + data.type + "-cancelled";
                             }

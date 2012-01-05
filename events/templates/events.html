@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+Events & Deadlines |
+{% endblock %}
+
+{% block metadata %}
+{{block.super}}
+{% load compress %}
+{% load text_snippet %}
+
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/events.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
+{% endcompress %}
+
+{% compress js %}
+<script src="{{ STATIC_URL }}js/events/events.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
+<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
+{% endcompress %}
+<script>
+	var INITIAL_STATE = $.parseJSON("{{initial_state}}".replace(/&quot;/ig,'"'));
+    var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
+    var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
+    var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
+    var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
+    var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
+</script>
+{% endblock %}
+
+{% block content_area %}
+<div class="left_side_container">
+    {% block left_side_container %}{% endblock %}
+</div>
+<h1 class="inline">{{category|capfirst}} Events & Deadlines</h1>
+<a class="back_to_link" href="{% url home %}">&laquo; Back to Home</a>
+<div id="employers_block" class="main_block with_side_nav no_header">
+    <div class="main_block_content">
+        <form id="event_filtering_form" action="">
+            {{event_filtering_form.query}}
+            {{event_filtering_form.type}}
+            <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+            <noscript><input type="submit" value="Filter" /></noscript>
+        </form>
+        <ul id="event_list" class="event_list">
+        	{% include "event_filtering_results.html" with events=events isnotajax="True" %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -15,7 +15,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest, Http404
 from django.utils import simplejson
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
@@ -27,12 +27,44 @@ from core import enums as core_enums
 from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
-from events.forms import EventForm, CampusOrgEventForm, EventExportForm
-from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.view_helpers import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
+from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
+from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume, notify_about_event
+from events.view_helpers import event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
 from student.models import Student
 
+
+@login_required
+@agreed_to_terms
+def events(request, category, extra_context=None):
+    context = {'category':category}
+    if category=="past":
+        context['past'] = True
+    if category=="archived":
+        context['archived'] = True
+    events_exist, events = event_filtering_helper(category, request)
+    context['events_exist'] = events_exist
+    context['events'] = events
+    if request.is_ajax():
+        template = loader.get_template("event_filtering_results.html")
+        response = HttpResponse(template.render(RequestContext(request, context)))
+        # Need the no-store header because of chrome history api bug
+        # see http://stackoverflow.com/questions/8240710/chrome-history-api-problems
+        response['Cache-Control'] = "no-store"
+        return response
+    else:
+        if request.GET.has_key("query"):
+            context['initial_state'] = simplejson.dumps(request.GET)
+            context['event_filtering_form'] = EventFilteringForm(request.GET)
+        else:
+            context['event_filtering_form'] = EventFilteringForm()
+        if is_campus_org_or_recruiter(request.user):
+            template = "events_employer_campus_org.html"
+        elif is_student(request.user):
+            if not request.user.student.profile_created:
+                return redirect('student_profile')
+            template = "events_student.html"
+    return render_to_response(template, context, context_instance=RequestContext(request) )
 
 @require_GET
 @login_required
@@ -52,7 +84,7 @@ def events_check_short_slug_uniqueness(request):
             return HttpResponseBadRequest("Request is missing the short slug.")
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
-    
+
 @require_GET
 @agreed_to_terms
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
@@ -75,22 +107,6 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
         except Event.DoesNotExist:
             pass
     raise Http404
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
-@render_to('events_list.html')
-def events_list(request, extra_context=None):
-    if not request.user.student.profile_created:
-        return redirect('student_profile')
-    query = request.GET.get('q', '')
-    events = event_search_helper(request)
-    context = {
-        'events': events,
-        'query': query
-    }
-    context.update(extra_context or {})
-    return context
 
 def event_page_redirect(request, id):
     try:
@@ -356,16 +372,14 @@ def event_edit(request, id=None, extra_context=None):
         raise Http404
     context = {}
     context['event'] = event
+    if not admin_of_event(event, request.user):
+        return HttpResponseForbidden('You are not allowed to edit this event.')  
     if is_recruiter(event.owner):
-        form_class = EventForm
-        if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-            return HttpResponseForbidden('You are not allowed to edit this event.')                
+        form_class = EventForm              
     elif is_campus_org(event.owner):
         context['max_industries'] = s.EP_MAX_INDUSTRIES
         context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
-        if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-            return HttpResponseForbidden('You are not allowed to edit this event.') 
     if request.method == 'POST':
         attending_employers_before = list(event.attending_employers.all())[:]
         form = form_class(request.POST, instance=event)
@@ -391,53 +405,31 @@ def event_edit(request, id=None, extra_context=None):
     context.update(extra_context or {})
     return context
 
-@login_required
-@agreed_to_terms
-@has_annual_subscription
-@user_passes_test(is_campus_org_or_recruiter)
-def event_end(request, id, extra_context = None):
-    if request.is_ajax():
-        try:
-            event = Event.objects.get(pk=id)
-        except Event.DoesNotExist:
-            return HttpResponseNotFound("Event with id %s not found." % id)
-        else:
-            if not event.is_rolling_deadline():
-                return HttpResponseForbidden('You cannot end anything other than a rolling deadline.')
-            if is_recruiter(event.owner):
-                if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
-            elif is_campus_org(event.owner):
-                if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
-            event.end_date = datetime.now()
-            event.save()
-            return HttpResponse()
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+def admin_of_event(event, user):
+    if is_recruiter(event.owner):
+        print user.recruiter.employer == event.owner.recruiter.employer
+        print is_recruiter(user)
+        return is_recruiter(user) and user.recruiter.employer == event.owner.recruiter.employer
+    elif is_campus_org(event.owner):
+        return is_campus_org(user) and user.campusorg == event.owner.campusorg
+    return False
 
 @login_required
 @agreed_to_terms
 @has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("event_cancel_dialog.html")
-def event_cancel(request, extra_context = None):
+def event_cancel(request, id, extra_context = None):
     if request.is_ajax():
         if request.method == "POST":
-            event_id = request.POST.get("event_id")
-            if not event_id:
-                return HttpResponseBadRequest("Request is missing event id.")
             try:
-                event = Event.objects.get(id=event_id)
+                event = Event.objects.get(id=id)
             except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % event_id)
+                return HttpResponseNotFound("Event with id %s not found." % id)
             else:
-                if is_recruiter(event.owner):
-                    if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-                        return HttpResponseForbidden('You are not allowed to delete this event.')
-                elif is_campus_org(event.owner):
-                    if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-                        return HttpResponseForbidden('You are not allowed to delete this event.')
-                event.is_active = False
+                if not admin_of_event(event, request.user):
+                    return HttpResponseForbidden('You are not allowed to delete this event.')
+                event.cancelled = True
     
                 # Notify RSVPS.
                 rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
@@ -459,18 +451,71 @@ def event_cancel(request, extra_context = None):
                     data['type'] = "event"
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            event_id = request.GET.get("event_id")
-            if not event_id:
-                return HttpResponseBadRequest("Request is missing event id.")
             try:
-                event = Event.objects.get(id=event_id)
+                event = Event.objects.get(id=id)
             except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % event_id)
+                return HttpResponseNotFound("Event with id %s not found." % id)
             context = {'event':event}
             context.update(extra_context or {})
             return context
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
+    
+@login_required
+@agreed_to_terms
+@has_annual_subscription
+@require_POST
+@user_passes_test(is_campus_org_or_recruiter)
+def event_archive(request, id, extra_context = None):
+    try:
+        event = Event.objects.get(id=id)
+    except Event.DoesNotExist:
+        return HttpResponseNotFound("Event with id %s not found." % id)
+    else:
+        if not admin_of_event(event, request.user):
+            return HttpResponseForbidden('You are not allowed to arhive this event.')
+        event.archived = True
+        event.save()
+        data = {}
+        if event.is_deadline():
+            data['type'] = "deadline"
+        else:
+            data['type'] = "event"
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+@login_required
+@agreed_to_terms
+@has_annual_subscription
+@user_passes_test(is_campus_org_or_recruiter)
+@render_to("rolling_deadline_end_dialog.html")
+def rolling_deadline_end(request, id, extra_context = None):
+    if request.is_ajax():
+        if request.method == "POST":
+            try:
+                event = Event.objects.get(pk=id)
+            except Event.DoesNotExist:
+                return HttpResponseNotFound("Event with id %s not found." % id)
+            else:
+                if not event.is_rolling_deadline():
+                    return HttpResponseForbidden('You cannot end anything other than a rolling deadline.')
+                if is_recruiter(event.owner):
+                    if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
+                        return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+                elif is_campus_org(event.owner):
+                    if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
+                        return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+                event.end_datetime = datetime.now()-timedelta(minutes=1)
+                event.save()
+                return HttpResponse()
+        else:
+            try:
+                event = Event.objects.get(id=id)
+            except Event.DoesNotExist:
+                return HttpResponseNotFound("Event with id %s not found." % id)
+            context = {'event':event}
+            context.update(extra_context or {})
+            return context
+    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
 
 @login_required
@@ -641,16 +686,6 @@ def event_rsvp_message(request, extra_context=None):
         except Event.DoesNotExist:
             return HttpResponseBadRequest("Event with id %s does not exist." % (request.GET["event_id"]));
     return HttpResponseBadRequest("Event id is missing");
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
-@render_to('events_list_ajax.html')
-def event_search(request, extra_context=None):
-    events = event_search_helper(request)
-    context = {'events': events}
-    context.update(extra_context or {})
-    return context
 
 @login_required
 @agreed_to_terms

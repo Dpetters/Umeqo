@@ -1,0 +1,18 @@
+#event_filtering_form {
+    margin: 0 0 9px 3px;
+    position: relative;
+}
+#event_filtering_form .ajax_form_submit_loader{
+	margin-top:4px;
+}
+#event_filtering_form input[type="checkbox"]{
+	margin-left:5px;
+	position:relative;
+	top:2px;
+}
+#event_list_empty {
+    padding: 10px;
+    text-align: center;
+    color: #666;
+    border-bottom: 1px solid #DDD;
+}

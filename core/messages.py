@@ -13,6 +13,11 @@ wait_until_resume_book_is_ready = "Please wait until the resume book is ready."
 event_cancelled = "Your event has been successfully cancelled."
 deadline_cancelled = "Your deadline has been successfully cancelled."
 
+event_archived = "Your event has been successfully archived."
+deadline_archived = "Your deadline has been successfully archived."
+
+rolling_deadline_ended = "Your rolling deadline has been successfully ended."
+
 # Account Settinggs
 password_changed = 'Password changed successfully.'
 

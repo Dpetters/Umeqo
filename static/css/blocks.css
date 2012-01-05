@@ -16,6 +16,9 @@
 .main_block h1 {
     margin-bottom: 15px;
 }    
+.main_block.no_header{
+	margin-top:15px;
+}
 .main_block_header {
     padding: 3px 0px;
     line-height: 30px;

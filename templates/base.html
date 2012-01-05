@@ -126,9 +126,8 @@
                             <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
                         </li>
                         <li>
-                            <a id="account" href="javascript:void(0)" tabindex="-1">Account <span class="arrow">&#9660;</span></a>
+                            <a id="account" href="javascript:void(0)" tabindex="-1">{{user.email}} <span class="arrow">&#9660;</span></a>
                             <ul id="account_dropdown">
-                                <li class="info">{{user.email}}</li>
                             {% if user.student %}
                                 <li><a href="{% url student_profile %}">Edit Profile</a></li>
                                 <li><a href="{% url student_account %}">Account Settings</a></li>

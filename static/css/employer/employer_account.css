@@ -17,20 +17,6 @@
 #id_default_student_results_per_page, #id_default_student_result_ordering{
     width:160px;
 }
-.event_list .type {
-    color: #FFF;
-    text-shadow: #000 0 -1px 0;
-    background-color: #666;
-}
-.event_list .type,
-.event_list .private_token {
-    font-size: 11px;
-    display: inline-block;
-    padding: 2px 4px;
-    vertical-align: top;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-}
 #subscription_actions{
     margin-top:5px;
 }

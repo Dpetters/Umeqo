@@ -104,9 +104,9 @@
     <dynamicField name="*_dt" type="date"    indexed="true"  stored="true"/>
     
 
-    <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="attending_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
-    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
@@ -120,13 +120,23 @@
 
     <field name="content_auto" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
+    <field name="owner" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
+
     <field name="looking_for" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="countries_of_citizenship" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="industries" type="text" indexed="true" stored="true" multiValued="true" />
 
+    <field name="archived" type="boolean" indexed="true" stored="true" multiValued="false" />
+
     <field name="first_major" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="attendees" type="text" indexed="true" stored="true" multiValued="true" />
+
+    <field name="is_deadline" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
 
@@ -136,11 +146,13 @@
 
     <field name="school_year" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
+    <field name="text" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
     <field name="previous_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="invitees" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="start_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
@@ -163,6 +175,8 @@
     <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
     <field name="act" type="slong" indexed="true" stored="true" multiValued="false" />
+
+    <field name="cancelled" type="boolean" indexed="true" stored="true" multiValued="false" />
 
   </fields>
 

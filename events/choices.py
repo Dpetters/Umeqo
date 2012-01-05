@@ -8,6 +8,17 @@ DROP_BOOLEAN_CHOICES = (
 (True, 'Enabled')
 )
 
+ALL = 'a'
+EVENTS = 'e'
+DEADLINES = 'd'
+RESUME_DROPS = 'r'
+EVENT_TYPE_CHOICES = (
+(ALL, 'All'),
+(EVENTS, 'Events'),
+(DEADLINES, 'Deadlines'),
+(RESUME_DROPS, 'Resume Drops')
+)
+
 TIME_CHOICES = (
 ('00:00','12:00 AM'),
 ('00:30','12:30 AM'),

@@ -53,6 +53,10 @@
     margin-bottom:2px;
     color:#555;
 }
+.event_list .datetime .cancelled{
+    color:red;
+    font-weight:bold;
+}
 
 .editable_event_list .details {
     margin-right: 100px;
@@ -76,7 +80,4 @@
 }
 .event_list .edit a:hover {
     background-color: #EEE;
-}
-.event_list .outdated {
-    opacity:.5;
 }

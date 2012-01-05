@@ -1,9 +1,0 @@
-<div class="edit">
-    <a href="{% url event_edit id=event.id %}">Edit</a>
-    <!--
-    {% if event.is_rolling_deadline %}
-        <a href="{% url event_end id=event.id %}" class="end_rolling_deadline_link">End</a>
-    {% endif %}
-    -->
-    <a href="{% url event_cancel %}" data-event-id="{{event.id}}" class="cancel_event_link">Cancel</a>
-</div>

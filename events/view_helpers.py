@@ -2,9 +2,38 @@ import csv
 
 from datetime import datetime, timedelta
 
-from core.decorators import is_student
+from core.decorators import is_student, is_recruiter, is_campus_org
+from events.choices import ALL
 from events.models import Event
-from haystack.query import SearchQuerySet
+from haystack.query import SearchQuerySet, SQ
+
+def buildAttendee(obj):
+    output = {
+        'email': obj.email,
+        'datetime_created': obj.datetime_created.isoformat()
+    }
+    if obj.student and obj.student.profile_created:
+            output['name'] = obj.student.first_name + ' ' + obj.student.last_name
+            output['account'] = True
+            output['id'] = obj.student.id
+            output['school_year'] = str(obj.student.school_year)
+            output['graduation_year'] = str(obj.student.graduation_year)
+    else:
+        output['name'] = obj.name
+        output['account'] = False
+    return output
+
+def buildRSVP(obj):
+    output = {
+        'id': obj.student.id,
+        'name': obj.student.first_name + ' ' + obj.student.last_name,
+        'datetime_created': obj.datetime_created.isoformat(),
+        'email': obj.student.user.email,
+        'school_year': str(obj.student.school_year),
+        'graduation_year': str(obj.student.graduation_year),
+        'account': True
+    }
+    return output
 
 def export_event_list_csv(file_obj, event, list):
     writer = csv.writer(file_obj)
@@ -94,32 +123,36 @@ def export_event_list_xls(file_obj, event, list):
     return "%s.xls" % (event.name)
 """
 
-def event_search_helper(request):
-    query = request.GET.get('q','')
-    if is_student(request.user):
-        search_results = SearchQuerySet().models(Event).filter(is_public=True).filter(end_datetime__gte=datetime.now()).order_by("end_datetime")
+def event_filtering_helper(category, request):
+    if category=="past":
+        events_sqs = past_events_sqs(request.user)
+    elif category=="cancelled":
+        events_sqs = cancelled_events_sqs(request.user)
+    elif category=="archived":
+        events_sqs = archived_events_sqs(request.user)
+    elif category=="attended":
+        events_sqs = attended_events_sqs(request.user)
+    else:
+        events_sqs = upcoming_events_sqs(request.user)
+    events_exist = len(events_sqs) > 0
+    type = request.GET.get("type", ALL)
+    if type=="e":
+        events_sqs = events_sqs.filter(is_deadline=False)
+    elif type=="d":
+        events_sqs = events_sqs.filter(is_deadline=True)        
+    elif type=="r":
+        events_sqs = events_sqs.filter(is_drop=True)  
+    query = request.GET.get('query','')
     if query!="":
         for q in query.split(' '):
             if q.strip() != "":
-                search_results = search_results.filter(content_auto=q)
-    return map(lambda n: n.object, search_results)
+                events_sqs = events_sqs.filter(text=q)
+    return events_exist, [sr.object for sr in events_sqs.load_all()]
+
 
 def get_rsvps(event):
     return map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
 
-def get_no_rsvps(event):
-    return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
-
-def get_attendees(event):
-    attendees = map(buildAttendee, event.attendee_set.all().order_by('name'))
-    return attendees
-
-def get_invitees(event):
-    return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
-
-def get_dropped_resumes(event):
-    return map(buildRSVP, event.droppedresume_set.all().order_by('student__first_name'))
-    
 def get_all_responses(event):
     all_responses = []
     emails_dict = {}
@@ -140,33 +173,12 @@ def get_all_responses(event):
     all_responses.sort(key=lambda n: n['name'])
     return all_responses
 
-def buildAttendee(obj):
-    output = {
-        'email': obj.email,
-        'datetime_created': obj.datetime_created.isoformat()
-    }
-    if obj.student and obj.student.profile_created:
-            output['name'] = obj.student.first_name + ' ' + obj.student.last_name
-            output['account'] = True
-            output['id'] = obj.student.id
-            output['school_year'] = str(obj.student.school_year)
-            output['graduation_year'] = str(obj.student.graduation_year)
-    else:
-        output['name'] = obj.name
-        output['account'] = False
-    return output
+def get_attendees(event):
+    attendees = map(buildAttendee, event.attendee_set.all().order_by('name'))
+    return attendees
 
-def buildRSVP(obj):
-    output = {
-        'id': obj.student.id,
-        'name': obj.student.first_name + ' ' + obj.student.last_name,
-        'datetime_created': obj.datetime_created.isoformat(),
-        'email': obj.student.user.email,
-        'school_year': str(obj.student.school_year),
-        'graduation_year': str(obj.student.graduation_year),
-        'account': True
-    }
-    return output
+def get_dropped_resumes(event):
+    return map(buildRSVP, event.droppedresume_set.all().order_by('student__first_name'))
 
 def get_event_schedule(event_date_string, event_id):
     event_date = datetime.strptime(event_date_string, '%m/%d/%Y')
@@ -188,3 +200,38 @@ def get_event_schedule(event_date_string, event_id):
         return name, start_px, (end_px - start_px)
     schedule = map(buildScheduleItem, events)
     return schedule
+
+def get_invitees(event):
+    return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
+
+def get_no_rsvps(event):
+    return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
+
+def user_events_sqs(user):
+    events = SearchQuerySet().models(Event)
+    if is_student(user):
+        return events.filter(SQ(is_public=True) | SQ(invitees=user.id))
+    if is_campus_org(user):
+        return events.filter(owner=user.id)
+    return events.filter(SQ(owner=user.id) | SQ(attending_employers__in=[user.recruiter.employer]))
+
+def archived_events_sqs(user):
+    return user_events_sqs(user).filter(archived=True).order_by("end_datetime")
+
+def attended_events_sqs(user):
+    return user_events_sqs(user).filter(attendees=user.id).order_by("end_datetime")
+
+def cancelled_events_sqs(user):
+    events = user_events_sqs(user).filter(cancelled=True).order_by("end_datetime")
+    if is_recruiter(user) or is_campus_org(user):
+        events = events.filter(archived=False)
+    return events
+
+def past_events_sqs(user):
+    events = user_events_sqs(user).filter(end_datetime__lt=datetime.now()).order_by("end_datetime")
+    if is_recruiter(user) or is_campus_org(user):
+        events = events.filter(archived=False)
+    return events
+
+def upcoming_events_sqs(user):
+    return user_events_sqs(user).filter(cancelled=False, end_datetime__gte=datetime.now()).order_by("end_datetime")

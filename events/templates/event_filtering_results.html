@@ -1,0 +1,13 @@
+{% for event in events %}
+    {% include "event_snippet.html" %}
+{% empty %}
+	{% include "event_filtering_no_results.html" %}
+{% endfor %}
+
+{% include "event_filtering_no_results.html" with hidden="True" events_exist="" %}
+
+{% if isnotajax %}
+    <input id="isnotajax" value="true" type="hidden" />
+{% else %}
+    <input id="isnotajax" value="false" type="hidden" />
+{% endif %}

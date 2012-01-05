@@ -1,0 +1,11 @@
+{% extends 'events.html' %}
+
+{% block left_side_container %}
+<div class="side_nav"> 
+    <h3>Events & Deadlines</h3>
+    <a href="{% url events category="upcoming" %}">Upcoming</a>
+    <a href="{% url events category="past" %}">Past</a>
+    <a href="{% url events category="cancelled" %}">Cancelled</a>
+    <a href="{% url events category="archived" %}">Archived</a>
+</div>
+{% endblock %}
