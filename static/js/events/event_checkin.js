@@ -1,5 +1,5 @@
-var hasClickedClose = false;
-    
+var rsvps, hasClickedClose = false, selectedIndex = 0, userText = "";
+
 function showError(message) {
         var errorBox = $('#checkin_error');
     errorBox.html(message);
@@ -57,7 +57,6 @@ $('#email_input_autofill li').live('hover', function() {
 });
     
 $(document).ready(function(){
-    var rsvps, selectedIndex = 0, userText = "";
     $('#event_checkin_link').click(function(e) {
         window.scroll(0,0);
         $(this).children('.filler').eq(0).animate({

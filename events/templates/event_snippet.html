@@ -1,4 +1,4 @@
-<li {% if past %}class="outdated"{% endif %} >
+<li>
     <div class="name">
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
         {% if event.location %}
@@ -11,15 +11,15 @@
         {% endif %}
     </div>
     
-    {% if user.recruiter and not past %}
+    {% if user.recruiter %}
         {% if event.owner.recruiter.employer == user.recruiter.employer %}
-            {% include 'event_snippet_edit.html' %}
+            {% include 'event_snippet_commands.html' %}
         {% endif %}
     {% endif %}
 
-    {% if user.campusorg and not past %}
+    {% if user.campusorg %}
         {% if event.owner == user %}
-            {% include 'event_snippet_edit.html' %}
+            {% include 'event_snippet_commands.html' %}
         {% endif %}
     {% endif %}
     

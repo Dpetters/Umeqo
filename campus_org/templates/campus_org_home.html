@@ -25,25 +25,16 @@
 <div class="main_block with_side_nav">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
-        <span class="main_block_header_title">Your Events and Deadlines</span>
+        <span class="main_block_header_title">Upcoming Events and Deadlines</span>
         <div class="main_block_header_content">
             <a href="{% url event_new %}" class="button">New Event</a>
         </div>
     </div>
     <div class="main_block_content">
         {% if upcoming_events %}
-            <h3 class="no_top_margin"> Upcoming </h3>
             <ul class="event_list editable_event_list">
             {% for event in upcoming_events %}
                 {% include "event_snippet.html" %}
-            {% endfor %}
-            </ul>
-        {% endif %}
-        {% if past_events %}
-            <h3 id="past_events_header" {% if not upcoming_events %}class="no_top_margin"{% endif %}> Past </h3>
-            <ul class="event_list editable_event_list">
-            {% for event in past_events %}
-                {% include "event_snippet.html" with past='True' %}
             {% endfor %}
             </ul>
         {% endif %}

@@ -329,7 +329,7 @@
 		    {% endif %}
         </div>
         
-        {% if not is_past and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}/images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
+        {% if not is_past and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
     </div>
     <h1 id="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}</h1>
     <div id="event_time">

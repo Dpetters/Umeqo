@@ -152,6 +152,8 @@
 
     <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
 
+    <field name="invitees" type="text" indexed="true" stored="true" multiValued="true" />
+
     <field name="start_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
     <field name="has_public_events" type="boolean" indexed="true" stored="true" multiValued="false" />

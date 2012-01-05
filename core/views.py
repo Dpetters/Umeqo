@@ -27,7 +27,7 @@ from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questi
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
-from events.view_helpers import upcoming_events_sqs
+from events.view_helpers import upcoming_events_sqs, user_events_sqs
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
@@ -344,18 +344,10 @@ def home(request, extra_context=None):
         if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
-            private_events = Event.objects.filter(is_public=False).filter(invitee__student__in=[request.user.student]).distinct().filter(end_datetime__gt=datetime.now()).order_by('end_datetime')
-            context['private_events'] = private_events
-            subscriptions = request.user.student.subscriptions.all()
-            if len(subscriptions) > 0:
-                context['has_subscriptions'] = True
-                sub_events = Event.objects.filter(is_public=True).filter(attending_employers__in=subscriptions).distinct().filter(end_datetime__gt=datetime.now()).order_by('end_datetime')
-                context.update({
-                    'has_subscriptions': True,
-                    'sub_events':sub_events
-                })
-            else:
-                context['has_subscriptions'] = False
+            subscriptions = [employer.id for employer in request.user.student.subscriptions.all()]
+            event_sqs = user_events_sqs(request.user).filter(attending_employers__in=subscriptions).filter(end_datetime__gt=datetime.now()).order_by('end_datetime')
+            context['events'] = [sr.object for sr in event_sqs.load_all()]
+            context['has_subscriptions'] = len(subscriptions) > 0
             context.update(extra_context or {})
             context.update({'TEMPLATE':'student_home.html'})
             return context
@@ -371,12 +363,10 @@ def home(request, extra_context=None):
             context.update({'TEMPLATE':'employer_home.html'})
             return context
         elif is_campus_org(request.user):
-            now_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:00')
             context.update({
                 'notices': Notice.objects.notices_for(request.user),
                 'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'upcoming_events': Event.objects.filter(owner=request.user, end_datetime__gte=now_datetime).order_by("end_datetime"),
-                'past_events': Event.objects.filter(owner=request.user, end_datetime__lt=now_datetime).order_by("-end_datetime")
+                'upcoming_events': [sr.object for sr in upcoming_events_sqs(request.user).load_all()],
             });
             context.update(extra_context or {})
             context.update({'TEMPLATE':'campus_org_home.html'})

@@ -2,7 +2,7 @@ import csv
 
 from datetime import datetime, timedelta
 
-from core.decorators import is_student
+from core.decorators import is_student, is_recruiter, is_campus_org
 from events.choices import ALL
 from events.models import Event
 from haystack.query import SearchQuerySet, SQ
@@ -210,22 +210,28 @@ def get_no_rsvps(event):
 def user_events_sqs(user):
     events = SearchQuerySet().models(Event)
     if is_student(user):
-        return events.filter(is_public=True)
+        return events.filter(SQ(is_public=True) | SQ(invitees=user.id))
+    if is_campus_org(user):
+        return events.filter(owner=user.id)
     return events.filter(SQ(owner=user.id) | SQ(attending_employers__in=[user.recruiter.employer]))
 
 def archived_events_sqs(user):
     return user_events_sqs(user).filter(archived=True).order_by("end_datetime")
 
 def attended_events_sqs(user):
-    print user_events_sqs(user)
-    print user_events_sqs(user).filter(attendees=user.id)
     return user_events_sqs(user).filter(attendees=user.id).order_by("end_datetime")
 
 def cancelled_events_sqs(user):
-    return user_events_sqs(user).filter(cancelled=True).order_by("end_datetime")
+    events = user_events_sqs(user).filter(cancelled=True).order_by("end_datetime")
+    if is_recruiter(user) or is_campus_org(user):
+        events = events.filter(archived=False)
+    return events
 
 def past_events_sqs(user):
-    return user_events_sqs(user).filter(end_datetime__lt=datetime.now()).order_by("end_datetime")
+    events = user_events_sqs(user).filter(end_datetime__lt=datetime.now()).order_by("end_datetime")
+    if is_recruiter(user) or is_campus_org(user):
+        events = events.filter(archived=False)
+    return events
 
 def upcoming_events_sqs(user):
-    return user_events_sqs(user).filter(cancelled=False, archived=False, end_datetime__gte=datetime.now()).order_by("end_datetime")
+    return user_events_sqs(user).filter(cancelled=False, end_datetime__gte=datetime.now()).order_by("end_datetime")

@@ -25,7 +25,7 @@
         class="must_be_subscribed_annually must_be_subscribed_annually_w"
     {% endif %}
     href="{% url event_new %}">Create New</a>
-    <a href="{% url events category="upcoming" %}">Browse All</a>
+    <a href="{% url events category="upcoming" %}">Browse</a>
         
     <h3
     {% if not user.recruiter.employer.subscribed %}

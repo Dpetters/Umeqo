@@ -24,9 +24,10 @@
     {% endif %}
 </div>
 
-<div class="main_block no_top_margin with_side_nav">
+<h1 class="inline">Notifications</h1>
+<a class="back_to_link" href="{% url home %}">&laquo; Back to Home</a>
+<div class="main_block no_header with_side_nav">
     <div class="main_block_content notifications_list">
-        <h1>Notifications</h1>
         <ul id="notifications_list">
             {% for notice in notices %}
                 <li id="n-{{ notice.id }}" {% if notice.is_unseen %} class="unread"{% endif %}>

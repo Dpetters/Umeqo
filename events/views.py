@@ -38,6 +38,10 @@ from student.models import Student
 @agreed_to_terms
 def events(request, category, extra_context=None):
     context = {'category':category}
+    if category=="past":
+        context['past'] = True
+    if category=="archived":
+        context['archived'] = True
     events_exist, events = event_filtering_helper(category, request)
     context['events_exist'] = events_exist
     context['events'] = events
@@ -53,7 +57,6 @@ def events(request, category, extra_context=None):
             context['initial_state'] = simplejson.dumps(request.GET)
             context['event_filtering_form'] = EventFilteringForm(request.GET)
         else:
-            print "here"
             context['event_filtering_form'] = EventFilteringForm()
         if is_campus_org_or_recruiter(request.user):
             template = "events_employer_campus_org.html"
@@ -369,16 +372,14 @@ def event_edit(request, id=None, extra_context=None):
         raise Http404
     context = {}
     context['event'] = event
+    if not admin_of_event(event, request.user):
+        return HttpResponseForbidden('You are not allowed to edit this event.')  
     if is_recruiter(event.owner):
-        form_class = EventForm
-        if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-            return HttpResponseForbidden('You are not allowed to edit this event.')                
+        form_class = EventForm              
     elif is_campus_org(event.owner):
         context['max_industries'] = s.EP_MAX_INDUSTRIES
         context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
-        if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-            return HttpResponseForbidden('You are not allowed to edit this event.') 
     if request.method == 'POST':
         attending_employers_before = list(event.attending_employers.all())[:]
         form = form_class(request.POST, instance=event)
@@ -404,6 +405,15 @@ def event_edit(request, id=None, extra_context=None):
     context.update(extra_context or {})
     return context
 
+def admin_of_event(event, user):
+    if is_recruiter(event.owner):
+        print user.recruiter.employer == event.owner.recruiter.employer
+        print is_recruiter(user)
+        return is_recruiter(user) and user.recruiter.employer == event.owner.recruiter.employer
+    elif is_campus_org(event.owner):
+        return is_campus_org(user) and user.campusorg == event.owner.campusorg
+    return False
+
 @login_required
 @agreed_to_terms
 @has_annual_subscription
@@ -417,12 +427,8 @@ def event_cancel(request, id, extra_context = None):
             except Event.DoesNotExist:
                 return HttpResponseNotFound("Event with id %s not found." % id)
             else:
-                if is_recruiter(event.owner):
-                    if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-                        return HttpResponseForbidden('You are not allowed to delete this event.')
-                elif is_campus_org(event.owner):
-                    if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-                        return HttpResponseForbidden('You are not allowed to delete this event.')
+                if not admin_of_event(event, request.user):
+                    return HttpResponseForbidden('You are not allowed to delete this event.')
                 event.cancelled = True
     
                 # Notify RSVPS.
@@ -454,6 +460,28 @@ def event_cancel(request, id, extra_context = None):
             return context
     else:
         return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
+    
+@login_required
+@agreed_to_terms
+@has_annual_subscription
+@require_POST
+@user_passes_test(is_campus_org_or_recruiter)
+def event_archive(request, id, extra_context = None):
+    try:
+        event = Event.objects.get(id=id)
+    except Event.DoesNotExist:
+        return HttpResponseNotFound("Event with id %s not found." % id)
+    else:
+        if not admin_of_event(event, request.user):
+            return HttpResponseForbidden('You are not allowed to arhive this event.')
+        event.archived = True
+        event.save()
+        data = {}
+        if event.is_deadline():
+            data['type'] = "deadline"
+        else:
+            data['type'] = "event"
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
 @agreed_to_terms

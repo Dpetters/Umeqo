@@ -81,6 +81,3 @@
 .event_list .edit a:hover {
     background-color: #EEE;
 }
-.event_list .outdated {
-    opacity:.5;
-}

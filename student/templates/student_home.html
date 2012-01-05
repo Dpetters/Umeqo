@@ -40,23 +40,20 @@
     <div class="main_block with_side_nav">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
-            <span class="main_block_header_title">Events and Deadlines</span>
+            <span class="main_block_header_title">Upcoming Events and Deadlines</span>
         </div>
         <div class="main_block_content">
-            {% if has_subscriptions or private_events %}
-                {% if sub_events or private_events %}
+            {% if has_subscriptions or events %}
+                {% if events %}
                     <ul class="event_list">
-                        {% for event in private_events %}
-                            {% include "event_snippet.html" %}
-                        {% endfor %}
-                        {% for event in sub_events %}
+                        {% for event in events %}
                             {% include "event_snippet.html" %}
                         {% endfor %}
                     </ul>
                 {% else %}
                     <div class="simple_block centered">
                             <p>You have no upcoming events from the employers that you are subscribed to!</p>
-                            <p>Try <a href="{% url events_list %}">browsing the full events listing</a> or <a href="{% url employers %}">subscribing to some more employers</a>.
+                            <p>Try <a href="{% url events category="upcoming" %}">browsing the full events listing</a> or <a href="{% url employers %}">subscribing to some more employers</a>.
                         </p>
                     </div>
                 {% endif %}
@@ -66,7 +63,7 @@
                         When you <a href="{% url employers %}">subscribe to employers</a> and when employers send you invitations, their events will appear here.
                     </p>
                     <p>
-                        You can also <a href="{% url events_list %}">browse the full listing</a> to search and filtering for public events and deadlines.
+                        You can also <a href="{% url events category="upcoming" %}">browse the full listing</a> to search and filtering for public events and deadlines.
                     </p>
                 </div>
             {% endif %}

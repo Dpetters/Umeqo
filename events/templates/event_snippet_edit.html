@@ -1,9 +1,0 @@
-<div class="edit">
-	{% if not event.cancelled %}
-	    <a title="Edit {% if event.is_deadline %}deadline{% else %}event{% endif %} details" href="{% url event_edit id=event.id %}">Edit</a>
-	    {% if event.is_rolling_deadline %}
-	        <a title="End the rolling deadline" href="{% url rolling_deadline_end id=event.id %}" class="end_rolling_deadline_link">End</a>
-	    {% endif %}
-	    <a title="Cancel the {% if event.is_deadline %}deadline{% else %}event{% endif %}" href="{% url event_cancel id=event.id %}" class="cancel_event_link">Cancel</a>
-	{% endif %}
-</div>

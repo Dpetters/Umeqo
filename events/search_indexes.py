@@ -13,12 +13,18 @@ class EventIndex(indexes.RealTimeSearchIndex):
     archived = indexes.BooleanField(model_attr="archived")
     cancelled = indexes.BooleanField(model_attr="cancelled")
     attendees = indexes.MultiValueField()
+    invitees = indexes.MultiValueField()
 
     def prepare_looking_for(self, obj):
         return [employer.id for employer in obj.attending_employers.all()]
-    
+
+    def prepare_attending_employers(self, obj):
+        return [employer.id for employer in obj.attending_employers.all()]
+        
     def prepare_attendees(self, obj):
         return [attendee.student.user.id for attendee in obj.attendee_set.all()]
-            
+
+    def prepare_invitees(self, obj):
+        return [invitee.student.user.id for invitee in obj.invitee_set.all()]            
 
 site.register(Event, EventIndex)
