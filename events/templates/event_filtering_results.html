@@ -1,0 +1,18 @@
+{% for event in events %}
+    {% include "event_snippet.html" %}
+{% empty %}
+	{% if events_exist %}
+    	<div id="event_list_empty">No matching {{category}} events found.</div>
+	{% else %}
+		{% if user.student %}
+    		<div id="event_list_empty">There are no {{category}} events.</div>
+    	{% else %}			
+       		<div id="event_list_empty">You have no {{category}} events.</div>
+    	{% endif %}
+	{% endif %}
+{% endfor %}
+{% if isnotajax %}
+    <input id="isnotajax" value="true" type="hidden" />
+{% else %}
+    <input id="isnotajax" value="false" type="hidden" />
+{% endif %}

@@ -3,7 +3,7 @@
   
 <div class="side_nav"> 
     <h3>Events</h3>
-    <a href="{% url events_list %}">Browse Events</a>
+    <a href="{% url events category="upcoming" %}">Browse Events</a>
     <h3>Employers</h3>
     <a href="{% url employers %}">Browse Employers</a>
     <h3>Profile</h3>
@@ -16,7 +16,4 @@
         <a id="view_resume_link" target="_blank" href="{% url student_resume %}">View Current Resume</a>
     </div>
     {% endif %}
-    <h3>Account</h3>
-    <a href="{% url student_account %}">Account Settings</a>
-    <a href="{% url logout %}">Logout</a>
 </div>

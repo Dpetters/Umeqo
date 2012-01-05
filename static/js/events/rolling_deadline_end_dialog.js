@@ -16,7 +16,7 @@ $(document).ready( function () {
         return $dialog;
     };
 
-    $('.end_rolling_deadline_link').click( function (e) {
+    $('.end_rolling_deadline_link').live('click', function (e) {
         var that = this;
         rolling_deadline_end_dialog = open_rolling_deadline_end_dialog();
         rolling_deadline_end_dialog.html(DIALOG_AJAX_LOADER);

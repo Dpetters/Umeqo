@@ -8,35 +8,40 @@ Events & Deadlines |
 {{block.super}}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/events/events_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/events.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
 {% endcompress %}
-<script>
-    var SEARCH_URL = "{% url event_search %}";
-</script>
+
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/events/events_list.js"></script>
+<script src="{{ STATIC_URL }}js/events/events.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
 {% endcompress %}
+<script>
+	var INITIAL_STATE = $.parseJSON("{{initial_state}}".replace(/&quot;/ig,'"'));
+</script>
 {% endblock %}
 
 {% block content_area %}
 <div class="left_side_container">
     {% block left_side_container %}{% endblock %}
 </div>
-<h1 class="inline">Events & Deadlines</h1>
+<h1 class="inline">{{category|capfirst}} Events & Deadlines</h1>
 <a class="back_to_link" href="{% url home %}">&laquo; Back to Home</a>
-<div id="employers_block" class="main_block with_side_nav no_top_margin">
+<div id="employers_block" class="main_block with_side_nav no_header">
     <div class="main_block_content">
-        <form id="event_search_form" action="">
-            <label for="event_search_query">Filter Events:</label><input type="text" id="event_search_query" name="q" value="{{query}}"/>
+        <form id="event_filtering_form" action="">
+            {{event_filtering_form.query}}
+            {{event_filtering_form.type}}
+            <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
             <noscript><input type="submit" value="Filter" /></noscript>
         </form>
-        <ul id="main_event_list" class="event_list">
-        {% for event in events %}
-            {% include "event_snippet.html" %}
-        {% endfor %}
+        <ul id="event_list" class="event_list">
+        	{% include "event_filtering_results.html" with events=events isnotajax="True" %}
         </ul>
     </div>
 </div>

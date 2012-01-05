@@ -15,7 +15,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest, Http404
 from django.utils import simplejson
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
@@ -27,25 +27,41 @@ from core import enums as core_enums
 from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
-from events.forms import EventForm, CampusOrgEventForm, EventExportForm
-from events.models import notify_about_event, Attendee, Event, EventType, Invitee, RSVP, DroppedResume
-from events.view_helpers import event_search_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
+from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
+from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume, notify_about_event
+from events.view_helpers import event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
 from student.models import Student
 
+
 @login_required
 @agreed_to_terms
-@render_to('events.html')
-def events(request, extra_context=None):
-    context = {}
-    if is_campus_org_or_recruiter(request.user):
-        context["TEMPLATE"] = "events_employer_campus_org.html"
-    elif is_student(request.user):
-        if not request.user.student.profile_created:
-            return redirect('student_profile')
-        context["TEMPLATE"] = "events_student.html"
-    context.update(extra_context or {})
-    return context
+def events(request, category, extra_context=None):
+    context = {'category':category}
+    events_exist, events = event_filtering_helper(category, request)
+    context['events_exist'] = events_exist
+    context['events'] = events
+    if request.is_ajax():
+        template = loader.get_template("event_filtering_results.html")
+        response = HttpResponse(template.render(RequestContext(request, context)))
+        # Need the no-store header because of chrome history api bug
+        # see http://stackoverflow.com/questions/8240710/chrome-history-api-problems
+        response['Cache-Control'] = "no-store"
+        return response
+    else:
+        if request.GET.has_key("query"):
+            context['initial_state'] = simplejson.dumps(request.GET)
+            context['event_filtering_form'] = EventFilteringForm(request.GET)
+        else:
+            print "here"
+            context['event_filtering_form'] = EventFilteringForm()
+        if is_campus_org_or_recruiter(request.user):
+            template = "events_employer_campus_org.html"
+        elif is_student(request.user):
+            if not request.user.student.profile_created:
+                return redirect('student_profile')
+            template = "events_student.html"
+    return render_to_response(template, context, context_instance=RequestContext(request) )
 
 @require_GET
 @login_required
@@ -642,16 +658,6 @@ def event_rsvp_message(request, extra_context=None):
         except Event.DoesNotExist:
             return HttpResponseBadRequest("Event with id %s does not exist." % (request.GET["event_id"]));
     return HttpResponseBadRequest("Event id is missing");
-
-@login_required
-@agreed_to_terms
-@user_passes_test(is_student)
-@render_to('events_list_ajax.html')
-def event_search(request, extra_context=None):
-    events = event_search_helper(request)
-    context = {'events': events}
-    context.update(extra_context or {})
-    return context
 
 @login_required
 @agreed_to_terms

@@ -15,8 +15,7 @@ $(document).ready( function () {
         $dialog.dialog('open');
         return $dialog;
     };
-
-    $('.cancel_event_link').click( function (e) {
+    $('.cancel_event_link').live('click', function (e) {
         var that = this;
         event_cancel_dialog = open_event_cancel_dialog();
         event_cancel_dialog.html(DIALOG_AJAX_LOADER);

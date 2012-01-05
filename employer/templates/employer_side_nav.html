@@ -25,7 +25,7 @@
         class="must_be_subscribed_annually must_be_subscribed_annually_w"
     {% endif %}
     href="{% url event_new %}">Create New</a>
-    <a href="{% url events %}">Browse All</a>
+    <a href="{% url events category="upcoming" %}">Browse All</a>
         
     <h3
     {% if not user.recruiter.employer.subscribed %}
@@ -42,8 +42,4 @@
         class="must_be_subscribed_annually must_be_subscribed_annually_w"
     {% endif %}
     href="{% url employer_profile %}">Edit Profile</a>
-    
-    <h3>Account</h3>
-    <a href="{% url employer_account %}">Account Settings</a>
-    <a href="{% url logout %}">Logout</a>
 </div>

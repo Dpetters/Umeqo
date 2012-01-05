@@ -12,12 +12,12 @@
     margin-bottom: 10px;
     margin-right: 140px;
 }
-#event_title span {
+#event_title .private_token {
     font-size: 16px;
     margin-left: 10px;
     vertical-align: top;
     display: inline-block;
-    padding: 5px;
+    padding: 2px 5px 6px 6px;
     border-radius: 3px;
 }
 #event_time {
@@ -25,7 +25,7 @@
     font-weight: bold;
     color: #666;
 }
-.cancelled{
+#event_actions .cancelled{
 	color: #FFF;
 	text-shadow: #222 0 -1px 0;
 	background-color: #B00;
@@ -38,6 +38,10 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     font-weight: bold;
+}
+#event_time .cancelled{
+	color:red;
+	font-weight:bold;
 }
 #event_external_buttons {
     padding: 17px 0 0;

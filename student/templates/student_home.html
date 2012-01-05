@@ -32,7 +32,7 @@
 
 {% block featured_content %}
 <a href="{% url employers %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/checkmark_64.png" /><span>Subscribe to employers</span></div></a>
-<a href="{% url events_list %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/calendar_64.png" /><span>Browse events & deadlines</span></div></a>
+<a href="{% url events category="upcoming" %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/calendar_64.png" /><span>Browse events & deadlines</span></div></a>
 <a href="{% url student_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/man_64.png" /><span>Update profile</span></div></a>
 {% endblock %}
 

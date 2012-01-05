@@ -353,6 +353,8 @@
 	                {% endifequal %}
 	            </span>
 	        {% if event.cancelled %}</strike>{% endif %}
+	        &nbsp;
+	        {% if event.cancelled %}<span class="cancelled">Cancelled!</span>{% endif %}
         {% endif %}
     </div>
     <div id="event_external_buttons">
