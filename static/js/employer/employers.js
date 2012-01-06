@@ -95,7 +95,6 @@ function loadEmployer(target, id, noPush) {
 }
 
 window.onpopstate = function(event) {
-	console.log("onpopstate");
     if (event.state != null) {
         loadEmployer(null, event.state.id, true);
     } else if ($('#isnotajax').val()=='false') {

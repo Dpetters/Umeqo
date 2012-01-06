@@ -11,15 +11,20 @@
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
 {% endcompress %}
 <script>
     var SUBSCRIBE_TOOLTIP = "{% text_snippet 'subscribe_tooltip' %}";
-    var STATIC_URL = "{{ STATIC_URL }}";
+    var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
+    var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
+    var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_preview.js"></script>
-<script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
-<script src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
 {% endcompress %}
 {% endblock %}
 

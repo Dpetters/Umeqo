@@ -35,6 +35,7 @@ from employer import enums as employer_enums
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.view_helpers import get_cached_paginator, employer_search_helper, process_results
+from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
 from student.models import Student
@@ -139,7 +140,8 @@ def employer_profile_preview(request, slug, extra_context=None):
     if is_student(request.user):
         return HttpResponseRedirect("%s?id=%s" % (reverse("employers"), employer.id))
     elif is_recruiter(request.user):
-        context = {'employer':employer, 'upcoming_events':employer.event_set.filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).order_by("end_datetime"), 'preview':True}
+        context = {'employer':employer}
+        context.update(get_employer_upcoming_events_context(employer, request.user))
         context.update(extra_context or {})
         return context
 
@@ -364,8 +366,9 @@ def employer_resume_book_current_toggle_student(request):
             if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
                 return HttpResponseForbidden("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
             resume_book.students.add(student)
-            student.studentstatistics.add_to_resumebook_count += 1
-            student.studentstatistics.save()
+            if not request.user.recruiter.employer.name != "Umeqo":
+                student.studentstatistics.add_to_resumebook_count += 1
+                student.studentstatistics.save()
             data = {'action':employer_enums.ADDED}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
@@ -390,6 +393,7 @@ def employer_resume_book_current_add_students(request):
                 student = Student.objects.get(id=id)
                 if student not in resume_book.students.all():
                     resume_book.students.add(student)
+                if not request.user.recruiter.employer.name != "Umeqo":
                     student.studentstatistics.add_to_resumebook_count += 1
                     student.studentstatistics.save()
         return HttpResponse()
@@ -771,10 +775,10 @@ def employers(request, extra_content=None):
         
         context.update({
             'employer': employer,
-            'upcoming_events': employer.event_set.filter(Q(is_public=True)|Q(invitee__student__in=[request.user.student])).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).distinct(),
             'employer_id': employer_id,
             'subbed': subbed
         })
+    context.update(get_employer_upcoming_events_context(employer, request.user))
     context['TEMPLATE'] = "employers.html"
     return context
 
@@ -785,19 +789,20 @@ def employers(request, extra_content=None):
 @render_to('employer_details.html')
 def employer_details(request, extra_content=None):
     if request.is_ajax():
-        employer_id = request.GET.get('id',None)
-        if employer_id and Employer.objects.filter(id=employer_id).exists():
-            employer = Employer.objects.get(id=employer_id)
-            
-            subscriptions = request.user.student.subscriptions.all()
-            subbed = employer in subscriptions
-            context = {
-                'employer': employer,
-                'upcoming_events': employer.event_set.filter(Q(is_public=True)|Q(invitee__student__in=[request.user.student])).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).distinct(),
-                'subbed': subbed
-            }
-            return context
-        return HttpResponseBadRequest("Bad request. Employer id is missing.")
+        if not request.GET.has_key("id"):
+            return HttpResponseBadRequest("Bad request. Employer id is missing.")
+        try:
+            employer = Employer.objects.get(id=request.GET['id'])
+        except:
+            return Http404("Employer with id {0} not found".format(request.GET['id']))     
+        subscriptions = request.user.student.subscriptions.all()
+        context = {
+            'employer': employer,
+            'subbed': employer in subscriptions
+        }
+        context.update(get_employer_upcoming_events_context(employer, request.user))
+        return context
+
 
 @login_required
 @agreed_to_terms

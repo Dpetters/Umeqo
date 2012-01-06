@@ -214,13 +214,19 @@ def get_invitees(event):
 def get_no_rsvps(event):
     return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
 
+def get_employer_upcoming_events_context(employer, user):
+    events = SearchQuerySet().models(Event).filter(attending_employers=employer.id)
+    if is_student(user):
+        events = events.filter(SQ(is_public=True) | SQ(invitees=user.id))
+    return get_categorized_events_context(len(events) > 0, events)
+
 def get_user_events_sqs(user):
     events = SearchQuerySet().models(Event)
     if is_student(user):
         return events.filter(SQ(is_public=True) | SQ(invitees=user.id))
     if is_campus_org(user):
         return events.filter(owner=user.id)
-    return events.filter(SQ(owner=user.id) | SQ(attending_employers__in=[user.recruiter.employer]))
+    return events.filter(SQ(owner=user.id) | SQ(attending_employers=user.recruiter.employer.id))
 
 def get_archived_events_sqs(user):
     return get_user_events_sqs(user).filter(archived=True).order_by("-end_datetime")

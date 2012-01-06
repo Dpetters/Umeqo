@@ -161,3 +161,5 @@ def update():
                     run("echo 'yes'|python manage.py collectstatic")
                 run("echo 'y'|python manage.py rebuild_index")
                 restart_apache()
+                run("chmod 777 logs/ -R")
+                run("chmod 777 media/ -R")

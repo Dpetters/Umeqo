@@ -701,7 +701,7 @@ def event_rsvp_message(request, extra_context=None):
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 def events_by_employer(request):
-    upcoming_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(Q(end_datetime__gte=datetime.now()) | Q(type__name="Rolling Deadline")).order_by("end_datetime")
+    upcoming_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(end_datetime__gte=datetime.now()).order_by("end_datetime")
     student_id, student = request.GET.get('student_id', None), None
     if student_id and not Student.objects.filter(id=student_id).exists():
         return HttpResponseBadRequest()

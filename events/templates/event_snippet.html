@@ -20,22 +20,8 @@
         {% if event.cancelled or not event.is_rolling_deadline %}
             <div class="datetime">
             	{% if not event.is_rolling_deadline %}
-	                {% if event.start_datetime %}
-	                <span class="start"><strong>{{event.start_datetime|date:"D F j"}}</strong>, {{event.start_datetime|date:"Y"}}
-	                {% endif %}
-	                <span class="end">
-	                    {% ifequal event.start_datetime.day event.end_datetime.day %}
-	                    {% ifequal event.start_datetime.month event.end_datetime.month %}
-	                    {% ifequal event.start_datetime.year event.end_datetime.year %}
-	                        from <em>{{event.start_datetime|date:"h:i A"}}</em></span> -
-	                        <em>{{event.end_datetime|date:"h:i A"}}</em>
-	                    {% endifequal %}{% endifequal %}
-	                    {% else %}
-	                        {% if event.start_datetime %}<em>{{event.start_datetime|date:"h:i A"}}</em></span> - {% endif %}
-	                        <strong>{{event.end_datetime|date:"D, F j"}}</strong>, {{event.end_datetime|date:"Y"}} <em>{{event.end_datetime|date:"h:i A"}}</em>
-	                    {% endifequal %}
-	                </span>
-		    	&nbsp;
+            		{% include "event_datetime.html" %}
+		    		&nbsp;
 		        {% endif %}
 	        	<span class="cancelled_warning">Cancelled!</span>
             </div>

@@ -37,12 +37,11 @@
 </div>
 
 <h2>Upcoming Events</h2>
-<ul class="event_list {% if user.campus_org or user.recruiter %}editable_event_list{% endif %}">
-    {% for event in upcoming_events %}
-        {% include "event_snippet.html" %}
-    {% empty %}
-        <li id="no_upcoming_events_or_deadlines">This employer has no upcoming events or deadlines.</li>
-    {% endfor %}
+<ul class="event_list">
+    {% include "upcoming_events_list.html" %}
+    {% if not events_exist %}
+    	<li id="no_upcoming_events_or_deadlines">This employer has no upcoming events or deadlines.</li>
+    {% endif %}
 </ul>
 {% if isnotajax %}
     <input id="isnotajax" value="true" type="hidden" />

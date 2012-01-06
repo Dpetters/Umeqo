@@ -589,7 +589,7 @@ $(document).ready(function() {
 
     $("#id_audience").multiselect({
         noneSelectedText: 'select school years',
-        minWidth: 200,
+        minWidth: 233,
         height: 146
     });
 

@@ -16,6 +16,6 @@
 #upcoming_events .main_block_content{
 	padding-top:0px;
 }
-#no_events_block{
+#no_events_block, #subscribe_to_employers_block{
 	padding-top:20px;
 }

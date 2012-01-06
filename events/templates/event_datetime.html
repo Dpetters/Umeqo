@@ -1,0 +1,17 @@
+{% if not event.is_deadline %}
+<span class="start"><strong>{{event.start_datetime|date:"D F j"}}</strong>, {{event.start_datetime|date:"Y"}}
+{% endif %}
+<span class="end">
+    {% if not event.is_deadline %}
+	    {% ifequal event.start_datetime.day event.end_datetime.day %}
+	    	{% ifequal event.start_datetime.month event.end_datetime.month %}
+	    		{% ifequal event.start_datetime.year event.end_datetime.year %}
+	        		from <em>{{event.start_datetime|date:"h:i A"}}</em></span> - <em>{{event.end_datetime|date:"h:i A"}}</em>
+	    		{% endifequal %}
+	    	{% endifequal %}
+    	{% endifequal %}
+    {% else %}
+        {% if not event.is_deadline %}<em>{{event.start_datetime|date:"h:i A"}}</em></span> - {% endif %}
+        <strong>{{event.end_datetime|date:"D, F j"}}</strong>, {{event.end_datetime|date:"Y"}} <em>{{event.end_datetime|date:"h:i A"}}</em>
+    {% endif %}
+</span>
