@@ -8,7 +8,7 @@
 }
 .event_list li {
     clear: both;
-    padding: 5px;
+    padding:7px 5px 3px;
     background-color: #F6F6F6;
     border-bottom: 1px solid #DDD;
     position: relative;
@@ -33,7 +33,7 @@
 }
 .event_list .type {
     color: #FFF;
-    text-shadow: #000 0 -1px 0;
+    text-shadow: #000 0 1px 0;
     background-color: #666;
 }
 .event_list .type,
@@ -54,12 +54,8 @@
     color:#555;
 }
 .event_list .datetime .cancelled{
-    color:red;
+    color:#D00;
     font-weight:bold;
-}
-
-.editable_event_list .details {
-    margin-right: 100px;
 }
 .event_list .edit,
 .event_list .hosted-by {

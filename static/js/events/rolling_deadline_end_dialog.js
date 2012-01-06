@@ -60,13 +60,13 @@ $(document).ready( function () {
                                     li.remove();
                                     if (ul.children().length == 0)
                                     {
-                                        $("#past_events_header").addClass("no_top_margin");
                                         ul.prev().remove();
                                         ul.remove();
                                     }
-                                    if ($('.event_list li').length==0) {
-                                        $('#no_events_block').slideDown();
-                                    }
+									if ($('.event_list li').length==0){
+									    $('#event_filtering_no_results').slideDown();
+									    $("#no_events_block").slideDown()
+									}
                                 });
                                 $("#message_area").html("<p>" + ROLLING_DEADLINE_ENDED + "</p>");
                             }else{

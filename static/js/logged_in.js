@@ -13,7 +13,8 @@ $(document).ready( function() {
                               
     $('#account_dropdown').hide();
     $('#account').click(function() {
-       $('#account_dropdown').toggle(); 
+       // We subtract two for the border
+       $('#account_dropdown').width(document.getElementById("account").offsetWidth-2).toggle(); 
        if ($(this).hasClass('pressed')) $(this).removeClass('pressed');
        else $(this).addClass('pressed');
     });

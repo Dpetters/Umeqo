@@ -26,6 +26,7 @@
     color: #666;
 }
 #event_actions .cancelled{
+	width:144px;
 	color: #FFF;
 	text-shadow: #222 0 -1px 0;
 	background-color: #B00;
@@ -33,14 +34,14 @@
 	display:block;
     height:30px;
     line-height: 29px;
-    width:134px;	
+    border: 1px solid #666;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     font-weight: bold;
 }
 #event_time .cancelled{
-	color:red;
+	color:#D00;
 	font-weight:bold;
 }
 #event_external_buttons {

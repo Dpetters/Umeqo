@@ -14,6 +14,7 @@
 
 {% compress js %}
 <script src="{{ STATIC_URL }}js/employer/employer_home.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
 <script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
 {% endcompress %}
@@ -34,9 +35,9 @@
 {% endblock %}
 
 {% block featured_content %}
-<a href="{% url employer_students %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/magnifier_64.png" /><span>Browse students</span></div></a>
-<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/calendar_64.png" /><span>Create events & deadlines</span></div></a>
-<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/man_64.png" /><span>Update company profile</span></div></a>
+<a href="{% url employer_students %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/twg_retina/magnifier_64.png" /><span>Browse students</span></div></a>
+<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/twg_retina/calendar_64.png" /><span>Create events<br> & deadlines</span></div></a>
+<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/twg_retina/man_64.png" /><span>Update profile</span></div></a>
 {% endblock %}
 
 {% block content %}
@@ -54,23 +55,17 @@
         </div>
     </div>
 </div>
-<div class="main_block with_side_nav">
-    <div class="main_block_header" id="events">
+<div id="upcoming_events" class="main_block with_side_nav">
+    <div class="main_block_header">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Upcoming Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="{% url event_new %}" class="button {% if not sa %}must_be_subscribed_annually must_be_subscribed_annually_e{% endif %}">New Event</a>
+            <a href="{% url event_new %}" class="button {% if not sa %}must_be_subscribed_annually must_be_subscribed_annually_e{% endif %}">Create New</a>
         </div>
     </div>
     <div class="main_block_content">
-        {% if upcoming_events %}
-            <ul class="event_list editable_event_list">
-            {% for event in upcoming_events %}
-                {% include "event_snippet.html" with edit='True' %}
-            {% endfor %}
-            </ul>
-        {% endif %}
-        <div id="no_events_block" class="simple_block centered" {% if upcoming_events or past_events %}style="display:none"{% endif %}>
+        {% include "upcoming_events_list.html" %}
+        <div id="no_events_block" class="simple_block centered" {% if events_exist %}style="display:none"{% endif %}>
             <p {% if not sa %}class="must_be_subscribed_annually"{% endif %}>
                 You can post your company's events and deadlines for students to view and add to their calendars.
             </p>

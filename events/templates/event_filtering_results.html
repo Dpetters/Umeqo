@@ -1,10 +1,16 @@
-{% for event in events %}
-    {% include "event_snippet.html" %}
-{% empty %}
+{% if events or happening_now_events or later_today_events or tomorrows_events or this_weeks_events or later_events %}
+	{% ifequal category "upcoming" %}
+		{% include "upcoming_events_list.html" %}
+	{% else %}
+		{% for event in events %}
+		    {% include "event_snippet.html" %}
+		{% endfor %}
+	{% endifequal %}
+{% else %}
 	{% include "event_filtering_no_results.html" %}
-{% endfor %}
+{% endif %}
 
-{% include "event_filtering_no_results.html" with hidden="True" events_exist="" %}
+{% include "event_filtering_no_results.html" with hidden="True" %}
 
 {% if isnotajax %}
     <input id="isnotajax" value="true" type="hidden" />

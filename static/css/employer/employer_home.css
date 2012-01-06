@@ -1,18 +1,3 @@
-#query_field {
-    height: 22px;
-    line-height:22px;
-    vertical-align: middle;
-    width: 350px;
-    padding-left: 6px;
-    font-size: 15px;
-    box-shadow: inset 2px 2px 2px #DDDDDD;
-    -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
-    -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
-}
-#search_form_submit_button{
-	margin-right:3px;
-	width:72px;
-}
 #featured_content #tutorials{
 	background:#F3C849;
 }
@@ -27,4 +12,25 @@
 }
 #featured_content div:hover{
 	background:#BEBEBE !important;
+}
+#query_field {
+    height: 22px;
+    line-height:22px;
+    vertical-align: middle;
+    width: 350px;
+    padding-left: 6px;
+    font-size: 15px;
+    box-shadow: inset 1px 1px 1px #DDDDDD;
+    -moz-box-shadow: inset 1px 1px 1px #DDDDDD;
+    -webkit-box-shadow: inset 1px 1px 1px #DDDDDD;
+}
+#search_form_submit_button{
+	margin-right:3px;
+	width:72px;
+}
+#upcoming_events .main_block_content{
+	padding-top:0px;
+}
+#no_events_block{
+	padding-top:20px;
 }

@@ -1,8 +1,8 @@
 import csv
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date, time
 
-from core.decorators import is_student, is_recruiter, is_campus_org
+from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
 from events.choices import ALL
 from events.models import Event
 from haystack.query import SearchQuerySet, SQ
@@ -125,15 +125,15 @@ def export_event_list_xls(file_obj, event, list):
 
 def event_filtering_helper(category, request):
     if category=="past":
-        events_sqs = past_events_sqs(request.user)
+        events_sqs = get_past_events_sqs(request.user)
     elif category=="cancelled":
-        events_sqs = cancelled_events_sqs(request.user)
+        events_sqs = get_cancelled_events_sqs(request.user)
     elif category=="archived":
-        events_sqs = archived_events_sqs(request.user)
+        events_sqs = get_archived_events_sqs(request.user)
     elif category=="attended":
-        events_sqs = attended_events_sqs(request.user)
+        events_sqs = get_attended_events_sqs(request.user)
     else:
-        events_sqs = upcoming_events_sqs(request.user)
+        events_sqs = get_upcoming_events_sqs(request.user)
     events_exist = len(events_sqs) > 0
     type = request.GET.get("type", ALL)
     if type=="e":
@@ -147,7 +147,10 @@ def event_filtering_helper(category, request):
         for q in query.split(' '):
             if q.strip() != "":
                 events_sqs = events_sqs.filter(text=q)
-    return events_exist, [sr.object for sr in events_sqs.load_all()]
+    if category =="upcoming":
+        return get_categorized_events_context(events_exist, events_sqs)
+    else:
+        return events_exist, [sr.object for sr in events_sqs.load_all()]
 
 
 def get_rsvps(event):
@@ -207,7 +210,7 @@ def get_invitees(event):
 def get_no_rsvps(event):
     return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
 
-def user_events_sqs(user):
+def get_user_events_sqs(user):
     events = SearchQuerySet().models(Event)
     if is_student(user):
         return events.filter(SQ(is_public=True) | SQ(invitees=user.id))
@@ -215,23 +218,50 @@ def user_events_sqs(user):
         return events.filter(owner=user.id)
     return events.filter(SQ(owner=user.id) | SQ(attending_employers__in=[user.recruiter.employer]))
 
-def archived_events_sqs(user):
-    return user_events_sqs(user).filter(archived=True).order_by("end_datetime")
+def get_archived_events_sqs(user):
+    return get_user_events_sqs(user).filter(archived=True).order_by("-end_datetime")
 
-def attended_events_sqs(user):
-    return user_events_sqs(user).filter(attendees=user.id).order_by("end_datetime")
+def get_attended_events_sqs(user):
+    return get_user_events_sqs(user).filter(attendees=user.id).order_by("-end_datetime")
 
-def cancelled_events_sqs(user):
-    events = user_events_sqs(user).filter(cancelled=True).order_by("end_datetime")
+def get_cancelled_events_sqs(user):
+    events = get_user_events_sqs(user).filter(cancelled=True).order_by("-end_datetime")
     if is_recruiter(user) or is_campus_org(user):
         events = events.filter(archived=False)
     return events
 
-def past_events_sqs(user):
-    events = user_events_sqs(user).filter(end_datetime__lt=datetime.now()).order_by("end_datetime")
+def get_past_events_sqs(user):
+    events = get_user_events_sqs(user).filter(end_datetime__lt=datetime.now()).order_by("-end_datetime")
     if is_recruiter(user) or is_campus_org(user):
         events = events.filter(archived=False)
     return events
 
-def upcoming_events_sqs(user):
-    return user_events_sqs(user).filter(cancelled=False, end_datetime__gte=datetime.now()).order_by("end_datetime")
+def get_categorized_events_context(events_exist, event_sqs):
+    context = {'events_exist':events_exist}
+    tomorrow = datetime.combine(date.today() + timedelta(days=1), time())
+    happening_now_events = event_sqs.filter(SQ(start_datetime__lt = datetime.now()) | SQ(type="Rolling Deadline")).order_by("end_datetime")
+    later_today_events = event_sqs.filter(SQ(start_datetime__gte = datetime.now()) | SQ(end_datetime__gte = datetime.now(), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow) | SQ(end_datetime__lt = tomorrow, type="Hard Deadline")).order_by("start_datetime")
+    tomorrows_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow) | SQ(end_datetime__gte = tomorrow, type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=1)) | SQ(end_datetime__lt = tomorrow + timedelta(days=1), type="Hard Deadline")).order_by("start_datetime")
+    this_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(weeks=1)) | SQ(end_datetime__lt = tomorrow + timedelta(weeks=1), type="Hard Deadline")).order_by("start_datetime")
+    later_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(weeks=1)) | SQ(end_datetime__gte = tomorrow + timedelta(weeks=1), type="Hard Deadline")).order_by("start_datetime")
+    
+    context['happening_now_events'] = [sr.object for sr in happening_now_events.load_all()]
+    context['later_today_events'] = [sr.object for sr in later_today_events.load_all()]
+    context['tomorrows_events'] = [sr.object for sr in tomorrows_events.load_all()]
+    context['this_weeks_events'] = [sr.object for sr in this_week_events.load_all()]
+    context['later_events'] = [sr.object for sr in later_events.load_all()]
+    return context
+    
+def get_upcoming_events_sqs(user):
+    events = get_user_events_sqs(user).filter(end_datetime__gte=datetime.now())
+    if is_campus_org_or_recruiter(user):
+        events = events.filter(archived=False)
+    return events
+
+def get_upcoming_events_context(user):
+    upcoming_events = get_upcoming_events_sqs(user)
+    events_exist = False
+    if len(upcoming_events) > 0:
+        events_exist = True
+    event_context = get_categorized_events_context(events_exist, upcoming_events)
+    return event_context

@@ -14,7 +14,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
         {% load compress %}
         {% load text_snippet %}
-
+		{% load filters %}
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
@@ -126,7 +126,7 @@
                             <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
                         </li>
                         <li>
-                            <a id="account" href="javascript:void(0)" tabindex="-1">{{user.email}} <span class="arrow">&#9660;</span></a>
+                            <a id="account" href="javascript:void(0)" tabindex="-1">{{user.email|split:"@"|first}} <span class="arrow">&#9660;</span></a>
                             <ul id="account_dropdown">
                             {% if user.student %}
                                 <li><a href="{% url student_profile %}">Edit Profile</a></li>

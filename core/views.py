@@ -27,7 +27,7 @@ from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questi
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
-from events.view_helpers import upcoming_events_sqs, user_events_sqs
+from events.view_helpers import get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
@@ -345,32 +345,28 @@ def home(request, extra_context=None):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
             subscriptions = [employer.id for employer in request.user.student.subscriptions.all()]
-            event_sqs = user_events_sqs(request.user).filter(attending_employers__in=subscriptions).filter(end_datetime__gt=datetime.now()).order_by('end_datetime')
-            context['events'] = [sr.object for sr in event_sqs.load_all()]
+            event_sqs = get_upcoming_events_sqs(request.user).filter(SQ(attending_employers__in=subscriptions) | SQ(invitees=request.user.id))
+            context.update(get_categorized_events_context(len(event_sqs)>0, event_sqs))
             context['has_subscriptions'] = len(subscriptions) > 0
-            context.update(extra_context or {})
-            context.update({'TEMPLATE':'student_home.html'})
-            return context
-        elif is_recruiter(request.user):
-            context.update({
-                'search_form': StudentSearchForm(),
-                'notices': Notice.objects.notices_for(request.user),
-                'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'upcoming_events': [sr.object for sr in upcoming_events_sqs(request.user).load_all()],
-                'subscribers': Student.objects.filter(subscriptions__in=[request.user.recruiter.employer]).count()
-            });
-            context.update(extra_context or {})
-            context.update({'TEMPLATE':'employer_home.html'})
-            return context
-        elif is_campus_org(request.user):
-            context.update({
-                'notices': Notice.objects.notices_for(request.user),
-                'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
-                'upcoming_events': [sr.object for sr in upcoming_events_sqs(request.user).load_all()],
-            });
-            context.update(extra_context or {})
-            context.update({'TEMPLATE':'campus_org_home.html'})
-            return context
+            context['TEMPLATE'] = 'student_home.html'
+        else:
+            context.update(get_upcoming_events_context(request.user))
+            if is_recruiter(request.user):
+                context.update({
+                    'search_form': StudentSearchForm(),
+                    'notices': Notice.objects.notices_for(request.user),
+                    'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
+                    'subscribers': Student.objects.filter(subscriptions__in=[request.user.recruiter.employer]).count()
+                });
+                context['TEMPLATE'] = 'employer_home.html'
+            elif is_campus_org(request.user):
+                context.update({
+                    'notices': Notice.objects.notices_for(request.user),
+                    'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
+                });
+                context['TEMPLATE'] = 'campus_org_home.html'
+        context.update(extra_context or {})
+        return context
     request.session.set_test_cookie()
     context.update({
         'login_form': AuthenticationForm,
