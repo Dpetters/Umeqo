@@ -3,13 +3,23 @@
 {% block metadata %}
 {{block.super}}
 {% load compress %}
+{% load text_snippet %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_home.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_home.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
 {% endcompress %}
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/events/delete_event_snippets.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
 {% endcompress %}
+<script>
+    var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
+    var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
+    var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
+</script>
 {% endblock %}
 
 {% block left_side_container %}
@@ -22,23 +32,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="main_block with_side_nav">
+<div id="upcoming_events" class="main_block with_side_nav">
     <div class="main_block_header" id="events">
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png"/>
         <span class="main_block_header_title">Upcoming Events and Deadlines</span>
         <div class="main_block_header_content">
-            <a href="{% url event_new %}" class="button">New Event</a>
+            <a href="{% url event_new %}" class="button">Create New</a>
         </div>
     </div>
     <div class="main_block_content">
-        {% if upcoming_events %}
-            <ul class="event_list editable_event_list">
-            {% for event in upcoming_events %}
-                {% include "event_snippet.html" %}
-            {% endfor %}
-            </ul>
-        {% endif %}
-        <div id="no_events_block" class="simple_block centered" {% if upcoming_events or past_events %}style="display:none"{% endif %}>
+        {% include "upcoming_events_list.html" %}
+        <div id="no_events_block" class="simple_block centered" {% if events_exist %}style="display:none"{% endif %}>
             <p>
                 You can post your organization's employer events and deadlines for students to view and add to their calendars.
             </p>

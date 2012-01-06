@@ -134,7 +134,9 @@ def event_filtering_helper(category, request):
         events_sqs = get_attended_events_sqs(request.user)
     else:
         events_sqs = get_upcoming_events_sqs(request.user)
+    
     events_exist = len(events_sqs) > 0
+    
     type = request.GET.get("type", ALL)
     if type=="e":
         events_sqs = events_sqs.filter(is_deadline=False)
@@ -142,11 +144,13 @@ def event_filtering_helper(category, request):
         events_sqs = events_sqs.filter(is_deadline=True)        
     elif type=="r":
         events_sqs = events_sqs.filter(is_drop=True)  
+    
     query = request.GET.get('query','')
     if query!="":
         for q in query.split(' '):
             if q.strip() != "":
                 events_sqs = events_sqs.filter(text=q)
+    
     if category =="upcoming":
         return get_categorized_events_context(events_exist, events_sqs)
     else:
@@ -214,7 +218,6 @@ def get_user_events_sqs(user):
     events = SearchQuerySet().models(Event)
     if is_student(user):
         return events.filter(SQ(is_public=True) | SQ(invitees=user.id))
-    print is_campus_org(user)
     if is_campus_org(user):
         return events.filter(owner=user.id)
     return events.filter(SQ(owner=user.id) | SQ(attending_employers__in=[user.recruiter.employer]))

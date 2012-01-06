@@ -7,6 +7,8 @@
 {% block metadata %}
 {{block.super}}
 {% load compress %}
+{% load filters %}
+
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/core/home_anonymous.css" />
 {% endcompress %}
@@ -26,7 +28,7 @@
     <div class="main_block with_side_nav no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/fugue/24/home.png" />
-            <span class="main_block_header_title">Welcome {{user.first_name}}!</span>
+            <span class="main_block_header_title">Welcome {% if user.first_name %}{{user.first_name}}{% else %}{{user.email|split:"@"|first}}{% endif %}!</span>
         </div>
         <div class="main_block_content">
             <p><strong>Thank you for beta testing Umeqo!</strong> Get started with one of the following -</p>
