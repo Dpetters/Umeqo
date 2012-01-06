@@ -245,7 +245,6 @@ def get_categorized_events_context(events_exist, event_sqs):
     tomorrows_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow) | SQ(end_datetime__gte = tomorrow, type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=1)) | SQ(end_datetime__lt = tomorrow + timedelta(days=1), type="Hard Deadline")).order_by("start_datetime")
     this_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(weeks=1)) | SQ(end_datetime__lt = tomorrow + timedelta(weeks=1), type="Hard Deadline")).order_by("start_datetime")
     later_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(weeks=1)) | SQ(end_datetime__gte = tomorrow + timedelta(weeks=1), type="Hard Deadline")).order_by("start_datetime")
-    
     context['happening_now_events'] = [sr.object for sr in happening_now_events.load_all()]
     context['later_today_events'] = [sr.object for sr in later_today_events.load_all()]
     context['tomorrows_events'] = [sr.object for sr in tomorrows_events.load_all()]

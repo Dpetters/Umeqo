@@ -10,20 +10,13 @@
         </div>
         {% endif %}
     </div>
-    
-    {% if user.recruiter %}
-        {% if event.owner.recruiter.employer == user.recruiter.employer %}
-            {% include 'event_snippet_commands.html' %}
-        {% endif %}
-    {% endif %}
 
-    {% if user.campusorg %}
-        {% if event.owner == user %}
-            {% include 'event_snippet_commands.html' %}
-        {% endif %}
-    {% endif %}
-    
+    {% if user.recruiter and event.owner.recruiter.employer == user.recruiter.employer or user.campusorg and event.owner == user %}
+        {% include 'event_snippet_commands.html' %}
+    <div class="details commands">
+    {% else %}
     <div class="details">
+    {% endif %}
         {% if event.cancelled or not event.is_rolling_deadline %}
             <div class="datetime">
             	{% if not event.is_rolling_deadline %}

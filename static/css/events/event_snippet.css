@@ -49,6 +49,9 @@
     margin: 5px 3px;
     color: #666;
 }
+.event_list .details.commands {
+    margin-right:100px;
+}
 .event_list .datetime{
     margin-bottom:2px;
     color:#555;
