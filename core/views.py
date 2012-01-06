@@ -12,7 +12,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.validators import URLValidator
 from django.contrib.auth.decorators import user_passes_test
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
@@ -340,6 +340,8 @@ def home(request, extra_context=None):
     msg = request.GET.get('msg', None)
     if msg:
         context.update(msg = page_messages.get(msg))
+    if request.user.is_staff:
+        return HttpResponseRedirect(reverse("login"))
     if request.user.is_authenticated():
         if is_student(request.user):
             if not request.user.student.profile_created:

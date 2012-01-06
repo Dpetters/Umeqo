@@ -214,6 +214,7 @@ def get_user_events_sqs(user):
     events = SearchQuerySet().models(Event)
     if is_student(user):
         return events.filter(SQ(is_public=True) | SQ(invitees=user.id))
+    print is_campus_org(user)
     if is_campus_org(user):
         return events.filter(owner=user.id)
     return events.filter(SQ(owner=user.id) | SQ(attending_employers__in=[user.recruiter.employer]))
