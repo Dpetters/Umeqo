@@ -56,7 +56,7 @@ $(document).ready( function () {
                         success: function (data){
                             event_cancel_dialog.remove();
                             // Rolling Deadline
-                            if(li.children(".datetime").length==0){
+                            if(li.children(".details").children(".datetime").length==0){
                             	li.children(".details").prepend('<div class="datetime"><span class="cancelled_warning">Cancelled!</span></div>');
                             }
                             li.addClass("cancelled");
