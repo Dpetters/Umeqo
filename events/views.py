@@ -124,12 +124,11 @@ def event_page_redirect(request, id):
 def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
-
     try:
         event = Event.objects.get(pk=id)
     except:
         raise Http404
-
+    
     if not event.is_public:
         if not request.user.is_authenticated():
             return HttpResponseForbidden("You don't have permission to view this event.")
@@ -137,7 +136,7 @@ def event_page(request, id, slug, extra_context=None):
             if request.user != event.owner:
                 return HttpResponseForbidden("You don't have permission to view this event.")
         elif is_recruiter(request.user):
-            if request.user.recruiter.employer not in event.attending_employers.all():
+            if request.user != event.owner and request.user.recruiter.employer not in event.attending_employers.all():
                 return HttpResponseForbidden("You don't have permission to view this event.")
         elif is_student(request.user):
             try:
@@ -379,8 +378,7 @@ def event_edit(request, id=None, extra_context=None):
         event = Event.objects.get(pk=id)
     except Event.DoesNotExist:
         raise Http404
-    context = {}
-    context['event'] = event
+    context = {'event': event}
     if not admin_of_event(event, request.user):
         return HttpResponseForbidden('You are not allowed to edit this event.')  
     if is_recruiter(event.owner):

@@ -428,8 +428,25 @@ a:hover {
 .overflowHidden {
 	overflow: hidden;
 }
-.private_token {
+.event_title .type{
+    color: #FFF;
+    text-shadow: #000 0 1px 0;
+    background-color: #666;
+}
+.event_title .private_token {
 	color: #FFF;
 	text-shadow: #222 0 -1px 0;
 	background-color: #B00;
+}
+.cancelled_warning{
+	color:#D00;
+	font-weight:bold;
+	display:none;
+}
+.cancelled .datetime .range{
+	text-decoration:line-through;
+	display:inline-block;
+}
+.cancelled .cancelled_warning{
+	display:inline !important;
 }

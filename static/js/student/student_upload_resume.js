@@ -34,7 +34,7 @@ $(document).ready( function() {
                 up.$dropbox.bind("dragenter", up.dragenter);
                 up.$dropbox.bind("dragleave", up.dragleave);
                 up.$dropbox.bind("dragover", up.dragover);
-                up.$dropbox.bind("drop", up.drop, false);
+                up.$dropbox.bind("drop", up.drop);
                 
                 up.$status = $("#dropbox_status");
                 
@@ -43,20 +43,24 @@ $(document).ready( function() {
                 up.xhr.upload.addEventListener('load', up.uploadLoaded , false);
             },
             dragover : function (e) {
+                console.log("dragover");
                 up.noop(e);
             },
             dragenter : function (e) {
+                console.log("dragenter");
                 up.noop(e);
                 up.$dropbox.removeClass('success').removeClass('error').addClass('hover');
                 up.$status.html("Drag & Drop PDF File Here");
                 return false;
             },
             dragleave : function (e) {
+            	console.log("dragleave");
                 up.noop(e);
                 up.$dropbox.removeClass('hover');
                 return false;
             },
             drop : function (e) {
+            	console.log("dropped!")
                 up.noop(e);
                 up.$dropbox.removeClass('hover').addClass('uploading');
 

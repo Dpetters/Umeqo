@@ -21,8 +21,8 @@
     text-align:left;
 }
 #update_resume_div #dropbox.hover {
-    border: 1px dashed #000;
-    opacity: 0.4;
+    border: 2px dashed #000;
+    opacity: 0.3;
 }
 #update_resume_div #dropbox.uploading {
     border: 1px solid orange;

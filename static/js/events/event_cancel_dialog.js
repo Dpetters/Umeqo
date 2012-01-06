@@ -55,11 +55,17 @@ $(document).ready( function () {
                         },
                         success: function (data){
                             event_cancel_dialog.remove();
-                            // Rolling Deadline
-                            if(li.children(".details").children(".datetime").length==0){
-                            	li.children(".details").prepend('<div class="datetime"><span class="cancelled_warning">Cancelled!</span></div>');
+                            if(li.length==0){
+                            	$("#event").addClass("cancelled");
+                            	$("#rsvp_div").html("");
+                            	$("add_to_google_calendar").remove();
+                            }else{
+	                            // Rolling Deadline
+	                            if(li.children(".details").children(".datetime").length==0){
+	                            	li.children(".details").prepend('<div class="datetime"><span class="cancelled_warning">Cancelled!</span></div>');
+	                            }
+	                            li.addClass("cancelled");
                             }
-                            li.addClass("cancelled");
                         }
                     });
                     e.preventDefault();
