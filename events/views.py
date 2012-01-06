@@ -42,9 +42,13 @@ def events(request, category, extra_context=None):
         context['past'] = True
     if category=="archived":
         context['archived'] = True
-    events_exist, events = event_filtering_helper(category, request)
-    context['events_exist'] = events_exist
-    context['events'] = events
+    # We do a special thing for upcoming events to display them as "Today", "Tomorrow", "This week"
+    if category =="upcoming":
+        context.update(event_filtering_helper(category, request))
+    else:
+        events_exist, events = event_filtering_helper(category, request)
+        context['events_exist'] = events_exist
+        context['events'] = events
     if request.is_ajax():
         template = loader.get_template("event_filtering_results.html")
         response = HttpResponse(template.render(RequestContext(request, context)))
@@ -221,14 +225,19 @@ def event_new(request, form_class=None, extra_context=None):
             event.owner = request.user
             event.save()
             form.save_m2m()
-            rolling_deadline = EventType.objects.get(name="Rolling Deadline")
-            if event.type == rolling_deadline:
+            if event.type.name == "Rolling Deadline":
+                event.start_datetime = datetime.now() - timedelta(weeks=1)
                 event.end_datetime = datetime.now() + timedelta(weeks=1000)
+                event.save()
+            elif event.type.name == "Hard Deadline":
+                event.start_datetime = event.end_datetime
                 event.save()
             if is_recruiter(request.user):
                 event.attending_employers.add(employer);
                 # Update index
                 employer.save();
+            # Update index
+            event.save()
             notify_about_event(event, "new_event", event.attending_employers.all())
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
@@ -745,6 +754,8 @@ def event_invite(request):
         else:
             Invitee.objects.create(event=event, student=student)
         employer = request.user.recruiter.employer
+        # Update Index
+        event.save()
         if event.is_public:
             notice_type = 'public_invite'
         else:

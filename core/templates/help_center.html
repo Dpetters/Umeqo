@@ -27,62 +27,61 @@ Help |
 
 <div id="help_content" class="simple_block no_top_padding with_side_nav">
     {% block help_content %}
-    <h1>Help Center</h1>
-    <div class="right_side_container grande">
-        <h2>Didn't find an answer?</h2>
-        <p>Feel free to <a href="javascript:void(0)" class="open_contact_us_dialog_link">contact us!</a></p>
+    <div id="extra_help" class="right_side_container grande">
+    	<img src="{{ STATIC_URL }}images/icons/twg_retina/help_48.png" />
+    	<div>
+	        <h2>Didn't find an answer?</h2>
+	        <p>Feel free to <a href="javascript:void(0)" class="open_contact_us_dialog_link">contact us!</a></p>
+       </div>
     </div>
+    <h1>Help Center</h1>
     <div id="getting_started_div">
         <h2 class="help_header"><u>Tutorials</u></h2>
         {% if user.is_anonymous %}
             <p>Please <a href="#" class="login">log in</a> to see the tutorials.</p>
         {% else %}
             {% if user.recruiter %}
-                <div class="tutorial_column">
-                    <h3>Student Discovery</h3>
-                    {% if student_discovery_tutorials %}
-                        <ul class="tutorial_list">
-                        {% for tutorial in student_discovery_tutorials %}
-                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Coming Soon</p>
-                    {% endif %}
-                    
-                    <h3>Events & Deadlines</h3>
-                    {% if event_and_deadline_tutorials %}
-                        <ul class="tutorial_list">
-                        {% for tutorial in event_and_deadline_tutorials %}
-                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Coming Soon</p>
-                    {% endif %}
-                </div>
-                <div class="tutorial_column">
-                    <h3>Account Management</h3>
-                    {% if account_management_tutorials %}
-                        <ul class="tutorial_list">
-                        {% for tutorial in account_management_tutorials %}
-                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Coming Soon</p>
-                    {% endif %}
-                    <h3>Subscriptions</h3>
-                    {% if subscription_tutorials %}
-                        <ul class="tutorial_list">
-                        {% for tutorial in subscription_tutorials %}
-                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Coming Soon</p>
-                    {% endif %}
-                </div>
+                <h3>Student Discovery</h3>
+                {% if student_discovery_tutorials %}
+                    <ul class="tutorial_list">
+                    {% for tutorial in student_discovery_tutorials %}
+                        <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Coming Soon</p>
+                {% endif %}
+                
+                <h3>Events & Deadlines</h3>
+                {% if event_and_deadline_tutorials %}
+                    <ul class="tutorial_list">
+                    {% for tutorial in event_and_deadline_tutorials %}
+                        <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Coming Soon</p>
+                {% endif %}
+                <h3>Account Management</h3>
+                {% if account_management_tutorials %}
+                    <ul class="tutorial_list">
+                    {% for tutorial in account_management_tutorials %}
+                        <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Coming Soon</p>
+                {% endif %}
+                <h3>Subscriptions</h3>
+                {% if subscription_tutorials %}
+                    <ul class="tutorial_list">
+                    {% for tutorial in subscription_tutorials %}
+                        <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Coming Soon</p>
+                {% endif %}
             {% endif %}
             
             {% if user.student %}
@@ -90,30 +89,26 @@ Help |
             {% endif %}
             
             {% if user.campusorg %}
-                <div class="tutorial_column">
-                    <h3>Events & Deadlines</h3>
-                    {% if event_and_deadline_tutorials %}
-                        <ul class="tutorial_list">
-                        {% for tutorial in event_and_deadline_tutorials %}
-                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Coming Soon</p>
-                    {% endif %}
-                </div>
-                <div class="tutorial_column">
-                    <h3>Account Management</h3>
-                    {% if account_management_tutorials %}
-                        <ul class="tutorial_list">
-                        {% for tutorial in account_management_tutorials %}
-                            <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>Coming Soon</p>
-                    {% endif %}
-                </div>
+                <h3>Events & Deadlines</h3>
+                {% if event_and_deadline_tutorials %}
+                    <ul class="tutorial_list">
+                    {% for tutorial in event_and_deadline_tutorials %}
+                        <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Coming Soon</p>
+                {% endif %}
+                <h3>Account Management</h3>
+                {% if account_management_tutorials %}
+                    <ul class="tutorial_list">
+                    {% for tutorial in account_management_tutorials %}
+                        <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Coming Soon</p>
+                {% endif %}
             {% endif %}
             {% if user.is_staff %}
                 <p>You are logged in as an admin. Please login as a regular user to see the tutorials.</p>

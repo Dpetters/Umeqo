@@ -8,7 +8,7 @@
 }
 .event_list li {
     clear: both;
-    padding: 5px;
+    padding:7px 5px 3px;
     background-color: #F6F6F6;
     border-bottom: 1px solid #DDD;
     position: relative;
@@ -33,7 +33,7 @@
 }
 .event_list .type {
     color: #FFF;
-    text-shadow: #000 0 -1px 0;
+    text-shadow: #000 0 1px 0;
     background-color: #666;
 }
 .event_list .type,
@@ -53,13 +53,28 @@
     margin-bottom:2px;
     color:#555;
 }
-.event_list .datetime .cancelled{
-    color:red;
+.event_list .cancelled_warning{
+    color:#D00;
     font-weight:bold;
 }
-
-.editable_event_list .details {
-    margin-right: 100px;
+.cancelled_warning{
+	display:none;
+}
+.event_list li .cancelled_or_past_commands{
+	display:none;
+}
+.event_list li.cancelled .cancelled_or_past_commands, .event_list li.past .cancelled_or_past_commands{
+	display:inline;
+}
+.event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
+	display:none;
+}
+.event_list li.cancelled .datetime .start, .event_list li.cancelled .datetime .end{
+	text-decoration:line-through;
+	display:inline-block;
+}
+.event_list li.cancelled .cancelled_warning{
+	display:inline;
 }
 .event_list .edit,
 .event_list .hosted-by {

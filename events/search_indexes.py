@@ -9,6 +9,7 @@ class EventIndex(indexes.RealTimeSearchIndex):
     type = indexes.CharField(model_attr='type')
     is_public = indexes.BooleanField(model_attr='is_public')
     is_deadline = indexes.BooleanField(model_attr="is_deadline")
+    is_drop = indexes.BooleanField(model_attr="is_drop")
     attending_employers = indexes.MultiValueField()
     archived = indexes.BooleanField(model_attr="archived")
     cancelled = indexes.BooleanField(model_attr="cancelled")

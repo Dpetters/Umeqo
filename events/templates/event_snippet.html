@@ -1,4 +1,4 @@
-<li>
+<li class="{% if event.cancelled %}cancelled{% endif %} {% if past %}past{% endif %}">
     <div class="name">
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
         {% if event.location %}
@@ -27,7 +27,6 @@
         {% if event.cancelled or not event.is_rolling_deadline %}
             <div class="datetime">
             	{% if not event.is_rolling_deadline %}
-	            	{% if event.cancelled %}<strike>{% endif %}
 	                {% if event.start_datetime %}
 	                <span class="start"><strong>{{event.start_datetime|date:"D F j"}}</strong>, {{event.start_datetime|date:"Y"}}
 	                {% endif %}
@@ -43,14 +42,13 @@
 	                        <strong>{{event.end_datetime|date:"D, F j"}}</strong>, {{event.end_datetime|date:"Y"}} <em>{{event.end_datetime|date:"h:i A"}}</em>
 	                    {% endifequal %}
 	                </span>
-	               	{% if event.cancelled %}</strike>{% endif %}
-	               	&nbsp;
-	            {% endif %}
-	            {% if event.cancelled %}<span class="cancelled">Cancelled!</span>{% endif %}
+		    	&nbsp;
+		        {% endif %}
+	        	<span class="cancelled_warning">Cancelled!</span>
             </div>
         {% endif %}
         {% if event.description %}
-        <div>{{event.description|striptags|safe|truncatewords:50}}</div>
+        	<div>{{event.description|striptags|safe|truncatewords:50}}</div>
         {% endif %}
     </div>
 </li>

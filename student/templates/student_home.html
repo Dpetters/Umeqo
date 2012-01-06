@@ -31,27 +31,23 @@
 
 
 {% block featured_content %}
-<a href="{% url employers %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/checkmark_64.png" /><span>Subscribe to employers</span></div></a>
-<a href="{% url events category="upcoming" %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/calendar_64.png" /><span>Browse events & deadlines</span></div></a>
-<a href="{% url student_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/TWG_Retina_Icons/man_64.png" /><span>Update profile</span></div></a>
+<a href="{% url employers %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/twg_retina/checkmark_64.png" /><span>Subscribe to employers</span></div></a>
+<a href="{% url events category="upcoming" %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/twg_retina/calendar_64.png" /><span>Browse events <br> & deadlines</span></div></a>
+<a href="{% url student_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/twg_retina/man_64.png" /><span>Update profile</span></div></a>
 {% endblock %}
 
 {% block content %}
-    <div class="main_block with_side_nav">
+    <div id="upcoming_events" class="main_block with_side_nav">
         <div class="main_block_header">
-            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/calendar.png" />
+            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/fugue/24/calendar-blue.png" />
             <span class="main_block_header_title">Upcoming Events and Deadlines</span>
         </div>
         <div class="main_block_content">
-            {% if has_subscriptions or events %}
-                {% if events %}
-                    <ul class="event_list">
-                        {% for event in events %}
-                            {% include "event_snippet.html" %}
-                        {% endfor %}
-                    </ul>
+            {% if has_subscriptions or events_exist %}
+                {% if events_exist %}
+            		{% include "upcoming_events_list.html" %}
                 {% else %}
-                    <div class="simple_block centered">
+                    <div id="no_events_block" class="simple_block centered">
                             <p>You have no upcoming events from the employers that you are subscribed to!</p>
                             <p>Try <a href="{% url events category="upcoming" %}">browsing the full events listing</a> or <a href="{% url employers %}">subscribing to some more employers</a>.
                         </p>

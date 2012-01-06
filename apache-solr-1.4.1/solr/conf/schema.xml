@@ -106,7 +106,7 @@
 
     <field name="attending_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
-    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
+    <field name="text" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
     <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
@@ -146,7 +146,7 @@
 
     <field name="school_year" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="text" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
+    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="previous_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
@@ -163,6 +163,8 @@
     <field name="graduation_year" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="building_num" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="is_drop" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="subscribers" type="text" indexed="true" stored="true" multiValued="true" />
 

@@ -55,9 +55,9 @@
     padding-left:6px;
     color: #303030;
     font-size:15px;
-    box-shadow: inset 2px 2px 2px #DDDDDD;
-    -moz-box-shadow: inset 2px 2px 2px #DDDDDD;
-    -webkit-box-shadow: inset 2px 2px 2px #DDDDDD;
+    box-shadow: inset 1px 1px 1px #DDDDDD;
+    -moz-box-shadow: inset 1px 1px 1px #DDDDDD;
+    -webkit-box-shadow: inset 1px 1px 1px #DDDDDD;
 }
 
 #search_form_submit_button {

@@ -26,12 +26,13 @@ h2 {
 	text-shadow: #FFF 0 1px 0;
 	color: #444;
 }
-h3 {
+h3, p{
 	color: #555;
+}
+h3 {
 	margin: 10px 0 5px;
 }
 p {
-	color: #666;
 	font-size: 12px;
 	line-height: 17px;
 }
@@ -123,6 +124,7 @@ label: not(.required) {
 	margin: 0 auto;
 }
 #header_area {
+	background:#54748E;
 	background: url('/static/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
 	min-width: 986px;
 	text-align: center;
@@ -217,9 +219,6 @@ label: not(.required) {
 #below_header_area {
 	min-height: 17px;
 }
-#content_area {
-	padding-bottom: 40px;
-}
 .message_section {
 	padding-top: 20px;
 	text-align: center;
@@ -237,7 +236,7 @@ label: not(.required) {
 	line-height: 18px;
 	padding-top: 5px;
 	border-top: 1px solid #c9c9c9;
-	margin-top: 30px;
+	margin-top: 75px;
 	font-size: 12px;
 }
 #footer_info_block {
