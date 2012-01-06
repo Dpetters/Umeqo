@@ -53,9 +53,28 @@
     margin-bottom:2px;
     color:#555;
 }
-.event_list .datetime .cancelled{
+.event_list .cancelled_warning{
     color:#D00;
     font-weight:bold;
+}
+.cancelled_warning{
+	display:none;
+}
+.event_list li .cancelled_or_past_commands{
+	display:none;
+}
+.event_list li.cancelled .cancelled_or_past_commands, .event_list li.past .cancelled_or_past_commands{
+	display:inline;
+}
+.event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
+	display:none;
+}
+.event_list li.cancelled .datetime .start, .event_list li.cancelled .datetime .end{
+	text-decoration:line-through;
+	display:inline-block;
+}
+.event_list li.cancelled .cancelled_warning{
+	display:inline;
 }
 .event_list .edit,
 .event_list .hosted-by {

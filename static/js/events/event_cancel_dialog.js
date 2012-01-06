@@ -55,27 +55,11 @@ $(document).ready( function () {
                         },
                         success: function (data){
                             event_cancel_dialog.remove();
-                            if (li.length != 0){
-                                li.slideUp(function(){
-                                    li.remove();
-                                    if (ul.children().length == 0)
-                                    {
-                                        ul.prev().remove();
-                                        ul.remove();
-                                    }
-									if ($('.event_list li').length==0){
-									    $('#event_filtering_no_results').slideDown();
-									    $("#no_events_block").slideDown()
-									}
-                                });
-                                if(data.type=="event")
-                                   $("#message_area").html("<p>" + EVENT_CANCELLED + "</p>");
-                            	else
-                                   $("#message_area").html("<p>" + DEADLINE_CANCELLED + "</p>");                            	
-                            }else{
-                                window.location.href="/?msg=" + data.type + "-cancelled";
+                            // Rolling Deadline
+                            if(li.children(".datetime").length==0){
+                            	li.children(".details").prepend('<div class="datetime"><span class="cancelled_warning">Cancelled!</span></div>');
                             }
-                            
+                            li.addClass("cancelled");
                         }
                     });
                     e.preventDefault();
