@@ -10,3 +10,9 @@
 #featured_content div:hover{
 	background:#BEBEBE !important;
 }
+#upcoming_events .main_block_content{
+	padding-top:0px;
+}
+#no_events_block{
+	padding-top:20px;
+}
