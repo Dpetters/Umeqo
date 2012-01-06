@@ -45,7 +45,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-04 20:44:45", 
+   "last_login": "2012-01-06 03:27:29", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7e0f4$2d5df03b47158e0997768b5c6ac927e15b8f822b", 
@@ -243,7 +243,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-04 20:38:22", 
+   "last_login": "2012-01-05 21:07:25", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$6baa3$acc0f7565dfdc34b338a073f84f61947028c22c6", 
@@ -261,7 +261,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2011-12-11 22:22:41", 
+   "last_login": "2012-01-06 00:51:59", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$65edb$a0f80b5597e55069503587dc1dcf4d4c233fc51c", 
@@ -46340,6 +46340,26 @@
   }
  }, 
  {
+  "pk": 88, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-06 00:51:59", 
+   "session_key": "a801e1c89743708c833718869c571460", 
+   "last_updated": "2012-01-06 00:51:59", 
+   "user": 28
+  }
+ }, 
+ {
+  "pk": 86, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-05 21:09:28", 
+   "session_key": "c55392b4e4bc0c82e479ebc56ac1b245", 
+   "last_updated": "2012-01-05 21:09:28", 
+   "user": 3
+  }
+ }, 
+ {
   "pk": 77, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46434,7 +46454,7 @@
    "audience": [], 
    "end_datetime": "2014-10-09 16:30:00", 
    "rsvp_message": "", 
-   "cancelled": false, 
+   "cancelled": true, 
    "date_created": "2011-09-11 15:31:17", 
    "include_and_more": false
   }
@@ -46715,6 +46735,44 @@
   }
  }, 
  {
+  "pk": 21, 
+  "model": "events.event", 
+  "fields": {
+   "short_slug": "", 
+   "attending_employers": [
+    6
+   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "archived": false, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "Student House", 
+   "latitude": 42.350392990000003, 
+   "type": 5, 
+   "start_datetime": "2012-01-19 03:30:00", 
+   "description": "<p>\r\n\tfeaf</p>\r\n", 
+   "is_drop": false, 
+   "is_public": false, 
+   "slug": "private-event-test", 
+   "name": "Private Event Test", 
+   "longitude": -71.098349690000006, 
+   "audience": [
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    6
+   ], 
+   "end_datetime": "2012-01-19 04:30:00", 
+   "rsvp_message": "What can we do?", 
+   "cancelled": false, 
+   "date_created": "2012-01-06 03:30:00", 
+   "include_and_more": false
+  }
+ }, 
+ {
   "pk": 16, 
   "model": "events.rsvp", 
   "fields": {
@@ -46841,8 +46899,8 @@
   "model": "subscription.employersubscription", 
   "fields": {
    "cancelled": false, 
-   "subscription": 1, 
-   "expires": "2010-01-03", 
+   "subscription": 5, 
+   "expires": "2016-01-03", 
    "employer": 5
   }
  }, 
@@ -46864,6 +46922,16 @@
    "subscription": 1, 
    "expires": "2012-01-03", 
    "employer": 11
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "subscription.employersubscription", 
+  "fields": {
+   "cancelled": false, 
+   "subscription": 1, 
+   "expires": "2016-01-06", 
+   "employer": 4
   }
  }
 ]
