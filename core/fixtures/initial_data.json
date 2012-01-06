@@ -3906,8 +3906,8 @@
   "pk": 11, 
   "model": "core.question", 
   "fields": {
-   "last_updated": "2011-10-04 09:10:53", 
-   "click_count": 0, 
+   "last_updated": "2012-01-06 00:54:11", 
+   "click_count": 1, 
    "question": "Why are there only 14 employers?", 
    "slug": "why-are-there-only-12-employers", 
    "topic": 10, 
