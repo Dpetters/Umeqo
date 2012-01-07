@@ -46,6 +46,9 @@
 #event.cancelled #rsvp_yes, #event.past #rsvp_yes{
 	display:none !important;
 }
+#event.cancelled #rsvp_choices, #event.past #rsvp_choices{
+	display:none !important;
+}
 #event.cancelled .not_cancelled_or_past_commands, #event.past .not_cancelled_or_past_commands{
 	display:none !important;
 }
