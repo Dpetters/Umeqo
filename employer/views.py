@@ -128,7 +128,7 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
     
 @login_required
 @user_passes_test(is_student_or_recruiter, login_url=s.LOGIN_URL)
-@has_annual_subscription
+@has_any_subscription
 @agreed_to_terms
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):

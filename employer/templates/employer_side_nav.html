@@ -32,11 +32,7 @@
         class="must_be_subscribed_annually"
     {% endif %}
     >Profile</h3>
-    <a
-    {% if not user.recruiter.employer.subscribed_annually %}
-        class="must_be_subscribed_annually must_be_subscribed_annually_w"
-    {% endif %} 
-    href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
+    <a href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
     <a
     {% if not user.recruiter.employer.subscribed_annually %}
         class="must_be_subscribed_annually must_be_subscribed_annually_w"

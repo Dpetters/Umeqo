@@ -13,6 +13,12 @@
 #featured_content div:hover{
 	background:#BEBEBE !important;
 }
+#featured_content .must_be_subscribed_annually_e #events:hover{
+	background:#C03947;
+}
+#featured_content .must_be_subscribed_annually_e #profile:hover{
+	background:#299FFF;
+}
 #query_field {
     height: 22px;
     line-height:22px;

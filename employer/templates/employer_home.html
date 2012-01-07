@@ -40,8 +40,8 @@
 
 {% block featured_content %}
 <a href="{% url employer_students %}"><div id="students"><img src="{{ STATIC_URL }}images/icons/twg_retina/magnifier_64.png" /><span>Browse students</span></div></a>
-<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url event_new %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/twg_retina/calendar_64.png" /><span>Create events<br> & deadlines</span></div></a>
-<a {% if not sa %}class="must_be_subscribed_annually_w"{% endif %} href="{% url employer_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/twg_retina/man_64.png" /><span>Update profile</span></div></a>
+<a {% if not sa %}class="must_be_subscribed_annually_e"{% endif %} href="{% url event_new %}"><div id="events"><img src="{{ STATIC_URL }}images/icons/twg_retina/calendar_64.png" /><span>Create events<br> & deadlines</span></div></a>
+<a {% if not sa %}class="must_be_subscribed_annually_e"{% endif %} href="{% url employer_profile %}"><div id="profile"><img src="{{ STATIC_URL }}images/icons/twg_retina/man_64.png" /><span>Update profile</span></div></a>
 {% endblock %}
 
 {% block content %}
@@ -50,8 +50,7 @@
         <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/magnifier.png" />
         <span class="main_block_header_title">Browse Students</span>
         <div class="main_block_header_content">
-            <form id="search_form" method="post" action="/employer/students/">
-                {% csrf_token %}
+            <form id="search_form" action="{% url employer_students %}">
                 {{search_form.query}}
                 <input id="search_form_submit_button" class="button" type="submit" value="Search"/>
                 <a href="{% url employer_students %}" class="button">Browse Students</a>
