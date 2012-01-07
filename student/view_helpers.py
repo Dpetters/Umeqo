@@ -29,7 +29,7 @@ def process_resume(student):
             if word not in stopWords:
                 count += 1
                 result += " " + word
-        if count > 1000:
+        if count > 2500:
             return RESUME_PROBLEMS.HACKED
     except Exception:
         return RESUME_PROBLEMS.HACKED
