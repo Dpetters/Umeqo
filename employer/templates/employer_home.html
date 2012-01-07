@@ -6,6 +6,7 @@
 {% load text_snippet %}
 
 {% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_home.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
@@ -13,6 +14,7 @@
 {% endcompress %}
 
 {% compress js %}
+<script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
 <script src="{{ STATIC_URL }}js/employer/employer_home.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
@@ -20,6 +22,8 @@
 {% endcompress %}
 
 <script>
+	var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
+	var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
     var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
     var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
     var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";

@@ -30,6 +30,14 @@
     {% endfor %}
    </ul>
 {% endif %}
+{% if next_weeks_events %}
+	<h3>Next Week</h3>
+    <ul id="event_list" class="event_list">
+    {% for event in next_weeks_events %}
+        {% include "event_snippet.html" %}
+    {% endfor %}
+   </ul>
+{% endif %}
 {% if later_events %}
 	<h3>Later</h3>
     <ul id="event_list" class="event_list">

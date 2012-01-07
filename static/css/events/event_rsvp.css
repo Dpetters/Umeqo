@@ -1,9 +1,9 @@
-#rsvp_div .gray_button{
+#event_actions .gray_button{
 	margin-bottom:7px;
-	display:block;
     height:30px;
     line-height: 29px;
-    width:134px;	
+    width:134px;
+    display:block;
 }
 .attending, .resume_dropped, .not_attending:hover{
 	background: #53d874; /* Old browsers */
@@ -29,7 +29,7 @@
 	border: 1px solid #CC3333;
 	color:#FFF;
 }
-#rsvp_div .dropdown ul{
+#event_actions .dropdown ul{
 	left:-1px;
 	top:30px;
     min-width:140px;	

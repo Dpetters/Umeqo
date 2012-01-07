@@ -199,6 +199,10 @@ def event_page(request, id, slug, extra_context=None):
         dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
         if dropped_resume.exists():
             context['dropped_resume'] = True
+        
+        attendee = Attendee.objects.filter(event=event, student=request.user.student)
+        if attendee.exists():
+            context['attended'] = True
     else:
         context['email_delivery_type'] = core_enums.EMAIL
     context.update(extra_context or {})
@@ -232,12 +236,12 @@ def event_new(request, form_class=None, extra_context=None):
                 event.start_datetime = event.end_datetime
                 event.save()
             if is_recruiter(request.user):
-                event.attending_employers.add(employer);
+                event.attending_employers.add(employer)
                 # Update index
-                employer.save();
+                employer.save()
+            notify_about_event(event, "new_event", event.attending_employers.all())
             # Update index
             event.save()
-            notify_about_event(event, "new_event", event.attending_employers.all())
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(initial={
@@ -395,6 +399,8 @@ def event_edit(request, id=None, extra_context=None):
             event.edits.add(Edit.objects.create(user=request.user))
             event.save()
             form.save_m2m()
+            # Update index
+            event.save()
             notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(attending_employers_before)])
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:

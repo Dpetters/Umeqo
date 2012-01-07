@@ -5,7 +5,7 @@
 		{% if user.student %}
 			<div id="event_list_empty">There are no {{category}} events.</div>
 		{% else %}			
-	   		<div id="event_list_empty">You have no {{category}} events.</div>
+	   		<div id="event_list_empty">You have no {{category}} events. {% ifequal category "upcoming" %}<a href="{% url event_new %}">Create one now!</a>{% endifequal %}</div>
 		{% endif %}
 	{% endif %}
 </div>

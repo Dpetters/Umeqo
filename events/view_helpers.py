@@ -248,16 +248,20 @@ def get_past_events_sqs(user):
 
 def get_categorized_events_context(events_exist, event_sqs):
     context = {'events_exist':events_exist}
+    print len(event_sqs)
     tomorrow = datetime.combine(date.today() + timedelta(days=1), time())
     happening_now_events = event_sqs.filter(SQ(start_datetime__lt = datetime.now()) | SQ(type="Rolling Deadline")).order_by("end_datetime")
     later_today_events = event_sqs.filter(SQ(start_datetime__gte = datetime.now()) | SQ(end_datetime__gte = datetime.now(), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow) | SQ(end_datetime__lt = tomorrow, type="Hard Deadline")).order_by("start_datetime")
     tomorrows_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow) | SQ(end_datetime__gte = tomorrow, type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=1)) | SQ(end_datetime__lt = tomorrow + timedelta(days=1), type="Hard Deadline")).order_by("start_datetime")
-    this_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(weeks=1)) | SQ(end_datetime__lt = tomorrow + timedelta(weeks=1), type="Hard Deadline")).order_by("start_datetime")
+    days_until_weeks_end = 6-date.today().weekday()
+    this_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end), type="Hard Deadline")).order_by("start_datetime")
+    next_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end)) | SQ(end_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7), type="Hard Deadline")).order_by("start_datetime")
     later_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(weeks=1)) | SQ(end_datetime__gte = tomorrow + timedelta(weeks=1), type="Hard Deadline")).order_by("start_datetime")
     context['happening_now_events'] = [sr.object for sr in happening_now_events.load_all()]
     context['later_today_events'] = [sr.object for sr in later_today_events.load_all()]
     context['tomorrows_events'] = [sr.object for sr in tomorrows_events.load_all()]
     context['this_weeks_events'] = [sr.object for sr in this_week_events.load_all()]
+    context['next_weeks_events'] = [sr.object for sr in next_week_events.load_all()]
     context['later_events'] = [sr.object for sr in later_events.load_all()]
     return context
     

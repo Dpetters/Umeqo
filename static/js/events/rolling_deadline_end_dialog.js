@@ -68,11 +68,10 @@ $(document).ready( function () {
 									    $("#no_events_block").slideDown()
 									}
                                 });
-                                $("#message_area").html("<p>" + ROLLING_DEADLINE_ENDED + "</p>");
                             }else{
-                                window.location.href="/?msg=rolling-deadline-ended";
+                                $("#event").addClass("past");
                             }
-                            
+							$("#message_area").html("<p>" + ROLLING_DEADLINE_ENDED + "</p>");
                         }
                     });
                     e.preventDefault();
