@@ -17,18 +17,19 @@
 .event_list .event_title {
     font-size: 16px;
 }
-.event_list .location_div {
+.event_list .upper_right_div {
     display: inline-block;
     margin-top:4px;
     font-size: 12px;
     float: right;
     color:#555;
+	text-align:right;
 }
-.event_list .location_div .location{
+.event_list .upper_right_div .location{
     position:relative;
     bottom:3px;
 }
-.event_list .location_div .get_directions_link{
+.event_list .upper_right_div .get_directions_link{
     display:none;
 }
 .event_list .type,
@@ -48,7 +49,7 @@
     margin-right:100px;
 }
 .event_list .datetime{
-    margin-bottom:2px;
+    margin-bottom:4px;
     color:#555;
 }
 .event_list .cancelled_warning{

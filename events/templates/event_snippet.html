@@ -1,33 +1,40 @@
 <li class="{% if event.cancelled %}cancelled{% endif %} {% if past %}past{% endif %}">
     <div class="event_title">
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
+        <div class="upper_right_div">
         {% if event.location %}
-        <div class="location_div">
             <span class="location">
                 <strong>Location:</strong> {{event.location}}
             </span>
             <a class="get_directions_link" data-latitude="{{event.latitude}}" data-longitude="{{event.longitude}}" href="#"><img title="Get Directions" alt="Directions" src="{{STATIC_URL}}images/icons/direction--arrow.png" /></a>
+	    {% endif %}
+	    	{% if user.student or user.recruiter and event.owner.campusorg %}
+	        <div class="hosted_by">
+	            <span>
+	                Hosted by {% include "event_hosted_by.html" %}
+	            </span>
+	        </div>
+	        {% endif %}
         </div>
-        {% endif %}
     </div>
 
     {% if user.recruiter and event.owner.recruiter.employer == user.recruiter.employer or user.campusorg and event.owner == user %}
-        {% include 'event_snippet_commands.html' %}
-    <div class="details commands">
+	    {% include 'event_snippet_commands.html' %}
+		<div class="details commands">
     {% else %}
-    <div class="details">
+    	<div class="details">
     {% endif %}
-        {% if event.cancelled or not event.is_rolling_deadline %}
-            <div class="datetime">
-            	{% if not event.is_rolling_deadline %}
-            		{% include "event_datetime.html" %}
+		{% if event.cancelled or not event.is_rolling_deadline %}
+		    <div class="datetime">
+		    	{% if not event.is_rolling_deadline %}
+		    		{% include "event_datetime.html" %}
 		    		&nbsp;
 		        {% endif %}
-	        	<span class="cancelled_warning">Cancelled!</span>
-            </div>
-        {% endif %}
-        {% if event.description %}
-        	<div>{{event.description|striptags|safe|truncatewords:50}}</div>
-        {% endif %}
+		    	<span class="cancelled_warning">Cancelled!</span>
+		    </div>
+		{% endif %}
+		{% if event.description %}
+			<div>{{event.description|striptags|safe|truncatewords:50}}</div>
+		{% endif %}
     </div>
 </li>

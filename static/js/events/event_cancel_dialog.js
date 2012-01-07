@@ -57,8 +57,6 @@ $(document).ready( function () {
                             event_cancel_dialog.remove();
                             if(li.length==0){
                             	$("#event").addClass("cancelled");
-                            	$("#rsvp_div").html("");
-                            	$("add_to_google_calendar").remove();
                             }else{
 	                            // Rolling Deadline
 	                            if(li.children(".details").children(".datetime").length==0){

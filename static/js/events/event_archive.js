@@ -27,7 +27,7 @@ $(document).ready( function () {
 	                   $("#message_area").html("<p>" + DEADLINE_ARCHIVED + "</p>");                            	
 	            }else{
 	            	$(that).remove();
-	                $("#rsvp_div").html('<div class="gray_button" disabled="disabled">Archived</div>');
+	            	$("#event").addClass("archived");
 	            }
   			}
   		});
