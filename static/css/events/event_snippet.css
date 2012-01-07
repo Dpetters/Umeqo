@@ -19,7 +19,8 @@
 }
 .event_list .upper_right_div {
     display: inline-block;
-    margin-top:4px;
+    margin-top:2px;
+    padding-left:10px;
     font-size: 12px;
     float: right;
     color:#555;

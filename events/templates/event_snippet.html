@@ -8,13 +8,11 @@
             </span>
             <a class="get_directions_link" data-latitude="{{event.latitude}}" data-longitude="{{event.longitude}}" href="#"><img title="Get Directions" alt="Directions" src="{{STATIC_URL}}images/icons/direction--arrow.png" /></a>
 	    {% endif %}
-	    	{% if user.student or user.recruiter and event.owner.campusorg %}
 	        <div class="hosted_by">
 	            <span>
 	                Hosted by {% include "event_hosted_by.html" %}
 	            </span>
 	        </div>
-	        {% endif %}
         </div>
     </div>
 
