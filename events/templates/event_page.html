@@ -71,6 +71,11 @@
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
     var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
+	var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
+	var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
+    var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
+    var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
+    var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
     var STATIC_URL = "{{STATIC_URL}}";
     {% if event.is_drop %}
     var IS_DROP = true;
@@ -255,6 +260,9 @@
     {% endif %}
 	<div id="event_actions">
     	{% if not event.cancelled %}
+    		{% if event.is_deadline and not user.student %}
+    			<div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
+    		{% endif %}
             {% if is_past  %}
             	{% if user.student and not event.is_deadline %}
             		{% if attended %}
@@ -262,8 +270,6 @@
             		{% else %}
             			<div class="gray_button" disabled="disabled">You didn't attend</div> 
             		{% endif %}
-	            {% else %}
-        			<div class="gray_button" disabled="disabled">Deadline has passed</div> 
 	            {% endif %}
 	        {% endif %}
             {% if not is_past %}
@@ -329,15 +335,13 @@
         {% if not is_past and not event.cancelled and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
     </div>
     <h1 class="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}<span class="type">{{event.type}}</span></h1>
-	{% if event.cancelled or not event.is_rolling_deadline %}
-    	<div class="datetime">
-	        {% if not event.is_rolling_deadline %}
-		        {% include "event_datetime.html" %}
-		        &nbsp;
-		    {% endif %}
-	        <span class="cancelled_warning" {% if not event.cancelled %}style="display:none;"{% endif %}>Cancelled!</span>
-    	</div>
-    {% endif %}
+	<div class="datetime">
+        {% if not event.is_rolling_deadline %}
+	        {% include "event_datetime.html" %}
+	        &nbsp;
+	    {% endif %}
+        <span class="cancelled_warning" {% if not event.cancelled %}style="display:none;"{% endif %}>Cancelled!</span>
+	</div>
     <div id="event_external_buttons">
     	{% if event.is_public %}
             <div id="facebook_button" class="external_button">

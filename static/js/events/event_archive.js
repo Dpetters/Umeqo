@@ -20,15 +20,14 @@ $(document).ready( function () {
 	                        $('#event_filtering_no_results').slideDown();
 						    $("#no_events_block").slideDown()
 	                    }
-	                });
-	                if(data.type=="event")
-	                   $("#message_area").html("<p>" + EVENT_ARCHIVED + "</p>");
-	            	else
-	                   $("#message_area").html("<p>" + DEADLINE_ARCHIVED + "</p>");                            	
+	                });                          	
 	            }else{
-	            	$(that).remove();
 	            	$("#event").addClass("archived");
 	            }
+                if(data.type=="event")
+                   $("#message_area").html("<p>" + EVENT_ARCHIVED + "</p>");
+            	else
+                   $("#message_area").html("<p>" + DEADLINE_ARCHIVED + "</p>");  
   			}
   		});
         e.preventDefault();
