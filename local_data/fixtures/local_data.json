@@ -9,7 +9,7 @@
    "is_active": true, 
    "is_superuser": true, 
    "is_staff": true, 
-   "last_login": "2012-01-04 22:31:48", 
+   "last_login": "2012-01-06 22:07:53", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095", 
@@ -45,7 +45,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-06 03:27:29", 
+   "last_login": "2012-01-06 21:59:17", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7e0f4$2d5df03b47158e0997768b5c6ac927e15b8f822b", 
@@ -261,10 +261,10 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-06 00:51:59", 
+   "last_login": "2012-01-06 22:07:41", 
    "groups": [], 
    "user_permissions": [], 
-   "password": "sha1$65edb$a0f80b5597e55069503587dc1dcf4d4c233fc51c", 
+   "password": "sha1$167d4$788b1eb0f4613e9ee0edc6e3dcf53a8260559132", 
    "email": "techfair@mit.edu", 
    "date_joined": "2011-12-11 22:22:41"
   }
@@ -46340,6 +46340,26 @@
   }
  }, 
  {
+  "pk": 91, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-06 22:07:41", 
+   "session_key": "d032e075f3afe1edfeba3340d4a5e901", 
+   "last_updated": "2012-01-06 22:07:41", 
+   "user": 28
+  }
+ }, 
+ {
+  "pk": 90, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-06 22:04:41", 
+   "session_key": "9ffd240f425b0cad8132533a958e6955", 
+   "last_updated": "2012-01-06 22:04:41", 
+   "user": 28
+  }
+ }, 
+ {
   "pk": 88, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46769,6 +46789,130 @@
    "rsvp_message": "What can we do?", 
    "cancelled": false, 
    "date_created": "2012-01-06 03:30:00", 
+   "include_and_more": false
+  }
+ }, 
+ {
+  "pk": 22, 
+  "model": "events.event", 
+  "fields": {
+   "short_slug": "", 
+   "attending_employers": [
+    6
+   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "archived": false, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "Student Center Plaza", 
+   "latitude": 42.358755530000003, 
+   "type": 8, 
+   "start_datetime": "2012-01-07 22:00:00", 
+   "description": "<p>\r\n\tJoin us!</p>\r\n", 
+   "is_drop": true, 
+   "is_public": true, 
+   "slug": "umeqo-consulting-panel", 
+   "name": "Umeqo Consulting Panel", 
+   "longitude": -71.094491410000003, 
+   "audience": [], 
+   "end_datetime": "2012-01-12 23:00:00", 
+   "rsvp_message": "", 
+   "cancelled": false, 
+   "date_created": "2012-01-06 22:00:07", 
+   "include_and_more": false
+  }
+ }, 
+ {
+  "pk": 23, 
+  "model": "events.event", 
+  "fields": {
+   "short_slug": "", 
+   "attending_employers": [
+    6
+   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "archived": false, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "", 
+   "latitude": null, 
+   "type": 10, 
+   "start_datetime": "2011-12-30 22:01:25", 
+   "description": "<p>\r\n\tapply for work.</p>\r\n", 
+   "is_drop": false, 
+   "is_public": true, 
+   "slug": "internship-application-deadline", 
+   "name": "Internship Application Deadline", 
+   "longitude": null, 
+   "audience": [], 
+   "end_datetime": "2031-03-07 22:01:25", 
+   "rsvp_message": "", 
+   "cancelled": false, 
+   "date_created": "2012-01-06 22:01:25", 
+   "include_and_more": false
+  }
+ }, 
+ {
+  "pk": 24, 
+  "model": "events.event", 
+  "fields": {
+   "short_slug": "", 
+   "attending_employers": [
+    6
+   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "archived": false, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "West Lot (Zone 13)", 
+   "latitude": 42.356010300000001, 
+   "type": 9, 
+   "start_datetime": "2012-01-12 22:30:00", 
+   "description": "<p>\r\n\tefe</p>\r\n", 
+   "is_drop": true, 
+   "is_public": true, 
+   "slug": "a-fun-birthday", 
+   "name": "A Fun Birthday", 
+   "longitude": -71.103799240000001, 
+   "audience": [], 
+   "end_datetime": "2012-01-12 23:30:00", 
+   "rsvp_message": "", 
+   "cancelled": false, 
+   "date_created": "2012-01-06 22:03:19", 
+   "include_and_more": false
+  }
+ }, 
+ {
+  "pk": 25, 
+  "model": "events.event", 
+  "fields": {
+   "short_slug": "", 
+   "attending_employers": [
+    6
+   ], 
+   "owner": 3, 
+   "view_count": 0, 
+   "archived": false, 
+   "last_seen_view_count": 0, 
+   "edits": [], 
+   "location": "fe", 
+   "latitude": null, 
+   "type": 5, 
+   "start_datetime": "2012-01-08 22:30:00", 
+   "description": "<p>\r\n\tnuh uh</p>\r\n", 
+   "is_drop": false, 
+   "is_public": true, 
+   "slug": "event-yo-no-map", 
+   "name": "Event Yo (No map)", 
+   "longitude": null, 
+   "audience": [], 
+   "end_datetime": "2012-01-08 23:30:00", 
+   "rsvp_message": "", 
+   "cancelled": false, 
+   "date_created": "2012-01-06 22:04:15", 
    "include_and_more": false
   }
  }, 
