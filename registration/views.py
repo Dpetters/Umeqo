@@ -14,6 +14,7 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
+from campus_org.models import CampusOrg
 from core.decorators import render_to, is_superuser
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
@@ -92,7 +93,11 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
     if request.method == "POST":
         form = form_class(data = request.POST)
         if form.is_valid():
-            user = User.objects.get(username=form.cleaned_data['recruiter'])
+            if form.cleaned_data["recruiter"]:
+                user = User.objects.get(username=form.cleaned_data['recruiter'])
+            else:
+                print CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
+                user = CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
             user.backend = s.AUTHENTICATION_BACKENDS[0]
             auth_login(request, user)
             return redirect(reverse("home"))

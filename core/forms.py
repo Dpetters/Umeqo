@@ -7,6 +7,7 @@ from django.contrib.sites.models import Site
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 
+from campus_org.models import CampusOrg
 from core import messages as m
 from core.decorators import is_student
 from core.email import send_html_mail
@@ -142,4 +143,10 @@ class EmailAuthenticationForm(AuthenticationForm):
         return self.cleaned_data
 
 class SuperLoginForm(forms.Form):
-    recruiter = forms.ModelChoiceField(label="Recruiter:", queryset = Recruiter.objects.all())
+    recruiter = forms.ModelChoiceField(label="Recruiter:", queryset = Recruiter.objects.all(), required=False)
+    campus_org = forms.ModelChoiceField(label="Campus Org:", queryset = CampusOrg.objects.filter(user__isnull=False), required=False)
+    
+    def clean(self):
+        if not self.cleaned_data.get("recruiter") and not self.cleaned_data.get("campus_org"):
+            raise forms.ValidationError("Please pick either a recruiter or campus org.")
+        return self.cleaned_data
