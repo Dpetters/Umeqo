@@ -1,6 +1,9 @@
 #subscription_notes{
-    width:310px;
-    padding:20px 35px 20px 0;
+    width:323px;
+    padding:15px 17px 20px 0;
+}
+#subscription_notes p{
+	font-size:13px;
 }
 #subscription_notes h2{
     margin-top:15px;
@@ -30,7 +33,7 @@ section, header, hgroup, footer, .grid .btn {
     display: block;
 }
 .grid {
-    padding-top:40px;
+    padding-top:35px;
     -moz-border-radius: 4px;
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 12px;
@@ -53,10 +56,6 @@ section, header, hgroup, footer, .grid .btn {
     background-repeat: repeat-x;
     text-align: center;
     position: relative;
-}
-.grid .price h2 span{
-    position:relative;
-    top:7px;
 }
 .grid .top {
     border: solid 1px #000000;
@@ -85,13 +84,9 @@ section, header, hgroup, footer, .grid .btn {
     height: 53px;
     padding: 1px 0 0;
 }
-
 .grid .style1 {
-    font-size: 28px;
-    vertical-align: text-top;
-    height: 53px;
-    vertical-align: middle\9;
-    *vertical-align: middle;
+    font-size: 26px;
+    vertical-align: middle;
 }
 .grid .price p{
     color:#FFF;
@@ -281,6 +276,9 @@ section, header, hgroup, footer, .grid .btn {
 }
 .col3 section.on .style2 {
     font-size: 48px;
+}
+#features p{
+	font-size:13px;
 }
 .feature{
     width:226px;

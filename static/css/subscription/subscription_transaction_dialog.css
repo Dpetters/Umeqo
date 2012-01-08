@@ -26,3 +26,6 @@
 #subscription_form a.button{
     width:92px;
 }
+.form_table .button_cell{
+	padding-left:35px;
+}

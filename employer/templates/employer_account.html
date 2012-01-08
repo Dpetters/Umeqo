@@ -104,7 +104,7 @@
     <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only recruiter for 
         {{user.recruiter.employer}}. Before deleting your account, you need to <a class="
         {% if not sa %}
-            must_be_subscribed_annually must_be_subscribed_annually_e
+            must_be_subscribed_annually_e
         {% else %}
             create_recruiter_link
         {% endif %}
@@ -121,9 +121,7 @@
 {% block account_settings_tab_definitions %}
     <div id="tabs-3">
         <h3 class="no_top_margin">Your Subscription</h3>
-        <div id="subscription_actions" class="right_side_container">
-            <a href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>
-        </div>
+        <a id="modify_subscription" href="{% url subscription_list %}" class="dark_button">{{subscription_button_text}}</a>
         <div id="subscription_info">
             {% if subscription %}
                 <span id="subscription_name">{{subscription.subscription.name}}</span>

@@ -333,10 +333,7 @@ def landing_page(request, extra_context = None):
 @render_to()
 def home(request, extra_context=None):
     context = {}
-    page_messages = { 'profile-saved': messages.profile_saved,
-                      'event-cancelled':messages.event_cancelled,
-                      'rolling-deadline-ended':messages.rolling_deadline_ended,
-                      'deadline-cancelled':messages.deadline_cancelled }
+    page_messages = { 'profile-saved': messages.profile_saved }
     msg = request.GET.get('msg', None)
     if msg:
         context.update(msg = page_messages.get(msg))

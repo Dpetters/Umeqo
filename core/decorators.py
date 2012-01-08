@@ -28,6 +28,8 @@ class agreed_to_terms(object):
         return self.__class__.__name__
     
     def __call__(self, request, *args, **kwargs):
+        print request.user.is_staff
+        print request.user.userattributes.agreed_to_terms
         if not request.user.is_authenticated() or request.user.is_staff or request.user.userattributes.agreed_to_terms:
             return self.orig_func(request, *args, **kwargs)
         return redirect(reverse("terms_of_service"))

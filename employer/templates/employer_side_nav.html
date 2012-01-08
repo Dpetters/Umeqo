@@ -25,17 +25,25 @@
         class="must_be_subscribed_annually must_be_subscribed_annually_w"
     {% endif %}
     href="{% url event_new %}">Create New</a>
-    <a href="{% url events category="upcoming" %}">Browse</a>
+    <a 
+    {% if not user.recruiter.employer.subscribed %}
+        class="must_be_subscribed must_be_subscribed_w"
+    {% endif %}
+    href="{% url events category="upcoming" %}">Browse</a>
         
     <h3
     {% if not user.recruiter.employer.subscribed %}
         class="must_be_subscribed_annually"
     {% endif %}
     >Profile</h3>
-    <a href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
     <a
-    {% if not user.recruiter.employer.subscribed_annually %}
-        class="must_be_subscribed_annually must_be_subscribed_annually_w"
+    {% if not user.recruiter.employer.subscribed %}
+        class="must_be_subscribed must_be_subscribed_w"
+    {% endif %}
+     href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
+    <a
+    {% if not user.recruiter.employer.subscribed %}
+        class="must_be_subscribed must_be_subscribed_w"
     {% endif %}
     href="{% url employer_profile %}">Edit Profile</a>
 </div>

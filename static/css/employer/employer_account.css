@@ -17,8 +17,10 @@
 #id_default_student_results_per_page, #id_default_student_result_ordering{
     width:160px;
 }
-#subscription_actions{
+#modify_subscription{
+	float:right;
     margin-top:5px;
+    color:#FFF !important;
 }
 #subscription_info{
     padding:5px 5px;

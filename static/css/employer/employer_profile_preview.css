@@ -79,3 +79,6 @@ div .employer_name {
     display: block;
     max-width: 150px;
 }
+#no_upcoming_events_or_deadlines{
+	padding-top:14px;
+}

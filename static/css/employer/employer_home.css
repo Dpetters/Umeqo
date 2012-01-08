@@ -1,14 +1,14 @@
 #featured_content #tutorials{
-	background:#F3C849;
+	background:#F2CB60
 }
 #featured_content #students{
-	background:#9FC238;
+	background:#A4C14D;
 }
 #featured_content #events{
-	background:#C03947;
+	background:#BF4C59;
 }
 #featured_content #profile{
-	background:#299FFF;
+	background:#66BCFF;
 }
 #featured_content div:hover{
 	background:#BEBEBE !important;

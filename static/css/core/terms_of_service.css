@@ -6,10 +6,10 @@
     position:relative;
     right:1px;
     margin-bottom:0px;
-    width:400px;
 }
 #terms_block h2{
     font-size:17px;
+	margin-bottom:3px;
 }
 #terms_block #tip{
     margin-bottom:25px;
