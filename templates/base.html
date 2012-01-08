@@ -133,7 +133,8 @@
                                 <li><a href="{% url student_account %}">Account Settings</a></li>
                             {% endif %}
                             {% if user.recruiter %}    
-                                <li><a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_annually_e"{% endif %} href="{% url employer_profile %}">Edit Profile</a></li>
+                                <li><a {% if not user.recruiter.employer.subscribed %}class="must_be_subscribed must_be_subscribed_e"{% endif %} href="{% url employer_profile %}">Edit Profile</a></li>
+                                <li><a href="{% url subscription_list %}">Modify Subscription</a></li>
                                 <li><a href="{% url employer_account %}">Account Settings</a></li>
                             {% endif %}
                             {% if user.campusorg %}    
@@ -168,6 +169,12 @@
             </div>
         </div>
         <div id="below_header_area">
+        	<div id="caution_bar">
+		        {% for caution in cautions %}
+	            	<p>{{caution|safe}}</p>
+	        	{% endfor %}    		
+        	</div>
+        	
         	<div id="warning_bar">
 		        {% for warning in warnings %}
 	            	<p>{{warning|safe}}</p>

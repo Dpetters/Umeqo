@@ -69,6 +69,7 @@ function handle_open_transaction_dialog_link_click(e){
                             } else {
                                 var success_message = "<div class='message_section'><p>We have received your request and will get back to you ASAP. Thank you!.</p></div>";
                                 success_message += CLOSE_DIALOG_LINK;
+                                transaction_dialog.dialog("option", "title", "Request Submitted");
                                 transaction_dialog.html(success_message);
                             }
                         }

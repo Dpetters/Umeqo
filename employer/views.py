@@ -252,7 +252,7 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 @login_required
 @agreed_to_terms
 @user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
-@has_annual_subscription
+@has_any_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':

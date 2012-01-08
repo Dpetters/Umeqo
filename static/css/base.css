@@ -63,7 +63,7 @@ label {
 label: not(.required) {
 	padding-right: 8px;
 }
-#message_area, #warning_bar {
+#message_area, #warning_bar, #caution_bar {
 	text-align: center;
 }
 #message_area p {
@@ -76,18 +76,24 @@ label: not(.required) {
 	padding: 3px 11px 2px;
 	position: relative;
 }
-#warning_bar a{
+#warning_bar a, #caution_bar a{
 	color:#fff !important;	
 }
-#warning_bar p{
-	background:#FFAD46;
+#warning_bar p, #caution_bar p{
 	color:#fff !important;
 	font-weight:bold;
 	padding: 2px 0px;
 	margin-bottom:10px;
 	position:relative;
 	bottom:1px;
-	border-bottom:1px solid #E59B40;
+}
+#caution_bar p{
+	background:#FFA366;	
+	border-bottom:1px solid #E58B5B;
+}
+#warning_bar p{
+	background:#BF4C4C;	
+	border-bottom:1px solid #993D3D;
 }
 ::-webkit-input-placeholder {
 	color: #888 !important;

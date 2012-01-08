@@ -23,8 +23,6 @@ from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
 
-
-@login_required
 def logout(request, login_url=None, current_app=None, extra_context=None):
     return auth_logout_then_login_view(request, login_url, current_app, extra_context)
 
