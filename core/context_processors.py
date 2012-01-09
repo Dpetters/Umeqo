@@ -42,7 +42,7 @@ def employer_subscription(request):
 # Cautions are orange. Warnings are red.
 def caution(request):
     cautions = []
-    if is_recruiter(request.user):        
+    if is_recruiter(request.user) and hasattr(request.user.recruiter.employer, "employersubscription"):
         employer_subscription = request.user.recruiter.employer.employersubscription
         subscription_path = reverse("subscription_list")
         if employer_subscription.in_grace_period():
@@ -57,7 +57,7 @@ def caution(request):
 
 def warnings(request):
     warnings = []
-    if is_recruiter(request.user):        
+    if is_recruiter(request.user) and hasattr(request.user.recruiter.employer, "employersubscription"):        
         employer_subscription = request.user.recruiter.employer.employersubscription
         subscription_path = reverse("subscription_list")
         if employer_subscription.expired():
