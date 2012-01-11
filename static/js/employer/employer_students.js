@@ -143,7 +143,7 @@ function handle_students_invite_click(e) {
                     dialogClass: "event_invitation_dialog",
                     modal: true,
                     width: 550,
-                    resizable: false,
+                    resizable: false
                 });
                 if (events.length == 0) {
                     dialog.html('<span id="student_invite_no_events" class="nowrap">You have no upcoming events or deadlines! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');

@@ -3,6 +3,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
 from core.decorators import is_recruiter
+from subscription.models import EmployerSubscription
 
 def next(request):
     if request.GET.has_key('next'):
@@ -42,7 +43,7 @@ def employer_subscription(request):
 # Cautions are orange. Warnings are red.
 def caution(request):
     cautions = []
-    if is_recruiter(request.user) and hasattr(request.user.recruiter.employer, "employersubscription"):
+    if is_recruiter(request.user) and EmployerSubscription.objects.filter(employer = request.user.recruiter.employer).exists():
         employer_subscription = request.user.recruiter.employer.employersubscription
         subscription_path = reverse("subscription_list")
         if employer_subscription.in_grace_period():
@@ -57,7 +58,7 @@ def caution(request):
 
 def warnings(request):
     warnings = []
-    if is_recruiter(request.user) and hasattr(request.user.recruiter.employer, "employersubscription"):        
+    if is_recruiter(request.user) and EmployerSubscription.objects.filter(employer = request.user.recruiter.employer).exists():       
         employer_subscription = request.user.recruiter.employer.employersubscription
         subscription_path = reverse("subscription_list")
         if employer_subscription.expired():
