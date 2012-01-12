@@ -83,8 +83,6 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
     else:
         us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
         user = request.user
-        if not (is_student(user) or is_campus_org(user) or is_recruiter(user)):
-            return HttpResponseServerError("User is not of any type.")
         return response
     
 @login_required
