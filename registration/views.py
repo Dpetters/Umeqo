@@ -9,13 +9,13 @@ from django.contrib.auth.decorators import login_required,  user_passes_test
 from django.contrib.auth.views import logout as auth_logout_then_login_view, login as auth_login_view
 from django.contrib.sessions.models import Session
 from django.contrib.sites.models import get_current_site
-from django.http import HttpResponse, HttpResponseServerError
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
-from core.decorators import render_to, is_superuser, is_student, is_campus_org, is_recruiter
+from core.decorators import render_to, is_superuser
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
@@ -82,7 +82,6 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
         return redirect(reverse('super_login'))
     else:
         us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
-        user = request.user
         return response
     
 @login_required

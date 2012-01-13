@@ -19,3 +19,9 @@ settings_local.py
 *.log.*
 apache-solr-1.4.1/solr/data/
 apache/egg-cache/
+static/cache/
+static/scripts/
+static/admin/
+static/fonts/
+static/styles/
+

@@ -11,6 +11,9 @@ PASSWORD_MIN_LENGTH = 5
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000
 
+# Send admins an email each time that a 404 is encountered
+SEND_BROKEN_LINK_EMAILS = True
+
 # One-day activation window
 ACCOUNT_ACTIVATION_DAYS = 99999
 
@@ -166,9 +169,7 @@ PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
 CKEDITOR_PATH = "ckeditor/"
 
 # a list of folders inside of which of django looks for static files
-STATICFILES_DIRS = (
-    ROOT + '/static',
-)
+STATIC_ROOT = ROOT + '/static'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -225,8 +226,8 @@ MIDDLEWARE_CLASSES = (
     'middleware.generic.SetRemoteAddrMiddleware',
     'middleware.log.LogMiddleware',
     'sentry.client.middleware.Sentry404CatchMiddleware',
-    'middleware.http.HttpResponseNotAllowedMiddleware',
-    'middleware.http.Http403Middleware',
+    'middleware.integrity.UserIntegrity',
+    'middleware.exceptions.ProcessExceptionMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"

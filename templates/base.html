@@ -226,13 +226,15 @@
                 </div>
             </div>
         </div>
-        <div class="width_container">
-            <div id="content_area">
+        <div id="content_area">
+        	<div class="width_container">
                 {% block content_area %}
                 {% endblock %}
-            <div class="clearfix"></div>
-            </div>
-            <div id="footer_area">
+            	<div class="clearfix"></div>
+           </div>
+        </div>
+        <div id="footer_area">
+        	<div class="width_container">
                 <div id="footer_navigation_block">
                     <a id="home" href="{% url home %}" tabindex="-1">Home</a>
                     <a id="about" href="{% url about %}" tabindex="-1">About</a>
@@ -246,6 +248,7 @@
                 <p id="footer_info_block">
                     &copy; 2011 Umeqo. All Rights Reserved.
                 </p>
+                <div class="clearfix"></div>
             </div>
         </div>
     </body>

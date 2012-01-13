@@ -1,6 +1,9 @@
 import socket
 import os
 
+# Used for local static content serving
+LOCAL=False
+
 # Compress static content?
 COMPRESS = True
 

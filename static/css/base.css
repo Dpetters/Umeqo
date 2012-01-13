@@ -129,10 +129,12 @@ label: not(.required) {
 	width: 986px;
 	margin: 0 auto;
 }
+#header_area, #below_header_area, #content_area, #footer_area{
+	min-width: 986px;
+}
 #header_area {
 	background:#54748E;
 	background: url('/static/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
-	min-width: 986px;
 	text-align: center;
 	height: 60px;
 }
@@ -237,13 +239,15 @@ label: not(.required) {
 	float: left;
 }
 #footer_area {
-	margin-top: 10px;
 	clear: both;
 	margin-top:75px;
+	margin-bottom:20px;
 	line-height: 18px;
+	font-size: 12px;
+}
+#footer_area .width_container{
 	padding-top: 5px;
 	border-top: 1px solid #c9c9c9;
-	font-size: 12px;
 }
 #footer_info_block {
 	float: left;
