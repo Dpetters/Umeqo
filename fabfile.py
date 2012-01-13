@@ -89,6 +89,7 @@ def load_local_data():
         if env.type == "prod":
             abort("load_local_data should not be called on prod.")
         with cd(env.directory):
+            print env.directory
             with prefix(env.activate):
                 run("python copy_media.py local in")
                 run("python manage.py loaddata ./local_data/fixtures/local_data.json")  

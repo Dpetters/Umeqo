@@ -19,10 +19,11 @@ BACKUP_DIR = "/var/www/umeqo_backups/"
 
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
-UMEQO_RECRUITER_ID = 3
-WELCOME_EVENT_ID = 6
-SITE_ID = 4
-DB_PASSWORD = "Perf3ctP0ur"
+UMEQO_RECRUITER_ID = # fill out
+WELCOME_EVENT_ID = # fill out
+# 1 - Staging, 2 - Prod, 3 - looal, 4 - demo 
+SITE_ID = # fill out
+DB_PASSWORD =  # fill out
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
