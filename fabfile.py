@@ -100,7 +100,7 @@ def commit_prod_data():
                         run("python manage.py file_cleanup %s.%s" % (app, model))
                 run("python manage.py dumpdata %s --indent=1 > %s/initial_data.json" % (" ".join(model_labels), fixtures_dir))
             run("python copy_media.py prod out")
-            run("git add -A")
+            run("git add initial_data.json prod_data/*")
             with fabric_settings(warn_only=True):
                 run('git commit -m "Prod data commit from prod."')
                 run("git push origin master")
@@ -132,7 +132,7 @@ def commit_local_data():
             with fabric_settings(warn_only=True):
                 run("mkdir ./local_data/fixtures")
             run("python manage.py dumpdata %s --indent=1 > ./local_data/fixtures/local_data.json" % (" ".join(model_labels)))
-            run("git add -A")
+            run("git add local_data/*")
             with fabric_settings(warn_only=True):
                 run('git commit -m "Local data commit from staging."')
                 run("git push origin dev")

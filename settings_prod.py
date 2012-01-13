@@ -1,4 +1,3 @@
-import socket
 import os
 
 # Used for local static content serving
@@ -20,22 +19,12 @@ BACKUP_DIR = "/var/www/umeqo_backups/"
 
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
-def is_prod():
-    return ['66.228.51.22'] == socket.gethostbyname_ex(socket.gethostname())[2]
+UMEQO_RECRUITER_ID = 3
+WELCOME_EVENT_ID = 6
+SITE_ID = 2
+DB_PASSWORD = "Perf3ctP0ur"
 
-# 1 - Prod, 2 - Staging, 3 - Dev/Local
-if is_prod():
-    UMEQO_RECRUITER_ID = 4
-    WELCOME_EVENT_ID = 1
-    SITE_ID = 1
-    DB_PASSWORD = "Bl4ckVelv3t"
-    DEBUG = False
-else:
-    UMEQO_RECRUITER_ID = 3
-    WELCOME_EVENT_ID = 6
-    SITE_ID = 2
-    DB_PASSWORD = "Perf3ctP0ur"
-    DEBUG = True
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
