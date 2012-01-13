@@ -1,7 +1,12 @@
 import os
 
-# Used for local static content serving
-LOCAL=False
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    ("Umeqo Team", "contact@umeqo.com"),
+)
+MANAGERS = ADMINS
 
 # Compress static content?
 COMPRESS = True
@@ -24,14 +29,6 @@ WELCOME_EVENT_ID = # fill out
 # 1 - Staging, 2 - Prod, 3 - looal, 4 - demo 
 SITE_ID = # fill out
 DB_PASSWORD =  # fill out
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-ADMINS = (
-    ("Umeqo Team", "contact@umeqo.com"),
-)
-MANAGERS = ADMINS
 
 STATIC_ROOT = "/var/www/static/"
 
