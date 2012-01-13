@@ -155,7 +155,7 @@ class StudentBaseAttributeForm(forms.ModelForm):
 class StudentBodyStatisticsForm(forms.Form):
     y_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_Y_AXIS, initial=student_enums.GPA)
     x_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_X_AXIS, initial=student_enums.SCHOOL_YEAR)
-        
+
 class StudentProfileForm(StudentBaseAttributeForm):
     # Required Info
     first_name = forms.CharField(label="First name:", max_length = 20)
