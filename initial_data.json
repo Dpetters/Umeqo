@@ -16,6 +16,14 @@
   }
  }, 
  {
+  "pk": 4, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "Umeqo", 
+   "name": "demo.umeqo.com"
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "sites.site", 
   "fields": {
