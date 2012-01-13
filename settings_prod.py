@@ -21,7 +21,7 @@ ROOT = os.path.dirname(os.path.realpath(__file__))
 
 UMEQO_RECRUITER_ID = 3
 WELCOME_EVENT_ID = 6
-SITE_ID = 2
+SITE_ID = 4
 DB_PASSWORD = "Perf3ctP0ur"
 
 DEBUG = True
@@ -37,7 +37,7 @@ STATIC_ROOT = "/var/www/static/"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'umeqo_main',                   # Or path to database file if using sqlite3.
+        'NAME': 'umeqo_demo_main',                   # Or path to database file if using sqlite3.
         'USER': 'root',                         # Not used with sqlite3.
         'PASSWORD': DB_PASSWORD,                # Not used with sqlite3.
         'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
