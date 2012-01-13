@@ -37,25 +37,15 @@ In the first one run - "us", "ud", "dap", "sap"
 In the second one run - "us", "ud", "python manage.py runcserver"
 In the third one run - "us", "ud", "memcached"
 Leave fourth for making commits.
-
 2. Run "git branch" and make sure you are on the dev branch. If there is no dev branch or you are not on it, run "git checkout dev"/
-
 3. Make whatever changes you need to.
-
 4. Run "git add -A" or "git add <files to add>" to stage the files you changed.
-
 5. Run "git commit -m '<commit message>'" to commit your changes.
-
 6. Run "git push origin dev" to push the changes to staging.
-
 7. Run "fab staging update" locally to update staging.
-
 8. Test the changes on staging.
-
 9. Run "git checkout master" followed by "git merge dev" to merge your changes to the master branch.
-
 10. Run "git push origin master" to push your changes to master.
-
 11. Run "fab prod update" locally to update prod.
 
 
