@@ -11,6 +11,12 @@ __all__= ["staging", "prod", "restart", "restart_apache", "create_database", "lo
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
 
+def demo():
+    env.hosts = ['root@staging.umeqo.com']
+    env.password = settings.STAGING_PASSWORD
+    env.directory = '/var/www/umeqo_demo'
+    env.activate = 'source /usr/local/pythonenv/UMEQO/bin/activate'
+
 def staging():
     env.hosts = ['root@staging.umeqo.com']
     env.password = settings.STAGING_PASSWORD
