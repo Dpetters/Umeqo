@@ -1,6 +1,5 @@
-from django.http import HttpResponseServerError
-
 from core.decorators import is_student, is_recruiter, is_campus_org
+from core.views import handle_500
 
 class UserIntegrity(object):
     def process_request(self, request):
@@ -8,13 +7,13 @@ class UserIntegrity(object):
             if not request.user.is_staff:
                 user = request.user
                 if request.META['SERVER_NAME'] != "testserver" and not (is_student(user) or is_recruiter(user) or is_campus_org(user)):
-                    return HttpResponseServerError("#50001 - Your account was not set up correctly.")
+                    return handle_500(request, "#50001 - Your account was not set up correctly.")
                 elif is_recruiter(user):
                     employer = user.recruiter.employer
                     if not employer.slug:
-                        return HttpResponseServerError("#50002 - Employer profile is missing a mandatory slug.")
+                        return handle_500(request, "#50002 - Employer profile is missing a mandatory slug.")
                     elif not employer.main_contact:
-                        return HttpResponseServerError("#50003 - Employer profile is missing the mandatory main contact name.")
+                        return handle_500(request, "#50003 - Employer profile is missing the mandatory main contact name.")
                     elif not employer.main_contact_email:
-                        return HttpResponseServerError("#50004 - Employer profile is missing the mandatory main contact email.")
+                        return handle_500(request, "#50004 - Employer profile is missing the mandatory main contact email.")
         return None
