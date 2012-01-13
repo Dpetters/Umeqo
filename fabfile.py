@@ -93,11 +93,13 @@ def commit_prod_data():
     with cd(env.directory):
         with prefix(env.activate):
             run("python manage.py dumpdata sites auth.group --indent=1 > ./initial_data.json")
+            directories = ""
             for app in settings.PROD_DATA_MODELS:
                 model_labels = []
                 if app == "sites" or app == "auth":
                     continue
                 fixtures_dir = "./%s/fixtures" % (app)
+                directories += "%s/* " % fixtures_dir
                 with fabric_settings(warn_only=True):
                     run("mkdir %s" % (fixtures_dir))
                 for model in settings.PROD_DATA_MODELS[app]:
@@ -106,7 +108,7 @@ def commit_prod_data():
                         run("python manage.py file_cleanup %s.%s" % (app, model))
                 run("python manage.py dumpdata %s --indent=1 > %s/initial_data.json" % (" ".join(model_labels), fixtures_dir))
             run("python copy_media.py prod out")
-            run("git add initial_data.json prod_data/*")
+            run("git add ./initial_data.json ./prod_data/* %s" % directories)
             with fabric_settings(warn_only=True):
                 run('git commit -m "Prod data commit from prod."')
                 run("git push origin master")
@@ -154,6 +156,8 @@ def update():
                     run("git pull origin dev")
                 elif env.host=="umeqo.com":
                     commit_prod_data()
+                    run("git pull origin master")
+                else:
                     run("git pull origin master")
                 run("python manage.py migrate --all")
                 run("echo 'yes'|python manage.py collectstatic")
