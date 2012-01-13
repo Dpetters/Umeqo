@@ -68,7 +68,6 @@ urlpatterns += patterns('campus_org.views',
     (r'^campus-org/account/$', 'campus_org_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'campus_org_account'),
     (r'^campus-org/account/preferences/$', 'campus_org_account_preferences', {}, 'campus_org_account_preferences'),
 )
-
 urlpatterns += patterns('registration.views',
     (r'^login/$', 'login', {'extra_context': {'authentication_form': AuthenticationForm}}, 'login'),
     (r'^super-login/$', 'super_login', {}, 'super_login'),

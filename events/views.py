@@ -24,6 +24,7 @@ from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
 from core import enums as core_enums
+from core.http import Http403
 from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
@@ -131,18 +132,18 @@ def event_page(request, id, slug, extra_context=None):
     
     if not event.is_public:
         if not request.user.is_authenticated():
-            return HttpResponseForbidden("You don't have permission to view this event.")
+            raise Http403("This event is private. You do not have permission to view it.")
         elif is_campus_org(request.user):
             if request.user != event.owner:
-                return HttpResponseForbidden("You don't have permission to view this event.")
+                raise Http403("This event is private. You do not have permission to view it.")
         elif is_recruiter(request.user):
             if request.user != event.owner and request.user.recruiter.employer not in event.attending_employers.all():
-                return HttpResponseForbidden("You don't have permission to view this event.")
+                raise Http403("This event is private. You do not have permission to view it.")
         elif is_student(request.user):
             try:
                 Invitee.objects.get(event=event, student=request.user.student)
             except:
-                return HttpResponseForbidden("You don't have permission to view this event.")
+                raise Http403("This event is private. You do not have permission to view it.")
 
     current_site = Site.objects.get(id=s.SITE_ID)
 

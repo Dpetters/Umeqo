@@ -1,0 +1,1 @@
+#50001 - The user instance is not an admin and yet is not attached to any other higher level model such a student, recruiter, or campus organization.

@@ -3,6 +3,7 @@ from __future__ import absolute_import
 
 from datetime import datetime, timedelta
 import operator
+import sys
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
@@ -10,12 +11,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
 from django.contrib.auth.decorators import user_passes_test
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
+from django.template import RequestContext, loader
 from django.utils import simplejson
-from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.http import require_GET
 
 from campus_org.models import CampusOrg
@@ -332,7 +335,7 @@ def landing_page(request, extra_context = None):
 @agreed_to_terms
 @render_to()
 def home(request, extra_context=None):
-    context = {}
+    conftext = {}
     page_messages = { 'profile-saved': messages.profile_saved }
     msg = request.GET.get('msg', None)
     if msg:
@@ -440,7 +443,6 @@ def course_info(request, extra_context = None):
 
 @login_required
 def check_language_uniqueness(request):
-    
     if request.is_ajax():
         if Language.objects.filter(name=request.GET.get("name", "")).exists():
             return HttpResponse(simplejson.dumps(False), mimetype="application/json")
@@ -448,23 +450,35 @@ def check_language_uniqueness(request):
             return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
 
+
 @login_required
 def get_notice_unseen_count(request):
     count = Notice.objects.unseen_count_for(request.user, on_site=True)
     return HttpResponse(simplejson.dumps({'count': count}), mimetype="application/json")
 
-@render_to('500.html')
-def handle_500(request, extra_context = None):
-    context = {}
-    if not request.user.is_authenticated():
-        context = {'login_form': AuthenticationForm}
-    context.update(extra_context or {})
-    return context
+@requires_csrf_token
+def handle_500(request, exception=None, extra_context = None):
+    t = loader.get_template('500.html')
+    context = {'exception':exception }
+    if request.user.is_anonymous():
+        context['login_form'] = AuthenticationForm
+    context['request'] = request
+    return HttpResponseServerError(t.render(RequestContext(request, context)))
 
-@render_to('404.html')
+@requires_csrf_token
 def handle_404(request, extra_context = None):
+    t = loader.get_template('404.html')
     context = {}
-    if not request.user.is_authenticated():
-        context = {'login_form': AuthenticationForm}
-    context.update(extra_context or {})
-    return context
+    if request.user.is_anonymous():
+        context['login_form'] = AuthenticationForm
+    context['request'] = request
+    return HttpResponseNotFound(t.render(RequestContext(request, context)))
+
+@requires_csrf_token
+def handle_403(request, exception=None, extra_context = None):
+    t = loader.get_template('403.html')
+    context = {'exception':exception }
+    if request.user.is_anonymous():
+        context['login_form'] = AuthenticationForm
+    context['request'] = request
+    return HttpResponseForbidden(t.render(RequestContext(request, context)))
