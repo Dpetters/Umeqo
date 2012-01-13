@@ -9279,7 +9279,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-11 01:48:37", 
+   "last_login": "2012-01-12 20:30:24", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$fc2f0$8fedb9c8f732ad465d4f0db15b9ad1f6f5fcf0b8", 
@@ -46336,6 +46336,16 @@
    "session_key": "2ee36c0d0d6bff4a3f752e70e62bbfac", 
    "last_updated": "2011-12-01 22:41:59", 
    "user": 7
+  }
+ }, 
+ {
+  "pk": 98, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-12 20:30:24", 
+   "session_key": "aa5f3afb5bd8478c7b00c976f590dbd2", 
+   "last_updated": "2012-01-12 20:30:24", 
+   "user": 529
   }
  }, 
  {
