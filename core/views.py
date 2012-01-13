@@ -335,7 +335,7 @@ def landing_page(request, extra_context = None):
 @agreed_to_terms
 @render_to()
 def home(request, extra_context=None):
-    conftext = {}
+    context = {}
     page_messages = { 'profile-saved': messages.profile_saved }
     msg = request.GET.get('msg', None)
     if msg:
