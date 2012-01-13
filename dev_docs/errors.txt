@@ -1,1 +1,4 @@
 #50001 - The user instance is not an admin and yet is not attached to any other higher level model such a student, recruiter, or campus organization.
+#50002 - Make sure the slug field for employers is filled out.
+#50003 - Make sure the main_contact field for employers is filled out.
+#50004 - Make sure the main_contact_email for employers is filled out.
