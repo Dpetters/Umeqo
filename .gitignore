@@ -22,4 +22,6 @@ apache/egg-cache/
 static/cache/
 static/scripts/
 static/admin/
+static/fonts/
+static/styles/
 
