@@ -725,7 +725,7 @@
     36
    ], 
    "main_contact_email": "albert@dropbox.com", 
-   "last_updated": "2012-01-02 14:47:26", 
+   "last_updated": "2012-01-11 06:17:29", 
    "description": "<p style=\"background: transparent; line-height: 100%\">\r\n\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">At Dropbox, we want to change the way people think about data and what&#39;s possible with technology. Whether you&#39;re using a computer, smartphone, iPad, camera, TV, car, or other device, you should have access to all of your data without having to think about it. Founded by Drew Houston (&#39;05) and Arash Ferdowsi (&#39;08 dropout), over half of Dropbox&#39;s 30 engineers are from MIT.</span></font></font></font></font></p>\r\n<p>\r\n\t&nbsp;</p>\r\n<p>\r\n\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">Here are a few reasons why us MIT grads (and dropouts) really enjoy working at Dropbox:</span></font></font></font></font></p>\r\n<ul style=\"position: static; z-index: auto; \">\r\n\t<li>\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">You actually apply concepts from 6.172, 6.824, 6.828, 6.830, 6.831, 6.857 (and much more), to solving a new space of problems for 40 million people and counting.</span></font></font></font></font></li>\r\n\t<li>\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">People think like you do-- that is to say, we&#39;re hardcore about precision, thoroughness, and correctness.</span></font></font></font></font></li>\r\n\t<li>\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">In 6.033, we debated if Worse is Better. At Dropbox, we believe <a href=\"http://dl.dropbox.com/u/27958876/attachments/worse-is-better.pdf\">Better is Better</a>, and that it&#39;s possible to hold your work to an even higher standard of combining practicality, correctness, and simplicity.</span></font></font></font></font></li>\r\n\t<li>\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">This is a place where people obsess over and take pride in the quality of their work-- almost more than they should!</span></font></font></font></font></li>\r\n</ul>\r\n<p>\r\n\t<br />\r\n\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">Dropbox makes it so the hardest problems you&#39;ve ever worked on aren&#39;t just the ones at MIT.&nbsp;Each of these Dropbox projects required just one MIT engineer:</span></font></font></font></font></p>\r\n<ul style=\"position: relative; z-index: 0; \">\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">built and released our Linux client</span></font></font></font></li>\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">scaled the servers to handle millions of concurrent connections</span></font></font></font></font></li>\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">built and have scaled the analytics system end-to-end</span></font></font></font></font></li>\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">reverse-engineered the OS X Finder for integration</span></font></font></font></font></li>\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">built and released the iPhone app</span></font></font></font></font></li>\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">build and released the <a href=\"https://www.dropbox.com/m\">mobile version of the website</a>, then re-built from scratch (both times an intern project!)</span></font></font></font></font></li>\r\n\t<li style=\"background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; line-height: 100%; \">\r\n\t\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">... and much, much more</span></font></font></font></font></li>\r\n</ul>\r\n<p style=\"background: transparent; line-height: 100%\">\r\n\t&nbsp;</p>\r\n<p style=\"background: transparent; line-height: 100%\">\r\n\t<font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font class=\"Apple-style-span\" color=\"#000000\" size=\"2\"><font color=\"#000000\"><font size=\"2\"><span style=\"background: #ffffff\">We&#39;ve just started building the file system of the world and are going to need your help. You belong here.</span></font></font></font></font></p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -947,7 +947,7 @@
     43
    ], 
    "main_contact_email": "sarah.jackson@fmr.com", 
-   "last_updated": "2012-01-05 00:28:51", 
+   "last_updated": "2012-01-07 07:31:40", 
    "description": "<p>\r\n\tA Fidelity internship is more than a summer job. Building your resume, networking, and gaining relevant work experience are just a few benefits of participating in a paid internship or co-op at Fidelity Investments.&nbsp;Our goal is provide interns experiences that will take you far beyond the classroom and&nbsp;top performers may be offered full-time employment&nbsp;upon graduation.&nbsp;</p>\r\n<p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 4px; padding-right: 0px; padding-bottom: 10px; padding-left: 0px; font-size: 12px; \">\r\n\tWith multiple U.S. locations, we offer a range of opportunities&nbsp;with significant work assignments for undergraduate and graduate students.&nbsp;Co-ops, which are full-time positions lasting between four and six months, may also be available for college credit.&nbsp;While most of our internships and co-ops are offered in the summer, year-round opportunities may also be available.&nbsp;Positions may support a direct business unit or function or be&nbsp;a precursor to a&nbsp;formalized program and are available for both undergrad and graduate students.&nbsp;We can help provide the foundation for a lasting career.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1081,7 +1081,7 @@
     40
    ], 
    "main_contact_email": "elizabeth.floyd@gs.com", 
-   "last_updated": "2012-01-06 00:53:29", 
+   "last_updated": "2012-01-07 07:31:41", 
    "description": "<p>\r\n\tThe Goldman Sachs Group, Inc. is a leading global investment banking, securities and investment management firm that provides a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals. Founded in 1869, the firm is headquartered in New York and maintains offices in London, Frankfurt, Tokyo, Hong Kong and other major financial centers around the world.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1107,7 +1107,7 @@
     36
    ], 
    "main_contact_email": "lizarnold@google.com", 
-   "last_updated": "2011-12-26 16:07:52", 
+   "last_updated": "2012-01-11 06:17:33", 
    "description": "<p>\r\n\t<em>&ldquo;Google is organized around the ability to&nbsp;attract and leverage the talent of exceptional&nbsp;technologists and business people.&quot; </em></p>\r\n<p>\r\n\t<em>-&nbsp;</em>Larry Page, Google Co-founder and CEO</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<div>\r\n\t<div>\r\n\t\tAt Google, you will find smart people, big&nbsp;challenges, and opportunities to make a real&nbsp;difference in the world. Engineers at Google are&nbsp;key players in our daily innovation, and we are&nbsp;looking for the brightest minds to join these&nbsp;teams. Opportunities are available to work on&nbsp;Search, Ads, Chrome, Commerce,&nbsp;Infrastructure, Mobile, Social, YouTube, and&nbsp;other exciting projects.&nbsp;</div>\r\n\t<div>\r\n\t\t&nbsp;</div>\r\n\t<div>\r\n\t\tDiscover Google news and updates especially&nbsp;for students at&nbsp;<a href=\"http://googleforstudents.blogspot.com/\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">googleforstudents.blogspot.com</a><wbr />&nbsp;and follow us on Twitter at&nbsp;<a href=\"http://www.twitter.com/googlestudents\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">www.twitter.com/<wbr />googlestudents</a>.</div>\r\n</div>\r\n<p>\r\n\t&nbsp;</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1525,7 +1525,7 @@
     36
    ], 
    "main_contact_email": "abbyw@microsoft.com", 
-   "last_updated": "2011-12-20 14:07:02", 
+   "last_updated": "2012-01-11 06:17:36", 
    "description": "<p>\r\n\tMicrosoft is the worldwide leader in software, services and solutions that help people and businesses realize their full potential. &nbsp;We&#39;re motivated and inspired by how our customers and partners use our software to find creative solutions to business problems, develop breakthrough ideas and stay connected to what&#39;s important to them.&nbsp;</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWe run our company in much the same way. Our employees come as they are and do what they love. &nbsp;We&rsquo;re a global company, located in over 100 countries, but we often act like a startup. We do software &mdash; but we also do hardware, services, research, and community outreach. We work hard, but we value work/life balance, and each of us defines what that means to us. So why not explore what we do, where we do it, and what life is really like at Microsoft? You just might be surprised.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -1612,20 +1612,26 @@
   "model": "employer.employer", 
   "fields": {
    "industries": [
+    45, 
     36
    ], 
-   "main_contact_email": "", 
-   "last_updated": "2011-12-12 06:13:54", 
-   "description": "", 
+   "main_contact_email": "jalvarez@mozilla.com", 
+   "last_updated": "2012-01-11 00:46:40", 
+   "description": "<p>\r\n\tOur culture is defined by what we do and why we do it. Mozilla is a non-profit and we don&rsquo;t have shareholders dictating our objectives . Our bottom line is to promote openness, innovation and opportunity on the web. That&rsquo;s our mission, and it motivates us every day.&nbsp;Mozilla is like a start-up, but not. We&rsquo;re creative, fast-paced and engineering driven; we provide a transparent work environment where your voice is really heard; and we aim to invent the future.</p>\r\n", 
    "visible": false, 
    "starred_students": [], 
-   "main_contact": "", 
+   "main_contact": "Jill Alvarez", 
    "main_contact_phone": "", 
-   "offered_job_types": [], 
+   "offered_job_types": [
+    1, 
+    3, 
+    2, 
+    4
+   ], 
    "date_created": "2011-10-08 18:38:17", 
    "logo": "employer/employer/mozilla_2011-12-12-06-13-54.png", 
-   "careers_website": "", 
-   "slug": "", 
+   "careers_website": "http://college.stage.mozilla.com/", 
+   "slug": "mozilla", 
    "name": "Mozilla"
   }
  }, 
@@ -1762,7 +1768,7 @@
     37
    ], 
    "main_contact_email": "katherine.campbell@oliverwyman.com", 
-   "last_updated": "2011-12-19 00:51:08", 
+   "last_updated": "2012-01-12 01:02:45", 
    "description": "<p>\r\n\tWith offices in 50+ cities across 25 countries, Oliver Wyman is a leading global management consulting firm that combines deep industry knowledge with specialized expertise in strategy, operations, risk management, organizational transformation, and leadership development. &nbsp;The firm&#39;s 3,000 professionals help clients optimize their businesses, improve their operations and risk profile, and accelerate their organizational performance to seize the most attractive opportunities.</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tOliver Wyman is a rapidly growing, entrepreneurial organization committed to building a dynamic environment full of individuals who share our passion for delivering results for our clients. The work you will do at Oliver Wyman has real impact. As a consultant, you will be charged with responsibility for finding new and meaningful perspectives on some of the toughest problems.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tConsultants on the Financial Services track specialize in the industry and become content experts early in their careers, which affords high responsibility. Financial services is one of the largest and most dynamic industries in the world. Strategic challenges in retail banking, investment banking, trading, insurance, asset management, the new regulatory environment and risk represent the largest sampling of financial services project work. &nbsp;Primary practice areas for this group, includes Corporate &amp; Institutional Banking, Retail &amp; Business Banking, Wealth &amp; Asset Management, Insurance, Finance &amp; Risk, Corporate Finance &amp; Advisory, Strategic IT &amp; Operations, and Public Policy.</div>\r\n", 
    "visible": true, 
    "starred_students": [
@@ -1813,7 +1819,7 @@
     36
    ], 
    "main_contact_email": "kimberley.tanksley@oracle.com", 
-   "last_updated": "2011-12-26 16:08:48", 
+   "last_updated": "2012-01-11 06:17:43", 
    "description": "<p>\r\n\tOracle provides the world&rsquo;s most complete, open, and integrated business software and hardware systems. With the full software and hardware portfolio at its disposal, only Oracle designs and integrates everything from the semiconductor chip to the entire software stack to achieve performance levels that are unmatched in the industry.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -2132,7 +2138,7 @@
     40
    ], 
    "main_contact_email": "Gina.Vaglia@sig.com", 
-   "last_updated": "2012-01-06 00:53:49", 
+   "last_updated": "2012-01-07 07:31:52", 
    "description": "<p>\r\n\tSusquehanna International Group (SIG) is a world-leading technology-empowered financial trading firm. Founded in 1987, SIG has grown from an options trading firm on the Philadelphia Stock Exchange to one of the world&rsquo;s largest privately held financial institutions. Today, with offices around the world, the firm trades virtually every major financial product and is recognized for its disciplined and quantitative trading approach, as well as its leading-edge trading systems. SIG&rsquo;s structured Development Programs introduce university hires to its unique approach to decision making and prepare them to become independent thinkers within a collaborative environment.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -2204,7 +2210,7 @@
     36
    ], 
    "main_contact_email": "ed.tilford@thomsonreuters.com", 
-   "last_updated": "2011-12-29 01:47:25", 
+   "last_updated": "2012-01-07 07:31:54", 
    "description": "<p>\r\n\tThomson Reuters is the world&rsquo;s leading source of intelligent information for businesses and professionals. The firm combines industry expertise with innovative technology to keep leading decision makers in the financial, legal, scientific, media and other sectors informed and up-to-date. Its variety of internships and full-time opportunities allow students to step into the challenging and fast-paced environment of a truly global organization. Those that do will be encouraged to engineer fresh solutions to problems old as well as new and will find that at Thomson Reuters, there are no limits on where creative thinking and a willingness to learn takes bright minds.</p>\r\n", 
    "visible": true, 
    "starred_students": [], 
@@ -2517,7 +2523,7 @@
     40
    ], 
    "main_contact_email": "daniel.valmas@weissasset.com", 
-   "last_updated": "2011-12-12 14:29:21", 
+   "last_updated": "2012-01-07 07:31:57", 
    "description": "<p>\r\n\tWeiss Asset Management manages over $1 billion combining a value-based, quantitative strategy with econometric analysis of data. Trades are made throughout the world; the countries in which we have traded range from Vietnam, South Africa, and Ukraine to the United Kingdom, Switzerland and France. The Founder, President and Chief Investment Officer, Andrew Weiss, is an Emeritus Professor of economics who works closely with all WAM employees and interns. Our team includes people with advanced training in economics, computer science, physics, law, and mathematics, but we welcome applications from truly exceptional individuals with other backgrounds.</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tAt Weiss Asset Management, we do things a little differently. We don&rsquo;t believe in hierarchy. New hires will work alongside the founder and CIO and other senior staff. They are often assisted by interns. We encourage questions and discussions. If you want to hide in an office, this is not the firm for you. If you want to be intellectually challenged by extremely able coworkers, you will enjoy working for us.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tThe team is a group of exceptionally intelligent high achievers, whose academic backgrounds include economics, engineering, mathematics, physics, political science, computer science and law. Many of our professionals have degrees in two or more of these fields, and have earned graduate degrees from leading universities including Stanford, Caltech, MIT and Harvard. They rarely have backgrounds in finance.&nbsp;</div>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWeiss is looking for highly intelligent and self-motivated interns who want to work in an intellectually challenging environment. We are currently hiring top talent for paid part-time internships in operations, programming, and research. Interns work with analysts, traders, and software developers to research investments, support trading and settlement processes, develop in-house financial software, and maintain existing proprietary software. Interns may have an opportunity for full-time employment after graduation and will have tremendous growth potential, as they will be joining a small and growing team with a superb track record and great potential for continued future successes. Demonstrated, strong quantitative skills are required. Programming ability is a plus. Must be available at least 15 hours per week during the school year. Full-time availability during the winter break and summer vacation is a plus. &nbsp;Candidates should have experience and interest in econometrics, statistics, computer science, or other quantitative field.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n", 
    "visible": true, 
    "starred_students": [
