@@ -12,18 +12,21 @@ __all__= ["demo", "staging", "prod", "restart", "restart_apache", "create_databa
           "update", "schemamigrate"]
 
 def demo():
+    env.type = "demo"
     env.hosts = ['root@staging.umeqo.com']
     env.password = settings.STAGING_PASSWORD
     env.directory = '/var/www/umeqo_demo'
     env.activate = 'source /usr/local/pythonenv/UMEQO/bin/activate'
 
 def staging():
+    env.type = "staging"
     env.hosts = ['root@staging.umeqo.com']
     env.password = settings.STAGING_PASSWORD
     env.directory = '/var/www/umeqo'
     env.activate = 'source /usr/local/pythonenv/UMEQO/bin/activate'
 
 def prod():
+    env.type = "prod"
     env.hosts = ['root@umeqo.com']
     env.password = settings.PROD_PASSWORD
     env.directory = '/var/www/umeqo'
@@ -59,7 +62,10 @@ def create_database():
     else:
         with cd(env.directory):
             with prefix(env.activate):
-                run('echo "DROP DATABASE umeqo_demo_main; CREATE DATABASE umeqo_demo_main;"|python manage.py dbshell')
+                if env.type=="staging":
+                    run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
+                elif env.type=="demo":
+                    run('echo "DROP DATABASE umeqo_demo_main; CREATE DATABASE umeqo_demo_main;"|python manage.py dbshell')
                 if env.host=="umeqo.com":
                     run("python manage.py syncdb --noinput --migrate")
                 else:
@@ -80,7 +86,7 @@ def load_local_data():
         local("python copy_media.py local in")
         local("python manage.py loaddata ./local_data/fixtures/local_data.json")    
     else:
-        if env.host == "umeqo.com":
+        if env.type == "prod":
             abort("load_local_data should not be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
@@ -88,7 +94,7 @@ def load_local_data():
                 run("python manage.py loaddata ./local_data/fixtures/local_data.json")  
 
 def commit_prod_data():
-    if env.host != "umeqo.com":
+    if not env.host or env.type != "prod":
         abort("commit_prod_data should only be called on prod")
     with cd(env.directory):
         with prefix(env.activate):
@@ -118,7 +124,7 @@ def load_prod_data():
         local("python copy_media.py prod in")
         local("python manage.py flush --noinput")
     else:
-        if env.host == "umeqo.com":
+        if env.type == "umeqo":
             abort("load_prod_data cannot be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
@@ -126,7 +132,7 @@ def load_prod_data():
                 run("python manage.py flush --noinput") 
                 
 def commit_local_data():
-    if env.host != "staging.umeqo.com":
+    if env.type != "staging":
         abort("commit_local_data should only be called on staging")
     with cd(env.directory):
         with prefix(env.activate):
@@ -140,21 +146,21 @@ def commit_local_data():
             with fabric_settings(warn_only=True):
                 run("mkdir ./local_data/fixtures")
             run("python manage.py dumpdata %s --indent=1 > ./local_data/fixtures/local_data.json" % (" ".join(model_labels)))
-            run("git add local_data/*")
+            run("git add ./local_data/*")
             with fabric_settings(warn_only=True):
                 run('git commit -m "Local data commit from staging."')
                 run("git push origin dev")
 
 def update():
     if not env.host:
-        abort("update can only be called on staging and prod.")
+        abort("update can only be called on demo, staging and prod.")
     else:
         with cd(env.directory):
             with prefix(env.activate):
-                if env.host=="staging.umeqo.com":
+                if env.type=="staging":
                     commit_local_data()
                     run("git pull origin dev")
-                elif env.host=="umeqo.com":
+                elif env.type=="prod":
                     commit_prod_data()
                     run("git pull origin master")
                 else:
