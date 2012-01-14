@@ -45,7 +45,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-12 03:37:44", 
+   "last_login": "2012-01-13 06:52:52", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$7e0f4$2d5df03b47158e0997768b5c6ac927e15b8f822b", 
@@ -243,7 +243,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-12 16:20:22", 
+   "last_login": "2012-01-13 06:52:06", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$6baa3$acc0f7565dfdc34b338a073f84f61947028c22c6", 
@@ -9279,7 +9279,7 @@
    "is_active": true, 
    "is_superuser": false, 
    "is_staff": false, 
-   "last_login": "2012-01-11 01:48:37", 
+   "last_login": "2012-01-12 20:30:24", 
    "groups": [], 
    "user_permissions": [], 
    "password": "sha1$fc2f0$8fedb9c8f732ad465d4f0db15b9ad1f6f5fcf0b8", 
@@ -46339,6 +46339,16 @@
   }
  }, 
  {
+  "pk": 98, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-12 20:30:24", 
+   "session_key": "aa5f3afb5bd8478c7b00c976f590dbd2", 
+   "last_updated": "2012-01-12 20:30:24", 
+   "user": 529
+  }
+ }, 
+ {
   "pk": 97, 
   "model": "registration.sessionkey", 
   "fields": {
@@ -46479,6 +46489,26 @@
   }
  }, 
  {
+  "pk": 102, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-13 06:52:52", 
+   "session_key": "06ade1010ea26a32d4521f8c0bb2d9fa", 
+   "last_updated": "2012-01-13 06:52:52", 
+   "user": 3
+  }
+ }, 
+ {
+  "pk": 101, 
+  "model": "registration.sessionkey", 
+  "fields": {
+   "date_created": "2012-01-13 06:52:39", 
+   "session_key": "fc81368b31154c1db17d8650bfa6867c", 
+   "last_updated": "2012-01-13 06:52:39", 
+   "user": 3
+  }
+ }, 
+ {
   "pk": 1, 
   "model": "registration.registrationprofile", 
   "fields": {
@@ -46589,9 +46619,7 @@
    "view_count": 0, 
    "archived": false, 
    "last_seen_view_count": 0, 
-   "edits": [
-    7
-   ], 
+   "edits": [], 
    "location": "", 
    "latitude": null, 
    "type": 2, 
@@ -46680,9 +46708,7 @@
    "view_count": 0, 
    "archived": false, 
    "last_seen_view_count": 0, 
-   "edits": [
-    8
-   ], 
+   "edits": [], 
    "location": "", 
    "latitude": null, 
    "type": 2, 
@@ -46808,9 +46834,7 @@
    "view_count": 4, 
    "archived": false, 
    "last_seen_view_count": 0, 
-   "edits": [
-    6
-   ], 
+   "edits": [], 
    "location": "Student Center Plaza", 
    "latitude": 42.358755530000003, 
    "type": 3, 
@@ -46839,11 +46863,9 @@
    ], 
    "owner": 3, 
    "view_count": 0, 
-   "archived": false, 
+   "archived": true, 
    "last_seen_view_count": 0, 
-   "edits": [
-    5
-   ], 
+   "edits": [], 
    "location": "Student House", 
    "latitude": 42.350392990000003, 
    "type": 5, 
@@ -46881,9 +46903,7 @@
    "view_count": 0, 
    "archived": true, 
    "last_seen_view_count": 0, 
-   "edits": [
-    2
-   ], 
+   "edits": [], 
    "location": "Student Center Plaza", 
    "latitude": 42.358755530000003, 
    "type": 8, 
@@ -46914,9 +46934,7 @@
    "view_count": 0, 
    "archived": false, 
    "last_seen_view_count": 0, 
-   "edits": [
-    1
-   ], 
+   "edits": [], 
    "location": "", 
    "latitude": null, 
    "type": 10, 
@@ -46947,9 +46965,7 @@
    "view_count": 0, 
    "archived": false, 
    "last_seen_view_count": 0, 
-   "edits": [
-    4
-   ], 
+   "edits": [], 
    "location": "West Lot (Zone 13)", 
    "latitude": 42.356010300000001, 
    "type": 9, 
@@ -46980,9 +46996,7 @@
    "view_count": 0, 
    "archived": false, 
    "last_seen_view_count": 0, 
-   "edits": [
-    3
-   ], 
+   "edits": [], 
    "location": "fe", 
    "latitude": null, 
    "type": 5, 
@@ -47042,7 +47056,7 @@
    ], 
    "owner": 3, 
    "view_count": 0, 
-   "archived": false, 
+   "archived": true, 
    "last_seen_view_count": 0, 
    "edits": [], 
    "location": "", 
