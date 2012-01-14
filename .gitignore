@@ -13,6 +13,7 @@ index
 /local_static
 settings_local.py
 settings_prod.py
+apache/django.wsgi
 *.DS_Store
 *.psd
 *.swp
