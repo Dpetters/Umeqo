@@ -39,7 +39,7 @@ urlpatterns += patterns('',
 )
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
-    (r'^favicon\.ico/$', redirect_to, {'url':'/static/images/favicon.ico'}),
+    (r'^favicon\.ico/$', redirect_to, {'url':'%simages/favicon.ico' % settings.STATIC_URL}),
     (r'^contact-us/$', 'contact_us', {}, 'contact_us'),
     (r'^terms/$', 'terms_of_service', {'extra_context': {'login_form': AuthenticationForm}}, 'terms_of_service'),
     (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),

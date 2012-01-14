@@ -277,7 +277,6 @@ label[for=id_rsvp_message]{
 }
 input[type=text].datefield_no_bind {
     width: 95px;
-    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
 }
 #attending_employers .ef-logo{
     max-width:139px;

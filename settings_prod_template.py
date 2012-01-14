@@ -36,7 +36,7 @@ SITE_ID = # fill out
 
 DB_PASSWORD =  # fill out
 
-STATIC_ROOT = "/var/www/static/"
+STATIC_ROOT = ""
 STATIC_URL = ""
 
 DATABASES = {

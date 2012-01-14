@@ -1,7 +1,6 @@
 .icon{
     height:16px;
     width:16px;
-    background: url(/static/images/icons/csg-4e56b27a2c8f1.png) no-repeat top left;
 }
 .sprite-cross{ background-position: 0 0; width: 16px; height: 16px; } 
 .sprite-plane{ background-position: 0 -66px; width: 16px; height: 16px; } 
