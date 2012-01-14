@@ -34,30 +34,28 @@
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/anonymous.css" />
             {% endif %}
         {% endcompress %}
-
+		
+		<!-- Inline css to allows for dynamic STATIC_URLs -->
 		<style type="text/css">
-    		body {
-    			background: url('{{STATIC_URL}}images/landing_bg.png') #55738d;
-			}
-			h1 {
-				background: url('{{STATIC_URL}}images/logo_landing.png') no-repeat center center transparent;
-			}
-			#notifications_count {
-				background: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png') no-repeat center;
-				background: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png') no-repeat center rgba(255,255,255,0.2);
-			}
+			{% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
+				#notifications_count {
+					background: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png') no-repeat center;
+					background: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png') no-repeat center rgba(255,255,255,0.2);
+					background-position: 5px -60px;
+				}
+				.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
+				    background-image: url("{{STATIC_URL}}lib/jquery_ui_custom/css/ui-lightness/images/ui-icons_303030_256x240.png?b50dc31bccb2") !important;
+				}
+				.cke_dialog_background_cover {
+				    background: url("{{STATIC_URL}}lib/jquery_ui_custom/css/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png?b50dc31bccb2") repeat-x scroll 50% 50% #AAAAAA !important;
+				    opacity: 0.3 !important;
+				}
+				#header_area{
+					background: url('{{STATIC_URL}}images/layout/backgrounds/nav_bg.png') repeat-x transparent;
+				}
+			{% endif %}
 			.icon{
 				background: url'({{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png)' no-repeat top left;
-			}
-			#header_area{
-					background: url('{{STATIC_URL}}mages/layout/backgrounds/nav_bg.png') repeat-x transparent;
-			}
-			.cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
-			    background-image: url("{{STATIC_URL}}lib/jquery_ui_custom/css/ui-lightness/images/ui-icons_303030_256x240.png?b50dc31bccb2") !important;
-			}
-			.cke_dialog_background_cover {
-			    background: url("{{STATIC_URL}}lib/jquery_ui_custom/css/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png?b50dc31bccb2") repeat-x scroll 50% 50% #AAAAAA !important;
-			    opacity: 0.3 !important;
 			}
 		</style>
         <script>
