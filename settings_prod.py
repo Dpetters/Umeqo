@@ -25,17 +25,21 @@ BACKUP_DIR = "/var/www/umeqo_backups/"
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 UMEQO_RECRUITER_ID = # fill out
+
 WELCOME_EVENT_ID = # fill out
+
 # 1 - Staging, 2 - Prod, 3 - looal, 4 - demo 
 SITE_ID = # fill out
+
 DB_PASSWORD =  # fill out
 
 STATIC_ROOT = "/var/www/static/"
+STATIC_URL = ""
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'umeqo_demo_main',                   # Or path to database file if using sqlite3.
+        'NAME': '',                   # Or path to database file if using sqlite3.
         'USER': 'root',                         # Not used with sqlite3.
         'PASSWORD': DB_PASSWORD,                # Not used with sqlite3.
         'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
