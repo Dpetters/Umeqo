@@ -63,7 +63,7 @@ def create_database():
         with cd(env.directory):
             with prefix(env.activate):
                 if env.type=="staging":
-                    run('echo "DROP DATABASE umeqo_main; CREATE DATABASE umeqo_main;"|python manage.py dbshell')
+                    run('echo "DROP DATABASE umeqo_staging_main; CREATE DATABASE umeqo_staging_main;"|python manage.py dbshell')
                 elif env.type=="demo":
                     run('echo "DROP DATABASE umeqo_demo_main; CREATE DATABASE umeqo_demo_main;"|python manage.py dbshell')
                 if env.host=="umeqo.com":

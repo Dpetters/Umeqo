@@ -12,6 +12,7 @@ index
 /media
 /local_static
 settings_local.py
+settings_prod.py
 *.DS_Store
 *.psd
 *.swp
