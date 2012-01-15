@@ -20,6 +20,7 @@ from core import messages
 from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
 from core.email import send_html_mail
 from core.forms import CreateLanguageForm
+from core.http import Http403
 from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
 from core.email import is_valid_email
 from countries.models import Country
@@ -51,50 +52,52 @@ def student_info(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 def student_quick_registration(request, form_class=StudentQuickRegistrationForm, extra_context=None):
     context = {}
-    if request.method == "POST":
-        form = form_class(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            resume_status = process_resume_data(request.FILES['resume'])
-            data = {'unparsable_resume':False}
-            if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
-                data['errors'] = {'resume': messages.resume_problem}
+    if request.is_ajax():
+        if request.method == "POST":
+            form = form_class(data=request.POST, files=request.FILES)
+            if form.is_valid():
+                resume_status = process_resume_data(request.FILES['resume'])
+                data = {'unparsable_resume':False}
+                if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
+                    data['errors'] = {'resume': messages.resume_problem}
+                else:
+                    if resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ignore_unparsable_resume'] == "false":
+                        data['unparsable_resume'] = True
+                    user_info =  {'username': request.POST['email'],
+                                  'first_name': request.POST['first_name'],
+                                  'last_name': request.POST['last_name'],
+                                  'email': request.POST['email'],
+                                  'password': request.POST['password']}
+                    student = register_student(request, **user_info)
+                    student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
+                    student.graduation_month = request.POST['graduation_month']
+                    student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
+                    student.first_major = Course.objects.get(id=request.POST['first_major'])
+                    student.gpa = request.POST['gpa']
+                    student.profile_created = True
+                    file_content = ContentFile(request.FILES['resume'].read())
+                    student.resume.save(request.FILES['resume'].name, file_content)
+                    student.save()
+                    for attendee in Attendee.objects.filter(email=student.user.email):
+                        attendee.student = student
+                        attendee.save()
+                    event = Event.objects.get(id=request.POST['event_id'])
+                    action = request.POST['action']
+                    DroppedResume.objects.create(student=student, event=event)                
+                    if action == "rsvp":
+                        RSVP.objects.create(student=student, event=event)
             else:
-                if resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ignore_unparsable_resume'] == "false":
-                    data['unparsable_resume'] = True
-                user_info =  {'username': request.POST['email'],
-                              'first_name': request.POST['first_name'],
-                              'last_name': request.POST['last_name'],
-                              'email': request.POST['email'],
-                              'password': request.POST['password']}
-                student = register_student(request, **user_info)
-                student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
-                student.graduation_month = request.POST['graduation_month']
-                student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
-                student.first_major = Course.objects.get(id=request.POST['first_major'])
-                student.gpa = request.POST['gpa']
-                student.profile_created = True
-                file_content = ContentFile(request.FILES['resume'].read())
-                student.resume.save(request.FILES['resume'].name, file_content)
-                student.save()
-                for attendee in Attendee.objects.filter(email=student.user.email):
-                    attendee.student = student
-                    attendee.save()
-                event = Event.objects.get(id=request.POST['event_id'])
-                action = request.POST['action']
-                DroppedResume.objects.create(student=student, event=event)                
-                if action == "rsvp":
-                    RSVP.objects.create(student=student, event=event)
-        else:
-            data = {'errors':form.errors}
-        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
-    context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
-    action = request.GET['action']
-    if action=="rsvp":
-        context['action'] = "RSVP"
-    elif action=="drop":
-        context['action'] = "drop resume"
-    context.update(extra_context or {})
-    return context
+                data = {'errors':form.errors}
+            return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+        context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
+        action = request.GET['action']
+        if action=="rsvp":
+            context['action'] = "RSVP"
+        elif action=="drop":
+            context['action'] = "drop resume"
+        context.update(extra_context or {})
+        return context
+    raise Http403()
 
 @require_GET
 @render_to('student_quick_registration_done.html')
