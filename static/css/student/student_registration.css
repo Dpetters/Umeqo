@@ -7,16 +7,6 @@
     bottom:3px;
     font-weight:bold;
 }
-#id_invite_code{
-    width:140px;
-    font-family:"Courier New";
-}
 .dialog_content_wrapper{
     padding:15px;
-}
-#student_registration_help_list{
-    padding-left:18px;
-}
-#student_registration_help_list p{
-    padding-bottom:5px;
 }
