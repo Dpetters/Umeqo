@@ -38,7 +38,7 @@ function highlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #FF603D');
 };
 function unhighlight(element, errorClass) {
-    $(element).prev().children().hide();
+    $(element).prev(".errorspace").children().hide();
     if ($(element).next(":button.ui-multiselect").length != 0) {
         $(element).next().css('border', '1px solid #AAA');
     }
