@@ -97,6 +97,11 @@ $("#id_resume").live('change', function() {
     
 $('.student_quick_registration_link').live('click', function (e) {
 	action = $(this).attr("data-action");
+	if ($(this).attr("id") == "rsvp_button"){
+		$("input[name=next]").val($("input[name=next]").val() + "?rsvp=true")
+	} else if ($(this).attr("id") == "drop_resume_button"){
+		$("input[name=next]").val($("input[name=next]").val() + "?drop=true")
+	}
     create_student_quick_registration_dialog = open_create_student_quick_registration_dialog();
     create_student_quick_registration_dialog.dialog("option", "title", $(this).attr("data-title"));    
     create_student_quick_registration_dialog.html(DIALOG_AJAX_LOADER);
@@ -141,7 +146,6 @@ $('.student_quick_registration_link').live('click', function (e) {
 		        }
 		        timeoutID = window.setTimeout(prefill_student_quick_registration_fields, 200);
 		    });
-    
     
             student_quick_registration_validator = $("#student_quick_registration_form").validate({
                 submitHandler: function (form) {
