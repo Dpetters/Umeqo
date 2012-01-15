@@ -5,7 +5,7 @@
     	{% include 'student_registration_content.html' %}   
     	<p class="centered"><a href="#" class="open_registration_help_dialog_link">Hide &thinsp;&#x25B2;</a></p>	
     </div>
-    <form id="student_quick_registration_form" method='POST' autocomplete="off" action="{% url student_quick_registration %}">
+    <form id="student_quick_registration_form" method='POST' action="{% url student_quick_registration %}">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
 	    	{{ hidden }}
