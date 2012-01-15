@@ -168,7 +168,7 @@ def send_first_notice(sender, instance, created, raw, **kwargs):
             employer = Employer.objects.get(name="Umeqo")
             recruiter = User.objects.get(id=settings.UMEQO_RECRUITER_ID)
             notice_type = NoticeType.objects.get(label="public_invite")
-            invite_message = "Congrats on your first invite! There are many more to come!"
+            invite_message = 'Welcome to Umeqo! Recruiters can now send you invitations to events, and this is an example of one. To learn more, click "RSVP Attending" below.'
             notification.send([instance.user], notice_type, {
                 'employer': employer,
                 'recruiter': recruiter,
