@@ -75,13 +75,13 @@ function prefill_student_quick_registration_fields(){
 			url:STUDENT_INFO_URL,
 			data:{'email':$("#id_email").val()},
 			success:function(data){
-				if (data.first_name){
+				if (data.first_name && $("#id_first_name").val()==""){
 					$("#id_first_name").val(data.first_name);
 				}
-				if (data.last_name){
+				if (data.last_name && $("#id_last_name").val()==""){
 					$("#id_last_name").val(data.last_name);
 				}
-				if (data.course){
+				if (data.course && $("#id_first_major").val()==""){
 					$("#id_first_major").val(data.course);
 				}
 			}
