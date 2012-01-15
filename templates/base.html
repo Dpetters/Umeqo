@@ -55,7 +55,7 @@
 				}
 			{% endif %}
 			.icon{
-				background: url'({{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png)' no-repeat top left;
+				background-image: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png');
 			}
 		</style>
         <script>
@@ -83,6 +83,7 @@
         
             var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
             var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
+    		var DEBUG = "{{debug}}";  
         </script>
         {% compress js %}
             <script src="{{ STATIC_URL }}lib/modernizr/modernizr.js" charset="utf-8"></script>

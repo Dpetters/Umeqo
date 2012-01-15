@@ -99,6 +99,9 @@ input.button {
     vertical-align: middle;
     font-size: 13px;
     font-family: Arial;
+    -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
+    -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
+    box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
 }
 .cke_skin_kama .cke_dialog_footer_buttons span.cke_dialog_ui_button{
     padding:5px 0px;
@@ -249,6 +252,9 @@ input.button {
     -moz-border-radius: 3px;
     border: 1px solid #BBBBBB;
     font-weight: bold;
+    -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
+    -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
+    box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
 }
 .gray_button:hover{
     border: 1px solid #888;

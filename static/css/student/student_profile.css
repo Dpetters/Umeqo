@@ -41,26 +41,12 @@
     display:none;
 }
 /* Form Fields */
-#id_first_major, #id_second_major{
-    width:318px;
-}
-#id_gpa{
-    width: 40px;
-    text-align: center;
-}
 #id_sat_v, #id_sat_m, #id_sat_w, #id_act, #id_older_than_21{
     width:60px;
 }
-#id_website, #id_school_year{
+#id_website{
     width:190px;
 }
-#id_graduation_year{
-    width:102px;
-} 
-#id_graduation_month{
-    width:83px;
-    margin-left:5px;
-}    
 .side_form_info ul {
     padding: 1px 0 10px;
 }

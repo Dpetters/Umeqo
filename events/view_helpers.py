@@ -26,6 +26,7 @@ def buildAttendee(obj):
 def buildRSVP(obj):
     output = {
         'id': obj.student.id,
+        'is_verified': obj.student.user.userattributes.is_verified,
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.isoformat(),
         'email': obj.student.user.email,

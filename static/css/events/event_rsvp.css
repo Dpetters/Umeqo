@@ -5,7 +5,7 @@
     width:134px;
     display:block;
 }
-.attending, .resume_dropped, .not_attending:hover{
+.gray_button.um-active.post_quick_registration_event_action_button, .post_quick_registration_event_action_button, .attending, .resume_dropped, .not_attending:hover{
 	background: #53d874; /* Old browsers */
 	background: -moz-linear-gradient(top, #53d874 0%, #00ae3e 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#53d874), color-stop(100%,#00ae3e)); /* Chrome,Safari4+ */
@@ -28,6 +28,9 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f15c5d', endColorstr='#c63738',GradientType=0 ); /* IE6-9 */
 	border: 1px solid #CC3333;
 	color:#FFF;
+}
+.post_quick_registration_event_action_button:hover{
+	cursor:default;
 }
 #event_actions .dropdown ul{
 	left:-1px;

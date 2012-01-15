@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="working">Featured Deadline</p>
+                    <p id="working">Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</p>
                     <div id="promotion">
                       <h2>Techfair 2012</h2>
                       {% if featured_event.employer %}

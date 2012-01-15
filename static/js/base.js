@@ -119,6 +119,19 @@ function getCookie(name) {
     }
     return cookieValue;
 };
+
+function is_valid_mit_email(email){
+    if (DEBUG)
+           return (email.length - "mit.edu".length) == email.indexOf("mit.edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
+    else
+        return (email.length - "mit.edu".length) == email.indexOf("mit.edu");
+}
+
+function is_valid_email_address(email) {
+    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+    return pattern.test(email);
+}
+
 // number formatting function
 // copyright Stephen Chapman 24th March 2006, 10th February 2007
 // permission to use this function is granted provided
@@ -170,8 +183,9 @@ $(document).ready( function () {
     $(window).bind('scrollEnd', function() {
         $(".dialog").dialog('option', 'position', 'center');
     });
-    $(".close_dialog_link").live('click', function() {
+    $(".close_dialog_link").live('click', function(e) {
         $(".dialog").remove();
+        e.preventDefault();
     });
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
@@ -251,10 +265,7 @@ $(document).ready( function () {
     }, "One of the emails is invalid.");
     jQuery.validator.addMethod('isMITEmail', function(value, element) {
         // If testing, allow umeqo.com emails as well.
-        if (DEBUG)
-               return (value.length - "mit.edu".length) == value.indexOf("mit.edu") || (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
-        else
-            return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
+        return is_valid_mit_email(value);
     });
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;
