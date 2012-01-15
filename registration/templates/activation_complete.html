@@ -8,7 +8,7 @@ Activation Complete |
 <div id="activation_complete_block" class="simple_block centered grande">
     <h1 id="activation_complete_block_title">Activation Complete</h1>
     <p class="message_section">
-        You have successfully activated your account! <a href="{% url student_profile %}">{% if user.student.profile_created %}Start off by completing your profile.{% else %}Let's get you set up so employers can find you.{% endif %}</a>
+        You have successfully activated your account! <a href="{% url student_profile %}">{% if user.student.profile_created %}Start off by completing the rest of your profile.{% else %}Let's get you set up so employers can find you.{% endif %}</a>
     </p>
 </div>
 {% endblock %}

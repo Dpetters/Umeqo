@@ -222,6 +222,9 @@ a.black_button:hover {
 label.required span.error {
     display:none;
 }
+#innovative{
+	padding:10px 0px;
+}
 #working, #innovative {
     font-size: 35px;
     line-height: 30px;

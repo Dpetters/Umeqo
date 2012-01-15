@@ -24,6 +24,9 @@ $('.close_student_quick_registration_dialog_link').live('click', function (e) {
 	e.preventDefault();
 });
 
+$(".open_registration_help_dialog_link").live('click', function(){
+	$("#student_registration_help").slideToggle();
+});
 function submit_student_quick_registration_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
 	$(form).ajaxSubmit({
