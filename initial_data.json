@@ -1,5 +1,13 @@
 [
  {
+  "pk": 4, 
+  "model": "sites.site", 
+  "fields": {
+   "domain": "demo.umeqo.com", 
+   "name": "Umeqo"
+  }
+ }, 
+ {
   "pk": 3, 
   "model": "sites.site", 
   "fields": {
@@ -13,14 +21,6 @@
   "fields": {
    "domain": "staging.umeqo.com", 
    "name": "Umeqo"
-  }
- }, 
- {
-  "pk": 4, 
-  "model": "sites.site", 
-  "fields": {
-   "domain": "Umeqo", 
-   "name": "demo.umeqo.com"
   }
  }, 
  {
