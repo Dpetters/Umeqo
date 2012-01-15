@@ -94,7 +94,6 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
             if form.cleaned_data["recruiter"]:
                 user = User.objects.get(username=form.cleaned_data['recruiter'])
             else:
-                print CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
                 user = CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
             user.backend = s.AUTHENTICATION_BACKENDS[0]
             auth_login(request, user)

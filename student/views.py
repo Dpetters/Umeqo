@@ -99,9 +99,6 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
 @require_GET
 @render_to('student_quick_registration_done.html')
 def student_quick_registration_done(request, extra_context=None):
-    print request
-    print "UNPARSABLE?"
-    print request.GET['unparsable_resume']
     context = {"unparsable_resume":request.GET['unparsable_resume']}
     context.update(extra_context or {})
     return context
@@ -334,7 +331,6 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
             if form.is_valid():
-                print request.POST
                 student = form.save(commit=False)
                 if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                     student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
