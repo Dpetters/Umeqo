@@ -16,7 +16,7 @@ from countries.models import Country
 from employer.models import Employer
 from registration.models import RegException
 from student import enums as student_enums
-from student.form_helpers import get_student_ldap_info, classmaker, get_student_data_from_ldap
+from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap
 from student.models import Student, StudentPreferences, StudentDeactivation
 
 decorate_bound_field()
@@ -67,7 +67,7 @@ class StudentRegistrationForm(forms.ModelForm):
             # is not a student's. 
             res = [None]
             try:
-                get_student_ldap_info(email.split("@")[0])
+                res = get_student_ldap_info(email.split("@")[0])
             except Exception, e:
                 try:
                     rcpts = [mail_tuple[1] for mail_tuple in s.MANAGERS]

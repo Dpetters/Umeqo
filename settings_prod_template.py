@@ -31,7 +31,7 @@ UMEQO_RECRUITER_ID = # fill out
 
 WELCOME_EVENT_ID = # fill out
 
-# 1 - Staging, 2 - Prod, 3 - looal, 4 - demo 
+# 1 - Prod, 2 - Staging, 3 - looal, 4 - demo 
 SITE_ID = # fill out
 
 DB_PASSWORD =  # fill out
