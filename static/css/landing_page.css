@@ -46,17 +46,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
-
 body {
-    background: url('/static/images/landing_bg.png') #55738d;
     font-family: Arial;
 }
 h1 {
     display: inline-block;
     width: 471px;
     height: 150px;
-    background: url('/static/images/logo_landing.png') no-repeat center center transparent;
     text-indent: -10000px;
 }
 h3.tagline { 

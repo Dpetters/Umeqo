@@ -1,6 +1,5 @@
 #content_area input[type=text].datefield {
     width: 95px;
-    background: url('/static/images/icons/calendar-select.png') 83px center no-repeat;
 }
 #content_area select.timefield {
     width: 108px;

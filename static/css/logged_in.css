@@ -111,14 +111,11 @@
 #notifications_count {
     padding: 3px 5px;
     display: inline-block;
-    background: url(/static/images/icons/csg-4e56b27a2c8f1.png) no-repeat center;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF)"; /* IE8 */
-    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF);   /* IE6 & 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF);   /* IE6 & 7 */
     zoom: 1;
-    background: url(/static/images/icons/csg-4e56b27a2c8f1.png) no-repeat center rgba(255,255,255,0.2);
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    background-position: 5px -60px;
     border-radius: 3px;
     z-index: 100;
     border: 1px solid #AAA;

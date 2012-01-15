@@ -134,7 +134,6 @@ label: not(.required) {
 }
 #header_area {
 	background:#54748E;
-	background: url('/static/images/layout/backgrounds/nav_bg.png') repeat-x transparent;
 	text-align: center;
 	height: 60px;
 }

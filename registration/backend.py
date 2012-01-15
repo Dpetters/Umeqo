@@ -69,13 +69,12 @@ class RegistrationBackend(object):
         class of this backend as the sender.
 
         """
-        username, first_name, last_name,  email, password = kwargs['username'], kwargs['first_name'], kwargs['last_name'], kwargs['email'], kwargs['password1']
+        username, first_name, last_name,  email, password = kwargs['username'], kwargs['first_name'], kwargs['last_name'], kwargs['email'], kwargs['password']
 
         if Site._meta.installed:
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)
-
         new_user = RegistrationProfile.objects.create_inactive_user(username, email, first_name, last_name, password, site)
         signals.user_registered.send(sender=self.__class__, user=new_user, request=request)
         return new_user

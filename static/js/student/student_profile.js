@@ -17,7 +17,7 @@ function submit_profile_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
     $(form).ajaxSubmit({
         dataType: 'text',
-        data:{'ingore_unparsable_resume':ignore_unparsable_resume},
+        data:{'ignore_unparsable_resume':ignore_unparsable_resume},
         beforeSubmit: function (arr, $form, options) {
             $("#message_area").html("");
             $("#profile_form input[type=submit]").attr("disabled", "disabled");

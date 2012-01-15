@@ -27,6 +27,10 @@
 {% load text_snippet %}
 {% load google_calendarize %}
 {% compress css %}
+	{% if user.is_anonymous %}
+    	<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />	
+	{% endif %}
+	
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
     {% if is_deadline %}
@@ -52,6 +56,32 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp.css" />
 {% endcompress %}
 <script>
+	{% if user.is_anonymous %}
+		var STUDENT_QUICK_REGISTRATION_URL = "{% url student_quick_registration %}";
+		var STUDENT_QUICK_REGISTRATION_DONE_URL = "{% url student_quick_registration_done %}"
+	    var STUDENT_INFO_URL = "{% url student_info %}"
+    
+	    var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+	    var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
+	    
+	    var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
+	    var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
+	    var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
+	    var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
+	    var FIRST_NAME_REQUIRED = "{% text_snippet 'first_name_required' %}";
+	    var LAST_NAME_REQUIRED = "{% text_snippet 'last_name_required' %}";
+	    var SCHOOL_YEAR_REQUIRED = "{% text_snippet 'school_year_required' %}";
+	    var GRADUATION_YEAR_REQUIRED = "{% text_snippet 'graduation_year_required' %}";
+	    var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
+	    var GPA_REQUIRED = "{% text_snippet 'gpa_required' %}";
+	    var GPA_RANGE = "{% text_snippet 'gpa_range' %}";
+	    var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
+	    var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
+
+    	var PASSWORD_MIN_LENGTH="{{password_min_length}}";  
+	{% endif %}
+
+    
 	var RSVP_URL = "{% url event_rsvp event_id=event.id %}";
     var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
     var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
@@ -86,7 +116,6 @@
 
 {% compress js %}
     <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
-
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
@@ -98,11 +127,14 @@
     <script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_list_export.js"></script>
+	{% if user.is_anonymous %}
+		<script src="{{ STATIC_URL }}js/student/student_quick_registration.js"></script>
+	{% endif %}
 	{% if event.is_rolling_deadline %}
-    <script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
+    	<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
     {% endif %}
     {% if campus_org_event %}
-    <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+    	<script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
     {% endif %}
 {% endcompress %}    
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -270,12 +302,14 @@
             		{% else %}
             			<div class="gray_button" disabled="disabled">You didn't attend</div> 
             		{% endif %}
+        		{% else %}
+        			<div class="gray_button" disabled="disabled">Event Passed</div> 
 	            {% endif %}
 	        {% endif %}
             {% if not is_past %}
                 {% if event.is_public %}
                 	{% if user.is_anonymous %}
-	                	<div id="rsvp_requires_login" class="login gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>                	
+	                	<div data-action="rsvp" id="rsvp_button" data-event-id="{{event.id}}" data-title="RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}" class="student_quick_registration_link gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>                	
         			{% else %}
 	        			{% if user.student %}
 	                    	{% if responded %}
@@ -318,7 +352,7 @@
                 {% endif %}
 	            {% if event.is_drop %}
 	            	{% if user.is_anonymous %}
-						<div id="resume_drop_requires_login" class="login gray_button" disabled="disabled">Drop Resume</div>
+						<div data-title="Drop Resume" id="drop_resume_button" data-action="drop" data-event-id="{{event.id}}" class="gray_button student_quick_registration_link">Drop Resume</div>
 					{% else %}	            		
 	            		{% if dropped_resume %}
 							<div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>

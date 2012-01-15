@@ -11,6 +11,7 @@ function update_checkin_count(){
         error: errors_in_message_area_handler
     });
 }
+
 $(document).ready(function() {
     if (typeof(google)!= "undefined"){
 	    if (EVENT_LATITUDE && EVENT_LONGITUDE){
