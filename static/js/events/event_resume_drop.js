@@ -51,6 +51,14 @@ $(".resume_dropped").live('mouseout', function(){
 	$(this).html("Resume Dropped");
 });
 $(document).ready(function(){
+		if (get_parameter_by_name("drop")=="true"){
+			resume_drop_mouseout = true;
+        	$("#drop_resume").click();
+    	}
+	    if (get_parameter_by_name("drop")=="false"){
+	    	resume_drop_mouseout = true;
+	        $("#undrop_resume").click();
+	    }
 	    $("#resume_drop_requires_login").tipsy({'gravity':'e', opacity: 0.9, fallback:"Resume drop requires login.", html:true});
 	    $("#drop_resume[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:DROP_RESUME_TOOLTIP, html:true});
 });
