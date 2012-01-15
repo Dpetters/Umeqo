@@ -67,7 +67,6 @@ class has_annual_subscription(object):
                     return self.orig_func(request, *args, **kwargs)
             if request.is_ajax():
                 return HttpResponseForbidden("You must have an annual subscription to do that.")
-            print "HUURRR"
             return redirect(reverse("subscription_list"))
         return self.orig_func(request, *args, **kwargs)
 

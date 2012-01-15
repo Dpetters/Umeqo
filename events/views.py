@@ -420,8 +420,6 @@ def event_edit(request, id=None, extra_context=None):
 
 def admin_of_event(event, user):
     if is_recruiter(event.owner):
-        print user.recruiter.employer == event.owner.recruiter.employer
-        print is_recruiter(user)
         return is_recruiter(user) and user.recruiter.employer == event.owner.recruiter.employer
     elif is_campus_org(event.owner):
         return is_campus_org(user) and user.campusorg == event.owner.campusorg
