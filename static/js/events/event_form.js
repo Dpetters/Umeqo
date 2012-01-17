@@ -463,21 +463,21 @@ $(document).ready(function() {
             required: "This field is required."
         }
     }
-	
-	function check_short_slug_uniqueness(){
-		$.ajax({
-			url: EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL,
-			data: {'short_slug':$("#id_short_slug").val()},
-			beforeSend: function(){
-				$("#short_url_field_section .errorspace").html("");
-			},
-			success:function(data){
-				if(data.used){
-					place_multiselect_warning_table($("#id_short_slug"), "You already have an event or deadline at this short url. If you use it, it will no longer point to that old event or deadline, but instead to this new one.");
-				}
-			}
-		})
-	}
+    
+    function check_short_slug_uniqueness(){
+        $.ajax({
+            url: EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL,
+            data: {'short_slug':$("#id_short_slug").val()},
+            beforeSend: function(){
+                $("#short_url_field_section .errorspace").html("");
+            },
+            success:function(data){
+                if(data.used){
+                    place_multiselect_warning_table($("#id_short_slug"), "You already have an event or deadline at this short url. If you use it, it will no longer point to that old event or deadline, but instead to this new one.");
+                }
+            }
+        })
+    }
     var timeoutID;
     $('#id_short_slug').keydown(function(e) {
         if(e.which != 9) {

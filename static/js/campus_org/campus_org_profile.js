@@ -64,7 +64,7 @@ $(document).ready(function() {
         }
     });
     
-	/* Need all widgets to load before anything is hidden.
-	 * Therefore accordion is loaded on event trigger */
-	$(document).trigger('widgetsLoaded');
+    /* Need all widgets to load before anything is hidden.
+     * Therefore accordion is loaded on event trigger */
+    $(document).trigger('widgetsLoaded');
 });

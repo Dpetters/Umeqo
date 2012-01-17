@@ -1,12 +1,12 @@
 function activate_geolocation(){
-	$('.location').replaceWith(function() {
-		var latitude = $(this).data("latitude");
-		var longitude = $(this).data("longitude");
-	    if (latitude != "None" && longitude != "None"){
-		    var url = $.trim($(this).text());
-		    return '<a class="get_directions" data-longitude="' + longitude + '" data-latitude="' + latitude + '" href="' + url + '" target="_blank">' + url + '</a>';	    	
-	    }
-	});
+    $('.location').replaceWith(function() {
+        var latitude = $(this).data("latitude");
+        var longitude = $(this).data("longitude");
+        if (latitude != "None" && longitude != "None"){
+            var url = $.trim($(this).text());
+            return '<a class="get_directions" data-longitude="' + longitude + '" data-latitude="' + latitude + '" href="' + url + '" target="_blank">' + url + '</a>';            
+        }
+    });
 }
 
 $(".get_directions").live('click', function(e){
@@ -23,7 +23,7 @@ $(".get_directions").live('click', function(e){
 });
 
 $(document).ready(function(){
-	if (supports_geolocation()){
-		activate_geolocation();
-	}
+    if (supports_geolocation()){
+        activate_geolocation();
+    }
 });

@@ -26,9 +26,9 @@ Events & Deadlines |
 <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
 {% endcompress %}
 <script>
-	var INITIAL_STATE = $.parseJSON("{{initial_state}}".replace(/&quot;/ig,'"'));
-	var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
-	var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
+    var INITIAL_STATE = $.parseJSON("{{initial_state}}".replace(/&quot;/ig,'"'));
+    var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
+    var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
     var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
     var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
     var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
@@ -52,7 +52,7 @@ Events & Deadlines |
             <noscript><input type="submit" value="Filter" /></noscript>
         </form>
         <ul id="event_list" class="event_list">
-        	{% include "event_filtering_results.html" with isnotajax="True" %}
+            {% include "event_filtering_results.html" with isnotajax="True" %}
         </ul>
     </div>
 </div>

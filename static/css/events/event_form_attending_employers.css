@@ -1,5 +1,5 @@
 #attending_employers{
-	padding:12px;
+    padding:12px;
 }
 .attending_employer{
     display:inline-block;
@@ -9,7 +9,7 @@
     margin-bottom:4px;
 }
 .attending_employer.no_logo{
-	background:#FAFAFA;
+    background:#FAFAFA;
     border:1px solid #DDD;
     height:67px;
     line-height:67px;
@@ -23,9 +23,9 @@
 }
 
 .attending_employer span{
-	display:inline-block;
-	line-height:20px;
-	vertical-align:middle;
+    display:inline-block;
+    line-height:20px;
+    vertical-align:middle;
 }
 #and_more{
     display:inline-block;

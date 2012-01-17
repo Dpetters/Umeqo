@@ -29,55 +29,55 @@
     color: #666;
 }
 #event.past .edit_event_link, #event.cancelled .edit_event_link, #event.archived .edit_event_link{
-	display:none !important;
+    display:none !important;
 }
 #event.past .cancel_event_link, #event.cancelled .cancel_event_link, #event.archived .cancel_event_link{
-	display:none !important;
+    display:none !important;
 }
 #event.past .end_rolling_deadline_link, #event.cancelled .end_rolling_deadline_link, #event.archived .end_rolling_deadline_link{
-	display:none !important;
+    display:none !important;
 }
 #event.cancelled #add_to_google_calendar, #event.past #add_to_google_calendar{
-	display:none !important;
+    display:none !important;
 }
 #event.cancelled #drop_resume, #event.past #drop_resume{
-	display:none !important;
+    display:none !important;
 }
 #event.cancelled #rsvp_yes, #event.past #rsvp_yes{
-	display:none !important;
+    display:none !important;
 }
 #event.cancelled #rsvp_choices, #event.past #rsvp_choices{
-	display:none !important;
+    display:none !important;
 }
 #event.cancelled .not_cancelled_or_past_commands, #event.past .not_cancelled_or_past_commands{
-	display:none !important;
+    display:none !important;
 }
 #event.cancelled .cancelled_warning{
-	display:inline !important;
+    display:inline !important;
 }
 #event .deadline_passed_indicator{
-	display:none !important;
+    display:none !important;
 }
 #event.past .deadline_passed_indicator{
-	display:block !important;
+    display:block !important;
 }
 .archive_event_link{
-	display:none !important;
+    display:none !important;
 }
 .cancelled .archive_event_link, .past .archive_event_link{
-	display:inline !important;
+    display:inline !important;
 }
 .archived_indicator{
-	display:none !important;
+    display:none !important;
 }
 .archived .archived_indicator{
-	display:block !important;
+    display:block !important;
 }
 .cancelled .archive_event_link, .past .archive_event_link{
-	display:inline !important;
+    display:inline !important;
 }
 .archived .archive_event_link{
-	display:none !important;
+    display:none !important;
 }
 #event_external_buttons {
     padding: 17px 0 0;
@@ -89,8 +89,8 @@
     margin-right: 5px;
 }
 #facebook_button{
-	position:relative;
-	bottom:2px;
+    position:relative;
+    bottom:2px;
 }
 #event_description, #event_attending_employers {
     width: 670px;
@@ -100,15 +100,15 @@
     max-width: 262px;
 }
 .main_block_content p {
-	margin: 0 0 10px;
+    margin: 0 0 10px;
 }
 .main_block_content ol,
 .main_block_content ul {
-	margin: 5px 0 5px 20px;
+    margin: 5px 0 5px 20px;
 }
 .main_block_content ul li {
-	color: #666;
-	margin-bottom: 10px;
+    color: #666;
+    margin-bottom: 10px;
 }
 #event_side {
     width: 280px;
@@ -125,12 +125,12 @@
     width: 100px;
 }
 #add_to_google_calendar{
-	display:block;
+    display:block;
 }
 #add_to_google_calendar span{
-	margin-left:5px;
-	position:relative;
-	bottom:3px;
+    margin-left:5px;
+    position:relative;
+    bottom:3px;
 }
 #event_attending_employers .ef-logo {
     max-height: 78px;

@@ -1,29 +1,29 @@
 {% if happening_now_events %}
-	<h3>Happening Now</h3>
-	<ul id="event_list" class="event_list">
+    <h3>Happening Now</h3>
+    <ul id="event_list" class="event_list">
     {% for event in happening_now_events %}
         {% include "event_snippet.html" %}
     {% endfor %}
    </ul>
 {% endif %}
 {% if later_today_events %}
-	<h3>Later Today</h3>
-	<ul id="event_list" class="event_list">
+    <h3>Later Today</h3>
+    <ul id="event_list" class="event_list">
     {% for event in later_today_events %}
         {% include "event_snippet.html" %}
     {% endfor %}
    </ul>
 {% endif %}
 {% if tomorrows_events %}
-	<h3>Tomorrow</h3>
-	<ul id="event_list" class="event_list">
+    <h3>Tomorrow</h3>
+    <ul id="event_list" class="event_list">
     {% for event in tomorrows_events %}
         {% include "event_snippet.html" %}
     {% endfor %}
    </ul>
 {% endif %}
 {% if this_weeks_events %}
-	<h3>This Week</h3>
+    <h3>This Week</h3>
     <ul id="event_list" class="event_list">
     {% for event in this_weeks_events %}
         {% include "event_snippet.html" %}
@@ -31,7 +31,7 @@
    </ul>
 {% endif %}
 {% if next_weeks_events %}
-	<h3>Next Week</h3>
+    <h3>Next Week</h3>
     <ul id="event_list" class="event_list">
     {% for event in next_weeks_events %}
         {% include "event_snippet.html" %}
@@ -39,7 +39,7 @@
    </ul>
 {% endif %}
 {% if later_events %}
-	<h3>Later</h3>
+    <h3>Later</h3>
     <ul id="event_list" class="event_list">
     {% for event in later_events %}
         {% include "event_snippet.html" %}

@@ -13,18 +13,18 @@
     margin-top:7px;
 }
 #extra_help{
-	margin-top:29px;
+    margin-top:29px;
 }
 #extra_help div{
-	display:inline-block;
+    display:inline-block;
 }
 #extra_help img{
-	position:relative;
-	top:4px;
-	right:7px;
+    position:relative;
+    top:4px;
+    right:7px;
 }
 #extra_help div p{
-	margin-top:5px;
+    margin-top:5px;
 }
 #tutorial_notice{
   padding: 4px 0px 4px 15px;

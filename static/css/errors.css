@@ -16,8 +16,11 @@
     color: #FF7B7B;
     font-weight: bold;
 }
+.error a{
+    font-weight:normal;
+}
 .errorspace, .error_section {
-	position: relative;
+    position: relative;
 }
 .errorspace {
     min-height: 20px;
@@ -46,7 +49,7 @@
 .errorlist {
     list-style: none;
 }
-.form_table.grande .errorlist, .form_table.grande .errorspace label {
-    font-size: 14px;
+.form_table.grande .errorlist, .form_table.grande .errorlist a, .form_table.grande .errorspace label, .form_table.grande .errorspace label a {
+    font-size: 13px;
     line-height: 18px;
 }

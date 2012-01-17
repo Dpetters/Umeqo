@@ -6,32 +6,32 @@
             <span class="location_wrapper">
                 <strong>Location:</strong> {% include "event_location.html" %}
             </span>
-	    {% endif %}
-	        <div class="hosted_by">
-	            <span>
-	                Hosted by {% include "event_hosted_by.html" %}
-	            </span>
-	        </div>
+        {% endif %}
+            <div class="hosted_by">
+                <span>
+                    Hosted by {% include "event_hosted_by.html" %}
+                </span>
+            </div>
         </div>
     </div>
 
     {% if user.recruiter and event.owner.recruiter.employer == user.recruiter.employer or user.campusorg and event.owner == user %}
-	    {% include 'event_snippet_commands.html' %}
-		<div class="details commands">
+        {% include 'event_snippet_commands.html' %}
+        <div class="details commands">
     {% else %}
-    	<div class="details">
+        <div class="details">
     {% endif %}
-		{% if event.cancelled or not event.is_rolling_deadline %}
-		    <div class="datetime">
-		    	{% if not event.is_rolling_deadline %}
-		    		{% include "event_datetime.html" %}
-		    		&nbsp;
-		        {% endif %}
-		    	<span class="cancelled_warning">Cancelled!</span>
-		    </div>
-		{% endif %}
-		{% if event.description %}
-			<div>{{event.description|striptags|safe|truncatewords:50}}</div>
-		{% endif %}
+        {% if event.cancelled or not event.is_rolling_deadline %}
+            <div class="datetime">
+                {% if not event.is_rolling_deadline %}
+                    {% include "event_datetime.html" %}
+                    &nbsp;
+                {% endif %}
+                <span class="cancelled_warning">Cancelled!</span>
+            </div>
+        {% endif %}
+        {% if event.description %}
+            <div>{{event.description|striptags|safe|truncatewords:50}}</div>
+        {% endif %}
     </div>
 </li>

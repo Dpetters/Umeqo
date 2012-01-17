@@ -1,18 +1,18 @@
 #featured_content #tutorials{
-	background:#F3C849;
+    background:#F3C849;
 }
 #featured_content #events{
-	background:#C03947;
+    background:#C03947;
 }
 #featured_content #profile{
-	background:#299FFF;
+    background:#299FFF;
 }
 #featured_content div:hover{
-	background:#BEBEBE !important;
+    background:#BEBEBE !important;
 }
 #upcoming_events .main_block_content{
-	padding-top:0px;
+    padding-top:0px;
 }
 #no_events_block{
-	padding-top:20px;
+    padding-top:20px;
 }

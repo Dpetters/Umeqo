@@ -2,8 +2,8 @@
     <h3>Please check your email for an account activation link.</h3>
     <p>Clicking it will complete your action and allow you to log in.</p>
     {% ifequal unparsable_resume "true" %}
-    	<br>
-    	<p><strong>Important:</strong> We could not parse your resume for keywords. After activation, try uploading it one more time.</p>
+        <br>
+        <p><strong>Important:</strong> We could not parse your resume for keywords. After activation, try uploading it one more time.</p>
     {% endifequal %}
     {% include "close_dialog_link.html" %}
 </div>

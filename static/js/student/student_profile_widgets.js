@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#id_looking_for").multiselect({
+    $("#id_looking_for").multiselect({
         noneSelectedText: 'select job types',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
@@ -133,8 +133,8 @@ $(document).ready(function(){
             $("#id_countries_of_citizenship").trigger("change");
         }
     }).multiselectfilter();
-	
-	/* Need all widgets to load before anything is hidden.
-	 * Therefore accordion is loaded on event trigger */
-	$(document).trigger('widgetsLoaded');
+    
+    /* Need all widgets to load before anything is hidden.
+     * Therefore accordion is loaded on event trigger */
+    $(document).trigger('widgetsLoaded');
 });

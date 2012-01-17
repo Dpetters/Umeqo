@@ -66,42 +66,9 @@
 #login_wrapper #login_form #id_password {
     margin-bottom:0px;
 }
-#login_wrapper #login_form .errorspace {
-    position: absolute;
-    left: -147px;
-    height: 20px;
-    width: 150px;
-    margin-top: 18px;
-}
-#login_wrapper #login_form .errorspace label {
-    background-color: rgba(255,255,255,0.9);
-    padding: 5px 6px;
-    border: 1px solid #DDD;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    display: inline-block;
-    position: relative;
-    float: right;
-}
-#login_wrapper #login_form .errorspace label::after {
-    content: ' ';
-    position: absolute;
-    top: 7px;
-    right: -5px;
-    width: 0;
-    height: 0;
-    border: 5px solid;
-    border-color: #DDD #DDD transparent transparent;
-    -moz-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+#login_wrapper #login_form #password{
+    margin-bottom:10px;
 }
 #login_wrapper #reset_password_link{
     margin-left:4px;
-}
-#login_wrapper .error_section{
-    padding:5px 0px;
 }

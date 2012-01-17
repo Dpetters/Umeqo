@@ -10,7 +10,7 @@ function setup_widgets(){
     $(".student_comment").autoResize({
         animateDuration : 0,
         extraSpace : 18
-    });	
+    });    
 }
 
 function submit_profile_form(form, ignore_unparsable_resume){
@@ -124,7 +124,7 @@ function load_profile_preview(){
 $(".resume_book_current_toggle_student").live('mouseover', function(){
     $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");
 }).live('mouseout', function(){
-    $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");	
+    $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");    
 });
 
 $(".student_toggle_star").live('mouseover', function(){
@@ -188,7 +188,7 @@ $(document).ready( function() {
             timeoutID = window.setTimeout(load_profile_preview, 400);
         }
     });
-	v = $("#profile_form").validate({
+    v = $("#profile_form").validate({
         submitHandler: function (form) {
             submit_profile_form(form, false);
         },
@@ -253,7 +253,7 @@ $(document).ready( function() {
             website: INVALID_URL
         }
     });
-	
+    
     $("#student_profile_preview").html(PREVIEW_AJAX_LOADER);
     profile_preview_timeout = setTimeout(function(){$("#student_profile_preview_ajax_loader p").html(single_line_long_load_message);}, LOAD_WAIT_TIME);
     load_profile_preview();

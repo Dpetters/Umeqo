@@ -54,13 +54,13 @@ $(document).ready( function() {
                 return false;
             },
             dragleave : function (e) {
-            	console.log("dragleave");
+                console.log("dragleave");
                 up.noop(e);
                 up.$dropbox.removeClass('hover');
                 return false;
             },
             drop : function (e) {
-            	console.log("dropped!")
+                console.log("dropped!")
                 up.noop(e);
                 up.$dropbox.removeClass('hover').addClass('uploading');
 

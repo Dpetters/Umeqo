@@ -24,7 +24,7 @@
     font-size: 12px;
     float: right;
     color:#555;
-	text-align:right;
+    text-align:right;
 }
 .event_list .upper_right_div .location_wrapper{
     position:relative;
@@ -55,16 +55,16 @@
     font-weight:bold;
 }
 .cancelled_warning{
-	display:none;
+    display:none;
 }
 .event_list li .cancelled_or_past_commands{
-	display:none;
+    display:none;
 }
 .event_list li.cancelled .cancelled_or_past_commands, .event_list li.past .cancelled_or_past_commands{
-	display:inline;
+    display:inline;
 }
 .event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
-	display:none;
+    display:none;
 }
 .event_list .edit,
 .event_list .hosted-by {
