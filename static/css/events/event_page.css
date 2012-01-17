@@ -152,9 +152,6 @@
 #event_where #event_location {
     display:inline;
 }
-#event_where .get_directions_link{
-    display:none;
-}
 #event_checkin_main {
     position: absolute;
     top: 0;

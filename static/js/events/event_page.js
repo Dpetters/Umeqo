@@ -15,9 +15,6 @@ function update_checkin_count(){
 $(document).ready(function() {
     if (typeof(google)!= "undefined"){
 	    if (EVENT_LATITUDE && EVENT_LONGITUDE){
-	        if (supports_geolocation()){
-	            $(".get_directions_link").show();
-	        }
 	        $("#event_where #map").width(260).height(260).css("margin-top", "9px");
 	        
 	        var location = new google.maps.LatLng(EVENT_LATITUDE, EVENT_LONGITUDE);

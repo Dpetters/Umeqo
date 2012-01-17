@@ -3,10 +3,9 @@
         <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
         <div class="upper_right_div">
         {% if event.location %}
-            <span class="location">
-                <strong>Location:</strong> {{event.location}}
+            <span class="location_wrapper">
+                <strong>Location:</strong> {% include "event_location.html" %}
             </span>
-            <a class="get_directions_link" data-latitude="{{event.latitude}}" data-longitude="{{event.longitude}}" href="#"><img title="Get Directions" alt="Directions" src="{{STATIC_URL}}images/icons/direction--arrow.png" /></a>
 	    {% endif %}
 	        <div class="hosted_by">
 	            <span>

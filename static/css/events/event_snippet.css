@@ -26,12 +26,9 @@
     color:#555;
 	text-align:right;
 }
-.event_list .upper_right_div .location{
+.event_list .upper_right_div .location_wrapper{
     position:relative;
     bottom:3px;
-}
-.event_list .upper_right_div .get_directions_link{
-    display:none;
 }
 .event_list .type,
 .event_list .private_token {

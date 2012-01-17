@@ -1,5 +1,4 @@
 function filter_events(data, disable_push){
-	console.log("filtering");
     var data = data || "";
 	var disable_push = disable_push || false;
 	
@@ -23,7 +22,6 @@ function filter_events(data, disable_push){
     	},
     	success: function(html) {
         	$('#event_list').html(html)
-        	activate_event_snippet_directions();
     		if(!disable_push){
     			history.pushState(data, "", window.location.pathname + "?query=" + data.query + "&type=" + data.type);
     		}
