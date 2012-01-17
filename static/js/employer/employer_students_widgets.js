@@ -414,8 +414,8 @@ $(document).ready(function(){
     $("#id_sat_w").val($("#sat_w_filter_section div").slider("value"));
 
 
-	/* Need all widgets to load before anything is hidden.
-	 * Therefore this must come after all widget activations */
+    /* Need all widgets to load before anything is hidden.
+     * Therefore this must come after all widget activations */
     a = $("#filtering_accordion").accordion({
         autoHeight: false,
         clearStyle: true,

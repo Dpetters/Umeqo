@@ -4,57 +4,57 @@ function subscribe_to_employer(subscribe){
     var that = this;
     var loaded_employer_id = $("#loaded_employer_id").val();
     $.ajax({
-    	url:SUBSCRIBE_URL,
-    	type:"POST",
-    	data:{id: loaded_employer_id},
-    	beforeSend: function(){
-    		$(that).html("processing...");
-	    	$("#subscribe, #unsubscribe").live('mouseout', function(){
-				subscribe_to_employer_mouseout = true;
-			});
-    		$("#unsubsribe, #subscribe").live('mouseover', function(){
-				subscribe_to_employer_mouseout = false;
-			});
-    	},
-    	success: function(data) {
-			if(subscribe){
-				$(".employer_id[value=" + loaded_employer_id + "]").parent().addClass("subscribed");
-				$(that).addClass("subscribed").attr("id", "unsubscribe");
-				if(subscribe_to_employer_mouseout){
-					$(that).html("Subscribed");
-				}else{
-					$(that).html("Unsubscribe");	
-				}
-			}else{
-				$(".employer_id[value=" + loaded_employer_id + "]").parent().removeClass("subscribed");
-				$(that).removeClass("subscribed").attr("id", "subscribe").html("Subscribe");
-			}
-    	},
+        url:SUBSCRIBE_URL,
+        type:"POST",
+        data:{id: loaded_employer_id},
+        beforeSend: function(){
+            $(that).html("processing...");
+            $("#subscribe, #unsubscribe").live('mouseout', function(){
+                subscribe_to_employer_mouseout = true;
+            });
+            $("#unsubsribe, #subscribe").live('mouseover', function(){
+                subscribe_to_employer_mouseout = false;
+            });
+        },
+        success: function(data) {
+            if(subscribe){
+                $(".employer_id[value=" + loaded_employer_id + "]").parent().addClass("subscribed");
+                $(that).addClass("subscribed").attr("id", "unsubscribe");
+                if(subscribe_to_employer_mouseout){
+                    $(that).html("Subscribed");
+                }else{
+                    $(that).html("Unsubscribe");    
+                }
+            }else{
+                $(".employer_id[value=" + loaded_employer_id + "]").parent().removeClass("subscribed");
+                $(that).removeClass("subscribed").attr("id", "subscribe").html("Subscribe");
+            }
+        },
         error: errors_in_message_area_handler
     });
 }
 $('#unsubscribe').live('click', function(e) {
     var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
-		subscribe_to_employer.apply(this, [false]);
-	}
+        subscribe_to_employer.apply(this, [false]);
+    }
     e.preventDefault();
 });
 
 $('#subscribe').live('click', function(e) {
-	var disabled = $(this).attr('disabled');
+    var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
-		subscribe_to_employer.apply(this, [true]);
-	}
+        subscribe_to_employer.apply(this, [true]);
+    }
     e.preventDefault();
 });
 
 
 $("#logo_and_buttons .subscribed").live('mouseenter', function(){
-	$(this).html("Unsubscribe");
+    $(this).html("Unsubscribe");
 });
 $("#logo_and_buttons .subscribed").live('mouseleave', function(){
-	$(this).html("Subscribed");
+    $(this).html("Subscribed");
 });
 
 function bindLoadEmployerHandlers() {
@@ -122,19 +122,19 @@ $(document).ready(function() {
         var subscribed = $('#employers_filter_in_subscriptions').attr('checked')=="checked";
         show_form_submit_loader("#employers_form");
         $.ajax({
-        	url:SEARCH_URL,
-        	data:{
-            	'q': query,
-            	'i': industry,
-            	'has_public_events_deadlines': has_public_events_deadlines,
-            	'subscribed': subscribed
-        	},
-        	success:function(data) {
-	            $('#employer_snippets').html(data);
-	            bindLoadEmployerHandlers();
-	            hide_form_submit_loader("#employers_form");
-        	},
-        	error:errors_in_message_area_handler,
+            url:SEARCH_URL,
+            data:{
+                'q': query,
+                'i': industry,
+                'has_public_events_deadlines': has_public_events_deadlines,
+                'subscribed': subscribed
+            },
+            success:function(data) {
+                $('#employer_snippets').html(data);
+                bindLoadEmployerHandlers();
+                hide_form_submit_loader("#employers_form");
+            },
+            error:errors_in_message_area_handler,
         });
     }
 });

@@ -3,12 +3,12 @@
     position: relative;
 }
 #event_filtering_form .ajax_form_submit_loader{
-	margin-top:4px;
+    margin-top:4px;
 }
 #event_filtering_form input[type="checkbox"]{
-	margin-left:5px;
-	position:relative;
-	top:2px;
+    margin-left:5px;
+    position:relative;
+    top:2px;
 }
 #event_list_empty {
     padding: 10px;

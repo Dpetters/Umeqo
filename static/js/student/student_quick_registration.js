@@ -16,77 +16,69 @@ function open_create_student_quick_registration_dialog() {
     return create_student_quick_registration_dialog;
 };
 
-$('.close_student_quick_registration_dialog_link').live('click', function (e) {
-	create_student_quick_registration_dialog.remove();
-	setTimeout(function(){
-		$("#login_button a").click();		
-	}, 1);
-	e.preventDefault();
-});
-
 $(".open_registration_help_dialog_link").live('click', function(){
-	$("#student_registration_help").slideToggle();
+    $("#student_registration_help").slideToggle();
 });
 function submit_student_quick_registration_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
-	$(form).ajaxSubmit({
-	    dataType: 'text',
-	    data:{'ignore_unparsable_resume':"false"},
-	    beforeSubmit: function (arr, $form, options) {
-	        $("#message_area").html("");
-	        $("#student_quick_registration_form input[type=submit]").attr("disabled", "disabled");
-	        show_form_submit_loader("#student_quick_registration_form");
-	        $("#student_quick_registration_form .error_section").html("");
-	    },
-	    complete : function(jqXHR, textStatus) {
-	        $("#student_quick_registration_form input[type=submit]").removeAttr("disabled");
-	        hide_form_submit_loader("#student_quick_registration_form");
-	    },
-	    success: function (data) {
-	        data = $.parseJSON(data);
-	        if(data.errors) {
-	            place_table_form_errors("#student_quick_registration_form", data.errors);
-	        } else {
-        	    $.ajax({
-			        url: STUDENT_QUICK_REGISTRATION_DONE_URL,
-			        dataType: "html",
-			        data:{'unparsable_resume':data.unparsable_resume},
-			        success: function (html) {
-						create_student_quick_registration_dialog.html(html);
-			        },
-			        error: errors_in_message_area_handler
-			    });
-			    if (action == "rsvp"){
-			    	$("#rsvp_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button").text("Attending");
-	            }
-			    $("#drop_resume_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button").text("Resume Dropped");	            	
-	            create_student_quick_registration_dialog.dialog("option", "title", "Account Created Successfully");
-	            
-	        }
-	    },
-	    error: errors_in_message_area_handler
-	});  
+    $(form).ajaxSubmit({
+        dataType: 'text',
+        data:{'ignore_unparsable_resume':"false"},
+        beforeSubmit: function (arr, $form, options) {
+            $("#message_area").html("");
+            $("#student_quick_registration_form input[type=submit]").attr("disabled", "disabled");
+            show_form_submit_loader("#student_quick_registration_form");
+            $("#student_quick_registration_form .error_section").html("");
+        },
+        complete : function(jqXHR, textStatus) {
+            $("#student_quick_registration_form input[type=submit]").removeAttr("disabled");
+            hide_form_submit_loader("#student_quick_registration_form");
+        },
+        success: function (data) {
+            data = $.parseJSON(data);
+            if(data.errors) {
+                place_table_form_errors("#student_quick_registration_form", data.errors);
+            } else {
+                $.ajax({
+                    url: STUDENT_QUICK_REGISTRATION_DONE_URL,
+                    dataType: "html",
+                    data:{'unparsable_resume':data.unparsable_resume},
+                    success: function (html) {
+                        create_student_quick_registration_dialog.html(html);
+                    },
+                    error: errors_in_message_area_handler
+                });
+                if (action == "rsvp"){
+                    $("#rsvp_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button").text("Attending");
+                }
+                $("#drop_resume_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button").text("Resume Dropped");                    
+                create_student_quick_registration_dialog.dialog("option", "title", "Account Created Successfully");
+                
+            }
+        },
+        error: errors_in_message_area_handler
+    });  
 };
 
 function prefill_student_quick_registration_fields(){
-	var email = $("#id_email").val();
-	if (is_valid_email_address(email) && is_valid_mit_email(email)){
-		$.ajax({
-			url:STUDENT_INFO_URL,
-			data:{'email':$("#id_email").val()},
-			success:function(data){
-				if (data.first_name && $("#id_first_name").val()==""){
-					$("#id_first_name").val(data.first_name);
-				}
-				if (data.last_name && $("#id_last_name").val()==""){
-					$("#id_last_name").val(data.last_name);
-				}
-				if (data.course && $("#id_first_major").val()==""){
-					$("#id_first_major").val(data.course);
-				}
-			}
-		});
-	}
+    var email = $("#id_email").val();
+    if (is_valid_email_address(email) && is_valid_mit_email(email)){
+        $.ajax({
+            url:STUDENT_INFO_URL,
+            data:{'email':$("#id_email").val()},
+            success:function(data){
+                if (data.first_name && $("#id_first_name").val()==""){
+                    $("#id_first_name").val(data.first_name);
+                }
+                if (data.last_name && $("#id_last_name").val()==""){
+                    $("#id_last_name").val(data.last_name);
+                }
+                if (data.course && $("#id_first_major").val()==""){
+                    $("#id_first_major").val(data.course);
+                }
+            }
+        });
+    }
 }
 
 // Get rid of resume field errors as a user selects a file
@@ -96,12 +88,12 @@ $("#id_resume").live('change', function() {
 });
     
 $('.student_quick_registration_link').live('click', function (e) {
-	action = $(this).attr("data-action");
-	if ($(this).attr("id") == "rsvp_button"){
-		$("input[name=next]").val($("input[name=next]").val() + "?rsvp=true")
-	} else if ($(this).attr("id") == "drop_resume_button"){
-		$("input[name=next]").val($("input[name=next]").val() + "?drop=true")
-	}
+    action = $(this).attr("data-action");
+    if ($(this).attr("id") == "rsvp_button"){
+        $("input[name=next]").val($("input[name=next]").val() + "?rsvp=true")
+    } else if ($(this).attr("id") == "drop_resume_button"){
+        $("input[name=next]").val($("input[name=next]").val() + "?drop=true")
+    }
     create_student_quick_registration_dialog = open_create_student_quick_registration_dialog();
     create_student_quick_registration_dialog.dialog("option", "title", $(this).attr("data-title"));    
     create_student_quick_registration_dialog.html(DIALOG_AJAX_LOADER);
@@ -109,8 +101,8 @@ $('.student_quick_registration_link').live('click', function (e) {
     $.ajax({
         dataType: "html",
         data: {'action':$(this).attr("data-action"),
-        		'event_id':$(this).attr("data-event-id")
-        	  },
+                'event_id':$(this).attr("data-event-id")
+              },
         url: STUDENT_QUICK_REGISTRATION_URL,
         complete : function(jqXHR, textStatus) {
             clearTimeout(create_student_quick_registration_dialog_timeout);
@@ -126,94 +118,94 @@ $('.student_quick_registration_link').live('click', function (e) {
         success: function (data) {
             create_student_quick_registration_dialog.html(data);
             $("#id_looking_for").multiselect({
-		        noneSelectedText: 'select job types',
-		        checkAllText: multiselectCheckAllText,
-		        uncheckAllText: multiselectUncheckAllText,
-		        minWidth:multiselectMinWidth,
-		        height:'auto',
-		        checkAll: function(){
-		            $("#id_looking_for").trigger("change");
-		        },
-		        uncheckAll: function(){
-		            $("#id_looking_for").trigger("change");
-		        }
-		    }).multiselectfilter();
+                noneSelectedText: 'select job types',
+                checkAllText: multiselectCheckAllText,
+                uncheckAllText: multiselectUncheckAllText,
+                minWidth:multiselectMinWidth,
+                height:'auto',
+                checkAll: function(){
+                    $("#id_looking_for").trigger("change");
+                },
+                uncheckAll: function(){
+                    $("#id_looking_for").trigger("change");
+                }
+            }).multiselectfilter();
 
-		    var timeoutID;
-		    $('#id_email').keydown(function () {
-		        if (typeof timeoutID!='undefined') {
-		            window.clearTimeout(timeoutID);
-		        }
-		        timeoutID = window.setTimeout(prefill_student_quick_registration_fields, 200);
-		    });
+            var timeoutID;
+            $('#id_email').keydown(function () {
+                if (typeof timeoutID!='undefined') {
+                    window.clearTimeout(timeoutID);
+                }
+                timeoutID = window.setTimeout(prefill_student_quick_registration_fields, 200);
+            });
     
             student_quick_registration_validator = $("#student_quick_registration_form").validate({
                 submitHandler: function (form) {
-		            submit_student_quick_registration_form(form, false);
-		        }, 
+                    submit_student_quick_registration_form(form, false);
+                }, 
                 highlight: highlight,
                 unhighlight: unhighlight,
                 errorPlacement: place_table_form_field_error,
                 rules: {
-		            email: {
-		                required: true,
-		                email: true,
-		                isMITEmail: true,
-		                remote: {
-		                    dataType: 'json',
-		                    url: CHECK_EMAIL_AVAILABILITY_URL,
-		                    error: errors_in_message_area_handler
-		                }
-		            },
-		            password: {
-		                required: true,
-		                minlength: PASSWORD_MIN_LENGTH
-		            },
-		            first_name: {
-		                required: true
-		            },
-		            last_name: {
-		                required: true
-		            },
-		            school_year: {
-		                required: true
-		            },
-		            graduation_year: {
-		                required: true
-		            },
-		            first_major: {
-		                required: true
-		            },
-		            gpa: {
-		                required: true,
-		                range: [0, 5.0],
-		                maxlength: 4
-		            },
-		            resume:{
-		                accept: "pdf"
-		            },
+                    email: {
+                        required: true,
+                        email: true,
+                        isMITEmail: true,
+                        remote: {
+                            dataType: 'json',
+                            url: CHECK_EMAIL_AVAILABILITY_URL,
+                            error: errors_in_message_area_handler
+                        }
+                    },
+                    password: {
+                        required: true,
+                        minlength: PASSWORD_MIN_LENGTH
+                    },
+                    first_name: {
+                        required: true
+                    },
+                    last_name: {
+                        required: true
+                    },
+                    school_year: {
+                        required: true
+                    },
+                    graduation_year: {
+                        required: true
+                    },
+                    first_major: {
+                        required: true
+                    },
+                    gpa: {
+                        required: true,
+                        range: [0, 5.0],
+                        maxlength: 4
+                    },
+                    resume:{
+                        accept: "pdf"
+                    },
                 },
                 messages: {
-		            email:{
-		                required: EMAIL_REQUIRED,
-		                email: INVALID_EMAIL,
-		                isMITEmail: MUST_BE_MIT_EMAIL,
-		                remote: EMAIL_ALREADY_REGISTERED
-		            },
-		            password1: {
-                		required: PASSWORD_REQUIRED
-            		},
+                    email:{
+                        required: EMAIL_REQUIRED,
+                        email: INVALID_EMAIL,
+                        isMITEmail: MUST_BE_MIT_EMAIL,
+                        remote: EMAIL_ALREADY_REGISTERED
+                    },
+                    password1: {
+                        required: PASSWORD_REQUIRED
+                    },
                     first_name: FIRST_NAME_REQUIRED,
-		            last_name: LAST_NAME_REQUIRED,
-		            school_year: SCHOOL_YEAR_REQUIRED,
-		            graduation_year: GRADUATION_YEAR_REQUIRED,
-		            first_major: FIRST_MAJOR_REQUIRED,
-		            gpa: {
-		                required: GPA_REQUIRED,
-		                range: GPA_RANGE
-		            },
-		            resume: RESUME_REQUIRED,
-		        }
+                    last_name: LAST_NAME_REQUIRED,
+                    school_year: SCHOOL_YEAR_REQUIRED,
+                    graduation_year: GRADUATION_YEAR_REQUIRED,
+                    first_major: FIRST_MAJOR_REQUIRED,
+                    gpa: {
+                        required: GPA_REQUIRED,
+                        range: GPA_RANGE
+                    },
+                    resume: RESUME_REQUIRED,
+                }
             });
         }
     });

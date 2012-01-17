@@ -1,16 +1,16 @@
 .student_quick_registration_dialog h3 p{
-	display:inline;
-	font-weight:normal;
+    display:inline;
+    font-weight:normal;
 }
 .student_quick_registration_dialog .form_table{
-	width:100%;
+    width:100%;
 }
 .student_quick_registration_dialog .dialog_content_wrapper {
     padding: 20px 25px 20px 25px
 }
 #student_registration_help{
-	margin-top:10px;
-	display:none;
+    margin-top:10px;
+    display:none;
 }
 input[type=text] {
     width:190px;
@@ -33,10 +33,10 @@ input[type=text] {
     text-align: center;
 }
 #student_quick_registration_form input[type=submit]{
-	width:100px;
-	margin-top:8px;
+    width:100px;
+    margin-top:8px;
 }
 
 #student_quick_registration_form .ajax_form_submit_loader{
-	margin-top:14px;
+    margin-top:14px;
 }

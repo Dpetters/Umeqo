@@ -37,8 +37,11 @@ SITE_ID = # fill out
 DB_PASSWORD =  # fill out
 
 STATIC_ROOT = ""
+
 STATICFILES_DIRS = (
+    ROOT + "/static/",
 )
+
 STATIC_URL = ""
 
 DATABASES = {

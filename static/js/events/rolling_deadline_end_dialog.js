@@ -63,15 +63,15 @@ $(document).ready( function () {
                                         ul.prev().remove();
                                         ul.remove();
                                     }
-									if ($('.event_list li').length==0){
-									    $('#event_filtering_no_results').slideDown();
-									    $("#no_events_block").slideDown()
-									}
+                                    if ($('.event_list li').length==0){
+                                        $('#event_filtering_no_results').slideDown();
+                                        $("#no_events_block").slideDown()
+                                    }
                                 });
                             }else{
                                 $("#event").addClass("past");
                             }
-							$("#message_area").html("<p>" + ROLLING_DEADLINE_ENDED + "</p>");
+                            $("#message_area").html("<p>" + ROLLING_DEADLINE_ENDED + "</p>");
                         }
                     });
                     e.preventDefault();

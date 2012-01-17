@@ -494,28 +494,28 @@ function initiate_ajax_call() {
         'ordering': ordering,
         'results_per_page': results_per_page
         }
- 	
- 	if (query)
- 		data['query'] = query
- 	if (min_gpa != 0)
- 		data['gpa'] = min_gpa
- 	if (min_act != 0)
- 		data['act'] = min_act
- 	if (min_sat_t != 600)
+     
+     if (query)
+         data['query'] = query
+     if (min_gpa != 0)
+         data['gpa'] = min_gpa
+     if (min_act != 0)
+         data['act'] = min_act
+     if (min_sat_t != 600)
        data['sat_t'] = min_sat_t
     if (min_sat_m != 200)
-    	data['sat_m'] = min_sat_m
+        data['sat_m'] = min_sat_m
     if (min_sat_v != 200)
-    	data['sat_v'] = min_sat_v
+        data['sat_v'] = min_sat_v
     if (min_sat_w != 200)
-    	data['sat_w'] = min_sat_w
-	if (courses.length != 0)
-		data['courses'] = courses.join('~')
-	if (school_years.length != 0)
-		data['school_years'] = school_years.join('~')
-	if (graduation_years.length != 0)
-		data['graduation_years'] =  graduation_years.join('~')
-	if (employment_types.length != 0)
+        data['sat_w'] = min_sat_w
+    if (courses.length != 0)
+        data['courses'] = courses.join('~')
+    if (school_years.length != 0)
+        data['school_years'] = school_years.join('~')
+    if (graduation_years.length != 0)
+        data['graduation_years'] =  graduation_years.join('~')
+    if (employment_types.length != 0)
         data['employment_types'] = employment_types.join('~')
     if (previous_employers.length != 0)
         data['previous_employers'] = previous_employers.join('~')
@@ -526,7 +526,7 @@ function initiate_ajax_call() {
     if (languages.length != 0)
         data['languages'] = languages.join('~')
     if (countries_of_citizenship.length != 0)
-    	data['countries_of_citizenship'] = countries_of_citizenship.join('~')
+        data['countries_of_citizenship'] = countries_of_citizenship.join('~')
         
     xhr = $.ajax({
         type: 'GET',
@@ -724,43 +724,43 @@ $(document).ready(function () {
             $(this).data('init', true);
             var that = this;
             $(this).hoverIntent({
-	            sensitivity:2,
-	            over: function () {
-	                $(that).append('<div class="events_dropdown"></div>');
-	                place_tiny_ajax_loader('.events_dropdown');
-	                if (xhr && xhr.readystate != 4) { xhr.abort(); }
-	                xhr = $.ajax({
-	                    url: EVENTS_LIST_URL, 
-	                    data: {"student_id": $(this).attr('data-studentid')}, 
-	                    success: function (events) {
-	                        var dropdown = $(".events_dropdown");
-	                        if (events.length == 0) {
-	                            dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
-	                        } else {
-	                            dropdown.html('');
-	                            $.each(events, function (k,event) {
-	                                var ispublic = event.is_public ? 1 : 0;
-	                                var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
-	                                var linkText;
-	                                if (!ispublic) {
-	                                    linkText = event.name + ' [private]';
-	                                } else {
-	                                    linkText = event.name + ' [public]';
-	                                }
-	                                if (event.invited) {
-	                                    linkText = linkText + ' (<strong>already invited</strong>)';
-	                                }
-	                                link.html(linkText);
-	                                dropdown.append(link);
-	                            });
-	                        }
-	                    },
-	                    error: errors_in_message_area_handler
-	                });
-	            },
-	            out: function () {
-	                $(this).children('.events_dropdown').remove();
-	            }
+                sensitivity:2,
+                over: function () {
+                    $(that).append('<div class="events_dropdown"></div>');
+                    place_tiny_ajax_loader('.events_dropdown');
+                    if (xhr && xhr.readystate != 4) { xhr.abort(); }
+                    xhr = $.ajax({
+                        url: EVENTS_LIST_URL, 
+                        data: {"student_id": $(this).attr('data-studentid')}, 
+                        success: function (events) {
+                            var dropdown = $(".events_dropdown");
+                            if (events.length == 0) {
+                                dropdown.html('<span class="nowrap">You have no upcoming events! <a href="' + EVENT_NEW_URL + '">Create one</a>.</span>');
+                            } else {
+                                dropdown.html('');
+                                $.each(events, function (k,event) {
+                                    var ispublic = event.is_public ? 1 : 0;
+                                    var link = $('<a data-eventname="' + event.name + '" data-ispublic="' + ispublic + '" data-eventid="' + event.id + '" class="event_invite_link" href="#"></a>');
+                                    var linkText;
+                                    if (!ispublic) {
+                                        linkText = event.name + ' [private]';
+                                    } else {
+                                        linkText = event.name + ' [public]';
+                                    }
+                                    if (event.invited) {
+                                        linkText = linkText + ' (<strong>already invited</strong>)';
+                                    }
+                                    link.html(linkText);
+                                    dropdown.append(link);
+                                });
+                            }
+                        },
+                        error: errors_in_message_area_handler
+                    });
+                },
+                out: function () {
+                    $(this).children('.events_dropdown').remove();
+                }
             });
             $(this).trigger('mouseover');
         }

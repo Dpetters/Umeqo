@@ -1,13 +1,14 @@
+$('.login').live('click', function(e){
+    $(".dialog").remove();
+    $("#login_button a").click();
+    e.preventDefault();
+});
+
 $(document).ready( function () {
-	$("#login_button a").click(function(e){
-		$('#login_wrapper').fadeToggle('fast', function(){
+    $("#login_button a").click(function(e){
+        $('#login_wrapper').fadeToggle('fast', function(){
             $('#id_username').focus();
         });
-        e.preventDefault();
-	});
-	
-    $('.login').click(function(e){
-    	$("#login_button a").click();
         e.preventDefault();
     });
     

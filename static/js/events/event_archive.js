@@ -8,28 +8,28 @@ $(document).ready( function () {
             dataType: "json",
             url: $(that).attr("href"),
             success: function (data){
-	            if (li.length != 0){
-	                li.slideUp(function(){
-	                    li.remove();
+                if (li.length != 0){
+                    li.slideUp(function(){
+                        li.remove();
                         if (ul.children().length == 0)
                         {
                             ul.prev().remove();
                             ul.remove();
                         }
-	                    if ($('.event_list li').length==0){
-	                        $('#event_filtering_no_results').slideDown();
-						    $("#no_events_block").slideDown()
-	                    }
-	                });                          	
-	            }else{
-	            	$("#event").addClass("archived");
-	            }
+                        if ($('.event_list li').length==0){
+                            $('#event_filtering_no_results').slideDown();
+                            $("#no_events_block").slideDown()
+                        }
+                    });                              
+                }else{
+                    $("#event").addClass("archived");
+                }
                 if(data.type=="event")
                    $("#message_area").html("<p>" + EVENT_ARCHIVED + "</p>");
-            	else
+                else
                    $("#message_area").html("<p>" + DEADLINE_ARCHIVED + "</p>");  
-  			}
-  		});
+              }
+          });
         e.preventDefault();
-	});
+    });
 });
