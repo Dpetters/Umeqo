@@ -2,6 +2,7 @@ import re
 
 from django.core.urlresolvers import reverse
 
+from core.models import Course
 from employer.models import Employer
 from registration.backend import RegistrationBackend
 from student.models import Student
@@ -23,7 +24,13 @@ def register_student(request, **args):
     umeqo = Employer.objects.get(name="Umeqo")
     student.save()
     if args.has_key("course"):
-        student.first_major=args["course"]
+        try:
+            course = Course.objects.get(id=args["course"])
+        except:
+            Course.DoesNotExist
+        else:
+            student.first_major=course
+            
     student.subscriptions.add(umeqo)
     student.save()
     return student
