@@ -52,14 +52,13 @@
         </div>
         <table class="form_table">
             <tr>
-                <th><label>Privacy:</label></th>
-                <td colspan="3" class="grande">
-                    {% if user.recruiter.employer.visible%}
-                        Public
+                <td colspan="4">
+                    <label class="no_field">Visibility:</label>
+                    {% if user.recruiter.employer.visible %}
+                        Your profile is currently <strong>public</strong> to students. If for any reason you wish to make it private, <a href="#" class="open_contact_us_dialog_link">let us know</a>.
                      {% else %}
-                        Private
+                        Your profile is currently <strong>hidden</strong> from students. Once you are ready to make it public, <a href="#" class="open_contact_us_dialog_link">let us know</a>.
                     {% endif %}
-                    <span></span>
                 </td>
             </tr>
             <tr>
@@ -98,9 +97,9 @@
                 </td>
             </tr>
             <tr>
-                <th><strong>Note:</strong></th>
-                <td colspan="3">
-                    <p id="change_logo">To change the logo please email us the new image to contact@umeqo.com.</p>
+                <td colspan="4">
+                    <label class="no_field">Note:</label>
+                    To change your logo please email the new image to contact@umeqo.com.
                 </td>
             </tr>
             <tr>
