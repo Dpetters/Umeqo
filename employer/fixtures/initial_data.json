@@ -16,6 +16,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:23:27", 
    "logo": "employer/employer/10gen_2011-12-12-05-38-32.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "10gen"
@@ -36,6 +37,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:12:18", 
    "logo": "employer/employer/accenture_2011-09-18-22-36-12.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "accenture", 
    "name": "Accenture"
@@ -58,6 +60,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:25:36", 
    "logo": "employer/employer/adobe_2011-12-12-05-40-14.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Adobe"
@@ -82,6 +85,7 @@
    ], 
    "date_created": "2011-09-17 20:14:28", 
    "logo": "employer/employer/allston trading_2011-09-17-20-14-28.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "allston", 
    "name": "Allston Trading"
@@ -102,6 +106,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:50:15", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Altman Vilandrie"
@@ -122,6 +127,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:20:06", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "amazon", 
    "name": "Amazon"
@@ -142,6 +148,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:19:56", 
    "logo": "employer/employer/apple_2011-12-12-05-41-47.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "apple", 
    "name": "Apple"
@@ -164,6 +171,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-28 00:02:09", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Athena Capital Research"
@@ -184,6 +192,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:19:48", 
    "logo": "employer/employer/bain & co._2011-08-31-18-54-35.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "bain", 
    "name": "Bain & Co."
@@ -204,6 +213,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:30:15", 
    "logo": "employer/employer/bank of america merrill lynch_2011-09-11-12-40-47.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "BAML", 
    "name": "Bank of America Merrill Lynch"
@@ -224,6 +234,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:29:07", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "barcap", 
    "name": "Barclays Capital"
@@ -246,6 +257,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:24:01", 
    "logo": "employer/employer/bazaar voice_2011-12-12-05-42-48.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Bazaar Voice"
@@ -268,6 +280,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-10 11:05:41", 
    "logo": "employer/employer/belvedere trading_2011-10-10-11-10-34.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Belvedere Trading"
@@ -294,6 +307,7 @@
    ], 
    "date_created": "2011-08-28 15:13:21", 
    "logo": "employer/employer/blackstone_2011-08-28-15-13-21.png", 
+   "size": null, 
    "careers_website": "http://www.blackstone.com/cps/rde/xchg/bxcom/hs/careers.htm", 
    "slug": "blackstone", 
    "name": "Blackstone"
@@ -314,6 +328,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:31", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "boeing", 
    "name": "Boeing"
@@ -334,6 +349,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:21:45", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "booz", 
    "name": "Booz & Co."
@@ -354,6 +370,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:22:06", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "bah", 
    "name": "Booz Allen Hamilton"
@@ -374,6 +391,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:09:31", 
    "logo": "employer/employer/boston consulting group (bcg)_2011-09-03-23-54-27.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "bcg", 
    "name": "Boston Consulting Group"
@@ -401,6 +419,7 @@
    ], 
    "date_created": "2011-08-29 11:43:21", 
    "logo": "employer/employer/broadway technology_2011-10-03-19-38-02.png", 
+   "size": null, 
    "careers_website": "http://broadwaytechnology.com/job-opportunities", 
    "slug": "broadway", 
    "name": "Broadway Technology"
@@ -421,6 +440,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:22:20", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "capgem", 
    "name": "Cap Gemini"
@@ -441,6 +461,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:43:41", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "ciq", 
    "name": "Capital IQ"
@@ -461,6 +482,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:38:57", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "cia", 
    "name": "Central Intelligence Agency"
@@ -483,6 +505,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:26:44", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "CEO in a box"
@@ -503,6 +526,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:47:24", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "chevron", 
    "name": "Chevron"
@@ -523,6 +547,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:47:38", 
    "logo": "employer/employer/cisco_2011-09-04-00-06-25.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "cisco", 
    "name": "Cisco"
@@ -543,6 +568,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:49:10", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "citadel", 
    "name": "Citadel"
@@ -565,6 +591,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-05 16:27:02", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Cole Taylor Bank"
@@ -585,6 +612,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:29:17", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "conoco", 
    "name": "Conoco Philips"
@@ -605,6 +633,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:29:17", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "cs", 
    "name": "Credit Suisse"
@@ -627,6 +656,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:27:12", 
    "logo": "employer/employer/crittercism_2011-12-12-05-48-32.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Crittercism"
@@ -647,6 +677,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:47:10", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "dcenergy", 
    "name": "DC Energy"
@@ -667,6 +698,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:29:30", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "DoD", 
    "name": "Department of Defense"
@@ -687,6 +719,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:24:36", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "db", 
    "name": "Deutsche Bank"
@@ -709,6 +742,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-26 14:49:04", 
    "logo": "employer/employer/diagnostics for all_2011-09-26-15-03-53.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Diagnostics for ALL"
@@ -738,6 +772,7 @@
    ], 
    "date_created": "2011-08-29 11:25:59", 
    "logo": "employer/employer/dropbox_2011-09-20-18-24-02.png", 
+   "size": null, 
    "careers_website": "https://www.dropbox.com/mit", 
    "slug": "dropbox", 
    "name": "Dropbox"
@@ -760,6 +795,7 @@
    "offered_job_types": [], 
    "date_created": "2011-11-27 19:09:23", 
    "logo": "employer/employer/eladian partners_2011-11-27-20-50-40.png", 
+   "size": null, 
    "careers_website": "http://www.eladian.com/#jobs", 
    "slug": "eladian", 
    "name": "Eladian Partners"
@@ -782,6 +818,7 @@
    "offered_job_types": [], 
    "date_created": "2011-11-28 23:04:38", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Endeca"
@@ -804,6 +841,7 @@
    "offered_job_types": [], 
    "date_created": "2011-11-10 16:12:49", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Ernst&Young"
@@ -824,6 +862,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:28:12", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "espn", 
    "name": "ESPN"
@@ -844,6 +883,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:52:29", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Evercore"
@@ -864,6 +904,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:29:45", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "exelon", 
    "name": "Exelon Corporation"
@@ -893,6 +934,7 @@
    ], 
    "date_created": "2011-08-28 15:58:02", 
    "logo": "employer/employer/exxon mobil_2011-08-28-15-58-02.png", 
+   "size": null, 
    "careers_website": "http://www.exxonmobil.com/careers/usa", 
    "slug": "exxon", 
    "name": "Exxon Mobil"
@@ -913,6 +955,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:48", 
    "logo": "employer/employer/facebook_2011-12-12-05-49-30.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "fb", 
    "name": "Facebook"
@@ -933,6 +976,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:39:13", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "fbi", 
    "name": "Federal Bureau of Investigation"
@@ -958,6 +1002,7 @@
    ], 
    "date_created": "2011-08-29 11:24:47", 
    "logo": "employer/employer/fidelity_2011-09-19-16-06-16.png", 
+   "size": null, 
    "careers_website": "http://jobs.fidelity.com/student/undergrad/index.shtml", 
    "slug": "fidelity", 
    "name": "Fidelity"
@@ -980,6 +1025,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:26:12", 
    "logo": "employer/employer/fusion-io_2011-12-12-05-52-17.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Fusion-io"
@@ -1002,6 +1048,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-05 21:41:08", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Genentech"
@@ -1022,6 +1069,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:29:47", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "gendyn", 
    "name": "General Dynamics"
@@ -1042,6 +1090,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:09:06", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "ge", 
    "name": "General Electric"
@@ -1064,6 +1113,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:29:27", 
    "logo": "employer/employer/getco_2011-09-19-16-40-21.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "getco", 
    "name": "GETCO"
@@ -1093,6 +1143,7 @@
    ], 
    "date_created": "2011-08-29 10:40:09", 
    "logo": "employer/employer/goldman sachs_2011-09-23-03-41-19.jpg", 
+   "size": null, 
    "careers_website": "http://www2.goldmansachs.com/careers/", 
    "slug": "gs", 
    "name": "Goldman Sachs"
@@ -1119,6 +1170,7 @@
    ], 
    "date_created": "2011-08-28 15:31:37", 
    "logo": "employer/employer/google_2011-12-12-06-09-11.png", 
+   "size": null, 
    "careers_website": "http://www.google.com/students/eng", 
    "slug": "google", 
    "name": "Google"
@@ -1141,6 +1193,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-12 17:22:23", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Group One Trading, LP"
@@ -1163,6 +1216,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:22:58", 
    "logo": "employer/employer/grubhub_2011-12-12-06-01-09.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "GrubHub"
@@ -1185,6 +1239,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-05 16:34:02", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Hovensa LLC"
@@ -1209,6 +1264,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-01 16:08:14", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "HP"
@@ -1229,6 +1285,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:52:15", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Hubspot"
@@ -1249,6 +1306,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:24:57", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "ibm", 
    "name": "IBM"
@@ -1269,6 +1327,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:50:46", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Inkling"
@@ -1289,6 +1348,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:33:11", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "intel", 
    "name": "Intel"
@@ -1316,6 +1376,7 @@
    ], 
    "date_created": "2011-08-28 13:02:48", 
    "logo": "employer/employer/j.p. morgan_2011-12-07-16-04-19.p. morgan_2011-08-28-13-02-48.gif", 
+   "size": null, 
    "careers_website": "http://www.jpmorgan.com/careers", 
    "slug": "jpm", 
    "name": "J.P. Morgan"
@@ -1339,6 +1400,7 @@
    "offered_job_types": [], 
    "date_created": "2011-11-27 20:25:57", 
    "logo": "employer/employer/jefferies_2011-11-27-20-41-47.png", 
+   "size": null, 
    "careers_website": "http://www.jefferies.com/cositemgr.pl/html/Careers/CampusRecruiting/index.shtml", 
    "slug": "jefferies", 
    "name": "Jefferies"
@@ -1359,6 +1421,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:28:26", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "jumptrading", 
    "name": "Jump Trading"
@@ -1381,6 +1444,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-05 13:49:37", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Karlsruher Institut f\u00fcr Technologie"
@@ -1403,6 +1467,7 @@
    "offered_job_types": [], 
    "date_created": "2011-11-10 16:13:04", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "KPMG"
@@ -1425,6 +1490,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:25:22", 
    "logo": "employer/employer/mathworks_2011-12-12-06-02-26.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "MathWorks"
@@ -1445,6 +1511,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:12:08", 
    "logo": "employer/employer/mckinsey & company_2011-09-03-23-58-09.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "mck", 
    "name": "Mckinsey & Company"
@@ -1467,6 +1534,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:26:31", 
    "logo": "employer/employer/mds lavastorm analytics_2011-12-12-06-16-49.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "MDS Lavastorm Analytics"
@@ -1489,6 +1557,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:27:35", 
    "logo": "employer/employer/medtronic_2011-12-12-06-15-14.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Medtronic"
@@ -1511,6 +1580,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:24:22", 
    "logo": "employer/employer/merck_2011-12-12-05-50-47.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Merck"
@@ -1538,6 +1608,7 @@
    ], 
    "date_created": "2011-08-28 15:20:38", 
    "logo": "employer/employer/microsoft_2011-08-28-15-20-38.png", 
+   "size": null, 
    "careers_website": "http://www.microsoft.com/unviersity", 
    "slug": "microsoft", 
    "name": "Microsoft"
@@ -1562,6 +1633,7 @@
    ], 
    "date_created": "2011-08-29 10:08:53", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "MIT", 
    "name": "MIT"
@@ -1582,6 +1654,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:28:41", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "monitor", 
    "name": "Monitor Group"
@@ -1602,6 +1675,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:40:24", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "ms", 
    "name": "Morgan Stanley"
@@ -1630,6 +1704,7 @@
    ], 
    "date_created": "2011-10-08 18:38:17", 
    "logo": "employer/employer/mozilla_2011-12-12-06-13-54.png", 
+   "size": null, 
    "careers_website": "http://college.stage.mozilla.com/", 
    "slug": "mozilla", 
    "name": "Mozilla"
@@ -1652,6 +1727,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-12 16:36:36", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "NASA Jet Propulsion Laboratory"
@@ -1672,6 +1748,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:40:39", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "nera", 
    "name": "NERA Economic Consulting"
@@ -1695,6 +1772,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-27 20:48:52", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Nokia"
@@ -1715,6 +1793,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:27:58", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "northrop", 
    "name": "Northrop Grumman Corporation"
@@ -1735,6 +1814,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:25:10", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "novartis", 
    "name": "Novartis"
@@ -1755,6 +1835,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:30:47", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "occ", 
    "name": "OC&C Strategy Consultants"
@@ -1784,6 +1865,7 @@
    ], 
    "date_created": "2011-08-28 13:11:28", 
    "logo": "employer/employer/oliver wyman_2011-09-03-23-55-59.png", 
+   "size": null, 
    "careers_website": "http://www.oliverwyman.com/ow/apply-fs.htm", 
    "slug": "ow", 
    "name": "Oliver Wyman"
@@ -1804,6 +1886,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-31 18:59:22", 
    "logo": "employer/employer/optiver trading_2011-09-04-00-01-38.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "optiver", 
    "name": "Optiver Trading"
@@ -1831,6 +1914,7 @@
    ], 
    "date_created": "2011-08-28 16:02:51", 
    "logo": "employer/employer/oracle_2011-08-28-16-02-51.png", 
+   "size": null, 
    "careers_website": "http://www.oracle.com/us/corporate/careers/college/index.html", 
    "slug": "oracle", 
    "name": "Oracle"
@@ -1853,6 +1937,7 @@
    "offered_job_types": [], 
    "date_created": "2011-11-28 21:41:51", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Orange"
@@ -1873,6 +1958,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:52:38", 
    "logo": "employer/employer/palantir_2011-12-12-05-53-33.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Palantir"
@@ -1893,6 +1979,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:48:07", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "pegasystems", 
    "name": "Pegasystems Inc."
@@ -1913,6 +2000,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:12:59", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "pg", 
    "name": "Procter & Gamble"
@@ -1933,6 +2021,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:21:18", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "raytheon", 
    "name": "Raytheon"
@@ -1955,6 +2044,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-28 00:06:02", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "RBM Technologies"
@@ -1975,6 +2065,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:20:34", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "samsung", 
    "name": "Samsung"
@@ -1997,6 +2088,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:20:41", 
    "logo": "employer/employer/schlumberger_2011-12-12-06-05-25.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Schlumberger"
@@ -2019,6 +2111,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-26 14:48:05", 
    "logo": "employer/employer/selco india_2011-09-26-15-08-25.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "SELCO India"
@@ -2041,6 +2134,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:21:57", 
    "logo": "employer/employer/sequoia capital_2011-12-12-05-59-36.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Sequoia Capital"
@@ -2061,6 +2155,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:47:48", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "shell", 
    "name": "Shell Oil"
@@ -2083,6 +2178,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-27 15:03:44", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Sony Corporation"
@@ -2105,6 +2201,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-05 21:09:17", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "Standard & Poor's"
@@ -2125,6 +2222,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:42:59", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "stroud", 
    "name": "Stroud Consulting"
@@ -2150,6 +2248,7 @@
    ], 
    "date_created": "2011-07-08 00:09:24", 
    "logo": "employer/employer/susquehanna international group_2011-08-24-15-31-30.png", 
+   "size": null, 
    "careers_website": "http://sig.com/campus.aspx", 
    "slug": "sig", 
    "name": "Susquehanna International Group"
@@ -2170,6 +2269,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:03", 
    "logo": "employer/employer/teach for america_2011-09-04-00-02-44.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "tfa", 
    "name": "Teach for America"
@@ -2195,6 +2295,7 @@
    ], 
    "date_created": "2011-12-02 02:54:10", 
    "logo": "employer/employer/tesla motors_2011-12-02-02-54-10.png", 
+   "size": null, 
    "careers_website": "http://www.teslamotors.com/about/careers", 
    "slug": "tesla", 
    "name": "Tesla Motors"
@@ -2221,6 +2322,7 @@
    ], 
    "date_created": "2011-07-08 00:08:02", 
    "logo": "employer/employer/thomson reuters_2011-08-27-12-05-11.png", 
+   "size": null, 
    "careers_website": "http://careers.thomsonreuters.com/students/", 
    "slug": "tr", 
    "name": "Thomson Reuters"
@@ -2250,6 +2352,7 @@
    ], 
    "date_created": "2011-09-24 17:29:38", 
    "logo": "employer/employer/tower research capital_2011-09-24-17-29-38.png", 
+   "size": null, 
    "careers_website": "http://www.tower-research.com/Careers.html", 
    "slug": "tower", 
    "name": "Tower Research Capital"
@@ -2273,6 +2376,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-05 20:10:15", 
    "logo": "", 
+   "size": null, 
    "careers_website": null, 
    "slug": null, 
    "name": "TriZetto"
@@ -2293,6 +2397,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-29 17:49:24", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Two Sigma Investments"
@@ -2319,6 +2424,7 @@
    ], 
    "date_created": "2011-10-04 07:47:59", 
    "logo": "employer/employer/ubs_2011-10-04-07-47-59.png", 
+   "size": null, 
    "careers_website": "http://www.ubs.com/1/e/career_candidates/graduate_and_intern.html", 
    "slug": "ubs", 
    "name": "UBS"
@@ -2345,6 +2451,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-27 12:24:42", 
    "logo": "employer/employer/umeqo_2011-10-03-19-51-42.gif", 
+   "size": null, 
    "careers_website": "http://www.umeqo.com/", 
    "slug": "umeqo", 
    "name": "Umeqo"
@@ -2365,6 +2472,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:48:52", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "UTC", 
    "name": "United Technologies Corporation"
@@ -2385,6 +2493,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-31 19:02:01", 
    "logo": "employer/employer/upop (undergraduate practice opp. prgm.)_2011-09-04-00-03-56.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "upop", 
    "name": "UPOP (Undergraduate Practice Opp. Prgm.)"
@@ -2405,6 +2514,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:20:48", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "usaf", 
    "name": "US Air Force"
@@ -2425,6 +2535,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 10:41:15", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "usarmy", 
    "name": "US Army"
@@ -2445,6 +2556,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:21:31", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "usnavy", 
    "name": "US Navy"
@@ -2465,6 +2577,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:42:40", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "vecna", 
    "name": "Vecna"
@@ -2487,6 +2600,7 @@
    "offered_job_types": [], 
    "date_created": "2011-09-26 14:47:34", 
    "logo": "employer/employer/venture for america_2011-09-26-15-05-11.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Venture For America"
@@ -2509,6 +2623,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:25:49", 
    "logo": "employer/employer/vmware_2011-12-12-05-56-34.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "VMWare"
@@ -2539,6 +2654,7 @@
    ], 
    "date_created": "2011-08-28 13:25:56", 
    "logo": "employer/employer/weiss asset management_2011-09-09-10-49-37.png", 
+   "size": null, 
    "careers_website": "http://weissasset.com/internships.html", 
    "slug": "weiss", 
    "name": "Weiss Asset Management"
@@ -2559,6 +2675,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:25:27", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "worldbank", 
    "name": "World Bank"
@@ -2581,6 +2698,7 @@
    "offered_job_types": [], 
    "date_created": "2011-10-13 23:25:15", 
    "logo": "employer/employer/world wide financial recruiting services_2011-10-13-23-27-58.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "World Wide Financial Recruiting Services"
@@ -2603,6 +2721,7 @@
    "offered_job_types": [], 
    "date_created": "2011-12-12 05:26:57", 
    "logo": "employer/employer/zanbato_2011-12-12-06-11-59.png", 
+   "size": null, 
    "careers_website": "", 
    "slug": "", 
    "name": "Zanbato"
@@ -2623,6 +2742,7 @@
    "offered_job_types": [], 
    "date_created": "2011-08-29 11:25:50", 
    "logo": "", 
+   "size": null, 
    "careers_website": "", 
    "slug": "zynga", 
    "name": "Zynga"
