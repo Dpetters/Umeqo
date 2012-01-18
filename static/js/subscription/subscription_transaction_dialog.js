@@ -20,7 +20,7 @@ function handle_open_transaction_dialog_link_click(e){
     transaction_dialog.html(DIALOG_AJAX_LOADER);
 
     var transaction_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-    var json_data = {'action':$(this).attr("data-action"), 'subscription_type':$(this).attr("data-subscription-type")}
+    var json_data = {'action':$(this).attr("data-action")}
     
     $.ajax({
         type:'GET',
@@ -40,6 +40,7 @@ function handle_open_transaction_dialog_link_click(e){
         },
         success: function (data) {
             transaction_dialog.html(data);
+
             subscription_form_validator = $("#subscription_form").validate({
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({
@@ -79,20 +80,20 @@ function handle_open_transaction_dialog_link_click(e){
                 unhighlight: unhighlight,
                 errorPlacement: place_table_form_field_error,
                 rules: {
-                    name: {
+                    recruiter_name: {
                         required: true
                     },
-                    email: {
+                    recruiter_email: {
                         required: true,
                         email: true
                     },
-                    body: {
-                        required: true
-                    },
-                    employer: {
+                    name: {
                         required: true
                     },
                     employer_size: {
+                        required: true
+                    },
+                    body: {
                         required: true
                     },
                 },

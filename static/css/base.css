@@ -326,6 +326,16 @@ input[type=text], input[type=password] {
 .form_table td {
     text-align: left;
 }
+.form_table td label.no_field {
+    margin-left:25px;
+    padding-right:0px;
+    position:relative;
+    bottom:1px;
+}
+.form_table th {
+    vertical-align: bottom;
+    text-align: right;
+}
 .form_table th {
     vertical-align: bottom;
     text-align: right;
@@ -333,6 +343,11 @@ input[type=text], input[type=password] {
 .form_table th label {
     margin-bottom: 7px;
     display: block;
+}
+.form_table th label.no_field{
+    margin-bottom:0px;
+    position:relative;
+    bottom:1px;
 }
 .sub_header_message {
     padding-left: 6px;

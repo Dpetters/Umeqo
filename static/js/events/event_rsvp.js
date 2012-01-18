@@ -110,7 +110,7 @@ $('#rsvp_no').live('click', function(e) {
 $(document).ready(function(){
     if (get_parameter_by_name("rsvp")=="true"){
         rsvp_mouseout = true;
-        $("#rsvp_yes").click();
+        $("#rsvp_yes, #rsvp_button").click();
     }
     if (get_parameter_by_name("rsvp")=="false"){
         rsvp_mouseout = true;
