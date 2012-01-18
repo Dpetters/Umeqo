@@ -113,11 +113,10 @@ span.img img {
 }
 div.center {
     text-align: center;
-    padding-top: 50px;
     width: 940px;
     margin: 0 auto;
 }
-strong {
+strong, #landing_beta_logo {
     color: #FFF;
     text-shadow: 0 -1px 0 #000, 0 0 5px rgba(255,255,255,0.3);
     font-weight: 600;
@@ -337,4 +336,19 @@ label.required span.error {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
+}
+#landing_beta_logo {
+    position: absolute;
+    font-size: 18px;
+    color: #FFF;
+    top: 64px;
+    letter-spacing: 3px;
+    
+}
+#landing_logo {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 497px;
 }
