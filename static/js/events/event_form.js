@@ -721,7 +721,7 @@ $(document).ready(function() {
     $("#id_rsvp_message").placeholder();
     $("#event_scheduler tr:nth-child(odd) td").css("border-color", "#DDD #EEE #EEE");
     $("#event_scheduler tr:nth-child(even) td").css("border-color", "#EEE #EEE #DDD");
-    if(EDIT_FORM && $("#id_include_and_more").attr("checked")=="checked"){
+    if(EDIT_FORM && $("#id_include_and_more").attr("checked")=="checked" && $("#id_attending_employers").val()){
         $("#attending_employers").append('<div id="and_more"><p>and more...</p></div>');
     }
 });

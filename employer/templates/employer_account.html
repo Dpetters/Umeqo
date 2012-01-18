@@ -121,7 +121,7 @@
 {% block account_settings_tab_definitions %}
     <div id="tabs-3">
         <h3 class="no_top_margin">Your Subscription</h3>
-        <a id="modify_subscription" href="{% url subscription_list %}" class="dark_button">{{subscription_button_text}}</a>
+        <a id="modify_subscription" href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>
         <div id="subscription_info">
             {% if subscription %}
                 <span id="subscription_name">{{subscription.subscription.name}}</span>
@@ -153,6 +153,10 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+    <h3>Subscription Cancellation</h3>
+        <div id="transactions">
+            <p>To cancel your subscription, please email us at contact@umeqo.com.</p>
         </div>
     </div>
 {% endblock %}

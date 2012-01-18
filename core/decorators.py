@@ -145,4 +145,3 @@ def render_to(template=None, mimetype=None):
                         context_instance=RequestContext(request), mimetype=mimetype)
         return wrapper
     return renderer
-

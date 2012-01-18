@@ -52,6 +52,17 @@
         </div>
         <table class="form_table">
             <tr>
+                <th><strong>Privacy:</strong></th>
+                <td colspan="3" class="grande">
+                    {% if user.recruiter.employer.visible%}
+                        Public
+                     {% else %}
+                        Private
+                    {% endif %}
+                    <span></span>
+                </td>
+            </tr>
+            <tr>
                 <th>{{form.name.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
@@ -88,8 +99,8 @@
             </tr>
             <tr>
                 <th><strong>Note:</strong></th>
-                <td colspan="3" class="grande">
-                    <span>To change the logo please email us a the new image to contact@umeqo.com.</span>
+                <td colspan="3">
+                    <p id="change_logo">To change the logo please email us the new image to contact@umeqo.com.</p>
                 </td>
             </tr>
             <tr>

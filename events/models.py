@@ -26,8 +26,11 @@ class Event(core_mixins.DateCreatedTracking):
     edits = models.ManyToManyField("core.Edit", null=True, blank=True)
     
     # Events Created by Campus Orgs will need to know which Employers are coming
-    attending_employers = models.ManyToManyField("employer.Employer", null=True, blank=True)
+    attending_employers = models.ManyToManyField("employer.Employer", null=True, blank=True, related_name="events_attending")
+    previously_attending_employers = models.ManyToManyField("employer.Employer", null=True, blank=True)
+    
     include_and_more = models.BooleanField(default=False)
+    and_more_url = models.URLField(blank=True, null=True)
 
     # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
@@ -89,10 +92,11 @@ def notify_about_event(instance, notice_type, employers):
     for employer in employers:
         employername_table[str(employer.id)] = employer.name
         for to_user in to_users:
-            if to_user.id in subscribers_by_user:
-                subscribers_by_user[to_user.id].append(employer.id)
-            else:
-                subscribers_by_user[to_user.id] = [employer.id]
+            if to_user.student in employer.subscribers.all():
+                if to_user.id in subscribers_by_user:
+                    subscribers_by_user[to_user.id].append(employer.id)
+                else:
+                    subscribers_by_user[to_user.id] = [employer.id]
     subscription_batches = {}
     for userid,employerids in subscribers_by_user.items():
         key = ':'.join(map(lambda n: str(n), employerids))

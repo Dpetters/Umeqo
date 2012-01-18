@@ -408,7 +408,7 @@
             {% if event.description %}{{event.description|safe}}{% else %}No description provided.{% endif %}
         </div>
     </div>
-    {% if campus_org_event %}
+    {% if campus_org_event and attending_employers.all %}
     <div id="event_attending_employers" class="main_block">
         <div class="main_block_header">
             <span class="main_block_header_title">Attending Employers</span>

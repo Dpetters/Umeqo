@@ -9,6 +9,8 @@ Subscription Choices |
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_list.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/free_subscription_info_dialog.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_transaction_dialog.css" />
 {% endcompress %}
 <script>
@@ -16,6 +18,8 @@ Subscription Choices |
     var SUBSCRIPTION_TRANSACTION_URL = "{% url subscription_transaction_dialog %}";
 </script>
 {% compress js %}
+<script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/free_subscription_info_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_transaction_dialog.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_list.js"></script>
@@ -99,7 +103,6 @@ Subscription Choices |
                             <a href="javascript:void(0)" 
                             data-action="{% if paid_subscription_action %}{{paid_subscription_action}}{% else %}subscribe{% endif %}" 
                             data-title="{{transaction_dialog_title}}"
-                            data-subscription-type="annual" 
                             class="btn open_transaction_dialog_link {{paid_subscription_class}}">
                             {% if paid_subscription_button_text %}
                                 {{paid_subscription_button_text}}
