@@ -244,8 +244,6 @@ SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
 }
 
-CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
