@@ -51,4 +51,4 @@ def resume_processing_helper(pdf_file_path):
             return RESUME_PROBLEMS.UNPARSABLE
         return
     except Exception:
-        return RESUME_PROBLEMS.HACKED
+        return RESUME_PROBLEMS.UNPARSABLE
