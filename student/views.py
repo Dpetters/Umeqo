@@ -251,6 +251,7 @@ def student_registration(request, backend = RegistrationBackend(), form_class = 
         form = form_class(data=request.POST)
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
+            form.cleaned_data['course'] = 1L
             register_student(request, **form.cleaned_data)
             if request.is_ajax():
                 data = {
