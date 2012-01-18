@@ -95,7 +95,7 @@ $('.student_quick_registration_link').live('click', function (e) {
     }else{
         next += "?";
     }
-    alert("whabada");
+    
     if ($(this).attr("id") == "rsvp_button"){
         $("input[name=next]").val(next + "rsvp=true")
     } else if ($(this).attr("id") == "drop_resume_button"){
