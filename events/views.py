@@ -386,22 +386,23 @@ def event_edit(request, id=None, extra_context=None):
     if not admin_of_event(event, request.user):
         return HttpResponseForbidden('You are not allowed to edit this event.')  
     if is_recruiter(event.owner):
-        form_class = EventForm              
+        form_class = EventForm
     elif is_campus_org(event.owner):
         context['max_industries'] = s.EP_MAX_INDUSTRIES
         context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
     if request.method == 'POST':
-        attending_employers_before = list(event.attending_employers.all())[:]
         form = form_class(request.POST, instance=event)
         if form.is_valid():
             event = form.save(commit=False)
             event.edits.add(Edit.objects.create(user=request.user))
+            for employer in event.attending_employers.all():
+                event.previously_attending_employers.add(employer)
             event.save()
             form.save_m2m()
             # Update index
             event.save()
-            notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(attending_employers_before)])
+            notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(event.previously_attending_employers.all())])
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(instance=event)

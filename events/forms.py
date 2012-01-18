@@ -1,7 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from datetime import datetime
 
-from django.forms import Form, ChoiceField, ValidationError, CharField, SelectMultiple, ModelMultipleChoiceField, DateTimeField, Textarea, ModelChoiceField, ModelForm, TextInput, Select, TypedChoiceField, FloatField
+from django.forms import Form, ChoiceField, ValidationError, CharField, SelectMultiple, URLField, ModelMultipleChoiceField, DateTimeField, Textarea, ModelChoiceField, ModelForm, TextInput, Select, TypedChoiceField, FloatField
 from django.forms.widgets import RadioSelect, HiddenInput
 from django.utils.translation import ugettext_lazy as _
 
@@ -66,7 +66,8 @@ class EventFilteringForm(Form):
     
 class CampusOrgEventForm(EventForm):
     attending_employers = ModelMultipleChoiceField(label="Attending Employers:", widget=SelectMultiple(attrs={'tabindex':9}), queryset = Employer.objects.all(), required=False)
-
+    and_more_url = URLField(widget=TextInput(attrs={'placeholder':'choose web address..'}), required=False)
+    
     class Meta:
         fields = ('name', 
                   'start_datetime', 
@@ -76,6 +77,7 @@ class CampusOrgEventForm(EventForm):
                   'is_drop',
                   'attending_employers',
                   'include_and_more',
+                  'and_more_url',
                   'location',
                   'latitude',
                   'longitude', 

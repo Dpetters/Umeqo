@@ -2,7 +2,7 @@
     width:323px;
     padding:15px 17px 20px 0;
 }
-#subscription_notes p{
+#subscription_notes p, #features p{
     font-size:13px;
 }
 #subscription_notes h2{
@@ -16,10 +16,29 @@
     margin-top:15px;
     margin-right:7px;
 }
-#contact_us_for_pricing{
-    position:relative;
-    top:7px;
+#features{
+    height:175px;
 }
+.feature{
+    width:226px;
+    float:left;
+    padding:15px 10px;
+}
+.feature h3{
+    font-size:13px;
+}
+#testimonials{
+    padding:15px 20px;
+}
+#testimonials .testimonial{
+    width:350px;
+}
+#testimonials .testimonial em{
+    float:right;
+    margin-top:5px;
+}
+
+
 .grid a {
     text-decoration: none;
 }
@@ -276,19 +295,4 @@ section, header, hgroup, footer, .grid .btn {
 }
 .col3 section.on .style2 {
     font-size: 48px;
-}
-#features p{
-    font-size:13px;
-}
-.feature{
-    width:226px;
-    float:left;
-    padding:15px 10px;
-}
-.feature h3{
-    font-size:13px;
-}
-#firm_type{
-    position:relative;
-    bottom:12px;
 }

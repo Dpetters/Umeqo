@@ -16,8 +16,8 @@ def modify_redirect(request, redirect_to=None):
 
 def register_student(request, **args):
     new_user = RegistrationBackend().register(request, **args)
-    if args.has_key("first_name") and args.has_key("last_name"):
-        student = Student(user=new_user, first_name = args["first_name"], last_name = args["last_name"])
+    if new_user.first_name and new_user.last_name:
+        student = Student(user=new_user, first_name = new_user.first_name, last_name = new_user.last_name)
     else:
         student = Student(user=new_user)
     umeqo = Employer.objects.get(name="Umeqo")

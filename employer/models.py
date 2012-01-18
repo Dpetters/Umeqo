@@ -11,6 +11,7 @@ from employer import enums as employer_enums
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
+from subscription.choices import EMPLOYER_SIZE_CHOICES
 from subscription.models import EmployerSubscription
 
 
@@ -28,6 +29,7 @@ class Employer(core_mixins.DateTracking):
     
     # Null Fields
     offered_job_types = models.ManyToManyField(EmploymentType, blank=True, null=True) 
+    size = models.CharField("Firm Size", choices = EMPLOYER_SIZE_CHOICES, max_length = 20, blank=True, null=True)
     careers_website = models.URLField(verify_exists=False, blank=True, null=True)
     starred_students = models.ManyToManyField("student.Student", blank=True, null=True)
     

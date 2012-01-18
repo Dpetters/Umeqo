@@ -5,57 +5,47 @@ from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
+from core.http import Http403
+from subscription.choices import EMPLOYER_SIZE_CHOICES
 from subscription.models import EmployerSubscription
 from subscription.forms import SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
 def subscription_transaction_dialog(request, form_class = SubscriptionForm, extra_context=None):
-    if request.is_ajax():
-        if request.method=="POST":
-            if request.POST.has_key("action") and request.POST.has_key("subscription_type"):
-                action = request.POST['action']
-                if action not in subscription_templates:
-                    return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
-                subscription_type = request.POST['subscription_type']
-            else:
-                return HttpResponseBadRequest("Subscription transaction type or action is missing.")
-            
-            form = form_class(data = request.POST, user=request.user)
-            
-            if form.is_valid():
-                data = []
-                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                subject = "[sales] %s subscription request" % subscription_type
-                subscription_request_context = {'name': form.cleaned_data['name'], 'employer':form.cleaned_data['employer'], 'email': form.cleaned_data['email'], 'body': form.cleaned_data['body']}
-                html_body = render_to_string('subscription_body_request.html', subscription_request_context)
-                send_html_mail(subject, html_body, recipients)
-            else:
-                data = {'error':form.errors}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            if request.GET.has_key("action") and request.GET.has_key("subscription_type"):
-                action = request.GET['action']
-                if action not in subscription_templates:
-                    return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
-                subscription_type = request.GET['subscription_type']
-            else:
-                return HttpResponseBadRequest("Subscription transaction type or action is missing.")
-            
-            initial = {}
+    if not request.is_ajax():
+        raise Http403
+    if request.method=="POST":
+        if not request.POST.has_key("action"):
+            return HttpResponseBadRequest("Action is missing from the request POST.")
+        action = request.POST['action']
+        if action not in subscription_templates:
+            return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
+        form = form_class(data = request.POST, user=request.user)
+        if form.is_valid():
             if is_recruiter(request.user):
-                initial['name'] = "%s %s" % (request.user.first_name, request.user.last_name,)
-                initial['email'] = request.user.email
-                initial['employer'] = request.user.recruiter.employer
-            
-            body_context = {'subscription_type':subscription_type}
-            initial['body'] = render_to_string(subscription_templates[action], body_context)
-            
-            context = {'form':form_class(initial=initial, user=request.user)}
-            
-            context.update(extra_context or {})
-            return context
+                employer = request.user.recruiter.employer
+                employer.size = form.cleaned_data['employer_size']
+                employer.save()
+            data = []
+            recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+            subject = "[Umeqo Sales] %s wants to %s" % (form.cleaned_data['employer_name'], action)
+            subscription_email_context = {'form':form}
+            html_body = render_to_string('subscription_body_request.html', subscription_email_context)
+            send_html_mail(subject, html_body, recipients)
+        else:
+            data = {'errors':form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseBadRequest("Request must be ajax.")
+        if not request.GET.has_key("action"):
+            raise Http403("Action is missing from the request POST.")
+        action = request.GET['action']
+        if action not in subscription_templates:
+            raise Http403("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
+        initial = {}
+        initial['message_body'] = render_to_string(subscription_templates[action], {})
+        context = {'form':form_class(initial=initial, user=request.user)}
+        context.update(extra_context or {})
+        return context
              
 @render_to("event_subscription_info_dialog.html")
 def free_subscription_info_dialog(request, extra_context=None):

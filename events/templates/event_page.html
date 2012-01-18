@@ -408,7 +408,7 @@
             {% if event.description %}{{event.description|safe}}{% else %}No description provided.{% endif %}
         </div>
     </div>
-    {% if campus_org_event %}
+    {% if campus_org_event and attending_employers.all %}
     <div id="event_attending_employers" class="main_block">
         <div class="main_block_header">
             <span class="main_block_header_title">Attending Employers</span>
@@ -418,7 +418,13 @@
                 {% include "employer_logo.html" %}
             {% endfor %}
             {% if event.include_and_more %}
-                <div id="and_more"><p>and more...</p></div>
+                <div id="and_more">
+                    {% if event.and_more_url %}
+                        <p><a href="{{ event.and_more_url}}">and more...</a></p>
+                    {% else %}
+                        <p>and more...</p>
+                    {% endif %}
+                </div>
             {% endif %}
         </div>
     </div>

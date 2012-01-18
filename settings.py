@@ -120,11 +120,6 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-# URL prefix for admin static files -- CSS, JavaScript and images.
-# Make sure to use a trailing slash.
-# Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
-
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
@@ -185,8 +180,6 @@ COMPRESS_CSS_FILTERS = (
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
-
-COUNTRIES_FLAG_PATH = STATIC_URL + 'images/flags/%s.png'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '=myl84m2+qr&d1&w^$(!ks0=6$6zlj4o438$c$_snv_45bpwow'
