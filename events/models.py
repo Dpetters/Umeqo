@@ -112,12 +112,12 @@ def notify_about_event(instance, notice_type, employers):
                 'has_word': has_word,
                 'event': instance,
             })
-            
+"""
 @receiver(signals.post_save, sender=Event)
 def send_cancel_event_notifications(sender, instance, created, raw, **kwargs):
     if not created and instance.cancelled and not raw:
         notify_about_event(instance, 'cancelled_event', instance.attending_employers.all())
-
+"""
 
 class RSVP(models.Model):
     attending = models.BooleanField(default=True)

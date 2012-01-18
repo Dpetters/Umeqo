@@ -89,10 +89,17 @@ $("#id_resume").live('change', function() {
     
 $('.student_quick_registration_link').live('click', function (e) {
     action = $(this).attr("data-action");
+    var next = $("input[name=next]").val();
+    if (next.indexOf("?")!=-1){
+        next += "&";
+    }else{
+        next += "?";
+    }
+    alert("whabada");
     if ($(this).attr("id") == "rsvp_button"){
-        $("input[name=next]").val($("input[name=next]").val() + "?rsvp=true")
+        $("input[name=next]").val(next + "rsvp=true")
     } else if ($(this).attr("id") == "drop_resume_button"){
-        $("input[name=next]").val($("input[name=next]").val() + "?drop=true")
+        $("input[name=next]").val(next + "?drop=true")
     }
     create_student_quick_registration_dialog = open_create_student_quick_registration_dialog();
     create_student_quick_registration_dialog.dialog("option", "title", $(this).attr("data-title"));    
