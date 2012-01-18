@@ -44,6 +44,8 @@ STATICFILES_DIRS = (
 
 STATIC_URL = ""
 
+COUNTRIES_FLAG_PATH = STATIC_URL + 'images/flags/%s.png'
+
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
