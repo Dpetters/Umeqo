@@ -301,12 +301,6 @@ label.required span.error {
 .module h2 {
     margin-top: 0;
 }
-#invite_code {
-    margin-top: 10px;
-}
-#invite_code p {
-    margin-top: 0;
-}
 #innovations {
     padding-top: 20px;
 }
@@ -350,5 +344,5 @@ label.required span.error {
     text-align: center;
     margin: 0 auto;
     padding-top: 50px;
-    width: 497px;
+    width: 940px;
 }
