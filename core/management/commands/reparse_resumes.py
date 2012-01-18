@@ -1,45 +1,33 @@
-import os
-import re
-import subprocess
-
 from optparse import make_option
 
-from django.conf import settings
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 
+from student.enums import RESUME_PROBLEMS
 from student.models import Student
+from student.view_helpers import process_resume
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--win', action='store_true', dest='win', default=False, help='Use the version of pdftotext for windows.'),
+        make_option('--dry', action='store_true', dest='dry', default=False, help='Print out the names of people whose resumes could not be parsed for keywords.'),
     )
     
     def handle(self, *args, **options):
-        failed = []
-        for student in Student.objects.filter(profile_created=True, user__is_active=True):
-            try:
-                pdf_file_path = settings.MEDIA_ROOT + student.resume.name
-                txt_file_path = pdf_file_path.replace(".pdf", ".txt")
-                
-                subprocess.call(["pdftotext", pdf_file_path, txt_file_path])
-                
-                txt_file = open(txt_file_path, "r")
-                resume_text = txt_file.read()
-                # Words that we want to parse out of the resume keywords
-                stopWords = set(open(settings.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
-                
-                # Get rid of stop words
-                fullWords = re.findall(r'[a-zA-Z]{3,}', resume_text)
-                result = ""
-                count = 0
-                for word in fullWords:
-                    word = word.lower()
-                    if word not in stopWords:
-                        count += 1
-                        result += " " + word
-    
-                student.keywords = result
-                student.save()
-            except Exception:
-                failed.append(student)
-        print failed
+        hacked_resumes = []
+        unparsable_resumes = []
+        
+        for student in Student.objects.filter(profile_created=True, user__is_active=True).filter(Q(keywords=None) | Q(keywords="")):
+            name = "%s %s" % (student.first_name, student.last_name)
+            if options['dry']:
+                print name
+            else:
+                results = process_resume(student)
+                if results == RESUME_PROBLEMS.HACKED:
+                    hacked_resumes.append(name)
+                elif results == RESUME_PROBLEMS.UNPARSABLE:
+                    unparsable_resumes.append(name)
+        if hacked_resumes:
+            print "Hacked resumes: %s" % (", ".join(hacked_resumes))
+        if unparsable_resumes:
+            print "Unparsable resumes: %s" % (", ".join(unparsable_resumes))

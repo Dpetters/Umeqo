@@ -54,15 +54,24 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
     context = {}
     if request.is_ajax():
         if request.method == "POST":
+            data = {}
             form = form_class(data=request.POST, files=request.FILES)
             if form.is_valid():
-                resume_status = process_resume_data(request.FILES['resume'])
-                data = {'unparsable_resume':False}
-                if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
-                    data['errors'] = {'resume': messages.resume_problem}
+                # process_resume_data returns either an error or the keywords
+                resume_parsing_results = process_resume_data(request.FILES['resume'])
+                # A hacked error is unrecoverable
+                if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
+                    errors = {'resume': messages.resume_problem}
+                    data['errors'] = errors
                 else:
-                    if resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ignore_unparsable_resume'] == "false":
+                    # If the resume is not unparsable, then resume_parsing_results
+                    # contains the keywords
+                    keywords = None
+                    data['unparsable_resume'] = False
+                    if resume_parsing_results == student_enums.RESUME_PROBLEMS.UNPARSABLE:
                         data['unparsable_resume'] = True
+                    else:
+                        keywords = resume_parsing_results
                     user_info =  {'username': request.POST['email'],
                                   'first_name': request.POST['first_name'],
                                   'last_name': request.POST['last_name'],
@@ -74,20 +83,22 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
                     student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
                     student.first_major = Course.objects.get(id=request.POST['first_major'])
                     student.gpa = request.POST['gpa']
-                    student.profile_created = True
                     file_content = ContentFile(request.FILES['resume'].read())
                     student.resume.save(request.FILES['resume'].name, file_content)
+                    if keywords:
+                        student.keywords = keywords
+                    student.profile_created = True
                     student.save()
                     for attendee in Attendee.objects.filter(email=student.user.email):
                         attendee.student = student
                         attendee.save()
                     event = Event.objects.get(id=request.POST['event_id'])
                     action = request.POST['action']
-                    DroppedResume.objects.create(student=student, event=event)                
+                    DroppedResume.objects.create(student=student, event=event)
                     if action == "rsvp":
                         RSVP.objects.create(student=student, event=event)
             else:
-                data = {'errors':form.errors}
+                data['errors'] = form.errors
             return HttpResponse(simplejson.dumps(data), mimetype="text/html")
         context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
         action = request.GET['action']
@@ -102,7 +113,7 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
 @require_GET
 @render_to('student_quick_registration_done.html')
 def student_quick_registration_done(request, extra_context=None):
-    context = {"unparsable_resume":request.GET['unparsable_resume']}
+    context = {'unparsable_resume':request.GET.get("unparsable_resume", False)}
     context.update(extra_context or {})
     return context
 
@@ -251,6 +262,7 @@ def student_registration(request, backend = RegistrationBackend(), form_class = 
         form = form_class(data=request.POST)
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
+            form.cleaned_data['course'] = 1L
             register_student(request, **form.cleaned_data)
             if request.is_ajax():
                 data = {
