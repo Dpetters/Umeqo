@@ -98,7 +98,7 @@ LOGGING = {
         },
         'sentry': {
             'level': 'DEBUG',
-            'class': 'sentry.client.handlers.SentryHandler',
+            'class': 'raven.client.django.handlers.SentryHandler',
             'formatter': 'standard'
         },
         'console': {
