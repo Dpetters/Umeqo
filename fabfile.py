@@ -167,6 +167,7 @@ def update():
                 else:
                     run("git pull origin master")
                 run("python manage.py migrate --all")
+                restart_apache()
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
