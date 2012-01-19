@@ -281,7 +281,6 @@ INSTALLED_APPS = (
     'campus_org',
     'subscription',
     'ckeditor',
-    'sentry',
     'sentry.client',
     'sentry.plugins.sentry_servers',
     'sentry.plugins.sentry_sites',
