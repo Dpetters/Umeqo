@@ -1,26 +1,23 @@
-try:
-    import ldap
-except:
-    pass
-
 from django import forms
 from django.conf import settings as s
 from django.utils.translation import ugettext as _
 from django.core.mail import EmailMessage
+from django.contrib.auth.models import User
 
-from core.form_helpers import decorate_bound_field
-from student.models import Student, StudentPreferences, StudentInvite, StudentDeactivation
 from campus_org.form_helpers import campus_org_types_as_choices
 from campus_org.models import CampusOrg
+from core import messages as m
+from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
+from core.form_helpers import decorate_bound_field
+from core.fields import PdfField
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
 from core.view_helpers import does_email_exist
+from countries.models import Country
 from employer.models import Employer
-from core.fields import PdfField
 from registration.models import RegException
 from student import enums as student_enums
-from countries.models import Country
-from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
-from core import messages as m
+from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap
+from student.models import Student, StudentPreferences, StudentDeactivation
 
 decorate_bound_field()
 
@@ -33,12 +30,15 @@ class StudentAccountDeactivationForm(forms.ModelForm):
     class Meta:
         model = StudentDeactivation
         fields = ['suggestion']
-    
-class StudentRegistrationForm(forms.Form):
-
+      
+class StudentRegistrationForm(forms.ModelForm):
     email = forms.EmailField(label="MIT email:", widget=forms.TextInput(attrs={'tabindex':1}))
-    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
+    password = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
 
+    class Meta:
+        fields = ('email', 'password')
+        model=User
+        
     def clean_email(self):
         email = self.cleaned_data['email']
         
@@ -46,8 +46,7 @@ class StudentRegistrationForm(forms.Form):
             raise forms.ValidationError(_(m.email_already_registered))
         
         if s.DEBUG:
-            if email[-len("mit.edu"):] != "mit.edu" \
-            and email[-len("umeqo.com"):] != "umeqo.com":
+            if email[-len("mit.edu"):] != "mit.edu" and email[-len("umeqo.com"):] != "umeqo.com":
                 raise forms.ValidationError(_(m.must_be_mit_email))
         elif email[-len("mit.edu"):] != "mit.edu":
             raise forms.ValidationError(_(m.must_be_mit_email))
@@ -68,11 +67,7 @@ class StudentRegistrationForm(forms.Form):
             # is not a student's. 
             res = [None]
             try:
-                con = ldap.open('ldap.mit.edu')
-                con.simple_bind_s("", "")
-                dn = "dc=mit,dc=edu"
-                uid = email.split("@")[0]
-                res = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
+                res = get_student_ldap_info(email.split("@")[0])
             except Exception, e:
                 try:
                     rcpts = [mail_tuple[1] for mail_tuple in s.MANAGERS]
@@ -84,39 +79,17 @@ class StudentRegistrationForm(forms.Form):
             if not res or (res[0] != None and res[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
                 raise forms.ValidationError(m.must_be_mit_student)
         return self.cleaned_data['email']
-    
+
     def clean(self):
         if self.cleaned_data.has_key("email"):
             try:
-                con = ldap.open('ldap.mit.edu')
-                con.simple_bind_s("", "")
-                dn = "dc=mit,dc=edu"
-                uid = self.cleaned_data["email"].split("@")[0]
-                res = con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
-                fname = res[0][1]['cn'][0].split(" ")[0]
-                lname = res[0][1]['cn'][0].split(" ")[-1]
-                try:
-                    c = Course.objects.get(ou = res[0][1]['ou'][0])
-                    self.cleaned_data['course'] = c
-                except Exception, e:
-                    pass
-                self.cleaned_data["first_name"] = fname
-                self.cleaned_data["last_name"] = lname
+                self.cleaned_data["first_name"], self.cleaned_data["last_name"], course = get_student_data_from_ldap(self.cleaned_data["email"].split("@")[0])
+                if course:
+                    self.cleaned_data['course'] = course
             except Exception, e:
                 pass
         return self.cleaned_data
-            
-class BetaStudentRegistrationForm(StudentRegistrationForm):
-    invite_code = forms.CharField(label="Invite Code:", widget=forms.TextInput(attrs={'tabindex':2}))
-        
-    def clean_invite_code(self):
-        try:
-            i = StudentInvite.objects.get(code=self.cleaned_data['invite_code'])
-        except StudentInvite.DoesNotExist:
-            raise forms.ValidationError(m.invalid_invite_code)
-        if i.used:
-            raise forms.ValidationError(m.invite_code_already_used)          
-        return self.cleaned_data['invite_code']
+
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
     
@@ -133,31 +106,23 @@ class StudentUpdateResumeForm(forms.ModelForm):
         model = Student
 
 class StudentBaseAttributeForm(forms.ModelForm):
-    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested in:", \
-                            queryset = Industry.objects.all(), required = False)
-    
-    previous_employers = forms.ModelMultipleChoiceField(label="Previous employers:", \
-                            queryset = Employer.objects.all(), required = False)
-    
-    campus_involvement = forms.ModelMultipleChoiceField(label="Campus involvement:", \
-                            queryset = CampusOrg.objects.all(), required = False)
-    
-    languages = forms.ModelMultipleChoiceField(label="Languages:", \
-                            queryset = Language.objects.all(), required = False)
-    
-    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of citizenship:", \
-                            queryset = Country.objects.all(), required=False)
+    industries_of_interest = forms.ModelMultipleChoiceField(label="Interested in:", queryset = Industry.objects.all(), required = False)
+    previous_employers = forms.ModelMultipleChoiceField(label="Previous employers:", queryset = Employer.objects.all(), required = False)
+    campus_involvement = forms.ModelMultipleChoiceField(label="Campus involvement:", queryset = CampusOrg.objects.all(), required = False)
+    languages = forms.ModelMultipleChoiceField(label="Languages:", queryset = Language.objects.all(), required = False)
+    countries_of_citizenship = forms.ModelMultipleChoiceField(label="Countries of citizenship:", queryset = Country.objects.all(), required=False)
        
     def __init__(self, *args, **kwargs):
         super(StudentBaseAttributeForm, self).__init__(*args, **kwargs)
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
+        
 
 class StudentBodyStatisticsForm(forms.Form):
     y_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_Y_AXIS, initial=student_enums.GPA)
     x_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_X_AXIS, initial=student_enums.SCHOOL_YEAR)
 
-class StudentProfileForm(StudentBaseAttributeForm):
-    # Required Info
+
+class StudentProfileBaseForm(forms.ModelForm):
     first_name = forms.CharField(label="First name:", max_length = 20)
     last_name = forms.CharField(label="Last name:", max_length = 30)
     school_year = forms.ModelChoiceField(label="School year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
@@ -166,16 +131,32 @@ class StudentProfileForm(StudentBaseAttributeForm):
     first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
     gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5, decimal_places=2)
     resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
-    
-    # Academic Info
-    second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
+
+    class Meta:
+        fields = ('first_name',
+                   'last_name',
+                   'school_year',
+                   'graduation_year',
+                   'graduation_month',
+                   'first_major',
+                   'gpa',
+                   'resume',
+                    )
+        model = Student
+        
+class StudentQuickRegistrationForm(StudentProfileBaseForm, StudentRegistrationForm):
+    email = forms.EmailField(label="MIT email:")
+    password = forms.CharField(label="Choose Password:", widget=forms.PasswordInput(render_value=False))
+    event_id = forms.CharField(widget=forms.HiddenInput)
+    action = forms.CharField(widget=forms.HiddenInput)
+            
+class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
     act = forms.ChoiceField(label="ACT:", required = False, choices=[('','---')]+[(x,x) for x in range(36,0,-1)])
     sat_m = forms.ChoiceField(label="SAT Math:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_v = forms.ChoiceField(label="SAT Verbal:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_w = forms.ChoiceField(label="SAT Writing:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
-    
-    # Work-Related Info
     looking_for = forms.ModelMultipleChoiceField(label="Looking for:", queryset = EmploymentType.objects.all(), required = False)
+    second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
     
     website = forms.URLField(label="Personal Website:", required=False)
     older_than_21 = forms.ChoiceField(label="Older than 21:", choices = SELECT_YES_NO_CHOICES, required = False)

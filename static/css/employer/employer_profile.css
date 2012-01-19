@@ -1,23 +1,16 @@
 #logo{
     max-width:180px;
 }
-#logo_label{
-    margin-bottom:45px;
-}
-
 #profile_form .main_block_content{
     padding: 10px 20px 0px 25px
 }
-
 #profile_form .form_table{
+    margin-top:20px;
     padding-left:18px;
     padding-right:20px;
 }
-#profile_form .form_table th label{
-    margin-bottom:6px;
-}
 #profile_form .form_table th #logo_label{
-    margin-bottom:33px;
+    margin-bottom:45px;
 }
 #profile_form .form_table th{
     padding-left:10px;

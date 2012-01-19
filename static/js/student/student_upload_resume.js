@@ -43,24 +43,20 @@ $(document).ready( function() {
                 up.xhr.upload.addEventListener('load', up.uploadLoaded , false);
             },
             dragover : function (e) {
-                console.log("dragover");
                 up.noop(e);
             },
             dragenter : function (e) {
-                console.log("dragenter");
                 up.noop(e);
                 up.$dropbox.removeClass('success').removeClass('error').addClass('hover');
                 up.$status.html("Drag & Drop PDF File Here");
                 return false;
             },
             dragleave : function (e) {
-            	console.log("dragleave");
                 up.noop(e);
                 up.$dropbox.removeClass('hover');
                 return false;
             },
             drop : function (e) {
-            	console.log("dropped!")
                 up.noop(e);
                 up.$dropbox.removeClass('hover').addClass('uploading');
 
@@ -159,6 +155,7 @@ $(document).ready( function() {
             onload : function (e) {
                 data = $.parseJSON(e.currentTarget.responseText);
                 up.uploading = false;
+                console.log(data);
                 if(data.valid) {
                     currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
                         up.$dropbox.removeClass('uploading').addClass('success');
@@ -170,6 +167,7 @@ $(document).ready( function() {
                         var $unparsable_resume_dialog = open_unparsable_resume_dialog();
                         $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
                         var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+                        console.log("about sending ajax");
                         $.ajax({
                             dataType: "html",
                             url: UNPARSABLE_RESUME_URL + "?home=true",

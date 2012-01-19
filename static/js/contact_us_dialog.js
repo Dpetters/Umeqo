@@ -56,11 +56,7 @@ $('.open_contact_us_dialog_link').live('click', function (e) {
                             hide_form_submit_loader("#contact_us_form");
                         },
                         error: function(jqXHR, textStatus, errorThrown){
-                            if(jqXHR.status==0){
-                                $(".contact_us_dialog .error_section").html(CHECK_CONNECTION_MESSAGE);
-                            }else{
-                                $(".contact_us_dialog .error_section").html(ERROR_MESSAGE);
-                            }
+                            errors_in_dialog_error_section("contact_us_dialog", jqXHR, textStatus, errorThrown);
                         },
                         success: function (data) {
                             if(data.valid) {

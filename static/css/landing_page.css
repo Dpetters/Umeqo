@@ -46,17 +46,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
-
 body {
-    background: url('/static/images/landing_bg.png') #55738d;
     font-family: Arial;
 }
 h1 {
     display: inline-block;
     width: 471px;
     height: 150px;
-    background: url('/static/images/logo_landing.png') no-repeat center center transparent;
     text-indent: -10000px;
 }
 h3.tagline { 
@@ -117,11 +113,10 @@ span.img img {
 }
 div.center {
     text-align: center;
-    padding-top: 50px;
     width: 940px;
     margin: 0 auto;
 }
-strong {
+strong, #landing_beta_logo {
     color: #FFF;
     text-shadow: 0 -1px 0 #000, 0 0 5px rgba(255,255,255,0.3);
     font-weight: 600;
@@ -225,6 +220,9 @@ a.black_button:hover {
 }
 label.required span.error {
     display:none;
+}
+#innovative{
+    padding:10px 0px;
 }
 #working, #innovative {
     font-size: 35px;
@@ -344,4 +342,19 @@ label.required span.error {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
+}
+#landing_beta_logo {
+    position: absolute;
+    font-size: 18px;
+    color: #FFF;
+    top: 64px;
+    letter-spacing: 3px;
+    
+}
+#landing_logo {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 940px;
 }

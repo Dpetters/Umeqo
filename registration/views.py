@@ -22,6 +22,10 @@ from core.signals import us_user_logged_in
 from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
+from events.models import Event
+from notification.models import NoticeType
+from employer.models import Employer
+from notification import models as notification
 
 def logout(request, login_url=None, current_app=None, extra_context=None):
     return auth_logout_then_login_view(request, login_url, current_app, extra_context)
@@ -94,7 +98,6 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
             if form.cleaned_data["recruiter"]:
                 user = User.objects.get(username=form.cleaned_data['recruiter'])
             else:
-                print CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
                 user = CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
             user.backend = s.AUTHENTICATION_BACKENDS[0]
             auth_login(request, user)
@@ -126,6 +129,21 @@ def password_change(request, password_change_form=PasswordChangeForm, extra_cont
 def activate_user(request, backend = RegistrationBackend(), success_url=None, extra_context=None, **context):
     user = backend.activate(request, **context)
     if user:
+        try:
+            event = Event.objects.get(id=s.WELCOME_EVENT_ID)
+            employer = Employer.objects.get(name="Umeqo")
+            recruiter = User.objects.get(id=s.UMEQO_RECRUITER_ID)
+            notice_type = NoticeType.objects.get(label="public_invite")
+            invite_message = 'Welcome to Umeqo! Recruiters can now send you invitations to events, and this is an example of one. To learn more, click "RSVP Attending" below.'
+            notification.send([user], notice_type, {
+                'employer': employer,
+                'recruiter': recruiter,
+                'invite_message': invite_message,
+                'event': event,
+                'name': user.first_name
+            })
+        except Event.DoesNotExist:
+            pass
         user.backend = s.AUTHENTICATION_BACKENDS[0]
         auth_login(request, user)
         us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)

@@ -11,6 +11,7 @@ Student Registration |
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
 {% endcompress %}
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_registration.js"></script>
@@ -25,10 +26,8 @@ Student Registration |
     var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
     var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
     var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
-    var INVITE_CODE_REQUIRED = "{% text_snippet 'invite_code_required' %}";
 
-    var PASSWORD_MIN_LENGTH="{{password_min_length}}";
-    var DEBUG = "{{debug}}";    
+    var PASSWORD_MIN_LENGTH="{{password_min_length}}";  
 </script>
 {% endblock %}
 
@@ -52,21 +51,12 @@ Student Registration |
                 </td>
             </tr>
             <tr>
-                <th>{{form.password1.label_tag}}</th>
+                <th>{{form.password.label_tag}}</th>
                 <td>
-                    <div class="errorspace">{{form.password1.errors}}</div>
-                    {{form.password1}}
+                    <div class="errorspace">{{form.password.errors}}</div>
+                    {{form.password}}
                 </td>
             </tr>
-            {% if form.invite_code %}
-            <tr>
-                <th>{{form.invite_code.label_tag}}</th>
-                <td>
-                    <div class="errorspace">{{form.invite_code.errors}}</div>
-                    {{form.invite_code}}
-                </td>
-            </tr>
-            {% endif %}
             <tr>
                 <th></th>
                 <td>

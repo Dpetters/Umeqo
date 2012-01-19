@@ -2,6 +2,10 @@ import threading
 
 from django.conf import settings
 from django.core.mail import EmailMessage
+from django.core.validators import email_re
+
+def is_valid_email(email):
+    return True if email_re.match(email) else False
 
 class EmailThread(threading.Thread):
     def __init__(self, subject, html_content, recipient_list, attachment_name=None, attachment_content=None, attachment_mimetype=None):

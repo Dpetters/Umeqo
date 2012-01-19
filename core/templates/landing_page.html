@@ -13,6 +13,14 @@
         <title>Umeqo</title>
         <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
         {% load compress %}
+        <style type="text/css">
+            body {
+                background: url('{{STATIC_URL}}images/landing_bg.png') #55738d;
+            }
+            h1 {
+                background: url('{{STATIC_URL}}images/logo_landing.png') no-repeat center center transparent;
+            }
+        </style>
         {% compress css %}
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
@@ -29,6 +37,7 @@
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
             <script src="{{STATIC_URL}}js/landing_page.js"></script>
         {% endcompress %}
+        
         
         <script type="text/javascript">
           var _gaq = _gaq || [];
@@ -67,8 +76,11 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <div class="center">
+        <div id="landing_logo">
             <h1>Umeqo</h1>
+            <span id="landing_beta_logo">BETA</span>
+        </div>
+        <div class="center">
             <h3 class="tagline"><em>/you-'ME-co/</em>, noun. <strong>Recruiting Made Simple</strong>.</h3>
             <p id="innovative">Umeqo is a new recruiting resource for students and employers <br/> to <strong>discover</strong> one another.</p>
             <div id="lotsaforms" class="row">
@@ -95,14 +107,14 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="working">Featured Deadline</p>
+                    <p id="working">Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</p>
                     <div id="promotion">
                       <h2>Techfair 2012</h2>
                       {% if featured_event.employer %}
                       <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
                       {% if featured_event.campus_org %}
-                      <a href="{{ featured_event.campus_org.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
+                      <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
                       {% endif %}
                       <p>You are invited to Techfair 2012! The lineup for this year will include a hackathon, an afterparty, a banquet, and a speaker series in addition to the Fair itself.</p>
                       <p>It all starts at 9am on Monday, February 6th. {% if featured_event %}Drop off your resume now on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>

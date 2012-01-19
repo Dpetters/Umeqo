@@ -34,8 +34,8 @@
     min-height:410px;
 }
 #employer_snippets #no_employer_matches {
-	text-align:center;
-	margin-top:5px;
+    text-align:center;
+    margin-top:5px;
 }
 #employer_snippets .employer_snippet {
     padding: 5px 5px 5px 8px;
@@ -80,7 +80,7 @@
     border-left:3px solid #00AE3E;
 }
 #no_upcoming_events_or_deadlines{
-	padding-top:14px;
+    padding-top:14px;
 }
 #employer_details {
     margin-left: 200;

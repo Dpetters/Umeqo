@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
-from django.core.validators import email_re
 from django.db import IntegrityError
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest, Http404
@@ -387,22 +386,23 @@ def event_edit(request, id=None, extra_context=None):
     if not admin_of_event(event, request.user):
         return HttpResponseForbidden('You are not allowed to edit this event.')  
     if is_recruiter(event.owner):
-        form_class = EventForm              
+        form_class = EventForm
     elif is_campus_org(event.owner):
         context['max_industries'] = s.EP_MAX_INDUSTRIES
         context['attending_employers'] = event.attending_employers
         form_class = CampusOrgEventForm
     if request.method == 'POST':
-        attending_employers_before = list(event.attending_employers.all())[:]
         form = form_class(request.POST, instance=event)
         if form.is_valid():
             event = form.save(commit=False)
             event.edits.add(Edit.objects.create(user=request.user))
+            for employer in event.attending_employers.all():
+                event.previously_attending_employers.add(employer)
             event.save()
             form.save_m2m()
             # Update index
             event.save()
-            notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(attending_employers_before)])
+            notify_about_event(event, "new_event", [e for e in list(event.attending_employers.all()) if e not in list(event.previously_attending_employers.all())])
             return HttpResponseRedirect(reverse('event_page', kwargs={'id':event.id, 'slug':event.slug}))
     else:
         form = form_class(instance=event)
@@ -421,8 +421,6 @@ def event_edit(request, id=None, extra_context=None):
 
 def admin_of_event(event, user):
     if is_recruiter(event.owner):
-        print user.recruiter.employer == event.owner.recruiter.employer
-        print is_recruiter(user)
         return is_recruiter(user) and user.recruiter.employer == event.owner.recruiter.employer
     elif is_campus_org(event.owner):
         return is_campus_org(user) and user.campusorg == event.owner.campusorg

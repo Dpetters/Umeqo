@@ -38,7 +38,7 @@ function highlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #FF603D');
 };
 function unhighlight(element, errorClass) {
-    $(element).prev().children().hide();
+    $(element).prev(".errorspace").children().hide();
     if ($(element).next(":button.ui-multiselect").length != 0) {
         $(element).next().css('border', '1px solid #AAA');
     }
@@ -46,6 +46,13 @@ function unhighlight(element, errorClass) {
     $(element).filter("input[type=text]").css('border', '1px solid #AAA');
     $(element).filter("select").css('border', '1px solid #AAA');
 };
+function errors_in_dialog_error_section(dialog_class, jqXHR, textStatus, errorThrown){
+    if(jqXHR.status==0){
+        $("." + dialog_class + " .error_section").html(CHECK_CONNECTION_MESSAGE);
+    }else{
+        $("." + dialog_class + " .error_section").html(ERROR_MESSAGE);
+    }
+}
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
     if (errorThrown != "abort"){
         if(jqXHR.status==0){
@@ -70,9 +77,9 @@ function place_table_form_errors(form, errors){
  * should not change the parameters to be non-jquery objects.
  */
 function place_table_form_field_error($error, $element) {
-	if($element.prev().length == 0){
-		$element = $element.parent();
-	}
+    if($element.prev().length == 0){
+        $element = $element.parent();
+    }
     if ($element.prev().get(0).tagName=='DIV') {
         $element.prev().html($error);
     } else if ($element.prev().prev().html()=="" || !$element.prev().prev().children(":eq(0)").is(":visible")){
@@ -119,6 +126,19 @@ function getCookie(name) {
     }
     return cookieValue;
 };
+
+function is_valid_mit_email(email){
+    if (DEBUG)
+           return (email.length - "mit.edu".length) == email.indexOf("mit.edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
+    else
+        return (email.length - "mit.edu".length) == email.indexOf("mit.edu");
+}
+
+function is_valid_email_address(email) {
+    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+    return pattern.test(email);
+}
+
 // number formatting function
 // copyright Stephen Chapman 24th March 2006, 10th February 2007
 // permission to use this function is granted provided
@@ -170,8 +190,9 @@ $(document).ready( function () {
     $(window).bind('scrollEnd', function() {
         $(".dialog").dialog('option', 'position', 'center');
     });
-    $(".close_dialog_link").live('click', function() {
+    $(".close_dialog_link").live('click', function(e) {
         $(".dialog").remove();
+        e.preventDefault();
     });
     $(".refresh_page_link").live('click', function() {
         window.location.reload();
@@ -210,18 +231,18 @@ $(document).ready( function () {
     });
     
     $('.dropdown').live('click', 
-    	function (e) {
-    		if($(e.target).parent().hasClass("dropdown")){
-    			var disabled = $(e.target).parent().attr('disabled');
-    			if (!$(e.target).parent().attr('disabled')) {
-    				$(e.target).nextAll('ul').toggle();
-    			}
-			} else {
-    			if (!$(e.target).attr('disabled')) {
-    				$(e.target).children('ul').toggle();
-    			}
-			}
-	});
+        function (e) {
+            if($(e.target).parent().hasClass("dropdown")){
+                var disabled = $(e.target).parent().attr('disabled');
+                if (!$(e.target).parent().attr('disabled')) {
+                    $(e.target).nextAll('ul').toggle();
+                }
+            } else {
+                if (!$(e.target).attr('disabled')) {
+                    $(e.target).children('ul').toggle();
+                }
+            }
+    });
     jQuery.validator.addMethod("complete_url", function(val, elem) {
         // if no url, don't do anything
         if (val.length == 0) { return true; }
@@ -251,10 +272,7 @@ $(document).ready( function () {
     }, "One of the emails is invalid.");
     jQuery.validator.addMethod('isMITEmail', function(value, element) {
         // If testing, allow umeqo.com emails as well.
-        if (DEBUG)
-               return (value.length - "mit.edu".length) == value.indexOf("mit.edu") || (value.length - "umeqo.com".length) == value.indexOf("umeqo.com");
-        else
-            return (value.length - "mit.edu".length) == value.indexOf("mit.edu");
+        return is_valid_mit_email(value);
     });
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;

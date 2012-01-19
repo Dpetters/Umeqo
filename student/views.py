@@ -4,34 +4,123 @@ from __future__ import absolute_import
 import datetime
 
 from django.conf import settings as s
+from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
-from django.views.decorators.http import require_http_methods, require_POST
+from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
-from notification.models import NoticeSetting, NoticeType, EMAIL
-from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm,\
-                            StudentProfilePreviewForm, StudentProfileForm, BetaStudentRegistrationForm
-from student.models import Student, StudentDeactivation, StudentInvite
-from student.view_helpers import process_resume
-from registration.forms import PasswordChangeForm
-from registration.backend import RegistrationBackend
-from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
-from core.forms import CreateLanguageForm
-from core.email import send_html_mail
 from campus_org.forms import CreateCampusOrganizationForm
-from core.models import Language, EmploymentType, Industry
-from events.models import Attendee
 from campus_org.models import CampusOrg
 from core import messages
-from employer.models import Employer
-from student import enums as student_enums
+from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
+from core.email import send_html_mail
+from core.forms import CreateLanguageForm
+from core.http import Http403
+from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
+from core.email import is_valid_email
 from countries.models import Country
+from employer.models import Employer
+from events.models import Attendee, RSVP, DroppedResume, Event
+from notification.models import NoticeSetting, NoticeType, EMAIL
+from registration.backend import RegistrationBackend
+from registration.forms import PasswordChangeForm
+from registration.view_helpers import register_student
+from student import enums as student_enums
+from student.form_helpers import get_student_data_from_ldap
+from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
+from student.models import Student, StudentDeactivation
+from student.view_helpers import process_resume, handle_uploaded_file, resume_processing_helper
 
+@require_GET
+def student_info(request, extra_context=None):
+    data = {}
+    if not request.GET.has_key("email"):
+        return HttpResponseBadRequest("Email is missing.")
+    email = request.GET["email"]
+    if not is_valid_email(email) or s.DEBUG and email[-len("mit.edu"):] != "mit.edu" and email[-len("umeqo.com"):] != "umeqo.com" or email[-len("mit.edu"):] != "mit.edu":
+        return HttpResponse()
+    data['first_name'], data['last_name'], data['course'] = get_student_data_from_ldap(request.GET["email"])
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+
+@render_to('student_quick_registration.html')
+@require_http_methods(["POST", "GET"])
+def student_quick_registration(request, form_class=StudentQuickRegistrationForm, extra_context=None):
+    context = {}
+    if request.is_ajax():
+        if request.method == "POST":
+            data = {}
+            form = form_class(data=request.POST, files=request.FILES)
+            if form.is_valid():
+                pdf_file_path = "%sstudent/student/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+                handle_uploaded_file(request.FILES['resume'], pdf_file_path)
+                
+                # process_resume_data returns either an error or the keywords
+                resume_parsing_results =  resume_processing_helper(pdf_file_path)
+                
+                # A hacked error is unrecoverable
+                if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
+                    errors = {'resume': messages.resume_problem}
+                    data['errors'] = errors
+                else:
+                    # If the resume is not unparsable, then resume_parsing_results
+                    # contains the keywords
+                    keywords = None
+                    data['unparsable_resume'] = False
+                    if resume_parsing_results == student_enums.RESUME_PROBLEMS.UNPARSABLE:
+                        data['unparsable_resume'] = True
+                    else:
+                        keywords = resume_parsing_results
+                    user_info =  {'username': request.POST['email'],
+                                  'first_name': request.POST['first_name'],
+                                  'last_name': request.POST['last_name'],
+                                  'email': request.POST['email'],
+                                  'password': request.POST['password']}
+                    student = register_student(request, **user_info)
+                    student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
+                    student.graduation_month = request.POST['graduation_month']
+                    student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
+                    student.first_major = Course.objects.get(id=request.POST['first_major'])
+                    student.gpa = request.POST['gpa']
+                    file_content = file(pdf_file_path, "rb")
+                    student.resume.save(request.FILES['resume'].name, File(file_content))
+                    
+                    if keywords:
+                        student.keywords = keywords
+                    student.profile_created = True
+                    student.save()
+                    for attendee in Attendee.objects.filter(email=student.user.email):
+                        attendee.student = student
+                        attendee.save()
+                    event = Event.objects.get(id=request.POST['event_id'])
+                    action = request.POST['action']
+                    DroppedResume.objects.create(student=student, event=event)
+                    if action == "rsvp":
+                        RSVP.objects.create(student=student, event=event)
+            else:
+                data['errors'] = form.errors
+            return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+        context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
+        action = request.GET['action']
+        if action=="rsvp":
+            context['action'] = "RSVP"
+        elif action=="drop":
+            context['action'] = "drop resume"
+        context.update(extra_context or {})
+        return context
+    raise Http403()
+
+@require_GET
+@render_to('student_quick_registration_done.html')
+def student_quick_registration_done(request, extra_context=None):
+    context = {'unparsable_resume':request.GET.get("unparsable_resume", False)}
+    context.update(extra_context or {})
+    return context
 
 @render_to('student_registration_help.html')
 def student_registration_help(request, extra_context=None):
@@ -106,8 +195,7 @@ def student_account_deactivate(request, form_class=StudentAccountDeactivationFor
                 if form.cleaned_data.has_key('suggestion'):
                     sd.suggestion = form.cleaned_data['suggestion']
                     sd.save()
-                return HttpResponse(simplejson.dumps({}), 
-                                    mimetype="application/json")
+                return HttpResponse()
             else:
                 if request.is_ajax():
                     return HttpResponse(simplejson.dumps({'errors':form.errors}), 
@@ -171,14 +259,7 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 
 
 @render_to("student_registration.html")
-def student_registration(request, backend = RegistrationBackend(), 
-                         extra_context = None):
-    if s.INVITE_ONLY:
-        form_class = BetaStudentRegistrationForm
-    else:
-        form_class = StudentRegistrationForm
-
-    success_url = 'student_registration_complete'
+def student_registration(request, backend = RegistrationBackend(), form_class = StudentRegistrationForm, success_url = 'student_registration_complete', extra_context = None):
     if not backend.registration_allowed(request):
         return redirect('student_registration_closed')
     
@@ -186,26 +267,10 @@ def student_registration(request, backend = RegistrationBackend(),
         form = form_class(data=request.POST)
         if form.is_valid():
             form.cleaned_data['username'] = form.cleaned_data['email']
-            new_user = backend.register(request, **form.cleaned_data)
-            if not Student.objects.filter(user=new_user).exists():
-                if form.cleaned_data.has_key("first_name") and form.cleaned_data.has_key("last_name"):
-                    student = Student(user=new_user, first_name = form.cleaned_data["first_name"], last_name = form.cleaned_data["last_name"])
-                else:
-                    student = Student(user=new_user)
-                umeqo = Employer.objects.get(name="Umeqo")
-                student.save()
-                if form.cleaned_data.has_key("course"):
-                    student.first_major=form.cleaned_data["course"]
-                student.subscriptions.add(umeqo)
-                student.save()
-            if s.INVITE_ONLY:
-                i=StudentInvite.objects.get(code=form.cleaned_data['invite_code'])
-                i.recipient = student
-                i.used = True
-                i.save()
+            form.cleaned_data['course'] = 1L
+            register_student(request, **form.cleaned_data)
             if request.is_ajax():
                 data = {
-                    'valid': True,
                     'success_url': reverse(success_url),
                     'email': form.cleaned_data['email']
                 }
@@ -213,15 +278,11 @@ def student_registration(request, backend = RegistrationBackend(),
             return redirect(success_url)
         else:
             if request.is_ajax():
-                data = {'valid':False, 'errors':form.errors}
+                data = {'errors':form.errors}
                 return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        if s.INVITE_ONLY and request.GET.has_key("ic"):
-            form = form_class(initial={"invite_code":request.GET["ic"]})
-        else:
-            form = form_class()
-    
-    context = {'form':form, 'debug':s.DEBUG}
+        form = form_class()
+    context = {'form':form}
     context.update(extra_context or {}) 
     return context
 
@@ -252,7 +313,7 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
                     data = {'valid':False}
                     errors = {'resume': messages.resume_problem}
                     data['errors'] = errors
-                elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ingore_unparsable_resume'] == "false":
+                elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ignore_unparsable_resume'] == "false":
                     data = {'valid':False}
                     data['unparsable_resume'] = True
             if data['valid'] and not data['unparsable_resume']:
@@ -290,7 +351,6 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm,
         if request.method == 'POST':
             form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
             if form.is_valid():
-                print request.POST
                 student = form.save(commit=False)
                 if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
                     student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])

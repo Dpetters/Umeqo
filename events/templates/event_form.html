@@ -7,6 +7,14 @@
 {% block metadata %}
 {{ block.super }}
 {% load text_snippet %}
+<style type="text/css">
+    #content_area input[type=text].datefield {
+        background: url('{{STATIC_URL}}images/icons/calendar-select.png') 83px center no-repeat;
+    }
+    input[type=text].datefield_no_bind {
+        background: url('{{STATIC_URL}}images/icons/calendar-select.png') 83px center no-repeat;
+    }
+</style>
 <script>
     var CHECK_NAME_AVAILABILITY_URL = "{% url check_event_name_uniqueness %}";
     var EVENTS_CHECK_SHORT_SLUG_UNIQUENESS_URL = "{% url events_check_short_slug_uniqueness %}";
@@ -183,7 +191,7 @@
                 {% endfor %}
             {% endif %}
             </div>
-            <p id="include_and_more">{{form.include_and_more}} Display <strong>"and more..."</strong> beneath the company logos.</p>
+            <p id="include_and_more">{{form.include_and_more}} Display <strong>"and more..."</strong> beneath the company logos, linking to {{form.and_more_url}}</p>
         </div>
         {% endif %}
         <div id="event_location_section">

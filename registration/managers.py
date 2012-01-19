@@ -139,4 +139,3 @@ class RegistrationManager(models.Manager):
                 user = profile.user
                 if not user.is_active:
                     user.delete()
-

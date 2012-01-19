@@ -1,31 +1,23 @@
 .transaction_dialog .dialog_content_wrapper{
     padding: 14px 25px;
 }
-.transaction_dialog #subscription_form #id_body{
+.transaction_dialog .form_table{
+    width:100%;
+}
+#subscription_form #id_message_body{
     width:340px;
     height:65px;
 }
-.transaction_dialog #subscription_form #body_th{
+#subscription_form #body_th{
     vertical-align:top;
     padding-top:20px;
 }
-.transaction_dialog #subscription_form #id_name,
-.transaction_dialog #subscription_form #id_email,
-.transaction_dialog #subscription_form #id_employer{
-    width:255px;
+.transaction_dialog #subscription_form #id_employer_name{
+    width:308px;
 }
-.transaction_dialog #subscription_form select#id_employer{
-    width:265px;
-}
-#subscription_form{
-    padding-left:10px;
+.transaction_dialog #subscription_form select{
+    width:318px;
 }
 #subscription_form input[type=submit]{
     width:100px;
-}
-#subscription_form a.button{
-    width:92px;
-}
-.form_table .button_cell{
-	padding-left:35px;
 }

@@ -14,7 +14,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
         {% load compress %}
         {% load text_snippet %}
-		{% load filters %}
+        {% load filters %}
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
@@ -28,13 +28,37 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_tipsy/stylesheets/tipsy.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery_overrides.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/lib/ckeditor.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             {% else %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/anonymous.css" />
             {% endif %}
         {% endcompress %}
-
+        
+        <!-- Inline css to allows for dynamic STATIC_URLs -->
+        <style type="text/css">
+            {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
+                #notifications_count {
+                    background: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png') no-repeat center;
+                    background: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png') no-repeat center rgba(255,255,255,0.2);
+                    background-position: 5px -60px;
+                }
+                .cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button {
+                    background-image: url("{{STATIC_URL}}lib/jquery_ui_custom/css/ui-lightness/images/ui-icons_303030_256x240.png?b50dc31bccb2") !important;
+                }
+                .cke_dialog_background_cover {
+                    background: url("{{STATIC_URL}}lib/jquery_ui_custom/css/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png?b50dc31bccb2") repeat-x scroll 50% 50% #AAAAAA !important;
+                    opacity: 0.3 !important;
+                }
+                #header_area{
+                    background: url('{{STATIC_URL}}images/layout/backgrounds/nav_bg.png') repeat-x transparent;
+                }
+            {% endif %}
+            .icon{
+                background-image: url('{{STATIC_URL}}images/icons/csg-4e56b27a2c8f1.png');
+            }
+        </style>
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
                 var MUST_BE_SUBSCRIBED_ANNUALLY = "{% text_snippet 'must_be_subscribed_annually' %}";
@@ -51,7 +75,8 @@
             var NOTIFICATIONS_URL = "{% url notification_ajax %}";
             var NOTIFICATIONS_COUNT_URL = "{% url get_notice_unseen_count %}";
             var CONTACT_US_URL = "{% url contact_us %}";
-            
+            var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
+                        
             var ERROR_MESSAGE = "{% include 'error_message.html' %}";
             var ERROR_MESSAGE_DIALOG = "{% include 'error_message_dialog.html' %}";
         
@@ -60,6 +85,7 @@
         
             var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
             var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
+            var DEBUG = "{{debug}}";  
         </script>
         {% compress js %}
             <script src="{{ STATIC_URL }}lib/modernizr/modernizr.js" charset="utf-8"></script>
@@ -71,6 +97,7 @@
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
             <script src="{{ STATIC_URL }}js/base.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
             <script src="{{ STATIC_URL }}js/contact_us_dialog.js"></script>
             
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
@@ -169,17 +196,17 @@
             </div>
         </div>
         <div id="below_header_area">
-        	<div id="caution_bar">
-		        {% for caution in cautions %}
-	            	<p>{{caution|safe}}</p>
-	        	{% endfor %}    		
-        	</div>
-        	
-        	<div id="warning_bar">
-		        {% for warning in warnings %}
-	            	<p>{{warning|safe}}</p>
-	        	{% endfor %}        		
-        	</div>
+            <div id="caution_bar">
+                {% for caution in cautions %}
+                    <p>{{caution|safe}}</p>
+                {% endfor %}            
+            </div>
+            
+            <div id="warning_bar">
+                {% for warning in warnings %}
+                    <p>{{warning|safe}}</p>
+                {% endfor %}                
+            </div>
 
             <!-- z-index is there to fix IE7 z-index bug -->
             <div style="z-index:200" class="width_container">
@@ -189,17 +216,13 @@
                             <div id="login_wrapper_pointer"></div>
                             <form id="login_form" action="/login/?next={{login_next}}" method='POST'>
                                 {% csrf_token %}
-                                <div class="errorspace"></div>
                                 <div id="username" class="input_div">
                                     <label for="id_username">Email</label>
                                     {{login_form.username}}
                                 </div>
-                                <div class="errorspace"></div>
                                 <div id="password" class="input_div">
                                     <label for="id_password">Password</label>
                                     {{login_form.password}}
-                                </div>
-                                <div class="error_section error">
                                 </div>
                                 <div>
                                     <button class="button" type='submit'>
@@ -220,21 +243,21 @@
                     {% if msg %}
                         <p>{{msg|safe}}</p>
                     {% endif %}
-                	
+                    
                     {% block message_area %}
                     {% endblock %}
                 </div>
             </div>
         </div>
         <div id="content_area">
-        	<div class="width_container">
+            <div class="width_container">
                 {% block content_area %}
                 {% endblock %}
-            	<div class="clearfix"></div>
+                <div class="clearfix"></div>
            </div>
         </div>
         <div id="footer_area">
-        	<div class="width_container">
+            <div class="width_container">
                 <div id="footer_navigation_block">
                     <a id="home" href="{% url home %}" tabindex="-1">Home</a>
                     <a id="about" href="{% url about %}" tabindex="-1">About</a>

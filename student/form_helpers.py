@@ -1,10 +1,33 @@
 from __future__ import division
 from __future__ import absolute_import
 
+import ldap
+import inspect
+import types
+
+from core.models import Course
 from student import enums as student_enums
 from employer.models import Recruiter
 
 
+def get_student_ldap_info(email):
+    con = ldap.open('ldap.mit.edu')
+    con.simple_bind_s("", "")
+    dn = "dc=mit,dc=edu"
+    uid = email.split("@")[0]
+    return con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
+
+def get_student_data_from_ldap(email):
+    res = get_student_ldap_info(email)
+    fname = res[0][1]['cn'][0].split(" ")[0]
+    lname = res[0][1]['cn'][0].split(" ")[-1]
+    course_id = None
+    try:
+        course_id = Course.objects.get(ou = res[0][1]['ou'][0]).id
+    except Exception, e:
+        pass
+    return fname, lname, course_id
+                
 def student_lists_as_choices(recruiter_id):
     student_list_types = []
     recruiter = Recruiter.objects.get(id=recruiter_id)

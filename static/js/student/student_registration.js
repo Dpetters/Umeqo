@@ -13,13 +13,13 @@ $(document).ready( function() {
                     hide_form_submit_loader("#student_registration_form");
                 },
                 success: function(data) {
-                    if(data.valid){
-                           window.location = data.success_url + "?email=" + data.email;
-                    }else{
+                    if(data.errors){
                         place_table_form_errors("#student_registration_form", data.errors);
                         if (data.errors.email){
                             $("#id_email").val("").focus();
                         }
+                    }else{
+                        window.location = data.success_url + "?email=" + data.email;
                     }
                 },
                 error: errors_in_message_area_handler
@@ -39,12 +39,9 @@ $(document).ready( function() {
                     error: errors_in_message_area_handler
                 }
             },
-            password1: {
+            password: {
                 required: true,
                 minlength: PASSWORD_MIN_LENGTH
-            },
-            invite_code: {
-                required: true
             }
         },
         messages:{
@@ -54,11 +51,8 @@ $(document).ready( function() {
                 isMITEmail: MUST_BE_MIT_EMAIL,
                 remote: EMAIL_ALREADY_REGISTERED
             },
-            password1: {
+            password: {
                 required: PASSWORD_REQUIRED
-            },
-            invite_code: {
-                required: INVITE_CODE_REQUIRED
             }
         }
     });

@@ -1,23 +1,23 @@
 #featured_content #tutorials{
-	background:#F2CB60
+    background:#F2CB60
 }
 #featured_content #students{
-	background:#A4C14D;
+    background:#A4C14D;
 }
 #featured_content #events{
-	background:#BF4C59;
+    background:#BF4C59;
 }
 #featured_content #profile{
-	background:#66BCFF;
+    background:#66BCFF;
 }
 #featured_content div:hover{
-	background:#BEBEBE !important;
+    background:#BEBEBE !important;
 }
 #featured_content .must_be_subscribed_annually_e #events:hover{
-	background:#C03947;
+    background:#C03947;
 }
 #featured_content .must_be_subscribed_annually_e #profile:hover{
-	background:#299FFF;
+    background:#299FFF;
 }
 #query_field {
     height: 22px;
@@ -31,12 +31,12 @@
     -webkit-box-shadow: inset 1px 1px 1px #DDDDDD;
 }
 #search_form_submit_button{
-	margin-right:3px;
-	width:72px;
+    margin-right:3px;
+    width:72px;
 }
 #upcoming_events .main_block_content{
-	padding-top:0px;
+    padding-top:0px;
 }
 #no_events_block{
-	padding-top:20px;
+    padding-top:20px;
 }

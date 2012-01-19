@@ -14,7 +14,6 @@
 {% endcompress %}
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/events/event_directions.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/events/event_snippet_directions.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -33,7 +32,7 @@
         <div class="main_block_content">
             <p><strong>Thank you for beta testing Umeqo!</strong> Get started with one of the following -</p>
             <div id="featured_content">
-            	<a href="{% url help_center %}"><div id="tutorials"><img src="{{ STATIC_URL }}images/icons/twg_retina/video_64.png" /><span>Watch tutorials</span></div></a>
+                <a href="{% url help_center %}"><div id="tutorials"><img src="{{ STATIC_URL }}images/icons/twg_retina/video_64.png" /><span>Watch tutorials</span></div></a>
             {% block featured_content %}
             {% endblock %}
             </div>

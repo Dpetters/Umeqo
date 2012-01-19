@@ -29,8 +29,8 @@ Student Filtering |
 <script src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
 <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
-<script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
+<script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 <script src="{{ STATIC_URL }}js/employer/employer_students.js"></script>
 <script src="{{ STATIC_URL }}js/follower_div.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_hoverIntent/jquery.hoverIntent.js"></script>
@@ -74,7 +74,6 @@ Student Filtering |
     var EVENT_INVITE_URL = "{% url event_invite %}";
     
     var COURSE_INFO_URL = "{% url course_info %}";
-    var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
     var STUDENTS_URL = "{% url employer_students %}";
     var STUDENTS_TOGGLE_STAR_URL = "{% url employer_student_toggle_star %}";
     var STUDENTS_ADD_STAR_URL = "{% url employer_students_add_star %}";

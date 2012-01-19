@@ -3,7 +3,6 @@ from __future__ import absolute_import
 
 from datetime import datetime, timedelta
 import operator
-import sys
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
@@ -22,11 +21,12 @@ from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.http import require_GET
 
 from campus_org.models import CampusOrg
-from core import messages
+from core import messages, enums as core_enums
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
+from core.http import Http403
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, get_audiences
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
@@ -101,6 +101,7 @@ def cache_status(request, extra_context = None):
         context['hit_rate'] = 100 * stats.get_hits / stats.cmd_get
     return context
 
+
 @require_GET
 def check_employer_campus_org_slug_uniqueness(request):
     if request.is_ajax():
@@ -137,29 +138,28 @@ def check_employer_uniqueness(request):
 
 @render_to('contact_us_dialog.html')
 def contact_us(request, form_class = AkismetContactForm, extra_context=None):
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST, request=request)
-            if form.is_valid():
-                form.save()
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-            else:
-                data = {'valid':False, 'errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if not request.is_ajax():
+        raise Http403("Request must be ajax.")
+    if request.method == 'POST':
+        form = form_class(data=request.POST, request=request)
+        if form.is_valid():
+            form.save()
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            if request.user.is_authenticated():
-                form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
-            else:
-                form = form_class(request=request)
-        context = {
-                'form': form,
-                'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
-                }
-        context.update(extra_context or {}) 
-        return context
+            data = {'valid':False, 'errors':form.errors}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseBadRequest("Request must be ajax.")
+        if request.user.is_authenticated():
+            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+        else:
+            form = form_class(request=request)
+    context = {
+            'form': form,
+            'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
+            }
+    context.update(extra_context or {}) 
+    return context
 
 @require_GET
 @login_required
@@ -202,22 +202,59 @@ def get_location_suggestions(request):
 @require_GET
 def help_center(request, extra_context = None):
     context = {}
-    tutorials = Tutorial.objects.filter(audience__in = get_audiences(request.user), display=True)
-    if tutorials:
+    tutorials = Tutorial.objects.filter(display=True)
+    if request.user.is_anonymous or request.user.is_recruiter:
+        recruiter_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
         try:
-            context['student_discovery_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Student Discovery")).order_by("sort_order")
+            context['recruiter_student_discovery_tutorials'] = tutorials.filter(audience__in = recruiter_audience, topic=Topic.objects.get(name="Student Discovery")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
         try:
-            context['subscription_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
+            context['recruiter_subscription_tutorials'] = tutorials.filter(audience__in = recruiter_audience, topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
         try:
-            context['event_and_deadline_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
+            context['recruiter_event_and_deadline_tutorials'] = tutorials.filter(audience__in = recruiter_audience, topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
         try:
-            context['account_management_tutorials'] = tutorials.filter(topic=Topic.objects.get(name="Account Management")).order_by("sort_order")
+            context['recruiter_account_management_tutorials'] = tutorials.filter(audience__in = recruiter_audience, topic=Topic.objects.get(name="Account Management")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+    if request.user.is_anonymous or request.user.is_student:
+        student_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_STUDENTS, core_enums.STUDENT]
+        try:
+            context['student_student_discovery_tutorials'] = tutorials.filter(audience__in = student_audience, topic=Topic.objects.get(name="Student Discovery")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['student_subscription_tutorials'] = tutorials.filter(audience__in = student_audience, topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['student_event_and_deadline_tutorials'] = tutorials.filter(audience__in = student_audience, topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['student_account_management_tutorials'] = tutorials.filter(audience__in = student_audience, topic=Topic.objects.get(name="Account Management")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+    if request.user.is_anonymous or request.user.is_campus_org:
+        campus_org_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_CAMPUS_ORGS, core_enums.CAMPUS_ORG, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
+        try:
+            context['campus_org_student_discovery_tutorials'] = tutorials.filter(audience__in = campus_org_audience, topic=Topic.objects.get(name="Student Discovery")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['campus_org_subscription_tutorials'] = tutorials.filter(audience__in = campus_org_audience, topic=Topic.objects.get(name="Subscriptions")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['campus_org_event_and_deadline_tutorials'] = tutorials.filter(audience__in = campus_org_audience, topic=Topic.objects.get(name="Events & Deadlines")).order_by("sort_order")
+        except Topic.DoesNotExist:
+            pass
+        try:
+            context['campus_org_account_management_tutorials'] = tutorials.filter(audience__in = campus_org_audience, topic=Topic.objects.get(name="Account Management")).order_by("sort_order")
         except Topic.DoesNotExist:
             pass
     context['top_questions'] = filter_faq_questions(request.user, Question.objects.visible()).order_by("-click_count")[:s.TOP_QUESTIONS_NUM]
@@ -259,12 +296,8 @@ def faq(request, extra_context = None):
         return context
 
 @render_to()
-@login_required
 def tutorial(request, slug, extra_context = None):
     tutorial = get_object_or_404(Tutorial, slug=slug)
-    audience = tutorial.audience
-    if audience not in get_audiences(request.user):
-        return HttpResponseForbidden()
     context = {
        'tutorial':tutorial,
        'TEMPLATE': 'tutorials/%s.html' % tutorial.slug.replace("-", "_")

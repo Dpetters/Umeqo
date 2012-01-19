@@ -9,16 +9,11 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.dispatch import receiver
 
-from student.models import Student
 from core import mixins as core_mixins
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
-from events.models import Event
 from registration.managers import RegistrationManager
-from notification.models import NoticeType
-from employer.models import Employer
 from core.email import send_html_mail
-from notification import models as notification
 
 class RegException(core_mixins.DateCreatedTracking):
     email = models.EmailField("E-mail to allow:", unique=True)
@@ -145,7 +140,7 @@ class RegistrationProfile(models.Model):
     activation_key_expired.boolean = True
 
     def send_activation_email(self, site, first_name, last_name):
-        subject = "[umeqo.com] Account Activation"
+        subject = "[Umeqo] Account Activation"
         context = { 'activation_key': self.activation_key, 'site': site, 'first_name':first_name, 'last_name':last_name}
         message = render_to_string('activation_email.html', context)
         send_html_mail(subject, message, [self.user.email])
@@ -159,22 +154,3 @@ def clear_login_attempts(sender, request, user, **kwargs):
     ip_address = get_ip(request)
     if ip_address:
         LoginAttempt.objects.all().filter(ip_address=ip_address).delete()
-
-@receiver(post_save, sender=Student)
-def send_first_notice(sender, instance, created, raw, **kwargs):
-    if created and not raw:
-        try:
-            event = Event.objects.get(id=settings.WELCOME_EVENT_ID)
-            employer = Employer.objects.get(name="Umeqo")
-            recruiter = User.objects.get(id=settings.UMEQO_RECRUITER_ID)
-            notice_type = NoticeType.objects.get(label="public_invite")
-            invite_message = "Congrats on your first invite! There are many more to come!"
-            notification.send([instance.user], notice_type, {
-                'employer': employer,
-                'recruiter': recruiter,
-                'invite_message': invite_message,
-                'event': event,
-                'name': instance.user.first_name
-            })
-        except Event.DoesNotExist:
-            pass
