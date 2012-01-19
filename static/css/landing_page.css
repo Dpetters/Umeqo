@@ -301,6 +301,12 @@ label.required span.error {
 .module h2 {
     margin-top: 0;
 }
+#new_account{
+    margin-top:10px;
+}
+#new_account p{
+    margin-top:0px;
+}
 #innovations {
     padding-top: 20px;
 }

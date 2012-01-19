@@ -27,6 +27,10 @@ ROOT = os.path.dirname(os.path.realpath(__file__))
 #'http://127.0.0.1:8983/solr'
 HAYSTACK_SOLR_URL = # fill out
 
+SENTRY_SEARCH_OPTIONS = {
+    'url': HAYSTACK_SOLR_URL
+}
+
 UMEQO_RECRUITER_ID = # fill out
 
 WELCOME_EVENT_ID = # fill out
@@ -94,7 +98,7 @@ LOGGING = {
         },
         'sentry': {
             'level': 'DEBUG',
-            'class': 'sentry.client.handlers.SentryHandler',
+            'class': 'raven.client.django.handlers.SentryHandler',
             'formatter': 'standard'
         },
         'console': {

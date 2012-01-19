@@ -28,7 +28,7 @@
 {% load google_calendarize %}
 {% compress css %}
     {% if user.is_anonymous %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />    
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
     {% endif %}
     
@@ -322,7 +322,7 @@
                                 <div id="rsvp_yes" class="gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
                             {% endif %}
                         {% else %}
-                            <div id="rsvp_yes" class="gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                            <div class="gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
                         {% endif %}
                     {% endif %}
                 {% else %}
