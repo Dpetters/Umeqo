@@ -1,29 +1,29 @@
 [
  {
-  "pk": 1, 
-  "model": "subscription.subscription", 
+  "pk": 1,
+  "model": "subscription.subscription",
   "fields": {
-   "description": "", 
-   "recurrence_unit": "D", 
-   "price": "0.00", 
-   "trial_unit": "W", 
-   "trial_period": 2, 
-   "name": "Event Subscription", 
-   "recurrence_period": null, 
+   "description": "",
+   "recurrence_unit": "D",
+   "price": 0.00,
+   "trial_unit": "W",
+   "trial_period": 2,
+   "name": "Event Subscription",
+   "recurrence_period": null,
    "uid": 1
   }
- }, 
+ },
  {
-  "pk": 5, 
-  "model": "subscription.subscription", 
+  "pk": 5,
+  "model": "subscription.subscription",
   "fields": {
-   "description": "", 
-   "recurrence_unit": "Y", 
-   "price": "5000.00", 
-   "trial_unit": "D", 
-   "trial_period": 3, 
-   "name": "Annual Subscription", 
-   "recurrence_period": 1, 
+   "description": "",
+   "recurrence_unit": "Y",
+   "price": 5000.00,
+   "trial_unit": "D",
+   "trial_period": 3,
+   "name": "Annual Subscription",
+   "recurrence_period": 1,
    "uid": 0
   }
  }
