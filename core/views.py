@@ -101,18 +101,6 @@ def cache_status(request, extra_context = None):
         context['hit_rate'] = 100 * stats.get_hits / stats.cmd_get
     return context
 
-def error_js(request):
-    print "HERE"
-    if request.is_ajax():
-        raise Http403
-    text_status = request.GET.get("text_status", "")
-    error_thrown = request.GET.get("error_thrown", "")
-    subject = "Javascript Error"
-    message = "%s %s" % (text_status, error_thrown)
-    sender = s.DEFAULT_FROM_EMAIL
-    recipients = map(lambda n: n[1], s.ADMINS)
-    send_mail(subject,message,sender,recipients)
-    return HttpResponse()
 
 @require_GET
 def check_employer_campus_org_slug_uniqueness(request):
@@ -150,29 +138,28 @@ def check_employer_uniqueness(request):
 
 @render_to('contact_us_dialog.html')
 def contact_us(request, form_class = AkismetContactForm, extra_context=None):
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST, request=request)
-            if form.is_valid():
-                form.save()
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-            else:
-                data = {'valid':False, 'errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if not request.is_ajax():
+        raise Http403("Request must be ajax.")
+    if request.method == 'POST':
+        form = form_class(data=request.POST, request=request)
+        if form.is_valid():
+            form.save()
+            data = {'valid':True}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         else:
-            if request.user.is_authenticated():
-                form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
-            else:
-                form = form_class(request=request)
-        context = {
-                'form': form,
-                'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
-                }
-        context.update(extra_context or {}) 
-        return context
+            data = {'valid':False, 'errors':form.errors}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseBadRequest("Request must be ajax.")
+        if request.user.is_authenticated():
+            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+        else:
+            form = form_class(request=request)
+    context = {
+            'form': form,
+            'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us
+            }
+    context.update(extra_context or {}) 
+    return context
 
 @require_GET
 @login_required

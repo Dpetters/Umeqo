@@ -218,7 +218,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'middleware.generic.SetRemoteAddrMiddleware',
     'middleware.log.LogMiddleware',
-    'sentry.client.middleware.Sentry404CatchMiddleware',
+    'sentry.middleware.SentryMiddleware',
     'middleware.integrity.UserIntegrity',
     'middleware.exceptions.ProcessExceptionMiddleware'
 )
@@ -282,10 +282,8 @@ INSTALLED_APPS = (
     'subscription',
     'ckeditor',
     'sentry',
-    'sentry.client',
-    'sentry.plugins.sentry_servers',
-    'sentry.plugins.sentry_sites',
-    'sentry.plugins.sentry_urls',
+    'djkombu',
+    'raven.contrib.django',
     'concurrent_server'
 )
 
