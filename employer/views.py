@@ -11,7 +11,6 @@ from datetime import datetime, date
 from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
 
-from django.db.models import Q
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
