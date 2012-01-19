@@ -51,7 +51,6 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
     {% if campus_org_event %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/campus_org_event_attending_employees.css" />
     {% endif %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp.css" />
@@ -132,9 +131,6 @@
     {% endif %}
     {% if event.is_rolling_deadline %}
         <script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
-    {% endif %}
-    {% if campus_org_event %}
-        <script src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
     {% endif %}
 {% endcompress %}    
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
