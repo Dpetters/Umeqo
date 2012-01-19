@@ -176,8 +176,8 @@ def update():
                 if result.failed:
                     run("git reset --hard master@{1}")
                     run("python manage.py migrate --all")
+                    restart_apache()
                     run("echo 'yes'|python manage.py collectstatic")
                 run("echo 'y'|python manage.py rebuild_index")
-                restart_apache()
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
