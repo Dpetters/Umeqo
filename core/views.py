@@ -3,7 +3,6 @@ from __future__ import absolute_import
 
 from datetime import datetime, timedelta
 import operator
-import sys
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required
@@ -25,8 +24,9 @@ from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import BetaForm, AkismetContactForm
+from core.http import Http403
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, get_audiences
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
@@ -100,6 +100,19 @@ def cache_status(request, extra_context = None):
     if stats.cmd_get:
         context['hit_rate'] = 100 * stats.get_hits / stats.cmd_get
     return context
+
+def error_js(request):
+    print "HERE"
+    if request.is_ajax():
+        raise Http403
+    text_status = request.GET.get("text_status", "")
+    error_thrown = request.GET.get("error_thrown", "")
+    subject = "Javascript Error"
+    message = "%s %s" % (text_status, error_thrown)
+    sender = s.DEFAULT_FROM_EMAIL
+    recipients = map(lambda n: n[1], s.ADMINS)
+    send_mail(subject,message,sender,recipients)
+    return HttpResponse()
 
 @require_GET
 def check_employer_campus_org_slug_uniqueness(request):

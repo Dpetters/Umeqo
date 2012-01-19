@@ -4,7 +4,7 @@ from __future__ import absolute_import
 import datetime
 
 from django.conf import settings as s
-from django.core.files.base import ContentFile
+from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
@@ -34,7 +34,7 @@ from student import enums as student_enums
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation
-from student.view_helpers import process_resume, process_resume_data
+from student.view_helpers import process_resume, handle_uploaded_file, resume_processing_helper
 
 @require_GET
 def student_info(request, extra_context=None):
@@ -57,8 +57,12 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
             data = {}
             form = form_class(data=request.POST, files=request.FILES)
             if form.is_valid():
+                pdf_file_path = "%sstudent/student/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+                handle_uploaded_file(request.FILES['resume'], pdf_file_path)
+                
                 # process_resume_data returns either an error or the keywords
-                resume_parsing_results = process_resume_data(request.FILES['resume'])
+                resume_parsing_results =  resume_processing_helper(pdf_file_path)
+                
                 # A hacked error is unrecoverable
                 if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
                     errors = {'resume': messages.resume_problem}
@@ -83,8 +87,9 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
                     student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
                     student.first_major = Course.objects.get(id=request.POST['first_major'])
                     student.gpa = request.POST['gpa']
-                    file_content = ContentFile(request.FILES['resume'].read())
-                    student.resume.save(request.FILES['resume'].name, file_content)
+                    file_content = file(pdf_file_path, "rb")
+                    student.resume.save(request.FILES['resume'].name, File(file_content))
+                    
                     if keywords:
                         student.keywords = keywords
                     student.profile_created = True

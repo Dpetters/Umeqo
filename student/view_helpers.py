@@ -7,13 +7,11 @@ from django.conf import settings as s
 
 from student.enums import RESUME_PROBLEMS
 
-def process_resume_data(resume):
-    pdf_file_path = "%sstudent/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
-    destination = open(pdf_file_path, 'wb+')
-    for chunk in resume.chunks():
+def handle_uploaded_file(f, destination):
+    destination = open(destination, 'wb+')
+    for chunk in f.chunks():
         destination.write(chunk)
     destination.close()
-    return resume_processing_helper(pdf_file_path)
 
 def process_resume(student):
     pdf_file_path = s.MEDIA_ROOT + student.resume.name
@@ -33,7 +31,7 @@ def resume_processing_helper(pdf_file_path):
         txt_file = open(txt_file_path, "r")
         resume_text = txt_file.read()
         # Words that we want to parse out of the resume keywords
-        stopWords = set(open(s.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))        
+        stopWords = set(open(s.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
         # Get rid of stop words
         fullWords = re.findall(r'[a-zA-Z]{3,}', resume_text)
         result = ""

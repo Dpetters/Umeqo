@@ -1,7 +1,7 @@
 {% if event.owner.campusorg %}
       <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link">{{event.owner.campusorg}}</a>
 {% else %}
-    {% if not user.campusorg %}
+    {% if user.student %}
         <a href="{% if not can_edit %}{% url employers %}?id={{event.owner.recruiter.employer.id}}{% else %}{% url employer_profile_preview slug=event.owner.recruiter.employer.slug %}{% endif %}" class="employer">
             {{event.owner.recruiter.employer}}
         </a>
