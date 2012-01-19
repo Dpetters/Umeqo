@@ -9,7 +9,7 @@
         <meta property="og:site_name" content="Umeqo" /> 
         <meta property="fb:app_id" content="119497238132973" />
         
-        <link rel="icon" href="/favicon.ico" />
+		<link rel="icon" href="/favicon.ico" />
         <title>Umeqo</title>
         <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
         {% load compress %}
@@ -85,7 +85,8 @@
                         <div class="clearfix"></div>
                         <div id="invite_code">
                           <h2>Need an account?</h2>
-                          <p><a href="{% url student_registration %}" class="black_button">Create one now!</a></p>
+						  <p><label class="required">Students:</label><a href="{% url student_registration %}" class="black_button">Create one now!</a></p>
+						  <p><label class="required">Recruiters:</label><a href="{% url subscription_list %}" class="black_button" style="padding: 0px 14px 0px 14px;">Subscribe now!</a></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>

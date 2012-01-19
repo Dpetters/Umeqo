@@ -308,6 +308,12 @@ label.required span.error {
 }
 #invite_code p {
     margin-top: 0;
+	margin-bottom: 3px;
+	margin: 0;
+}
+#invite_code a {
+    margin-left: 0;
+	margin-top: 8px;
 }
 #innovations {
     padding-top: 20px;
