@@ -279,7 +279,6 @@ INSTALLED_APPS = (
     'subscription',
     'ckeditor',
     'sentry',
-    'raven.contrib.django',
     'concurrent_server'
 )
 

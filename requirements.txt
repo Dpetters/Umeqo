@@ -14,7 +14,7 @@ django-indexer==0.3.0
 django-kombu==0.9.4
 django-messages==0.4.4
 django-paging==0.2.4
-django-sentry==1.9.0
+django-sentry==1.12.0
 django-ses==0.2
 django-templatetag-sugar==0.1
 eventlet==0.9.16
@@ -25,7 +25,6 @@ pyPdf==1.13
 pycrypto==2.3
 pysolr==2.0.15
 python-ldap==2.4.6
-raven==1.0.4
 reportlab==2.5
 simplejson==2.3.2
 virtualenv==1.6.4
