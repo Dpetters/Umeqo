@@ -24,7 +24,6 @@ pyPdf==1.13
 pycrypto==2.3
 pysolr==2.0.15
 python-ldap==2.4.6
-pywin32==216
 raven==1.0.4
 reportlab==2.5
 sentry==2.0.0-rc6
