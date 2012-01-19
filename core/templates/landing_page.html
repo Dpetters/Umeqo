@@ -85,7 +85,7 @@
             <p id="innovative">Umeqo is a new recruiting resource for students and employers <br/> to <strong>discover</strong> one another.</p>
             <div id="lotsaforms" class="row">
                 <div class="col">
-                    <div id="login_module" class="module">
+                    <div class="module">
                         <h2>Already have an account?</h2>
                         <form action="{% url login %}" method="POST">
                             {% csrf_token %}
@@ -95,7 +95,7 @@
                             <input type="submit" value="Login"/> 
                         </form>
                         <div class="clearfix"></div>
-                        <div id="invite_code">
+                        <div id="new_account">
                           <h2>Need an account?</h2>
                           <p><a href="{% url student_registration %}" class="black_button">Create one now!</a></p>
                         </div>
