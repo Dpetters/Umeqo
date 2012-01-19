@@ -47,10 +47,12 @@ function unhighlight(element, errorClass) {
     $(element).filter("select").css('border', '1px solid #AAA');
 };
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
+    /*
     $.ajax({
         url:ERROR_JS_URL,
         data:{'error_thrown':errorThrown, 'textStatus':text_Status}
     });
+    */
     if (errorThrown != "abort"){
         if(jqXHR.status==0){
             $("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
