@@ -236,9 +236,6 @@ TEMPLATE_DIRS = (
 )
 
 SENTRY_SEARCH_ENGINE = 'solr'
-SENTRY_SEARCH_OPTIONS = {
-    'url': 'http://127.0.0.1:8983/solr'
-}
 
 SOUTH_MIGRATION_MODULES = {
     'messages': 'messages.migrations',
@@ -281,10 +278,8 @@ INSTALLED_APPS = (
     'campus_org',
     'subscription',
     'ckeditor',
-    'sentry.client',
-    'sentry.plugins.sentry_servers',
-    'sentry.plugins.sentry_sites',
-    'sentry.plugins.sentry_urls',
+    'sentry',
+    'raven.contrib.django',
     'concurrent_server'
 )
 
