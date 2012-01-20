@@ -5541,6 +5541,66 @@
   }
  },
  {
+  "pk": 169,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-19 14:03:03",
+   "name_and_level": "Macedonian (Basic)",
+   "last_updated": "2012-01-19 14:03:03",
+   "name": "Macedonian"
+  }
+ },
+ {
+  "pk": 170,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-19 14:03:03",
+   "name_and_level": "Macedonian (Proficient)",
+   "last_updated": "2012-01-19 14:03:03",
+   "name": "Macedonian"
+  }
+ },
+ {
+  "pk": 171,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-19 14:03:03",
+   "name_and_level": "Macedonian (Fluent)",
+   "last_updated": "2012-01-19 14:03:03",
+   "name": "Macedonian"
+  }
+ },
+ {
+  "pk": 172,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-19 14:03:55",
+   "name_and_level": "Serbian (Basic)",
+   "last_updated": "2012-01-19 14:03:55",
+   "name": "Serbian"
+  }
+ },
+ {
+  "pk": 173,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-19 14:03:55",
+   "name_and_level": "Serbian (Proficient)",
+   "last_updated": "2012-01-19 14:03:55",
+   "name": "Serbian"
+  }
+ },
+ {
+  "pk": 174,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-19 14:03:55",
+   "name_and_level": "Serbian (Fluent)",
+   "last_updated": "2012-01-19 14:03:55",
+   "name": "Serbian"
+  }
+ },
+ {
   "pk": 9,
   "model": "core.course",
   "fields": {
