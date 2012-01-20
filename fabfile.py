@@ -172,12 +172,7 @@ def update():
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
                 with fabric_settings(warn_only=True):
-                    result = run("python manage.py test --setting=settings_test")
-                if result.failed:
-                    run("git reset --hard master@{1}")
-                    run("python manage.py migrate --all")
-                    restart_apache()
-                    run("echo 'yes'|python manage.py collectstatic")
+                    run("python manage.py test --setting=settings_test") #result =
                 run("echo 'y'|python manage.py rebuild_index")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
