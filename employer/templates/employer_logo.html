@@ -3,7 +3,7 @@
         {% if not can_edit and not user.recruiter and employer.visible %}
         <a href="{{employer.get_absolute_url}}">
         {% endif %}
-        <img src="{{MEDIA_URL}}{{employer.logo}}" />
+        <img title="{{employer}}" alt="{{employer}}" src="{{MEDIA_URL}}{{employer.logo}}" />
         {% if not can_edit and employer.visible %}
         </a>
         {% endif %}
