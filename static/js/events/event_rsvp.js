@@ -96,6 +96,7 @@ $(".not_attending").live('mouseleave', function(){
 
 $('#rsvp_yes').live('click', function(e) {
     show_rsvp_message();
+    
     var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
         rsvp.apply(this, [true]);

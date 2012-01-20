@@ -695,10 +695,13 @@ def event_rsvp_message(request, extra_context=None):
         event = Event.objects.get(id=id)
     except Event.DoesNotExist:
         raise Http404("Event with id '%s' does not exist." % id)
-    context = {'event':event}
-    if is_campus_org(event.owner):
-        context['is_campus_org_event'] = True
-    return context
+    context = {}
+    if event.rsvp_message:
+        context['event'] = event
+        if is_campus_org(event.owner):
+            context['is_campus_org_event'] = True
+        return context
+    return HttpResponse()
 
 
 @login_required
