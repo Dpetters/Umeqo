@@ -1,6 +1,6 @@
 <div class="dialog_content_wrapper">
     <h3>{% if is_campus_org_event %}{{event.owner.campusorg}}{% else %}{{event.owner.recruiter.employer}}{% endif %} sends the following message to all RSVPs - </h3> 
-    <p>{{event.rsvp_message}}</p>
+    <p class="centered"><em>{{event.rsvp_message}}</em></p>
     <div class="button_wrapper_with_margins centered">
         <a class="button close_dialog_link">Got it!</a>
     </div>
