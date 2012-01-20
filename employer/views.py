@@ -411,7 +411,7 @@ def employer_resume_book_current_remove_students(request):
 @has_any_subscription
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
-    if request.GET.has_key('student_id'):
+    if not request.GET.has_key('student_id'):
         raise Http400("Request GET is missing the student_id.")
     context={}
     student = Student.objects.visible().get(id=request.GET['student_id'])
@@ -701,8 +701,6 @@ def employer_resume_book_current_download(request):
 @user_passes_test(is_student)
 @render_to()
 def employers(request, extra_content=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.user.student.profile_created:
         return redirect('student_profile')
     query = request.GET.get('q', '')

@@ -495,7 +495,7 @@ def student_resume(request):
 @user_passes_test(is_recruiter)
 def specific_student_resume(request, student_id):
     try:
-        student = Student.objects.filter(id=student_id)
+        student = Student.objects.get(id=student_id)
     except Student.DoesNotExist:
         raise Http404("A student with the id %s does not exist." % student_id)
     resume = student.resume.read()
