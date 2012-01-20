@@ -34,7 +34,7 @@ WELCOME_EVENT_ID = # fill out
 # 1 - Prod, 2 - Staging, 3 - looal, 4 - demo 
 SITE_ID = # fill out
 
-DB_PASSWORD =  # fill out
+DB_PASSWORD = # fill out
 
 STATIC_ROOT = ""
 
@@ -55,12 +55,12 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': # fill out,                   # Or path to database file if using sqlite3.
-        'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': DB_PASSWORD,                # Not used with sqlite3.
-        'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
+        'USER': 'root', # Not used with sqlite3.
+        'PASSWORD': DB_PASSWORD, # Not used with sqlite3.
+        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
 LOGGING = {
@@ -83,7 +83,7 @@ LOGGING = {
             'level':'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': ROOT + '/logs/umeqo.log',
-            'maxBytes': 1024*1024*10,
+            'maxBytes': 1024 * 1024 * 10,
             'backupCount': 5,
             'formatter':'standard',
         },

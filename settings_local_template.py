@@ -38,6 +38,7 @@ MANAGERS = ADMINS
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
+
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 
 DATABASES = {
