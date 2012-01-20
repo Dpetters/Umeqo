@@ -38,6 +38,7 @@ MANAGERS = ADMINS
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
+
 CKEDITOR_MEDIA_PREFIX = "/static/lib/ckeditor/"
 
 DATABASES = {
@@ -93,7 +94,7 @@ LOGGING = {
     },
     'loggers': {
         'django.request': { # Stop SQL debug from logging to main logger
-            'handlers': ['raven', 'file_handler'],
+            'handlers': ['sentry', 'file_handler'],
             'level': 'WARNING',
         },
         'sentry.errors': {

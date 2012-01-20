@@ -1,9 +1,8 @@
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseForbidden
-from django.shortcuts import redirect
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
+from core.http import Http403
 from subscription.models import EmployerSubscription
 
 try:
@@ -32,6 +31,7 @@ class agreed_to_terms(object):
             return self.orig_func(request, *args, **kwargs)
         return redirect(reverse("terms_of_service"))
     
+
 class has_any_subscription(object):
     def __init__(self, orig_func):
         self.orig_func = orig_func
@@ -47,9 +47,10 @@ class has_any_subscription(object):
                 if not subscription.expired():
                     return self.orig_func(request, *args, **kwargs)
             if request.is_ajax():
-                return HttpResponseForbidden("You must have an annual subscription to do that.")
+                raise Http403("You must have an annual subscription to do that.")
             return redirect(reverse("subscription_list"))
         return self.orig_func(request, *args, **kwargs)
+
 
 class has_annual_subscription(object):
     def __init__(self, orig_func):
@@ -66,9 +67,10 @@ class has_annual_subscription(object):
                 if subscription.annual_subscription() and not subscription.expired():
                     return self.orig_func(request, *args, **kwargs)
             if request.is_ajax():
-                return HttpResponseForbidden("You must have an annual subscription to do that.")
+                raise Http403("You must have an annual subscription to do that.")
             return redirect(reverse("subscription_list"))
         return self.orig_func(request, *args, **kwargs)
+
 
 def is_superuser(user):
     return user.is_superuser

@@ -5,20 +5,26 @@ Forbidden |
 {% endblock %}
 
 {% block content_area %}
+
 {% if user.is_authenticated %}
-<div class="left_side_container">
-{% if request.user.student %}
-    {% include 'student_side_nav.html' %}
+    <div class="left_side_container">
+        {% if request.user.student %}
+            {% include 'student_side_nav.html' %}
+        {% endif %}
+        {% if request.user.recruiter %}
+            {% include 'employer_side_nav.html' %}
+        {% endif %}
+        {% if request.user.campusorg %}
+            {% include 'campus_org_side_nav.html' %}
+        {% endif %}
+    </div>
 {% endif %}
-{% if request.user.recruiter %}
-    {% include 'employer_side_nav.html' %}
-{% endif %}
-</div>
-{% endif %}
-<div class="simple_block grande centered">
+
+<div class="{% if user.is_authenticated %}with_side_nav{% endif %} simple_block grande centered">
      <h1>403 - Forbidden</h1>
      <div class="message_section">
         <p>We're sorry, but you are not authorized to view the page you requested.</p>
+        <span><small>{% if exception %}<strong>Details:</strong> {{exception}}{% endif %}</small></span>
         <p>Try {% if not user.is_authenticated %}<a class="login" href="javascript:void(0)">logging in</a>{% else %} starting at one of the links on the left{% endif %} or returning to the <a href="/">home page</a>.</p>
      </div>
 </div>

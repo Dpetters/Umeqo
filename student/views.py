@@ -7,7 +7,7 @@ from django.conf import settings as s
 from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
+from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
@@ -17,10 +17,10 @@ from django.template.loader import render_to_string
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms
+from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms, has_any_subscription
 from core.email import send_html_mail
 from core.forms import CreateLanguageForm
-from core.http import Http403
+from core.http import Http403, Http400
 from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
 from core.email import is_valid_email
 from countries.models import Country
@@ -36,11 +36,12 @@ from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm
 from student.models import Student, StudentDeactivation
 from student.view_helpers import process_resume, handle_uploaded_file, resume_processing_helper
 
+
 @require_GET
 def student_info(request, extra_context=None):
     data = {}
     if not request.GET.has_key("email"):
-        return HttpResponseBadRequest("Email is missing.")
+        raise Http403("Request GET is missing the email")
     email = request.GET["email"]
     if not is_valid_email(email) or s.DEBUG and email[-len("mit.edu"):] != "mit.edu" and email[-len("umeqo.com"):] != "umeqo.com" or email[-len("mit.edu"):] != "mit.edu":
         return HttpResponse()
@@ -52,68 +53,69 @@ def student_info(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 def student_quick_registration(request, form_class=StudentQuickRegistrationForm, extra_context=None):
     context = {}
-    if request.is_ajax():
-        if request.method == "POST":
-            data = {}
-            form = form_class(data=request.POST, files=request.FILES)
-            if form.is_valid():
-                pdf_file_path = "%sstudent/student/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
-                handle_uploaded_file(request.FILES['resume'], pdf_file_path)
-                
-                # process_resume_data returns either an error or the keywords
-                resume_parsing_results =  resume_processing_helper(pdf_file_path)
-                
-                # A hacked error is unrecoverable
-                if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
-                    errors = {'resume': messages.resume_problem}
-                    data['errors'] = errors
-                else:
-                    # If the resume is not unparsable, then resume_parsing_results
-                    # contains the keywords
-                    keywords = None
-                    data['unparsable_resume'] = False
-                    if resume_parsing_results == student_enums.RESUME_PROBLEMS.UNPARSABLE:
-                        data['unparsable_resume'] = True
-                    else:
-                        keywords = resume_parsing_results
-                    user_info =  {'username': request.POST['email'],
-                                  'first_name': request.POST['first_name'],
-                                  'last_name': request.POST['last_name'],
-                                  'email': request.POST['email'],
-                                  'password': request.POST['password']}
-                    student = register_student(request, **user_info)
-                    student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
-                    student.graduation_month = request.POST['graduation_month']
-                    student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
-                    student.first_major = Course.objects.get(id=request.POST['first_major'])
-                    student.gpa = request.POST['gpa']
-                    file_content = file(pdf_file_path, "rb")
-                    student.resume.save(request.FILES['resume'].name, File(file_content))
-                    
-                    if keywords:
-                        student.keywords = keywords
-                    student.profile_created = True
-                    student.save()
-                    for attendee in Attendee.objects.filter(email=student.user.email):
-                        attendee.student = student
-                        attendee.save()
-                    event = Event.objects.get(id=request.POST['event_id'])
-                    action = request.POST['action']
-                    DroppedResume.objects.create(student=student, event=event)
-                    if action == "rsvp":
-                        RSVP.objects.create(student=student, event=event)
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == "POST":
+        data = {}
+        form = form_class(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            pdf_file_path = "%sstudent/student/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+            handle_uploaded_file(request.FILES['resume'], pdf_file_path)
+            
+            # process_resume_data returns either an error or the keywords
+            resume_parsing_results =  resume_processing_helper(pdf_file_path)
+            
+            # A hacked error is unrecoverable
+            if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
+                errors = {'resume': messages.resume_problem}
+                data['errors'] = errors
             else:
-                data['errors'] = form.errors
-            return HttpResponse(simplejson.dumps(data), mimetype="text/html")
-        context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
-        action = request.GET['action']
-        if action=="rsvp":
-            context['action'] = "RSVP"
-        elif action=="drop":
-            context['action'] = "drop resume"
-        context.update(extra_context or {})
-        return context
-    raise Http403()
+                # If the resume is not unparsable, then resume_parsing_results
+                # contains the keywords
+                keywords = None
+                data['unparsable_resume'] = False
+                if resume_parsing_results == student_enums.RESUME_PROBLEMS.UNPARSABLE:
+                    data['unparsable_resume'] = True
+                else:
+                    keywords = resume_parsing_results
+                user_info =  {'username': request.POST['email'],
+                              'first_name': request.POST['first_name'],
+                              'last_name': request.POST['last_name'],
+                              'email': request.POST['email'],
+                              'password': request.POST['password']}
+                student = register_student(request, **user_info)
+                student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
+                student.graduation_month = request.POST['graduation_month']
+                student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
+                student.first_major = Course.objects.get(id=request.POST['first_major'])
+                student.gpa = request.POST['gpa']
+                file_content = file(pdf_file_path, "rb")
+                student.resume.save(request.FILES['resume'].name, File(file_content))
+                
+                if keywords:
+                    student.keywords = keywords
+                student.profile_created = True
+                student.save()
+                for attendee in Attendee.objects.filter(email=student.user.email):
+                    attendee.student = student
+                    attendee.save()
+                event = Event.objects.get(id=request.POST['event_id'])
+                action = request.POST['action']
+                DroppedResume.objects.create(student=student, event=event)
+                if action == "rsvp":
+                    RSVP.objects.create(student=student, event=event)
+        else:
+            data['errors'] = form.errors
+        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+    context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
+    action = request.GET['action']
+    if action=="rsvp":
+        context['action'] = "RSVP"
+    elif action=="drop":
+        context['action'] = "drop resume"
+    context.update(extra_context or {})
+    return context
+
 
 @require_GET
 @render_to('student_quick_registration_done.html')
@@ -122,140 +124,126 @@ def student_quick_registration_done(request, extra_context=None):
     context.update(extra_context or {})
     return context
 
+
 @render_to('student_registration_help.html')
 def student_registration_help(request, extra_context=None):
-    if request.is_ajax():
-        return {}
-    else:
-        return HttpResponseBadRequest("Request must be ajax.")
-    
-@login_required
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    return {}
+
+
+@user_passes_test(is_student)
 @render_to('student_profile_unparsable_resume.html')
 def student_profile_unparsable_resume(request, extra_context=None):
-    if request.is_ajax():
-        return {}
-    else:
-        return HttpResponseBadRequest("Request must be ajax.")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    return {}
 
-@login_required
+
+@require_GET
 @agreed_to_terms
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@user_passes_test(is_student)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
                     change_password_form_class = PasswordChangeForm, 
                     extra_context=None):
+    context = {}
+    page_messages = {
+        'password-changed': messages.password_changed,
+    }
+    msg = request.GET.get('msg', None)
+    if msg:
+        context["msg"] = page_messages[msg]
     
-    if request.method == "GET":
-        context = {}
-        page_messages = {
-            'password-changed': messages.password_changed,
-        }
-        msg = request.GET.get('msg', None)
-        if msg:
-            context["msg"] = page_messages[msg]
-        
-        context['preferences_form'] = \
-        preferences_form_class(instance = request.user.student.studentpreferences)
-        
-        context['change_password_form'] = change_password_form_class(request.user)
-        context.update(extra_context or {})
-        return context
-    else:
-        return HttpResponseForbidden("Request must be a GET")
+    context['preferences_form'] = \
+    preferences_form_class(instance = request.user.student.studentpreferences)
+    
+    context['change_password_form'] = change_password_form_class(request.user)
+    context.update(extra_context or {})
+    return context
+
 
 @require_POST
-@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+@user_passes_test(is_recruiter)
 def student_increment_resume_view_count(request):
-    if request.POST.has_key("student_id"):
-        student = Student.objects.get(id=request.POST['student_id'])
-        student.studentstatistics.resume_view_count += 1
-        student.studentstatistics.save()
-        return HttpResponse()
-    else:
-        return HttpResponseBadRequest("Student Id is missing")
+    if not request.POST.has_key("student_id"):
+        raise Http400("Request POST is missing the student_id")
+    student = Student.objects.get(id=request.POST['student_id'])
+    student.studentstatistics.resume_view_count += 1
+    student.studentstatistics.save()
+    return HttpResponse()
 
-@login_required
+
 @agreed_to_terms
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@user_passes_test(is_student)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
-    if request.is_ajax():
-        if request.method == "POST":
-            form = form_class(data = request.POST)
-            if form.is_valid():
-                user = request.user
-                student = user.student
-                user.is_active = False
-                user.save()
-                for sk in user.sessionkey_set.all():
-                    Session.objects.filter(session_key=sk.session_key).delete()
-                user.sessionkey_set.all().delete()
-                sd = StudentDeactivation.objects.create(student = student)
-                if form.cleaned_data.has_key('suggestion'):
-                    sd.suggestion = form.cleaned_data['suggestion']
-                    sd.save()
-                return HttpResponse()
-            else:
-                if request.is_ajax():
-                    return HttpResponse(simplejson.dumps({'errors':form.errors}), 
-                                        mimetype="application/json")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == "POST":
+        form = form_class(data = request.POST)
+        if form.is_valid():
+            data = []
+            user = request.user
+            student = user.student
+            user.is_active = False
+            user.save()
+            for session_key in user.sessionkey_set.all():
+                Session.objects.filter(session_key=session_key.session_key).delete()
+            user.sessionkey_set.all().delete()
+            student_deactivation = StudentDeactivation.objects.create(student = student)
+            if form.cleaned_data.has_key('suggestion'):
+                student_deactivation.suggestion = form.cleaned_data['suggestion']
+                student_deactivation.save()
         else:
-            context = {}
-            context['form'] = form_class()
-            return context
+            data = {'errors':form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
+        context = {}
+        context['form'] = form_class()
+        return context
 
 
-@login_required
+@require_POST
 @agreed_to_terms
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
-def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, 
-                                extra_context = None):
-    if request.is_ajax():
-        if request.method == "POST":
-            form = preferences_form_class(data = request.POST, \
-                                          instance = request.user.student.studentpreferences)
+@user_passes_test(is_student)
+def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    form = preferences_form_class(data = request.POST, instance = request.user.student.studentpreferences)
+    if form.is_valid():
+        request.user.student.student_preferences = form.save()
+        
+        public_invite = NoticeType.objects.get(label = "public_invite")
+        private_invite = NoticeType.objects.get(label = "private_invite")
+        new_event = NoticeType.objects.get(label = "new_event")
+        
+        try:
+            n = NoticeSetting.objects.get(user=request.user, notice_type = public_invite, medium = EMAIL)
+        except NoticeSetting.DoesNotExist:
+            n = NoticeSetting.objects.create(user=request.user, notice_type = public_invite, medium = EMAIL)
+        n.send = form.cleaned_data["email_on_invite_to_public_event"];
+        n.save()
+        
+        try:
+            n = NoticeSetting.objects.get(user=request.user, notice_type = private_invite, medium = EMAIL)
+        except NoticeSetting.DoesNotExist:
+            n = NoticeSetting.objects.create(user=request.user, notice_type = private_invite, medium = EMAIL)
+        n.send = form.cleaned_data["email_on_invite_to_private_event"];
+        n.save()
+        
+        try:
+            n = NoticeSetting.objects.get(user=request.user, notice_type = new_event, medium = EMAIL)
+        except NoticeSetting.DoesNotExist:
+            n = NoticeSetting.objects.create(user=request.user, notice_type = new_event, medium = EMAIL)
+        n.send = form.cleaned_data["email_on_new_subscribed_employer_event"];
+        n.save()
 
-            if form.is_valid():
-                request.user.student.student_preferences = form.save()
-                
-                public_invite = NoticeType.objects.get(label = "public_invite")
-                private_invite = NoticeType.objects.get(label = "private_invite")
-                new_event = NoticeType.objects.get(label = "new_event")
-                
-                try:
-                    n = NoticeSetting.objects.get(user=request.user, notice_type = public_invite, medium = EMAIL)
-                except NoticeSetting.DoesNotExist:
-                    n = NoticeSetting.objects.create(user=request.user, notice_type = public_invite, medium = EMAIL)
-                n.send = form.cleaned_data["email_on_invite_to_public_event"];
-                n.save()
-                
-                try:
-                    n = NoticeSetting.objects.get(user=request.user, notice_type = private_invite, medium = EMAIL)
-                except NoticeSetting.DoesNotExist:
-                    n = NoticeSetting.objects.create(user=request.user, notice_type = private_invite, medium = EMAIL)
-                n.send = form.cleaned_data["email_on_invite_to_private_event"];
-                n.save()
-                
-                try:
-                    n = NoticeSetting.objects.get(user=request.user, notice_type = new_event, medium = EMAIL)
-                except NoticeSetting.DoesNotExist:
-                    n = NoticeSetting.objects.create(user=request.user, notice_type = new_event, medium = EMAIL)
-                n.send = form.cleaned_data["email_on_new_subscribed_employer_event"];
-                n.save()
-
-                data = {'valid':True}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
-            else:
-                data = {'valid':False,
-                        'form_errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            return HttpResponseForbidden("Request must be a POST.")
+        data = {'valid':True}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")    
     else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+        data = {'valid':False, 'form_errors':form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
 @render_to("student_registration.html")
@@ -286,12 +274,14 @@ def student_registration(request, backend = RegistrationBackend(), form_class = 
     context.update(extra_context or {}) 
     return context
 
+
 @render_to('student_registration_complete.html')
 def student_registration_complete(request, extra_context = None):
     email = request.GET.get('email', None)
     context = {'email': email}
     context.update(extra_context)
     return context
+
 
 @login_required
 @agreed_to_terms
@@ -341,63 +331,57 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
         return context
 
 
-@login_required
 @agreed_to_terms
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@user_passes_test(is_student)
 @render_to("student_profile_preview.html")
-def student_profile_preview(request, form_class=StudentProfilePreviewForm,
-                            extra_context=None):
-    if request.user.is_authenticated() and hasattr(request.user, "student"):
-        if request.method == 'POST':
-            form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-            if form.is_valid():
-                student = form.save(commit=False)
-                if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
-                    student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
-                else:
-                    student.sat_t = None
-                
-                context = {'student':student,
-                           'edit' : request.user.student.profile_created,
-                           'in_resume_book':False,
-                           'starred':False,
-                           'comment':messages.comment_text,
-                           'num_of_events_attended':1,
-                           'profile_preview':True}
-                
-                if request.POST.has_key('looking_for'):
-                    context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('looking_for'))
-                if request.POST.has_key('industries_of_interest'):
-                    context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('industries_of_interest'))
-                if request.POST.has_key('previous_employers'):
-                    context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('previous_employers'))
-                if request.POST.has_key('campus_involvement'):
-                    context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('campus_involvement'))
-                if request.POST.has_key('languages'):
-                    context['languages'] = Language.objects.filter(id__in=request.POST.getlist('languages'))
-                if request.POST.has_key('countries_of_citizenship'):
-                    context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('countries_of_citizenship'))
-                                    
-                context.update(extra_context or {})
-                return context
-            else:
-                if form.non_field_errors():
-                    error_html = form.non_field_errors()[0]
-                else:
-                    for field in form:
-                        if field.errors:
-                            error_html = field.errors[0]
-                            break
-                return HttpResponse("<div class='message_section'>%s</div>" % error_html)
+def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+    if form.is_valid():
+        student = form.save(commit=False)
+        if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
+            student.sat_t = int(form.cleaned_data['sat_w']) + int(form.cleaned_data['sat_v']) + int(form.cleaned_data['sat_m'])
         else:
-            return HttpResponseForbidden("Request must be a POST.") 
+            student.sat_t = None
+        
+        context = {'student':student,
+                   'edit' : request.user.student.profile_created,
+                   'in_resume_book':False,
+                   'starred':False,
+                   'comment':messages.comment_text,
+                   'num_of_events_attended':1,
+                   'profile_preview':True}
+        
+        if request.POST.has_key('looking_for'):
+            context['looking_for'] = EmploymentType.objects.filter(id__in=request.POST.getlist('looking_for'))
+        if request.POST.has_key('industries_of_interest'):
+            context['industries_of_interest'] = Industry.objects.filter(id__in=request.POST.getlist('industries_of_interest'))
+        if request.POST.has_key('previous_employers'):
+            context['previous_employers'] = Employer.objects.filter(id__in=request.POST.getlist('previous_employers'))
+        if request.POST.has_key('campus_involvement'):
+            context['campus_involvement'] = CampusOrg.objects.filter(id__in=request.POST.getlist('campus_involvement'))
+        if request.POST.has_key('languages'):
+            context['languages'] = Language.objects.filter(id__in=request.POST.getlist('languages'))
+        if request.POST.has_key('countries_of_citizenship'):
+            context['countries_of_citizenship'] = Country.objects.filter(iso__in=request.POST.getlist('countries_of_citizenship'))
+                            
+        context.update(extra_context or {})
+        return context
     else:
-        return HttpResponseForbidden("You must be logged in.")     
+        if form.non_field_errors():
+            error_html = form.non_field_errors()[0]
+        else:
+            for field in form:
+                if field.errors:
+                    error_html = field.errors[0]
+                    break
+        return HttpResponse("<div class='message_section'>%s</div>" % error_html)
 
-@login_required
+
 @agreed_to_terms
 @require_http_methods(["POST"])
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@user_passes_test(is_student)
 def student_update_resume(request, form_class=StudentUpdateResumeForm):
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
     if form.is_valid():
@@ -420,102 +404,105 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@login_required
 @agreed_to_terms
 @require_http_methods(["GET"])
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@user_passes_test(is_student)
 def student_update_resume_info(request):
     num = len(filter(None, request.user.student.keywords.split(" ")))
     data = {'num_of_extracted_keywords' : num}
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
+@agreed_to_terms
+@user_passes_test(is_student)
 @render_to("student_create_campus_org.html")
 def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, extra_context=None):
-    if request.user.is_authenticated() and hasattr(request.user, "student"):
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
-            if form.is_valid():
-                new_campus_org = form.save()
-                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                subject = "New Campus Org: %s" % (new_campus_org) 
-                body = render_to_string('new_campus_org_email_body.html', \
-                                        {'first_name':request.user.student.first_name, \
-                                        'last_name':request.user.student.last_name, \
-                                        'email':request.user.email, \
-                                        'new_campus_org':new_campus_org})
-                send_html_mail(subject, body, recipients)
-                data = {"type": new_campus_org.type.name,
-                        "name": new_campus_org.name,
-                        "id": new_campus_org.id}
-            else:
-                data = {'errors': form.errors }
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            new_campus_org = form.save()
+            recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+            subject = "New Campus Org: %s" % (new_campus_org) 
+            body = render_to_string('new_campus_org_email_body.html', \
+                                    {'first_name':request.user.student.first_name, \
+                                    'last_name':request.user.student.last_name, \
+                                    'email':request.user.email, \
+                                    'new_campus_org':new_campus_org})
+            send_html_mail(subject, body, recipients)
+            data = {"type": new_campus_org.type.name,
+                    "name": new_campus_org.name,
+                    "id": new_campus_org.id}
         else:
-            form = form_class()
-        context =  {'form': form }
-        context.update(extra_context or {}) 
-        return context
+            data = {'errors': form.errors }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseForbidden("You must be logged in.")
+        form = form_class()
+    context =  {'form': form }
+    context.update(extra_context or {}) 
+    return context
+
 
 @agreed_to_terms
+@user_passes_test(is_student)
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
-    if request.user.is_authenticated() and hasattr(request.user, "student"):
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
-            if form.is_valid():
-                new_language_name = form.cleaned_data['name']
-                basic = Language.objects.create(name_and_level=new_language_name + " (Basic)", name=new_language_name)
-                proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
-                fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
-                recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                subject = "New Language: %s" % (new_language_name) 
-                body = render_to_string('new_language_email_body.html', \
-                                        {'first_name':request.user.student.first_name, \
-                                        'last_name':request.user.student.last_name, \
-                                        'email':request.user.email, \
-                                        'new_language':new_language_name})
-                send_html_mail(subject, body, recipients)
-                data = {"name":new_language_name, 
-                        "fluent_id":fluent.id, 
-                        "proficient_id":proficient.id, 
-                        "basic_id":basic.id}  
-            else:
-                data = {'errors':form.errors}
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            new_language_name = form.cleaned_data['name']
+            basic = Language.objects.create(name_and_level=new_language_name + " (Basic)", name=new_language_name)
+            proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
+            fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
+            recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+            subject = "New Language: %s" % (new_language_name) 
+            body = render_to_string('new_language_email_body.html', \
+                                    {'first_name':request.user.student.first_name, \
+                                    'last_name':request.user.student.last_name, \
+                                    'email':request.user.email, \
+                                    'new_language':new_language_name})
+            send_html_mail(subject, body, recipients)
+            data = {"name":new_language_name, 
+                    "fluent_id":fluent.id, 
+                    "proficient_id":proficient.id, 
+                    "basic_id":basic.id}  
         else:
-            form = form_class()
-            
-        context =  { 'form': form }
-        context.update(extra_context or {})
-        return context
+            data = {'errors':form.errors}
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseForbidden("You must be logged in.")
+        form = form_class()
+        
+    context =  { 'form': form }
+    context.update(extra_context or {})
+    return context
 
-@login_required
+
 @agreed_to_terms
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
+@user_passes_test(is_student)
 def student_resume(request):
-    # Show the student his/her resume
     resume = request.user.student.resume.read()
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s.pdf' % (request.user.last_name.lower(), request.user.first_name.lower())
     return response
 
-@login_required
-@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
+
+@require_GET
+@agreed_to_terms
+@has_any_subscription
+@user_passes_test(is_recruiter)
 def specific_student_resume(request, student_id):
-    if request.user.recruiter.employer.subscribed():
-        student_query = Student.objects.filter(id=student_id)
-        if student_query.exists():
-            student = student_query.get()
-            resume = student.resume.read()
-            response = HttpResponse(resume, mimetype='application/pdf')
-            response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
-            return response
-    raise Http404
+    try:
+        student = Student.objects.get(id=student_id)
+    except Student.DoesNotExist:
+        raise Http404("A student with the id %s does not exist." % student_id)
+    resume = student.resume.read()
+    response = HttpResponse(resume, mimetype='application/pdf')
+    response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
+    return response
+
 
 """
 @login_required

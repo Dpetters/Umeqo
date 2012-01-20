@@ -12,7 +12,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest, Http404
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseBadRequest, Http404
 from django.utils import simplejson
 from django.template import RequestContext, loader
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
@@ -23,7 +23,7 @@ from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
 from core import enums as core_enums
-from core.http import Http403
+from core.http import Http403, Http400
 from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
@@ -70,24 +70,24 @@ def events(request, category, extra_context=None):
             template = "events_student.html"
     return render_to_response(template, context, context_instance=RequestContext(request) )
 
+
 @require_GET
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
 def events_check_short_slug_uniqueness(request):
-    if request.is_ajax():
-        if request.GET.has_key("short_slug"):
-            data = {'used':False}
-            if is_campus_org(request.user):
-                if Event.objects.filter(short_slug = request.GET['short_slug'], owner=request.user).exists():
-                    data['used'] = True
-            elif is_recruiter(request.user):
-                if Event.objects.filter(short_slug = request.GET['short_slug'], owner__recruiter__employer=request.user.recruiter.employer).exists():
-                    data['used'] = True
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            return HttpResponseBadRequest("Request is missing the short slug.")
-    else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if not request.GET.has_key("short_slug"):
+        raise Http400("Request GET is missing the short_slug.")
+    data = {'used':False}
+    if is_campus_org(request.user):
+        if Event.objects.filter(short_slug = request.GET['short_slug'], owner=request.user).exists():
+            data['used'] = True
+    elif is_recruiter(request.user):
+        if Event.objects.filter(short_slug = request.GET['short_slug'], owner__recruiter__employer=request.user.recruiter.employer).exists():
+            data['used'] = True
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
 
 @require_GET
 @agreed_to_terms
@@ -100,7 +100,7 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
             campus_org = CampusOrg.objects.get(slug = owner_slug)
             events = campus_org.user.event_set.all().order_by("-date_created")
         except CampusOrg.DoesNotExist:
-            raise Http404
+            raise Http404("Employer or Campus Organization with slug '%s' does not exist." % owner_slug)
     if events != []:
         try:
             slug_matches = filter(lambda a: a.short_slug == event_slug, events)
@@ -110,14 +110,16 @@ def events_shortcut(request, owner_slug, event_slug, extra_context=None):
                     return redirect(url)
         except Event.DoesNotExist:
             pass
-    raise Http404
+    raise Http404("Event with slug '%s' does not exist." % event_slug)
+
 
 def event_page_redirect(request, id):
     try:
         event = Event.objects.get(pk=id)
     except Event.DoesNotExist:
-        raise Http404
+        raise Http404("Event with id '%s' does not exist." % id)
     return redirect("%s" % (event.get_absolute_url()))
+
 
 @render_to('event_page.html')
 @agreed_to_terms
@@ -127,8 +129,7 @@ def event_page(request, id, slug, extra_context=None):
     try:
         event = Event.objects.get(pk=id)
     except:
-        raise Http404
-    
+        raise Http404("Event with id '%s' does not exist." % id)
     if not event.is_public:
         if not request.user.is_authenticated():
             raise Http403("This event is private. You do not have permission to view it.")
@@ -208,7 +209,7 @@ def event_page(request, id, slug, extra_context=None):
     context.update(extra_context or {})
     return context
 
-@login_required
+
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 @agreed_to_terms
@@ -255,35 +256,35 @@ def event_new(request, form_class=None, extra_context=None):
     context.update(extra_context or {})
     return context
 
+
 @login_required
 @agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 def event_list_download(request):
     if not request.GET.has_key("event_id"):
-        return HttpResponseBadRequest("Request is missing the event id.")
+        raise Http400("Request GET is missing the event_id.")
+    try:
+        event = Event.objects.get(id=request.GET["event_id"])
+    except Event.DoesNotExist:
+        return HttpResponseBadRequest("Event with the id %d" % request.GET['event_id'])
     else:
-        try:
-            event = Event.objects.get(id=request.GET["event_id"])
-        except Event.DoesNotExist:
-            return HttpResponseBadRequest("Event with the id %d" % request.GET['event_id'])
+        list = request.GET['event_list']
+        if not request.GET.has_key('export_format'):
+            return HttpResponseBadRequest("The request is missing the file format.")
+        if request.GET['export_format'] == core_enums.CSV:
+            response = HttpResponse(mimetype='text/csv')
+            filename = "%s.csv" % export_event_list_csv(response, event, list)
+        #elif request.GET['export_format'] == core_enums.XLS:
+        #    response = HttpResponse(mimetype="application/ms-excel")
+        #    filename = export_event_list_xls(response, event, list)
+        elif request.GET['export_format'] == core_enums.TEXT:
+            response = HttpResponse(mimetype="text/plain")
+            filename = "%s.txt" % export_event_list_text(response, event, list)
         else:
-            list = request.GET['event_list']
-            if not request.GET.has_key('export_format'):
-                return HttpResponseBadRequest("The request is missing the file format.")
-            if request.GET['export_format'] == core_enums.CSV:
-                response = HttpResponse(mimetype='text/csv')
-                filename = "%s.csv" % export_event_list_csv(response, event, list)
-            #elif request.GET['export_format'] == core_enums.XLS:
-            #    response = HttpResponse(mimetype="application/ms-excel")
-            #    filename = export_event_list_xls(response, event, list)
-            elif request.GET['export_format'] == core_enums.TEXT:
-                response = HttpResponse(mimetype="text/plain")
-                filename = "%s.txt" % export_event_list_text(response, event, list)
-            else:
-                return HttpResponseBadRequest("The file format % isn't one we support." % request.GET['export_format'])
-            response['Content-Disposition'] = 'attachment; filename="%s"' % filename
-            return response
+            return HttpResponseBadRequest("The file format % isn't one we support." % request.GET['export_format'])
+        response['Content-Disposition'] = 'attachment; filename="%s"' % filename
+        return response
 
 
 @login_required
@@ -301,13 +302,14 @@ def event_checkin_count(request):
 @render_to('event_list_export_completed.html')
 def event_list_export_completed(request, extra_context = None):
     if not request.GET.has_key("event_list"):
-        return HttpResponseBadRequest("Filename is missing from the request.")
+        raise Http400("Filename is missing from the request.")
     if not request.GET.has_key("event_id"):
-        return HttpResponseBadRequest("Event id is missing from the request.")        
+        raise Http400("Request GET is missing the event_id.")
+    id = request.GET["event_id"]
     try:
-        event = Event.objects.get(id=request.GET["event_id"])
+        event = Event.objects.get(id=id)
     except Event.DoesNotExist:
-        return HttpResponseBadRequest("Event with the id %d" % request.GET['event_id'])
+        return Http404("Event with the id %s does not exist." % id)
     list = request.GET['event_list']
     if list == "all":
         filename = "%s Respondees" % (event.name)
@@ -322,54 +324,52 @@ def event_list_export_completed(request, extra_context = None):
     return context
 
 
-@login_required
 @agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @render_to()
 def event_list_export(request, form_class = EventExportForm, extra_context=None):
-    if request.is_ajax():
-        if request.method == 'POST':
-            form = form_class(data=request.POST)
-            if form.is_valid():
-                format = form.cleaned_data["export_format"]
-                event = Event.objects.get(id=form.cleaned_data["event_id"])
-                list = form.cleaned_data['event_list']
-                reg = re.compile(r"\s*[;, \n]\s*")
-                recipients = reg.split(request.POST['emails'])
-                subject = ''.join(render_to_string('event_list_export_email_subject.txt', {}).splitlines())
-                body = render_to_string('event_list_export_email_body.html', {'name':request.user.first_name})
-                file = StringIO.StringIO()
-                if format == core_enums.CSV:
-                    filename = export_event_list_csv(file, event, list)
-                    extension = "csv"
-                    file_contents = file.getvalue()
-                    mimetype = "text/csv"
-                #elif format == core_enums.XLS:
-                #    filename = export_event_list_xls(file, event, list)
-                #    file_contents = file.getvalue()
-                #    mimetype = "application/vnd.ms-excel"
-                elif format == core_enums.TEXT:
-                    filename = export_event_list_text(file, event, list)
-                    extension = "txt"
-                    file_contents = file.getvalue()
-                    mimetype = "text/plain"
-                else:
-                    return HttpResponseBadRequest("The request format '%s' is not supported" % format)
-                send_html_mail(subject, body, recipients, "%s.%s" % (filename, extension), file_contents, mimetype)
-                context = {'filename': filename, 'TEMPLATE':'event_list_export_completed.html'}
-                context.update(extra_context or {})
-                return context
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            format = form.cleaned_data["export_format"]
+            event = Event.objects.get(id=form.cleaned_data["event_id"])
+            list = form.cleaned_data['event_list']
+            reg = re.compile(r"\s*[;, \n]\s*")
+            recipients = reg.split(request.POST['emails'])
+            subject = ''.join(render_to_string('event_list_export_email_subject.txt', {}).splitlines())
+            body = render_to_string('event_list_export_email_body.html', {'name':request.user.first_name})
+            file = StringIO.StringIO()
+            if format == core_enums.CSV:
+                filename = export_event_list_csv(file, event, list)
+                extension = "csv"
+                file_contents = file.getvalue()
+                mimetype = "text/csv"
+            #elif format == core_enums.XLS:
+            #    filename = export_event_list_xls(file, event, list)
+            #    file_contents = file.getvalue()
+            #    mimetype = "application/vnd.ms-excel"
+            elif format == core_enums.TEXT:
+                filename = export_event_list_text(file, event, list)
+                extension = "txt"
+                file_contents = file.getvalue()
+                mimetype = "text/plain"
             else:
-                data = {'errors':form.errors}
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+                return HttpResponseBadRequest("The request format '%s' is not supported" % format)
+            send_html_mail(subject, body, recipients, "%s.%s" % (filename, extension), file_contents, mimetype)
+            context = {'filename': filename, 'TEMPLATE':'event_list_export_completed.html'}
+            context.update(extra_context or {})
+            return context
         else:
-            form = form_class(initial={'emails':request.user.email, 'event_id':request.GET['event_id'], 'event_list':request.GET['event_list']})
-        context = {'form': form, 'TEMPLATE':'event_list_export.html'}
-        context.update(extra_context or {}) 
-        return context
+            data = {'errors':form.errors}
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        raise HttpResponseForbidden()
+        form = form_class(initial={'emails':request.user.email, 'event_id':request.GET['event_id'], 'event_list':request.GET['event_list']})
+    context = {'form': form, 'TEMPLATE':'event_list_export.html'}
+    context.update(extra_context or {}) 
+    return context
 
 
 @login_required
@@ -381,7 +381,8 @@ def event_edit(request, id=None, extra_context=None):
     try:
         event = Event.objects.get(pk=id)
     except Event.DoesNotExist:
-        raise Http404
+        raise Http404("Event with id '%s' does not exist." % id)
+    
     context = {'event': event}
     if not admin_of_event(event, request.user):
         return HttpResponseForbidden('You are not allowed to edit this event.')  
@@ -419,6 +420,7 @@ def event_edit(request, id=None, extra_context=None):
     context.update(extra_context or {})
     return context
 
+
 def admin_of_event(event, user):
     if is_recruiter(event.owner):
         return is_recruiter(user) and user.recruiter.employer == event.owner.recruiter.employer
@@ -426,52 +428,53 @@ def admin_of_event(event, user):
         return is_campus_org(user) and user.campusorg == event.owner.campusorg
     return False
 
+
 @login_required
 @agreed_to_terms
 @has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("event_cancel_dialog.html")
 def event_cancel(request, id, extra_context = None):
-    if request.is_ajax():
-        if request.method == "POST":
-            try:
-                event = Event.objects.get(id=id)
-            except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % id)
-            else:
-                if not admin_of_event(event, request.user):
-                    return HttpResponseForbidden('You are not allowed to delete this event.')
-                event.cancelled = True
-    
-                # Notify RSVPS.
-                rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
-                employers = event.attending_employers.all()
-                has_word = "has" if len(employers)==1 else "have"
-                employer_names = english_join(map(lambda n: n.name, employers))
-                notification.send(rsvps, 'cancelled_event', {
-                    'employer_names': employer_names,
-                    'has_word': has_word,
-                    'event': event
-                })
-                
-                event.save()
-                
-                data = {}
-                if event.is_deadline():
-                    data['type'] = "deadline"
-                else:
-                    data['type'] = "event"
-                return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == "POST":
+        try:
+            event = Event.objects.get(id=id)
+        except Event.DoesNotExist:
+            raise Http404("Event with id '%s' does not exist." % id)
         else:
-            try:
-                event = Event.objects.get(id=id)
-            except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % id)
-            context = {'event':event}
-            context.update(extra_context or {})
-            return context
+            if not admin_of_event(event, request.user):
+                return HttpResponseForbidden('You are not allowed to delete this event.')
+            event.cancelled = True
+
+            # Notify RSVPS.
+            rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
+            employers = event.attending_employers.all()
+            has_word = "has" if len(employers)==1 else "have"
+            employer_names = english_join(map(lambda n: n.name, employers))
+            notification.send(rsvps, 'cancelled_event', {
+                'employer_names': employer_names,
+                'has_word': has_word,
+                'event': event
+            })
+            
+            event.save()
+            
+            data = {}
+            if event.is_deadline():
+                data['type'] = "deadline"
+            else:
+                data['type'] = "event"
+            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest") 
+        try:
+            event = Event.objects.get(id=id)
+        except Event.DoesNotExist:
+            raise Http404("Event with id '%s' does not exist." % id)
+        context = {'event':event}
+        context.update(extra_context or {})
+        return context
+
     
 @login_required
 @agreed_to_terms
@@ -482,7 +485,7 @@ def event_archive(request, id, extra_context = None):
     try:
         event = Event.objects.get(id=id)
     except Event.DoesNotExist:
-        return HttpResponseNotFound("Event with id %s not found." % id)
+        raise Http404("Event with id '%s' does not exist." % id)
     else:
         if not admin_of_event(event, request.user):
             return HttpResponseForbidden('You are not allowed to arhive this event.')
@@ -501,33 +504,33 @@ def event_archive(request, id, extra_context = None):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("rolling_deadline_end_dialog.html")
 def rolling_deadline_end(request, id, extra_context = None):
-    if request.is_ajax():
-        if request.method == "POST":
-            try:
-                event = Event.objects.get(pk=id)
-            except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % id)
-            else:
-                if not event.is_rolling_deadline():
-                    return HttpResponseForbidden('You cannot end anything other than a rolling deadline.')
-                if is_recruiter(event.owner):
-                    if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-                        return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
-                elif is_campus_org(event.owner):
-                    if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-                        return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
-                event.end_datetime = datetime.now()-timedelta(minutes=1)
-                event.save()
-                return HttpResponse()
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if request.method == "POST":
+        try:
+            event = Event.objects.get(pk=id)
+        except Event.DoesNotExist:
+            raise Http404("Event with id '%s' does not exist." % id)
         else:
-            try:
-                event = Event.objects.get(id=id)
-            except Event.DoesNotExist:
-                return HttpResponseNotFound("Event with id %s not found." % id)
-            context = {'event':event}
-            context.update(extra_context or {})
-            return context
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+            if not event.is_rolling_deadline():
+                return HttpResponseForbidden('You cannot end anything other than a rolling deadline.')
+            if is_recruiter(event.owner):
+                if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
+                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+            elif is_campus_org(event.owner):
+                if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
+                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+            event.end_datetime = datetime.now()-timedelta(minutes=1)
+            event.save()
+            return HttpResponse()
+    else:
+        try:
+            event = Event.objects.get(id=id)
+        except Event.DoesNotExist:
+            raise Http404("Event with id '%s' does not exist." % id)
+        context = {'event':event}
+        context.update(extra_context or {})
+        return context
 
 
 @login_required
@@ -535,10 +538,10 @@ def rolling_deadline_end(request, id, extra_context = None):
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 def event_schedule(request):
-    if request.is_ajax():
-        schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
-        return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
-    return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
+    return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
 
 
 @login_required
@@ -549,7 +552,7 @@ def event_rsvp(request, event_id):
     try:
         event = Event.objects.get(pk=event_id)
     except:
-        return HttpResponseBadRequest("An event with the id %d does not exist." % event_id)
+        raise Http404("Event with id '%s' does not exist." % event_id)
     else:
         # if method is GET then get a list of RSVPed students
         if request.method == 'GET' and is_campus_org_or_recruiter(request.user):
@@ -576,19 +579,18 @@ def event_rsvp(request, event_id):
 @user_passes_test(is_student)
 @require_POST
 def event_drop(request, event_id):
-    if not event_id:
-        return HttpResponseBadRequest("Event id is missing.")
     try:
         event = Event.objects.get(id=event_id)
     except Event.DoesNotExist:
-        return HttpResponseBadRequest("Event with id %d does not exist." % event_id)
-    if  not request.POST.has_key("drop"):
-        return HttpResponseBadRequest("Request post is missing a 'drop' boolean.")
+        raise Http404("Event with id %d does not exist." % event_id)
+    if not request.POST.has_key("drop"):
+        raise Http400("Request POST is missing the boolean drop.")
     if request.POST["drop"]=="true":
         DroppedResume.objects.get_or_create(event=event, student=request.user.student)
     else:
         DroppedResume.objects.filter(event=event, student=request.user.student).delete()
     return HttpResponse()
+
 
 @login_required
 @agreed_to_terms
@@ -596,23 +598,22 @@ def event_drop(request, event_id):
 @has_annual_subscription
 @require_GET
 def event_raffle_winner(request, extra_context=None):
-    if request.is_ajax():
-        if request.GET.has_key("event_id"):
-            data = {}
-            winners = Attendee.objects.filter(event__id=request.GET['event_id'], won_raffle=False)
-            if winners.exists():
-                winner = winners[0]
-                winner.won_raffle = True
-                winner.save()
-                if winner.student:
-                    winner.student.studentstatistics.raffles_won += 1
-                    winner.student.studentstatistics.save()
-                data['name'] = winner.name
-            return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        else:
-            return HttpResponseBadRequest("Request is missing the event id.")
-    else:
-        return HttpResponseForbidden("Request must be a valid XMLHttpRequest")
+    if not request.is_ajax():
+        raise Http403("Request must be a valid XMLHttpRequest.")
+    if not request.GET.has_key("event_id"):
+        raise Http400("Request GET is missing the event_id")
+    data = {}
+    winners = Attendee.objects.filter(event__id=request.GET['event_id'], won_raffle=False)
+    if winners.exists():
+        winner = winners[0]
+        winner.won_raffle = True
+        winner.save()
+        if winner.student:
+            winner.student.studentstatistics.raffles_won += 1
+            winner.student.studentstatistics.save()
+        data['name'] = winner.name
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
 
 @login_required
 @agreed_to_terms
@@ -625,7 +626,7 @@ def event_checkin(request, event_id):
         return HttpResponse(simplejson.dumps(get_attendees(event)), mimetype="application/json")
     else:
         email = request.POST.get('email', None).strip()
-        if not email or not email_re.match(email):
+        if not email:
             data = {
                 'valid': False,
                 'error': 'Enter a valid email!'
@@ -680,24 +681,25 @@ def event_checkin(request, event_id):
             output['name'] = name
         return HttpResponse(simplejson.dumps(output), mimetype="application/json")
 
+
 @login_required
 @agreed_to_terms
 @user_passes_test(is_student)
 @require_GET
+@render_to("event_rsvp_message_dialog.html")
 def event_rsvp_message(request, extra_context=None):
-    if request.GET.has_key("event_id"):
-        try:
-            e = Event.objects.get(id=request.GET['event_id'])
-            if e.rsvp_message:
-                context = {'event':e}
-                if is_campus_org(e.owner):
-                    context['is_campus_org_event'] = True
-                return render_to_response("event_rsvp_message_dialog.html", context, context_instance=RequestContext(request))
-            else:
-                return HttpResponse()
-        except Event.DoesNotExist:
-            return HttpResponseBadRequest("Event with id %s does not exist." % (request.GET["event_id"]));
-    return HttpResponseBadRequest("Event id is missing");
+    if not request.GET.has_key("event_id"):
+        raise Http403("Request GET is missing the event_id.")
+    id = request.GET['event_id']
+    try:
+        event = Event.objects.get(id=id)
+    except Event.DoesNotExist:
+        raise Http404("Event with id '%s' does not exist." % id)
+    context = {'event':event}
+    if is_campus_org(event.owner):
+        context['is_campus_org_event'] = True
+    return context
+
 
 @login_required
 @agreed_to_terms
@@ -722,6 +724,7 @@ def events_by_employer(request):
         }
     events = map(eventMap, upcoming_events)
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
+
 
 @login_required
 @agreed_to_terms

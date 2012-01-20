@@ -169,7 +169,7 @@ function handle_students_invite_click(e) {
     });
     if (student_ids.length) {   
         $.ajax({
-            url: EVENTS_LIST_URL, 
+            url: EVENTS_LIST_URL,
             success: function (events) {
                 var dialog = $('<div class="dialog"></div>').dialog({
                     autoOpen: false,

@@ -1,32 +1,16 @@
-#terms_block{
-    margin-left:17px;
+#terms_title{
     padding-top:0px;
+    padding-bottom:0px;
 }
-#terms_block h1{
-    position:relative;
-    right:1px;
-    margin-bottom:0px;
-}
-#terms_block h2{
+#terms_block #last_revision, #scroll_to_bottom{
+    padding-top:0px;
     font-size:17px;
-    margin-bottom:3px;
-}
-#terms_block #tip{
-    margin-bottom:25px;
-}
-#terms_block strong{
-    color:#444;
-    margin-top:15px;
-}
-#terms_block h4{
     margin-bottom:5px;
-    margin-top:10px;
 }
 #terms_block .back_to_link{
     margin-right:17px;
 }
 #terms_text{
-    margin-top:20px;
     text-align:justify;
     margin-right:17px;
 }
@@ -35,5 +19,5 @@
     line-height:15px;
 }
 input[type="submit"]{
-    margin-top:15px;
+    margin-top:25px;
 }

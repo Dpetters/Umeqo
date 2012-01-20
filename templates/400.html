@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Page Not Found |
+Bad Request |
 {% endblock %}
 
 {% block content_area %}
@@ -21,11 +21,11 @@ Page Not Found |
 {% endif %}
 
 <div class="{% if user.is_authenticated %}with_side_nav{% endif %} simple_block grande centered">
-     <h1>404 - Page Not Found</h1>
+     <h1>400 - Bad Request</h1>
      <div class="message_section">
-        <p>We're sorry, but the page you requested could not be found!</p>
+        <p>We're sorry, but your request could not be understood by the server due to malformed syntax.</p>
         <span><small>{% if exception %}<strong>Details:</strong> {{exception}}{% endif %}</small></span>
-        <p>Try {% if not user.is_authenticated %}<a class="login" href="javascript:void(0)">logging in</a>{% else %} starting at one of the links on the left{% endif %} or returning to the <a href="/">home page</a>.</p>
+        <p> Please try again.</p>
      </div>
 </div>
 {% endblock %}
