@@ -5,17 +5,22 @@ Bad Request |
 {% endblock %}
 
 {% block content_area %}
+
 {% if user.is_authenticated %}
-<div class="left_side_container">
-{% if request.user.student %}
-    {% include 'student_side_nav.html' %}
+    <div class="left_side_container">
+        {% if request.user.student %}
+            {% include 'student_side_nav.html' %}
+        {% endif %}
+        {% if request.user.recruiter %}
+            {% include 'employer_side_nav.html' %}
+        {% endif %}
+        {% if request.user.campusorg %}
+            {% include 'campus_org_side_nav.html' %}
+        {% endif %}
+    </div>
 {% endif %}
-{% if request.user.recruiter %}
-    {% include 'employer_side_nav.html' %}
-{% endif %}
-</div>
-{% endif %}
-<div class="simple_block grande centered">
+
+<div class="{% if user.is_authenticated %}with_side_nav{% endif %} simple_block grande centered">
      <h1>400 - Bad Request</h1>
      <div class="message_section">
         <p>We're sorry, but your request could not be understood by the server due to malformed syntax.</p>
