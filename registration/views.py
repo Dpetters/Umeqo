@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
-from core.decorators import render_to, is_superuser
+from core.decorators import render_to, is_superuser, agreed_to_terms
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
@@ -27,8 +27,10 @@ from notification.models import NoticeType
 from employer.models import Employer
 from notification import models as notification
 
+
 def logout(request, login_url=None, current_app=None, extra_context=None):
     return auth_logout_then_login_view(request, login_url, current_app, extra_context)
+
 
 @render_to('login.html')
 def login(request, template_name="login.html", authentication_form=AuthenticationForm, login_url=None, current_app=None, extra_context={}):
@@ -88,9 +90,9 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
         us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
         return response
     
-@login_required
+
 @render_to('super_login.html')
-@user_passes_test(is_superuser, login_url=s.LOGIN_URL)
+@user_passes_test(is_superuser)
 def super_login(request, form_class = SuperLoginForm,  extra_context=None):
     if request.method == "POST":
         form = form_class(data = request.POST)
@@ -108,7 +110,9 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
     context.update(extra_context or {})
     return context
 
+
 @login_required
+@agreed_to_terms
 def password_change(request, password_change_form=PasswordChangeForm, extra_context=None):
     form = password_change_form(user=request.user, data=request.POST)
     if form.is_valid():
@@ -124,7 +128,8 @@ def password_change(request, password_change_form=PasswordChangeForm, extra_cont
     else:
         data = {'valid':False, 'errors':form.errors}
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-    
+
+
 @render_to('invalid_activation_link.html')
 def activate_user(request, backend = RegistrationBackend(), success_url=None, extra_context=None, **context):
     user = backend.activate(request, **context)

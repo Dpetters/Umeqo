@@ -218,7 +218,6 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'middleware.generic.SetRemoteAddrMiddleware',
     'middleware.log.LogMiddleware',
-    'sentry.client.middleware.Sentry404CatchMiddleware',
     'middleware.integrity.UserIntegrity',
     'middleware.exceptions.ProcessExceptionMiddleware'
 )

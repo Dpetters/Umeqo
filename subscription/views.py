@@ -1,12 +1,11 @@
-from django.http import HttpResponseBadRequest, HttpResponse
+from django.http import HttpResponse
 from django.conf import settings as s
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
-from core.http import Http403
-from subscription.choices import EMPLOYER_SIZE_CHOICES
+from core.http import Http403, Http400
 from subscription.models import EmployerSubscription
 from subscription.forms import SubscriptionForm, subscription_templates
 
@@ -16,10 +15,10 @@ def subscription_transaction_dialog(request, form_class = SubscriptionForm, extr
         raise Http403
     if request.method=="POST":
         if not request.POST.has_key("action"):
-            return HttpResponseBadRequest("Action is missing from the request POST.")
+            raise Http400("Request POST is missing the action.")
         action = request.POST['action']
         if action not in subscription_templates:
-            return HttpResponseBadRequest("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
+            raise Http400("The action in the request POST is not one of the following: %s" % (subscription_templates.keys()))
         form = form_class(data = request.POST, user=request.user)
         if form.is_valid():
             if is_recruiter(request.user):
