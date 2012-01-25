@@ -3,6 +3,8 @@ import os
 import settings
 import urllib2
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+
 from core.email import send_html_mail
 from time import strftime, gmtime
 
