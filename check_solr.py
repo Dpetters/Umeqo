@@ -7,6 +7,7 @@ from time import strftime, gmtime
 import settings
 
 try:
+    print settings.HAYSTACK_SOLR_URL
     solrpanel = urllib2.urlopen(settings.HAYSTACK_SOLR_URL)
 except urllib2.URLError:
     os.chdir(solrdir)
