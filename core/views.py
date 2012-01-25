@@ -366,8 +366,8 @@ def landing_page(request, extra_context = None):
     return context
 
 
-@has_any_subscription
 @agreed_to_terms
+@has_any_subscription
 @render_to()
 def home(request, extra_context=None):
     context = {}

@@ -59,8 +59,7 @@ class ContactForm(forms.Form):
         if not self.is_valid():
             raise ValueError("Cannot generate Context from invalid contact form")
         if self._context is None:
-            self._context = RequestContext(self.request, dict(self.cleaned_data,
-                                                site=Site.objects.get_current()))
+            self._context = RequestContext(self.request, dict(self.cleaned_data, site=Site.objects.get_current()))
         return self._context
     
     def get_message_dict(self):
@@ -74,23 +73,20 @@ class ContactForm(forms.Form):
     
     def save(self):
         dictionary = self.get_message_dict()
-        send_html_mail(dictionary['subject'], dictionary['message'], 
-                       dictionary['recipient_list'])
+        send_html_mail(dictionary['subject'], dictionary['message'], dictionary['recipient_list'])
 
 class AkismetContactForm(ContactForm):
     def clean(self):
         if 'body' in self.cleaned_data and getattr(settings, 'AKISMET_API_KEY', ''):
             from akismet import Akismet
             from django.utils.encoding import smart_str
-            api = Akismet(key=settings.AKISMET_API_KEY,
-                                  blog_url='http://%s/' % Site.objects.get_current().domain)
+            api = Akismet(key=settings.AKISMET_API_KEY, blog_url='http://%s/' % Site.objects.get_current().domain)
             if api.verify_key():
                 akismet_data = { 'comment_type': 'comment',
                                  'referer': self.request.META.get('HTTP_REFERER', ''),
                                  'user_ip': self.request.META.get('REMOTE_ADDR', ''),
                                  'user_agent': self.request.META.get('HTTP_USER_AGENT', '') }
-                if api.comment_check(smart_str(self.cleaned_data['body']), 
-                                     data=akismet_data, build_data=True):
+                if api.comment_check(smart_str(self.cleaned_data['body']), data=akismet_data, build_data=True):
                     raise forms.ValidationError(_(m.contact_us_message_spam))
         return self.cleaned_data
 
