@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import os
-solrdir = r'/apache-solr-1.4.1'
+solrdir = r'apache-solr-1.4.1'
 
 import urllib2
 from time import strftime, gmtime
