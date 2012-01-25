@@ -36,6 +36,6 @@ for type, url in urls:
     except urllib2.HTTPError as resp:
         # if error, send email to all managers with error code
         if (resp != None and resp.code != 200):
-            send_html_mail("%s DOWN" % type, "%s is down with error message %s. You should probably check that shit out, bro." % (type, resp.code), managers)
+            send_html_mail("[Umeqo] %s DOWN" % type, "%s is down with error message %s. You should probably check that shit out, bro." % (type, resp.code), managers)
     else:
         print "%s is fine. Time taken: %s" % (type, datetime.datetime.now() - start)
