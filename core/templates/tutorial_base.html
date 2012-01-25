@@ -14,18 +14,26 @@
 
 {% block help_content %}
     <h1>{% block tutorial_title %}{% endblock %} Tutorial</h1>
+    
     <h2><u>Table of Contents</u></h2>
     <ul class="tutorial_toc">
-        <li><a href="#instructions">Instructions</a></li>
+        <li><a href="#video">Video Version</a></li>
+        <li><a href="#instructions">Written Version</a></li>
         <li><a href="#things_to_note">Things to Note</a></li>
         <li><a href="#tips_and_tricks">Tips and Tricks</a></li>
     </ul>
+
+    <h2 id="video"><u>Video Version</u></h2>
+    <div>
+        <h3>Coming Soon!</h3>
+    </div>
     
-    <h2 id="instructions"><u>Instructions</u></h2>
+    <h2 id="instructions"><u>Written Version</u></h2>
     <div id="instructions_div">
         {% block instructions %}
         {% endblock %}
     </div>
+    
     <h2 id="things_to_note"><u>Things to Note</u></h2>
     <div>
         <ul id="things_to_note_list">

@@ -11,14 +11,14 @@ p{
 }
 #things_to_note_list, #tips_and_tricks_list{
     list-style:inside;
-    line-height: 18px;
+    line-height: 20px;
 }
 #instructions_div img{
     border:2px solid #DEDEDE;
     max-width:778px;
     margin-bottom:20px;
     margin-top:10px;
-    opacity:.8;
+    opacity:.9;
 }
 #instructions_div a img:hover{
     opacity:1;
