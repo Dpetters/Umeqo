@@ -243,7 +243,7 @@
    "is_active": true,
    "is_superuser": false,
    "is_staff": false,
-   "last_login": "2012-01-20 05:06:21",
+   "last_login": "2012-01-22 18:06:54",
    "groups": [],
    "user_permissions": [],
    "password": "sha1$6baa3$acc0f7565dfdc34b338a073f84f61947028c22c6",
@@ -33889,8 +33889,8 @@
   "pk": 1,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 75,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 77,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 11,
    "student": 1,
@@ -33902,8 +33902,8 @@
   "pk": 2,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 71,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 73,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 2,
    "add_to_resumebook_count": 10,
    "student": 2,
@@ -33915,8 +33915,8 @@
   "pk": 3,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 72,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 74,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 2,
    "add_to_resumebook_count": 8,
    "student": 3,
@@ -33928,8 +33928,8 @@
   "pk": 4,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 68,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 70,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 6,
    "student": 4,
@@ -33941,8 +33941,8 @@
   "pk": 5,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 70,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 72,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 1,
    "add_to_resumebook_count": 6,
    "student": 5,
@@ -33954,8 +33954,8 @@
   "pk": 6,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 3,
-   "last_updated": "2012-01-03 21:54:06",
+   "shown_in_results_count": 4,
+   "last_updated": "2012-01-20 15:53:02",
    "resume_view_count": 1,
    "add_to_resumebook_count": 0,
    "student": 6,
@@ -33967,8 +33967,8 @@
   "pk": 7,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 28,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 30,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 7,
@@ -33980,8 +33980,8 @@
   "pk": 8,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 28,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 30,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 8,
@@ -33993,8 +33993,8 @@
   "pk": 9,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 28,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 30,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 9,
@@ -34006,8 +34006,8 @@
   "pk": 10,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 28,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 30,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 10,
@@ -34019,8 +34019,8 @@
   "pk": 11,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 28,
-   "last_updated": "2012-01-20 04:53:26",
+   "shown_in_results_count": 30,
+   "last_updated": "2012-01-22 00:21:58",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 11,
@@ -46819,6 +46819,26 @@
   }
  },
  {
+  "pk": 116,
+  "model": "registration.sessionkey",
+  "fields": {
+   "date_created": "2012-01-20 15:52:18",
+   "session_key": "3f8a573df1fe83334e40d6cc9ba3d79b",
+   "last_updated": "2012-01-20 15:52:18",
+   "user": 27
+  }
+ },
+ {
+  "pk": 117,
+  "model": "registration.sessionkey",
+  "fields": {
+   "date_created": "2012-01-22 18:06:54",
+   "session_key": "88e92e889495c61e0c1837b833f3f9ad",
+   "last_updated": "2012-01-22 18:06:54",
+   "user": 27
+  }
+ },
+ {
   "pk": 1,
   "model": "registration.registrationprofile",
   "fields": {
@@ -47162,11 +47182,13 @@
    ],
    "owner": 3,
    "and_more_url": null,
-   "view_count": 47,
+   "view_count": 48,
    "archived": false,
    "last_seen_view_count": 0,
    "edits": [
-    1
+    1,
+    2,
+    3
    ],
    "location": "Student Center Plaza",
    "latitude": 42.358755530000003,
@@ -47174,7 +47196,7 @@
    "start_datetime": "2012-03-09 15:00:00",
    "description": "<p>\r\n\tA well-rounded academic background with coursework in finance or economics is recommended, although successful analysts come from all different backgrounds.</p>\r\n",
    "is_drop": true,
-   "is_public": true,
+   "is_public": false,
    "slug": "umeqo-consulting-panel",
    "previously_attending_employers": [
     6
@@ -47183,7 +47205,7 @@
    "longitude": -71.094491410000003,
    "audience": [],
    "end_datetime": "2012-03-09 16:00:00",
-   "rsvp_message": "",
+   "rsvp_message": "feafesfa",
    "cancelled": false,
    "date_created": "2011-12-12 14:40:42",
    "include_and_more": false
@@ -47464,7 +47486,16 @@
    "attending": true,
    "event": 20,
    "student": 6,
-   "datetime_created": "2012-01-15 15:57:49"
+   "datetime_created": "2012-01-20 15:53:39"
+  }
+ },
+ {
+  "pk": 1,
+  "model": "events.invitee",
+  "fields": {
+   "datetime_created": "2012-01-20 15:53:08",
+   "event": 20,
+   "student": 6
   }
  },
  {
