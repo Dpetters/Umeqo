@@ -15,12 +15,15 @@ managers = [mail_tuple[1] for mail_tuple in s.MANAGERS]
 try:
     solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
 except urllib2.URLError:
-    os.chdir(solrdir)
-    if s.SITE_NAME == "Demo":
-        os.system('nohup java -Djetty.port="8984" -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
-    else:
-        os.system('nohup java -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
-    print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    try:
+        os.chdir(solrdir)
+        if s.SITE_NAME == "Demo":
+            os.system('nohup java -Djetty.port="8984" -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
+        else:
+            os.system('nohup java -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
+        print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    except Exception as e:
+        print e
     time.sleep(5)
     try:
         solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
