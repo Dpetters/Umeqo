@@ -125,6 +125,8 @@ USE_L10N = True
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
+SITE_NAME = "Dev"
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
