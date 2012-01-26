@@ -9,7 +9,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from core.email import send_html_mail
 from time import strftime, gmtime
 
-solrdir = r'apache-solr-1.4.1'
+solrdir = s.ROOT + '/apache-solr-1.4.1'
 managers = [mail_tuple[1] for mail_tuple in s.MANAGERS]
 
 try:
