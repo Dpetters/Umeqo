@@ -24,11 +24,10 @@ except urllib2.URLError:
         print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
     except Exception as e:
         print e
+else:
     time.sleep(5)
     try:
         solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
     except urllib2.URLError:
         send_html_mail("[Umeqo] %s's SOLR DOWN" % s.SITE_NAME, "%s's solr is down. You should probably check that shit out, bro." % s.SITE_NAME, managers)
-
-else:
     print "%s's solr is running fine! on %s" % (s.SITE_NAME, strftime('%Y-%m-%d %H:%M:%S'), gmtime())
