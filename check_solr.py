@@ -16,7 +16,11 @@ try:
     solrpanel = urllib2.urlopen(settings.HAYSTACK_SOLR_URL)
 except urllib2.URLError:
     os.chdir(solrdir)
-    os.system('nohup java -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
+    # Demo needs a special port
+    if settings.SITE_ID == 4:
+        os.system('nohup java -Djetty.port="8984" -jar start.jar > ../logs/solr-reboots.log 2>&1 &')        
+    else:
+        os.system('nohup java -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
     print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
     time.sleep(2)
     try:
