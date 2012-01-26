@@ -21,7 +21,7 @@ except urllib2.URLError:
     else:
         os.system('nohup java -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
     print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
-    time.sleep(2)
+    time.sleep(5)
     try:
         solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
     except urllib2.URLError:
