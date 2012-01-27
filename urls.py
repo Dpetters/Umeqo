@@ -102,7 +102,7 @@ urlpatterns += patterns('events.views',
     (r'^events/edit/(?P<id>\d+)$', 'event_edit', {}, 'event_edit'),
     (r'^events/schedule/$', 'event_schedule', {}, 'event_schedule'),
     (r'^rolling-deadline/end/(?P<id>\d+)$', 'rolling_deadline_end', {}, 'rolling_deadline_end'),
-    (r'^events/$', redirect_to, {'url':'/events/upcoming/'}),
+    (r'^events/$', redirect_to, {'url':'/events/upcoming/'}, 'upcoming_events'),
     (r'^events/(?P<category>\w+)/$', 'events', {}, 'events'),
 )
 urlpatterns += patterns('student.views',
@@ -158,6 +158,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/current/add-students/$', 'employer_resume_book_current_add_students', {}, 'employer_resume_book_current_add_students'),
     (r'^employer/resume-books/current/remove-students/$', 'employer_resume_book_current_remove_students', {}, 'employer_resume_book_current_remove_students'),
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
+    (r'^employers/snippets/$', 'employer_snippets', {}, 'employer_snippets'),
     (r'^employers/$', 'employers', {}, 'employers'),
     (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
