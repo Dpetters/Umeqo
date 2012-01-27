@@ -122,7 +122,7 @@ $(document).ready(function() {
         var subscribed = $('#employers_filter_in_subscriptions').attr('checked')=="checked";
         show_form_submit_loader("#employers_form");
         $.ajax({
-            url:SEARCH_URL,
+            url:EMPLOYER_SNIPPETS_URL,
             data:{
                 'q': query,
                 'i': industry,
