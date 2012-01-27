@@ -5,16 +5,20 @@ Browsing Attendees and RSVPs
 {% endblock %}
 
 {% block instructions %}
-<p class="header"><span class="num">Step 1:</span> From your homepage, click on the event whose RSVPs and attendees you wish to browse.</p>
-<p>All of your upcoming and past events and deadlines are at the bottom, with past ones 
-    dimmed out.</p>
+<p class="header"><span class="num">Step 1:</span>From your homepage, click on "Browse" in the left side menu to browse all of your events.</p>
+<a target="_blank" href="{% url upcoming_events %}"><img src="{{STATIC_URL}}images/tutorials/checking_students_in/8.png"></a>
+<p> If you want to browse RSVPs from an upcoming event, simply pick the one you want from the home page.</p>
 <a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/1.png"></a>
 
-<p class="header"><span class="num">Step 2:</span> Choose which group of students you wish to look at using the tabs in the event admin.</p>
+<p class="header"><span class="num">Step 2:</span>Click on the "Past" link on the left hand side to view your past events. Choose one.</p>
+<a target="_blank" href="{% url events category="past" %}"><img src="{{STATIC_URL}}images/tutorials/checking_students_in/9.png"></a>
+
+
+<p class="header"><span class="num">Step 3:</span> Choose which group of students you wish to look at using the tabs in the event admin.</p>
 <p>Note that the groups (and thus tabs) are titled slighly differently for deadlines and private events.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/2.png">
 
-<p class="header"><span class="num">Step 3:</span> You can either click a "View All" link
+<p class="header"><span class="num">Step 4:</span> You can either click a "View All" link
      or click on the students one by one.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/3.png">
 <p>Note that some students appear grayed out. These students do not yet have Umeqo
@@ -22,11 +26,11 @@ Browsing Attendees and RSVPs
     info</a>.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/5.png">
 
-<p class="header" id="filter"><span class="num">Step 4:</span> Switch to other event student
+<p class="header" id="filter"><span class="num">Step 5:</span> Switch to other event student
     lists quickly using the "Choose Student List" section.</p>
 <img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/4.png">
 
-<p class="header"><span class="num">Step 5:</span> Once you have jumped to the event list you want, you can start <a href="{% url tutorial slug='browsing-students' %}">browsing the students</a>.</p>
+<p class="header"><span class="num">Step 6:</span> Once you have jumped to the event list you want, you can start <a href="{% url tutorial slug='browsing-students' %}">browsing the students</a>.</p>
 {% endblock %}
 
 {% block things_to_note %}

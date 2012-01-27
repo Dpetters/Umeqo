@@ -102,7 +102,7 @@ urlpatterns += patterns('events.views',
     (r'^events/edit/(?P<id>\d+)$', 'event_edit', {}, 'event_edit'),
     (r'^events/schedule/$', 'event_schedule', {}, 'event_schedule'),
     (r'^rolling-deadline/end/(?P<id>\d+)$', 'rolling_deadline_end', {}, 'rolling_deadline_end'),
-    (r'^events/$', redirect_to, {'url':'/events/upcoming/'}),
+    (r'^events/$', redirect_to, {'url':'/events/upcoming/'}, 'upcoming_events'),
     (r'^events/(?P<category>\w+)/$', 'events', {}, 'events'),
 )
 urlpatterns += patterns('student.views',
