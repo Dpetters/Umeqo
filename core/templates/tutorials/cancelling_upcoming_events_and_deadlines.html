@@ -7,9 +7,8 @@ Cancelling Upcoming Events & Deadlines
 {% endblock %}
 
 {% block instructions %}
-<p class="header"><span class="num">Step 1:</span> From your homepage, navigate to the upcoming event or deadline that you wish to cancel.</p>
-<p>All of the upcoming events are under the "Upcoming" header in the "Your Events and Deadlines" section of your homepage.</p>
-<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/1.png"></a>
+<p class="header"><span class="num">Step 1:</span> On your homepage, find the upcoming event or dealine which you wish to cancel.</p>
+<a target="_blank" href="{% url home %}"><img src="{{STATIC_URL}}images/tutorials/browsing_attendees_and_rsvps/1.png"></a>
 
 <p class="header"><span class="num">Step 2:</span> Click "Cancel" on the bottom right of the event or deadline snippet.</p>
 <p>Note that you can only cancel upcoming events, not past ones.</p>
@@ -21,6 +20,9 @@ Cancelling Upcoming Events & Deadlines
 <p>Please remember that the action is final and cannot be undone.</p>
 <img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/4.png">
 
+<p class="header"><span class="num">Step 4:</span> View all of your cancelled events by clicking "Browse" and then "Cancelled".</p>
+<a target="_blank" href="{% url upcoming_events %}"><img src="{{STATIC_URL}}images/tutorials/checking_students_in/8.png"></a>
+<a href="{% url events category="cancelled" %}"><img src="{{STATIC_URL}}images/tutorials/cancelling_upcoming_event_and_deadlines/5.png"></a>
 {% endblock %}
 
 {% block things_to_note %}
@@ -29,5 +31,5 @@ Cancelling Upcoming Events & Deadlines
 {% endblock %}
 
 {% block tips_and_tricks %}
-<li>We will eventually allow for you to view all the events that you have cancelled and recreate them as you see fit.</li>
+<li>We will soon allow you to re-create events based off of past and cancelled ones.</li>
 {% endblock %}
