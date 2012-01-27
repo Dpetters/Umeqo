@@ -308,11 +308,11 @@ def employer_students_remove_star(request):
         raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
-        for id in request.POST['student_ids'].split('~'):
-            student = Student.objects.get(id=id)  
-            if student in request.user.recruiter.employer.starred_students.all():
-                request.user.recruiter.employer.starred_students.remove(student)
-        return HttpResponse()
+    for id in request.POST['student_ids'].split('~'):
+        student = Student.objects.get(id=id)  
+        if student in request.user.recruiter.employer.starred_students.all():
+            request.user.recruiter.employer.starred_students.remove(student)
+    return HttpResponse()
 
 
 @agreed_to_terms
@@ -586,7 +586,7 @@ def employer_resume_book_current_create(request):
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
-        current_resume_book = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
+        current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
     report_buffer = cStringIO.StringIO() 
     c = Canvas(report_buffer)  
     c.drawString(1*cm, 28.5*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
@@ -642,7 +642,7 @@ def employer_resume_book_current_email(request, extra_context=None):
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
-        current_resume_book = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+        current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
     subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
