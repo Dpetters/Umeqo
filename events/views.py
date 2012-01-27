@@ -12,7 +12,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseBadRequest, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import simplejson
 from django.template import RequestContext, loader
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
@@ -23,7 +23,7 @@ from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
 from core import enums as core_enums
-from core.http import Http403, Http400
+from core.http import Http403, Http400, Http500
 from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
@@ -267,11 +267,11 @@ def event_list_download(request):
     try:
         event = Event.objects.get(id=request.GET["event_id"])
     except Event.DoesNotExist:
-        return HttpResponseBadRequest("Event with the id %d" % request.GET['event_id'])
+        raise Http404("Event with the id %d" % request.GET['event_id'])
     else:
         list = request.GET['event_list']
         if not request.GET.has_key('export_format'):
-            return HttpResponseBadRequest("The request is missing the file format.")
+            raise Http400("The request is missing the file format.")
         if request.GET['export_format'] == core_enums.CSV:
             response = HttpResponse(mimetype='text/csv')
             filename = "%s.csv" % export_event_list_csv(response, event, list)
@@ -282,7 +282,7 @@ def event_list_download(request):
             response = HttpResponse(mimetype="text/plain")
             filename = "%s.txt" % export_event_list_text(response, event, list)
         else:
-            return HttpResponseBadRequest("The file format % isn't one we support." % request.GET['export_format'])
+            raise Http500("The file format % isn't one we support." % request.GET['export_format'])
         response['Content-Disposition'] = 'attachment; filename="%s"' % filename
         return response
 
@@ -357,7 +357,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
                 file_contents = file.getvalue()
                 mimetype = "text/plain"
             else:
-                return HttpResponseBadRequest("The request format '%s' is not supported" % format)
+                raise Http500("The request format '%s' is not supported" % format)
             send_html_mail(subject, body, recipients, "%s.%s" % (filename, extension), file_contents, mimetype)
             context = {'filename': filename, 'TEMPLATE':'event_list_export_completed.html'}
             context.update(extra_context or {})
@@ -385,7 +385,7 @@ def event_edit(request, id=None, extra_context=None):
     
     context = {'event': event}
     if not admin_of_event(event, request.user):
-        return HttpResponseForbidden('You are not allowed to edit this event.')  
+        raise Http403('You are not allowed to edit this event.')  
     if is_recruiter(event.owner):
         form_class = EventForm
     elif is_campus_org(event.owner):
@@ -444,7 +444,7 @@ def event_cancel(request, id, extra_context = None):
             raise Http404("Event with id '%s' does not exist." % id)
         else:
             if not admin_of_event(event, request.user):
-                return HttpResponseForbidden('You are not allowed to delete this event.')
+                raise Http403('You are not allowed to delete this event.')
             event.cancelled = True
 
             # Notify RSVPS.
@@ -488,7 +488,7 @@ def event_archive(request, id, extra_context = None):
         raise Http404("Event with id '%s' does not exist." % id)
     else:
         if not admin_of_event(event, request.user):
-            return HttpResponseForbidden('You are not allowed to arhive this event.')
+            raise Http403('You are not allowed to arhive this event.')
         event.archived = True
         event.save()
         data = {}
@@ -513,13 +513,13 @@ def rolling_deadline_end(request, id, extra_context = None):
             raise Http404("Event with id '%s' does not exist." % id)
         else:
             if not event.is_rolling_deadline():
-                return HttpResponseForbidden('You cannot end anything other than a rolling deadline.')
+                raise Http403('You cannot end anything other than a rolling deadline.')
             if is_recruiter(event.owner):
                 if not is_recruiter(request.user) or request.user.recruiter.employer != event.owner.recruiter.employer:
-                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+                    raise Http403('You are not allowed to end this rolling deadline.')
             elif is_campus_org(event.owner):
                 if not is_campus_org(request.user) or request.user.campusorg != event.owner.campusorg:
-                    return HttpResponseForbidden('You are not allowed to end this rolling deadline.')
+                    raise Http403('You are not allowed to end this rolling deadline.')
             event.end_datetime = datetime.now()-timedelta(minutes=1)
             event.save()
             return HttpResponse()
@@ -572,7 +572,7 @@ def event_rsvp(request, event_id):
             else:
                 return redirect(reverse('event_page',kwargs={'id':id,'slug':event.slug}))
         else:
-            return HttpResponseForbidden("You do not have access to this view.")
+            raise Http403("You do not have access to this view.")
 
 @login_required
 @agreed_to_terms
@@ -712,7 +712,7 @@ def events_by_employer(request):
     upcoming_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(end_datetime__gte=datetime.now()).order_by("end_datetime")
     student_id, student = request.GET.get('student_id', None), None
     if student_id and not Student.objects.filter(id=student_id).exists():
-        return HttpResponseBadRequest()
+        raise Http404("Student with %d does not exist." % student_id)
     elif student_id:
         student = Student.objects.get(id=student_id)
     def eventMap(event):
