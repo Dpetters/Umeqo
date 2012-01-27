@@ -4410,6 +4410,24 @@
   }
  },
  {
+  "pk": 503,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-26 21:05:00",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-26 21:05:00",
+   "type": 13,
+   "display": false,
+   "name": "MIT Intervarsity"
+  }
+ },
+ {
   "pk": 482,
   "model": "campus_org.campusorg",
   "fields": {
@@ -5649,6 +5667,24 @@
    "type": 5,
    "display": true,
    "name": "SBC (Sloan Business Club)"
+  }
+ },
+ {
+  "pk": 504,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-26 22:15:02",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-26 22:15:02",
+   "type": 4,
+   "display": false,
+   "name": "Scandinavian Society"
   }
  },
  {
