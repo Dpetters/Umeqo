@@ -33,6 +33,7 @@ from events.view_helpers import get_upcoming_events_context, get_upcoming_events
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from registration.models import InterestedPerson
+from student.forms import StudentRegistrationForm
 from student.models import Student
 
 
@@ -317,7 +318,6 @@ def landing_page_wrapper(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
-    form_class = BetaForm
     
     posted = False
     disabled = False
@@ -327,36 +327,17 @@ def landing_page(request, extra_context = None):
 
     if request.GET.get('action', None) == 'logged-out':
         loggedout = True
-    
-    if request.method=="POST":
-        form = form_class(request.POST)
-        if form.is_valid():
-            person = form.save(commit=False)
-            person.ip_address = request.META['REMOTE_ADDR']
-            person.save()
-            
-            subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
-            message = "%s %s (%s) signed up!" % (form.cleaned_data['first_name'],form.cleaned_data['last_name'],form.cleaned_data['email'])
-            sender = s.DEFAULT_FROM_EMAIL
-            recipients = map(lambda n: n[1], s.ADMINS)
-            send_mail(subject,message,sender,recipients)
-            posted = True
-            disabled = True
-        else:
-            if InterestedPerson.objects.filter(email=request.POST.get('email')).exists():
-                email_error = True
-            form_error = True
-    else:
-        form = form_class()
 
     context = {
-            'form': form,
-            'posted': posted,
-            'disabled': disabled,
-            'loggedout': loggedout,
-            'form_error': form_error,
-            'email_error': email_error,
+        'student_reg_form': StudentRegistrationForm(),
+        'posted': posted,
+        'disabled': disabled,
+        'loggedout': loggedout,
+        'form_error': form_error,
+        'email_error': email_error,
+        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
     }
+
     if FeaturedEvent.objects.all().exists():
         context['featured_event'] = FeaturedEvent.objects.all().order_by("date_created")[0]
         

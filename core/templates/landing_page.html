@@ -17,11 +17,13 @@
             body {
                 background: url('{{STATIC_URL}}images/landing_bg.png') #55738d;
             }
-            h1 {
+            #logo h1 {
                 background: url('{{STATIC_URL}}images/logo_landing.png') no-repeat center center transparent;
             }
         </style>
+        
         {% compress css %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
         <!--[if lte IE 8]>
@@ -35,12 +37,15 @@
         <![endif]-->
         {% compress js %}
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
+            <script src="{{ STATIC_URL }}lib/jquery_easing/jquery.easing.1.3.js" charset="utf-8"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.js"></script>
             <script src="{{STATIC_URL}}js/landing_page.js"></script>
         {% endcompress %}
         
         
         <script type="text/javascript">
           var _gaq = _gaq || [];
+          
           _gaq.push(['_setAccount', 'UA-22946783-1']);
           _gaq.push(['_trackPageview']);
         
@@ -52,20 +57,6 @@
         </script>
     </head>
     <body>
-        {% if email_error %}
-            <div class="message">
-                The email you've submitted has already been recorded. Thank you for your interest!
-            </div>
-        {% else %}{% if form_error %}
-            <div class="message error">
-                Please check that you've filled out your first name, last name, and email.
-            </div>
-        {% endif %}{% endif %}
-        {% if posted %}
-            <div class="message">
-                Thank you for your interest! You will be included in the next round of invitations.
-            </div>
-        {% endif %}
         {% if deactivated %}
             <div class="message">
                 Thank you for trying out Umeqo!
@@ -76,16 +67,107 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <div id="landing_logo">
+        <div id="logo">
             <h1>Umeqo</h1>
             <span id="landing_beta_logo">BETA</span>
         </div>
         <div class="center">
             <h3 class="tagline"><em>/you-'ME-co/</em>, noun. <strong>Recruiting Made Simple</strong>.</h3>
-            <p id="innovative">Umeqo is a new recruiting resource for students and employers <br/> to <strong>discover</strong> one another.</p>
-            <div id="lotsaforms" class="row">
+            <p id="innovative">A new way for students and employers to <strong>discover</strong> one another.</p>
+            <p id="video"></p>
+            <p class="col type_link"><a href="#students">For students &#0187;</a></p>
+            <p class="col type_link"><a href="#employers">For employers &#0187;</a></p>
+            <div class="contact_us">
+                <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
+            </div>
+            
+            
+            <div id="students">
                 <div class="col">
-                    <div class="module">
+                    <h1>Save Time. Get Noticed.</h1>
+                    <div id="student_signup_block" class="light_module">
+                       <p>Sign up, drop your resume, pick the employers you're interested in and we will take care of the rest.</p>
+                       <form id="student_registration_form" method="POST">
+                            {% csrf_token %}
+                            {% for field in login_form %}
+                                <p>{{field.label_tag}}{{field}}</p>
+                            {% endfor %}
+                            <input tabindex="3" class="button" type="submit" value="Create my account" />
+                        </form>
+                        <div class="clearfix"></div>"
+                    </div>
+                    <div id="fb-like">
+                        <iframe src="http://www.facebook.com/plugins/like.php?app_id=119497238132973&amp;href=umeqo.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:35px;" allowTransparency="true"></iframe>
+                    </div>
+                </div>
+                <div id="featured_event" class="col">
+                    <h2>Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
+                    <div id="promotion">
+                      <h2>Techfair 2012</h2>
+                      {% if featured_event.employer %}
+                      <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
+                      {% endif %}
+                      {% if featured_event.campus_org %}
+                      <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
+                      {% endif %}
+                      <p>You are invited to Techfair 2012! The lineup for this year will include a hackathon, an afterparty, a banquet, and a speaker series in addition to the Fair itself.</p>
+                      <p>It all starts at 9am on Monday, February 6th. {% if featured_event %}Drop off your resume now on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="student_features">
+                <h2>What’s so innovative?</h2>
+                <div class="col">
+                    <p>
+                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
+                        <span><strong>Streamlined Events & Deadlines.</strong> Google Calendar and Maps intergration. Cancellation notifications.</span>
+                    </p>
+                    <p>
+                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
+                        <span><strong>Event Invites.</strong> Receive invites to both public and private events from employers interested in you.</span>
+                    </p>
+                </div>
+                <div class="col">
+                    <p>
+                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
+                        <span><strong>Automatic Notifications.</strong> Subscribe to employers you’re interested in and get notified when they post new events and deadlines.</span>
+                    </p>
+                    <p>
+                        <span class="img"><img src="{{ STATIC_URL }}images/landing/maintainprofile.png" /></span>
+                        <span><strong>Easy-to-Maintain Profile.</strong> Umeqo automatically indexes your resume.</span>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="firms_block" class="longInfo">
+                <h3 id="firm_name">Firms using Umeqo</h3>
+                <div id="firm_scroller_container">
+                    <div id="firm_thumb_scroller_left">
+                    </div>
+                    <div id="firm_thumb_scroller">
+                        <div id="firm_thumb_container">
+                                {% for employer in employers %}
+                                <div class="firm_thumb_content">
+                                    <a href="#">
+                                    <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            <br/>
+                        </div>
+                    </div>
+                    <div id="firm_thumb_scroller_right"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="contact_us">
+                    <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
+                </div>
+            </div>
+            
+            <div id="employers" class="row">
+                <div class="col">
+                    <div class="light_module">
                         <h2>Already have an account?</h2>
                         <form action="{% url login %}" method="POST">
                             {% csrf_token %}
@@ -144,7 +226,7 @@
                     </p>
                 </div>
             </div>
-            <div class="footer">
+            <div class="contact_us">
                 <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
             </div>
         </div>

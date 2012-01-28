@@ -15,4 +15,14 @@ $(document).ready(function() {
         p.css("zoom", "auto");
         p.css('background-color','rgba(255,255,255,0.1)');
     });
+
+    $('.type_link a').live('click',function(e){
+        var $anchor = $(this);
+        
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 750,'easeInOutExpo');
+        
+        e.preventDefault();
+    });
 });

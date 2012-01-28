@@ -1,21 +1,4 @@
-#firm_name {
-    position:relative;
-    margin-left:8px;
-    color:#202020;
-    font-size:18px;
-    line-height: 30px;
-    padding: 0 10px;
-    background-color: #D6D9D0;
-    display: inline-block;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}
 
-#firm_scroller_container {
-    float:right;
-    display:inline;
-    width:720px;
-}
 
 #firm_scroller_container #firm_thumb_scroller_left {
     z-index:9999;
@@ -36,22 +19,23 @@
 #firm_thumb_scroller {
     position:relative;
     float:left;
-    background:url(/static/lib/firm_scroller/images/thumbScroller_bg.png) repeat-x;
-    width:694px;
+    width:916px;
     overflow:hidden;
     margin:auto;
 }
 
-#firm_thumb_scroller,#firm_thumb_scroller #firm_thumb_container,#firm_thumb_scroller .firm_thumb_content {
+#firm_thumb_scroller, #firm_thumb_scroller #firm_thumb_container, #firm_thumb_scroller .firm_thumb_content {
     height:80px;
 }
 
 #firm_thumb_scroller #firm_thumb_container {
     position:relative;
     left:0;
+    padding-top:2px;
 }
 
 #firm_thumb_scroller .firm_thumb_content {
+    padding-top:5px;
     width:138px;
     float:left;
 }
@@ -65,4 +49,5 @@
 
 #firm_thumb_scroller img {
     border:1px solid gray;
+    max-height:63px;
 }
