@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
@@ -22,7 +21,7 @@ from django.views.decorators.http import require_GET, require_http_methods
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
-from core.forms import BetaForm, AkismetContactForm
+from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
 from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
@@ -32,7 +31,6 @@ from events.models import Event, FeaturedEvent
 from events.view_helpers import get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
-from registration.models import InterestedPerson
 from student.forms import StudentRegistrationForm
 from student.models import Student
 
@@ -327,6 +325,9 @@ def landing_page(request, extra_context = None):
 
     if request.GET.get('action', None) == 'logged-out':
         loggedout = True
+    
+    recruiter_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
+    tutorials = Tutorial.objects.filter(display=True, audience__in = recruiter_audience).order_by("sort_order")
 
     context = {
         'student_reg_form': StudentRegistrationForm(),
@@ -335,6 +336,7 @@ def landing_page(request, extra_context = None):
         'loggedout': loggedout,
         'form_error': form_error,
         'email_error': email_error,
+        'tutorials': tutorials,
         'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
     }
 

@@ -16,7 +16,7 @@ $(document).ready(function() {
         p.css('background-color','rgba(255,255,255,0.1)');
     });
 
-    $('.type_link a').live('click',function(e){
+    $('.navigation_section a').live('click',function(e){
         var $anchor = $(this);
         
         $('html, body').stop().animate({
