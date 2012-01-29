@@ -5,10 +5,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:15",
    "name": "Changing Your Password",
+   "image": "",
    "display": true,
    "topic": 9,
    "audience": 2,
    "sort_order": 1.000,
+   "action": null,
    "date_created": "2011-12-01 14:43:06",
    "slug": "changing-your-password"
   }
@@ -19,10 +21,12 @@
   "fields": {
    "last_updated": "2011-12-16 08:13:35",
    "name": "Updating Your Company Profile",
+   "image": "",
    "display": true,
    "topic": 9,
    "audience": 4,
    "sort_order": 1.000,
+   "action": null,
    "date_created": "2011-12-16 08:13:35",
    "slug": "updating-your-company-profile"
   }
@@ -33,10 +37,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:19",
    "name": "Creating Accounts for Co-Workers",
+   "image": "",
    "display": true,
    "topic": 9,
    "audience": 4,
    "sort_order": 2.000,
+   "action": null,
    "date_created": "2011-10-06 20:46:33",
    "slug": "creating-accounts-for-co-workers"
   }
@@ -47,10 +53,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:34",
    "name": "Deleting Your Account",
+   "image": "",
    "display": true,
    "topic": 9,
    "audience": 4,
    "sort_order": 3.000,
+   "action": null,
    "date_created": "2011-11-30 19:10:40",
    "slug": "deleting-your-account"
   }
@@ -61,10 +69,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:59",
    "name": "Creating Events & Deadlines",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 4,
    "sort_order": 1.000,
+   "action": null,
    "date_created": "2011-10-07 12:40:06",
    "slug": "creating-events-deadlines"
   }
@@ -75,10 +85,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:53:11",
    "name": "Sending Invitations",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 4,
    "sort_order": 3.000,
+   "action": null,
    "date_created": "2011-10-07 12:39:46",
    "slug": "sending-invitations"
   }
@@ -89,10 +101,12 @@
   "fields": {
    "last_updated": "2011-12-16 09:16:06",
    "name": "Browsing Attendees & RSVPs",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 4,
    "sort_order": 5.000,
+   "action": null,
    "date_created": "2011-10-07 12:40:57",
    "slug": "browsing-attendees-rsvps"
   }
@@ -101,12 +115,14 @@
   "pk": 2,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:51:19",
+   "last_updated": "2012-01-29 16:10:36",
    "name": "Browsing Students",
+   "image": "core/tutorial/browsing_students_2012-01-29-16-10-36.png",
    "display": true,
    "topic": 13,
    "audience": 4,
    "sort_order": 1.000,
+   "action": "Browse Students",
    "date_created": "2011-10-06 20:47:44",
    "slug": "browsing-students"
   }
@@ -117,10 +133,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:01",
    "name": "Creating & Delivering Resume Books",
+   "image": "",
    "display": true,
    "topic": 13,
    "audience": 4,
    "sort_order": 2.000,
+   "action": null,
    "date_created": "2011-10-07 12:41:35",
    "slug": "creating-delivering-resume-books"
   }
@@ -131,10 +149,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:07",
    "name": "Re-Delivering Past Resume Books",
+   "image": "",
    "display": true,
    "topic": 13,
    "audience": 4,
    "sort_order": 3.000,
+   "action": null,
    "date_created": "2011-12-01 18:11:21",
    "slug": "re-delivering-past-resume-books"
   }
@@ -145,10 +165,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:52:41",
    "name": "Getting an Annual Subscription",
+   "image": "",
    "display": true,
    "topic": 10,
    "audience": 4,
    "sort_order": 1.000,
+   "action": null,
    "date_created": "2011-10-07 12:43:04",
    "slug": "getting-annual-subscription"
   }
@@ -159,10 +181,12 @@
   "fields": {
    "last_updated": "2011-12-12 05:14:54",
    "name": "Creating Events & Deadlines",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 5,
    "sort_order": 1.000,
+   "action": null,
    "date_created": "2011-12-12 05:14:54",
    "slug": "creating-campus-org-events-deadlines"
   }
@@ -173,10 +197,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:53:44",
    "name": "Checking Students In",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 6,
    "sort_order": 2.000,
+   "action": null,
    "date_created": "2011-10-07 12:40:32",
    "slug": "checking-students-in"
   }
@@ -187,10 +213,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:51:35",
    "name": "Deleting Past or Cancelled Events",
+   "image": "",
    "display": false,
    "topic": 11,
    "audience": 6,
    "sort_order": 4.000,
+   "action": null,
    "date_created": "2011-11-30 19:08:45",
    "slug": "deleting-past-or-cancelled-events"
   }
@@ -201,10 +229,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:54:02",
    "name": "Exporting Attendee & RSVP Info",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 6,
    "sort_order": 5.000,
+   "action": null,
    "date_created": "2011-12-01 19:54:03",
    "slug": "exporting-attendee-rsvp-info"
   }
@@ -215,10 +245,12 @@
   "fields": {
    "last_updated": "2011-12-01 22:53:52",
    "name": "Cancelling Upcoming Events and Deadlines",
+   "image": "",
    "display": true,
    "topic": 11,
    "audience": 6,
    "sort_order": 6.000,
+   "action": null,
    "date_created": "2011-11-29 15:52:44",
    "slug": "cancelling-upcoming-events-and-deadlines"
   }
