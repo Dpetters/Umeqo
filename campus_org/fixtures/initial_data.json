@@ -4266,6 +4266,24 @@
   }
  },
  {
+  "pk": 506,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-29 12:34:25",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-29 12:34:25",
+   "type": 11,
+   "display": false,
+   "name": "Men's Varsity Swimming and Diving"
+  }
+ },
+ {
   "pk": 242,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4407,6 +4425,24 @@
    "type": 8,
    "display": false,
    "name": "MIT Guild of Bellringers"
+  }
+ },
+ {
+  "pk": 503,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-26 21:05:00",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-26 21:05:00",
+   "type": 13,
+   "display": false,
+   "name": "MIT Intervarsity"
   }
  },
  {
@@ -5649,6 +5685,24 @@
    "type": 5,
    "display": true,
    "name": "SBC (Sloan Business Club)"
+  }
+ },
+ {
+  "pk": 504,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-26 22:15:02",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-26 22:15:02",
+   "type": 4,
+   "display": false,
+   "name": "Scandinavian Society"
   }
  },
  {
@@ -7503,6 +7557,24 @@
    "type": 11,
    "display": false,
    "name": "Varsity Cross Country"
+  }
+ },
+ {
+  "pk": 505,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-27 17:42:25",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-27 17:42:25",
+   "type": 11,
+   "display": false,
+   "name": "Varsity Rifle"
   }
  },
  {
