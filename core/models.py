@@ -140,7 +140,8 @@ post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 
 class Tutorial(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
-    
+    action = models.CharField(max_length=100, null=True)
+    image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     slug = models.SlugField(max_length=150)
     topic = models.ForeignKey(Topic, null=True, blank=True)
     audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
