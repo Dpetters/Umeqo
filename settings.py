@@ -54,7 +54,7 @@ EMAIL_BACKEND = 'django_ses.SESBackend'
 
 PROD_DATA_MODELS = {
     'auth': ['group'],
-    'event': ['featuredevent'],
+    'events': ['featuredevent'],
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
