@@ -1,0 +1,12 @@
+[
+ {
+  "pk": 4,
+  "model": "events.featuredevent",
+  "fields": {
+   "date_created": "2011-10-03 20:07:11",
+   "campus_org": 387,
+   "event": 35,
+   "employer": null
+  }
+ }
+]
