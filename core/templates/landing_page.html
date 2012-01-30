@@ -173,12 +173,14 @@
                 <div id="overview">
                     <h2>What is Umeqo?</h2>
                     <p>Currently available only at MIT, Umeqo is a new recruiting resource that makes discovering and connecting with students easier than ever.</p>
+                    <div class="clearfix"></div>
                 </div>
                 <div id="testimonials">
-                    <p class="testimonial">"This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy."<br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                    <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="features">
-                    <h2>With Umeqo you can</h2>
+                    <h2>With Umeqo you can..</h2>
                     {% for tutorial in tutorials %}
                         <div class="feature">
                             <a href="{{tutorial.get_absolute_url}}">
@@ -188,7 +190,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <p></p>
+                <h2 id="subscribe_command">..and much more. <a href="{% url subscription_list %}">Subscribe today!</a></h2>
                 <div class="clearfix"></div>
             </div>
             {% include 'small_navigation_section.html' %}
