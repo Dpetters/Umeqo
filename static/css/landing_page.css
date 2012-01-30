@@ -233,6 +233,9 @@ label.required span.error {
 #students, #employers{
     padding-top:50px;
 }
+#employers #testimonials{
+    background: rgba(0,0,0,0.1);    
+}
 #student_registration_form input[type=submit]{
     margin-top:3px;
 }
@@ -264,7 +267,8 @@ label.required span.error {
     margin-bottom:15px;
 }
 #student_signup_block .info{
-    margin:5px 20px 18px;
+    margin:5px 8px 18px;
+    text-align:center;
 }
 #student_signup_block .features .image{
     background-color: rgba(255,255,255,0.1);
@@ -346,7 +350,6 @@ label.required span.error {
 .clearfix {
     clear: both;
 }
-
 #logo {
     position: relative;
     text-align: center;

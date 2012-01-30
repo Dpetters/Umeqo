@@ -93,13 +93,11 @@
             <div class="contact_us">
                 <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
             </div>
-            
-            
             <div id="students">
                 <div class="col">
                     <h1>Save Time. Get Noticed.</h1>
                     <div id="student_signup_block" class="light_module">
-                       <p class="info">Sign up, drop your resume, pick the employers you're interested in, and we will take care of the rest.</p>
+                       <p class="info">Sign up, drop your resume, and subscribe to the employers you're interested in. We'll take care of the rest.</p>
                        <form id="student_registration_form" method="POST">
                             {% csrf_token %}
                             {% for field in login_form %}
@@ -147,32 +145,6 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <!--
-            <div id="student_features">
-                <h2>What’s so innovative?</h2>
-                <div class="col">
-                    <p>
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
-                        <span><strong>Streamlined Events & Deadlines.</strong> Google Calendar and Maps intergration. Cancellation notifications.</span>
-                    </p>
-                    <p>
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
-                        <span><strong>Event Invites.</strong> Receive invites to both public and private events from employers interested in you.</span>
-                    </p>
-                </div>
-                <div class="col">
-                    <p>
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
-                        <span><strong>Automatic Notifications.</strong> Subscribe to employers you’re interested in and get notified when they post new events and deadlines.</span>
-                    </p>
-                    <p>
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/maintainprofile.png" /></span>
-                        <span><strong>Easy-to-Maintain Profile.</strong> Umeqo automatically indexes your resume.</span>
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            -->
             <div id="firm_section" class="longInfo">
                 <h3 id="firm_name">Firms using Umeqo</h3>
                 <div id="firm_scroller_container">
@@ -198,6 +170,10 @@
             {% include 'small_navigation_section.html' %}
             <div id="employers">
                 <h1>Find candidates in minutes.</h1>
+                <div id="overview">
+                    <h2>What is Umeqo?</h2>
+                    <p>Currently available only at MIT, Umeqo is a new recruiting resource that makes discovering and connecting with students easier than ever.</p>
+                </div>
                 <div id="testimonials">
                     <p class="testimonial">"This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy."<br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
                 </div>
@@ -209,7 +185,6 @@
                                 <img src="{{MEDIA_URL}}{{tutorial.image}}" />
                                 <p class="action">{{tutorial.action}}</p>
                             </a>
-                            <!--<img src="{{tutorial.image}}"/>-->
                         </div>
                     {% endfor %}
                 </div>

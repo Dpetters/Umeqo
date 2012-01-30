@@ -66,6 +66,7 @@ PROD_DATA_MODELS = {
 }
 LOCAL_DATA_MODELS = {
     'auth': ['user'],
+    'event': ['featuredevent'],
     'student': ['student', 'studentpreferences', 'studentstatistics', 'studentinvite'],
     'registration':['userattributes', \
                     'sessionkey', 'registrationprofile'],
