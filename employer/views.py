@@ -103,7 +103,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 @agreed_to_terms
 @render_to("employer_new.html")
 def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
-    if not request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student"):
+    if not (request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student")):
         raise Http403("You must be logged in.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
