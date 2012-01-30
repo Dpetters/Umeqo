@@ -327,7 +327,7 @@ def landing_page(request, extra_context = None):
         loggedout = True
     
     recruiter_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
-    tutorials = Tutorial.objects.filter(display=True, audience__in = recruiter_audience).order_by("sort_order")
+    tutorials = list(Tutorial.objects.filter(display=True, action="Browse Students", audience__in = recruiter_audience).order_by("sort_order"))*8
 
     context = {
         'student_reg_form': StudentRegistrationForm(),

@@ -65,7 +65,7 @@
           })();
         </script>
     </head>
-    <body>
+    <body id="top">
         {% if deactivated %}
             <div class="message">
                 Thank you for trying out Umeqo!
@@ -195,33 +195,28 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="navigation_section small">
-                <p class="col"><a href="#students">For students &#0187;</a></p>
-                <p class="col"><a href="#employers">For employers &#0187;</a></p>
-            </div>
+            {% include 'small_navigation_section.html' %}
             <div id="employers">
                 <h1>Find candidates in minutes.</h1>
+                <div id="testimonials">
+                    <p class="testimonial">"This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy."<br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                </div>
                 <div class="features">
                     <h2>With Umeqo you can</h2>
                     {% for tutorial in tutorials %}
                         <div class="feature">
                             <a href="{{tutorial.get_absolute_url}}">
-                                <div class="image">
-                                    
-                                </div>
-                                <p class="action">{{tutorial}}</p>
+                                <img src="{{MEDIA_URL}}{{tutorial.image}}" />
+                                <p class="action">{{tutorial.action}}</p>
                             </a>
                             <!--<img src="{{tutorial.image}}"/>-->
                         </div>
                     {% endfor %}
                 </div>
+                <p></p>
                 <div class="clearfix"></div>
             </div>
-            
-            <div class="navigation_section small">
-                <p class="col"><a href="#students">For students &#0187;</a></p>
-                <p class="col"><a href="#employers">For employers &#0187;</a></p>
-            </div>
+            {% include 'small_navigation_section.html' %}
         </div>
     </body>
 </html>
