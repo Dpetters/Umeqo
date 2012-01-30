@@ -19,14 +19,14 @@
   "pk": 18,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-16 08:13:35",
+   "last_updated": "2012-01-30 00:41:07",
    "name": "Updating Your Company Profile",
-   "image": "",
+   "image": "core/tutorial/updating_your_company_profile_2012-01-30-00-41-07.png",
    "display": true,
    "topic": 9,
    "audience": 4,
    "sort_order": 1.000,
-   "action": null,
+   "action": "Publish Your Company Profile",
    "date_created": "2011-12-16 08:13:35",
    "slug": "updating-your-company-profile"
   }
@@ -35,14 +35,14 @@
   "pk": 1,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:52:19",
+   "last_updated": "2012-01-30 00:44:29",
    "name": "Creating Accounts for Co-Workers",
-   "image": "",
+   "image": "core/tutorial/creating_accounts_for_co-workers_2012-01-30-00-44-29.png",
    "display": true,
    "topic": 9,
    "audience": 4,
    "sort_order": 2.000,
-   "action": null,
+   "action": "Create Account for Co-Workers",
    "date_created": "2011-10-06 20:46:33",
    "slug": "creating-accounts-for-co-workers"
   }
@@ -67,14 +67,14 @@
   "pk": 4,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:52:59",
+   "last_updated": "2012-01-30 00:46:08",
    "name": "Creating Events & Deadlines",
-   "image": "",
+   "image": "core/tutorial/creating_events_&_deadlines_2012-01-30-00-46-08.png",
    "display": true,
    "topic": 11,
    "audience": 4,
    "sort_order": 1.000,
-   "action": null,
+   "action": "Create Events & Deadlines",
    "date_created": "2011-10-07 12:40:06",
    "slug": "creating-events-deadlines"
   }
@@ -83,14 +83,14 @@
   "pk": 3,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:53:11",
+   "last_updated": "2012-01-30 01:25:42",
    "name": "Sending Invitations",
-   "image": "",
+   "image": "core/tutorial/sending_invitations_2012-01-30-01-25-42.png",
    "display": true,
    "topic": 11,
    "audience": 4,
    "sort_order": 3.000,
-   "action": null,
+   "action": "Send Invitations",
    "date_created": "2011-10-07 12:39:46",
    "slug": "sending-invitations"
   }
@@ -99,14 +99,14 @@
   "pk": 6,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-16 09:16:06",
+   "last_updated": "2012-01-30 01:29:13",
    "name": "Browsing Attendees & RSVPs",
-   "image": "",
+   "image": "core/tutorial/browsing_attendees_&_rsvps_2012-01-30-01-29-13.png",
    "display": true,
    "topic": 11,
    "audience": 4,
    "sort_order": 5.000,
-   "action": null,
+   "action": "Browse RSVPs & Attendees",
    "date_created": "2011-10-07 12:40:57",
    "slug": "browsing-attendees-rsvps"
   }
@@ -115,14 +115,14 @@
   "pk": 2,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2012-01-29 16:10:36",
+   "last_updated": "2012-01-30 00:25:01",
    "name": "Browsing Students",
    "image": "core/tutorial/browsing_students_2012-01-29-16-10-36.png",
    "display": true,
    "topic": 13,
    "audience": 4,
    "sort_order": 1.000,
-   "action": "Browse Students",
+   "action": "Find Candidates",
    "date_created": "2011-10-06 20:47:44",
    "slug": "browsing-students"
   }
@@ -131,14 +131,14 @@
   "pk": 7,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:52:01",
+   "last_updated": "2012-01-30 00:36:48",
    "name": "Creating & Delivering Resume Books",
-   "image": "",
+   "image": "core/tutorial/creating_&_delivering_resume_books_2012-01-30-00-36-48.png",
    "display": true,
    "topic": 13,
    "audience": 4,
    "sort_order": 2.000,
-   "action": null,
+   "action": "Create & Deliver Resume Books",
    "date_created": "2011-10-07 12:41:35",
    "slug": "creating-delivering-resume-books"
   }
@@ -195,14 +195,14 @@
   "pk": 5,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:53:44",
+   "last_updated": "2012-01-30 00:51:08",
    "name": "Checking Students In",
-   "image": "",
+   "image": "core/tutorial/checking_students_in_2012-01-30-00-51-08.png",
    "display": true,
    "topic": 11,
    "audience": 6,
    "sort_order": 2.000,
-   "action": null,
+   "action": "Check Students In",
    "date_created": "2011-10-07 12:40:32",
    "slug": "checking-students-in"
   }
