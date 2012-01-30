@@ -53,8 +53,8 @@ def student_info(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 def student_quick_registration(request, form_class=StudentQuickRegistrationForm, extra_context=None):
     context = {}
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
+    #if not request.is_ajax():
+    #    raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         data = {}
         form = form_class(data=request.POST, files=request.FILES)
