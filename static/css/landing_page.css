@@ -239,6 +239,9 @@ label.required span.error {
 #student_registration_form input[type=submit]{
     margin-top:3px;
 }
+#employers .features{
+    margin-top:40px;
+}
 #employers .feature{
     display:inline-block;
     padding:16px;
@@ -260,7 +263,7 @@ label.required span.error {
     width:200px;
 }
 #employers .feature .action{
-    font-size:16px;
+    font-size:12px;
     text-align:center;
 }
 #students h1{

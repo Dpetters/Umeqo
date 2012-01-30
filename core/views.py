@@ -327,7 +327,16 @@ def landing_page(request, extra_context = None):
         loggedout = True
     
     recruiter_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
-    tutorials = list(Tutorial.objects.filter(display=True, action="Browse Students", audience__in = recruiter_audience).order_by("sort_order"))*8
+    tutorials = Tutorial.objects.filter(display=True, audience__in = recruiter_audience).order_by("sort_order")
+    landing_page_tutorials = ["Find Candidates",
+                              "Create & Deliver Resume Books",
+                              "Browse RSVPs & Attendees",
+                              "Create Events & Deadlines",
+                              "Send Invitations",
+                              "Create Account for Co-Workers",
+                              "Publish Your Company Profile",
+                              "Check Students In"]
+    tutorials = tutorials.filter(action__in = landing_page_tutorials)
 
     context = {
         'student_reg_form': StudentRegistrationForm(),
