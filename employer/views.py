@@ -702,8 +702,6 @@ def employer_resume_book_current_download(request):
 @user_passes_test(is_student)
 @render_to("employer_snippets.html")
 def employer_snippets(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.user.student.profile_created:
         return redirect('student_profile')
     employers = employer_search_helper(request)
@@ -711,8 +709,6 @@ def employer_snippets(request, extra_context=None):
     for employer in employers:
         if employer in subscriptions:
             employer.subscribed = True
-        else:
-            employer.subscribed = False
     context = { 'employers': employers }
     context.update(extra_context or {})
     return context
@@ -724,24 +720,30 @@ def employer_snippets(request, extra_context=None):
 def employers(request, extra_context=None):
     if not request.user.student.profile_created:
         return redirect('student_profile')
+    
+    subscriptions = request.user.student.subscriptions.all()
+    
     employers = Employer.objects.filter(visible=True)
+    for employer in employers:
+        if employer in subscriptions:
+            employer.subscribed = True
+            
     employer_id = int(request.GET.get('id', employers[0].id))
     try:
         employer = Employer.objects.get(id=employer_id)
     except Employer.DoesNotExist:
         return redirect('employers')
+    
+    subbed=False
+    if employer in subscriptions:
+        subbed = True
 
-    subscriptions = request.user.student.subscriptions.all()
-    industries = Industry.objects.all()
-    
-    subbed = employer in subscriptions
-    
-    context = {'industries':industries,
+    context = {'industries':Industry.objects.all(),
                'employers':employers,
                'employer_id': employer_id,
                'employer': employer,
                'subbed': subbed }
-    
+
     context.update(get_employer_upcoming_events_context(employer, request.user))
     context.update(extra_context or {})
     return context
@@ -752,14 +754,12 @@ def employers(request, extra_context=None):
 @user_passes_test(is_student)
 @render_to('employer_details.html')
 def employer_details(request, extra_content=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("id"):
-        raise Http400("Request is missing the id.")
+        raise Http400("Request is missing the employer id.")
     try:
         employer = Employer.objects.get(id=request.GET['id'])
     except:
-        return Http404("Employer with id {0} not found".format(request.GET['id']))     
+        return Http404("Employer with id {0} not found".format(request.GET['id']))
     subscriptions = request.user.student.subscriptions.all()
     context = {
         'employer': employer,

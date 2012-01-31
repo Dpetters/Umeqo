@@ -53,6 +53,7 @@ Employers |
             {% endfor %}
         </div>
         <div id="employer_details">
+            {{employer}}
             {% include "employer_details.html" with employer=employer events=events isnotajax="True" %}
         </div>
     </div>
