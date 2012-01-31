@@ -724,7 +724,7 @@ def employer_snippets(request, extra_context=None):
 def employers(request, extra_context=None):
     if not request.user.student.profile_created:
         return redirect('student_profile')
-    employers = employer_search_helper(request)
+    employers = Employer.objects.filter(visible=True)
     employer_id = int(request.GET.get('id', employers[0].id))
     try:
         employer = Employer.objects.get(id=employer_id)

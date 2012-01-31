@@ -53,8 +53,6 @@ def student_info(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 def student_quick_registration(request, form_class=StudentQuickRegistrationForm, extra_context=None):
     context = {}
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         data = {}
         form = form_class(data=request.POST, files=request.FILES)
@@ -107,6 +105,10 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
         else:
             data['errors'] = form.errors
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+    if not request.GET.has_key('event_id'):
+        raise Http400("Request GET is missing the event_id.")
+    if not request.GET.has_key('action'):
+        raise Http400("Request GET is missing the action.")
     context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
     action = request.GET['action']
     if action=="rsvp":
@@ -123,13 +125,6 @@ def student_quick_registration_done(request, extra_context=None):
     context = {'unparsable_resume':request.GET.get("unparsable_resume", False)}
     context.update(extra_context or {})
     return context
-
-
-@render_to('student_registration_help.html')
-def student_registration_help(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
-    return {}
 
 
 @user_passes_test(is_student)
