@@ -35,14 +35,14 @@
   "pk": 1,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2012-01-30 00:44:29",
+   "last_updated": "2012-01-30 01:40:45",
    "name": "Creating Accounts for Co-Workers",
    "image": "core/tutorial/creating_accounts_for_co-workers_2012-01-30-00-44-29.png",
    "display": true,
    "topic": 9,
    "audience": 4,
    "sort_order": 2.000,
-   "action": "Create Account for Co-Workers",
+   "action": "Create Accounts for Co-Workers",
    "date_created": "2011-10-06 20:46:33",
    "slug": "creating-accounts-for-co-workers"
   }
