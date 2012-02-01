@@ -103,7 +103,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
 @agreed_to_terms
 @render_to("employer_new.html")
 def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
-    if not request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student"):
+    if not (request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student")):
         raise Http403("You must be logged in.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
@@ -308,11 +308,11 @@ def employer_students_remove_star(request):
         raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
-        for id in request.POST['student_ids'].split('~'):
-            student = Student.objects.get(id=id)  
-            if student in request.user.recruiter.employer.starred_students.all():
-                request.user.recruiter.employer.starred_students.remove(student)
-        return HttpResponse()
+    for id in request.POST['student_ids'].split('~'):
+        student = Student.objects.get(id=id)  
+        if student in request.user.recruiter.employer.starred_students.all():
+            request.user.recruiter.employer.starred_students.remove(student)
+    return HttpResponse()
 
 
 @agreed_to_terms
@@ -586,7 +586,7 @@ def employer_resume_book_current_create(request):
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
-        current_resume_book = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
+        current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
     report_buffer = cStringIO.StringIO() 
     c = Canvas(report_buffer)  
     c.drawString(1*cm, 28.5*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
@@ -642,7 +642,7 @@ def employer_resume_book_current_email(request, extra_context=None):
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
-        current_resume_book = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+        current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
     subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
@@ -702,17 +702,13 @@ def employer_resume_book_current_download(request):
 @user_passes_test(is_student)
 @render_to("employer_snippets.html")
 def employer_snippets(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.user.student.profile_created:
         return redirect('student_profile')
     employers = employer_search_helper(request)
     subscriptions = request.user.student.subscriptions.all()
     for employer in employers:
         if employer in subscriptions:
-            employer.subscribed = True
-        else:
-            employer.subscribed = False
+            employer.subbed = True
     context = { 'employers': employers }
     context.update(extra_context or {})
     return context
@@ -724,24 +720,30 @@ def employer_snippets(request, extra_context=None):
 def employers(request, extra_context=None):
     if not request.user.student.profile_created:
         return redirect('student_profile')
+    
+    subscriptions = request.user.student.subscriptions.all()
+
     employers = Employer.objects.filter(visible=True)
+    for employer in employers:
+        if employer in subscriptions:
+            employer.subbed = True
+            
     employer_id = int(request.GET.get('id', employers[0].id))
     try:
         employer = Employer.objects.get(id=employer_id)
     except Employer.DoesNotExist:
         return redirect('employers')
+    
+    subbed=False
+    if employer in subscriptions:
+        subbed = True
 
-    subscriptions = request.user.student.subscriptions.all()
-    industries = Industry.objects.all()
-    
-    subbed = employer in subscriptions
-    
-    context = {'industries':industries,
+    context = {'industries':Industry.objects.all(),
                'employers':employers,
                'employer_id': employer_id,
                'employer': employer,
                'subbed': subbed }
-    
+
     context.update(get_employer_upcoming_events_context(employer, request.user))
     context.update(extra_context or {})
     return context
@@ -752,14 +754,12 @@ def employers(request, extra_context=None):
 @user_passes_test(is_student)
 @render_to('employer_details.html')
 def employer_details(request, extra_content=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("id"):
-        raise Http400("Request is missing the id.")
+        raise Http400("Request is missing the employer id.")
     try:
         employer = Employer.objects.get(id=request.GET['id'])
     except:
-        return Http404("Employer with id {0} not found".format(request.GET['id']))     
+        return Http404("Employer with id {0} not found".format(request.GET['id']))
     subscriptions = request.user.student.subscriptions.all()
     context = {
         'employer': employer,

@@ -16,7 +16,7 @@ from countries.models import Country
 from employer.models import Employer
 from registration.models import RegException
 from student import enums as student_enums
-from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap
+from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap, is_not_mit_student
 from student.models import Student, StudentPreferences, StudentDeactivation
 
 decorate_bound_field()
@@ -76,7 +76,7 @@ class StudentRegistrationForm(forms.ModelForm):
                     raise forms.ValidationError(_(m.ldap_server_error))
                 except:
                     pass
-            if not res or (res[0] != None and res[0][1]['eduPersonPrimaryAffiliation'][0] != "student"):
+            if  is_not_mit_student(res):
                 raise forms.ValidationError(m.must_be_mit_student)
         return self.cleaned_data['email']
 
