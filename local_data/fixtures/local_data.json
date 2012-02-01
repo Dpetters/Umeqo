@@ -9,7 +9,7 @@
    "is_active": true,
    "is_superuser": true,
    "is_staff": true,
-   "last_login": "2012-01-29 15:56:57",
+   "last_login": "2012-01-31 14:06:01",
    "groups": [],
    "user_permissions": [],
    "password": "sha1$cfcf2$ceccd1eb0d97a8d89467039374872d9b5f9d0095",
@@ -234,7 +234,7 @@
   }
  },
  {
-  "pk": 27,
+  "pk": 530,
   "model": "auth.user",
   "fields": {
    "username": "dpetters@mit.edu",
@@ -243,12 +243,12 @@
    "is_active": true,
    "is_superuser": false,
    "is_staff": false,
-   "last_login": "2012-01-27 03:57:17",
+   "last_login": "2012-01-31 19:01:46",
    "groups": [],
    "user_permissions": [],
-   "password": "sha1$6baa3$acc0f7565dfdc34b338a073f84f61947028c22c6",
+   "password": "sha1$5f524$898039342a1b8229b48eea5740360a379e81fbaf",
    "email": "dpetters@mit.edu",
-   "date_joined": "2011-12-06 12:50:33"
+   "date_joined": "2012-01-31 14:07:17"
   }
  },
  {
@@ -9644,17 +9644,6 @@
   }
  },
  {
-  "pk": 11,
-  "model": "employer.employerstudentcomment",
-  "fields": {
-   "comment": "",
-   "date_created": "2011-12-06 16:29:39",
-   "last_updated": "2011-12-06 16:29:39",
-   "student": 6,
-   "employer": 6
-  }
- },
- {
   "pk": 12,
   "model": "employer.employerstudentcomment",
   "fields": {
@@ -9981,17 +9970,6 @@
    "date_created": "2012-01-03 21:07:22",
    "last_updated": "2012-01-03 21:07:22",
    "student": 11,
-   "employer": 5
-  }
- },
- {
-  "pk": 42,
-  "model": "employer.employerstudentcomment",
-  "fields": {
-   "comment": "",
-   "date_created": "2012-01-03 21:54:06",
-   "last_updated": "2012-01-03 21:54:06",
-   "student": 6,
    "employer": 5
   }
  },
@@ -10778,41 +10756,51 @@
   }
  },
  {
-  "pk": 6,
+  "pk": 507,
   "model": "student.student",
   "fields": {
    "last_name": "Petters",
-   "last_updated": "2011-12-28 20:26:23",
+   "last_updated": "2012-01-31 13:05:04",
    "sat_m": null,
-   "graduation_month": "5",
-   "older_than_21": "",
+   "graduation_month": "0",
+   "older_than_21": null,
    "sat_t": null,
    "sat_v": null,
    "sat_w": null,
-   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa candidate bachelor electrical engineering computer cambridge sep math physics awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems intro algorithms computation structures bellevue college gpa supplemented curriculum associate engineering transfer distinction bellevue sep jun susquehanna international technology intern bala cynwyd jun aug designed developed splunk aggregation analytics linux node cluster using hadoop hbase hive flume thrift zookeeper used django allowed sql querying terabytes data user etc mapreduce jobs massive sets tick data cpu times jobs running condor cluster athena research software engineer extern york jan feb created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend thomson reuters software development intern eagan jun aug worked member website vertical fixed priority bugs developed features attended scrums planning meetings developed data mining script used extract pertinent info tens thousands logs added automated entry into flagship westlawnext akamai pinging servers rbm technologies software engineer extern cambridge jan feb developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models programmed automated rml based report using rml pdf conversion library summarized advertising campaigns cellular firms verizon mobile mit agelab undergraduate researcher cambridge oct combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership umeqo com founder cambridge feb umeqo innovative recruiting resource students employers discover another launched mit september django app uses fabric virtualenv apache solr hosted using apache nginx mod wsgi linode collaborating github traders mit exec cambridge nov oct developing trading annual trading competition upgrading website content management mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical python django java html css javascript jquery extjs latex bash knowledge languages fluent russian english interests ted talks hockey running entrepreneurship",
+   "keywords": " dmitrij petters memorial cambridge phone dpetters mit edu education massachusetts institute technology gpa candidate bachelor electrical engineering computer cambridge sep math physics awards parsons brinkerhoff national scholarship sparling scholarship bellevue rotary club scholarship recipient relevant coursework software construction digital communication systems analysis algorithms bellevue sep jun bellevue college gpa supplemented curriculum associate engineering transfer distinction mozilla corporation native android mobile engineer jan feb susquehanna international technology intern bala cynwyd jun aug investigated fixed bugs related opengl rendering gen firefox tablet native added usage tests designed spikes cpu wake ups using automated model research google designed developed splunk aggregation analytics linux node cluster using hadoop hbase hive flume thrift zookeeper used django allowed sql querying terabytes data user etc mapreduce jobs massive sets tick data cpu times jobs running condor cluster york jan feb athena research software engineer extern created risk graphing utility used trader data simulate activity transfer into cache graph exposure limits versus used highcharts extjs pion networking boost libraries backend eagan jun aug thomson reuters software development intern worked member website vertical fixed priority bugs developed features attended scrums planning meetings developed data mining script used extract pertinent info tens thousands logs cambridge jan feb rbm technologies software engineer extern developed ruby rails mobile visual merchandising manager app retail workers digital pictures fixtures upload textures onto respective models cambridge oct mit agelab undergraduate researcher combined pil ffmpeg video overlay showed driving simulation video looking given proof concept project driver selections visually activities leadership cambridge feb umeqo com founder umeqo innovative recruiting resource students employers discover another launched mit september django app uses fabric virtualenv apache solr hosted using apache nginx mod wsgi linode collaborating github cambridge nov traders mit exec developed commodity trading trading competition upgrading website content management mit bhs outdoor indoor varsity runner cambridge aug bhs improvement previous skills interests technical python django java html css javascript jquery extjs latex bash knowledge languages fluent russian english interests ted talks hockey running entrepreneurship",
    "looking_for": [],
    "countries_of_citizenship": [],
    "first_name": "Dmitrij",
-   "first_major": 24,
+   "first_major": 26,
    "subscriptions": [
     10,
+    13,
+    43,
+    25,
+    12,
     7,
-    6
+    11,
+    92,
+    8,
+    14,
+    4,
+    6,
+    9
    ],
-   "gpa": 5.000,
+   "gpa": 3.400,
    "campus_involvement": [],
    "languages": [],
    "profile_created": true,
-   "school_year": 3,
-   "graduation_year": 4,
+   "school_year": 2,
+   "graduation_year": 1,
    "previous_employers": [],
-   "website": "",
+   "website": null,
    "second_major": null,
-   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2012-01-18-13-14-14.pdf",
-   "user": 27,
+   "resume": "student/student/petters_dmitrij_dpetters@mit.edu_2012-01-31-14-07-18.pdf",
+   "user": 530,
    "industries_of_interest": [],
    "act": null,
-   "date_created": "2011-12-06 12:50:33"
+   "date_created": "2012-01-31 14:07:18"
   }
  },
  {
@@ -27876,15 +27864,15 @@
   }
  },
  {
-  "pk": 6,
+  "pk": 507,
   "model": "student.studentpreferences",
   "fields": {
    "email_on_new_subscribed_employer_event": true,
-   "last_updated": "2011-12-06 12:50:33",
+   "last_updated": "2012-01-31 14:07:18",
    "email_on_invite_to_private_event": true,
    "email_on_invite_to_public_event": true,
-   "student": 6,
-   "date_created": "2011-12-06 12:50:33"
+   "student": 507,
+   "date_created": "2012-01-31 14:07:18"
   }
  },
  {
@@ -33953,16 +33941,16 @@
   }
  },
  {
-  "pk": 6,
+  "pk": 507,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 4,
-   "last_updated": "2012-01-20 15:53:02",
-   "resume_view_count": 1,
+   "shown_in_results_count": 0,
+   "last_updated": "2012-01-31 14:07:18",
+   "resume_view_count": 0,
    "add_to_resumebook_count": 0,
-   "student": 6,
+   "student": 507,
    "raffles_won": 0,
-   "date_created": "2011-12-06 12:50:33"
+   "date_created": "2012-01-31 14:07:18"
   }
  },
  {
@@ -40958,12 +40946,12 @@
   }
  },
  {
-  "pk": 26,
+  "pk": 529,
   "model": "registration.userattributes",
   "fields": {
    "agreed_to_terms": true,
    "is_verified": true,
-   "user": 27,
+   "user": 530,
    "agreed_to_terms_date": null,
    "last_password_change_date": null
   }
@@ -46571,16 +46559,6 @@
   }
  },
  {
-  "pk": 97,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2012-01-12 16:20:22",
-   "session_key": "9ed4e1df6f087ef4eaf7515340f6c6ec",
-   "last_updated": "2012-01-12 16:20:22",
-   "user": 27
-  }
- },
- {
   "pk": 96,
   "model": "registration.sessionkey",
   "fields": {
@@ -46588,16 +46566,6 @@
    "session_key": "9c991355da826695e3386aaf667ce707",
    "last_updated": "2012-01-12 02:21:49",
    "user": 3
-  }
- },
- {
-  "pk": 41,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2011-12-06 12:50:43",
-   "session_key": "437190fcc7b38e705e5db711c9bfb59e",
-   "last_updated": "2011-12-06 12:50:43",
-   "user": 27
   }
  },
  {
@@ -46611,16 +46579,6 @@
   }
  },
  {
-  "pk": 47,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2011-12-06 19:44:05",
-   "session_key": "3f6ab609b646e44912b28b45b6150d9e",
-   "last_updated": "2011-12-06 19:44:05",
-   "user": 27
-  }
- },
- {
   "pk": 93,
   "model": "registration.sessionkey",
   "fields": {
@@ -46628,16 +46586,6 @@
    "session_key": "622ee2c50212dce7af87cd2b1cf8ea3f",
    "last_updated": "2012-01-11 01:48:37",
    "user": 529
-  }
- },
- {
-  "pk": 55,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2011-12-13 15:25:27",
-   "session_key": "0dc7a9f22b444898859efbfa0d1ed39a",
-   "last_updated": "2011-12-13 15:25:27",
-   "user": 27
   }
  },
  {
@@ -46731,16 +46679,6 @@
   }
  },
  {
-  "pk": 103,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2012-01-15 15:57:19",
-   "session_key": "bdb3fe619c144f710737348d076758c5",
-   "last_updated": "2012-01-15 15:57:19",
-   "user": 27
-  }
- },
- {
   "pk": 106,
   "model": "registration.sessionkey",
   "fields": {
@@ -46781,16 +46719,6 @@
   }
  },
  {
-  "pk": 112,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2012-01-18 13:13:27",
-   "session_key": "5f9143e2ddd7b42878481307a7f7275c",
-   "last_updated": "2012-01-18 13:13:27",
-   "user": 27
-  }
- },
- {
   "pk": 113,
   "model": "registration.sessionkey",
   "fields": {
@@ -46801,43 +46729,13 @@
   }
  },
  {
-  "pk": 114,
+  "pk": 123,
   "model": "registration.sessionkey",
   "fields": {
-   "date_created": "2012-01-20 02:14:11",
-   "session_key": "89693f4841b317c5be0753e944732908",
-   "last_updated": "2012-01-20 02:14:11",
-   "user": 27
-  }
- },
- {
-  "pk": 115,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2012-01-20 05:06:21",
-   "session_key": "353753fdfdcb6ec4176beefee07b4229",
-   "last_updated": "2012-01-20 05:06:21",
-   "user": 27
-  }
- },
- {
-  "pk": 116,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2012-01-20 15:52:18",
-   "session_key": "3f8a573df1fe83334e40d6cc9ba3d79b",
-   "last_updated": "2012-01-20 15:52:18",
-   "user": 27
-  }
- },
- {
-  "pk": 117,
-  "model": "registration.sessionkey",
-  "fields": {
-   "date_created": "2012-01-22 18:06:54",
-   "session_key": "88e92e889495c61e0c1837b833f3f9ad",
-   "last_updated": "2012-01-22 18:06:54",
-   "user": 27
+   "date_created": "2012-01-31 19:01:46",
+   "session_key": "ded9f6e4a0d6c0db3db45158c50c5f5e",
+   "last_updated": "2012-01-31 19:01:46",
+   "user": 530
   }
  },
  {
@@ -46861,21 +46759,21 @@
   }
  },
  {
-  "pk": 121,
+  "pk": 122,
   "model": "registration.sessionkey",
   "fields": {
-   "date_created": "2012-01-27 03:57:17",
-   "session_key": "d28ba654b691a452b3e0fcbd2df2ad96",
-   "last_updated": "2012-01-27 03:57:17",
-   "user": 27
+   "date_created": "2012-01-31 14:08:31",
+   "session_key": "fb65e37a452a496304ce3452f0928e2f",
+   "last_updated": "2012-01-31 14:08:31",
+   "user": 530
   }
  },
  {
-  "pk": 1,
+  "pk": 2,
   "model": "registration.registrationprofile",
   "fields": {
    "activation_key": "ALREADY_ACTIVATED",
-   "user": 27
+   "user": 530
   }
  },
  {
@@ -47179,7 +47077,7 @@
    ],
    "owner": 3,
    "and_more_url": null,
-   "view_count": 1,
+   "view_count": 2,
    "archived": false,
    "last_seen_view_count": 0,
    "edits": [],
@@ -47214,7 +47112,7 @@
    ],
    "owner": 3,
    "and_more_url": null,
-   "view_count": 48,
+   "view_count": 49,
    "archived": false,
    "last_seen_view_count": 0,
    "edits": [
@@ -47293,7 +47191,7 @@
    ],
    "owner": 3,
    "and_more_url": null,
-   "view_count": 0,
+   "view_count": 1,
    "archived": true,
    "last_seen_view_count": 0,
    "edits": [],
@@ -47326,7 +47224,7 @@
    ],
    "owner": 3,
    "and_more_url": null,
-   "view_count": 0,
+   "view_count": 2,
    "archived": false,
    "last_seen_view_count": 0,
    "edits": [],
@@ -47512,22 +47410,13 @@
   }
  },
  {
-  "pk": 13,
+  "pk": 17,
   "model": "events.rsvp",
   "fields": {
    "attending": true,
-   "event": 20,
-   "student": 6,
-   "datetime_created": "2012-01-20 15:53:39"
-  }
- },
- {
-  "pk": 1,
-  "model": "events.invitee",
-  "fields": {
-   "datetime_created": "2012-01-20 15:53:08",
-   "event": 20,
-   "student": 6
+   "event": 23,
+   "student": 507,
+   "datetime_created": "2012-01-31 14:07:18"
   }
  },
  {
@@ -47586,18 +47475,6 @@
    "datetime_created": "2011-12-28 20:29:34",
    "email": "student1@umeqo.com",
    "student": 1,
-   "won_raffle": false,
-   "event": 20
-  }
- },
- {
-  "pk": 17,
-  "model": "events.attendee",
-  "fields": {
-   "name": "Dmitrij Petters",
-   "datetime_created": "2011-12-28 20:26:23",
-   "email": "dpetters@mit.edu",
-   "student": 6,
    "won_raffle": false,
    "event": 20
   }
