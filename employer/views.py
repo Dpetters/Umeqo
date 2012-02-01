@@ -708,7 +708,7 @@ def employer_snippets(request, extra_context=None):
     subscriptions = request.user.student.subscriptions.all()
     for employer in employers:
         if employer in subscriptions:
-            employer.subscribed = True
+            employer.subbed = True
     context = { 'employers': employers }
     context.update(extra_context or {})
     return context
@@ -722,11 +722,11 @@ def employers(request, extra_context=None):
         return redirect('student_profile')
     
     subscriptions = request.user.student.subscriptions.all()
-    
+
     employers = Employer.objects.filter(visible=True)
     for employer in employers:
         if employer in subscriptions:
-            employer.subscribed = True
+            employer.subbed = True
             
     employer_id = int(request.GET.get('id', employers[0].id))
     try:
