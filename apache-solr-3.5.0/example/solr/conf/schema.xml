@@ -104,11 +104,11 @@
     <dynamicField name="*_dt" type="date"    indexed="true"  stored="true"/>
     
 
-    <field name="attending_employers" type="text" indexed="true" stored="true" multiValued="true" />
+    <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
 
-    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="text" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
-    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
+    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="sat_t" type="slong" indexed="true" stored="true" multiValued="false" />
 
@@ -122,7 +122,7 @@
 
     <field name="owner" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="attending_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="looking_for" type="text" indexed="true" stored="true" multiValued="true" />
 
@@ -138,7 +138,7 @@
 
     <field name="is_deadline" type="boolean" indexed="true" stored="true" multiValued="false" />
 
-    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
 
     <field name="campus_involvement" type="text" indexed="true" stored="true" multiValued="true" />
 
