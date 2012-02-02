@@ -136,7 +136,7 @@ def get_cached_results(request):
             students = students.filter(SQ(first_major__in = courses)|SQ(second_major__in = courses))
         
         if request.GET.has_key('query'):
-            students = students.filter(content = request.GET['query'])
+            students = search(students, request.GET['query'])
         
         cache.set("results", students)
         return am_filtering, students
@@ -189,7 +189,14 @@ def get_is_in_resumebook_attributes(recruiter, students):
         else:
             resume_book_dict[student] = False
     return resume_book_dict
-    
+
+def search(sqs, query):
+    if query:
+        for q in query.split(' '):
+            if q.strip() != "":
+                sqs = sqs.filter(content_auto=q)
+    return sqs
+                
 def get_students_in_resume_book(recruiter):
     try:
         resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
@@ -217,11 +224,9 @@ def employer_search_helper(request):
     industry_id = request.GET.get('i', None)
     if industry_id:
         search_results = search_results.filter(industries=industry_id)
-    query = request.GET.get('q', None)
-    if query:
-        for q in query.split(' '):
-            if q.strip() != "":
-                search_results = search_results.filter(content_auto=q)
+    
+    search_results = search(search_results, request.GET.get('q', None))
+
     # Extract the object.
     employers = map(lambda n: n.object, search_results)
     # Sort the employers.

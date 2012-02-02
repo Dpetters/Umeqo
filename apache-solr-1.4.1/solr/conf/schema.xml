@@ -106,9 +106,9 @@
 
     <field name="attending_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
-    <field name="text" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
+    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
 
     <field name="sat_t" type="slong" indexed="true" stored="true" multiValued="false" />
 
@@ -138,7 +138,7 @@
 
     <field name="is_deadline" type="boolean" indexed="true" stored="true" multiValued="false" />
 
-    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
+    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="campus_involvement" type="text" indexed="true" stored="true" multiValued="true" />
 
@@ -146,7 +146,7 @@
 
     <field name="school_year" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
+    <field name="graduation_year" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="previous_employers" type="text" indexed="true" stored="true" multiValued="true" />
 
@@ -159,8 +159,6 @@
     <field name="has_public_events" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="second_major" type="text" indexed="true" stored="true" multiValued="false" />
-
-    <field name="graduation_year" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="building_num" type="text" indexed="true" stored="true" multiValued="false" />
 
@@ -179,6 +177,8 @@
     <field name="act" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="cancelled" type="boolean" indexed="true" stored="true" multiValued="false" />
+
+    <field name="sat_m" type="slong" indexed="true" stored="true" multiValued="false" />
 
   </fields>
 

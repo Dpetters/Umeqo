@@ -5,6 +5,7 @@ from student.models import Student
 
 class StudentIndex(indexes.RealTimeSearchIndex):
     text = indexes.EdgeNgramField(use_template=True, document=True)
+    content_auto = indexes.EdgeNgramField(use_template = True)
     
     obj_id = indexes.IntegerField(model_attr="id")
     
