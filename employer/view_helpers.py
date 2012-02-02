@@ -194,7 +194,7 @@ def search(sqs, query):
     if query:
         for q in query.split(' '):
             if q.strip() != "":
-                sqs = sqs.filter(content_auto=q)
+                sqs = sqs.filter(text=q)
     return sqs
                 
 def get_students_in_resume_book(recruiter):
