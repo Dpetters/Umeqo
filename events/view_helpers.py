@@ -1,5 +1,7 @@
 import csv
 
+from django.db.models import Q
+
 from datetime import datetime, timedelta, date, time
 
 from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
@@ -13,11 +15,12 @@ def buildAttendee(obj):
         'email': obj.email,
     }
     if obj.student and obj.student.profile_created:
-            output['name'] = obj.student.first_name + ' ' + obj.student.last_name
-            output['account'] = True
-            output['id'] = obj.student.id
-            output['school_year'] = str(obj.student.school_year)
-            output['graduation_year'] = str(obj.student.graduation_year)
+        output['name'] = obj.student.first_name + ' ' + obj.student.last_name
+        output['account'] = True
+        output['id'] = obj.student.id
+        output['is_verified'] = obj.student.user.userattributes.is_verified
+        output['school_year'] = str(obj.student.school_year)
+        output['graduation_year'] = str(obj.student.graduation_year)
     else:
         output['name'] = obj.name
         output['account'] = False
@@ -154,26 +157,30 @@ def event_filtering_helper(category, request):
         return events_exist, [sr.object for sr in events_sqs.load_all()]
 
 
+# RSVPS must be active users, aka be active or have quick-registered
 def get_rsvps(event):
-    return map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
+    return map(buildRSVP, event.rsvp_set.filter(attending=True, student__user__is_active=True).order_by('student__first_name'))
 
 
+# RSVPS must be active users, aka be active or have quick-registered
 def get_no_rsvps(event):
-    return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
+    return map(buildRSVP, event.rsvp_set.filter(attending=False, student__user__is_active=True).order_by('student__first_name'))
 
 
 def get_attendees(event):
     # Attendees are ordred by "name" instead of student__first_name
     # because not all instances have a student foreignkey
-    return map(buildAttendee, event.attendee_set.all().order_by('name'))
+    return map(buildAttendee, event.attendee_set.filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name'))
 
 
+# Dropped resumes must be active users, aka be active or have quick-registered
 def get_dropped_resumes(event):
-    return map(buildRSVP, event.droppedresume_set.all().order_by('student__first_name'))
+    return map(buildRSVP, event.droppedresume_set.filter(student__user__is_active = True).order_by('student__first_name'))
 
 
+# Dropped resumes must be active users, aka be active
 def get_invitees(event):
-    return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
+    return map(buildRSVP, event.invitee_set.filter(student__user__is_active=True).order_by('student__first_name'))
 
 
 def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
@@ -221,11 +228,13 @@ def get_event_schedule(event_date_string, event_id):
     schedule = map(buildScheduleItem, events)
     return schedule
 
+
 def get_employer_upcoming_events_context(employer, user):
     events = SearchQuerySet().models(Event).filter(attending_employers=employer.id, end_datetime__gte=datetime.now())
     if is_student(user):
         events = events.filter(SQ(is_public=True) | SQ(invitees=user.id))
     return get_categorized_events_context(len(events) > 0, events)
+
 
 def get_user_events_sqs(user):
     events = SearchQuerySet().models(Event)
@@ -235,11 +244,14 @@ def get_user_events_sqs(user):
         return events.filter(owner=user.id)
     return events.filter(SQ(owner=user.id) | SQ(attending_employers=user.recruiter.employer.id))
 
+
 def get_archived_events_sqs(user):
     return get_user_events_sqs(user).filter(archived=True).order_by("-end_datetime")
 
+
 def get_attended_events_sqs(user):
     return get_user_events_sqs(user).filter(attendees=user.id).order_by("-end_datetime")
+
 
 def get_cancelled_events_sqs(user):
     events = get_user_events_sqs(user).filter(cancelled=True).order_by("-end_datetime")
@@ -247,11 +259,13 @@ def get_cancelled_events_sqs(user):
         events = events.filter(archived=False)
     return events
 
+
 def get_past_events_sqs(user):
     events = get_user_events_sqs(user).filter(end_datetime__lt=datetime.now()).order_by("-end_datetime")
     if is_recruiter(user) or is_campus_org(user):
         events = events.filter(archived=False)
     return events
+
 
 def get_categorized_events_context(events_exist, event_sqs):
     context = {'events_exist':events_exist}
@@ -270,6 +284,7 @@ def get_categorized_events_context(events_exist, event_sqs):
     context['next_weeks_events'] = [sr.object for sr in next_week_events.load_all()]
     context['later_events'] = [sr.object for sr in later_events.load_all()]
     return context
+
     
 def get_upcoming_events_sqs(user):
     events = get_user_events_sqs(user).filter(end_datetime__gte=datetime.now())
