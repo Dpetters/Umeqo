@@ -171,8 +171,6 @@ def update():
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
-                with fabric_settings(warn_only=True):
-                    run("python manage.py test --setting=settings_test") #result =
+                #with fabric_settings(warn_only=True):
+                #    run("python manage.py test --setting=settings_test") #result =
                 run("echo 'y'|python manage.py rebuild_index")
-                run("chmod 777 logs/ -R")
-                run("chmod 777 media/ -R")
