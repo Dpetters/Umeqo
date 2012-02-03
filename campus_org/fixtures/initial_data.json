@@ -918,6 +918,24 @@
   }
  },
  {
+  "pk": 511,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-02-01 11:34:33",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-01 11:34:33",
+   "type": 16,
+   "display": false,
+   "name": "Baker Leaders"
+  }
+ },
+ {
   "pk": 46,
   "model": "campus_org.campusorg",
   "fields": {
@@ -2589,6 +2607,24 @@
    "type": 2,
    "display": false,
    "name": "Festival Jazz Ensemble"
+  }
+ },
+ {
+  "pk": 508,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-31 15:32:46",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-31 15:32:46",
+   "type": 11,
+   "display": false,
+   "name": "Field Hockey"
   }
  },
  {
@@ -5127,6 +5163,24 @@
    "type": 6,
    "display": true,
    "name": "Phi Beta Epsilon"
+  }
+ },
+ {
+  "pk": 510,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://phi-delts.mit.edu/",
+   "slug": null,
+   "last_updated": "2012-01-31 15:54:03",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-31 15:54:03",
+   "type": 6,
+   "display": false,
+   "name": "Phi Delta Theta"
   }
  },
  {
@@ -7719,6 +7773,24 @@
    "type": 8,
    "display": false,
    "name": "Voo Doo Magazine"
+  }
+ },
+ {
+  "pk": 509,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-01-31 15:34:14",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-01-31 15:34:14",
+   "type": 8,
+   "display": false,
+   "name": "Weather Forecasting Club"
   }
  },
  {
