@@ -18,9 +18,9 @@ except urllib2.URLError:
     try:
         os.chdir(solrdir)
         if s.SITE_NAME == "Demo":
-            os.system('nohup java -Djetty.port="8984" -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
+            os.system('nohup java -Djetty.port="8984" -jar start.jar > logs/solr-reboots.log 2>&1 &')
         else:
-            os.system('nohup java -jar start.jar > ../logs/solr-reboots.log 2>&1 &')
+            os.system('nohup java -jar start.jar > logs/solr-reboots.log 2>&1 &')
         print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
     except Exception as e:
         print e
