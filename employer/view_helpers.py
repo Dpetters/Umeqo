@@ -18,11 +18,9 @@ logger = logging.getLogger("django.request")
 def get_cached_paginator(request):
     cached_paginator = cache.get('paginator')
     if cached_paginator:
-        print "using cached paginator);"
         logger.warning('using the cached paginator!')
         return cache.get("filtering"), cached_paginator
     else:
-        print "not using cached paginator"
         logger.warning('NOT using the cached paginator!')
         filtering, cached_ordered_results = get_cached_ordered_results(request)
         paginator = DiggPaginator(cached_ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
@@ -32,11 +30,9 @@ def get_cached_paginator(request):
 def get_cached_ordered_results(request):
     cached_ordered_results = cache.get("ordered_results")
     if cached_ordered_results:
-        print "using cached_ordered_results"
         logger.warning('using the cached_ordered_results!')
         return cache.get("filtering"), cached_ordered_results
     else:
-        print "NOT using cached_ordered_results"
         logger.warning('NOT using the cached_ordered_results!')
         filtering, cached_results = get_cached_results(request)
         ordered_results = [search_result.object for search_result in order_results(cached_results, request).load_all()]
@@ -46,11 +42,9 @@ def get_cached_ordered_results(request):
 def get_cached_results(request):
     results = cache.get('results')
     if results:
-        print "using cached results"
         logger.warning('using the cached results!')
         return cache.get("filtering"), results
     else:
-        print "NOT using cached results"
         logger.warning('NOT using the cached results!')
         student_list = request.GET['student_list']
         student_list_id = request.GET['student_list_id']
