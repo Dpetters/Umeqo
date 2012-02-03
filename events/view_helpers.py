@@ -10,7 +10,7 @@ from haystack.query import SearchQuerySet, SQ
 def buildAttendee(obj):
     output = {
         'email': obj.email,
-        'datetime_created': obj.datetime_created.isoformat()
+        'datetime_created': obj.datetime_created.strftime("%Y-%m-%d %H:%M:%S")
     }
     if obj.student and obj.student.profile_created:
             output['name'] = obj.student.first_name + ' ' + obj.student.last_name
@@ -28,7 +28,7 @@ def buildRSVP(obj):
         'id': obj.student.id,
         'is_verified': obj.student.user.userattributes.is_verified,
         'name': obj.student.first_name + ' ' + obj.student.last_name,
-        'datetime_created': obj.datetime_created.isoformat(),
+        'datetime_created': obj.datetime_created.strftime("%Y-%m-%d %H:%M:%S"),
         'email': obj.student.user.email,
         'school_year': str(obj.student.school_year),
         'graduation_year': str(obj.student.graduation_year),
@@ -38,7 +38,7 @@ def buildRSVP(obj):
 
 def export_event_list_csv(file_obj, event, list):
     writer = csv.writer(file_obj)
-    info = ["Name", "Email", "School Year", "Graduation Year"]
+    info = ["Name", "Email", "Date & Time", "School Year", "Graduation Year"]
     writer.writerow(info)
     if list =="rsvps":
         filename = "%s RSVPs" % (event.name)
@@ -59,6 +59,7 @@ def export_event_list_csv(file_obj, event, list):
         info = []
         info.append(student['name'])
         info.append(student['email'])
+        info.append(student['datetime_created'])
         if student['account']:
             info.append(student['school_year'])
             info.append(student['graduation_year'])
@@ -66,7 +67,7 @@ def export_event_list_csv(file_obj, event, list):
     return filename
 
 def export_event_list_text(file_obj, event, list):
-    info = "\t".join(["Name", "Email", "School Year", "Graduation Year"])
+    info = "\t".join(["Name", "Email", "Date & Time", "School Year", "Graduation Year"])
     print >> file_obj, info
     if list == "all":
         filename = "%s Respondees" % (event.name)
@@ -85,9 +86,9 @@ def export_event_list_text(file_obj, event, list):
         students.sort(key=lambda n: n['name'])
     for student in students:
         if student['account']:
-            info = "\t".join([student['name'], student['email'], student['school_year'], student['graduation_year']])
+            info = "\t".join([student['name'], student['email'], student['datetime_created'], student['school_year'], student['graduation_year']])
         else:
-            info = "\t".join([student['name'], student['email']])
+            info = "\t".join([student['name'], student['email'], student['datetime_created']])
         print >> file_obj, info
     return filename
 
