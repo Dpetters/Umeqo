@@ -64,7 +64,19 @@
     width: 785px;
     padding: 0 5px 5px;
     background-color: #E4EAEE;
-    min-height: 110px;
+    min-height: 126px;
+    overflow:hidden;
+}
+.rest_of_responses{
+    display:none;
+}
+.expand_responses{
+    color:#557389;
+    margin-top:3px;
+    float:right;
+}
+.expand_responses.hide{
+    display:none;
 }
 #event_response_empty {
     padding: 0;
@@ -114,7 +126,7 @@
     text-align: center;
     background-color: #E4EAEE;
     border: 1px solid #CCC;
-    padding: 5px;
+    padding: 5px 5px 6px 5px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;

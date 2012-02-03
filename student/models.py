@@ -79,6 +79,7 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
         else:
             return "Unattached Student"
 
+    
 @receiver(post_save, sender=Student)
 def create_student_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:
