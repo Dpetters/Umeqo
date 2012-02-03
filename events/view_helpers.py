@@ -3,6 +3,7 @@ import csv
 from datetime import datetime, timedelta, date, time
 
 from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
+from core.view_helpers import search
 from events.choices import ALL
 from events.models import Event
 from haystack.query import SearchQuerySet, SQ
@@ -10,7 +11,6 @@ from haystack.query import SearchQuerySet, SQ
 def buildAttendee(obj):
     output = {
         'email': obj.email,
-        'datetime_created': obj.datetime_created.isoformat()
     }
     if obj.student and obj.student.profile_created:
             output['name'] = obj.student.first_name + ' ' + obj.student.last_name
@@ -28,7 +28,6 @@ def buildRSVP(obj):
         'id': obj.student.id,
         'is_verified': obj.student.user.userattributes.is_verified,
         'name': obj.student.first_name + ' ' + obj.student.last_name,
-        'datetime_created': obj.datetime_created.isoformat(),
         'email': obj.student.user.email,
         'school_year': str(obj.student.school_year),
         'graduation_year': str(obj.student.graduation_year),
@@ -146,12 +145,9 @@ def event_filtering_helper(category, request):
     elif type=="r":
         events_sqs = events_sqs.filter(is_drop=True)  
     
-    query = request.GET.get('query','')
-    if query!="":
-        for q in query.split(' '):
-            if q.strip() != "":
-                events_sqs = events_sqs.filter(text=q)
-    
+    if request.GET.get('query'):
+        events_sqs = search(events_sqs, request.GET.get('query'))
+
     if category =="upcoming":
         return get_categorized_events_context(events_exist, events_sqs)
     else:
@@ -161,32 +157,48 @@ def event_filtering_helper(category, request):
 def get_rsvps(event):
     return map(buildRSVP, event.rsvp_set.filter(attending=True).order_by('student__first_name'))
 
-def get_all_responses(event):
+
+def get_no_rsvps(event):
+    return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
+
+
+def get_attendees(event):
+    # Attendees are ordred by "name" instead of student__first_name
+    # because not all instances have a student foreignkey
+    return map(buildAttendee, event.attendee_set.all().order_by('name'))
+
+
+def get_dropped_resumes(event):
+    return map(buildRSVP, event.droppedresume_set.all().order_by('student__first_name'))
+
+
+def get_invitees(event):
+    return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
+
+
+def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
     all_responses = []
-    emails_dict = {}
     students = []
-    attendees = get_attendees(event)
+    
+    if dropped_resumes:
+        students.extend(dropped_resumes)
+    
     if attendees:
         students.extend(attendees)
-    rsvps = get_rsvps(event)
+    
     if rsvps:
         students.extend(rsvps)
-    no_rsvps = get_no_rsvps(event)
+    
     if no_rsvps:
         students.extend(no_rsvps) 
+
+    emails_dict = {}
     for res in students:
         if res['email'] not in emails_dict:
             emails_dict[res['email']] = 1
             all_responses.append(res)
     all_responses.sort(key=lambda n: n['name'])
     return all_responses
-
-def get_attendees(event):
-    attendees = map(buildAttendee, event.attendee_set.all().order_by('name'))
-    return attendees
-
-def get_dropped_resumes(event):
-    return map(buildRSVP, event.droppedresume_set.all().order_by('student__first_name'))
 
 def get_event_schedule(event_date_string, event_id):
     event_date = datetime.strptime(event_date_string, '%m/%d/%Y')
@@ -208,12 +220,6 @@ def get_event_schedule(event_date_string, event_id):
         return name, start_px, (end_px - start_px)
     schedule = map(buildScheduleItem, events)
     return schedule
-
-def get_invitees(event):
-    return map(buildRSVP, event.invitee_set.all().order_by('student__first_name'))
-
-def get_no_rsvps(event):
-    return map(buildRSVP, event.rsvp_set.filter(attending=False).order_by('student__first_name'))
 
 def get_employer_upcoming_events_context(employer, user):
     events = SearchQuerySet().models(Event).filter(attending_employers=employer.id, end_datetime__gte=datetime.now())

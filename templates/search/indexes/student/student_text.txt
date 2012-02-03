@@ -1,5 +1,5 @@
 {% load filters %}
 {{ object.first_name }}
 {{ object.last_name }}
-{{ object.user.email}}
+{{ object.user.email|split:'@'|first}}
 {{ object.keywords }}

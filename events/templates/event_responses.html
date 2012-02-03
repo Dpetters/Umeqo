@@ -1,0 +1,13 @@
+{% if students %}
+    {% for student in students|slice:":9" %}
+        {% include "events_response_token.html" with student=student %}
+    {% endfor %}
+    {% if students|slice:"9:" %}
+        <a href="#" class="expand_responses">Show {{students|length|add:"-9"}} more&thinsp;&#x25bc;</p>
+        <div class="rest_of_responses">
+            {% for student in students|slice:"9:" %}
+                {% include "events_response_token.html" with student=student %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}

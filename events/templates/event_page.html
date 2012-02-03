@@ -40,6 +40,7 @@
     {% if user.student %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
     {% endif %}
+    
     {% if user.recruiter or user.campusorg %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_admin.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_checkin.css" />
@@ -132,6 +133,9 @@
     {% if event.is_rolling_deadline %}
         <script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
     {% endif %}
+    {% if show_admin %}
+        <script src="{{ STATIC_URL }}js/events/event_admin.js"></script>
+    {% endif %}
 {% endcompress %}    
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}
@@ -166,8 +170,8 @@
                 </tr>
                 {% if event.is_drop %}
                 <tr>
-                    <td class="number">{{resume_drops}}</td>
-                    <td class="number_label">resume drop{{resume_drops|pluralize}}</td>
+                    <td class="number">{{dropped_resumes|length}}</td>
+                    <td class="number_label">resume drop{{dropped_resumes|length|pluralize}}</td>
                 </tr>
                 {% endif %}
             </table>
@@ -200,13 +204,11 @@
             </div>
             {% if not event.is_public %}
                 <div id="event_invites" class="responses">
-                    {% for student in invitees %}
-                        {% include "events_response_token.html" with student=student %}
-                    {% empty %}
-                    <div id="event_response_empty">
+                    {% if invitees %}
+                        {% include "event_responses.html" with students=invitees %}
+                    {% else %}
                         There are no invites yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
-                    </div>
-                    {% endfor %}
+                    {% endif %}
                 </div>
             {% endif %}
             <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">

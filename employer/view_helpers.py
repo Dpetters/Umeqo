@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.http import Http404
 
+from core.view_helpers import search
 from haystack.query import SearchQuerySet, SQ
 from student.models import Student
 from employer import enums
@@ -188,14 +189,8 @@ def get_is_in_resumebook_attributes(recruiter, students):
             resume_book_dict[student] = True
         else:
             resume_book_dict[student] = False
-    return resume_book_dict
+    return resume_book_dict
 
-def search(sqs, query):
-    if query:
-        for q in query.split(' '):
-            if q.strip() != "":
-                sqs = sqs.filter(text=q)
-    return sqs
                 
 def get_students_in_resume_book(recruiter):
     try:
@@ -217,16 +212,19 @@ def employer_search_helper(request):
 
     if request.GET.get('subscribed', False)=='true':
         search_results = search_results.filter(subscribers=request.user.id)
-
+    
+    # filter by whether the employer has an upcoming event or not
     if request.GET.get('has_public_events_deadlines', False)=="true":
         search_results = search_results.filter(has_public_events=True)
         
+    # filter by industry
     industry_id = request.GET.get('i', None)
     if industry_id:
         search_results = search_results.filter(industries=industry_id)
     
-    search_results = search(search_results, request.GET.get('q', None))
-
+    # search
+    if request.GET.get('q'):
+        search_results = search(search_results, request.GET.get('q'))
     # Extract the object.
     employers = map(lambda n: n.object, search_results)
     # Sort the employers.

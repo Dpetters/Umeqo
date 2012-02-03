@@ -106,7 +106,7 @@
 
     <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
 
-    <field name="text" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
+    <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
@@ -117,8 +117,6 @@
     <field name="sat_v" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="sat_w" type="slong" indexed="true" stored="true" multiValued="false" />
-
-    <field name="content_auto" type="edge_ngram" indexed="true" stored="true" multiValued="false" />
 
     <field name="owner" type="text" indexed="true" stored="true" multiValued="false" />
 
