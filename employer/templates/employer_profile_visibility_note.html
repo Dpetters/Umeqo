@@ -1,0 +1,5 @@
+{% if user.recruiter.employer.visible %}
+                        Your profile is currently <strong>public</strong> to students. If for any reason you wish to make it private, <a href="#" class="open_contact_us_dialog_link">let us know</a>.
+                     {% else %}
+                        Your profile is currently <strong>hidden</strong> from students. {% if user.recruiter.employer.subscribed_annually %}Once you are ready to make it public, <a href="#" class="open_contact_us_dialog_link">let us know</a>{% else %}If you wish to make it public, sign up for an <a href="{% url subscription_list %}">annual subscription</a>{% endif %}.
+{% endif %}

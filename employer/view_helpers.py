@@ -132,7 +132,7 @@ def get_cached_results(request):
         
         if request.GET.has_key('campus_orgs'):
             am_filtering = True            
-            students = students.filter(campus_orgs__in = request.GET['campus_orgs'].split('~'))
+            students = students.filter(campus_involvement__in = request.GET['campus_orgs'].split('~'))
 
         if request.GET.has_key('countries_of_citizenship'):
             am_filtering = True            

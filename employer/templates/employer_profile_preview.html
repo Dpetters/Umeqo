@@ -35,6 +35,7 @@
     {% include "employer_side_nav.html" %}
 </div>
 <div class="with_side_nav no_top_margin">
-    {% include "employer_details.html" with isnotajax="True" preview="True" %}
+    <p id="visibility_note"><strong>Please Note:</strong> {% include "employer_profile_visibility_note.html" %}
+    {% include "employer_details.html" with isnotajax="True" preview="True" %}</p>
 </div>
 {% endblock %}
