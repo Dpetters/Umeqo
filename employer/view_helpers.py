@@ -51,7 +51,7 @@ def get_cached_results(request):
         recruiter = request.user.recruiter
 
         if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1] and recruiter.employer.subscribed_annually():
-            students = SearchQuerySet().models(Student)
+            students = SearchQuerySet().models(Student).filter(visible=True)
         else:
             if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
                 students = get_students_in_resume_book(recruiter)
@@ -71,11 +71,11 @@ def get_cached_results(request):
                     except:
                         raise Http404
                     if parts[-1] == "RSVPs":
-                        students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True).visible()
+                        students = Student.objects.visible().filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
                     elif parts[-1] == "Attendees":
-                        students = Student.objects.filter(attendee__in=e.attendee_set.all(), profile_created=True).visible()
+                        students = Student.objects.visible().filter(attendee__in=e.attendee_set.all(), profile_created=True)
                     elif parts[-1] == "Drop" and parts[-2] == "Resume":
-                        students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True).visible()
+                        students = Student.objects.visible().filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
                 else:
                     students = ResumeBook.objects.get(id = student_list_id).students.visible()
             students = SearchQuerySet().models(Student).filter(obj_id__in = [student.id for student in students])
