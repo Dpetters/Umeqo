@@ -45,7 +45,7 @@
    "is_active": true,
    "is_superuser": false,
    "is_staff": false,
-   "last_login": "2012-01-26 00:39:44",
+   "last_login": "2012-01-31 19:50:09",
    "groups": [],
    "user_permissions": [],
    "password": "sha1$7e0f4$2d5df03b47158e0997768b5c6ac927e15b8f822b",
@@ -243,7 +243,7 @@
    "is_active": true,
    "is_superuser": false,
    "is_staff": false,
-   "last_login": "2012-01-31 19:01:46",
+   "last_login": "2012-01-31 20:31:23",
    "groups": [],
    "user_permissions": [],
    "password": "sha1$5f524$898039342a1b8229b48eea5740360a379e81fbaf",
@@ -9974,6 +9974,17 @@
   }
  },
  {
+  "pk": 83,
+  "model": "employer.employerstudentcomment",
+  "fields": {
+   "comment": "",
+   "date_created": "2012-01-31 19:49:07",
+   "last_updated": "2012-01-31 19:49:07",
+   "student": 507,
+   "employer": 6
+  }
+ },
+ {
   "pk": 43,
   "model": "employer.employerstudentcomment",
   "fields": {
@@ -10783,8 +10794,8 @@
     92,
     8,
     14,
+    5,
     4,
-    6,
     9
    ],
    "gpa": 3.400,
@@ -33879,8 +33890,8 @@
   "pk": 1,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 89,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 91,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 11,
    "student": 1,
@@ -33892,8 +33903,8 @@
   "pk": 2,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 85,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 87,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 2,
    "add_to_resumebook_count": 10,
    "student": 2,
@@ -33905,8 +33916,8 @@
   "pk": 3,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 86,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 88,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 2,
    "add_to_resumebook_count": 8,
    "student": 3,
@@ -33918,8 +33929,8 @@
   "pk": 4,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 82,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 84,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 6,
    "student": 4,
@@ -33931,8 +33942,8 @@
   "pk": 5,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 84,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 86,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 1,
    "add_to_resumebook_count": 6,
    "student": 5,
@@ -33944,8 +33955,8 @@
   "pk": 507,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 0,
-   "last_updated": "2012-01-31 14:07:18",
+   "shown_in_results_count": 2,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 0,
    "student": 507,
@@ -33957,8 +33968,8 @@
   "pk": 7,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 42,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 44,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 7,
@@ -33970,8 +33981,8 @@
   "pk": 8,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 42,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 44,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 8,
@@ -33983,8 +33994,8 @@
   "pk": 9,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 42,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 44,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 9,
@@ -33996,8 +34007,8 @@
   "pk": 10,
   "model": "student.studentstatistics",
   "fields": {
-   "shown_in_results_count": 42,
-   "last_updated": "2012-01-26 02:24:06",
+   "shown_in_results_count": 44,
+   "last_updated": "2012-01-31 19:50:13",
    "resume_view_count": 0,
    "add_to_resumebook_count": 1,
    "student": 10,
@@ -46726,6 +46737,16 @@
    "session_key": "66c763d588ca14e722eb2111cbc92d6f",
    "last_updated": "2012-01-19 16:32:16",
    "user": 3
+  }
+ },
+ {
+  "pk": 126,
+  "model": "registration.sessionkey",
+  "fields": {
+   "date_created": "2012-01-31 20:31:23",
+   "session_key": "8b0e10e972ae6afa3e4b7bb8e5dce280",
+   "last_updated": "2012-01-31 20:31:23",
+   "user": 530
   }
  },
  {
