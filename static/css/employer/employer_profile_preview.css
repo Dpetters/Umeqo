@@ -19,6 +19,9 @@ div .employer_name {
 .industries {
     margin-bottom: 13px;
 }
+#visibility_note{
+    margin-bottom:15px;
+}
 #logo_and_buttons{
     text-align: center;
     width:150px;
