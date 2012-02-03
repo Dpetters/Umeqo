@@ -20,6 +20,7 @@ apache/django.wsgi
 *.log
 *.log.*
 apache-solr-3.5.0/solr/data/
+apache-solr-3.5.0/example/work/
 apache/egg-cache/
 static/cache/
 static/scripts/
