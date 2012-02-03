@@ -25,7 +25,7 @@ from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter
 from core.forms import BetaForm, AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, search
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
@@ -159,7 +159,8 @@ def contact_us(request, form_class = AkismetContactForm, extra_context=None):
 def get_location_guess(request):
     if not request.GET.has_key('query'):
         raise Http400("Request GET is missing the query.")
-    sqs = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
+    sqs = SearchQuerySet().models(Location)
+    sqs = search(sqs, request.GET['query'])[:10]
     if not sqs or len(sqs) > 1:
         data = {'single':False, 'query':request.GET['query']}
     else:
@@ -183,7 +184,7 @@ def get_location_suggestions(request):
         for l in locations:
             suggestions.append({'name':"%s" % query, 'lat':l.latitude, 'lng':l.longitude})
     else:
-        locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:num_of_suggestions]
+        locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(text=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:num_of_suggestions]
         for l in locations:
             suggestions.append({'name':"%s" % str(l.object), 'lat':l.object.latitude, 'lng':l.object.longitude})
     context = {'suggestions': suggestions}

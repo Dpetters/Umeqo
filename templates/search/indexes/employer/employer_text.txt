@@ -1,2 +1,2 @@
-{{ employer.name }}
-{{ employer.description }}
+{{ object.name }}
+{{ object.description }}

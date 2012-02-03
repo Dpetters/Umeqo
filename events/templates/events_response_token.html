@@ -1,9 +1,10 @@
-<div class="event_rsvp{% if student.id and student.is_verified %} hoverable{% endif %}" id="{{student.id}}" title="{{student.email}}">
+{% load filters %}
+<div class="event_rsvp{% if student.is_verified %} hoverable{% endif %}" id="{{student.id}}" title="{{student.email}}">
     {{student.name}} <span class="email">{{student.email}}</span>
     {% if student.id and student.is_verified and user.recruiter %}
         <form id="f-{{student.id}}" action="{% url employer_students %}" method="GET" target="_blank">
             {% csrf_token %}
-            <input type="hidden" name="query" value="{{student.email}}" />
+            <input type="hidden" name="query" value="{{student.email|split:'@'|first}}" />
         </form>
     {% endif %}
 </div>

@@ -7,7 +7,7 @@ from django.db.models import Q
 
 class EmployerIndex(indexes.RealTimeSearchIndex):
     text = indexes.CharField(use_template=True, document=True)
-    content_auto = indexes.EdgeNgramField(use_template=True)
+    
     industries = indexes.MultiValueField()
     subscribers = indexes.MultiValueField()
     has_public_events = indexes.BooleanField()

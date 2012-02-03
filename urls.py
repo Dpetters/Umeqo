@@ -160,7 +160,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
     (r'^employers/snippets/$', 'employer_snippets', {}, 'employer_snippets'),
     (r'^employers/$', 'employers', {}, 'employers'),
-    (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
+    (r'^(?P<slug>[A-Za-z1-9-]+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
 
 urlpatterns += patterns('events.views',

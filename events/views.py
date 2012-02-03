@@ -153,12 +153,6 @@ def event_page(request, id, slug, extra_context=None):
     
     context = {
         'event': event,
-        'invitees': get_invitees(event),
-        'rsvps': get_rsvps(event),
-        'no_rsvps': get_no_rsvps(event),
-        'dropped_resumes': get_dropped_resumes(event),
-        'attendees': get_attendees(event),
-        'all_responses': get_all_responses(event),
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
@@ -175,23 +169,43 @@ def event_page(request, id, slug, extra_context=None):
         context['campus_org_event'] = True
         context['attending_employers'] = event.attending_employers
         if is_campus_org(request.user):
-            context['resume_drops'] = len(event.droppedresume_set.all())
             context['can_edit'] = (event.owner == request.user)
             context['show_admin'] = (event.owner == request.user)
         elif is_recruiter(request.user):
-            context['resume_drops'] = len(event.droppedresume_set.all())
             context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-            context['resume_drops'] = len(event.droppedresume_set.all())
-    if not is_campus_org(request.user) and not is_recruiter(request.user):
+        
+    if context.has_key('show_admin'):
+        attendees = get_attendees(event)
+        rsvps =  get_rsvps(event)
+        context['invitees'] = get_invitees(event)
+        
+        if event.is_drop:
+            dropped_resumes = get_dropped_resumes(event)
+        else:
+            dropped_resumes = []
+        if not event.is_public:
+            no_rsvps = get_no_rsvps(event)
+        else:
+            no_rsvps = []
+            
+        context['all_responses'] = get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees)
+        context.update({
+        'rsvps':rsvps,
+        'no_rsvps': no_rsvps,
+        'dropped_resumes': dropped_resumes,
+        'attendees': attendees
+    });
+    
+    # Increase the view count if we're not admin, a campus org or a recruiter (aka for now just student & anonymous)
+    if is_campus_org(request.user) and not is_recruiter(request.user) and not request.user.is_staff():
         event.view_count += 1
         event.save()
             
     if is_student(request.user):
-        
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
@@ -206,6 +220,7 @@ def event_page(request, id, slug, extra_context=None):
             context['attended'] = True
     else:
         context['email_delivery_type'] = core_enums.EMAIL
+    
     context.update(extra_context or {})
     return context
 
