@@ -130,8 +130,6 @@ def student_quick_registration_done(request, extra_context=None):
 @user_passes_test(is_student)
 @render_to('student_profile_unparsable_resume.html')
 def student_profile_unparsable_resume(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     return {}
 
 
@@ -173,8 +171,6 @@ def student_increment_resume_view_count(request):
 @user_passes_test(is_student)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         form = form_class(data = request.POST)
         if form.is_valid():
@@ -203,8 +199,6 @@ def student_account_deactivate(request, form_class=StudentAccountDeactivationFor
 @agreed_to_terms
 @user_passes_test(is_student)
 def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     form = preferences_form_class(data = request.POST, instance = request.user.student.studentpreferences)
     if form.is_valid():
         request.user.student.student_preferences = form.save()
@@ -329,8 +323,6 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 @user_passes_test(is_student)
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
     if form.is_valid():
         student = form.save(commit=False)
@@ -411,8 +403,6 @@ def student_update_resume_info(request):
 @user_passes_test(is_student)
 @render_to("student_create_campus_org.html")
 def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -442,8 +432,6 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
 @user_passes_test(is_student)
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():

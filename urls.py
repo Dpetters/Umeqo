@@ -44,7 +44,7 @@ urlpatterns += patterns('core.views',
     (r'^terms/$', 'terms_of_service', {'extra_context': {'login_form': AuthenticationForm}}, 'terms_of_service'),
     (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),
     # Tutorials links to help center because I just put them there for now
-    (r'^help/tutorials/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),
+    #(r'^help/tutorials/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),
     (r'^help/faq/$', 'faq', {'extra_context': {'login_form': AuthenticationForm}}, 'faq'),
     (r'^help/tutorials/(?P<slug>[0-9a-zA-Z-]+)/$', 'tutorial', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorial'),
     (r'^about/$', 'about', {'extra_context': {'login_form': AuthenticationForm}}, 'about'),

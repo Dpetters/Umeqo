@@ -1,12 +1,14 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.syndication.views import feed
 from django.shortcuts import redirect
+
 from django.core.urlresolvers import reverse
 
 from core.decorators import render_to
+
 from notification.models import Notice, NoticeType, NOTICE_MEDIA, get_notification_setting
 from core.decorators import is_student
 from notification.decorators import basic_auth_required, simple_basic_auth_callback
@@ -14,6 +16,7 @@ from notification.feeds import NoticeUserFeed
 
 
 @basic_auth_required(realm='Notices Feed', callback_func=simple_basic_auth_callback)
+@user_passes_test(is_student)
 def feed_for_user(request):
     """
     An atom feed for all unarchived :model:`notification.Notice`s for a user.
@@ -25,6 +28,7 @@ def feed_for_user(request):
 
 
 @login_required
+@user_passes_test(is_student)
 def notices(request):
     """
     The main notices index view.
@@ -48,6 +52,7 @@ def notices(request):
 
 
 @login_required
+@user_passes_test(is_student)
 def notice_settings(request):
     """
     The notice settings view.
@@ -98,6 +103,7 @@ def notice_settings(request):
 
 
 @login_required
+@user_passes_test(is_student)
 def single(request, id, mark_seen=True):
     """
     Detail view for a single :model:`notification.Notice`.
@@ -127,6 +133,7 @@ def single(request, id, mark_seen=True):
 
 
 @login_required
+@user_passes_test(is_student)
 def archive(request, noticeid=None, next_page=None):
     """
     Archive a :model:`notices.Notice` if the requesting user is the
@@ -155,6 +162,7 @@ def archive(request, noticeid=None, next_page=None):
 
 
 @login_required
+@user_passes_test(is_student)
 def delete(request, noticeid=None, next_page=None):
     """
     Delete a :model:`notices.Notice` if the requesting user is the recipient
@@ -183,6 +191,7 @@ def delete(request, noticeid=None, next_page=None):
 
 
 @login_required
+@user_passes_test(is_student)
 def mark_all_seen(request):
     """
     Mark all unseen notices for the requesting user as seen.  Returns a
@@ -197,6 +206,7 @@ def mark_all_seen(request):
 
 @login_required
 @render_to('notification/notices_ajax.html')
+@user_passes_test(is_student)
 def notification_ajax(request):
     notices = Notice.objects.notices_for(request.user, on_site=True)[:5]
     return {'notices': notices}
