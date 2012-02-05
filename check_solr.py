@@ -33,6 +33,8 @@ except urllib2.URLError:
     except Exception as e:
         print e
     else:
+        os.chdir(s.ROOT)
+        os.system('python manage.py update_index')
         print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
 else:
     time.sleep(5)
