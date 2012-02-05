@@ -9,11 +9,7 @@
 
 <div id="employer_info">
     <h1 class="employer_name">{{employer.name}}</h1>    
-    <div class="industries">
-    {% for industry in employer.industries.all %}
-        <div>{{industry}}</div>
-    {% endfor %}    
-    </div>
+    {% include "employer_industries.html" %}
     
     {% if employer.offered_job_types.all %}
         <p id="offered_job_types">

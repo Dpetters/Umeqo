@@ -20,7 +20,7 @@
     margin-left: 10px;
     vertical-align: top;
     display: inline-block;
-    padding: 2px 5px 6px 6px;
+    padding: 3px 5px 3px 6px;
     border-radius: 3px;
 }
 .datetime {
@@ -236,12 +236,6 @@
     line-height: 18px;
     margin-bottom: 10px;
 }
-#event_who .industries div {
+.employer_industries {
     margin-bottom: 3px;
-    display: inline-block;
-    background-color: #EEE;
-    border-radius: 2px;
-    padding: 4px 6px;
-    font-size: 12px;
-    font-weight: 600;
 }

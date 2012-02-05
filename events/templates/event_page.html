@@ -27,20 +27,19 @@
 {% load text_snippet %}
 {% load google_calendarize %}
 {% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_action_buttons.css" />
     {% if user.is_anonymous %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
     {% endif %}
-    
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
     {% if is_deadline %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
     {% endif %}
     {% if user.student %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
     {% endif %}
-    
     {% if user.recruiter or user.campusorg %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_admin.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_checkin.css" />
@@ -51,10 +50,12 @@
     {% if user.recruiter %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
+    
     {% if campus_org_event %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/campus_org_event_attending_employees.css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/events/campus_org_event_attending_employees.css" />
+    {% else %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
     {% endif %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp.css" />
 {% endcompress %}
 <script>
     {% if user.is_anonymous %}
@@ -437,17 +438,15 @@
                         {% if campus_org_event %}
                             <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link"><img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" /></a>                        
                         {% else %}
+                            {% if user.is_anonymous or user.student %}<a href="{{ event.owner.recruiter.employer.get_absolute_url }}">{% endif %}
                             <img src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
+                            {% if user.is_anonymous or user.student %}</a>{% endif %}
                         {% endif %}
                     </div>
                     <div class="event_company_name">
                         {% include "event_hosted_by.html" %}
                     </div>
-                    <div class="industries">
-                        {% for industry in event.owner.recruiter.employer.industries.all %}
-                            <div>{{ industry }}</div>
-                        {% endfor %}
-                    </div>
+                    {% include "employer_industries.html" with employer=event.owner.recruiter.employer %}
                 </div>
             </div>
         </div>
