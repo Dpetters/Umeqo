@@ -3762,8 +3762,8 @@
   "pk": 1,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-01-11 21:12:03",
-   "click_count": 2,
+   "last_updated": "2012-02-02 10:55:21",
+   "click_count": 3,
    "question": "What is Umeqo?",
    "slug": "what-is-umeqo",
    "topic": 1,
@@ -3874,8 +3874,8 @@
   "pk": 13,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-04 10:29:52",
-   "click_count": 2,
+   "last_updated": "2012-02-02 00:38:07",
+   "click_count": 3,
    "question": "Where did the title Umeqo come from and how is it pronounced?",
    "slug": "where-did-title-umeqo-come-and-how-it-pronounced",
    "topic": 1,
@@ -5633,6 +5633,66 @@
   }
  },
  {
+  "pk": 175,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-31 20:51:49",
+   "name_and_level": "Telugu (Basic)",
+   "last_updated": "2012-01-31 20:51:49",
+   "name": "Telugu"
+  }
+ },
+ {
+  "pk": 176,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-31 20:51:50",
+   "name_and_level": "Telugu (Proficient)",
+   "last_updated": "2012-01-31 20:51:50",
+   "name": "Telugu"
+  }
+ },
+ {
+  "pk": 177,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-01-31 20:51:50",
+   "name_and_level": "Telugu (Fluent)",
+   "last_updated": "2012-01-31 20:51:50",
+   "name": "Telugu"
+  }
+ },
+ {
+  "pk": 178,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-01 17:28:32",
+   "name_and_level": "Shona (Basic)",
+   "last_updated": "2012-02-01 17:28:32",
+   "name": "Shona"
+  }
+ },
+ {
+  "pk": 179,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-01 17:28:32",
+   "name_and_level": "Shona (Proficient)",
+   "last_updated": "2012-02-01 17:28:32",
+   "name": "Shona"
+  }
+ },
+ {
+  "pk": 180,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-01 17:28:32",
+   "name_and_level": "Shona (Fluent)",
+   "last_updated": "2012-02-01 17:28:32",
+   "name": "Shona"
+  }
+ },
+ {
   "pk": 9,
   "model": "core.course",
   "fields": {
@@ -5820,6 +5880,25 @@
    "sort_order": 8.000,
    "display": true,
    "name": "Computer Science and Engineering"
+  }
+ },
+ {
+  "pk": 52,
+  "model": "core.course",
+  "fields": {
+   "website": "",
+   "last_updated": "2012-02-03 00:46:59",
+   "description": "",
+   "admin": "",
+   "image": "",
+   "email": "",
+   "thumbnail": "",
+   "num": "6-7",
+   "date_created": "2012-02-03 00:46:40",
+   "ou": "",
+   "sort_order": 8.500,
+   "display": false,
+   "name": "Computer Science and Molecular Biology"
   }
  },
  {
@@ -6759,6 +6838,15 @@
   }
  },
  {
+  "pk": 46,
+  "model": "core.industry",
+  "fields": {
+   "date_created": "2012-02-02 03:29:13",
+   "last_updated": "2012-02-02 03:29:13",
+   "name": "Fashion"
+  }
+ },
+ {
   "pk": 17,
   "model": "core.industry",
   "fields": {
@@ -6849,6 +6937,15 @@
   }
  },
  {
+  "pk": 48,
+  "model": "core.industry",
+  "fields": {
+   "date_created": "2012-02-02 03:29:24",
+   "last_updated": "2012-02-02 03:29:24",
+   "name": "Materials"
+  }
+ },
+ {
   "pk": 29,
   "model": "core.industry",
   "fields": {
@@ -6903,6 +7000,15 @@
   }
  },
  {
+  "pk": 49,
+  "model": "core.industry",
+  "fields": {
+   "date_created": "2012-02-02 03:29:46",
+   "last_updated": "2012-02-02 03:29:46",
+   "name": "Research"
+  }
+ },
+ {
   "pk": 34,
   "model": "core.industry",
   "fields": {
@@ -6927,6 +7033,15 @@
    "date_created": "2011-11-28 21:45:27",
    "last_updated": "2011-11-28 21:45:27",
    "name": "Telecommunication"
+  }
+ },
+ {
+  "pk": 47,
+  "model": "core.industry",
+  "fields": {
+   "date_created": "2012-02-02 03:29:17",
+   "last_updated": "2012-02-02 03:29:17",
+   "name": "Textile"
   }
  },
  {

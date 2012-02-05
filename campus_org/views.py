@@ -66,8 +66,6 @@ def campus_org_profile(request, form_class=CampusOrgProfileForm, extra_context=N
 @require_GET
 @render_to('campus_org_info.html')
 def campus_org_info(request, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key('campus_org_id'):
         raise Http400("Request is missing the campus_org_id.")
     try:
@@ -83,8 +81,8 @@ def campus_org_info(request, extra_context = None):
 
 @login_required
 def check_campus_org_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
+    if not request.GET.has_key("name"):
+        raise Http400("Request GET is missing the name.")
     try:
         CampusOrg.objects.get(name=request.GET.get("name"))
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")

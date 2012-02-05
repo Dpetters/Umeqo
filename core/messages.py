@@ -105,7 +105,7 @@ staff_member_login_not_allowed = "Staff users cannot login. They can only \
 access the admin pages."
 not_activated_short = "This account has not been activated."
 not_activated = "This account has not been activated. Please click on the activation link we emailed to you."
-account_suspended = "This account has been suspended. Feel free to contact us by clicking the link in the footer."
+account_suspended = "This account has been suspended. Feel free to inquire as to why by clicking the contact us link in the footer."
 enable_cookies = "Your browser doesn't seem to have cookies enabled. \
 Cookies are required to login."
 

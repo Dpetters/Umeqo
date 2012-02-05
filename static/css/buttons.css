@@ -25,7 +25,7 @@
     background: linear-gradient(top, #6e97b9 0%,#53738d 100%); /* W3C */
     border: 1px solid #53738D;
 }
-.dark_button:hover, .dark_button.um-focus {
+.dark_button:hover{
     border: 1px solid #466175;
     box-shadow: #333 0 0 2px;
 }
@@ -44,7 +44,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b26767', endColorstr='#844444',GradientType=0 ); /* IE6-9 */
     border: 1px solid #000;
 }
-.caution_button:hover, .caution_button.um-focus {
+.caution_button:hover{
     box-shadow: #333 0 0 2px;
 }
 .caution_button.um-active {
@@ -126,9 +126,8 @@ input.button {
 .button::-moz-focus-inner, .dark_button::-moz-focus-inner {
     border: 0;
 }
-.button.um-focus, .button:hover,
-.ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover
-.ui-multiselect-menu .ui-multiselect-none.um-focus, .ui-multiselect-menu .ui-multiselect-all.um-focus {
+.button:hover,
+.ui-multiselect-menu .ui-multiselect-none:hover, .ui-multiselect-menu .ui-multiselect-all:hover{
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top,  #f0f0f0 0%, #eeeeee 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
@@ -200,7 +199,7 @@ input.button {
     text-shadow: #000 0 -1px 0;
     border: 1px solid #444;
 }
-.warning-button:hover, .warning-button.um-focus {
+.warning-button:hover{
     background: #ff8888; /* Old browsers */
     background: -moz-linear-gradient(top, #ff8888 0%, #ff4444 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff8888), color-stop(100%,#ff4444)); /* Chrome,Safari4+ */
@@ -252,9 +251,9 @@ input.button {
     -moz-border-radius: 3px;
     border: 1px solid #BBBBBB;
     font-weight: bold;
-    -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
-    -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
-    box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
+    -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
+    -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
+    box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
 }
 .gray_button:hover{
     border: 1px solid #888;

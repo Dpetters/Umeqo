@@ -54,7 +54,10 @@ def student_lists_as_choices(recruiter_id):
                     student_lists.append([event.id, event.name.replace("\"", "\'") + " RSVPs"])
                 student_lists.append([event.id, event.name.replace("\"", "\'") + " Attendees"])
                 if event.is_drop:
-                    student_lists.append([event.id, event.name.replace("\"", "\'") + " Resume Drop", "selected=\"selected\""])
+                    if e.subscribed_annually():
+                        student_lists.append([event.id, event.name.replace("\"", "\'") + " Resume Drop"])
+                    else:
+                        student_lists.append([event.id, event.name.replace("\"", "\'") + " Resume Drop", "selected=\"selected\""])
         elif student_list_type[0] == student_enums.RESUME_BOOK_HISTORY:
             rbs = recruiter.resumebook_set.filter(delivered=True)
             for rb in rbs:

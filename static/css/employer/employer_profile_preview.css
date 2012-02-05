@@ -4,19 +4,13 @@
     padding-left: 10px;
     margin-left: 8px;
 }
-.industries div {
-    display: inline-block;
-    background-color: #EEE;
-    border-radius: 2px;
-    padding: 4px 6px;
-    font-size: 12px;
-    font-weight: 600;
+.employer_industries {
     margin: 0 2px 2px 0;
 }
 div .employer_name {
     margin-bottom: 10px;
 }
-.industries {
+.employer_industries div {
     margin-bottom: 13px;
 }
 #visibility_note{

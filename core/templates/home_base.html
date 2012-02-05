@@ -10,7 +10,7 @@
 {% load filters %}
 
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/core/home_anonymous.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/core/home_base.css" />
 {% endcompress %}
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/events/event_directions.js"></script>
@@ -24,7 +24,7 @@
         {% endblock %}
     </div>
     
-    <div class="main_block with_side_nav no_top_margin">
+    <div id="welcome_block" class="main_block with_side_nav no_top_margin">
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/fugue/24/home.png" />
             <span class="main_block_header_title">Welcome {% if user.first_name %}{{user.first_name}}{% else %}{{user.email|split:"@"|first}}{% endif %}!</span>

@@ -66,6 +66,7 @@
     -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
     -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    display:none;
 }
 #account_dropdown li {
     padding: 0;

@@ -10,8 +10,6 @@ $(document).ready( function() {
     $(".must_be_subscribed_n").tipsy({'gravity':'n', opacity: 0.9, live:true, fallback:MUST_BE_SUBSCRIBED, html:true}); 
     $(".must_be_subscribed_s").tipsy({'gravity':'s', opacity: 0.9, live:true, fallback:MUST_BE_SUBSCRIBED, html:true}); 
                
-                              
-    $('#account_dropdown').hide();
     $('#account').click(function() {
        // We subtract two for the border
        $('#account_dropdown').width(document.getElementById("account").offsetWidth-2).toggle(); 
