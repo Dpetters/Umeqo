@@ -212,6 +212,7 @@ def get_students_in_resume_book(recruiter):
 
 def order_results(results, request):
     if request.GET['ordering'] != enums.RELEVANCY:
+        print request.GET['ordering']
         results = results.order_by(request.GET['ordering'])
     else:
         if not request.GET.has_key("query"):

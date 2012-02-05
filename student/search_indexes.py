@@ -5,10 +5,12 @@ from student.models import Student
 
 class StudentIndex(indexes.RealTimeSearchIndex):
     text = indexes.CharField(use_template=True, document=True)
+    first_name = indexes.CharField(model_attr="first_name", null=True)
+    last_name = indexes.CharField(model_attr="last_name", null=True)
     
     obj_id = indexes.IntegerField(model_attr="id")
     
-    gpa = indexes.FloatField(model_attr="gpa", null=True)    
+    gpa = indexes.FloatField(model_attr="gpa", null=True)
     sat_t = indexes.IntegerField(model_attr="sat_t", null=True)
     sat_m = indexes.IntegerField(model_attr="sat_m", null=True)
     sat_v = indexes.IntegerField(model_attr="sat_v", null=True)

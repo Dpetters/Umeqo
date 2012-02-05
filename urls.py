@@ -17,6 +17,11 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
+
+urlpatterns += patterns('',
+    (r'^admin/django-ses/', include('django_ses.urls')),
+)
+
 if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
         (r'^$', 'core.views.landing_page_wrapper', {'extra_context': {'login_form': AuthenticationForm}}),

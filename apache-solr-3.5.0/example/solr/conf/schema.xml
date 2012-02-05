@@ -104,9 +104,13 @@
     <dynamicField name="*_dt" type="date"    indexed="true"  stored="true"/>
     
 
+    <field name="last_name" type="text" indexed="true" stored="true" multiValued="false" />
+
     <field name="last_updated" type="date" indexed="true" stored="true" multiValued="false" />
 
     <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="archived" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
@@ -128,7 +132,7 @@
 
     <field name="industries" type="text" indexed="true" stored="true" multiValued="true" />
 
-    <field name="archived" type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="first_name" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="first_major" type="text" indexed="true" stored="true" multiValued="false" />
 

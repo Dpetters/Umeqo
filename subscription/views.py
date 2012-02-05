@@ -11,8 +11,6 @@ from subscription.forms import SubscriptionForm, subscription_templates
 
 @render_to("subscription_transaction_dialog.html")
 def subscription_transaction_dialog(request, form_class = SubscriptionForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403
     if request.method=="POST":
         if not request.POST.has_key("action"):
             raise Http400("Request POST is missing the action.")

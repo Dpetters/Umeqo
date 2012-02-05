@@ -298,7 +298,7 @@ $(document).ready(function(){
         header:false,
         selectedList: 1,
         multiple: false,
-        height: 82,
+        height: 104,
         minWidth:multiselectSingleSelectWidth,
         click: function(event, ui) {
             if (ordering != ui.value){

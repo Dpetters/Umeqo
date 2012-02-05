@@ -149,8 +149,6 @@ def employer_profile_preview(request, slug, extra_context=None):
 @agreed_to_terms
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -180,8 +178,6 @@ def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None
 @user_passes_test(is_recruiter)
 @render_to("employer_account_delete.html")
 def employer_account_delete(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.user.recruiter.employer.recruiter_set.exclude(id=request.user.recruiter.id).exists():
         if request.method == "POST":
             for sk in request.user.sessionkey_set.all():
@@ -201,8 +197,6 @@ def employer_account_delete(request):
 @user_passes_test(is_recruiter)
 @render_to("employer_resume_book_delete.html")
 def employer_resume_book_delete(request, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         if not request.POST.has_key("resume_book_id"):
             raise Http400("Request POST is missing the resume_book_id.")
@@ -269,8 +263,6 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
 @has_any_subscription
 @require_POST
 def employer_student_toggle_star(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_id'):
         raise Http400("Request POST is missing the student_id.")
     student = Student.objects.get(id=request.POST['student_id'])
@@ -288,8 +280,6 @@ def employer_student_toggle_star(request):
 @user_passes_test(is_recruiter)
 @has_any_subscription
 def employer_students_add_star(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing student_ids.")
     for id in request.POST['student_ids'].split('~'):
@@ -304,8 +294,6 @@ def employer_students_add_star(request):
 @has_any_subscription
 @require_POST
 def employer_students_remove_star(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
     for id in request.POST['student_ids'].split('~'):
@@ -320,8 +308,6 @@ def employer_students_remove_star(request):
 @has_any_subscription
 @require_POST
 def employer_student_comment(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_id'):
         raise Http400("Request POST is missing the student_id")
     if not request.POST.has_key('comment'):
@@ -342,8 +328,6 @@ def employer_student_comment(request):
 @has_any_subscription
 @require_POST
 def employer_resume_book_current_toggle_student(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_id'):
         raise Http400("Request POST is missing the student_id.")
     student = Student.objects.get(id=request.POST['student_id'])
@@ -370,8 +354,6 @@ def employer_resume_book_current_toggle_student(request):
 @has_any_subscription
 @require_POST
 def employer_resume_book_current_add_students(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
     try:
@@ -396,8 +378,6 @@ def employer_resume_book_current_add_students(request):
 @has_any_subscription
 @require_POST
 def employer_resume_book_current_remove_students(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key('student_ids'):
         raise Http400("Request is missing the student_ids.")
     try:
@@ -418,8 +398,6 @@ def employer_resume_book_current_remove_students(request):
 @has_any_subscription
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key('student_id'):
         raise Http400("Request GET is missing the student_id.")
     context={}
@@ -554,8 +532,6 @@ def employer_resume_book_current_summary(request, extra_context=None):
 @has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
 def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     context = {'deliver_resume_book_form':form_class(initial={'emails':request.user.email})}
     if not request.GET.has_key("resume_book_id"):
         raise Http400("Request GET is missing the resume_book_id.")
@@ -773,8 +749,6 @@ def employer_details(request, extra_content=None):
 @agreed_to_terms
 @user_passes_test(is_student)
 def employer_subscribe(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.POST.has_key("id"):
         raise Http400("Request is missing the id.")
     id = request.POST["id"]
