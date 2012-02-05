@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import sys
 import time
 import os
 import settings as s
@@ -11,6 +12,14 @@ from time import strftime, gmtime
 
 solrdir = s.ROOT + '/apache-solr-3.5.0/example'
 managers = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+
+for i in range(10):
+    try:
+        solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
+        sys.exit(0)
+    except urllib2.URLError:
+        print 'solr request fail'
+        time.sleep(2)
 
 try:
     solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
