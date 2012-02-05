@@ -45,7 +45,7 @@
    "is_active": true,
    "is_superuser": false,
    "is_staff": false,
-   "last_login": "2012-02-03 05:27:05",
+   "last_login": "2012-02-05 10:32:11",
    "groups": [],
    "user_permissions": [],
    "password": "sha1$7e0f4$2d5df03b47158e0997768b5c6ac927e15b8f822b",
@@ -47192,12 +47192,13 @@
    "edits": [
     1,
     2,
-    3
+    3,
+    4
    ],
    "location": "Student Center Plaza",
    "latitude": 42.358755530000003,
    "type": 3,
-   "start_datetime": "2012-03-09 15:00:00",
+   "start_datetime": "2012-02-06 08:00:00",
    "description": "<p>\r\n\tA well-rounded academic background with coursework in finance or economics is recommended, although successful analysts come from all different backgrounds.</p>\r\n",
    "is_drop": true,
    "is_public": false,
@@ -47208,7 +47209,7 @@
    "name": "Umeqo Consulting Panel",
    "longitude": -71.094491410000003,
    "audience": [],
-   "end_datetime": "2012-03-09 16:00:00",
+   "end_datetime": "2012-02-06 16:00:00",
    "rsvp_message": "feafesfa",
    "cancelled": false,
    "date_created": "2011-12-12 14:40:42",
