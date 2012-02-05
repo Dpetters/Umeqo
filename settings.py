@@ -267,6 +267,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_ses',
     'core',
     'events',
     'student',

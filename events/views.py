@@ -75,8 +75,6 @@ def events(request, category, extra_context=None):
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
 def events_check_short_slug_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("short_slug"):
         raise Http400("Request GET is missing the short_slug.")
     data = {'used':False}
@@ -344,8 +342,6 @@ def event_list_export_completed(request, extra_context = None):
 @has_any_subscription
 @render_to()
 def event_list_export(request, form_class = EventExportForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -450,8 +446,6 @@ def admin_of_event(event, user):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("event_cancel_dialog.html")
 def event_cancel(request, id, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         try:
             event = Event.objects.get(id=id)
@@ -519,8 +513,6 @@ def event_archive(request, id, extra_context = None):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("rolling_deadline_end_dialog.html")
 def rolling_deadline_end(request, id, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         try:
             event = Event.objects.get(pk=id)
@@ -553,8 +545,6 @@ def rolling_deadline_end(request, id, extra_context = None):
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 def event_schedule(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
     return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
 
@@ -613,8 +603,6 @@ def event_drop(request, event_id):
 @has_annual_subscription
 @require_GET
 def event_raffle_winner(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("event_id"):
         raise Http400("Request GET is missing the event_id")
     data = {}
