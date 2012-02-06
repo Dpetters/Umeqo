@@ -351,15 +351,15 @@
                         </div>
                     {% endif %}
                 {% endif %}
-                {% if event.is_drop %}
-                    {% if user.is_anonymous %}
-                        <div data-title="Drop Resume" id="drop_resume_button" data-action="drop" data-event-id="{{event.id}}" class="gray_button student_quick_registration_link">Drop Resume</div>
-                    {% else %}                        
-                        {% if dropped_resume %}
-                            <div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>
-                        {% else %}
-                            <div id="drop_resume" class="gray_button" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</div>
-                        {% endif %}
+            {% endif %}
+            {% if event.is_drop %}
+                {% if user.is_anonymous %}
+                    <div data-title="Drop Resume" id="drop_resume_button" data-action="drop" data-event-id="{{event.id}}" class="gray_button student_quick_registration_link">Drop Resume</div>
+                {% else %}                        
+                    {% if dropped_resume %}
+                        <div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>
+                    {% else %}
+                        <div id="drop_resume" class="gray_button" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</div>
                     {% endif %}
                 {% endif %}
             {% endif %}
