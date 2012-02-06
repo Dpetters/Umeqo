@@ -292,18 +292,19 @@
     {% endif %}
     <div id="event_actions">
         {% if not event.cancelled %}
-            {% if event.is_deadline and not user.student %}
-                <div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
-            {% endif %}
             {% if is_past  %}
-                {% if user.student and not event.is_deadline %}
-                    {% if attended %}
-                        <div class="gray_button" disabled="disabled">You Attended</div> 
-                    {% else %}
-                        <div class="gray_button" disabled="disabled">You didn't attend</div> 
-                    {% endif %}
+                {% if event.is_deadline %}
+                <div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
                 {% else %}
-                    <div class="gray_button" disabled="disabled">Event Passed</div> 
+                    {% if user.student %}
+                        {% if attended %}
+                            <div class="gray_button" disabled="disabled">You Attended</div> 
+                        {% else %}
+                            <div class="gray_button" disabled="disabled">You didn't attend</div> 
+                        {% endif %}
+                    {% else %}
+                        <div class="gray_button" disabled="disabled">Event Passed</div> 
+                    {% endif %}
                 {% endif %}
             {% endif %}
             {% if not is_past %}
