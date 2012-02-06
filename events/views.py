@@ -75,8 +75,6 @@ def events(request, category, extra_context=None):
 @login_required
 @user_passes_test(is_campus_org_or_recruiter)
 def events_check_short_slug_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("short_slug"):
         raise Http400("Request GET is missing the short_slug.")
     data = {'used':False}
@@ -153,12 +151,6 @@ def event_page(request, id, slug, extra_context=None):
     
     context = {
         'event': event,
-        'invitees': get_invitees(event),
-        'rsvps': get_rsvps(event),
-        'no_rsvps': get_no_rsvps(event),
-        'dropped_resumes': get_dropped_resumes(event),
-        'attendees': get_attendees(event),
-        'all_responses': get_all_responses(event),
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
@@ -175,23 +167,43 @@ def event_page(request, id, slug, extra_context=None):
         context['campus_org_event'] = True
         context['attending_employers'] = event.attending_employers
         if is_campus_org(request.user):
-            context['resume_drops'] = len(event.droppedresume_set.all())
             context['can_edit'] = (event.owner == request.user)
             context['show_admin'] = (event.owner == request.user)
         elif is_recruiter(request.user):
-            context['resume_drops'] = len(event.droppedresume_set.all())
             context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-            context['resume_drops'] = len(event.droppedresume_set.all())
-    if not is_campus_org(request.user) and not is_recruiter(request.user):
+        
+    if context.has_key('show_admin'):
+        attendees = get_attendees(event)
+        rsvps =  get_rsvps(event)
+        context['invitees'] = get_invitees(event)
+        
+        if event.is_drop:
+            dropped_resumes = get_dropped_resumes(event)
+        else:
+            dropped_resumes = []
+        if not event.is_public:
+            no_rsvps = get_no_rsvps(event)
+        else:
+            no_rsvps = []
+            
+        context['all_responses'] = get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees)
+        context.update({
+        'rsvps':rsvps,
+        'no_rsvps': no_rsvps,
+        'dropped_resumes': dropped_resumes,
+        'attendees': attendees
+    });
+    
+    # Increase the view count if we're not admin, a campus org or a recruiter (aka for now just student & anonymous)
+    if is_campus_org(request.user) and not is_recruiter(request.user) and not request.user.is_staff:
         event.view_count += 1
         event.save()
             
     if is_student(request.user):
-        
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
         if rsvp.exists():
             context['attending'] = rsvp.get().attending
@@ -206,6 +218,7 @@ def event_page(request, id, slug, extra_context=None):
             context['attended'] = True
     else:
         context['email_delivery_type'] = core_enums.EMAIL
+    
     context.update(extra_context or {})
     return context
 
@@ -329,8 +342,6 @@ def event_list_export_completed(request, extra_context = None):
 @has_any_subscription
 @render_to()
 def event_list_export(request, form_class = EventExportForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -435,8 +446,6 @@ def admin_of_event(event, user):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("event_cancel_dialog.html")
 def event_cancel(request, id, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         try:
             event = Event.objects.get(id=id)
@@ -504,8 +513,6 @@ def event_archive(request, id, extra_context = None):
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("rolling_deadline_end_dialog.html")
 def rolling_deadline_end(request, id, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         try:
             event = Event.objects.get(pk=id)
@@ -538,8 +545,6 @@ def rolling_deadline_end(request, id, extra_context = None):
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 def event_schedule(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
     return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
 
@@ -598,8 +603,6 @@ def event_drop(request, event_id):
 @has_annual_subscription
 @require_GET
 def event_raffle_winner(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("event_id"):
         raise Http400("Request GET is missing the event_id")
     data = {}

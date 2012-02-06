@@ -79,6 +79,12 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
         else:
             return "Unattached Student"
 
+    def suspend(self):
+        self.user.userattributes.is_verified = False
+        self.user.userattributes.save()
+        self.user.is_active = False
+        self.user.save()
+    
 @receiver(post_save, sender=Student)
 def create_student_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

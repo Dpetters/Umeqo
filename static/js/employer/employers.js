@@ -33,6 +33,7 @@ function subscribe_to_employer(subscribe){
         error: errors_in_message_area_handler
     });
 }
+
 $('#unsubscribe').live('click', function(e) {
     var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
@@ -103,7 +104,7 @@ window.onpopstate = function(event) {
 }
 
 $(document).ready(function() {
-
+    
     bindLoadEmployerHandlers();
 
     $('#employers_filter_name').keydown(function() {

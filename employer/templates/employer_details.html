@@ -4,20 +4,16 @@
         <div id="unsubscribe" class="gray_button subscribed">Subscribed</div>
     {% else %}
         <div id="subscribe" {% if preview %}disabled="disabled"{% endif %} class="gray_button">Subscribe</div>
-    {% endif %}    
+    {% endif %}
 </div>
 
 <div id="employer_info">
-    <h1 class="employer_name">{{employer.name}}</h1>    
-    <div class="industries">
-    {% for industry in employer.industries.all %}
-        <div>{{industry}}</div>
-    {% endfor %}    
-    </div>
+    <h1 class="employer_name">{{employer.name}}</h1>
+    {% include "employer_industries.html" %}
     
     {% if employer.offered_job_types.all %}
         <p id="offered_job_types">
-            <strong>Jobs Available: </strong>    
+            <strong>Jobs Available: </strong>
             {% for offered_job_type in employer.offered_job_types.all %}
                 {% if forloop.last %}
                     <span>{{offered_job_type}}</span>

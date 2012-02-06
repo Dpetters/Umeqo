@@ -19,7 +19,8 @@ apache/django.wsgi
 *.swp
 *.log
 *.log.*
-apache-solr-1.4.1/solr/data/
+apache-solr-3.5.0/solr/data/
+apache-solr-3.5.0/example/work/
 apache/egg-cache/
 static/cache/
 static/scripts/

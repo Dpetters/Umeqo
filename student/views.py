@@ -53,8 +53,6 @@ def student_info(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 def student_quick_registration(request, form_class=StudentQuickRegistrationForm, extra_context=None):
     context = {}
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         data = {}
         form = form_class(data=request.POST, files=request.FILES)
@@ -107,6 +105,10 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
         else:
             data['errors'] = form.errors
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
+    if not request.GET.has_key('event_id'):
+        raise Http400("Request GET is missing the event_id.")
+    if not request.GET.has_key('action'):
+        raise Http400("Request GET is missing the action.")
     context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
     action = request.GET['action']
     if action=="rsvp":
@@ -125,18 +127,9 @@ def student_quick_registration_done(request, extra_context=None):
     return context
 
 
-@render_to('student_registration_help.html')
-def student_registration_help(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
-    return {}
-
-
 @user_passes_test(is_student)
 @render_to('student_profile_unparsable_resume.html')
 def student_profile_unparsable_resume(request, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     return {}
 
 
@@ -163,11 +156,11 @@ def student_account(request, preferences_form_class = StudentPreferencesForm,
     return context
 
 
-@require_POST
-@user_passes_test(is_recruiter)
+#@require_POST
+@user_passes_test(is_recruiter, login_url=s.LOGIN_URL)
 def student_increment_resume_view_count(request):
     if not request.POST.has_key("student_id"):
-        raise Http400("Request POST is missing the student_id")
+        raise Http400("Request POST is missing the student_id.")
     student = Student.objects.get(id=request.POST['student_id'])
     student.studentstatistics.resume_view_count += 1
     student.studentstatistics.save()
@@ -178,8 +171,6 @@ def student_increment_resume_view_count(request):
 @user_passes_test(is_student)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == "POST":
         form = form_class(data = request.POST)
         if form.is_valid():
@@ -208,8 +199,6 @@ def student_account_deactivate(request, form_class=StudentAccountDeactivationFor
 @agreed_to_terms
 @user_passes_test(is_student)
 def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     form = preferences_form_class(data = request.POST, instance = request.user.student.studentpreferences)
     if form.is_valid():
         request.user.student.student_preferences = form.save()
@@ -334,8 +323,6 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 @user_passes_test(is_student)
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
     if form.is_valid():
         student = form.save(commit=False)
@@ -416,8 +403,6 @@ def student_update_resume_info(request):
 @user_passes_test(is_student)
 @render_to("student_create_campus_org.html")
 def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -447,8 +432,6 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
 @user_passes_test(is_student)
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():

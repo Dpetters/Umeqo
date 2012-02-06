@@ -17,6 +17,11 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
+
+urlpatterns += patterns('',
+    (r'^admin/django-ses/', include('django_ses.urls')),
+)
+
 if settings.USE_LANDING_PAGE:
     urlpatterns += patterns('',
         (r'^$', 'core.views.landing_page_wrapper', {'extra_context': {'login_form': AuthenticationForm}}),
@@ -44,7 +49,7 @@ urlpatterns += patterns('core.views',
     (r'^terms/$', 'terms_of_service', {'extra_context': {'login_form': AuthenticationForm}}, 'terms_of_service'),
     (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),
     # Tutorials links to help center because I just put them there for now
-    (r'^help/tutorials/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),
+    #(r'^help/tutorials/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),
     (r'^help/faq/$', 'faq', {'extra_context': {'login_form': AuthenticationForm}}, 'faq'),
     (r'^help/tutorials/(?P<slug>[0-9a-zA-Z-]+)/$', 'tutorial', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorial'),
     (r'^about/$', 'about', {'extra_context': {'login_form': AuthenticationForm}}, 'about'),
@@ -110,7 +115,7 @@ urlpatterns += patterns('student.views',
     (r'^signup/quick/$', 'student_quick_registration', {}, 'student_quick_registration'),
     (r'^signup/quick/done/$', 'student_quick_registration_done', {}, 'student_quick_registration_done'),
     (r'^student/info/$', 'student_info', {}, 'student_info'),
-    (r'^student/registration/help/$', 'student_registration_help', {}, 'student_registration_help'),
+    (r'^student/registration/help/$', direct_to_template, {'template':'student_registration_help.html'}, 'student_registration_help'),
     (r'^student/registration/complete/$', 'student_registration_complete', { 'extra_context': {'login_form':AuthenticationForm}}, 'student_registration_complete'),
     (r'^student/registration/closed/$', direct_to_template, {'template' : 'student_registration_closed.html', 'extra_context': {'login_form':AuthenticationForm}}, "student_registration_closed"),
     (r'^student/profile/unparsable-resume/$', 'student_profile_unparsable_resume', {}, "student_profile_unparsable_resume"),
@@ -160,7 +165,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
     (r'^employers/snippets/$', 'employer_snippets', {}, 'employer_snippets'),
     (r'^employers/$', 'employers', {}, 'employers'),
-    (r'^(?P<slug>\w+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
+    (r'^(?P<slug>[A-Za-z0-9-]+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')
 )
 
 urlpatterns += patterns('events.views',

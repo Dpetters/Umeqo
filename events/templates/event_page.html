@@ -27,13 +27,14 @@
 {% load text_snippet %}
 {% load google_calendarize %}
 {% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_action_buttons.css" />
     {% if user.is_anonymous %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
     {% endif %}
-    
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
     {% if is_deadline %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
     {% endif %}
@@ -50,10 +51,12 @@
     {% if user.recruiter %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page_recruiter.css" />
     {% endif %}
+    
     {% if campus_org_event %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/campus_org_event_attending_employees.css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/events/campus_org_event_attending_employees.css" />
+    {% else %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
     {% endif %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp.css" />
 {% endcompress %}
 <script>
     {% if user.is_anonymous %}
@@ -78,7 +81,9 @@
         var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
         var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
 
-        var PASSWORD_MIN_LENGTH="{{password_min_length}}";  
+        var PASSWORD_MIN_LENGTH="{{password_min_length}}";
+        
+        var SHOW_RESPONSES
     {% endif %}
 
     
@@ -132,6 +137,9 @@
     {% if event.is_rolling_deadline %}
         <script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
     {% endif %}
+    {% if show_admin %}
+        <script src="{{ STATIC_URL }}js/events/event_admin.js"></script>
+    {% endif %}
 {% endcompress %}    
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {% endblock %}
@@ -166,8 +174,8 @@
                 </tr>
                 {% if event.is_drop %}
                 <tr>
-                    <td class="number">{{resume_drops}}</td>
-                    <td class="number_label">resume drop{{resume_drops|pluralize}}</td>
+                    <td class="number">{{dropped_resumes|length}}</td>
+                    <td class="number_label">resume drop{{dropped_resumes|length|pluralize}}</td>
                 </tr>
                 {% endif %}
             </table>
@@ -200,13 +208,13 @@
             </div>
             {% if not event.is_public %}
                 <div id="event_invites" class="responses">
-                    {% for student in invitees %}
-                        {% include "events_response_token.html" with student=student %}
-                    {% empty %}
-                    <div id="event_response_empty">
-                        There are no invites yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
-                    </div>
-                    {% endfor %}
+                    {% if invitees %}
+                        {% include "event_responses.html" with students=invitees %}
+                    {% else %}
+                        <div id="event_response_empty">
+                            There are no invites yet. Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
             <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">
@@ -218,23 +226,23 @@
                         {% endif %}
                     </div>
                 {% endif %}
-                {% for student in rsvps %}
-                    {% include "events_response_token.html" with student=student %}
-                {% empty %}
+                {% if rsvps %}
+                    {% include "event_responses.html" with students=rsvps %}
+                {% else %}
                     <div id="event_response_empty">
                         Nobody has RSVP'd <strong>{% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.{% if not campus_org_event %} Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.{% endif %}
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
             {% if not event.is_public %}
                 <div id="event_no_rsvps" class="hid responses">
-                    {% for student in no_rsvps %}
-                        {% include "events_response_token.html" with student=student %}
-                    {% empty %}
-                    <div id="event_response_empty">
-                        Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
-                    </div>
-                    {% endfor %}
+                    {% if no_rsvps %}
+                        {% include "event_responses.html" with students=no_rsvps %}
+                    {% else %}
+                        <div id="event_response_empty">
+                            Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
             {% if event.is_drop %}
@@ -246,40 +254,36 @@
                                 <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Resume Drop'|urlencode}}">View all Resumes</a>
                             {% endif %}
                         </div>
+                        {% include "event_responses.html" with students=dropped_resumes %}
+                    {% else %}
+                        <div id="event_response_empty">
+                            Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
+                        </div>
                     {% endif %}
-                    {% for student in dropped_resumes %}
-                        {% include "events_response_token.html" with student=student %}
-                    {% empty %}
-                    <div id="event_response_empty">
-                        Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
-                    </div>
-                    {% endfor %}
                 </div>
             {% endif %}
             <div id="event_checkins" class="hid responses">
                 {% if attendees %}
-                <div class="commands right_side_container">
-                    <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export</a>
-                    {% if user.recruiter %}
-                    <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View All Attendees</a>
-                    {% endif %}
-                </div>
-                {% endif %}
-                {% for attendee in attendees %}
-                    {% include "events_response_token.html" with student=attendee %}
-                {% empty %}
+                    <div class="commands right_side_container">
+                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export</a>
+                        {% if user.recruiter %}
+                        <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View All Attendees</a>
+                        {% endif %}
+                    </div>
+                    {% include "event_responses.html" with students=attendees %}
+                {% else %}
                     <div id="event_response_empty">There are no check-ins yet.</div>
-                {% endfor %}
+                {% endif %}
             </div>
             <div id="event_all" class="hid responses">
-                <div class="commands right_side_container">
-                    <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="export_event_list_link">Export</a>
-                </div>
-                {% for student in all_responses %}
-                    {% include "events_response_token.html" with student=student %}
-                {% empty %}
-                <div id="event_response_empty">There are no check-ins or RSVPs yet.</div>
-                {% endfor %}
+                {% if all_responses %}
+                    <div class="commands right_side_container">
+                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="export_event_list_link">Export</a>
+                    </div>
+                    {% include "event_responses.html" with students=all_responses %}
+                {% else %}
+                    <div id="event_response_empty">There are no responses yet.</div>
+                {% endif %}
             </div>
             <p>*Grayed out students do not have an Umeqo account.</p>
         </div>
@@ -288,18 +292,19 @@
     {% endif %}
     <div id="event_actions">
         {% if not event.cancelled %}
-            {% if event.is_deadline and not user.student %}
-                <div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
-            {% endif %}
             {% if is_past  %}
-                {% if user.student and not event.is_deadline %}
-                    {% if attended %}
-                        <div class="gray_button" disabled="disabled">You Attended</div> 
-                    {% else %}
-                        <div class="gray_button" disabled="disabled">You didn't attend</div> 
-                    {% endif %}
+                {% if event.is_deadline %}
+                <div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
                 {% else %}
-                    <div class="gray_button" disabled="disabled">Event Passed</div> 
+                    {% if user.student %}
+                        {% if attended %}
+                            <div class="gray_button" disabled="disabled">You Attended</div> 
+                        {% else %}
+                            <div class="gray_button" disabled="disabled">You didn't attend</div> 
+                        {% endif %}
+                    {% else %}
+                        <div class="gray_button" disabled="disabled">Event Passed</div> 
+                    {% endif %}
                 {% endif %}
             {% endif %}
             {% if not is_past %}
@@ -435,17 +440,15 @@
                         {% if campus_org_event %}
                             <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link"><img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" /></a>                        
                         {% else %}
+                            {% if user.is_anonymous or user.student %}<a href="{{ event.owner.recruiter.employer.get_absolute_url }}">{% endif %}
                             <img src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
+                            {% if user.is_anonymous or user.student %}</a>{% endif %}
                         {% endif %}
                     </div>
                     <div class="event_company_name">
                         {% include "event_hosted_by.html" %}
                     </div>
-                    <div class="industries">
-                        {% for industry in event.owner.recruiter.employer.industries.all %}
-                            <div>{{ industry }}</div>
-                        {% endfor %}
-                    </div>
+                    {% include "employer_industries.html" with employer=event.owner.recruiter.employer %}
                 </div>
             </div>
         </div>

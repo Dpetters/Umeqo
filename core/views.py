@@ -24,7 +24,7 @@ from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, search
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
@@ -97,10 +97,8 @@ def cache_status(request, extra_context = None):
 
 @require_GET
 def check_employer_campus_org_slug_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("slug"):
-        return Http400("Request GET is missing the slug.")
+        raise Http400("Request GET is missing the slug.")
     data = False
     campusorg = None
     employer = None
@@ -115,8 +113,6 @@ def check_employer_campus_org_slug_uniqueness(request):
     
 @require_GET
 def check_employer_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key("name"):
         raise Http400("Request is missing the name.")
     try:
@@ -130,8 +126,6 @@ def check_employer_uniqueness(request):
 @require_http_methods(["POST", "GET"])
 @render_to('contact_us_dialog.html')
 def contact_us(request, form_class = AkismetContactForm, extra_context=None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.method == 'POST':
         form = form_class(data=request.POST, request=request)
         if form.is_valid():
@@ -156,9 +150,10 @@ def contact_us(request, form_class = AkismetContactForm, extra_context=None):
 @login_required
 @has_annual_subscription
 def get_location_guess(request):
-    if not request.GET.has_key('query'):
-        raise Http400("Request GET is missing the query.")
-    sqs = SearchQuerySet().models(Location).filter(content=request.GET['query'])[:10]
+    if not request.has_key("query"):
+        raise Http400("Request GET is missing the query.") 
+    sqs = SearchQuerySet().models(Location)
+    sqs = search(sqs, request.GET.get('query', ""))[:10]
     if not sqs or len(sqs) > 1:
         data = {'single':False, 'query':request.GET['query']}
     else:
@@ -182,7 +177,7 @@ def get_location_suggestions(request):
         for l in locations:
             suggestions.append({'name':"%s" % query, 'lat':l.latitude, 'lng':l.longitude})
     else:
-        locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(content_auto=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:num_of_suggestions]
+        locations = SearchQuerySet().models(Location).filter(reduce(operator.__and__, [SQ(text=word.strip()) for word in request.GET['query'].strip().split(' ')]))[:num_of_suggestions]
         for l in locations:
             suggestions.append({'name':"%s" % str(l.object), 'lat':l.object.latitude, 'lng':l.object.longitude})
     context = {'suggestions': suggestions}
@@ -412,8 +407,8 @@ def home(request, extra_context=None):
 
 @require_GET
 def check_website(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
+    if not request.GET.has_key("website"):
+        raise Http400("Request GET is missing the website.")
     url_validator =  URLValidator(verify_exists = False)
     website = request.GET.get("website", "")
     try:
@@ -425,8 +420,6 @@ def check_website(request):
 
 @require_GET
 def check_password(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if request.user.check_password(request.GET.get("password")):
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
     else:
@@ -435,10 +428,10 @@ def check_password(request):
 
 @require_GET
 def check_email_availability(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
+    if not request.GET.has_key("email"):
+        raise Http400("Request GET is missing the email.")
     try:
-        User.objects.get(email=request.GET.get("email", ""))
+        User.objects.get(email=request.GET["email"])
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     except User.DoesNotExist:
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
@@ -447,10 +440,10 @@ def check_email_availability(request):
 @require_GET
 @login_required
 def check_event_name_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
+    if not request.GET.has_key("name"):
+        raise Http400("Request GET is missing the name.")
     try:
-        Event.objects.get(name=request.GET.get("name", ""))
+        Event.objects.get(name=request.GET["name"])
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     except Event.DoesNotExist:
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
@@ -460,8 +453,6 @@ def check_event_name_uniqueness(request):
 @login_required
 @render_to('course_info.html')
 def course_info(request, extra_context = None):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
     if not request.GET.has_key('course_id'):
         raise Http400("Request GET is missing 'course_id'.")
     id = request.GET['course_id']
@@ -477,9 +468,9 @@ def course_info(request, extra_context = None):
 @require_GET
 @login_required
 def check_language_uniqueness(request):
-    if not request.is_ajax():
-        raise Http403("Request must be a valid XMLHttpRequest.")
-    if Language.objects.filter(name=request.GET.get("name", "")).exists():
+    if not request.GET.has_key("name"):
+        raise Http400("Request GET is missing the name.")
+    if Language.objects.filter(name=request.GET["name"]).exists():
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     else:
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")

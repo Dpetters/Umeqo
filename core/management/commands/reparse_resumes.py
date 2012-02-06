@@ -14,20 +14,23 @@ class Command(BaseCommand):
     )
     
     def handle(self, *args, **options):
-        hacked_resumes = []
-        unparsable_resumes = []
-        
-        for student in Student.objects.filter(profile_created=True, user__is_active=True).filter(Q(keywords=None) | Q(keywords="")):
-            name = "%s %s" % (student.first_name, student.last_name)
-            if options['dry']:
-                print name
-            else:
-                results = process_resume(student)
-                if results == RESUME_PROBLEMS.HACKED:
-                    hacked_resumes.append(name)
-                elif results == RESUME_PROBLEMS.UNPARSABLE:
-                    unparsable_resumes.append(name)
-        if hacked_resumes:
-            print "Hacked resumes: %s" % (", ".join(hacked_resumes))
-        if unparsable_resumes:
-            print "Unparsable resumes: %s" % (", ".join(unparsable_resumes))
+        try:
+            hacked_resumes = []
+            unparsable_resumes = []
+            
+            for student in Student.objects.filter(profile_created=True, user__is_active=True).filter(Q(keywords=None) | Q(keywords="")):
+                name = "%s %s" % (student.first_name, student.last_name)
+                if options['dry']:
+                    print name
+                else:
+                    results = process_resume(student)
+                    if results == RESUME_PROBLEMS.HACKED:
+                        hacked_resumes.append(name)
+                    elif results == RESUME_PROBLEMS.UNPARSABLE:
+                        unparsable_resumes.append(name)
+            if hacked_resumes:
+                print "Hacked resumes: %s" % (", ".join(hacked_resumes))
+            if unparsable_resumes:
+                print "Unparsable resumes: %s" % (", ".join(unparsable_resumes))
+        except Exception as e:
+            print e

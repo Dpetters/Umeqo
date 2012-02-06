@@ -1,6 +1,9 @@
+import logging
+
 from django.core.cache import cache
 from django.http import Http404
 
+from core.view_helpers import search
 from haystack.query import SearchQuerySet, SQ
 from student.models import Student
 from employer import enums
@@ -8,12 +11,17 @@ from employer.models import ResumeBook, Employer, EmployerStudentComment
 from student import enums as student_enums
 from events.models import Event
 from core.digg_paginator import DiggPaginator
-        
+
+# Get an instance of a logger
+logger = logging.getLogger("django.request")
+
 def get_cached_paginator(request):
     cached_paginator = cache.get('paginator')
     if cached_paginator:
+        logger.warning('using the cached paginator!')
         return cache.get("filtering"), cached_paginator
     else:
+        logger.warning('NOT using the cached paginator!')
         filtering, cached_ordered_results = get_cached_ordered_results(request)
         paginator = DiggPaginator(cached_ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
         cache.set("paginator", paginator)
@@ -22,8 +30,10 @@ def get_cached_paginator(request):
 def get_cached_ordered_results(request):
     cached_ordered_results = cache.get("ordered_results")
     if cached_ordered_results:
+        logger.warning('using the cached_ordered_results!')
         return cache.get("filtering"), cached_ordered_results
     else:
+        logger.warning('NOT using the cached_ordered_results!')
         filtering, cached_results = get_cached_results(request)
         ordered_results = [search_result.object for search_result in order_results(cached_results, request).load_all()]
         cache.set("ordered_results", ordered_results)
@@ -32,8 +42,10 @@ def get_cached_ordered_results(request):
 def get_cached_results(request):
     results = cache.get('results')
     if results:
+        logger.warning('using the cached results!')
         return cache.get("filtering"), results
     else:
+        logger.warning('NOT using the cached results!')
         student_list = request.GET['student_list']
         student_list_id = request.GET['student_list_id']
         recruiter = request.user.recruiter
@@ -44,7 +56,7 @@ def get_cached_results(request):
             if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
                 students = get_students_in_resume_book(recruiter)
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-                students = recruiter.employer.starred_students.visible()
+                students = recruiter.employer.starred_students
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 try:
                     resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
@@ -59,11 +71,11 @@ def get_cached_results(request):
                     except:
                         raise Http404
                     if parts[-1] == "RSVPs":
-                        students = Student.objects.filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
+                        students = Student.objects.visible().filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
                     elif parts[-1] == "Attendees":
-                        students = Student.objects.filter(attendee__in=e.attendee_set.all(), profile_created=True)
+                        students = Student.objects.visible().filter(attendee__in=e.attendee_set.all(), profile_created=True)
                     elif parts[-1] == "Drop" and parts[-2] == "Resume":
-                        students = Student.objects.filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
+                        students = Student.objects.visible().filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
                 else:
                     students = ResumeBook.objects.get(id = student_list_id).students.visible()
             students = SearchQuerySet().models(Student).filter(obj_id__in = [student.id for student in students])
@@ -120,7 +132,7 @@ def get_cached_results(request):
         
         if request.GET.has_key('campus_orgs'):
             am_filtering = True            
-            students = students.filter(campus_orgs__in = request.GET['campus_orgs'].split('~'))
+            students = students.filter(campus_involvement__in = request.GET['campus_orgs'].split('~'))
 
         if request.GET.has_key('countries_of_citizenship'):
             am_filtering = True            
@@ -136,7 +148,7 @@ def get_cached_results(request):
             students = students.filter(SQ(first_major__in = courses)|SQ(second_major__in = courses))
         
         if request.GET.has_key('query'):
-            students = students.filter(content = request.GET['query'])
+            students = search(students, request.GET['query'])
         
         cache.set("results", students)
         return am_filtering, students
@@ -188,8 +200,9 @@ def get_is_in_resumebook_attributes(recruiter, students):
             resume_book_dict[student] = True
         else:
             resume_book_dict[student] = False
-    return resume_book_dict
-    
+    return resume_book_dict
+
+                
 def get_students_in_resume_book(recruiter):
     try:
         resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
@@ -199,6 +212,7 @@ def get_students_in_resume_book(recruiter):
 
 def order_results(results, request):
     if request.GET['ordering'] != enums.RELEVANCY:
+        print request.GET['ordering']
         results = results.order_by(request.GET['ordering'])
     else:
         if not request.GET.has_key("query"):
@@ -210,18 +224,19 @@ def employer_search_helper(request):
 
     if request.GET.get('subscribed', False)=='true':
         search_results = search_results.filter(subscribers=request.user.id)
-
+    
+    # filter by whether the employer has an upcoming event or not
     if request.GET.get('has_public_events_deadlines', False)=="true":
         search_results = search_results.filter(has_public_events=True)
         
+    # filter by industry
     industry_id = request.GET.get('i', None)
     if industry_id:
         search_results = search_results.filter(industries=industry_id)
-    query = request.GET.get('q', None)
-    if query:
-        for q in query.split(' '):
-            if q.strip() != "":
-                search_results = search_results.filter(content_auto=q)
+    
+    # search
+    if request.GET.get('q'):
+        search_results = search(search_results, request.GET.get('q'))
     # Extract the object.
     employers = map(lambda n: n.object, search_results)
     # Sort the employers.

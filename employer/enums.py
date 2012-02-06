@@ -12,6 +12,7 @@ ORDERING_CHOICES = (
 ("relevancy", "Relevancy"),
 ("gpa", "Lowest GPA First"),
 ("-gpa", "Highest GPA First"),
+("first_name", "Alphabetical"),
 )
 
 ADDED = "a"

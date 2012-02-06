@@ -1,0 +1,10 @@
+.employer_industries div{
+    display: inline-block;
+    background-color: #EAEAEA;
+    border-radius: 2px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow:1px 1px white;
+    border:1px solid #DDD;
+}

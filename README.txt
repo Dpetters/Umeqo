@@ -14,7 +14,7 @@ IMPORTANT: If you are setting this up on windows, read the WINDOWS INSTALLATION 
 5. Open settings_local.py and add a tuple (“Your name”, “your email”) to ADMINS.
 6. Create a “media” folder in the project root. Create a “ckeditor” folder inside of that folder.
 7. Install java if you don’t have it.
-8. Add two more aliases – "alias dap='cd $UMEQO_HOME/apache-solr-1.4.1’", "alias sap='java -jar start.jar'"
+8. Add two more aliases – "alias dap='cd $UMEQO_HOME/apache-solr-3.5.0’", "alias sap='java -jar start.jar'"
 9. Run “dap” followed by “sap” in a separate terminal (to start the search engine)
 10. Run “fab create_database”, followed by “fab load_local_data”
 11. Run “python manage.py runcserver”

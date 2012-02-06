@@ -1,11 +1,16 @@
 {% if employer.logo %}
     <div data-employer-name="{{employer}}" class="attending_employer">
-        {% if not can_edit and not user.recruiter and employer.visible %}
-        <a href="{{employer.get_absolute_url}}">
+        {{employer.visible}}
+        {% if user.student or user.is_anonymous %}
+            {% if employer.visible %}
+                <a href="{{employer.get_absolute_url}}">
+            {% endif %}
         {% endif %}
         <img title="{{employer}}" alt="{{employer}}" src="{{MEDIA_URL}}{{employer.logo}}" />
-        {% if not can_edit and employer.visible %}
-        </a>
+        {% if user.student or user.is_anonymous %}
+            {% if employer.visible %}
+                </a>
+            {% endif %}
         {% endif %}
     </div>
 {% else %}

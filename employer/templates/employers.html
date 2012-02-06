@@ -8,9 +8,11 @@ Employers |
 {{ block.super }}
 {% load compress %}
 {% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
 {% endcompress %}
 <script>
     var EMPLOYER_DETAILS_URL = "{% url employer_details %}";
