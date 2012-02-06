@@ -16,7 +16,7 @@
     </div>
 
     {% include 'event_snippet_commands.html' %}
-        <div class="details commands">
+    <div class="details commands">
         {% if event.cancelled or not event.is_rolling_deadline %}
             <div class="datetime">
                 {% if not event.is_rolling_deadline %}
