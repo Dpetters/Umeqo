@@ -34,6 +34,7 @@ except urllib2.URLError:
         print e
     else:
         os.chdir(s.ROOT)
+        time.sleep(10)
         os.system('python manage.py update_index')
         print 'Restarted solr on ' + strftime("%Y-%m-%d %H:%M:%S", gmtime())
 else:
