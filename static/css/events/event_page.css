@@ -40,7 +40,7 @@
 #event.cancelled #add_to_google_calendar, #event.past #add_to_google_calendar{
     display:none !important;
 }
-#event.cancelled #drop_resume, #event.past #drop_resume{
+#event.cancelled #drop_resume{
     display:none !important;
 }
 #event.cancelled #rsvp_yes, #event.past #rsvp_yes{
