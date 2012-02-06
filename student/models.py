@@ -114,6 +114,7 @@ class StudentPreferences(core_mixins.DateTracking):
     email_on_invite_to_public_event = models.BooleanField(default=True)
     email_on_invite_to_private_event = models.BooleanField(default=True)
     email_on_new_subscribed_employer_event = models.BooleanField(default=True)
+    receive_monthly_newsletter = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Student Preferences"

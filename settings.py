@@ -243,7 +243,8 @@ AUTHENTICATION_BACKENDS = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    ROOT + "/templates/"
+    ROOT + "/templates/",
+    ROOT + "/static/"
 )
 
 SENTRY_SEARCH_ENGINE = 'solr'

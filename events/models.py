@@ -29,7 +29,8 @@ class Event(core_mixins.DateCreatedTracking):
     
     include_and_more = models.BooleanField(default=False)
     and_more_url = models.URLField(blank=True, null=True)
-
+    
+    include_in_monthly_newsletter = models.BooleanField(default=False)
     # Non-Deadline Fields   
     start_datetime = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
