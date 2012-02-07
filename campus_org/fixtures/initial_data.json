@@ -1314,6 +1314,24 @@
   }
  },
  {
+  "pk": 514,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-02-05 22:13:04",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-05 22:13:04",
+   "type": 16,
+   "display": false,
+   "name": "Bulgarian Club at MIT"
+  }
+ },
+ {
   "pk": 68,
   "model": "campus_org.campusorg",
   "fields": {
@@ -2970,6 +2988,24 @@
   }
  },
  {
+  "pk": 515,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://web.mit.edu/gordonelp/",
+   "slug": null,
+   "last_updated": "2012-02-05 23:24:48",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-05 23:24:48",
+   "type": 1,
+   "display": false,
+   "name": "Gordon Engineering Leadership Program"
+  }
+ },
+ {
   "pk": 164,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4479,6 +4515,24 @@
    "type": 13,
    "display": false,
    "name": "MIT Intervarsity"
+  }
+ },
+ {
+  "pk": 512,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://web.mit.edu/quidditch/",
+   "slug": null,
+   "last_updated": "2012-02-05 01:45:52",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-05 01:45:52",
+   "type": 8,
+   "display": false,
+   "name": "MIT Quidditch Team"
   }
  },
  {
@@ -6264,6 +6318,24 @@
   }
  },
  {
+  "pk": 517,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://sealnetonline.org/",
+   "slug": null,
+   "last_updated": "2012-02-06 17:08:49",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-06 17:08:49",
+   "type": 9,
+   "display": false,
+   "name": "South East Asian Leadership Network"
+  }
+ },
+ {
   "pk": 347,
   "model": "campus_org.campusorg",
   "fields": {
@@ -6765,6 +6837,24 @@
    "type": 4,
    "display": false,
    "name": "SwissLinkBoston"
+  }
+ },
+ {
+  "pk": 516,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-02-06 01:24:44",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-06 01:24:44",
+   "type": 1,
+   "display": false,
+   "name": "SynBUM (Syn Bio for Undergrads at MIT)"
   }
  },
  {
@@ -7881,6 +7971,24 @@
    "type": 8,
    "display": false,
    "name": "WMBR Radio"
+  }
+ },
+ {
+  "pk": 513,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://mitathletics.com/sports/w-fenc/",
+   "slug": null,
+   "last_updated": "2012-02-05 18:58:04",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-05 18:58:04",
+   "type": 11,
+   "display": false,
+   "name": "Women's Fencing"
   }
  },
  {

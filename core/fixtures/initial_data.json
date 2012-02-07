@@ -3762,14 +3762,14 @@
   "pk": 1,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-02-02 10:55:21",
-   "click_count": 3,
+   "last_updated": "2012-02-05 20:30:32",
+   "click_count": 4,
    "question": "What is Umeqo?",
    "slug": "what-is-umeqo",
    "topic": 1,
    "audience": 0,
    "sort_order": 0.000,
-   "answer": "Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.",
+   "answer": "Umeqo is a recruiting resource meant to help students and employers discover one another. By streamlining the familiar paradigms of resumes and events, we are looking to save both parties time and effort.",
    "date_created": "2011-06-28 01:55:42",
    "display": true
   }
@@ -3778,14 +3778,14 @@
   "pk": 19,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-13 02:11:55",
+   "last_updated": "2012-02-05 19:37:06",
    "click_count": 1,
    "question": "As a student, do I have to use my Athena password to register?",
    "slug": "student-do-i-have-use-my-athena-password-register",
    "topic": 8,
    "audience": 1,
    "sort_order": 1.000,
-   "answer": "No, you can use whichever password you want. Our system is totally separate from anything that currently exists at MIT.",
+   "answer": "No, you can use whichever password you want. Our system is totally separate from anything that currently exists.",
    "date_created": "2011-10-06 18:23:47",
    "display": true
   }
@@ -3794,14 +3794,14 @@
   "pk": 20,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-06 19:47:10",
+   "last_updated": "2012-02-05 19:39:07",
    "click_count": 1,
    "question": "The registration form says that I am not a student - why can I not register?",
    "slug": "registration-form-says-i-am-not-student-why-can-i-not-register",
    "topic": 8,
    "audience": 1,
    "sort_order": 1.000,
-   "answer": "<p>There are a few possible reasons for why you cannot register.</p>\r\n<p>The first is that you are not a student. The student side of Umeqo is for students only. This means that employers, affiliates, group lists, professors and alumni are all not eligible to register as students. <p>The second possiblity is that you are a freshman or a student taking a temporary leave from MIT. For these reasons, you may be marked as an affiliate in the MIT database. If this is so, please <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a>.</p>\r\n<p>Overall, judge for yourself as to whether recruiters should be able to see you alongside other students, and <a href=\"#\" class=\"open_contact_us_dialog_link\">let us know</a> of your situation.</p>",
+   "answer": "<p>There are a few possible reasons for why you cannot register.</p>\r\n<p>The first is that you are not a student. Umeqo is for current students only. This means that employers, affiliates, group lists, professors and alumni are all not eligible to register as students.</p><p>The second possiblity is that you are a freshman or a student taking a temporary leave from MIT. For these reasons, you may be marked as an affiliate in the MIT database. If this is so, please <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a>.</p>\r\n<p>Overall, judge for yourself as to whether recruiters should be able to see you alongside other students, and <a href=\"#\" class=\"open_contact_us_dialog_link\">let us know</a> of your situation.</p>",
    "date_created": "2011-10-06 19:47:00",
    "display": true
   }
@@ -3810,7 +3810,7 @@
   "pk": 5,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-01-20 15:10:35",
+   "last_updated": "2012-02-05 19:36:30",
    "click_count": 4,
    "question": "What is the difference between a public and private event?",
    "slug": "what-difference-between-public-and-private-event",
@@ -3826,7 +3826,7 @@
   "pk": 3,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-04 09:42:27",
+   "last_updated": "2012-02-05 19:35:38",
    "click_count": 0,
    "question": "Why should I create yet another profile?",
    "slug": "why-should-i-create-yet-another-profile",
@@ -3842,14 +3842,14 @@
   "pk": 2,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-29 18:41:43",
+   "last_updated": "2012-02-05 20:17:31",
    "click_count": 2,
    "question": "Why was Umeqo created?",
    "slug": "why-was-umeqo-created",
    "topic": 1,
    "audience": 0,
    "sort_order": 1.000,
-   "answer": "Umeqo was created by current MIT undergraduates to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.",
+   "answer": "Umeqo was created by current <a href=\"http://mit.edu/\">MIT</a> and <a href=\"http://uwaterloo.ca/\">University of Waterloo</a> undergraduates to fix the pains of recruiting commonly found at colleges.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.",
    "date_created": "2011-09-03 21:17:13",
    "display": true
   }
@@ -3890,14 +3890,14 @@
   "pk": 4,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-04 23:10:34",
+   "last_updated": "2012-02-05 19:40:23",
    "click_count": 1,
    "question": "Who can see my profile?",
    "slug": "who-can-see-my-profile",
    "topic": 12,
    "audience": 3,
    "sort_order": 2.000,
-   "answer": "Your profile information is viewable only to recruiters that use Umeqo. No other students or campus organizations can view anything but your name, email and school year.",
+   "answer": "Your profile information is viewable only to recruiters that use Umeqo. These recruiters are from companies that either subscribe that have access, or have attended an event that you RSVPed to, attended, or dropped off your resume for. No other students or campus organizations can view anything but your name, email and school year.",
    "date_created": "2011-09-04 01:49:46",
    "display": true
   }
@@ -3906,7 +3906,7 @@
   "pk": 7,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-09-19 23:18:30",
+   "last_updated": "2012-02-05 20:14:49",
    "click_count": 0,
    "question": "Why do I keep getting redirected back to the create profile page when I click the \"Browse Event\" and \"Browse Employers\" links? ",
    "slug": "why-do-i-keep-getting-redirected-back-create-profile-page-when-i-click-browse-event-and-browse-emplo",
@@ -3938,14 +3938,14 @@
   "pk": 11,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-01-06 00:54:11",
+   "last_updated": "2012-02-05 20:20:21",
    "click_count": 1,
-   "question": "Why are there only 14 employers?",
-   "slug": "why-are-there-only-12-employers",
+   "question": "Why are there only a few employers?",
+   "slug": "why-are-there-only-few-employers",
    "topic": 10,
    "audience": 3,
    "sort_order": 3.000,
-   "answer": "The included 14 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!",
+   "answer": "The included employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!",
    "date_created": "2011-09-19 23:29:06",
    "display": true
   }
@@ -5690,6 +5690,36 @@
    "name_and_level": "Shona (Fluent)",
    "last_updated": "2012-02-01 17:28:32",
    "name": "Shona"
+  }
+ },
+ {
+  "pk": 181,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-06 00:21:23",
+   "name_and_level": "Indonesian (Basic)",
+   "last_updated": "2012-02-06 00:21:23",
+   "name": "Indonesian"
+  }
+ },
+ {
+  "pk": 182,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-06 00:21:23",
+   "name_and_level": "Indonesian (Proficient)",
+   "last_updated": "2012-02-06 00:21:23",
+   "name": "Indonesian"
+  }
+ },
+ {
+  "pk": 183,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-06 00:21:23",
+   "name_and_level": "Indonesian (Fluent)",
+   "last_updated": "2012-02-06 00:21:23",
+   "name": "Indonesian"
   }
  },
  {
