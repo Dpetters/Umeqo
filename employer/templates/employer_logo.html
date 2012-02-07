@@ -1,6 +1,5 @@
 {% if employer.logo %}
     <div data-employer-name="{{employer}}" class="attending_employer">
-        {{employer.visible}}
         {% if user.student or user.is_anonymous %}
             {% if employer.visible %}
                 <a href="{{employer.get_absolute_url}}">
