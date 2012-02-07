@@ -16,7 +16,7 @@ def get_is_starred_attributes(recruiter, students):
 
 
 def get_comments(recruiter, students):
-    return dict((x.student, x) for x in EmployerStudentComment.objects.filter(employer=recruiter.employer, student__in =students))
+    return dict((x.student, x.comment) for x in EmployerStudentComment.objects.filter(employer=recruiter.employer, student__in =students))
 
 
 def get_num_of_events_attended_dict(recruiter, students):
