@@ -19,6 +19,7 @@ from django.views.decorators.http import require_http_methods, require_POST, req
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
 
+
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from core.email import send_html_mail
