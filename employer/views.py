@@ -323,8 +323,9 @@ def employer_student_comment(request):
         student_comment = EmployerStudentComment.objects.get(student=student, employer=request.user.recruiter.employer)
     except EmployerStudentComment.DoesNotExist:
         EmployerStudentComment.objects.create(employer = request.user.recruiter.employer, student=student, comment=comment)
-    student_comment.comment = comment
-    student_comment.save()
+    else:
+        student_comment.comment = comment
+        student_comment.save()
     return HttpResponse()
 
 

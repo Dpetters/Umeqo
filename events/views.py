@@ -176,7 +176,7 @@ def event_page(request, id, slug, extra_context=None):
         if is_recruiter(request.user):
             context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
             context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-        
+    
     if context.has_key('show_admin'):
         attendees = get_attendees(event)
         rsvps =  get_rsvps(event)
@@ -186,6 +186,7 @@ def event_page(request, id, slug, extra_context=None):
             dropped_resumes = get_dropped_resumes(event)
         else:
             dropped_resumes = []
+
         if not event.is_public:
             no_rsvps = get_no_rsvps(event)
         else:
@@ -197,13 +198,13 @@ def event_page(request, id, slug, extra_context=None):
         'no_rsvps': no_rsvps,
         'dropped_resumes': dropped_resumes,
         'attendees': attendees
-    });
+        });
     
     # Increase the view count if we're not admin, a campus org or a recruiter (aka for now just student & anonymous)
     if is_campus_org(request.user) and not is_recruiter(request.user) and not request.user.is_staff:
         event.view_count += 1
         event.save()
-            
+    
     if is_student(request.user):
         rsvp = RSVP.objects.filter(event=event, student=request.user.student)
         if rsvp.exists():
@@ -219,7 +220,6 @@ def event_page(request, id, slug, extra_context=None):
             context['attended'] = True
     else:
         context['email_delivery_type'] = core_enums.EMAIL
-    
     context.update(extra_context or {})
     return context
 
