@@ -4,10 +4,10 @@
 {{block.super}}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
 {% endcompress %}
+{% include "event_snippet_css.html" %}
 <script>
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
 </script>

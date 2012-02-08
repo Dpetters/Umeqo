@@ -265,5 +265,6 @@ class StudentPreferencesForm(forms.ModelForm):
     class Meta:
         fields = ("email_on_invite_to_public_event",
                   "email_on_invite_to_private_event",
-                  "email_on_new_subscribed_employer_event" )
+                  "email_on_new_subscribed_employer_event",
+                  "receive_monthly_newsletter" )
         model = StudentPreferences

@@ -1,22 +1,21 @@
 {% extends "email_base.html" %}
 
+{% block meta %}
+    <style type="text/css">
+        {% include "event_snippet_css.html" %}
+    </style>
+{% endblock %}
+
 {% block email_body %}
-    <h2 style="margin-top:0">Public {% if event.is_deadline %}Deadline{% else %}Event{% endif %} Invite</h2>
-    
-    <p>Hey {{name}},</p>
-        
-    <p>{{recruiter.first_name}} {{recruiter.last_name}} ({{recruiter.email}}), a recruiter from {{employer}}, has invited you to {% if event.is_deadline %}participate in a deadline{% else %}an event{% endif %} - "{{event}}":</p>
+    <h2 style="margin-top:0">{{month}} newsletter</h2>
+    <p>Here are the {{events|length}} events/deadlines you should know about:</p>
 
     {% load core_extras %}
-    <blockquote>{{invite_message|wordwrapwithindent:80}}</blockquote>
-    <p>
-        <a href="http://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
-        RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}
-        </a>
-    </p>
-    <p>
-        You can see the details of the {% if event.is_deadline %}deadline{% else %}event{% endif %} here: http://{{current_site.domain}}{{ event.get_absolute_url }}
-    </p>
+    <ul class="event_list">
+        {% for event in events %}
+                {% include "event_snippet.html" with email="true" %}
+        {% endfor %}
+    </ul>
     <br>
     <small>Change your notification settings at any time <a href="http://{{current_site.domain}}/student/account/?tab=preferences">here</a>.</small>
 {% endblock %}

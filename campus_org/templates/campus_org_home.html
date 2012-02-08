@@ -4,17 +4,13 @@
 {{block.super}}
 {% load compress %}
 {% load text_snippet %}
+
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_home.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
 {% endcompress %}
-{% compress js %}
-<script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
-<script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
-<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
-{% endcompress %}
+{% include "event_snippet_css.html" %}
 <script>
     var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
     var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
@@ -22,6 +18,11 @@
     var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
     var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
 </script>
+{% compress js %}
+<script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/events/rolling_deadline_end_dialog.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block left_side_container %}

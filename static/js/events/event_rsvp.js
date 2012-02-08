@@ -33,27 +33,27 @@ function rsvp(attending) {
         data:{ attending: attending },
         beforeSend:function(){
             $(that).html("processing...");
-            $("#rsvp_no, #rsvp_yes").live('mouseout', function(){
+            $(".rsvp_no, .rsvp_yes").live('mouseout', function(){
                 rsvp_mouseout = true;
             });
-            $("#rsvp_no, #rsvp_yes").live('mouseover', function(){
+            $(".rsvp_no, .rsvp_yes").live('mouseover', function(){
                 rsvp_mouseout = false;
             });
         },
         success: function(data) {
             if(attending){
-                $(that).removeClass("not_attending").addClass("attending").attr("id", "rsvp_no");
+                $(that).removeClass("not_attending").addClass("attending rsvp_no");
                 if(rsvp_mouseout){
                     $(that).html("Attending");
                 }else{
-                    $(that).html("RSVP Not Attending");    
+                    $(that).html("RSVP Not Attending");
                 }
             }else{
-                $(that).removeClass("attending").addClass("not_attending").attr("id", "rsvp_yes");
+                $(that).removeClass("attending").addClass("not_attending rsvp_yes");
                 if(rsvp_mouseout){
                     $(that).html("Not Attending");
                 }else{
-                    $(that).html("RSVP Attending");    
+                    $(that).html("RSVP Attending");
                 }
             }
         },
@@ -94,7 +94,7 @@ $(".not_attending").live('mouseleave', function(){
     $(this).html("Not Attending");
 });
 
-$('#rsvp_yes').live('click', function(e) {
+$('.rsvp_yes').live('click', function(e) {
     show_rsvp_message();
     
     var disabled = $(this).attr('disabled');
@@ -102,22 +102,9 @@ $('#rsvp_yes').live('click', function(e) {
         rsvp.apply(this, [true]);
     }
 });
-$('#rsvp_no').live('click', function(e) {
+$('.rsvp_no').live('click', function(e) {
     var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
         rsvp.apply(this, [false]);
     }
-});
-    
-$(document).ready(function(){
-    if (get_parameter_by_name("rsvp")=="true"){
-        rsvp_mouseout = true;
-        $("#rsvp_yes, #rsvp_button").click();
-    }
-    if (get_parameter_by_name("rsvp")=="false"){
-        rsvp_mouseout = true;
-        $("#rsvp_no").click();
-    }
-    $("#rsvp_requires_login").tipsy({'gravity':'e', opacity: 0.9, fallback:"RSVP requires login.", html:true});
-    $("#rsvp_yes[disabled=disabled], #rsvp_choices[disabled=disabled]").tipsy({'gravity':'e', opacity: 0.9, fallback:RSVP_YES_TOOLTIP, html:true});
 });

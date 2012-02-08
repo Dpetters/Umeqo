@@ -20,7 +20,7 @@ $(document).ready( function () {
                             $('#event_filtering_no_results').slideDown();
                             $("#no_events_block").slideDown()
                         }
-                    });                              
+                    });
                 }else{
                     $("#event").addClass("archived");
                 }

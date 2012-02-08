@@ -82,7 +82,7 @@ LOCAL_DATA_MODELS = {
                 'resumebook', 'studentfilteringparameters', \
                 'employerstudentcomment', 'recruiterpreferences', \
                 'recruiterstatistics'],
-    'events':['event', 'rsvp', 'invitee', 'attendee'],
+    'events':['event', 'rsvp', 'invitee', 'attendee', 'droppedresume'],
     'subscription':['employersubscription', 'transaction']
 }
 
@@ -244,7 +244,7 @@ AUTHENTICATION_BACKENDS = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    ROOT + "/templates/"
+    ROOT + "/templates/",
 )
 
 SENTRY_SEARCH_ENGINE = 'solr'
