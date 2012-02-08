@@ -13,7 +13,7 @@ from notification import models as notification
 
 class CampusOrgType(core_mixins.DateTracking):
     name = models.CharField("On-Campus Organization Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
  
     class Meta:
         verbose_name = "On-Campus Organization Type"
@@ -46,7 +46,7 @@ class Location(models.Model):
 class Topic(core_mixins.DateTracking):
     name = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150)
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     
     class Meta:
         ordering = ['sort_order', 'name']
@@ -59,7 +59,7 @@ class Question(core_mixins.DateTracking):
     topic = models.ForeignKey(Topic)
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
     audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     question = models.TextField()
     answer = models.TextField() 
     slug = models.SlugField( max_length=100, help_text="This is a unique identifier that allows your questions to display its detail view, ex 'how-can-i-contribute'", )
@@ -124,7 +124,7 @@ class Course(CommonInfo):
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
     image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
     thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True)
 
@@ -145,7 +145,7 @@ class Tutorial(core_mixins.DateTracking):
     slug = models.SlugField(max_length=150)
     topic = models.ForeignKey(Topic, null=True, blank=True)
     audience = models.IntegerField(choices = core_enums.AUDIENCE_CHOICES, default=core_enums.ALL)
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     display = models.BooleanField(help_text="Only select if all of the above info has been checked for errors and finalized.")
 
     objects = VisibleManager()
@@ -166,7 +166,7 @@ class Tutorial(core_mixins.DateTracking):
 
 class EmploymentType(core_mixins.DateTracking):
     name = models.CharField("Employment Type", max_length = 42, unique = True, help_text="Maximum 42 characters.")
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
    
     class Meta:
         verbose_name = "Employment Type"
@@ -193,7 +193,7 @@ class Industry(core_mixins.DateTracking):
 class EventType(core_mixins.DateTracking):
     name = models.CharField("Event Type", max_length = 42, unique = True, help_text="Maximum 41 characters.")
     
-    sort_order = models.DecimalField(decimal_places=3, max_digits=6, help_text='Topics will be ordered by the sort order. (Smallest at top.)')
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
 
     class Meta:
         verbose_name = "Event Type"
