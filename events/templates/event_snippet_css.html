@@ -1,0 +1,90 @@
+<style type="text/css">
+    .event_list {
+        list-style: none;
+        border-top: 1px solid #DDD;
+        margin-top:3px;
+    }
+    .event_list p {
+        padding: 3px;
+    }
+    .event_list li {
+        clear: both;
+        padding:7px 5px 3px;
+        background-color: #F6F6F6;
+        border-bottom: 1px solid #DDD;
+        position: relative;
+        min-height: 30px;
+    }
+    .event_list .event_title {
+        font-size: 16px;
+    }
+    .event_list .upper_right_div {
+        display: inline-block;
+        margin-top:2px;
+        padding-left:10px;
+        font-size: 12px;
+        float: right;
+        color:#555;
+        text-align:right;
+    }
+    .event_list .upper_right_div .location_wrapper{
+        position:relative;
+        bottom:3px;
+    }
+    .event_list .type,
+    .event_list .private_token {
+        font-size: 11px;
+        display: inline-block;
+        padding: 2px 4px;
+        vertical-align: top;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+    }
+    .event_list .details {
+        margin: 5px 3px;
+        color: #666;
+    }
+    .event_list .details.commands {
+        margin-right:100px;
+    }
+    .event_list .datetime{
+        margin-bottom:4px;
+        color:#555;
+    }
+    .event_list .cancelled_warning{
+        color:#D00;
+        font-weight:bold;
+    }
+    .cancelled_warning{
+        display:none;
+    }
+    .event_list li .cancelled_or_past_commands{
+        display:none;
+    }
+    .event_list li.cancelled .cancelled_or_past_commands, .event_list li.past .cancelled_or_past_commands{
+        display:inline;
+    }
+    .event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
+        display:none;
+    }
+    .event_list .edit,
+    .event_list .hosted-by {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        color: #666;
+    }
+    #content_area .event_list .edit a {
+        text-align: right;
+        display: inline-block;
+        padding: 1px 3px;
+        color: #BBB;
+    }
+    
+    #content_area .event_list li:hover .edit a {
+        color: #6E97B9;
+    }
+    .event_list .edit a:hover {
+        background-color: #EEE;
+    }
+</style>

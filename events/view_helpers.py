@@ -189,16 +189,16 @@ def get_invitees(event):
 def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
     all_responses = []
     students = []
-    
+    print len(dropped_resumes)
     if dropped_resumes:
         students.extend(dropped_resumes)
-    
+    print len(attendees)
     if attendees:
         students.extend(attendees)
-    
+    print len(rsvps)
     if rsvps:
         students.extend(rsvps)
-    
+    print len(no_rsvps)
     if no_rsvps:
         students.extend(no_rsvps) 
 

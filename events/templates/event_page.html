@@ -100,7 +100,7 @@
     var EVENT_RAFFLE_WINNER_URL = "{% url event_raffle_winner %}";
     var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
     var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
+    var NOT_STUDENT_DROP_RESUME_TOOLTIP = "{% text_snippet 'not_student_drop_resume_tooltip' %}";
     var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
     var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
     var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
@@ -124,8 +124,10 @@
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_page_rsvp.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_rsvp.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_resume_drop.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_page_resume_drop.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_checkin.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
@@ -292,7 +294,9 @@
     {% endif %}
     <div id="event_actions">
         {% include "event_actions.html" %}
+        {% if not is_past and not event.cancelled and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
     </div>
+    
     <h1 class="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}<span class="type">{{event.type}}</span></h1>
     <div class="datetime">
         {% if not event.is_rolling_deadline %}

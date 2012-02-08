@@ -1,6 +1,6 @@
 <li class="{% if event.cancelled %}cancelled{% endif %} {% if past %}past{% endif %}">
     <div class="event_title">
-        <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{% if email %}http://{{current_site.domain}}{% endif %}}{{event.get_absolute_url}}">{{event.name}}</a>
+        <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{% if email %}http://{{current_site.domain}}{% endif %}{{event.get_absolute_url}}">{{event.name}}</a>
         <div class="upper_right_div">
         {% if event.location %}
             <span class="location_wrapper">
