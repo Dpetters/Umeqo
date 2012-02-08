@@ -29,7 +29,7 @@ class StudentInvite(core_mixins.DateTracking):
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True)
-    gpa = models.DecimalField(max_digits = 5, decimal_places = 3, blank = True, null=True)    
+    gpa = models.FloatField(blank = True, null=True)    
     sat_t = models.PositiveSmallIntegerField(blank = True, null=True)
     sat_m = models.PositiveSmallIntegerField(blank = True, null=True)
     sat_v = models.PositiveSmallIntegerField(blank = True, null=True)

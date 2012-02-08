@@ -11,7 +11,7 @@ class Transaction(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, editable=False)
     person = models.CharField(max_length=100, null=True)
     email = models.EmailField(null=True)
-    amount = models.DecimalField(max_digits=64, decimal_places=2, null=True)
+    amount = models.FloatField(null=True)
     comment = models.TextField()
     payment = models.BooleanField(default=False)
     
@@ -40,7 +40,7 @@ class Subscription(models.Model):
     uid = models.PositiveIntegerField(unique=True, null=True)
     name = models.CharField(max_length=100, unique=True, null=False)
     description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=64, decimal_places=2)
+    price = models.FloatField()
     trial_period = models.PositiveIntegerField(null=True, blank=True)
     trial_unit = models.CharField(max_length=1, null=True, choices = (("", "No trial"),) + _TIME_UNIT_CHOICES)
     recurrence_period = models.PositiveIntegerField(null=True, blank=True)
