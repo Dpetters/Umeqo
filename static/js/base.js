@@ -235,17 +235,15 @@ $(document).ready( function () {
             if($(e.target).parent().hasClass("dropdown")){
                 var disabled = $(e.target).parent().attr('disabled');
                 if (!$(e.target).parent().attr('disabled')) {
-                    $(e.target).next("ul").toggle();
+                    $(e.target).nextAll("ul").toggle();
                 }
             } else if ($(e.target).hasClass("dropdown")) {
                 var disabled = $(e.target).parent().attr('disabled');
                 if (!$(e.target).parent().attr('disabled')) {
                     $(e.target).children('ul').toggle();
-                }            
+                }
             } else {
-                console.log("here");
                 if (!$(e.target).attr('disabled')) {
-                    console.log($(e.target).children('ul'));
                     $(e.target).closest('ul').toggle();
                 }
             }
