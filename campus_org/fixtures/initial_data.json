@@ -1530,6 +1530,24 @@
   }
  },
  {
+  "pk": 522,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://web.mit.edu/21m.405/www/",
+   "slug": null,
+   "last_updated": "2012-02-08 18:34:55",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-08 18:34:55",
+   "type": 2,
+   "display": false,
+   "name": "Chamber Chorus"
+  }
+ },
+ {
   "pk": 465,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4479,6 +4497,24 @@
    "type": 5,
    "display": false,
    "name": "Minority Business Association"
+  }
+ },
+ {
+  "pk": 520,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-02-07 09:40:31",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-07 09:40:31",
+   "type": 4,
+   "display": false,
+   "name": "MISTI Germany"
   }
  },
  {
@@ -7686,21 +7722,21 @@
   }
  },
  {
-  "pk": 473,
+  "pk": 521,
   "model": "campus_org.campusorg",
   "fields": {
    "website": "",
    "slug": null,
-   "last_updated": "2011-09-05 14:29:57",
+   "last_updated": "2012-02-07 09:41:58",
    "description": null,
    "image": "",
    "email": null,
    "thumbnail": "",
    "user": null,
-   "date_created": "2011-09-05 14:29:57",
+   "date_created": "2012-02-07 09:41:58",
    "type": 11,
    "display": false,
-   "name": "Varisty Crew"
+   "name": "Varsity Crew"
   }
  },
  {
@@ -7719,6 +7755,42 @@
    "type": 11,
    "display": false,
    "name": "Varsity Cross Country"
+  }
+ },
+ {
+  "pk": 519,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-02-07 09:38:37",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-07 09:38:37",
+   "type": 11,
+   "display": false,
+   "name": "Varsity Ice Hockey"
+  }
+ },
+ {
+  "pk": 518,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-02-07 09:29:47",
+   "description": null,
+   "image": "",
+   "email": null,
+   "thumbnail": "",
+   "user": null,
+   "date_created": "2012-02-07 09:29:47",
+   "type": 11,
+   "display": false,
+   "name": "Varsity Lacrosse"
   }
  },
  {
