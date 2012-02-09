@@ -442,7 +442,7 @@ def employer_students(request, extra_context=None):
             if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
                 students = get_students_in_resume_book(recruiter)
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-                students = recruiter.employer.starred_students
+                students = recruiter.employer.starred_students.all()
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 try:
                     resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
