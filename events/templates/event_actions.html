@@ -1,5 +1,5 @@
 {% if not event.cancelled %}
-    {% if is_past  %}
+    {% if event.is_past  %}
         {% if event.is_deadline %}
         <div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
         {% else %}
@@ -13,41 +13,40 @@
                 <div class="gray_button" disabled="disabled">Event Passed</div> 
             {% endif %}
         {% endif %}
-    {% endif %}
-    {% if not is_past %}
+    {% else %}
         {% if event.is_public %}
             {% if user.is_anonymous %}
-                <div data-action="rsvp" id="rsvp_button" data-event-id="{{event.id}}" data-title="RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}" class="student_quick_registration_link gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>                    
+                <div data-action="rsvp" id="rsvp_button" data-event-id="{{event.id}}" data-title="RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}" class="student_quick_registration_link gray_button">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>                    
             {% else %}
                 {% if user.student %}
                     {% if responded %}
                         {% if attending %}
-                            <div class="rsvp_no attending gray_button">{% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                            <div class="rsvp_no attending gray_button">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
                         {% else %}
-                            <div class="rsvp_yes not_attending gray_button">{% if is_deadline %}Not Participating{% else %}Not Attending{% endif %}</div>
+                            <div class="rsvp_yes not_attending gray_button">{% if event.is_deadline %}Not Participating{% else %}Not Attending{% endif %}</div>
                         {% endif %}
                     {% else %}
-                        <div class="rsvp_yes gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                        <div class="rsvp_yes gray_button">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
                     {% endif %}
                 {% else %}
-                    <div class="gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                    <div class="gray_button drop_resume" disabled="disabled">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
                 {% endif %}
             {% endif %}
         {% else %}
             {% if user.student %}
                 {% if responded %}
                     {% if attending %}
-                        <div class="rsvp_no attending gray_button">{% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                        <div class="rsvp_no attending gray_button">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
                     {% else %}
-                        <div class="rsvp_yes not_attending gray_button">Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
+                        <div class="rsvp_yes not_attending gray_button">Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
                     {% endif %}
                 {% else %}
                     <div class="dropdown gray_button">
                         <span>RSVP</span>
                         <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
                         <ul>
-                            <li class="rsvp_yes">{% if is_deadline %}Participating{% else %}Attending{% endif %}</li>
-                            <li class="rsvp_no">Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</li>
+                            <li class="rsvp_yes">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</li>
+                            <li class="rsvp_no">Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</li>
                         </ul>
                     </div>
                 {% endif %}

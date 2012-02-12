@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -72,6 +74,11 @@ class Event(core_mixins.DateCreatedTracking):
         if not self.slug or self.slug==self.slug_default:
             self.slug = um_slugify(self.name)
         super(Event, self).save()
+
+    def is_past(self):
+        if self.end_datetime:
+            return self.end_datetime < datetime.now()
+        return False
     
     def is_deadline(self):
         return self.is_rolling_deadline() or self.type == EventType.objects.get(name='Hard Deadline')

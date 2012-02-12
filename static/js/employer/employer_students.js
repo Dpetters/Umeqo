@@ -508,7 +508,7 @@ function initiate_search() {
 function initiate_ajax_call() {
     if (xhr && xhr.readystate != 4) { xhr.abort(); }
     $("#message_area").html("");
-    $("#results_block_content").css('opacity', 0.25);
+    $("#results_block_content").css('opacity', 1);
     $("#results_block_content").css('zoom', 1);
     $("#results_block_content").css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=25)');
     $("#results_block_content").css('-ms-filter', '"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)"');

@@ -13,9 +13,12 @@ Events & Deadlines |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/events.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
 {% endcompress %}
     {% include 'event_snippet_css.html' %}
     <script>
+        var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
+        
         var INITIAL_STATE = $.parseJSON("{{initial_state}}".replace(/&quot;/ig,'"'));
         var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
         var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
@@ -25,6 +28,7 @@ Events & Deadlines |
     </script>
 {% compress js %}
     <script src="{{ STATIC_URL }}js/events/events.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_helpers.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_cancel_dialog.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_archive.js"></script>

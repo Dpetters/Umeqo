@@ -37,12 +37,11 @@ Help |
     <h1>Help Center</h1>
     <div id="getting_started_div">
         <h2 class="help_header"><u>Tutorials</u></h2>
-        {% if user.is_anonymous %}
+        {% if user.is_anonymous or user.is_staff %}
             <p id="tutorial_notice">View:  <a id="recruiter_toggle_link" href="#">Recruiters</a><span style="display:none" id="recruiter_toggle_span">Recruiters</span>,  <a id="student_toggle_link" href="#">Students</a><span style="display:none" id="student_toggle_span">Students</span>,  <a id="campus_org_toggle_link" href="#">Campus Organizations</a><span style="display:none" id="campus_org_toggle_span">Campus Organizations</span></p>
         {% endif %}
-        {% if user.is_anonymous or user.recruiter %}
-        {% if user.is_anonymous %}
-            <div style="display:none" id="anonymous_recruiter_tutorials">
+        {% if user.is_anonymous or user.is_staff or user.recruiter %}
+            <div {% if user.is_anonymous or user.is_staff %}style="display:none"{% endif %} id="anonymous_recruiter_tutorials">
                 <h3>Student Discovery</h3>
                 {% if recruiter_student_discovery_tutorials %}
                     <ul class="tutorial_list">
@@ -87,66 +86,14 @@ Help |
                     <p>Coming Soon</p>
                 {% endif %}
             </div>
-        {% else %}
-            <h3>Student Discovery</h3>
-            {% if recruiter_student_discovery_tutorials %}
-                <ul class="tutorial_list">
-                {% for tutorial in recruiter_student_discovery_tutorials %}
-                    <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Coming Soon</p>
-            {% endif %}
-            
-            <h3>Events & Deadlines</h3>
-            {% if recruiter_event_and_deadline_tutorials %}
-                <ul class="tutorial_list">
-                {% for tutorial in recruiter_event_and_deadline_tutorials %}
-                    <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Coming Soon</p>
-            {% endif %}
-
-            <h3>Account Management</h3>
-            {% if recruiter_account_management_tutorials %}
-                <ul class="tutorial_list">
-                {% for tutorial in recruiter_account_management_tutorials %}
-                    <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Coming Soon</p>
-            {% endif %}
-
-            <h3>Subscriptions</h3>
-            {% if recruiter_subscription_tutorials %}
-                <ul class="tutorial_list">
-                {% for tutorial in recruiter_subscription_tutorials %}
-                    <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Coming Soon</p>
-            {% endif %}
         {% endif %}
-        {% endif %}
-
-        {% if user.is_anonymous or user.student %}
-        {% if user.is_anonymous %}
-            <div style="display:none" id="anonymous_student_tutorials">
+        {% if user.is_anonymous or user.is_staff or user.student %}
+            <div {% if user.is_anonymous or user.is_staff %}style="display:none"{% endif %} id="anonymous_student_tutorials">
                 <p>Coming Soon</p>
             </div>
-        {% else %} 
-            <p>Coming Soon</p>
         {% endif %}
-        {% endif %}
-        
-        {% if user.is_anonymous or user.campusorg %}
-        {% if user.is_anonymous %}
-            <div style="display:none" id="anonymous_campus_org_tutorials">
+        {% if user.is_anonymous or user.is_staff or user.campusorg %}
+            <div {% if user.is_anonymous or user.is_staff %}style="display:none"{% endif %} id="anonymous_campus_org_tutorials">
                 <h3>Events & Deadlines</h3>
                 {% if campus_org_event_and_deadline_tutorials %}
                     <ul class="tutorial_list">
@@ -168,31 +115,6 @@ Help |
                     <p>Coming Soon</p>
                 {% endif %}
             </div>
-        {% else %} 
-            <h3>Events & Deadlines</h3>
-            {% if campus_org_event_and_deadline_tutorials %}
-                <ul class="tutorial_list">
-                {% for tutorial in campus_org_event_and_deadline_tutorials %}
-                    <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Coming Soon</p>
-            {% endif %}
-            <h3>Account Management</h3>
-            {% if campus_org_account_management_tutorials %}
-                <ul class="tutorial_list">
-                {% for tutorial in campus_org_account_management_tutorials %}
-                    <li><a href="{{tutorial.get_absolute_url}}">{{tutorial.name}}</a></li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Coming Soon</p>
-            {% endif %}
-        {% endif %}
-        {% endif %}
-        {% if user.is_staff %}
-            <p>You are logged in as an admin. Please login as a regular user to see the tutorials.</p>
         {% endif %}
     </div>
     <div class="simple_block no_top_padding">

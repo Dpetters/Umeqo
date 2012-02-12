@@ -1,9 +1,12 @@
 var resume_drop_mouseout = false;
 function resume_drop(drop){
     var that = this;
+    var parent = get_parent(that);
+    var resume_drop_url = $(parent).data("rsvp-url");
+
     $.ajax({
         type:"POST",
-        url:RESUME_DROP_URL,
+        url:resume_drop_url,
         data: {'drop':drop},
         beforeSend: function(){
             $(that).html("processing...");
@@ -16,14 +19,14 @@ function resume_drop(drop){
         },
         success:function() {
             if (drop){
-                $(that).addClass("undrop_resume resume_dropped");
+                $(that).addClass("undrop_resume resume_dropped").removeClass("undrop_resume");
                 if(resume_drop_mouseout){
                     $(that).html("Resume Dropped");
                 }else{
                     $(that).html("Undrop Resume");
                 }
             }else{
-                $(that).removeClass("resume_dropped").html("Drop Resume");
+                $(that).removeClass("resume_dropped undrop_resume").addClass("drop_resume").html("Drop Resume");
             }
         },
         error: errors_in_message_area_handler

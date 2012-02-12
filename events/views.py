@@ -30,7 +30,7 @@ from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
 from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume, notify_about_event
-from events.view_helpers import event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
+from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
 from student.models import Student
 
@@ -151,15 +151,11 @@ def event_page(request, id, slug, extra_context=None):
     google_description = event.description + '\n\nRSVP and more at %s' % page_url
     
     context = {
-        'event': event,
         'page_url': page_url,
         'DOMAIN': current_site.domain,
         'current_site':"http://" + current_site.domain,
-        'is_deadline': (event.type == EventType.objects.get(name='Hard Deadline') or event.type == EventType.objects.get(name='Rolling Deadline')),
         'google_description': google_description
     }
-    if event.end_datetime:
-        context['is_past'] = event.end_datetime < datetime.now()
         
     if len(event.audience.all()) > 0:
         context['audience'] = event.audience.all()
@@ -206,20 +202,14 @@ def event_page(request, id, slug, extra_context=None):
         event.save()
     
     if is_student(request.user):
-        rsvp = RSVP.objects.filter(event=event, student=request.user.student)
-        if rsvp.exists():
-            context['attending'] = rsvp.get().attending
-            context['responded'] = True
-        
-        dropped_resume = DroppedResume.objects.filter(event=event, student=request.user.student)
-        if dropped_resume.exists():
-            context['dropped_resume'] = True
-        
-        attendee = Attendee.objects.filter(event=event, student=request.user.student)
-        if attendee.exists():
-            context['attended'] = True
+        responded, attending, dropped_resume, attended, event = event_map(event, request.user)
+        context['responded'] = responded
+        context['attending'] = attending
+        context['dropped_resume'] = dropped_resume
+        context['attended'] = attended
     else:
         context['email_delivery_type'] = core_enums.EMAIL
+    context['event'] = event
     context.update(extra_context or {})
     return context
 
@@ -719,16 +709,6 @@ def events_by_employer(request):
         raise Http404("Student with %d does not exist." % student_id)
     elif student_id:
         student = Student.objects.get(id=student_id)
-    def eventMap(event):
-        invited = False
-        if student and Invitee.objects.filter(event=event, student=student).exists():
-            invited = True
-        return {
-            'id': event.id,
-            'name': event.name,
-            'is_public': event.is_public,
-            'invited': invited,
-        }
     events = map(eventMap, upcoming_events)
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
 

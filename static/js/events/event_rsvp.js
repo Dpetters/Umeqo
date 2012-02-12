@@ -20,16 +20,22 @@ function open_rsvp_info_dialog() {
 function rsvp(attending) {
     var $dropdown = $(this).parents(".dropdown"),
         that = null;
+        
     if($dropdown.length!=0){
         $dropdown.removeClass("dropdown").addClass("gray_button");
         that = $dropdown;
         rsvp_mouseout = true;
     }else{
-           that = this;
-       }
+       that = this;
+    }
+   
+    var parent = get_parent(that);
+    var is_deadline = $(parent).data("is-deadline");
+    var rsvp_url = $(parent).data("rsvp-url");
+    
     $.ajax({
         type:'POST',
-        url: RSVP_URL,
+        url: rsvp_url,
         data:{ attending: attending },
         beforeSend:function(){
             $(that).html("processing...");
@@ -42,18 +48,30 @@ function rsvp(attending) {
         },
         success: function(data) {
             if(attending){
-                $(that).removeClass("not_attending").addClass("attending rsvp_no");
+                $(that).removeClass("not_attending rsvp_yes").addClass("attending rsvp_no");
                 if(rsvp_mouseout){
-                    $(that).html("Attending");
+                    if (is_deadline)
+                        $(that).html("Participating");
+                    else
+                        $(that).html("Attending");
                 }else{
-                    $(that).html("RSVP Not Attending");
+                    if(is_deadline)
+                        $(that).html("RSVP Not Participating");
+                    else
+                        $(that).html("RSVP Not Attending");
                 }
             }else{
-                $(that).removeClass("attending").addClass("not_attending rsvp_yes");
+                $(that).removeClass("attending rsvp_no").addClass("not_attending rsvp_yes");
                 if(rsvp_mouseout){
-                    $(that).html("Not Attending");
+                    if(is_deadline)
+                        $(that).html("Not Participating");
+                    else
+                        $(that).html("Not Attending");
                 }else{
-                    $(that).html("RSVP Attending");
+                    if(is_deadline)
+                        $(that).html("RSVP Participating");
+                    else                    
+                        $(that).html("RSVP Attending");
                 }
             }
         },
@@ -66,9 +84,9 @@ function rsvp(attending) {
     }
 }
 
-function show_rsvp_message(){
+function show_rsvp_message(event_id){
     $.ajax({
-        data:{'event_id':EVENT_ID},
+        data:{'event_id':event_id},
         url:RSVP_MESSAGE_URL,
         success: function(data) {
             if(data){
@@ -81,21 +99,39 @@ function show_rsvp_message(){
 }
 
 $(".attending").live('mouseenter', function(){
-    $(this).html("RSVP Not Attending");
+    var parent = get_parent(this);
+    if($(parent).data("is-deadline")){
+        $(this).html("RSVP Not Participating");
+    }else{
+        $(this).html("RSVP Not Attending");
+    }
 });
 $(".attending").live('mouseleave', function(){
-    $(this).html("Attending");
+    var parent = get_parent(this);
+    if($(parent).data("is-deadline"))
+        $(this).html("Participating");
+    else
+        $(this).html("Attending");
 });
 
 $(".not_attending").live('mouseenter', function(){
-    $(this).html("RSVP Attending");
+    var parent = get_parent(this);
+    if($(parent).data("is-deadline"))
+        $(this).html("RSVP Participating");
+    else
+        $(this).html("RSVP Attending");
 });
 $(".not_attending").live('mouseleave', function(){
-    $(this).html("Not Attending");
+    var parent = get_parent(this);
+    if($(parent).data("is-deadline"))
+        $(this).html("Not Participating");
+    else
+        $(this).html("Not Attending");
 });
 
 $('.rsvp_yes').live('click', function(e) {
-    show_rsvp_message();
+    var parent = get_parent(this);
+    show_rsvp_message($(parent).data("event-id"));
     
     var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
