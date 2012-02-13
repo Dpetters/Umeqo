@@ -525,20 +525,34 @@ def employer_students(request, extra_context=None):
         if request.GET['older_than_21'] != 'N':
             am_filtering = True
             students = students.filter(older_than_21 = True)
-    
+
         if request.GET.has_key('courses'):
             am_filtering = True
             courses = request.GET['courses'].split('~')
             students = students.filter(SQ(first_major__in = courses)|SQ(second_major__in = courses))
-        
+
         if request.GET.has_key('query'):
             students = search(students, request.GET['query'])
+
+        results_per_page = int(request.GET['results_per_page'])
+        start_index = results_per_page * (int(request.GET['page']) - 1)
+        count = students.count()
+
+        if start_index > count:
+          start_index = 0
+
+        if start_index + results_per_page >= count:
+          results_per_page = count - start_index
+ 
+        ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
+        padded_ordered_results = ['']*count
         
-        ordered_results = [search_result.object for search_result in order_results(students, request).load_all()]
-        
-        paginator = DiggPaginator(ordered_results, int(request.GET['results_per_page']), body=5, padding=1, margin=2)
+        for i in range(len(ordered_results)):
+          padded_ordered_results[i + start_index] = ordered_results[i]
+
+        paginator = DiggPaginator(padded_ordered_results, results_per_page, body=5, padding=1, margin=2)
         context['filtering'] = am_filtering
-        
+
         try:
             page = paginator.page(request.GET['page'])
         except EmptyPage:
