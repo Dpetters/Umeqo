@@ -1,0 +1,82 @@
+ <form id="student_quick_registration_form" method='POST' action="{% url student_quick_registration %}">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    <table class="form_table">
+        <tr>
+            <th>{{form.email.label_tag}}</th>
+            <td id="email_td">
+                <div class="errorspace"></div>
+                {{form.email}}
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.password.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.password}}
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.first_name.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.first_name}}
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.last_name.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.last_name}}
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.school_year.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.school_year}}
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.graduation_year.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.graduation_year}}{{form.graduation_month}}
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.first_major.label_tag}}</th>
+            <td>
+                <div class="errorspace">{{form.first_major.error}}</div>
+                {{form.first_major}}
+            </td>
+        </tr>
+        <tr id="gpa_section">
+            <th>{{form.gpa.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.gpa}} (freshmen without gpa, put 5.0)
+            </td>
+        </tr>
+        <tr>
+            <th>{{form.resume.label_tag}}</th>
+            <td>
+                <div class="errorspace"></div>
+                {{form.resume}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error_section error">
+                {{form.non_field_errors}}
+            </td>
+        </tr>
+        <tr>
+            <td class="button_cell" colspan="2">
+                <input class="button" type='submit' value='{{action|capfirst}}'>
+                <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+            </td>
+        </tr>
+    </table>
+</form>

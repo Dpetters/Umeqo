@@ -11,7 +11,7 @@ admin.site.register(FeaturedEvent, FeaturedEventAdmin)
 class EventAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Required Info', {'fields': ['owner', 'name', 'slug', 'short_slug', 'start_datetime', 'type', 'is_public', 'cancelled', 'archived']}),
-        ('Extra Content', {'fields': ['edits', 'attending_employers', 'end_datetime', 'location', 'is_drop', 'latitude', 'longitude', 'audience', 'description']}),
+        ('Extra Content', {'fields': ['edits', 'attending_employers', 'end_datetime', 'location', 'is_drop', 'latitude', 'longitude', 'audience', 'description', 'include_in_monthly_newsletter']}),
     ]
     list_display = ('name', 'owner', 'start_datetime', 'end_datetime', 'type', 'location', 'is_drop', 'is_public', 'cancelled', 'archived')
     list_filter = ('owner', 'type', 'audience', 'is_public', 'is_drop')

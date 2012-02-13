@@ -4,40 +4,6 @@ var xhr = null;
 var comment_xhr = null;
 var filtering_ajax_request = null;
 
-var handle_window_scroll = null;
-
-function set_up_side_block_scrolling() {
-    var el = $('#side_block_area');
-    var elpos_original = el.offset().top;
-    var scroll_side_block = function ( ) {
-        var elpos = el.offset().top;
-        var windowpos = $(window).scrollTop();
-        var finaldestination = windowpos;
-        if (windowpos<elpos_original) {
-            finaldestination = elpos_original;
-            el.stop(true).animate({
-                    'top' : 0
-                        }, 400, 'easeInOutExpo');
-        } else {
-            el.stop(true).animate({
-                    'top' : windowpos-70
-                }, 400, 'easeInOutExpo');
-        }
-    };
-
-    var handle_window_scroll = function () {
-        if (this.scrollTO) {
-            clearTimeout(this.scrollTO);
-        }
-        this.scrollTO = setTimeout(function () {
-                $(this).trigger('scrollEnd');
-            }, 100);
-    };
-
-    $(window).bind('scroll', handle_window_scroll);
-    $(window).bind('scrollEnd', scroll_side_block);
-}
-
 function get_current_resume_book_size(){
     return parseInt($("#students_in_resume_book_num").text());
 }
@@ -508,7 +474,7 @@ function initiate_search() {
 function initiate_ajax_call() {
     if (xhr && xhr.readystate != 4) { xhr.abort(); }
     $("#message_area").html("");
-    $("#results_block_content").css('opacity', 0.25);
+    $("#results_block_content").css('opacity', .25);
     $("#results_block_content").css('zoom', 1);
     $("#results_block_content").css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=25)');
     $("#results_block_content").css('-ms-filter', '"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)"');
@@ -630,7 +596,7 @@ $(document).ready(function () {
    ~
     $(window).bind('resizeEnd', function () {
         if ($(window).height()>window_height_min) { 
-            set_up_side_block_scrolling();
+            set_up_side_block_scrolling("#side_block_area", 70, 400);
             $(window).trigger('scroll');
         } else {
             $('#side_block_area').stop(true).css('top', 0);
@@ -682,7 +648,7 @@ $(document).ready(function () {
         }, 500);
     });
     if ($(window).height()>window_height_min) {
-        set_up_side_block_scrolling();
+        set_up_side_block_scrolling("#side_block_area", 70, 400);
     }
     $("#id_student_list").multiselect({
         header: false,

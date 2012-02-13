@@ -7,8 +7,34 @@ from datetime import datetime, timedelta, date, time
 from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
 from core.view_helpers import search
 from events.choices import ALL
-from events.models import Event
+from events.models import Event, RSVP, DroppedResume, Attendee
 from haystack.query import SearchQuerySet, SQ
+
+def event_map(event, user):
+    print event
+    if is_student(user):
+        rsvp = RSVP.objects.filter(event=event, student=user.student)
+        attending = False
+        responded = False
+        if rsvp.exists():
+            attending = rsvp.get().attending
+            responded = True
+            
+        dropped_resume_obj = DroppedResume.objects.filter(event=event, student=user.student)
+        dropped_resume = False
+        if dropped_resume_obj.exists():
+            dropped_resume = True
+        
+        attendee = Attendee.objects.filter(event=event, student=user.student)
+        attended = False
+        if attendee.exists():
+            attended = True
+            
+        result = [responded, attending, dropped_resume, attended, event]
+    else:
+        result = event
+    return result
+
 
 def buildAttendee(obj):
     output = {
@@ -155,8 +181,9 @@ def event_filtering_helper(category, request):
         events_sqs = search(events_sqs, request.GET.get('query'))
 
     if category =="upcoming":
-        return get_categorized_events_context(events_exist, events_sqs)
+        return get_categorized_events_context(events_exist, events_sqs, request.user)
     else:
+        
         return events_exist, [sr.object for sr in events_sqs.load_all()]
 
 
@@ -189,16 +216,16 @@ def get_invitees(event):
 def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
     all_responses = []
     students = []
-    
+    print len(dropped_resumes)
     if dropped_resumes:
         students.extend(dropped_resumes)
-    
+    print len(attendees)
     if attendees:
         students.extend(attendees)
-    
+    print len(rsvps)
     if rsvps:
         students.extend(rsvps)
-    
+    print len(no_rsvps)
     if no_rsvps:
         students.extend(no_rsvps) 
 
@@ -236,7 +263,7 @@ def get_employer_upcoming_events_context(employer, user):
     events = SearchQuerySet().models(Event).filter(attending_employers=employer.id, end_datetime__gte=datetime.now())
     if is_student(user):
         events = events.filter(SQ(is_public=True) | SQ(invitees=user.id))
-    return get_categorized_events_context(len(events) > 0, events)
+    return get_categorized_events_context(len(events) > 0, events, user)
 
 
 def get_user_events_sqs(user):
@@ -270,7 +297,7 @@ def get_past_events_sqs(user):
     return events
 
 
-def get_categorized_events_context(events_exist, event_sqs):
+def get_categorized_events_context(events_exist, event_sqs, user):
     context = {'events_exist':events_exist}
     tomorrow = datetime.combine(date.today() + timedelta(days=1), time())
     happening_now_events = event_sqs.filter(SQ(start_datetime__lt = datetime.now()) | SQ(type="Rolling Deadline")).order_by("end_datetime")
@@ -280,12 +307,13 @@ def get_categorized_events_context(events_exist, event_sqs):
     this_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end), type="Hard Deadline")).order_by("start_datetime")
     next_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end)+timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end)+timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7), type="Hard Deadline")).order_by("start_datetime")
     later_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end+7)) | SQ(end_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end+7), type="Hard Deadline")).order_by("start_datetime")
-    context['happening_now_events'] = [sr.object for sr in happening_now_events.load_all()]
-    context['later_today_events'] = [sr.object for sr in later_today_events.load_all()]
-    context['tomorrows_events'] = [sr.object for sr in tomorrows_events.load_all()]
-    context['this_weeks_events'] = [sr.object for sr in this_week_events.load_all()]
-    context['next_weeks_events'] = [sr.object for sr in next_week_events.load_all()]
-    context['later_events'] = [sr.object for sr in later_events.load_all()]
+    
+    context['happening_now_events'] = map(event_map, [sr.object for sr in happening_now_events.load_all()], [user]*len(happening_now_events))
+    context['later_today_events'] = map(event_map, [sr.object for sr in later_today_events.load_all()], [user]*len(later_today_events))
+    context['tomorrows_events'] = map(event_map, [sr.object for sr in tomorrows_events.load_all()], [user]*len(tomorrows_events))
+    context['this_weeks_events'] = map(event_map, [sr.object for sr in this_week_events.load_all()], [user]*len(this_week_events))
+    context['next_weeks_events'] = map(event_map, [sr.object for sr in next_week_events.load_all()], [user]*len(next_week_events))
+    context['later_events'] = map(event_map, [sr.object for sr in later_events.load_all()], [user]*len(later_events))
     return context
 
     
@@ -300,5 +328,5 @@ def get_upcoming_events_context(user):
     events_exist = False
     if len(upcoming_events) > 0:
         events_exist = True
-    event_context = get_categorized_events_context(events_exist, upcoming_events)
+    event_context = get_categorized_events_context(events_exist, upcoming_events, user)
     return event_context

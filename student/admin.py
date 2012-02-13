@@ -7,6 +7,7 @@ from student.models import Student, StudentPreferences, StudentStatistics, Stude
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'user', 'profile_created', 'date_created', 'last_updated')
+    search_fields = ['first_name', 'last_name']
 admin.site.register(Student, StudentAdmin)
 
 class StudentInviteAdmin(admin.ModelAdmin):
@@ -22,7 +23,7 @@ class StudentDeactivationAdmin(admin.ModelAdmin):
 admin.site.register(StudentDeactivation, StudentDeactivationAdmin)
 
 class StudentPreferencesAdmin(admin.ModelAdmin):
-    fields = ['email_on_invite_to_public_event', 'email_on_invite_to_private_event', 'email_on_new_subscribed_employer_event']
+    fields = ['email_on_invite_to_public_event', 'email_on_invite_to_private_event', 'email_on_new_subscribed_employer_event', 'receive_monthly_newsletter']
     list_display = ('student', 'last_updated', 'date_created')
     date_hierarchy = 'date_created'
 admin.site.register(StudentPreferences, StudentPreferencesAdmin)

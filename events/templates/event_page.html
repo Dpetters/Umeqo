@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_action_buttons.css" />
     {% if user.is_anonymous %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
@@ -58,65 +57,60 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
     {% endif %}
 {% endcompress %}
-<script>
-    {% if user.is_anonymous %}
-        var STUDENT_QUICK_REGISTRATION_URL = "{% url student_quick_registration %}";
-        var STUDENT_QUICK_REGISTRATION_DONE_URL = "{% url student_quick_registration_done %}"
-        var STUDENT_INFO_URL = "{% url student_info %}"
-    
-        var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
-        var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
+    {% include 'event_snippet_css.html' %}
+    <script>
+        {% if user.is_anonymous %}
+            var STUDENT_QUICK_REGISTRATION_URL = "{% url student_quick_registration %}";
+            var STUDENT_QUICK_REGISTRATION_DONE_URL = "{% url student_quick_registration_done %}"
+            var STUDENT_INFO_URL = "{% url student_info %}"
         
-        var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
-        var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
-        var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
-        var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
-        var FIRST_NAME_REQUIRED = "{% text_snippet 'first_name_required' %}";
-        var LAST_NAME_REQUIRED = "{% text_snippet 'last_name_required' %}";
-        var SCHOOL_YEAR_REQUIRED = "{% text_snippet 'school_year_required' %}";
-        var GRADUATION_YEAR_REQUIRED = "{% text_snippet 'graduation_year_required' %}";
-        var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
-        var GPA_REQUIRED = "{% text_snippet 'gpa_required' %}";
-        var GPA_RANGE = "{% text_snippet 'gpa_range' %}";
-        var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
-        var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
-
-        var PASSWORD_MIN_LENGTH="{{password_min_length}}";
-        
-        var SHOW_RESPONSES
-    {% endif %}
-
+            var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
+            var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
+            
+            var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
+            var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
+            var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
+            var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
+            var FIRST_NAME_REQUIRED = "{% text_snippet 'first_name_required' %}";
+            var LAST_NAME_REQUIRED = "{% text_snippet 'last_name_required' %}";
+            var SCHOOL_YEAR_REQUIRED = "{% text_snippet 'school_year_required' %}";
+            var GRADUATION_YEAR_REQUIRED = "{% text_snippet 'graduation_year_required' %}";
+            var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
+            var GPA_REQUIRED = "{% text_snippet 'gpa_required' %}";
+            var GPA_RANGE = "{% text_snippet 'gpa_range' %}";
+            var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
+            var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
     
-    var RSVP_URL = "{% url event_rsvp event_id=event.id %}";
-    var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
-    var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
-    var EVENT_LIST_DOWNLOAD_URL = "{% url event_list_download %}";
-    var EVENT_LIST_EXPORT_URL = "{% url event_list_export %}";
-    var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
-    var EVENT_ID = "{{event.id}}";
-    var EVENT_CHECKIN_COUNT_URL = "{% url event_checkin_count %}";
-    var RSVP_URL = "{% url event_rsvp event_id=event.id %}";
-    var RESUME_DROP_URL = "{% url event_drop event_id=event.id %}";
-    var EVENT_RAFFLE_WINNER_URL = "{% url event_raffle_winner %}";
-    var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
-    var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
-    var DROP_RESUME_TOOLTIP = "{% text_snippet 'drop_resume_tooltip' %}";
-    var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
-    var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
-    var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
-    var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
-    var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
-    var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
-    var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
-    var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
-    var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
-    var STATIC_URL = "{{STATIC_URL}}";
-    {% if event.is_drop %}
-    var IS_DROP = true;
-    {% else %}
-    var IS_DROP = false;
-    {% endif %}
-</script>
+            var PASSWORD_MIN_LENGTH="{{password_min_length}}";
+        {% endif %}
+    
+        var EVENT_PAGE = true;
+        var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
+        var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
+        var EVENT_LIST_DOWNLOAD_URL = "{% url event_list_download %}";
+        var EVENT_LIST_EXPORT_URL = "{% url event_list_export %}";
+        var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
+        var EVENT_CHECKIN_COUNT_URL = "{% url event_checkin_count %}";
+        var EVENT_RAFFLE_WINNER_URL = "{% url event_raffle_winner %}";
+        var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
+        var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
+        var NOT_STUDENT_DROP_RESUME_TOOLTIP = "{% text_snippet 'not_student_drop_resume_tooltip' %}";
+        var RSVP_YES_TOOLTIP = "{% text_snippet 'rsvp_yes_tooltip' %}";
+        var EVENT_IS_PUBLIC = {% if event.is_public %}true{% else %}false{% endif %};
+        var EVENT_LATITUDE = {% if event.latitude %}"{{ event.latitude }}"{% else %}false{% endif %};
+        var EVENT_LONGITUDE = {% if event.longitude %}"{{ event.longitude }}"{% else %}false{% endif %};
+        var EVENT_ARCHIVED = "{% text_snippet 'event_archived' %}";
+        var DEADLINE_ARCHIVED = "{% text_snippet 'deadline_archived' %}";
+        var EVENT_CANCELLED = "{% text_snippet 'event_cancelled' %}";
+        var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
+        var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
+        var STATIC_URL = "{{STATIC_URL}}";
+        {% if event.is_drop %}
+        var IS_DROP = true;
+        {% else %}
+        var IS_DROP = false;
+        {% endif %}
+    </script>
 
 {% compress js %}
     <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
@@ -124,8 +118,11 @@
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_helpers.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_page_rsvp.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_rsvp.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_resume_drop.js"></script>
+    <script src="{{ STATIC_URL }}js/events/event_page_resume_drop.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_checkin.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_archive.js"></script>
@@ -149,24 +146,24 @@
 {% endblock %}
 
 {% block content_area %}
-<div id="event" class="simple_block no_top_padding {% if event.cancelled %}cancelled{% endif %} {% if is_past %}past{% endif %} {% if event.archived %}archived{% endif %}">
+<div id="event" data-is-deadline="{{event.is_deadline}}" data-event-id="{{event.id}}" data-rsvp-url="{% url event_rsvp event_id=event.id %}" {% if event.is_drop %}data-resume_drop-url="{% url event_drop event_id=event.id %}"{% endif %} class="simple_block no_top_padding {% if event.cancelled %}cancelled{% endif %} {% if event.is_past %}past{% endif %} {% if event.archived %}archived{% endif %}">
     {% if show_admin %}
     <div id="event_admin">
-        <h1>{% if is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you)
+        <h1>{% if event.is_deadline %}Deadline{% else %}Event{% endif %} Admin (visible only to you)
             {% if can_edit  %}
-                <a href="{% url event_archive id=event.id %}" class="dark_button archive_event_link">Archive {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
-                <a href="{% url event_cancel id=event.id %}" class="cancel_event_link caution_button">Cancel {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+                <a href="{% url event_archive id=event.id %}" class="dark_button archive_event_link">Archive {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
+                <a href="{% url event_cancel id=event.id %}" class="cancel_event_link caution_button">Cancel {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
                 {% if event.is_rolling_deadline %}
                     <a title="End the rolling deadline" href="{% url rolling_deadline_end id=event.id %}" class="end_rolling_deadline_link caution_button">End Deadline</a>
                 {% endif %}
-                <a href="{% url event_edit id=event.id %}" class="edit_event_link dark_button">Edit {% if is_deadline %}Deadline{% else %}Event{% endif %} </a>
+                <a href="{% url event_edit id=event.id %}" class="edit_event_link dark_button">Edit {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
             {% endif %}
          </h1>
         <div id="event_admin_side">
             <table id="event_numbers">
                 <tr>
                     <td class="number">{{rsvps|length}}</td>
-                    <td class="number_label">{% if is_deadline %}Participating{% else %}Attending{% endif %}</td>
+                    <td class="number_label">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</td>
                 </tr>
                 <tr>
                     <td class="number">{{event.view_count}}</td>
@@ -179,7 +176,7 @@
                 </tr>
                 {% endif %}
             </table>
-            {% if not is_deadline %}
+            {% if not event.is_deadline %}
                 <div id="event_checkin">
                     <h3>Check-in Mode</h3>
                     <a id="event_checkin_link" href="#">
@@ -192,16 +189,16 @@
         <div id="event_admin_main">
              <div id="event_tabs">
                 {% if event.is_public %}
-                    <h2 class="current">RSVP'd {% if is_deadline %}Participating{% else %}Attending{% endif %} ({{rsvps|length}})</h2>
+                    <h2 class="current">RSVP'd {% if event.is_deadline %}Participating{% else %}Attending{% endif %} ({{rsvps|length}})</h2>
                 {% else %}
                     <h2 class="current">Invited ({{invitees|length}})</h2>
-                    <h2>{% if is_deadline %}Participating{% else %}Attending{% endif %} ({{rsvps|length}})</h2>
-                    <h2>Not {% if is_deadline %}Participating{% else %}Attending{% endif %} ({{no_rsvps|length}})</h2>
+                    <h2>{% if event.is_deadline %}Participating{% else %}Attending{% endif %} ({{rsvps|length}})</h2>
+                    <h2>Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %} ({{no_rsvps|length}})</h2>
                 {% endif %}
                 {% if event.is_drop %}
                     <h2>Dropped Resumes ({{dropped_resumes|length}})</h2>
                 {% endif %}
-                {% if not is_deadline %}
+                {% if not event.is_deadline %}
                     <h2>Checked-in ({{attendees|length}})</h2>
                     <h2>All ({{all_responses|length}})</h2>
                 {% endif %}
@@ -230,7 +227,7 @@
                     {% include "event_responses.html" with students=rsvps %}
                 {% else %}
                     <div id="event_response_empty">
-                        Nobody has RSVP'd <strong>{% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.{% if not campus_org_event %} Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.{% endif %}
+                        Nobody has RSVP'd <strong>{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.{% if not campus_org_event %} Visit the <a href="{% url employer_students %}">student filtering page</a> to find and invite students.{% endif %}
                     </div>
                 {% endif %}
             </div>
@@ -240,7 +237,7 @@
                         {% include "event_responses.html" with students=no_rsvps %}
                     {% else %}
                         <div id="event_response_empty">
-                            Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
+                            Nobody has RSVP'd <strong>Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
                         </div>
                     {% endif %}
                 </div>
@@ -257,7 +254,7 @@
                         {% include "event_responses.html" with students=dropped_resumes %}
                     {% else %}
                         <div id="event_response_empty">
-                            Nobody has RSVP'd <strong>Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
+                            Nobody has RSVP'd <strong>Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</strong> yet.
                         </div>
                     {% endif %}
                 </div>
@@ -290,85 +287,11 @@
         <div class="clearfix"></div>
     </div>
     {% endif %}
-    <div id="event_actions">
-        {% if not event.cancelled %}
-            {% if is_past  %}
-                {% if event.is_deadline %}
-                <div class="gray_button deadline_passed_indicator" disabled="disabled">Deadline has passed</div>
-                {% else %}
-                    {% if user.student %}
-                        {% if attended %}
-                            <div class="gray_button" disabled="disabled">You Attended</div> 
-                        {% else %}
-                            <div class="gray_button" disabled="disabled">You didn't attend</div> 
-                        {% endif %}
-                    {% else %}
-                        <div class="gray_button" disabled="disabled">Event Passed</div> 
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-            {% if not is_past %}
-                {% if event.is_public %}
-                    {% if user.is_anonymous %}
-                        <div data-action="rsvp" id="rsvp_button" data-event-id="{{event.id}}" data-title="RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}" class="student_quick_registration_link gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>                    
-                    {% else %}
-                        {% if user.student %}
-                            {% if responded %}
-                                {% if attending %}
-                                    <div id="rsvp_no" class="attending gray_button">{% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
-                                {% else %}
-                                    <div id="rsvp_yes" class="not_attending gray_button">{% if is_deadline %}Not Participating{% else %}Not Attending{% endif %}</div>
-                                {% endif %}
-                            {% else %}
-                                <div id="rsvp_yes" class="gray_button">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
-                            {% endif %}
-                        {% else %}
-                            <div class="gray_button" disabled="disabled">RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
-                        {% endif %}
-                    {% endif %}
-                {% else %}
-                    {% if user.student %}
-                        {% if responded %}
-                            {% if attending %}
-                                <div id="rsvp_no" class="attending gray_button">{% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
-                            {% else %}
-                                <div id="rsvp_yes" class="not_attending gray_button">Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</div>
-                            {% endif %}
-                        {% else %}
-                            <div class="dropdown gray_button">
-                                <span>RSVP</span>
-                                <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
-                                <ul>
-                                    <li id="rsvp_yes">{% if is_deadline %}Participating{% else %}Attending{% endif %}</li>
-                                    <li id="rsvp_no">Not {% if is_deadline %}Participating{% else %}Attending{% endif %}</li>
-                                </ul>
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div id="rsvp_choices" class="gray_button dropdown" disabled="disabled">
-                             <span>RSVP</span>
-                            <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-            {% if event.is_drop %}
-                {% if user.is_anonymous %}
-                    <div data-title="Drop Resume" id="drop_resume_button" data-action="drop" data-event-id="{{event.id}}" class="gray_button student_quick_registration_link">Drop Resume</div>
-                {% else %}                        
-                    {% if dropped_resume %}
-                        <div id="undrop_resume" class="resume_dropped gray_button" >Resume Dropped</div>
-                    {% else %}
-                        <div id="drop_resume" class="gray_button" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</div>
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-        {% endif %}
-        {% if user.recruiter or user.campusorg %}
-            <div class="gray_button archived_indicator" disabled="disabled">Archived</div>
-        {% endif %} 
-        {% if not is_past and not event.cancelled and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
+    <div class="actions">
+        {% include "event_actions.html" %}
+        {% if not event.is_past and not event.cancelled and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
     </div>
+    
     <h1 class="event_title">{{event.name}}{% if not event.is_public %}<span class="private_token">Private</span>{% endif %}<span class="type">{{event.type}}</span></h1>
     <div class="datetime">
         {% if not event.is_rolling_deadline %}
@@ -392,7 +315,7 @@
     </div>
     <div id="event_description" class="main_block">
         <div class="main_block_header">
-            <span class="main_block_header_title">{% if is_deadline %}Deadline{% else %}Event{% endif %} Details</span>
+            <span class="main_block_header_title">{% if event.is_deadline %}Deadline{% else %}Event{% endif %} Details</span>
         </div>
         <div class="main_block_content">
             {% if audience %}

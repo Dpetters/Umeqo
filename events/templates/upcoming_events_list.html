@@ -1,25 +1,43 @@
 {% if happening_now_events %}
     <h3>Happening Now</h3>
     <ul id="event_list" class="event_list">
-    {% for event in happening_now_events %}
-        {% include "event_snippet.html" %}
-    {% endfor %}
+    {% if user.student %}
+        {% for responded, attending, dropped_resume, attended, event in happening_now_events %}
+            {% include "event_snippet.html" %}
+        {% endfor %}    
+    {% else %}    
+        {% for event in happening_now_events %}
+            {% include "event_snippet.html" %}
+        {% endfor %}
+    {% endif %}
    </ul>
 {% endif %}
 {% if later_today_events %}
     <h3>Later Today</h3>
     <ul id="event_list" class="event_list">
-    {% for event in later_today_events %}
-        {% include "event_snippet.html" %}
-    {% endfor %}
+        {% if user.student %}
+            {% for responded, attending, dropped_resume, attended, event in later_today_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}    
+        {% else %}    
+            {% for event in later_today_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% endif %}
    </ul>
 {% endif %}
 {% if tomorrows_events %}
     <h3>Tomorrow</h3>
     <ul id="event_list" class="event_list">
-    {% for event in tomorrows_events %}
-        {% include "event_snippet.html" %}
-    {% endfor %}
+        {% if user.student %}
+            {% for responded, attending, dropped_resume, attended, event in tomorrows_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}    
+        {% else %}    
+            {% for event in tomorrows_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% endif %}
    </ul>
 {% endif %}
 {% if this_weeks_events %}
@@ -33,16 +51,28 @@
 {% if next_weeks_events %}
     <h3>Next Week</h3>
     <ul id="event_list" class="event_list">
-    {% for event in next_weeks_events %}
-        {% include "event_snippet.html" %}
-    {% endfor %}
-   </ul>
+        {% if user.student %}
+            {% for responded, attending, dropped_resume, attended, event in next_weeks_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}    
+        {% else %}    
+            {% for event in next_weeks_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% endif %}
+       </ul>
 {% endif %}
 {% if later_events %}
     <h3>Later</h3>
     <ul id="event_list" class="event_list">
-    {% for event in later_events %}
-        {% include "event_snippet.html" %}
-    {% endfor %}
+        {% if user.student %}
+            {% for responded, attending, dropped_resume, attended, event in later_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}    
+        {% else %}    
+            {% for event in later_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% endif %}
    </ul>
 {% endif %}

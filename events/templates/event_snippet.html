@@ -1,6 +1,6 @@
-<li class="{% if event.cancelled %}cancelled{% endif %} {% if past %}past{% endif %}">
+<li data-event-id="{{event.id}}" data-is-deadline="{{event.is_deadline}}" data-rsvp-url="{% url event_rsvp event_id=event.id %}" {% if event.is_drop %}data-resume_drop-url="{% url event_drop event_id=event.id %}"{% endif %} class="event_snippet{% if event.cancelled %} cancelled{% endif %}{% if past %} past{% endif %}">
     <div class="event_title">
-        <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{{event.get_absolute_url}}">{{event.name}}</a>
+        <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{% if email %}http://{{current_site.domain}}{% endif %}{{event.get_absolute_url}}">{{event.name}}</a>
         <div class="upper_right_div">
         {% if event.location %}
             <span class="location_wrapper">
@@ -9,18 +9,17 @@
         {% endif %}
             <div class="hosted_by">
                 <span>
-                    Hosted by {% include "event_hosted_by.html" %}
+                    Hosted by {% include "event_hosted_by.html" with email=email %}
                 </span>
             </div>
+            {% if user.student or email %}
+                {% include 'event_actions.html' %}
+            {% endif %}
         </div>
     </div>
 
-    {% if user.recruiter and event.owner.recruiter.employer == user.recruiter.employer or user.campusorg and event.owner == user %}
-        {% include 'event_snippet_commands.html' %}
-        <div class="details commands">
-    {% else %}
-        <div class="details">
-    {% endif %}
+    {% include 'event_admin_actions.html' %}
+    <div class="details commands">
         {% if event.cancelled or not event.is_rolling_deadline %}
             <div class="datetime">
                 {% if not event.is_rolling_deadline %}

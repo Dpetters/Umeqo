@@ -15,4 +15,15 @@ $(document).ready(function() {
         p.css("zoom", "auto");
         p.css('background-color','rgba(255,255,255,0.1)');
     });
+
+    $('.navigation_section a').live('click',function(e){
+        var $anchor = $(this);
+        
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 750,'easeInOutExpo');
+        
+        e.preventDefault();
+    });
+    //set_up_side_block_scrolling("#login_button", 0, 0);
 });

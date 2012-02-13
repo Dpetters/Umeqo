@@ -29,7 +29,7 @@ campus_org_name_required = "Organization name is required."
 campus_org_type_required = "Organization type is required."
 
 # Event Page
-drop_resume_tooltip = "Logged-in students can click this button to drop off their resume."
+not_student_drop_resume_tooltip = "Logged-in students can click this button to drop off their resume."
 rsvp_yes_tooltip = "Logged-in students can click this button to RSVP."
 
 # Employer Profile 
@@ -130,7 +130,7 @@ end_datetime_required = "End date and time are required."
 email_required = "What's your email?"
 invalid_email = "Doesn't look like a valid email."
 must_be_mit_email = "Must be an MIT email."
-email_already_registered = "This email is already registered. <a href='#' class='login'>Login now</a>"
+email_already_registered = "This email is already registered."
 password_required = "You need a password!"
 must_be_mit_student = "You must be a student to sign up."
 ldap_server_error = "Can't contact LDAP server. Try again in a few min."

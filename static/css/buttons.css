@@ -232,6 +232,7 @@ input.button {
     font-size: 16px;
 }
 .gray_button {
+    text-align:center;
     background: #eeeeee; /* Old browsers */
     background: -moz-linear-gradient(top, #f9f9f9 0%, #e3e3e3 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f9f9), color-stop(100%,#e3e3e3)); /* Chrome,Safari4+ */
@@ -257,6 +258,8 @@ input.button {
 }
 .gray_button:hover{
     border: 1px solid #888;
+    background: #f9f9f9;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F9F9F9', endColorstr='#F9F9F9',GradientType=0 ); /* IE6-9 */
 }
 .gray_button[disabled]{
     opacity: .5;
@@ -265,7 +268,7 @@ input.button {
     border: 1px solid #BBBBBB;
     cursor:default;
 }
-.gray_button.um-active {
+.gray_button.um-active, .gray_button:active {
     background: #E3E3E3;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E3E3E3', endColorstr='#E3E3E3',GradientType=0 ); /* IE6-9 */
 }
