@@ -227,6 +227,7 @@ label.required span.error {
     
 }
 #employers h1{
+    font-size:60px;
     margin-bottom:45px;
 }
 #students, #employers{
@@ -234,7 +235,7 @@ label.required span.error {
 }
 #employers #testimonials{
     background: rgba(0,0,0,0.1);
-    margin-left:380px;
+    margin-left:410px;
     padding:35px;
 }
 #employers #testimonials em{
@@ -245,7 +246,10 @@ label.required span.error {
     margin-top:3px;
 }
 #employers .features{
-    margin-top:30px;
+    margin-top:40px;
+}
+#employers .features h2{
+    margin-bottom:5px;
 }
 #employers .feature{
     display:inline-block;
@@ -297,7 +301,6 @@ label.required span.error {
 }
 #subscribe_command{
     text-align:right;
-    margin-top:10px;
 }
 #subscribe_command a{
     font-size:32px;
