@@ -33,6 +33,7 @@
         
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
         <!--[if lte IE 8]>
@@ -48,6 +49,7 @@
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_easing/jquery.easing.1.3.js" charset="utf-8"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.js"></script>
+            <script src="{{STATIC_URL}}js/scrolling.js"></script>
             <script src="{{STATIC_URL}}js/landing_page.js"></script>
         {% endcompress %}
         
@@ -76,6 +78,7 @@
                 You have been logged out.
             </div>
         {% endif %}
+        <a id="login_button" class="gray_button" href="{% url login %}">Sign In</a>
         <div id="logo">
             <h1>Umeqo</h1>
             <span id="landing_beta_logo">BETA</span>
@@ -98,12 +101,12 @@
                     <h1>Save Time. Get Noticed.</h1>
                     <div id="student_signup_block" class="light_module">
                        <p class="info">Sign up, drop your resume, and subscribe to the employers you're interested in. We'll take care of the rest.</p>
-                       <form id="student_registration_form" method="POST">
+                       <form id="student_registration_form" action="{% url student_registration %}" method="POST">
                             {% csrf_token %}
-                            {% for field in login_form %}
+                            {% for field in student_reg_form %}
                                 <p>{{field.label_tag}}{{field}}</p>
                             {% endfor %}
-                            <input tabindex="3" class="button" type="submit" value="Create my account" />
+                            <input tabindex="3" class="black_button" type="submit" value="Create my account" />
                             <div class="clearfix"></div>
                         </form>
                         <ul class="features">
