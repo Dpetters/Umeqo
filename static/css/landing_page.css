@@ -208,14 +208,14 @@ label.required span.error {
     text-align:center;
 }
 .navigation_section.big{
-    padding:40px 0px;
+    padding:45px 0px;
 }
 .navigation_section.big a{
     font-size: 52px;
 
 }
 .navigation_section.small{
-    padding:75px 0px;
+    padding:50px 0px 125px;
 }
 .navigation_section.small .col{
     width:260px;
@@ -371,7 +371,7 @@ label.required span.error {
 }
 .contact_us {
     clear: both;
-    padding-top: 75px;
+    padding-top: 77px;
     padding-bottom: 40px;
 }
 .contact_us a {
@@ -451,7 +451,7 @@ label.required span.error {
     margin-top:0px;
 }
 #video{
-    margin:20px 40px;
+    margin:15px 40px;
     background: rgba(0,0,0,0.1);
     height:450px;
 }
