@@ -297,7 +297,7 @@ def get_past_events_sqs(user):
     return events
 
 
-def get_categorized_events_context(events_exist, event_sqs, user=None):
+def get_categorized_events_context(events_exist, event_sqs, user):
     context = {'events_exist':events_exist}
     tomorrow = datetime.combine(date.today() + timedelta(days=1), time())
     happening_now_events = event_sqs.filter(SQ(start_datetime__lt = datetime.now()) | SQ(type="Rolling Deadline")).order_by("end_datetime")

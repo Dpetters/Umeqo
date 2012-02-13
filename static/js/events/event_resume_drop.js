@@ -9,6 +9,7 @@ function resume_drop(drop){
         url:resume_drop_url,
         data: {'drop':drop},
         beforeSend: function(){
+            $("#message_area").html("");
             $(that).html("processing...");
             $(".drop_resume").live('mouseout', function(){
                 resume_drop_mouseout = true;
@@ -19,7 +20,7 @@ function resume_drop(drop){
         },
         success:function() {
             if (drop){
-                $(that).addClass("undrop_resume resume_dropped").removeClass("undrop_resume");
+                $(that).addClass("undrop_resume resume_dropped").removeClass("drop_resume");
                 if(resume_drop_mouseout){
                     $(that).html("Resume Dropped");
                 }else{

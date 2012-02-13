@@ -709,7 +709,7 @@ def events_by_employer(request):
         raise Http404("Student with %d does not exist." % student_id)
     elif student_id:
         student = Student.objects.get(id=student_id)
-    events = map(eventMap, upcoming_events)
+    events = map(event_map, upcoming_events, [request.user]*len(upcoming_events))
     return HttpResponse(simplejson.dumps(events), mimetype="application/json")
 
 

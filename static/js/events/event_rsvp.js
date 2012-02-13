@@ -38,6 +38,7 @@ function rsvp(attending) {
         url: rsvp_url,
         data:{ attending: attending },
         beforeSend:function(){
+            $("#message_area").html("");
             $(that).html("processing...");
             $(".rsvp_no, .rsvp_yes").live('mouseout', function(){
                 rsvp_mouseout = true;
@@ -70,7 +71,7 @@ function rsvp(attending) {
                 }else{
                     if(is_deadline)
                         $(that).html("RSVP Participating");
-                    else                    
+                    else
                         $(that).html("RSVP Attending");
                 }
             }
@@ -80,7 +81,7 @@ function rsvp(attending) {
     
     if (attending) {
         resume_drop_mouseout = true;
-        $("#drop_resume").click();
+        $(".drop_resume").click();
     }
 }
 

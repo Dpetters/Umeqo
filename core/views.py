@@ -378,7 +378,8 @@ def home(request, extra_context=None):
                 return redirect('student_profile')
             subscriptions = [employer.id for employer in request.user.student.subscriptions.all()]
             event_sqs = get_upcoming_events_sqs(request.user).filter(SQ(attending_employers__in=subscriptions) | SQ(invitees=request.user.id))
-            context.update(get_categorized_events_context(len(event_sqs)>0, event_sqs))
+            print event_sqs
+            context.update(get_categorized_events_context(len(event_sqs)>0, event_sqs, request.user))
             context['has_subscriptions'] = len(subscriptions) > 0
             context['TEMPLATE'] = 'student_home.html'
         else:

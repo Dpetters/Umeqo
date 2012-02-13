@@ -243,9 +243,7 @@ $(document).ready( function () {
                     $(e.target).children('ul').toggle();
                 }            
             } else {
-                console.log("here");
                 if (!$(e.target).attr('disabled')) {
-                    console.log($(e.target).children('ul'));
                     $(e.target).closest('ul').toggle();
                 }
             }

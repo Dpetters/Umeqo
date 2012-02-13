@@ -12,19 +12,25 @@ Employers |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employers.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile_preview.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
 {% endcompress %}
 {% include "event_snippet_css.html" %}
 <script>
+    var FIRST_EMPLOYER_ID = {{employer.id}};
+    
     var EMPLOYER_DETAILS_URL = "{% url employer_details %}";
     var EMPLOYERS_URL = "{% url employers %}";
+    var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
     var EMPLOYER_SNIPPETS_URL = "{% url employer_snippets %}";
-    var FIRST_EMPLOYER_ID = {{employer.id}};
     var SUBSCRIBE_URL = "{% url employer_subscribe %}";
     var STATIC_URL = "{{ STATIC_URL }}";
 </script>
 {% compress js %}
 <script src="{{ STATIC_URL }}js/employer/employers.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_directions.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_rsvp.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_resume_drop.js"></script>
+<script src="{{ STATIC_URL }}js/events/event_helpers.js"></script>
 {% endcompress %}
 {% endblock %}
 
