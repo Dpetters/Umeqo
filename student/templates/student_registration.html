@@ -40,7 +40,7 @@ Student Registration |
             <tr>
                 <th>{{form.email.label_tag}}</th>
                 <td>
-                    <div class="errorspace">{{form.email.errors}}</div>
+                    <div class="errorspace">{{form.email.errors|safe}}</div>
                     {{form.email}}
                 </td>
                 <td class="info" rowspan="2">
@@ -53,7 +53,7 @@ Student Registration |
             <tr>
                 <th>{{form.password.label_tag}}</th>
                 <td>
-                    <div class="errorspace">{{form.password.errors}}</div>
+                    <div class="errorspace">{{form.password.errors|safe}}</div>
                     {{form.password}}
                 </td>
             </tr>

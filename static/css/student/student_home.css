@@ -19,3 +19,6 @@
 #no_events_block, #subscribe_to_employers_block{
     padding-top:20px;
 }
+.event_list .details.actions {
+    margin-right:100px;
+}
