@@ -17,11 +17,22 @@
             body {
                 background: url('{{STATIC_URL}}images/landing_bg.png') #55738d;
             }
-            h1 {
+            #logo h1 {
                 background: url('{{STATIC_URL}}images/logo_landing.png') no-repeat center center transparent;
             }
+            #students .features #events{
+                background: url('{{ STATIC_URL }}images/icons/twg_retina/calendar_64.png') no-repeat center center transparent;
+            }
+            #students .features #notifications{
+                background: url('{{ STATIC_URL }}images/icons/twg_retina/paper_plane_64.png') no-repeat center center transparent;
+            }
+            #students .features #profile{
+                background: url('{{ STATIC_URL }}images/icons/twg_retina/man_64.png') no-repeat center center transparent;
+            }
         </style>
+        
         {% compress css %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
         <!--[if lte IE 8]>
@@ -35,12 +46,15 @@
         <![endif]-->
         {% compress js %}
             <script src="{{ STATIC_URL }}lib/jquery/jquery.js" charset="utf-8"></script>
+            <script src="{{ STATIC_URL }}lib/jquery_easing/jquery.easing.1.3.js" charset="utf-8"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.js"></script>
             <script src="{{STATIC_URL}}js/landing_page.js"></script>
         {% endcompress %}
         
         
         <script type="text/javascript">
           var _gaq = _gaq || [];
+          
           _gaq.push(['_setAccount', 'UA-22946783-1']);
           _gaq.push(['_trackPageview']);
         
@@ -51,21 +65,7 @@
           })();
         </script>
     </head>
-    <body>
-        {% if email_error %}
-            <div class="message">
-                The email you've submitted has already been recorded. Thank you for your interest!
-            </div>
-        {% else %}{% if form_error %}
-            <div class="message error">
-                Please check that you've filled out your first name, last name, and email.
-            </div>
-        {% endif %}{% endif %}
-        {% if posted %}
-            <div class="message">
-                Thank you for your interest! You will be included in the next round of invitations.
-            </div>
-        {% endif %}
+    <body id="top">
         {% if deactivated %}
             <div class="message">
                 Thank you for trying out Umeqo!
@@ -76,44 +76,68 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <div id="landing_logo">
+        <div id="logo">
             <h1>Umeqo</h1>
             <span id="landing_beta_logo">BETA</span>
         </div>
         <div class="center">
             <h3 class="tagline"><em>/you-'ME-co/</em>, noun. <strong>Recruiting Made Simple</strong>.</h3>
-            <p id="innovative">Umeqo is a new recruiting resource for students and employers <br/> to <strong>discover</strong> one another.</p>
-            <div id="lotsaforms" class="row">
+            <p id="innovative">A new way for students and employers to <strong>discover</strong> one another.</p>
+            <p id="video">
+                <iframe src="http://player.vimeo.com/video/36535329?title=0&amp;byline=0&amp;portrait=0" width="100%" height="480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </p>
+            <div class="navigation_section big">
+                <p class="col"><a href="#students">For students &#0187;</a></p>
+                <p class="col"><a href="#employers">For employers &#0187;</a></p>
+            </div>
+            <div class="contact_us">
+                <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
+            </div>
+            <div id="students">
                 <div class="col">
-                    <div class="module">
-                        <h2>Already have an account?</h2>
-                        <form action="{% url login %}" method="POST">
+                    <h1>Save Time. Get Noticed.</h1>
+                    <div id="student_signup_block" class="light_module">
+                       <p class="info">Sign up, drop your resume, and subscribe to the employers you're interested in. We'll take care of the rest.</p>
+                       <form id="student_registration_form" method="POST">
                             {% csrf_token %}
                             {% for field in login_form %}
                                 <p>{{field.label_tag}}{{field}}</p>
                             {% endfor %}
-                            <input type="submit" value="Login"/> 
+                            <input tabindex="3" class="button" type="submit" value="Create my account" />
+                            <div class="clearfix"></div>
                         </form>
-                        <div class="clearfix"></div>
-                        <div id="new_account">
-                          <h2>Need an account?</h2>
-                          <p><a href="{% url student_registration %}" class="black_button">Create one now!</a></p>
-                        </div>
+                        <ul class="features">
+                            <li>
+                                <h3>Streamlined Events & Deadlines.</h3>
+                                <p>Google Calendar and Maps intergration. Personal invitations from recruiters. Cancellation notices.</p>
+                                <div id="events" class="image"></div>
+                           </li>
+                            <li>
+                                <h3>Automatic Notifications.</h3>
+                                <p>Subscribe to employers you’re interested in and get notified of their activity.</p>
+                                <div id="notifications" class="image"></div>
+                            </li>
+                            <li>
+                                <h3>Easy-to-Maintain Profile.</h3>
+                                <p>Umeqo automatically indexes your resume, meaning that you have to provide very little info.</p>
+                                <div id="profile" class="image"></div>
+                            </li>
+                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div id="fb-like">
                         <iframe src="http://www.facebook.com/plugins/like.php?app_id=119497238132973&amp;href=umeqo.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:35px;" allowTransparency="true"></iframe>
                     </div>
                 </div>
-                <div class="col">
-                    <p id="working">Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</p>
+                <div id="featured_event" class="col">
+                    <h2>Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
                     <div id="promotion">
                       <h2>Techfair 2012</h2>
                       {% if featured_event.employer %}
-                      <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
+                      <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
                       {% if featured_event.campus_org %}
-                      <a href="{{ featured_event.event.get_absolute_url }}"><img id="logo" src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
+                      <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
                       {% endif %}
                       <p>You are invited to Techfair 2012! The lineup for this year will include a hackathon, an afterparty, a banquet, and a speaker series in addition to the Fair itself.</p>
                       <p>It all starts at 9am on Monday, February 6th. {% if featured_event %}Drop off your resume now on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
@@ -121,32 +145,55 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div id="innovations" class="row">
-                <h2>What’s so innovative?</h2>
-                <div class="col">
-                    <p class="deets top">
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/event.png" /></span>
-                        <span>Streamlined Events/Deadlines.</span> Add events and deadlines to Google Calendar with a click of a button, get directions using Google Maps - never again be misinformed of what to bring and what to wear.
-                    </p>
-                    <p class="deets bottom">
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/email.png" /></span>
-                        <span>Event Invites.</span> Receive invites to both public and private events from employers interested in you.
-                    </p>
+            <div id="firm_section" class="longInfo">
+                <h3 id="firm_name">Firms using Umeqo</h3>
+                <div id="firm_scroller_container">
+                    <div id="firm_thumb_scroller_left">
+                    </div>
+                    <div id="firm_thumb_scroller">
+                        <div id="firm_thumb_container">
+                                {% for employer in employers %}
+                                <div class="firm_thumb_content">
+                                    <a href="#">
+                                    <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            <br/>
+                        </div>
+                    </div>
+                    <div id="firm_thumb_scroller_right"></div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="col">
-                    <p class="deets top">
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/notifications.png" /></span>
-                        <span>Automatic Notifications.</span> Subscribe to employers you’re interested in and get notified when they post new events and deadlines.
-                    </p>
-                    <p class="deets bottom">
-                        <span class="img"><img src="{{ STATIC_URL }}images/landing/maintainprofile.png" /></span>
-                        <span>Easy-to-Maintain Profile.</span> Fill in just a few fields to be discovered by employers. Umeqo indexes your resume and makes your profile searchable so employers can easily find you.
-                    </p>
+                <div class="clear"></div>
+            </div>
+            {% include 'small_navigation_section.html' %}
+            <div id="employers">
+                <h1>Find candidates in minutes.</h1>
+                <div id="overview">
+                    <h2>What is Umeqo?</h2>
+                    <p>Currently available only at MIT, Umeqo is a new recruiting resource that makes discovering and connecting with students easier than ever.</p>
+                    <div class="clearfix"></div>
                 </div>
+                <div id="testimonials">
+                    <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="features">
+                    <h2>With Umeqo you can..</h2>
+                    {% for tutorial in tutorials %}
+                        <div class="feature">
+                            <a href="{{tutorial.get_absolute_url}}">
+                                <img src="{{MEDIA_URL}}{{tutorial.image}}" />
+                                <p class="action">{{tutorial.action}}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <h2 id="subscribe_command">..and much more. <a href="{% url subscription_list %}">Subscribe today!</a></h2>
+                <div class="clearfix"></div>
             </div>
-            <div class="footer">
-                <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
-            </div>
+            {% include 'small_navigation_section.html' %}
         </div>
     </body>
 </html>
