@@ -30,7 +30,7 @@ function rsvp(attending) {
     }
    
     var parent = get_parent(that);
-    var is_deadline = $(parent).data("is-deadline");
+    var is_deadline = $(parent).data("is-deadline")=="True";
     var rsvp_url = $(parent).data("rsvp-url");
     
     $.ajax({

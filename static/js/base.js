@@ -235,7 +235,7 @@ $(document).ready( function () {
             if($(e.target).parent().hasClass("dropdown")){
                 var disabled = $(e.target).parent().attr('disabled');
                 if (!$(e.target).parent().attr('disabled')) {
-                    $(e.target).next("ul").toggle();
+                    $(e.target).nextAll("ul").toggle();
                 }
             } else if ($(e.target).hasClass("dropdown")) {
                 var disabled = $(e.target).parent().attr('disabled');

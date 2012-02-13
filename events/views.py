@@ -703,14 +703,23 @@ def event_rsvp_message(request, extra_context=None):
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 def events_by_employer(request):
-    upcoming_events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(end_datetime__gte=datetime.now()).order_by("end_datetime")
+    events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(end_datetime__gte=datetime.now()).order_by("end_datetime")
     student_id, student = request.GET.get('student_id', None), None
     if student_id and not Student.objects.filter(id=student_id).exists():
         raise Http404("Student with %d does not exist." % student_id)
     elif student_id:
         student = Student.objects.get(id=student_id)
-    events = map(event_map, upcoming_events, [request.user]*len(upcoming_events))
-    return HttpResponse(simplejson.dumps(events), mimetype="application/json")
+    def eventMap(event):
+        invited = False
+        if student and Invitee.objects.filter(event=event, student=student).exists():
+            invited = True
+        return {
+            'id': event.id,
+            'name': event.name,
+            'is_public': event.is_public,
+            'invited': invited,
+        }
+    return HttpResponse(simplejson.dumps(map(eventMap, events)), mimetype="application/json")
 
 
 @login_required
