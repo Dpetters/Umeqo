@@ -1,10 +1,10 @@
 {% if event.owner.campusorg %}
       {% if email %}
+          {{event.owner.campusorg}}
+      {% else %}
           <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link">
               {{event.owner.campusorg}}
           </a>
-      {% else %}
-          {{event.owner.campusorg}}
       {% endif %}
 {% else %}
     {% if user.student %}
