@@ -75,6 +75,7 @@ a {
     text-decoration:underline;
 }
 #login_button{
+    z-index:100;
     margin-top:8px;
     font-weight:normal;
     line-height:30px;

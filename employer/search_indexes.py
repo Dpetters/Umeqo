@@ -17,7 +17,7 @@ class EmployerIndex(indexes.RealTimeSearchIndex):
         return [industry.id for industry in obj.industries.all()]
     
     def prepare_has_public_events(self, obj):
-        return obj.event_set.filter(is_public=True).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).distinct().count() > 0
+        return obj.events_attending.filter(is_public=True).filter(Q(end_datetime__gte=datetime.now().strftime('%Y-%m-%d %H:%M:00')) | Q(type__name="Rolling Deadline")).distinct().count() > 0
     
     def prepare_subscribers(self, obj):
         return [student.user.id for student in obj.subscribers.all()]
