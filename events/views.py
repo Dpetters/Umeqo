@@ -30,7 +30,7 @@ from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
 from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume, notify_about_event
-from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_all_responses, get_dropped_resumes, export_event_list_csv, export_event_list_text
+from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
 from student.models import Student
 
@@ -188,7 +188,6 @@ def event_page(request, id, slug, extra_context=None):
         else:
             no_rsvps = []
             
-        context['all_responses'] = get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees)
         context.update({
         'rsvps':rsvps,
         'no_rsvps': no_rsvps,

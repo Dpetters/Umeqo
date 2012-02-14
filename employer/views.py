@@ -469,15 +469,15 @@ def employer_students(request, extra_context=None):
         if request.GET.has_key('gpa'):
             am_filtering = True
             students = students.filter(gpa__gte = request.GET['gpa'])
-        
+
         if request.GET.has_key('act'):
             am_filtering = True
             students = students.filter(act__gte = request.GET['act'])
-        
+
         if request.GET.has_key('sat_t'):
             am_filtering = True            
             students = students.filter(sat_t__gte = request.GET['sat_t'])
-    
+
         if request.GET.has_key('sat_m'):
             am_filtering = True            
             students = students.filter(sat_m__gte = request.GET['sat_m'])
@@ -485,27 +485,27 @@ def employer_students(request, extra_context=None):
         if request.GET.has_key('sat_v'):
             am_filtering = True            
             students = students.filter(sat_v__gte = request.GET['sat_v'])
-    
+
         if request.GET.has_key('sat_w'):
             am_filtering = True            
             students = students.filter(sat_w__gte = request.GET['sat_w'])
-        
+
         if request.GET.has_key('school_years'):
             am_filtering = True
             students = students.filter(school_year__in = request.GET['school_years'].split('~'))
-            
+
         if request.GET.has_key('graduation_years'):
             am_filtering = True            
             students = students.filter(graduation_year__in = request.GET['graduation_years'].split('~'))
-        
+
         if request.GET.has_key('employment_types'):
             am_filtering = True            
             students = students.filter(looking_for__in = request.GET['employment_types'].split('~'))
-    
+
         if request.GET.has_key('previous_employers'):
             am_filtering = True            
             students = students.filter(previous_employers__in = request.GET['previous_employers'].split('~'))
-        
+
         if request.GET.has_key('industries_of_interest'):
             am_filtering = True            
             students = students.filter(industries_of_interest__in = request.GET['industries_of_interest'].split('~'))
@@ -513,11 +513,11 @@ def employer_students(request, extra_context=None):
         if request.GET.has_key('languages'):
             am_filtering = True            
             students = students.filter(languages__in = request.GET['languages'].split('~'))
-        
+
         if request.GET.has_key('campus_orgs'):
             am_filtering = True            
             students = students.filter(campus_involvement__in = request.GET['campus_orgs'].split('~'))
-    
+
         if request.GET.has_key('countries_of_citizenship'):
             am_filtering = True            
             students = students.filter(countries_of_citizenship__in =  request.GET['countries_of_citizenship'].split('~'))
@@ -543,10 +543,10 @@ def employer_students(request, extra_context=None):
 
         if start_index + results_per_page >= count:
           results_per_page = count - start_index
- 
+
         ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
         padded_ordered_results = ['']*count
-        
+
         for i in range(len(ordered_results)):
           padded_ordered_results[i + start_index] = ordered_results[i]
 

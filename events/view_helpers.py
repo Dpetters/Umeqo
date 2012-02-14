@@ -1,9 +1,9 @@
 import csv
-
+from itertools import imap
 from django.db.models import Q
 
 from datetime import datetime, timedelta, date, time
-
+from collections import defaultdict
 from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
 from core.view_helpers import search
 from events.choices import ALL
@@ -54,9 +54,7 @@ def buildAttendee(obj):
     return output
 
 def buildRSVP(obj):
-    output = {
-        'id': obj.student.id,
-        'is_verified': obj.student.user.userattributes.is_verified,
+    output = {'id': obj.student.id,'is_verified': obj.student.user.userattributes.is_verified,
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.strftime("%Y-%m-%d %H:%M:%S"),
         'email': obj.student.user.email,
@@ -186,27 +184,63 @@ def event_filtering_helper(category, request):
         
         return events_exist, [sr.object for sr in events_sqs.load_all()]
 
-
+# I use imap over maps which is slower by ~.2 seconds but a lot easier on the memory
 # RSVPS must be active users, aka be active or have quick-registered
 def get_rsvps(event):
-    return map(buildRSVP, event.rsvp_set.filter(attending=True, student__user__is_active=True).order_by('student__first_name'))
+    obj = event.rsvp_set.select_related(
+          'student',
+          'student__first_name',
+          'student__last_name',
+          'student__id',
+          'student__graduation_year',
+          'student__school_year',
+          'student__user__email',
+          'student__user__userattributes__is_verified').filter(attending=True, student__user__is_active=True).order_by('student__first_name').iterator()
+    return imap(buildRSVP, obj)
 
 
 # RSVPS must be active users, aka be active or have quick-registered
 def get_no_rsvps(event):
-    return map(buildRSVP, event.rsvp_set.filter(attending=False, student__user__is_active=True).order_by('student__first_name'))
+    obj = event.rsvp_set.select_related(
+          'student',
+          'student__first_name',
+          'student__last_name',
+          'student__id',
+          'student__graduation_year',
+          'student__school_year',
+          'student__user__email',
+          'student__user__userattributes__is_verified').filter(attending=False, student__user__is_active=True).order_by('student__first_name').iterator()
+    return imap(buildRSVP, obj)
 
 
 def get_attendees(event):
     # Attendees are ordred by "name" instead of student__first_name
     # because not all instances have a student foreignkey
-    return map(buildAttendee, event.attendee_set.filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name'))
+    obj = event.attendee_set.select_related(
+          'name',
+          'student',
+          'student__first_name',
+          'student__last_name',
+          'student__id',
+          'student__graduation_year',
+          'student__school_year',
+          'student__user__email',
+          'student__user__userattributes__is_verified').filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name').iterator()
+    return imap(buildAttendee, obj)
 
 
 # Dropped resumes must be active users, aka be active or have quick-registered
 def get_dropped_resumes(event):
-    return map(buildRSVP, event.droppedresume_set.filter(student__user__is_active = True).order_by('student__first_name'))
-
+    obj = event.droppedresume_set.select_related(
+          'student',
+          'student__first_name',
+          'student__last_name',
+          'student__id',
+          'student__graduation_year',
+          'student__school_year',
+          'student__user__email',
+          'student__user__userattributes__is_verified').filter(student__user__is_active = True).order_by('student__first_name').iterator()
+    return imap(buildRSVP, obj)
 
 # Dropped resumes must be active users, aka be active
 def get_invitees(event):
