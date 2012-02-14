@@ -3,7 +3,6 @@ from itertools import imap
 from django.db.models import Q
 
 from datetime import datetime, timedelta, date, time
-from collections import defaultdict
 from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
 from core.view_helpers import search
 from events.choices import ALL
@@ -54,7 +53,8 @@ def buildAttendee(obj):
     return output
 
 def buildRSVP(obj):
-    output = {'id': obj.student.id,'is_verified': obj.student.user.userattributes.is_verified,
+    output = {'id': obj.student.id,
+        'is_verified': obj.student.user.userattributes.is_verified,
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.strftime("%Y-%m-%d %H:%M:%S"),
         'email': obj.student.user.email,
