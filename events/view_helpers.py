@@ -1,5 +1,5 @@
 import csv
-from itertools import imap
+
 from django.db.models import Q
 
 from datetime import datetime, timedelta, date, time
@@ -195,8 +195,8 @@ def get_rsvps(event):
           'student__graduation_year',
           'student__school_year',
           'student__user__email',
-          'student__user__userattributes__is_verified').filter(attending=True, student__user__is_active=True).order_by('student__first_name').iterator()
-    return imap(buildRSVP, obj)
+          'student__user__userattributes__is_verified').filter(attending=True, student__user__is_active=True).order_by('student__first_name')
+    return map(buildRSVP, obj)
 
 
 # RSVPS must be active users, aka be active or have quick-registered
@@ -209,8 +209,8 @@ def get_no_rsvps(event):
           'student__graduation_year',
           'student__school_year',
           'student__user__email',
-          'student__user__userattributes__is_verified').filter(attending=False, student__user__is_active=True).order_by('student__first_name').iterator()
-    return imap(buildRSVP, obj)
+          'student__user__userattributes__is_verified').filter(attending=False, student__user__is_active=True).order_by('student__first_name')
+    return map(buildRSVP, obj)
 
 
 def get_attendees(event):
@@ -225,8 +225,8 @@ def get_attendees(event):
           'student__graduation_year',
           'student__school_year',
           'student__user__email',
-          'student__user__userattributes__is_verified').filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name').iterator()
-    return imap(buildAttendee, obj)
+          'student__user__userattributes__is_verified').filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name')
+    return map(buildAttendee, obj)
 
 
 # Dropped resumes must be active users, aka be active or have quick-registered
@@ -239,8 +239,8 @@ def get_dropped_resumes(event):
           'student__graduation_year',
           'student__school_year',
           'student__user__email',
-          'student__user__userattributes__is_verified').filter(student__user__is_active = True).order_by('student__first_name').iterator()
-    return imap(buildRSVP, obj)
+          'student__user__userattributes__is_verified').filter(student__user__is_active = True).order_by('student__first_name')
+    return map(buildRSVP, obj)
 
 # Dropped resumes must be active users, aka be active
 def get_invitees(event):
