@@ -408,7 +408,7 @@ def employer_student_event_attendance(request):
         raise Http400("Request GET is missing the student_id.")
     context={}
     student = Student.objects.visible().get(id=request.GET['student_id'])
-    context['events'] = request.user.recruiter.employer.event_set.filter(attendee__student=student)
+    context['events'] = request.user.recruiter.employer.events_attending.filter(attendee__student=student)
     context['student'] = student
     return context
 

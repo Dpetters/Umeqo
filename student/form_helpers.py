@@ -46,7 +46,7 @@ def student_lists_as_choices(recruiter_id):
                 else:
                     student_lists.append([0, student_list[1]])
         elif student_list_type[0] == student_enums.EVENT:
-            events = e.event_set.all()
+            events = e.events_attending.all()
             for index, event in enumerate(events):
                 if index == 0 and not e.subscribed_annually() and not event.is_drop:
                     student_lists.append([event.id, event.name.replace("\"", "\'") + " RSVPs", "selected=\"selected\""])
