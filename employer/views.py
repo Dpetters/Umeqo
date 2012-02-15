@@ -539,16 +539,16 @@ def employer_students(request, extra_context=None):
         count = students.count()
 
         if start_index > count:
-          start_index = 0
+            start_index = 0
 
         if start_index + results_per_page >= count:
-          results_per_page = count - start_index
+            results_per_page = max(1, count - start_index)
 
         ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
         padded_ordered_results = ['']*count
 
         for i in range(len(ordered_results)):
-          padded_ordered_results[i + start_index] = ordered_results[i]
+            padded_ordered_results[i + start_index] = ordered_results[i]
 
         paginator = DiggPaginator(padded_ordered_results, results_per_page, body=5, padding=1, margin=2)
         context['filtering'] = am_filtering
