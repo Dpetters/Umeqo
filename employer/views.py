@@ -25,7 +25,7 @@ from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
 
-from core.view_helpers import search
+from core.search import search
 from haystack.query import SearchQuerySet, SQ
 from events.models import Event
 from core.digg_paginator import DiggPaginator
