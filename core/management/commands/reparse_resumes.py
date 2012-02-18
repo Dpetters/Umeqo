@@ -10,6 +10,7 @@ from student.view_helpers import process_resume
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--win', action='store_true', dest='win', default=False, help='Use the version of pdftotext for windows.'),
+        make_option('--all', action='store_true', dest='all', default=False, help='Reparse all resumes.'),
         make_option('--dry', action='store_true', dest='dry', default=False, help='Print out the names of people whose resumes could not be parsed for keywords.'),
     )
     
@@ -18,7 +19,10 @@ class Command(BaseCommand):
             hacked_resumes = []
             unparsable_resumes = []
             
-            for student in Student.objects.filter(profile_created=True, user__is_active=True).filter(Q(keywords=None) | Q(keywords="")):
+            students = Student.objects.filter(profile_created=True, user__is_active=True)
+            if not options["all"]:
+                students = students.filter(Q(keywords=None) | Q(keywords=""))
+            for student in students:
                 name = "%s %s" % (student.first_name, student.last_name)
                 if options['dry']:
                     print name

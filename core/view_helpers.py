@@ -7,7 +7,49 @@ from core.decorators import is_student, is_recruiter, is_campus_org
 from core import enums as core_enums
 
 def search(sqs, query):
-    return sqs.filter(text=query.lower())
+    or_terms = map(lambda x: x.strip(), query.split("OR"))
+    print or_terms
+    for i, query in enumerate(or_terms):
+        # Pull out anything wrapped in quotes and do an exact match on it.
+        open_quote_position = None
+        non_exact_query = query
+        print query
+        for offset, char in enumerate(query):
+            if char == '"':
+                if open_quote_position != None:
+                    current_match = non_exact_query[open_quote_position + 1:offset]
+    
+                    if current_match:
+                        print sqs.query.clean(current_match)
+                        sqs = sqs.filter(text__exact=sqs.query.clean(current_match))
+    
+                    non_exact_query = non_exact_query.replace('"%s"' % current_match, '', 1)
+                    open_quote_position = None
+                else:
+                    open_quote_position = offset
+        
+        # Pseudo-tokenize the rest of the query.
+        keywords = non_exact_query.split()
+        
+        # Loop through keywords and add filters to the query.
+        for keyword in keywords:
+            exclude = False
+            
+            if keyword.startswith('-') and len(keyword) > 1:
+                keyword = keyword[1:]
+                exclude = True
+            
+            cleaned_keyword = sqs.query.clean(keyword)
+            
+            if exclude:
+                sqs = sqs.exclude(content=cleaned_keyword)
+            else:
+                if i==0:
+                    sqs = sqs.filter(text=cleaned_keyword)                
+                else:
+                    sqs = sqs.filter_or(text=cleaned_keyword)
+    
+    return sqs
 
 def get_audiences(user):
     if is_student(user):
