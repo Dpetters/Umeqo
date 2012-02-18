@@ -24,7 +24,7 @@ from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, search
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
