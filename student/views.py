@@ -239,7 +239,6 @@ def student_account_preferences(request, preferences_form_class = StudentPrefere
 def student_registration(request, backend = RegistrationBackend(), form_class = StudentRegistrationForm, success_url = 'student_registration_complete', extra_context = None):
     if not backend.registration_allowed(request):
         return redirect('student_registration_closed')
-    
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():

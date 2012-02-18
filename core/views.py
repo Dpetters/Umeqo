@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
@@ -22,17 +21,17 @@ from django.views.decorators.http import require_GET, require_http_methods
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
 from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
-from core.forms import BetaForm, AkismetContactForm
+from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
-from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions, search
+from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
 from events.view_helpers import get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
-from registration.models import InterestedPerson
+from student.forms import StudentRegistrationForm
 from student.models import Student
 
 
@@ -312,7 +311,6 @@ def landing_page_wrapper(request, extra_context=None):
 @require_http_methods(["POST", "GET"])
 @render_to('landing_page.html')
 def landing_page(request, extra_context = None):
-    form_class = BetaForm
     
     posted = False
     disabled = False
@@ -323,35 +321,29 @@ def landing_page(request, extra_context = None):
     if request.GET.get('action', None) == 'logged-out':
         loggedout = True
     
-    if request.method=="POST":
-        form = form_class(request.POST)
-        if form.is_valid():
-            person = form.save(commit=False)
-            person.ip_address = request.META['REMOTE_ADDR']
-            person.save()
-            
-            subject = "[Umeqo] "+form.cleaned_data['email']+" signed up via landing page"
-            message = "%s %s (%s) signed up!" % (form.cleaned_data['first_name'],form.cleaned_data['last_name'],form.cleaned_data['email'])
-            sender = s.DEFAULT_FROM_EMAIL
-            recipients = map(lambda n: n[1], s.ADMINS)
-            send_mail(subject,message,sender,recipients)
-            posted = True
-            disabled = True
-        else:
-            if InterestedPerson.objects.filter(email=request.POST.get('email')).exists():
-                email_error = True
-            form_error = True
-    else:
-        form = form_class()
+    recruiter_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
+    tutorials = Tutorial.objects.filter(display=True, audience__in = recruiter_audience).order_by("sort_order")
+    landing_page_tutorials = ["Find Candidates",
+                              "Create & Deliver Resume Books",
+                              "Browse RSVPs & Attendees",
+                              "Create Events & Deadlines",
+                              "Send Invitations",
+                              "Create Account for Co-Workers",
+                              "Publish Your Company Profile",
+                              "Check Students In"]
+    tutorials = tutorials.filter(action__in = landing_page_tutorials)
 
     context = {
-            'form': form,
-            'posted': posted,
-            'disabled': disabled,
-            'loggedout': loggedout,
-            'form_error': form_error,
-            'email_error': email_error,
+        'student_reg_form': StudentRegistrationForm(),
+        'posted': posted,
+        'disabled': disabled,
+        'loggedout': loggedout,
+        'form_error': form_error,
+        'email_error': email_error,
+        'tutorials': tutorials,
+        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
     }
+
     if FeaturedEvent.objects.all().exists():
         context['featured_event'] = FeaturedEvent.objects.all().order_by("date_created")[0]
         
@@ -378,7 +370,7 @@ def home(request, extra_context=None):
                 return redirect('student_profile')
             subscriptions = [employer.id for employer in request.user.student.subscriptions.all()]
             event_sqs = get_upcoming_events_sqs(request.user).filter(SQ(attending_employers__in=subscriptions) | SQ(invitees=request.user.id))
-            context.update(get_categorized_events_context(len(event_sqs)>0, event_sqs))
+            context.update(get_categorized_events_context(len(event_sqs)>0, event_sqs, request.user))
             context['has_subscriptions'] = len(subscriptions) > 0
             context['TEMPLATE'] = 'student_home.html'
         else:

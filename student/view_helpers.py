@@ -33,15 +33,14 @@ def resume_processing_helper(pdf_file_path):
         # Words that we want to parse out of the resume keywords
         stopWords = set(open(s.ROOT + "/student/stop_words/common.txt").read().split(os.linesep))
         # Get rid of stop words
-        fullWords = re.findall(r'[a-zA-Z0-9]{3,}', resume_text)
+        fullWords = re.findall(r'[a-zA-Z0-9]+', resume_text)
         result = ""
         count = 0
         for word in fullWords:
             word = word.lower()
-            if word not in stopWords:
-                count += 1
-                result += " " + word
-        if count > 2500:
+            count += 1
+            result += " " + word
+        if count > 3000:
             return RESUME_PROBLEMS.HACKED
         elif count == 0:
             return RESUME_PROBLEMS.UNPARSABLE

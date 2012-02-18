@@ -5,6 +5,7 @@ import cStringIO
 import mimetypes
 import os
 import re
+import zipfile
 
 from datetime import datetime, date
 from pyPdf import PdfFileWriter, PdfFileReader
@@ -13,7 +14,6 @@ from reportlab.pdfgen.canvas import Canvas
 
 from django.conf import settings as s
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.cache import cache
 from django.core.files import File
 from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
@@ -24,6 +24,12 @@ from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
+
+from core.search import search
+from haystack.query import SearchQuerySet, SQ
+from events.models import Event
+from core.digg_paginator import DiggPaginator
+
 from core.decorators import agreed_to_terms, has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.email import send_html_mail
 from core import messages, enums as core_enums
@@ -32,7 +38,7 @@ from core.models import Industry
 from employer import enums as employer_enums
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
-from employer.view_helpers import get_cached_paginator, employer_search_helper, process_results
+from employer.view_helpers import employer_search_helper, process_results, get_students_in_resume_book, order_results
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
@@ -318,8 +324,9 @@ def employer_student_comment(request):
         student_comment = EmployerStudentComment.objects.get(student=student, employer=request.user.recruiter.employer)
     except EmployerStudentComment.DoesNotExist:
         EmployerStudentComment.objects.create(employer = request.user.recruiter.employer, student=student, comment=comment)
-    student_comment.comment = comment
-    student_comment.save()
+    else:
+        student_comment.comment = comment
+        student_comment.save()
     return HttpResponse()
 
 
@@ -402,7 +409,7 @@ def employer_student_event_attendance(request):
         raise Http400("Request GET is missing the student_id.")
     context={}
     student = Student.objects.visible().get(id=request.GET['student_id'])
-    context['events'] = request.user.recruiter.employer.event_set.filter(attendee__student=student)
+    context['events'] = request.user.recruiter.employer.events_attending.filter(attendee__student=student)
     context['student'] = student
     return context
 
@@ -427,44 +434,132 @@ def employer_resume_book_history(request, extra_context=None):
 def employer_students(request, extra_context=None):
     context = {}
     if request.is_ajax():
-        cached_page = cache.get("page")
-        if cached_page and cached_page != int(request.GET['page']):
-            cache.set("page", int(request.GET['page']))
+        student_list = request.GET['student_list']
+        student_list_id = request.GET['student_list_id']
+        recruiter = request.user.recruiter
+        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1] and recruiter.employer.subscribed_annually():
+            students = SearchQuerySet().models(Student).filter(visible=True)
         else:
-            if not cached_page:
-                cache.set("page", int(request.GET['page']))
-            cached_results_per_page = cache.get('results_per_page')
-            if cached_results_per_page and cached_results_per_page != int(request.GET['results_per_page']):
-                cache.set('results_per_page', int(request.GET['results_per_page']))
-                cache.delete('paginator')
+            if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
+                students = get_students_in_resume_book(recruiter)
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
+                students = recruiter.employer.starred_students.all()
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
+                try:
+                    resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
+                except ResumeBook.DoesNotExist:
+                    resume_book = ResumeBook.objects.create(recruiter = recruiter)
+                students = resume_book.students.visible()
             else:
-                if not cached_results_per_page:
-                    cache.set('results_per_page', int(request.GET['results_per_page']))
-                cached_ordering = cache.get('ordering')
-                if cached_ordering and cached_ordering != request.GET['ordering']:
-                    cache.set('ordering', request.GET['ordering'])
-                    cache.delete('paginator')
-                    cache.delete('ordered_results')
+                parts = student_list.split(" ")
+                if parts[-1] == "RSVPs" or parts[-1] == "Attendees" or parts[-1] == "Drop" and parts[-2] == "Resume":
+                    try:
+                        e = Event.objects.get(id = student_list_id)
+                    except:
+                        raise Http404
+                    if parts[-1] == "RSVPs":
+                        students = Student.objects.visible().filter(rsvp__in=e.rsvp_set.filter(attending=True), profile_created=True)
+                    elif parts[-1] == "Attendees":
+                        students = Student.objects.visible().filter(attendee__in=e.attendee_set.all(), profile_created=True)
+                    elif parts[-1] == "Drop" and parts[-2] == "Resume":
+                        students = Student.objects.visible().filter(droppedresume__in=e.droppedresume_set.all(), profile_created=True)
                 else:
-                    if not cached_ordering:
-                        cache.set('ordering', request.GET['ordering'])                  
-                    cache.delete('paginator')
-                    cache.delete('ordered_results')
-                    cache.delete('results')
+                    students = ResumeBook.objects.get(id = student_list_id).students.visible()
+            students = SearchQuerySet().models(Student).filter(obj_id__in = [student.id for student in students])
+        am_filtering = False
+        if request.GET.has_key('gpa'):
+            am_filtering = True
+            students = students.filter(gpa__gte = request.GET['gpa'])
 
-        filtering, current_paginator = get_cached_paginator(request)
-        context['filtering'] = filtering
-        
+        if request.GET.has_key('act'):
+            am_filtering = True
+            students = students.filter(act__gte = request.GET['act'])
+
+        if request.GET.has_key('sat_t'):
+            am_filtering = True            
+            students = students.filter(sat_t__gte = request.GET['sat_t'])
+
+        if request.GET.has_key('sat_m'):
+            am_filtering = True            
+            students = students.filter(sat_m__gte = request.GET['sat_m'])
+            
+        if request.GET.has_key('sat_v'):
+            am_filtering = True            
+            students = students.filter(sat_v__gte = request.GET['sat_v'])
+
+        if request.GET.has_key('sat_w'):
+            am_filtering = True            
+            students = students.filter(sat_w__gte = request.GET['sat_w'])
+
+        if request.GET.has_key('school_years'):
+            am_filtering = True
+            students = students.filter(school_year__in = request.GET['school_years'].split('~'))
+
+        if request.GET.has_key('graduation_years'):
+            am_filtering = True            
+            students = students.filter(graduation_year__in = request.GET['graduation_years'].split('~'))
+
+        if request.GET.has_key('employment_types'):
+            am_filtering = True            
+            students = students.filter(looking_for__in = request.GET['employment_types'].split('~'))
+
+        if request.GET.has_key('previous_employers'):
+            am_filtering = True            
+            students = students.filter(previous_employers__in = request.GET['previous_employers'].split('~'))
+
+        if request.GET.has_key('industries_of_interest'):
+            am_filtering = True            
+            students = students.filter(industries_of_interest__in = request.GET['industries_of_interest'].split('~'))
+    
+        if request.GET.has_key('languages'):
+            am_filtering = True            
+            students = students.filter(languages__in = request.GET['languages'].split('~'))
+
+        if request.GET.has_key('campus_orgs'):
+            am_filtering = True            
+            students = students.filter(campus_involvement__in = request.GET['campus_orgs'].split('~'))
+
+        if request.GET.has_key('countries_of_citizenship'):
+            am_filtering = True            
+            students = students.filter(countries_of_citizenship__in =  request.GET['countries_of_citizenship'].split('~'))
+            
+        if request.GET['older_than_21'] != 'N':
+            am_filtering = True
+            students = students.filter(older_than_21 = True)
+
+        if request.GET.has_key('courses'):
+            am_filtering = True
+            courses = request.GET['courses'].split('~')
+            students = students.filter(SQ(first_major__in = courses)|SQ(second_major__in = courses))
+
+        if request.GET.has_key('query'):
+            students = search(students, request.GET['query'])
+
+        results_per_page = int(request.GET['results_per_page'])
+        start_index = results_per_page * (int(request.GET['page']) - 1)
+        count = students.count()
+
+        if start_index > count:
+            start_index = 0
+
+        ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
+        padded_ordered_results = ['']*count
+
+        for i in range(len(ordered_results)):
+            padded_ordered_results[i + start_index] = ordered_results[i]
+
+        paginator = DiggPaginator(padded_ordered_results, results_per_page, body=5, padding=1, margin=2)
+        context['filtering'] = am_filtering
+
         try:
-            page = current_paginator.page(request.GET['page'])
+            page = paginator.page(request.GET['page'])
         except EmptyPage:
-            page = current_paginator.page(1)
+            page = paginator.page(1)
         
         context['page'] = page
         context['results'] = process_results(request.user.recruiter, page)
         context['current_student_list'] = request.GET['student_list']
-        context['total_results_num'] = page.paginator.count
-        
+        context['total_results_num'] = count
 
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
@@ -479,10 +574,6 @@ def employer_students(request, extra_context=None):
         context.update(extra_context or {}) 
         return context
     else:
-        cache.delete('paginator')
-        cache.delete('ordered_results')
-        cache.delete('results')
-
         page_messages = {
             'NO_STUDENTS_SELECTED_MESSAGE': messages.no_students_selected,
             'WAIT_UNTIL_RESUME_BOOK_IS_READY_MESSAGE': messages.wait_until_resume_book_is_ready
@@ -601,6 +692,13 @@ def employer_resume_book_current_create(request):
     resume_book_contents.close()
     return HttpResponse()
 
+
+@agreed_to_terms
+@user_passes_test(is_recruiter)
+@has_any_subscription
+@require_POST
+def employer_resume_book_current_create_zip(request):
+    return 1
 
 @require_POST
 @agreed_to_terms

@@ -24,6 +24,7 @@ kombu==1.5.1
 paramiko==1.7.7.1
 pyPdf==1.13
 pycrypto==2.3
+pydkim==0.3
 pysolr==2.0.15
 python-ldap==2.4.6
 reportlab==2.5

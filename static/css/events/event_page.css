@@ -1,9 +1,16 @@
-#event_actions {
+.actions {
     position:absolute;
     right:0px;
     text-align:center;
     margin-top:10px;
     margin-bottom:8px;
+}
+.actions .gray_button{
+    margin-bottom:7px;
+    height:30px;
+    line-height: 29px;
+    width:134px;
+    display:block;
 }
 #event_admin_main .commands {
     margin: -20px -4px 0 0;
@@ -20,7 +27,7 @@
     margin-left: 10px;
     vertical-align: top;
     display: inline-block;
-    padding: 2px 5px 5px 6px;
+    padding: 2px 5px 3px 6px;
     border-radius: 3px;
 }
 .datetime {
@@ -40,13 +47,13 @@
 #event.cancelled #add_to_google_calendar, #event.past #add_to_google_calendar{
     display:none !important;
 }
-#event.cancelled #drop_resume, #event.past #drop_resume{
+#event.cancelled .drop_resume{
     display:none !important;
 }
-#event.cancelled #rsvp_yes, #event.past #rsvp_yes{
+#event.cancelled .rsvp_yes, #event.past .rsvp_yes{
     display:none !important;
 }
-#event.cancelled #rsvp_choices, #event.past #rsvp_choices{
+#event.cancelled .rsvp_choices, #event.past .rsvp_choices{
     display:none !important;
 }
 #event.cancelled .not_cancelled_or_past_commands, #event.past .not_cancelled_or_past_commands{

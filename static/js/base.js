@@ -232,12 +232,10 @@ $(document).ready( function () {
     
     $('.dropdown').live('click', 
         function (e) {
-            console.log($(e.target).parent());
-            console.log($(e.target).parent().hasClass("dropdown"));
             if($(e.target).parent().hasClass("dropdown")){
                 var disabled = $(e.target).parent().attr('disabled');
                 if (!$(e.target).parent().attr('disabled')) {
-                    $(e.target).next().toggle();
+                    $(e.target).nextAll("ul").toggle();
                 }
             } else if ($(e.target).hasClass("dropdown")) {
                 var disabled = $(e.target).parent().attr('disabled');
@@ -245,9 +243,7 @@ $(document).ready( function () {
                     $(e.target).children('ul').toggle();
                 }            
             } else {
-                console.log("here");
                 if (!$(e.target).attr('disabled')) {
-                    console.log($(e.target).children('ul'));
                     $(e.target).closest('ul').toggle();
                 }
             }

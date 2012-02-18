@@ -1,0 +1,106 @@
+<style type="text/css">
+    ul.event_list {
+        list-style: none;
+        border-top: 1px solid #DDD;
+        margin-top:3px;
+    }
+    .event_list p {
+        padding: 3px;
+    }
+    .event_list .event_snippet {
+        clear: both;
+        padding:7px 5px 3px;
+        background-color: #F6F6F6;
+        border-bottom: 1px solid #DDD;
+        position: relative;
+        min-height: 30px;
+    }
+    .event_list .event_title {
+        font-size: 16px;
+    }
+    .event_list .upper_right_div {
+        display: inline-block;
+        margin-top:2px;
+        padding-left:10px;
+        font-size: 12px;
+        float: right;
+        color:#555;
+        text-align:right;
+    }
+    .event_list .upper_right_div .location_wrapper{
+        position:relative;
+        bottom:3px;
+    }
+    .event_list .type,
+    .event_list .private_token {
+        font-size: 11px;
+        display: inline-block;
+        padding: 2px 4px;
+        vertical-align: top;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+    }
+    .event_list .details {
+        margin: 5px 3px;
+        color: #666;
+    }
+    .event_list .details.commands {
+        margin-right:170px;
+    }
+    .event_list .datetime{
+        margin-bottom:4px;
+        color:#555;
+    }
+    .event_list .cancelled_warning{
+        color:#D00;
+        font-weight:bold;
+    }
+    .cancelled_warning{
+        display:none;
+    }
+    .event_list li .cancelled_or_past_commands{
+        display:none;
+    }
+    .event_list li.cancelled .cancelled_or_past_commands, .event_list li.past .cancelled_or_past_commands{
+        display:inline;
+    }
+    .event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
+        display:none;
+    }
+    .event_list .actions {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        color: #666;
+    }
+    .event_list .actions a {
+        text-align: right;
+        display: inline-block;
+        padding: 1px 3px;
+        color: #BBB;
+    }
+    .upper_right_div .gray_button{
+        margin-top:5px;
+        width:149px;
+        display:block;
+        float:right;
+        clear:right;
+    }
+    .event_list li:hover .actions a {
+        color: #6E97B9;
+    }
+    .event_list .actions a:hover {
+        background-color: #EEE;
+    }
+    .event_list .dropdown ul li{
+        width:147px;
+    }
+    .post_quick_registration_event_action_button:hover{
+        cursor:default;
+    }
+    .actions .dropdown ul{
+        left:-1px;
+        top:30px;
+        min-width:140px;
+    }
+</style>

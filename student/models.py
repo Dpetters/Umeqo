@@ -29,7 +29,7 @@ class StudentInvite(core_mixins.DateTracking):
 class StudentBaseAttributes(models.Model):
     previous_employers = models.ManyToManyField('employer.Employer', blank = True, null=True, symmetrical=False)
     industries_of_interest = models.ManyToManyField(Industry, blank = True, null=True)
-    gpa = models.DecimalField(max_digits = 5, decimal_places = 3, blank = True, null=True)    
+    gpa = models.FloatField(blank = True, null=True)    
     sat_t = models.PositiveSmallIntegerField(blank = True, null=True)
     sat_m = models.PositiveSmallIntegerField(blank = True, null=True)
     sat_v = models.PositiveSmallIntegerField(blank = True, null=True)
@@ -49,7 +49,7 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
     profile_created = models.BooleanField(default=False)
     
     keywords = models.TextField(blank=True, null=True)
-    first_name = models.CharField(max_length = 20, blank = True, null=True)
+    first_name = models.CharField(db_index = True, max_length = 20, blank = True, null=True)
     last_name = models.CharField(max_length = 30, blank = True, null=True)
     school_year = models.ForeignKey(SchoolYear, blank = True, null=True)
     graduation_year = models.ForeignKey(GraduationYear, blank = True, null=True)
@@ -114,6 +114,7 @@ class StudentPreferences(core_mixins.DateTracking):
     email_on_invite_to_public_event = models.BooleanField(default=True)
     email_on_invite_to_private_event = models.BooleanField(default=True)
     email_on_new_subscribed_employer_event = models.BooleanField(default=True)
+    receive_monthly_newsletter = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Student Preferences"

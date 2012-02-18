@@ -155,7 +155,6 @@ $(document).ready( function() {
             onload : function (e) {
                 data = $.parseJSON(e.currentTarget.responseText);
                 up.uploading = false;
-                console.log(data);
                 if(data.valid) {
                     currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
                         up.$dropbox.removeClass('uploading').addClass('success');
@@ -167,7 +166,6 @@ $(document).ready( function() {
                         var $unparsable_resume_dialog = open_unparsable_resume_dialog();
                         $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
                         var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-                        console.log("about sending ajax");
                         $.ajax({
                             dataType: "html",
                             url: UNPARSABLE_RESUME_URL + "?home=true",

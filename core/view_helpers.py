@@ -6,8 +6,6 @@ from employer.models import Employer
 from core.decorators import is_student, is_recruiter, is_campus_org
 from core import enums as core_enums
 
-def search(sqs, query):
-    return sqs.filter(text=query.lower())
 
 def get_audiences(user):
     if is_student(user):
