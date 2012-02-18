@@ -1639,6 +1639,29 @@
   }
  },
  {
+  "pk": 180,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    42
+   ],
+   "main_contact_email": "dportillo@greylock.com",
+   "last_updated": "2012-02-18 00:11:37",
+   "description": "",
+   "visible": false,
+   "starred_students": [],
+   "main_contact": "Dan Portillo",
+   "main_contact_phone": "",
+   "offered_job_types": [],
+   "date_created": "2012-02-18 00:11:37",
+   "logo": "employer/employer/greylock_2012-02-18-00-11-37.png",
+   "size": null,
+   "careers_website": "",
+   "slug": "greylock",
+   "name": "Greylock"
+  }
+ },
+ {
   "pk": 95,
   "model": "employer.employer",
   "fields": {
