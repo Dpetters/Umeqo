@@ -4,7 +4,7 @@ from django.db.models import Q
 
 from datetime import datetime, timedelta, date, time
 from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
-from core.saarch import search
+from core.search import search
 from events.choices import ALL
 from events.models import Event, RSVP, DroppedResume, Attendee
 from haystack.query import SearchQuerySet, SQ
