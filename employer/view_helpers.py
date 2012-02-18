@@ -1,4 +1,4 @@
-from core.view_helpers import search
+from core.search import search
 from haystack.query import SearchQuerySet
 from employer import enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment

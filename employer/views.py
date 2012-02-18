@@ -5,6 +5,7 @@ import cStringIO
 import mimetypes
 import os
 import re
+import zipfile
 
 from datetime import datetime, date
 from pyPdf import PdfFileWriter, PdfFileReader
@@ -24,7 +25,7 @@ from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
 
-from core.view_helpers import search
+from core.search import search
 from haystack.query import SearchQuerySet, SQ
 from events.models import Event
 from core.digg_paginator import DiggPaginator
@@ -541,9 +542,6 @@ def employer_students(request, extra_context=None):
         if start_index > count:
             start_index = 0
 
-        if start_index + results_per_page >= count:
-            results_per_page = max(1, count - start_index)
-
         ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
         padded_ordered_results = ['']*count
 
@@ -561,7 +559,7 @@ def employer_students(request, extra_context=None):
         context['page'] = page
         context['results'] = process_results(request.user.recruiter, page)
         context['current_student_list'] = request.GET['student_list']
-        context['total_results_num'] = page.paginator.count
+        context['total_results_num'] = count
 
         # I don't like this method of statistics
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
@@ -694,6 +692,13 @@ def employer_resume_book_current_create(request):
     resume_book_contents.close()
     return HttpResponse()
 
+
+@agreed_to_terms
+@user_passes_test(is_recruiter)
+@has_any_subscription
+@require_POST
+def employer_resume_book_current_create_zip(request):
+    return 1
 
 @require_POST
 @agreed_to_terms
