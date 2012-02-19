@@ -5,7 +5,6 @@
     float:left;
     width:12px;
     height:80px;
-    background:url(/static/lib/firm_scroller/images/thumbScroller_left.png);
 }
 
 #firm_scroller_container #firm_thumb_scroller_right {
@@ -13,7 +12,6 @@
     float:right;
     width:12px;
     height:80px;
-    background:url(/static/lib/firm_scroller/images/thumbScroller_right.png);
 }
 
 #firm_thumb_scroller {
