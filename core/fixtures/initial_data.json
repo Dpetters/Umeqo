@@ -9,7 +9,7 @@
    "display": true,
    "topic": 9,
    "audience": 2,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "action": null,
    "date_created": "2011-12-01 14:43:06",
    "slug": "changing-your-password"
@@ -25,7 +25,7 @@
    "display": true,
    "topic": 9,
    "audience": 4,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "action": "Publish Your Company Profile",
    "date_created": "2011-12-16 08:13:35",
    "slug": "updating-your-company-profile"
@@ -41,7 +41,7 @@
    "display": true,
    "topic": 9,
    "audience": 4,
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "action": "Create Accounts for Co-Workers",
    "date_created": "2011-10-06 20:46:33",
    "slug": "creating-accounts-for-co-workers"
@@ -57,7 +57,7 @@
    "display": true,
    "topic": 9,
    "audience": 4,
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "action": null,
    "date_created": "2011-11-30 19:10:40",
    "slug": "deleting-your-account"
@@ -73,7 +73,7 @@
    "display": true,
    "topic": 11,
    "audience": 4,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "action": "Create Events & Deadlines",
    "date_created": "2011-10-07 12:40:06",
    "slug": "creating-events-deadlines"
@@ -89,7 +89,7 @@
    "display": true,
    "topic": 11,
    "audience": 4,
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "action": "Send Invitations",
    "date_created": "2011-10-07 12:39:46",
    "slug": "sending-invitations"
@@ -105,7 +105,7 @@
    "display": true,
    "topic": 11,
    "audience": 4,
-   "sort_order": 5.000,
+   "sort_order": 5.0,
    "action": "Browse RSVPs & Attendees",
    "date_created": "2011-10-07 12:40:57",
    "slug": "browsing-attendees-rsvps"
@@ -121,7 +121,7 @@
    "display": true,
    "topic": 13,
    "audience": 4,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "action": "Find Candidates",
    "date_created": "2011-10-06 20:47:44",
    "slug": "browsing-students"
@@ -137,7 +137,7 @@
    "display": true,
    "topic": 13,
    "audience": 4,
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "action": "Create & Deliver Resume Books",
    "date_created": "2011-10-07 12:41:35",
    "slug": "creating-delivering-resume-books"
@@ -153,7 +153,7 @@
    "display": true,
    "topic": 13,
    "audience": 4,
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "action": null,
    "date_created": "2011-12-01 18:11:21",
    "slug": "re-delivering-past-resume-books"
@@ -169,7 +169,7 @@
    "display": true,
    "topic": 10,
    "audience": 4,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "action": null,
    "date_created": "2011-10-07 12:43:04",
    "slug": "getting-annual-subscription"
@@ -185,7 +185,7 @@
    "display": true,
    "topic": 11,
    "audience": 5,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "action": null,
    "date_created": "2011-12-12 05:14:54",
    "slug": "creating-campus-org-events-deadlines"
@@ -201,7 +201,7 @@
    "display": true,
    "topic": 11,
    "audience": 6,
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "action": "Check Students In",
    "date_created": "2011-10-07 12:40:32",
    "slug": "checking-students-in"
@@ -217,7 +217,7 @@
    "display": false,
    "topic": 11,
    "audience": 6,
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "action": null,
    "date_created": "2011-11-30 19:08:45",
    "slug": "deleting-past-or-cancelled-events"
@@ -233,7 +233,7 @@
    "display": true,
    "topic": 11,
    "audience": 6,
-   "sort_order": 5.000,
+   "sort_order": 5.0,
    "action": null,
    "date_created": "2011-12-01 19:54:03",
    "slug": "exporting-attendee-rsvp-info"
@@ -249,7 +249,7 @@
    "display": true,
    "topic": 11,
    "audience": 6,
-   "sort_order": 6.000,
+   "sort_order": 6.0,
    "action": null,
    "date_created": "2011-11-29 15:52:44",
    "slug": "cancelling-upcoming-events-and-deadlines"
@@ -260,7 +260,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:46:46",
    "name": "Academic"
   }
@@ -270,7 +270,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:46:54",
    "name": "Religious"
   }
@@ -280,7 +280,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 17:07:00",
    "name": "Technology"
   }
@@ -290,7 +290,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 17:07:11",
    "name": "Sports"
   }
@@ -300,7 +300,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:48:22",
    "name": "Governance"
   }
@@ -310,7 +310,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:52:44",
    "name": "Service and Advocacy"
   }
@@ -320,7 +320,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:51:39",
    "name": "Hobbies"
   }
@@ -330,7 +330,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:36",
    "name": "Living Group"
   }
@@ -340,7 +340,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 17:06:44",
    "name": "Fraternity/Sorority"
   }
@@ -350,7 +350,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 17:06:51",
    "name": "Business/Finance "
   }
@@ -360,7 +360,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:47:15",
    "name": "Cultural and Gender"
   }
@@ -370,7 +370,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:36",
    "name": "Competition"
   }
@@ -380,7 +380,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-05-03 12:27:36",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:51:55",
    "name": "Music, Dance, and Theater"
   }
@@ -390,7 +390,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-07-17 15:18:01",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-17 15:18:01",
    "name": "Visual Arts and Publications"
   }
@@ -400,7 +400,7 @@
   "model": "core.campusorgtype",
   "fields": {
    "date_created": "2011-07-24 18:56:25",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-24 18:56:25",
    "name": "Other"
   }
@@ -3686,7 +3686,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-06-28 01:55:42",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-06-28 01:55:42",
    "name": "Basics",
    "slug": "basics"
@@ -3697,7 +3697,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-06-28 01:55:42",
-   "sort_order": 0.500,
+   "sort_order": 0.5,
    "last_updated": "2011-09-03 21:14:51",
    "name": "Registration",
    "slug": "registration"
@@ -3708,7 +3708,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-06-28 01:55:42",
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "last_updated": "2011-06-28 01:55:42",
    "name": "Account Management",
    "slug": "account-management"
@@ -3719,7 +3719,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-09-03 21:14:10",
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "last_updated": "2011-09-03 21:14:10",
    "name": "Profile",
    "slug": "profile"
@@ -3730,7 +3730,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-09-03 21:13:35",
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "last_updated": "2011-10-07 14:41:54",
    "name": "Events & Deadlines",
    "slug": "events"
@@ -3741,7 +3741,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-09-14 22:41:05",
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "last_updated": "2011-10-07 13:43:59",
    "name": "Student Discovery",
    "slug": "student-discovery"
@@ -3752,7 +3752,7 @@
   "model": "core.topic",
   "fields": {
    "date_created": "2011-06-28 01:55:42",
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "last_updated": "2011-10-07 13:44:39",
    "name": "Subscriptions",
    "slug": "subscriptions"
@@ -3762,14 +3762,14 @@
   "pk": 1,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-02-02 10:55:21",
-   "click_count": 3,
+   "last_updated": "2012-02-05 20:30:32",
+   "click_count": 4,
    "question": "What is Umeqo?",
    "slug": "what-is-umeqo",
    "topic": 1,
    "audience": 0,
-   "sort_order": 0.000,
-   "answer": "Umeqo is an innovative recruiting resource for students and employers to discover one another by leveraging the familiar paradigms of resumes and events. The platform empowers employers to easily filter and search student profiles, create resume books, reach out to candidates, and post and manage campus events. Within minutes, students can create their easy-to-maintain profile, find and RSVP to employer events, and subscribe to employers of their choosing for future event updates.",
+   "sort_order": 0.0,
+   "answer": "Umeqo is a recruiting resource meant to help students and employers discover one another. By streamlining the familiar paradigms of resumes and events, we are looking to save both parties time and effort.",
    "date_created": "2011-06-28 01:55:42",
    "display": true
   }
@@ -3778,14 +3778,14 @@
   "pk": 19,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-13 02:11:55",
+   "last_updated": "2012-02-05 19:37:06",
    "click_count": 1,
    "question": "As a student, do I have to use my Athena password to register?",
    "slug": "student-do-i-have-use-my-athena-password-register",
    "topic": 8,
    "audience": 1,
-   "sort_order": 1.000,
-   "answer": "No, you can use whichever password you want. Our system is totally separate from anything that currently exists at MIT.",
+   "sort_order": 1.0,
+   "answer": "No, you can use whichever password you want. Our system is totally separate from anything that currently exists.",
    "date_created": "2011-10-06 18:23:47",
    "display": true
   }
@@ -3794,14 +3794,14 @@
   "pk": 20,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-06 19:47:10",
+   "last_updated": "2012-02-05 19:39:07",
    "click_count": 1,
    "question": "The registration form says that I am not a student - why can I not register?",
    "slug": "registration-form-says-i-am-not-student-why-can-i-not-register",
    "topic": 8,
    "audience": 1,
-   "sort_order": 1.000,
-   "answer": "<p>There are a few possible reasons for why you cannot register.</p>\r\n<p>The first is that you are not a student. The student side of Umeqo is for students only. This means that employers, affiliates, group lists, professors and alumni are all not eligible to register as students. <p>The second possiblity is that you are a freshman or a student taking a temporary leave from MIT. For these reasons, you may be marked as an affiliate in the MIT database. If this is so, please <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a>.</p>\r\n<p>Overall, judge for yourself as to whether recruiters should be able to see you alongside other students, and <a href=\"#\" class=\"open_contact_us_dialog_link\">let us know</a> of your situation.</p>",
+   "sort_order": 1.0,
+   "answer": "<p>There are a few possible reasons for why you cannot register.</p>\r\n<p>The first is that you are not a student. Umeqo is for current students only. This means that employers, affiliates, group lists, professors and alumni are all not eligible to register as students.</p><p>The second possiblity is that you are a freshman or a student taking a temporary leave from MIT. For these reasons, you may be marked as an affiliate in the MIT database. If this is so, please <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a>.</p>\r\n<p>Overall, judge for yourself as to whether recruiters should be able to see you alongside other students, and <a href=\"#\" class=\"open_contact_us_dialog_link\">let us know</a> of your situation.</p>",
    "date_created": "2011-10-06 19:47:00",
    "display": true
   }
@@ -3810,13 +3810,13 @@
   "pk": 5,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-01-20 15:10:35",
+   "last_updated": "2012-02-05 19:36:30",
    "click_count": 4,
    "question": "What is the difference between a public and private event?",
    "slug": "what-difference-between-public-and-private-event",
    "topic": 11,
    "audience": 0,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "answer": "Anyone can view, RSVP and is welcome to attend a public event. A private event, however, is only visible to those students who are personally invited to it by the host employer.",
    "date_created": "2011-09-04 01:51:29",
    "display": true
@@ -3826,13 +3826,13 @@
   "pk": 3,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-04 09:42:27",
+   "last_updated": "2012-02-05 19:35:38",
    "click_count": 0,
    "question": "Why should I create yet another profile?",
    "slug": "why-should-i-create-yet-another-profile",
    "topic": 12,
    "audience": 7,
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "answer": "Umeqo is the quickest, easiest way to stay on top of recruiter on-campus activity and get your resume in front of top firms. Beyond simply viewing your profile, recruiters can personally invite you to both public and private events, add you to custom resumebooks, and leave notes about you for their company's internal use.  You can sign up by clicking <a href=\"/signup/\">here</a>.",
    "date_created": "2011-09-03 22:56:28",
    "display": true
@@ -3842,14 +3842,14 @@
   "pk": 2,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-29 18:41:43",
+   "last_updated": "2012-02-05 20:17:31",
    "click_count": 2,
    "question": "Why was Umeqo created?",
    "slug": "why-was-umeqo-created",
    "topic": 1,
    "audience": 0,
-   "sort_order": 1.000,
-   "answer": "Umeqo was created by current MIT undergraduates to fix the pains of recruiting at MIT.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.",
+   "sort_order": 1.0,
+   "answer": "Umeqo was created by current <a href=\"http://mit.edu/\">MIT</a> and <a href=\"http://uwaterloo.ca/\">University of Waterloo</a> undergraduates to fix the pains of recruiting commonly found at colleges.  We were frustrated about missing recruiting events because we didn\u2019t hear about them and having to drop our resumes in a gazillion different places. Building on our experiences helping employers recruit, we thus developed Umeqo to solve these problems.",
    "date_created": "2011-09-03 21:17:13",
    "display": true
   }
@@ -3864,7 +3864,7 @@
    "slug": "if-campus-organization-im-involved-not-currently-listed-what-can-i-do",
    "topic": 12,
    "audience": 3,
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "answer": "To create a new campus organization, go to the third step of the profile form and click the \"Don't see your campus organization? Submit yours to the list.\" link on the right of the fields.",
    "date_created": "2011-09-04 02:10:36",
    "display": true
@@ -3880,7 +3880,7 @@
    "slug": "where-did-title-umeqo-come-and-how-it-pronounced",
    "topic": 1,
    "audience": 0,
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "answer": "The word is Zulu for \"leap\". It is pronounced [you-me-co], as in you + me + company.",
    "date_created": "2011-10-04 09:22:06",
    "display": true
@@ -3890,14 +3890,14 @@
   "pk": 4,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-10-04 23:10:34",
+   "last_updated": "2012-02-05 19:40:23",
    "click_count": 1,
    "question": "Who can see my profile?",
    "slug": "who-can-see-my-profile",
    "topic": 12,
    "audience": 3,
-   "sort_order": 2.000,
-   "answer": "Your profile information is viewable only to recruiters that use Umeqo. No other students or campus organizations can view anything but your name, email and school year.",
+   "sort_order": 2.0,
+   "answer": "Your profile information is viewable only to recruiters that use Umeqo. These recruiters are from companies that either subscribe that have access, or have attended an event that you RSVPed to, attended, or dropped off your resume for. No other students or campus organizations can view anything but your name, email and school year.",
    "date_created": "2011-09-04 01:49:46",
    "display": true
   }
@@ -3906,13 +3906,13 @@
   "pk": 7,
   "model": "core.question",
   "fields": {
-   "last_updated": "2011-09-19 23:18:30",
+   "last_updated": "2012-02-05 20:14:49",
    "click_count": 0,
    "question": "Why do I keep getting redirected back to the create profile page when I click the \"Browse Event\" and \"Browse Employers\" links? ",
    "slug": "why-do-i-keep-getting-redirected-back-create-profile-page-when-i-click-browse-event-and-browse-emplo",
    "topic": 8,
    "audience": 3,
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "answer": "In order to start using those features, you need to fill out the required parts of your profile. These are just the field on the first tab of the create profile page.",
    "date_created": "2011-09-08 20:48:01",
    "display": true
@@ -3928,7 +3928,7 @@
    "slug": "i-cant-remember-my-log-email",
    "topic": 9,
    "audience": 0,
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "answer": "The login email is typically the one that you use most often. For students, it's your MIT email. For campus orgs, it's the public version of your email address (e.g. traders@mit.edu, sbc@mit.edu). For recruiters, it's your work email.",
    "date_created": "2011-10-04 09:27:01",
    "display": true
@@ -3938,14 +3938,14 @@
   "pk": 11,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-01-06 00:54:11",
+   "last_updated": "2012-02-05 20:20:21",
    "click_count": 1,
-   "question": "Why are there only 14 employers?",
-   "slug": "why-are-there-only-12-employers",
+   "question": "Why are there only a few employers?",
+   "slug": "why-are-there-only-few-employers",
    "topic": 10,
    "audience": 3,
-   "sort_order": 3.000,
-   "answer": "The included 14 employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!",
+   "sort_order": 3.0,
+   "answer": "The included employers are the ones who are test-driving the recruiter side of Umeqo. Rest assured though, this list will grow tremendously in the next few months!",
    "date_created": "2011-09-19 23:29:06",
    "display": true
   }
@@ -3960,7 +3960,7 @@
    "slug": "can-students-see-comments-i-leave-about-them-do-they-know-whether-i-starred-them-or-not",
    "topic": 13,
    "audience": 4,
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "answer": "Student cannot see the comments - they are only for your internal use, as are the stars. The only feedback that the students get is in the form of a set of aggregate statistics with no mention of any individual company. All your activity on the site is private and none of it is tracked.",
    "date_created": "2011-09-20 00:03:18",
    "display": true
@@ -3976,7 +3976,7 @@
    "slug": "can-you-send-me-copy-my-password-without-resetting-it",
    "topic": 9,
    "audience": 1,
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "answer": "For security reasons, Umeqo does not have the ability to send you a copy of your current password. However, you can always reset it on the <a href=\"/password/reset/\">password reset page</a>.",
    "date_created": "2011-10-04 09:31:26",
    "display": true
@@ -3992,7 +3992,7 @@
    "slug": "how-do-i-change-my-login-email-address",
    "topic": 9,
    "audience": 0,
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "answer": "You need to <a class=\"open_contact_us_dialog_link\" href=\"#\">contact us</a> and let us know what you would it changed to. Note that recruiters can make additional credentials for their co-workers using the \"Create New Account\" link on the \"Account Settings\" page.",
    "date_created": "2011-10-04 09:28:49",
    "display": true
@@ -4008,7 +4008,7 @@
    "slug": "it-looks-things-are-broken-am-i-doing-something-wrong",
    "topic": 1,
    "audience": 0,
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "answer": "No, you are not. But you might be using an old browser. If this is so, please let us know of what is broken by clicking <a href=\"#\" class=\"open_contact_us_dialog_link\">contact us</a> in the footer for any page, and/or upgrade to the latest version of <a href=\"http://www.mozilla.org/en-US/firefox/fx/\">Firefox</a> or <a href=\"http://www.google.com/chrome\">Chrome</a>. Or at the very least <a href=\"http://www.microsoft.com/IE9\">IE9</a>. We appreciate your patience while we make the site work with older browsers!",
    "date_created": "2011-09-14 22:44:07",
    "display": true
@@ -4024,7 +4024,7 @@
    "slug": "why-am-i-hitting-page-terms-service-when-i-log",
    "topic": 1,
    "audience": 2,
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "answer": "Whenever we make any changes to our terms of service, we want you to be aware of them. Thus, in all future cases, we will summarize the changes at the top of the <a href=\"/terms/\">terms of service page</a> and redirect you to it when you log in to review the changes. The button to accept will always be at the bottom.",
    "date_created": "2011-10-04 10:20:57",
    "display": true
@@ -4040,7 +4040,7 @@
    "slug": "can-i-send-multiple-invitations-out-once",
    "topic": 11,
    "audience": 4,
-   "sort_order": 5.000,
+   "sort_order": 5.0,
    "answer": "Yes! Just checkbox the students whom you want to invite and hit \"Send Invite\" in the \"More Actions\" dropdown above the student results. Then pick the event to which you want to invite students to and add a custom invite message. \r\n\r\nNote that you can invite a maximum of 50 students to any single event or deadline. We also advise recruiters to invite students one by one in order to include more personalized invite messages. This makes it more likely that the student will actually take the time to RSVP.",
    "date_created": "2011-09-19 23:22:25",
    "display": true
@@ -4056,7 +4056,7 @@
    "slug": "i-deactivated-my-account-how-do-i-reactivate-it",
    "topic": 9,
    "audience": 1,
-   "sort_order": 5.000,
+   "sort_order": 5.0,
    "answer": "If you deactivated your account, you can reactivate it at any time simply by <a class=\"login\" href=\"#\">logging in</a> with your login email address and password.",
    "date_created": "2011-10-04 09:29:33",
    "display": true
@@ -4072,7 +4072,7 @@
    "slug": "i-saw-event-page-had-map-included-along-location-how-come-mine-doesnt",
    "topic": 11,
    "audience": 6,
-   "sort_order": 6.000,
+   "sort_order": 6.0,
    "answer": "When you go to create your event, you will see suggestions showing up below the location field as you type in the location. You can click the down arrow on your keyboard to cycle through them and hit enter once you find the right one. This will add a map to your event!",
    "date_created": "2011-09-19 23:26:59",
    "display": true
@@ -5693,6 +5693,36 @@
   }
  },
  {
+  "pk": 181,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-06 00:21:23",
+   "name_and_level": "Indonesian (Basic)",
+   "last_updated": "2012-02-06 00:21:23",
+   "name": "Indonesian"
+  }
+ },
+ {
+  "pk": 182,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-06 00:21:23",
+   "name_and_level": "Indonesian (Proficient)",
+   "last_updated": "2012-02-06 00:21:23",
+   "name": "Indonesian"
+  }
+ },
+ {
+  "pk": 183,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2012-02-06 00:21:23",
+   "name_and_level": "Indonesian (Fluent)",
+   "last_updated": "2012-02-06 00:21:23",
+   "name": "Indonesian"
+  }
+ },
+ {
   "pk": 9,
   "model": "core.course",
   "fields": {
@@ -5706,7 +5736,7 @@
    "num": "1",
    "date_created": "2011-05-03 12:27:35",
    "ou": "CIVIL AND ENVIRONMENTAL ENG",
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "display": true,
    "name": "Civil and Environmental Engineering"
   }
@@ -5725,7 +5755,7 @@
    "num": "2",
    "date_created": "2011-05-03 12:27:35",
    "ou": "MECHANICAL ENGINEERING",
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "display": false,
    "name": "Mechanical Engineering"
   }
@@ -5744,7 +5774,7 @@
    "num": "2-A",
    "date_created": "2011-12-06 19:28:11",
    "ou": "",
-   "sort_order": 2.250,
+   "sort_order": 2.25,
    "display": false,
    "name": "Mechanical Engineering (Flexible)"
   }
@@ -5763,7 +5793,7 @@
    "num": "2-OE",
    "date_created": "2011-12-06 18:26:10",
    "ou": "",
-   "sort_order": 2.750,
+   "sort_order": 2.75,
    "display": false,
    "name": "Mechanical and Ocean Engineering"
   }
@@ -5782,7 +5812,7 @@
    "num": "3",
    "date_created": "2011-05-03 12:27:35",
    "ou": "MATERIALS SCIENCE AND ENG",
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "display": false,
    "name": "Materials Science and Engineering"
   }
@@ -5801,7 +5831,7 @@
    "num": "4",
    "date_created": "2011-05-03 12:27:35",
    "ou": "ARCHITECTURE",
-   "sort_order": 4.000,
+   "sort_order": 4.0,
    "display": false,
    "name": "Architecture"
   }
@@ -5820,7 +5850,7 @@
    "num": "5",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 5.000,
+   "sort_order": 5.0,
    "display": false,
    "name": "Chemistry"
   }
@@ -5839,7 +5869,7 @@
    "num": "6-1",
    "date_created": "2011-05-03 12:27:35",
    "ou": "",
-   "sort_order": 6.000,
+   "sort_order": 6.0,
    "display": true,
    "name": "Electrical Science and Engineering"
   }
@@ -5858,7 +5888,7 @@
    "num": "6-2",
    "date_created": "2011-05-03 12:27:35",
    "ou": "",
-   "sort_order": 7.000,
+   "sort_order": 7.0,
    "display": true,
    "name": "Electrical Engineering & Computer Science"
   }
@@ -5877,7 +5907,7 @@
    "num": "6-3",
    "date_created": "2011-05-03 12:27:35",
    "ou": "",
-   "sort_order": 8.000,
+   "sort_order": 8.0,
    "display": true,
    "name": "Computer Science and Engineering"
   }
@@ -5896,7 +5926,7 @@
    "num": "6-7",
    "date_created": "2012-02-03 00:46:40",
    "ou": "",
-   "sort_order": 8.500,
+   "sort_order": 8.5,
    "display": false,
    "name": "Computer Science and Molecular Biology"
   }
@@ -5915,7 +5945,7 @@
    "num": "7",
    "date_created": "2011-05-03 12:27:35",
    "ou": "BIOLOGY",
-   "sort_order": 9.000,
+   "sort_order": 9.0,
    "display": false,
    "name": "Biology"
   }
@@ -5934,7 +5964,7 @@
    "num": "8",
    "date_created": "2011-05-03 12:27:35",
    "ou": "PHYSICS",
-   "sort_order": 10.000,
+   "sort_order": 10.0,
    "display": false,
    "name": "Physics"
   }
@@ -5953,7 +5983,7 @@
    "num": "9",
    "date_created": "2011-05-03 12:27:35",
    "ou": "BRAIN AND COGNITIVE SCIENCES",
-   "sort_order": 11.000,
+   "sort_order": 11.0,
    "display": false,
    "name": "Brain and Cognitive Sciences"
   }
@@ -5972,7 +6002,7 @@
    "num": "10",
    "date_created": "2011-05-03 12:27:35",
    "ou": "CHEMICAL ENGINEERING",
-   "sort_order": 12.000,
+   "sort_order": 12.0,
    "display": false,
    "name": "Chemical Engineering"
   }
@@ -5991,7 +6021,7 @@
    "num": "11",
    "date_created": "2011-05-03 12:27:36",
    "ou": "URBAN STUDIES AND PLANNING",
-   "sort_order": 13.000,
+   "sort_order": 13.0,
    "display": false,
    "name": "Urban Studies and Planning"
   }
@@ -6010,7 +6040,7 @@
    "num": "12",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 14.000,
+   "sort_order": 14.0,
    "display": false,
    "name": "Earth, Atmosphere & Planetary Sciences"
   }
@@ -6029,7 +6059,7 @@
    "num": "13",
    "date_created": "2011-05-03 12:27:35",
    "ou": "",
-   "sort_order": 15.000,
+   "sort_order": 15.0,
    "display": false,
    "name": "Ocean Engineering"
   }
@@ -6048,7 +6078,7 @@
    "num": "14",
    "date_created": "2011-05-03 12:27:35",
    "ou": "14",
-   "sort_order": 16.000,
+   "sort_order": 16.0,
    "display": false,
    "name": "Economics"
   }
@@ -6067,7 +6097,7 @@
    "num": "15",
    "date_created": "2011-05-03 12:27:35",
    "ou": "MANAGEMENT",
-   "sort_order": 17.000,
+   "sort_order": 17.0,
    "display": false,
    "name": "Management"
   }
@@ -6086,7 +6116,7 @@
    "num": "16",
    "date_created": "2011-05-03 12:27:35",
    "ou": "AERONAUTICS AND ASTRONAUTICS",
-   "sort_order": 18.000,
+   "sort_order": 18.0,
    "display": false,
    "name": "Aeronautics and Astronautics"
   }
@@ -6105,7 +6135,7 @@
    "num": "17",
    "date_created": "2011-05-03 12:27:36",
    "ou": "17",
-   "sort_order": 19.000,
+   "sort_order": 19.0,
    "display": false,
    "name": "Political Science"
   }
@@ -6124,7 +6154,7 @@
    "num": "18",
    "date_created": "2011-05-03 12:27:35",
    "ou": "MATHEMATICS",
-   "sort_order": 20.000,
+   "sort_order": 20.0,
    "display": false,
    "name": "Mathematics"
   }
@@ -6143,7 +6173,7 @@
    "num": "20",
    "date_created": "2011-05-03 12:27:35",
    "ou": "20",
-   "sort_order": 21.000,
+   "sort_order": 21.0,
    "display": false,
    "name": "Biological Engineering"
   }
@@ -6162,7 +6192,7 @@
    "num": "21A",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 22.000,
+   "sort_order": 22.0,
    "display": false,
    "name": "Anthropology"
   }
@@ -6181,7 +6211,7 @@
    "num": "21F",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 23.000,
+   "sort_order": 23.0,
    "display": false,
    "name": "Foreign Languages and Literatures"
   }
@@ -6200,7 +6230,7 @@
    "num": "21H",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 24.000,
+   "sort_order": 24.0,
    "display": false,
    "name": "History"
   }
@@ -6219,7 +6249,7 @@
    "num": "21L",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 25.000,
+   "sort_order": 25.0,
    "display": false,
    "name": "Literature"
   }
@@ -6238,7 +6268,7 @@
    "num": "21M",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 26.000,
+   "sort_order": 26.0,
    "display": false,
    "name": "Music and Theater Arts"
   }
@@ -6257,7 +6287,7 @@
    "num": "21W",
    "date_created": "2011-05-03 12:27:36",
    "ou": "",
-   "sort_order": 27.000,
+   "sort_order": 27.0,
    "display": true,
    "name": "Writing and Humanistic Studies"
   }
@@ -6276,7 +6306,7 @@
    "num": "22",
    "date_created": "2011-05-03 12:27:35",
    "ou": "22",
-   "sort_order": 28.000,
+   "sort_order": 28.0,
    "display": false,
    "name": "Nuclear Engineering"
   }
@@ -6295,7 +6325,7 @@
    "num": "24",
    "date_created": "2011-05-03 12:27:35",
    "ou": "24",
-   "sort_order": 29.000,
+   "sort_order": 29.0,
    "display": false,
    "name": "Linguistics and Philosophy"
   }
@@ -6314,7 +6344,7 @@
    "num": "CMS",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 30.000,
+   "sort_order": 30.0,
    "display": false,
    "name": "Comparable Media Studies"
   }
@@ -6333,7 +6363,7 @@
    "num": "CSB",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 31.000,
+   "sort_order": 31.0,
    "display": false,
    "name": "Computational and Systems Biology"
   }
@@ -6352,7 +6382,7 @@
    "num": "ESD",
    "date_created": "2011-05-03 12:27:35",
    "ou": null,
-   "sort_order": 32.000,
+   "sort_order": 32.0,
    "display": false,
    "name": "Engineering Systems"
   }
@@ -6371,7 +6401,7 @@
    "num": "HST",
    "date_created": "2011-05-03 12:27:35",
    "ou": "HEALTH SCIENCES & TECHNOLOGY",
-   "sort_order": 33.000,
+   "sort_order": 33.0,
    "display": false,
    "name": "Health Sciences and Technology"
   }
@@ -6390,7 +6420,7 @@
    "num": "STS",
    "date_created": "2011-05-03 12:27:36",
    "ou": null,
-   "sort_order": 34.000,
+   "sort_order": 34.0,
    "display": false,
    "name": "Science, Technology, and Society"
   }
@@ -6409,7 +6439,7 @@
    "num": "MAS",
    "date_created": "2011-05-03 12:27:35",
    "ou": "MEDIA ARTS AND SCIENCES",
-   "sort_order": 35.000,
+   "sort_order": 35.0,
    "display": false,
    "name": "Media Arts and Sciences"
   }
@@ -6428,7 +6458,7 @@
    "num": "CDO",
    "date_created": "2011-07-17 14:44:37",
    "ou": null,
-   "sort_order": 36.000,
+   "sort_order": 36.0,
    "display": false,
    "name": "Computation for Design and Optimization"
   }
@@ -6447,7 +6477,7 @@
    "num": "CRE",
    "date_created": "2011-07-17 14:45:07",
    "ou": null,
-   "sort_order": 37.000,
+   "sort_order": 37.0,
    "display": false,
    "name": "Center for Real Estate Program"
   }
@@ -6466,7 +6496,7 @@
    "num": "ESD",
    "date_created": "2011-07-17 14:45:34",
    "ou": null,
-   "sort_order": 39.000,
+   "sort_order": 39.0,
    "display": false,
    "name": "Engineering Systems Division"
   }
@@ -6485,7 +6515,7 @@
    "num": "LGO",
    "date_created": "2011-07-17 14:46:27",
    "ou": null,
-   "sort_order": 40.000,
+   "sort_order": 40.0,
    "display": false,
    "name": "Leaders for Global Operations"
   }
@@ -6504,7 +6534,7 @@
    "num": "MLOG",
    "date_created": "2011-07-17 14:46:49",
    "ou": null,
-   "sort_order": 41.000,
+   "sort_order": 41.0,
    "display": false,
    "name": "Masters of Engineering in Logistics"
   }
@@ -6523,7 +6553,7 @@
    "num": "Naval Eng",
    "date_created": "2011-07-17 14:47:26",
    "ou": null,
-   "sort_order": 42.000,
+   "sort_order": 42.0,
    "display": false,
    "name": "Naval Engineering"
   }
@@ -6542,7 +6572,7 @@
    "num": "Op Res Cen",
    "date_created": "2011-07-17 14:47:58",
    "ou": null,
-   "sort_order": 43.000,
+   "sort_order": 43.0,
    "display": false,
    "name": "Operations Research Center"
   }
@@ -6561,7 +6591,7 @@
    "num": "SDM",
    "date_created": "2011-07-17 14:48:23",
    "ou": null,
-   "sort_order": 44.000,
+   "sort_order": 44.0,
    "display": false,
    "name": "System Design and Management Program"
   }
@@ -6580,7 +6610,7 @@
    "num": "Sloan Fel",
    "date_created": "2011-07-17 14:48:47",
    "ou": null,
-   "sort_order": 45.000,
+   "sort_order": 45.0,
    "display": false,
    "name": "Sloan Fellows"
   }
@@ -6599,7 +6629,7 @@
    "num": "STS",
    "date_created": "2011-07-17 14:50:55",
    "ou": null,
-   "sort_order": 46.000,
+   "sort_order": 46.0,
    "display": false,
    "name": "Program in Science, Technology, and Societ"
   }
@@ -6618,7 +6648,7 @@
    "num": "TPP",
    "date_created": "2011-07-17 14:51:51",
    "ou": null,
-   "sort_order": 47.000,
+   "sort_order": 47.0,
    "display": false,
    "name": "The Technology and Policy Program"
   }
@@ -6637,7 +6667,7 @@
    "num": "WHOI ",
    "date_created": "2011-07-17 14:52:18",
    "ou": null,
-   "sort_order": 48.000,
+   "sort_order": 48.0,
    "display": false,
    "name": "WHOI Oceanographic Institute"
   }
@@ -6656,7 +6686,7 @@
    "num": "CSB",
    "date_created": "2011-07-17 14:52:48",
    "ou": null,
-   "sort_order": 49.000,
+   "sort_order": 49.0,
    "display": false,
    "name": "Computation and Systems Biology"
   }
@@ -6675,7 +6705,7 @@
    "num": "SCM",
    "date_created": "2011-07-17 14:53:41",
    "ou": null,
-   "sort_order": 50.000,
+   "sort_order": 50.0,
    "display": false,
    "name": "Supply Chain Management "
   }
@@ -6685,7 +6715,7 @@
   "model": "core.employmenttype",
   "fields": {
    "date_created": "2011-05-03 12:27:34",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-07 15:34:18",
    "name": "Full-Time"
   }
@@ -6695,7 +6725,7 @@
   "model": "core.employmenttype",
   "fields": {
    "date_created": "2011-05-07 15:29:00",
-   "sort_order": 1.000,
+   "sort_order": 1.0,
    "last_updated": "2011-05-07 15:34:04",
    "name": "Part-Time"
   }
@@ -6705,7 +6735,7 @@
   "model": "core.employmenttype",
   "fields": {
    "date_created": "2011-05-03 12:27:34",
-   "sort_order": 2.000,
+   "sort_order": 2.0,
    "last_updated": "2011-05-07 15:33:43",
    "name": "Internship"
   }
@@ -6715,7 +6745,7 @@
   "model": "core.employmenttype",
   "fields": {
    "date_created": "2011-05-07 15:29:11",
-   "sort_order": 3.000,
+   "sort_order": 3.0,
    "last_updated": "2011-05-07 15:33:29",
    "name": "Externship"
   }
@@ -7076,7 +7106,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:43",
    "name": "Info Session"
   }
@@ -7086,7 +7116,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-31 11:30:28",
    "name": "Hard Deadline"
   }
@@ -7096,7 +7126,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:43",
    "name": "Panel"
   }
@@ -7106,7 +7136,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:43",
    "name": "Presentation"
   }
@@ -7116,7 +7146,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:43",
    "name": "Workshop"
   }
@@ -7126,7 +7156,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:43",
    "name": "Conference"
   }
@@ -7136,7 +7166,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-05-03 12:27:43",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-05-03 12:27:43",
    "name": "Networking"
   }
@@ -7146,7 +7176,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-07-31 11:30:37",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-07-31 11:30:37",
    "name": "Rolling Deadline"
   }
@@ -7156,7 +7186,7 @@
   "model": "core.eventtype",
   "fields": {
    "date_created": "2011-12-11 14:41:19",
-   "sort_order": 0.000,
+   "sort_order": 0.0,
    "last_updated": "2011-12-11 14:41:27",
    "name": "Expo"
   }
