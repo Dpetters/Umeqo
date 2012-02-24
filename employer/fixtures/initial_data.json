@@ -2725,6 +2725,29 @@
   }
  },
  {
+  "pk": 181,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "main_contact_email": null,
+   "last_updated": "2012-02-21 10:17:12",
+   "description": null,
+   "visible": false,
+   "starred_students": [],
+   "main_contact": null,
+   "main_contact_phone": null,
+   "offered_job_types": [],
+   "date_created": "2012-02-21 10:17:12",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Ooyala"
+  }
+ },
+ {
   "pk": 72,
   "model": "employer.employer",
   "fields": {
@@ -2882,6 +2905,29 @@
    "careers_website": "",
    "slug": "philips",
    "name": "Philips"
+  }
+ },
+ {
+  "pk": 182,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "main_contact_email": null,
+   "last_updated": "2012-02-21 10:34:17",
+   "description": null,
+   "visible": false,
+   "starred_students": [],
+   "main_contact": null,
+   "main_contact_phone": null,
+   "offered_job_types": [],
+   "date_created": "2012-02-21 10:34:17",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Pipewise"
   }
  },
  {
@@ -3310,6 +3356,29 @@
    "careers_website": "",
    "slug": "stroud",
    "name": "Stroud Consulting"
+  }
+ },
+ {
+  "pk": 183,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "main_contact_email": null,
+   "last_updated": "2012-02-21 10:34:37",
+   "description": null,
+   "visible": false,
+   "starred_students": [],
+   "main_contact": null,
+   "main_contact_phone": null,
+   "offered_job_types": [],
+   "date_created": "2012-02-21 10:34:37",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Surf Canyon"
   }
  },
  {
