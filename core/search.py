@@ -3,7 +3,7 @@ from haystack.query import SQ
 def search(sqs, query):
     or_terms = map(lambda x: x.strip(), query.split("OR"))
     final_query = SQ()
-    for i, query in enumerate(or_terms):
+    for query in or_terms:
         if query:
             current_query = SQ()
             # Pull out anything wrapped in quotes and do an exact match on it.
@@ -25,18 +25,14 @@ def search(sqs, query):
             
             # Loop through keywords and add filters to the query.
             for keyword in keywords:
-                #exclude = False
-                """
+                exclude = False
                 if keyword.startswith('-') and len(keyword) > 1:
                     keyword = keyword[1:]
                     exclude = True
-                """
                 cleaned_keyword = sqs.query.clean(keyword)
-                """
                 if exclude:
                     current_query.add(~SQ(text = cleaned_keyword), SQ.AND)
                 else:
-                """
-                current_query.add(SQ(text = cleaned_keyword), SQ.AND)
+                    current_query.add(SQ(text = cleaned_keyword), SQ.AND)
             final_query.add(current_query, SQ.OR)
     return sqs.filter(final_query)
