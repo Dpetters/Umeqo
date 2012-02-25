@@ -2286,12 +2286,12 @@
   "model": "employer.employer",
   "fields": {
    "industries": [],
-   "main_contact_email": "",
-   "last_updated": "2011-08-29 10:08:53",
+   "main_contact_email": "iCampusPrize@mit.edu",
+   "last_updated": "2012-02-24 17:20:22",
    "description": "",
    "visible": false,
    "starred_students": [],
-   "main_contact": "",
+   "main_contact": "Brandon Muramatsu",
    "main_contact_phone": "",
    "offered_job_types": [
     1,
@@ -2299,7 +2299,7 @@
     2
    ],
    "date_created": "2011-08-29 10:08:53",
-   "logo": "",
+   "logo": "employer/employer/mit_2012-02-24-17-20-22.png",
    "size": null,
    "careers_website": "",
    "slug": "MIT",
