@@ -548,7 +548,7 @@ def employer_students(request, extra_context=None):
         for i in range(len(ordered_results)):
             padded_ordered_results[i + start_index] = ordered_results[i]
 
-        paginator = DiggPaginator(padded_ordered_results, results_per_page, body=5, padding=1, margin=2)
+        paginator = DiggPaginator(padded_ordered_results, results_per_page, body=3, padding=1, margin=2)
         context['filtering'] = am_filtering
 
         try:
@@ -565,11 +565,11 @@ def employer_students(request, extra_context=None):
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-        
+
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True
-        
+
         context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
         return context
@@ -580,7 +580,7 @@ def employer_students(request, extra_context=None):
         }
         context['page_messages'] = page_messages
         context['query'] = request.GET.get('query', '')
-                
+
         # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
                 'recruiter_id': request.user.recruiter.id,
