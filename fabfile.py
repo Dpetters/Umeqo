@@ -5,10 +5,8 @@ from fabric.utils import abort
 
 fabric_django.settings_module('settings')
 from django.conf import settings
-from django.contrib.auth.models import User
 from south.models import MigrationHistory
 
-from campus_org.models import CampusOrg
 
 __all__= ["demo", "staging", "prod", "restart", "restart_apache", "create_database", "load_prod_data",
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
@@ -170,7 +168,7 @@ def update():
                 else:
                     run("git pull origin master")
                 run("python manage.py migrate --all")
-                if env.type=="staging":
+                if env.type=="staging" or env.type=="demo":
                     run("python manage.py fix_campus_org_users")
                 restart_apache()
                 run("echo 'yes'|python manage.py collectstatic")
