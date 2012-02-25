@@ -9,12 +9,11 @@ from django.views.decorators.http import require_POST, require_GET
 from campus_org.forms import CampusOrgPreferencesForm, CampusOrgProfileForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_campus_org, render_to, agreed_to_terms
-from core.http import Http400, Http403
+from core.decorators import is_campus_org, render_to
+from core.http import Http400
 from registration.forms import PasswordChangeForm
 
 
-@agreed_to_terms
 @user_passes_test(is_campus_org)
 @require_GET
 @render_to("campus_org_account.html")
@@ -32,7 +31,6 @@ def campus_org_account(request, preferences_form_class = CampusOrgPreferencesFor
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_campus_org)
 @require_POST
 def campus_org_account_preferences(request, form_class=CampusOrgPreferencesForm):
@@ -45,7 +43,6 @@ def campus_org_account_preferences(request, form_class=CampusOrgPreferencesForm)
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@agreed_to_terms
 @user_passes_test(is_campus_org)
 @render_to("campus_org_profile.html")
 def campus_org_profile(request, form_class=CampusOrgProfileForm, extra_context=None):

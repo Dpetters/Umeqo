@@ -17,7 +17,7 @@ from django.template.loader import render_to_string
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_student, render_to, is_recruiter, agreed_to_terms, has_any_subscription
+from core.decorators import is_student, render_to, is_recruiter, has_any_subscription
 from core.email import send_html_mail
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
@@ -134,7 +134,6 @@ def student_profile_unparsable_resume(request, extra_context=None):
 
 
 @require_GET
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("student_account.html")
 def student_account(request, preferences_form_class = StudentPreferencesForm, 
@@ -167,7 +166,6 @@ def student_increment_resume_view_count(request):
     return HttpResponse()
 
 
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("student_account_deactivate.html")
 def student_account_deactivate(request, form_class=StudentAccountDeactivationForm):
@@ -196,7 +194,6 @@ def student_account_deactivate(request, form_class=StudentAccountDeactivationFor
 
 
 @require_POST
-@agreed_to_terms
 @user_passes_test(is_student)
 def student_account_preferences(request, preferences_form_class = StudentPreferencesForm, extra_context = None):
     form = preferences_form_class(data = request.POST, instance = request.user.student.studentpreferences)
@@ -271,7 +268,6 @@ def student_registration_complete(request, extra_context = None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_student, login_url=s.LOGIN_URL)
 @render_to("student_profile.html")
 def student_profile(request, form_class=StudentProfileForm, extra_context=None):
@@ -318,7 +314,6 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
         return context
 
 
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
@@ -364,7 +359,6 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra
         return HttpResponse("<div class='message_section'>%s</div>" % error_html)
 
 
-@agreed_to_terms
 @require_http_methods(["POST"])
 @user_passes_test(is_student)
 def student_update_resume(request, form_class=StudentUpdateResumeForm):
@@ -389,7 +383,6 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@agreed_to_terms
 @require_http_methods(["GET"])
 @user_passes_test(is_student)
 def student_update_resume_info(request):
@@ -398,7 +391,6 @@ def student_update_resume_info(request):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("student_create_campus_org.html")
 def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, extra_context=None):
@@ -427,7 +419,6 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("student_create_language.html")
 def student_create_language(request, form_class=CreateLanguageForm, extra_context=None):
@@ -461,7 +452,6 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_student)
 def student_resume(request):
     resume = request.user.student.resume.read()
@@ -471,7 +461,6 @@ def student_resume(request):
 
 
 @require_GET
-@agreed_to_terms
 @has_any_subscription
 @user_passes_test(is_recruiter)
 def specific_student_resume(request, student_id):
@@ -483,102 +472,3 @@ def specific_student_resume(request, student_id):
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
     return response
-
-
-"""
-@login_required
-@agreed_to_terms
-@require_GET
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
-@render_to("student_statistics.html")
-def student_statistics(request):
-    context = {'student_body_statistics_form': StudentBodyStatisticsForm(),
-               'second_major_form':StatisticsSecondMajorForm()}
-    return context
-
-@login_required
-@agreed_to_terms
-@require_GET
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
-def student_statistics_second_major(request):
-    data = {}
-    first_major = Course.objects.get(id=request.GET['first_major'])
-    data['title'] = "Second Major Statistics for %s" % first_major.name
-    courses = list(Course.objects.all().exclude(name=first_major.name))
-    data['categories'] = ['None'] + [c.num for c in courses]
-    data['series'] = {'data':[len(Student.objects.filter(first_major = first_major, second_major = None))]}
-    for second_major in courses:
-        data['series']['data'].append(len(Student.objects.filter(first_major = first_major, second_major = second_major)))
-    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
-@login_required
-@agreed_to_terms
-@require_GET
-@user_passes_test(is_student, login_url=s.LOGIN_URL)
-def student_body_statistics(request):
-    data = {}
-    data['title'] = ""
-    if request.GET['x_axis'] == student_enums.SCHOOL_YEAR:
-        school_years = SchoolYear.objects.all()
-        if request.GET['y_axis'] == student_enums.GPA:
-            data['name'] = "GPA vs. School Year"
-            data['y_axis_text'] = "GPA"
-            data['y_axis_min'] = 0
-            data['y_axis_max'] = 5
-            data['categories'] = []
-            data['series'] = {'data':[]}
-            for school_year in school_years:
-                students = Student.objects.filter(school_year = school_year, profile_created=True)
-                if students:
-                    data['categories'].append("%s" % school_year.name_plural)
-                    num_of_students = 0
-                    gpa_sum = 0
-                    for s in students:
-                        if s.gpa != 0:
-                            num_of_students += 1
-                            gpa_sum += s.gpa
-                    if num_of_students != 0:
-                        data['series']['data'].append(float(gpa_sum)/num_of_students)
-        elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
-            data['name'] = "# of Previous Employers vs. School Year"
-            data['y_axis_text'] = "# of Previous Employers"
-            data['categories'] = []
-            data['series'] = {'data':[]}
-            for school_year in school_years:
-                students = Student.objects.filter(school_year = school_year, profile_created=True)
-                if students:
-                    data['categories'].append("%s" % school_year.name_plural)
-                    data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
-    if request.GET['x_axis'] == student_enums.MAJOR:
-        courses = Course.objects.all()
-        if request.GET['y_axis'] == student_enums.GPA:
-            data['name'] = "GPA vs. Major"
-            data['y_axis_text'] = "GPA"
-            data['y_axis_min'] = 0
-            data['y_axis_max'] = 5
-            data['categories'] = []
-            data['series'] = {'data':[]}
-            for course in courses:
-                students = Student.objects.filter(first_major = course, profile_created=True)
-                if students:
-                    data['categories'].append("%s" % course.num)
-                    num_of_students = 0
-                    gpa_sum = 0
-                    for s in students:
-                        if s.gpa != 0:
-                            num_of_students += 1
-                            gpa_sum += s.gpa
-                    if num_of_students != 0:
-                        data['series']['data'].append(float(gpa_sum)/num_of_students)
-        elif request.GET['y_axis'] == student_enums.NUM_OF_PREVIOUS_EMPLOYERS:
-            data['name'] = "# of Previous Employers vs. Major"
-            data['y_axis_text'] = "# of Previous Employers"
-            data['categories'] = []
-            data['series'] = {'data':[]}
-            for course in courses:
-                students = Student.objects.filter(first_major = course, profile_created=True)
-                if students:
-                    data['categories'].append("%s" % course.num)
-                    data['series']['data'].append(float(sum([len(s.previous_employers.all()) for s in students]))/len(students))
-    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-"""

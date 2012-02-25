@@ -68,6 +68,6 @@ admin.site.register(SessionKey, SessionKeyAdmin)
 
     
 class UserAttributesAdmin(admin.ModelAdmin):
-    fields = ['user', 'is_verified', 'agreed_to_terms', 'agreed_to_terms_date']
+    fields = ['user', 'is_verified']
     list_display=['user', 'is_verified']
 admin.site.register(UserAttributes, UserAttributesAdmin)

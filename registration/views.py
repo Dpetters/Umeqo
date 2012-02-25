@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
-from core.decorators import render_to, is_superuser, agreed_to_terms
+from core.decorators import render_to, is_superuser
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
@@ -112,7 +112,6 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
 
 
 @login_required
-@agreed_to_terms
 def password_change(request, password_change_form=PasswordChangeForm, extra_context=None):
     form = password_change_form(user=request.user, data=request.POST)
     if form.is_valid():

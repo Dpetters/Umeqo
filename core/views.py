@@ -20,7 +20,7 @@ from django.views.decorators.http import require_GET, require_http_methods
 
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
-from core.decorators import render_to, agreed_to_terms, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
+from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
@@ -249,23 +249,6 @@ def help_center(request, extra_context = None):
 
 
 @require_http_methods(["POST", "GET"])
-@render_to('terms_of_service.html')
-def terms_of_service(request, extra_context = None):
-    if request.method == "POST":
-        request.user.userattributes.agreed_to_terms = True
-        request.user.userattributes.agreed_to_terms_date = datetime.now()
-        request.user.userattributes.save()
-        return redirect(reverse('home'))
-    else:
-        if request.user.is_authenticated() and not request.user.is_staff:
-            context = {'agreed': request.user.userattributes.agreed_to_terms}
-        else:
-            context = {'agreed': True}
-        context.update(extra_context or {})
-        return context
-
-
-@require_http_methods(["POST", "GET"])
 @render_to('faq.html')
 def faq(request, extra_context = None):
     if request.method == "POST":
@@ -353,7 +336,6 @@ def landing_page(request, extra_context = None):
     return context
 
 
-@agreed_to_terms
 @has_any_subscription
 @render_to()
 def home(request, extra_context=None):
