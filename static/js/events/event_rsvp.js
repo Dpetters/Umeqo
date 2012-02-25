@@ -101,7 +101,7 @@ function show_rsvp_message(event_id){
 
 $(".attending").live('mouseenter', function(){
     var parent = get_parent(this);
-    if($(parent).data("is-deadline")){
+    if($(parent).data("is-deadline")=="True"){
         $(this).html("RSVP Not Participating");
     }else{
         $(this).html("RSVP Not Attending");
@@ -109,7 +109,7 @@ $(".attending").live('mouseenter', function(){
 });
 $(".attending").live('mouseleave', function(){
     var parent = get_parent(this);
-    if($(parent).data("is-deadline"))
+    if($(parent).data("is-deadline")=="True")
         $(this).html("Participating");
     else
         $(this).html("Attending");
@@ -117,14 +117,14 @@ $(".attending").live('mouseleave', function(){
 
 $(".not_attending").live('mouseenter', function(){
     var parent = get_parent(this);
-    if($(parent).data("is-deadline"))
+    if($(parent).data("is-deadline")=="True")
         $(this).html("RSVP Participating");
     else
         $(this).html("RSVP Attending");
 });
 $(".not_attending").live('mouseleave', function(){
     var parent = get_parent(this);
-    if($(parent).data("is-deadline"))
+    if($(parent).data("is-deadline")=="True")
         $(this).html("Not Participating");
     else
         $(this).html("Not Attending");

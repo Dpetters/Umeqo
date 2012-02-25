@@ -17,20 +17,6 @@ except ImportError:
                 getattr(wrapper, attr).update(getattr(wrapped, attr, {}))
             return wrapper
         return inner
-    
-class agreed_to_terms(object):
-    def __init__(self, orig_func):
-        self.orig_func = orig_func
-    
-    @property
-    def __name__(self):
-        return self.__class__.__name__
-    
-    def __call__(self, request, *args, **kwargs):
-        if not request.user.is_authenticated() or request.user.is_staff or request.user.userattributes.agreed_to_terms:
-            return self.orig_func(request, *args, **kwargs)
-        return redirect(reverse("terms_of_service"))
-    
 
 class has_any_subscription(object):
     def __init__(self, orig_func):

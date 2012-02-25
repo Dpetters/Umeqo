@@ -66,8 +66,6 @@ class UserAttributes(models.Model):
     user = models.OneToOneField(User)
     is_verified = models.BooleanField(default=False)
     last_password_change_date = models.DateTimeField(blank=True, null=True)
-    agreed_to_terms = models.BooleanField(default=False)
-    agreed_to_terms_date = models.DateTimeField(blank=True, null=True)
     
     class Meta:
         verbose_name = "User Attributes"
@@ -75,12 +73,6 @@ class UserAttributes(models.Model):
 
     def __unicode__(self):
         return str(self.user)
-
-@receiver(post_save, sender=User)
-def create_userattributes(sender, instance, created, raw, **kwargs):
-    if created and not raw:
-        UserAttributes.objects.create(user=instance, is_verified=False, agreed_to_terms=True)
-
 
 class RegistrationProfile(models.Model):
     """

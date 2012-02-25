@@ -7,6 +7,7 @@ fabric_django.settings_module('settings')
 from django.conf import settings
 from south.models import MigrationHistory
 
+
 __all__= ["demo", "staging", "prod", "restart", "restart_apache", "create_database", "load_prod_data",
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
@@ -62,14 +63,13 @@ def create_database():
     else:
         with cd(env.directory):
             with prefix(env.activate):
-                if env.type=="staging":
+                if env.type=="prod":
+                    abort("Create database should never be called on prod.")
+                elif env.type=="staging":
                     run('echo "DROP DATABASE umeqo_staging_main; CREATE DATABASE umeqo_staging_main;"|python manage.py dbshell')
                 elif env.type=="demo":
                     run('echo "DROP DATABASE umeqo_demo_main; CREATE DATABASE umeqo_demo_main;"|python manage.py dbshell')
-                if env.host=="umeqo.com":
-                    run("python manage.py syncdb --noinput --migrate")
-                else:
-                    run("python manage.py syncdb --noinput --migrate")
+                run("python manage.py syncdb --noinput --migrate")
                 run("python copy_media.py prod in")
                 
 def schemamigrate():
@@ -84,16 +84,17 @@ def schemamigrate():
 def load_local_data():
     if not env.host:
         local("python copy_media.py local in")
-        local("python manage.py loaddata ./local_data/fixtures/local_data.json")    
+        local("python manage.py loaddata ./local_data/fixtures/local_data.json")
+        local("python manage.py fix_campus_org_users")
     else:
         if env.type == "prod":
             abort("load_local_data should not be called on prod.")
         with cd(env.directory):
-            print env.directory
             with prefix(env.activate):
                 run("python copy_media.py local in")
-                run("python manage.py loaddata ./local_data/fixtures/local_data.json")  
-
+                run("python manage.py loaddata ./local_data/fixtures/local_data.json")
+                run("python manage.py fix_campus_org_users")
+    
 def commit_prod_data():
     if not env.host or env.type != "prod":
         abort("commit_prod_data should only be called on prod")
@@ -167,10 +168,12 @@ def update():
                 else:
                     run("git pull origin master")
                 run("python manage.py migrate --all")
+                if env.type=="staging" or env.type=="demo":
+                    run("python manage.py fix_campus_org_users")
                 restart_apache()
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
                 #with fabric_settings(warn_only=True):
-                #    run("python manage.py test --setting=settings_test") #result =
+                #    run("python manage.py test --setting=settings_test")
                 run("echo 'y'|python manage.py rebuild_index")
