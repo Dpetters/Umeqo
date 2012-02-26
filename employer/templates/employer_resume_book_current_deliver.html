@@ -1,31 +1,25 @@
 <div class="dialog_content_wrapper">
-    <div>
-        <div id="resume_book_summary">
-            <div id="resume_book_contents_div">
-                <p id="resume_book_contents_header">Contents</p>
-                <a id="show_current_resume_book_contents_dialog" {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscription_list %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.all|length}} students</a>
-            </div>
-            <div id="resume_book_status_div">
-                 <p id="resume_book_status_header">Status</p>
-                 <p id="resume_book_status" class="error">Being Created</p>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
     <form id="deliver_resume_book_form" method='POST' action="{% url employer_resume_book_current_email %}">
         {% csrf_token %}
         <table class="form_table">
             <tr>
-                <th>{{deliver_resume_book_form.delivery_type.label_tag}}</th>
-                <td>
+                <th><label>Select Delivery Type:</label></th>
+                <td id="delivery_types">
                     <div class="errorspace"></div>
-                    {{deliver_resume_book_form.delivery_type}}
+                    <img id="book_delivery_type" class="delivery_selection" alt="Book (PDF)" src="{{ STATIC_URL }}images/icons/64-PDF-Document.png">
+                    <img id="bundle_delivery_type" alt="Bundle (ZIP)" src="{{ STATIC_URL }}images/icons/64-PDF-Documents.png">
+                    <img id="email_delivery_type" alt="Mail Book" src="{{ STATIC_URL }}images/icons/64-Mail.png">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td colspan="2" class="centered">
+                   <p id="delivery_selection_text">Combine all resumes into one file</p>
                 </td>
             </tr>
             <tr>
                 <th>{{deliver_resume_book_form.name.label_tag}}</th>
                 <td>
-                    <div class="errorspace"></div>
                     {{deliver_resume_book_form.name}}
                 </td>
             </tr>
@@ -44,7 +38,7 @@
                 <th></th>
                 <td>
                     <input id="deliver_resume_book_form_submit_button" class="button" type='submit' value='Download'>
-                    <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                    <img id="deliver_resume_book_form_loader" class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                 </td>
             </tr>
         </table>
