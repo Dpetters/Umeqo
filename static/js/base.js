@@ -241,7 +241,7 @@ $(document).ready( function () {
                 var disabled = $(e.target).parent().attr('disabled');
                 if (!$(e.target).parent().attr('disabled')) {
                     $(e.target).children('ul').toggle();
-                }            
+                }
             } else {
                 if (!$(e.target).attr('disabled')) {
                     $(e.target).closest('ul').toggle();

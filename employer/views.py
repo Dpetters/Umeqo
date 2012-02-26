@@ -5,7 +5,6 @@ import cStringIO
 import mimetypes
 import os
 import re
-import zipfile
 
 from datetime import datetime, date
 from pyPdf import PdfFileWriter, PdfFileReader
@@ -30,7 +29,7 @@ from haystack.query import SearchQuerySet, SQ
 from events.models import Event
 from core.digg_paginator import DiggPaginator
 
-from core.decorators import agreed_to_terms, has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.email import send_html_mail
 from core import messages, enums as core_enums
 from core.http import Http403, Http400, Http500
@@ -47,7 +46,6 @@ from subscription.models import EmployerSubscription
 
 
 @require_GET
-@agreed_to_terms
 @render_to("employer_logo.html")
 def employer_logo(request):
     if not request.GET.has_key("employer_name"):
@@ -60,7 +58,6 @@ def employer_logo(request):
     return {'employer': e}
 
     
-@agreed_to_terms
 @require_GET
 @user_passes_test(is_recruiter)
 @render_to("employer_account.html")
@@ -106,7 +103,6 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     return context
 
 
-@agreed_to_terms
 @render_to("employer_new.html")
 def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
     if not (request.user.is_authenticated() and hasattr(request.user, "campusorg") or hasattr(request.user, "student")):
@@ -134,7 +130,6 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
 
 @user_passes_test(is_student_or_recruiter)
 @has_any_subscription
-@agreed_to_terms
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -152,7 +147,6 @@ def employer_profile_preview(request, slug, extra_context=None):
 
 @user_passes_test(is_recruiter)
 @has_annual_subscription
-@agreed_to_terms
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
     if request.method == 'POST':
@@ -180,7 +174,6 @@ def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @render_to("employer_account_delete.html")
 def employer_account_delete(request):
@@ -199,7 +192,6 @@ def employer_account_delete(request):
         raise Http403("You cannot delete your account when you are the only recruiter with credentials for Umeqo.") 
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @render_to("employer_resume_book_delete.html")
 def employer_resume_book_delete(request, extra_context = None):
@@ -217,7 +209,6 @@ def employer_resume_book_delete(request, extra_context = None):
         return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 @require_GET
@@ -227,7 +218,6 @@ def employer_other_recruiters(request):
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -241,7 +231,6 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to("employer_profile.html")
@@ -264,7 +253,6 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
         return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -282,7 +270,6 @@ def employer_student_toggle_star(request):
 
 
 @require_POST
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 def employer_students_add_star(request):
@@ -295,7 +282,6 @@ def employer_students_add_star(request):
     return HttpResponse()
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -309,7 +295,6 @@ def employer_students_remove_star(request):
     return HttpResponse()
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -330,7 +315,6 @@ def employer_student_comment(request):
     return HttpResponse()
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -356,7 +340,6 @@ def employer_resume_book_current_toggle_student(request):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -380,7 +363,6 @@ def employer_resume_book_current_add_students(request):
     return HttpResponse()
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -400,7 +382,6 @@ def employer_resume_book_current_remove_students(request):
 
 
 @require_GET
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to('employer_student_attendance.html')
@@ -414,7 +395,6 @@ def employer_student_event_attendance(request):
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_GET
@@ -426,7 +406,6 @@ def employer_resume_book_history(request, extra_context=None):
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_GET
@@ -548,7 +527,7 @@ def employer_students(request, extra_context=None):
         for i in range(len(ordered_results)):
             padded_ordered_results[i + start_index] = ordered_results[i]
 
-        paginator = DiggPaginator(padded_ordered_results, results_per_page, body=5, padding=1, margin=2)
+        paginator = DiggPaginator(padded_ordered_results, results_per_page, body=3, padding=1, margin=2)
         context['filtering'] = am_filtering
 
         try:
@@ -565,11 +544,11 @@ def employer_students(request, extra_context=None):
         for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
-        
+
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True
-        
+
         context['TEMPLATE'] = 'employer_students_results.html'
         context.update(extra_context or {}) 
         return context
@@ -580,7 +559,7 @@ def employer_students(request, extra_context=None):
         }
         context['page_messages'] = page_messages
         context['query'] = request.GET.get('query', '')
-                
+
         # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
                 'recruiter_id': request.user.recruiter.id,
@@ -598,7 +577,6 @@ def employer_students(request, extra_context=None):
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to('employer_resume_book_current_summary.html')
@@ -618,7 +596,6 @@ def employer_resume_book_current_summary(request, extra_context=None):
 
 
 @require_GET
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
@@ -640,7 +617,6 @@ def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookFo
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
@@ -707,8 +683,8 @@ def employer_resume_book_current_create(request):
     resume_book_contents.close()
     return HttpResponse()
 
+
 @require_POST
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @render_to("employer_resume_book_current_delivered.html")
@@ -747,7 +723,6 @@ def employer_resume_book_current_email(request, extra_context=None):
 
 
 @require_GET
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_any_subscription
 def employer_resume_book_current_download(request):
@@ -782,7 +757,6 @@ def employer_resume_book_current_download(request):
     return response
 
 
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("employer_snippets.html")
 def employer_snippets(request, extra_context=None):
@@ -798,7 +772,6 @@ def employer_snippets(request, extra_context=None):
     return context
     
     
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to("employers.html")
 def employers(request, extra_context=None):
@@ -834,7 +807,6 @@ def employers(request, extra_context=None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_student)
 @render_to('employer_details.html')
 def employer_details(request, extra_content=None):
@@ -854,7 +826,6 @@ def employer_details(request, extra_content=None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_student)
 def employer_subscribe(request):
     if not request.POST.has_key("id"):

@@ -25,18 +25,17 @@ from employer.models import Employer
 from core.email import send_html_mail
 from core import enums as core_enums
 from core.http import Http403, Http400, Http500
-from core.decorators import agreed_to_terms, is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
+from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
 from core.models import Edit
 from core.view_helpers import english_join
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
-from events.models import Attendee, Event, EventType, Invitee, RSVP, DroppedResume, notify_about_event
+from events.models import Attendee, Event, Invitee, RSVP, DroppedResume, notify_about_event
 from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
 from student.models import Student
 
 
 @login_required
-@agreed_to_terms
 def events(request, category, extra_context=None):
     context = {'category':category}
     if category=="past":
@@ -89,7 +88,6 @@ def events_check_short_slug_uniqueness(request):
 
 
 @require_GET
-@agreed_to_terms
 def events_shortcut(request, owner_slug, event_slug, extra_context=None):
     try:
         employer = Employer.objects.get(slug = owner_slug)
@@ -121,7 +119,6 @@ def event_page_redirect(request, id):
 
 
 @render_to('event_page.html')
-@agreed_to_terms
 def event_page(request, id, slug, extra_context=None):
     if is_student(request.user) and not request.user.student.profile_created:
         return redirect('student_profile')
@@ -215,7 +212,6 @@ def event_page(request, id, slug, extra_context=None):
 
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
-@agreed_to_terms
 @render_to("event_form.html")
 def event_new(request, form_class=None, extra_context=None):
     context = {}
@@ -261,7 +257,6 @@ def event_new(request, form_class=None, extra_context=None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 def event_list_download(request):
@@ -299,7 +294,6 @@ def event_checkin_count(request):
     
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @render_to('event_list_export_completed.html')
@@ -327,7 +321,6 @@ def event_list_export_completed(request, extra_context = None):
     return context
 
 
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @render_to()
@@ -374,7 +367,6 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @render_to("event_form.html")
@@ -431,7 +423,6 @@ def admin_of_event(event, user):
 
 
 @login_required
-@agreed_to_terms
 @has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("event_cancel_dialog.html")
@@ -476,7 +467,6 @@ def event_cancel(request, id, extra_context = None):
 
     
 @login_required
-@agreed_to_terms
 @has_annual_subscription
 @require_POST
 @user_passes_test(is_campus_org_or_recruiter)
@@ -498,7 +488,6 @@ def event_archive(request, id, extra_context = None):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
-@agreed_to_terms
 @has_annual_subscription
 @user_passes_test(is_campus_org_or_recruiter)
 @render_to("rolling_deadline_end_dialog.html")
@@ -531,7 +520,6 @@ def rolling_deadline_end(request, id, extra_context = None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 def event_schedule(request):
@@ -540,7 +528,6 @@ def event_schedule(request):
 
 
 @login_required
-@agreed_to_terms
 @require_http_methods(["GET", "POST"])
 @has_any_subscription
 def event_rsvp(request, event_id):
@@ -570,7 +557,6 @@ def event_rsvp(request, event_id):
             raise Http403("You do not have access to this view.")
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_student)
 @require_POST
 def event_drop(request, event_id):
@@ -588,7 +574,6 @@ def event_drop(request, event_id):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_annual_subscription
 @require_GET
@@ -609,7 +594,6 @@ def event_raffle_winner(request, extra_context=None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_campus_org_or_recruiter)
 @has_any_subscription
 @require_http_methods(["GET", "POST"])
@@ -676,7 +660,6 @@ def event_checkin(request, event_id):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_student)
 @require_GET
 @render_to("event_rsvp_message_dialog.html")
@@ -698,7 +681,6 @@ def event_rsvp_message(request, extra_context=None):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 def events_by_employer(request):
@@ -722,7 +704,6 @@ def events_by_employer(request):
 
 
 @login_required
-@agreed_to_terms
 @user_passes_test(is_recruiter)
 @has_annual_subscription
 @require_POST
