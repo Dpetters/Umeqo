@@ -738,8 +738,10 @@ def employer_resume_book_current_download(request):
             current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         except Exception:
             raise Http500("There isn't a resume book ready to be made")
-    mimetype = mimetypes.guess_type(str(current_resume_book.resume_book))[0]
-    if not mimetype: mimetype = "application/octet-stream"
+    if request.GET['delivery_type'] == 'bundle':
+        mimetype = "application/zip"
+    else:
+        mimetype = "application/pdf"
     response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book), "rb").read(), mimetype=mimetype)
     filename = current_resume_book.name
     if request.GET.has_key('name'):
