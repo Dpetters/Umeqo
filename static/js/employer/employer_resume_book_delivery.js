@@ -116,7 +116,7 @@ function handle_deliver_resume_book_link_click() {
                 $("#deliver_resume_book_form_loader").css('display','inline');
                 $.ajax({
                     type: "POST",
-                    data:{'resume_book_id':that.attr("data-resume-book-id"),'delivery_type':delivery_type},
+                    data:{'delivery_type':delivery_type,'resume_book_id':that.attr("data-resume-book-id")},
                     dataType: "json",
                     url: RESUME_BOOK_CURRENT_CREATE_URL,
                     error: function(jqXHR, textStatus, errorThrown) {

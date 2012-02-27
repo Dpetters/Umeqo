@@ -5,6 +5,7 @@ import cStringIO
 import mimetypes
 import os
 import re
+import zipfile
 
 from datetime import datetime, date
 from pyPdf import PdfFileWriter, PdfFileReader
