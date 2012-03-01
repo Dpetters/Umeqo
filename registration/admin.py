@@ -63,6 +63,7 @@ admin.site.register(RegistrationProfile, RegistrationProfileAdmin)
 class SessionKeyAdmin(admin.ModelAdmin):
     fields=[]
     list_display=['session_key', 'user', 'date_created']
+    search_fields = ('user__username', 'user__first_name', 'user__email', 'user__last_name')
     
 admin.site.register(SessionKey, SessionKeyAdmin) 
 
@@ -70,4 +71,6 @@ admin.site.register(SessionKey, SessionKeyAdmin)
 class UserAttributesAdmin(admin.ModelAdmin):
     fields = ['user', 'is_verified']
     list_display=['user', 'is_verified']
+    search_fields = ('user__username', 'user__first_name', 'user__email', 'user__last_name')
+    
 admin.site.register(UserAttributes, UserAttributesAdmin)
