@@ -5,13 +5,15 @@ from django.core.urlresolvers import reverse
 from core.decorators import is_recruiter
 from subscription.models import EmployerSubscription
 
+
 def next(request):
     if request.GET.has_key('next'):
         login_next = request.GET['next']
     else:
         login_next = request.get_full_path()
     return {'login_next': login_next}
-        
+
+
 def get_current_path(request):
     return {
        'current_path': request.get_full_path().split("?")[0]
@@ -21,6 +23,7 @@ def registration(request):
     return {
        'registration_open': s.REGISTRATION_OPEN
        }
+
 
 def load_wait_time(request):
     return {
