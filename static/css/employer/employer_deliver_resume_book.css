@@ -1,13 +1,7 @@
-#resume_book_summary{
-    background:#EEE;
-    border-radius:3px;
-    margin-left:auto;
-    margin-right:auto;
-    padding:4px 8px;
-    text-align:center;
-    width:282px;
+img{
+    cursor: pointer;
 }
-.email_delivery_type_only_field{
+.email_delivery_type_only_field, .noshow{
     display:none;
 }
 .deliver_resume_book_dialog .dialog_content_wrapper{
@@ -25,34 +19,24 @@
 #deliver_resume_book_form input[type=submit]{
     width:72px;
 }
-#resume_book_status_div{
-    float:left;
-    width:199px;
-    border-left:1px solid #666;
-    width:92px;
-}
-#resume_book_status_div, #resume_book_contents_div{
-    float:left;
-    height:35px;
-    line-height:17px;
-}
-#resume_book_contents_div{
-    width:133px;
-    padding-right:8px;
-}
-#resume_book_status_div{
-    border-left:1px solid #000;
-    padding-left:8px;
-    width:132px;
-}
-#resume_book_contents_header, #resume_book_status_header{
+#resume_book_contents_header{
     color:#000;
     font-weight:bold;
     text-decoration:underline;
+}
+#delivery_selection_text{
+    width: 190px;
+    margin: 10px;
+    color: #6E97B9;
 }
 .deliver_resume_book_dialog #id_emails_th{
     vertical-align:top;
 }
 .deliver_resume_book_dialog label[for='id_emails']{
     margin-top:24px;
+}
+.delivery_selection{
+    background-color: #DADADA;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #CCCCCC;
 }

@@ -74,6 +74,12 @@ class UserAttributes(models.Model):
     def __unicode__(self):
         return str(self.user)
 
+@receiver(post_save, sender=User)
+def create_userattributes(sender, instance, created, raw, **kwargs):
+    if created and not raw:
+        UserAttributes.objects.create(user=instance, is_verified=False)
+
+
 class RegistrationProfile(models.Model):
     """
     A simple profile which stores an activation key for use during
