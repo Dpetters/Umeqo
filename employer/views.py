@@ -5,6 +5,7 @@ import cStringIO
 import mimetypes
 import os
 import re
+import zipfile
 
 from datetime import datetime, date
 from pyPdf import PdfFileWriter, PdfFileReader
@@ -630,50 +631,59 @@ def employer_resume_book_current_create(request):
     else:
         redelivering = False
         current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
-    report_buffer = cStringIO.StringIO() 
-    c = Canvas(report_buffer)  
-    c.drawString(1*cm, 28.5*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
-    c.drawString(1*cm, 28*cm, str(request.user.recruiter))
-    c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
-    c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
-    c.drawString(8.5*cm, 26.5*cm, "Table of Contents")
-    for page_num, student in enumerate(current_resume_book.students.all()):
-        c.drawString(4*cm, (25.5-page_num*.5)*cm, student.first_name + " " + student.last_name)
-        c.drawString(16*cm, (25.5-page_num*.5)*cm, str(page_num+1))
-    c.showPage()
-    c.save()
-    output = PdfFileWriter()
-    output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
-    for student in current_resume_book.students.all():
-        resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
-        resume = PdfFileReader(resume_file)
-        if resume.getIsEncrypted():
-            resume.decrypt("")
-        output.addPage(resume.getPage(0))
+
     if redelivering:
         resume_book_name = current_resume_book.name
     else:
         resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
         current_resume_book.name = resume_book_name
         current_resume_book.save()
+
     file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
+    file_name = "%s%s.tmp" % (file_path, resume_book_name,)
     if not os.path.exists(file_path):
         os.makedirs(file_path)
-    file_name = "%s%s.tmp" % (file_path, resume_book_name,)
-    outputStream = file(file_name, "wb")
-    output.write(outputStream)
-    outputStream.close()
+
+    if request.POST['delivery_type'] == 'bundle':
+        file_name = "%s%s.zip" % (file_path, resume_book_name,)
+        output = zipfile.ZipFile(file_name, 'w')
+
+        for student in current_resume_book.students.all():
+            resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
+            output.write(resume_file.name, os.path.basename(resume_file.name), zipfile.ZIP_DEFLATED)
+
+        output.close()
+    else:
+        report_buffer = cStringIO.StringIO() 
+        c = Canvas(report_buffer)  
+        c.drawString(1*cm, 28.5*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
+        c.drawString(1*cm, 28*cm, str(request.user.recruiter))
+        c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
+        c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
+        c.drawString(8.5*cm, 26.5*cm, "Table of Contents")
+        for page_num, student in enumerate(current_resume_book.students.all()):
+            c.drawString(4*cm, (25.5-page_num*.5)*cm, student.first_name + " " + student.last_name)
+            c.drawString(16*cm, (25.5-page_num*.5)*cm, str(page_num+1))
+        c.showPage()
+        c.save()
+        output = PdfFileWriter()
+        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
+        for student in current_resume_book.students.all():
+            resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
+            resume = PdfFileReader(resume_file)
+            if resume.getIsEncrypted():
+                resume.decrypt("")
+            output.addPage(resume.getPage(0))
+
+        outputStream = file(file_name, "wb")
+        output.write(outputStream)
+        outputStream.close()
+
     resume_book_contents = file(file_name, "rb")
     current_resume_book.resume_book.save(file_name, File(resume_book_contents))
     resume_book_contents.close()
     return HttpResponse()
 
-
-@user_passes_test(is_recruiter)
-@has_any_subscription
-@require_POST
-def employer_resume_book_current_create_zip(request):
-    return 1
 
 @require_POST
 @user_passes_test(is_recruiter)
@@ -729,14 +739,19 @@ def employer_resume_book_current_download(request):
             current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         except Exception:
             raise Http500("There isn't a resume book ready to be made")
-    mimetype = mimetypes.guess_type(str(current_resume_book.resume_book))[0]
-    if not mimetype: mimetype = "application/octet-stream"
+    if request.GET['delivery_type'] == 'bundle':
+        mimetype = "application/zip"
+    else:
+        mimetype = "application/pdf"
     response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book), "rb").read(), mimetype=mimetype)
     filename = current_resume_book.name
     if request.GET.has_key('name'):
         filename = request.GET['name']
         current_resume_book.name = filename
-    response["Content-Disposition"]= 'attachment; filename="%s.pdf"' % filename
+    if request.GET['delivery_type'] == 'bundle':
+        response["Content-Disposition"]= 'attachment; filename="%s.zip"' % filename
+    else:
+        response["Content-Disposition"]= 'attachment; filename="%s.pdf"' % filename
     if redelivering:
         current_resume_book.last_updated = datetime.now()
     else:

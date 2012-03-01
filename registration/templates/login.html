@@ -24,7 +24,7 @@ Login |
 {% block content_area %}
 <div class="simple_block centered">
     <h1>Login to Umeqo</h1>
-    <form id="login_form" method="POST" action="" autocomplete="off">
+    <form id="login_form" method="POST" action="">
         {% csrf_token %}
         <table class="form_table grande">
             {% for field in form %}
