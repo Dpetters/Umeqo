@@ -8,6 +8,8 @@ from django.template import Context, loader
 from django.utils.http import int_to_base36
 from django.utils.translation import ugettext_lazy as _
 
+from auth.form_helpers import verify_account
+
 from core import messages as m
 from core.email import send_html_mail
 from core.form_helpers import decorate_bound_field
@@ -22,10 +24,9 @@ class PasswordResetForm(AuthPasswordResetForm):
             user = User.objects.get(email = self.cleaned_data["email"])
         except User.DoesNotExist:
             raise forms.ValidationError(m.email_not_registered)
-        if not user.is_active and not user.userattributes.is_verified:
-            raise forms.ValidationError(m.account_suspended)
-        if user.is_active and not user.userattributes.is_verified:
-            raise forms.ValidationError(m.not_activated_short)
+
+        verify_account(user)
+
         # Required to let the save method in AuthPasswordResetForm work
         self.users_cache = [user]
         return self.cleaned_data["email"]

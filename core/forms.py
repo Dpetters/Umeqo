@@ -7,9 +7,10 @@ from django.contrib.sites.models import Site
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 
+from auth.form_helpers import verify_account
+
 from campus_org.models import CampusOrg
 from core import messages as m
-from core.decorators import is_student
 from core.email import send_html_mail
 from core.form_helpers import decorate_bound_field
 from core.models import Language
@@ -124,13 +125,9 @@ class EmailAuthenticationForm(AuthenticationForm):
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(m.incorrect_username_password_combo)
-            if self.user_cache.is_staff:
-                return forms.ValidationError(m.staff_member_login_not_allowed)
-            if not self.user_cache.userattributes.is_verified and not self.user_cache.is_active:
-                raise forms.ValidationError(m.account_suspended)
-            # We only care about verified if the user is a student
-            if is_student(self.user_cache) and not self.user_cache.userattributes.is_verified and self.user_cache.is_active:
-                raise forms.ValidationError(m.not_activated)
+            
+            verify_account(self.user_cache)
+            
             if not self.user_cache.is_active:
                 self.user_cache.is_active = True
                 self.user_cache.save()
