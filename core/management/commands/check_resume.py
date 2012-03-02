@@ -17,9 +17,11 @@ class Command(BaseCommand):
             raise CommandError("You must only provide one resume book name.")
         filepath = "%sstudent/student/%s" % (s.MEDIA_ROOT, args[0])
         if not os.path.exists(filepath):
-            raise CommandError("There is no resume in MEDIA_ROOT/student/student/ with the name you provided.s")
+            raise CommandError("There is no resume in MEDIA_ROOT/student/student/ with the name you provided.")
         try:
-            PdfFileReader(file(filepath, "rb"),)
+            file = open(filepath, "rb")
+            PdfFileReader(file)
+            file.close()
         except Exception as e:
             print "BROKEN (could not be opened by PdfFileReader)"
         else:
