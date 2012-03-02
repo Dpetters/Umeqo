@@ -61,10 +61,11 @@ def student_lists_as_choices(recruiter_id):
         elif student_list_type[0] == student_enums.RESUME_BOOK_HISTORY:
             rbs = recruiter.resumebook_set.filter(delivered=True)
             for rb in rbs:
-                if not e.subscribed_annually():
-                    student_lists.append([rb.id, rb.name, "disabled=\"disabled\""])
-                else:
-                    student_lists.append([rb.id, rb.name])
+                if len(rb.students.visible())> 0:
+                    if not e.subscribed_annually():
+                        student_lists.append([rb.id, rb.name, "disabled=\"disabled\""])
+                    else:
+                        student_lists.append([rb.id, rb.name])
         new_student_list_type = [student_list_type[1], student_lists]
         student_list_types.append(new_student_list_type)
     return student_list_types

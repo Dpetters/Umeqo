@@ -44,7 +44,7 @@ def get_is_in_resumebook_attributes(recruiter, students):
         resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter=recruiter)
-    resume_book_students = resume_book.students.all()
+    resume_book_students = resume_book.students.visible()
     for student in students:
         if student in resume_book_students:
             resume_book_dict[student] = True

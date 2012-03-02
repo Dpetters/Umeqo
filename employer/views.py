@@ -327,11 +327,11 @@ def employer_resume_book_current_toggle_student(request):
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-    if student in resume_book.students.all():
+    if student in resume_book.students.visible():
         resume_book.students.remove(student)
         data = {'action':employer_enums.REMOVED}
     else:
-        if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
+        if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
             raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
         resume_book.students.add(student)
         if not request.user.recruiter.employer.name != "Umeqo":
@@ -349,14 +349,14 @@ def employer_resume_book_current_add_students(request):
         raise Http400("Request POST is missing the student_ids.")
     try:
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
-        if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
+        if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
             raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
     if request.POST['student_ids']:
         for id in request.POST['student_ids'].split('~'):
             student = Student.objects.get(id=id)
-            if student not in resume_book.students.all():
+            if student not in resume_book.students.visible():
                 resume_book.students.add(student)
             if not request.user.recruiter.employer.name != "Umeqo":
                 student.studentstatistics.add_to_resumebook_count += 1
@@ -377,7 +377,7 @@ def employer_resume_book_current_remove_students(request):
     if request.POST['student_ids']:
         for student_id in request.POST['student_ids'].split('~'):
             student = Student.objects.get(id=student_id)  
-            if student in resume_book.students.all():
+            if student in resume_book.students.visible():
                 resume_book.students.remove(student)
     return HttpResponse()
 
@@ -547,7 +547,7 @@ def employer_students(request, extra_context=None):
             student.studentstatistics.save()
 
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
-        if len(resume_book.students.all()) >= s.RESUME_BOOK_CAPACITY:
+        if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
             context['resume_book_capacity_reached'] = True
 
         context['TEMPLATE'] = 'employer_students_results.html'
@@ -587,7 +587,7 @@ def employer_resume_book_current_summary(request, extra_context=None):
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
     resume_book_capacity = s.RESUME_BOOK_CAPACITY
-    student_num = len(resume_book.students.all())
+    student_num = len(resume_book.students.visible())
     float_percentage = min(student_num, s.RESUME_BOOK_CAPACITY)/float(resume_book_capacity)*100
     context = {'student_num': student_num,
                'float_percentage':float_percentage,
@@ -648,7 +648,7 @@ def employer_resume_book_current_create(request):
         file_name = "%s%s.zip" % (file_path, resume_book_name,)
         output = zipfile.ZipFile(file_name, 'w')
 
-        for student in current_resume_book.students.all():
+        for student in current_resume_book.students.visible():
             resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             output.write(resume_file.name, os.path.basename(resume_file.name), zipfile.ZIP_DEFLATED)
 
@@ -661,15 +661,15 @@ def employer_resume_book_current_create(request):
         c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
         c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
         c.drawString(8.5*cm, 26.5*cm, "Table of Contents")
-        for page_num, student in enumerate(current_resume_book.students.all()):
+        for page_num, student in enumerate(current_resume_book.students.visible()):
             c.drawString(4*cm, (25.5-page_num*.5)*cm, student.first_name + " " + student.last_name)
             c.drawString(16*cm, (25.5-page_num*.5)*cm, str(page_num+1))
         c.showPage()
         c.save()
         output = PdfFileWriter()
         output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
-        for student in current_resume_book.students.all():
-            resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
+        for student in current_resume_book.students.visible():
+            resume_file = open("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             resume = PdfFileReader(resume_file)
             if resume.getIsEncrypted():
                 resume.decrypt("")
@@ -678,8 +678,8 @@ def employer_resume_book_current_create(request):
         outputStream = file(file_name, "wb")
         output.write(outputStream)
         outputStream.close()
-
-    resume_book_contents = file(file_name, "rb")
+        resume_file.close()
+    resume_book_contents = open(file_name, "rb")
     current_resume_book.resume_book.save(file_name, File(resume_book_contents))
     resume_book_contents.close()
     return HttpResponse()
