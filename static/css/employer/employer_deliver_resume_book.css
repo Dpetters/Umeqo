@@ -29,6 +29,17 @@ img{
     margin: 10px;
     color: #6E97B9;
 }
+#book_delivery_type, #bundle_delivery_type{
+    margin-left: 25px;
+}
+#email_delivery_type{
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: top;
+}
+.optional_service{
+    height: 21px;
+}
 .deliver_resume_book_dialog #id_emails_th{
     vertical-align:top;
 }

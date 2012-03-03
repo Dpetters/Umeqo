@@ -3,14 +3,13 @@
         {% csrf_token %}
         <table class="form_table">
             <tr>
-                <th><label>Select Delivery Type:</label></th>
+                <th><label>Delivery Type:</label></th>
                 <td id="delivery_types">
                     <div class="errorspace"></div>
                     <img id="book_delivery_type" class="delivery_selection" alt="Book (PDF)" src="{{ STATIC_URL }}images/icons/64-PDF-Document.png">
                     <img id="bundle_delivery_type" alt="Bundle (ZIP)" src="{{ STATIC_URL }}images/icons/64-PDF-Documents.png">
-                    <img id="email_delivery_type" alt="Mail Book" src="{{ STATIC_URL }}images/icons/64-Mail.png">
                 </td>
-            </tr>
+            </tr> 
             <tr>
                 <th></th>
                 <td colspan="2" class="centered">
@@ -21,6 +20,13 @@
                 <th>{{deliver_resume_book_form.name.label_tag}}</th>
                 <td>
                     {{deliver_resume_book_form.name}}
+                </td>
+            </tr>
+            <tr>
+                <th><label>Optional Services:</label></th>
+                <td>
+                    <div class="errorspace"></div>
+                    <p class="optional_service"><input id="email_delivery_type" type="checkbox"> Send as Email</p>
                 </td>
             </tr>
             <tr class="email_delivery_type_only_field">

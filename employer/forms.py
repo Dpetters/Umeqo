@@ -108,8 +108,7 @@ class EmployerProfileForm(forms.ModelForm):
         return self.cleaned_data['slug']
 
 class DeliverResumeBookForm(forms.Form):
-    delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = core_enums.DELIVERY_CHOICES)
-    name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
+    name = forms.CharField(label="Resume Book Name:", max_length=42, required=False)
     emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)
         
 class StudentSearchForm(forms.Form):
