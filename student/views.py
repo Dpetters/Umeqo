@@ -468,7 +468,7 @@ def student_resume(request):
 def specific_student_resume(request, student_id):
     was_limited = getattr(request, 'limited', False)
     if was_limited:
-        raise Http403("You have exceeded the resume viewing per minute limit." +
+        raise Http403("You have exceeded the resume viewing per minute limit. " +
                       "Please wait before trying again and consider using the resume book tool for collecting resumes in batches.")
     try:
         student = Student.objects.get(id=student_id)
