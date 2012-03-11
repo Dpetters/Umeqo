@@ -63,8 +63,8 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
             # process_resume_data returns either an error or the keywords
             resume_parsing_results =  resume_processing_helper(pdf_file_path)
             
-            # A hacked error is unrecoverable
-            if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
+            # A resume that's too long or an invalid file are both unacceptable
+            if resume_parsing_results == student_enums.RESUME_PROBLEMS.FILE_PROBLEM or resume_parsing_results == student_enums.RESUME_PROBLEMS.TOO_MANY_WORDS:
                 errors = {'resume': messages.resume_problem}
                 data['errors'] = errors
             else:
@@ -282,9 +282,13 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
             data = {'valid':True, 'unparsable_resume':False}
             if request.FILES.has_key('resume'):
                 resume_status = process_resume(request.user.student)
-                if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
+                if resume_status == student_enums.RESUME_PROBLEMS.FILE_PROBLEM:
                     data = {'valid':False}
-                    errors = {'resume': messages.resume_problem}
+                    errors = {'resume': messages.resume_file_problem}
+                    data['errors'] = errors
+                elif resume_status == student_enums.RESUME_PROBLEMS.TOO_MANY_WORDS:
+                    data = {'valid':False}
+                    errors = {'resume': messages.resume_has_too_many_words}
                     data['errors'] = errors
                 elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ignore_unparsable_resume'] == "false":
                     data = {'valid':False}
@@ -367,9 +371,9 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
         form.save()
         resume_status = process_resume(request.user.student)
         errors = {}
-        if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
+        if resume_status == student_enums.RESUME_PROBLEMS.FILE_PROBLEM:
             data = {'valid':False}
-            errors['id_resume'] = messages.resume_problem
+            errors['id_resume'] = messages.resume_file_problem
             data['errors'] = errors
         elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE:
             request.user.student.last_updated = datetime.datetime.now()

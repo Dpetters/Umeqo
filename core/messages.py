@@ -92,7 +92,8 @@ invalid_phone = "Doesn't look like a valid phone #."
 max_industries_exceeded = "You can select at most %s industries." % s.EP_MAX_INDUSTRIES
 
 # Resume Validation
-resume_problem = "There was a problem with your resume. Try again."
+resume_file_problem = "There is a problem with this resume file. Choose another."
+resume_has_too_many_words = "Your resume has too many words in it."
 empty_resume = "We could not extract any keywords out of your resume."
 
 # Student Event Invitations

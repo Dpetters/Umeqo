@@ -15,7 +15,9 @@ $(document).ready( function() {
     });
 
     if (typeof (FileReader) === "undefined" || typeof (XMLHttpRequest) === "undefined" || !('draggable' in document.createElement('span'))) {
-        $('#dropbox_status').html("Browser Not Supported");
+        $("#line_one").html("Your browser")
+        $('#line_two').html("does not support");
+        $("#line_three").html("Drap & Drop");
     } else {
         var up = {
             $dropbox :        null,
@@ -36,8 +38,10 @@ $(document).ready( function() {
                 up.$dropbox.bind("dragover", up.dragover);
                 up.$dropbox.bind("drop", up.drop);
                 
-                up.$status = $("#dropbox_status");
-                
+                up.$status_line_one = $("#line_one");
+                up.$status_line_two = $("#line_two");
+                up.$status_line_three = $("#line_three");
+                                
                 up.xhr = new XMLHttpRequest();
                 up.xhr.upload.addEventListener('progress', up.uploadProgress , false);
                 up.xhr.upload.addEventListener('load', up.uploadLoaded , false);
@@ -48,7 +52,9 @@ $(document).ready( function() {
             dragenter : function (e) {
                 up.noop(e);
                 up.$dropbox.removeClass('success').removeClass('error').addClass('hover');
-                up.$status.html("Drag & Drop PDF File Here");
+                up.$status_line_one.html("");
+                up.$status_line_two.html("Drag & Drop PDF File Here");
+                up.$status_line_three.html("");
                 return false;
             },
             dragleave : function (e) {
@@ -94,17 +100,17 @@ $(document).ready( function() {
                 switch(e.target.error.code) {
                     case e.target.error.NOT_FOUND_ERR:
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('File Not Found.');
+                        up.$status_line_two.html('File Not Found.');
                         break;
                     case e.target.error.NOT_READABLE_ERR:
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('File is not readable.');
+                        up.$status_line_two.html('File is not readable.');
                         break;
                     case e.target.error.ABORT_ERR:
                         break;
                     default:
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('The file could not be read.');
+                        up.$status_line_two.html('File could not be read.');
                         break;
                 };
             },
@@ -137,7 +143,9 @@ $(document).ready( function() {
                     if (up.xhr.readyState==4){
                         if(up.xhr.status != 200){
                             up.$dropbox.removeClass('uploading').addClass('error');
-                            up.$status.html('Error. Please try again.');
+                            up.$status_line_one.html("There was a problem");
+                            up.$status_line_two.html("with this resume file.");
+                            up.$status_line_three.html("Please try another.");
                         }
                     }
                 };
@@ -146,7 +154,9 @@ $(document).ready( function() {
             uploadProgress : function(e) {
                 if (e.lengthComputable) {
                     var percentage = Math.round((e.loaded * 100) / e.total);
-                    up.$status.html('Uploading: ' + percentage + '%');
+                    up.$status_line_one.html("");
+                    up.$status_line_two.html('Uploading: ' + percentage + '%');
+                    up.$status_line_three.html("");
                 }
             },
             uploadLoaded : function(e) {
@@ -158,11 +168,11 @@ $(document).ready( function() {
                 if(data.valid) {
                     currentRequest = $.getJSON("/student/update-resume/info/", function(data) {
                         up.$dropbox.removeClass('uploading').addClass('success');
-                        up.$status.html(data["num_of_extracted_keywords"]+ ' keywords extracted.');
+                        up.$status_line_two.html(data["num_of_extracted_keywords"]+ ' keywords extracted.');
                     });
                 } else {
                       if(data.unparsable_resume){
-                        up.$status.html('0 keywords extracted.');
+                        up.$status_line_two.html('0 keywords extracted.');
                         var $unparsable_resume_dialog = open_unparsable_resume_dialog();
                         $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
                         var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
@@ -186,7 +196,7 @@ $(document).ready( function() {
                         });
                     } else{
                         up.$dropbox.removeClass('uploading').addClass('error');
-                        up.$status.html('Error. Please try again.');
+                        //up.$status.html('Error. Please try again.');
                     }
                 }
             }

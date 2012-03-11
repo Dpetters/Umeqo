@@ -1,16 +1,24 @@
 #dropbox {
     opacity: 0.5;
     background-color: #f2f2f2;
-    height: 51px;
+    height: 60px;
     margin:5px 0px 5px 14px;
     width: 154px;
     border: 1px dashed #888;
 }
-#dropbox_status{
+.dropbox_status{
     font-weight: bold;
     position:relative;
     height:0px;
-    top:23px;
+}
+#line_one{
+    top:9px;
+}
+#line_two{
+    top:27px;
+}
+#line_three{
+    top:45px;
 }
 #update_resume_div{
     text-align:center;
