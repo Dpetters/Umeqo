@@ -13,6 +13,7 @@
 <script>
     var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
     var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
+    var MAX_RESUME_SIZE = "{{max_resume_size}}";
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>

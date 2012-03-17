@@ -14,6 +14,10 @@ LOAD_WAIT_TIME = 8000
 # Send admins an email each time that a 404 is encountered
 SEND_BROKEN_LINK_EMAILS = True
 
+# In bytes, 3MB
+MAX_RESUME_SIZE = 3*1024*1024
+MAX_RESUME_KEYWORDS = 3000
+
 # One-day activation window
 ACCOUNT_ACTIVATION_DAYS = 99999
 

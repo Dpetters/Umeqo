@@ -12,8 +12,8 @@ class PdfField(forms.Field):
         'invalid': _(u"No file was submitted. Check the encoding type on the form."),
         'missing': _(u"No file was submitted."),
         'empty': _(u"The submitted file is empty."),
-        'max_length': _(u'Ensure this filename has at most %(max)d characters (it has %(length)d).'),
-        'invalid_type': _(u'The resume must be in a .pdf format'),
+        'max_length': _(u'Ensure that the filename has at most %(max)d characters.'),
+        'invalid_type': _(u'The submitted file must be a PDF.'),
     }
 
     def __init__(self, *args, **kwargs):

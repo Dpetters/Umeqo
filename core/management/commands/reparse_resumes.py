@@ -5,7 +5,6 @@ from django.db.models import Q
 
 from student.enums import RESUME_PROBLEMS
 from student.models import Student
-from student.view_helpers import process_resume
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
