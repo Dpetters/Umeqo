@@ -13,6 +13,7 @@ from django.contrib.sessions.models import Session
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.utils import simplejson
 from django.template.loader import render_to_string
+from ratelimit.decorators import ratelimit
 
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
@@ -444,7 +445,12 @@ def student_resume(request):
 @require_GET
 @has_any_subscription
 @user_passes_test(is_recruiter)
+@ratelimit(rate='30/m')
 def specific_student_resume(request, student_id):
+    was_limited = getattr(request, 'limited', False)
+    if was_limited:
+        raise Http403("You have exceeded the resume viewing per minute limit. " +
+                      "Please wait before trying again and consider using the resume book tool for collecting resumes in batches.")
     try:
         student = Student.objects.get(id=student_id)
     except Student.DoesNotExist:
