@@ -5,7 +5,6 @@ from django.db.models import Q
 
 from student.enums import RESUME_PROBLEMS
 from student.models import Student
-from student.view_helpers import process_resume
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
@@ -16,8 +15,9 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         try:
-            hacked_resumes = []
+            too_long_resumes = []
             unparsable_resumes = []
+            file_problem_resumes = []
             
             students = Student.objects.filter(profile_created=True, user__is_active=True)
             if not options["all"]:
@@ -28,12 +28,16 @@ class Command(BaseCommand):
                     print name
                 else:
                     results = process_resume(student)
-                    if results == RESUME_PROBLEMS.HACKED:
-                        hacked_resumes.append(name)
+                    if results == RESUME_PROBLEMS.FILE_PROBLEM:
+                        file_problem_resumes.append(name)
+                    if results == RESUME_PROBLEMS.TOO_MANY_WORDS:
+                        too_long_resumes.append(name)
                     elif results == RESUME_PROBLEMS.UNPARSABLE:
                         unparsable_resumes.append(name)
-            if hacked_resumes:
-                print "Hacked resumes: %s" % (", ".join(hacked_resumes))
+            if file_problem_resumes:
+                print "Resumes with file problems: %s" % (", ".join(file_problem_resumes))
+            if too_long_resumes:
+                print "Resumes that were too long: %s" % (", ".join(too_long_resumes))
             if unparsable_resumes:
                 print "Unparsable resumes: %s" % (", ".join(unparsable_resumes))
         except Exception as e:

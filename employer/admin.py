@@ -7,7 +7,7 @@ from employer.models import Employer, EmployerStatistics, ResumeBook, Recruiter,
 from core.view_helpers import employer_campus_org_slug_exists
 
 class ResumeBookAdmin(admin.ModelAdmin):
-    fields = ['resume_book', 'name']
+    fields = ['resume_book', 'name', 'delivered']
     list_display = ['recruiter', 'name', 'delivered', 'date_created']
     
 admin.site.register(ResumeBook, ResumeBookAdmin)
@@ -38,7 +38,8 @@ class RecruiterPreferencesAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_created'
         
 admin.site.register(RecruiterPreferences, RecruiterPreferencesAdmin)
-    
+
+
 class EmployerAdminForm(forms.ModelForm):
     class Meta:
         model = Employer
@@ -48,6 +49,7 @@ class EmployerAdminForm(forms.ModelForm):
             if employer_campus_org_slug_exists(self.cleaned_data['slug'], employer=self.instance):
                 raise forms.ValidationError("A campus organization or employer with the slug %s already exists" % (self.cleaned_data['slug']))
         return self.cleaned_data['slug']
+
 
 class EmployerAdmin(admin.ModelAdmin):
     fields = ['name', 'logo', 'description', 'slug', 'offered_job_types', 'industries', 'careers_website', 'main_contact', 'main_contact_phone', 'main_contact_email', 'visible']

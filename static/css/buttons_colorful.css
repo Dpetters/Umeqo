@@ -1,4 +1,4 @@
-.gray_button.um-active.post_quick_registration_event_action_button, .post_quick_registration_event_action_button, .attending, #logo_and_buttons .subscribed, .resume_dropped, .not_attending:hover{
+.gray_button.um-active.post_quick_registration_event_action_button, .post_quick_registration_event_action_button, .post_quick_registration_event_action_button:hover,  .attending, #logo_and_buttons .subscribed, .resume_dropped, .not_attending:hover{
     background: #53d874; /* Old browsers */
     background: -moz-linear-gradient(top, #53d874 0%, #00ae3e 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#53d874), color-stop(100%,#00ae3e)); /* Chrome,Safari4+ */

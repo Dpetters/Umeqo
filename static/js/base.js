@@ -183,13 +183,7 @@ $(document).ready( function () {
         }, 100);
     });
          
-    // Make sure dialogs are always position in the center
-    $(window).bind('resizeEnd',  function() {
-        $(".dialog").dialog('option', 'position', 'center');
-    });
-    $(window).bind('scrollEnd', function() {
-        $(".dialog").dialog('option', 'position', 'center');
-    });
+
     $(".close_dialog_link").live('click', function(e) {
         $(".dialog").remove();
         e.preventDefault();
@@ -285,6 +279,9 @@ $(document).ready( function () {
     jQuery.validator.addMethod("notEqualTo", function(value, element, param) {
         return this.optional(element) || value != $(param).val();
     }, "Please specify a different (non-default) value");
+    jQuery.validator.addMethod("file_size", function(value, element, param) {
+        return this.optional(element) || typeof (FileReader) === "undefined" || element.files[0].size < param;
+    }, "File exceeds the alloted size limit");
     jQuery.validator.addMethod("notAllZeroes", function(value, element) {
         if($("#id_days").val() == 0 && $("#id_hours").val() == 0 && $("#id_minutes").val() == 0) {
             $("#id_days, #id_hours, #id_minutes").attr('style', "border: 1px solid #FF603D !important");

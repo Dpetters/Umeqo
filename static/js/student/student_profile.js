@@ -30,53 +30,51 @@ function submit_profile_form(form, ignore_unparsable_resume){
         },
         success: function (data) {
             data = $.parseJSON(data);
-            if(data.valid) {
-                window.location.href = HOME_URL + "?msg=profile-saved";
-            } else {
-                if(data.unparsable_resume){
-                    var $unparsable_resume_dialog = open_unparsable_resume_dialog();
-                    $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
-                    $unparsable_resume_dialog.dialog('option', 'position', 'center');
-                    var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-                    $.ajax({
-                        dataType: "html",
-                        url: UNPARSABLE_RESUME_URL,
-                        complete: function(jqXHR, textStatus) {
-                            clearTimeout(unparsable_resume_dialog_timeout);
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            if(jqXHR.status==0){
-                                $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                            }else{
-                                $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
-                            }
-                        },
-                        success: function (data) {
-                            $unparsable_resume_dialog.html(data);
-                            $unparsable_resume_dialog.dialog('option', 'position', 'center');
-                            $(".choose_another_resume_link").live('click', function(){
-                                $unparsable_resume_dialog.remove();
-                                   accordion.accordion("activate", 0);
-                                current = 0;
-                                $("#id_resume").focus();
-                            });
-                            $(".save_profile_link").live('click', function(){
-                                if (EDIT){
-                                    window.location.href = HOME_URL + "?msg=profile-saved";                                            
-                                }else{
-                                    $unparsable_resume_dialog.remove();
-                                    submit_profile_form($("#profile_form"), true);
-                                }
-                            });
-                        }
-                    });
-                }else{
-                    if('second_major' in data.errors){
-                        accordion.accordion("activate", 1);
-                        current = 1;
-                    }
-                    place_table_form_errors("#profile_form", data.errors);
+            if(data.errors){
+                if('second_major' in data.errors){
+                    accordion.accordion("activate", 1);
+                    current = 1;
                 }
+                place_table_form_errors("#profile_form", data.errors);
+            } else if(data.unparsable_resume){
+                var $unparsable_resume_dialog = open_unparsable_resume_dialog();
+                $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
+                $unparsable_resume_dialog.dialog('option', 'position', 'center');
+                var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+                $.ajax({
+                    dataType: "html",
+                    url: UNPARSABLE_RESUME_URL,
+                    complete: function(jqXHR, textStatus) {
+                        clearTimeout(unparsable_resume_dialog_timeout);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        if(jqXHR.status==0){
+                            $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                        }else{
+                            $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
+                        }
+                    },
+                    success: function (data) {
+                        $unparsable_resume_dialog.html(data);
+                        $unparsable_resume_dialog.dialog('option', 'position', 'center');
+                        $(".choose_another_resume_link").live('click', function(){
+                            $unparsable_resume_dialog.remove();
+                               accordion.accordion("activate", 0);
+                            current = 0;
+                            $("#id_resume").focus();
+                        });
+                        $(".save_profile_link").live('click', function(){
+                            if (EDIT){
+                                window.location.href = HOME_URL + "?msg=profile-saved";
+                            }else{
+                                $unparsable_resume_dialog.remove();
+                                submit_profile_form($("#profile_form"), true);
+                            }
+                        });
+                    }
+                });
+            }else{
+                window.location.href = HOME_URL + "?msg=profile-saved";
             }
         },
         error: errors_in_message_area_handler
@@ -217,7 +215,8 @@ $(document).ready( function() {
                 maxlength: 4
             },
             resume:{
-                accept: "pdf"
+                accept: "pdf",
+                //file_size: 3*1024*1024
             },
             website:{
                 complete_url: true
@@ -249,7 +248,10 @@ $(document).ready( function() {
                 required: GPA_REQUIRED,
                 range: GPA_RANGE
             },
-            resume: RESUME_REQUIRED,
+            resume: {
+                accept:RESUME_REQUIRED,
+                file_size: "This file exceed the " + MAX_RESUME_SIZE/1024/1024 + "MB size limit."
+            },
             website: INVALID_URL
         }
     });

@@ -13,11 +13,11 @@ class Command(BaseCommand):
             try:
                 PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb"),)
             except Exception as e:
-                student.suspend()
-                for rb in student.resumebook_set.filter(delivered=False):
-                    rb.students.remove(student)
-                    rb.save()
-                student.save()
+                student.deactivate()
+                #for rb in student.resumebook_set.filter(delivered=False):
+                #    rb.students.remove(student)
+                #    rb.save()
+                #student.save()
                 managers = [mail_tuple[1] for mail_tuple in s.MANAGERS]
                 send_html_mail("[Umeqo] Faulty Resume", "%s %s' resume was faulty. The account was suspended. Go and fix the resume!" % (student.first_name, student.last_name), managers)
                 

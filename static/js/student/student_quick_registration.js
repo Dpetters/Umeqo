@@ -21,6 +21,7 @@ $(".open_registration_help_dialog_link").live('click', function(){
 });
 function submit_student_quick_registration_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
+    
     $(form).ajaxSubmit({
         dataType: 'text',
         data:{'ignore_unparsable_resume':"false"},
@@ -39,6 +40,7 @@ function submit_student_quick_registration_form(form, ignore_unparsable_resume){
             if(data.errors) {
                 place_table_form_errors("#student_quick_registration_form", data.errors);
             } else {
+                console.log(data.unparsable_resume);
                 $.ajax({
                     url: STUDENT_QUICK_REGISTRATION_DONE_URL,
                     dataType: "html",
@@ -49,7 +51,14 @@ function submit_student_quick_registration_form(form, ignore_unparsable_resume){
                     error: errors_in_message_area_handler
                 });
                 if (action == "rsvp"){
-                    $("#rsvp_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button").text("Attending");
+                    $("#rsvp_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button");
+                    var parent = get_parent($("#rsvp_button"));
+                    var is_deadline = $(parent).data("is-deadline")=="True";
+                    if(is_deadline){
+                        $("#rsvp_button").text("Participating");
+                    }else{
+                        $("#rsvp_button").text("Attending");
+                    }
                 }
                 $("#drop_resume_button").removeClass("student_quick_registration_link").addClass("post_quick_registration_event_action_button").text("Resume Dropped");                    
                 create_student_quick_registration_dialog.dialog("option", "title", "Account Created Successfully");

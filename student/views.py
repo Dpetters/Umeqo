@@ -13,6 +13,7 @@ from django.contrib.sessions.models import Session
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.utils import simplejson
 from django.template.loader import render_to_string
+from ratelimit.decorators import ratelimit
 
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
@@ -34,7 +35,7 @@ from student import enums as student_enums
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation
-from student.view_helpers import process_resume, handle_uploaded_file, resume_processing_helper
+from student.view_helpers import handle_uploaded_file, extract_resume_keywords
 
 
 @require_GET
@@ -57,51 +58,43 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
         data = {}
         form = form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
-            pdf_file_path = "%sstudent/student/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
-            handle_uploaded_file(request.FILES['resume'], pdf_file_path)
+            pdf_file_path = "student/student/quick_reg_resume_%s.pdf" %(datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+            handle_uploaded_file(request.FILES['resume'], "%s%s" % (s.MEDIA_ROOT, pdf_file_path))
             
             # process_resume_data returns either an error or the keywords
-            resume_parsing_results =  resume_processing_helper(pdf_file_path)
+            keywords =  extract_resume_keywords(pdf_file_path)
             
-            # A hacked error is unrecoverable
-            if resume_parsing_results == student_enums.RESUME_PROBLEMS.HACKED:
-                errors = {'resume': messages.resume_problem}
-                data['errors'] = errors
-            else:
-                # If the resume is not unparsable, then resume_parsing_results
-                # contains the keywords
-                keywords = None
-                data['unparsable_resume'] = False
-                if resume_parsing_results == student_enums.RESUME_PROBLEMS.UNPARSABLE:
-                    data['unparsable_resume'] = True
-                else:
-                    keywords = resume_parsing_results
-                user_info =  {'username': request.POST['email'],
-                              'first_name': request.POST['first_name'],
-                              'last_name': request.POST['last_name'],
-                              'email': request.POST['email'],
-                              'password': request.POST['password']}
-                student = register_student(request, **user_info)
-                student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
-                student.graduation_month = request.POST['graduation_month']
-                student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
-                student.first_major = Course.objects.get(id=request.POST['first_major'])
-                student.gpa = request.POST['gpa']
-                file_content = file(pdf_file_path, "rb")
-                student.resume.save(request.FILES['resume'].name, File(file_content))
-                
-                if keywords:
-                    student.keywords = keywords
-                student.profile_created = True
-                student.save()
-                for attendee in Attendee.objects.filter(email=student.user.email):
-                    attendee.student = student
-                    attendee.save()
-                event = Event.objects.get(id=request.POST['event_id'])
-                action = request.POST['action']
-                DroppedResume.objects.create(student=student, event=event)
-                if action == "rsvp":
-                    RSVP.objects.create(student=student, event=event)
+            # If the resume is not unparsable, then resume_parsing_results
+            # contains the keywords
+            if len(keywords) == 0:
+                data['unparsable_resume'] = True
+
+            user_info =  {'username': request.POST['email'],
+                          'first_name': request.POST['first_name'],
+                          'last_name': request.POST['last_name'],
+                          'email': request.POST['email'],
+                          'password': request.POST['password']}
+            student = register_student(request, **user_info)
+            student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
+            student.graduation_month = request.POST['graduation_month']
+            student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
+            student.first_major = Course.objects.get(id=request.POST['first_major'])
+            student.gpa = request.POST['gpa']
+            file_content = file("%s%s" % (s.MEDIA_ROOT, pdf_file_path), "rb")
+            student.resume.save(request.FILES['resume'].name, File(file_content))
+            
+            if keywords:
+                student.keywords = keywords
+            student.profile_created = True
+            student.save()
+            for attendee in Attendee.objects.filter(email=student.user.email):
+                attendee.student = student
+                attendee.save()
+            event = Event.objects.get(id=request.POST['event_id'])
+            action = request.POST['action']
+            DroppedResume.objects.create(student=student, event=event)
+            if action == "rsvp":
+                RSVP.objects.create(student=student, event=event)
         else:
             data['errors'] = form.errors
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
@@ -281,28 +274,23 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
                 student.sat_t = None
             data = {'valid':True, 'unparsable_resume':False}
             if request.FILES.has_key('resume'):
-                resume_status = process_resume(request.user.student)
-                if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
-                    data = {'valid':False}
-                    errors = {'resume': messages.resume_problem}
-                    data['errors'] = errors
-                elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE and request.POST['ignore_unparsable_resume'] == "false":
-                    data = {'valid':False}
-                    data['unparsable_resume'] = True
-            if data['valid'] and not data['unparsable_resume']:
+                keywords = extract_resume_keywords(request.user.student.resume.name)
+                student.keywords = " ".join(keywords)
+                student.last_update = datetime.datetime.now()
                 student.profile_created = True
-                student.last_updated = datetime.datetime.now()
+                if len(keywords)==0 and request.POST['ignore_unparsable_resume'] == "false":
+                    data['unparsable_resume'] = True
                 student.save()
                 for a in Attendee.objects.filter(email=student.user.email):
                     a.student = student
                     a.save()
         else:
-            data = {'valid':False,
-                    'errors':form.errors}
+            data = {'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="text/html")
     else:
         form = form_class(instance=request.user.student)
         context = { 'form' : form,
+                    'max_resume_size' : s.MAX_RESUME_SIZE,
                     'edit' : request.user.student.profile_created,
                     'industries_of_interest_max' : s.SP_MAX_INDUSTRIES_OF_INTEREST,
                     'campus_involvement_max': s.SP_MAX_CAMPUS_INVOLVEMENT,
@@ -365,23 +353,17 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
     if form.is_valid():
         form.save()
-        resume_status = process_resume(request.user.student)
-        errors = {}
-        if resume_status == student_enums.RESUME_PROBLEMS.HACKED:
-            data = {'valid':False}
-            errors['id_resume'] = messages.resume_problem
-            data['errors'] = errors
-        elif resume_status == student_enums.RESUME_PROBLEMS.UNPARSABLE:
-            request.user.student.last_updated = datetime.datetime.now()
-            request.user.student.save()
-            data = {'valid':False}
+        data = {}
+        keywords = extract_resume_keywords(request.user.student.resume.name)
+        if len(keywords) == 0:
             data['unparsable_resume'] = True
-        else:
-            request.user.student.last_updated = datetime.datetime.now()
-            request.user.student.save()
-            data = {'valid':True}
+        data['num_of_extracted_keywords'] = len(keywords)
+        request.user.student.last_updated = datetime.datetime.now()
+        request.user.student.save()
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-
+    else:
+        data = {'errors': form.errors }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @require_http_methods(["GET"])
 @user_passes_test(is_student)
@@ -463,7 +445,12 @@ def student_resume(request):
 @require_GET
 @has_any_subscription
 @user_passes_test(is_recruiter)
+@ratelimit(rate='30/m')
 def specific_student_resume(request, student_id):
+    was_limited = getattr(request, 'limited', False)
+    if was_limited:
+        raise Http403("You have exceeded the resume viewing per minute limit. " +
+                      "Please wait before trying again and consider using the resume book tool for collecting resumes in batches.")
     try:
         student = Student.objects.get(id=student_id)
     except Student.DoesNotExist:

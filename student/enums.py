@@ -4,7 +4,7 @@ from __future__ import absolute_import
 def enum(**enums):
     return type('Enum', (), enums)
 
-RESUME_PROBLEMS = enum(HACKED = 1, UNPARSABLE = 2)
+RESUME_PROBLEMS = enum(TOO_MANY_WORDS = 1, UNPARSABLE = 2, FILE_PROBLEM = 3)
 
 GENERAL = 0
 EVENT = 2

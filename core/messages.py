@@ -91,9 +91,18 @@ main_contact_email_required = "An email is required for the main contact."
 invalid_phone = "Doesn't look like a valid phone #."
 max_industries_exceeded = "You can select at most %s industries." % s.EP_MAX_INDUSTRIES
 
+# File validation
+invalid_file = "No file was submitted. Check the encoding type on the form."
+missing_file = "No file was submitted."
+empty_file = "The submitted file is empty."
+max_length = 'Ensure that the filename has at most %(max)d characters.'
+invalid_type = 'The submitted file must be a PDF.'
+
 # Resume Validation
-resume_problem = "There was a problem with your resume. Try again."
-empty_resume = "We could not extract any keywords out of your resume."
+resume_file_problem = "There was a problem with this file. Choose another."
+resume_has_too_many_words = "Your resume has too many words in it."
+resume_file_size = "Your resume file exceeds the %dMB size limit."
+max_resume_size = s.MAX_RESUME_SIZE
 
 # Student Event Invitations
 already_invited = "Student has already been invited."
