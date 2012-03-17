@@ -40,6 +40,7 @@ function submit_student_quick_registration_form(form, ignore_unparsable_resume){
             if(data.errors) {
                 place_table_form_errors("#student_quick_registration_form", data.errors);
             } else {
+                console.log(data.unparsable_resume);
                 $.ajax({
                     url: STUDENT_QUICK_REGISTRATION_DONE_URL,
                     dataType: "html",

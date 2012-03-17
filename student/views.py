@@ -58,8 +58,8 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
         data = {}
         form = form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
-            pdf_file_path = "%sstudent/student/quick_reg_resume_%s.pdf" %(s.MEDIA_ROOT, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
-            handle_uploaded_file(request.FILES['resume'], pdf_file_path)
+            pdf_file_path = "student/student/quick_reg_resume_%s.pdf" %(datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+            handle_uploaded_file(request.FILES['resume'], "%s%s" % (s.MEDIA_ROOT, pdf_file_path))
             
             # process_resume_data returns either an error or the keywords
             keywords =  extract_resume_keywords(pdf_file_path)
@@ -80,7 +80,7 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
             student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
             student.first_major = Course.objects.get(id=request.POST['first_major'])
             student.gpa = request.POST['gpa']
-            file_content = file(pdf_file_path, "rb")
+            file_content = file("%s%s" % (s.MEDIA_ROOT, pdf_file_path), "rb")
             student.resume.save(request.FILES['resume'].name, File(file_content))
             
             if keywords:

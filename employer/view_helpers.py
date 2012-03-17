@@ -44,6 +44,15 @@ def get_is_in_resumebook_attributes(recruiter, students):
         resume_book = ResumeBook.objects.get(recruiter=recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter=recruiter)
+    except ResumeBook.MultipleObjectsReturned:
+        # Need this handler in case a recruiter ends up with multiple
+        # undelivered resume books for some reason
+        resume_books = ResumeBook.objects.filter(recruiter=recruiter, delivered=False)
+        for i, rb in enumerate(resume_books):
+            if i != 0:
+                rb.delete()
+            else:
+                resume_book = rb
     resume_book_students = resume_book.students.visible()
     for student in students:
         if student in resume_book_students:

@@ -31,9 +31,11 @@ $(document).ready( function() {
                      'default': ['', "Drag & Drop PDF File Here", ''],
                      'invalid_type': ['', "Only PDFs are allowed", ""],
                      'not_readable': ['', "File is not readable", ''],
+                     'empty': ['', "File was empty.", ''],
                      'not_found': ['', "File was not found", ''],
                      'unparsable': ['', '0 keywords extracted', ''],
                      'uploading': ['', "Loading file...", ''],
+                     'too_many_words': ['Your resume', 'has too many', 'words in it.'],
             },
             noop : function (e){
                 e.stopPropagation();
@@ -168,7 +170,13 @@ $(document).ready( function() {
                 up.uploading = false;
                 if(data.errors){
                     up.$dropbox.removeClass('uploading').addClass('error');
-                    up.setMessage(data.errors.resume);
+                    if(data.errors.resume[0] == EMPTY_FILE_MESSAGE){
+                        up.setMessage("empty");
+                    }else if(data.errors.resume[0] == RESUME_HAS_TOO_MANY_WORDS){
+                        up.setMessage("too_many_words");
+                    }else{
+                        up.setMessage(data.errors.resume);
+                    }
                 } else {
                     if(data.unparsable_resume){
                         up.setMessage("unparsable");

@@ -1,6 +1,17 @@
+{% load text_snippet %}
+
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_upload_resume.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
+
 <script type="text/javascript" src="{{ STATIC_URL }}js/student/student_upload_resume.js"></script>
-  
+<script src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
+<script>
+    var MAX_RESUME_SIZE = "{% text_snippet 'max_resume_size' %}";
+    var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
+    var EMPTY_FILE_MESSAGE = "{% text_snippet 'empty_file' %}";
+    var RESUME_HAS_TOO_MANY_WORDS = "{% text_snippet 'resume_has_too_many_words' %}";
+</script>
+
 <div class="side_nav"> 
     <h3>Events</h3>
     <a href="{% url events category="upcoming" %}">Browse Events</a>

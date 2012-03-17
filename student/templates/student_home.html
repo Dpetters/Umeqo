@@ -4,19 +4,15 @@
 {{block.super}}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
 {% endcompress %}
 {% include "event_snippet_css.html" %}
 <script>
-    var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
     var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
-    var MAX_RESUME_SIZE = "{{max_resume_size}}";
 </script>
 {% compress js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_rsvp.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_resume_drop.js"></script>
 <script src="{{ STATIC_URL }}js/events/event_helpers.js"></script>

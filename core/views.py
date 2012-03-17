@@ -354,7 +354,6 @@ def home(request, extra_context=None):
             event_sqs = get_upcoming_events_sqs(request.user).filter(SQ(attending_employers__in=subscriptions) | SQ(invitees=request.user.id))
             context.update(get_categorized_events_context(len(event_sqs)>0, event_sqs, request.user))
             context['has_subscriptions'] = len(subscriptions) > 0
-            context['max_resume_size'] = s.MAX_RESUME_SIZE
             context['TEMPLATE'] = 'student_home.html'
         else:
             context.update(get_upcoming_events_context(request.user))

@@ -1,5 +1,7 @@
 import os
 
+from core import messages as m
+
 from django.core.exceptions import ValidationError
 from django.core import validators
 from django.utils.translation import ugettext_lazy as _
@@ -9,11 +11,11 @@ from django import forms
 class PdfField(forms.Field):
 
     default_error_messages = {
-        'invalid': _(u"No file was submitted. Check the encoding type on the form."),
-        'missing': _(u"No file was submitted."),
-        'empty': _(u"The submitted file is empty."),
-        'max_length': _(u'Ensure that the filename has at most %(max)d characters.'),
-        'invalid_type': _(u'The submitted file must be a PDF.'),
+        'invalid': _(m.invalid_file),
+        'missing': _(m.missing_file),
+        'empty': _(m.empty_file),
+        'max_length': _(m.max_length),
+        'invalid_type': _(m.invalid_type),
     }
 
     def __init__(self, *args, **kwargs):

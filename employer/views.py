@@ -586,6 +586,13 @@ def employer_resume_book_current_summary(request, extra_context=None):
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    except ResumeBook.MultipleObjectsReturned:
+        resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
+        for i, rb in enumerate(resume_books):
+            if i != 0:
+                rb.delete()
+            else:
+                resume_book = rb
     resume_book_capacity = s.RESUME_BOOK_CAPACITY
     student_num = len(resume_book.students.visible())
     float_percentage = min(student_num, s.RESUME_BOOK_CAPACITY)/float(resume_book_capacity)*100

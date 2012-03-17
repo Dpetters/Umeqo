@@ -235,7 +235,6 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'middleware.generic.SetRemoteAddrMiddleware',
     'middleware.log.LogMiddleware',
-    'middleware.integrity.UserIntegrity',
     'middleware.exceptions.ProcessExceptionMiddleware'
 )
 
