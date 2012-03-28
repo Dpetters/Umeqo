@@ -5,6 +5,11 @@
 #side_block_area .side_block{
     margin-bottom:11px;
 }
+.filtering_section_desc{
+    color:#888;
+    font-weight:normal;
+    margin-left:5px;
+}
 #side_block_area .select_wrapper {
     float:right;
     margin-right:4px;
