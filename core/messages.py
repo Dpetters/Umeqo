@@ -99,7 +99,7 @@ max_length = 'Ensure that the filename has at most %(max)d characters.'
 invalid_type = 'The submitted file must be a PDF.'
 
 # Resume Validation
-resume_file_problem = "There was a problem with this file. Choose another."
+resume_file_problem = "There is a problem with your resume file. Choose another."
 resume_has_too_many_words = "Your resume has too many words in it."
 resume_file_size = "Your resume file exceeds the %dMB size limit."
 max_resume_size = s.MAX_RESUME_SIZE
