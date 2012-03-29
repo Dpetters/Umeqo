@@ -7,18 +7,18 @@ from django.conf import settings as s
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
-from core.view_helpers import employer_campus_org_slug_exists
-from core.form_helpers import decorate_bound_field
+from ckeditor.widgets import CKEditorWidget
+
 from core import messages as m
 from core.choices import NO_YES_CHOICES
+from core.form_helpers import decorate_bound_field
 from core.models import Industry, EmploymentType
+from core.view_helpers import employer_campus_org_slug_exists
+from core.widgets import UmSelectWidget
+from employer.models import RecruiterPreferences, StudentFilteringParameters, Employer
+from employer import enums as employer_enums
 from student.form_helpers import student_lists_as_choices
 from student.forms import StudentBaseAttributeForm
-from employer.models import RecruiterPreferences, StudentFilteringParameters, Employer
-from core import enums as core_enums
-from core.widgets import UmSelectWidget
-from employer import enums as employer_enums
-from ckeditor.widgets import CKEditorWidget
 
 decorate_bound_field()
 
@@ -108,8 +108,7 @@ class EmployerProfileForm(forms.ModelForm):
         return self.cleaned_data['slug']
 
 class DeliverResumeBookForm(forms.Form):
-    delivery_type = forms.ChoiceField(label="Select Delivery Type:", choices = core_enums.DELIVERY_CHOICES)
-    name = forms.CharField(label="Name Resume Book:", max_length=42, required=False)
+    name = forms.CharField(label="Resume Book Name:", max_length=42, required=False)
     emails = forms.CharField(label="Recipient Emails:", max_length=2000, widget=forms.Textarea(), required=False)
         
 class StudentSearchForm(forms.Form):

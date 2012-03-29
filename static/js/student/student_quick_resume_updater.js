@@ -14,7 +14,9 @@ $(document).ready( function() {
         $("#update_resume_div").slideToggle();
     });
 
-    if (typeof (FileReader) === "undefined" || typeof (XMLHttpRequest) === "undefined" || !('draggable' in document.createElement('span'))) {
+    if (typeof (FileReader) === "undefined" || 
+        typeof (XMLHttpRequest) === "undefined" || 
+        !('draggable' in document.createElement('span'))) {
         $("#line_one").html("Your browser")
         $('#line_two').html("does not support");
         $("#line_three").html("Drap & Drop");
@@ -32,8 +34,9 @@ $(document).ready( function() {
                      'invalid_type': ['', "Only PDFs are allowed", ""],
                      'not_readable': ['', "File is not readable", ''],
                      'empty': ['', "File was empty.", ''],
+                     'file_problem': ['There was a problem', "with the file.", 
+                                      'Please try another.'],
                      'not_found': ['', "File was not found", ''],
-                     'unparsable': ['', '0 keywords extracted', ''],
                      'uploading': ['', "Loading file...", ''],
                      'too_many_words': ['Your resume', 'has too many', 'words in it.'],
             },
@@ -103,7 +106,8 @@ $(document).ready( function() {
                             // Check file size
                             if(files[0].size > MAX_RESUME_SIZE){
                                 up.$dropbox.removeClass('uploading').addClass('error');
-                                up.setMessage("custom", "", "File exceeds the " + MAX_RESUME_SIZE/1024/1024 + "MB limit");
+                                up.setMessage("custom", "", 
+                                "File exceeds the " + MAX_RESUME_SIZE/1024/1024 + "MB limit");
                             } else {
                                 up.processing = files[0];
                                 up.uploading = true;
@@ -148,12 +152,14 @@ $(document).ready( function() {
                 
                 var boundary = 'xxxxxxxxx';
                 var body = '--' + boundary + "\r\n";
-                body += "Content-Disposition: form-data; name=resume; filename=" + up.processing.name + "\r\n";
+                body += "Content-Disposition: form-data; name=resume; filename=" 
+                        + up.processing.name + "\r\n";
                 body += "Content-Type: application/pdf\r\n\r\n";
                 body += binary + "\r\n";
                 body += '--' + boundary + '--';
 
-                up.xhr.setRequestHeader('content-type', 'multipart/form-data; boundary=' + boundary);
+                up.xhr.setRequestHeader('content-type', 'multipart/form-data; boundary=' 
+                                        + boundary);
                 up.xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 up.xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
                 up.xhr.sendAsBinary(body);
@@ -170,19 +176,22 @@ $(document).ready( function() {
                 up.uploading = false;
                 if(data.errors){
                     up.$dropbox.removeClass('uploading').addClass('error');
-                    if(data.errors.resume[0] == EMPTY_FILE_MESSAGE){
+                    var status = data.errors.resume[0];
+                    if(status == EMPTY_FILE_MESSAGE){
                         up.setMessage("empty");
-                    }else if(data.errors.resume[0] == RESUME_HAS_TOO_MANY_WORDS){
+                    }else if(status == RESUME_HAS_TOO_MANY_WORDS){
                         up.setMessage("too_many_words");
+                    }else if(status == RESUME_FILE_PROBLEM){
+                        up.setMessage("file_problem");
                     }else{
                         up.setMessage(data.errors.resume);
                     }
                 } else {
                     if(data.unparsable_resume){
-                        up.setMessage("unparsable");
                         var $unparsable_resume_dialog = open_unparsable_resume_dialog();
                         $unparsable_resume_dialog.html(DIALOG_AJAX_LOADER);
-                        var unparsable_resume_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+                        var unparsable_resume_dialog_timeout = 
+                        setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
                         $.ajax({
                             dataType: "html",
                             url: UNPARSABLE_RESUME_URL + "?home=true",
@@ -195,15 +204,18 @@ $(document).ready( function() {
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
                                 if(jqXHR.status==0){
-                                    $unparsable_resume_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                                    $unparsable_resume_dialog
+                                    .html(CHECK_CONNECTION_MESSAGE_DIALOG);
                                 }else{
                                     $unparsable_resume_dialog.html(ERROR_MESSAGE_DIALOG);
                                 }
                             }
                         });
+                    }else{
+                        up.$dropbox.removeClass('uploading').addClass('success');
                     }
-                    up.$dropbox.removeClass('uploading').addClass('success');
-                    up.setMessage("custom", "", data["num_of_extracted_keywords"]+ ' keywords extracted.', "");
+                    up.setMessage("custom", "", data["num_of_extracted_keywords"] 
+                                  + ' keywords extracted.', "");
                 }
             }
         };

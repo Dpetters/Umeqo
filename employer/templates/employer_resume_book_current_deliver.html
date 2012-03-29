@@ -1,33 +1,57 @@
+<style>
+    #delivery_formats p.icon, #delivery_types p.icon{
+        background: url({{STATIC_URL}}images/resumebook_delivery_sprite.png) no-repeat top left;
+    }
+</style>
+
 <div class="dialog_content_wrapper">
     <form id="deliver_resume_book_form" method='POST' action="{% url employer_resume_book_current_email %}">
         {% csrf_token %}
         <table class="form_table">
             <tr>
-                <th><label>Select Delivery Type:</label></th>
-                <td id="delivery_types">
-                    <div class="errorspace"></div>
-                    <img id="book_delivery_type" class="delivery_selection" alt="Book (PDF)" src="{{ STATIC_URL }}images/icons/64-PDF-Document.png">
-                    <img id="bundle_delivery_type" alt="Bundle (ZIP)" src="{{ STATIC_URL }}images/icons/64-PDF-Documents.png">
-                    <img id="email_delivery_type" alt="Mail Book" src="{{ STATIC_URL }}images/icons/64-Mail.png">
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td colspan="2" class="centered">
-                   <p id="delivery_selection_text">Combine all resumes into one file</p>
-                </td>
-            </tr>
-            <tr>
-                <th>{{deliver_resume_book_form.name.label_tag}}</th>
+                <th id="delivery_type_label"><label>Delivery Type:</label></th>
                 <td>
-                    {{deliver_resume_book_form.name}}
+                    <ul id="delivery_types">
+                       <li data-delivery-type="download" class="selected">
+                           <p class="icon sprite-64-Download"></p>
+                           <p class="label">Download</p>
+                       </li>
+                       <li data-delivery-type="email">
+                           <p class="icon sprite-64-Mail"></p>
+                           <p class="label">Email</p>
+                       </li>
+                    </ul>
+                    <!--<span></span><img id="book_delivery_type" class="delivery_selection" alt="Book (PDF)" src="{{ STATIC_URL }}images/icons/64-PDF-Document.png">
+                    <img id="bundle_delivery_type" alt="Bundle (ZIP)" src="{{ STATIC_URL }}images/icons/64-PDF-Documents.png">-->
+                </td>
+            </tr>
+            <tr>
+                <th id="delivery_type_label"><label>Delivery Format:</label></th>
+                <td>
+                    <ul id="delivery_formats">
+                       <li data-delivery-format="combined" class="selected">
+                           <p class="icon sprite-64-PDF-Document"></p>
+                           <p class="label">Combined</p>
+                       </li>
+                       <li data-delivery-format="separate">
+                           <p class="icon sprite-64-PDF-Documents"></p>
+                           <p class="label">Separate</p>
+                       </li>
+                    </ul>
+                </td>
+            </tr>            
+            <tr>
+                <th>{{form.name.label_tag}}</th>
+                <td>
+                    <div class="errorspace">{{form.name.errors}}</div>
+                    {{form.name}}
                 </td>
             </tr>
             <tr class="email_delivery_type_only_field">
-                <th id="id_emails_th">{{deliver_resume_book_form.emails.label_tag}}</th>
+                <th id="id_emails_th">{{form.emails.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
-                    {{deliver_resume_book_form.emails}}
+                    {{form.emails}}
                 </td>
             </tr>
             <tr>
