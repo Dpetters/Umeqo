@@ -1,6 +1,60 @@
-img{
-    cursor: pointer;
+/* Delivery Icon Sprite */
+.sprite-64-Download{
+    background-position: 0 0 !important;  
+} 
+.sprite-64-Mail{
+    background-position: 0 -114px !important;
+} 
+.sprite-64-PDF-Document{
+    background-position: 0 -228px !important;
+} 
+.sprite-64-PDF-Documents{
+    background-position: 0 -342px !important;
 }
+
+#delivery_formats{
+    margin-top:10px;
+}
+#delivery_types li, #delivery_formats li{
+    border:1px solid #FFF;
+    display:inline-block;
+    margin-left:8px;
+    cursor:pointer;
+}
+#delivery_types li:hover, #delivery_formats li:hover{
+    background-color: #E0E0E0;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #CCCCCC;
+}
+#delivery_formats li.disabled{
+    cursor:default;
+    opacity:.3;
+    background-color: #FFF;
+    border:1px solid #FFF;
+}
+#delivery_types li.selected, #delivery_formats li.selected{
+    background-color: #E0E0E0;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #CCCCCC;
+}
+#delivery_types li.selected p.label, #delivery_formats li.selected p.label{
+    color:#333;
+}
+
+#delivery_format_label, #delivery_type_label{
+    vertical-align:top;
+    position:relative;
+    top:25px;
+}
+#delivery_formats p.icon, #delivery_types p.icon{
+    height:58px;
+    width:64px;
+}
+#delivery_formats p.label, #delivery_types p.label{
+    text-align:center;
+}
+
+
 .email_delivery_type_only_field, .noshow{
     display:none;
 }

@@ -601,7 +601,7 @@ def employer_resume_book_current_summary(request, extra_context=None):
 @has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
 def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
-    context = {'deliver_resume_book_form':form_class(initial={'emails':request.user.email})}
+    context = {'form':form_class(initial={'emails':request.user.email})}
     if not request.GET.has_key("resume_book_id"):
         raise Http400("Request GET is missing the resume_book_id.")
     if request.GET["resume_book_id"]:
@@ -644,7 +644,7 @@ def employer_resume_book_current_create(request):
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
-    if request.POST['delivery_type'] == 'bundle':
+    if request.POST['delivery_format'] == 'separate':
         file_name = "%s%s.zip" % (file_path, resume_book_name,)
         output = zipfile.ZipFile(file_name, 'w')
 
@@ -739,7 +739,7 @@ def employer_resume_book_current_download(request):
             current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         except Exception:
             raise Http500("There isn't a resume book ready to be made")
-    if request.GET['delivery_type'] == 'bundle':
+    if request.GET['delivery_format'] == 'combined':
         mimetype = "application/zip"
     else:
         mimetype = "application/pdf"
@@ -748,7 +748,7 @@ def employer_resume_book_current_download(request):
     if request.GET.has_key('name'):
         filename = request.GET['name']
         current_resume_book.name = filename
-    if request.GET['delivery_type'] == 'bundle':
+    if request.GET['delivery_format'] == 'separate':
         response["Content-Disposition"]= 'attachment; filename="%s.zip"' % filename
     else:
         response["Content-Disposition"]= 'attachment; filename="%s.pdf"' % filename

@@ -1,3 +1,9 @@
+var resume_book_created = false;
+var delivery_type = 'download';
+var delivery_format = 'combined';
+var custom_resume_book_name = "";
+var that = null;
+
 function open_deliver_resume_book_dialog() {
     var $dialog = $('<div class="dialog"></div>')
     .dialog({
@@ -22,15 +28,73 @@ function post_delivery_cleanup(){
     }
 }
 
+function recreate_resume_file() {
+    resume_book_created = false;
+    $("#deliver_resume_book_form_loader").css('display','inline');
+    $.ajax({
+        type: "POST",
+        data:{'delivery_format':delivery_format,'resume_book_id':that.attr("data-resume-book-id")},
+        dataType: "json",
+        url: RESUME_BOOK_CURRENT_CREATE_URL,
+        error: function(jqXHR, textStatus, errorThrown) {
+            if(jqXHR.status==0){
+                 deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+            }else{
+                 deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
+            }
+        },
+        success: function (data) {
+            resume_book_created = true;
+            $("#deliver_resume_book_form_loader").css('display','none');         
+        }
+    });
+}
+
+function download_resume_book(){
+    console.log("downloading");
+    // Show the loader and disable submit button
+    show_form_submit_loader("#deliver_resume_book_form");
+    $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
+    
+    // Create the submission url
+    var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL;
+    download_url += "?resume_book_id=" + that.attr("data-resume-book-id") 
+    download_url += "&delivery_format=" + delivery_format;
+    
+    // Add custom name, if provided
+    if (custom_resume_book_name){
+        download_url = download_url + "&name=" + escape(custom_resume_book_name)
+    }
+    
+    // Download the file
+    window.location.href = download_url;
+    
+    // Show success message after 1 second
+    setTimeout(function(){
+        $.ajax({
+            dataType: "html",
+            url: RESUME_BOOK_CURRENT_DELIVERED_URL,
+            error: function(jqXHR, textStatus, errorThrown) {
+                if(jqXHR.status==0){
+                    deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+                }else{
+                    deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
+                }
+            },
+            success: function (data) {
+                deliver_resume_book_dialog.html(data);
+                deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
+            }
+        });
+        post_delivery_cleanup();
+    }, 1000);
+}
+
 function handle_deliver_resume_book_link_click() {
     deliver_resume_book_dialog = open_deliver_resume_book_dialog();
     deliver_resume_book_dialog.html(DIALOG_AJAX_LOADER);
-    var that = $(this);
-    var resume_book_created = false;
-    var delivery_selection_text = 'Combine all resumes into one file';
-    var delivery_type = 'book';
-    var service_email = $('#email_delivery_type').prop('checked');
-
+    that = $(this);
+    
     var deliver_resume_book_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
     $.ajax({
         data: {'resume_book_id':that.attr("data-resume-book-id")},
@@ -41,105 +105,65 @@ function handle_deliver_resume_book_link_click() {
             deliver_resume_book_dialog.dialog('option', 'position', 'center');
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            if(jqXHR.status==0){
-                deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-            }else{
-                deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-            }
+            errors_in_dialog_error_section("deliver_resume_book_dialog", jqXHR, textStatus, errorThrown);
         },
         success: function (data) {
             deliver_resume_book_dialog.html(data);
+            // Mark the emails field as required visually
+            // It had to be left as optional in case the user wantd to download.
+            // If it was required the form would not validate with this field being empty
             $("label[for=id_emails]").addClass('required').append("<span class='error'>*</span>");
+            
             $("#id_emails").autoResize({
                 animateDuration : 0,
                 extraSpace : 18
             }).live('blur', function(){
                 $(this).height(this.offsetHeight-28); 
             });
-            
-            $("#book_delivery_type").click(function(){
-                $("#delivery_types img").removeClass("delivery_selection");
-                $(this).addClass("delivery_selection");
-                //TODO: Get rid of all this yucky hardcoded stuff
-                delivery_type = 'book';
-                delivery_selection_text = 'Combine all resumes into one file';
-                $("#delivery_selection_text").text(delivery_selection_text);
-                recreate_resume_file();
-            });
-            $("#book_delivery_type").hover(function(){
-                $("#delivery_selection_text").text('Combine all resumes into one file');
-            }, function() {
-                $("#delivery_selection_text").text(delivery_selection_text);
+
+            $("#delivery_formats li").click(function(){
+                if($(this).attr("class")!="disabled"){
+                    $(this).parent().children().removeClass("selected");
+                    $(this).addClass("selected");
+                    delivery_format = $(this).data("delivery-format");
+                    recreate_resume_file();
+                }
             });
 
-            $("#bundle_delivery_type").click(function(){
-                $("#delivery_types img").removeClass("delivery_selection");
-                $(this).addClass("delivery_selection");
-                delivery_type = 'bundle';
-                delivery_selection_text = 'Bundle of individual resumes';
-                $("#delivery_selection_text").text(delivery_selection_text);
-                recreate_resume_file();
-            });
-            $("#bundle_delivery_type").hover(function(){
-                $("#delivery_selection_text").text('Bundle of individual resumes');
-            }, function() {
-                $("#delivery_selection_text").text(delivery_selection_text);
-            });
-
-            $("#email_delivery_type").click(function(){
-                service_email = $(this).prop("checked");
-                if (service_email) {
+            $("#delivery_types li").click(function(){
+                $(this).parent().children().removeClass("selected");
+                $(this).addClass("selected");
+                delivery_type = $(this).data("delivery-type");
+                if (delivery_type == "email") {
+                    // Delivery format an only be "combined"
+                    delivery_format = "combined";
                     $(".email_delivery_type_only_field").show()
                     $("#id_emails").rules("add", {
                         multiemail: true,
                         required: true
                     });
                     $("#deliver_resume_book_form_submit_button").val("Email");
-                    $("#bundle_delivery_type").hide();
-                    $("#book_delivery_type").css("margin-left", "66px");
-                    $("#delivery_types img").removeClass("delivery_selection");
-                    $("#book_delivery_type").addClass("delivery_selection");
-                    delivery_type = "book";
-                    delivery_selection_text = "Combine all resumes into one file";
-                    $("#delivery_selection_text").text(delivery_selection_text);
+
+                    $("#delivery_formats li").removeClass("selected");
+                    $("#delivery_formats li").filter(function(){ return $(this).data("delivery-format")=="separate";}).addClass("disabled");
+                    $("#delivery_formats li").filter(function(){ return $(this).data("delivery-format")=="combined";}).addClass("selected");
                     recreate_resume_file();
-                }
-                else {
+                } else {
+                    $("#delivery_formats li").filter(function(){ return $(this).data("delivery-format")=="separate";}).removeClass("disabled");
                     $(".email_delivery_type_only_field").hide();
                     $("#id_emails").rules("remove", "email required");
                     $("#deliver_resume_book_form_submit_button").val("Download");
-                    $("#book_delivery_type").css("margin-left", "25px");
-                    $("#bundle_delivery_type").show();
                 }
             });
 
-            function recreate_resume_file() {
-                resume_book_created = false;
-                $("#deliver_resume_book_form_loader").css('display','inline');
-                $.ajax({
-                    type: "POST",
-                    data:{'delivery_type':delivery_type,'resume_book_id':that.attr("data-resume-book-id")},
-                    dataType: "json",
-                    url: RESUME_BOOK_CURRENT_CREATE_URL,
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        if(jqXHR.status==0){
-                             deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                        }else{
-                             deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                        }
-                    },
-                    success: function (data) {
-                        resume_book_created = true;
-                        $("#deliver_resume_book_form_loader").css('display','none');         
-                    }
-                });
-            }
+            
             var deliver_resume_book_form_validator = $("#deliver_resume_book_form").validate({
                 submitHandler: function(form) {
                     if(resume_book_created) {
-                        var custom_resume_book_name = $("#id_name").val();
+                        custom_resume_book_name = $("#id_name").val();
                         $("#deliver_resume_book_form .error_section").html("");
-                        if(service_email) {
+                        console.log(delivery_type=="email");
+                        if(delivery_type=="email") {
                             $(form).ajaxSubmit({
                                 data : { 'name' : custom_resume_book_name, 'resume_book_id':that.attr("data-resume-book-id")},
                                 dataType: 'html',
@@ -153,11 +177,7 @@ function handle_deliver_resume_book_link_click() {
                                     hide_form_submit_loader("#deliver_resume_book_form");
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
-                                    if(jqXHR.status==0){
-                                         deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                                    }else{
-                                         deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                                    }
+                                    errors_in_dialog_error_section("deliver_resume_book_dialog", jqXHR, textStatus, errorThrown);
                                 },
                                 success: function(data) {
                                     deliver_resume_book_dialog.html(data);
@@ -165,30 +185,7 @@ function handle_deliver_resume_book_link_click() {
                                 }
                             });
                         } else {
-                            show_form_submit_loader("#deliver_resume_book_form");
-                            $("#deliver_resume_book_form input[type=submit]").attr("disabled", "disabled");
-                            var download_url = RESUME_BOOK_CURRENT_DOWNLOAD_URL + "?resume_book_id=" + that.attr("data-resume-book-id") 
-                                                                                + "&delivery_type=" + delivery_type;
-                            if (custom_resume_book_name){ download_url = download_url + "&name=" + escape(custom_resume_book_name) }
-                            window.location.href = download_url;
-                            setTimeout(function(){
-                                $.ajax({
-                                    dataType: "html",
-                                    url: RESUME_BOOK_CURRENT_DELIVERED_URL,
-                                    error: function(jqXHR, textStatus, errorThrown) {
-                                        if(jqXHR.status==0){
-                                            deliver_resume_book_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
-                                        }else{
-                                            deliver_resume_book_dialog.html(ERROR_MESSAGE_DIALOG);
-                                        }
-                                    },
-                                    success: function (data) {
-                                        deliver_resume_book_dialog.html(data);
-                                        deliver_resume_book_dialog.dialog('option', 'title', 'Resume Book Delivered Successfully');
-                                    }
-                                });
-                                post_delivery_cleanup();
-                            }, 1000);
+                            download_resume_book();
                         }
                     } else {
                         $("#deliver_resume_book_form .error_section").html("Please wait until the resume book is ready.");
@@ -196,17 +193,13 @@ function handle_deliver_resume_book_link_click() {
                 },
                 highlight: highlight,
                 unhighlight: unhighlight,
-                errorPlacement: place_table_form_field_error,
-                rules: {
-                    delivery_type: {
-                        required: true
-                    }
-                }
+                errorPlacement: place_table_form_field_error
             });
             recreate_resume_file();
         }
     });
 };
+
 $(document).ready(function(){
     $('.deliver_resume_book_link').click(handle_deliver_resume_book_link_click);
 });
