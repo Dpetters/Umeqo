@@ -2,7 +2,6 @@ from __future__ import division
 from __future__ import absolute_import
 
 import cStringIO
-import mimetypes
 import os
 import re
 import zipfile
@@ -30,15 +29,19 @@ from haystack.query import SearchQuerySet, SQ
 from events.models import Event
 from core.digg_paginator import DiggPaginator
 
-from core.decorators import has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import has_any_subscription, has_annual_subscription, is_student, \
+                            is_student_or_recruiter, is_recruiter, render_to
 from core.email import send_html_mail
 from core import messages, enums as core_enums
-from core.http import Http403, Http400, Http500
+from core.http import Http403, Http400
 from core.models import Industry
 from employer import enums as employer_enums
-from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
+from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, \
+                           RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, \
+                           DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
-from employer.view_helpers import employer_search_helper, process_results, get_students_in_resume_book, order_results
+from employer.view_helpers import employer_search_helper, process_results, \
+                                  get_students_in_resume_book, order_results
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
@@ -646,7 +649,7 @@ def employer_resume_book_current_create(request):
                     rb.delete()
                 else:
                     current_resume_book = rb
-    print "HERE"
+
     if redelivering:
         resume_book_name = current_resume_book.name
     else:
@@ -655,12 +658,10 @@ def employer_resume_book_current_create(request):
         current_resume_book.name = resume_book_name
         current_resume_book.save()
 
-
     file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
-    
     if request.POST['delivery_format'] == 'separate':
         # Create the zip file
         file_name = "%s%s.zip" % (file_path, resume_book_name,)
@@ -672,11 +673,12 @@ def employer_resume_book_current_create(request):
         resume_file.close()
         output.close()
     else:
-        file_name = "%s%s.tmp" % (file_path, resume_book_name,)
+        file_name = "%s%s.pdf" % (file_path, resume_book_name)
         report_buffer = cStringIO.StringIO() 
         c = Canvas(report_buffer)  
         now = datetime.now()
-        c.drawString(1*cm, 28.5*cm, "Created on %s at %s" % (now.strftime('%m/%d/%Y'), now.strftime('%I:%M %p')))
+        first_line = "Created on %s at %s" % (now.strftime('%m/%d/%Y'), now.strftime('%I:%M %p'))
+        c.drawString(1*cm, 28.5*cm, first_line)
         c.drawString(1*cm, 28*cm, str(request.user.recruiter))
         c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
         c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
@@ -699,6 +701,7 @@ def employer_resume_book_current_create(request):
         output.write(outputStream)
         outputStream.close()
         resume_file.close()
+
     resume_book_contents = open(file_name, "rb")
     current_resume_book.resume_book.save(file_name, File(resume_book_contents))
     resume_book_contents.close()
