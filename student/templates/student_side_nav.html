@@ -1,6 +1,20 @@
-<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_upload_resume.css"/>
-<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_upload_resume.js"></script>
-  
+{% load text_snippet %}
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_resume_updater.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
+
+<script>
+    var MAX_RESUME_SIZE = "{% text_snippet 'max_resume_size' %}";
+    var UNPARSABLE_RESUME_URL = "{% url student_profile_unparsable_resume %}";
+    var EMPTY_FILE_MESSAGE = "{% text_snippet 'empty_file' %}";
+    var RESUME_HAS_TOO_MANY_WORDS = "{% text_snippet 'resume_has_too_many_words' %}";
+    var RESUME_FILE_PROBLEM = "{% text_snippet 'resume_file_problem' %}";
+</script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/student/student_quick_resume_updater.js"></script>
+<script src="{{ STATIC_URL }}js/student/student_unparsable_resume_dialog.js"></script>
+
+
 <div class="side_nav"> 
     <h3>Events</h3>
     <a href="{% url events category="upcoming" %}">Browse Events</a>
@@ -11,7 +25,9 @@
     {% if user.student.profile_created %}
     <a id="update_resume_link" href="javascript:void(0)">Update Resume</a>
     <div id="update_resume_div">
-        <p id="dropbox_status">Drag & Drop PDF File Here</p>
+        <p id="line_one" class="dropbox_status"></p>
+        <p id="line_two" class="dropbox_status">Drag & Drop PDF File Here</p>
+        <p id="line_three" class="dropbox_status"></p>
         <div id="dropbox"></div>
         <a id="view_resume_link" target="_blank" href="{% url student_resume %}">View Current Resume</a>
     </div>

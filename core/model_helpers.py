@@ -6,7 +6,15 @@ from django.core.files import File
 from django.conf import settings
 
 def get_resume_filename(instance, filename):
-    return "%s/%s_%s_%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), instance.last_name.lower(), instance.first_name.lower(), str(instance.user).lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+    if instance.last_name and instance.first_name and instance.user:
+        first_name = instance.first_name.lower()
+        last_name = instance.last_name.lower()
+        username = str(instance.user).lower()
+    else:
+        first_name = "anonymous"
+        last_name = "anonymous"
+        username = "anonymous"
+    return "%s/%s_%s_%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), last_name, first_name, username, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
 
 def get_image_filename(instance, filename):
     extension = os.path.splitext(filename)[1]

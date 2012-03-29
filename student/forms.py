@@ -1,3 +1,7 @@
+import os
+
+from pyPdf import PdfFileReader
+
 from django import forms
 from django.conf import settings as s
 from django.utils.translation import ugettext as _
@@ -10,6 +14,7 @@ from core import messages as m
 from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core.form_helpers import decorate_bound_field
 from core.fields import PdfField
+from core.model_helpers import get_resume_filename
 from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
 from core.view_helpers import does_email_exist
 from countries.models import Country
@@ -18,6 +23,7 @@ from registration.models import RegException
 from student import enums as student_enums
 from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap, is_not_mit_student
 from student.models import Student, StudentPreferences, StudentDeactivation
+from student.view_helpers import extract_resume_keywords
 
 decorate_bound_field()
 
@@ -99,11 +105,39 @@ class StudentEmployerSubscriptionsForm(forms.ModelForm):
 
 class StudentUpdateResumeForm(forms.ModelForm):
 
-    resume = PdfField()
+    resume = PdfField(label="Resume:")
 
     class Meta:
         fields = ('resume',)
         model = Student
+
+    def clean_resume(self):
+        if self.cleaned_data['resume']:
+            # Read resume to a file
+            resume_file_contents = self.cleaned_data['resume']
+            resume_test_file_name = get_resume_filename(self.instance, "")
+            resume_file = open("%s%s" % (s.MEDIA_ROOT, resume_test_file_name), "wb")
+            resume_file.write(resume_file_contents.read())
+            resume_file.close()
+            
+            # File size check
+            if os.path.getsize("%s%s" % (s.MEDIA_ROOT, resume_test_file_name)) > s.MAX_RESUME_SIZE:
+                max_resume_size = s.MAX_RESUME_SIZE/1024/1024
+                raise forms.ValidationError(_(m.resume_file_size % max_resume_size))
+            resume_file = open("%s%s" % (s.MEDIA_ROOT, resume_test_file_name), "rb")
+            
+            # Check that PdfFileReader can read the file
+            try:
+                PdfFileReader(resume_file)
+            except Exception as e:
+                raise forms.ValidationError(_(m.resume_file_problem))
+            
+            # Check that there are less than 3k keywords
+            keywords = extract_resume_keywords(resume_test_file_name)
+            if len(keywords) > s.MAX_RESUME_KEYWORDS:
+                raise forms.ValidationError(_(m.resume_has_too_many_words))
+        return self.cleaned_data['resume']
+
 
 class StudentBaseAttributeForm(forms.ModelForm):
     industries_of_interest = forms.ModelMultipleChoiceField(label="Interested in:", queryset = Industry.objects.all(), required = False)
@@ -122,7 +156,7 @@ class StudentBodyStatisticsForm(forms.Form):
     x_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_X_AXIS, initial=student_enums.SCHOOL_YEAR)
 
 
-class StudentProfileBaseForm(forms.ModelForm):
+class StudentProfileBaseForm(StudentUpdateResumeForm):
     first_name = forms.CharField(label="First name:", max_length = 20)
     last_name = forms.CharField(label="Last name:", max_length = 30)
     school_year = forms.ModelChoiceField(label="School year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
@@ -130,7 +164,7 @@ class StudentProfileBaseForm(forms.ModelForm):
     graduation_month = forms.ChoiceField(choices = MONTH_CHOICES)
     first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
     gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5, decimal_places=2)
-    resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
+    #resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
 
     class Meta:
         fields = ('first_name',
@@ -142,8 +176,7 @@ class StudentProfileBaseForm(forms.ModelForm):
                    'gpa',
                    'resume',
                     )
-        model = Student
-        
+        model=Student
 class StudentQuickRegistrationForm(StudentProfileBaseForm, StudentRegistrationForm):
     email = forms.EmailField(label="MIT email:")
     password = forms.CharField(label="Choose Password:", widget=forms.PasswordInput(render_value=False))

@@ -79,6 +79,10 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
         else:
             return "Unattached Student"
 
+    def deactivate(self):
+        self.user.is_active = False
+        self.user.save()
+        
     def suspend(self):
         self.user.userattributes.is_verified = False
         self.user.userattributes.save()

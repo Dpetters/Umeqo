@@ -74,7 +74,9 @@
     var EMPLOYER_ALREADY_EXISTS = "{% text_snippet 'employer_already_exists' %}";
     var MAX_INDUSTRIES = "{{max_industries}}";
     var MAX_INDUSTRIES_EXCEEDED = "{% text_snippet 'max_industries_exceeded' %}";
-        
+
+    var MAX_RESUME_SIZE = "{{max_resume_size}}";
+    
     {% if edit %}
         var EDIT = true;
     {% else %}
@@ -109,7 +111,7 @@
                         <strong>Required Info</strong>
                     </span>
                     &raquo;
-                    <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Academic &amp; Work Info</a>
+                    <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Academic &amp; Employment Info</a>
                     &raquo;
                     <a href="javascript:void(0)" class="navigation" id="2" tabindex="-1">Miscellaneous Info</a>
                 </div>
