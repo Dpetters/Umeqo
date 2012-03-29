@@ -2,7 +2,6 @@ from __future__ import division
 from __future__ import absolute_import
 
 import cStringIO
-import mimetypes
 import os
 import re
 import zipfile
@@ -30,15 +29,19 @@ from haystack.query import SearchQuerySet, SQ
 from events.models import Event
 from core.digg_paginator import DiggPaginator
 
-from core.decorators import has_any_subscription, has_annual_subscription, is_student, is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import has_any_subscription, has_annual_subscription, is_student, \
+                            is_student_or_recruiter, is_recruiter, render_to
 from core.email import send_html_mail
 from core import messages, enums as core_enums
-from core.http import Http403, Http400, Http500
+from core.http import Http403, Http400
 from core.models import Industry
 from employer import enums as employer_enums
-from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, DeliverResumeBookForm
+from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, \
+                           RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, \
+                           DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
-from employer.view_helpers import employer_search_helper, process_results, get_students_in_resume_book, order_results
+from employer.view_helpers import employer_search_helper, process_results, \
+                                  get_students_in_resume_book, order_results
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
@@ -608,7 +611,7 @@ def employer_resume_book_current_summary(request, extra_context=None):
 @has_any_subscription
 @render_to('employer_resume_book_current_deliver.html')
 def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
-    context = {'deliver_resume_book_form':form_class(initial={'emails':request.user.email})}
+    context = {'form':form_class(initial={'emails':request.user.email})}
     if not request.GET.has_key("resume_book_id"):
         raise Http400("Request GET is missing the resume_book_id.")
     if request.GET["resume_book_id"]:
@@ -637,55 +640,68 @@ def employer_resume_book_current_create(request):
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
-        current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
+        try:
+            current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
+        except ResumeBook.MultipleObjectsReturned:
+            resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
+            for i, rb in enumerate(resume_books):
+                if i != 0:
+                    rb.delete()
+                else:
+                    current_resume_book = rb
 
     if redelivering:
         resume_book_name = current_resume_book.name
     else:
-        resume_book_name = "%s_%s" % (str(request.user), datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),)
+        now = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        resume_book_name = "%s_%s" % (str(request.user), now,)
         current_resume_book.name = resume_book_name
         current_resume_book.save()
 
     file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
-    file_name = "%s%s.tmp" % (file_path, resume_book_name,)
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
-    if request.POST['delivery_type'] == 'bundle':
+    if request.POST['delivery_format'] == 'separate':
+        # Create the zip file
         file_name = "%s%s.zip" % (file_path, resume_book_name,)
         output = zipfile.ZipFile(file_name, 'w')
-
         for student in current_resume_book.students.visible():
             resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
-            output.write(resume_file.name, os.path.basename(resume_file.name), zipfile.ZIP_DEFLATED)
-
+            name = "%s %s (%s, %s).pdf" % (student.first_name, student.last_name, student.graduation_year, student.school_year)
+            output.write(resume_file.name, name, zipfile.ZIP_DEFLATED)
+        resume_file.close()
         output.close()
     else:
+        file_name = "%s%s.pdf" % (file_path, resume_book_name)
         report_buffer = cStringIO.StringIO() 
         c = Canvas(report_buffer)  
-        c.drawString(1*cm, 28.5*cm, str(datetime.now().strftime('%m/%d/%Y') + " Resume Book"))
+        now = datetime.now()
+        first_line = "Created on %s at %s" % (now.strftime('%m/%d/%Y'), now.strftime('%I:%M %p'))
+        c.drawString(1*cm, 28.5*cm, first_line)
         c.drawString(1*cm, 28*cm, str(request.user.recruiter))
         c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
         c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
-        c.drawString(8.5*cm, 26.5*cm, "Table of Contents")
-        for page_num, student in enumerate(current_resume_book.students.visible()):
-            c.drawString(4*cm, (25.5-page_num*.5)*cm, student.first_name + " " + student.last_name)
-            c.drawString(16*cm, (25.5-page_num*.5)*cm, str(page_num+1))
+        c.drawString(8.5*cm, 26.5*cm, "Resume Book Contents")
+        for page_num, student in enumerate(current_resume_book.students.visible().order_by("graduation_year", "first_name", "last_name")):
+            c.drawString(6.5*cm, (25.5-page_num*.5)*cm, "%s %s" % (student.first_name, student.last_name))
+            c.drawString(12*cm, (25.5-page_num*.5)*cm,  "%s, %s" %(student.graduation_year, student.school_year))
         c.showPage()
         c.save()
         output = PdfFileWriter()
         output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
-        for student in current_resume_book.students.visible():
+        for student in current_resume_book.students.visible().order_by("graduation_year", "first_name", "last_name"):
             resume_file = open("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             resume = PdfFileReader(resume_file)
             if resume.getIsEncrypted():
                 resume.decrypt("")
-            output.addPage(resume.getPage(0))
-
+            for page in range(resume.getNumPages()):
+                output.addPage(resume.getPage(page))
         outputStream = file(file_name, "wb")
         output.write(outputStream)
         outputStream.close()
         resume_file.close()
+
     resume_book_contents = open(file_name, "rb")
     current_resume_book.resume_book.save(file_name, File(resume_book_contents))
     resume_book_contents.close()
@@ -707,7 +723,15 @@ def employer_resume_book_current_email(request, extra_context=None):
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
-        current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+        try:
+            current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+        except ResumeBook.MultipleObjectsReturned:
+            resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
+            for i, rb in enumerate(resume_books):
+                if i != 0:
+                    rb.delete()
+                else:
+                    current_resume_book = rb
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
     subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
@@ -743,10 +767,15 @@ def employer_resume_book_current_download(request):
     else:
         redelivering = False
         try:
-            current_resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
-        except Exception:
-            raise Http500("There isn't a resume book ready to be made")
-    if request.GET['delivery_type'] == 'bundle':
+            current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+        except ResumeBook.MultipleObjectsReturned:
+            resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
+            for i, rb in enumerate(resume_books):
+                if i != 0:
+                    rb.delete()
+                else:
+                    current_resume_book = rb
+    if request.GET['delivery_format'] == 'separate':
         mimetype = "application/zip"
     else:
         mimetype = "application/pdf"
@@ -755,10 +784,10 @@ def employer_resume_book_current_download(request):
     if request.GET.has_key('name'):
         filename = request.GET['name']
         current_resume_book.name = filename
-    if request.GET['delivery_type'] == 'bundle':
-        response["Content-Disposition"]= 'attachment; filename="%s.zip"' % filename
+    if request.GET['delivery_format'] == 'separate':
+        response["Content-Disposition"] = 'attachment; filename="%s.zip"' % filename
     else:
-        response["Content-Disposition"]= 'attachment; filename="%s.pdf"' % filename
+        response["Content-Disposition"] = 'attachment; filename="%s.pdf"' % filename
     if redelivering:
         current_resume_book.last_updated = datetime.now()
     else:
