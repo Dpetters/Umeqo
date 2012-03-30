@@ -6,7 +6,7 @@
     right:3px;
 }
 #recaptcha_widget_div * {
-    line-height: 1em;
+    line-height: 15px;
 }
 
 #reset_password_link{
