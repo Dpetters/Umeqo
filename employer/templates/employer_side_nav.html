@@ -1,54 +1,19 @@
 <div class="side_nav"> 
-    <h3
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed"
-    {% endif %}
-    >Students</h3>
-    <a
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed must_be_subscribed_w"
-    {% endif %}
-    href="{% url employer_students %}">Browse Students</a>
-    <a
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed must_be_subscribed_w"
-    {% endif %}
-    href="{% url employer_resume_book_history %}">Resume Book History</a>
+    <h3>Students</h3>
+    <a href="{% url employer_students %}">Browse Students</a>
+    <a href="{% url employer_resume_book_history %}">Resume Book History</a>
+    <a id="download_everything" class="premium_required" href="{% if user.recruiter.employer.has_premium %}#{% else %}/subscriptions/{% endif %}">Download All Resumes</a>
     
-    <h3
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed_annually"
-    {% endif %}
-    >Events & Deadlines</h3>
-    <a 
-    {% if not user.recruiter.employer.subscribed_annually %}
-        class="must_be_subscribed_annually must_be_subscribed_annually_w"
-    {% endif %}
-    href="{% url event_new %}">Create New</a>
-    <a 
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed must_be_subscribed_w"
-    {% endif %}
-    href="{% url events category="upcoming" %}">Browse</a>
+    <h3>Events & Deadlines</h3>
+    <a href="{% url event_new %}">Create New</a>
+    <a href="{% url events category="upcoming" %}">Browse</a>
         
-    <h3
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed_annually"
-    {% endif %}
-    >Profile</h3>
+    <h3>Profile</h3>
     <!-- We check for a slug because if it is missing and a 500 (not setup correctly) is rendered
          and the below url tag is present, a server 500 template gets rendered instead of a
          Umeqo one. -->
     {% if request.user.recruiter.employer.slug %}
-    <a
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed must_be_subscribed_w"
-    {% endif %}
-     href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
+    <a href="{% url employer_profile_preview slug=request.user.recruiter.employer.slug %}">View Profile</a>
      {% endif %}
-    <a
-    {% if not user.recruiter.employer.subscribed %}
-        class="must_be_subscribed must_be_subscribed_w"
-    {% endif %}
-    href="{% url employer_profile %}">Edit Profile</a>
+    <a href="{% url employer_profile %}">Edit Profile</a>
 </div>

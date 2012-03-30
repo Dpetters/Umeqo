@@ -17,6 +17,7 @@ class Transaction(models.Model):
     
     class Meta:
         ordering = ('-timestamp',)
+        
     def save(self):
         if self.payment:
             if self.payment > 0:
@@ -80,22 +81,14 @@ class EmployerSubscription(models.Model):
 
     grace_timedelta = datetime.timedelta(getattr(s, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 
-    def annual_subscription(self):
+    def premium_subscription(self):
         try:
-            annual_subscription = Subscription.objects.get(uid=s.ANNUAL_SUBSCRIPTION_UID)
+            premium_subscription = Subscription.objects.get(uid=s.PREMIUM_SUBSCRIPTION_UID)
         except:
             return False
         else:
-            return self.subscription == annual_subscription
+            return self.subscription == premium_subscription
         
-    def event_subscription(self):
-        try:
-            event_subscription = Subscription.objects.get(uid=s.EVENT_SUBSCRIPTION_UID)
-        except:
-            return False
-        else:
-            return self.subscription == event_subscription
-    
     def time_left(self):
         return stringify(self.expires + self.grace_timedelta - datetime.date.today())
     

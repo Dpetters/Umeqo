@@ -61,8 +61,7 @@
         </style>
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
-                var MUST_BE_SUBSCRIBED_ANNUALLY = "{% text_snippet 'must_be_subscribed_annually' %}";
-                var MUST_BE_SUBSCRIBED = "{% text_snippet 'must_be_subscribed' %}";
+                var PREMIUM_REQUIRED = "{% text_snippet 'premium_required' %}";
             {% endif %}
             
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";

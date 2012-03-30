@@ -118,8 +118,8 @@ section, header, hgroup, footer, .grid .btn {
 .grid .price .style3 {
     font-size: 11px;
     vertical-align: text-top;
-    color: #87BEF2;
     text-transform: uppercase;
+    position:absolute;
 }
 
 .grid .price label {
@@ -294,5 +294,8 @@ section, header, hgroup, footer, .grid .btn {
     font-size: 26px;
 }
 .col3 section.on .style2 {
-    font-size: 48px;
+    font-size: 40px;
+    vertical-align:middle;
+    position:relative;
+    right:10px;
 }

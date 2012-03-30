@@ -76,21 +76,9 @@
 
 {% block account_overview %}
     <h3>Create New Account</h3>
-    <p class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">Below are the other recruiter accounts for 
+    <p class="sub_header_message">Below are the other recruiter accounts for 
         {{user.recruiter.employer}}. If you would like to give another recruiter access, 
-        you can <a class="
-        {% if not sa %}
-            must_be_subscribed_annually_e
-        {% else %}
-            create_recruiter_link
-        {% endif %}
-        " href="
-        {% if sa %}
-            javascript:void(0)
-        {% else %}
-            {% url subscription_list %}
-        {% endif %}
-        ">create a new account</a>.
+        you can <a class="create_recruiter_link" href="javascript:void(0)">create a new account</a>.
     </p>
     
     {% include 'employer_other_recruiters.html' %}

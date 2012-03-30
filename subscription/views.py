@@ -5,92 +5,68 @@ from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
-from core.http import Http403, Http400
 from subscription.models import EmployerSubscription
-from subscription.forms import SubscriptionForm, subscription_templates
+from subscription.forms import SubscriptionRequestForm
 
-@render_to("subscription_transaction_dialog.html")
-def subscription_transaction_dialog(request, form_class = SubscriptionForm, extra_context=None):
+
+@render_to("subscription_request_dialog.html")
+def subscription_request_dialog(request, form_class = SubscriptionRequestForm, extra_context=None):
     if request.method=="POST":
-        if not request.POST.has_key("action"):
-            raise Http400("Request POST is missing the action.")
-        action = request.POST['action']
-        if action not in subscription_templates:
-            raise Http400("The action in the request POST is not one of the following: %s" % (subscription_templates.keys()))
         form = form_class(data = request.POST, user=request.user)
         if form.is_valid():
-            if is_recruiter(request.user):
-                employer = request.user.recruiter.employer
-                employer.size = form.cleaned_data['employer_size']
-                employer.save()
             data = []
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-            subject = "[Umeqo Sales] %s wants to %s" % (form.cleaned_data['employer_name'], action)
+            subject = "[Umeqo Sales] %s Subscription Request" % (form.cleaned_data['employer_name'])
             subscription_email_context = {'form':form}
-            html_body = render_to_string('subscription_body_request.html', subscription_email_context)
+            html_body = render_to_string('subscription_request_body.html', subscription_email_context)
             send_html_mail(subject, html_body, recipients)
         else:
             data = {'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
-        if not request.GET.has_key("action"):
-            raise Http403("Action is missing from the request POST.")
-        action = request.GET['action']
-        if action not in subscription_templates:
-            raise Http403("Subscription transaction type must be one of the following: %s" % (subscription_templates.keys()))
-        initial = {}
-        initial['message_body'] = render_to_string(subscription_templates[action], {})
+        subscription_type = request.GET.get('subscription_type', 'basic')
+        initial = {'message_body':render_to_string("I would like to sign up for Umeqo {{subscription_type}}. Please validate that I'm an actual employer and send me my credentials.", {'subscription_type':subscription_type})}
         context = {'form':form_class(initial=initial, user=request.user)}
         context.update(extra_context or {})
         return context
-             
-@render_to("event_subscription_info_dialog.html")
-def free_subscription_info_dialog(request, extra_context=None):
-    context = {}
-    context.update(extra_context or {})
-    return context
+
 
 @render_to("subscription_list.html")
 def subscription_list(request, extra_context=None):
     context = {}
-    subscription=None
+    """
+    This page is only customized if the user is a recruiter.
+    
+    If they have an active premium subscription, the basic button theyn says "Downgrade to Basic"
+    and the premium button says "Extend Premium Subscription"
+    
+    If they have don't have a premium subscription, the basic button says
+    "Basic Subscription Active".
+    """
+
+    employer = None
+    premium_subscription = None
     if request.user.is_authenticated() and is_recruiter(request.user):
-        context['user'] = request.user
         employer = request.user.recruiter.employer
         try:
-            subscription = employer.employersubscription
+            premium_subscription = employer.employersubscription
         except EmployerSubscription.DoesNotExist:
-            subscription = None
+            premium_subscription = None
     
-    if subscription:
-        if subscription.expired():
-            if subscription.event_subscription():
-                context['free_subscription_text'] = "Subscription Expired"
-                context['free_subscription_class'] = 'open_free_subscription_info_dialog_link'
-                context['transaction_dialog_title'] = "Subscribe to Umeqo" 
-                context['paid_subscription_class'] = "subscribe"
-            else:
-                context['paid_subscription_button_text'] = "Extend Subscription"
-                context['transaction_dialog_title'] = "Extend Subscription"
-                context['paid_subscription_class'] = "extend"
-                context['paid_subscription_action'] = "extend"
-                context['paid_subscription_text'] = "Subscription Expired"
+    if employer:
+        if premium_subscription and not premium_subscription.expired():
+            context['paid_subscription_button_text'] = "Extend Subscription"
+            
+            context['subscription_request_dialog_title'] = "Extend Subscription"
+            context['paid_subscription_action'] = "extend"
+            context['paid_subscription_text'] = "Subscription Expired"
+            context["free_subcription_dialog_href"] = "downgrade"
+            
+            context["free_subscription_button_text"] = "Downgrade to Basic"
         else:
-            if subscription.event_subscription():
-                context['paid_subscription_button_text'] = "Upgrade to Annual Plan"
-                context['transaction_dialog_title'] = "Upgrade to Annual Subscription"
-                context['paid_subscription_class'] = "upgrade"
-                context['paid_subscription_action'] = "upgrade"
-                context['free_subscription_text'] = "Subscribed"
-            else:
-                context['paid_subscription_button_text'] = "Extend Subscription"
-                context['transaction_dialog_title'] = "Extend Subscription"
-                context['paid_subscription_class'] = "extend"
-                context['paid_subscription_action'] = "extend"
-                context['paid_subscription_text'] = "Subscribed"
+            context["free_subscription_button_text"] = "Basic Subscription Active"
+            
     else:
-        context['free_subscription_class'] = 'open_free_subscription_info_dialog_link'
-        context['transaction_dialog_title'] = "Subscribe to Umeqo" 
-        context['paid_subscription_class'] = "subscribe"
+        context["free_subcription_dialog_class"] = "open_subscription_request_dialog"
     context.update(extra_context or {})
     return context

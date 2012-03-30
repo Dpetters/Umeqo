@@ -44,23 +44,13 @@ class Employer(core_mixins.DateTracking):
     def get_absolute_url(self):
         return '%s?id=%d' % (reverse('employers'), self.id)
     
-    def subscribed(self):
+    def has_premium(self):
         try:
             subscription = self.employersubscription
         except EmployerSubscription.DoesNotExist:
             return False
         else:
-            if not subscription.expired():
-                return True
-        return False
-
-    def subscribed_annually(self):
-        try:
-            subscription = self.employersubscription
-        except EmployerSubscription.DoesNotExist:
-            return False
-        else:
-            if subscription.annual_subscription() and not subscription.expired():
+            if subscription.premium_subscription() and not subscription.expired():
                 return True
         return False
         

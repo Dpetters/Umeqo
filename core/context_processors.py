@@ -34,15 +34,7 @@ def current_site(request):
     return {
         'current_site': Site.objects.get(id=s.SITE_ID)
         }
-
-def employer_subscription(request):
-    if is_recruiter(request.user):
-        return {
-        'sa': request.user.recruiter.employer.subscribed_annually,
-        'subs':request.user.recruiter.employer.subscribed
-        }
-    return {}
-
+    
 # Cautions are orange. Warnings are red.
 def caution(request):
     cautions = []

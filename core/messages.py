@@ -1,8 +1,7 @@
 from django.conf import settings as s
+#from django.core.urlresolvers import reverse
 
-must_be_subscribed_annually = "You must have an active annual subscription to access this feature."
-must_be_subscribed = "You must have an active subscription to access this feature."
-
+premium_required = "You must be a premium user to use this feature. Click to upgrade!"
 # Features
 search_filter_find = "Umeqo presents you with not only a student's resume, but also info applicable to your firm, such as event attendance. Potential candidates can be added to custom resume books that can be emailed and/or downloaded."
 
