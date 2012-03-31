@@ -90,18 +90,7 @@
     </p>
     
     <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only recruiter for 
-        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="
-        {% if not sa %}
-            must_be_subscribed_annually_e
-        {% else %}
-            create_recruiter_link
-        {% endif %}
-        " href="
-        {% if not sa %}
-            {% url subscription_list %}
-        {% else %}
-            javascript:void(0)
-        {% endif %}">create one for another recruiter at your firm</a>.
+        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create one for another recruiter at your firm</a>.
     </p>
 {% endblock %}
 
@@ -111,14 +100,22 @@
         <h3 class="no_top_margin">Your Subscription</h3>
         <a id="modify_subscription" href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>
         <div id="subscription_info">
-            {% if subscription %}
-                <span id="subscription_name">{{subscription.subscription.name}}</span>
-                <span class="{{subscription_class}}">{{subscription_text}}</span>
-                <h4 id="subscription_expiration">{% if subscription_class == "grace" or subscription_class == "expired" %}Expired{% else %}Expires{% endif %} on: {{subscription.expires}}</h4>
-            {% else %}
-                <span id="subscription_name">You are not subscribed</span>
+            <span id="subscription_name">{% if employer_subscription %}{{employer_subscription.subscription.name}}</span>
+            <span class="{{subscription_class}}">{{subscription_text}}</span>
+            <h4 id="subscription_expiration">{% if subscription_class == "grace" or subscription_class == "expired" %}Expired{% else %}Automatically renews on{% endif %} on: {{subscription.expires}}</h4>
+            {% if request.user.recruiter.employer.has_premium %}
+                <a class="caution"
+                   href="{% url subscription_cancel subscription_type=user.recruiter.employer.employersubscription.subscription.name %}">Cancel Subscription</a>
             {% endif %}
         </div>
+        <h3 class="no_top_margin">Payment Method</h3>
+        {% if user.recruiter.employer.card %}
+            <p>The following card is currently used for payment</p>
+            <p>**** **** **** {{user.recruiter.employer.last_four}}</p>
+            <p>Expiration date: {{user.recruiter.employer.card.acpiration_month}}/{{user.recruiter.employer.card.acpiration_month}}</p>
+        {% else %}
+            <p></p>
+        {% endif %}
         <h3>Transaction History</h3>
         <div id="transactions">
             <table>

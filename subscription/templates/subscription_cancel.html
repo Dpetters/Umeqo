@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Subscription Cancellation |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_cancel.css" />
+{% endcompress %}
+
+{% compress js %}
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div class="simple_block no_top_margin">
+    <h1>{{subscription_type|capfirst}} Subscription Cancellation</h1>
+    
+    <p>By cancelling your {{subscription_type|capfirst}} Subscription you choose to lose access to the following features -</p>
+    <ul id="lost_features">
+        {% include "premium_subscription_features.html" %}
+    </ul>
+    <a href="{% url employer_account %}">Go back to my account</a>
+    <div id="confirm_cancellation">
+        <p>Your premium access will end on {{user.recruiter.employer.employersubscription.expires}} (){{user.recruiter.employer.employersubscription.time_left}}). You will not be refunded any money for the remaining time of your premium subscription.</p>
+        <a href="{% url subscription_cancel_confirm subscription_type=subscription_type %}">Click here to continue with the cancellation.</a>    
+    </div>
+    
+</div>
+{% endblock %}

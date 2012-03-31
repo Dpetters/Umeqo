@@ -15,3 +15,17 @@ class SubscriptionRequestForm(forms.Form):
             self.fields['employer_name'] = forms.ModelChoiceField(label='Employer Name:', initial=user.recruiter.employer, queryset = Employer.objects.filter(employersubscription__isnull=False))
             self.fields['recruiter_name'].initial  =  "%s %s" % (user.first_name, user.last_name,)
             self.fields['recruiter_email'].initial = user.email
+            
+
+class CardForm(forms.Form):  
+    last_4_digits = forms.CharField(
+        required = True,
+        min_length = 4,
+        max_length = 4,
+        widget = forms.HiddenInput()
+    )
+  
+    stripe_token = forms.CharField(
+        required = True,
+        widget = forms.HiddenInput()
+    )

@@ -1,19 +1,18 @@
 #subscription_notes{
-    width:323px;
-    padding:15px 17px 20px 0;
+    width:310px;
+    padding:15px 30px 20px 0;
 }
 #subscription_notes p, #features p{
     font-size:13px;
 }
 #subscription_notes h2{
-    margin-top:15px;
     display:inline;
     letter-spacing:-1px;
     position:relative;
     bottom:4px;
 }
 #subscription_notes img{
-    margin-top:15px;
+    margin-top:17px;
     margin-right:7px;
 }
 #features{

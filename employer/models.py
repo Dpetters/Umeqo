@@ -33,6 +33,8 @@ class Employer(core_mixins.DateTracking):
     careers_website = models.URLField(verify_exists=False, blank=True, null=True)
     starred_students = models.ManyToManyField("student.Student", blank=True, null=True)
     
+    stripe_id = models.CharField(max_length=255, null=True, blank=True)
+  
     objects = EmployerManager()
     
     def __unicode__(self):

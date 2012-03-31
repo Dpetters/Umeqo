@@ -1,3 +1,5 @@
+import stripe
+
 from django.http import HttpResponse
 from django.conf import settings as s
 from django.utils import simplejson
@@ -6,7 +8,7 @@ from django.template.loader import render_to_string
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
 from subscription.models import EmployerSubscription
-from subscription.forms import SubscriptionRequestForm
+from subscription.forms import CardForm, SubscriptionRequestForm
 
 
 @render_to("subscription_request_dialog.html")
@@ -30,6 +32,48 @@ def subscription_request_dialog(request, form_class = SubscriptionRequestForm, e
         context.update(extra_context or {})
         return context
 
+
+@render_to("subscription_upgrade.html")
+def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_context=None):
+    context = {}
+    if request.method == 'POST':
+        form = CardForm(request.POST)
+        if form.is_valid():
+            employer = request.user.recruiter.employer
+            token = request.POST['stripeToken']
+            if employer.stripe_id:
+                customer = stripe.Customer.retrieve(
+                    employer.stripe_id
+                    )
+            else:
+                customer = stripe.Customer.create(
+                    card=token,
+                    plan="premium",
+                    email=request.user.email
+                )
+                employer.stripe_id = customer.id
+            employer.card = form.cleaned_data['stripe_token']
+            employer.last_4_digits = form.cleaned_data['last_4_digits']
+            customer.save()
+    else:
+        context['form'] = form_class()
+    context.update(extra_context or {})
+    return context
+
+@render_to("subscription_change_payment.html")
+def subscription_change_payment(request, extra_context=None):
+    context = {}
+    return context
+
+@render_to("subscription_cancel.html")
+def subscription_cancel(request, subscription_type, extra_context=None):
+    context = {'subscription_type':subscription_type}
+    return context
+
+@render_to("subscription_cancel.html")
+def subscription_cancel_confirm(request, extra_context=None):
+    context = {}
+    return context
 
 @render_to("subscription_list.html")
 def subscription_list(request, extra_context=None):

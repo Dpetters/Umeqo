@@ -1,0 +1,41 @@
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+
+<form action="" method="POST" id="payment_form">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    <table class="form_table">
+        <tr>
+            <th><label for="id_card_number" class="required">Card Number:<span class='error'>*</span></label></th>
+            <td colspan="3">
+                <div class="errorspace"></div>
+                <input type="text" size="20" autocomplete="off" id="id_card_number"/>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="id_card_expiry_month" class="required">Expiration (MM/YYYY)<span class='error'>*</span></label></th>
+            <td>
+                <div class="errorspace"></div>
+                <input type="text" size="2" id="id_card_expiry_month"/> /
+                <input type="text" size="4" id="id_card_expiry_year"/>
+            </td>
+            <th><label for="id_card_cvc" class="required">CVC:<span class='error'>*</span></label></th>
+            <td>
+                <div class="errorspace"></div>
+                <input type="text" size="4" autocomplete="off" id="id_card_cvc"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error_section error">
+                {{form.non_field_errors}}
+            </td>
+        </tr>
+        <tr>
+            <td class="button_cell" colspan="2">
+                <input class="button" type='submit' value='Submit'>
+                <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+            </td>
+        </tr>
+    </table>
+</form>

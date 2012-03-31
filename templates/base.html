@@ -161,12 +161,14 @@
                                 <li><a href="{% url student_profile %}">Edit Profile</a></li>
                                 <li><a href="{% url student_account %}">Account Settings</a></li>
                             {% endif %}
-                            {% if user.recruiter %}    
-                                <li><a {% if not user.recruiter.employer.subscribed %}class="must_be_subscribed must_be_subscribed_e"{% endif %} href="{% url employer_profile %}">Edit Profile</a></li>
-                                <li><a href="{% url subscription_list %}">Modify Subscription</a></li>
+                            {% if user.recruiter %}
+                                <li><a href="{% url employer_profile %}">Edit Profile</a></li>
+                                {% if not user.recruiter.employer.has_premium %}
+                                    <li><a href="{% url subscription_upgrade subscription_type="premium" %}">Upgrade to Premium!</a></li>
+                                {% endif %}
                                 <li><a href="{% url employer_account %}">Account Settings</a></li>
                             {% endif %}
-                            {% if user.campusorg %}    
+                            {% if user.campusorg %}
                                 <li><a href="{% url campus_org_profile %}">Edit Profile</a></li>
                                 <li><a href="{% url campus_org_account %}">Account Settings</a></li>
                             {% endif %}

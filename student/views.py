@@ -31,7 +31,6 @@ from notification.models import NoticeSetting, NoticeType, EMAIL
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
 from registration.view_helpers import register_student
-from student import enums as student_enums
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation
@@ -102,7 +101,7 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
         raise Http400("Request GET is missing the event_id.")
     if not request.GET.has_key('action'):
         raise Http400("Request GET is missing the action.")
-    context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
+    context['form'] = form_class(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
     action = request.GET['action']
     if action=="rsvp":
         context['action'] = "RSVP"

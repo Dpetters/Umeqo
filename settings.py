@@ -11,6 +11,9 @@ PASSWORD_MIN_LENGTH = 5
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000
 
+STRIPE_PUBLISHABLE = 'pk_HLhAnc2IezyC7awtBdNVhQvt2fE7B'
+STRIPE_SECRET = 'ablbC9pV7icRiB9lxf1I9eozfJ7tPEbA'
+
 # Send admins an email each time that a 404 is encountered
 SEND_BROKEN_LINK_EMAILS = True
 

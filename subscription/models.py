@@ -58,7 +58,7 @@ class Subscription(models.Model):
         ordering = ('price','-recurrence_period')
 
     def __unicode__(self):
-        return self.name
+        return "%s Subscription" % self.name.title()
 
     def price_per_day(self):
         """Return estimate subscription price per day, as a float.
@@ -71,6 +71,11 @@ class Subscription(models.Model):
         if self.recurrence_unit is None:
             return 0
         return float(self.price) / (self.recurrence_period*_recurrence_unit_days[self.recurrence_unit])
+
+class Card(models.Model):
+    employer = models.ForeignKey("employer.Employer")
+    last_4_digits = models.CharField(max_length=4)
+    expiration_date = models.DateField(default=datetime.date.today)
 
 
 class EmployerSubscription(models.Model):

@@ -67,10 +67,23 @@ def employer_logo(request):
 @render_to("employer_account.html")
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
                      change_password_form_class = PasswordChangeForm, extra_context=None):
-    context = {}
+
     recruiter = request.user.recruiter
-    employer = request.user.recruiter.employer
-    
+    employer = recruiter.employer
+    employer_subscription = None
+    try:
+        employer_subscription = employer.employersubscription
+    except EmployerSubscription.DoesNotExist:
+        pass
+    subscription = None
+    if employer_subscription:
+        subscription = employer_subscription.subscription
+        
+    context = {'recruiter':recruiter,
+               'employer':employer,
+               'employer_subscription':employer_subscription,
+               'subscription':subscription}
+        
     msg = request.GET.get('msg', None)
     if msg:
         page_messages = {
