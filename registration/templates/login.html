@@ -36,6 +36,7 @@ Login |
                 </td>
             </tr>
             {% endfor %}
+            {% if show_captcha %}
             <tr>
                 <th><label>Human?</label></th>
                 <td>
@@ -55,6 +56,7 @@ Login |
                     </noscript>
                 </td>
             </tr>
+            {% endif %}
             <tr>
                 <th></th>
                 <td class="error_section error">
