@@ -22,12 +22,10 @@ AUDIENCE_CHOICES = (
     (ANONYMOUS_AND_CAMPUS_ORGS, 'Anonymous & Campus Orgs'),
 )
 
-DOWNLOAD_BOOK = "64-PDF-Document.png"
-DOWNLOAD_BUNDLE = "64-PDF-Documents.png"
-EMAIL = "64-Mail.png"
+DOWNLOAD = "d"
+EMAIL = "e"
 DELIVERY_CHOICES = (
-(DOWNLOAD_BOOK, "Download Book"),
-(DOWNLOAD_BUNDLE, "Download Bundle"),
+(DOWNLOAD, "Download"),
 (EMAIL, "Email")
 )
 
