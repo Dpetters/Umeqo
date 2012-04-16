@@ -39,6 +39,10 @@ class Command(LabelCommand):
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
 
         if not db_has_unseen_files:
+            print "Filenames in database"
+            print filenames_in_database
+            print "Filenames on disk"
+            print filenames_on_disk
             print filenames_in_database - filenames_on_disk
             raise CommandError("Database filenames are not a "
                                 "subset of actual filenames on disk. Will not risk "
