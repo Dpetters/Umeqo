@@ -12,8 +12,6 @@
     var NAME_REQUIRED = "{% text_snippet 'employer_name_required' %}";
     var INDUSTRIES_REQUIRED = "{% text_snippet 'industries_required' %}";
     var DESCRIPTION_REQUIRED = "{% text_snippet 'description_required' %}";
-    var MAIN_CONTACT_REQUIRED = "{% text_snippet 'main_contact_required' %}";
-    var MAIN_CONTACT_EMAIL_REQUIRED = "{% text_snippet 'main_contact_email_required' %}";
     var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
     var INVALID_PHONE = "{% text_snippet 'invalid_phone' %}";
     var MAX_INDUSTRIES = "{{max_industries}}";
@@ -42,13 +40,6 @@
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
             <span class="main_block_header_title">Edit Profile</span>
-            <div class="main_block_header_content">
-                <span>
-                    <strong>Public Info</strong>
-                </span>
-                &raquo;
-                <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Private Info</a>
-            </div>
         </div>
         <table class="form_table">
             <tr>
@@ -111,72 +102,9 @@
             </tr>
             <tr>
                 <td class="button_cell" colspan="4">
-                    <input name="formBack0" type="button" class="button" value="Back" alt="Back" disabled="disabled" />
-                    <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                     <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
                     <img class='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
                 </td>
-            </tr>
-        </table>
-        <div class="clearfix"></div>
-    </div>
-</li>
-<li id="pg2">
-    <a href='#' class="ui-accordion-link"></a>
-    <div class="main_block">
-        <div class="main_block_header">
-            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-            <span class="main_block_header_title">Edit Profile</span>
-            <div class="main_block_header_content">
-                <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Public Info</a>
-                &raquo;
-                <span>
-                    <strong>Private Info</strong>
-                </span>
-            </div>
-        </div>
-        <table class="form_table">
-            <tr>
-                <th>{{form.main_contact.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.main_contact}}
-                </td>
-                <td class="profile_form_side_info" rowspan="3">
-                    <h3>Tell us how to contact you!</h3>
-                    <ul>
-                        <li>
-                            The information on the left will only be used internally by the Umeqo team.
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.main_contact_email.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.main_contact_email}}
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.main_contact_phone.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.main_contact_phone}}
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td class="error_section error">
-                </td>
-            </tr>
-            <tr>
-                <td class="button_cell" colspan="4">
-                    <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-                    <input name="formNext2" type="button" class="open2 button disabled" disabled="disabled" value="Next" alt="Next" />
-                    <input class="button" type='submit' value="Save Profile" alt="Save Profile">
-                    <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
-                </td>                
             </tr>
         </table>
         <div class="clearfix"></div>
