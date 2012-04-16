@@ -86,8 +86,6 @@ language_already_exists = "This language already exists."
 slug_required = "You need to pick a short url!"
 industries_required = "You need to pick 1-5 industries."
 description_required = "A description is required."
-main_contact_required = "You need to specify a main contact."
-main_contact_email_required = "An email is required for the main contact."
 invalid_phone = "Doesn't look like a valid phone #."
 max_industries_exceeded = "You can select at most %s industries." % s.EP_MAX_INDUSTRIES
 

@@ -22,9 +22,6 @@ class Employer(core_mixins.DateTracking):
     logo = models.ImageField(upload_to=get_logo_filename, null=True, blank=True)
     description = models.TextField(blank=True, null=True)
     industries = models.ManyToManyField(Industry, null=True, blank=True)
-    main_contact = models.CharField("Main Contact", max_length=50, blank=True, null=True)
-    main_contact_email = models.EmailField("Main Contact Email", blank=True, null=True)
-    main_contact_phone = PhoneNumberField("Main Contact Phone #", blank = True, null=True)
     visible = models.BooleanField(default=False)
     
     # Null Fields

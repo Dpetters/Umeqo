@@ -46,16 +46,6 @@ $(document).ready(function() {
             description : {
                 required : true
             },
-            main_contact : {
-                required : true
-            },
-            main_contact_email : {
-                required : true,
-                email : true
-            },
-            main_contact_phone : {
-                phoneUS : true
-            },
             website : {
                 complete_url : true
             }
@@ -69,31 +59,6 @@ $(document).ready(function() {
             industries : INDUSTRIES_REQUIRED,
             description : DESCRIPTION_REQUIRED,
             website : INVALID_URL,
-            main_contact : MAIN_CONTACT_REQUIRED,
-            main_contact_email : {
-                required : MAIN_CONTACT_EMAIL_REQUIRED,
-                email : INVALID_EMAIL
-            },
-            main_contact_phone : {
-                phoneUS : INVALID_PHONE
-            }
         }
     });
-    // Back buttons do not need to run validation
-    $("#pg2 .open0").click(function() {
-        accordion.accordion("activate", 0);
-        current = 0;
-    });
-    // Next buttons need to run validation
-    $("#pg1 .open1").click(function() {
-        update_ckeditors();
-        if(v.form()) {
-            accordion.accordion("activate", 1);
-            current = 1;
-        }
-    });
-    
-    if (get_parameter_by_name("tab")=="private"){
-        $('#pg1 .open1').click();
-    }
 });
