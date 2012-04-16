@@ -24,7 +24,9 @@ class Command(LabelCommand):
         filenames_on_disk = set()
         filenames_in_database = set()
         for appname, modelname in parse_apps_and_models(label):
-            filenames_on_disk.update(list_files(settings.MEDIA_ROOT + appname + "/" + modelname))
+            file_path = settings.MEDIA_ROOT + appname + "/" + modelname
+            file_path = file_path.lower()
+            filenames_on_disk.update(list_files(file_path))
             model = get_model_cls(appname, modelname)
             filefields = get_filefields(model)
             if not filefields:
