@@ -78,9 +78,6 @@ class EmployerProfileForm(forms.ModelForm):
     slug = forms.SlugField(label="Short URL:", max_length=42)
     industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
-    main_contact = forms.CharField(label="Main Contact:")
-    main_contact_email = forms.EmailField(label="Contact Email:")
-    main_contact_phone = USPhoneNumberField(label="Contact Phone #:", required=False)
     offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset=EmploymentType.objects.all(), required=False)
     careers_website = forms.URLField(label="Careers Website:", required=False)
     
@@ -89,9 +86,6 @@ class EmployerProfileForm(forms.ModelForm):
                   'slug', 
                   'industries',
                    'description',
-                   'main_contact',
-                   'main_contact_email',
-                   'main_contact_phone',
                    'offered_job_types',
                    'careers_website')
         model = Employer

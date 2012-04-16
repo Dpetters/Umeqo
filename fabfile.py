@@ -49,7 +49,7 @@ def migrate():
     if not env.host:
         with fabric_settings(warn_only=True):
             local("find */migrations -name '*.pyc' | xargs rm")
-        local("python manage.py migrate --all")
+        local("python manage.py migrate --all --no-initial-data")
     else:
         abort("migrate can only be called locally.")
     
@@ -166,7 +166,7 @@ def update():
                     run("git pull origin master")
                 else:
                     run("git pull origin master")
-                run("python manage.py migrate --all")
+                run("python manage.py migrate --all --no-initial-data")
                 if env.type=="staging" or env.type=="demo":
                     run("python manage.py fix_campus_org_users")
                 restart_apache()

@@ -92,6 +92,7 @@
         var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
         var EVENT_CHECKIN_COUNT_URL = "{% url event_checkin_count %}";
         var EVENT_RAFFLE_WINNER_URL = "{% url event_raffle_winner %}";
+        var RSVP_URL = "{% url event_rsvp event_id=event.id %}";
         var CHECKIN_URL = "{% url event_checkin event_id=event.id %}";
         var GET_LOCATION_GUESS_URL = "{% url get_location_guess %}";
         var NOT_STUDENT_DROP_RESUME_TOOLTIP = "{% text_snippet 'not_student_drop_resume_tooltip' %}";
