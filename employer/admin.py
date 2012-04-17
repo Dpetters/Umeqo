@@ -9,6 +9,7 @@ from core.view_helpers import employer_campus_org_slug_exists
 class ResumeBookAdmin(admin.ModelAdmin):
     fields = ['resume_book', 'name', 'delivered']
     list_display = ['recruiter', 'name', 'delivered', 'date_created']
+    search_fields = ['name', 'recruiter__user__email']
     
 admin.site.register(ResumeBook, ResumeBookAdmin)
 

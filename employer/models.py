@@ -1,4 +1,3 @@
-from django.contrib.localflavor.us.models import PhoneNumberField
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models

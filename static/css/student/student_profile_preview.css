@@ -13,6 +13,13 @@
 .student_main_info {
     line-height: 21px;
 }
+#highlighted_text{
+    margin-left:34px;
+}
+#highlighted_text em{
+   font-style:normal;
+   font-weight:bold;
+}
 .student_main_info .saved_message{
     vertical-align:top;
 }

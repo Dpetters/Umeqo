@@ -31,7 +31,6 @@ from notification.models import NoticeSetting, NoticeType, EMAIL
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
 from registration.view_helpers import register_student
-from student import enums as student_enums
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation

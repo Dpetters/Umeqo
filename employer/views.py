@@ -517,20 +517,30 @@ def employer_students(request, extra_context=None):
 
         if request.GET.has_key('query'):
             students = search(students, request.GET['query'])
-
+            # Highlight the results
+            students = students.highlight()
+            
         results_per_page = int(request.GET['results_per_page'])
         start_index = results_per_page * (int(request.GET['page']) - 1)
         count = students.count()
 
         if start_index > count:
             start_index = 0
-
-        ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
+        
+        ordered_results = order_results(students, request)[start_index:start_index + results_per_page]
+        ordered_result_objects = []
+        for search_result in ordered_results:
+            print search_result.score
+            if search_result.highlighted:
+                ordered_result_object = (search_result.object,  search_result.highlighted['text'][0])
+            else:
+                ordered_result_object = (search_result.object,  "")
+            ordered_result_objects.append(ordered_result_object)
         padded_ordered_results = ['']*count
 
-        for i in range(len(ordered_results)):
-            padded_ordered_results[i + start_index] = ordered_results[i]
-
+        for i in range(len(ordered_result_objects)):
+            padded_ordered_results[i + start_index] = ordered_result_objects[i]
+        
         paginator = DiggPaginator(padded_ordered_results, results_per_page, body=3, padding=1, margin=2)
         context['filtering'] = am_filtering
 
@@ -545,7 +555,7 @@ def employer_students(request, extra_context=None):
         context['total_results_num'] = count
 
         # I don't like this method of statistics
-        for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
+        for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
 
@@ -735,7 +745,8 @@ def employer_resume_book_current_email(request, extra_context=None):
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
     subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
-    body = render_to_string('resume_book_email_body.html', {'name':request.user.first_name})
+    name = "%s %s" % (request.user.first_name, request.user.last_name)
+    body = render_to_string('resume_book_email_body.html', {'name': name})
     f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
     content = f.read()
     if request.POST.has_key('name') and request.POST['name']:
