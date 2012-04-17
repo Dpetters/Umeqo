@@ -6751,6 +6751,15 @@
   }
  },
  {
+  "pk": 50,
+  "model": "core.industry",
+  "fields": {
+   "date_created": "2012-04-17 10:16:29",
+   "last_updated": "2012-04-17 10:16:29",
+   "name": "Advertising"
+  }
+ },
+ {
   "pk": 1,
   "model": "core.industry",
   "fields": {

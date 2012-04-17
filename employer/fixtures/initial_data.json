@@ -3134,6 +3134,26 @@
   }
  },
  {
+  "pk": 184,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    50
+   ],
+   "last_updated": "2012-04-17 10:17:07",
+   "description": "",
+   "starred_students": [],
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-04-17 10:17:07",
+   "logo": "employer/employer/trialpay_2012-04-17-10-17-07.png",
+   "size": null,
+   "careers_website": "http://www.trialpay.com/about/jobs/",
+   "slug": "trialpay",
+   "name": "TrialPay"
+  }
+ },
+ {
   "pk": 128,
   "model": "employer.employer",
   "fields": {
