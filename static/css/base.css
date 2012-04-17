@@ -385,11 +385,11 @@ input[type=text], input[type=password] {
     font-size: 16px;
 }
 a {
-    color: #6e97b9;
+    color: #6889A8;
     outline: none;
 }
 a:hover {
-    color: #557389;
+    color: #577592;
 }
 .clearfix {
     clear: both;
