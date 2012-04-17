@@ -735,7 +735,8 @@ def employer_resume_book_current_email(request, extra_context=None):
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
     subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
-    body = render_to_string('resume_book_email_body.html', {'name':request.user.first_name})
+    name = "%s %s" % (request.user.first_name, request.user.last_name)
+    body = render_to_string('resume_book_email_body.html', {'name': name})
     f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
     content = f.read()
     if request.POST.has_key('name') and request.POST['name']:
