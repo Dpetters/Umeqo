@@ -31,12 +31,21 @@ def get_num_of_events_attended_dict(recruiter, students):
 
 
 def process_results(recruiter, page):
-    is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, page.object_list)
-    is_starred_attributes = get_is_starred_attributes(recruiter, page.object_list)
-    comments = get_comments(recruiter, page.object_list)
-    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, page.object_list)
-    return [(student, is_in_resume_book_attributes.get(student, False), is_starred_attributes.get(student, False), comments.get(student, ""), num_of_events_attended_dict.get(student, 0)) for student in page.object_list]
-
+    student_objects = [x[0] for x in page.object_list]
+    is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, student_objects)
+    is_starred_attributes = get_is_starred_attributes(recruiter, student_objects)
+    comments = get_comments(recruiter, student_objects)
+    num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, student_objects)
+    processed_results = []
+    for i, object in enumerate(page.object_list):
+        processed_result = (object[0],
+                             object[1],
+                             is_in_resume_book_attributes.get(object[0], False),
+                             is_starred_attributes.get(object[0], False),
+                             comments.get(object[0], ""),
+                             num_of_events_attended_dict.get(object[0], 0)) 
+        processed_results.append(processed_result)
+    return processed_results
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}

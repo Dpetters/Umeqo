@@ -22,7 +22,7 @@ def extract_resume_keywords(resume_file_path):
         escaped_special_terms = map(re.escape, special_terms)
         re_pattern = r'(%s)+' % ("|".join(escaped_special_terms))
         special_keywords_found = re.findall(re_pattern, resume_text)
-        keywords = re.findall(r'[a-zA-Z0-9]+', resume_text)
+        keywords = re.findall(r'[a-zA-Z0-9!-~]+', resume_text)
         return keywords + special_keywords_found
     except Exception as e:
         return ""
