@@ -1,5 +1,6 @@
-#logo{
-    max-width:180px;
+#note_label{
+    position:relative;
+    bottom:17px;
 }
 #profile_form .main_block_content{
     padding: 10px 20px 0px 25px
@@ -9,20 +10,20 @@
     padding-left:18px;
     padding-right:20px;
 }
-#profile_form .form_table th #logo_label{
-    margin-bottom:45px;
+#big_td{
+    padding-left:25px;
+    vertical-align:top;
 }
-#profile_form .form_table th{
-    padding-left:10px;
+.ui-switch{
+    left:10px;
+    top:10px;
 }
-#profile_form #short_url_label_cell{
-    min-width:70px;
+#offered_job_types_label_cell{
+    min-width:122px;
 }
-#profile_form #offered_job_types_label_cell{
-    min-width:110px;
-}
-#pg2 .form_table th{
-    min-width:107px;
+#logo_label{
+    position:relative;
+    bottom:62px;
 }
 #profile_form .form_table th.vertical_align_top{
     padding-top:25px;

@@ -7,6 +7,7 @@
 {% load compress %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_switch/jquery_switch.css"/>
 {% endcompress %}
 <script>
     var NAME_REQUIRED = "{% text_snippet 'employer_name_required' %}";
@@ -20,7 +21,13 @@
     var SLUG_ALREADY_TAKEN = "{% text_snippet 'slug_already_taken' %}";
     var CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL = "{% url check_employer_campus_org_slug_uniqueness %}";
 </script>
+<style>
+     .ui-switch-handle {
+          background: url({{STATIC_URL}}lib/jquery_switch/jquery.switch-0.4.0.png);
+      }
+</style>
 {% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_switch/jquery_switch.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_widgets.js"></script>
 {% endcompress %}
@@ -43,21 +50,19 @@
         </div>
         <table class="form_table">
             <tr>
-                <td colspan="4">
-                    <label class="no_field">Visibility:</label>
-                        {% include "employer_profile_visibility_note.html" %}
-                </td>
-            </tr>
-            <tr>
                 <th>{{form.name.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
                     {{form.name}}
                 </td>
-                <th>{{form.industries.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.industries}}
+                <td id="big_td" rowspan="5">
+                     <label>Make profile visible to students:</label>
+                     {{form.visible}}
+                     <br>
+                     <label for="logo" id="logo_label">Logo:</label>
+                     <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                     <br>
+                     <label>Note:</label> To change your logo please email the new image to contact@umeqo.com.
                 </td>
             </tr>
             <tr>
@@ -66,6 +71,15 @@
                     <div class="errorspace"></div>
                     umeqo.com/{{form.slug}}
                 </td>
+            </tr>
+            <tr>
+                <th>{{form.industries.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.industries}}
+                </td>
+            </tr>
+            <tr>
                 <th id="offered_job_types_label_cell">{{form.offered_job_types.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
@@ -73,20 +87,10 @@
                 </td>
             </tr>
             <tr>
-                <th><label id="logo_label">Logo:</label></th>
-                <td>
-                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
-                </td>
                 <th class="vertical_align_top">{{form.careers_website.label_tag}}</th>
                 <td class="vertical_align_top">
                     <div class="errorspace"></div>
                     {{form.careers_website}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <label class="no_field">Note:</label>
-                    To change your logo please email the new image to contact@umeqo.com.
                 </td>
             </tr>
             <tr>
@@ -107,6 +111,18 @@
                 </td>
             </tr>
         </table>
+        <!--
+                            <td colspan="2">
+                    <label class="no_field">Make profile visible to students:</label>
+                        {{form.visible}}
+                </td>
+                            <th><label id="logo_label">Logo:</label></th>
+                <td>
+                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                </td>
+                                <th><label id="note_label">Note:</label></th>
+                <td>To change your logo please email the new image to contact@umeqo.com.</td>
+            -->
         <div class="clearfix"></div>
     </div>
 </li>

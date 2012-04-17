@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#profile_form").submit(update_ckeditors);
-    
+    $("#id_visible").switchify();
     v = $("#profile_form").validate({
         submitHandler : function(form) {
             $(form).ajaxSubmit({
@@ -16,6 +16,7 @@ $(document).ready(function() {
                 },
                 success : function(data) {
                     data = $.parseJSON(data);
+                    console.log(data.errors);
                     if(data.errors) {
                         place_table_form_errors("#profile_form", data.errors);
                     } else {
