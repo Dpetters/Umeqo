@@ -85,13 +85,13 @@
 #id_sat_m, #id_sat_v, #id_sat_w {
     width:22px;
 }
-.deliver_resume_book_link {
+.resume_book_deliver_link {
     width:70px;
     float:right;
-    height:31px;
-    line-height:29px;
+    height:25px;
+    line-height:22px;
 }
-#current_resume_book_contents_section{
+#resume_book_contents_section{
     border:1px solid #AAA;
     background:#FFF;
     position:relative;
@@ -101,30 +101,31 @@
     border-radius:3px;
     vertical-align:middle;
     display:inline-block;
-    height:30px;
-    line-height:24px;
+    height:23px;
+    line-height:14px;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
 }
-#current_resume_book_text a{
+#resume_book_text a{
     color:#638699;
 }
-#current_resume_book_level{
+#resume_book_level{
     width:2%;
     display:block;
     float:none;
-    height:30px;
+    height:23px;
     background: #d0d0d0; /* Old browsers */
-    background: -moz-linear-gradient(top, #d0d0d0 0%, #c0c0c0 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d0d0d0), color-stop(100%,#c0c0c0)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* IE10+ */
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d0d0', endColorstr='#c0c0c0',GradientType=0 ); /* IE6-9 */
-    background: linear-gradient(top, #d0d0d0 0%,#c0c0c0 100%); /* W3C */
+    background: -moz-linear-gradient(top, #d0d0d0, #c0c0c0); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(#d0d0d0), color-stop(#c0c0c0)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #d0d0d0,#c0c0c0); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #d0d0d0,#c0c0c0); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #d0d0d0,#c0c0c0); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d0d0', endColorstr='#c0c0c0',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #d0d0d0,#c0c0c0); /* W3C */
 }
-#current_resume_book_text{
+#resume_book_text{
     position:absolute;
-    top:4px;
-    left:9px;
+    top:5px;
+    left:8px;
     width:100%;
     font-size:14px;
     font-weight:bold;

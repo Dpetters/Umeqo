@@ -3,9 +3,12 @@
         background: url({{STATIC_URL}}images/resumebook_delivery_sprite.png) no-repeat top left;
     }
 </style>
+<script>
+    $("#delivery_types li.disabled").tipsy({gravity:'w', opacity: 0.9, live:true, html:true}); 
+</script>
 
 <div class="dialog_content_wrapper">
-    <form id="deliver_resume_book_form" method='POST' action="{% url employer_resume_book_current_email %}">
+    <form id="deliver_resume_book_form" method='POST' action="{% url employer_resume_book_email %}">
         {% csrf_token %}
         <table class="form_table">
             <tr>
@@ -16,13 +19,15 @@
                            <p class="icon sprite-64-Download"></p>
                            <p class="label">Download</p>
                        </li>
-                       <li data-delivery-type="email">
+                       <li
+                       {% if disable_email_delivery %}
+                           title="The resume book size, {{resume_book_size|filesizeformat}}, exceeds the maximum allowed attachment size of {{max_resume_book_size_as_attachment|filesizeformat}}"
+                           class="disabled"
+                       {% endif %} data-delivery-type="email">
                            <p class="icon sprite-64-Mail"></p>
                            <p class="label">Email</p>
                        </li>
                     </ul>
-                    <!--<span></span><img id="book_delivery_type" class="delivery_selection" alt="Book (PDF)" src="{{ STATIC_URL }}images/icons/64-PDF-Document.png">
-                    <img id="bundle_delivery_type" alt="Bundle (ZIP)" src="{{ STATIC_URL }}images/icons/64-PDF-Documents.png">-->
                 </td>
             </tr>
             <tr>
@@ -39,7 +44,7 @@
                        </li>
                     </ul>
                 </td>
-            </tr>            
+            </tr>
             <tr>
                 <th>{{form.name.label_tag}}</th>
                 <td>
