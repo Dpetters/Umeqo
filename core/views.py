@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
+from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.template import RequestContext, loader
@@ -315,7 +316,11 @@ def landing_page(request, extra_context = None):
                               "Publish Your Company Profile",
                               "Check Students In"]
     tutorials = tutorials.filter(action__in = landing_page_tutorials)
-
+    
+    employers = []
+    for employer in Employer.objects.all():
+        if (employer.visible or employer.subscribed_annually()) and employer.name != "Umeqo":
+            employers.append(employer)
     context = {
         'student_reg_form': StudentRegistrationForm(),
         'posted': posted,
@@ -324,7 +329,7 @@ def landing_page(request, extra_context = None):
         'form_error': form_error,
         'email_error': email_error,
         'tutorials': tutorials,
-        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
+        'employers': employers
     }
 
     if FeaturedEvent.objects.all().exists():
