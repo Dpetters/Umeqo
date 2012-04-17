@@ -4,15 +4,28 @@
 #featured_content{
     margin:10px 0px;
 }
+#featured_content a{
+    border:1px solid #DDD;
+    height:158px;
+    display:inline-block;
+    padding:4px;
+}
+#featured_content a:hover{
+    border:1px solid #CCC;
+}
 #featured_content div{
     display:inline-block;
     text-align:center;
     vertical-align:middle;
     height:156px;
     line-height:55px;
-    width:179px;
-    margin-right:4px;
-    margin-left:4px;
+    width:175px;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.2);
+    border:1px solid rgba(0, 0, 0, 0.2);
+    background-color:#6889A8;
+}
+#featured_content div:hover{
+    background:#577592 !important;
 }
 #featured_content div img{
     position:relative;

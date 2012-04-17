@@ -2,7 +2,6 @@ from __future__ import division
 from __future__ import absolute_import
 
 from django import forms
-from django.contrib.localflavor.us.forms import USPhoneNumberField
 from django.conf import settings as s
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
@@ -74,26 +73,21 @@ class RecruiterForm(forms.ModelForm):
         return user
                 
 class EmployerProfileForm(forms.ModelForm):
-    name = forms.CharField(label="Name:", max_length=42)
+    name = forms.CharField(label="Company Name:", max_length=42)
     slug = forms.SlugField(label="Short URL:", max_length=42)
-    industries = forms.ModelMultipleChoiceField(label="Industries:", queryset=Industry.objects.all())
+    industries = forms.ModelMultipleChoiceField(label="Relevant Industries:", queryset=Industry.objects.all())
     description = forms.CharField(widget=CKEditorWidget(attrs={'tabindex':5}))
-    main_contact = forms.CharField(label="Main Contact:")
-    main_contact_email = forms.EmailField(label="Contact Email:")
-    main_contact_phone = USPhoneNumberField(label="Contact Phone #:", required=False)
     offered_job_types = forms.ModelMultipleChoiceField(label="Offered Job Types:", queryset=EmploymentType.objects.all(), required=False)
     careers_website = forms.URLField(label="Careers Website:", required=False)
-    
+    visible = forms.BooleanField(widget = forms.Select(choices=((True, 'Yes'), (False, 'No'))), required=False)
     class Meta:
         fields = ('name',
                   'slug', 
                   'industries',
                    'description',
-                   'main_contact',
-                   'main_contact_email',
-                   'main_contact_phone',
                    'offered_job_types',
-                   'careers_website')
+                   'careers_website',
+                   'visible')
         model = Employer
     
     def clean_industries(self):

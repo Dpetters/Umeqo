@@ -1,4 +1,5 @@
 import os
+import pprint
 import shutil
 from string import rsplit
 
@@ -24,7 +25,9 @@ class Command(LabelCommand):
         filenames_on_disk = set()
         filenames_in_database = set()
         for appname, modelname in parse_apps_and_models(label):
-            filenames_on_disk.update(list_files(settings.MEDIA_ROOT + appname + "/" + modelname))
+            file_path = settings.MEDIA_ROOT + appname + "/" + modelname
+            file_path = file_path.lower()
+            filenames_on_disk.update(list_files(file_path))
             model = get_model_cls(appname, modelname)
             filefields = get_filefields(model)
             if not filefields:
@@ -32,12 +35,19 @@ class Command(LabelCommand):
             for filefield in filefields:
                 kwargs = {filefield: ''}
                 qs = model.objects.exclude(**kwargs).values_list(filefield, flat=True)
-                filenames_in_database.update(os.path.join(settings.MEDIA_ROOT, name) for name in qs)
+                file_path = map(str.lower, map(str, (os.path.join(settings.MEDIA_ROOT, name) for name in qs)))
+                filenames_in_database.update(file_path)
         
         db_has_unseen_files = filenames_in_database.issubset(filenames_on_disk)
 
         if not db_has_unseen_files:
-            print filenames_in_database - filenames_on_disk
+            pp = pprint.PrettyPrinter(indent=1)
+            print "\nFilenames in database"
+            pp.pprint(filenames_in_database)
+            print "\nFilenames on disk"
+            pp.pprint(filenames_on_disk)
+            print "\nFilenames in database but not on disk"
+            pp.pprint(filenames_in_database - filenames_on_disk)
             raise CommandError("Database filenames are not a "
                                 "subset of actual filenames on disk. Will not risk "
                                 "erasing arbitrary files, exiting.")

@@ -7,13 +7,12 @@
 {% load compress %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_profile.css"/>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_switch/jquery_switch.css"/>
 {% endcompress %}
 <script>
     var NAME_REQUIRED = "{% text_snippet 'employer_name_required' %}";
     var INDUSTRIES_REQUIRED = "{% text_snippet 'industries_required' %}";
     var DESCRIPTION_REQUIRED = "{% text_snippet 'description_required' %}";
-    var MAIN_CONTACT_REQUIRED = "{% text_snippet 'main_contact_required' %}";
-    var MAIN_CONTACT_EMAIL_REQUIRED = "{% text_snippet 'main_contact_email_required' %}";
     var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
     var INVALID_PHONE = "{% text_snippet 'invalid_phone' %}";
     var MAX_INDUSTRIES = "{{max_industries}}";
@@ -22,7 +21,13 @@
     var SLUG_ALREADY_TAKEN = "{% text_snippet 'slug_already_taken' %}";
     var CHECK_EMPLOYER_CAMPUS_ORG_SLUG_UNIQUENESS_URL = "{% url check_employer_campus_org_slug_uniqueness %}";
 </script>
+<style>
+     .ui-switch-handle {
+          background: url({{STATIC_URL}}lib/jquery_switch/jquery.switch-0.4.0.png);
+      }
+</style>
 {% compress js %}
+<script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_switch/jquery_switch.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_profile_widgets.js"></script>
 {% endcompress %}
@@ -42,31 +47,22 @@
         <div class="main_block_header">
             <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user-business.png" />
             <span class="main_block_header_title">Edit Profile</span>
-            <div class="main_block_header_content">
-                <span>
-                    <strong>Public Info</strong>
-                </span>
-                &raquo;
-                <a href="javascript:void(0)" class="navigation" id="1" tabindex="-1">Private Info</a>
-            </div>
         </div>
         <table class="form_table">
-            <tr>
-                <td colspan="4">
-                    <label class="no_field">Visibility:</label>
-                        {% include "employer_profile_visibility_note.html" %}
-                </td>
-            </tr>
             <tr>
                 <th>{{form.name.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
                     {{form.name}}
                 </td>
-                <th>{{form.industries.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.industries}}
+                <td id="big_td" rowspan="5">
+                     <label>Make profile visible to students:</label>
+                     {{form.visible}}
+                     <br>
+                     <label for="logo" id="logo_label">Logo:</label>
+                     <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                     <br>
+                     <label>Note:</label> To change your logo please email the new image to contact@umeqo.com.
                 </td>
             </tr>
             <tr>
@@ -75,6 +71,15 @@
                     <div class="errorspace"></div>
                     umeqo.com/{{form.slug}}
                 </td>
+            </tr>
+            <tr>
+                <th>{{form.industries.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.industries}}
+                </td>
+            </tr>
+            <tr>
                 <th id="offered_job_types_label_cell">{{form.offered_job_types.label_tag}}</th>
                 <td>
                     <div class="errorspace"></div>
@@ -82,20 +87,10 @@
                 </td>
             </tr>
             <tr>
-                <th><label id="logo_label">Logo:</label></th>
-                <td>
-                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
-                </td>
                 <th class="vertical_align_top">{{form.careers_website.label_tag}}</th>
                 <td class="vertical_align_top">
                     <div class="errorspace"></div>
                     {{form.careers_website}}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <label class="no_field">Note:</label>
-                    To change your logo please email the new image to contact@umeqo.com.
                 </td>
             </tr>
             <tr>
@@ -111,74 +106,23 @@
             </tr>
             <tr>
                 <td class="button_cell" colspan="4">
-                    <input name="formBack0" type="button" class="button" value="Back" alt="Back" disabled="disabled" />
-                    <input name="formNext1" type="button" class="open1 button" value="Next" alt="Next" />
                     <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
                     <img class='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
                 </td>
             </tr>
         </table>
-        <div class="clearfix"></div>
-    </div>
-</li>
-<li id="pg2">
-    <a href='#' class="ui-accordion-link"></a>
-    <div class="main_block">
-        <div class="main_block_header">
-            <img class="main_block_header_icon" src="{{ STATIC_URL }}images/icons/user.png" />
-            <span class="main_block_header_title">Edit Profile</span>
-            <div class="main_block_header_content">
-                <a href="javascript:void(0)" class="navigation" id="0" tabindex="-1">Public Info</a>
-                &raquo;
-                <span>
-                    <strong>Private Info</strong>
-                </span>
-            </div>
-        </div>
-        <table class="form_table">
-            <tr>
-                <th>{{form.main_contact.label_tag}}</th>
+        <!--
+                            <td colspan="2">
+                    <label class="no_field">Make profile visible to students:</label>
+                        {{form.visible}}
+                </td>
+                            <th><label id="logo_label">Logo:</label></th>
                 <td>
-                    <div class="errorspace"></div>
-                    {{form.main_contact}}
+                    <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
                 </td>
-                <td class="profile_form_side_info" rowspan="3">
-                    <h3>Tell us how to contact you!</h3>
-                    <ul>
-                        <li>
-                            The information on the left will only be used internally by the Umeqo team.
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.main_contact_email.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.main_contact_email}}
-                </td>
-            </tr>
-            <tr>
-                <th>{{form.main_contact_phone.label_tag}}</th>
-                <td>
-                    <div class="errorspace"></div>
-                    {{form.main_contact_phone}}
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td class="error_section error">
-                </td>
-            </tr>
-            <tr>
-                <td class="button_cell" colspan="4">
-                    <input name="formBack0" type="button" class="open0 button" value="Back" alt="Back"/>
-                    <input name="formNext2" type="button" class="open2 button disabled" disabled="disabled" value="Next" alt="Next" />
-                    <input class="button" type='submit' value="Save Profile" alt="Save Profile">
-                    <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
-                </td>                
-            </tr>
-        </table>
+                                <th><label id="note_label">Note:</label></th>
+                <td>To change your logo please email the new image to contact@umeqo.com.</td>
+            -->
         <div class="clearfix"></div>
     </div>
 </li>

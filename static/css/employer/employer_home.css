@@ -1,24 +1,3 @@
-#featured_content #tutorials{
-    background:#F2CB60
-}
-#featured_content #students{
-    background:#A4C14D;
-}
-#featured_content #events{
-    background:#BF4C59;
-}
-#featured_content #profile{
-    background:#66BCFF;
-}
-#featured_content div:hover{
-    background:#BEBEBE !important;
-}
-#featured_content .must_be_subscribed_annually_e #events:hover{
-    background:#C03947;
-}
-#featured_content .must_be_subscribed_annually_e #profile:hover{
-    background:#299FFF;
-}
 #query_field {
     height: 22px;
     line-height:22px;

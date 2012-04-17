@@ -9,16 +9,16 @@
     {% load compress %}
     {% compress css %}
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_resume_book_history.css" />
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_deliver_resume_book.css" />
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_resume_book_deliver.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
     {% endcompress %}
     <script>
         var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
-        var RESUME_BOOK_CURRENT_CREATE_URL = "{% url employer_resume_book_current_create %}";
-        var RESUME_BOOK_CURRENT_DELIVER_URL = "{% url employer_resume_book_current_deliver %}";
-        var RESUME_BOOK_CURRENT_DOWNLOAD_URL = "{% url employer_resume_book_current_download %}";
-        var RESUME_BOOK_CURRENT_DELIVERED_URL = "{% url employer_resume_book_current_delivered %}";
+        var RESUME_BOOK_CREATE_URL = "{% url employer_resume_book_create %}";
+        var RESUME_BOOK_DELIVER_URL = "{% url employer_resume_book_deliver %}";
+        var RESUME_BOOK_DOWNLOAD_URL = "{% url employer_resume_book_download %}";
+        var RESUME_BOOK_DELIVERED_URL = "{% url employer_resume_book_delivered %}";
         var EMPLOYER_RESUME_BOOK_DELETE_URL = "{% url employer_resume_book_delete %}"
     </script>
     {% compress js %}
@@ -26,7 +26,7 @@
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_delivery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_resume_book_deliver.js"></script>
     {% endcompress %}
 {% endblock %}
 
@@ -43,7 +43,7 @@
                 {% if resume_book.students.visible|length > 0 %}
                     <li>
                         <div class="right_side_container">
-                            <a class="dark_button deliver_resume_book_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
+                            <a class="dark_button resume_book_deliver_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
                             <a class="delete_resume_book_link caution" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Delete</a>
                         </div>
                         <div class="details">

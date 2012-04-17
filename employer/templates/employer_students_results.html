@@ -5,7 +5,7 @@
 {% include "employer_students_results_menu.html" %}
 <div id="results">
 {% if results %}
-    {% for student, in_resume_book, starred, comment, num_of_events_attended in results %}
+    {% for student, highlighted_text, in_resume_book, starred, comment, num_of_events_attended in results %}
         {% include "student_profile_preview.html" %}
     {% endfor %}
 {% else %}

@@ -61,11 +61,11 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
             handle_uploaded_file(request.FILES['resume'], "%s%s" % (s.MEDIA_ROOT, pdf_file_path))
             
             # process_resume_data returns either an error or the keywords
-            keywords =  extract_resume_keywords(pdf_file_path)
+            keywords, num =  extract_resume_keywords(pdf_file_path)
             
             # If the resume is not unparsable, then resume_parsing_results
             # contains the keywords
-            if len(keywords) == 0:
+            if num == 0:
                 data['unparsable_resume'] = True
 
             user_info =  {'username': request.POST['email'],
@@ -273,11 +273,11 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
                 student.sat_t = None
             data = {'valid':True, 'unparsable_resume':False}
             if request.FILES.has_key('resume'):
-                keywords = extract_resume_keywords(request.user.student.resume.name)
-                student.keywords = " ".join(keywords)
+                keywords, num = extract_resume_keywords(request.user.student.resume.name)
+                student.keywords = keywords
                 student.last_update = datetime.datetime.now()
                 student.profile_created = True
-                if len(keywords)==0 and request.POST['ignore_unparsable_resume'] == "false":
+                if num==0 and request.POST['ignore_unparsable_resume'] == "false":
                     data['unparsable_resume'] = True
                 student.save()
                 for a in Attendee.objects.filter(email=student.user.email):
@@ -353,12 +353,14 @@ def student_update_resume(request, form_class=StudentUpdateResumeForm):
     if form.is_valid():
         form.save()
         data = {}
-        keywords = extract_resume_keywords(request.user.student.resume.name)
-        if len(keywords) == 0:
+        student = request.user.student 
+        keywords, num = extract_resume_keywords(student.resume.name)
+        if num == 0:
             data['unparsable_resume'] = True
-        data['num_of_extracted_keywords'] = len(keywords)
-        request.user.student.last_updated = datetime.datetime.now()
-        request.user.student.save()
+        data['num_of_extracted_keywords'] = num
+        student.keywords = keywords
+        student.last_updated = datetime.datetime.now()
+        student.save()
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         data = {'errors': form.errors }

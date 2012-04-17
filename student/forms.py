@@ -133,8 +133,8 @@ class StudentUpdateResumeForm(forms.ModelForm):
                 raise forms.ValidationError(_(m.resume_file_problem))
             
             # Check that there are less than 3k keywords
-            keywords = extract_resume_keywords(resume_test_file_name)
-            if len(keywords) > s.MAX_RESUME_KEYWORDS:
+            keywords, num = extract_resume_keywords(resume_test_file_name)
+            if num > s.MAX_RESUME_KEYWORDS:
                 raise forms.ValidationError(_(m.resume_has_too_many_words))
         return self.cleaned_data['resume']
 

@@ -9,6 +9,7 @@ from core.view_helpers import employer_campus_org_slug_exists
 class ResumeBookAdmin(admin.ModelAdmin):
     fields = ['resume_book', 'name', 'delivered']
     list_display = ['recruiter', 'name', 'delivered', 'date_created']
+    search_fields = ['name', 'recruiter__user__email']
     
 admin.site.register(ResumeBook, ResumeBookAdmin)
 
@@ -52,9 +53,9 @@ class EmployerAdminForm(forms.ModelForm):
 
 
 class EmployerAdmin(admin.ModelAdmin):
-    fields = ['name', 'logo', 'description', 'slug', 'offered_job_types', 'industries', 'careers_website', 'main_contact', 'main_contact_phone', 'main_contact_email', 'visible']
-    list_display = ('name', 'main_contact', 'main_contact_phone', 'visible', 'date_created')
-    search_fields = ['name', 'industries__name', 'main_contact']
+    fields = ['name', 'logo', 'description', 'slug', 'offered_job_types', 'industries', 'careers_website', 'visible']
+    list_display = ('name', 'visible', 'date_created')
+    search_fields = ['name', 'industries__name']
     date_hierarchy = 'date_created'
     formfield_overrides = { models.TextField: {'widget': CKEditorWidget(attrs={'class':'ckeditor'})},}
     form = EmployerAdminForm

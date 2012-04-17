@@ -40,7 +40,7 @@ from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterFor
                            RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, \
                            DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
-from employer.view_helpers import employer_search_helper, process_results, \
+from employer.view_helpers import employer_search_helper, process_results, get_resume_book_size, \
                                   get_students_in_resume_book, order_results
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
@@ -335,7 +335,7 @@ def employer_student_comment(request):
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
-def employer_resume_book_current_toggle_student(request):
+def employer_resume_book_toggle_student(request):
     if not request.POST.has_key('student_id'):
         raise Http400("Request POST is missing the student_id.")
     student = Student.objects.get(id=request.POST['student_id'])
@@ -360,7 +360,7 @@ def employer_resume_book_current_toggle_student(request):
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
-def employer_resume_book_current_add_students(request):
+def employer_resume_book_add_students(request):
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
     try:
@@ -383,7 +383,7 @@ def employer_resume_book_current_add_students(request):
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
-def employer_resume_book_current_remove_students(request):
+def employer_resume_book_remove_students(request):
     if not request.POST.has_key('student_ids'):
         raise Http400("Request is missing the student_ids.")
     try:
@@ -530,20 +530,30 @@ def employer_students(request, extra_context=None):
 
         if request.GET.has_key('query'):
             students = search(students, request.GET['query'])
-
+            # Highlight the results
+            students = students.highlight()
+            
         results_per_page = int(request.GET['results_per_page'])
         start_index = results_per_page * (int(request.GET['page']) - 1)
         count = students.count()
 
         if start_index > count:
             start_index = 0
-
-        ordered_results = [search_result.object for search_result in order_results(students, request)[start_index:start_index + results_per_page]]
+        
+        ordered_results = order_results(students, request)[start_index:start_index + results_per_page]
+        ordered_result_objects = []
+        for search_result in ordered_results:
+            print search_result.score
+            if search_result.highlighted:
+                ordered_result_object = (search_result.object,  search_result.highlighted['text'][0])
+            else:
+                ordered_result_object = (search_result.object,  "")
+            ordered_result_objects.append(ordered_result_object)
         padded_ordered_results = ['']*count
 
-        for i in range(len(ordered_results)):
-            padded_ordered_results[i + start_index] = ordered_results[i]
-
+        for i in range(len(ordered_result_objects)):
+            padded_ordered_results[i + start_index] = ordered_result_objects[i]
+        
         paginator = DiggPaginator(padded_ordered_results, results_per_page, body=3, padding=1, margin=2)
         context['filtering'] = am_filtering
 
@@ -558,7 +568,7 @@ def employer_students(request, extra_context=None):
         context['total_results_num'] = count
 
         # I don't like this method of statistics
-        for student, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
+        for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
 
@@ -596,8 +606,8 @@ def employer_students(request, extra_context=None):
 
 @user_passes_test(is_recruiter)
 @has_any_subscription
-@render_to('employer_resume_book_current_summary.html')
-def employer_resume_book_current_summary(request, extra_context=None):
+@render_to('employer_resume_book_summary.html')
+def employer_resume_book_summary(request, extra_context=None):
     try:
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
@@ -611,10 +621,11 @@ def employer_resume_book_current_summary(request, extra_context=None):
                 resume_book = rb
     resume_book_capacity = s.RESUME_BOOK_CAPACITY
     student_num = len(resume_book.students.visible())
-    float_percentage = min(student_num, s.RESUME_BOOK_CAPACITY)/float(resume_book_capacity)*100
+    float_percentage = min(student_num, resume_book_capacity)/float(resume_book_capacity)*100
     context = {'student_num': student_num,
                'float_percentage':float_percentage,
-               'int_precentage':int(float_percentage)}
+               'int_precentage':int(float_percentage),
+               'resume_book_capacity': resume_book_capacity}
     context.update(extra_context or {}) 
     return context
 
@@ -622,21 +633,27 @@ def employer_resume_book_current_summary(request, extra_context=None):
 @require_GET
 @user_passes_test(is_recruiter)
 @has_any_subscription
-@render_to('employer_resume_book_current_deliver.html')
-def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
+@render_to('employer_resume_book_deliver.html')
+def employer_resume_book_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
     context = {'form':form_class(initial={'emails':request.user.email})}
     if not request.GET.has_key("resume_book_id"):
         raise Http400("Request GET is missing the resume_book_id.")
     if request.GET["resume_book_id"]:
         try:
-            context['resume_book'] = ResumeBook.objects.get(id=request.GET["resume_book_id"])
+            resume_book = ResumeBook.objects.get(id=request.GET["resume_book_id"])
         except ResumeBook.DoesNotExist:
             raise Http400("No resume book exists with id of %s" % request.GET["resume_book_id"])
     else:
         try:
-            context['resume_book'] = ResumeBook.objects.get(recruiter=request.user.recruiter, delivered=False)
+            resume_book = ResumeBook.objects.get(recruiter=request.user.recruiter, delivered=False)
         except ResumeBook.DoesNotExist:
             raise Http400("There isn't a resume book ready to be delivered.")
+    resume_book_size = get_resume_book_size(resume_book)
+    context['resume_book'] = resume_book
+    context['resume_book_size'] = resume_book_size
+    context['max_resume_book_size_as_attachment'] = s.RESUME_BOOK_MAX_SIZE_AS_ATTACHMENT
+    if resume_book_size > s.RESUME_BOOK_MAX_SIZE_AS_ATTACHMENT:
+        context['disable_email_delivery'] = True
     context.update(extra_context or {})
     return context
 
@@ -644,32 +661,32 @@ def employer_resume_book_current_deliver(request, form_class=DeliverResumeBookFo
 @user_passes_test(is_recruiter)
 @has_any_subscription
 @require_POST
-def employer_resume_book_current_create(request):
+def employer_resume_book_create(request):
     if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
         redelivering = True
         try:
-            current_resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
+            resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
         except ResumeBook.DoesNotExist:
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
         try:
-            current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
+            resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)    
         except ResumeBook.MultipleObjectsReturned:
             resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
             for i, rb in enumerate(resume_books):
                 if i != 0:
                     rb.delete()
                 else:
-                    current_resume_book = rb
+                    resume_book = rb
 
     if redelivering:
-        resume_book_name = current_resume_book.name
+        resume_book_name = resume_book.name
     else:
         now = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         resume_book_name = "%s_%s" % (str(request.user), now,)
-        current_resume_book.name = resume_book_name
-        current_resume_book.save()
+        resume_book.name = resume_book_name
+        resume_book.save()
 
     file_path = "%semployer/resumebook/"% (s.MEDIA_ROOT,)
     if not os.path.exists(file_path):
@@ -679,7 +696,7 @@ def employer_resume_book_current_create(request):
         # Create the zip file
         file_name = "%s%s.zip" % (file_path, resume_book_name,)
         output = zipfile.ZipFile(file_name, 'w')
-        for student in current_resume_book.students.visible():
+        for student in resume_book.students.visible():
             resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             name = "%s %s (%s, %s).pdf" % (student.first_name, student.last_name, student.graduation_year, student.school_year)
             output.write(resume_file.name, name, zipfile.ZIP_DEFLATED)
@@ -696,14 +713,14 @@ def employer_resume_book_current_create(request):
         c.drawString(1*cm, 27.5*cm, str(request.user.recruiter.employer))
         c.drawString(16*cm, 28.5*cm, "Created using Umeqo")
         c.drawString(8.5*cm, 26.5*cm, "Resume Book Contents")
-        for page_num, student in enumerate(current_resume_book.students.visible().order_by("graduation_year", "first_name", "last_name")):
+        for page_num, student in enumerate(resume_book.students.visible().order_by("graduation_year", "first_name", "last_name")):
             c.drawString(6.5*cm, (25.5-page_num*.5)*cm, "%s %s" % (student.first_name, student.last_name))
             c.drawString(12*cm, (25.5-page_num*.5)*cm,  "%s, %s" %(student.graduation_year, student.school_year))
         c.showPage()
         c.save()
         output = PdfFileWriter()
         output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
-        for student in current_resume_book.students.visible().order_by("graduation_year", "first_name", "last_name"):
+        for student in resume_book.students.visible().order_by("graduation_year", "first_name", "last_name"):
             resume_file = open("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             resume = PdfFileReader(resume_file)
             if resume.getIsEncrypted():
@@ -716,7 +733,7 @@ def employer_resume_book_current_create(request):
         resume_file.close()
 
     resume_book_contents = open(file_name, "rb")
-    current_resume_book.resume_book.save(file_name, File(resume_book_contents))
+    resume_book.resume_book.save(file_name, File(resume_book_contents))
     resume_book_contents.close()
     return HttpResponse()
 
@@ -724,44 +741,46 @@ def employer_resume_book_current_create(request):
 @require_POST
 @user_passes_test(is_recruiter)
 @has_any_subscription
-@render_to("employer_resume_book_current_delivered.html")
-def employer_resume_book_current_email(request, extra_context=None):
+@render_to("employer_resume_book_delivered.html")
+def employer_resume_book_email(request, extra_context=None):
     if not request.POST.has_key('emails'):
         raise Http400("Request POST is missing the emails.")
     if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
         redelivering = True
         try:
-            current_resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
+            resume_book = ResumeBook.objects.get(id=request.POST["resume_book_id"])
         except ResumeBook.DoesNotExist:
             raise Http404("No resume book exists with id of %s" % request.POST["resume_book_id"])
     else:
         redelivering = False
         try:
-            current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+            resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
         except ResumeBook.MultipleObjectsReturned:
             resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
             for i, rb in enumerate(resume_books):
                 if i != 0:
                     rb.delete()
                 else:
-                    current_resume_book = rb
+                    resume_book = rb
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
     subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
-    body = render_to_string('resume_book_email_body.html', {'name':request.user.first_name})
-    f = open("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book.name), "rb")
+    
+    name = "%s %s" % (request.user.first_name, request.user.last_name)
+    body = render_to_string('resume_book_email_body.html', {'name': name})
+    f = open("%s%s" % (s.MEDIA_ROOT, resume_book.resume_book.name), "rb")
     content = f.read()
     if request.POST.has_key('name') and request.POST['name']:
         filename = request.POST['name']
     else:
-        filename = os.path.basename(current_resume_book.name)
+        filename = os.path.basename(resume_book.name)
     send_html_mail(subject, body, recipients, "%s.pdf" % (filename), content, "application/pdf")
     if redelivering:
-        current_resume_book.last_updated = datetime.now()
+        resume_book.last_updated = datetime.now()
     else:
-        current_resume_book.name = filename
-        current_resume_book.delivered = True
-    current_resume_book.save()
+        resume_book.name = filename
+        resume_book.delivered = True
+    resume_book.save()
     context = {}
     context.update(extra_context or {})
     return context
@@ -770,42 +789,42 @@ def employer_resume_book_current_email(request, extra_context=None):
 @require_GET
 @user_passes_test(is_recruiter)
 @has_any_subscription
-def employer_resume_book_current_download(request):
+def employer_resume_book_download(request):
     if request.GET.has_key("resume_book_id") and request.GET['resume_book_id']:
         redelivering = True
         try:
-            current_resume_book = ResumeBook.objects.get(id=request.GET["resume_book_id"])
+            resume_book = ResumeBook.objects.get(id=request.GET["resume_book_id"])
         except ResumeBook.DoesNotExist:
             raise Http404("No resume book exists with id of %s" % request.GET["resume_book_id"])
     else:
         redelivering = False
         try:
-            current_resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
+            resume_book, created = ResumeBook.objects.get_or_create(recruiter = request.user.recruiter, delivered=False)
         except ResumeBook.MultipleObjectsReturned:
             resume_books = ResumeBook.objects.filter(recruiter=request.user.recruiter, delivered=False)
             for i, rb in enumerate(resume_books):
                 if i != 0:
                     rb.delete()
                 else:
-                    current_resume_book = rb
+                    resume_book = rb
     if request.GET['delivery_format'] == 'separate':
         mimetype = "application/zip"
     else:
         mimetype = "application/pdf"
-    response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, current_resume_book.resume_book), "rb").read(), mimetype=mimetype)
-    filename = current_resume_book.name
+    response = HttpResponse(file("%s%s" % (s.MEDIA_ROOT, resume_book.resume_book), "rb").read(), mimetype=mimetype)
+    filename = resume_book.name
     if request.GET.has_key('name'):
         filename = request.GET['name']
-        current_resume_book.name = filename
+        resume_book.name = filename
     if request.GET['delivery_format'] == 'separate':
         response["Content-Disposition"] = 'attachment; filename="%s.zip"' % filename
     else:
         response["Content-Disposition"] = 'attachment; filename="%s.pdf"' % filename
     if redelivering:
-        current_resume_book.last_updated = datetime.now()
+        resume_book.last_updated = datetime.now()
     else:
-        current_resume_book.delivered = True
-    current_resume_book.save()
+        resume_book.delivered = True
+    resume_book.save()
     return response
 
 

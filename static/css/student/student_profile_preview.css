@@ -13,6 +13,13 @@
 .student_main_info {
     line-height: 21px;
 }
+#highlighted_text{
+    margin-left:34px;
+}
+#highlighted_text em{
+   font-style:normal;
+   font-weight:bold;
+}
 .student_main_info .saved_message{
     vertical-align:top;
 }
@@ -73,7 +80,7 @@
     float: right;
     background:#FFF;
 }
-.resume_book_current_toggle_student, .student_star{
+.resume_book_toggle_student, .student_star{
     min-width: 16px;
     margin-left: 7px;
     display:inline-block;
@@ -84,7 +91,7 @@
     opacity: .3;
     cursor:default;
 }
-.resume_book_current_toggle_student{
+.resume_book_toggle_student{
     top: 2px;
 }
 .student_star{

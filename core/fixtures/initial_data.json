@@ -3810,8 +3810,8 @@
   "pk": 5,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-02-05 19:36:30",
-   "click_count": 4,
+   "last_updated": "2012-04-10 06:26:30",
+   "click_count": 5,
    "question": "What is the difference between a public and private event?",
    "slug": "what-difference-between-public-and-private-event",
    "topic": 11,
