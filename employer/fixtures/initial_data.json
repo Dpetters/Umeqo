@@ -3138,17 +3138,21 @@
   "model": "employer.employer",
   "fields": {
    "industries": [
-    50
+    50,
+    15
    ],
-   "last_updated": "2012-04-17 10:17:07",
-   "description": "",
+   "last_updated": "2012-04-17 15:43:26",
+   "description": "<p>\r\n\tFor the last 5 years, TrialPay has been changing the way people shop and pay online. More recently, we have brought our alternative payment platform to the worlds of social gaming and virtual currency.&nbsp; Besides being named one of &quot;The World&#39;s Most Valuable Startups&quot; by Business Insider, we have received great press from the New York Times, the Wall Street Journal and others, and we are regularly featured on TechCrunch and VentureBeat.&nbsp; With partners like Facebook, Skype, and Netflix, 190 million registered users, and over 50 million unique daily visits already, we&rsquo;re growing really fast and working hard on big data management, mobile, and some of the most complex and interesting constraint optimization problems in the business.&nbsp; We can also proudly say that we work with some of the smartest people we&rsquo;ve ever met.</p>\r\n",
    "starred_students": [],
    "visible": false,
-   "offered_job_types": [],
+   "offered_job_types": [
+    1,
+    2
+   ],
    "date_created": "2012-04-17 10:17:07",
    "logo": "employer/employer/trialpay_2012-04-17-10-17-07.png",
    "size": null,
-   "careers_website": "http://www.trialpay.com/about/jobs/",
+   "careers_website": "http://www.trialpay.com/jobs/",
    "slug": "trialpay",
    "name": "TrialPay"
   }
