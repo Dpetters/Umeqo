@@ -23,6 +23,35 @@ def extract_resume_keywords(resume_file_path):
         re_pattern = r'(%s)+' % ("|".join(escaped_special_terms))
         special_keywords_found = re.findall(re_pattern, resume_text)
         keywords = re.findall(r'[a-zA-Z0-9!-~]+', resume_text)
-        return keywords + special_keywords_found
+        num = len(keywords) + len(special_keywords_found)
+        keywords = " ".join(keywords + special_keywords_found)
+        
+        # parse out phone numbers
+        phoneNumberPattern = re.compile(r'''
+                    # don't match beginning of string, number can start anywhere
+        \(*         # optional parenthesis
+        (\d{3})     # area code is 3 digits (e.g. '800')
+        \)*         # optional closing parenthesis
+        \D*         # optional separator is any number of non-digits
+        (\d{3})     # trunk is 3 digits (e.g. '298')
+        \D*         # optional separator
+        (\d{4})     # rest of number is 4 digits (e.g. '6622')
+        ''', re.VERBOSE)
+        match = re.search(phoneNumberPattern, keywords)
+        while match:
+            keywords = keywords[:match.start()] + keywords[match.end():]
+            match = re.search(phoneNumberPattern, keywords)
+        
+        # parse out emails
+        email_re = re.compile(
+        r"([-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"  # dot-atom
+        r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
+        r')@(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?', re.IGNORECASE)  # domain
+        match = re.search(email_re, keywords)
+        while match:
+            keywords = keywords[:match.start()] + keywords[match.end():]
+            match = re.search(email_re, keywords)
+        return keywords, num
+
     except Exception as e:
         return ""

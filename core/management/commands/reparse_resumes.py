@@ -1,12 +1,13 @@
 from optparse import make_option
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
 from student.models import Student
 from student.view_helpers import extract_resume_keywords
 
 class Command(BaseCommand):
+    args = '<email>'
     option_list = BaseCommand.option_list + (
         make_option('--win', action='store_true', dest='win', default=False, help='Use the version of pdftotext for windows.'),
         make_option('--all', action='store_true', dest='all', default=False, help='Reparse all resumes.'),
@@ -19,14 +20,17 @@ class Command(BaseCommand):
             
             students = Student.objects.filter(profile_created=True, user__is_active=True)
             if not options["all"]:
-                students = students.filter(Q(keywords=None) | Q(keywords=""))
+                if args:
+                    students = students.filter(user__email__in = args)
+                else:
+                    students = students.filter(Q(keywords=None) | Q(keywords=""))
             for student in students:
                 name = "%s %s" % (student.first_name, student.last_name)
                 if options['dry']:
                     print name
                 else:
-                    keywords = extract_resume_keywords(student.resume.name)
-                    student.keywords = " ".join(keywords)
+                    keywords, num = extract_resume_keywords(student.resume.name)
+                    student.keywords = keywords
                     student.save()
                     if not keywords:
                         unparsable_resumes.append(name)
