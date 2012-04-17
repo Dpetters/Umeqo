@@ -62,6 +62,12 @@ def get_is_in_resumebook_attributes(recruiter, students):
     return resume_book_dict
 
 
+def get_resume_book_size(resume_book):
+    size = 0
+    for student in resume_book.students.all():
+        size += student.resume.size
+    return size
+
 def get_students_in_resume_book(recruiter):
     try:
         resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)

@@ -2,7 +2,7 @@ var profile_preview_timeout = null;
 
 function setup_widgets(){
     $(".student_checkbox").tipsy({'gravity':'e', opacity: 0.9, fallback:PREVIEW_CHECKBOX_TOOLTIP, html:true});
-    $(".resume_book_current_toggle_student").tipsy({'gravity':'e', opacity: 0.9, title:function(){return RESUME_BOOK_CURRENT_TOGGLE_TOOLTIP;}, html:true});
+    $(".resume_book_toggle_student").tipsy({'gravity':'e', opacity: 0.9, title:function(){return RESUME_BOOK_TOGGLE_TOOLTIP;}, html:true});
     $(".student_toggle_star").tipsy({'gravity':'e', opacity: 0.9, fallback:star_toggle_tooltip, html:true});
     $(".student_event_attendance").tipsy({'gravity':'w', opacity: 0.9, fallback:event_attendance_tooltip, html:true});
     $(".student_invite_to_event_link").tipsy({'gravity':'e', opacity: 0.9, fallback:invite_to_event_tooltip, html:true});
@@ -119,7 +119,7 @@ function load_profile_preview(){
     }
 };
 
-$(".resume_book_current_toggle_student").live('mouseover', function(){
+$(".resume_book_toggle_student").live('mouseover', function(){
     $($(this).children()[0]).removeClass("sprite-plus").addClass("sprite-cross");
 }).live('mouseout', function(){
     $($(this).children()[0]).removeClass("sprite-cross").addClass("sprite-plus");    

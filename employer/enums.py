@@ -2,6 +2,7 @@ RESULTS_PER_PAGE_CHOICES = (
 (10, 10),
 (30, 30),
 (50, 50),
+(100, 100),
 )
 
 RELEVANCY = "relevancy"

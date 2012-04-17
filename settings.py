@@ -24,8 +24,11 @@ ACCOUNT_ACTIVATION_DAYS = 99999
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4
 
-# Max number of students allowed in any one resume book.
-RESUME_BOOK_CAPACITY = 50
+# Max number of students allowed in a resume book
+RESUME_BOOK_CAPACITY = 100
+
+# Max resume book size before we disallow it to be emailed
+RESUME_BOOK_MAX_SIZE_AS_ATTACHMENT = 10 * 1024 * 1024 # 10MB
 
 # Number of top FAQ questions to display
 TOP_QUESTIONS_NUM = 10
