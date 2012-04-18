@@ -239,22 +239,8 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 @has_any_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
-    if request.method == 'POST':
-        form = form_class(data=request.POST, files=request.FILES, instance=request.user.recruiter.employer)
-        data = []
-        if form.is_valid():
-            employer = form.save()
-            # Update index
-            employer.save()
-        else:
-            data = {'errors': form.errors}
-        return HttpResponse(simplejson.dumps(data), mimetype="text/html")
-    else:
-        context = {'form':form_class(instance=request.user.recruiter.employer),
-                   'max_industries':s.EP_MAX_INDUSTRIES,
-                   'edit':True}
-        context.update(extra_context or {})
-        return context
+    raise Http403('This service is disabled in the demo')
+
 
 
 @user_passes_test(is_recruiter)

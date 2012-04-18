@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
-from core.http import Http500
+from core.http import Http403, Http500
 from core.decorators import render_to, is_superuser
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
@@ -66,20 +66,7 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
 
 @login_required
 def password_change(request, password_change_form=PasswordChangeForm, extra_context=None):
-    form = password_change_form(user=request.user, data=request.POST)
-    if form.is_valid():
-        form.save()
-        request.user.userattributes.last_password_change_date = datetime.now()
-        for session_key_object in request.user.sessionkey_set.all():
-            Session.objects.filter(session_key=session_key_object.session_key).delete()
-        request.user.sessionkey_set.all().delete()
-        request.user.backend = 'django.contrib.auth.backends.ModelBackend'
-        auth_login(request, request.user)
-        us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
-        data = {'valid':True}
-    else:
-        data = {'valid':False, 'errors':form.errors}
-    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    raise Http403('This service is disabled in the demo')
 
 
 @render_to('invalid_activation_link.html')
