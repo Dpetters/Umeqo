@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Change Subscription |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_change.css" />
+{% endcompress %}
+
+{% compress js %}
+    <script src="{{ STATIC_URL }}js/subscription/subscription_change.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+{{block.super}}
+<div class="left_side_container">
+    {% include "employer_side_nav.html" %}
+</div>
+<h1>Change Subscription</h1>
+<form id="change_subscription_form" method="POST" action="">
+    <h3>Choose Subscription</h3>
+    {{form.subscription_type}}
+    <h3>Choose Billing Period</h3>
+    {{form.billing_period}}    
+    <input class="button" type='submit' value='Checkout'>
+</form>
+{% endblock %}

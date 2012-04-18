@@ -2,9 +2,9 @@ $(document).ready(function() {
     
     Stripe.setPublishableKey('pk_HLhAnc2IezyC7awtBdNVhQvt2fE7B');
   
-    $("#payment_form").submit(function(event) {
+    $("#card_form").submit(function(event) {
         // disable the submit button to prevent repeated clicks
-        $("#payment_form input[type=submit]").attr("disabled", "disabled");
+        $("#card_form input[type=submit]").attr("disabled", "disabled");
     
         Stripe.createToken({
             number: $('.card-number').val(),
@@ -18,10 +18,8 @@ $(document).ready(function() {
     });
   
     function stripeResponseHandler(status, response) {
-        console.log(status);
-        console.log(response);
         if (response.error) {
-            $("#payment_form .error_section").text(response.error.message);
+            $("#card_form .error_section").text(response.error.message);
         } else {
             var form$ = $("#payment-form");
             // token contains id, last4, and card type

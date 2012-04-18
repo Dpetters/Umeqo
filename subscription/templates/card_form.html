@@ -1,6 +1,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/card_form.css" />
 
-<form action="" method="POST" id="payment_form">
+<form action="" method="POST" id="card_form" {% ifequal hidden "True" %}class="hid"{% endifequal %}>
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
         {{ hidden }}
@@ -33,8 +34,7 @@
         </tr>
         <tr>
             <td class="button_cell" colspan="2">
-                <input class="button" type='submit' value='Submit'>
-                <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                {% include "card_form_submit_button.html" %}
             </td>
         </tr>
     </table>

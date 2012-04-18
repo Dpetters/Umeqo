@@ -1,0 +1,4 @@
+<input class="button" type='submit' value='Submit'>
+{% ifequal checkout "True" %}
+    <span id="pricing_terms">By checking out, you agree to the Umeqo <a href="{% url terms %}#pricingterms">Pricing Terms</a></span>
+{% endifequal %}

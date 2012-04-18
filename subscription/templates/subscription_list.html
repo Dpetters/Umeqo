@@ -26,6 +26,7 @@ Subscription Choices |
 {% block content_area %}    
     <h1>Umeqo Subscription Choices</h1>
     <div>
+        <!--
         <div id="subscription_notes" class="left_side_container">
             <img src="{{ STATIC_URL }}images/icons/umeqo_bubble2.png" />
             <h2>What is Umeqo?</h2>
@@ -37,12 +38,12 @@ Subscription Choices |
             <h2>Safety and Security</h2>
             <p><strong>Your firm's recruiting data is sensitive.</strong> <br> That is why Umeqo is entirely secured (https) and why we never collect any statistics about your site activity. In addition, no student will ever know that you expressed interest in him/her unless you send them an event or deadline invitation.</p>
         </div>
-        
+        -->
         <div class="grid col3">
             <section class="first">
                 <header>
                     <hgroup class="top">
-                        <h1>Basic</h1>
+                        <h1>Umeqo Basic</h1>
                     </hgroup>
                     <hgroup class="price">
                         <h2>
@@ -52,11 +53,41 @@ Subscription Choices |
                 </header>
                 <footer>
                     <ul>
-                        <li>Access to <strong>All Students</strong></li>
-                        <li><strong>Unlimited</strong> Custom Resume Books</li>
-                        <li><strong>Separate Account</strong> for Each Recruiter</li>
-                        <li><strong>All</strong> Event Management Tools</li>
-                        <li><strong>Unlimited</strong> Student Invitations</li>
+                        <li>Partial Access to All Students
+                            <span
+                            title="Partial, but Super Useful"
+                            class="learn_more"
+                            data-content="Search resumes and filter by the most important attributes to find the perfect candidates."
+                            >?</span>
+                        </li>
+                        <li>All Event Management Tools
+                         <span
+                            title="Plan and Promote Remotely"
+                            class="learn_more"
+                            data-content="Create your event or deadline using Umeqo and have news of it be spread across the whole campus through social networks and word-of-mouth."
+                            >?</span>
+                        </li>
+                        <li>Full Access to RSVPs & Attendees
+                         <span
+                            title="Participation Counts"
+                            class="learn_more"
+                            data-content="Don't want to pay for Premium? Simply create an event or deadline and have full access to all RSVPs and Attendees forever!"
+                            >?</span>
+                        </li>
+                        <li>Unlimited Student Invitations
+                         <span
+                            title="Send Personal Invitations"
+                            class="learn_more"
+                            data-content="There's no better way to get a student to RSVP or attend than sending them a personalized invitation."
+                            >?</span>
+                        </li>
+                        <li>Up to 3 Accounts
+                        <span
+                            title="Joint Effort"
+                            class="learn_more"
+                            data-content="Allow up to three people in your company to login using their own email and password."
+                            >?</span>
+                        </li>
                         <li class="last">
                             <a href="{% if free_subscription_href %}{{free_subscription_href}}{% else %}#{% endif %}" class="btn {{free_subscription_class}}">
                             {% if free_subscription_button_text %}
@@ -69,27 +100,91 @@ Subscription Choices |
                     </ul>
                 </footer>
             </section>
-            <section class="last on">
+            <section class="on">
                 <header>
                     <hgroup class="top">
-                        <h1>Premium</h1>
+                        <h1>Umeqo Premium</h1>
                     </hgroup>
                     <hgroup class="price">
                         <h2>
-                            <span class="style2">
-                                $249
-                            </span>
-                            <span class="style3">Per Year</span>
+                            <span class="style1">from $69/month</span>
                         </h2>
                     </hgroup>
                 </header>
                 <footer>
                     <ul>
-                        <li><strong>All of the Basic Features</strong> </li>
-                        <li><strong>One-Click</strong> Download of All Resumes</li>
-                        <li><strong>More</strong> Resume Book Delivery Options</li>
-                        <li><strong>Smarter</strong> Search</li>
-                        <li><strong>GitHub Integration</strong></li>
+                        <li><strong>All of the Basic Features</strong></li>
+                        <li><strong>Full Access</strong> to All Students
+                        <span
+                            title="Profiles, Resumes & Portfolios"
+                            class="learn_more"
+                            data-content="In addition to profiles and resumes, you will get access to portfolios, which consist of GitHub profiles and/or links to external portfolios."
+                            >?</span>
+                        </li>
+                        <li><strong>Unlimited</strong> Custom Resume Books
+                        <span
+                            title="No More Hard-Copy Resume Books"
+                            class="learn_more"
+                            data-content="Download or email as many custom resume books as you like. They never get out of date - each time you re-deliver, only the newest versions of resumes are included."
+                            >?</span>
+                        </li>
+                        <li><strong>One-Click</strong> Download of All Resumes
+                         <span
+                            title="All It Takes is One Click"
+                            class="learn_more"
+                            data-content="Want to search through resumes using your in-house system? One click, and you can do just that."
+                            >?</span>
+                        </li>
+                        <li><strong>Unlimited</strong> Accounts
+                        <span
+                            title="Don't Do All The Work Yourself"
+                            class="learn_more"
+                            data-content="Do your co-workers need interns? Have them find potential candidates themselves! After all, they know what they want best."
+                            >?</span>
+                        <li>
+                        <li class="last">
+                            <a href="{% if free_subscription_href %}{{free_subscription_href}}{% else %}#{% endif %}" class="btn {{free_subscription_class}}">
+                            {% if free_subscription_button_text %}
+                                {{free_subscription_button_text}}
+                            {% else %}
+                                Get Umeqo Basic
+                            {% endif %}
+                            </a>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+            <section class="last">
+                <header>
+                    <hgroup class="top">
+                        <h1>Umeqo Enterprise</h1>
+                    </hgroup>
+                    <hgroup class="price">
+                        <h2>
+                            <span class="style1">
+                                from $119/month
+                            </span>
+                        </h2>
+                    </hgroup>
+                </header>
+                <footer>
+                    <ul>
+                        <li>All of the Premium Features</li>
+                        <li>Commercial API access
+                        <span
+                            title="Full Flexibility"
+                            class="learn_more"
+                            data-content="Use our data for your own needs."
+                            >?</span>
+                         </li>
+                        <li>Statistics
+                        <span
+                            title="Be a Step Ahead"
+                            class="learn_more"
+                            data-content="Get trends and statistics about students across campuses that no other company has."
+                            >?</span>
+                        </li>
+                        <li>Email + Phone Support</li>
                         <li class="last">
                             <a href="{% if paid_subscription_href %}{{paid_subscription_href}}{% else %}#{% endif %}" 
                             data-subscription-type="premium" 

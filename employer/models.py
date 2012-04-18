@@ -42,6 +42,16 @@ class Employer(core_mixins.DateTracking):
     def get_absolute_url(self):
         return '%s?id=%d' % (reverse('employers'), self.id)
     
+    def has_basic(self):
+        try:
+            subscription = self.employersubscription
+        except EmployerSubscription.DoesNotExist:
+            return False
+        else:
+            if subscription.basic_subscription() and not subscription.expired():
+                return True
+        return False
+
     def has_premium(self):
         try:
             subscription = self.employersubscription
@@ -52,6 +62,7 @@ class Employer(core_mixins.DateTracking):
                 return True
         return False
         
+                
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

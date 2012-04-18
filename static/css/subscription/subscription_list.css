@@ -1,3 +1,13 @@
+.learn_more{
+    float:right;
+    background:#CCC;
+    padding:3px 6px;
+    color:#777;
+    position:relative;
+    bottom:2px;
+    border-radius:9px;
+    cursor:pointer;
+}
 #subscription_notes{
     width:310px;
     padding:15px 30px 20px 0;

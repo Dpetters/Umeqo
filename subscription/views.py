@@ -2,13 +2,14 @@ import stripe
 
 from django.http import HttpResponse
 from django.conf import settings as s
+from django.contrib.auth.decorators import user_passes_test
 from django.utils import simplejson
 from django.template.loader import render_to_string
 
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
 from subscription.models import EmployerSubscription
-from subscription.forms import CardForm, SubscriptionRequestForm
+from subscription.forms import CardForm, SubscriptionChangeForm, SubscriptionRequestForm
 
 
 @render_to("subscription_request_dialog.html")
@@ -32,6 +33,33 @@ def subscription_request_dialog(request, form_class = SubscriptionRequestForm, e
         context.update(extra_context or {})
         return context
 
+@user_passes_test(is_recruiter)
+@render_to("subscription_change.html")
+def subscription_change(request, form_class=SubscriptionChangeForm, extra_context=None):
+    context = {}
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            employer = request.user.recruiter.employer
+            token = request.POST['stripeToken']
+            if employer.stripe_id:
+                customer = stripe.Customer.retrieve(
+                    employer.stripe_id
+                    )
+            else:
+                customer = stripe.Customer.create(
+                    card=token,
+                    plan="premium",
+                    email=request.user.email
+                )
+                employer.stripe_id = customer.id
+            employer.card = form.cleaned_data['stripe_token']
+            employer.last_4_digits = form.cleaned_data['last_4_digits']
+            customer.save()
+    else:
+        context['form'] = form_class()
+    context.update(extra_context or {})
+    return context
 
 @render_to("subscription_upgrade.html")
 def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_context=None):
@@ -60,9 +88,66 @@ def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_
     context.update(extra_context or {})
     return context
 
-@render_to("subscription_change_payment.html")
-def subscription_change_payment(request, extra_context=None):
+@render_to("payment_change.html")
+def payment_change(request, form_class=CardForm, extra_context=None):
     context = {}
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            employer = request.user.recruiter.employer
+            token = request.POST['stripeToken']
+            if employer.stripe_id:
+                customer = stripe.Customer.retrieve(
+                    employer.stripe_id
+                    )
+            else:
+                customer = stripe.Customer.create(
+                    card=token,
+                    plan="premium",
+                    email=request.user.email
+                )
+                employer.stripe_id = customer.id
+            employer.card = form.cleaned_data['stripe_token']
+            employer.last_4_digits = form.cleaned_data['last_4_digits']
+            customer.save()
+        context['form'] = form
+    else:
+        context['form'] = form_class()
+    context.update(extra_context or {})
+    return context
+
+
+@render_to("checkout.html")
+def checkout(request, plan, form_class=CardForm, extra_context=None):
+    stripe.api_key = s.STRIPE_SECRET
+    plan = stripe.Plan.retrieve(plan)
+    amount =  '{:.2f}'.format(plan.amount/100)
+    context = {'plan':plan,
+               'amount':amount}
+    employer = request.user.recruiter.employer
+    if employer.stripe_id:
+        customer = stripe.Customer.retrieve(
+            employer.stripe_id
+            )
+        context['customer'] = customer
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            employer = request.user.recruiter.employer
+            token = request.POST['stripe_token']
+            if not customer:
+                customer = stripe.Customer.create(
+                    card=token,
+                    plan=plan,
+                    email=request.user.email
+                )
+                employer.stripe_id = customer.id
+            employer.card = form.cleaned_data['stripe_token']
+            employer.last_4_digits = form.cleaned_data['last_4_digits']
+            employer.save()
+    else:
+        context['form'] = form_class()
+    context.update(extra_context or {})
     return context
 
 @render_to("subscription_cancel.html")

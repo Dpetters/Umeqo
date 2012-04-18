@@ -86,6 +86,14 @@ class EmployerSubscription(models.Model):
 
     grace_timedelta = datetime.timedelta(getattr(s, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 
+    def basic_subscription(self):
+        try:
+            basic_subscription = Subscription.objects.get(uid=s.BASIC_SUBSCRIPTION_UID)
+        except:
+            return False
+        else:
+            return self.subscription == basic_subscription
+        
     def premium_subscription(self):
         try:
             premium_subscription = Subscription.objects.get(uid=s.PREMIUM_SUBSCRIPTION_UID)

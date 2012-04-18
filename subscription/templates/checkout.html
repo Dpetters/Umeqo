@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Checkout |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/checkout.css" />
+{% endcompress %}
+
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+{% compress js %}
+    <script src="{{ STATIC_URL }}js/subscription/checkout.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<h1>Checkout</h1>
+<div class="main_block no_header">
+    <div id="purchase_info">
+        <h3>Purchase Info</h3>
+        <p><b>Item:</b> {{plan.name}}</p>
+        <p id="charge_amount">You will be charged ${{amount}}</p>
+    </div>
+    <div id="payment_info">
+        <h3>Payment Info</h3>
+        {% if customer %}
+            <div id="existing_card">
+                <p><b>Card number:</b> **** **** **** {{customer.active_card.last4}}</p>
+                <p><b>Expiration date:</b> {{customer.active_card.exp_month}}/{{customer.active_card.exp_year}}</p>
+                <p><b>Type:</b> {{customer.active_card.type}}</p>
+                <p id="change_payment"><a href="#">Use Different Card</a></p>
+                <div id="submit_div">
+                    {% include "card_form_submit_button.html" with checkout="True" %}                    
+                </div>
+            </div>
+            {% include 'card_form.html' with hidden="True" checkout="True" %}
+
+        {% else %}
+            {% include 'card_form.html' with checkout="True" %}
+        {% endif %}
+    </div>
+</div>
+<p id="currency">All amounts shown are in {{plan.currency}}</p>
+{% endblock %}

@@ -21,3 +21,13 @@ HIRE_NUM_CHOICES = (
     (FEW, "4-12"),
     (MANY, "13+")
 )
+
+MONTHLY = 1
+QUARTERLY = 3
+ANNUAL = 12
+
+SUBSCRIPTION_RECURRENCE_CHOICES = (
+(MONTHLY, "Monthly"),
+(QUARTERLY, "Quarterly"),
+(ANNUAL, "Annual"),
+)

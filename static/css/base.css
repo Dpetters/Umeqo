@@ -31,7 +31,7 @@ h3, p{
     color: #555;
 }
 h3 {
-    margin: 10px 0 5px;
+    padding: 10px 0 5px;
 }
 p {
     font-size: 12px;
@@ -314,7 +314,7 @@ input[type=text], input[type=password] {
     margin-top: 10px;
 }
 .form_table .button_cell {
-    text-align: center;
+    text-align: left;
     border-bottom: none !important;
 }
 .button_wrapper_with_margins {
