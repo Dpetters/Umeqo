@@ -3,7 +3,7 @@ import urllib
 import urllib2
 
 from django.conf import settings as s
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required,  user_passes_test
 from django.contrib.auth.views import logout as auth_logout_then_login_view, login as auth_login_view
@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
+from core.http import Http500
 from core.decorators import render_to, is_superuser
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
@@ -34,62 +35,14 @@ def logout(request, login_url=None, current_app=None, extra_context=None):
 
 @render_to('login.html')
 def login(request, template_name="login.html", authentication_form=AuthenticationForm, login_url=None, current_app=None, extra_context={}):
-    if request.user.is_superuser:
-        return redirect(reverse('super_login'))
-    elif request.user.is_authenticated():
-        return redirect(reverse('home'))
+    try:
+        user = authenticate(username='recruiter@umeqo.com', password='umeqodemo')
+        auth_login(request, user)
+    except:
+        raise Http500('The demo authentication server is currently unavailable')
 
-    # Log the login attempt.
-    ip_address = get_ip(request)
-    if ip_address:
-        LoginAttempt.objects.create(ip_address=ip_address)
-    
-    half_day_ago = datetime.now() - timedelta(hours=12)
-    login_attempts = LoginAttempt.objects.all().filter(ip_address=ip_address).filter(attempt_datetime__gt=half_day_ago).count()
+    return redirect(reverse("home"))
 
-    extra_context.update({
-        'show_captcha': (login_attempts >= 10),
-        'invalid_captcha': False,
-        'RECAPTCHA_PUBLIC_KEY': s.RECAPTCHA_PUBLIC_KEY,
-    })
-    if request.method == 'POST' and login_attempts > 10:
-        captcha_params = urllib.urlencode({
-            'privatekey': s.RECAPTCHA_PRIVATE_KEY,
-            'remoteip': ip_address,
-            'challenge': request.POST.get('recaptcha_challenge_field', ''),
-            'response': request.POST.get('recaptcha_response_field', '')
-        })
-        captcha_req = urllib2.Request(
-            url = "http://www.google.com/recaptcha/api/verify",
-            data = captcha_params,
-            headers = {
-                "Content-type": "application/x-www-form-urlencoded",
-                "User-agent": "reCAPTCHA Umeqo"
-            }
-        )
-        captcha_resp = urllib2.urlopen(captcha_req)
-        return_values = captcha_resp.read().splitlines();
-        captcha_resp.close()
-
-        if return_values[0] != 'true':
-            form = authentication_form(data=request.POST)
-            current_site = get_current_site(request)
-
-            context = extra_context
-            context.update({
-                'invalid_captcha': True,
-                'form': form,
-                'site': current_site,
-                'site_name': current_site.name,
-            })
-            return context
-    response = auth_login_view(request, template_name=template_name, authentication_form=AuthenticationForm, current_app=current_app, extra_context=extra_context)
-    if request.user.is_staff:
-        return redirect(reverse('super_login'))
-    else:
-        us_user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
-        return response
-    
 
 @render_to('super_login.html')
 @user_passes_test(is_superuser)
