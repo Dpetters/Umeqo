@@ -35,6 +35,7 @@
 </script>
 {% compress js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/employer/employer_account.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/payment_info_forget.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -98,23 +99,52 @@
 {% block account_settings_tab_definitions %}
     <div id="tabs-3">
         <h3 class="no_top_margin">Your Subscription</h3>
-        <a id="modify_subscription" href="{% url subscription_list %}" class="button">{{subscription_button_text}}</a>
-        <div id="subscription_info">
-            <span id="subscription_name">{% if employer_subscription %}{{employer_subscription.subscription.name}}</span>
-            <span class="{{subscription_class}}">{{subscription_text}}</span>
-            <h4 id="subscription_expiration">{% if subscription_class == "grace" or subscription_class == "expired" %}Expired{% else %}Automatically renews on{% endif %} on: {{subscription.expires}}</h4>
-            {% if request.user.recruiter.employer.has_premium %}
-                <a class="caution"
-                   href="{% url subscription_cancel subscription_type=user.recruiter.employer.employersubscription.subscription.name %}">Cancel Subscription</a>
+        <a id="modify_subscription" href="{% url subscription_change %}" class="{% if customer.subscription %}button{% else %}dark_button{% endif %}">
+            {% if customer.subscription %}
+                Modify Subscription
+            {% else %}
+                Upgrade Now!
             {% endif %}
+            
+        </a>
+        <div id="subscription_info">
+            <span id="subscription_name">
+                {% if customer.subscription %}
+                    {{customer.subscription.plan.name}}
+                {% else %}
+                    Umeqo Basic
+                {% endif %}
+            </span>
+            <span id="subscription_status"
+                class="{{customer.subscription.status}}">
+                {% if customer.subcription %}
+                    {{customer.subscription.status}}
+                {% else %}
+                    Active
+                {% endif %}
+                </span>
+            <h4 id="subscription_expiration">
+                {% if customer.subscription %}
+                    {% if customer.subscription.cancel_at_period_end %}
+                        Expires on {{customer.subscription.current_period_end}}
+                    {% else %}
+                        Will automatically renew on {{customer.next_recurring_charge.date}}
+                        <p><a href="{% url subscription_cancel %}">Cancel Subscription</a></p>
+                    {% endif %}
+                {% endif %}
+            </h4>
         </div>
-        <h3 class="no_top_margin">Payment Method</h3>
-        {% if user.recruiter.employer.card %}
-            <p>The following card is currently used for payment</p>
-            <p>**** **** **** {{user.recruiter.employer.last_four}}</p>
-            <p>Expiration date: {{user.recruiter.employer.card.acpiration_month}}/{{user.recruiter.employer.card.acpiration_month}}</p>
+        <h3>Current Payment Method</h3>
+        {% if customer.active_card %}
+            {% include "active_card.html" %}
+            {% if customer.subscription %}
+                {% include "payment_change_link.html" %}
+            {% else %}
+                <a class="payment_info_forget_link" href="#">Forget Card</a>
+            {% endif %}
+            
         {% else %}
-            <p></p>
+            <p>You have no active payment method. <a href="{% url payment_change %}">Add Payment Method</a></p>
         {% endif %}
         <h3>Transaction History</h3>
         <div id="transactions">
@@ -138,10 +168,6 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-    <h3>Subscription Cancellation</h3>
-        <div id="transactions">
-            <p>To cancel your subscription, please email us at contact@umeqo.com.</p>
         </div>
     </div>
 {% endblock %}

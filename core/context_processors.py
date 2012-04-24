@@ -40,7 +40,7 @@ def caution(request):
     cautions = []
     if is_recruiter(request.user) and EmployerSubscription.objects.filter(employer = request.user.recruiter.employer).exists():
         employer_subscription = request.user.recruiter.employer.employersubscription
-        subscription_path = reverse("subscription_list")
+        subscription_path = reverse("subscriptions")
         if employer_subscription.in_grace_period():
             action_wording = "Renew now"
             if employer_subscription.subscription.uid == s.EVENT_SUBSCRIPTION_UID:
@@ -55,7 +55,7 @@ def warnings(request):
     warnings = []
     if is_recruiter(request.user) and EmployerSubscription.objects.filter(employer = request.user.recruiter.employer).exists():       
         employer_subscription = request.user.recruiter.employer.employersubscription
-        subscription_path = reverse("subscription_list")
+        subscription_path = reverse("subscriptions")
         if employer_subscription.expired():
             if request.get_full_path() != subscription_path:
                 if employer_subscription.subscription.uid == s.EVENT_SUBSCRIPTION_UID:

@@ -17,49 +17,39 @@
 #id_default_student_results_per_page, #id_default_student_result_ordering{
     width:160px;
 }
-#modify_subscription{
-    float:right;
-    margin-top:5px;
-}
+
+
 #subscription_info{
     padding:5px 5px;
-}
-#subscription_info .active, #subscription_info .expired, 
-#subscription_info .cancelled, #subscription_info .grace {
-    color: #FFF;
-    text-shadow: #000 0 -1px 0;
-    background-color: #666;
-    font-size: 12px;
-    font-weight:bold;
-    margin-left:2px;
-    padding: 2px 4px;
-    vertical-align: top;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}
-#subscription_info .active{
-    background:green;
-    text-shadow:#222 0 -1px 0;
-}
-#subscription_info .expired, #subscription_info .cancelled{
-    background:#B00;
-    text-shadow:#222 0 -1px 0;
-}
-#subscription_info .grace {
-    background:#EF6700;
-    text-shadow:#222 0 -1px 0;
 }
 #subscription_name{
     font-size:22px;
 }
-#subscription_expiration{
+#subscription_status{
+    color: #FFF;
+    background:#468847;
+    font-size: 12px;
+    font-weight:bold;
+    margin-left:2px;
+    padding: 1px 4px 2px;
+    vertical-align: top;
+    -webkit-border-radius: 3px;
+    -moz-border-radius:3px;
+    border-radius: 3px;
+    white-space:nowrap;
+    text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+#subscription_info .past_due {
+    background:#F89406;
+}
+#subscription_info .unpaid{
+    background:#B94A48;
+}
+#modify_subscription{
+    float:right;
     margin-top:5px;
 }
-#delete_account_link{
-    margin-left:5px;
-    color:#990000 !important;
-}
+
 #employer_other_recruiters{
     margin-top:5px;
     list-style:inside none;

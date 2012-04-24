@@ -1,3 +1,6 @@
+import stripe
+
+from django.conf import settings as s
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -68,7 +71,13 @@ def create_employer_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:
         if not EmployerStatistics.objects.filter(employer=instance).exists():
             EmployerStatistics.objects.create(employer=instance)
-
+        
+        # Subscribe the employer to our basic plan
+        stripe.api_key = s.STRIPE_SECRET
+        customer = stripe.Customer.create(description=instance.name,
+                                          plan=s.BASIC_PLAN_ID)
+        instance.stripe_id = customer.id
+        instance.save()
 
 class EmployerStatistics(core_mixins.DateTracking):
     employer = models.OneToOneField(Employer, unique=True, editable=False)

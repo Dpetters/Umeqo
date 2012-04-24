@@ -1,19 +1,21 @@
 import stripe
+import time
 
 from django.http import HttpResponse
 from django.conf import settings as s
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import simplejson
 from django.template.loader import render_to_string
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 
 from core.email import send_html_mail
 from core.decorators import is_recruiter, render_to
-from subscription.models import EmployerSubscription
 from subscription.forms import CardForm, SubscriptionChangeForm, SubscriptionRequestForm
 
 
-@render_to("subscription_request_dialog.html")
-def subscription_request_dialog(request, form_class = SubscriptionRequestForm, extra_context=None):
+@render_to("subscription_request.html")
+def subscription_request(request, form_class = SubscriptionRequestForm, extra_context=None):
     if request.method=="POST":
         form = form_class(data = request.POST, user=request.user)
         if form.is_valid():
@@ -91,28 +93,31 @@ def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_
 @render_to("payment_change.html")
 def payment_change(request, form_class=CardForm, extra_context=None):
     context = {}
+    stripe.api_key = s.STRIPE_SECRET
+    employer = request.user.recruiter.employer
+    if employer.stripe_id:
+        customer = stripe.Customer.retrieve(
+            employer.stripe_id
+            )
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            employer = request.user.recruiter.employer
-            token = request.POST['stripeToken']
-            if employer.stripe_id:
-                customer = stripe.Customer.retrieve(
-                    employer.stripe_id
-                    )
-            else:
+            token = request.POST['stripe_token']
+            if not customer:
                 customer = stripe.Customer.create(
                     card=token,
-                    plan="premium",
                     email=request.user.email
                 )
                 employer.stripe_id = customer.id
-            employer.card = form.cleaned_data['stripe_token']
-            employer.last_4_digits = form.cleaned_data['last_4_digits']
+            customer.card = form.cleaned_data['stripe_token']
             customer.save()
+            employer.card = form.cleaned_data['stripe_token']
+            employer.save()
+            return redirect(reverse('employer_account'))
         context['form'] = form
     else:
         context['form'] = form_class()
+        context['customer'] = customer
     context.update(extra_context or {})
     return context
 
@@ -151,28 +156,26 @@ def checkout(request, plan, form_class=CardForm, extra_context=None):
     return context
 
 @render_to("subscription_cancel.html")
-def subscription_cancel(request, subscription_type, extra_context=None):
-    context = {'subscription_type':subscription_type}
+def subscription_cancel(request, extra_context=None):
+    context = {}
+    stripe.api_key = s.STRIPE_SECRET
+    employer = request.user.recruiter.employer
+    if employer.stripe_id:
+        customer = stripe.Customer.retrieve(
+            employer.stripe_id
+            )
+    if request.method == "POST":
+        customer.cancel_subscription(at_period_end=False)
+        return redirect("%s%s" % (reverse("employer_account"), "?msg=subscription-cancelled&tab=subscription"))
+    else:
+        context['expiration_datetime'] = time.strftime("%m/%d/%Y", time.gmtime(customer.subscription.current_period_end))
+        context['customer'] = customer
     return context
 
-@render_to("subscription_cancel.html")
-def subscription_cancel_confirm(request, extra_context=None):
-    context = {}
-    return context
-
-@render_to("subscription_list.html")
-def subscription_list(request, extra_context=None):
+@render_to("subscriptions.html")
+def subscriptions(request, extra_context=None):
     context = {}
     """
-    This page is only customized if the user is a recruiter.
-    
-    If they have an active premium subscription, the basic button theyn says "Downgrade to Basic"
-    and the premium button says "Extend Premium Subscription"
-    
-    If they have don't have a premium subscription, the basic button says
-    "Basic Subscription Active".
-    """
-
     employer = None
     premium_subscription = None
     if request.user.is_authenticated() and is_recruiter(request.user):
@@ -197,5 +200,6 @@ def subscription_list(request, extra_context=None):
             
     else:
         context["free_subcription_dialog_class"] = "open_subscription_request_dialog"
+    """
     context.update(extra_context or {})
     return context

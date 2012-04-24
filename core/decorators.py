@@ -34,7 +34,7 @@ class has_any_subscription(object):
                     return self.orig_func(request, *args, **kwargs)
             if request.is_ajax():
                 raise Http403("You must have an annual subscription to do that.")
-            return redirect(reverse("subscription_list"))
+            return redirect(reverse("subscriptions"))
         return self.orig_func(request, *args, **kwargs)
 
 
@@ -54,7 +54,7 @@ class has_annual_subscription(object):
                     return self.orig_func(request, *args, **kwargs)
             if request.is_ajax():
                 raise Http403("You must have an annual subscription to do that.")
-            return redirect(reverse("subscription_list"))
+            return redirect(reverse("subscriptions"))
         return self.orig_func(request, *args, **kwargs)
 
 

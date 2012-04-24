@@ -7,19 +7,19 @@ Subscription Choices |
 {% block metadata %}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_list.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscriptions.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_request_dialog.css" />
 {% endcompress %}
 <script>
-    var SUBSCRIPTION_REQUEST_URL = "{% url subscription_request_dialog %}";
+    var SUBSCRIPTION_REQUEST_URL = "{% url subscription_request %}";
 </script>
 {% compress js %}
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_request_dialog.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_list.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscriptions.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -114,34 +114,7 @@ Subscription Choices |
                 <footer>
                     <ul>
                         <li><strong>All of the Basic Features</strong></li>
-                        <li><strong>Full Access</strong> to All Students
-                        <span
-                            title="Profiles, Resumes & Portfolios"
-                            class="learn_more"
-                            data-content="In addition to profiles and resumes, you will get access to portfolios, which consist of GitHub profiles and/or links to external portfolios."
-                            >?</span>
-                        </li>
-                        <li><strong>Unlimited</strong> Custom Resume Books
-                        <span
-                            title="No More Hard-Copy Resume Books"
-                            class="learn_more"
-                            data-content="Download or email as many custom resume books as you like. They never get out of date - each time you re-deliver, only the newest versions of resumes are included."
-                            >?</span>
-                        </li>
-                        <li><strong>One-Click</strong> Download of All Resumes
-                         <span
-                            title="All It Takes is One Click"
-                            class="learn_more"
-                            data-content="Want to search through resumes using your in-house system? One click, and you can do just that."
-                            >?</span>
-                        </li>
-                        <li><strong>Unlimited</strong> Accounts
-                        <span
-                            title="Don't Do All The Work Yourself"
-                            class="learn_more"
-                            data-content="Do your co-workers need interns? Have them find potential candidates themselves! After all, they know what they want best."
-                            >?</span>
-                        <li>
+                        {% include "subscription_features_premium.html" %}
                         <li class="last">
                             <a href="{% if free_subscription_href %}{{free_subscription_href}}{% else %}#{% endif %}" class="btn {{free_subscription_class}}">
                             {% if free_subscription_button_text %}

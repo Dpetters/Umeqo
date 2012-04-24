@@ -1,9 +1,6 @@
 #purchase_info, #payment_info{
     margin:8px 10px 15px 10px;    
 }
-#purchase_info h3, #payment_info h3{
-    text-decoration:underline;
-}
 #purchase_info{
     float:left;
     width:320px;
@@ -21,9 +18,6 @@
     text-align:center;
     color:#666;
     font-size:11px;
-}
-#change_payment{
-    margin-top:3px;
 }
 #submit_div{
     margin-top:20px;

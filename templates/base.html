@@ -163,8 +163,8 @@
                             {% endif %}
                             {% if user.recruiter %}
                                 <li><a href="{% url employer_profile %}">Edit Profile</a></li>
-                                {% if not user.recruiter.employer.has_premium %}
-                                    <li><a href="{% url subscription_upgrade subscription_type="premium" %}">Upgrade to Premium!</a></li>
+                                {% if not customer.subscription %}
+                                
                                 {% endif %}
                                 <li><a href="{% url employer_account %}">Account Settings</a></li>
                             {% endif %}
@@ -266,7 +266,7 @@
                     <a id="home" href="{% url home %}" tabindex="-1">Home</a>
                     <a id="about" href="{% url about %}" tabindex="-1">About</a>
                     {% if not user.is_authenticated %}
-                        <a href="{% url subscription_list %}" tabindex="-1">For Recruiters</a>
+                        <a href="{% url subscriptions %}" tabindex="-1">For Recruiters</a>
                     {% endif %}
                     <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
                     <a href="{% url terms %}#termsofservice" tabindex="-1">Terms</a>

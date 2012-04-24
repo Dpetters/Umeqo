@@ -23,6 +23,8 @@ password_changed = 'Password changed successfully.'
 # Home
 profile_saved = 'Your profile has been saved.'
 
+subscription_cancelled = "Your subscription has been successfully cancelled."
+
 # Campus Org Profile Form
 campus_org_name_required = "Organization name is required."
 campus_org_type_required = "Organization type is required."

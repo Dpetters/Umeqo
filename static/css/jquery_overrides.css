@@ -1,11 +1,8 @@
 .ui-widget-content{
     background:#FFF;
 }
-.ui-widget-content a {
-    color: #6e97b9 !important;
-}
-.ui-widget-content a:hover{
-    color: #557389 !important;
+.ui-accordion-icons .ui-accordion-header a {
+    color: #303030 !important;    
 }
 .ui-tabs-nav .ui-state-active{
     background:#FFF;
@@ -51,7 +48,7 @@
     background: -webkit-linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* IE10+ */
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #f0f0f0 0%,#e6e6e6 100%); /* W3C */
     -webkit-border-radius: 3px 3px 0px 0px;
     border-radius: 3px 3px 0px 0px;
@@ -64,6 +61,12 @@
 .ui-tabs-nav .ui-state-active {
     background:#DDD;
     border: 1px solid #BBB !important;
+}
+.ui-tabs a, .ui-tabs .ui-tabs-nav a{
+    color: #6889A8;
+}
+.ui-tabs a:hover {
+    color: #577592;
 }
 .ui-slider {
     border: 1px solid #808080;

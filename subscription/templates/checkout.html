@@ -27,17 +27,12 @@ Checkout |
     <div id="payment_info">
         <h3>Payment Info</h3>
         {% if customer %}
-            <div id="existing_card">
-                <p><b>Card number:</b> **** **** **** {{customer.active_card.last4}}</p>
-                <p><b>Expiration date:</b> {{customer.active_card.exp_month}}/{{customer.active_card.exp_year}}</p>
-                <p><b>Type:</b> {{customer.active_card.type}}</p>
-                <p id="change_payment"><a href="#">Use Different Card</a></p>
-                <div id="submit_div">
-                    {% include "card_form_submit_button.html" with checkout="True" %}                    
-                </div>
-            </div>
+            {% include "active_card.html" %}
             {% include 'card_form.html' with hidden="True" checkout="True" %}
-
+            {% include 'payment_change_link.html' %}
+            <div id="submit_div">
+                {% include "card_form_submit_button.html" with checkout="True" %}                    
+            </div>
         {% else %}
             {% include 'card_form.html' with checkout="True" %}
         {% endif %}

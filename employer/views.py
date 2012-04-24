@@ -4,6 +4,7 @@ from __future__ import absolute_import
 import cStringIO
 import os
 import re
+import stripe
 import zipfile
 
 from datetime import datetime, date
@@ -67,27 +68,24 @@ def employer_logo(request):
 @render_to("employer_account.html")
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
                      change_password_form_class = PasswordChangeForm, extra_context=None):
-
+    
+    context = {}
     recruiter = request.user.recruiter
+    context['recruiter'] = recruiter
     employer = recruiter.employer
-    employer_subscription = None
-    try:
-        employer_subscription = employer.employersubscription
-    except EmployerSubscription.DoesNotExist:
-        pass
-    subscription = None
-    if employer_subscription:
-        subscription = employer_subscription.subscription
-        
-    context = {'recruiter':recruiter,
-               'employer':employer,
-               'employer_subscription':employer_subscription,
-               'subscription':subscription}
-        
+    context['employer'] = employer
+    stripe.api_key = s.STRIPE_SECRET
+    if employer.stripe_id:
+        customer = stripe.Customer.retrieve(
+            employer.stripe_id
+            )
+        context['customer'] = customer
+
     msg = request.GET.get('msg', None)
     if msg:
         page_messages = {
             'password-changed': messages.password_changed,
+            'subscription-cancelled' : messages.subscription_cancelled
         }
         context["msg"] = page_messages[msg]
     
@@ -433,12 +431,10 @@ def employer_students(request, extra_context=None):
         student_list = request.GET['student_list']
         student_list_id = request.GET['student_list_id']
         recruiter = request.user.recruiter
-        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1] and recruiter.employer.subscribed_annually():
+        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
             students = SearchQuerySet().models(Student).filter(visible=True)
         else:
-            if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
-                students = get_students_in_resume_book(recruiter)
-            elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
+            if student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
                 students = recruiter.employer.starred_students.all()
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 try:

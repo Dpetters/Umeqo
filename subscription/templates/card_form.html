@@ -1,6 +1,8 @@
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<script type="text/javascript" src="{{STATIC_URL}}/js/subscription/card_form.js"></script>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/card_form.css" />
 
+<p><b>We accept:</b> Visa, MasterCard, American Express, Discover, JCB, and Diners Club</p>
 <form action="" method="POST" id="card_form" {% ifequal hidden "True" %}class="hid"{% endifequal %}>
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
@@ -29,7 +31,7 @@
         </tr>
         <tr>
             <td colspan="2" class="error_section error">
-                {{form.non_field_errors}}
+                {{form.errors}}
             </td>
         </tr>
         <tr>

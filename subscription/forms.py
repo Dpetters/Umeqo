@@ -25,14 +25,7 @@ class SubscriptionRequestForm(forms.Form):
             self.fields['recruiter_email'].initial = user.email
             
 
-class CardForm(forms.Form):  
-    last_4_digits = forms.CharField(
-        required = True,
-        min_length = 4,
-        max_length = 4,
-        widget = forms.HiddenInput()
-    )
-  
+class CardForm(forms.Form):
     stripe_token = forms.CharField(
         required = True,
         widget = forms.HiddenInput()
