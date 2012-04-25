@@ -26,7 +26,7 @@
     var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
     var EMPLOYER_OTHER_RECRUITERS_URL = "{% url employer_other_recruiters %}";
     var EMPLOYER_ACCOUNT_DELETE_URL = "{% url employer_account_delete %}";
-    
+    var PAYMENT_INFO_FORGET_URL = "{% url payment_forget %}";
     {% if other_recruiters %}
         var ONLY_RECRUITER = false;
     {% else %}
@@ -137,11 +137,15 @@
         <h3>Current Payment Method</h3>
         {% if customer.active_card %}
             {% include "active_card.html" %}
+            {% include "payment_change_link.html" %}
+            <!--
+            TODO - enable once stripe allows cards to be forgotten
             {% if customer.subscription %}
                 {% include "payment_change_link.html" %}
             {% else %}
                 <a class="payment_info_forget_link" href="#">Forget Card</a>
             {% endif %}
+            -->
             
         {% else %}
             <p>You have no active payment method. <a href="{% url payment_change %}">Add Payment Method</a></p>

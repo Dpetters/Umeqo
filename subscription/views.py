@@ -14,8 +14,8 @@ from core.decorators import is_recruiter, render_to
 from subscription.forms import CardForm, SubscriptionChangeForm, SubscriptionRequestForm
 
 
-@render_to("subscription_request.html")
-def subscription_request(request, form_class = SubscriptionRequestForm, extra_context=None):
+@render_to("account_request_dialog.html")
+def account_request(request, form_class = SubscriptionRequestForm, extra_context=None):
     if request.method=="POST":
         form = form_class(data = request.POST, user=request.user)
         if form.is_valid():
@@ -99,6 +99,10 @@ def payment_change(request, form_class=CardForm, extra_context=None):
         customer = stripe.Customer.retrieve(
             employer.stripe_id
             )
+    else:
+        customer = stripe.Customer.create(
+            email=request.user.email
+        )
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
@@ -117,6 +121,30 @@ def payment_change(request, form_class=CardForm, extra_context=None):
         context['form'] = form
     else:
         context['form'] = form_class()
+        context['customer'] = customer
+    context.update(extra_context or {})
+    return context
+
+
+@render_to("payment_forget.html")
+def payment_forget(request, extra_context=None):
+    context = {}
+    stripe.api_key = s.STRIPE_SECRET
+    employer = request.user.recruiter.employer
+    if employer.stripe_id:
+        customer = stripe.Customer.retrieve(
+            employer.stripe_id
+            )
+    else:
+        customer = stripe.Customer.create(
+            email=request.user.email
+        )
+    if request.method == 'POST':
+        customer.card = None
+        a = customer.save()
+        print a
+        return HttpResponse()
+    else:
         context['customer'] = customer
     context.update(extra_context or {})
     return context
@@ -199,7 +227,7 @@ def subscriptions(request, extra_context=None):
             context["free_subscription_button_text"] = "Basic Subscription Active"
             
     else:
-        context["free_subcription_dialog_class"] = "open_subscription_request_dialog"
+        context["free_subcription_dialog_class"] = "request_account"
     """
     context.update(extra_context or {})
     return context

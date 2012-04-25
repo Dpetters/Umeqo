@@ -4,20 +4,20 @@
 .transaction_dialog .form_table{
     width:100%;
 }
-#subscription_form #id_message_body{
+#account_request_form #id_message_body{
     width:340px;
     height:65px;
 }
-#subscription_form #body_th{
+#account_request_form #body_th{
     vertical-align:top;
     padding-top:20px;
 }
-.transaction_dialog #subscription_form #id_employer_name{
+.transaction_dialog #account_request_form #id_employer_name{
     width:308px;
 }
-.transaction_dialog #subscription_form select{
+.transaction_dialog #account_request_form select{
     width:318px;
 }
-#subscription_form input[type=submit]{
+#account_request_form input[type=submit]{
     width:100px;
 }

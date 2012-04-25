@@ -308,3 +308,6 @@ section, header, hgroup, footer, .grid .btn {
     position:relative;
     right:10px;
 }
+.banner{
+    position:absolute;
+}

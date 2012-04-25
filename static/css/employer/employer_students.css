@@ -189,11 +189,12 @@
 }
 #results_menu_checkbox {
     margin-left:1px;
-    margin-bottom:2px;
+    margin-bottom:3px;
     vertical-align:middle;
 }
 #results_menu_checkbox_down_triangle{
     vertical-align:middle;
+    margin-bottom:3px;
 }
 #results_menu_more_actions span{
     font-weight:normal;

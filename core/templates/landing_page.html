@@ -163,9 +163,13 @@
                         <div id="firm_thumb_container">
                                 {% for employer in employers %}
                                 <div class="firm_thumb_content">
-                                    <a href="#">
-                                    <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    {% if employer.visible %}
+                                    <a href="{% url employer_profile_preview slug=employer.slug %}">
+                                    {% endif %}
+                                        <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    {% if employer.visible %}
                                     </a>
+                                    {% endif %}
                                 </div>
                                 {% endfor %}
                             <br/>

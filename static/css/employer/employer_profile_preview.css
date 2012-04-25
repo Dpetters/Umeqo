@@ -53,5 +53,6 @@ div .employer_name {
     max-width: 150px;
 }
 #no_upcoming_events_or_deadlines{
-    padding-top:14px;
+    padding:14px 0px;
+    border-bottom:1px solid #DDD;
 }

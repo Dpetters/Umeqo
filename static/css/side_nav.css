@@ -4,8 +4,7 @@
     padding-right:10px;
 }
 .side_nav h3 {
-    margin-top: 5px;
-    margin-bottom: 2px;
+    padding: 7px 0 2px
 }
 .side_nav a {
     display: block;

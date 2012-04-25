@@ -164,7 +164,7 @@
                             {% if user.recruiter %}
                                 <li><a href="{% url employer_profile %}">Edit Profile</a></li>
                                 {% if not customer.subscription %}
-                                
+                                 <li><a href="{% url subscription_change %}">Upgrade</a></li>
                                 {% endif %}
                                 <li><a href="{% url employer_account %}">Account Settings</a></li>
                             {% endif %}

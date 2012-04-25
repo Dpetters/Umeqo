@@ -24,7 +24,7 @@ function payment_info_forget_link_click_handler() {
         dataType: "html",
         url: PAYMENT_INFO_FORGET_URL,
         complete: function(jqXHR, textStatus) {
-            clearTimeout(account_deletion_dialog_timeout);
+            clearTimeout(payment_info_forget_dialog_timeout);
             payment_info_forget_dialog.dialog('option', 'position', 'center');
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -40,6 +40,13 @@ function payment_info_forget_link_click_handler() {
                 $.ajax({
                     type:"POST",
                     dataType: "json",
+                    beforeSend: function (arr, $form, options) {
+                        show_form_submit_loader(".payment_info_forget_dialog");
+                    },
+                    complete : function(jqXHR, textStatus) {
+                        hide_form_submit_loader(".payment_info_forget_dialog");
+                        payment_info_forget_dialog.dialog('option', 'position', 'center');
+                    },
                     url: PAYMENT_INFO_FORGET_URL,
                     success: function (data){
                         window.location.href = "/";

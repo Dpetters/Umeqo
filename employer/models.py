@@ -14,7 +14,6 @@ from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
 from employer.managers import EmployerManager
 from subscription.choices import EMPLOYER_SIZE_CHOICES
-from subscription.models import EmployerSubscription
 
 
 class Employer(core_mixins.DateTracking): 
@@ -45,26 +44,6 @@ class Employer(core_mixins.DateTracking):
     def get_absolute_url(self):
         return '%s?id=%d' % (reverse('employers'), self.id)
     
-    def has_basic(self):
-        try:
-            subscription = self.employersubscription
-        except EmployerSubscription.DoesNotExist:
-            return False
-        else:
-            if subscription.basic_subscription() and not subscription.expired():
-                return True
-        return False
-
-    def has_premium(self):
-        try:
-            subscription = self.employersubscription
-        except EmployerSubscription.DoesNotExist:
-            return False
-        else:
-            if subscription.premium_subscription() and not subscription.expired():
-                return True
-        return False
-        
                 
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):

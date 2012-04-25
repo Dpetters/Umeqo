@@ -8,18 +8,18 @@ Subscription Choices |
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscriptions.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_request_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/account_request_dialog.css" />
 {% endcompress %}
 <script>
-    var SUBSCRIPTION_REQUEST_URL = "{% url subscription_request %}";
+    var ACCOUNT_REQUEST_URL = "{% url account_request %}";
 </script>
 {% compress js %}
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscription_request_dialog.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/subscription/subscriptions.js"></script>
+<script src="{{ STATIC_URL }}js/subscription/account_request_dialog.js"></script>
+<script src="{{ STATIC_URL }}js/subscription/subscriptions.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -89,13 +89,7 @@ Subscription Choices |
                             >?</span>
                         </li>
                         <li class="last">
-                            <a href="{% if free_subscription_href %}{{free_subscription_href}}{% else %}#{% endif %}" class="btn {{free_subscription_class}}">
-                            {% if free_subscription_button_text %}
-                                {{free_subscription_button_text}}
-                            {% else %}
-                                Get Umeqo Basic
-                            {% endif %}
-                            </a>
+                             <a id="request_account_link" href="#" class="btn">Get Umeqo Basic</a>
                         </li>
                     </ul>
                 </footer>
@@ -106,6 +100,7 @@ Subscription Choices |
                         <h1>Umeqo Premium</h1>
                     </hgroup>
                     <hgroup class="price">
+                        <img class="banner" src="{{STATIC_URL}}images/subscriptions/best-value.png">
                         <h2>
                             <span class="style1">from $69/month</span>
                         </h2>
@@ -116,13 +111,7 @@ Subscription Choices |
                         <li><strong>All of the Basic Features</strong></li>
                         {% include "subscription_features_premium.html" %}
                         <li class="last">
-                            <a href="{% if free_subscription_href %}{{free_subscription_href}}{% else %}#{% endif %}" class="btn {{free_subscription_class}}">
-                            {% if free_subscription_button_text %}
-                                {{free_subscription_button_text}}
-                            {% else %}
-                                Get Umeqo Basic
-                            {% endif %}
-                            </a>
+                            <a id="request_account_link" href="#" class="btn">Get Umeqo Premium</a>
                         </li>
                     </ul>
                 </footer>
@@ -159,16 +148,7 @@ Subscription Choices |
                         </li>
                         <li>Email + Phone Support</li>
                         <li class="last">
-                            <a href="{% if paid_subscription_href %}{{paid_subscription_href}}{% else %}#{% endif %}" 
-                            data-subscription-type="premium" 
-                            data-title="{{subscription_request_dialog_title}}"
-                            class="btn open_subscription_request_dialog_link">
-                            {% if paid_subscription_button_text %}
-                                {{paid_subscription_button_text}}
-                            {% else %}
-                                Get Umeqo Premium
-                            {% endif %}
-                            </a>
+                            <a id="express_enterprise_interest" class="btn" href="#">Get Umeqo Enterprise</a>
                         </li>
                     </ul>
                 </footer>
