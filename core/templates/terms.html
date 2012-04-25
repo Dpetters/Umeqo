@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Terms of Service |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/core/terms.css" />
+{% endcompress %}
+
+{% compress js %}
+<script src="{{ STATIC_URL }}js/core/terms.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<div id="preferences_form_tabs">
+    <ul>
+        <li><a href="#tabs-1">Terms of Service</a></li>
+        <li><a href="#tabs-2">Privacy Policy</a></li>
+        <li><a href="#tabs-3">Subscription Terms</a></li>
+    </ul>
+    <div id="tabs-1">
+        {% include 'terms_of_service_text.html' %}
+    </div>
+    <div id="tabs-2">
+        {% include 'terms_of_service_text.html' %}
+    </div>
+    <div id="tabs-3">
+        {% include 'terms_of_service_text.html' %}
+    </div>
+</div>
+{% endblock %}
