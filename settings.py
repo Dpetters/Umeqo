@@ -298,6 +298,7 @@ INSTALLED_APPS = (
     'subscription',
     'ckeditor',
     'sentry',
+    'sorl.thumbnail',
     'concurrent_server'
 )
 

@@ -3,7 +3,7 @@
     margin-right: 12px;
     margin-bottom: 8px;
     margin-top: 2px;
-    
+    max-width: 200px;
 }
 .campus_org_info_dialog .dialog_content_wrapper{
     padding: 10px;

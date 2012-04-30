@@ -20,7 +20,7 @@ class CampusOrgAdminForm(forms.ModelForm):
 class CampusOrgAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Required Info', {'fields': ['name', 'type']}),
-        ('Extra Info', {'fields': ['user', 'slug', 'email', 'website', 'image', 'thumbnail', 'description', 'display']}),
+        ('Extra Info', {'fields': ['user', 'slug', 'email', 'website', 'image', 'description', 'display']}),
     ]
     list_display = ('name', 'type', 'display', 'user')
     list_filter = ('type',)

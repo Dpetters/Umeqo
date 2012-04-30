@@ -30,6 +30,7 @@ pysolr==2.0.15
 python-ldap==2.4.6
 reportlab==2.5
 simplejson==2.3.2
+sorl-thumbnail==11.12
 ssh==1.7.13
 virtualenv==1.6.4
 xlwt==0.7.2

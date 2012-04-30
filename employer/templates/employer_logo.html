@@ -5,7 +5,13 @@
                 <a href="{{employer.get_absolute_url}}">
             {% endif %}
         {% endif %}
-        <img title="{{employer}}" alt="{{employer}}" src="{{MEDIA_URL}}{{employer.logo}}" />
+        <img title="{{employer}}" alt="{{employer}}" src=
+        {% if employer_logo %}
+            "{{employer_logo}}"
+        {% else %}
+            "{{MEDIA_URL}}{{employer.logo}}"
+        {% endif %}
+        >
         {% if user.student or user.is_anonymous %}
             {% if employer.visible %}
                 </a>

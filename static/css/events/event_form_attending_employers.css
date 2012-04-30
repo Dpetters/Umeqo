@@ -18,10 +18,10 @@
 .attending_employer.no_logo, #and_more{
     width:133px;
 }
-.attending_employer img{
+
+.attending_employer img {
     max-width:135px;
 }
-
 .attending_employer span{
     display:inline-block;
     line-height:20px;
