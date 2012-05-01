@@ -6,7 +6,7 @@
     border:none;
 }
 #preferences_form_tabs ul.ui-tabs-nav{
-    background: #f0f0f0;
+    background: #f6f6f6;
 }
 #preferences_form_tabs .ui-tabs-nav li{
     text-shadow:0 1px 0 #FFF;
@@ -95,4 +95,9 @@
 #global_settings_section td.checkbox{
     text-align:right;
     width:100%;
+}
+.commands{
+    margin-right:5px;
+    float:right;
+}   
 }

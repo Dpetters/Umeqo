@@ -40,9 +40,20 @@ TOP_QUESTIONS_NUM = 10
 BASIC_PLAN_ID = 1
 
 # Subscription UIDs
-BASIC_SUBSCRIPTION_UID = 0
-PREMIUM_SUBSCRIPTION_UID = 1
-ENTERPRISE_SUBSCRIPTION_UID = 2
+# Make sure the monthly price appears first - it is used to compute the savings
+SUBSCRIPTION_UIDS = {
+    'premium':{
+        'year':(12, "1"),
+        'month':(1, "0")
+    },
+    'enterprise':{
+        'year':(12, "3"),
+        'month':(1, "2")
+    }
+}
+
+MONTHLY_PREMIUM_SUBSCRIPTION_UID = 2
+ANNUAL_PREMIUM_SUBSCRIPTION_UID = 3
 
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
@@ -157,6 +168,7 @@ CKEDITOR_CONFIGS = {
               '-', 'Bold', 'Italic', 'Underline',
               '-', 'Link', 'Unlink',
               '-', 'Maximize',
+              '-', 'Format',
             ],
             [      'HorizontalRule',
               '-', 'BulletedList', 'NumberedList',

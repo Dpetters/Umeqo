@@ -1,25 +1,23 @@
 {% extends "base.html" %}
 
 {% block title %}
-Checkout |
+Change Billing Cycle |
 {% endblock %}
 
 {% block metadata %}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/checkout.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/billing_cycle_change.css" />
 {% endcompress %}
-
-<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 {% compress js %}
-    <script src="{{ STATIC_URL }}js/subscription/checkout.js"></script>
+    <script src="{{ STATIC_URL }}js/subscription/billing_cycle_change.js"></script>
 {% endcompress %}
 {% endblock %}
 
 {% block content_area %}
-<h1>Upgrade to Umeqo {{plan|capfirst}}</h1>
+<h1>Change Billing Cycle</h1>
 <div class="main_block no_header">
-    <form id="checkout_form" action="" method="POST">
+    <form id="billing_cycle_change_form" action="" method="POST">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
@@ -31,16 +29,16 @@ Checkout |
         </div>
         <div id="payment_info">
             <h3>Payment Info</h3>
-            {% if customer.active_card %}
+            {% if customer %}
                 {% include "active_card.html" %}
                 {% include 'card_form.html' with hidden="True" checkout="True" %}
                 {% include 'payment_change_link.html' %}
+                <div id="submit_div">
+                    {% include "card_form_submit_button.html" with checkout="True" %}                    
+                </div>
             {% else %}
                 {% include 'card_form.html' with checkout="True" %}
             {% endif %}
-            <div id="submit_div">
-                {% include "card_form_submit_button.html" with checkout="True" %}                    
-            </div>
         </div>
     </form>
 </div>

@@ -1,6 +1,6 @@
 <div class="dialog_content_wrapper">
     <h3>Please complete the form below and we will process your request ASAP.</h3>
-    <p class="centered">You will receive an email with all the pricing, terms, and conditions of the subscription.</p>
+    <p class="centered">This step is required for us to validate that you are an actual employer.</p>
     <form id="account_request_form" method='POST'>
         {% csrf_token %}
         <table class="form_table">
@@ -26,13 +26,6 @@
                 </td>
             </tr>
             <tr>
-                <th>{{form.employer_size.label_tag}}</th>
-                <td class="input_cell" colspan="2">
-                    <div class="errorspace">{{form.employer_size.errors}}</div>
-                    {{form.employer_size}}
-                </td>
-            </tr>
-            <tr>
                 <th id="body_th">{{form.message_body.label_tag}}</th>
                 <td colspan="2">
                     <div class="errorspace">{{form.message_body.errors}}</div>
@@ -45,7 +38,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="button_cell" colspan="3">
+                <td class="button_cell centered" colspan="3">
                     <input class="button" type="submit" value="Submit">
                     <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                 </td>

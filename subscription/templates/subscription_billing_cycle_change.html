@@ -17,30 +17,30 @@ Checkout |
 {% endblock %}
 
 {% block content_area %}
-<h1>Upgrade to Umeqo {{plan|capfirst}}</h1>
+<h1>Change Billing Cycle</h1>
 <div class="main_block no_header">
-    <form id="checkout_form" action="" method="POST">
+    <form id="billing_cycle_change_form" action="" method="POST">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
         <div id="billing_cycle">
-            <h3>Choose Billing Cycle:</h3>
+            <h3>Choose New Billing Cycle:</h3>
             {{form.billing_cycle}}
             <p id="charge_amount">You will be charged $<span id="price"></span></p>
         </div>
         <div id="payment_info">
             <h3>Payment Info</h3>
-            {% if customer.active_card %}
+            {% if customer %}
                 {% include "active_card.html" %}
                 {% include 'card_form.html' with hidden="True" checkout="True" %}
                 {% include 'payment_change_link.html' %}
+                <div id="submit_div">
+                    {% include "card_form_submit_button.html" with checkout="True" %}                    
+                </div>
             {% else %}
                 {% include 'card_form.html' with checkout="True" %}
             {% endif %}
-            <div id="submit_div">
-                {% include "card_form_submit_button.html" with checkout="True" %}                    
-            </div>
         </div>
     </form>
 </div>

@@ -1,7 +1,7 @@
-.transaction_dialog .dialog_content_wrapper{
+.account_request_dialog .dialog_content_wrapper{
     padding: 14px 25px;
 }
-.transaction_dialog .form_table{
+.account_request_dialog .form_table{
     width:100%;
 }
 #account_request_form #id_message_body{
@@ -12,10 +12,10 @@
     vertical-align:top;
     padding-top:20px;
 }
-.transaction_dialog #account_request_form #id_employer_name{
+.account_request_dialog #account_request_form #id_employer_name{
     width:308px;
 }
-.transaction_dialog #account_request_form select{
+.account_request_dialog #account_request_form select{
     width:318px;
 }
 #account_request_form input[type=submit]{

@@ -1,5 +1,6 @@
+import os
 import stripe
-import time
+
 
 from django.http import HttpResponse
 from django.conf import settings as s
@@ -9,29 +10,37 @@ from django.template.loader import render_to_string
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 
-from core.email import send_html_mail
+from pyPdf import PdfFileWriter, PdfFileReader
+
+
 from core.decorators import is_recruiter, render_to
-from subscription.forms import CardForm, SubscriptionChangeForm, SubscriptionRequestForm
+from core.email import send_html_mail
+from core.http import Http403, Http400
+from core.templatetags.filters import format_unix_time
+from subscription.forms import CheckoutForm, ChangeBillingForm, CardForm, SubscriptionChangeForm, AccountRequestForm
+from subscription.utils import get_subscription_type
+from subscription.view_helpers import create_charge_page
 
 
 @render_to("account_request_dialog.html")
-def account_request(request, form_class = SubscriptionRequestForm, extra_context=None):
+def account_request(request, form_class = AccountRequestForm, extra_context=None):
     if request.method=="POST":
-        form = form_class(data = request.POST, user=request.user)
+        form = form_class(data = request.POST)
         if form.is_valid():
             data = []
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-            subject = "[Umeqo Sales] %s Subscription Request" % (form.cleaned_data['employer_name'])
+            subject = "[Umeqo Sales] %s Account Request" % (form.cleaned_data['employer_name'])
             subscription_email_context = {'form':form}
-            html_body = render_to_string('subscription_request_body.html', subscription_email_context)
+            html_body = render_to_string('account_request_email.html', subscription_email_context)
             send_html_mail(subject, html_body, recipients)
         else:
             data = {'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
+        context = {}
         subscription_type = request.GET.get('subscription_type', 'basic')
-        initial = {'message_body':render_to_string("I would like to sign up for Umeqo {{subscription_type}}. Please validate that I'm an actual employer and send me my credentials.", {'subscription_type':subscription_type})}
-        context = {'form':form_class(initial=initial, user=request.user)}
+        initial = {'message_body':render_to_string('account_request_body.html', {'subscription_type':subscription_type})}
+        context['form'] = form_class(initial=initial)
         context.update(extra_context or {})
         return context
 
@@ -63,6 +72,7 @@ def subscription_change(request, form_class=SubscriptionChangeForm, extra_contex
     context.update(extra_context or {})
     return context
 
+@user_passes_test(is_recruiter)
 @render_to("subscription_upgrade.html")
 def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_context=None):
     context = {}
@@ -90,42 +100,29 @@ def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_
     context.update(extra_context or {})
     return context
 
+
+@user_passes_test(is_recruiter)
 @render_to("payment_change.html")
 def payment_change(request, form_class=CardForm, extra_context=None):
     context = {}
     stripe.api_key = s.STRIPE_SECRET
     employer = request.user.recruiter.employer
-    if employer.stripe_id:
-        customer = stripe.Customer.retrieve(
-            employer.stripe_id
-            )
-    else:
-        customer = stripe.Customer.create(
-            email=request.user.email
-        )
+    customer = employer.get_customer()
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            token = request.POST['stripe_token']
-            if not customer:
-                customer = stripe.Customer.create(
-                    card=token,
-                    email=request.user.email
-                )
-                employer.stripe_id = customer.id
             customer.card = form.cleaned_data['stripe_token']
             customer.save()
-            employer.card = form.cleaned_data['stripe_token']
-            employer.save()
-            return redirect(reverse('employer_account'))
-        context['form'] = form
+            return redirect("%s%s" % (reverse('employer_account'), "?msg=payment-changed&tab=subscription"))
     else:
-        context['form'] = form_class()
-        context['customer'] = customer
+        form = form_class()
+    context['form'] = form
+    context['customer'] = customer
     context.update(extra_context or {})
     return context
 
 
+@user_passes_test(is_recruiter)
 @render_to("payment_forget.html")
 def payment_forget(request, extra_context=None):
     context = {}
@@ -141,8 +138,7 @@ def payment_forget(request, extra_context=None):
         )
     if request.method == 'POST':
         customer.card = None
-        a = customer.save()
-        print a
+        customer.save()
         return HttpResponse()
     else:
         context['customer'] = customer
@@ -150,55 +146,134 @@ def payment_forget(request, extra_context=None):
     return context
 
 
+@user_passes_test(is_recruiter)
 @render_to("checkout.html")
-def checkout(request, plan, form_class=CardForm, extra_context=None):
+def checkout(request, plan, form_class=CheckoutForm, extra_context=None):
     stripe.api_key = s.STRIPE_SECRET
-    plan = stripe.Plan.retrieve(plan)
-    amount =  '{:.2f}'.format(plan.amount/100)
-    context = {'plan':plan,
-               'amount':amount}
+    context = {'plan':plan}
     employer = request.user.recruiter.employer
-    if employer.stripe_id:
-        customer = stripe.Customer.retrieve(
-            employer.stripe_id
-            )
-        context['customer'] = customer
+    customer = employer.get_customer()
+    try:
+        plan_uids = map(lambda x: x[1], s.SUBSCRIPTION_UIDS[plan].values()) 
+    except KeyError as e:
+        raise Http403("You cannot upgrade to the %s plan." % plan)
+    if customer.subscription and customer.subscription.plan.id in plan_uids:
+        return redirect(reverse("subscription_change"))
     if request.method == 'POST':
-        form = form_class(request.POST)
+        form = form_class(plan, request.POST)
         if form.is_valid():
-            employer = request.user.recruiter.employer
-            token = request.POST['stripe_token']
-            if not customer:
-                customer = stripe.Customer.create(
-                    card=token,
-                    plan=plan,
-                    email=request.user.email
-                )
-                employer.stripe_id = customer.id
-            employer.card = form.cleaned_data['stripe_token']
-            employer.last_4_digits = form.cleaned_data['last_4_digits']
-            employer.save()
+            token = form.cleaned_data['stripe_token']
+            card = None
+            if token:
+                card = token
+            billing_cycle = form.cleaned_data['billing_cycle']
+            customer.update_subscription(plan=s.SUBSCRIPTION_UIDS[plan][billing_cycle][1], card=card)
+            return redirect(reverse('employer_account'))
     else:
-        context['form'] = form_class()
+        form = form_class(plan)
+        context['customer'] = customer
+    context['form'] = form
     context.update(extra_context or {})
     return context
 
+
+@user_passes_test(is_recruiter)
+@render_to("subscription_billing_cycle_change.html")
+def subscription_billing_cycle_change(request, form_class=ChangeBillingForm, extra_context=None):
+    stripe.api_key = s.STRIPE_SECRET
+    context = {}
+    employer = request.user.recruiter.employer
+    customer = employer.get_customer()
+    plan = get_subscription_type(customer.subscription.plan.id)
+    if request.method == 'POST':
+        form = form_class(plan, customer.subscription.plan.interval, request.POST)
+        if form.is_valid():
+            token = form.cleaned_data['stripe_token']
+            card = None
+            if token:
+                card = token
+            billing_cycle = form.cleaned_data['billing_cycle']
+            customer.update_subscription(plan=s.SUBSCRIPTION_UIDS[plan][billing_cycle][1], card=card)
+            customer.save()
+            return redirect(reverse('employer_account'))
+    else:
+        form = form_class(plan, customer.subscription.plan.interval)
+        context['customer'] = customer
+    context['form'] = form
+    context.update(extra_context or {})
+    return context
+
+@user_passes_test(is_recruiter)
+def subscription_billing_cycle_price(request, extra_context=None):
+    if not request.POST.has_key('billing_cycle'):
+        raise Http400("Request POST is missing student_ids.")
+    
+    employer = request.user.recruiter.employer
+    customer = employer.get_customer()
+    current_billing_cycle = 
+    return HttpResponse()
+
+@user_passes_test(is_recruiter)
+def receipt_view(request, charge_id):
+    stripe.api_key = s.STRIPE_SECRET
+    # TODO - companies should only be able to download their own receipts
+    charge = stripe.Charge.retrieve(id=charge_id)
+    pdf_name = "Umeqo_Charge_%s_%s.pdf" % (format_unix_time(charge.created).replace("/", "-"), charge_id)
+    path = "%semployer/receipts/" % (s.MEDIA_ROOT)
+    pdf_path = "%s%s" % (path, pdf_name)
+    if not os.path.exists(pdf_path):
+        output = PdfFileWriter()
+        output.addPage(PdfFileReader(create_charge_page(charge, request.user.recruiter.employer)).getPage(0))
+        if not os.path.exists(path):
+            os.makedirs(path)
+        outputStream = file(pdf_path, "wb")
+        output.write(outputStream)
+        outputStream.close()
+    mimetype = "application/pdf"
+    response = HttpResponse(file(pdf_path, "rb").read(), mimetype=mimetype)
+    response["Content-Disposition"] = 'inline; filename="%s"' % pdf_name
+    return response
+
+@user_passes_test(is_recruiter)
+def receipts_view(request):
+    stripe.api_key = s.STRIPE_SECRET
+    # TODO - companies should only be able to download their own receipts
+    charges = stripe.Charge.all(count=100).data
+    employer = request.user.recruiter.employer
+    pdf_name = "Umeqo %s Charges.pdf" % (employer)
+    path = "%semployer/receipts/" % (s.MEDIA_ROOT)
+    pdf_path = "%s%s" % (path, pdf_name)
+    
+    output = PdfFileWriter()
+    for charge in charges:
+        output.addPage(PdfFileReader(create_charge_page(charge, request.user.recruiter.employer)).getPage(0))
+    if not os.path.exists(path):
+        os.makedirs(path)
+    outputStream = file(pdf_path, "wb")
+    output.write(outputStream)
+    outputStream.close()
+    
+    mimetype = "application/pdf"
+    response = HttpResponse(file(pdf_path, "rb").read(), mimetype=mimetype)
+    response["Content-Disposition"] = 'inline; filename="%s"' % pdf_name
+    return response
+
+@user_passes_test(is_recruiter)
 @render_to("subscription_cancel.html")
 def subscription_cancel(request, extra_context=None):
     context = {}
     stripe.api_key = s.STRIPE_SECRET
     employer = request.user.recruiter.employer
-    if employer.stripe_id:
-        customer = stripe.Customer.retrieve(
-            employer.stripe_id
-            )
+    customer = employer.get_customer()
     if request.method == "POST":
-        customer.cancel_subscription(at_period_end=False)
+        customer.cancel_subscription(at_period_end=True)
         return redirect("%s%s" % (reverse("employer_account"), "?msg=subscription-cancelled&tab=subscription"))
     else:
-        context['expiration_datetime'] = time.strftime("%m/%d/%Y", time.gmtime(customer.subscription.current_period_end))
+        context['premium_subscription_uids'] = map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values())
         context['customer'] = customer
+        context['feature_template'] = "subscription_features_%s.html" % get_subscription_type(customer.subscription.plan.id)
     return context
+
 
 @render_to("subscriptions.html")
 def subscriptions(request, extra_context=None):

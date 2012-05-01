@@ -19,7 +19,7 @@ rolling_deadline_ended = "Your rolling deadline has been successfully ended."
 
 # Account Settinggs
 password_changed = 'Password changed successfully.'
-
+payment_changed = 'Payment method changed successfully.'
 # Home
 profile_saved = 'Your profile has been saved.'
 

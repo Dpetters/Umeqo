@@ -18,18 +18,16 @@ Subscription Cancellation |
 {% block content_area %}
 <div class="simple_block no_top_margin">
     <h1>Subscription Cancellation</h1>
-    
+
+    <h3>This is important! Please read before cancelling.</h3>
+    <ul>
+        <li>If you only want to change your current billing cycle (currently per {{customer.subscription.plan.interval}}), you can do so <a href="{% url subscription_billing_cycle_change %}">here</a>.</li>
+        <li>If you cancel now, you will retain access to the features listed below until {{current_period_end}}, at which point you will be downgraded to Umeqo Basic. </li>
+        <li>You will not be refunded any money for any time remaining.</li>
+    </ul>
     <p>By cancelling your {{customer.subscription.plan.name}} you choose to lose access to the following features -</p>
     <ul id="lost_features">
-        {% ifequal customer.subscription.plan.id "2" %}
-            {% include "subscription_features_premium.html" %}
-        {% endifequal %}
-    </ul>
-    <h3>Important! Please read before cancelling.</h3>
-    <ul>
-        <li>If you only want to change your current billing period (per {{customer.subscription.plan.interval}}), you can do so <a href="{% url subscription_change %}">here</a>.</li>
-        <li>If you cancel now, you will retain access to the above features until {{expiration_datetime}}, at which point you will be downgraded to Umeqo Basic. </li>
-        <li>You will not be refunded any money for any time remaining.</li>
+         {% include feature_template %}
     </ul>
     <div class="button_wrapper_with_margins">
         <a href="{% url employer_account %}?tab=subscription" class="button">Keep {{customer.subscription.plan.name}}</a>

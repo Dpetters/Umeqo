@@ -5,9 +5,10 @@ import cStringIO
 import os
 import re
 import stripe
+import time
 import zipfile
 
-from datetime import datetime, date
+from datetime import datetime
 from pyPdf import PdfFileWriter, PdfFileReader
 from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
@@ -42,12 +43,12 @@ from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterFor
                            DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.view_helpers import employer_search_helper, process_results, get_resume_book_size, \
-                                  get_students_in_resume_book, order_results
+                                  order_results
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
 from student.models import Student
-from subscription.models import EmployerSubscription
+from subscription.utils import sum_charges, get_charges
 
 
 @require_GET
@@ -68,52 +69,38 @@ def employer_logo(request):
 @render_to("employer_account.html")
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
                      change_password_form_class = PasswordChangeForm, extra_context=None):
-    
     context = {}
     recruiter = request.user.recruiter
     context['recruiter'] = recruiter
     employer = recruiter.employer
     context['employer'] = employer
     stripe.api_key = s.STRIPE_SECRET
-    if employer.stripe_id:
-        customer = stripe.Customer.retrieve(
-            employer.stripe_id
-            )
-        context['customer'] = customer
-
+    customer = employer.get_customer()
+    context['customer'] = customer
+    subscription = customer.subscription
+    print subscription
+    if subscription:
+        context['current_period_end'] =  time.strftime("%m/%d/%Y", time.gmtime(customer.subscription.current_period_end))
     msg = request.GET.get('msg', None)
     if msg:
         page_messages = {
+            'payment-changed': messages.payment_changed,
             'password-changed': messages.password_changed,
             'subscription-cancelled' : messages.subscription_cancelled
         }
-        context["msg"] = page_messages[msg]
-    
-    try:
-        es = employer.employersubscription
-    except EmployerSubscription.DoesNotExist:
-        context["subscription_button_text"] = "Subscribe"
-    else:
-        context["subscription_button_text"] = "Modify Subscription"
-        context['subscription'] = es
-        if es.cancelled:
-            context['subscription_text'] = "Cancelled"
-            context['subscription_class'] = "cancelled"
-        elif es.expired():
-            context['subscription_text'] = "Expired"
-            context['subscription_class'] = "expired"
-        else:
-            if es.expires < date.today():
-                context['subscription_text'] = "Grace Period"
-                context['subscription_class'] = "grace"
-            else:
-                context['subscription_text'] = "Active"
-                context['subscription_class'] = "active"
+        if page_messages.has_key(msg):
+            context["msg"] = page_messages[msg]
 
+    customer = employer.get_customer()
     context['transactions'] = employer.transaction_set.all().order_by("timestamp")
     context['other_recruiters'] = employer.recruiter_set.exclude(id=recruiter.id)
     context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
+    
+    charges = get_charges(customer.id)
+    context['charges'] = charges
+    context['charge_total'] = sum_charges(charges)
+    
     context.update(extra_context or {})
     return context
 
@@ -715,7 +702,7 @@ def employer_resume_book_create(request):
         c.showPage()
         c.save()
         output = PdfFileWriter()
-        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
+        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())).getPage(0)) 
         for student in resume_book.students.visible().order_by("graduation_year", "first_name", "last_name"):
             resume_file = open("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             resume = PdfFileReader(resume_file)

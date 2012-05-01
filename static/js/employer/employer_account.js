@@ -189,11 +189,7 @@ $(document).ready( function() {
     }
 
     if (get_parameter_by_name("tab")=="subscription"){
-        if(SUBS){
-            $("#preferences_form_tabs").tabs("select", 2);
-        }else{
-            $("#preferences_form_tabs").tabs("select", 1);
-        }
+        $("#preferences_form_tabs").tabs("select", 2);
     }
     
     if (SUBSA && get_parameter_by_name("action")=="new_recruiter_credentials"){
@@ -204,4 +200,5 @@ $(document).ready( function() {
 
     $('#delete_account_link').click( delete_account_link_click_handler);
     $('.create_recruiter_link').click( create_recruiter_credentials_link_click_handler);
+
 });

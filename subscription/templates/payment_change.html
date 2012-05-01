@@ -18,17 +18,26 @@ Change Payment |
 {% block content_area %}
 <h1>Change Payment</h1>
 <div class="main_block no_header">
-    <div id="current_payment_method">
-        <h3><u>Current Payment Method</u></h3>
-        {% if customer.active_card %}
-            {% include "active_card.html" %}
-        {% else %}
-            <p>You do not yet have a payment method set up.</p>
-        {% endif %}
-    </div>
-    <div id="new_payment_method">
-        <h3><u>Enter New Payment Details</u></h3>
-        {% include 'card_form.html' %}
-    </div>
+    <form id="payment_change_form" action="" method="POST">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <div id="current_payment_method">
+            <h3><u>Current Payment Method</u></h3>
+            {% if customer.active_card %}
+                {% include "active_card.html" %}
+            {% else %}
+                <p>You do not yet have a payment method set up.</p>
+            {% endif %}
+        </div>
+        <div id="new_payment_method">
+            <h3><u>Enter New Payment Details</u></h3>
+            {% include 'card_form.html' %}
+            <div id="submit_div">
+                {% include "card_form_submit_button.html" %}
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock %}

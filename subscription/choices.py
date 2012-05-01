@@ -22,12 +22,10 @@ HIRE_NUM_CHOICES = (
     (MANY, "13+")
 )
 
-MONTHLY = 1
-QUARTERLY = 3
-ANNUAL = 12
+MONTHLY = "m"
+ANNUAL = "a"
 
-SUBSCRIPTION_RECURRENCE_CHOICES = (
+BILLING_CYCLE_CHOICES = (
 (MONTHLY, "Monthly"),
-(QUARTERLY, "Quarterly"),
-(ANNUAL, "Annual"),
+(ANNUAL, "Annually"),
 )

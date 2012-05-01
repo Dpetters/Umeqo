@@ -44,7 +44,37 @@ class Employer(core_mixins.DateTracking):
     def get_absolute_url(self):
         return '%s?id=%d' % (reverse('employers'), self.id)
     
-                
+    def get_customer(self):
+        stripe.api_key = s.STRIPE_SECRET
+        if self.stripe_id:
+            customer = stripe.Customer.retrieve(
+                self.stripe_id
+                )
+            try:
+                deleted = customer.deleted
+            except AttributeError as e:
+                pass
+            else:
+                if deleted:
+                    customer = self.assign_customer()
+        else:
+            customer = self.assign_customer()
+        return customer
+    
+    def assign_customer(self):
+        customer = stripe.Customer.create(
+            description=self.name
+        )
+        self.stripe_id = customer.id
+        self.save()
+        return customer
+        
+    def can_upgrade(self):
+        subscription = self.get_customer().subscription
+        if subscription:
+            return not subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values())
+        return True
+    
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

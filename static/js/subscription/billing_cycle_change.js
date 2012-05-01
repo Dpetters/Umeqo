@@ -1,4 +1,7 @@
 function handle_billing_cycle_change(e){
+    $.ajax({
+        url:
+    })
     $("#price").html($('input[name=billing_cycle]:checked').parent().text().split("$")[1].split(" ")[0]);
 }
 

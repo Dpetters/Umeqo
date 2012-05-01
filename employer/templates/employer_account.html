@@ -4,7 +4,9 @@
 {% block metadata %}
 {{block.super}}
 {% load compress %}
+{% load filters %}
 {% load text_snippet %}
+
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_account.css" />
 {% endcompress %}
@@ -99,17 +101,22 @@
 {% block account_settings_tab_definitions %}
     <div id="tabs-3">
         <h3 class="no_top_margin">Your Subscription</h3>
-        <a id="modify_subscription" href="{% url subscription_change %}" class="{% if customer.subscription %}button{% else %}dark_button{% endif %}">
-            {% if customer.subscription %}
-                Modify Subscription
-            {% else %}
+        
+        {% if not customer.subscription %}
+        <a id="upgrade_subscription" href="{% url subscription_change %}" class="dark_button">
                 Upgrade Now!
-            {% endif %}
-            
         </a>
+        {% endif %}
+        
         <div id="subscription_info">
-            <span id="subscription_name">
+            <div class="commands">
                 {% if customer.subscription %}
+                <p><a href="{% url subscription_billing_cycle_change %}">Change Billing Cycle</a></p>
+                <p><a href="{% url subscription_cancel %}">Cancel Subscription</a></p>
+                {% endif %}
+            </div>
+            <span id="subscription_name">
+                {% if customer.subscription and customer.subscription.status != "cancelled" %}
                     {{customer.subscription.plan.name}}
                 {% else %}
                     Umeqo Basic
@@ -117,27 +124,28 @@
             </span>
             <span id="subscription_status"
                 class="{{customer.subscription.status}}">
-                {% if customer.subcription %}
+                {% if customer.subcription and customer.subscription.status != "cancelled" %}
                     {{customer.subscription.status}}
                 {% else %}
                     Active
                 {% endif %}
                 </span>
             <h4 id="subscription_expiration">
-                {% if customer.subscription %}
-                    {% if customer.subscription.cancel_at_period_end %}
-                        Expires on {{customer.subscription.current_period_end}}
-                    {% else %}
-                        Will automatically renew on {{customer.next_recurring_charge.date}}
-                        <p><a href="{% url subscription_cancel %}">Cancel Subscription</a></p>
-                    {% endif %}
+            {% if customer.subscription and customer.subscription.status != "cancelled"%}
+                {% if customer.subscription.cancel_at_period_end %}
+                    Will expire on {{current_period_end}}</h4>
+                {% else %}
+                    Will automatically renew on {{current_period_end}}</h4>
                 {% endif %}
-            </h4>
+            {% endif %}
         </div>
         <h3>Current Payment Method</h3>
         {% if customer.active_card %}
+            <div class="commands">
+                {% include "payment_change_link.html" %}
+            </div>
             {% include "active_card.html" %}
-            {% include "payment_change_link.html" %}
+
             <!--
             TODO - enable once stripe allows cards to be forgotten
             {% if customer.subscription %}
@@ -152,26 +160,33 @@
         {% endif %}
         <h3>Transaction History</h3>
         <div id="transactions">
-            <table>
+            <table border="1">
                 <tbody>
                      <tr>
                          <th>Date/Time</th>
-                         <th>Person</th>
+                         <th>Card</th>
                          <th>Amount</th>
-                         <th>Comment</th>
+                         <th>Receipt</th>
                      </tr>
-                    {% for tr in transactions %}
-                        <tr class={% if tr.payment %}"payment"{% else %}"refund"{% endif %}>
-                            <td>{{tr.timestamp}}</td>
-                            <td>{{tr.person}} ({{tr.email}})</td>
-                            <td>{{tr.amount}}</td>
-                            <td>{{tr.comment}}</td>
+                    {% for charge in charges %}
+                        <tr>
+                            <td>{{charge.created|format_unix_time}}</td>
+                            <td>**** **** **** {{charge.card.last4}}</td>
+                            <td>${{charge.amount|format_money}}</td>
+                            <td><a target="_blank" href="{% url receipt_view charge_id=charge.id %}" id="view_receipt">View Receipt</a></td>
                         </tr>
+                        
                     {% empty %}
                         <tr><td id="no_past_payments" colspan="4">You have no past transactions.</td></tr>
                     {% endfor %}
                 </tbody>
             </table>
+            {% if charges|length %}
+            <div id="charge_summary">
+                <span id="charge_total">Total: ${{charge_total|format_money}}</span>
+                <a target="_blank" id="view_all_receipts" href="{% url receipts_view %}">Download All Receipts</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -45,7 +45,7 @@
 #subscription_info .unpaid{
     background:#B94A48;
 }
-#modify_subscription{
+#upgrade_subscription{
     float:right;
     margin-top:5px;
 }
@@ -90,13 +90,14 @@ li#no_recruiter_accounts{
 }
 #transactions table{
     width: 100%;
-    border-left: 1px solid #CCC;
-    border-top: 1px solid #CCC;
-    border-right: 1px solid #CCC;    
+    text-align:center;
 }
 #transactions table th, #transactions table td{
     padding: .4em;
-    border-bottom: 1px solid #CCC;
+    width:25%;
+}
+#transactions table, #transactions table th, #transactions table td{
+    border:1px solid #CCC;
 }
 #transactions table th{
     background-color:#EEE;
@@ -109,4 +110,14 @@ li#no_recruiter_accounts{
 }
 #no_past_payments{
     text-align:center;
+}
+#charge_summary{
+    text-align:right;
+    margin-top:10px;
+}
+#view_all_receipts{
+    margin-right:30px;
+}
+#charge_total{
+    margin-right:75px;
 }

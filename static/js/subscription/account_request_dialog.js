@@ -2,6 +2,7 @@ function request_account() {
     var $dialog = $('<div class="dialog"></div>')
     .dialog({
         autoOpen: false,
+        title: "Umeqo Account Request",
         dialogClass: "account_request_dialog",
         modal:true,
         width:575,
@@ -16,17 +17,16 @@ function request_account() {
 
 function handle_request_account_link_click(e){
     account_request_dialog = request_account();
-    account_request_dialog.dialog("option", "title", $(this).attr("data-title"));
+    account_request_dialog.dialog("option", "title", $(this).attr("data-dialog-title"));
     account_request_dialog.html(DIALOG_AJAX_LOADER);
 
     var account_request_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
-    var json_data = {'subscription_type':$(this).data("subscription-type")}
-    
+    var data = {'subscription_type':$(this).data("subscription-type")}
     $.ajax({
         type:'GET',
         dataType: "html",
         url: ACCOUNT_REQUEST_URL,
-        data: json_data,
+        data: data,
         complete: function(jqXHR, textStatus) {
             clearTimeout(account_request_dialog_timeout);
             account_request_dialog.dialog('option', 'position', 'center');
@@ -44,8 +44,8 @@ function handle_request_account_link_click(e){
             account_request_form_validator = $("#account_request_form").validate({
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({
-                        url: SUBSCRIPTION_REQUEST_URL,
-                        data: json_data,
+                        url: ACCOUNT_REQUEST_URL,
+                        data: data,
                         dataType: 'json',
                         beforeSubmit: function (arr, $form, options) {
                             $("#account_request_form input[type=submit]").attr("disabled", "disabled");
@@ -70,7 +70,7 @@ function handle_request_account_link_click(e){
                             } else {
                                 var success_message = "<div class='message_section'><p>We have received your request and will get back to you ASAP. Thank you!.</p></div>";
                                 success_message += CLOSE_DIALOG_LINK;
-                                account_request_dialog.dialog("option", "title", "Request Submitted");
+                                account_request_dialog.dialog("option", "title", "Account Request Submitted");
                                 account_request_dialog.html(success_message);
                             }
                         }
@@ -87,10 +87,10 @@ function handle_request_account_link_click(e){
                         required: true,
                         email: true
                     },
-                    name: {
+                    employer_name: {
                         required: true
                     },
-                    body: {
+                    message_body: {
                         required: true
                     },
                 },

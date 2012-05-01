@@ -22,10 +22,12 @@ Change Subscription |
 </div>
 <h1>Change Subscription</h1>
 <form id="change_account_request_form" method="POST" action="">
-    <h3>Choose Subscription</h3>
-    {{form.subscription_type}}
-    <h3>Choose Billing Period</h3>
-    {{form.billing_period}}    
-    <input class="button" type='submit' value='Checkout'>
+    <h3>Current Subscription</h3>
+    <div></div>
+    <h3>Other Subscriptions</h3>
+    
+    <div>
+        <input class="button" type='submit' value='Checkout'>
+    </div>
 </form>
 {% endblock %}
