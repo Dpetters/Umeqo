@@ -30,6 +30,7 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}css/lib/ckeditor.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/bootstrap/popover.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap_popover_overrides.css" />
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             {% else %}

@@ -210,7 +210,7 @@ def subscription_billing_cycle_price(request, extra_context=None):
     
     employer = request.user.recruiter.employer
     customer = employer.get_customer()
-    current_billing_cycle = 
+    #current_billing_cycle = 
     return HttpResponse()
 
 @user_passes_test(is_recruiter)
