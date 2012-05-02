@@ -19,8 +19,8 @@
 }
 
 
-#subscription_info{
-    padding:5px 5px;
+#subscription, #payment{
+    padding:5px;
 }
 #subscription_name{
     font-size:22px;
@@ -39,10 +39,10 @@
     white-space:nowrap;
     text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-#subscription_info .past_due {
+#subscription .past_due {
     background:#F89406;
 }
-#subscription_info .unpaid{
+#subscription .unpaid{
     background:#B94A48;
 }
 #upgrade_subscription{

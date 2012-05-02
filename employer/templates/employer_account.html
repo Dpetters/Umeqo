@@ -108,7 +108,7 @@
         </a>
         {% endif %}
         
-        <div id="subscription_info">
+        <div id="subscription">
             <div class="commands">
                 {% if customer.subscription %}
                 <p><a href="{% url subscription_billing_cycle_change %}">Change Billing Cycle</a></p>
@@ -140,24 +140,27 @@
             {% endif %}
         </div>
         <h3>Current Payment Method</h3>
-        {% if customer.active_card %}
-            <div class="commands">
-                {% include "payment_change_link.html" %}
-            </div>
-            {% include "active_card.html" %}
-
-            <!--
-            TODO - enable once stripe allows cards to be forgotten
-            {% if customer.subscription %}
-                {% include "payment_change_link.html" %}
+        <div id="payment">
+            {% if customer.active_card %}
+                <div class="commands">
+                    <p><a href="{% url payment_change %}">Change Payment Method</a></p>
+                </div>
+                {% include "active_card.html" %}
+    
+                <!--
+                TODO - enable once stripe allows cards to be forgotten
+                {% if customer.subscription %}
+                    {% include "payment_change_link.html" %}
+                {% else %}
+                    <a class="payment_info_forget_link" href="#">Forget Card</a>
+                {% endif %}
+                -->
+                
             {% else %}
-                <a class="payment_info_forget_link" href="#">Forget Card</a>
+                <p>You have no active payment method. <a href="{% url payment_change %}">Add Payment Method</a></p>
             {% endif %}
-            -->
             
-        {% else %}
-            <p>You have no active payment method. <a href="{% url payment_change %}">Add Payment Method</a></p>
-        {% endif %}
+        </div>
         <h3>Transaction History</h3>
         <div id="transactions">
             <table border="1">
