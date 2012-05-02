@@ -9,7 +9,7 @@
     margin-bottom:7px;
     height:30px;
     line-height: 29px;
-    width:134px;
+    width:140px;
     display:block;
 }
 #event_admin_main .commands {
@@ -61,12 +61,6 @@
 }
 #event.cancelled .cancelled_warning{
     display:inline !important;
-}
-#event .deadline_passed_indicator{
-    display:none !important;
-}
-#event.past .deadline_passed_indicator{
-    display:block !important;
 }
 .archive_event_link{
     display:none !important;

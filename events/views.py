@@ -46,7 +46,7 @@ def events(request, category, extra_context=None):
     if category=="archived":
         context['archived'] = True
     # We do a special thing for upcoming events to display them as "Today", "Tomorrow", "This week"
-    if category =="upcoming":
+    if category=="upcoming":
         context.update(event_filtering_helper(category, request))
     else:
         events_exist, events = event_filtering_helper(category, request)
@@ -170,8 +170,8 @@ def event_page(request, id, slug, extra_context=None):
             context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
-            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-            context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
+            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
+            context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
     
     if context.has_key('show_admin'):
         attendees = get_attendees(event)

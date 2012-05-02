@@ -19,9 +19,7 @@
         font-size: 16px;
     }
     .event_list .upper_right_div {
-        display: inline-block;
-        margin-top:2px;
-        padding-left:10px;
+        padding:2px 0px 10px 0px;
         font-size: 12px;
         float: right;
         color:#555;
@@ -41,7 +39,7 @@
         -moz-border-radius: 2px;
     }
     .event_list .details {
-        margin: 5px 3px;
+        margin: 5px 250px 0px 3px;
         color: #666;
     }
     .event_list .details.commands {
@@ -67,30 +65,49 @@
     .event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
         display:none;
     }
+    .event_list .actions .dropdown img {
+        opacity:.4;
+    }
+    .event_list .actions a, .event_list .actions span {
+        text-align: right;
+        display: inline-block;
+        padding: 1px 3px;
+        color: #BBB;
+    }
+    .event_list .actions .dropdown a{
+        color: #FFF;
+    }
     .event_list .actions {
         position: absolute;
         right: 2px;
         bottom: 2px;
         color: #666;
     }
-    .event_list .actions a {
-        text-align: right;
-        display: inline-block;
-        padding: 1px 3px;
-        color: #BBB;
-    }
-    .upper_right_div .gray_button{
-        margin-top:5px;
-        width:149px;
-        display:block;
-        float:right;
-        clear:right;
-    }
-    .event_list li:hover .actions a {
+    .event_list li:hover .actions a, .event_list li:hover .actions span {
         color: #6E97B9;
     }
-    .event_list .actions a:hover {
+    .event_list .actions a:hover{
         background-color: #EEE;
+    }
+    .event_list .actions .dropdown span{
+        text-decoration:underline;
+    }
+    .event_list .actions .dropdown:hover span {
+        opacity:1;
+    }
+    .event_list li:hover .actions .dropdown img {
+        opacity:1;
+    }
+    .event_list .actions .dropdown{
+        margin-right:3px;
+        cursor:pointer;
+    }
+    .event_list .actions .dropdown span{
+        padding-right:0px;
+    }
+    .event_list .actions .dropdown ul{
+        left:-104px;
+        top:21px;
     }
     .event_list .dropdown ul li{
         width:147px;
@@ -101,6 +118,6 @@
     .actions .dropdown ul{
         left:-1px;
         top:30px;
-        min-width:140px;
+        min-width:146px;
     }
 </style>

@@ -9,6 +9,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#53d874', endColorstr='#00ae3e',GradientType=0 ); /* IE6-9 */
     border: 1px solid #339933;
     color: #FFF;
+    text-shadow: none;
     -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
@@ -34,6 +35,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f15c5d', endColorstr='#c63738',GradientType=0 ); /* IE6-9 */
     border: 1px solid #CC3333;
     color:#FFF;
+    text-shadow: none;
     -moz-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,.5);

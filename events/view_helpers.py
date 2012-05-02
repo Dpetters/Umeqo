@@ -13,7 +13,6 @@ from student.decorators import is_student
 
 
 def event_map(event, user):
-    print event
     if is_student(user):
         rsvp = RSVP.objects.filter(event=event, student=user.student)
         attending = False
@@ -184,8 +183,8 @@ def event_filtering_helper(category, request):
     if category =="upcoming":
         return get_categorized_events_context(events_exist, events_sqs, request.user)
     else:
-        
-        return events_exist, [sr.object for sr in events_sqs.load_all()]
+        event_objects = [sr.object for sr in events_sqs.load_all()]
+        return events_exist, map(event_map, event_objects, [request.user]*len(event_objects))
 
 # I use imap over maps which is slower by ~.2 seconds but a lot easier on the memory
 # RSVPS must be active users, aka be active or have quick-registered
@@ -253,16 +252,12 @@ def get_invitees(event):
 def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
     all_responses = []
     students = []
-    print len(dropped_resumes)
     if dropped_resumes:
         students.extend(dropped_resumes)
-    print len(attendees)
     if attendees:
         students.extend(attendees)
-    print len(rsvps)
     if rsvps:
         students.extend(rsvps)
-    print len(no_rsvps)
     if no_rsvps:
         students.extend(no_rsvps) 
 

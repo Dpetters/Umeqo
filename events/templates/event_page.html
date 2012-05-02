@@ -28,7 +28,6 @@
 {% load google_calendarize %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
     {% if user.is_anonymous %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
@@ -288,7 +287,7 @@
     </div>
     {% endif %}
     <div class="actions">
-        {% include "event_actions.html" %}
+        {% include "event_student_actions.html" with event_page="true" %}
         {% if not event.is_past and not event.cancelled and not event.is_rolling_deadline %}<a target="_blank" id="add_to_google_calendar" href="{{ event|google_calendarize }}"><img src="{{ STATIC_URL }}images/icons/calendar-plus.png" /><span>Google Calendar</span></a>{% endif %}
     </div>
     

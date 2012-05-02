@@ -43,13 +43,13 @@
                 {% if resume_book.students.visible|length > 0 %}
                     <li>
                         <div class="right_side_container">
-                            <a class="dark_button resume_book_deliver_link" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Re-Deliver</a>
-                            <a class="delete_resume_book_link caution" data-resume-book-id="{{resume_book.id}}" href="javascript:void(0)">Delete</a>
+                            <a class="dark_button resume_book_deliver_link" data-resume-book-id="{{resume_book.id}}" href="#">Re-Deliver</a>
+                            <a class="delete_resume_book_link caution" data-resume-book-id="{{resume_book.id}}" href="#">Delete</a>
                         </div>
                         <div class="details">
                             <h2 class="resume_book_name">{{ resume_book.name }}</h2>
                             <p><strong>Last Delivery Date/Time:</strong> {{resume_book.last_updated|date:"D, F j"}}, {{resume_book.last_updated|date:"Y"}} <em>{{resume_book.last_updated|date:"h:i A"}}</em></p>
-                            <p><strong>Size:</strong> <a {% if not user.recruiter.employer.subscribed_annually %}class="must_be_subscribed_rb" href="{% url subscriptions %}"{% else %}href="{% url employer_students %}?isl={{resume_book.id}}{% endif %}">{{resume_book.students.visible|length}} students</a></p>
+                            <p><strong>Size:</strong> <a href="{% url employer_students %}?isl={{resume_book.id}}">{{resume_book.students.visible|length}} students</a></p>
                         </div>
                     </li>
                 {% endif %}

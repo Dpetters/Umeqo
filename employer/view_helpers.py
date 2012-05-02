@@ -2,7 +2,8 @@ from core.search import search
 from haystack.query import SearchQuerySet
 from employer import enums
 from employer.models import ResumeBook, Employer, EmployerStudentComment
-from events.models import Attendee
+from events.models import Attendee, RSVP, DroppedResume
+
 
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
@@ -30,12 +31,28 @@ def get_num_of_events_attended_dict(recruiter, students):
     return num_of_events_attended_dict
 
 
+def get_visibility_attributes(recruiter, students):
+    rsvps = RSVP.objects.filter(attending=True, event__attending_employers__id__exact=recruiter.employer.id)
+    attendees = Attendee.objects.filter(event__attending_employers__id__exact=recruiter.employer.id)
+    dropped_resumes = DroppedResume.objects.filter(event__attending_employers__id__exact=recruiter.employer.id)
+    
+    visibility_attributes = {}
+    for student in students:
+        if student in rsvps or student in attendees or student in dropped_resumes:
+            visibility_attributes[student] = True
+        else:
+            visibility_attributes[student] = False
+    return visibility_attributes
+
+
 def process_results(recruiter, page):
     student_objects = [x[0] for x in page.object_list]
     is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, student_objects)
     is_starred_attributes = get_is_starred_attributes(recruiter, student_objects)
     comments = get_comments(recruiter, student_objects)
     num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, student_objects)
+    visibility_attributes = get_visibility_attributes(recruiter, student_objects)
+    
     processed_results = []
     for i, object in enumerate(page.object_list):
         processed_result = (object[0],
@@ -43,9 +60,11 @@ def process_results(recruiter, page):
                              is_in_resume_book_attributes.get(object[0], False),
                              is_starred_attributes.get(object[0], False),
                              comments.get(object[0], ""),
-                             num_of_events_attended_dict.get(object[0], 0)) 
+                             num_of_events_attended_dict.get(object[0], 0),
+                             visibility_attributes.get(object[0], False)) 
         processed_results.append(processed_result)
     return processed_results
+
 
 def get_is_in_resumebook_attributes(recruiter, students):
     resume_book_dict = {}

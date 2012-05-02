@@ -550,7 +550,7 @@ def employer_students(request, extra_context=None):
         context['total_results_num'] = count
 
         # I don't like this method of statistics
-        for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
+        for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended, visible in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
 

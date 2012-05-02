@@ -292,7 +292,7 @@ function handle_resume_book_students_add(e) {
 }
 
 function handle_resume_book_student_toggle(e) {
-    if (!$(this).children('div').hasClass("resume_book_capacity_reached")){
+    if (!$(this).attr("disabled") && !$(this).children('div').hasClass("resume_book_capacity_reached")){
         var that = this;
         var student_id = $(this).attr('data-student-id');
         $.ajax({
