@@ -1,8 +1,12 @@
+{% if has_at_least_premium %}
+<script src="{{ STATIC_URL }}js/employer/employer_resumes_download.js"></script>
+{% endif %}          
+
 <div class="side_nav"> 
     <h3>Students</h3>
     <a href="{% url employer_students %}">Browse Students</a>
     <a href="{% url employer_resume_book_history %}">Resume Book History</a>
-    <a id="download_everything" class="premium_required" href="{% if user.recruiter.employer.has_premium %}#{% else %}/subscriptions/{% endif %}">Download All Resumes</a>
+    <a href="{% url subscriptions %}" class="resumes_download{% if not has_at_least_premium %} needs_at_least_premium{% endif %}">Download All Resumes</a>
     
     <h3>Events & Deadlines</h3>
     <a href="{% url event_new %}">Create New</a>

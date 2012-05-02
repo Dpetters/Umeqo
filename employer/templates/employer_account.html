@@ -79,10 +79,10 @@
 
 {% block account_overview %}
     <h3>Create New Account</h3>
-    <p class="sub_header_message">Below are the other recruiter accounts for 
-        {{user.recruiter.employer}}. If you would like to give another recruiter access, 
-        you can <a class="create_recruiter_link" href="javascript:void(0)">create a new account</a>.
-    </p>
+    <div class="commands">
+        <p><a class="create_recruiter_link" href="javascript:void(0)">Create a New Account</a></p>
+    </div>
+    <p class="sub_header_message">Below are the other user accounts for {{user.recruiter.employer}}.</p>
     
     {% include 'employer_other_recruiters.html' %}
     
@@ -92,8 +92,8 @@
         <a id="delete_account_link" class="caution" href="javascript:void(0)">Delete Account</a>
     </p>
     
-    <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only recruiter for 
-        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create one for another recruiter at your firm</a>.
+    <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only user for 
+        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create one for another person at your firm</a>.
     </p>
 {% endblock %}
 

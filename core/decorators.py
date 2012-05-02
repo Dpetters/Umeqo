@@ -1,9 +1,6 @@
-from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from core.http import Http403
-from subscription.models import EmployerSubscription
 
 try:
     from functools import wraps
@@ -17,46 +14,6 @@ except ImportError:
                 getattr(wrapper, attr).update(getattr(wrapped, attr, {}))
             return wrapper
         return inner
-
-class has_any_subscription(object):
-    def __init__(self, orig_func):
-        self.orig_func = orig_func
-    
-    def __call__(self, request, *args, **kwargs):
-        if is_recruiter(request.user):
-            employer = request.user.recruiter.employer
-            try:
-                subscription = employer.employersubscription
-            except EmployerSubscription.DoesNotExist:
-                pass
-            else:
-                if not subscription.expired():
-                    return self.orig_func(request, *args, **kwargs)
-            if request.is_ajax():
-                raise Http403("You must have an annual subscription to do that.")
-            return redirect(reverse("subscriptions"))
-        return self.orig_func(request, *args, **kwargs)
-
-
-class has_annual_subscription(object):
-    def __init__(self, orig_func):
-        self.orig_func = orig_func
-    
-    def __call__(self, request, *args, **kwargs):
-        if is_recruiter(request.user):
-            employer = request.user.recruiter.employer
-            try:
-                subscription = employer.employersubscription
-            except EmployerSubscription.DoesNotExist:
-                pass
-            else:
-                if subscription.annual_subscription() and not subscription.expired():
-                    return self.orig_func(request, *args, **kwargs)
-            if request.is_ajax():
-                raise Http403("You must have an annual subscription to do that.")
-            return redirect(reverse("subscriptions"))
-        return self.orig_func(request, *args, **kwargs)
-
 
 def is_superuser(user):
     return user.is_superuser

@@ -172,6 +172,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/current/add-students/$', 'employer_resume_book_add_students', {}, 'employer_resume_book_add_students'),
     (r'^employer/resume-books/current/remove-students/$', 'employer_resume_book_remove_students', {}, 'employer_resume_book_remove_students'),
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
+    (r'^employer/resumes/download/$', 'employer_resumes_download', {}, 'employer_resumes_download'),
     (r'^employers/snippets/$', 'employer_snippets', {}, 'employer_snippets'),
     (r'^employers/$', 'employers', {}, 'employers'),
     (r'^(?P<slug>[A-Za-z0-9-]+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')

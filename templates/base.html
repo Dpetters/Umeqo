@@ -60,7 +60,7 @@
         </style>
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
-                var PREMIUM_REQUIRED = "{% text_snippet 'premium_required' %}";
+                var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
             {% endif %}
             
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";

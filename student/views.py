@@ -18,7 +18,7 @@ from ratelimit.decorators import ratelimit
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_student, render_to, is_recruiter, has_any_subscription
+from core.decorators import is_student, render_to, is_recruiter
 from core.email import send_html_mail
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
@@ -444,7 +444,6 @@ def student_resume(request):
 
 
 @require_GET
-@has_any_subscription
 @user_passes_test(is_recruiter)
 @ratelimit(rate='30/m')
 def specific_student_resume(request, student_id):

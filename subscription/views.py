@@ -2,7 +2,7 @@ import os
 import stripe
 
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.conf import settings as s
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import simplejson
@@ -11,7 +11,7 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 
 from pyPdf import PdfFileWriter, PdfFileReader
-
+from stripe import InvalidRequestError
 
 from core.decorators import is_recruiter, render_to
 from core.email import send_html_mail
@@ -203,6 +203,7 @@ def subscription_billing_cycle_change(request, form_class=ChangeBillingForm, ext
     context.update(extra_context or {})
     return context
 
+
 @user_passes_test(is_recruiter)
 def subscription_billing_cycle_price(request, extra_context=None):
     if not request.POST.has_key('billing_cycle'):
@@ -213,11 +214,27 @@ def subscription_billing_cycle_price(request, extra_context=None):
     #current_billing_cycle = 
     return HttpResponse()
 
+
 @user_passes_test(is_recruiter)
 def receipt_view(request, charge_id):
     stripe.api_key = s.STRIPE_SECRET
-    # TODO - companies should only be able to download their own receipts
-    charge = stripe.Charge.retrieve(id=charge_id)
+    
+    employer = request.user.recruiter.employer
+    customer = employer.get_customer()
+    
+    try:
+        charge_ids = map(lambda x: x.id, stripe.Charge.all(count=100, customer = customer.id).data)
+    except InvalidRequestError as e:
+        raise Http404(e)
+    
+    try:
+        charge = stripe.Charge.retrieve(id=charge_id)
+    except InvalidRequestError as e:
+        raise Http404(e)
+            
+    if not charge.id in charge_ids:
+        raise Http403("You do not have permission to view this receipt.")
+    
     pdf_name = "Umeqo_Charge_%s_%s.pdf" % (format_unix_time(charge.created).replace("/", "-"), charge_id)
     path = "%semployer/receipts/" % (s.MEDIA_ROOT)
     pdf_path = "%s%s" % (path, pdf_name)
@@ -237,8 +254,9 @@ def receipt_view(request, charge_id):
 @user_passes_test(is_recruiter)
 def receipts_view(request):
     stripe.api_key = s.STRIPE_SECRET
-    # TODO - companies should only be able to download their own receipts
-    charges = stripe.Charge.all(count=100).data
+    employer = request.user.recruiter.employer
+    customer = employer.get_customer()
+    charges = stripe.Charge.all(count=100, customer = customer.id).data
     employer = request.user.recruiter.employer
     pdf_name = "Umeqo %s Charges.pdf" % (employer)
     path = "%semployer/receipts/" % (s.MEDIA_ROOT)

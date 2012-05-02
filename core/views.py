@@ -20,7 +20,7 @@ from django.views.decorators.http import require_GET, require_http_methods
 
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
+from core.decorators import render_to, is_student, is_recruiter, is_campus_org
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
@@ -148,7 +148,6 @@ def contact_us(request, form_class = AkismetContactForm, extra_context=None):
 
 @require_GET
 @login_required
-@has_annual_subscription
 def get_location_guess(request):
     if not request.has_key("query"):
         raise Http400("Request GET is missing the query.") 
@@ -164,7 +163,6 @@ def get_location_guess(request):
 
 @require_GET
 @login_required
-@has_annual_subscription
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
     if not request.GET.has_key('query'):
@@ -340,7 +338,6 @@ def landing_page(request, extra_context = None):
     return context
 
 
-@has_any_subscription
 @render_to()
 def home(request, extra_context=None):
     context = {}

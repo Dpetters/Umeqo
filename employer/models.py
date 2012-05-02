@@ -45,11 +45,11 @@ class Employer(core_mixins.DateTracking):
         return '%s?id=%d' % (reverse('employers'), self.id)
     
     def get_customer(self):
+        print "getting_customer"
         stripe.api_key = s.STRIPE_SECRET
+        
         if self.stripe_id:
-            customer = stripe.Customer.retrieve(
-                self.stripe_id
-                )
+            customer = stripe.Customer.retrieve(self.stripe_id)
             try:
                 deleted = customer.deleted
             except AttributeError as e:
@@ -59,21 +59,31 @@ class Employer(core_mixins.DateTracking):
                     customer = self.assign_customer()
         else:
             customer = self.assign_customer()
+        
         return customer
     
+    
     def assign_customer(self):
-        customer = stripe.Customer.create(
-            description=self.name
-        )
+        customer = stripe.Customer.create(description=self.name)
         self.stripe_id = customer.id
         self.save()
         return customer
-        
+
+
+    def has_at_least_premium(self):
+        print "has_at_least_premium"
+        subscription = self.get_customer().subscription
+        if subscription:
+            return subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values()) and subscription.status != "cancelled"
+        return False
+
+
     def can_upgrade(self):
         subscription = self.get_customer().subscription
         if subscription:
             return not subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values())
         return True
+    
     
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):

@@ -1,10 +1,10 @@
 $(document).ready( function() {
     
-    $(".premium_required").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:PREMIUM_REQUIRED, html:true}); 
-    $(".premium_required").tipsy({'gravity':'e', opacity: 0.9, live:true, fallback:PREMIUM_REQUIRED, html:true}); 
-    $(".premium_required").tipsy({'gravity':'n', opacity: 0.9, live:true, fallback:PREMIUM_REQUIRED, html:true}); 
-    $(".premium_required").tipsy({'gravity':'s', opacity: 0.9, live:true, fallback:PREMIUM_REQUIRED, html:true}); 
-               
+    $(".needs_at_least_premium").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:NEEDS_AT_LEAST_PREMIUM, html:true}); 
+    $(".needs_at_least_premium").tipsy({'gravity':'e', opacity: 0.9, live:true, fallback:NEEDS_AT_LEAST_PREMIUM, html:true}); 
+    $(".needs_at_least_premium").tipsy({'gravity':'n', opacity: 0.9, live:true, fallback:NEEDS_AT_LEAST_PREMIUM, html:true}); 
+    $(".needs_at_least_premium").tipsy({'gravity':'s', opacity: 0.9, live:true, fallback:NEEDS_AT_LEAST_PREMIUM, html:true}); 
+
     $('#account').click(function() {
        // We subtract two for the border
        $('#account_dropdown').width(document.getElementById("account").offsetWidth-2).toggle(); 

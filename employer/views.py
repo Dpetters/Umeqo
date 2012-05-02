@@ -31,13 +31,13 @@ from haystack.query import SearchQuerySet, SQ
 from events.models import Event
 from core.digg_paginator import DiggPaginator
 
-from core.decorators import has_any_subscription, has_annual_subscription, is_student, \
-                            is_student_or_recruiter, is_recruiter, render_to
+from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
 from core.email import send_html_mail
 from core import messages, enums as core_enums
 from core.http import Http403, Http400
 from core.models import Industry
 from employer import enums as employer_enums
+from employer.decorators import has_at_least_premium
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, \
                            RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, \
                            DeliverResumeBookForm
@@ -78,7 +78,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     customer = employer.get_customer()
     context['customer'] = customer
     subscription = customer.subscription
-    print subscription
+
     if subscription:
         context['current_period_end'] =  time.strftime("%m/%d/%Y", time.gmtime(customer.subscription.current_period_end))
     msg = request.GET.get('msg', None)
@@ -131,7 +131,6 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
 
 
 @user_passes_test(is_student_or_recruiter)
-@has_any_subscription
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -148,7 +147,6 @@ def employer_profile_preview(request, slug, extra_context=None):
 
 
 @user_passes_test(is_recruiter)
-@has_annual_subscription
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
     if request.method == 'POST':
@@ -212,7 +210,6 @@ def employer_resume_book_delete(request, extra_context = None):
 
 
 @user_passes_test(is_recruiter)
-@has_annual_subscription
 @require_GET
 @render_to("employer_other_recruiters.html")
 def employer_other_recruiters(request):
@@ -221,7 +218,6 @@ def employer_other_recruiters(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
@@ -234,7 +230,6 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     if request.method == 'POST':
@@ -256,7 +251,6 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_student_toggle_star(request):
     if not request.POST.has_key('student_id'):
@@ -273,7 +267,6 @@ def employer_student_toggle_star(request):
 
 @require_POST
 @user_passes_test(is_recruiter)
-@has_any_subscription
 def employer_students_add_star(request):
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing student_ids.")
@@ -285,7 +278,6 @@ def employer_students_add_star(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_students_remove_star(request):
     if not request.POST.has_key('student_ids'):
@@ -298,7 +290,6 @@ def employer_students_remove_star(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_student_comment(request):
     if not request.POST.has_key('student_id'):
@@ -318,7 +309,6 @@ def employer_student_comment(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_toggle_student(request):
     if not request.POST.has_key('student_id'):
@@ -343,7 +333,6 @@ def employer_resume_book_toggle_student(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_add_students(request):
     if not request.POST.has_key('student_ids'):
@@ -366,7 +355,6 @@ def employer_resume_book_add_students(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_remove_students(request):
     if not request.POST.has_key('student_ids'):
@@ -385,7 +373,6 @@ def employer_resume_book_remove_students(request):
 
 @require_GET
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
     if not request.GET.has_key('student_id'):
@@ -398,7 +385,6 @@ def employer_student_event_attendance(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_GET
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
@@ -408,8 +394,15 @@ def employer_resume_book_history(request, extra_context=None):
     return context
 
 
+@has_at_least_premium
 @user_passes_test(is_recruiter)
-@has_any_subscription
+def employer_resumes_download(request, extra_context=None):
+    
+    return HttpResponse()
+
+
+
+@user_passes_test(is_recruiter)
 @require_GET
 @render_to()
 def employer_students(request, extra_context=None):
@@ -588,7 +581,6 @@ def employer_students(request, extra_context=None):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to('employer_resume_book_summary.html')
 def employer_resume_book_summary(request, extra_context=None):
     try:
@@ -615,7 +607,6 @@ def employer_resume_book_summary(request, extra_context=None):
 
 @require_GET
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to('employer_resume_book_deliver.html')
 def employer_resume_book_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
     context = {'form':form_class(initial={'emails':request.user.email})}
@@ -642,7 +633,6 @@ def employer_resume_book_deliver(request, form_class=DeliverResumeBookForm, extr
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_create(request):
     if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
@@ -723,7 +713,6 @@ def employer_resume_book_create(request):
 
 @require_POST
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to("employer_resume_book_delivered.html")
 def employer_resume_book_email(request, extra_context=None):
     if not request.POST.has_key('emails'):
@@ -771,7 +760,6 @@ def employer_resume_book_email(request, extra_context=None):
 
 @require_GET
 @user_passes_test(is_recruiter)
-@has_any_subscription
 def employer_resume_book_download(request):
     if request.GET.has_key("resume_book_id") and request.GET['resume_book_id']:
         redelivering = True
