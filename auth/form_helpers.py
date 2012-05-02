@@ -1,7 +1,7 @@
 from django import forms
 
 from core import messages as m
-from core.decorators import is_student
+from student.decorators import is_student
 
 def verify_account(user):
     if not user.userattributes.is_verified and not user.is_active:

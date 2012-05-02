@@ -15,23 +15,6 @@ except ImportError:
             return wrapper
         return inner
 
-def is_superuser(user):
-    return user.is_superuser
-
-def is_campus_org(user):
-    return hasattr(user, "campusorg")
-
-def is_student(user):
-    return hasattr(user, "student")
-    
-def is_recruiter(user):
-    return hasattr(user, "recruiter")
-
-def is_campus_org_or_recruiter(user):
-    return hasattr(user, "recruiter") or hasattr(user, "campusorg")
-
-def is_student_or_recruiter(user):
-    return hasattr(user, "recruiter") or hasattr(user, "student")
 
 def render_to(template=None, mimetype=None):
     """

@@ -6,10 +6,11 @@ from django.http import HttpResponse, Http404
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
+from campus_org.decorators import is_campus_org
 from campus_org.forms import CampusOrgPreferencesForm, CampusOrgProfileForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_campus_org, render_to
+from core.decorators import render_to
 from core.http import Http400
 from registration.forms import PasswordChangeForm
 

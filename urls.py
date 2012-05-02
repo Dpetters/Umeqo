@@ -2,7 +2,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 from django.conf import settings
-from django.conf.urls.defaults import patterns, include
+from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -41,6 +41,7 @@ urlpatterns += patterns('',
     (r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_done'),
     (r'^ckeditor/', include('ckeditor.urls')),
     (r'^sentry/', include('sentry.web.urls')),
+     url(r'zebra/',   include('zebra.urls',  namespace="zebra",  app_name='zebra') )
 )
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),

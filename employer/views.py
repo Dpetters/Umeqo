@@ -4,11 +4,11 @@ from __future__ import absolute_import
 import cStringIO
 import os
 import re
-import stripe
 import time
 import zipfile
 
 from datetime import datetime
+from haystack.query import SearchQuerySet, SQ
 from pyPdf import PdfFileWriter, PdfFileReader
 from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
@@ -25,28 +25,28 @@ from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
-
-from core.search import search
-from haystack.query import SearchQuerySet, SQ
-from events.models import Event
-from core.digg_paginator import DiggPaginator
-
-from core.decorators import is_student, is_student_or_recruiter, is_recruiter, render_to
-from core.email import send_html_mail
 from core import messages, enums as core_enums
+from core.decorators import render_to
+from core.digg_paginator import DiggPaginator
+from core.email import send_html_mail
+from core.file_utils import find_first_file
 from core.http import Http403, Http400
+from core.management.commands.zip_resumes import zip_resumes
 from core.models import Industry
+from core.search import search
 from employer import enums as employer_enums
-from employer.decorators import has_at_least_premium
+from employer.decorators import has_at_least_premium, is_recruiter
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, \
                            RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, \
                            DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.view_helpers import employer_search_helper, process_results, get_resume_book_size, \
                                   order_results
+from events.models import Event
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
+from student.decorators import is_student
 from student.models import Student
 from subscription.utils import sum_charges, get_charges
 
@@ -68,14 +68,14 @@ def employer_logo(request):
 @user_passes_test(is_recruiter)
 @render_to("employer_account.html")
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
-                     change_password_form_class = PasswordChangeForm, extra_context=None):
+                     change_password_form_class = PasswordChangeForm,
+                     extra_context=None):
     context = {}
     recruiter = request.user.recruiter
     context['recruiter'] = recruiter
     employer = recruiter.employer
     context['employer'] = employer
-    stripe.api_key = s.STRIPE_SECRET
-    customer = employer.get_customer()
+    customer = request.META['customer']
     context['customer'] = customer
     subscription = customer.subscription
 
@@ -91,7 +91,6 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
         if page_messages.has_key(msg):
             context["msg"] = page_messages[msg]
 
-    customer = employer.get_customer()
     context['transactions'] = employer.transaction_set.all().order_by("timestamp")
     context['other_recruiters'] = employer.recruiter_set.exclude(id=recruiter.id)
     context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
@@ -100,7 +99,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     charges = get_charges(customer.id)
     context['charges'] = charges
     context['charge_total'] = sum_charges(charges)
-    
+    print "Done with view"
     context.update(extra_context or {})
     return context
 
@@ -130,7 +129,7 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
     return context
 
 
-@user_passes_test(is_student_or_recruiter)
+@user_passes_test(lambda x: is_student(x) or is_recruiter(x))
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -397,9 +396,16 @@ def employer_resume_book_history(request, extra_context=None):
 @has_at_least_premium
 @user_passes_test(is_recruiter)
 def employer_resumes_download(request, extra_context=None):
-    
-    return HttpResponse()
-
+    file_path = find_first_file(s.MEDIA_ROOT, "%s.*.zip" % s.ALL_ZIPPED_RESUMES_FILENAME_START)
+    if file_path:
+        mimetype = "application/zip"
+        response = HttpResponse(file(file_path, "rb").read(), mimetype=mimetype)
+        filename = file_path.split("/")[-1]
+        response["Content-Disposition"] = 'attachment; filename="%s.zip"' % filename
+        return response
+    else:
+        zip_resumes()
+        return employer_resumes_download(request)
 
 
 @user_passes_test(is_recruiter)

@@ -3,11 +3,14 @@ import csv
 from django.db.models import Q
 
 from datetime import datetime, timedelta, date, time
-from core.decorators import is_student, is_recruiter, is_campus_org, is_campus_org_or_recruiter
+from campus_org.decorators import is_campus_org
 from core.search import search
+from employer.decorators import is_recruiter
 from events.choices import ALL
 from events.models import Event, RSVP, DroppedResume, Attendee
 from haystack.query import SearchQuerySet, SQ
+from student.decorators import is_student
+
 
 def event_map(event, user):
     print event
@@ -353,7 +356,8 @@ def get_categorized_events_context(events_exist, event_sqs, user):
     
 def get_upcoming_events_sqs(user):
     events = get_user_events_sqs(user).filter(end_datetime__gte=datetime.now())
-    if is_campus_org_or_recruiter(user):
+    # TODO - figure out why this is here
+    if is_campus_org(user) or is_recruiter(user):
         events = events.filter(archived=False)
     return events
 

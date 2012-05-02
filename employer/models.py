@@ -69,22 +69,6 @@ class Employer(core_mixins.DateTracking):
         self.save()
         return customer
 
-
-    def has_at_least_premium(self):
-        print "has_at_least_premium"
-        subscription = self.get_customer().subscription
-        if subscription:
-            return subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values()) and subscription.status != "cancelled"
-        return False
-
-
-    def can_upgrade(self):
-        subscription = self.get_customer().subscription
-        if subscription:
-            return not subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values())
-        return True
-    
-    
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

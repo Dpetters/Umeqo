@@ -22,16 +22,19 @@ from django.template.loader import render_to_string
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
+from campus_org.decorators import is_campus_org
 from core.email import send_html_mail
 from core import enums as core_enums
 from core.http import Http403, Http400, Http500
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to
+from core.decorators import render_to
 from core.models import Edit
 from core.view_helpers import english_join
+from employer.decorators import is_recruiter
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
 from events.models import Attendee, Event, Invitee, RSVP, DroppedResume, notify_about_event
 from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
+from student.decorators import is_student
 from student.models import Student
 
 
@@ -62,7 +65,7 @@ def events(request, category, extra_context=None):
             context['event_filtering_form'] = EventFilteringForm(request.GET)
         else:
             context['event_filtering_form'] = EventFilteringForm()
-        if is_campus_org_or_recruiter(request.user):
+        if is_campus_org(request.user) or is_recruiter(request.user):
             template = "events_employer_campus_org.html"
         elif is_student(request.user):
             if not request.user.student.profile_created:
@@ -73,7 +76,7 @@ def events(request, category, extra_context=None):
 
 @require_GET
 @login_required
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def events_check_short_slug_uniqueness(request):
     if not request.GET.has_key("short_slug"):
         raise Http400("Request GET is missing the short_slug.")
@@ -210,7 +213,7 @@ def event_page(request, id, slug, extra_context=None):
     return context
 
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("event_form.html")
 def event_new(request, form_class=None, extra_context=None):
     context = {}
@@ -256,7 +259,7 @@ def event_new(request, form_class=None, extra_context=None):
 
 
 @login_required
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_list_download(request):
     if not request.GET.has_key("event_id"):
         raise Http400("Request GET is missing the event_id.")
@@ -283,13 +286,13 @@ def event_list_download(request):
         return response
 
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_checkin_count(request):
     data = {'count':len(Event.objects.get(id=request.GET["event_id"]).attendee_set.all())}
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to('event_list_export_completed.html')
 def event_list_export_completed(request, extra_context = None):
     if not request.GET.has_key("event_list"):
@@ -315,7 +318,7 @@ def event_list_export_completed(request, extra_context = None):
     return context
 
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to()
 def event_list_export(request, form_class = EventExportForm, extra_context=None):
     if request.method == 'POST':
@@ -359,7 +362,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
     return context
 
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("event_form.html")
 def event_edit(request, id=None, extra_context=None):
     try:
@@ -414,7 +417,7 @@ def admin_of_event(event, user):
 
 
 @login_required
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("event_cancel_dialog.html")
 def event_cancel(request, id, extra_context = None):
     if request.method == "POST":
@@ -457,7 +460,7 @@ def event_cancel(request, id, extra_context = None):
 
     
 @require_POST
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_archive(request, id, extra_context = None):
     try:
         event = Event.objects.get(id=id)
@@ -476,7 +479,7 @@ def event_archive(request, id, extra_context = None):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("rolling_deadline_end_dialog.html")
 def rolling_deadline_end(request, id, extra_context = None):
     if request.method == "POST":
@@ -506,7 +509,7 @@ def rolling_deadline_end(request, id, extra_context = None):
         return context
 
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_schedule(request):
     schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
     return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
@@ -521,7 +524,7 @@ def event_rsvp(request, event_id):
         raise Http404("Event with id '%s' does not exist." % event_id)
     else:
         # if method is GET then get a list of RSVPed students
-        if request.method == 'GET' and is_campus_org_or_recruiter(request.user):
+        if request.method == 'GET' and is_campus_org(request.user) or is_recruiter(request.user):
             data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         # if POST then record student's RSVP
@@ -558,7 +561,7 @@ def event_drop(request, event_id):
 
 
 @require_GET
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_raffle_winner(request, extra_context=None):
     if not request.GET.has_key("event_id"):
         raise Http400("Request GET is missing the event_id")
@@ -575,7 +578,7 @@ def event_raffle_winner(request, extra_context=None):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)

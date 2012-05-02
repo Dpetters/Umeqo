@@ -2,7 +2,7 @@ from django.conf import settings as s
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
-from core.decorators import is_recruiter
+from employer.decorators import is_recruiter
 from subscription.models import EmployerSubscription
 
 

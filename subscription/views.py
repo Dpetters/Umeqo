@@ -13,10 +13,11 @@ from django.core.urlresolvers import reverse
 from pyPdf import PdfFileWriter, PdfFileReader
 from stripe import InvalidRequestError
 
-from core.decorators import is_recruiter, render_to
+from core.decorators import render_to
 from core.email import send_html_mail
 from core.http import Http403, Http400
 from core.templatetags.filters import format_unix_time
+from employer.decorators import is_recruiter
 from subscription.forms import CheckoutForm, ChangeBillingForm, CardForm, SubscriptionChangeForm, AccountRequestForm
 from subscription.utils import get_subscription_type
 from subscription.view_helpers import create_charge_page

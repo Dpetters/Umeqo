@@ -18,19 +18,21 @@ from ratelimit.decorators import ratelimit
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_student, render_to, is_recruiter
+from core.decorators import render_to
 from core.email import send_html_mail
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
 from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
 from core.email import is_valid_email
 from countries.models import Country
+from employer.decorators import is_recruiter
 from employer.models import Employer
 from events.models import Attendee, RSVP, DroppedResume, Event
 from notification.models import NoticeSetting, NoticeType, EMAIL
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
 from registration.view_helpers import register_student
+from student.decorators import is_student
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation

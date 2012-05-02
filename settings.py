@@ -17,6 +17,8 @@ STRIPE_SECRET = 'ablbC9pV7icRiB9lxf1I9eozfJ7tPEbA'
 # Send admins an email each time that a 404 is encountered
 SEND_BROKEN_LINK_EMAILS = True
 
+ALL_ZIPPED_RESUMES_FILENAME_START = "All Umeqo Resumes"
+
 # In bytes, 3MB
 MAX_RESUME_SIZE = 3*1024*1024
 MAX_RESUME_KEYWORDS = 3000
@@ -245,7 +247,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.current_site',
     'core.context_processors.warnings',
     'core.context_processors.caution',
-    'subscription.context_processors.subscriptions'
+    'subscription.context_processors.subscription'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -257,7 +259,8 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'middleware.generic.SetRemoteAddrMiddleware',
     'middleware.log.LogMiddleware',
-    'middleware.exceptions.ProcessExceptionMiddleware'
+    'middleware.exceptions.ProcessExceptionMiddleware',
+    'subscription.middleware.SubscriptionMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -317,7 +320,8 @@ INSTALLED_APPS = (
     'subscription',
     'ckeditor',
     'sentry',
-    'concurrent_server'
+    'concurrent_server',
+    'zebra'
 )
 
 try:

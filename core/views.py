@@ -18,19 +18,22 @@ from django.utils import simplejson
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.http import require_GET, require_http_methods
 
+from campus_org.decorators import is_campus_org
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org
+from core.decorators import render_to
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
 from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
+from employer.decorators import is_recruiter
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
 from events.view_helpers import get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
+from student.decorators import is_student
 from student.forms import StudentRegistrationForm
 from student.models import Student
 
