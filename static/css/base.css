@@ -269,6 +269,14 @@ label: not(.required) {
     color: #FFF;
     background-color: #BBB;
 }
+#ssl_seal{
+    float:right;
+    height:40px;
+    opacity:.6;
+}
+#ssl_seal:hover{
+    opacity:1;
+}
 .div_form_above_field_label {
     font-size: 15px;
     display: inline-block;
