@@ -47,10 +47,6 @@ SUBSCRIPTION_UIDS = {
     'premium':{
         'year':(12, "1"),
         'month':(1, "0")
-    },
-    'enterprise':{
-        'year':(12, "3"),
-        'month':(1, "2")
     }
 }
 

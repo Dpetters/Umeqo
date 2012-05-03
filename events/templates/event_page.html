@@ -360,7 +360,7 @@
                 <div class="event_company">
                     <div class="event_host_logo">
                         {% if campus_org_event %}
-                            <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="javascript:void(0)" class="campus_org_link"><img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" /></a>                        
+                            <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="#" class="campus_org_link"><img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" /></a>                        
                         {% else %}
                             {% if user.is_anonymous or user.student %}<a href="{{ event.owner.recruiter.employer.get_absolute_url }}">{% endif %}
                             <img src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />

@@ -86,7 +86,9 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
         page_messages = {
             'payment-changed': messages.payment_changed,
             'password-changed': messages.password_changed,
-            'subscription-cancelled' : messages.subscription_cancelled
+            'subscription-cancelled' : messages.subscription_cancelled,
+            'upgraded_to_premium' : messages.upgraded_to_premium,
+            'changed_billing' : messages.changed_billing
         }
         if page_messages.has_key(msg):
             context["msg"] = page_messages[msg]

@@ -1,5 +1,7 @@
 from django.conf import settings as s
-#from django.core.urlresolvers import reverse
+
+upgraded_to_premium = "You have successfully upgraded to Umeqo Premium."
+changed_billing = "You have successfully changed your billing cycle."
 
 needs_at_least_premium = "You must be a premium user to use this feature. Click to upgrade!"
 # Features

@@ -5,7 +5,7 @@ $(document).ready(function() {
         if (response.error) {
             $("form input[type=submit]").removeAttr("disabled");
             $("form .error_section").text(response.error.message);
-            hide_form_submit_loader("#payment_change_form");
+            hide_form_submit_loader("form");
         } else {
             var form$ = $("form");
             // token contains id, last4, and card type
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
     $("form").submit(function(event) {
         $("form input[type=submit]").attr("disabled", "disabled");
-        show_form_submit_loader("#payment_change_form");
+        show_form_submit_loader("form");
         $("form .error_section").text("");
         if(!$("#card_fields").hasClass("hid")){
             Stripe.createToken({

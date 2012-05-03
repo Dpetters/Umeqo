@@ -5,6 +5,7 @@ Subscription Cancellation |
 {% endblock %}
 
 {% block metadata %}
+{% load filters %}
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_cancel.css" />
@@ -20,9 +21,13 @@ Subscription Cancellation |
     <h1>Subscription Cancellation</h1>
 
     <h3>This is important! Please read before cancelling.</h3>
-    <ul>
-        <li>If you only want to change your current billing cycle (currently per {{customer.subscription.plan.interval}}), you can do so <a href="{% url subscription_billing_cycle_change %}">here</a>.</li>
-        <li>If you cancel now, you will retain access to the features listed below until {{current_period_end}}, at which point you will be downgraded to Umeqo Basic. </li>
+    <ul id="important_notes">
+        {% if customer.subscription %}
+            {% ifnotequal customer.subscription.plan.interval "year" %}
+                <li>If you only want to change your current billing cycle (currently per {{customer.subscription.plan.interval}}), you can do so <a href="{% url subscription_billing_cycle_change %}">here</a>.</li>
+            {% endifnotequal %}
+        {% endif %}
+        <li>If you cancel now, you will retain access to the features listed below until {{customer.subscription.current_period_end|format_unix_time}}, at which point you will be downgraded to Umeqo Basic. </li>
         <li>You will not be refunded any money for any time remaining.</li>
     </ul>
     <p>By cancelling your {{customer.subscription.plan.name}} you choose to lose access to the following features -</p>

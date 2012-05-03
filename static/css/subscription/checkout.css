@@ -1,9 +1,11 @@
+form{
+    padding:5px;
+}
 #billing_cycle, #payment_info{
-    margin:8px 10px 15px 10px;    
+    margin:0px 10px 15px 10px;    
 }
 #billing_cycle{
     float:left;
-    width:320px;
 }
 #billing_cycle ul{
     list-style:none;
@@ -15,6 +17,7 @@
 #payment_info{
     border-left:1px solid #CCC;
     margin-left:320px;
+    padding-left:16px;
 }
 #charge_amount{
     font-weight:bold;
@@ -29,6 +32,6 @@
     color:#666;
     font-size:11px;
 }
-#submit_div{
-    margin-left:19px;
+#submit_div .ajax_form_submit_loader{
+    margin-left:350px;
 }

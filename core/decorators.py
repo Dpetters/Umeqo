@@ -69,7 +69,6 @@ def render_to(template=None, mimetype=None):
             if not isinstance(output, dict):
                 return output
             tmpl = output.pop('TEMPLATE', template)
-            return render_to_response(tmpl, output, \
-                        context_instance=RequestContext(request), mimetype=mimetype)
+            return render_to_response(tmpl, output, context_instance=RequestContext(request), mimetype=mimetype)
         return wrapper
     return renderer

@@ -59,7 +59,7 @@
 <form id="preferences_form" method="POST" action="{% url employer_account_preferences %}">
 {% csrf_token %}
     <h3 class="no_top_margin">Search &amp; Filtering Preferences</h3>
-    <p class="sub_header_message">The values chosen here will be set as defaults on the student Search and Filtering page.</p>
+    <p class="sub_header_message">The values chosen here will be set as defaults on the student browsing page.</p>
     <table id="search_and_filtering_table" class="form_table">
         <tbody>
             <tr>
@@ -80,7 +80,7 @@
 {% block account_overview %}
     <h3>Create New Account</h3>
     <div class="commands">
-        <p><a class="create_recruiter_link" href="javascript:void(0)">Create a New Account</a></p>
+        <p><a class="create_recruiter_link" href="#">Create a New Account</a></p>
     </div>
     <p class="sub_header_message">Below are the other user accounts for {{user.recruiter.employer}}.</p>
     
@@ -89,11 +89,11 @@
     <h3>Delete Your Account</h3>
     <p id="delete_account" class="sub_header_message">By deleting your account you lose 
         your login credentials and resume book history. 
-        <a id="delete_account_link" class="caution" href="javascript:void(0)">Delete Account</a>
+        <a id="delete_account_link" class="caution" href="#">Delete Account</a>
     </p>
     
     <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only user for 
-        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="javascript:void(0)">create one for another person at your firm</a>.
+        {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="#">create one for another person at your firm</a>.
     </p>
 {% endblock %}
 
@@ -111,8 +111,12 @@
         <div id="subscription">
             <div class="commands">
                 {% if customer.subscription %}
-                <p><a href="{% url subscription_billing_cycle_change %}">Change Billing Cycle</a></p>
-                <p><a href="{% url subscription_cancel %}">Cancel Subscription</a></p>
+                    {% ifnotequal customer.subscription.plan.interval "year" %}
+                        <p><a href="{% url subscription_billing_cycle_change %}">Change Billing Cycle</a></p>
+                    {% endifnotequal %}
+                    {% if not customer.subscription.cancel_at_period_end %}
+                        <p><a href="{% url subscription_cancel %}">Cancel Subscription</a></p>
+                    {% endif %}
                 {% endif %}
             </div>
             <span id="subscription_name">

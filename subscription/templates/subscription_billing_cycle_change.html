@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-Checkout |
+Change Billing Cycle |
 {% endblock %}
 
 {% block metadata %}
+{% load filters %}
 {% load compress %}
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/checkout.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_billing_cycle_change.css" />
 {% endcompress %}
-
-<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 {% compress js %}
-    <script src="{{ STATIC_URL }}js/subscription/checkout.js"></script>
+    <script src="{{ STATIC_URL }}js/subscription/subscription_billing_cycle_change.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -25,9 +24,14 @@ Checkout |
             {{ hidden }}
         {% endfor %}
         <div id="billing_cycle">
-            <h3>Choose New Billing Cycle:</h3>
+            <h3>Choose Billing Cycle:</h3>
             {{form.billing_cycle}}
-            <p id="charge_amount">You will be charged $<span id="price"></span></p>
+            <div id="amount_details">
+                <p>Subscription to Umeqo Premium (Annual) <span class="price">${{annual_plan_amount|format_money}}</span></p>
+                <p>Current Subscription Unused Time Credit <span class="price">- ${{refund|format_money}}</span></p>
+                <hr>
+                <p><strong>You will be charged <span class="price">${{prorated_amount|format_money}}</span></strong></p> 
+            </div>
         </div>
         <div id="payment_info">
             <h3>Payment Info</h3>
