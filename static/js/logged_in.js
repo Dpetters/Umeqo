@@ -1,3 +1,54 @@
+var open_agree_to_terms_dialog = function () {
+    var agree_to_terms_dialog = $('<div class="dialog"></div>')
+    .dialog({
+        autoOpen: false,
+        title: "Umeqo Terms Update",
+        dialogClass: "agree_to_terms_dialog",
+        resizable: false,
+        modal: true,
+        width: 400,
+        closeOnEscape:false,
+        close: function() {
+            agree_to_terms_dialog.remove();
+        }
+    });
+    agree_to_terms_dialog.dialog('open');
+    $(".agree_to_terms_dialog .ui-dialog-titlebar-close").remove();
+    
+    agree_to_terms_dialog.html(DIALOG_AJAX_LOADER);
+
+    var agree_to_terms_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
+    $.ajax({
+        dataType: "html",
+        url: TERMS_AGREE_URL,
+        complete : function(jqXHR, textStatus) {
+            clearTimeout(agree_to_terms_dialog_timeout);
+            agree_to_terms_dialog.dialog('option', 'position', 'center');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            if(jqXHR.status==0){
+                agree_to_terms_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+            }else{
+                agree_to_terms_dialog.html(ERROR_MESSAGE_DIALOG);
+            }
+        },
+        success: function (data) {
+            agree_to_terms_dialog.html(data);
+            $("#accept_terms").click(function(e){
+                $.ajax({
+                    url: TERMS_AGREE_URL,
+                    type:"POST",
+                    complete:function(jqXHR, textStatus){
+                       agree_to_terms_dialog.remove();
+                    }
+                });
+                e.preventDefault();
+                
+            })
+        }
+    });
+}
+
 $(document).ready( function() {
     
     $(".needs_at_least_premium").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:NEEDS_AT_LEAST_PREMIUM, html:true}); 
@@ -44,4 +95,8 @@ $(document).ready( function() {
             $('#notifications_count').removeClass('pressed');
         }
     });
+
+    if (!AGREED_TO_TERMS && window.location.pathname != TERMS_URL){
+        open_agree_to_terms_dialog();
+    }
 });

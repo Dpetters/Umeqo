@@ -48,6 +48,7 @@ urlpatterns += patterns('core.views',
     (r'^favicon\.ico/$', redirect_to, {'url':'%simages/favicon.ico' % settings.STATIC_URL}),
     (r'^contact-us/$', 'contact_us', {}, 'contact_us'),
     (r'^terms/$', direct_to_template, {'template':'terms.html'}, 'terms'),
+    (r'^terms/agree/$', 'terms_agree', {}, 'terms_agree'),
     (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),
     # Tutorials links to help center because I just put them there for now
     #(r'^help/tutorials/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),

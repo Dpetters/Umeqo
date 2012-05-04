@@ -66,6 +66,8 @@ class UserAttributes(models.Model):
     user = models.OneToOneField(User)
     is_verified = models.BooleanField(default=False)
     last_password_change_date = models.DateTimeField(blank=True, null=True)
+    agreed_to_terms = models.BooleanField(default=False)
+    agreed_to_terms_datetime = models.DateTimeField(blank=True, null=True)
     
     class Meta:
         verbose_name = "User Attributes"

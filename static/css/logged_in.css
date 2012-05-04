@@ -200,3 +200,10 @@
 .notifications_list .empty_notices {
     padding: 10px;
 }
+
+.agree_to_terms_dialog .dialog_content_wrapper{
+    padding:5px 0px;
+}
+.agree_to_terms_dialog .button{
+    margin:10px 0px;
+}

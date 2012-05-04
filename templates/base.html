@@ -61,6 +61,15 @@
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
                 var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
+                
+                // AGREED_TO_TERMS is used to determine whether the terms dialog should be shown 
+                var TERMS_AGREE_URL = "{% url terms_agree %}";
+                var TERMS_URL = "{% url terms %}";
+                {% if user.userattributes.agreed_to_terms %}
+                     var AGREED_TO_TERMS = true;
+                {% else %}
+                     var AGREED_TO_TERMS = false; 
+                {% endif %}
             {% endif %}
             
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";

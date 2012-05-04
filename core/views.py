@@ -25,6 +25,7 @@ from core.decorators import render_to
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
+from core.search import search
 from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from employer.decorators import is_recruiter
 from employer.forms import StudentSearchForm
@@ -124,6 +125,21 @@ def check_employer_uniqueness(request):
     except Employer.DoesNotExist:
         data = True
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
+
+@require_http_methods(["POST", "GET"])
+@render_to('terms_agree_dialog.html')
+def terms_agree(request, extra_context=None):
+    if request.method == 'POST':
+        user_attributes = request.user.userattributes;
+        user_attributes.agreed_to_terms = True
+        user_attributes.agreed_to_terms_datetime = datetime.now()
+        user_attributes.save()
+        return HttpResponse()
+    else:
+        context = {}
+        context.update(extra_context or {}) 
+        return context
 
 
 @require_http_methods(["POST", "GET"])
