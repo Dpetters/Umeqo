@@ -267,7 +267,6 @@ def subscription_billing_cycle_change(request, form_class=ChangeBillingForm, ext
         context['refund'] = refund
         context['annual_plan_amount'] = annual_plan_amount
         context['prorated_amount'] = annual_plan_amount - refund 
-        print context
     context['form'] = form
     context.update(extra_context or {})
     return context

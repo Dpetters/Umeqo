@@ -70,7 +70,6 @@ class ChangeBillingForm(CardForm):
                 times, plan_stripe_id = value 
                 plan = stripe.Plan.retrieve(plan_stripe_id)
                 amount = plan.amount
-                print 1
                 string = "Bill me $%s per %s" % (format_money(plan.amount), billing_cycle)
 
                 if billing_cycle == "month":

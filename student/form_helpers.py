@@ -30,7 +30,7 @@ def get_student_data_from_ldap(email):
         pass
     return fname, lname, course_id
                 
-def student_lists_as_choices(recruiter_id):
+def student_lists_as_choices(has_at_least_premium, recruiter_id):
     student_list_types = []
     recruiter = Recruiter.objects.get(id=recruiter_id)
     e = recruiter.employer
@@ -39,7 +39,11 @@ def student_lists_as_choices(recruiter_id):
         student_lists = []
         if student_list_type[0] == student_enums.GENERAL:
             for student_list in student_enums.GENERAL_STUDENT_LISTS:
-                student_lists.append([0, student_list[1]])
+                if student_list[0] == student_enums.UNLOCKED_STUDENTS:
+                    if not has_at_least_premium: 
+                        student_lists.append([0, student_list[1]])
+                else:
+                    student_lists.append([0, student_list[1]])
         elif student_list_type[0] == student_enums.EVENT:
             events = e.events_attending.all()
             for index, event in enumerate(events):

@@ -164,11 +164,11 @@
 }
 #no_results_block {
     height:600px;
-    line-height:370px;
+    line-height:20px;
     text-align:center;
 }
 #no_results_message {
-    vertical-align:middle;
+    top:180px;
     position:relative;
 }
 #results_block {

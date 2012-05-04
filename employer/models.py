@@ -10,9 +10,9 @@ from django.dispatch import receiver
 from core import choices, mixins as core_mixins
 from core.models import Industry, EmploymentType, SchoolYear, GraduationYear, Course
 from employer import enums as employer_enums
+from employer.managers import EmployerManager
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
-from employer.managers import EmployerManager
 from subscription.choices import EMPLOYER_SIZE_CHOICES
 
 
@@ -43,7 +43,7 @@ class Employer(core_mixins.DateTracking):
            
     def get_absolute_url(self):
         return '%s?id=%d' % (reverse('employers'), self.id)
-    
+                        
     def get_customer(self):
         print "getting_customer"
         stripe.api_key = s.STRIPE_SECRET

@@ -13,7 +13,7 @@
     {% else %}
     <a class="student_resume_link{% if not visible %} needs_at_least_premium_to_view_student_resume{% endif %}" data-student-id="{{student.id}}" target="_blank" href="{% if visible %}{% url specific_student_resume student_id=student.id %}{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">View Resume</a>
     {% endif %}
-    <input name="student_checkbox" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
+    <input name="student_checkbox" data-unlocked="{{visible}}" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
     <label for="student_checkbox_{{student.id}}" data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</label>
     <span class="student_year">
         ({{student.graduation_year}}

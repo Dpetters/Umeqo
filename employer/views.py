@@ -41,7 +41,7 @@ from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterFor
                            DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.view_helpers import employer_search_helper, process_results, get_resume_book_size, \
-                                  order_results
+                                  order_results, get_unlocked_students
 from events.models import Event
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
@@ -101,7 +101,6 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     charges = get_charges(customer.id)
     context['charges'] = charges
     context['charge_total'] = sum_charges(charges)
-    print "Done with view"
     context.update(extra_context or {})
     return context
 
@@ -319,17 +318,20 @@ def employer_resume_book_toggle_student(request):
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    data = []
     if student in resume_book.students.visible():
         resume_book.students.remove(student)
-        data = {'action':employer_enums.REMOVED}
+        data['action'] = employer_enums.REMOVED
     else:
-        if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
-            raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
-        resume_book.students.add(student)
-        if not request.user.recruiter.employer.name != "Umeqo":
-            student.studentstatistics.add_to_resumebook_count += 1
-            student.studentstatistics.save()
-        data = {'action':employer_enums.ADDED}
+        employer = request.user.recruiter.employer
+        if student in get_unlocked_students(employer):
+            if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
+                raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
+            resume_book.students.add(student)
+            if not request.user.recruiter.employer.name != "Umeqo":
+                student.studentstatistics.add_to_resumebook_count += 1
+                student.studentstatistics.save()
+            data['action'] = employer_enums.ADDED
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
@@ -344,14 +346,16 @@ def employer_resume_book_add_students(request):
             raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    employer = request.user.recruiter.employer
     if request.POST['student_ids']:
         for id in request.POST['student_ids'].split('~'):
             student = Student.objects.get(id=id)
-            if student not in resume_book.students.visible():
-                resume_book.students.add(student)
-            if not request.user.recruiter.employer.name != "Umeqo":
-                student.studentstatistics.add_to_resumebook_count += 1
-                student.studentstatistics.save()
+            if student in get_unlocked_students(employer):
+                if student not in resume_book.students.visible():
+                    resume_book.students.add(student)
+                if not request.user.recruiter.employer.name != "Umeqo":
+                    student.studentstatistics.add_to_resumebook_count += 1
+                    student.studentstatistics.save()
     return HttpResponse()
 
 
@@ -423,8 +427,10 @@ def employer_students(request, extra_context=None):
             students = SearchQuerySet().models(Student).filter(visible=True)
         else:
             if student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-                students = recruiter.employer.starred_students.all()
+                students = get_unlocked_students(recruiter.employer)
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
+                students = recruiter.employer.starred_students.all()
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:
                 try:
                     resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
                 except ResumeBook.DoesNotExist:
@@ -527,7 +533,6 @@ def employer_students(request, extra_context=None):
         ordered_results = order_results(students, request)[start_index:start_index + results_per_page]
         ordered_result_objects = []
         for search_result in ordered_results:
-            print search_result.score
             if search_result.highlighted:
                 ordered_result_object = (search_result.object,  search_result.highlighted['text'][0])
             else:
@@ -573,6 +578,7 @@ def employer_students(request, extra_context=None):
 
         # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
+                'has_at_least_premium':request.META['has_at_least_premium'],
                 'recruiter_id': request.user.recruiter.id,
                 'ordering': request.user.recruiter.recruiterpreferences.default_student_result_ordering,                           
                 'results_per_page': request.user.recruiter.recruiterpreferences.default_student_results_per_page
@@ -581,7 +587,7 @@ def employer_students(request, extra_context=None):
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED
         context['email_delivery_type'] = core_enums.EMAIL
-        context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
+        context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[3][1]
         context['resume_book_capacity'] = s.RESUME_BOOK_CAPACITY
     context['TEMPLATE'] = 'employer_students.html'
     context.update(extra_context or {})

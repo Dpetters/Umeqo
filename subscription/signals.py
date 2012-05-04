@@ -135,10 +135,7 @@ def send_charge_receipt(*args, **kwargs):
     #users = User.objects.get(recruiter__employer__name=employer_name)
     #recipients = map(lambda x: x.email, users)
     recipients = ['dpetters91@gmail.com']
-    print charge
-    print employer_name
     receipt_file_path = get_or_create_receipt_pdf(charge, employer_name)
-    print receipt_file_path
     pdf_file = open(receipt_file_path, "rb")
     pdf_file
     receipt_file_name = receipt_file_path.split("/")[-1]

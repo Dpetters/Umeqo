@@ -205,7 +205,7 @@ function enforce_resume_book_size_limit(){
 function handle_resume_book_students_remove(e) {
     student_ids = [];
     $(".student_checkbox").each(function (el) {
-        if (this.checked) {
+        if (this.checked && $(this).data("unlocked")=="True") {
             student_ids.push($(this).data('student-id'));
         }
     });
@@ -248,7 +248,7 @@ function handle_resume_book_students_add(e) {
     if(!$(this).hasClass("disabled")){
         student_ids = [];
         $(".student_checkbox").each(function (el) {
-            if (this.checked) {
+            if (this.checked && $(this).data("unlocked")=="True") {
                 student_ids.push($(this).data('student-id'));
             }
         });

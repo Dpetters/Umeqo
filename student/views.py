@@ -27,6 +27,7 @@ from core.email import is_valid_email
 from countries.models import Country
 from employer.decorators import is_recruiter
 from employer.models import Employer
+from employer.view_helpers import get_unlocked_students
 from events.models import Attendee, RSVP, DroppedResume, Event
 from notification.models import NoticeSetting, NoticeType, EMAIL
 from registration.backend import RegistrationBackend
@@ -457,6 +458,9 @@ def specific_student_resume(request, student_id):
         student = Student.objects.get(id=student_id)
     except Student.DoesNotExist:
         raise Http404("A student with the id %s does not exist." % student_id)
+    employer = request.user.recruiter.employer
+    if not student in get_unlocked_students(employer):
+        raise Http403("You have not unlocked this student yet and thus can't view their resume. To unlock him/her either upgrade your subscription or have him/her RSVP to or attend one of your events.")
     resume = student.resume.read()
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())
