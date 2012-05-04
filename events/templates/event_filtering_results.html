@@ -4,6 +4,11 @@
     {% else %}
         {% if user.student %}
             {% for responded, attending, dropped_resume, attended, event in events %}
+                {{responded}}
+                {{attending}}
+                {{dropped_resume}}
+                {{attended}}
+                {{event}}
                 {% include "event_snippet.html" %}
             {% endfor %}
         {% else %}

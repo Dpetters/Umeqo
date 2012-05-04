@@ -331,6 +331,7 @@ def get_past_events_sqs(user):
 
 def get_categorized_events_context(events_exist, event_sqs, user):
     context = {'events_exist':events_exist}
+    print len(event_sqs)
     tomorrow = datetime.combine(date.today() + timedelta(days=1), time())
     happening_now_events = event_sqs.filter(SQ(start_datetime__lt = datetime.now()) | SQ(type="Rolling Deadline")).order_by("end_datetime")
     later_today_events = event_sqs.filter(SQ(start_datetime__gte = datetime.now()) | SQ(end_datetime__gte = datetime.now(), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow) | SQ(end_datetime__lt = tomorrow, type="Hard Deadline")).order_by("start_datetime")
@@ -346,6 +347,7 @@ def get_categorized_events_context(events_exist, event_sqs, user):
     context['this_weeks_events'] = map(event_map, [sr.object for sr in this_week_events.load_all()], [user]*len(this_week_events))
     context['next_weeks_events'] = map(event_map, [sr.object for sr in next_week_events.load_all()], [user]*len(next_week_events))
     context['later_events'] = map(event_map, [sr.object for sr in later_events.load_all()], [user]*len(later_events))
+    print context
     return context
 
     

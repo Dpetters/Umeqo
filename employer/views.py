@@ -547,7 +547,7 @@ def employer_students(request, extra_context=None):
             page = paginator.page(1)
         
         context['page'] = page
-        context['results'] = process_results(request.user.recruiter, page)
+        context['results'] = process_results(request.user.recruiter, request.META['has_at_least_premium'], page)
         context['current_student_list'] = request.GET['student_list']
         context['total_results_num'] = count
 

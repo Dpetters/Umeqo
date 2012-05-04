@@ -31,27 +31,28 @@ def get_num_of_events_attended_dict(recruiter, students):
     return num_of_events_attended_dict
 
 
-def get_visibility_attributes(recruiter, students):
-    rsvps = RSVP.objects.filter(attending=True, event__attending_employers__id__exact=recruiter.employer.id)
-    attendees = Attendee.objects.filter(event__attending_employers__id__exact=recruiter.employer.id)
-    dropped_resumes = DroppedResume.objects.filter(event__attending_employers__id__exact=recruiter.employer.id)
+def get_visibility_attributes(recruiter, has_at_least_premium, students):
+    if not has_at_least_premium:
+        rsvps = RSVP.objects.filter(attending=True, event__attending_employers__id__exact=recruiter.employer.id)
+        attendees = Attendee.objects.filter(event__attending_employers__id__exact=recruiter.employer.id)
+        dropped_resumes = DroppedResume.objects.filter(event__attending_employers__id__exact=recruiter.employer.id)
     
     visibility_attributes = {}
     for student in students:
-        if student in rsvps or student in attendees or student in dropped_resumes:
+        if has_at_least_premium or student in rsvps or student in attendees or student in dropped_resumes:
             visibility_attributes[student] = True
         else:
             visibility_attributes[student] = False
     return visibility_attributes
 
 
-def process_results(recruiter, page):
+def process_results(recruiter, has_at_least_premium, page):
     student_objects = [x[0] for x in page.object_list]
     is_in_resume_book_attributes = get_is_in_resumebook_attributes(recruiter, student_objects)
     is_starred_attributes = get_is_starred_attributes(recruiter, student_objects)
     comments = get_comments(recruiter, student_objects)
     num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, student_objects)
-    visibility_attributes = get_visibility_attributes(recruiter, student_objects)
+    visibility_attributes = get_visibility_attributes(recruiter, has_at_least_premium, student_objects)
     
     processed_results = []
     for i, object in enumerate(page.object_list):
