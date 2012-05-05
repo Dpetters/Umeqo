@@ -60,7 +60,10 @@
         </style>
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
-                var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
+                {% if user.recruiter %}
+                    var HAS_AT_LEAST_PREMIUM = "{{request.META.has_at_least_premium}}";
+                    var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
+                {% endif %}
                 
                 // AGREED_TO_TERMS is used to determine whether the terms dialog should be shown 
                 var TERMS_AGREE_URL = "{% url terms_agree %}";
@@ -89,7 +92,8 @@
         
             var CHECK_CONNECTION_MESSAGE = "{% include 'check_connection_message.html' %}";
             var CHECK_CONNECTION_MESSAGE_DIALOG = "{% include 'check_connection_message_dialog.html' %}";
-        
+            
+            var ACTION_FORBIDDEN_DIALOG = "{% include 'action_forbidden_dialog.html' %}";
             var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='#'>refresh</a>.";
             var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='#'>refresh</a>.</p>";
             var DEBUG = "{{debug}}";  

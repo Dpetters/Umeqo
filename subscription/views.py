@@ -160,9 +160,7 @@ def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_
 @render_to("payment_change.html")
 def payment_change(request, form_class=CardForm, extra_context=None):
     context = {}
-    stripe.api_key = s.STRIPE_SECRET
-    employer = request.user.recruiter.employer
-    customer = employer.get_customer()
+    customer = request.user.META['customer']
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
@@ -175,7 +173,6 @@ def payment_change(request, form_class=CardForm, extra_context=None):
     context['customer'] = customer
     context.update(extra_context or {})
     return context
-
 
 @user_passes_test(is_recruiter)
 @render_to("payment_forget.html")

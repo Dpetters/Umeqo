@@ -1,5 +1,7 @@
 from django.conf import settings as s
+from django.contrib.staticfiles.views import serve
 
+from debug_toolbar.views import debug_media
 from employer.decorators import is_recruiter
 
 
@@ -12,7 +14,7 @@ def has_at_least_premium(customer):
     
 class SubscriptionMiddleware(object):
     def process_view(self, request, view_func, view_args, view_kwargs):
-        if is_recruiter(request.user):
+        if not view_func == serve and not view_func == debug_media and is_recruiter(request.user):
             customer = request.user.recruiter.employer.get_customer()
             request.META['customer'] = customer
             has_at_least_premium_var = has_at_least_premium(customer)

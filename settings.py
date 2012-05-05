@@ -7,6 +7,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # The minimum password length that we allow
 PASSWORD_MIN_LENGTH = 5
 
+MAX_USERS_FOR_BASIC_USERS = 3
+
 # How long do we allow dialogs to load for before showing "this is taking longer
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000

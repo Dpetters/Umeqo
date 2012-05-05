@@ -35,6 +35,7 @@ var open_agree_to_terms_dialog = function () {
         success: function (data) {
             agree_to_terms_dialog.html(data);
             $("#accept_terms").click(function(e){
+                show_form_submit_loader(".agree_to_terms_dialog");
                 $.ajax({
                     url: TERMS_AGREE_URL,
                     type:"POST",

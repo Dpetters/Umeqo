@@ -207,3 +207,6 @@
 .agree_to_terms_dialog .button{
     margin:10px 0px;
 }
+.agree_to_terms_dialog .ajax_form_submit_loader{
+    margin-top:16px;
+}

@@ -1,3 +1,10 @@
+.needs_at_least_premium_to_create_more_users{
+    background: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    zoom: 1;
+    opacity:.5;
+}
 #search_and_filtering_table{
     border-collapse: collapse;
     width:100%;

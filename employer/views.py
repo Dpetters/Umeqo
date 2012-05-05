@@ -4,7 +4,6 @@ from __future__ import absolute_import
 import cStringIO
 import os
 import re
-import time
 import zipfile
 
 from datetime import datetime
@@ -34,6 +33,7 @@ from core.http import Http403, Http400
 from core.management.commands.zip_resumes import zip_resumes
 from core.models import Industry
 from core.search import search
+from core.templatetags.filters import format_unix_time
 from employer import enums as employer_enums
 from employer.decorators import has_at_least_premium, is_recruiter
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, \
@@ -76,11 +76,11 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     employer = recruiter.employer
     context['employer'] = employer
     customer = request.META['customer']
+    has_at_least_premium = request.META['has_at_least_premium']
     context['customer'] = customer
     subscription = customer.subscription
-
     if subscription:
-        context['current_period_end'] =  time.strftime("%m/%d/%Y", time.gmtime(customer.subscription.current_period_end))
+        context['current_period_end'] =  format_unix_time(customer.subscription.current_period_end)
     msg = request.GET.get('msg', None)
     if msg:
         page_messages = {
@@ -92,15 +92,14 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
         }
         if page_messages.has_key(msg):
             context["msg"] = page_messages[msg]
-
-    context['transactions'] = employer.transaction_set.all().order_by("timestamp")
     context['other_recruiters'] = employer.recruiter_set.exclude(id=recruiter.id)
     context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
-    
     charges = get_charges(customer.id)
     context['charges'] = charges
     context['charge_total'] = sum_charges(charges)
+    context['max_users_for_basic_users'] = s.MAX_USERS_FOR_BASIC_USERS
+    context['can_create_more_accounts'] = has_at_least_premium or len(Recruiter.objects.filter(employer=employer)) < s.MAX_USERS_FOR_BASIC_USERS
     context.update(extra_context or {})
     return context
 
@@ -149,6 +148,11 @@ def employer_profile_preview(request, slug, extra_context=None):
 @user_passes_test(is_recruiter)
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
+    employer = request.user.recruiter.employer
+    has_at_least_premium = request.META['has_at_least_premium']
+    recruiter_num = len(Recruiter.objects.filter(employer=employer))
+    if not has_at_least_premium and recruiter_num >= s.MAX_USERS_FOR_BASIC_USERS:
+        raise Http403("In order to create more than %d accounts for your firm, you must subscribe to a paid plan." % (s.MAX_USERS_FOR_BASIC_USERS))
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():

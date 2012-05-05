@@ -29,6 +29,8 @@
     var EMPLOYER_OTHER_RECRUITERS_URL = "{% url employer_other_recruiters %}";
     var EMPLOYER_ACCOUNT_DELETE_URL = "{% url employer_account_delete %}";
     var PAYMENT_INFO_FORGET_URL = "{% url payment_forget %}";
+    var SUBSCRIPTION_CHANGE_URL = "{% url subscription_change %}";
+    var MAX_USERS_FOR_BASIC_USERS = "{{max_users_for_basic_users}}";
     {% if other_recruiters %}
         var ONLY_RECRUITER = false;
     {% else %}
@@ -79,20 +81,21 @@
 
 {% block account_overview %}
     <h3>Create New Account</h3>
-    <div class="commands">
-        <p><a class="create_recruiter_link" href="#">Create a New Account</a></p>
+    <div id="create_users">
+        <div class="commands">
+            <p><a class="{% if can_create_more_accounts %}create_recruiter_link{% else %}needs_at_least_premium_to_create_more_users{% endif %}" href="{% if can_create_more_accounts %}#{% else %}{% url subscription_change %}{% endif %}">Create a New Account</a></p>
+        </div>
+        <p class="sub_header_message">Below are the other user accounts for {{user.recruiter.employer}}.</p>
+        
+        {% include 'employer_other_recruiters.html' %}
     </div>
-    <p class="sub_header_message">Below are the other user accounts for {{user.recruiter.employer}}.</p>
-    
-    {% include 'employer_other_recruiters.html' %}
-    
     <h3>Delete Your Account</h3>
     <p id="delete_account" class="sub_header_message">By deleting your account you lose 
         your login credentials and resume book history. 
         <a id="delete_account_link" class="caution" href="#">Delete Account</a>
     </p>
     
-    <p id="create_credentials" class="{% if not sa %}must_be_subscribed_annually{% endif %} sub_header_message">You are the only user for 
+    <p id="create_credentials" class="sub_header_message">You are the only user for 
         {{user.recruiter.employer}}. Before deleting your account, you need to <a class="create_recruiter_link" href="#">create one for another person at your firm</a>.
     </p>
 {% endblock %}
