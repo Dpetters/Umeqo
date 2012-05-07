@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    Stripe.setPublishableKey('pk_HLhAnc2IezyC7awtBdNVhQvt2fE7B');
+    Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
 
     function stripeResponseHandler(status, response) {
         if (response.error) {
