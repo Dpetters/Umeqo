@@ -3778,8 +3778,8 @@
   "pk": 19,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-02-05 19:37:06",
-   "click_count": 1,
+   "last_updated": "2012-04-16 22:24:00",
+   "click_count": 2,
    "question": "As a student, do I have to use my Athena password to register?",
    "slug": "student-do-i-have-use-my-athena-password-register",
    "topic": 8,
@@ -3874,8 +3874,8 @@
   "pk": 13,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-02-02 00:38:07",
-   "click_count": 3,
+   "last_updated": "2012-04-25 10:30:59",
+   "click_count": 5,
    "question": "Where did the title Umeqo come from and how is it pronounced?",
    "slug": "where-did-title-umeqo-come-and-how-it-pronounced",
    "topic": 1,
@@ -6748,6 +6748,15 @@
    "sort_order": 3.0,
    "last_updated": "2011-05-07 15:33:29",
    "name": "Externship"
+  }
+ },
+ {
+  "pk": 50,
+  "model": "core.industry",
+  "fields": {
+   "date_created": "2012-04-17 10:16:29",
+   "last_updated": "2012-04-17 10:16:29",
+   "name": "Advertising"
   }
  },
  {
