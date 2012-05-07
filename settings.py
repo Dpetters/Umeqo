@@ -318,8 +318,7 @@ INSTALLED_APPS = (
     'subscription',
     'ckeditor',
     'sentry',
-    'concurrent_server',
-    'zebra'
+    'concurrent_server'
 )
 
 try:
