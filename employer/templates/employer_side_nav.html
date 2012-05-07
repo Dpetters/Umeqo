@@ -9,7 +9,7 @@
     <h3>Students</h3>
     <a href="{% url employer_students %}">Browse Students</a>
     <a href="{% url employer_resume_book_history %}">Resume Book History</a>
-    <a href="{% if has_at_least_premium %}{% url employer_resumes_download %}{% else %}{% url subscriptions %}{% endif %}" class="{% if not has_at_least_premium %} needs_at_least_premium{% endif %}">Download All Resumes</a>
+    <a href="{% if has_at_least_premium %}{% url employer_resumes_download %}{% else %}{% url subscription_change %}{% endif %}" class="{% if not has_at_least_premium %} needs_at_least_premium{% endif %}">Download All Resumes</a>
     
     <h3>Events & Deadlines</h3>
     <a href="{% url event_new %}">Create New</a>
