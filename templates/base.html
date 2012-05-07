@@ -60,10 +60,8 @@
         </style>
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
-                {% if user.recruiter %}
-                    var HAS_AT_LEAST_PREMIUM = "{{request.META.has_at_least_premium}}";
-                    var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
-                {% endif %}
+                var HAS_AT_LEAST_PREMIUM = "{{request.META.has_at_least_premium}}";
+                var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
                 
                 // AGREED_TO_TERMS is used to determine whether the terms dialog should be shown 
                 var TERMS_AGREE_URL = "{% url terms_agree %}";
