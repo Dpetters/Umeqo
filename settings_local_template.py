@@ -6,8 +6,8 @@ TEMPLATE_DEBUG = DEBUG
 # Compress static content?
 COMPRESS = False
 
-STRIPE_PUBLISHABLE = ""
-STRIPE_SECRET = ""
+STRIPE_PUBLISHABLE = 'pk_HLhAnc2IezyC7awtBdNVhQvt2fE7B'
+STRIPE_SECRET = 'ablbC9pV7icRiB9lxf1I9eozfJ7tPEbA'
 
 # Students need an invite code to register
 INVITE_ONLY = False

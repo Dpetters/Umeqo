@@ -11,8 +11,8 @@ MANAGERS = ADMINS
 # Compress static content?
 COMPRESS = True
 
-STRIPE_PUBLISHABLE = 'pk_HLhAnc2IezyC7awtBdNVhQvt2fE7B'
-STRIPE_SECRET = 'ablbC9pV7icRiB9lxf1I9eozfJ7tPEbA'
+STRIPE_PUBLISHABLE = ''
+STRIPE_SECRET = ''
 
 # Students need an invite code to register
 INVITE_ONLY = False
