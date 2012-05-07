@@ -44,19 +44,19 @@ def get_or_create_receipt_pdf(charge, invoice, employer_name):
         for subscription in invoice.lines.subscriptions:
             item = Paragraph(subscription.plan.name, styles["Normal"])
             date = Paragraph("%s-%s" % (format_unix_time(subscription.period.start), format_unix_time(subscription.period.end)), styles["Normal"])
-            amount = Paragraph("$" + format_money(subscription.amount), right_align_style)
+            amount = Paragraph(format_money(subscription.amount), right_align_style)
             data.append([item, date, amount])
 
         for invoice_item in invoice.lines.invoiceitems:
             item = Paragraph(invoice_item.description, styles["Normal"])
             date = Paragraph(format_unix_time(invoice_item.date), styles["Normal"])
-            amount = Paragraph("$" + format_money(invoice_item.amount), right_align_style)
+            amount = Paragraph(format_money(invoice_item.amount), right_align_style)
             data.append([item, date, amount])
 
         for proration in invoice.lines.prorations:
             item = Paragraph(proration.description, styles["Normal"])
             date = Paragraph(format_unix_time(proration.date), styles["Normal"])
-            amount = Paragraph("$" + format_money(proration.amount), right_align_style)
+            amount = Paragraph(format_money(proration.amount), right_align_style)
             data.append([item, date, amount])
         
         
@@ -70,7 +70,7 @@ def get_or_create_receipt_pdf(charge, invoice, employer_name):
         story.append(table)
         
         total_amount_style = ParagraphStyle(name='BodyText', parent=styles['Normal'], alignment=TA_RIGHT, spaceBefore=1)
-        total_amount = Paragraph("<strong>Total:</strong> $%s" % format_money(charge.amount), total_amount_style)
+        total_amount = Paragraph("<strong>Total:</strong> %s" % format_money(charge.amount), total_amount_style)
         story.append(total_amount)
         
         
