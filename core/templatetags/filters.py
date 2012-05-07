@@ -12,7 +12,7 @@ def split(str, split_token):
 
 @register.filter
 def format_money(amount):
-    return '{:1,.2f}'.format(amount/100.0)
+    return str(amount)
 
 @register.filter
 def format_unix_time(unix_time):

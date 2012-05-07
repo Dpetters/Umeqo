@@ -23,6 +23,8 @@ def coord(x, y, unit=1):
 def get_or_create_receipt_pdf(charge, invoice, employer_name):
     pdf_name = "Umeqo_Charge_%s_%s.pdf" % (format_unix_time(charge.created).replace("/", "-"), charge.id)
     path = "%semployer/receipts/" % (s.MEDIA_ROOT)
+    if not os.path.exists(path):
+        os.makedirs(path)
     pdf_path = "%s%s" % (path, pdf_name)
     if not os.path.exists(pdf_path):
         story = []

@@ -9,7 +9,9 @@ Checkout |
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/checkout.css" />
 {% endcompress %}
-
+<script>
+    var STRIPE_PUBLISHABLE_KEY = "{{stripe_publishable_key}}";
+</script>
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 {% compress js %}
     <script src="{{ STATIC_URL }}js/subscription/checkout.js"></script>

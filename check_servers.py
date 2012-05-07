@@ -19,7 +19,7 @@ urls = [("PROD", prod_url), ("STAGING", staging_url), ("DEMO", demo_url)]
 
 # staging auth setup
 username = 'root'
-password = 'Bulle1tN3at'
+password = 'C4pt4inCol4'
 
 passwdmgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
 passwdmgr.add_password(None, staging_url, username, password)

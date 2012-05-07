@@ -333,10 +333,6 @@ def landing_page(request, extra_context = None):
                               "Check Students In"]
     tutorials = tutorials.filter(action__in = landing_page_tutorials)
     
-    employers = []
-    for employer in Employer.objects.all():
-        if (employer.logo) and employer.name != "Umeqo":
-            employers.append(employer)
     context = {
         'student_reg_form': StudentRegistrationForm(),
         'posted': posted,
@@ -345,7 +341,7 @@ def landing_page(request, extra_context = None):
         'form_error': form_error,
         'email_error': email_error,
         'tutorials': tutorials,
-        'employers': employers
+        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
     }
 
     if FeaturedEvent.objects.all().exists():

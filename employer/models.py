@@ -47,7 +47,6 @@ class Employer(core_mixins.DateTracking):
         return '%s?id=%d' % (reverse('employers'), self.id)
                         
     def get_customer(self):
-        print "getting_customer"
         stripe.api_key = s.STRIPE_SECRET
         
         if self.stripe_id:
