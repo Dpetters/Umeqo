@@ -328,7 +328,7 @@ def employer_resume_book_toggle_student(request):
         data['action'] = employer_enums.REMOVED
     else:
         employer = request.user.recruiter.employer
-        if student in get_unlocked_students(employer):
+        if student in get_unlocked_students(employer, request.META['has_at_least_premium']):
             if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
                 raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
             resume_book.students.add(student)
@@ -342,6 +342,7 @@ def employer_resume_book_toggle_student(request):
 @user_passes_test(is_recruiter)
 @require_POST
 def employer_resume_book_add_students(request):
+    print request.POST
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
     try:
@@ -351,10 +352,11 @@ def employer_resume_book_add_students(request):
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
     employer = request.user.recruiter.employer
+    unlocked_students = get_unlocked_students(employer, request.META['has_at_least_premium'])
     if request.POST['student_ids']:
         for id in request.POST['student_ids'].split('~'):
             student = Student.objects.get(id=id)
-            if student in get_unlocked_students(employer):
+            if student in unlocked_students:
                 if student not in resume_book.students.visible():
                     resume_book.students.add(student)
                 if not request.user.recruiter.employer.name != "Umeqo":
@@ -431,7 +433,7 @@ def employer_students(request, extra_context=None):
             students = SearchQuerySet().models(Student).filter(visible=True)
         else:
             if student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-                students = get_unlocked_students(recruiter.employer)
+                students = get_unlocked_students(recruiter.employer, request.META['has_at_least_premium'])
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 students = recruiter.employer.starred_students.all()
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:

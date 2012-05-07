@@ -5,16 +5,20 @@ from employer.models import ResumeBook, Employer, EmployerStudentComment
 from events.models import Attendee, RSVP, DroppedResume
 from student.models import Student
 
-def get_unlocked_students(employer):
-    rsvps = map(lambda x: x.student, RSVP.objects.filter(attending=True, event__attending_employers__id__exact=employer.id))
-    attendees = map(lambda x: x.student, Attendee.objects.filter(event__attending_employers__id__exact=employer.id))
-    dropped_resumes = map(lambda x: x.student, DroppedResume.objects.filter(event__attending_employers__id__exact=employer.id))
-    students = []
+def get_unlocked_students(employer, has_at_least_premium):
     all_students = Student.objects.visible()
-    for student in all_students:
-        if student in rsvps or student in attendees or student in dropped_resumes:
-            students.append(student)
-    return students
+    if has_at_least_premium:
+        return all_students
+    else:
+        rsvps = map(lambda x: x.student, RSVP.objects.filter(attending=True, event__attending_employers__id__exact=employer.id))
+        attendees = map(lambda x: x.student, Attendee.objects.filter(event__attending_employers__id__exact=employer.id))
+        dropped_resumes = map(lambda x: x.student, DroppedResume.objects.filter(event__attending_employers__id__exact=employer.id))
+        students = []
+    
+        for student in all_students:
+            if student in rsvps or student in attendees or student in dropped_resumes:
+                students.append(student)
+        return students
     
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
@@ -44,16 +48,12 @@ def get_num_of_events_attended_dict(recruiter, students):
 
 def get_visibility_attributes(recruiter, has_at_least_premium, students):
     visibility_attributes = {}
-    if has_at_least_premium:
-        for student in students:
+    unlocked_students = get_unlocked_students(recruiter.employer, has_at_least_premium)
+    for student in students:
+        if student in unlocked_students:
             visibility_attributes[student] = True
-    else:
-        unlocked_students = get_unlocked_students(recruiter.employer)
-        for student in students:
-            if student in unlocked_students:
-                visibility_attributes[student] = True
-            else:
-                visibility_attributes[student] = False
+        else:
+            visibility_attributes[student] = False
     return visibility_attributes
 
 

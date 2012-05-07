@@ -459,7 +459,7 @@ def specific_student_resume(request, student_id):
     except Student.DoesNotExist:
         raise Http404("A student with the id %s does not exist." % student_id)
     employer = request.user.recruiter.employer
-    if not student in get_unlocked_students(employer):
+    if not student in get_unlocked_students(employer, request.META['has_at_least_premium']):
         raise Http403("You have not unlocked this student yet and thus can't view their resume. To unlock him/her either upgrade your subscription or have him/her RSVP to or attend one of your events.")
     resume = student.resume.read()
     response = HttpResponse(resume, mimetype='application/pdf')
