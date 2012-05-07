@@ -2,7 +2,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 from django.conf import settings
-from django.conf.urls.defaults import patterns, include
+from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -41,12 +41,14 @@ urlpatterns += patterns('',
     (r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_done'),
     (r'^ckeditor/', include('ckeditor.urls')),
     (r'^sentry/', include('sentry.web.urls')),
+     url(r'zebra/',   include('zebra.urls',  namespace="zebra",  app_name='zebra') )
 )
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
     (r'^favicon\.ico/$', redirect_to, {'url':'%simages/favicon.ico' % settings.STATIC_URL}),
     (r'^contact-us/$', 'contact_us', {}, 'contact_us'),
-    (r'^terms/$', direct_to_template, {'template':'terms_of_service.html'}, 'terms_of_service'),
+    (r'^terms/$', direct_to_template, {'template':'terms.html'}, 'terms'),
+    (r'^terms/agree/$', 'terms_agree', {}, 'terms_agree'),
     (r'^help/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'help_center'),
     # Tutorials links to help center because I just put them there for now
     #(r'^help/tutorials/$', 'help_center', {'extra_context': {'login_form': AuthenticationForm}}, 'tutorials'),
@@ -82,9 +84,19 @@ urlpatterns += patterns('registration.views',
     (r'^activation/(?P<activation_key>\w+)/$', 'activate_user', {'extra_context': {'login_form': AuthenticationForm}}, 'student_activation'),
 )
 urlpatterns += patterns('subscription.views',
-    (r'^subscriptions/transaction/$', 'subscription_transaction_dialog', {}, 'subscription_transaction_dialog'),
-    (r'^subscriptions/free-subscription/$', 'free_subscription_info_dialog', {}, 'free_subscription_info_dialog'), 
-    (r'^subscriptions/$', 'subscription_list', {'extra_context': {'login_form':AuthenticationForm}}, 'subscription_list'),
+    (r'^subscription/checkout/(?P<plan>\w+)/$', 'checkout', {}, 'checkout'),
+    (r'^subscription/change/$', 'subscription_change', {}, 'subscription_change'),
+    (r'^subscription/upgrade/(?P<subscription_type>\w+)/$', 'subscription_upgrade', {}, 'subscription_upgrade'),
+    (r'^subscription/cancel/$', 'subscription_cancel', {}, 'subscription_cancel'),
+    (r'^subscription/billing-cycle/change/$', 'subscription_billing_cycle_change', {}, 'subscription_billing_cycle_change'),
+    (r'^account/request/$', 'account_request', {}, 'account_request'),
+    (r'^payment/change/$', 'payment_change', {}, 'payment_change'),
+    (r'^payment/forget/$', 'payment_forget', {}, 'payment_forget'),
+    (r'^receipt/view/(?P<charge_id>\w+)/$', 'receipt_view', {}, 'receipt_view'),
+    (r'^receipts/view/$', 'receipts_view', {}, 'receipts_view'),
+    (r'^subscriptions/$', 'subscriptions', {'extra_context': {'login_form':AuthenticationForm}}, 'subscriptions'),
+    (r'^webhooks/$', 'webhooks', {}, 'webhooks'),
+    (r'^webhooks/v2/$', 'webhooks_v2', {}, 'webhooks_v2'),
 )
 urlpatterns += patterns('events.views',
     (r'^events/short-slug-uniqueness/$', 'events_check_short_slug_uniqueness', {}, 'events_check_short_slug_uniqueness'),
@@ -163,6 +175,7 @@ urlpatterns += patterns('employer.views',
     (r'^employer/resume-books/current/add-students/$', 'employer_resume_book_add_students', {}, 'employer_resume_book_add_students'),
     (r'^employer/resume-books/current/remove-students/$', 'employer_resume_book_remove_students', {}, 'employer_resume_book_remove_students'),
     (r'^employer/resume-books/delete/$', 'employer_resume_book_delete', {}, 'employer_resume_book_delete'),
+    (r'^employer/resumes/download/$', 'employer_resumes_download', {}, 'employer_resumes_download'),
     (r'^employers/snippets/$', 'employer_snippets', {}, 'employer_snippets'),
     (r'^employers/$', 'employers', {}, 'employers'),
     (r'^(?P<slug>[A-Za-z0-9-]+)/$', 'employer_profile_preview', {}, 'employer_profile_preview')

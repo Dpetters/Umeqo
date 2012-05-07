@@ -23,7 +23,7 @@
     <h3>Profile</h3>
     <a href="{% url student_profile %}">{% if user.student.profile_created %}Edit{% else %}Create{% endif %} Profile</a>
     {% if user.student.profile_created %}
-    <a id="update_resume_link" href="javascript:void(0)">Update Resume</a>
+    <a id="update_resume_link" href="#">Update Resume</a>
     <div id="update_resume_div">
         <p id="line_one" class="dropbox_status"></p>
         <p id="line_two" class="dropbox_status">Drag & Drop PDF File Here</p>

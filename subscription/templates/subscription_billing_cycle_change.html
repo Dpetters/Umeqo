@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+Change Billing Cycle |
+{% endblock %}
+
+{% block metadata %}
+{% load filters %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_billing_cycle_change.css" />
+{% endcompress %}
+{% compress js %}
+<script src="{{ STATIC_URL }}js/subscription/subscription_billing_cycle_change.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<h1>Change Billing Cycle</h1>
+<div class="main_block no_header">
+    <form id="billing_cycle_change_form" action="" method="POST">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <div id="billing_cycle">
+            <h3>Choose Billing Cycle:</h3>
+            {{form.billing_cycle}}
+            <div id="amount_details">
+                <p>Subscription to Umeqo Premium (Annual) <span class="price">${{annual_plan_amount|format_money}}</span></p>
+                <p>Current Subscription Unused Time Credit <span class="price">- ${{refund|format_money}}</span></p>
+                <hr>
+                <p><strong>You will be charged <span class="price">${{prorated_amount|format_money}}</span></strong></p> 
+            </div>
+        </div>
+        <div id="payment_info">
+            <h3>Payment Info</h3>
+            {% if customer %}
+                {% include "active_card.html" %}
+                {% include 'card_form.html' with hidden="True" checkout="True" %}
+                {% include 'payment_change_link.html' %}
+                <div id="submit_div">
+                    {% include "card_form_submit_button.html" with checkout="True" %}                    
+                </div>
+            {% else %}
+                {% include 'card_form.html' with checkout="True" %}
+            {% endif %}
+        </div>
+    </form>
+</div>
+<p id="currency">All amounts shown are in US dollars.</p>
+{% endblock %}

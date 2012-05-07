@@ -54,7 +54,12 @@ function errors_in_dialog_error_section(dialog_class, jqXHR, textStatus, errorTh
     }
 }
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
+    console.log("HERE")
     if (errorThrown != "abort"){
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        console.log(jqXHR.status);
         if(jqXHR.status==0){
             $("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
         }else{

@@ -1,3 +1,5 @@
+var message = "";
+
 var open_contact_us_dialog = function () {
     var contact_us_dialog = $('<div class="dialog"></div>')
     .dialog({
@@ -16,6 +18,8 @@ var open_contact_us_dialog = function () {
 };
 
 $('.open_contact_us_dialog_link').live('click', function (e) {
+    message = $(this).data("message");
+    
     for(var i = 0; i < $(".dialog").length; i++){
            $($(".dialog")[i]).remove();        
     
@@ -26,6 +30,7 @@ $('.open_contact_us_dialog_link').live('click', function (e) {
     var contact_us_dialog_timeout = setTimeout(show_long_load_message_in_dialog, LOAD_WAIT_TIME);
     $.ajax({
         dataType: "html",
+        data: {'message': message},
         url: CONTACT_US_URL,
         complete : function(jqXHR, textStatus) {
             clearTimeout(contact_us_dialog_timeout);

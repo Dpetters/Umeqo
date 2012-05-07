@@ -1,0 +1,35 @@
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/subscription/card_form.js"></script>
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/card_form.css" />
+
+<div id="card_fields" {% ifequal hidden "True" %}class="hid"{% endifequal %}>
+    <p><b>We accept:</b> Visa, MasterCard, American Express, Discover, JCB, and Diners Club</p>
+    <table class="form_table">
+        <tr>
+            <th><label for="id_card_number" class="required">Card Number:<span class='error'>*</span></label></th>
+            <td colspan="3">
+                <div class="errorspace"></div>
+                <input type="text" size="20" autocomplete="off" id="id_card_number"/>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="id_card_expiry_month" class="required">Expiration (MM/YYYY)<span class='error'>*</span></label></th>
+            <td>
+                <div class="errorspace"></div>
+                <input type="text" size="2" id="id_card_expiry_month"/> /
+                <input type="text" size="4" id="id_card_expiry_year"/>
+            </td>
+            <th><label for="id_card_cvc" class="required">CVC:<span class='error'>*</span></label></th>
+            <td>
+                <div class="errorspace"></div>
+                <input type="text" size="4" autocomplete="off" id="id_card_cvc"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error_section error">
+                {{form.errors}}
+            </td>
+        </tr>
+    </table>
+</div>

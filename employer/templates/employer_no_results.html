@@ -6,6 +6,9 @@
             {% ifequal current_student_list all_students %}
                 No students matched your search/filtering criteria.
             {% endifequal %}
+            {% ifequal current_student_list unlocked_students_student_list %}
+                You have not unlocked any students yet.<br>To do so either <a href="{% url subscription_change %}">upgrade</a> or get them to RSVP to or attend one of your events.
+            {% endifequal %}
             {% ifequal current_student_list starred_students %}
                 You have not starred any students.
             {% endifequal %}

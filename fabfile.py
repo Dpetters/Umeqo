@@ -166,7 +166,7 @@ def update():
                     run("git pull origin master")
                 else:
                     run("git pull origin master")
-                run("python manage.py migrate --all --no-initial-data")
+                run("python manage.py migrate --all --merge --no-initial-data")
                 if env.type=="staging" or env.type=="demo":
                     run("python manage.py fix_campus_org_users")
                 restart_apache()

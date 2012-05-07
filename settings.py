@@ -7,12 +7,16 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # The minimum password length that we allow
 PASSWORD_MIN_LENGTH = 5
 
+MAX_USERS_FOR_BASIC_USERS = 3
+
 # How long do we allow dialogs to load for before showing "this is taking longer
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000
 
 # Send admins an email each time that a 404 is encountered
 SEND_BROKEN_LINK_EMAILS = True
+
+ALL_ZIPPED_RESUMES_FILENAME_START = "All Umeqo Resumes"
 
 # In bytes, 3MB
 MAX_RESUME_SIZE = 3*1024*1024
@@ -33,9 +37,20 @@ RESUME_BOOK_MAX_SIZE_AS_ATTACHMENT = 10 * 1024 * 1024 # 10MB
 # Number of top FAQ questions to display
 TOP_QUESTIONS_NUM = 10
 
+# Stripe Plan IDs
+BASIC_PLAN_ID = 1
+
 # Subscription UIDs
-ANNUAL_SUBSCRIPTION_UID = 0
-EVENT_SUBSCRIPTION_UID = 1
+# Make sure the monthly price appears first - it is used to compute the savings
+SUBSCRIPTION_UIDS = {
+    'premium':{
+        'year':(12, "1"),
+        'month':(1, "0")
+    }
+}
+
+MONTHLY_PREMIUM_SUBSCRIPTION_UID = 2
+ANNUAL_PREMIUM_SUBSCRIPTION_UID = 3
 
 # Max numbers of choices for each field on the student profile
 SP_MAX_LANGUAGES = 12;
@@ -150,6 +165,7 @@ CKEDITOR_CONFIGS = {
               '-', 'Bold', 'Italic', 'Underline',
               '-', 'Link', 'Unlink',
               '-', 'Maximize',
+              '-', 'Format',
             ],
             [      'HorizontalRule',
               '-', 'BulletedList', 'NumberedList',
@@ -223,10 +239,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.get_current_path',
     'core.context_processors.registration',
     'core.context_processors.load_wait_time',
-    'core.context_processors.employer_subscription',
     'core.context_processors.current_site',
     'core.context_processors.warnings',
-    'core.context_processors.caution'
+    'core.context_processors.caution',
+    'subscription.context_processors.subscription'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -238,7 +254,8 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'middleware.generic.SetRemoteAddrMiddleware',
     'middleware.log.LogMiddleware',
-    'middleware.exceptions.ProcessExceptionMiddleware'
+    'middleware.exceptions.ProcessExceptionMiddleware',
+    'subscription.middleware.SubscriptionMiddleware'
 )
 
 AUTH_PROFILE_MODULE = "student.Student"
@@ -298,8 +315,8 @@ INSTALLED_APPS = (
     'subscription',
     'ckeditor',
     'sentry',
+    'concurrent_server',
     'sorl.thumbnail',
-    'concurrent_server'
 )
 
 try:

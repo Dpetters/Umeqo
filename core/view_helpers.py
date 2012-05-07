@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+from campus_org.decorators import is_campus_org
 from campus_org.models import CampusOrg
+from employer.decorators import is_recruiter
 from employer.models import Employer
-from core.decorators import is_student, is_recruiter, is_campus_org
 from core import enums as core_enums
+from student.decorators import is_student
 
 
 def get_audiences(user):
@@ -17,8 +19,10 @@ def get_audiences(user):
     else:
         return [core_enums.ALL, core_enums.ANONYMOUS, core_enums.ANONYMOUS_AND_CAMPUS_ORGS, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.ANONYMOUS_AND_STUDENTS]
 
+
 def filter_faq_questions(user, questions):
     return questions.filter(audience__in = get_audiences(user))
+
 
 def employer_campus_org_slug_exists(slug, campusorg=None, employer=None):
     try:
@@ -44,6 +48,7 @@ def does_email_exist(email):
     except User.DoesNotExist:
         return False
 
+
 def english_join(l):
     if len(l) == 1:
         return str(l[0])
@@ -61,6 +66,7 @@ def english_join(l):
             o += item
         return o
 
+
 def get_ip(request):
     if 'HTTP_X_FORWARDED_FOR' in request.META:
         return request.META['HTTP_X_FORWARDED_FOR'].split(',')[-1]
@@ -68,6 +74,7 @@ def get_ip(request):
         return request.META['REMOTE_ADDR']
     else:
         return None
+
 
 def um_slugify(s):
     parts = filter(lambda n: n not in ('the', 'a', 'an', 'of', 'for'), s.split(' '))

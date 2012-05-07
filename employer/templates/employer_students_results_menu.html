@@ -15,36 +15,18 @@
             disabled resume_book_capacity_reached_gray_button
         {% endif %}
         ">
-        <span>Add to Resume Book</span>
+        <span><b>Add to Resume Book</b></span>
     </div>
     <div id="resume_book_remove_students" class="gray_button">
-        <span>Remove from Resume Book</span>
+        <span><b>Remove from Resume Book</b></span>
     </div>
     <div id="results_menu_more_actions" class="dropdown gray_button">
         <span>More Actions</span>
         <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
         <ul>
-            <li 
-            {% if sa %}
-                id="students_add_star"
-            {% else %}
-                class="must_be_subscribed_annually_e must_be_subscribed_annually"
-            {% endif %} 
-            >Add Star</li>
-            <li
-            {% if sa %}
-                id="students_remove_star"
-            {% else %}
-                class="must_be_subscribed_annually_e must_be_subscribed_annually"
-            {% endif %}  
-            >Remove Star</li>
-            <li
-            {% if sa %}
-                id="students_invite"
-            {% else %}
-                class="must_be_subscribed_annually_e must_be_subscribed_annually"
-            {% endif %} 
-            >Invite to Event</li>
+            <li>Add Star</li>
+            <li>Remove Star</li>
+            <li>Invite to Event</li>
         </ul>
     </div>
     <div id="results_menu_toggle_details" class="gray_button">

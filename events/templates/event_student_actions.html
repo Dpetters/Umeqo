@@ -1,0 +1,75 @@
+{% if not event.cancelled %}
+    {% if event.is_past  %}
+        {% if event.is_deadline %}
+            <span {% if event_page %}class="gray_button"{% endif %} disabled="disabled">Deadline has passed</span>
+        {% else %}
+            {% if user.student %}
+                {% if attending %}
+                    <span {% if event_page %}class="gray_button"{% endif %} disabled="disabled">You Attended</span> 
+                {% else %}
+                    <span {% if event_page %}class="gray_button"{% endif %} disabled="disabled">You didn't attend</span> 
+                {% endif %}
+            {% else %}
+                <span {% if event_page %}class="gray_button"{% endif %} disabled="disabled">Event Passed</span> 
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% if event.is_public %}
+            {% if user.is_anonymous %}
+                <div data-action="rsvp" id="rsvp_button" data-event-id="{{event.id}}" data-title="RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}" class="student_quick_registration_link{% if event_page %} gray_button{% endif %}">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
+            {% else %}
+                {% if user.student %}
+                    {% if responded %}
+                        {% if attending %}
+                            <a href="#" class="rsvp_no attending{% if event_page %} gray_button{% endif %}">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                        {% else %}
+                            <a href="#" class="rsvp_yes not_attending{% if event_page %} gray_button{% endif %}">{% if event.is_deadline %}Not Participating{% else %}Not Attending{% endif %}</a>
+                        {% endif %}
+                    {% else %}
+                        <a href="#" class="rsvp_yes{% if event_page %} gray_button{% endif %}">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                    {% endif %}
+                {% else %}
+                    <a href="#" class="drop_resume{% if event_page %} gray_button{% endif %}" disabled="disabled">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if user.student %}
+                {% if responded %}
+                    {% if attending %}
+                        <a href="#" class="rsvp_no attending{% if event_page %} gray_button{% endif %}">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                    {% else %}
+                        <a href="#" class="rsvp_yes not_attending{% if event_page %} gray_button{% endif %}">Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                    {% endif %}
+                {% else %}
+                    <div class="dropdown{% if event_page %} gray_button{% endif %}">
+                        <span>RSVP</span>
+                        <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+                        <ul>
+                            <li class="rsvp_yes">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</li>
+                            <li class="rsvp_no">Not {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</li>
+                        </ul>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="rsvp_choices dropdown{% if event_page %} gray_button{% endif %}" disabled="disabled">
+                     <span>RSVP</span>
+                    <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    {% if event.is_drop %}
+        {% if user.is_anonymous %}
+            <a href="#" data-title="Drop Resume" id="drop_resume_button" data-action="drop" data-event-id="{{event.id}}" class="student_quick_registration_link{% if event_page %} gray_button{% endif %}">Drop Resume</a>
+        {% else %}                        
+            {% if dropped_resume %}
+                <a href="#" class="undrop_resume resume_dropped{% if event_page %} gray_button{% endif %}" >Resume Dropped</a>
+            {% else %}
+                <a href="#" class="drop_resume{% if event_page %} gray_button{% endif %}" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% if user.recruiter or user.campusorg %}
+    <span class="archived_indicator{% if event_page %} gray_button{% endif %}" disabled="disabled">Archived</span>
+{% endif %}

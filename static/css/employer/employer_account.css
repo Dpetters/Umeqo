@@ -1,3 +1,10 @@
+.needs_at_least_premium_to_create_more_users{
+    background: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    zoom: 1;
+    opacity:.5;
+}
 #search_and_filtering_table{
     border-collapse: collapse;
     width:100%;
@@ -17,51 +24,41 @@
 #id_default_student_results_per_page, #id_default_student_result_ordering{
     width:160px;
 }
-#modify_subscription{
-    float:right;
-    margin-top:5px;
-}
-#subscription_info{
-    padding:5px 5px;
-}
-#subscription_info .active, #subscription_info .expired, 
-#subscription_info .cancelled, #subscription_info .grace {
-    color: #FFF;
-    text-shadow: #000 0 -1px 0;
-    background-color: #666;
-    font-size: 12px;
-    font-weight:bold;
-    margin-left:2px;
-    padding: 2px 4px;
-    vertical-align: top;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}
-#subscription_info .active{
-    background:green;
-    text-shadow:#222 0 -1px 0;
-}
-#subscription_info .expired, #subscription_info .cancelled{
-    background:#B00;
-    text-shadow:#222 0 -1px 0;
-}
-#subscription_info .grace {
-    background:#EF6700;
-    text-shadow:#222 0 -1px 0;
+
+
+#subscription, #payment{
+    padding:5px;
 }
 #subscription_name{
     font-size:22px;
 }
-#subscription_expiration{
+#subscription_status{
+    color: #FFF;
+    background:#468847;
+    font-size: 12px;
+    font-weight:bold;
+    margin-left:2px;
+    padding: 1px 4px 2px;
+    vertical-align: top;
+    -webkit-border-radius: 3px;
+    -moz-border-radius:3px;
+    border-radius: 3px;
+    white-space:nowrap;
+    text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+#subscription .past_due {
+    background:#F89406;
+}
+#subscription .unpaid{
+    background:#B94A48;
+}
+#upgrade_subscription{
+    float:right;
     margin-top:5px;
 }
-#delete_account_link{
-    margin-left:5px;
-    color:#990000 !important;
-}
+
 #employer_other_recruiters{
-    margin-top:5px;
+    margin-top:10px;
     list-style:inside none;
 }
 #employer_other_recruiters li{
@@ -100,13 +97,14 @@ li#no_recruiter_accounts{
 }
 #transactions table{
     width: 100%;
-    border-left: 1px solid #CCC;
-    border-top: 1px solid #CCC;
-    border-right: 1px solid #CCC;    
+    text-align:center;
 }
 #transactions table th, #transactions table td{
     padding: .4em;
-    border-bottom: 1px solid #CCC;
+    width:25%;
+}
+#transactions table, #transactions table th, #transactions table td{
+    border:1px solid #CCC;
 }
 #transactions table th{
     background-color:#EEE;
@@ -119,4 +117,14 @@ li#no_recruiter_accounts{
 }
 #no_past_payments{
     text-align:center;
+}
+#charge_summary{
+    text-align:right;
+    margin-top:10px;
+}
+#view_all_receipts{
+    margin-right:30px;
+}
+#charge_total{
+    margin-right:75px;
 }

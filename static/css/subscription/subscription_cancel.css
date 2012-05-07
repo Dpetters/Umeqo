@@ -1,0 +1,16 @@
+#important_notes{
+    margin-bottom:20px;
+}
+#lost_features{
+    margin:3px 0px;
+}
+ul{
+    list-style:inside;
+    line-height:20px;
+}
+#lost_features span{
+    display:none;
+}
+#subscription_cancel_confirm_form{
+    display:inline;
+}

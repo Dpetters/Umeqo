@@ -5,6 +5,7 @@ South==0.7.3
 amqplib==1.0.2
 anyjson==0.3.1
 boto==2.2.1
+certifi==0.0.6
 django-appconf==0.4.1
 django-ckeditor==0.0.9
 django-compressor==1.1.2
@@ -15,10 +16,10 @@ django-indexer==0.3.0
 django-kombu==0.9.4
 django-messages==0.4.4
 django-paging==0.2.4
+django-ratelimit==0.1
 django-sentry==1.12.0
 django-ses==0.3.0
 django-templatetag-sugar==0.1
-django-ratelimit==0.1
 eventlet==0.9.16
 greenlet==0.3.3
 kombu==1.5.1
@@ -29,8 +30,10 @@ pydkim==0.3
 pysolr==2.0.15
 python-ldap==2.4.6
 reportlab==2.5
+requests==0.9.0
 simplejson==2.3.2
 sorl-thumbnail==11.12
 ssh==1.7.13
+stripe==1.6.1
 virtualenv==1.6.4
 xlwt==0.7.2
