@@ -53,7 +53,7 @@ Subscription Choices |
                 </header>
                 <footer>
                     <ul>
-                        {% include "subscription_features_basic.html " %}
+                        {% include "subscription_features_basic.html" %}
                         <li class="last">
                              <a data-dialog-title="Umeqo Basic Account Request" subscription-type="basic" href="{% if user.recruiter %}{% url subscription_change %}{% else %}#{% endif %}" class="btn{% if not user.recruiter %} request_account_link{% endif %}">Get Umeqo Basic</a>
                         </li>
