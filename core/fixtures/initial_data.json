@@ -3874,8 +3874,8 @@
   "pk": 13,
   "model": "core.question",
   "fields": {
-   "last_updated": "2012-02-02 00:38:07",
-   "click_count": 3,
+   "last_updated": "2012-04-25 10:30:59",
+   "click_count": 5,
    "question": "Where did the title Umeqo come from and how is it pronounced?",
    "slug": "where-did-title-umeqo-come-and-how-it-pronounced",
    "topic": 1,
