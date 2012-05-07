@@ -1,0 +1,15 @@
+#current_payment_method{
+    margin:0px 10px 15px 10px;        
+    float:left;
+    width:320px;
+}
+#new_payment_method{
+    margin:8px 10px 15px 10px;    
+}
+#new_payment_method{
+    border-left:1px solid #CCC;
+    margin-left:320px;
+}
+#submit_div{
+    margin-left:19px;
+}

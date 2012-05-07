@@ -30,7 +30,7 @@ Account Settings |
         <div id="preferences_form_tabs">
             <ul>
                 <li><a href="#tabs-1">Account Overview</a></li>
-                <li {% if user.recruiter and not subs %}class="must_be_subscribed must_be_subscribed_w"{% endif %} id="preferences_tab"><a {% if user.recruiter and not subs %}{% else %}href="#tabs-2"{% endif %}>Preferences</a></li>
+                <li><a href="#tabs-2">Preferences</a></li>
                 {% block account_settings_tab_declarations %}
                 {% endblock %}
             </ul>
@@ -84,8 +84,6 @@ Account Settings |
                     {% endblock %}
                 </div>
             </div>
-            {% if user.recruiter and not user.recruiter.employer.subscribed %}
-            {% else %}
             <div id="tabs-2">
                 <div id="preferences">
                     {% block preferences %}
@@ -96,7 +94,7 @@ Account Settings |
                                     </td>
                                 </tr>
                                 <tr class="no_bottom_border">
-                                    <td class="button_cell" colspan="2">
+                                    <td class="button_cell centered" colspan="2">
                                         <input class="button" type='submit' value='Save Preferences'>
                                         <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                                     </td>
@@ -106,7 +104,6 @@ Account Settings |
                     </form>
                 </div>
             </div>
-            {% endif %}
             {% block account_settings_tab_definitions %}
             {% endblock %}
         </div>

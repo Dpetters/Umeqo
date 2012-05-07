@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
-from core.decorators import render_to, is_superuser
+from core.decorators import render_to
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
@@ -92,7 +92,7 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
     
 
 @render_to('super_login.html')
-@user_passes_test(is_superuser)
+@user_passes_test(lambda x: x.is_superuser)
 def super_login(request, form_class = SuperLoginForm,  extra_context=None):
     if request.method == "POST":
         form = form_class(data = request.POST)

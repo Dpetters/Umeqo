@@ -1,17 +1,20 @@
+import stripe
+
+from django.conf import settings as s
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
+from django.template.loader import render_to_string
 
 from core import choices, mixins as core_mixins
 from core.models import Industry, EmploymentType, SchoolYear, GraduationYear, Course
 from employer import enums as employer_enums
+from employer.managers import EmployerManager
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
 from student.models import Student, StudentBaseAttributes
-from employer.managers import EmployerManager
 from subscription.choices import EMPLOYER_SIZE_CHOICES
-from subscription.models import EmployerSubscription
 
 
 class Employer(core_mixins.DateTracking): 
@@ -29,6 +32,8 @@ class Employer(core_mixins.DateTracking):
     careers_website = models.URLField(verify_exists=False, blank=True, null=True)
     starred_students = models.ManyToManyField("student.Student", blank=True, null=True)
     
+    stripe_id = models.CharField(max_length=255, null=True, blank=True)
+  
     objects = EmployerManager()
     
     def __unicode__(self):
@@ -39,33 +44,43 @@ class Employer(core_mixins.DateTracking):
            
     def get_absolute_url(self):
         return '%s?id=%d' % (reverse('employers'), self.id)
-    
-    def subscribed(self):
-        try:
-            subscription = self.employersubscription
-        except EmployerSubscription.DoesNotExist:
-            return False
-        else:
-            if not subscription.expired():
-                return True
-        return False
-
-    def subscribed_annually(self):
-        try:
-            subscription = self.employersubscription
-        except EmployerSubscription.DoesNotExist:
-            return False
-        else:
-            if subscription.annual_subscription() and not subscription.expired():
-                return True
-        return False
+                        
+    def get_customer(self):
+        stripe.api_key = s.STRIPE_SECRET
         
+        if self.stripe_id:
+            customer = stripe.Customer.retrieve(self.stripe_id)
+            try:
+                deleted = customer.deleted
+            except AttributeError as e:
+                pass
+            else:
+                if deleted:
+                    customer = self.assign_customer()
+        else:
+            customer = self.assign_customer()
+        
+        return customer
+    
+    
+    def assign_customer(self):
+        customer = stripe.Customer.create(description=self.name)
+        self.stripe_id = customer.id
+        self.save()
+        return customer
+
 @receiver(signals.post_save, sender=Employer)
 def create_employer_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:
         if not EmployerStatistics.objects.filter(employer=instance).exists():
             EmployerStatistics.objects.create(employer=instance)
-
+        
+        # Subscribe the employer to our basic plan
+        stripe.api_key = s.STRIPE_SECRET
+        customer = stripe.Customer.create(description=instance.name,
+                                          plan=s.BASIC_PLAN_ID)
+        instance.stripe_id = customer.id
+        instance.save()
 
 class EmployerStatistics(core_mixins.DateTracking):
     employer = models.OneToOneField(Employer, unique=True, editable=False)

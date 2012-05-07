@@ -29,6 +29,8 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery_overrides.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/lib/ckeditor.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
+            <link rel="stylesheet" href="{{ STATIC_URL }}lib/bootstrap/popover.css" />
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap_popover_overrides.css" />
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/logged_in.css" />
             {% else %}
@@ -58,8 +60,19 @@
         </style>
         <script>
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
-                var MUST_BE_SUBSCRIBED_ANNUALLY = "{% text_snippet 'must_be_subscribed_annually' %}";
-                var MUST_BE_SUBSCRIBED = "{% text_snippet 'must_be_subscribed' %}";
+                {% if user.recruiter %}
+                    var HAS_AT_LEAST_PREMIUM = "{{request.META.has_at_least_premium}}";
+                    var NEEDS_AT_LEAST_PREMIUM = "{% text_snippet 'needs_at_least_premium' %}";
+                {% endif %}
+                
+                // AGREED_TO_TERMS is used to determine whether the terms dialog should be shown 
+                var TERMS_AGREE_URL = "{% url terms_agree %}";
+                var TERMS_URL = "{% url terms %}";
+                {% if user.userattributes.agreed_to_terms %}
+                     var AGREED_TO_TERMS = true;
+                {% else %}
+                     var AGREED_TO_TERMS = false; 
+                {% endif %}
             {% endif %}
             
             var TINY_AJAX_LOADER = "{% include 'tiny_ajax_loader.html' %}";
@@ -79,9 +92,10 @@
         
             var CHECK_CONNECTION_MESSAGE = "{% include 'check_connection_message.html' %}";
             var CHECK_CONNECTION_MESSAGE_DIALOG = "{% include 'check_connection_message_dialog.html' %}";
-        
-            var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.";
-            var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='javascript:void(0)'>refresh</a>.</p>";
+            
+            var ACTION_FORBIDDEN_DIALOG = "{% include 'action_forbidden_dialog.html' %}";
+            var single_line_long_load_message = "This is taking longer than usual. Check your connection and/or <a class='refresh_page_link' href='#'>refresh</a>.";
+            var two_line_long_load_message = "<p>This is taking longer than usual. <br/> Check your connection and/or <a class='refresh_page_link' href='#'>refresh</a>.</p>";
             var DEBUG = "{{debug}}";  
         </script>
         {% compress js %}
@@ -91,6 +105,8 @@
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/jquery_form_validation.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_validation/additional_methods.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_form_submission/jquery_form_submission.js"></script>
+            <script src="{{ STATIC_URL }}lib/bootstrap/bootstrap-tooltip.js"></script>
+            <script src="{{ STATIC_URL }}lib/bootstrap/bootstrap-popover.js"></script>
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
             <script src="{{ STATIC_URL }}js/base.js"></script>
@@ -141,7 +157,7 @@
                         {% endif %}
                         {% ifnotequal current_path "/login/" %}
                         <li id="login_button">
-                            <a tabindex="-1" href="javascript:void(0)">Login</a>
+                            <a tabindex="-1" href="#">Login</a>
                         </li>
                         {% endifnotequal %}
                     {% endif %}
@@ -153,18 +169,20 @@
                             <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
                         </li>
                         <li>
-                            <a id="account" href="javascript:void(0)" tabindex="-1">{{user.email|split:"@"|first}} <span class="arrow">&#9660;</span></a>
+                            <a id="account" href="#" tabindex="-1">{{user.email|split:"@"|first}} <span class="arrow">&#9660;</span></a>
                             <ul id="account_dropdown">
                             {% if user.student %}
                                 <li><a href="{% url student_profile %}">Edit Profile</a></li>
                                 <li><a href="{% url student_account %}">Account Settings</a></li>
                             {% endif %}
-                            {% if user.recruiter %}    
-                                <li><a {% if not user.recruiter.employer.subscribed %}class="must_be_subscribed must_be_subscribed_e"{% endif %} href="{% url employer_profile %}">Edit Profile</a></li>
-                                <li><a href="{% url subscription_list %}">Modify Subscription</a></li>
+                            {% if user.recruiter %}
+                                <li><a href="{% url employer_profile %}">Edit Profile</a></li>
+                                {% if can_upgrade %}
+                                 <li><a href="{% url subscription_change %}">Upgrade</a></li>
+                                {% endif %}
                                 <li><a href="{% url employer_account %}">Account Settings</a></li>
                             {% endif %}
-                            {% if user.campusorg %}    
+                            {% if user.campusorg %}
                                 <li><a href="{% url campus_org_profile %}">Edit Profile</a></li>
                                 <li><a href="{% url campus_org_account %}">Account Settings</a></li>
                             {% endif %}
@@ -262,12 +280,13 @@
                     <a id="home" href="{% url home %}" tabindex="-1">Home</a>
                     <a id="about" href="{% url about %}" tabindex="-1">About</a>
                     {% if not user.is_authenticated %}
-                        <a href="{% url subscription_list %}" tabindex="-1">For Recruiters</a>
+                        <a href="{% url subscriptions %}" tabindex="-1">For Recruiters</a>
                     {% endif %}
                     <a id="help" href="{% url help_center %}" tabindex="-1">Help</a>
-                    <a id="terms_of_service" href="{% url terms_of_service %}" tabindex="-1">Terms</a>
-                    <a id="contact" class="open_contact_us_dialog_link" href="javascript:void(0)" tabindex="-1">Contact Us</a>
+                    <a href="{% url terms %}#termsofservice" tabindex="-1">Terms</a>
+                    <a id="contact" class="open_contact_us_dialog_link" href="#" tabindex="-1">Contact Us</a>
                 </div>
+                <a target="_blank" href="http://www.rapidssl.com/learn-ssl/ssl-faq/index.html"><img id="ssl_seal" title="Umeqo is secured with a RapidSSL Certificate" alt="Secured with a RapidSSL Certificate" src="{{STATIC_URL}}images/rapidssl.gif"></a>
                 <p id="footer_info_block">
                     &copy; 2012 Umeqo. All Rights Reserved.
                 </p>

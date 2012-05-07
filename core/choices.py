@@ -1,3 +1,5 @@
+import datetime
+
 YES = 'Y'
 NO = 'N'
 
@@ -39,3 +41,6 @@ MONTH_CHOICES = (
     (NOVEMBER, "Nov"),
     (DECEMBER, "Dec"),
 )
+
+CURRENT_YEAR = datetime.date.today().year
+YEAR_CHOICES = [(i, i) for i in range(CURRENT_YEAR, CURRENT_YEAR + 10)]

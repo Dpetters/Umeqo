@@ -1,0 +1,44 @@
+h1{
+    margin-bottom:10px;
+}
+#current_subscription{
+    margin-bottom:20px;
+}
+
+.subscription{
+    margin-top:10px;
+    padding:20px;
+    border: 1px solid #CCC;
+}
+.subscription.current{
+    border:1px solid #769CBF;
+}
+.subscription_title{
+    width:230px;
+    padding-right:15px;
+    text-align:center;
+    
+}
+.subscription_features_header{
+    margin-bottom:5px;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration: underline;
+}
+.subscription_features{
+    width:300px;
+}
+
+.subscription_actions{
+    width:200px;
+}
+.subscription_actions{
+    text-align:center;
+}
+.learn_more{
+    display:none;
+}
+.subscription_prices{
+    font-weight:bold;
+    margin-bottom:8px;
+}

@@ -2,9 +2,20 @@
     {% ifequal category "upcoming" %}
         {% include "upcoming_events_list.html" %}
     {% else %}
-        {% for event in events %}
-            {% include "event_snippet.html" %}
-        {% endfor %}
+        {% if user.student %}
+            {% for responded, attending, dropped_resume, attended, event in events %}
+                {{responded}}
+                {{attending}}
+                {{dropped_resume}}
+                {{attended}}
+                {{event}}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% else %}
+            {% for event in events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% endif %}
     {% endifequal %}
 {% else %}
     {% include "event_filtering_no_results.html" %}

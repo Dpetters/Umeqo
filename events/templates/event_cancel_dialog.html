@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
+
 <div class="dialog_content_wrapper">
     <h3>Are you sure you want to cancel this {{event.type|lower}}?</h3>
     <p>All RSVPs will be notified of the cancellation.</p>
@@ -6,8 +8,8 @@
         {% csrf_token %}
         <table class="form_table">
             <tr>
-                <td class="button_cell">
-                    <a href="javascript:void(0)" class="button close_dialog_link">No, keep it</a>
+                <td class="centered button_cell">
+                    <a href="#" class="button close_dialog_link">No, keep it</a>
                     <a href="#" id="event_cancel_confirm_link" class="caution">Yes, cancel it</a>
                     <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
                 </td>

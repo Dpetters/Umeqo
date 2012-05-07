@@ -1,0 +1,34 @@
+{% load filters %}
+    
+<div class="subscription{% ifequal current_subscription 'True' %} current{% endifequal %}">
+    <table>
+        <tr>
+            <td class="subscription_title">
+                <h2>Umeqo {{subscription_type|capfirst}}</h2>
+            </td>
+            <td class="subscription_features">
+                <p class="subscription_features_header">Included Features</p>
+                {% include subscription_info.template %}
+            </td>
+            <td class="subscription_actions">
+                {% ifequal current_subscription "True" %}
+                    <a href="{% url employer_account %}">Account Settings</a>
+                {% else %}
+                    <p class="subscription_prices">
+                    {% ifequal subscription_info.plans "free" %}
+                        Free!
+                    {% else %}
+                        {% for plan in subscription_info.plans %}
+                            ${{plan.amount|format_money}}/{{plan.interval}}
+                            {% if not forloop.last %}
+                                or
+                            {% endif %}
+                        {% endfor %}
+                    {% endifequal %}
+                    </p>
+                <a href="{% url checkout plan=subscription_type %}" class="dark_button">Upgrade to {{subscription_type|capfirst}}</a>
+                {% endifequal %}
+            </td>
+        </tr>
+    </table>
+</div>

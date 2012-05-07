@@ -6,7 +6,6 @@
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_home.css"/>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
 {% endcompress %}
 {% include "event_snippet_css.html" %}
 <script>
@@ -23,7 +22,7 @@
 {% block left_side_container %}
     {% include "student_side_nav.html" %}
     <div id="statistics_block">
-        <h3 id="statistics_header">Your Statistics</h3>
+        <h3>Your Statistics</h3>
         <p><strong>Profile Views:</strong> {{user.student.studentstatistics.shown_in_results_count}}</p>
         <p><strong>Resume Views:</strong> {{user.student.studentstatistics.resume_view_count}}</p>
         <p><strong>Resume Book Count:</strong> {{user.student.studentstatistics.add_to_resumebook_count}}</p>

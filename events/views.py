@@ -22,16 +22,19 @@ from django.template.loader import render_to_string
 
 from campus_org.models import CampusOrg
 from employer.models import Employer
+from campus_org.decorators import is_campus_org
 from core.email import send_html_mail
 from core import enums as core_enums
 from core.http import Http403, Http400, Http500
-from core.decorators import is_recruiter, is_student, is_campus_org_or_recruiter, is_campus_org, render_to, has_annual_subscription, has_any_subscription
+from core.decorators import render_to
 from core.models import Edit
 from core.view_helpers import english_join
+from employer.decorators import is_recruiter
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
 from events.models import Attendee, Event, Invitee, RSVP, DroppedResume, notify_about_event
 from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
+from student.decorators import is_student
 from student.models import Student
 
 
@@ -43,7 +46,7 @@ def events(request, category, extra_context=None):
     if category=="archived":
         context['archived'] = True
     # We do a special thing for upcoming events to display them as "Today", "Tomorrow", "This week"
-    if category =="upcoming":
+    if category=="upcoming":
         context.update(event_filtering_helper(category, request))
     else:
         events_exist, events = event_filtering_helper(category, request)
@@ -62,7 +65,7 @@ def events(request, category, extra_context=None):
             context['event_filtering_form'] = EventFilteringForm(request.GET)
         else:
             context['event_filtering_form'] = EventFilteringForm()
-        if is_campus_org_or_recruiter(request.user):
+        if is_campus_org(request.user) or is_recruiter(request.user):
             template = "events_employer_campus_org.html"
         elif is_student(request.user):
             if not request.user.student.profile_created:
@@ -73,7 +76,7 @@ def events(request, category, extra_context=None):
 
 @require_GET
 @login_required
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def events_check_short_slug_uniqueness(request):
     if not request.GET.has_key("short_slug"):
         raise Http400("Request GET is missing the short_slug.")
@@ -167,8 +170,8 @@ def event_page(request, id, slug, extra_context=None):
             context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
         if is_recruiter(request.user):
-            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
-            context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all() and request.user.recruiter.employer.subscribed()
+            context['can_edit'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
+            context['show_admin'] = request.user.recruiter in event.owner.recruiter.employer.recruiter_set.all()
     
     if context.has_key('show_admin'):
         attendees = get_attendees(event)
@@ -210,8 +213,7 @@ def event_page(request, id, slug, extra_context=None):
     return context
 
 
-@user_passes_test(is_campus_org_or_recruiter)
-@has_annual_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("event_form.html")
 def event_new(request, form_class=None, extra_context=None):
     context = {}
@@ -257,8 +259,7 @@ def event_new(request, form_class=None, extra_context=None):
 
 
 @login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_list_download(request):
     if not request.GET.has_key("event_id"):
         raise Http400("Request GET is missing the event_id.")
@@ -285,17 +286,13 @@ def event_list_download(request):
         return response
 
 
-@login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_checkin_count(request):
     data = {'count':len(Event.objects.get(id=request.GET["event_id"]).attendee_set.all())}
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
 
-@login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to('event_list_export_completed.html')
 def event_list_export_completed(request, extra_context = None):
     if not request.GET.has_key("event_list"):
@@ -321,8 +318,7 @@ def event_list_export_completed(request, extra_context = None):
     return context
 
 
-@user_passes_test(is_campus_org_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to()
 def event_list_export(request, form_class = EventExportForm, extra_context=None):
     if request.method == 'POST':
@@ -366,9 +362,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
     return context
 
 
-@login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("event_form.html")
 def event_edit(request, id=None, extra_context=None):
     try:
@@ -423,8 +417,7 @@ def admin_of_event(event, user):
 
 
 @login_required
-@has_annual_subscription
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("event_cancel_dialog.html")
 def event_cancel(request, id, extra_context = None):
     if request.method == "POST":
@@ -466,10 +459,8 @@ def event_cancel(request, id, extra_context = None):
         return context
 
     
-@login_required
-@has_annual_subscription
 @require_POST
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_archive(request, id, extra_context = None):
     try:
         event = Event.objects.get(id=id)
@@ -488,8 +479,7 @@ def event_archive(request, id, extra_context = None):
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 @login_required
-@has_annual_subscription
-@user_passes_test(is_campus_org_or_recruiter)
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @render_to("rolling_deadline_end_dialog.html")
 def rolling_deadline_end(request, id, extra_context = None):
     if request.method == "POST":
@@ -519,9 +509,7 @@ def rolling_deadline_end(request, id, extra_context = None):
         return context
 
 
-@login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_annual_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_schedule(request):
     schedule = get_event_schedule(request.GET.get('event_date', datetime.now().strftime('%m/%d/%Y')), request.GET.get('event_id', None))
     return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
@@ -529,7 +517,6 @@ def event_schedule(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-@has_any_subscription
 def event_rsvp(request, event_id):
     try:
         event = Event.objects.get(pk=event_id)
@@ -537,7 +524,7 @@ def event_rsvp(request, event_id):
         raise Http404("Event with id '%s' does not exist." % event_id)
     else:
         # if method is GET then get a list of RSVPed students
-        if request.method == 'GET' and is_campus_org_or_recruiter(request.user):
+        if request.method == 'GET' and is_campus_org(request.user) or is_recruiter(request.user):
             data = map(lambda n: {'id': n.student.id, 'email': n.student.user.email}, event.rsvp_set.all())
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         # if POST then record student's RSVP
@@ -573,10 +560,8 @@ def event_drop(request, event_id):
     return HttpResponse()
 
 
-@login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_annual_subscription
 @require_GET
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_raffle_winner(request, extra_context=None):
     if not request.GET.has_key("event_id"):
         raise Http400("Request GET is missing the event_id")
@@ -593,9 +578,7 @@ def event_raffle_winner(request, extra_context=None):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
-@login_required
-@user_passes_test(is_campus_org_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):
     event = Event.objects.get(pk=event_id)
@@ -680,9 +663,8 @@ def event_rsvp_message(request, extra_context=None):
     return HttpResponse()
 
 
-@login_required
+@require_GET
 @user_passes_test(is_recruiter)
-@has_annual_subscription
 def events_by_employer(request):
     events = Event.objects.filter(Q(owner=request.user) | Q(attending_employers__in=[request.user.recruiter.employer])).filter(end_datetime__gte=datetime.now()).order_by("end_datetime")
     student_id, student = request.GET.get('student_id', None), None
@@ -703,10 +685,8 @@ def events_by_employer(request):
     return HttpResponse(simplejson.dumps(map(eventMap, events)), mimetype="application/json")
 
 
-@login_required
-@user_passes_test(is_recruiter)
-@has_annual_subscription
 @require_POST
+@user_passes_test(is_recruiter)
 def event_invite(request):
     event_id = request.POST.get('event_id', None)
     student_ids = request.POST.get('student_ids', None)

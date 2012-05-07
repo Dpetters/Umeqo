@@ -1,0 +1,15 @@
+#id_card_expiry_month{
+    width:17px;
+}
+#id_card_expiry_year{
+    width:30px;
+}
+#id_card_cvc{
+    width:45px;
+}
+#subscription_terms{
+    font-size:12px;
+    position:absolute;
+    margin-left:10px;
+    margin-top:7px;
+}

@@ -14,7 +14,7 @@ About |
 {% block content_area %}
 <h1>About Umeqo</h1>
 <div class="right_side_container">
-     <h2>Questions? <a class="open_contact_us_dialog_link" href="javascript:void(0)">Contact Us!</a></h2>
+     <h2>Questions? <a class="open_contact_us_dialog_link" href="#">Contact Us!</a></h2>
     <div id="au-numbers">
         <h2>Umeqo by the numbers</h2>
         <p><strong>MIT Campus Orgs Documented:</strong> {{campus_orgs|length}}</p>
@@ -32,6 +32,6 @@ About |
     <h3>What lies ahead?</h3>
     <p>With the Beta released to MIT students, campus organizations, and employers, we are busy garnening feedback, adding new features, and tweaking things here and there. With student and recruiter support, we hope that Umeqo becomes the de-facto standard event management and student discovery tool here at MIT and beyond.</p>
     <h3>How can I get involved?</h3>
-    <p>If you are an employer, support us by <a href="{% url subscription_list %}">subscribing</a>. If you're an MIT student, <a href="{% url student_registration %}">signup</a> and let us know of any feedback you have. If you are a student at another univesity, <a href="#" class="open_contact_us_dialog_link">contact us</a> and tell us where you are from! </p>
+    <p>If you are an employer, support us by <a href="{% url subscriptions %}">subscribing</a>. If you're an MIT student, <a href="{% url student_registration %}">signup</a> and let us know of any feedback you have. If you are a student at another univesity, <a href="#" class="open_contact_us_dialog_link">contact us</a> and tell us where you are from! </p>
 </div>
 {% endblock %}

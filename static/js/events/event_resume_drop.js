@@ -39,6 +39,7 @@ $('.drop_resume').live('click', function(e) {
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
         resume_drop.apply(this, [true]);
     }
+    e.preventDefault();
 });
 
 $('.undrop_resume').live('click', function(e) {
@@ -46,6 +47,7 @@ $('.undrop_resume').live('click', function(e) {
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
         resume_drop.apply(this, [false]);
     }
+    e.preventDefault();
 });
 
 $(".resume_dropped").live('mouseover', function(){

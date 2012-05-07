@@ -10,10 +10,10 @@ from django.core.urlresolvers import reverse
 from core.decorators import render_to
 
 from notification.models import Notice, NoticeType, NOTICE_MEDIA, get_notification_setting
-from core.decorators import is_student
+
 from notification.decorators import basic_auth_required, simple_basic_auth_callback
 from notification.feeds import NoticeUserFeed
-
+from student.decorators import is_student
 
 @basic_auth_required(realm='Notices Feed', callback_func=simple_basic_auth_callback)
 @user_passes_test(is_student)

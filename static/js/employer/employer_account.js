@@ -17,7 +17,7 @@ function open_account_deletion_dialog() {
     return $dialog;
 };
 
-function delete_account_link_click_handler() {
+function delete_account_link_click_handler(e) {
     account_deletion_dialog = open_account_deletion_dialog();
     account_deletion_dialog.html(DIALOG_AJAX_LOADER);
 
@@ -57,6 +57,7 @@ function delete_account_link_click_handler() {
             });
         }
     });
+    e.preventDefault();
 }
 
 function open_create_recruiter_dialog() {
@@ -66,7 +67,7 @@ function open_create_recruiter_dialog() {
         title:"New Recruiter Credentials",
         dialogClass: "create_recruiter_dialog",
         modal:true,
-        width:475,
+        width:500,
         resizable: false,
         close: function() {
             create_recruiter_dialog.remove();
@@ -76,7 +77,7 @@ function open_create_recruiter_dialog() {
     return $dialog;
 }
 
-function create_recruiter_credentials_link_click_handler() {
+function create_recruiter_credentials_link_click_handler(e) {
     create_recruiter_dialog = open_create_recruiter_dialog();
     create_recruiter_dialog.html(DIALOG_AJAX_LOADER);
     
@@ -91,6 +92,8 @@ function create_recruiter_credentials_link_click_handler() {
         error: function(jqXHR, textStatus, errorThrown) {
             if(jqXHR.status==0){
                 create_recruiter_dialog.html(CHECK_CONNECTION_MESSAGE_DIALOG);
+            }else if(jqXHR.status==403){
+                create_recruiter_dialog.html(ACTION_FORBIDDEN_DIALOG);
             }else{
                 create_recruiter_dialog.html(ERROR_MESSAGE_DIALOG);
             }
@@ -129,6 +132,9 @@ function create_recruiter_credentials_link_click_handler() {
                                     url: EMPLOYER_OTHER_RECRUITERS_URL,
                                     success: function(data){
                                         $("#employer_other_recruiters").replaceWith(data);
+                                        if($("#employer_other_recruiters li").length+1 >= MAX_USERS_FOR_BASIC_USERS){
+                                            $(".create_recruiter_link").removeClass("create_recruiter_link").addClass("needs_at_least_premium_to_create_more_users").attr("href", SUBSCRIPTION_CHANGE_URL);
+                                        }
                                     },
                                     error: errors_in_message_area_handler
                                 });
@@ -177,6 +183,7 @@ function create_recruiter_credentials_link_click_handler() {
             });
         }
     });
+    e.preventDefault();
 }
 
 $(document).ready( function() {
@@ -189,14 +196,10 @@ $(document).ready( function() {
     }
 
     if (get_parameter_by_name("tab")=="subscription"){
-        if(SUBS){
-            $("#preferences_form_tabs").tabs("select", 2);
-        }else{
-            $("#preferences_form_tabs").tabs("select", 1);
-        }
+        $("#preferences_form_tabs").tabs("select", 2);
     }
     
-    if (SUBSA && get_parameter_by_name("action")=="new_recruiter_credentials"){
+    if (get_parameter_by_name("action")=="new_recruiter_credentials"){
         create_recruiter_credentials_link_click_handler();
     } else if (!ONLY_RECRUITER && get_parameter_by_name("action")=="delete_account"){
         delete_account_link_click_handler();
@@ -204,4 +207,5 @@ $(document).ready( function() {
 
     $('#delete_account_link').click( delete_account_link_click_handler);
     $('.create_recruiter_link').click( create_recruiter_credentials_link_click_handler);
+    $("#create_users .needs_at_least_premium_to_create_more_users").tipsy({'gravity':'e', opacity: 0.9, live:true, fallback:"To create more than three accounts for your firm, you need to subscribe. Click to do so.", html:true});
 });
