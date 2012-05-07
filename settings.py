@@ -319,7 +319,8 @@ INSTALLED_APPS = (
     'ckeditor',
     'sentry',
     'concurrent_server',
-    'zebra'
+    'sorl.thumbnail',
+    'concurrent_server'
 )
 
 try:

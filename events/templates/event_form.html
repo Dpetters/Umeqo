@@ -7,6 +7,7 @@
 {% block metadata %}
 {{ block.super }}
 {% load text_snippet %}
+{% load logos %}
 <style type="text/css">
     #content_area input[type=text].datefield {
         background: url('{{STATIC_URL}}images/icons/calendar-select.png') 83px center no-repeat;
@@ -187,7 +188,7 @@
             <div id="attending_employers">
             {% if edit %}
                 {% for employer in attending_employers.all %}
-                    {% include "employer_logo.html" %}
+                    {% show_employer_thumbnail employer '135' %}
                 {% endfor %}
             {% endif %}
             </div>

@@ -26,6 +26,7 @@
 {% load compress %}
 {% load text_snippet %}
 {% load google_calendarize %}
+{% load logos %}
 {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons_colorful.css" />
@@ -62,10 +63,10 @@
             var STUDENT_QUICK_REGISTRATION_URL = "{% url student_quick_registration %}";
             var STUDENT_QUICK_REGISTRATION_DONE_URL = "{% url student_quick_registration_done %}"
             var STUDENT_INFO_URL = "{% url student_info %}"
-        
+
             var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
             var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
-            
+
             var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
             var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
             var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
@@ -82,7 +83,8 @@
     
             var PASSWORD_MIN_LENGTH="{{password_min_length}}";
         {% endif %}
-    
+
+        var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
         var EVENT_PAGE = true;
         var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
         var EMAIL_DELIVERY_TYPE = "{{ email_delivery_type }}";
@@ -105,6 +107,7 @@
         var DEADLINE_CANCELLED = "{% text_snippet 'deadline_cancelled' %}";
         var ROLLING_DEADLINE_ENDED = "{% text_snippet 'rolling_deadline_ended' %}";
         var STATIC_URL = "{{STATIC_URL}}";
+
         {% if event.is_drop %}
         var IS_DROP = true;
         {% else %}
@@ -337,7 +340,7 @@
         </div>
         <div id="attending_employers" class="main_block_content">
             {% for employer in attending_employers.all %}
-                {% include "employer_logo.html" %}
+                {% show_employer_thumbnail employer 'x76' %}
             {% endfor %}
             {% if event.include_and_more %}
                 <div id="and_more">
@@ -360,10 +363,10 @@
                 <div class="event_company">
                     <div class="event_host_logo">
                         {% if campus_org_event %}
-                            <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="#" class="campus_org_link"><img src="{{MEDIA_URL}}{{event.owner.campusorg.image}}" /></a>                        
+                            {% show_campusorg_logo event.owner.campusorg %}                      
                         {% else %}
                             {% if user.is_anonymous or user.student %}<a href="{{ event.owner.recruiter.employer.get_absolute_url }}">{% endif %}
-                            <img src="{{MEDIA_URL}}{{event.owner.recruiter.employer.logo}}" />
+                            {% show_employer_thumbnail event.owner.recruiter.employer '262'}
                             {% if user.is_anonymous or user.student %}</a>{% endif %}
                         {% endif %}
                     </div>
