@@ -5,9 +5,11 @@ Change Subscription |
 {% endblock %}
 
 {% block metadata %}
+{% load filters %}
 {% load compress %}
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription_change.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/subscription.css" />
 {% endcompress %}
 
 {% compress js %}
@@ -20,14 +22,35 @@ Change Subscription |
 <div class="left_side_container">
     {% include "employer_side_nav.html" %}
 </div>
-<h1>Change Subscription</h1>
-<form id="change_account_request_form" method="POST" action="">
-    <h3>Current Subscription</h3>
-    <div></div>
-    <h3>Other Subscriptions</h3>
+<div class="with_side_nav">
+    <h1>Change Subscription</h1>
     
-    <div>
-        <input class="button" type='submit' value='Checkout'>
+    <h3>Current Subscription</h3>
+    <div id="current_subscription">
+    {% include "subscription.html" with subscription_type=current_subscription_type subscription_info=current_subscription_info current_subscription="True" %}    
     </div>
-</form>
+    
+    <h3>Other Subscriptions</h3>
+    {% for subscription_type, subscription_info in subscriptions.items %}
+        {% include "subscription.html" %}
+    {% endfor %}
+    
+    <div class="subscription">
+        <table>
+            <tr>
+                <td class="subscription_title">
+                    <h2>Umeqo Enterprise</h2>
+                </td>
+                <td class="subscription_features">
+                    <p class="subscription_features_header">Included Features</p>
+                    {% include "subscription_features_enterprise.html" %}
+                </td>
+                <td class="subscription_actions">
+                    <p class="subscription_prices">$249/month or $2748/year</p>
+                    <a href="#" class="dark_button open_contact_us_dialog_link" data-message="Please let me know once Umeqo Enterprise is available for subscription.">Tell me when it's ready!</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 {% endblock %}

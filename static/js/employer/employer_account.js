@@ -199,7 +199,7 @@ $(document).ready( function() {
         $("#preferences_form_tabs").tabs("select", 2);
     }
     
-    if (SUBSA && get_parameter_by_name("action")=="new_recruiter_credentials"){
+    if (get_parameter_by_name("action")=="new_recruiter_credentials"){
         create_recruiter_credentials_link_click_handler();
     } else if (!ONLY_RECRUITER && get_parameter_by_name("action")=="delete_account"){
         delete_account_link_click_handler();

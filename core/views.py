@@ -156,9 +156,9 @@ def contact_us(request, form_class = AkismetContactForm, extra_context=None):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         if request.user.is_authenticated():
-            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email, 'body':request.GET.get("message", "")})
         else:
-            form = form_class(request=request)
+            form = form_class(request=request, initial={'body': request.GET.get('message', "")})
     context = { 'form': form,
                 'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us}
     context.update(extra_context or {}) 

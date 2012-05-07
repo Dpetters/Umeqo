@@ -103,27 +103,26 @@ def account_request(request, form_class = AccountRequestForm, extra_context=None
 @render_to("subscription_change.html")
 def subscription_change(request, form_class=SubscriptionChangeForm, extra_context=None):
     context = {}
-    if request.method == 'POST':
-        form = form_class(request.POST)
-        if form.is_valid():
-            employer = request.user.recruiter.employer
-            token = request.POST['stripeToken']
-            if employer.stripe_id:
-                customer = stripe.Customer.retrieve(
-                    employer.stripe_id
-                    )
-            else:
-                customer = stripe.Customer.create(
-                    card=token,
-                    plan="premium",
-                    email=request.user.email
-                )
-                employer.stripe_id = customer.id
-            employer.card = form.cleaned_data['stripe_token']
-            employer.last_4_digits = form.cleaned_data['last_4_digits']
-            customer.save()
+    
+    subscriptions = {'basic':{'template':'subscription_features_basic.html', 'plans':'free'}}
+    
+    for subscription_type in s.SUBSCRIPTION_UIDS.keys():
+        annual_subscription_id = s.SUBSCRIPTION_UIDS[subscription_type]['year'][1]
+        monthly_subscription_id = s.SUBSCRIPTION_UIDS[subscription_type]['month'][1]
+        annual_plan = stripe.Plan.retrieve(annual_subscription_id)
+        monthly_plan = stripe.Plan.retrieve(monthly_subscription_id)
+        subscriptions[subscription_type] = {'template':"subscription_features_%s.html" % subscription_type,'plans':[monthly_plan, annual_plan]}
+
+    # TODO make dynamic and not so custom one day
+    if request.META['has_at_least_premium']:
+        context['current_subscription_type'] = "premium"
+        context['current_subscription_info'] = subscriptions.pop("premium")
     else:
-        context['form'] = form_class()
+        context['current_subscription_type'] = "basic"
+        context['current_subscription_info'] = subscriptions.pop("basic")
+        
+    context['subscriptions'] = subscriptions
+          
     context.update(extra_context or {})
     return context
 
@@ -287,7 +286,9 @@ def receipt_view(request, charge_id):
     if not charge.id in charge_ids:
         raise Http403("You do not have permission to view this receipt.")
     
-    pdf_path = get_or_create_receipt_pdf(charge, employer.name)
+    invoice = stripe.Invoice.retrieve(charge.invoice)
+    
+    pdf_path = get_or_create_receipt_pdf(charge, invoice, employer.name)
     pdf_name = pdf_path.split("/")[-1]
     
     mimetype = "application/pdf"
@@ -309,7 +310,8 @@ def receipts_view(request):
     
     output = PdfFileWriter()
     for charge in charges:
-        receipt_path = get_or_create_receipt_pdf(charge, employer.name)
+        invoice = stripe.Invoice.retrieve(charge.invoice) 
+        receipt_path = get_or_create_receipt_pdf(charge, invoice, employer.name)
         receipt_file = open(receipt_path, "rb")
         output.addPage(PdfFileReader(receipt_file).getPage(0))
     if not os.path.exists(path):

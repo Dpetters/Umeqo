@@ -322,7 +322,7 @@ def employer_resume_book_toggle_student(request):
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
-    data = []
+    data = {}
     if student in resume_book.students.visible():
         resume_book.students.remove(student)
         data['action'] = employer_enums.REMOVED
