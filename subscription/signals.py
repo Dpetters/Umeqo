@@ -1,3 +1,8 @@
+import stripe
+
+from django.conf import settings as s
+from django.template.loader import render_to_string
+
 from core.dict import Struct
 from core.email import send_html_mail
 from subscription.view_helpers import get_or_create_receipt_pdf
@@ -127,21 +132,26 @@ WEBHOOK_MAP = {
 
 
 def send_charge_receipt(*args, **kwargs):
+    print args
+    print kwargs
     charge = kwargs['full_json']['data']['object']
     charge = Struct(**charge)
+    stripe.api_key = s.STRIPE_SECRET
+    invoice = stripe.Invoice.retrieve(charge.invoice)
     employer_name = charge.description
     if not employer_name:
         employer_name = ""
     #users = User.objects.get(recruiter__employer__name=employer_name)
     #recipients = map(lambda x: x.email, users)
     recipients = ['dpetters91@gmail.com']
-    receipt_file_path = get_or_create_receipt_pdf(charge, employer_name)
+    receipt_file_path = get_or_create_receipt_pdf(charge, invoice, employer_name)
     pdf_file = open(receipt_file_path, "rb")
     pdf_file
     receipt_file_name = receipt_file_path.split("/")[-1]
     content = pdf_file.read()
     pdf_file.close()
-    send_html_mail("Receipt", "Your receipt is attached", recipients, receipt_file_name, content, "application/pdf")
+    context = {}
+    send_html_mail("Receipt", render_to_string("charge_receipt_email_body.html", ), recipients, receipt_file_name, content, "application/pdf")
     
 
 
