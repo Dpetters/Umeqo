@@ -169,7 +169,7 @@ def update():
                 run("python manage.py migrate --all --merge --no-initial-data")
                 if env.type=="staging" or env.type=="demo":
                     run("python manage.py fix_campus_org_users")
-                restart_apache()
+                restart()
                 run("echo 'yes'|python manage.py collectstatic")
                 run("chmod 777 logs/ -R")
                 run("chmod 777 media/ -R")
