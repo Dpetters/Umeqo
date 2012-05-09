@@ -107,6 +107,7 @@ input.button {
     -webkit-box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
     box-shadow: inset 1px 1px 0px rgba(255,255,255,1);
     text-align:center;
+    min-width:50px;
 }
 .cke_skin_kama .cke_dialog_footer_buttons span.cke_dialog_ui_button{
     padding:5px 0px;

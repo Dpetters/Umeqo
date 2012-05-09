@@ -7,7 +7,7 @@ fabric_django.settings_module('settings')
 from django.conf import settings
 from south.models import MigrationHistory
 
-__all__= ["demo", "staging", "prod", "restart", "restart_apache", "create_database", "load_prod_data",
+__all__= ["demo", "staging", "prod", "restart", "restart_all", "create_database", "load_prod_data",
           "load_local_data", "commit_local_data", "commit_prod_data", "migrate",
           "update", "schemamigrate"]
 
@@ -32,13 +32,13 @@ def prod():
     env.directory = '/var/www/umeqo'
     env.activate = 'source /usr/local/pythonenv/UMEQO/bin/activate'
 
-def restart_apache():
+def restart():
     if env.host:
         sudo('service apache2 restart')
     else:
         abort("restart cannot be called locally.")
                     
-def restart():
+def restart_all():
     if env.host:
         sudo('service apache2 restart')
         sudo('service nginx restart')

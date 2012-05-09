@@ -443,6 +443,9 @@ a:hover {
     margin-bottom: 10px;
     min-height: 17px;
 }
+.dialog_content_wrapper .info{
+    margin-bottom:12px;
+}
 .caution, .ui-widget-content .caution {
     color: #990000 !important;
 }
@@ -482,4 +485,14 @@ a:hover {
 }
 .cancelled .cancelled_warning{
     display:inline !important;
+}
+.learn{
+    color:#888;
+}
+.learn .question{
+    font-size:11px;
+}
+.learn .question.link:hover{
+    text-decoration:underline;
+    cursor:pointer;
 }
