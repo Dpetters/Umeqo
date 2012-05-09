@@ -1,13 +1,3 @@
-.learn_more{
-    float:right;
-    background:#CCC;
-    padding:3px 6px;
-    color:#777;
-    position:relative;
-    bottom:2px;
-    border-radius:9px;
-    cursor:pointer;
-}
 #subscription_notes{
     width:310px;
     padding:15px 30px 20px 0;
@@ -310,4 +300,18 @@ section, header, hgroup, footer, .grid .btn {
 }
 .banner{
     position:absolute;
+}
+.learn_more{
+    right:0px;
+    bottom:8px;
+    margin-right:5px;
+    background:#CCC;
+    padding:3px 6px;
+    color:#777;
+    position:absolute;
+    margin-left:5px;
+    margin-top:2px;
+    border-radius:9px;
+    cursor:pointer;
+    line-height:1em;
 }
