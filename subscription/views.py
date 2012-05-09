@@ -1,12 +1,9 @@
 import os
-import stripe
 
 
 from django.http import HttpResponse, Http404
-from django.conf import settings as s
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import simplejson
-from django.template.loader import render_to_string
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -159,7 +156,7 @@ def subscription_upgrade(request, subscription_type, form_class=CardForm, extra_
 @render_to("payment_change.html")
 def payment_change(request, form_class=CardForm, extra_context=None):
     context = {}
-    customer = request.user.META['customer']
+    customer = request.META['customer']
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():

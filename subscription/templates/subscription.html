@@ -19,7 +19,7 @@
                         Free!
                     {% else %}
                         {% for plan in subscription_info.plans %}
-                            ${{plan.amount|format_money}}/{{plan.interval}}
+                            {{plan.amount|format_money}}/{{plan.interval}}
                             {% if not forloop.last %}
                                 or
                             {% endif %}
