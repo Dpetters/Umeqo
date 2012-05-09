@@ -2,10 +2,15 @@ import locale
 import time
 
 from django import template
+from django.conf import settings as s
 from django.template.defaultfilters import stringfilter
 
 register = template.Library()
-locale.setlocale(locale.LC_ALL, '')
+
+if s.SITE_ID==3:
+    locale.setlocale(locale.LC_ALL, '')
+else:
+    locale.setlocale( locale.LC_ALL, 'en_CA.UTF-8' )
 
 @register.filter
 @stringfilter
