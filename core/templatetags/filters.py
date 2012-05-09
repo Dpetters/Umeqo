@@ -1,9 +1,11 @@
+import locale
 import time
 
 from django import template
 from django.template.defaultfilters import stringfilter
 
 register = template.Library()
+locale.setlocale(locale.LC_ALL, '')
 
 @register.filter
 @stringfilter
@@ -12,7 +14,7 @@ def split(str, split_token):
 
 @register.filter
 def format_money(amount):
-    return str(amount)
+    return locale.currency(amount/100, grouping=True)
 
 @register.filter
 def format_unix_time(unix_time):
