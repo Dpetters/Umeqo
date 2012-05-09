@@ -17,7 +17,7 @@ form{
 #payment_info{
     border-left:1px solid #CCC;
     margin-left:320px;
-    padding-left:16px;
+    padding-left:20px;
 }
 #charge_amount{
     font-weight:bold;
