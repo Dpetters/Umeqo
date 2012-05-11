@@ -2340,10 +2340,10 @@
   "model": "employer.employer",
   "fields": {
    "industries": [],
-   "last_updated": "2012-05-08 21:14:23",
+   "last_updated": "2012-05-09 03:12:55",
    "description": "<p>\r\n\tNI&amp;CO is a full service Web, Graphic, Print design studio based in London, Soho and Surrey, Esher. We believe that creativity and innovation are integral to the design process and implement both into all of our work. Our creative design services include: Web Design and Development, Content Management Solutions, Fully Managed Website and Email Hosting, Printed Media, Social Media, Creative Branding and Logo Design.</p>\r\n<p>\r\n\tWith a large client base ranging from individuals wanting portfolios for their work such as artists, musicians, directors and photographers right through to high end fashion websites, nightclubs, restaurants, members clubs and promotion agencies, no job is too big or too small for us.</p>\r\n",
    "starred_students": [],
-   "stripe_id": null,
+   "stripe_id": "cus_WWHHutpYuPilvp",
    "visible": false,
    "offered_job_types": [],
    "date_created": "2012-05-08 21:14:23",
@@ -3603,6 +3603,44 @@
    "careers_website": "",
    "slug": "usnavy",
    "name": "US Navy"
+  }
+ },
+ {
+  "pk": 187,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [],
+   "last_updated": "2012-05-09 02:50:50",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-05-09 02:50:50",
+   "logo": "",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Us!"
+  }
+ },
+ {
+  "pk": 188,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [],
+   "last_updated": "2012-05-09 02:58:17",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-05-09 02:58:17",
+   "logo": "",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Us!e"
   }
  },
  {
