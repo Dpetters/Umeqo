@@ -240,8 +240,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.registration',
     'core.context_processors.load_wait_time',
     'core.context_processors.current_site',
-    'core.context_processors.warnings',
-    'core.context_processors.caution',
     'subscription.context_processors.subscription'
 )
 
