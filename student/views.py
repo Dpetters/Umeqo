@@ -18,19 +18,22 @@ from ratelimit.decorators import ratelimit
 from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
 from core import messages
-from core.decorators import is_student, render_to, is_recruiter, has_any_subscription
+from core.decorators import render_to
 from core.email import send_html_mail
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
 from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
 from core.email import is_valid_email
 from countries.models import Country
+from employer.decorators import is_recruiter
 from employer.models import Employer
+from employer.view_helpers import get_unlocked_students
 from events.models import Attendee, RSVP, DroppedResume, Event
 from notification.models import NoticeSetting, NoticeType, EMAIL
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
 from registration.view_helpers import register_student
+from student.decorators import is_student
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation
@@ -101,7 +104,7 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
         raise Http400("Request GET is missing the event_id.")
     if not request.GET.has_key('action'):
         raise Http400("Request GET is missing the action.")
-    context['form'] = StudentQuickRegistrationForm(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
+    context['form'] = form_class(initial={'event_id':request.GET['event_id'], 'action':request.GET['action']})
     action = request.GET['action']
     if action=="rsvp":
         context['action'] = "RSVP"
@@ -444,7 +447,6 @@ def student_resume(request):
 
 
 @require_GET
-@has_any_subscription
 @user_passes_test(is_recruiter)
 @ratelimit(rate='30/m')
 def specific_student_resume(request, student_id):
@@ -456,6 +458,9 @@ def specific_student_resume(request, student_id):
         student = Student.objects.get(id=student_id)
     except Student.DoesNotExist:
         raise Http404("A student with the id %s does not exist." % student_id)
+    employer = request.user.recruiter.employer
+    if not student in get_unlocked_students(employer, request.META['has_at_least_premium']):
+        raise Http403("You have not unlocked this student yet and thus can't view their resume. To unlock him/her either upgrade your subscription or have him/her RSVP to or attend one of your events.")
     resume = student.resume.read()
     response = HttpResponse(resume, mimetype='application/pdf')
     response['Content-Disposition'] = 'inline; filename=%s_%s_%s.pdf' % (student.id, student.user.last_name.lower(), student.user.first_name.lower())

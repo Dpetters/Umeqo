@@ -21,3 +21,11 @@ HIRE_NUM_CHOICES = (
     (FEW, "4-12"),
     (MANY, "13+")
 )
+
+MONTHLY = "m"
+ANNUAL = "a"
+
+BILLING_CYCLE_CHOICES = (
+(MONTHLY, "Monthly"),
+(ANNUAL, "Annually"),
+)

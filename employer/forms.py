@@ -142,7 +142,7 @@ class StudentFilteringForm(StudentDefaultFilteringParametersForm):
 
     def __init__(self, *args, **kwargs):
         super(StudentFilteringForm, self).__init__(*args, **kwargs)
-        self.fields['student_list'] = forms.ChoiceField(widget = UmSelectWidget, choices = student_lists_as_choices(kwargs.get('initial').get('recruiter_id', '')))
+        self.fields['student_list'] = forms.ChoiceField(widget = UmSelectWidget, choices = student_lists_as_choices(kwargs.get('initial').get('has_at_least_premium', ''), kwargs.get('initial').get('recruiter_id', '')))
 
 class RecruiterPreferencesForm(forms.ModelForm):
     default_student_result_ordering = forms.ChoiceField(label="Default Student Result Ordering:", choices = employer_enums.ORDERING_CHOICES, required = False)

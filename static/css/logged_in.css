@@ -2,7 +2,7 @@
     color: #FFF;
     background-color: rgba(255,255,255,0.3);
 }
-.must_be_subscribed_annually, .must_be_subscribed {
+.needs_at_least_premium {
     background: transparent;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
@@ -40,6 +40,7 @@
 #statistics_block {
     padding-left: 12px;
     padding-right: 10px;
+    margin-top:10px;
 }
 #statistics_block p {
     padding-left: 10px;
@@ -52,7 +53,7 @@
     background: -ms-linear-gradient(top, rgba(50,50,50,0.9) 0%,rgba(20,20,20,0.9) 100%); /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6323232', endColorstr='#e6141414',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, rgba(50,50,50,0.9) 0%,rgba(20,20,20,0.9) 100%); /* W3C */
-    min-width: 128px;
+    min-width: 136px;
     max-width:202px;
     display: block;
     position: absolute;
@@ -198,4 +199,14 @@
 }
 .notifications_list .empty_notices {
     padding: 10px;
+}
+
+.agree_to_terms_dialog .dialog_content_wrapper{
+    padding:5px 0px;
+}
+.agree_to_terms_dialog .button{
+    margin:10px 0px;
+}
+.agree_to_terms_dialog .ajax_form_submit_loader{
+    margin-top:16px;
 }

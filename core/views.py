@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
-from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.template import RequestContext, loader
@@ -19,19 +18,23 @@ from django.utils import simplejson
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.http import require_GET, require_http_methods
 
+from campus_org.decorators import is_campus_org
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
-from core.decorators import render_to, is_student, is_recruiter, is_campus_org, has_any_subscription, has_annual_subscription
+from core.decorators import render_to
 from core.forms import AkismetContactForm
 from core.http import Http403, Http400
 from core.models import Course, Language, Location, Question, Topic, Tutorial
+from core.search import search
 from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
+from employer.decorators import is_recruiter
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
 from events.view_helpers import get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
+from student.decorators import is_student
 from student.forms import StudentRegistrationForm
 from student.models import Student
 
@@ -125,6 +128,21 @@ def check_employer_uniqueness(request):
 
 
 @require_http_methods(["POST", "GET"])
+@render_to('terms_agree_dialog.html')
+def terms_agree(request, extra_context=None):
+    if request.method == 'POST':
+        user_attributes = request.user.userattributes;
+        user_attributes.agreed_to_terms = True
+        user_attributes.agreed_to_terms_datetime = datetime.now()
+        user_attributes.save()
+        return HttpResponse()
+    else:
+        context = {}
+        context.update(extra_context or {}) 
+        return context
+
+
+@require_http_methods(["POST", "GET"])
 @render_to('contact_us_dialog.html')
 def contact_us(request, form_class = AkismetContactForm, extra_context=None):
     if request.method == 'POST':
@@ -138,9 +156,9 @@ def contact_us(request, form_class = AkismetContactForm, extra_context=None):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     else:
         if request.user.is_authenticated():
-            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email})
+            form = form_class(request=request, initial={'name': "%s %s" % (request.user.first_name, request.user.last_name,), 'email':request.user.email, 'body':request.GET.get("message", "")})
         else:
-            form = form_class(request=request)
+            form = form_class(request=request, initial={'body': request.GET.get('message', "")})
     context = { 'form': form,
                 'thank_you_for_contacting_us_message' : messages.thank_you_for_contacting_us}
     context.update(extra_context or {}) 
@@ -149,7 +167,6 @@ def contact_us(request, form_class = AkismetContactForm, extra_context=None):
 
 @require_GET
 @login_required
-@has_annual_subscription
 def get_location_guess(request):
     if not request.has_key("query"):
         raise Http400("Request GET is missing the query.") 
@@ -165,7 +182,6 @@ def get_location_guess(request):
 
 @require_GET
 @login_required
-@has_annual_subscription
 @render_to("location_suggestions.html")
 def get_location_suggestions(request):
     if not request.GET.has_key('query'):
@@ -317,10 +333,6 @@ def landing_page(request, extra_context = None):
                               "Check Students In"]
     tutorials = tutorials.filter(action__in = landing_page_tutorials)
     
-    employers = []
-    for employer in Employer.objects.all():
-        if (employer.visible or employer.subscribed_annually()) and employer.name != "Umeqo":
-            employers.append(employer)
     context = {
         'student_reg_form': StudentRegistrationForm(),
         'posted': posted,
@@ -329,7 +341,7 @@ def landing_page(request, extra_context = None):
         'form_error': form_error,
         'email_error': email_error,
         'tutorials': tutorials,
-        'employers': employers
+        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
     }
 
     if FeaturedEvent.objects.all().exists():
@@ -341,7 +353,6 @@ def landing_page(request, extra_context = None):
     return context
 
 
-@has_any_subscription
 @render_to()
 def home(request, extra_context=None):
     context = {}

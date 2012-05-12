@@ -17,6 +17,7 @@ class Transaction(models.Model):
     
     class Meta:
         ordering = ('-timestamp',)
+        
     def save(self):
         if self.payment:
             if self.payment > 0:
@@ -57,7 +58,7 @@ class Subscription(models.Model):
         ordering = ('price','-recurrence_period')
 
     def __unicode__(self):
-        return self.name
+        return "%s Subscription" % self.name.title()
 
     def price_per_day(self):
         """Return estimate subscription price per day, as a float.
@@ -71,6 +72,11 @@ class Subscription(models.Model):
             return 0
         return float(self.price) / (self.recurrence_period*_recurrence_unit_days[self.recurrence_unit])
 
+class Card(models.Model):
+    employer = models.ForeignKey("employer.Employer")
+    last_4_digits = models.CharField(max_length=4)
+    expiration_date = models.DateField(default=datetime.date.today)
+
 
 class EmployerSubscription(models.Model):
     employer = models.OneToOneField("employer.Employer")
@@ -80,22 +86,22 @@ class EmployerSubscription(models.Model):
 
     grace_timedelta = datetime.timedelta(getattr(s, 'SUBSCRIPTION_GRACE_PERIOD', 2))
 
-    def annual_subscription(self):
+    def basic_subscription(self):
         try:
-            annual_subscription = Subscription.objects.get(uid=s.ANNUAL_SUBSCRIPTION_UID)
+            basic_subscription = Subscription.objects.get(uid=s.BASIC_SUBSCRIPTION_UID)
         except:
             return False
         else:
-            return self.subscription == annual_subscription
+            return self.subscription == basic_subscription
         
-    def event_subscription(self):
+    def premium_subscription(self):
         try:
-            event_subscription = Subscription.objects.get(uid=s.EVENT_SUBSCRIPTION_UID)
+            premium_subscription = Subscription.objects.get(uid=s.PREMIUM_SUBSCRIPTION_UID)
         except:
             return False
         else:
-            return self.subscription == event_subscription
-    
+            return self.subscription == premium_subscription
+        
     def time_left(self):
         return stringify(self.expires + self.grace_timedelta - datetime.date.today())
     

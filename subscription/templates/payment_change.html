@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Change Payment |
+{% endblock %}
+
+{% block metadata %}
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/payment_change.css" />
+{% endcompress %}
+
+{% compress js %}
+    <script src="{{ STATIC_URL }}js/subscription/payment_change.js"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content_area %}
+<h1>Change Payment Method</h1>
+<div class="main_block no_header">
+    <form id="payment_change_form" action="" method="POST">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <div id="current_payment_method">
+            <h3><u>Current Payment Method</u></h3>
+            {% if customer.active_card %}
+                {% include "active_card.html" %}
+            {% else %}
+                <p>You do not yet have a payment method set up.</p>
+            {% endif %}
+        </div>
+        <div id="new_payment_method">
+            <h3><u>Enter New Payment Details</u></h3>
+            {% include 'card_form.html' %}
+            <div id="submit_div">
+                {% include "card_form_submit_button.html" %}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

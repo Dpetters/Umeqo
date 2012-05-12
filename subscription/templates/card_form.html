@@ -1,0 +1,94 @@
+{% load compress %}
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+
+{% compress js %}
+<script type="text/javascript" src="{{STATIC_URL}}js/subscription/card_form.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/subscription/payment_cvc_help_dialog.js"></script>
+{% endcompress %}
+
+<script>
+    var PAYMENT_CVC_HELP_URL = "{% url payment_cvc_help %}";
+</script>
+
+<style>
+    .accepted_cards .card.visa{
+        background-image: url('{{STATIC_URL}}images/subscription/card_form/card-visa.gif');
+    }
+    .accepted_cards .card.master{
+        background-image: url('{{STATIC_URL}}images/subscription/card_form/card-diners.gif');
+    }
+    .accepted_cards .card.america_express{
+        background-image: url('{{STATIC_URL}}images/subscription/card_form/card-amex.gif');
+    }
+    .accepted_cards .card.discover{
+        background-image: url('{{STATIC_URL}}images/subscription/card_form/card-discover.gif');
+    }
+    .accepted_cards .card.jcb{
+        background-image: url('{{STATIC_URL}}images/subscription/card_form/card-jcb.gif');
+    }
+    .accepted_cards .card.diners_club{
+        background-image: url('{{STATIC_URL}}images/subscription/card_form/card-diners.gif');
+    }
+</style>
+
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/card_form.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/subscription/payment_cvc_help_dialog.css" />
+{% endcompress %}
+
+<div id="card_fields" {% ifequal hidden "True" %}class="hid"{% endifequal %}>
+    <div class="accepted_cards">
+        <ul class"cards">
+            <li>
+                <span class="text" >Accepted Cards:</span>
+            </li>
+            <li>
+                <span class="card visa" title="Visa">Visa</span>
+            </li>
+            <li>
+                <span class="card master" title="Mastercard">Mastercard</span>
+            </li>
+            <li>
+                <span class="card america_express" title="American Express">American Express</span>
+            </li>
+            <li>
+                <span class="card discover" title="Discover">Discover</span>
+            </li>
+            <li>
+                <span class="card jcb" title="JCB">JCB</span>
+            </li>
+            <li>
+                <span class="card diners_club" title="Diners Club">Diners Club</span>
+            </li>
+        </ul>
+    </div>
+    <table class="form_table">
+        <tr>
+            <th><label for="id_card_number" class="required">Card Number:<span class='error'>*</span></label></th>
+            <td colspan="3">
+                <div class="errorspace"></div>
+                <input type="text" size="20" autocomplete="off" id="id_card_number"/>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="id_card_expiry_month" class="required">Expiration (MM/YYYY)<span class='error'>*</span></label></th>
+            <td>
+                <div class="errorspace"></div>
+                <input type="text" size="2" id="id_card_expiry_month"/> /
+                <input type="text" size="4" id="id_card_expiry_year"/>
+            </td>
+            <th><label for="id_card_cvc" class="required">CVC:<span class='error'>*</span></label></th>
+            <td>
+                <div class="errorspace"></div>
+                <input type="text" size="4" autocomplete="off" id="id_card_cvc"/>
+                <!--<span class="learn_more">?</span>-->
+                <span class="learn">[<span class="link question open_cvc_help_dialog_link">?</span>]</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="error_section error">
+                {{form.errors}}
+            </td>
+        </tr>
+    </table>
+</div>

@@ -50,3 +50,9 @@
 .side_form_info ul {
     padding: 1px 0 10px;
 }
+label[for="id_previous_employers"]{
+    min-width: 120px;
+}
+label[for="id_countries_of_citizenship"]{
+    min-width:140px;
+}

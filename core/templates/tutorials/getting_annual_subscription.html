@@ -8,17 +8,17 @@ Getting an Annual Subscription
 
 {% block instructions %}
     {% if not user.recruiter %}
-        <p class="header"><span id="create_account" class="num">Step 1:</span> Click the <a target="_blank" href="{% url subscription_list %}">"For Recruiters"</a> link on the bottom of the page.</p>
-        <a target="_blank" href="{% url subscription_list %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/6.png"></a>
+        <p class="header"><span id="create_account" class="num">Step 1:</span> Click the <a target="_blank" href="{% url subscriptions %}">"For Recruiters"</a> link on the bottom of the page.</p>
+        <a target="_blank" href="{% url subscriptions %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/6.png"></a>
     {% else %}
         <p class="header"><span id="create_account" class="num">Step 1:</span> From the dropdown menu on the top right of any page, click "Modify Subscription".</p>
         <a target="_blank" href="{% url employer_account %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/1.png"></a>
     {% endif %}
         <p id="contact_us" class="header"><span class="num">Step 2:</span> Click the "Contact Us" button in the annual subscription block.</p>
-        <a target="_blank" href="{% url subscription_list %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/4.png"></a>
+        <a target="_blank" href="{% url subscriptions %}"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/4.png"></a>
         <p class="header"><span class="num">Step 3:</span> Fill out the subscription request form and we will send you further instructions.</p>
         <p>In particular, we will send you the price and terms of the subscription, terms of service, and instructions on how to make payment.</p>
-        <a target="_blank" href="{% url subscription_list %}?action=open_transaction_dialog"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/5.png"></a>
+        <a target="_blank" href="{% url subscriptions %}?action=request_account"><img src="{{STATIC_URL}}images/tutorials/getting_annual_subscription/5.png"></a>
 {% endblock %}
 
 

@@ -2,7 +2,7 @@ from django.conf import settings as s
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
-from core.decorators import is_recruiter
+from employer.decorators import is_recruiter
 from subscription.models import EmployerSubscription
 
 
@@ -34,21 +34,13 @@ def current_site(request):
     return {
         'current_site': Site.objects.get(id=s.SITE_ID)
         }
-
-def employer_subscription(request):
-    if is_recruiter(request.user):
-        return {
-        'sa': request.user.recruiter.employer.subscribed_annually,
-        'subs':request.user.recruiter.employer.subscribed
-        }
-    return {}
-
+    
 # Cautions are orange. Warnings are red.
 def caution(request):
     cautions = []
     if is_recruiter(request.user) and EmployerSubscription.objects.filter(employer = request.user.recruiter.employer).exists():
         employer_subscription = request.user.recruiter.employer.employersubscription
-        subscription_path = reverse("subscription_list")
+        subscription_path = reverse("subscriptions")
         if employer_subscription.in_grace_period():
             action_wording = "Renew now"
             if employer_subscription.subscription.uid == s.EVENT_SUBSCRIPTION_UID:
@@ -63,7 +55,7 @@ def warnings(request):
     warnings = []
     if is_recruiter(request.user) and EmployerSubscription.objects.filter(employer = request.user.recruiter.employer).exists():       
         employer_subscription = request.user.recruiter.employer.employersubscription
-        subscription_path = reverse("subscription_list")
+        subscription_path = reverse("subscriptions")
         if employer_subscription.expired():
             if request.get_full_path() != subscription_path:
                 if employer_subscription.subscription.uid == s.EVENT_SUBSCRIPTION_UID:

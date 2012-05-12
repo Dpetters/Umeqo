@@ -1,0 +1,37 @@
+form{
+    padding:5px;
+}
+#billing_cycle, #payment_info{
+    margin:0px 10px 15px 10px;    
+}
+#billing_cycle{
+    float:left;
+}
+#billing_cycle ul{
+    list-style:none;
+}
+#billing_cycle ul li{
+    margin-top:5px;
+    margin-left:3px;
+}
+#payment_info{
+    border-left:1px solid #CCC;
+    margin-left:320px;
+    padding-left:20px;
+}
+#charge_amount{
+    font-weight:bold;
+    font-size:14px;
+    margin-top:30px;
+    margin-left:4px;
+    position:absolute;
+    bottom:40px;
+}
+#currency{
+    text-align:center;
+    color:#666;
+    font-size:11px;
+}
+#submit_div .ajax_form_submit_loader{
+    margin-left:350px;
+}

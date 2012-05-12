@@ -9,18 +9,14 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.template import Context
-from django.template.loader import render_to_string
-
 from django.core.exceptions import ImproperlyConfigured
-
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AnonymousUser
-
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-
+from django.template import Context
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext, get_language, activate
 

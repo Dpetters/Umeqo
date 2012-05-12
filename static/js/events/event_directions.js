@@ -6,6 +6,7 @@ function activate_geolocation(){
             var url = $.trim($(this).text());
             return '<a class="get_directions" data-longitude="' + longitude + '" data-latitude="' + latitude + '" href="' + url + '" target="_blank">' + url + '</a>';            
         }
+        return $(this).contents();
     });
 }
 

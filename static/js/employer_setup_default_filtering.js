@@ -94,7 +94,7 @@ $(document).ready(function(){
                 },
                 success: function (data) {
                     hide_dialog_form_submit_loader();
-                    var success_message = "<br><div class='message_section'><p>Your default filtering parameters have been updated.</p><br><a id='close_dialog_link' href='javascript:void(0)'>Close Dialog</a></div>";
+                    var success_message = "<br><div class='message_section'><p>Your default filtering parameters have been updated.</p><br><a id='close_dialog_link' href='#'>Close Dialog</a></div>";
                     $default_filtering_parameters_dialog.html(success_message);
                     $default_filtering_parameters_dialog.dialog('option', 'position', 'center');
                     $("#close_dialog_link").live('click', function () {

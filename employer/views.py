@@ -6,7 +6,8 @@ import os
 import re
 import zipfile
 
-from datetime import datetime, date
+from datetime import datetime
+from haystack.query import SearchQuerySet, SQ
 from pyPdf import PdfFileWriter, PdfFileReader
 from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
@@ -23,30 +24,31 @@ from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
-
-from core.search import search
-from haystack.query import SearchQuerySet, SQ
-from events.models import Event
-from core.digg_paginator import DiggPaginator
-
-from core.decorators import has_any_subscription, has_annual_subscription, is_student, \
-                            is_student_or_recruiter, is_recruiter, render_to
-from core.email import send_html_mail
 from core import messages, enums as core_enums
+from core.decorators import render_to
+from core.digg_paginator import DiggPaginator
+from core.email import send_html_mail
+from core.file_utils import find_first_file
 from core.http import Http403, Http400
+from core.management.commands.zip_resumes import zip_resumes
 from core.models import Industry
+from core.search import search
+from core.templatetags.filters import format_unix_time
 from employer import enums as employer_enums
+from employer.decorators import has_at_least_premium, is_recruiter
 from employer.forms import CreateEmployerForm, EmployerProfileForm, RecruiterForm, \
                            RecruiterPreferencesForm, StudentFilteringForm, StudentSearchForm, \
                            DeliverResumeBookForm
 from employer.models import ResumeBook, Recruiter, Employer, EmployerStudentComment
 from employer.view_helpers import employer_search_helper, process_results, get_resume_book_size, \
-                                  get_students_in_resume_book, order_results
+                                  order_results, get_unlocked_students
+from events.models import Event
 from events.view_helpers import get_employer_upcoming_events_context
 from registration.forms import PasswordChangeForm
 from student import enums as student_enums
+from student.decorators import is_student
 from student.models import Student
-from subscription.models import EmployerSubscription
+from subscription.utils import sum_charges, get_charges
 
 
 @require_GET
@@ -66,43 +68,38 @@ def employer_logo(request):
 @user_passes_test(is_recruiter)
 @render_to("employer_account.html")
 def employer_account(request, preferences_form_class = RecruiterPreferencesForm, 
-                     change_password_form_class = PasswordChangeForm, extra_context=None):
+                     change_password_form_class = PasswordChangeForm,
+                     extra_context=None):
     context = {}
     recruiter = request.user.recruiter
-    employer = request.user.recruiter.employer
-    
+    context['recruiter'] = recruiter
+    employer = recruiter.employer
+    context['employer'] = employer
+    customer = request.META['customer']
+    has_at_least_premium = request.META['has_at_least_premium']
+    context['customer'] = customer
+    subscription = customer.subscription
+    if subscription:
+        context['current_period_end'] =  format_unix_time(customer.subscription.current_period_end)
     msg = request.GET.get('msg', None)
     if msg:
         page_messages = {
+            'payment-changed': messages.payment_changed,
             'password-changed': messages.password_changed,
+            'subscription-cancelled' : messages.subscription_cancelled,
+            'upgraded_to_premium' : messages.upgraded_to_premium,
+            'changed_billing' : messages.changed_billing
         }
-        context["msg"] = page_messages[msg]
-    
-    try:
-        es = employer.employersubscription
-    except EmployerSubscription.DoesNotExist:
-        context["subscription_button_text"] = "Subscribe"
-    else:
-        context["subscription_button_text"] = "Modify Subscription"
-        context['subscription'] = es
-        if es.cancelled:
-            context['subscription_text'] = "Cancelled"
-            context['subscription_class'] = "cancelled"
-        elif es.expired():
-            context['subscription_text'] = "Expired"
-            context['subscription_class'] = "expired"
-        else:
-            if es.expires < date.today():
-                context['subscription_text'] = "Grace Period"
-                context['subscription_class'] = "grace"
-            else:
-                context['subscription_text'] = "Active"
-                context['subscription_class'] = "active"
-
-    context['transactions'] = employer.transaction_set.all().order_by("timestamp")
+        if page_messages.has_key(msg):
+            context["msg"] = page_messages[msg]
     context['other_recruiters'] = employer.recruiter_set.exclude(id=recruiter.id)
     context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
+    charges = get_charges(customer.id)
+    context['charges'] = charges
+    context['charge_total'] = sum_charges(charges)
+    context['max_users_for_basic_users'] = s.MAX_USERS_FOR_BASIC_USERS
+    context['can_create_more_accounts'] = has_at_least_premium or len(Recruiter.objects.filter(employer=employer)) < s.MAX_USERS_FOR_BASIC_USERS
     context.update(extra_context or {})
     return context
 
@@ -132,8 +129,7 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
     return context
 
 
-@user_passes_test(is_student_or_recruiter)
-@has_any_subscription
+@user_passes_test(lambda x: is_student(x) or is_recruiter(x))
 @render_to("employer_profile_preview.html")
 def employer_profile_preview(request, slug, extra_context=None):
     try:
@@ -150,9 +146,13 @@ def employer_profile_preview(request, slug, extra_context=None):
 
 
 @user_passes_test(is_recruiter)
-@has_annual_subscription
 @render_to("employer_recruiter_new.html")
 def employer_recruiter_new(request, form_class=RecruiterForm, extra_context=None):
+    employer = request.user.recruiter.employer
+    has_at_least_premium = request.META['has_at_least_premium']
+    recruiter_num = len(Recruiter.objects.filter(employer=employer))
+    if not has_at_least_premium and recruiter_num >= s.MAX_USERS_FOR_BASIC_USERS:
+        raise Http403("In order to create more than %d accounts for your firm, you must subscribe to a paid plan." % (s.MAX_USERS_FOR_BASIC_USERS))
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -214,7 +214,6 @@ def employer_resume_book_delete(request, extra_context = None):
 
 
 @user_passes_test(is_recruiter)
-@has_annual_subscription
 @require_GET
 @render_to("employer_other_recruiters.html")
 def employer_other_recruiters(request):
@@ -223,7 +222,6 @@ def employer_other_recruiters(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
     form = form_class(data=request.POST, instance=request.user.recruiter.recruiterpreferences)
@@ -236,7 +234,6 @@ def employer_account_preferences(request, form_class=RecruiterPreferencesForm):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to("employer_profile.html")
 def employer_profile(request, form_class=EmployerProfileForm, extra_context=None):
     raise Http403('This service is disabled in the demo')
@@ -244,7 +241,6 @@ def employer_profile(request, form_class=EmployerProfileForm, extra_context=None
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_student_toggle_star(request):
     if not request.POST.has_key('student_id'):
@@ -261,7 +257,6 @@ def employer_student_toggle_star(request):
 
 @require_POST
 @user_passes_test(is_recruiter)
-@has_any_subscription
 def employer_students_add_star(request):
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing student_ids.")
@@ -273,7 +268,6 @@ def employer_students_add_star(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_students_remove_star(request):
     if not request.POST.has_key('student_ids'):
@@ -286,7 +280,6 @@ def employer_students_remove_star(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_student_comment(request):
     if not request.POST.has_key('student_id'):
@@ -306,7 +299,6 @@ def employer_student_comment(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_toggle_student(request):
     if not request.POST.has_key('student_id'):
@@ -316,24 +308,27 @@ def employer_resume_book_toggle_student(request):
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    data = {}
     if student in resume_book.students.visible():
         resume_book.students.remove(student)
-        data = {'action':employer_enums.REMOVED}
+        data['action'] = employer_enums.REMOVED
     else:
-        if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
-            raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
-        resume_book.students.add(student)
-        if not request.user.recruiter.employer.name != "Umeqo":
-            student.studentstatistics.add_to_resumebook_count += 1
-            student.studentstatistics.save()
-        data = {'action':employer_enums.ADDED}
+        employer = request.user.recruiter.employer
+        if student in get_unlocked_students(employer, request.META['has_at_least_premium']):
+            if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:
+                raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
+            resume_book.students.add(student)
+            if not request.user.recruiter.employer.name != "Umeqo":
+                student.studentstatistics.add_to_resumebook_count += 1
+                student.studentstatistics.save()
+            data['action'] = employer_enums.ADDED
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_add_students(request):
+    print request.POST
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
     try:
@@ -342,19 +337,21 @@ def employer_resume_book_add_students(request):
             raise Http403("You already have the max number (%d) of allowed students in you resumebook!" % (s.RESUME_BOOK_CAPACITY))
     except ResumeBook.DoesNotExist:
         resume_book = ResumeBook.objects.create(recruiter = request.user.recruiter)
+    employer = request.user.recruiter.employer
+    unlocked_students = get_unlocked_students(employer, request.META['has_at_least_premium'])
     if request.POST['student_ids']:
         for id in request.POST['student_ids'].split('~'):
             student = Student.objects.get(id=id)
-            if student not in resume_book.students.visible():
-                resume_book.students.add(student)
-            if not request.user.recruiter.employer.name != "Umeqo":
-                student.studentstatistics.add_to_resumebook_count += 1
-                student.studentstatistics.save()
+            if student in unlocked_students:
+                if student not in resume_book.students.visible():
+                    resume_book.students.add(student)
+                if not request.user.recruiter.employer.name != "Umeqo":
+                    student.studentstatistics.add_to_resumebook_count += 1
+                    student.studentstatistics.save()
     return HttpResponse()
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_remove_students(request):
     if not request.POST.has_key('student_ids'):
@@ -373,7 +370,6 @@ def employer_resume_book_remove_students(request):
 
 @require_GET
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to('employer_student_attendance.html')
 def employer_student_event_attendance(request):
     if not request.GET.has_key('student_id'):
@@ -386,7 +382,6 @@ def employer_student_event_attendance(request):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_GET
 @render_to("employer_resume_book_history.html")
 def employer_resume_book_history(request, extra_context=None):
@@ -396,8 +391,22 @@ def employer_resume_book_history(request, extra_context=None):
     return context
 
 
+@has_at_least_premium
 @user_passes_test(is_recruiter)
-@has_any_subscription
+def employer_resumes_download(request, extra_context=None):
+    file_path = find_first_file(s.MEDIA_ROOT, "%s.*.zip" % s.ALL_ZIPPED_RESUMES_FILENAME_START)
+    if file_path:
+        mimetype = "application/zip"
+        response = HttpResponse(file(file_path, "rb").read(), mimetype=mimetype)
+        filename = file_path.split("/")[-1]
+        response["Content-Disposition"] = 'attachment; filename="%s.zip"' % filename
+        return response
+    else:
+        zip_resumes()
+        return employer_resumes_download(request)
+
+
+@user_passes_test(is_recruiter)
 @require_GET
 @render_to()
 def employer_students(request, extra_context=None):
@@ -406,14 +415,14 @@ def employer_students(request, extra_context=None):
         student_list = request.GET['student_list']
         student_list_id = request.GET['student_list_id']
         recruiter = request.user.recruiter
-        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1] and recruiter.employer.subscribed_annually():
+        if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
             students = SearchQuerySet().models(Student).filter(visible=True)
         else:
-            if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
-                students = get_students_in_resume_book(recruiter)
-            elif student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-                students = recruiter.employer.starred_students.all()
+            if student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
+                students = get_unlocked_students(recruiter.employer, request.META['has_at_least_premium'])
             elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
+                students = recruiter.employer.starred_students.all()
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:
                 try:
                     resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
                 except ResumeBook.DoesNotExist:
@@ -516,7 +525,6 @@ def employer_students(request, extra_context=None):
         ordered_results = order_results(students, request)[start_index:start_index + results_per_page]
         ordered_result_objects = []
         for search_result in ordered_results:
-            print search_result.score
             if search_result.highlighted:
                 ordered_result_object = (search_result.object,  search_result.highlighted['text'][0])
             else:
@@ -536,12 +544,12 @@ def employer_students(request, extra_context=None):
             page = paginator.page(1)
         
         context['page'] = page
-        context['results'] = process_results(request.user.recruiter, page)
+        context['results'] = process_results(request.user.recruiter, request.META['has_at_least_premium'], page)
         context['current_student_list'] = request.GET['student_list']
         context['total_results_num'] = count
 
         # I don't like this method of statistics
-        for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended in context['results']:
+        for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended, visible in context['results']:
             student.studentstatistics.shown_in_results_count += 1
             student.studentstatistics.save()
 
@@ -562,6 +570,7 @@ def employer_students(request, extra_context=None):
 
         # Passing the employer id to generate tha appropriate student list choices
         context['student_filtering_form'] = StudentFilteringForm(initial={
+                'has_at_least_premium':request.META['has_at_least_premium'],
                 'recruiter_id': request.user.recruiter.id,
                 'ordering': request.user.recruiter.recruiterpreferences.default_student_result_ordering,                           
                 'results_per_page': request.user.recruiter.recruiterpreferences.default_student_results_per_page
@@ -570,7 +579,7 @@ def employer_students(request, extra_context=None):
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED
         context['email_delivery_type'] = core_enums.EMAIL
-        context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
+        context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[3][1]
         context['resume_book_capacity'] = s.RESUME_BOOK_CAPACITY
     context['TEMPLATE'] = 'employer_students.html'
     context.update(extra_context or {})
@@ -578,7 +587,6 @@ def employer_students(request, extra_context=None):
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to('employer_resume_book_summary.html')
 def employer_resume_book_summary(request, extra_context=None):
     try:
@@ -605,7 +613,6 @@ def employer_resume_book_summary(request, extra_context=None):
 
 @require_GET
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to('employer_resume_book_deliver.html')
 def employer_resume_book_deliver(request, form_class=DeliverResumeBookForm, extra_context=None):
     context = {'form':form_class(initial={'emails':request.user.email})}
@@ -632,7 +639,6 @@ def employer_resume_book_deliver(request, form_class=DeliverResumeBookForm, extr
 
 
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @require_POST
 def employer_resume_book_create(request):
     if request.POST.has_key("resume_book_id") and request.POST['resume_book_id']:
@@ -692,7 +698,7 @@ def employer_resume_book_create(request):
         c.showPage()
         c.save()
         output = PdfFileWriter()
-        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())) .getPage(0)) 
+        output.addPage(PdfFileReader(cStringIO.StringIO(report_buffer.getvalue())).getPage(0)) 
         for student in resume_book.students.visible().order_by("graduation_year", "first_name", "last_name"):
             resume_file = open("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
             resume = PdfFileReader(resume_file)
@@ -713,7 +719,6 @@ def employer_resume_book_create(request):
 
 @require_POST
 @user_passes_test(is_recruiter)
-@has_any_subscription
 @render_to("employer_resume_book_delivered.html")
 def employer_resume_book_email(request, extra_context=None):
     if not request.POST.has_key('emails'):
@@ -761,7 +766,6 @@ def employer_resume_book_email(request, extra_context=None):
 
 @require_GET
 @user_passes_test(is_recruiter)
-@has_any_subscription
 def employer_resume_book_download(request):
     if request.GET.has_key("resume_book_id") and request.GET['resume_book_id']:
         redelivering = True

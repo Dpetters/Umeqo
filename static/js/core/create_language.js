@@ -70,9 +70,9 @@ $(document).ready( function() {
                                 }else{
                                     var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The language \"" + data.name + "\" has been created successfully!</p>";
                                     if( $("#id_languages").multiselect("widget").find("input:checked").length <= LANGUAGES_MAX-1 ) {
-                                        success_message += "<p><a class='select_basic_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Basic)\" to your Languages & Close Dialog</a></p>";
-                                        success_message += "<p><a class='select_proficient_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Proficient)\" to your Languages & Close Dialog</a></p>";
-                                        success_message += "<p><a class='select_fluent_language_link' href='javascript:void(0)'>Add \"" + data.name + " (Fluent)\" to your Language & Close Dialog</a></p>";
+                                        success_message += "<p><a class='select_basic_language_link' href='#'>Add \"" + data.name + " (Basic)\" to your Languages & Close Dialog</a></p>";
+                                        success_message += "<p><a class='select_proficient_language_link' href='#'>Add \"" + data.name + " (Proficient)\" to your Languages & Close Dialog</a></p>";
+                                        success_message += "<p><a class='select_fluent_language_link' href='#'>Add \"" + data.name + " (Fluent)\" to your Language & Close Dialog</a></p>";
                                     }
                                     success_message += CLOSE_DIALOG_LINK + "</div>";
                                     create_language_dialog.html(success_message);

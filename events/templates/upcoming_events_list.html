@@ -43,9 +43,15 @@
 {% if this_weeks_events %}
     <h3>This Week</h3>
     <ul id="event_list" class="event_list">
-    {% for event in this_weeks_events %}
-        {% include "event_snippet.html" %}
-    {% endfor %}
+        {% if user.student %}
+            {% for responded, attending, dropped_resume, attended, event in this_weeks_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}    
+        {% else %}    
+            {% for event in this_weeks_events %}
+                {% include "event_snippet.html" %}
+            {% endfor %}
+        {% endif %}
    </ul>
 {% endif %}
 {% if next_weeks_events %}

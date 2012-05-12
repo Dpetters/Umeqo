@@ -9,11 +9,11 @@
 <div class="student_main_info" data-student-id="{{student.id}}">
 {% endif %}
     {% if profile_preview %}
-    <a class="student_resume_link" href="{% if edit %}{% url student_resume %}{% else %}javascript:void(0){% endif %}" tabindex="-1">View Resume</a>
+    <a class="student_resume_link" href="{% if edit %}{% url student_resume %}{% else %}#{% endif %}" tabindex="-1">View Resume</a>
     {% else %}
-    <a class="student_resume_link" data-student-id="{{student.id}}" target="_blank" href="{% url specific_student_resume student_id=student.id %}" tabindex="-1">View Resume</a>
+    <a class="student_resume_link{% if not visible %} needs_at_least_premium_to_view_student_resume{% endif %}" data-student-id="{{student.id}}" target="_blank" href="{% if visible %}{% url specific_student_resume student_id=student.id %}{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">View Resume</a>
     {% endif %}
-    <input name="student_checkbox" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
+    <input name="student_checkbox" data-unlocked="{{visible}}" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
     <label for="student_checkbox_{{student.id}}" data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</label>
     <span class="student_year">
         ({{student.graduation_year}}
@@ -23,24 +23,24 @@
     <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
     {% endif %}
     <br />
-    <span class="{% if sa or user.student %}student_invite_to_event_span{% else %}student_invite_to_event_span_disabled must_be_subscribed_annually_e must_be_subscribed_annually{% endif %}" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
-        <a class="student_invite_to_event_link" href="javascript:void(0)" tabindex="-1">Invite To Event</a>
+    <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
+        <a class="student_invite_to_event_link" href="#" tabindex="-1">Invite To Event</a>
     </span>
     <p class="student_gpa">
         <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
     </p>
-    <a data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="javascript:void(0)" tabindex="-1">{% include 'student_resume_book.html' %}</a>
+    <a {% if not visible %}disabled{% endif %} data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="{% if visible %}#{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">{% include 'student_resume_book.html' %}</a>
     <span class="student_major">
         <strong>First Major:</strong>
         {% if student.first_major.display %}
-            <a href="javascript:void(0)" title="Click for Details" class="course_link" data-major-id="{{student.first_major.id}}">{{student.first_major}}</a>
+            <a href="#" title="Click for Details" class="course_link" data-major-id="{{student.first_major.id}}">{{student.first_major}}</a>
         {% else %}
             {{student.first_major}}
         {% endif %}
     </span>
     <br />
-    <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="javascript:void(0)" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
-    <a data-student-id="{{student.id}}" class="{% if not sa and not user.student %}must_be_subscribed_annually_e must_be_subscribed_annually{% else %}student_toggle_star{% endif %} student_star" href="javascript:void(0)" tabindex="-1">{% student_star starred %}</a>
+    <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="#" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
+    <a data-student-id="{{student.id}}" class="student_toggle_star student_star" href="#" tabindex="-1">{% student_star starred %}</a>
     <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note (only visible to users from your company)" tabindex="-1">{{comment}}</textarea>
     <span data-student-id="{{student.id}}" class="saved_message light hid">Saved</span>
     {% if highlighted_text %}<p id="highlighted_text">"{{highlighted_text|safe}} ..."</p>{% endif %}
@@ -67,10 +67,10 @@
                 <p class="student_second_major">
                     <strong>Second Major:</strong>
                     {% if student.second_major.display %}
-                        <a href="javascript:void(0)" class="course_link" data-major-id="{{student.second_major.id}}" tabindex="-1">{{student.second_major}}</a>
+                        <a href="#" class="course_link" data-major-id="{{student.second_major.id}}" tabindex="-1">{{student.second_major}}</a>
                     {% else %}
                         {{student.second_major}}
-                    {% endif %}                                
+                    {% endif %}
                 </p>
             {% endif %}
 
@@ -89,7 +89,7 @@
             {% endifnotequal %}
 
             {% if profile_preview %}
-                {% if looking_for %}    
+                {% if looking_for %}
                 <ul class="student_looking_for">
                     <p class="student_detailed_info_header">Looking For</p>
                     {% for employment_type in looking_for %}
@@ -189,11 +189,11 @@
                     <p class="student_detailed_info_header">On-Campus Involvement</p>
                     {% for campus_org in campus_involvement %}
                         {% if campus_org.display %}
-                            <li><a href="javascript:void(0)" class="campus_org_link" data-campus-org-name="{{campus_org.name}}" data-campus-org-id="{{campus_org.id}}" tabindex="-1">{{campus_org}}</a></li>
+                            <li><a href="#" class="campus_org_link" data-campus-org-name="{{campus_org.name}}" data-campus-org-id="{{campus_org.id}}" tabindex="-1">{{campus_org}}</a></li>
                         {% else %}
                             <li>{{campus_org}}</li>
                         {% endif %}
-                    {% endfor %}                    
+                    {% endfor %}
                 </ul>
             {% endif %}
             {% else %}
@@ -202,11 +202,11 @@
                     <p class="student_detailed_info_header">On-Campus Involvement</p>
                     {% for campus_org in student.campus_involvement.all %}
                         {% if campus_org.display %}
-                            <li><a href="javascript:void(0)" class="campus_org_link" data-campus-org-id="{{campus_org.id}}" data-campus-org-name="{{campus_org.name}}">{{campus_org}}</a></li>
+                            <li><a href="#" class="campus_org_link" data-campus-org-id="{{campus_org.id}}" data-campus-org-name="{{campus_org.name}}">{{campus_org}}</a></li>
                         {% else %}
                             <li>{{campus_org}}</li>
                         {% endif %}
-                    {% endfor %}                    
+                    {% endfor %}
                 </ul>
             {% endif %}
             {% endif %} 
@@ -217,7 +217,7 @@
                         <p class="student_detailed_info_header">Languages</p>
                         {% for language in languages %}
                             <li>{{language}}</li>
-                        {% endfor %}                    
+                        {% endfor %}
                     </ul>
                 {% endif %}
             {% else %}
@@ -226,12 +226,12 @@
                         <p class="student_detailed_info_header">Languages</p>
                         {% for language in student.languages.all %}
                             <li>{{language}}</li>
-                        {% endfor %}                    
+                        {% endfor %}
                     </ul>
                 {% endif %}
             {% endif %} 
         </div>
-        <p class="student_hide_details_link" data-student-id="{{student.id}}"><a href="javascript:void(0)">{% include 'student_hide_details_link.html' %}</a></p>
+        <p class="student_hide_details_link" data-student-id="{{student.id}}"><a href="#">{% include 'student_hide_details_link.html' %}</a></p>
     {% else %}
         <span class="no_detailed_info">No detailed info available.</span>
     {% endif %}

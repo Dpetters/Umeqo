@@ -1,5 +1,26 @@
-import datetime
 import calendar
+import datetime
+import stripe
+
+from django.conf import settings as s
+
+
+def get_charges(customer_id):
+    stripe.api_key = s.STRIPE_SECRET
+    return stripe.Charge.all(customer=customer_id).data
+
+
+def sum_charges(charges):
+    return sum(map(lambda x: x.amount, charges))
+
+
+def get_subscription_type(uid):
+    for subscription_type, dictionary in s.SUBSCRIPTION_UIDS.items():
+        for value in dictionary.values():
+            if uid==value[1]:
+                return subscription_type
+    return None
+
 
 def extend_date_by(date, amount, unit):
     """Extend date `date' by `amount' of time units `unit'.

@@ -6,24 +6,30 @@ from django.conf import settings as s
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required,  user_passes_test
-from django.contrib.auth.views import logout as auth_logout_then_login_view, login as auth_login_view
+from django.contrib.auth.models import User, update_last_login
+from django.contrib.auth.signals import user_logged_in
+from django.contrib.auth.views import login as auth_login_view, logout as auth_logout_then_login_view
 from django.contrib.sessions.models import Session
 from django.contrib.sites.models import get_current_site
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
+<<<<<<< HEAD
 from core.http import Http403, Http500
 from core.decorators import render_to, is_superuser
+=======
+from core.decorators import render_to
+>>>>>>> master
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
+from events.models import Event
 from registration.models import LoginAttempt
 from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
-from events.models import Event
 from notification.models import NoticeType
 from employer.models import Employer
 from notification import models as notification
@@ -45,7 +51,7 @@ def login(request, template_name="login.html", authentication_form=Authenticatio
 
 
 @render_to('super_login.html')
-@user_passes_test(is_superuser)
+@user_passes_test(lambda x: x.is_superuser)
 def super_login(request, form_class = SuperLoginForm,  extra_context=None):
     if request.method == "POST":
         form = form_class(data = request.POST)
@@ -55,6 +61,7 @@ def super_login(request, form_class = SuperLoginForm,  extra_context=None):
             else:
                 user = CampusOrg.objects.get(name=form.cleaned_data['campus_org']).user
             user.backend = s.AUTHENTICATION_BACKENDS[0]
+            user_logged_in.disconnect(update_last_login)
             auth_login(request, user)
             return redirect(reverse("home"))
     else:

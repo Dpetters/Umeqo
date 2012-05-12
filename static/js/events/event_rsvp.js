@@ -22,8 +22,9 @@ function rsvp(attending) {
         that = null;
         
     if($dropdown.length!=0){
-        $dropdown.removeClass("dropdown").addClass("gray_button");
-        that = $dropdown;
+        $dropdown.removeClass("dropdown");
+        var that = $("<a href='#'>" + $(this).text() + "</a>");
+        $dropdown.replaceWith(that);
         rsvp_mouseout = true;
     }else{
        that = this;
@@ -49,6 +50,7 @@ function rsvp(attending) {
         },
         success: function(data) {
             if(attending){
+                console.log(that);
                 $(that).removeClass("not_attending rsvp_yes").addClass("attending rsvp_no");
                 if(rsvp_mouseout){
                     if (is_deadline)
@@ -107,7 +109,7 @@ $(".attending").live('mouseenter', function(){
         $(this).html("RSVP Not Attending");
     }
 });
-$(".attending").live('mouseleave', function(){
+$(".attending").live('mouseleave', function(e){
     var parent = get_parent(this);
     if($(parent).data("is-deadline")=="True")
         $(this).html("Participating");
@@ -115,14 +117,14 @@ $(".attending").live('mouseleave', function(){
         $(this).html("Attending");
 });
 
-$(".not_attending").live('mouseenter', function(){
+$(".not_attending").live('mouseenter', function(e){
     var parent = get_parent(this);
     if($(parent).data("is-deadline")=="True")
         $(this).html("RSVP Participating");
     else
         $(this).html("RSVP Attending");
 });
-$(".not_attending").live('mouseleave', function(){
+$(".not_attending").live('mouseleave', function(e){
     var parent = get_parent(this);
     if($(parent).data("is-deadline")=="True")
         $(this).html("Not Participating");
@@ -138,10 +140,12 @@ $('.rsvp_yes').live('click', function(e) {
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
         rsvp.apply(this, [true]);
     }
+    e.preventDefault();
 });
 $('.rsvp_no').live('click', function(e) {
     var disabled = $(this).attr('disabled');
     if (!(typeof disabled !== 'undefined' && disabled !== false)) {
         rsvp.apply(this, [false]);
     }
+    e.preventDefault();
 });

@@ -1,0 +1,39 @@
+#id_card_expiry_month{
+    width:17px;
+}
+#id_card_expiry_year{
+    width:30px;
+}
+#id_card_cvc{
+    width:45px;
+}
+#subscription_terms{
+    font-size:12px;
+    position:absolute;
+    margin-left:10px;
+    margin-top:7px;
+}
+.accepted_cards{
+    height:25px;
+    margin-top:10px;
+}
+.accepted_cards .text{
+    float:left;
+    margin-right:8px;
+    margin-top:4px;
+}
+.accepted_cards .card{
+    margin-right:2px;
+    float:left;
+    width:39px;
+    height:25px;
+    text-indent:-9999px;
+}
+.accepted_cards li{
+    list-style-type: none;
+}
+.learn{
+    margin-left:5px;
+    position:absolute;
+    margin-top:2px;
+}

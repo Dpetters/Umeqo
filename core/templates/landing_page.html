@@ -163,9 +163,13 @@
                         <div id="firm_thumb_container">
                                 {% for employer in employers %}
                                 <div class="firm_thumb_content">
-                                    <a href="#">
-                                    <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    {% if employer.visible %}
+                                    <a href="{% url employer_profile_preview slug=employer.slug %}">
+                                    {% endif %}
+                                        <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    {% if employer.visible %}
                                     </a>
+                                    {% endif %}
                                 </div>
                                 {% endfor %}
                             <br/>
@@ -199,7 +203,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <h2 id="subscribe_command">..and much more. <a href="{% url subscription_list %}">Subscribe today!</a></h2>
+                <h2 id="subscribe_command">..and much more. <a href="{% url subscriptions %}">Subscribe today!</a></h2>
                 <div class="clearfix"></div>
             </div>
             {% include 'small_navigation_section.html' %}
