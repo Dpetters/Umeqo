@@ -189,7 +189,7 @@
                     <p class="student_detailed_info_header">On-Campus Involvement</p>
                     {% for campus_org in campus_involvement %}
                         {% if campus_org.display %}
-                            <li><a href="#" class="campus_org_link" data-campus-org-name="{{campus_org.name}}" data-campus-org-id="{{campus_org.id}}" tabindex="-1">{{campus_org}}</a></li>
+                            <li><a href="#" class="campus_org_profile_link" data-campus-org-name="{{campus_org.name}}" data-campus-org-id="{{campus_org.id}}" tabindex="-1">{{campus_org}}</a></li>
                         {% else %}
                             <li>{{campus_org}}</li>
                         {% endif %}
@@ -202,7 +202,7 @@
                     <p class="student_detailed_info_header">On-Campus Involvement</p>
                     {% for campus_org in student.campus_involvement.all %}
                         {% if campus_org.display %}
-                            <li><a href="#" class="campus_org_link" data-campus-org-id="{{campus_org.id}}" data-campus-org-name="{{campus_org.name}}">{{campus_org}}</a></li>
+                            <li><a href="#" class="campus_org_profile_link" data-campus-org-id="{{campus_org.id}}" data-campus-org-name="{{campus_org.name}}">{{campus_org}}</a></li>
                         {% else %}
                             <li>{{campus_org}}</li>
                         {% endif %}

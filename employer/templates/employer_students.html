@@ -18,7 +18,6 @@ Student Filtering |
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_resume_book_deliver.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/course_profile_preview.css"/>
 {% endcompress %}
 
 <script type="text/javascript">
@@ -57,7 +56,7 @@ Student Filtering |
     var EVENTS_LIST_URL = "{% url events_by_employer %}";
     var EVENT_INVITE_URL = "{% url event_invite %}";
     
-    var COURSE_INFO_URL = "{% url course_info %}";
+    var COURSE_INFO_URL = "{% url course_info_dialog %}";
     var STUDENTS_URL = "{% url employer_students %}";
     var STUDENTS_TOGGLE_STAR_URL = "{% url employer_student_toggle_star %}";
     var STUDENTS_ADD_STAR_URL = "{% url employer_students_add_star %}";
@@ -83,7 +82,7 @@ Student Filtering |
 <script src="{{ STATIC_URL }}js/scrolling.js"></script>
 <script src="{{ STATIC_URL }}js/employer/employer_resume_book_deliver.js"></script>
 <script src="{{ STATIC_URL }}js/student/student_profile_preview.js"></script>
-<script src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/core/course_info_dialog.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_min.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
 <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>

@@ -1,0 +1,7 @@
+{% if course %}
+    {% if course_image %}
+    <img class="course_image" alt="{{course}}" src="{{course_image}}">
+    {% else %}
+    <img class="course_image" alt="{{course}}" src="{{MEDIA_URL}}{{course.image}}">
+    {% endif %}
+{% endif %}

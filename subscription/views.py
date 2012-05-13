@@ -309,7 +309,10 @@ def receipts_view(request):
     
     output = PdfFileWriter()
     for charge in charges:
-        invoice = stripe.Invoice.retrieve(charge.invoice) 
+        try:
+            invoice = stripe.Invoice.retrieve(charge.invoice) 
+        except InvalidRequestError as e:
+            pass
         receipt_path = get_or_create_receipt_pdf(charge, invoice, employer.name)
         receipt_file = open(receipt_path, "rb")
         output.addPage(PdfFileReader(receipt_file).getPage(0))
