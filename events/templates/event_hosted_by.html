@@ -2,7 +2,7 @@
       {% if email %}
           {{event.owner.campusorg}}
       {% else %}
-          <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="#" class="campus_org_link">
+          <a data-campus-org-name="{{event.owner.campusorg.name}}" data-campus-org-id="{{event.owner.campusorg.id}}" href="#" class="campus_org_profile_link">
               {{event.owner.campusorg}}
           </a>
       {% endif %}

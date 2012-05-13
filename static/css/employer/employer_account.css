@@ -119,12 +119,13 @@ li#no_recruiter_accounts{
     text-align:center;
 }
 #charge_summary{
-    text-align:right;
-    margin-top:10px;
+    margin:10px 0px 25px 0px;
 }
 #view_all_receipts{
-    margin-right:30px;
+    position:absolute;
+    right:48px;
 }
 #charge_total{
-    margin-right:75px;
+    position:absolute;
+    right:264px;
 }

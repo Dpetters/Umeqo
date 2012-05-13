@@ -1,10 +1,8 @@
 from django.db import models
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-from core.model_helpers import get_image_filename, get_thumbnail_filename
+from core.model_helpers import get_image_filename
 from core.models import CommonInfo
-from core.signals import create_thumbnail, delete_thumbnail_on_image_delete
 from core import mixins as core_mixins
 
 from sorl.thumbnail import ImageField

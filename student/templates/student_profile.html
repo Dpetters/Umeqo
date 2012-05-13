@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />    
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/create_campus_org_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/create_language_dialog.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/course_profile_preview.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
@@ -19,7 +18,7 @@
 <script>
     var CHECK_CAMPUS_ORG_UNIQUENESS_URL = "{% url check_campus_org_uniqueness %}";
     var CHECK_LANGUAGE_UNIQUENESS_URL = "{% url check_language_uniqueness %}";
-    var COURSE_INFO_URL = "{% url course_info %}";
+    var COURSE_INFO_URL = "{% url course_info_dialog %}";
     var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_org %}";
     var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
     var EMPLOYER_NEW_URL = "{% url employer_new %}";
@@ -87,7 +86,7 @@
 {% compress js %}
 <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 <script src="{{ STATIC_URL }}js/campus_org/create_campus_org.js"></script>
-<script src="{{ STATIC_URL }}js/core/course_profile_preview.js"></script>
+<script src="{{ STATIC_URL }}js/core/course_info_dialog.js"></script>
 <script src="{{ STATIC_URL }}js/core/create_language.js"></script>
 <script src="{{ STATIC_URL }}js/employer/employer_new.js"></script>
 <script src="{{ STATIC_URL }}js/student/student_profile.js"></script>
