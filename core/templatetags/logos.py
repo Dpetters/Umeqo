@@ -1,4 +1,3 @@
-from employer.models import Employer
 from django import template
 from django.conf import settings
 from sorl.thumbnail import get_thumbnail
@@ -22,6 +21,23 @@ def show_employer_logo(employer, *args, **kwargs):
 
     return {'employer': employer,
             'employer_logo': logo}'''
+
+
+@register.inclusion_tag('course_image.html')
+def show_course_image(course):
+    return {'course': course,
+            'MEDIA_URL': settings.MEDIA_URL}
+
+@register.inclusion_tag('course_image.html')
+def show_course_thumbnail(course, dimensions):
+    course_image = course.image or None
+    if course_image:
+        course_image = get_thumbnail(course_image, dimensions).url
+
+    return {'course': course,
+            'course_image': course_image,
+            'MEDIA_URL': settings.MEDIA_URL}
+
 
 @register.inclusion_tag('employer_logo.html')
 def show_employer_logo(employer):

@@ -123,7 +123,6 @@ class Course(CommonInfo):
     name = models.CharField("Course Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     num = models.CharField("Course Number", max_length=10, help_text="Maximum 10 characters.")
     image = models.ImageField(upload_to=get_image_filename, blank=True, null=True)
-    thumbnail = models.ImageField(upload_to=get_thumbnail_filename, blank=True, null=True)
     sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)')
     admin = models.CharField("Course Administrator", max_length=42, blank=True, null=True, help_text="Maximum 42 characters.")
     ou  = models.CharField("LDAP ou", max_length=255, null=True, blank=True)
@@ -134,8 +133,8 @@ class Course(CommonInfo):
     class Meta:
         ordering = ['sort_order']
 
-post_save.connect(create_thumbnail, sender=Course)
-post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
+#post_save.connect(create_thumbnail, sender=Course)
+#post_save.connect(delete_thumbnail_on_image_delete, sender=Course)
 
 
 class Tutorial(core_mixins.DateTracking):

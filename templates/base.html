@@ -28,7 +28,6 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/jquery_tipsy/stylesheets/tipsy.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery_overrides.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/lib/ckeditor.css" />
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_profile_preview.css"/>
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/bootstrap/popover.css" />
             <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap_popover_overrides.css" />
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
@@ -83,7 +82,7 @@
             var NOTIFICATIONS_URL = "{% url notification_ajax %}";
             var NOTIFICATIONS_COUNT_URL = "{% url get_notice_unseen_count %}";
             var CONTACT_US_URL = "{% url contact_us %}";
-            var CAMPUS_ORG_INFO_URL = "{% url campus_org_info %}";
+            var CAMPUS_ORG_INFO_URL = "{% url campus_org_info_dialog %}";
 
             var ERROR_MESSAGE = "{% include 'error_message.html' %}";
             var ERROR_MESSAGE_DIALOG = "{% include 'error_message_dialog.html' %}";
@@ -108,7 +107,7 @@
             <script src="{{ STATIC_URL }}lib/jquery_tipsy/javascripts/jquery.tipsy.js" charset="utf-8"></script>
             <script src="{{ STATIC_URL }}lib/jquery_placeholder/jquery.placeholder.min.js"></script>
             <script src="{{ STATIC_URL }}js/base.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}js/campus_org/campus_org_profile_preview.js"></script>
+            <script src="{{ STATIC_URL }}js/campus_org/campus_org_info_dialog.js"></script>
             <script src="{{ STATIC_URL }}js/contact_us_dialog.js"></script>
             
             {% if user.is_authenticated and user.student or user.recruiter or user.campusorg %}
