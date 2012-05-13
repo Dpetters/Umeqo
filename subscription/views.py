@@ -282,10 +282,11 @@ def receipt_view(request, charge_id):
         raise Http404(e)
             
     if not charge.id in charge_ids:
-        raise Http403("You do not have permission to view this receipt.")
-    
-    invoice = stripe.Invoice.retrieve(charge.invoice)
-    
+        raise Http403("You do not have permission to view the receipt for charge %s." % charge_id)
+    try:
+        invoice = stripe.Invoice.retrieve(charge.invoice)
+    except InvalidRequestError as e:
+        raise Http404(e)
     pdf_path = get_or_create_receipt_pdf(charge, invoice, employer.name)
     pdf_name = pdf_path.split("/")[-1]
     
