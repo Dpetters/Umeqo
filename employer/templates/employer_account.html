@@ -208,7 +208,12 @@
             {% if charges|length %}
             <div id="charge_summary">
                 <span id="charge_total">Total: {{charge_total|format_money}}</span>
-                <a target="_blank" id="view_all_receipts" href="{% url receipts_view %}">Download All Receipts</a>
+                {% if charge_total %}
+                    <a target="_blank" id="view_all_receipts" href="{% url receipts_view %}">Download All Receipts</a>
+                {% else %}
+                    <!-- for proper padding -->
+                    <span id="view_all_receipts"></span>
+                {% endif %}
             </div>
             {% endif %}
         </div>

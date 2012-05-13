@@ -96,7 +96,6 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     charges = get_charges(customer.id)
-    print charges
     context['charges'] = charges
     context['charge_total'] = sum_charges(charges)
     context['max_users_for_basic_users'] = s.MAX_USERS_FOR_BASIC_USERS
@@ -343,7 +342,6 @@ def employer_resume_book_toggle_student(request):
 @user_passes_test(is_recruiter)
 @require_POST
 def employer_resume_book_add_students(request):
-    print request.POST
     if not request.POST.has_key('student_ids'):
         raise Http400("Request POST is missing the student_ids.")
     try:

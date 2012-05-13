@@ -13,6 +13,7 @@ def get_charges(customer_id):
 def sum_charges(charges):
     sum = 0
     for charge in charges:
+        print charge.paid
         if charge.paid:
             sum += charge.amount
     return sum
