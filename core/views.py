@@ -449,8 +449,8 @@ def check_event_name_uniqueness(request):
 
 @require_GET
 @login_required
-@render_to('course_info.html')
-def course_info(request, extra_context = None):
+@render_to('course_info_dialog.html')
+def course_info_dialog(request, extra_context = None):
     if not request.GET.has_key('course_id'):
         raise Http400("Request GET is missing 'course_id'.")
     id = request.GET['course_id']

@@ -16,7 +16,7 @@ $(document).ready(function() {
         return $dialog;
     };
 
-   function course_link_click_handler() {
+   function course_link_click_handler(e) {
         course_info_dialog = open_course_info_dialog($(this).text());
         course_info_dialog.html(DIALOG_AJAX_LOADER);
         var course_id = $(this).attr('data-major-id');
@@ -42,6 +42,7 @@ $(document).ready(function() {
                 course_info_dialog.dialog('option', 'position', 'center');
             }
         });
+        e.preventDefault();
     };
     
     $(".course_link").live('click', course_link_click_handler);

@@ -1,0 +1,24 @@
+{% load logos %}
+
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/campus_org_info_dialog.css"/>
+
+<div class="dialog_content_wrapper">
+        {% show_campusorg_thumbnail campus_org '200x200' %}
+        <!--
+        <img alt="{{campus_org}}" class="campus_org_image" src=
+            {% if campus_org_logo %}
+                "{{campus_org_logo}}"
+            {% else %}
+                "{{MEDIA_URL}}{{campus_org.image}}"
+            {% endif %}
+        >-->
+    {% if campus_org.email %}
+        <p><strong>E-mail: </strong> {{campus_org.email}}</p>
+    {% endif %}
+    {% if campus_org.website %}
+        <p><strong>Website: </strong> <a href="{{campus_org.website}}" target="_blank">{{campus_org.website}}</a></p>
+    {% endif %}
+    {% if campus_org.description %}
+        <p><strong>Description: </strong> {{campus_org.description}}</p>
+    {% endif %}
+</div>
