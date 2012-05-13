@@ -184,7 +184,14 @@
     padding-top:7px;
     border-bottom:1px solid #CCC;
 }
-#results_menu_checkbox_gray_button ul {
+#results_menu .gray_button{
+    padding:0px 5px;
+}
+#results_menu #results_menu_checkbox_gray_button{
+    padding:0px;
+    min-width:40px;
+}
+#results_menu #results_menu_checkbox_gray_button ul {
     width:125px
 }
 #results_menu_checkbox {

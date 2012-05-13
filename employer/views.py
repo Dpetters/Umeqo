@@ -96,6 +96,7 @@ def employer_account(request, preferences_form_class = RecruiterPreferencesForm,
     context['preferences_form'] = preferences_form_class(instance=recruiter.recruiterpreferences)
     context['change_password_form'] = change_password_form_class(request.user)
     charges = get_charges(customer.id)
+    print charges
     context['charges'] = charges
     context['charge_total'] = sum_charges(charges)
     context['max_users_for_basic_users'] = s.MAX_USERS_FOR_BASIC_USERS
