@@ -182,8 +182,22 @@
                         <tr>
                             <td>{{charge.created|format_unix_time}}</td>
                             <td>**** **** **** {{charge.card.last4}}</td>
-                            <td>{{charge.amount|format_money}}</td>
-                            <td><a target="_blank" href="{% url receipt_view charge_id=charge.id %}" id="view_receipt">View Receipt</a></td>
+                            <td>
+                                {% if not charge.paid %}
+                                    <strike>
+                                {% endif %}
+                                     {{charge.amount|format_money}}
+                                {% if not charge.paid %}
+                                    </strike>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if charge.paid %}
+                                    <a target="_blank" href="{% url receipt_view charge_id=charge.id %}" id="view_receipt">View Receipt</a>
+                                {% else %}
+                                    {{charge.failure_message}}
+                                {% endif %}
+                            </td>
                         </tr>
                         
                     {% empty %}

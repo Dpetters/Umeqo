@@ -1,0 +1,9 @@
+.ui-switch-on{
+    background:#00AE3E !important;
+}
+.ui-switch-off{
+    background:#C63738 !important;
+}
+.ui-switch-handle{
+    background-size:30px 30px !important;
+}
