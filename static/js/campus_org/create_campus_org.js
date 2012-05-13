@@ -69,7 +69,7 @@ $('#create_campus_organization_link').click( function () {
                                 } else {
                                     var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p>";
                                     if( $("#id_campus_involvement").multiselect("widget").find("input:checked").length <= CAMPUS_INVOLVEMENT_MAX-1 ) {
-                                        success_message += "<p><a id='select_new_campus_org_link' href='#'>Add it to your Campus Involvement  & Close Dialog</a></p>";
+                                        success_message += "<p><a id='select_new_campus_org_profile_link' href='#'>Add it to your Campus Involvement  & Close Dialog</a></p>";
                                     }
                                     success_message += CLOSE_DIALOG_LINK + "</div>";
                                     create_campus_org_dialog.html(success_message);
@@ -80,7 +80,7 @@ $('#create_campus_organization_link').click( function () {
                                     $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();
                                     if( $("#id_campus_involvement").multiselect("widget").find("input:checked").length <= CAMPUS_INVOLVEMENT_MAX-1 ) {
                                         // Marks the new campus org as selected on the actual select field, updates the widget, and then closes the dialog
-                                        $("#select_new_campus_org_link").click(function() {
+                                        $("#select_new_campus_org_profile_link").click(function() {
                                             $("#id_campus_involvement").find('option[name="' + data.name + '"]').attr('selected', true);
                                             $("#id_campus_involvement").multiselect("refresh");
                                             $("#id_campus_involvement").multiselect("widget").find(".ui-multiselect-optgroup-label").show();

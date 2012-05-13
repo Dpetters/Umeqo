@@ -62,8 +62,8 @@ def campus_org_profile(request, form_class=CampusOrgProfileForm, extra_context=N
 
 
 @require_GET
-@render_to('campus_org_info.html')
-def campus_org_info(request, extra_context = None):
+@render_to('campus_org_info_dialog.html')
+def campus_org_info_dialog(request, extra_context = None):
     if not request.GET.has_key('campus_org_id'):
         raise Http400("Request is missing the campus_org_id.")
     try:
