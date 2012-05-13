@@ -17,12 +17,8 @@ from django.shortcuts import redirect
 from django.utils import simplejson
 
 from campus_org.models import CampusOrg
-<<<<<<< HEAD
 from core.http import Http403, Http500
-from core.decorators import render_to, is_superuser
-=======
 from core.decorators import render_to
->>>>>>> master
 from core.forms import EmailAuthenticationForm as AuthenticationForm, SuperLoginForm
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
