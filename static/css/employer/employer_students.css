@@ -189,6 +189,7 @@
 }
 #results_menu #results_menu_checkbox_gray_button{
     padding:0px;
+    min-width:40px;
 }
 #results_menu #results_menu_checkbox_gray_button ul {
     width:125px
