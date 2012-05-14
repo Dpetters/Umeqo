@@ -102,6 +102,7 @@ function handle_request_account_link_click(e){
             });
         }
     });
+    e.preventDefault();
 }
 $(document).ready( function() {
     $('.request_account_link').click(handle_request_account_link_click);
