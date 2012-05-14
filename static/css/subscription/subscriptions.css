@@ -299,6 +299,7 @@ section, header, hgroup, footer, .grid .btn {
     right:10px;
 }
 .banner{
+    left: 0px;
     position:absolute;
 }
 .learn_more{
