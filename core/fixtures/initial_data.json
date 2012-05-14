@@ -131,14 +131,14 @@
   "pk": 7,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2012-01-30 00:36:48",
+   "last_updated": "2012-05-14 13:00:00",
    "name": "Creating & Delivering Resume Books",
    "image": "core/tutorial/creating_&_delivering_resume_books_2012-01-30-00-36-48.png",
    "display": true,
    "topic": 13,
    "audience": 4,
    "sort_order": 2.0,
-   "action": "Create & Deliver Resume Books",
+   "action": "Deliver Resume Books",
    "date_created": "2011-10-07 12:41:35",
    "slug": "creating-delivering-resume-books"
   }
