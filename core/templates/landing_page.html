@@ -138,9 +138,9 @@
                         <iframe src="http://www.facebook.com/plugins/like.php?app_id=119497238132973&amp;href=umeqo.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:35px;" allowTransparency="true"></iframe>
                     </div>
                 </div>
-                <div id="featured_event" class="col">
-                    <h2>Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
-                    <div id="promotion">
+                {% if featured_event %}
+                <h2 id="featured_event_header">Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
+                <div id="featured_event" class="col dark_module">
                       <h2>Techfair 2012</h2>
                       {% if featured_event.employer %}
                       <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
@@ -150,7 +150,15 @@
                       {% endif %}
                       <p>You are invited to Techfair 2012! The lineup for this year will include a hackathon, an afterparty, a banquet, and a speaker series in addition to the Fair itself.</p>
                       <p>It all starts at 9am on Monday, February 6th. {% if featured_event %}Drop off your resume now on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
-                    </div>
+                </div>
+                {% endif %}
+                <div id="statistics_for_students" class="col dark_module">
+                    <h3 class="h1">So far signed-up students have...</h3>
+                    <p class="l1 l">...had their resume added to a resume book <span class="bold num">{{aggregate_add_to_resumebook_count}}</span> times</p>
+                    <p class="l2 l">...had their resume viewed <span class="bold num">{{aggregate_resume_view_count}}</span> times</p>
+                    <p class="l3 l"> & shown up in the results <span class="bold num">{{aggregate_shown_in_results_count}}</span> times!</p>
+                    
+                    <h3 class="h2">Don't go unnoticed - <a href="{% url student_registration %}">sign up today!</a></h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
