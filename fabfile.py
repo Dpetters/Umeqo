@@ -165,7 +165,7 @@ def update():
                     commit_prod_data()
                     run("git pull origin master")
                 else:
-                    run("git pull origin master")
+                    run("git pull origin demo")
                 run("python manage.py migrate --all --merge --no-initial-data")
                 if env.type=="staging" or env.type=="demo":
                     run("python manage.py fix_campus_org_users")
