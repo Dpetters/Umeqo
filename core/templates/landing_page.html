@@ -35,9 +35,6 @@
             #firm_scroller_container #firm_thumb_scroller_right {
                 background:url('{{ STATIC_URL }}lib/firm_scroller/images/thumbScroller_right.png');
             }
-            .green_button .innerspan{
-                background:url('{{ STATIC_URL }}images/core/landing_page/stripes-green.png') repeat;
-            }
         </style>
         
         {% compress css %}
@@ -87,7 +84,7 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <a id="login_button" class="gray_button" href="{% url login %}">Sign In</a>
+        <a id="login_button" class="btn" href="{% url login %}">Sign In</a>
         <div id="logo">
             <h1>Umeqo</h1>
             <span id="landing_beta_logo">BETA</span>
