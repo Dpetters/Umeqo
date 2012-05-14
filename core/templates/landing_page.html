@@ -42,7 +42,7 @@
         
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
+            <!--<link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />-->
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
         <!--[if lte IE 8]>
@@ -193,7 +193,7 @@
             </div>
             {% include 'small_navigation_section.html' %}
             <div id="employers">
-                <h1>Find candidates in minutes.</h1>
+                <h1 class="header">Find candidates in minutes.</h1>
                 <div class="col second_col">
                     <div id="what_is_umeqo">
                         <h2>What is Umeqo?</h2>
@@ -219,18 +219,19 @@
                         <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
                         <div class="clearfix"></div>
                     </div>
-                    <a href="http://www.demo.umeqo.com" class="green_button">
-                        <div class="innerspan">
-                            <span>Play with the Demo</span>                            
-                        </div>
-                    </a>
-                    <a href="{% url subscriptions %}" class="green_button">
-                        <div class="innerspan">
-                            <span>Get Started For Free</span>
-                            <br>
-                            No Credit Card Needed
-                        </div>
-                    </a>
+                    <div class="btns">
+                        <a id="demo_btn" href="http://www.demo.umeqo.com" class="btn btn-primary btn-large">
+                            <div class="innerspan">
+                                <h2>Play with the Demo</h2>
+                            </div>
+                        </a>
+                        <a id="get_started_btn" href="{% url subscriptions %}" class="btn btn-success btn-large">
+                            <div class="innerspan">
+                                <h2>Get Started For Free</h2>
+                                <span>No Credit Card Needed</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
