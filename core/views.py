@@ -36,7 +36,7 @@ from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from student.decorators import is_student
 from student.forms import StudentRegistrationForm
-from student.models import Student
+from student.models import Student, StudentStatistics
 
 
 @require_GET
@@ -341,7 +341,10 @@ def landing_page(request, extra_context = None):
         'form_error': form_error,
         'email_error': email_error,
         'tutorials': tutorials,
-        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
+        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo"),
+        'aggregate_shown_in_results_count' : sum(map(lambda x: x.shown_in_results_count, StudentStatistics.objects.all())),
+        'aggregate_resume_view_count' : sum(map(lambda x: x.resume_view_count, StudentStatistics.objects.all())),
+        'aggregate_add_to_resumebook_count' : sum(map(lambda x: x.add_to_resumebook_count, StudentStatistics.objects.all()))
     }
 
     if FeaturedEvent.objects.all().exists():

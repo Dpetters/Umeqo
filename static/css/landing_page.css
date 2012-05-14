@@ -48,19 +48,19 @@ table {
 body {
     font-family: Arial;
 }
-h1, h2, h3{
+h1, h2, h3, .bold{
     color: #FFF;
     font-family: 'Rokkitt', serif;
     text-shadow: 0px -1px 0px #000;
     filter: dropshadow(color=#000000, offx=0, offy=-1);
 }
-h1{
+h1, h1 a{
     font-size:45px;
 }
-h2{
+h2, h2 a{
     font-size: 32px;
 }
-h3{
+h3, h3 a{
     font-size: 24px;
 }
 p, a, span {
@@ -349,22 +349,20 @@ label.required span.error {
     text-align:center;
 }
 #featured_event{
-    margin-top:12px;
-}
-#promotion {
-    margin-top:15px;
-    background: rgba(0,0,0,0.1);
+    margin-bottom:-30px;
     padding: 5px 10px 16px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
-#promotion h2 {
-    margin: 10px 0;
+#featured_event_header{
+    margin: 14px 20px 14px;  
 }
-#promotion p {
-    margin-top:10px;
-    text-align: left;
+#featured_event h2{
+    margin: 8px 0px;
+}
+#featured_event p{
+    margin:10px 12px 0px;
 }
 .message {
     text-align: center;
@@ -460,6 +458,45 @@ label.required span.error {
     position:absolute;
     top:0px;
     left:0px;
+}
+
+#statistics_for_students{
+    text-align:left;
+    padding:5px 10px;
+    margin-top:60px;
+}
+#statistics_for_students h3{
+    padding:6px 0px;
+}
+#statistics_for_students .num{
+    font-size:20px;
+}
+#statistics_for_students .l{
+    line-height:30px;
+}
+#statistics_for_students .l1{
+    margin-left:10px;
+}
+#statistics_for_students .l1 .num{
+    font-size:30px;
+}
+#statistics_for_students .l2{
+    margin-left:30px;    
+}
+#statistics_for_students .l2 .num{
+    font-size:35px;
+}
+#statistics_for_students .l3{
+    margin-left:112px;
+}
+#statistics_for_students .l3 .num{
+    font-size:40px;
+}
+#statistics_for_students .h2{
+    text-align:right;
+}
+.dark_module{
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .light_module {
     padding: 10px;
