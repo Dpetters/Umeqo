@@ -36,7 +36,7 @@ from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from student.decorators import is_student
 from student.forms import StudentRegistrationForm
-from student.models import Student
+from student.models import Student, StudentStatistics
 
 
 @require_GET
@@ -324,12 +324,11 @@ def landing_page(request, extra_context = None):
     recruiter_audience = [core_enums.ALL, core_enums.AUTHENTICATED, core_enums.ANONYMOUS_AND_EMPLOYERS, core_enums.EMPLOYER, core_enums.CAMPUS_ORGS_AND_EMPLOYERS]
     tutorials = Tutorial.objects.filter(display=True, audience__in = recruiter_audience).order_by("sort_order")
     landing_page_tutorials = ["Find Candidates",
-                              "Create & Deliver Resume Books",
+                              "Deliver Resume Books",
                               "Browse RSVPs & Attendees",
                               "Create Events & Deadlines",
                               "Send Invitations",
                               "Create Account for Co-Workers",
-                              "Publish Your Company Profile",
                               "Check Students In"]
     tutorials = tutorials.filter(action__in = landing_page_tutorials)
     
@@ -341,7 +340,10 @@ def landing_page(request, extra_context = None):
         'form_error': form_error,
         'email_error': email_error,
         'tutorials': tutorials,
-        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo")
+        'employers': Employer.objects.filter(visible=True).exclude(name="Umeqo"),
+        'aggregate_shown_in_results_count' : sum(map(lambda x: x.shown_in_results_count, StudentStatistics.objects.all())),
+        'aggregate_resume_view_count' : sum(map(lambda x: x.resume_view_count, StudentStatistics.objects.all())),
+        'aggregate_add_to_resumebook_count' : sum(map(lambda x: x.add_to_resumebook_count, StudentStatistics.objects.all()))
     }
 
     if FeaturedEvent.objects.all().exists():

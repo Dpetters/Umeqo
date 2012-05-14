@@ -30,16 +30,16 @@
                 background: url('{{ STATIC_URL }}images/icons/twg_retina/man_64.png') no-repeat center center transparent;
             }
             #firm_scroller_container #firm_thumb_scroller_left {
-                background:url('{{ STATIC_URL }}/lib/firm_scroller/images/thumbScroller_left.png');
+                background:url('{{ STATIC_URL }}lib/firm_scroller/images/thumbScroller_left.png');
             }
             #firm_scroller_container #firm_thumb_scroller_right {
-                background:url('{{ STATIC_URL }}/static/lib/firm_scroller/images/thumbScroller_right.png');
+                background:url('{{ STATIC_URL }}lib/firm_scroller/images/thumbScroller_right.png');
             }
         </style>
         
         {% compress css %}
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
-            <link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
+            <!--<link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />-->
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
         <!--[if lte IE 8]>
@@ -84,7 +84,7 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <a id="login_button" class="gray_button" href="{% url login %}">Sign In</a>
+        <a id="login_button" class="btn" href="{% url login %}">Sign In</a>
         <div id="logo">
             <h1>Umeqo</h1>
             <span id="landing_beta_logo">BETA</span>
@@ -138,9 +138,9 @@
                         <iframe src="http://www.facebook.com/plugins/like.php?app_id=119497238132973&amp;href=umeqo.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:35px;" allowTransparency="true"></iframe>
                     </div>
                 </div>
-                <div id="featured_event" class="col">
-                    <h2>Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
-                    <div id="promotion">
+                {% if featured_event %}
+                <h2 id="featured_event_header">Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
+                <div id="featured_event" class="col dark_module">
                       <h2>Techfair 2012</h2>
                       {% if featured_event.employer %}
                       <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
@@ -150,7 +150,15 @@
                       {% endif %}
                       <p>You are invited to Techfair 2012! The lineup for this year will include a hackathon, an afterparty, a banquet, and a speaker series in addition to the Fair itself.</p>
                       <p>It all starts at 9am on Monday, February 6th. {% if featured_event %}Drop off your resume now on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
-                    </div>
+                </div>
+                {% endif %}
+                <div id="statistics_for_students" class="col dark_module">
+                    <h3 class="h1">So far signed-up students have...</h3>
+                    <p class="l1 l">...had their resume added to a resume book <span class="bold num">{{aggregate_add_to_resumebook_count}}</span> times</p>
+                    <p class="l2 l">...had their resume viewed <span class="bold num">{{aggregate_resume_view_count}}</span> times</p>
+                    <p class="l3 l"> & shown up in the results <span class="bold num">{{aggregate_shown_in_results_count}}</span> times!</p>
+                    
+                    <h3 class="h2">Don't go unnoticed - <a href="{% url student_registration %}">sign up today!</a></h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -182,28 +190,46 @@
             </div>
             {% include 'small_navigation_section.html' %}
             <div id="employers">
-                <h1>Find candidates in minutes.</h1>
-                <div id="overview">
-                    <h2>What is Umeqo?</h2>
-                    <p>Currently available only at MIT, Umeqo is a new recruiting resource that makes discovering and connecting with students easier than ever.</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div id="testimonials">
-                    <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
-                    <div class="clearfix"></div>
-                </div>
+                <h1 class="header">Find candidates in minutes.</h1>
+                <div class="col second_col">
+                    <div id="what_is_umeqo">
+                        <h2>What is Umeqo?</h2>
+                        <p>Currently available only at MIT, Umeqo is a new faster and smarter way for recruiters to find potential student candidates.</p>
+                        <div class="clearfix"></div>
+                    </div>
                 <div class="features">
-                    <h2>With Umeqo you can..</h2>
-                    {% for tutorial in tutorials %}
-                        <div class="feature">
-                            <a href="{{tutorial.get_absolute_url}}">
-                                <img src="{{MEDIA_URL}}{{tutorial.image}}" />
-                                <p class="action">{{tutorial.action}}</p>
-                            </a>
-                        </div>
-                    {% endfor %}
+                        <h2>With Umeqo you can..</h2>
+                        {% for tutorial in tutorials %}
+                            <div class="feature">
+                                <a href="{{tutorial.get_absolute_url}}">
+                                    <img src="{{MEDIA_URL}}{{tutorial.image}}" />
+                                    <p class="action">{{tutorial.action}}</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                        <h2 id="subscribe_command">..and much more. <a href="{% url subscriptions %}">Subscribe today!</a></h2>
+                    </div>
                 </div>
-                <h2 id="subscribe_command">..and much more. <a href="{% url subscriptions %}">Subscribe today!</a></h2>
+                <div class="col">
+                    <div id="testimonials" class="dark_module">
+                        <h3>What our users say - </h3>
+                        <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="btns">
+                        <a id="demo_btn" href="http://www.demo.umeqo.com" class="btn btn-primary btn-large">
+                            <div class="innerspan">
+                                <h2>Play with the Demo</h2>
+                            </div>
+                        </a>
+                        <a id="get_started_btn" href="{% url subscriptions %}" class="btn btn-success btn-large">
+                            <div class="innerspan">
+                                <h2>Get Started For Free</h2>
+                                <span>No Credit Card Needed</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
             </div>
             {% include 'small_navigation_section.html' %}
