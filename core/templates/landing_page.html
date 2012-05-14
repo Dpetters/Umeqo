@@ -30,10 +30,13 @@
                 background: url('{{ STATIC_URL }}images/icons/twg_retina/man_64.png') no-repeat center center transparent;
             }
             #firm_scroller_container #firm_thumb_scroller_left {
-                background:url('{{ STATIC_URL }}/lib/firm_scroller/images/thumbScroller_left.png');
+                background:url('{{ STATIC_URL }}lib/firm_scroller/images/thumbScroller_left.png');
             }
             #firm_scroller_container #firm_thumb_scroller_right {
-                background:url('{{ STATIC_URL }}/static/lib/firm_scroller/images/thumbScroller_right.png');
+                background:url('{{ STATIC_URL }}lib/firm_scroller/images/thumbScroller_right.png');
+            }
+            .green_button .innerspan{
+                background:url('{{ STATIC_URL }}images/core/landing_page/stripes-green.png') repeat;
             }
         </style>
         
@@ -191,27 +194,44 @@
             {% include 'small_navigation_section.html' %}
             <div id="employers">
                 <h1>Find candidates in minutes.</h1>
-                <div id="overview">
-                    <h2>What is Umeqo?</h2>
-                    <p>Currently available only at MIT, Umeqo is a new recruiting resource that makes discovering and connecting with students easier than ever.</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div id="testimonials">
-                    <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
-                    <div class="clearfix"></div>
-                </div>
+                <div class="col second_col">
+                    <div id="what_is_umeqo">
+                        <h2>What is Umeqo?</h2>
+                        <p>Currently available only at MIT, Umeqo is a new faster and smarter way for recruiters to find potential student candidates.</p>
+                        <div class="clearfix"></div>
+                    </div>
                 <div class="features">
-                    <h2>With Umeqo you can..</h2>
-                    {% for tutorial in tutorials %}
-                        <div class="feature">
-                            <a href="{{tutorial.get_absolute_url}}">
-                                <img src="{{MEDIA_URL}}{{tutorial.image}}" />
-                                <p class="action">{{tutorial.action}}</p>
-                            </a>
-                        </div>
-                    {% endfor %}
+                        <h2>With Umeqo you can..</h2>
+                        {% for tutorial in tutorials %}
+                            <div class="feature">
+                                <a href="{{tutorial.get_absolute_url}}">
+                                    <img src="{{MEDIA_URL}}{{tutorial.image}}" />
+                                    <p class="action">{{tutorial.action}}</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                        <h2 id="subscribe_command">..and much more. <a href="{% url subscriptions %}">Subscribe today!</a></h2>
+                    </div>
                 </div>
-                <h2 id="subscribe_command">..and much more. <a href="{% url subscriptions %}">Subscribe today!</a></h2>
+                <div class="col">
+                    <div id="testimonials" class="dark_module">
+                        <h3>What our users say - </h3>
+                        <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <a href="http://www.demo.umeqo.com" class="green_button">
+                        <div class="innerspan">
+                            <span>Play with the Demo</span>                            
+                        </div>
+                    </a>
+                    <a href="{% url subscriptions %}" class="green_button">
+                        <div class="innerspan">
+                            <span>Get Started For Free</span>
+                            <br>
+                            No Credit Card Needed
+                        </div>
+                    </a>
+                </div>
                 <div class="clearfix"></div>
             </div>
             {% include 'small_navigation_section.html' %}

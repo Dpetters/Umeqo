@@ -329,7 +329,6 @@ def landing_page(request, extra_context = None):
                               "Create Events & Deadlines",
                               "Send Invitations",
                               "Create Account for Co-Workers",
-                              "Publish Your Company Profile",
                               "Check Students In"]
     tutorials = tutorials.filter(action__in = landing_page_tutorials)
     
