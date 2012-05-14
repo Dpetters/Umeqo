@@ -498,7 +498,7 @@
    "industries": [
     27
    ],
-   "last_updated": "2012-04-17 16:22:03",
+   "last_updated": "2012-05-13 00:05:47",
    "description": "<p>\r\n\tBlackstone&rsquo;s people are the firm&rsquo;s most valuable asset and are critical to our success as a highly respected asset management and advisory firm.&nbsp; Over the years, Blackstone has been a magnet for some of the most talented professionals in our industry.&nbsp; We seek qualified candidates who believe, as we do, that intellectual capital is the driving force in creating economic value.</p>\r\n<p style=\"line-height: 17px; margin-top: 0px; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\r\n\tBlackstone provides a wide range of work experience and learning opportunities through our asset management businesses, which include the management of our private equity funds, real estate funds, hedge fund solutions, credit oriented funds and closed-end mutual funds; and our various advisory services businesses (including financial and strategic advisory, restructuring and reorganization advisory and fund placement advisory services).</p>\r\n",
    "starred_students": [],
    "stripe_id": null,
@@ -509,7 +509,7 @@
     4
    ],
    "date_created": "2011-08-28 15:13:21",
-   "logo": "employer/employer/blackstone_2011-08-28-15-13-21.png",
+   "logo": "employer/employer/blackstone_2012-05-13-00-05-47.png",
    "size": null,
    "careers_website": "http://www.blackstone.com/cps/rde/xchg/bxcom/hs/careers.htm",
    "slug": "blackstone",
@@ -1257,7 +1257,7 @@
     13,
     31
    ],
-   "last_updated": "2012-04-17 16:22:16",
+   "last_updated": "2012-05-13 00:04:49",
    "description": "<p>\r\n\tExxonMobil is the world&#39;s premier petroleum and petrochemicals company. &nbsp;Our Upstream Division finds, develops, and produces crude oil and natural gas in over 50 countries. &nbsp;Our Downstream Division produces and markets some 8 million barrels per day of gasoline and other refined products under the Esso, Mobil and Exxon brands in over 190 countries. &nbsp;As global energy demand rises, we need your creative energy to find ways to meet it. &nbsp;Ways that support economic, environmental, and social progress according to our core values: &nbsp;discipline, integrity, reliability, and a commitment to technology. &nbsp;The world faces enormous energy challenges. &nbsp;This is where you come in, because the biggest challenges attract the best. &nbsp;Join ExxonMobil in tackling the world&#39;s toughest energy challenges!</p>\r\n",
    "starred_students": [],
    "stripe_id": null,
@@ -1268,7 +1268,7 @@
     4
    ],
    "date_created": "2011-08-28 15:58:02",
-   "logo": "employer/employer/exxon mobil_2011-08-28-15-58-02.png",
+   "logo": "employer/employer/exxon mobil_2012-05-13-00-04-49.png",
    "size": null,
    "careers_website": "http://www.exxonmobil.com/careers/usa",
    "slug": "exxon",
@@ -2082,7 +2082,7 @@
     20,
     36
    ],
-   "last_updated": "2012-04-23 19:38:47",
+   "last_updated": "2012-05-13 00:06:45",
    "description": "<p>\r\n\tMicrosoft is the worldwide leader in software, services and solutions that help people and businesses realize their full potential. &nbsp;We&#39;re motivated and inspired by how our customers and partners use our software to find creative solutions to business problems, develop breakthrough ideas and stay connected to what&#39;s important to them.&nbsp;</p>\r\n<div>\r\n\t&nbsp;</div>\r\n<div>\r\n\tWe run our company in much the same way. Our employees come as they are and do what they love. &nbsp;We&rsquo;re a global company, located in over 100 countries, but we often act like a startup. We do software &mdash; but we also do hardware, services, research, and community outreach. We work hard, but we value work/life balance, and each of us defines what that means to us. So why not explore what we do, where we do it, and what life is really like at Microsoft? You just might be surprised.</div>\r\n<div>\r\n\t&nbsp;</div>\r\n",
    "starred_students": [],
    "stripe_id": null,
@@ -2093,7 +2093,7 @@
     4
    ],
    "date_created": "2011-08-28 15:20:38",
-   "logo": "employer/employer/microsoft_2011-08-28-15-20-38.png",
+   "logo": "employer/employer/microsoft_2012-05-13-00-06-45.png",
    "size": null,
    "careers_website": "http://www.microsoft.com/unviersity",
    "slug": "microsoft",
@@ -2340,10 +2340,10 @@
   "model": "employer.employer",
   "fields": {
    "industries": [],
-   "last_updated": "2012-05-08 21:14:23",
+   "last_updated": "2012-05-09 03:12:55",
    "description": "<p>\r\n\tNI&amp;CO is a full service Web, Graphic, Print design studio based in London, Soho and Surrey, Esher. We believe that creativity and innovation are integral to the design process and implement both into all of our work. Our creative design services include: Web Design and Development, Content Management Solutions, Fully Managed Website and Email Hosting, Printed Media, Social Media, Creative Branding and Logo Design.</p>\r\n<p>\r\n\tWith a large client base ranging from individuals wanting portfolios for their work such as artists, musicians, directors and photographers right through to high end fashion websites, nightclubs, restaurants, members clubs and promotion agencies, no job is too big or too small for us.</p>\r\n",
    "starred_students": [],
-   "stripe_id": null,
+   "stripe_id": "cus_WWHHutpYuPilvp",
    "visible": false,
    "offered_job_types": [],
    "date_created": "2012-05-08 21:14:23",
@@ -2573,7 +2573,7 @@
     20,
     36
    ],
-   "last_updated": "2012-05-03 10:02:44",
+   "last_updated": "2012-05-13 00:03:41",
    "description": "<p>\r\n\tOracle provides the world&rsquo;s most complete, open, and integrated business software and hardware systems. With the full software and hardware portfolio at its disposal, only Oracle designs and integrates everything from the semiconductor chip to the entire software stack to achieve performance levels that are unmatched in the industry.</p>\r\n",
    "starred_students": [],
    "stripe_id": null,
@@ -2583,7 +2583,7 @@
     2
    ],
    "date_created": "2011-08-28 16:02:51",
-   "logo": "employer/employer/oracle_2011-08-28-16-02-51.png",
+   "logo": "employer/employer/oracle_2012-05-13-00-03-41.png",
    "size": null,
    "careers_website": "http://www.oracle.com/us/corporate/careers/college/index.html",
    "slug": "oracle",
@@ -3130,7 +3130,7 @@
    "industries": [
     40
    ],
-   "last_updated": "2012-04-17 16:22:37",
+   "last_updated": "2012-05-13 00:01:48",
    "description": "<p>\r\n\tSusquehanna International Group (SIG) is a world-leading technology-empowered financial trading firm. Founded in 1987, SIG has grown from an options trading firm on the Philadelphia Stock Exchange to one of the world&rsquo;s largest privately held financial institutions. Today, with offices around the world, the firm trades virtually every major financial product and is recognized for its disciplined and quantitative trading approach, as well as its leading-edge trading systems. SIG&rsquo;s structured Development Programs introduce university hires to its unique approach to decision making and prepare them to become independent thinkers within a collaborative environment.</p>\r\n",
    "starred_students": [],
    "stripe_id": null,
@@ -3140,7 +3140,7 @@
     2
    ],
    "date_created": "2011-07-08 00:09:24",
-   "logo": "employer/employer/susquehanna international group_2011-08-24-15-31-30.png",
+   "logo": "employer/employer/susquehanna international group_2012-05-13-00-01-48.png",
    "size": null,
    "careers_website": "http://sig.com/campus.aspx",
    "slug": "sig",
@@ -3603,6 +3603,44 @@
    "careers_website": "",
    "slug": "usnavy",
    "name": "US Navy"
+  }
+ },
+ {
+  "pk": 187,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [],
+   "last_updated": "2012-05-09 02:50:50",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-05-09 02:50:50",
+   "logo": "",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Us!"
+  }
+ },
+ {
+  "pk": 188,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [],
+   "last_updated": "2012-05-09 02:58:17",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-05-09 02:58:17",
+   "logo": "",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Us!e"
   }
  },
  {
