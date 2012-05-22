@@ -83,7 +83,8 @@
     
             var PASSWORD_MIN_LENGTH="{{password_min_length}}";
         {% endif %}
-
+        
+        var EVENT_ID = "{{event.id}}";
         var CAMPUS_ORG_INFO_URL = "{% url campus_org_info_dialog %}";
         var EVENT_PAGE = true;
         var EVENT_LIST_EXPORT_COMPLETED_URL = "{% url event_list_export_completed %}";
@@ -366,7 +367,7 @@
                             {% show_campusorg_logo event.owner.campusorg %}                      
                         {% else %}
                             {% if user.is_anonymous or user.student %}<a href="{{ event.owner.recruiter.employer.get_absolute_url }}">{% endif %}
-                            {% show_employer_thumbnail event.owner.recruiter.employer '262'}
+                            {% show_employer_thumbnail event.owner.recruiter.employer '262' %}
                             {% if user.is_anonymous or user.student %}</a>{% endif %}
                         {% endif %}
                     </div>

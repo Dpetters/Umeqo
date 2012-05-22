@@ -106,5 +106,6 @@ $(document).ready(function() {
             },
             error: errors_in_message_area_handler
         });
+        e.preventDefault();
     });
 });

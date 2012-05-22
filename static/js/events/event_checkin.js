@@ -161,6 +161,7 @@ $(document).ready(function(){
             $('#close_dialogue').animate({'opacity': 0});
             hasClickedClose = true;
         }
+        e.preventDefault();
     });
     $('#close_box').hover(
         function() {
