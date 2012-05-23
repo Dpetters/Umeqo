@@ -68,9 +68,6 @@
 #deliver_resume_book_form .form_table{
     width:100%;
 }
-#deliver_resume_book_form input[type=submit]{
-    width:72px;
-}
 #resume_book_contents_header{
     color:#000;
     font-weight:bold;
