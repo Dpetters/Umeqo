@@ -6,7 +6,7 @@ from django.contrib import admin
 from student.models import DegreeProgram, Student, StudentPreferences, StudentStatistics, StudentInvite, StudentDeactivation
 
 class DegreeProgramAdmin(admin.ModelAdmin):
-    fields = ['name', 'name_plural']
+    fields = ['name', 'name_plural', 'sort_order']
     ordering = ('-last_updated',)
 
 admin.site.register(DegreeProgram, DegreeProgramAdmin)
