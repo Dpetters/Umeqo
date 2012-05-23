@@ -1,7 +1,7 @@
 [
  {
   "pk": 1,
-  "model": "student.studenttype",
+  "model": "student.degreeprogram",
   "fields": {
    "date_created": "2012-05-23 12:11:22",
    "sort_order": 0.0,
@@ -12,7 +12,7 @@
  },
  {
   "pk": 2,
-  "model": "student.studenttype",
+  "model": "student.degreeprogram",
   "fields": {
    "date_created": "2012-05-23 12:11:46",
    "sort_order": 0.0,
@@ -23,7 +23,7 @@
  },
  {
   "pk": 3,
-  "model": "student.studenttype",
+  "model": "student.degreeprogram",
   "fields": {
    "date_created": "2012-05-23 12:11:57",
    "sort_order": 0.0,
