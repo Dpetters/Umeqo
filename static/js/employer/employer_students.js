@@ -182,8 +182,8 @@ function enforce_resume_book_size_limit(){
         $(".resume_book_toggle_student div").each( function(){
             $(this).removeClass("resume_book_capacity_reached");
         });
-        if($("#resume_book_add_students").hasClass("resume_book_capacity_reached_gray_button")){
-            $("#resume_book_add_students").removeClass("resume_book_capacity_reached_gray_button");
+        if($("#resume_book_add_students").hasClass("resume_book_capacity_reached_button")){
+            $("#resume_book_add_students").removeClass("resume_book_capacity_reached_button");
         }
         if($("#resume_book_add_students").hasClass("disabled")){
             $("#resume_book_add_students").removeClass("disabled");
@@ -194,8 +194,8 @@ function enforce_resume_book_size_limit(){
                 $(this).addClass("resume_book_capacity_reached");
             }
         });
-        if(!$("#resume_book_add_students").hasClass("resume_book_capacity_reached_gray_button")){
-            $("#resume_book_add_students").addClass("resume_book_capacity_reached_gray_button");
+        if(!$("#resume_book_add_students").hasClass("resume_book_capacity_reached_button")){
+            $("#resume_book_add_students").addClass("resume_book_capacity_reached_button");
         }
         if(!$("#resume_book_add_students").hasClass("disabled")){
             $("#resume_book_add_students").addClass("disabled");

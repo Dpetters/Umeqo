@@ -32,7 +32,7 @@ $(document).ready( function() {
             email: {
                 required: true,
                 email: true,
-                isMITEmail: true,
+                isMITEmail: !DEBUG,
                 remote: {
                     dataType: 'json',
                     url: CHECK_EMAIL_AVAILABILITY_URL,

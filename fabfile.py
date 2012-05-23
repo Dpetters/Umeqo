@@ -124,13 +124,15 @@ def load_prod_data():
     if not env.host:
         local("python copy_media.py prod in")
         local("python manage.py flush --noinput")
+        local("python manage.py clear_prod_stripe_ids")
     else:
         if env.type == "umeqo":
             abort("load_prod_data cannot be called on prod.")
         with cd(env.directory):
             with prefix(env.activate):
                 run("python copy_media.py prod in")
-                run("python manage.py flush --noinput") 
+                run("python manage.py flush --noinput")
+                run("python manage.py clear_prod_stripe_ids")
                 
 def commit_local_data():
     if env.type != "staging":

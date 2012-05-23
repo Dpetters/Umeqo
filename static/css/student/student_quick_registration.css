@@ -40,3 +40,31 @@ input[type=text] {
 #student_quick_registration_form .ajax_form_submit_loader{
     margin-top:14px;
 }
+/* After a student registers through the quick registration dialog on an event page without being
+ * logged-in, we change the "RSVP" button to say "Attending" and be the same color as the
+ * button-success. However, it is just there as an indication and should not respond to hovers
+ * or presses, which is why we override the hover and active css of the button below to be the
+ * same as default.
+ */
+.post_quick_registration_event_action_button:hover,
+.post_quick_registration_event_action_button:active,
+.post_quick_registration_event_action_button.um-active{
+  background-color: #5bb75b;
+  background-image: -ms-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(top, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+  background-position: 0 0px;
+  color: #ffffff;
+}

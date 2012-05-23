@@ -186,25 +186,15 @@ label: not(.required) {
     position: relative;
 }
 #navigation_block a {
-    display: inline-block;
     text-decoration: none;
-    line-height: 31px;
-    padding: 0 6px;
+    padding: 6px 6px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    text-shadow: none;
     font-weight: bold;
     color: #FFF;
     font-size: 12px;
     border-radius: 2px;
-}
-#navigation_block a:hover {
-    background: transparent;
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#19FFFFFF,endColorstr=#19FFFFFF)"; /* IE8 */
-    filter: progid :DXImageTransform.Microsoft.gradient(startColorstr=#19FFFFFF,endColorstr=#19FFFFFF);   /* IE6 & 7 */
-    zoom: 1;
-    background-color: rgba(255,255,255,0.1);
 }
 #navigation_block .arrow {
     font-size: 0.8em;

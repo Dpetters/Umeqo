@@ -22,9 +22,6 @@
 #contact_us_form #id_name, #contact_us_form #id_email{
     width:152px;
 }
-#contact_us_form input[type=submit]{
-    width:100px;
-}
 #contact_us_form #email_contacts{
     vertical-align:top;
     border-left: 1px solid #DDD;

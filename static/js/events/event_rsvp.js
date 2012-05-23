@@ -23,7 +23,7 @@ function rsvp(attending) {
         
     if($dropdown.length!=0){
         $dropdown.removeClass("dropdown");
-        var that = $("<a href='#'>" + $(this).text() + "</a>");
+        var that = $("<a href='#' class='button'>" + $(this).text() + "</a>");
         $dropdown.replaceWith(that);
         rsvp_mouseout = true;
     }else{
@@ -50,7 +50,6 @@ function rsvp(attending) {
         },
         success: function(data) {
             if(attending){
-                console.log(that);
                 $(that).removeClass("not_attending rsvp_yes").addClass("attending rsvp_no");
                 if(rsvp_mouseout){
                     if (is_deadline)
@@ -83,7 +82,7 @@ function rsvp(attending) {
     
     if (attending) {
         resume_drop_mouseout = true;
-        $(".drop_resume").click();
+        $(parent).find(".drop_resume").click();
     }
 }
 

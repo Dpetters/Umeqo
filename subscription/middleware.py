@@ -6,9 +6,10 @@ from employer.decorators import is_recruiter
 
 
 def has_at_least_premium(customer):
-    subscription = customer.subscription
-    if subscription:
-        return subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values()) and subscription.status != "cancelled"
+    if customer:
+        subscription = customer.subscription
+        if subscription:
+            return subscription.plan.id in map(lambda x: x[1], s.SUBSCRIPTION_UIDS['premium'].values()) and subscription.status != "cancelled"
     return False
     
     
