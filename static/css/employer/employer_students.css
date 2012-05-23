@@ -86,10 +86,7 @@
     width:22px;
 }
 .resume_book_deliver_link {
-    width:70px;
-    float:right;
-    height:25px;
-    line-height:22px;
+    padding:2px 16px 3px;
 }
 #resume_book_contents_section{
     border:1px solid #AAA;
@@ -184,14 +181,14 @@
     padding-top:7px;
     border-bottom:1px solid #CCC;
 }
-#results_menu .gray_button{
+#results_menu .button{
     padding:0px 5px;
 }
-#results_menu #results_menu_checkbox_gray_button{
+#results_menu #results_menu_checkbox_button{
     padding:0px;
     min-width:40px;
 }
-#results_menu #results_menu_checkbox_gray_button ul {
+#results_menu #results_menu_checkbox_button ul {
     width:125px
 }
 #results_menu_checkbox {

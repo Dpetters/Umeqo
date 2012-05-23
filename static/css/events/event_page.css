@@ -5,12 +5,15 @@
     margin-top:10px;
     margin-bottom:8px;
 }
-.actions .gray_button{
+
+.actions .button{
     margin-bottom:7px;
-    height:30px;
-    line-height: 29px;
-    width:140px;
     display:block;
+}
+.actions .dropdown ul{
+    right:-1px;
+    top:33px;
+    left:auto;
 }
 #event_admin_main .commands {
     margin: -20px -4px 0 0;
@@ -127,6 +130,7 @@
 }
 #add_to_google_calendar{
     display:block;
+    text-align:right;
 }
 #add_to_google_calendar span{
     margin-left:5px;

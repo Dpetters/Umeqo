@@ -41,6 +41,7 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}lib/firm_scroller/firm_scroller.css" />
             <!--<link rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />-->
             <link href="{{STATIC_URL}}css/landing_page.css" rel="stylesheet" type="text/css" />
+            <link href="{{STATIC_URL}}css/buttons.css" rel="stylesheet" type="text/css" />
         {% endcompress %}
         <!--[if lte IE 8]>
             <link href="{{STATIC_URL}}css/landing_page_lte_ie8.css" rel="stylesheet" type="text/css" />
@@ -84,7 +85,7 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <a id="login_button" class="btn" href="{% url login %}">Sign In</a>
+        <a id="login_button" class="button button-menu" href="{% url login %}">Sign In</a>
         <div id="logo">
             <h1>Umeqo</h1>
             <span id="landing_beta_logo">BETA</span>
@@ -112,7 +113,7 @@
                             {% for field in student_reg_form %}
                                 <p>{{field.label_tag}}{{field}}</p>
                             {% endfor %}
-                            <input tabindex="3" class="black_button" type="submit" value="Create my account" />
+                            <input id="student_create_account_btn" tabindex="3" class="button button-inverse" type="submit" value="Create my account" />
                             <div class="clearfix"></div>
                         </form>
                         <ul class="features">
@@ -216,13 +217,13 @@
                         <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="btns">
-                        <a id="demo_btn" href="http://www.demo.umeqo.com/login/" class="btn btn-primary btn-large">
+                    <div class="buttons">
+                        <a id="demo_btn" href="http://www.demo.umeqo.com/login/" class="button button-primary button-large">
                             <div class="innerspan">
                                 <h2>Play with the Demo</h2>
                             </div>
                         </a>
-                        <a id="get_started_btn" href="{% url subscriptions %}?action=request_basic_account" class="btn btn-success btn-large">
+                        <a id="get_started_btn" href="{% url subscriptions %}?action=request_basic_account" class="button button-success button-large">
                             <div class="innerspan">
                                 <h2>Request Access</h2>
                                 <span>No Credit Card Needed</span>

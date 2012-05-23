@@ -22,11 +22,9 @@
 }
 #event_admin h1 a {
     float: right;
+    padding:2px 6px;
     font-size: 12px;
     margin-left:5px;
-    font-weight: normal;
-    height: 18px;
-    line-height: 19px;
     border-color: #444;
     margin-top: -2px;
 }

@@ -1,5 +1,12 @@
+{% load compress %}
+
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_students_results_menu.css"/>
+{% endcompress %}
+
+
 <div id="results_menu">
-    <div id="results_menu_checkbox_gray_button" class="dropdown gray_button">
+    <div id="results_menu_checkbox_button" class="dropdown button button-menu">
         <input id="results_menu_checkbox" type="checkbox"/>
         <img id="results_menu_checkbox_down_triangle" src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
         <ul>
@@ -10,17 +17,17 @@
             <li id="results_menu_not_in_resume_book">Not in Resume Book</li>
         </ul>
     </div>
-    <div id="resume_book_add_students" class="gray_button
+    <div id="resume_book_add_students" class="button button-menu
         {% if resume_book_capacity_reached %}
-            disabled resume_book_capacity_reached_gray_button
+            disabled resume_book_capacity_reached_button
         {% endif %}
         ">
         <span><b>Add to Resume Book</b></span>
     </div>
-    <div id="resume_book_remove_students" class="gray_button">
+    <div id="resume_book_remove_students" class="button button-menu">
         <span><b>Remove from Resume Book</b></span>
     </div>
-    <div id="results_menu_more_actions" class="dropdown gray_button">
+    <div id="results_menu_more_actions" class="dropdown button button-menu">
         <span>More Actions</span>
         <img src="{{ STATIC_URL }}images/icons/dropdown_png.png"/>
         <ul>
@@ -29,7 +36,7 @@
             <li>Invite to Event</li>
         </ul>
     </div>
-    <div id="results_menu_toggle_details" class="gray_button">
+    <div id="results_menu_toggle_details" class="button button-menu">
         <span>Show All Details</span>
     </div>
 </div>

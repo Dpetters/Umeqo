@@ -16,6 +16,7 @@ from student.models import Student, StudentBaseAttributes
 from subscription.choices import EMPLOYER_SIZE_CHOICES
 
 from sorl.thumbnail import ImageField
+from stripe import APIConnectionError
 
 class Employer(core_mixins.DateTracking): 
     # Mandatory Fields
@@ -49,7 +50,13 @@ class Employer(core_mixins.DateTracking):
         stripe.api_key = s.STRIPE_SECRET
         
         if self.stripe_id:
-            customer = stripe.Customer.retrieve(self.stripe_id)
+            try:
+                customer = stripe.Customer.retrieve(self.stripe_id)
+            except APIConnectionError as e:
+                if s.DEBUG:
+                    customer = None
+                else:
+                    raise e
             try:
                 deleted = customer.deleted
             except AttributeError as e:

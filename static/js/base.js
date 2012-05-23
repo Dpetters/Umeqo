@@ -54,12 +54,7 @@ function errors_in_dialog_error_section(dialog_class, jqXHR, textStatus, errorTh
     }
 }
 function errors_in_message_area_handler(jqXHR, textStatus, errorThrown) {
-    console.log("HERE")
     if (errorThrown != "abort"){
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-        console.log(jqXHR.status);
         if(jqXHR.status==0){
             $("#message_area").html("<p>" + CHECK_CONNECTION_MESSAGE + "</p>");
         }else{
@@ -134,7 +129,7 @@ function getCookie(name) {
 
 function is_valid_mit_email(email){
     if (DEBUG)
-           return (email.length - "mit.edu".length) == email.indexOf("mit.edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
+        return (email.length - "mit.edu".length) == email.indexOf("mit.edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
     else
         return (email.length - "mit.edu".length) == email.indexOf("mit.edu");
 }
@@ -197,7 +192,7 @@ $(document).ready( function () {
         window.location.reload();
     });
     $("a, .button, .dark_button, \
-    .dropdown ul li, .gray_button, .current_page_link, \
+    .dropdown ul li, .button, .current_page_link, \
     .page_link, .disabled_page_link, #logo_beta, #notifications_count").live({
         mouseleave:
             function(){
@@ -205,12 +200,12 @@ $(document).ready( function () {
             }
     });
     
-    $('.button, .gray_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mousedown', function() {
+    $('.button, #notifications_count, #login_button a, #signup_button a').live('mousedown', function() {
         if(!$(this).hasClass('disabled')){
             $(this).addClass('um-active');
         }
     });
-    $('.button, .gray_button, .dark_button, .caution_button, #notifications_count, #login_button a, #signup_button a').live('mouseup', function(){
+    $('.button, #notifications_count, #login_button a, #signup_button a').live('mouseup', function(){
         if ($(this).hasClass('um-active') || $(this).hasClass('disabled'))
             $(this).removeClass('um-active');
     });
@@ -223,7 +218,7 @@ $(document).ready( function () {
             
     });
     $('body').live('click', function(event) {
-        if (!$(event.target).closest('.dropdown').length && !$(event.target).closest('.dropdown gray_button ul').length) {
+        if (!$(event.target).closest('.dropdown').length && !$(event.target).closest('.dropdown ul').length) {
             $('.dropdown ul').hide();
             $('.dropdown').removeClass('um-pressed');
         }

@@ -47,14 +47,13 @@ def show_employer_logo(employer):
 
 @register.inclusion_tag('employer_logo.html')
 def show_employer_thumbnail(employer, dimensions):
-    logo = employer.logo or None
-
-    if logo:
-        logo = get_thumbnail(logo, dimensions).url
-
-    return {'employer': employer,
-            'employer_logo': logo,
-            'MEDIA_URL': settings.MEDIA_URL}
+    context = {}
+    if employer:
+        context['employer'] = employer
+        if employer.logo:
+            context['logo'] = get_thumbnail(employer.logo, dimensions).url
+            context['MEDIA_URL'] = settings.MEDIA_URL
+    return context
 
 @register.inclusion_tag('campus_org_logo.html')
 def show_campusorg_logo(campusorg):
