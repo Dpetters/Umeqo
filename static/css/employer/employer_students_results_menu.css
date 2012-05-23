@@ -1,3 +1,34 @@
+#results_menu {
+    padding-bottom:5px;
+    padding-top:7px;
+    border-bottom:1px solid #CCC;
+}
+#results_menu #results_menu_checkbox_button{
+    padding:3px 0px;
+    min-width:40px;
+}
+#results_menu #results_menu_checkbox_button ul {
+    width:140px
+}
+#results_menu_checkbox {
+    margin-left:1px;
+    margin-bottom:3px;
+    vertical-align:middle;
+}
+#results_menu_checkbox_down_triangle{
+    vertical-align:middle;
+    margin-bottom:3px;
+}
+#results_menu_more_actions span{
+    font-weight:normal;
+}
+#results_menu_more_actions img {
+    margin-right:2px;
+    margin-left:2px;
+}
+#results_menu_toggle_details {
+    float:right;
+}
 #results_menu .button-menu{
     padding:3px 7px;
 }

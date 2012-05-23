@@ -413,7 +413,7 @@ a.button{
     padding: 4px 0px;
     background: #FFF;
     text-align:left;
-    min-width: 104px;
+    min-width: 108px;
     display: none;
     position: absolute;
     left: -1px;
@@ -426,7 +426,7 @@ a.button{
 }
 .dropdown ul li {
     line-height: 18px;
-    padding: 1px 3px;
+    padding: 1px 6px;
     font-size: 12px;
     border: 1px solid #FFF;
 }
