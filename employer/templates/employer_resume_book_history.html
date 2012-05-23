@@ -43,8 +43,8 @@
                 {% if resume_book.students.visible|length > 0 %}
                     <li>
                         <div class="right_side_container">
-                            <a class="dark_button resume_book_deliver_link" data-resume-book-id="{{resume_book.id}}" href="#">Re-Deliver</a>
-                            <a class="delete_resume_book_link caution" data-resume-book-id="{{resume_book.id}}" href="#">Delete</a>
+                            <a class="button button-primary resume_book_deliver_link" data-resume-book-id="{{resume_book.id}}" href="#">Re-Deliver</a>
+                            <p><a class="delete_resume_book_link caution" data-resume-book-id="{{resume_book.id}}" href="#">Delete</a></p>
                         </div>
                         <div class="details">
                             <h2 class="resume_book_name">{{ resume_book.name }}</h2>
