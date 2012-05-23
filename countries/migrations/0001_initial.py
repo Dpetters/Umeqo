@@ -15,6 +15,7 @@ class Migration(SchemaMigration):
             ('printable_name', self.gf('django.db.models.fields.CharField')(max_length=128)),
             ('iso3', self.gf('django.db.models.fields.CharField')(max_length=3, null=True)),
             ('numcode', self.gf('django.db.models.fields.PositiveSmallIntegerField')(null=True)),
+            ('sort_order', self.gf('django.db.models.fields.FloatField')(null=True, blank=True)),
         ))
         db.send_create_signal('countries', ['Country'])
 
@@ -38,12 +39,13 @@ class Migration(SchemaMigration):
 
     models = {
         'countries.country': {
-            'Meta': {'ordering': "('name',)", 'object_name': 'Country', 'db_table': "'country'"},
+            'Meta': {'ordering': "('-sort_order', 'name')", 'object_name': 'Country', 'db_table': "'country'"},
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '2', 'primary_key': 'True'}),
             'iso3': ('django.db.models.fields.CharField', [], {'max_length': '3', 'null': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'numcode': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True'}),
-            'printable_name': ('django.db.models.fields.CharField', [], {'max_length': '128'})
+            'printable_name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
+            'sort_order': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'})
         },
         'countries.usstate': {
             'Meta': {'ordering': "('name',)", 'object_name': 'UsState', 'db_table': "'usstate'"},

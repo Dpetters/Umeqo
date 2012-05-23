@@ -11,25 +11,25 @@ class Migration(SchemaMigration):
         # Adding model 'CampusOrg'
         db.create_table('campus_org_campusorg', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 9, 1, 2, 21, 31, 853000), auto_now=True, blank=True)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 9, 1, 2, 21, 31, 853000), auto_now_add=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 5, 23, 11, 8, 54, 959000), auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 5, 23, 11, 8, 54, 959000), auto_now_add=True, blank=True)),
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
             ('website', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
-            ('description', self.gf('django.db.models.fields.TextField')(max_length=500, null=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(max_length=1000, null=True, blank=True)),
             ('display', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True, null=True, blank=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=42)),
             ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.CampusOrgType'])),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
-            ('thumbnail', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('image', self.gf('sorl.thumbnail.fields.ImageField')(max_length=100, null=True, blank=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(db_index=True, max_length=50, null=True, blank=True)),
         ))
         db.send_create_signal('campus_org', ['CampusOrg'])
 
         # Adding model 'CampusOrgPreferences'
         db.create_table('campus_org_campusorgpreferences', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 9, 1, 2, 21, 31, 853000), auto_now=True, blank=True)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 9, 1, 2, 21, 31, 853000), auto_now_add=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 5, 23, 11, 8, 54, 959000), auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 5, 23, 11, 8, 54, 959000), auto_now_add=True, blank=True)),
             ('campus_org', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['campus_org.CampusOrg'], unique=True)),
         ))
         db.send_create_signal('campus_org', ['CampusOrgPreferences'])
@@ -37,8 +37,8 @@ class Migration(SchemaMigration):
         # Adding model 'CampusOrgStatistics'
         db.create_table('campus_org_campusorgstatistics', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 9, 1, 2, 21, 31, 853000), auto_now=True, blank=True)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 9, 1, 2, 21, 31, 853000), auto_now_add=True, blank=True)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 5, 23, 11, 8, 54, 959000), auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 5, 23, 11, 8, 54, 959000), auto_now_add=True, blank=True)),
             ('campus_org', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['campus_org.CampusOrg'], unique=True)),
         ))
         db.send_create_signal('campus_org', ['CampusOrgStatistics'])
@@ -88,15 +88,15 @@ class Migration(SchemaMigration):
         },
         'campus_org.campusorg': {
             'Meta': {'ordering': "['name']", 'object_name': 'CampusOrg'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now_add': 'True', 'blank': 'True'}),
-            'description': ('django.db.models.fields.TextField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now_add': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'max_length': '1000', 'null': 'True', 'blank': 'True'}),
             'display': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now': 'True', 'blank': 'True'}),
+            'image': ('sorl.thumbnail.fields.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
-            'thumbnail': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'db_index': 'True', 'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.CampusOrgType']"}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True', 'null': 'True', 'blank': 'True'}),
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
@@ -104,16 +104,16 @@ class Migration(SchemaMigration):
         'campus_org.campusorgpreferences': {
             'Meta': {'object_name': 'CampusOrgPreferences'},
             'campus_org': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['campus_org.CampusOrg']", 'unique': 'True'}),
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now_add': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now': 'True', 'blank': 'True'})
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now': 'True', 'blank': 'True'})
         },
         'campus_org.campusorgstatistics': {
             'Meta': {'object_name': 'CampusOrgStatistics'},
             'campus_org': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['campus_org.CampusOrg']", 'unique': 'True'}),
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now_add': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now': 'True', 'blank': 'True'})
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now': 'True', 'blank': 'True'})
         },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
@@ -124,11 +124,11 @@ class Migration(SchemaMigration):
         },
         'core.campusorgtype': {
             'Meta': {'ordering': "['sort_order']", 'object_name': 'CampusOrgType'},
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now_add': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 9, 1, 2, 21, 31, 853000)', 'auto_now': 'True', 'blank': 'True'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 5, 23, 11, 8, 54, 959000)', 'auto_now': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '42'}),
-            'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'})
+            'sort_order': ('django.db.models.fields.FloatField', [], {})
         }
     }
 
