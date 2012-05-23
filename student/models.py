@@ -16,10 +16,12 @@ from student.managers import StudentManager
 class StudentType(core_mixins.DateTracking):
     name = models.CharField("Student Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
     name_plural = models.CharField("Student Type Verbose", max_length=43, unique=True, help_text="Maximum 42 characters.", null=True)
+    sort_order = models.FloatField(help_text='Topics will be ordered by the sort order. (Smallest at top.)', default=0)
     
     class Meta:
         verbose_name = "Student Type"
         verbose_name_plural = "Student Types"
+        ordering = ['sort_order']
         
     def __unicode__(self):
         return self.name

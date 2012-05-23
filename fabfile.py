@@ -123,7 +123,12 @@ def commit_prod_data():
 def load_prod_data():
     if not env.host:
         local("python copy_media.py prod in")
-        local("python manage.py flush --noinput")
+        local("python manage.py loaddata ./initial_data.json")
+        for app in settings.PROD_DATA_MODELS:
+            if app == "sites" or app == "auth":
+                continue
+            fixtures_dir = "./%s/fixtures" % (app)
+            local("python manage.py loaddata %s/initial_data.json" % fixtures_dir)
         local("python manage.py clear_prod_stripe_ids")
     else:
         if env.type == "umeqo":
@@ -131,7 +136,12 @@ def load_prod_data():
         with cd(env.directory):
             with prefix(env.activate):
                 run("python copy_media.py prod in")
-                run("python manage.py flush --noinput")
+                run("python manage.py loaddata ./initial_data.json")
+                for app in settings.PROD_DATA_MODELS:
+                    if app == "sites" or app == "auth":
+                        continue
+                    fixtures_dir = "./%s/fixtures" % (app)
+                    run("python manage.py loaddata %s/initial_data.json" % fixtures_dir)
                 run("python manage.py clear_prod_stripe_ids")
                 
 def commit_local_data():
