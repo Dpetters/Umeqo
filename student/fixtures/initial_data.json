@@ -3,33 +3,66 @@
   "pk": 1,
   "model": "student.degreeprogram",
   "fields": {
-   "date_created": "2012-05-23 12:11:22",
+   "date_created": "2012-05-23 13:30:36",
    "sort_order": 0.0,
-   "last_updated": "2012-05-23 12:11:22",
-   "name": "Undergraduate",
-   "name_plural": "Undergraduates"
+   "last_updated": "2012-05-23 13:30:36",
+   "name": "Associate Degree",
+   "name_plural": "Associate Degrees"
   }
  },
  {
   "pk": 2,
   "model": "student.degreeprogram",
   "fields": {
-   "date_created": "2012-05-23 12:11:46",
-   "sort_order": 0.0,
-   "last_updated": "2012-05-23 12:11:46",
-   "name": "Graduate - Masters",
-   "name_plural": "Graduates - Masters"
+   "date_created": "2012-05-23 13:30:50",
+   "sort_order": 1.0,
+   "last_updated": "2012-05-23 13:30:50",
+   "name": "Bachelors Degree",
+   "name_plural": "Bachelors Degrees"
   }
  },
  {
   "pk": 3,
   "model": "student.degreeprogram",
   "fields": {
-   "date_created": "2012-05-23 12:11:57",
-   "sort_order": 0.0,
-   "last_updated": "2012-05-23 12:11:57",
-   "name": "Graduate - PHD",
-   "name_plural": "Graduates - PHD"
+   "date_created": "2012-05-23 13:31:05",
+   "sort_order": 2.0,
+   "last_updated": "2012-05-23 13:31:05",
+   "name": "First-Professional Degree",
+   "name_plural": "First-Professional Degrees"
+  }
+ },
+ {
+  "pk": 4,
+  "model": "student.degreeprogram",
+  "fields": {
+   "date_created": "2012-05-23 13:31:14",
+   "sort_order": 3.0,
+   "last_updated": "2012-05-23 13:31:14",
+   "name": "Master's Degree",
+   "name_plural": "Master's Degrees"
+  }
+ },
+ {
+  "pk": 5,
+  "model": "student.degreeprogram",
+  "fields": {
+   "date_created": "2012-05-23 13:32:00",
+   "sort_order": 4.0,
+   "last_updated": "2012-05-23 13:32:00",
+   "name": "Intermediate Graduate Qualification",
+   "name_plural": "Intermediate Graduate Qualifications"
+  }
+ },
+ {
+  "pk": 6,
+  "model": "student.degreeprogram",
+  "fields": {
+   "date_created": "2012-05-23 13:32:12",
+   "sort_order": 5.0,
+   "last_updated": "2012-05-23 13:32:12",
+   "name": "Research Doctorate Degree",
+   "name_plural": "Research Doctorate Degrees"
   }
  }
 ]
