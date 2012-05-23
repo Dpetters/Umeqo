@@ -92,6 +92,7 @@ PROD_DATA_MODELS = {
             'language', 'course','employmenttype', \
             'industry', 'eventtype'],
     'sites':['site'],
+    'student':['studenttype'],
     'subscription':['subscription']
 }
 LOCAL_DATA_MODELS = {
