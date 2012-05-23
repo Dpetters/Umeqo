@@ -14,6 +14,18 @@ from core import mixins as core_mixins
 from student.managers import StudentManager
 
 
+class StudentType(core_mixins.DateTracking):
+    name = models.CharField("Student Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
+    name_plural = models.CharField("Student Type Verbose", max_length=43, unique=True, help_text="Maximum 42 characters.", null=True)
+    
+    class Meta:
+        verbose_name = "Student Type"
+        verbose_name_plural = "Student Types"
+        
+    def __unicode__(self):
+        return self.name
+
+
 class StudentInvite(core_mixins.DateTracking):
     code = models.CharField(max_length=12, unique=True)
     used = models.BooleanField(default=False)
@@ -52,6 +64,7 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
     first_name = models.CharField(db_index = True, max_length = 20, blank = True, null=True)
     last_name = models.CharField(max_length = 30, blank = True, null=True)
     school_year = models.ForeignKey(SchoolYear, blank = True, null=True)
+    type = models.ForeignKey(StudentType, blank = True, null = True)
     graduation_year = models.ForeignKey(GraduationYear, blank = True, null=True)
     graduation_month = models.CharField(max_length=2, choices = core_choices.MONTH_CHOICES, default = core_choices.JUNE, blank = True, null = True)
     first_major = models.ForeignKey(Course, related_name = "first_major", blank = True, null=True)
