@@ -13,7 +13,6 @@ from core import choices as core_choices
 from core import mixins as core_mixins
 from student.managers import StudentManager
 
-
 class StudentType(core_mixins.DateTracking):
     name = models.CharField("Student Type", max_length=42, unique=True, help_text="Maximum 42 characters.")
     name_plural = models.CharField("Student Type Verbose", max_length=43, unique=True, help_text="Maximum 42 characters.", null=True)
@@ -24,7 +23,6 @@ class StudentType(core_mixins.DateTracking):
         
     def __unicode__(self):
         return self.name
-
 
 class StudentInvite(core_mixins.DateTracking):
     code = models.CharField(max_length=12, unique=True)
