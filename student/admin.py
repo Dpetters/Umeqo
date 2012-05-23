@@ -3,7 +3,13 @@ from __future__ import absolute_import
 
 from django.contrib import admin
 
-from student.models import Student, StudentPreferences, StudentStatistics, StudentInvite, StudentDeactivation
+from student.models import StudentType, Student, StudentPreferences, StudentStatistics, StudentInvite, StudentDeactivation
+
+class StudentTypeAdmin(admin.ModelAdmin):
+    fields = ['name', 'name_plural']
+    ordering = ('-last_updated',)
+
+admin.site.register(StudentType, StudentTypeAdmin)
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'user', 'profile_created', 'date_created', 'last_updated')
