@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save, post_syncdb
+from django.db.models.signals import post_syncdb
 from django.dispatch import receiver
 
-from core.model_helpers import get_image_filename, get_thumbnail_filename
+from core.model_helpers import get_image_filename
 from core import enums as core_enums
 from core.managers import VisibleManager
 from core import mixins as core_mixins
-from core.signals import delete_thumbnail_on_image_delete, create_thumbnail
 from notification import models as notification
 
 
