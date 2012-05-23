@@ -84,9 +84,9 @@ a {
     position:fixed;
     right:12px;
     top:8px;
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
 }
 .tagline { 
     color: #DDD;
