@@ -4,6 +4,7 @@
   "model": "student.studenttype",
   "fields": {
    "date_created": "2012-05-23 12:11:22",
+   "sort_order": 0.0,
    "last_updated": "2012-05-23 12:11:22",
    "name": "Undergraduate",
    "name_plural": "Undergraduates"
@@ -14,6 +15,7 @@
   "model": "student.studenttype",
   "fields": {
    "date_created": "2012-05-23 12:11:46",
+   "sort_order": 0.0,
    "last_updated": "2012-05-23 12:11:46",
    "name": "Graduate - Masters",
    "name_plural": "Graduates - Masters"
@@ -24,6 +26,7 @@
   "model": "student.studenttype",
   "fields": {
    "date_created": "2012-05-23 12:11:57",
+   "sort_order": 0.0,
    "last_updated": "2012-05-23 12:11:57",
    "name": "Graduate - PHD",
    "name_plural": "Graduates - PHD"
