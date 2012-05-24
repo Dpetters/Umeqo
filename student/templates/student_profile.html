@@ -31,7 +31,7 @@
     var PROFILE_PREVIEW_URL = "{% url student_profile_preview %}";
     var FIRST_NAME_REQUIRED = "{% text_snippet 'first_name_required' %}";
     var LAST_NAME_REQUIRED = "{% text_snippet 'last_name_required' %}";
-    var SCHOOL_YEAR_REQUIRED = "{% text_snippet 'school_year_required' %}";
+    var DEGREE_PROGRAM_REQUIRED = "{% text_snippet 'degree_program_required' %}";
     var GRADUATION_YEAR_REQUIRED = "{% text_snippet 'graduation_year_required' %}";
     var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
     var GPA_REQUIRED = "{% text_snippet 'gpa_required' %}";
@@ -133,10 +133,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>{{form.school_year.label_tag}}</th>
+                    <th>{{form.degree_program.label_tag}}</th>
                     <td>
                         <div class="errorspace"></div>
-                        {{form.school_year}}
+                        {{form.degree_program}}
                     </td>
                 </tr>
                 <tr>

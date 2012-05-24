@@ -24,5 +24,6 @@
     top:2px;
 }
 .resume_book_deletion_dialog .dialog_content_wrapper{
-    padding:20px;
+    padding:2px 0px 12px;
+    text-align:center;
 }
