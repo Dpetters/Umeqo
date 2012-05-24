@@ -614,9 +614,9 @@ $(document).ready(function () {
     $("#show_resume_book_contents_dialog").live('click', show_resume_book_contents_dialog );
     
     $(".student_toggle_star").live('click', handle_student_toggle_star);
-    $("#students_add_star").live('click', handle_students_add_star);
-    $("#students_remove_star").live('click', handle_students_remove_star);
-    $("#students_invite").live('click', handle_students_invite_click);
+    $(".students_add_star").live('click', handle_students_add_star);
+    $(".students_remove_star").live('click', handle_students_remove_star);
+    $(".students_invite").live('click', handle_students_invite_click);
     
     $(".resume_book_toggle_student").live('click', handle_resume_book_student_toggle);
     $("#resume_book_add_students").live('click', handle_resume_book_students_add);
