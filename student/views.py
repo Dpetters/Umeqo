@@ -156,8 +156,9 @@ def student_increment_resume_view_count(request):
     if not request.POST.has_key("student_id"):
         raise Http400("Request POST is missing the student_id.")
     student = Student.objects.get(id=request.POST['student_id'])
-    student.studentstatistics.resume_view_count += 1
-    student.studentstatistics.save()
+    if request.user.recruiter.employer.name != "Umeqo":
+        student.studentstatistics.resume_view_count += 1
+        student.studentstatistics.save()
     return HttpResponse()
 
 
