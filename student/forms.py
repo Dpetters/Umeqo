@@ -151,11 +151,6 @@ class StudentBaseAttributeForm(forms.ModelForm):
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
         
 
-class StudentBodyStatisticsForm(forms.Form):
-    y_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_Y_AXIS, initial=student_enums.GPA)
-    x_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_X_AXIS, initial=student_enums.SCHOOL_YEAR)
-
-
 class StudentProfileBaseForm(StudentUpdateResumeForm):
     first_name = forms.CharField(label="First name:", max_length = 20)
     last_name = forms.CharField(label="Last name:", max_length = 30)

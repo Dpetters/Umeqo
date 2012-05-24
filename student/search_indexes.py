@@ -17,7 +17,7 @@ class StudentIndex(indexes.RealTimeSearchIndex):
     sat_w = indexes.IntegerField(model_attr="sat_w", null=True)
     act = indexes.IntegerField(model_attr="act", null=True)
 
-    school_year = indexes.CharField(model_attr="school_year__id", null=True)
+    degree_program = indexes.CharField(model_attr="degree_program__id", null=True)
     graduation_year = indexes.CharField(model_attr="graduation_year__id", null=True)
     first_major = indexes.CharField(model_attr="first_major__id", null=True)
     second_major = indexes.CharField(model_attr="second_major__id", null=True)

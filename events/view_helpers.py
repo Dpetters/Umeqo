@@ -47,7 +47,7 @@ def buildAttendee(obj):
         output['account'] = True
         output['id'] = obj.student.id
         output['is_verified'] = obj.student.user.userattributes.is_verified
-        output['school_year'] = str(obj.student.school_year)
+        output['degree_program'] = str(obj.student.degree_program)
         output['graduation_year'] = str(obj.student.graduation_year)
     else:
         output['name'] = obj.name
@@ -60,7 +60,7 @@ def buildRSVP(obj):
         'name': obj.student.first_name + ' ' + obj.student.last_name,
         'datetime_created': obj.datetime_created.strftime("%Y-%m-%d %H:%M:%S"),
         'email': obj.student.user.email,
-        'school_year': str(obj.student.school_year),
+        'degree_program': str(obj.student.degree_program),
         'graduation_year': str(obj.student.graduation_year),
         'account': True
     }
@@ -91,7 +91,7 @@ def export_event_list_csv(file_obj, event, list):
         info.append(student['email'])
         info.append(student['datetime_created'])
         if student['account']:
-            info.append(student['school_year'])
+            info.append(student['degree_program'])
             info.append(student['graduation_year'])
         writer.writerow(info)
     return filename
@@ -116,7 +116,7 @@ def export_event_list_text(file_obj, event, list):
         students.sort(key=lambda n: n['name'])
     for student in students:
         if student['account']:
-            info = "\t".join([student['name'], student['email'], student['datetime_created'], student['school_year'], student['graduation_year']])
+            info = "\t".join([student['name'], student['email'], student['datetime_created'], student['degree_program'], student['graduation_year']])
         else:
             info = "\t".join([student['name'], student['email'], student['datetime_created']])
         print >> file_obj, info
@@ -149,7 +149,7 @@ def export_event_list_xls(file_obj, event, list):
         ws.write(i, 0, student['name'])
         ws.write(i, 1, student['email'])
         if student['account']:            
-            ws.write(i, 2, student['school_year'])
+            ws.write(i, 2, student['degree_program'])
             ws.write(i, 3, student['graduation_year'])
     wb.save(file_obj)
     return "%s.xls" % (event.name)
@@ -195,7 +195,7 @@ def get_rsvps(event):
           'student__last_name',
           'student__id',
           'student__graduation_year',
-          'student__school_year',
+          'student__degree_program',
           'student__user__email',
           'student__user__userattributes__is_verified').filter(attending=True, student__user__is_active=True).order_by('student__first_name')
     return map(buildRSVP, obj)
@@ -209,7 +209,7 @@ def get_no_rsvps(event):
           'student__last_name',
           'student__id',
           'student__graduation_year',
-          'student__school_year',
+          'student__degree_program',
           'student__user__email',
           'student__user__userattributes__is_verified').filter(attending=False, student__user__is_active=True).order_by('student__first_name')
     return map(buildRSVP, obj)
@@ -225,7 +225,7 @@ def get_attendees(event):
           'student__last_name',
           'student__id',
           'student__graduation_year',
-          'student__school_year',
+          'student__degree_program',
           'student__user__email',
           'student__user__userattributes__is_verified').filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name')
     return map(buildAttendee, obj)
@@ -239,7 +239,7 @@ def get_dropped_resumes(event):
           'student__last_name',
           'student__id',
           'student__graduation_year',
-          'student__school_year',
+          'student__degree_program',
           'student__user__email',
           'student__user__userattributes__is_verified').filter(student__user__is_active = True).order_by('student__first_name')
     return map(buildRSVP, obj)

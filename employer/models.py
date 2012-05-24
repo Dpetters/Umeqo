@@ -8,11 +8,11 @@ from django.db.models import signals
 from django.dispatch import receiver
 
 from core import choices, mixins as core_mixins
-from core.models import Industry, EmploymentType, SchoolYear, GraduationYear, Course
+from core.models import Industry, EmploymentType, GraduationYear, Course
 from employer import enums as employer_enums
 from employer.managers import EmployerManager
 from employer.model_helpers import get_resume_book_filename, get_logo_filename
-from student.models import Student, StudentBaseAttributes
+from student.models import DegreeProgram, Student, StudentBaseAttributes
 from subscription.choices import EMPLOYER_SIZE_CHOICES
 
 from sorl.thumbnail import ImageField
@@ -139,7 +139,7 @@ class ResumeBook(core_mixins.DateTracking):
 class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
     majors = models.ManyToManyField(Course, blank=True, null=True)    
-    school_years = models.ManyToManyField(SchoolYear, blank=True, null=True)
+    degree_programs = models.ManyToManyField(DegreeProgram, blank=True, null=True)
     graduation_years = models.ManyToManyField(GraduationYear, blank=True, null=True)
     employment_types = models.ManyToManyField(EmploymentType, blank=True, null=True)
     older_than_21 = models.CharField(max_length=1, choices=choices.NO_YES_CHOICES, blank=True, null=True)
