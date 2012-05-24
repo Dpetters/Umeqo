@@ -468,9 +468,9 @@ def employer_students(request, extra_context=None):
             am_filtering = True            
             students = students.filter(sat_w__gte = request.GET['sat_w'])
 
-        if request.GET.has_key('school_years'):
+        if request.GET.has_key('degree_programs'):
             am_filtering = True
-            students = students.filter(school_year__in = request.GET['school_years'].split('~'))
+            students = students.filter(degree_program__in = request.GET['degree_programs'].split('~'))
 
         if request.GET.has_key('graduation_years'):
             am_filtering = True            
@@ -676,7 +676,7 @@ def employer_resume_book_create(request):
         output = zipfile.ZipFile(file_name, 'w')
         for student in resume_book.students.visible():
             resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
-            name = "%s %s (%s, %s).pdf" % (student.first_name, student.last_name, student.graduation_year, student.school_year)
+            name = "%s %s (%s, %s).pdf" % (student.first_name, student.last_name, student.graduation_year, student.degree_program)
             output.write(resume_file.name, name, zipfile.ZIP_DEFLATED)
         resume_file.close()
         output.close()
@@ -693,7 +693,7 @@ def employer_resume_book_create(request):
         c.drawString(8.5*cm, 26.5*cm, "Resume Book Contents")
         for page_num, student in enumerate(resume_book.students.visible().order_by("graduation_year", "first_name", "last_name")):
             c.drawString(6.5*cm, (25.5-page_num*.5)*cm, "%s %s" % (student.first_name, student.last_name))
-            c.drawString(12*cm, (25.5-page_num*.5)*cm,  "%s, %s" %(student.graduation_year, student.school_year))
+            c.drawString(12*cm, (25.5-page_num*.5)*cm,  "%s, %s" %(student.graduation_year, student.degree_program))
         c.showPage()
         c.save()
         output = PdfFileWriter()

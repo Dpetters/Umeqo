@@ -6,9 +6,7 @@ class Command(BaseCommand):
     help = "Clear all employer customer ids that got committed from prod."
 
     def handle(self, *args, **options):
-        print options
         verbosity = int(options.get('verbosity', 1))
-        print verbosity
         if verbosity > 1:
             print "Clearing prod employer stripe ids:"
         

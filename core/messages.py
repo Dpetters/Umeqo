@@ -48,7 +48,7 @@ employer_already_exists = "This employer already exists."
 #Student Profile Form
 first_name_required = 'Enter your first name.'
 last_name_required= 'Enter your last name.'
-school_year_required = "Choose your school year."
+degree_program_required = "Choose your degree program."
 graduation_year_required = 'Choose your graduation year.'
 first_major_required = 'Choose your major.'
 gpa_required = 'Enter your GPA.'

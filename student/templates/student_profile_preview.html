@@ -17,7 +17,7 @@
     <label for="student_checkbox_{{student.id}}" data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</label>
     <span class="student_year">
         ({{student.graduation_year}}
-        {{student.school_year}})
+        {{student.degree_program}})
     </span>
     {% if num_of_events_attended > 0 %}
     <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
@@ -29,7 +29,12 @@
     <p class="student_gpa">
         <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
     </p>
-    <a {% if not visible %}disabled{% endif %} data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="{% if visible %}#{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">{% include 'student_resume_book.html' %}</a>
+    {% if profile_preview %}
+        <a data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="#" tabindex="-1">{% include 'student_resume_book.html' %}</a>
+    {% else %}
+        <a {% if not visible %}disabled{% endif %} data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="{% if visible %}#{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">{% include 'student_resume_book.html' %}</a>
+    {% endif %}
+    
     <span class="student_major">
         <strong>First Major:</strong>
         {% if student.first_major.display %}

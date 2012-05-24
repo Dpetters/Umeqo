@@ -27,19 +27,3 @@ GENERAL_STUDENT_LISTS = (
     (STARRED_STUDENTS, "Starred Students"),
     (STUDENTS_IN_RESUME_BOOK , "Students In Current Resume Book"),
 )
-
-GPA = "gpa"
-NUM_OF_PREVIOUS_EMPLOYERS = "num_of_previous_employers"
-
-STUDENT_BODY_STATISTICS_Y_AXIS = (
-    (GPA, "GPA"),
-    (NUM_OF_PREVIOUS_EMPLOYERS, "# of Previous Employers"),
-)
-
-SCHOOL_YEAR = "school_year"
-MAJOR = "major"
-
-STUDENT_BODY_STATISTICS_X_AXIS = (
-    (SCHOOL_YEAR, "School Year"),
-    (MAJOR, "First Major")
-)

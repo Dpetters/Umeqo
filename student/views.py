@@ -77,7 +77,7 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
                           'email': request.POST['email'],
                           'password': request.POST['password']}
             student = register_student(request, **user_info)
-            student.school_year = SchoolYear.objects.get(id=request.POST['school_year'])
+            student.degree_program = SchoolYear.objects.get(id=request.POST['degree_program'])
             student.graduation_month = request.POST['graduation_month']
             student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
             student.first_major = Course.objects.get(id=request.POST['first_major'])
