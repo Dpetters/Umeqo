@@ -16,9 +16,9 @@
   "fields": {
    "date_created": "2012-05-23 13:30:50",
    "sort_order": 1.0,
-   "last_updated": "2012-05-23 13:30:50",
-   "name": "Bachelors Degree",
-   "name_plural": "Bachelors Degrees"
+   "last_updated": "2012-05-24 01:40:25",
+   "name": "Bachelor's Degree",
+   "name_plural": "Bachelor's Degrees"
   }
  },
  {
@@ -60,9 +60,9 @@
   "fields": {
    "date_created": "2012-05-23 13:32:12",
    "sort_order": 5.0,
-   "last_updated": "2012-05-23 13:32:12",
-   "name": "Research Doctorate Degree",
-   "name_plural": "Research Doctorate Degrees"
+   "last_updated": "2012-05-24 02:03:05",
+   "name": "Doctorate Degree",
+   "name_plural": "Doctorate Degrees"
   }
  }
 ]
