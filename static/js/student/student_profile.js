@@ -200,7 +200,7 @@ $(document).ready( function() {
             last_name: {
                 required: true
             },
-            school_year: {
+            degree_program: {
                 required: true
             },
             graduation_year: {
@@ -241,7 +241,7 @@ $(document).ready( function() {
         messages: {
             first_name: FIRST_NAME_REQUIRED,
             last_name: LAST_NAME_REQUIRED,
-            school_year: SCHOOL_YEAR_REQUIRED,
+            degree_program: DEGREE_PROGRAM_REQUIRED,
             graduation_year: GRADUATION_YEAR_REQUIRED,
             first_major: FIRST_MAJOR_REQUIRED,
             gpa: {
