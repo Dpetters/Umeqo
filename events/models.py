@@ -12,7 +12,7 @@ from student.models import Student
 class FeaturedEvent(core_mixins.DateCreatedTracking):
     campus_org = models.ForeignKey("campus_org.CampusOrg", null=True, blank=True)
     employer = models.ForeignKey("employer.Employer", null=True, blank=True)
-    event = models.ForeignKey("events.Event")    
+    event = models.ForeignKey("events.Event", null=True, blank=True)    
     
 class Event(core_mixins.DateCreatedTracking):
     # Required Fields
