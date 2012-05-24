@@ -139,18 +139,22 @@
                         <iframe src="http://www.facebook.com/plugins/like.php?app_id=119497238132973&amp;href=umeqo.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:35px;" allowTransparency="true"></iframe>
                     </div>
                 </div>
-                {% if featured_event %}
-                <h2 id="featured_event_header">Featured {% if featured_event.is_deadline %}Deadline{% else %}Event{% endif %}</h2>
+                {% if featured_event.event or featured_event.employer %}
+                <h2 id="featured_event_header">Featured {% if featured_event.event %}{% if featured_event.event.is_deadline %}Deadline{% else %}Event{% endif %}{% else %}Employer{% endif %}</h2>
                 <div id="featured_event" class="col dark_module">
-                      <h2>Techfair 2012</h2>
-                      {% if featured_event.employer %}
-                      <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
+                      <h2>{% if featured_event.event %}{{featured_event.event}}{% else %}{{featured_event.employer}}{% endif %}</h2>
+                      {% if featured_event.event %}
+                          {% if featured_event.employer %}
+                          <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
+                          {% endif %}
+                          {% if featured_event.campus_org %}
+                          <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
+                          {% endif %}
+                      {% else %}
+                        <a href="{{ featured_event.employer.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.employer.logo}}" /></a>
                       {% endif %}
-                      {% if featured_event.campus_org %}
-                      <a href="{{ featured_event.event.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{featured_event.campus_org.image}}" /></a>
-                      {% endif %}
-                      <p>You are invited to Techfair 2012! The lineup for this year will include a hackathon, an afterparty, a banquet, and a speaker series in addition to the Fair itself.</p>
-                      <p>It all starts at 9am on Monday, February 6th. {% if featured_event %}Drop off your resume now on the <a href="{{ featured_event.event.get_absolute_url }}">official Umeqo event page</a>!{% endif %}</p>
+                      <p>Manufacturing the most advanced electric powertrains and vehicles in the world, Tesla's engineers don't compromise on innovation, performance, or appeal.</p>
+                      <p>Are you among the best in your field? Then don't hesitate to login and check out the <a href="{{ featured_event.employer.get_absolute_url }}">official Umeqo company profile</a>!</p>
                 </div>
                 {% endif %}
                 <div id="statistics_for_students" class="col dark_module">
