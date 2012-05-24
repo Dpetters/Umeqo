@@ -119,7 +119,7 @@ class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
 
     class Meta:
         fields = ( 'majors',
-                   'school_years',
+                   'degree_programs',
                    'graduation_years',
                    'gpa',
                    'act',

@@ -32,30 +32,30 @@ $(document).ready(function(){
         }
     }).multiselectfilter();
 
-    $("#id_school_years").multiselect({
-        noneSelectedText: 'Filter By School Year',
-        selectedText: 'Filtering by # School Years',
+    $("#id_degree_programs").multiselect({
+        noneSelectedText: 'Filter By Degree Programs',
+        selectedText: 'Filtering by # Degree Programs',
         checkAllText: multiselectCheckAllText,
         uncheckAllText: multiselectUncheckAllText,
         minWidth:multiselectMinWidth,
-        height: 145,
+        height: 120,
         checkAll: function() {
             page = 1;
-            school_years = $("#id_school_years").multiselect("getChecked").map( function() {
+            degree_programs = $("#id_degree_programs").multiselect("getChecked").map( function() {
                 return this.value;
             }).get();
             initiate_ajax_call();
         },
         uncheckAll: function() {
             page = 1;
-            school_years = $("#id_school_years").multiselect("getChecked").map( function() {
+            degree_programs = $("#id_degree_programs").multiselect("getChecked").map( function() {
                 return this.value;
             }).get();
             initiate_ajax_call();
         },
         click: function(event, ui) {
             page = 1;
-            school_years = $("#id_school_years").multiselect("getChecked").map( function() {
+            degree_programs = $("#id_degree_programs").multiselect("getChecked").map( function() {
                 return this.value;
             }).get();
             initiate_ajax_call();

@@ -15,14 +15,14 @@ from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core.form_helpers import decorate_bound_field
 from core.fields import PdfField
 from core.model_helpers import get_resume_filename
-from core.models import Course, GraduationYear, SchoolYear, EmploymentType, Industry, Language
+from core.models import Course, GraduationYear, EmploymentType, Industry, Language
 from core.view_helpers import does_email_exist
 from countries.models import Country
 from employer.models import Employer
 from registration.models import RegException
 from student import enums as student_enums
 from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap, is_not_mit_student
-from student.models import Student, StudentPreferences, StudentDeactivation
+from student.models import DegreeProgram, Student, StudentPreferences, StudentDeactivation
 from student.view_helpers import extract_resume_keywords
 
 decorate_bound_field()
@@ -151,15 +151,10 @@ class StudentBaseAttributeForm(forms.ModelForm):
         self.fields['campus_involvement'].choices = campus_org_types_as_choices()
         
 
-class StudentBodyStatisticsForm(forms.Form):
-    y_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_Y_AXIS, initial=student_enums.GPA)
-    x_axis = forms.ChoiceField(choices = student_enums.STUDENT_BODY_STATISTICS_X_AXIS, initial=student_enums.SCHOOL_YEAR)
-
-
 class StudentProfileBaseForm(StudentUpdateResumeForm):
     first_name = forms.CharField(label="First name:", max_length = 20)
     last_name = forms.CharField(label="Last name:", max_length = 30)
-    school_year = forms.ModelChoiceField(label="School year:", queryset = SchoolYear.objects.all(), empty_label="select school year")
+    degree_program = forms.ModelChoiceField(label="Degree Program:", queryset = DegreeProgram.objects.all(), empty_label="select degree program")
     graduation_year = forms.ModelChoiceField(label="Grad year/month:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select year")
     graduation_month = forms.ChoiceField(choices = MONTH_CHOICES)
     first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
@@ -169,7 +164,7 @@ class StudentProfileBaseForm(StudentUpdateResumeForm):
     class Meta:
         fields = ('first_name',
                    'last_name',
-                   'school_year',
+                   'degree_program',
                    'graduation_year',
                    'graduation_month',
                    'first_major',
@@ -197,7 +192,7 @@ class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
     class Meta:
         fields = ('first_name',
                    'last_name',
-                   'school_year',
+                   'degree_program',
                    'graduation_year',
                    'graduation_month',
                    'first_major',
