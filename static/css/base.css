@@ -363,7 +363,7 @@ input[type=text], input[type=password] {
 .form_table .info p {
     padding-top: 0px;
 }
-.form_table.grande p, .form_table.grande a {
+.form_table.grande p, .form_table.grande a, .form_table.grande input.button {
     line-height: 24px;
     font-size: 15px;
     /* Undo the margins on p.grande */
