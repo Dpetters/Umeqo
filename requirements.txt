@@ -4,7 +4,7 @@ Fabric==1.4.0
 PIL==1.1.7
 amqplib==1.0.2
 anyjson==0.3.1
-basemap==1.0.2
+basemap==1.0.3
 boto==2.2.1
 certifi==0.0.6
 cssutils==0.9.10b1
