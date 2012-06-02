@@ -37,6 +37,9 @@ p {
     font-size: 12px;
     line-height: 17px;
 }
+table{
+    border-spacing:0px;
+}
 .grande p {
     font-size: 14px;
     margin: 20px 0;

@@ -13,11 +13,11 @@ Events & Deadlines |
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/events.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_cancel_dialog.css" />
 <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
 {% if user.student %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_rsvp_message_dialog.css" />
 {% endif %}
 {% endcompress %}
-    {% include 'event_snippet_css.html' %}
     <script>
         var RSVP_MESSAGE_URL = "{% url event_rsvp_message %}";
         

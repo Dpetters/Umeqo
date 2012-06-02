@@ -1,0 +1,9 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+Thanks for checking into the "{{event}}" event! Please be aware that until you register, {% if campus_org_event %}the employers from the event{% else %}{{event.owner.recruiter.employer}}{% endif %} will only be able to see your name and email, nothing else.
+
+If you register, {% if campus_org_event %}they'll{% else %}{{event.owner.recruiter.employer}} will{% endif %} be able to view your resume and profile, add you to custom resume books, and invite you to future events. You, on the other hand, will be able to subscribe to the employers you are interested in to receive new event/deadline notifications, among other things.
+
+Click the following link to register- {{protocol}}://{{current_site.domain}}{% url student_registration %}.
+{% endblock %}

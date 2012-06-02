@@ -1,9 +1,9 @@
 {% extends "email_base.html" %}
 
-{% block email_body %}
-    <h2 style="margin-top:0">Resume Book Delivery</h2>
-    
-    <p>Hello,</p>
-        
-    <p>The resume book created by {{name}} and requested to be delivered to you is attached.</p>
+{% block header %}
+Resume Book Delivery
+{% endblock %}
+
+{% block content %}
+    <p>The resume book created by {{deliverer_fullname}} ({{deliverer_email}}) and requested to be delivered to you is attached.</p>
 {% endblock %}

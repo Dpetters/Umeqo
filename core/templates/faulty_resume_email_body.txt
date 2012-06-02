@@ -1,0 +1,3 @@
+{{student_first_name}} {{student_last_name}}'s ({{student_email}}) resume was faulty. The account was suspended.
+
+Please attempt to fix the resume and if such is not possible contact the student so that he/she can provide a new one.

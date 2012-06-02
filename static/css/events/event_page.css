@@ -14,6 +14,7 @@
     right:-1px;
     top:33px;
     left:auto;
+    min-width:132px;
 }
 #event_admin_main .commands {
     margin: -20px -4px 0 0;

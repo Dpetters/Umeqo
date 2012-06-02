@@ -43,6 +43,9 @@ urlpatterns += patterns('',
     (r'^sentry/', include('sentry.web.urls')),
      url(r'zebra/',   include('zebra.urls',  namespace="zebra",  app_name='zebra') )
 )
+urlpatterns += patterns('newsletter.views',
+    (r'^newsletter/(?P<year>\d+)/(?P<month>\w+)/$', 'newsletter', {}, 'newsletter'),
+)
 urlpatterns += patterns('core.views',
     (r'^$', 'home', {}, 'home'),
     (r'^favicon\.ico/$', redirect_to, {'url':'%simages/favicon.ico' % settings.STATIC_URL}),

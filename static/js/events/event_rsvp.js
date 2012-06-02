@@ -23,7 +23,7 @@ function rsvp(attending) {
         
     if($dropdown.length!=0){
         $dropdown.removeClass("dropdown");
-        var that = $("<a href='#' class='button'>" + $(this).text() + "</a>");
+        var that = $("<a href='#'>" + $(this).text() + "</a>");
         $dropdown.replaceWith(that);
         rsvp_mouseout = true;
     }else{
@@ -31,6 +31,11 @@ function rsvp(attending) {
     }
    
     var parent = get_parent(that);
+    // If the tagname is LI then this is an event snippet and we don't want the rsvp
+    // links to be buttons
+    if(parent[0].tagName != "LI"){
+        that.addClass("button");
+    }
     var is_deadline = $(parent).data("is-deadline")=="True";
     var rsvp_url = $(parent).data("rsvp-url");
     

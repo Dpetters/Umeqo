@@ -155,13 +155,12 @@ $(document).ready(function(){
         e.preventDefault();
     });
     
-    $('#close_box').click(function() {
+    $('#close_box').click(function(e) {
         if (!hasClickedClose) {
             $(this).animate({'opacity': 0});
             $('#close_dialogue').animate({'opacity': 0});
             hasClickedClose = true;
         }
-        e.preventDefault();
     });
     $('#close_box').hover(
         function() {

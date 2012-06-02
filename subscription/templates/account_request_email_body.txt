@@ -1,0 +1,5 @@
+Contact Point: {{form.cleaned_data.recruiter_name}} ({{form.cleaned_data.recruiter_email}}), from {{form.cleaned_data.employer_name}}
+
+Message:
+
+{{form.cleaned_data.message_body|safe}}

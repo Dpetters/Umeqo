@@ -7,10 +7,12 @@ from django.utils import simplejson
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
+from django.template import Context
 
 from pyPdf import PdfFileWriter, PdfFileReader
 from stripe import InvalidRequestError
 
+from core.email import get_basic_email_context, send_email
 from core.decorators import render_to
 from core.http import Http403
 from employer.decorators import is_recruiter
@@ -81,10 +83,16 @@ def account_request(request, form_class = AccountRequestForm, extra_context=None
         if form.is_valid():
             data = []
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-            subject = "[Umeqo Sales] %s Account Request" % (form.cleaned_data['employer_name'])
+            
+            context = Context({})
+            context.update(get_basic_email_context())
+            subject = ''.join(render_to_string('email_admin_subject.txt', {
+                'message': "Account Request"
+            }, context).splitlines())
+            
             subscription_email_context = {'form':form}
-            html_body = render_to_string('account_request_email.html', subscription_email_context)
-            send_html_mail(subject, html_body, recipients)
+            email_body = render_to_string('account_request_email_body.txt', subscription_email_context)
+            send_email(subject, email_body, recipients)
         else:
             data = {'errors':form.errors}
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")
