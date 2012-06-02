@@ -218,7 +218,7 @@ def get_no_rsvps(event):
 def get_attendees(event):
     # Attendees are ordred by "name" instead of student__first_name
     # because not all instances have a student foreignkey
-    obj = event.attendee_set.select_related(
+    all_attendees = event.attendee_set.select_related(
           'name',
           'student',
           'student__first_name',
@@ -227,7 +227,9 @@ def get_attendees(event):
           'student__graduation_year',
           'student__degree_program',
           'student__user__email',
-          'student__user__userattributes__is_verified').filter(Q(student__isnull=True) | Q(student__user__is_active = True)).order_by('name')
+          'student__user__userattributes__is_verified')
+    obj = all_attendees.filter(student__isnull=True) | all_attendees.filter(student__user__is_active = True)
+    obj = obj.order_by('name')
     return map(buildAttendee, obj)
 
 

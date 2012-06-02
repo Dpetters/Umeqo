@@ -1,43 +1,57 @@
 <li data-event-id="{{event.id}}" data-is-deadline="{{event.is_deadline}}" data-rsvp-url="{% url event_rsvp event_id=event.id %}" {% if event.is_drop %}data-resume_drop-url="{% url event_drop event_id=event.id %}"{% endif %} class="event_snippet{% if event.cancelled %} cancelled{% endif %}{% if past %} past{% endif %}">
-    <div class="upper_right_div">
-    {% if event.location %}
-        <span class="location_wrapper">
-            <strong>Location:</strong> {% include "event_location.html" %}
-        </span>
-    {% endif %}
-        <div class="hosted_by">
-            <span>
-                Hosted by {% include "event_hosted_by.html" with email=email %}
-            </span>
-        </div>
-    </div>
-    <div class="event_title">
-        <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a href="{% if email %}http://{{current_site.domain}}{% endif %}{{event.get_absolute_url}}">{{event.name}}</a>
-    </div>
-    
-    <div class="actions">
-        {% if user.student %}
-            {% include 'event_student_actions.html' %}
-        {% else %}
-            {% if not archived and user.recruiter and event.owner.recruiter.employer == user.recruiter.employer or user.campusorg and event.owner == user %}
-                {% include 'event_admin_actions.html' %}
-            {% endif %}
-        {% endif %}
-        
-    </div>
-
-    <div class="details">
-        {% if event.cancelled or not event.is_rolling_deadline %}
-            <div class="datetime">
-                {% if not event.is_rolling_deadline %}
-                    {% include "event_datetime.html" %}
-                    &nbsp;
-                {% endif %}
-                <span class="cancelled_warning">Cancelled!</span>
-            </div>
-        {% endif %}
-        {% if event.description %}
-            <div>{{event.description|striptags|safe|truncatewords:50}}</div>
-        {% endif %}
-    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td style="width:515px;"></td>
+                <td style="width:45px;"></td>
+                <td style="width:190px;"></td>
+            </tr>
+            <tr>
+                <td class="event_title" colspan="2">
+                     <span class="type">{{event.type}}</span> {% if not event.is_public %}<span class="private_token">Private</span> {% endif %}<a {% if email %}target="_blank"{% endif %} href="{% if email %}{{protocol}}://{{current_site.domain}}{% endif %}{{event.get_absolute_url}}">{{event.name}}</a>
+                </td>
+                <td class="location_and_host" rowspan="2">
+                    {% if event.location %}
+                        <span class="location_wrapper">
+                            <strong>Location:</strong> {% include "event_location.html" %}
+                        </span>
+                    {% endif %}
+                    <div class="hosted_by">
+                        <span>
+                            Hosted by {% include "event_hosted_by.html" with email=email %}
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {% if event.cancelled or not event.is_rolling_deadline %}
+                        <div class="datetime">
+                            {% if not event.is_rolling_deadline %}
+                                {% include "event_datetime.html" %}
+                                &nbsp;
+                            {% endif %}
+                            <span class="cancelled_warning">Cancelled!</span>
+                        </div>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% if event.description %}
+                        <div>{{event.description|striptags|safe|truncatewords:50}}</div>
+                    {% endif %}
+                </td>
+                <td colspan="2" class="actions">
+                    {% if user.student or email %}
+                        {% include 'event_student_actions.html' %}
+                    {% else %}
+                        {% if not archived and user.recruiter and event.owner.recruiter.employer == user.recruiter.employer or user.campusorg and event.owner == user %}
+                            {% include 'event_admin_actions.html' %}
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </li>

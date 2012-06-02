@@ -1,0 +1,123 @@
+ul.event_list {
+    list-style: none;
+    border-top: 1px solid #DDD;
+    margin-top:3px;
+}
+.event_list p {
+    padding: 3px;
+}
+.event_list .event_snippet {
+    clear: both;
+    padding:7px 5px 3px;
+    background-color: #F6F6F6;
+    border-bottom: 1px solid #DDD;
+    position: relative;
+    min-height: 30px;
+}
+.event_list .event_title {
+    font-size: 16px;
+}
+.event_list .location_and_host {
+    padding:2px 0px 10px 0px;
+    font-size: 12px;
+    color:#555;
+    text-align:right;
+    vertical-align:top;
+}
+.event_list .location_and_host .location_wrapper{
+    position:relative;
+    bottom:3px;
+}
+.event_list .type,
+.event_list .private_token {
+    font-size: 11px;
+    display: inline-block;
+    padding: 2px 4px;
+    vertical-align: top;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+.event_list .details {
+    margin: 5px 250px 0px 3px;
+    color: #666;
+}
+.event_list .details.commands {
+    margin-right:170px;
+}
+.event_list .datetime{
+    margin-bottom:4px;
+    color:#555;
+}
+.event_list .cancelled_warning{
+    color:#D00;
+    font-weight:bold;
+}
+.event_list li table{
+    width:100%;
+}
+.event_list li .cancelled_or_past_commands{
+    display:none;
+}
+.event_list li.cancelled .cancelled_or_past_commands, .event_list li.past .cancelled_or_past_commands{
+    display:inline;
+}
+.event_list li.cancelled .not_cancelled_or_past_commands, .event_list li.past .not_cancelled_or_past_commands{
+    display:none;
+}
+.event_list .actions .dropdown img {
+    opacity:.4;
+}
+.event_list .actions{
+    text-align:right;
+    vertical-align:bottom;
+}
+.event_list .actions a, .event_list .actions span {
+    text-align: right;
+    display: inline-block;
+    padding: 1px 3px;
+    color: #BBB;
+}
+.event_list .actions .dropdown a{
+    color: #FFF;
+}
+.event_list li:hover .actions a, .event_list li:hover .actions span {
+    color: #6E97B9;
+}
+.event_list .actions a:hover{
+    background-color: #EEE;
+}
+.event_list .actions .dropdown span{
+    text-decoration:underline;
+}
+.event_list .actions .dropdown:hover span {
+    opacity:1;
+}
+.event_list li:hover .actions .dropdown img {
+    opacity:1;
+}
+.event_list .actions .dropdown{
+    margin-right:3px;
+    cursor:pointer;
+    display:inline-block;
+}
+.event_list .actions .dropdown span{
+    padding-right:0px;
+}
+.event_list .actions .dropdown ul{
+    left:-75px;
+    top:21px;
+}
+.event_list .dropdown ul li{
+    width:115px;
+}
+.post_quick_registration_event_action_button:hover{
+    cursor:default;
+}
+.gray_button.dropdown span{
+    cursor:pointer;
+    text-decoration:underline;
+}
+.actions .dropdown ul{
+    left:-1px;
+    top:30px;
+}

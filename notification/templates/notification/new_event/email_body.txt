@@ -1,0 +1,11 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+This is just to let you know that {{employer_names}} {{has_word}} a new {% if event.is_deadline %}deadline{% else %}event{% endif %}: "{{event.name}}".
+
+Click the following link to RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %} - {{protocol}}://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true
+
+You can see the details of the {% if event.is_deadline %}deadline{% else %}event{% endif %} here: {{protocol}}://{{current_site.domain}}{{ event.get_absolute_url }}
+
+Change your notification settings at any time here: {{protocol}}://{{current_site.domain}}/student/account/?tab=preferences.
+{% endblock %}

@@ -56,7 +56,6 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
     {% endif %}
 {% endcompress %}
-    {% include 'event_snippet_css.html' %}
     <script>
         {% if user.is_anonymous %}
             var STUDENT_QUICK_REGISTRATION_URL = "{% url student_quick_registration %}";

@@ -1,0 +1,49 @@
+{% extends "email_base.html" %}
+
+{% block meta %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_snippet.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/core/monthly_newsletter.css" />
+{% endblock %}
+
+{% block header %}
+{{month}} Newsletter
+{% endblock %}
+
+{% block content %}
+    <p>Our monthly newsletters highlights a few of the upcoming events and deadlines happening on your campus, exciting new features, and some of the best companies looking to hire. This month we are proud to present {% if events %}{{events|length}} event{{events|pluralize}}{% endif %}{% if deadlines %} and {{deadlines|length}} deadline{{deadlines|pluralize}}{% endif %}:</p>
+
+    {% load core_extras %}
+    <!--
+    {% if employers %}
+        <h3>Featured Employers</h3>
+        <ul class="featured_employers">
+            {% for employer in employers %}
+                // Include employer mini profile
+            {% endfor %}
+        </ul>
+    {% endif %}
+    -->
+    {% if events %}
+        <h3>Upcoming Events</h3>
+        <ul class="event_list">
+            {% for event in events %}
+                {% include "event_snippet.html" with email="true" %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if deadlines %}
+        <h3>Upcoming Deadlines</h3>
+        <ul class="event_list">
+            {% for deadline in deadlines %}
+                {% include "event_snippet.html" with event=deadline email="true" %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <br>
+    <div id="email_footer">
+        <p id="email_copyright">&copy; 2012 Umeqo. All Rights Reserved.</p>
+        <p>Not rendering correctly? View this newsletter as a web page <a href="{{protocol}}://{{current_site.domain}}/newsletter/{{year}}/{{month}}/">here</a>.</p>
+        <p>Opt out of this newsletter anytime by <a href="{{protocol}}://{{current_site.domain}}/student/account/?tab=preferences">changing your email preferences</a>.</p>
+    </div>
+
+{% endblock %}

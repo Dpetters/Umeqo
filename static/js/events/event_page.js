@@ -93,13 +93,21 @@ $(document).ready(function() {
             }
         }
     });
-    $("#get_raffle_winner_link").live('click', function(){
+    $("#get_raffle_winner_link").live('click', function(e){
         $.ajax({
             data:{'event_id':EVENT_ID},
             url:EVENT_RAFFLE_WINNER_URL,
             success: function(data) {
                 if(data.name){
-                    alert(data.name);
+                    winner = ""
+                    if(data.name){
+                        winner += data.name + " (";
+                    }
+                    winner += data.email;
+                    if(data.name){
+                        winner += ")";
+                    }
+                    alert(winner);
                 }else{
                     alert("You ran out of attendees!");
                 }

@@ -1,20 +1,19 @@
 {% extends "email_base.html" %}
 
-{% block email_body %}
-    <h2 style="margin-top:0">Activate Account</h2>
-    
-    <p>Hey {{first_name}},</p>
-        
+{% block header %}
+Activate Account
+{% endblock %}
+
+{% block content %}
     <p>Your Umeqo account is ready. All we need to to do is make sure that this is your email address.</p>
 
     <p>
-        <a href="http://{{site}}/activation/{{activation_key}}/" style="border-radius:3px;background:#3EAD4F;border:1px solid #348941;color:#fff;display:inline-block;font-weight:700;line-height:20px;margin:0;padding:6px 15px;text-decoration:none" target="_blank">
+        <a class="button button-success" href="{{protocol}}://{{current_site}}/activation/{{activation_key}}/" target="_blank">
         Click here to verify your email address
         </a>
     </p>
-    <p>
-        Alternatively, click the following link - http://{{site}}/activation/{{activation_key}}/.
-    </p>
+
+    <p>Alternatively, click the following link - {{protocol}}://{{current_site}}/activation/{{activation_key}}/.</p>
     <br>
-    <small>If you did not register for Umeqo, you can simply ignore this email.</small>
+    <small>If you did not register for Umeqo, please let us know by replying to contact@umeqo.com.</small>
 {% endblock %}

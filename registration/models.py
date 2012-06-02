@@ -1,19 +1,20 @@
 import datetime
 
-from django.conf import settings
+from django.conf import settings as s
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
+from django.template import Context
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.dispatch import receiver
 
 from core import mixins as core_mixins
+from core.email import get_basic_email_context, send_email
 from core.view_helpers import get_ip
 from core.signals import us_user_logged_in
 from registration.managers import RegistrationManager
-from core.email import send_html_mail
 
 class RegException(core_mixins.DateCreatedTracking):
     email = models.EmailField("E-mail to allow:", unique=True)
@@ -72,10 +73,14 @@ class UserAttributes(models.Model):
     class Meta:
         verbose_name = "User Attributes"
         verbose_name_plural = "User Attributes"
-
     def __unicode__(self):
         return str(self.user)
 
+    def has_agreed_to_terms(self):
+        self.agreed_to_terms = True
+        self.agreed_to_terms_datetime = datetime.datetime.now()
+        self.save()
+        
 @receiver(post_save, sender=User)
 def create_userattributes(sender, instance, created, raw, **kwargs):
     if created and not raw:
@@ -134,16 +139,27 @@ class RegistrationProfile(models.Model):
            method returns ``True``.
         
         """
-        expiration_date = datetime.timedelta(days=settings.ACCOUNT_ACTIVATION_DAYS)
+        expiration_date = datetime.timedelta(days=s.ACCOUNT_ACTIVATION_DAYS)
         return self.activation_key == self.ACTIVATED or \
                (self.user.date_joined + expiration_date <= datetime.datetime.now())
     activation_key_expired.boolean = True
 
     def send_activation_email(self, site, first_name, last_name):
-        subject = "[Umeqo] Account Activation"
-        context = { 'activation_key': self.activation_key, 'site': site, 'first_name':first_name, 'last_name':last_name}
-        message = render_to_string('activation_email.html', context)
-        send_html_mail(subject, message, [self.user.email])
+        if not first_name:
+            first_name = self.user.email.split("@")[0]
+        context = Context({ 'activation_key': self.activation_key,
+                            'first_name': first_name})
+        context.update(get_basic_email_context())
+
+        subject = ''.join(render_to_string('email_subject.txt', {
+            'message': "Account Activation"
+        }, context).splitlines())
+        
+        text_email_body = render_to_string('activation_email.txt', context)
+        html_email_body = render_to_string('activation_email.html', context)
+        
+        send_email(subject, text_email_body, [self.user.email], html_email_body)
+
 
 class LoginAttempt(models.Model):
     attempt_datetime = models.DateTimeField(auto_now_add=True)

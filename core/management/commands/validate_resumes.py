@@ -2,8 +2,10 @@ from pyPdf import PdfFileReader
 
 from django.conf import settings as s
 from django.core.management.base import BaseCommand
+from django.template import Context
+from django.template.loader import render_to_string
 
-from core.email import send_html_mail
+from core.email import get_basic_email_context, send_email
 from student.models import Student
 
 """
@@ -21,8 +23,24 @@ class Command(BaseCommand):
             try:
                 PdfFileReader(file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb"),)
             except Exception as e:
-                student.deactivate()
-                managers = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                send_html_mail("[Umeqo] Faulty Resume", "%s %s' resume was faulty. \
-                The account was suspended. Go and fix the resume!" \
-                 % (student.first_name, student.last_name), managers)
+                try:
+                    student.deactivate()
+                    
+                    managers = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+                    
+                    context = Context({
+                        'student_first_name': student.first_name,
+                        'student_last_name': student.last_name,
+                        'student_email': student.user.email
+                    })
+                    context.update(get_basic_email_context())
+                    
+                    subject = ''.join(render_to_string('email_admin_subject.txt', {
+                        'message': "Faulty resume"
+                    }, context).splitlines())
+    
+                    body = render_to_string('faulty_resume_email_body.txt', context)
+            
+                    send_email(subject, body, managers)
+                except Exception as e:
+                    print e
