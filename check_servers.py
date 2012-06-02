@@ -28,14 +28,24 @@ authhandler = urllib2.HTTPBasicAuthHandler(passwdmgr)
 opener = urllib2.build_opener(authhandler)
 urllib2.install_opener(opener)
 
+fine = True
 
-for type, url in urls:
-    start = datetime.datetime.now()
-    try:
-        urllib2.urlopen(url)
-    except urllib2.HTTPError as resp:
-        # if error, send email to all managers with error code
-        if (resp != None and resp.code != 200):
-            send_html_mail("[Umeqo] %s DOWN" % type, "%s is down with error message %s. You should probably check that shit out, bro." % (type, resp.code), managers)
-    else:
-        print "%s is fine. Time taken: %s" % (type, datetime.datetime.now() - start)
+while 1:
+
+    for type, url in urls:
+        try:
+            urllib2.urlopen(url)
+            # if no error now and there was an error previously, send email to all managers to say that the server is back up
+            if (!fine):
+                send_html_mail("[Umeqo] %s UP" % type, "%s is back up at %s. You should probably just chill, bro." % (type, resp.code, str(datetime.datetime.now())), managers)
+                fine = True
+        except urllib2.HTTPError as resp:
+            if (resp != None):
+                # if error, send email to all managers to say that the server is down with an error code
+                if (resp.code != 200):
+                    send_html_mail("[Umeqo] %s DOWN" % type, "%s is down with error message %s at %s. You should probably check that shit out, bro." % (type, resp.code, str(datetime.datetime.now())), managers)
+                    fine = False
+                # if no error now and there was an error previously, send email to all managers to say that the server is back up
+                elif (!fine):
+                    send_html_mail("[Umeqo] %s UP" % type, "%s is back up at %s. You should probably just chill, bro." % (type, resp.code, str(datetime.datetime.now())), managers)
+                    fine = True
