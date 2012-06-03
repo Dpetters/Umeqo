@@ -4,7 +4,7 @@ Fabric==1.4.0
 PIL==1.1.7
 amqplib==1.0.2
 anyjson==0.3.1
-basemap==1.0.3
+basemap==1.0.2
 boto==2.2.1
 certifi==0.0.6
 cssutils==0.9.10b1
@@ -34,7 +34,6 @@ pysolr==2.0.15
 python-ldap==2.4.6
 reportlab==2.5
 requests==0.9.0
-sentry==2.0.0-rc6
 simplejson==2.3.2
 sorl-thumbnail==11.12
 south==0.7.3
