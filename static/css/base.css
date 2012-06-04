@@ -40,6 +40,9 @@ p {
 table{
     border-spacing:0px;
 }
+.grande h3{
+    padding:5px 0 0px;
+}
 .grande p {
     font-size: 14px;
     margin: 20px 0;
