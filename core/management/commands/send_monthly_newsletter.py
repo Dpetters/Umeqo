@@ -2,7 +2,7 @@ import os
 import time
 
 from datetime import datetime
-from pynliner.pynliner import Pynliner
+from pynliner import Pynliner
 
 from django.conf import settings as s
 from django.core.management.base import BaseCommand
