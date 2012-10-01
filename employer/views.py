@@ -777,13 +777,16 @@ def employer_resume_book_email(request, extra_context=None):
         filename = request.POST['name']
     else:
         filename = os.path.basename(resume_book.name)
-    context = {'deliverer_fullname': "%s %s" % (request.user.first_name, request.user.last_name),
-               'deliverer_email':request.user.email}
+
+    context = get_basic_email_context()
+    context['deliverer_fullname'] = "%s %s" % (request.user.first_name, request.user.last_name)
+    context['deliverer_email'] = request.user.email
+
     for recipient in recipients:
         context['first_name'] = recipient.split("@")[0]
         text_email_body = render_to_string('resume_book_email_body.txt', context)
         html_email_body = render_to_string('resume_book_email_body.html', context)
-        send_email(subject, text_email_body, recipients, None, "%s.pdf" % (filename), content, "application/pdf")
+        send_email(subject, text_email_body, recipients, html_email_body, "%s.pdf" % (filename), content, "application/pdf")
     if redelivering:
         resume_book.last_updated = datetime.now()
     else:

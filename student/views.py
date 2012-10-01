@@ -394,13 +394,13 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
                                'new_campus_org':new_campus_org})
             context.update(get_basic_email_context())
             
-            body = render_to_string('new_campus_org_email_body.txt', context)
+            txt_email_body = render_to_string('new_campus_org_email_body.txt', context)
             
             subject = ''.join(render_to_string('email_admin_subject.txt', {
                 'message': "New Campus Org: %s" % new_campus_org
             }, context).splitlines())
 
-            send_email(subject, body, recipients)
+            send_email(subject, txt_email_body, recipients)
             
             data = {"type": new_campus_org.type.name,
                     "name": new_campus_org.name,
