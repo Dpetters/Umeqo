@@ -61,7 +61,9 @@
                      {{form.visible}}
                      <br>
                      <label for="logo" id="logo_label">Logo:</label>
-                     <img id="logo" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                     {% if 1 or request.user.recruiter.employer.logo %}
+                        <img id="logo" width="262" height="126" src="{{MEDIA_URL}}{{request.user.recruiter.employer.logo}}" />
+                     {% endif %}
                      <br>
                      <label>Note:</label> To change your logo please email the new image to contact@umeqo.com.
                 </td>
@@ -106,7 +108,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="button_cell" colspan="4">
+                <td class="button_cell centered" colspan="4">
                     <input class="button" type='submit' alt="Save Profile" value='Save Profile'>
                     <img class='ajax_form_submit_loader' src="{{ STATIC_URL }}images/loaders/s_ajax.gif">
                 </td>

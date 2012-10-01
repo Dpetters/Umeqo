@@ -249,7 +249,7 @@ $(document).ready( function() {
                 range: GPA_RANGE
             },
             resume: {
-                accept:RESUME_REQUIRED,
+                accept:PDF_RESUME_REQUIRED,
                 file_size: "This file exceed the " + MAX_RESUME_SIZE/1024/1024 + "MB size limit."
             },
             website: INVALID_URL

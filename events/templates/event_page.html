@@ -56,7 +56,6 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_industries.css" />
     {% endif %}
 {% endcompress %}
-    {% include 'event_snippet_css.html' %}
     <script>
         {% if user.is_anonymous %}
             var STUDENT_QUICK_REGISTRATION_URL = "{% url student_quick_registration %}";
@@ -77,7 +76,7 @@
             var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
             var GPA_REQUIRED = "{% text_snippet 'gpa_required' %}";
             var GPA_RANGE = "{% text_snippet 'gpa_range' %}";
-            var RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
+            var PDF_RESUME_REQUIRED = "{% text_snippet 'resume_required' %}";
             var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
     
             var PASSWORD_MIN_LENGTH="{{password_min_length}}";

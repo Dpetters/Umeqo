@@ -53,3 +53,10 @@ div .employer_name {
     padding:14px 0px;
     border-bottom:1px solid #DDD;
 }
+.student_ratings{
+    margin:5px 0px 15px;
+}
+.student_ratings span{
+    font-weight:bold;
+    margin-right:7px;
+}

@@ -26,6 +26,7 @@ class Employer(core_mixins.DateTracking):
     description = models.TextField(blank=True, null=True)
     industries = models.ManyToManyField(Industry, null=True, blank=True)
     visible = models.BooleanField(default=False)
+    feature_in_monthly_newsletter = models.BooleanField(default=False)
     
     # Null Fields
     offered_job_types = models.ManyToManyField(EmploymentType, blank=True, null=True) 

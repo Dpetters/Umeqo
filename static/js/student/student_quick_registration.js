@@ -198,6 +198,7 @@ $('.student_quick_registration_link').live('click', function (e) {
                         maxlength: 4
                     },
                     resume:{
+                        required: true,
                         accept: "pdf"
                     },
                 },
@@ -220,7 +221,7 @@ $('.student_quick_registration_link').live('click', function (e) {
                         required: GPA_REQUIRED,
                         range: GPA_RANGE
                     },
-                    resume: RESUME_REQUIRED,
+                    resume: PDF_RESUME_REQUIRED,
                 }
             });
         }

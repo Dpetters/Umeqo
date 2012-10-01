@@ -80,7 +80,7 @@ def get_or_create_receipt_pdf(charge, invoice, employer_name):
         story.append(Paragraph('''305 Memorial Drive #5037''', styles["Normal"]))
         story.append(Paragraph('''Cambridge, MA 02139''', styles["Normal"]))
         story.append(Paragraph('''''', styles["Normal"]))
-        story.append(Paragraph('''Web: http://umeqo.com''', styles["Normal"]))
+        story.append(Paragraph('''Web: https://umeqo.com''', styles["Normal"]))
         story.append(Paragraph('''Phone: (425) 681-2953''', styles["Normal"]))        
         
         doc = SimpleDocTemplate(pdf_path, pagesize = A4, topMargin=0)

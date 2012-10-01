@@ -69,7 +69,7 @@
 {% endif %}
 <script src="{{ STATIC_URL }}js/events/event_form.js"></script>
 {% endcompress %}
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <!--datetime_field media-->
 {{form.media}}
@@ -169,7 +169,7 @@
             <span class="div_form_above_field_label">Short URL</span>
             <div class="errorspace">{{form.short_slug.errors}}</div>
             <br>
-            <span id="event_short_url">http://{{current_site}}/{% if user.campusorg %}{{user.campusorg.slug}}{% else %}{{user.recruiter.employer.slug}}{% endif %}/{{form.short_slug}}</span>
+            <span id="event_short_url">https://{{current_site}}/{% if user.campusorg %}{{user.campusorg.slug}}{% else %}{{user.recruiter.employer.slug}}{% endif %}/{{form.short_slug}}</span>
         </div>
         <div class="event_field_section">
             <span class="div_form_above_field_label">Resume Drop</span>

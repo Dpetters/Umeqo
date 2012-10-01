@@ -7,7 +7,7 @@ import urllib2
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
-from core.email import send_html_mail
+from core.email import send_email
 from time import strftime, gmtime
 
 solrdir = s.ROOT + '/apache-solr-3.5.0/example'
@@ -42,5 +42,6 @@ else:
     try:
         solrpanel = urllib2.urlopen(s.HAYSTACK_SOLR_URL)
     except urllib2.URLError:
-        send_html_mail("[Umeqo] %s's SOLR DOWN" % s.SITE_NAME, "%s's solr is down. You should probably check that shit out, bro." % s.SITE_NAME, managers)
+        context = {'site_name': s.SITE_NAME}
+        send_email("[Umeqo Admin] %s's SOLR DOWN" % s.SITE_NAME, "%s's solr is down. You should probably check that shit out, bro." % s.SITE_NAME, managers)
     print "%s's solr is running fine! on %s" % (s.SITE_NAME, strftime('%Y-%m-%d %H:%M:%S'), gmtime())

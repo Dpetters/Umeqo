@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.utils import simplejson
+from django.template import Context
 from django.template.loader import render_to_string
 from ratelimit.decorators import ratelimit
 
@@ -19,7 +20,7 @@ from campus_org.forms import CreateCampusOrganizationForm
 from campus_org.models import CampusOrg
 from core import messages
 from core.decorators import render_to
-from core.email import send_html_mail
+from core.email import get_basic_email_context, send_email
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
 from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
@@ -386,13 +387,21 @@ def student_create_campus_org(request, form_class=CreateCampusOrganizationForm, 
         if form.is_valid():
             new_campus_org = form.save()
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-            subject = "New Campus Org: %s" % (new_campus_org) 
-            body = render_to_string('new_campus_org_email_body.html', \
-                                    {'first_name':request.user.student.first_name, \
-                                    'last_name':request.user.student.last_name, \
-                                    'email':request.user.email, \
-                                    'new_campus_org':new_campus_org})
-            send_html_mail(subject, body, recipients)
+            
+            context = Context({'first_name':request.user.student.first_name, \
+                               'last_name':request.user.student.last_name, \
+                               'email':request.user.email, \
+                               'new_campus_org':new_campus_org})
+            context.update(get_basic_email_context())
+            
+            txt_email_body = render_to_string('new_campus_org_email_body.txt', context)
+            
+            subject = ''.join(render_to_string('email_admin_subject.txt', {
+                'message': "New Campus Org: %s" % new_campus_org
+            }, context).splitlines())
+
+            send_email(subject, txt_email_body, recipients)
+            
             data = {"type": new_campus_org.type.name,
                     "name": new_campus_org.name,
                     "id": new_campus_org.id}
@@ -417,13 +426,21 @@ def student_create_language(request, form_class=CreateLanguageForm, extra_contex
             proficient = Language.objects.create(name_and_level=new_language_name + " (Proficient)", name=new_language_name)
             fluent = Language.objects.create(name_and_level=new_language_name + " (Fluent)", name=new_language_name)
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-            subject = "New Language: %s" % (new_language_name) 
-            body = render_to_string('new_language_email_body.html', \
-                                    {'first_name':request.user.student.first_name, \
-                                    'last_name':request.user.student.last_name, \
-                                    'email':request.user.email, \
-                                    'new_language':new_language_name})
-            send_html_mail(subject, body, recipients)
+            
+            context = Context({'first_name':request.user.student.first_name, \
+                                'last_name':request.user.student.last_name, \
+                                'email':request.user.email, \
+                                'new_language':new_language_name})
+            context.update(get_basic_email_context())
+             
+            body = render_to_string('new_language_email_body.txt', context)
+            
+            subject = ''.join(render_to_string('email_admin_subject.txt', {
+                'message': "New Language: %s" % new_language_name
+            }, context).splitlines())
+                        
+            send_email(subject, body, recipients)
+            
             data = {"name":new_language_name, 
                     "fluent_id":fluent.id, 
                     "proficient_id":proficient.id, 

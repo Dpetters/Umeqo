@@ -1,0 +1,13 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+{{recruiter.first_name}} {{recruiter.last_name}} ({{recruiter.email}}), a recruiter from {{employer}}, has sent you an exclusive invite to a private {% if event.is_deadline %}deadline{% else %}event{% endif %} - "{{event}}". Below is {{recruiter.first_name}}'s message to you:
+    {% load core_extras %}
+    {{invite_message|wordwrapwithindent:80}}
+
+Click the following link to RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %} - {{protocol}}://{{current_site.domain}}{{ event.get_absolute_url }}?rsvp=true
+
+You can see the details of the {% if event.is_deadline %}deadline{% else %}event{% endif %} here: {{protocol}}://{{current_site.domain}}{{ event.get_absolute_url }}
+
+Change your notification settings at any time here: {{protocol}}://{{current_site.domain}}/student/account/?tab=preferences.
+{% endblock %}

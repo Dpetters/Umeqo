@@ -19,6 +19,9 @@ function open_deliver_resume_book_dialog() {
 
 function post_delivery_cleanup(){
     if(typeof(update_resume_book_contents_summary)!="undefined"){
+        if ($("#id_student_list").multiselect("getChecked")[0].title == IN_RESUME_BOOK_STUDENT_LIST) {
+            initiate_ajax_call();
+        }
         update_resume_book_contents_summary();
         $(".resume_book_toggle_student").html(ADD_TO_RESUME_BOOK_IMG);
     }

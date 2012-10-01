@@ -1,0 +1,7 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+Umeqo's {{month}} Newsletter is out and can be viewed here - {{protocol}}://{{current_site.domain}}/newsletter/{{year}}/{{month}}/.
+
+Our monthly newsletters highlights a few of the upcoming events and deadlines happening on your campus, exciting new features, and some of the best companies looking to hire. This month we are proud to present {% if events %}{{events|length}} event{{events|pluralize}}{% endif %}{% if deadlines %} and {{deadlines|length}} deadline{{deadlines|pluralize}}{% endif %}.
+{% endblock %}

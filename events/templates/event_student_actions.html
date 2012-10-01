@@ -18,18 +18,14 @@
             {% if user.is_anonymous %}
                 <div data-action="rsvp" id="rsvp_button" data-event-id="{{event.id}}" data-title="RSVP {% if is_deadline %}Participating{% else %}Attending{% endif %}" class="student_quick_registration_link{% if event_page %} button{% endif %}">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</div>
             {% else %}
-                {% if user.student %}
-                    {% if responded %}
-                        {% if attending %}
-                            <a href="#" class="rsvp_no attending{% if event_page %} button-success button{% endif %}">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
-                        {% else %}
-                            <a href="#" class="rsvp_yes not_attending{% if event_page %} button{% endif %}">{% if event.is_deadline %}Not Participating{% else %}Not Attending{% endif %}</a>
-                        {% endif %}
+                {% if responded %}
+                    {% if attending %}
+                        <a href="#" class="rsvp_no attending{% if event_page %} button-success button{% endif %}">{% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
                     {% else %}
-                        <a href="#" class="rsvp_yes{% if event_page %} button{% endif %}">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                        <a href="#" class="rsvp_yes not_attending{% if event_page %} button{% endif %}">{% if event.is_deadline %}Not Participating{% else %}Not Attending{% endif %}</a>
                     {% endif %}
                 {% else %}
-                    <a href="#" class="drop_resume{% if event_page %} button{% endif %}" disabled="disabled">RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
+                    <a {% if email %}target="_blank"{% endif %} href="{% if email %}{{protocol}}://{{current_site.domain}}{{event.get_absolute_url}}?rsvp=true{% else %}#{% endif %}" class="rsvp_yes{% if event_page %} button{% endif %}" {% if not user.student and not email %}disabled="disabled"{% endif %}>RSVP {% if event.is_deadline %}Participating{% else %}Attending{% endif %}</a>
                 {% endif %}
             {% endif %}
         {% else %}
@@ -65,7 +61,7 @@
             {% if dropped_resume %}
                 <a href="#" class="undrop_resume resume_dropped{% if event_page %} button{% endif %}" >Resume Dropped</a>
             {% else %}
-                <a href="#" class="drop_resume{% if event_page %} button{% endif %}" {% if not user.student %}disabled="disabled"{% endif %}>Drop Resume</a>
+                <a {% if email %}target="_blank"{% endif %} href="{% if email %}{{protocol}}://{{current_site.domain}}{{event.get_absolute_url}}?drop=true{% else %}#{% endif %}" class="drop_resume{% if event_page %} button{% endif %}" {% if not user.student and not email %}disabled="disabled"{% endif %}>Drop Resume</a>
             {% endif %}
         {% endif %}
     {% endif %}

@@ -17,6 +17,7 @@ def modify_redirect(request, redirect_to=None):
 
 def register_student(request, **args):
     new_user = RegistrationBackend().register(request, **args)
+    new_user.userattributes.has_agreed_to_terms()
     if new_user.first_name and new_user.last_name:
         student = Student(user=new_user, first_name = new_user.first_name, last_name = new_user.last_name)
     else:
