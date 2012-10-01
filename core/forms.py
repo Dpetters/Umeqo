@@ -11,7 +11,7 @@ from auth.form_helpers import verify_account
 
 from campus_org.models import CampusOrg
 from core import messages as m
-from core.email import send_html_mail
+from core.email import send_email
 from core.form_helpers import decorate_bound_field
 from core.models import Language
 from employer.models import Recruiter
@@ -36,7 +36,7 @@ class ContactForm(forms.Form):
     body = forms.CharField(label=u'Message', widget=forms.Textarea())
     recipient_list = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
     subject_template_name = "contact_us_form_subject.txt"
-    template_name = 'contact_us_form.html'
+    template_name = 'contact_us_email_body.txt'
     _context = None
     
     def __init__(self, data=None, files=None, request=None, *args, **kwargs):
@@ -74,7 +74,7 @@ class ContactForm(forms.Form):
     
     def save(self):
         dictionary = self.get_message_dict()
-        send_html_mail(dictionary['subject'], dictionary['message'], dictionary['recipient_list'])
+        send_email(dictionary['subject'], dictionary['message'], dictionary['recipient_list'])
 
 class AkismetContactForm(ContactForm):
     def clean(self):

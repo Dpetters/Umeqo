@@ -1,0 +1,12 @@
+{% extends "email_base.html" %}
+
+{% block header %}
+Cancelled {% if event.is_deadline %}Deadline{% else %}Event{% endif %}
+{% endblock %}
+
+{% block content %}
+    <p>This is just to let you know that {{employer_names}} {{has_word}} cancelled their {% if event.is_deadline %}deadline{% else %}event{% endif %}: "{{event.name}}".</p>
+    <p>You can see the details of the {% if event.is_deadline %}deadline{% else %}event{% endif %} here: {{protocol}}://{{current_site.domain}}{{ event.get_absolute_url }}</p>
+    <br>
+    <small>Change your notification settings at any time <a href="{{protocol}}://{{current_site.domain}}/student/account/?tab=preferences">here</a>.</small>
+{% endblock %}

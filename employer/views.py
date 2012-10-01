@@ -18,8 +18,10 @@ from django.core.files import File
 from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
 from django.contrib.sessions.models import Session
+from django.contrib.sites.models import get_current_site
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import redirect
+from django.template import Context
 from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
@@ -27,7 +29,7 @@ from django.views.decorators.http import require_POST, require_GET
 from core import messages, enums as core_enums
 from core.decorators import render_to
 from core.digg_paginator import DiggPaginator
-from core.email import send_html_mail
+from core.email import get_basic_email_context, send_email
 from core.file_utils import find_first_file
 from core.http import Http403, Http400
 from core.management.commands.zip_resumes import zip_resumes
@@ -113,11 +115,22 @@ def employer_new(request, form_class=CreateEmployerForm, extra_context=None):
         if form.is_valid():
             new_employer = form.save()
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-            subject = "New Employer: %s" % (new_employer) 
-            body = render_to_string('employer_new_email_body.html', \
-                                    {'email':request.user.email, \
-                                     'new_employer':new_employer})
-            send_html_mail(subject, body, recipients)
+            
+            context = Context({'first_name':request.user.first_name,
+                               'last_name': request.user.last_name,
+                               'email':request.user.email,
+                               'new_employer':new_employer,
+                               'new_employer_industries':" ".join(map(lambda x: x.name, new_employer.industries.all()))})
+            context.update(get_basic_email_context())
+             
+            body = render_to_string('employer_new_email_body.txt', context)
+                                    
+            subject = ''.join(render_to_string('email_admin_subject.txt', {
+                'message': "New Employer: %s" % new_employer 
+            }, context).splitlines())
+                            
+            send_email(subject, body, recipients)
+            
             data = {"name": new_employer.name, "id": new_employer.id}
         else:
             data = {'errors': form.errors }
@@ -513,12 +526,12 @@ def employer_students(request, extra_context=None):
             students = search(students, request.GET['query'])
             # Highlight the results
             students = students.highlight()
-            
+
         results_per_page = int(request.GET['results_per_page'])
         start_index = results_per_page * (int(request.GET['page']) - 1)
         count = students.count()
 
-        if start_index > count:
+        if start_index >= count:
             start_index = 0
         
         ordered_results = order_results(students, request)[start_index:start_index + results_per_page]
@@ -742,17 +755,24 @@ def employer_resume_book_email(request, extra_context=None):
                     resume_book = rb
     reg = re.compile(r"\s*[;, \n]\s*")
     recipients = reg.split(request.POST['emails'])
-    subject = ''.join(render_to_string('resume_book_email_subject.txt', {}).splitlines())
-    
-    name = "%s %s" % (request.user.first_name, request.user.last_name)
-    body = render_to_string('resume_book_email_body.html', {'name': name})
+    site = get_current_site(request)
+    subject = "[%s] Resume Book Delivery" % (site.name)
     f = open("%s%s" % (s.MEDIA_ROOT, resume_book.resume_book.name), "rb")
     content = f.read()
     if request.POST.has_key('name') and request.POST['name']:
         filename = request.POST['name']
     else:
         filename = os.path.basename(resume_book.name)
-    send_html_mail(subject, body, recipients, "%s.pdf" % (filename), content, "application/pdf")
+
+    context = get_basic_email_context()
+    context['deliverer_fullname'] = "%s %s" % (request.user.first_name, request.user.last_name)
+    context['deliverer_email'] = request.user.email
+
+    for recipient in recipients:
+        context['first_name'] = recipient.split("@")[0]
+        text_email_body = render_to_string('resume_book_email_body.txt', context)
+        html_email_body = render_to_string('resume_book_email_body.html', context)
+        send_email(subject, text_email_body, recipients, html_email_body, "%s.pdf" % (filename), content, "application/pdf")
     if redelivering:
         resume_book.last_updated = datetime.now()
     else:

@@ -34,10 +34,6 @@ UMEQO_RECRUITER_ID = # fill out
 
 WELCOME_EVENT_ID = # fill out
 
-SITE_ID = # fill out
-SITE_NAMES = {1:"Prod", 2:"Staging", 3:"Local", 4:"Demo"}
-SITE_NAME = SITE_NAMES[SITE_ID]
-
 DB_PASSWORD = # fill out
 
 STATIC_ROOT = ""

@@ -1,0 +1,11 @@
+.event_list li .actions a.drop_resume, li a.rsvp_yes {
+    color: #6E97B9;
+}
+#email_footer p, #email_footer a{
+    color:#aaa;
+    margin:0px;
+    font-size:11px;
+}
+#email_copyright{
+    float:right;
+}

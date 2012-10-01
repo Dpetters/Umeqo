@@ -1,0 +1,5 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+The event list requested to be delivered to you by {{deliverer_fullname}} ({{deliverer_email}}) is attached.
+{% endblock %}

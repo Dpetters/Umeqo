@@ -1,0 +1,26 @@
+h2{
+    margin:0.83em 0;
+}
+p{
+    margin:1em 0;
+}
+blockquote{
+    margin:1em 40px;
+}
+#background{
+    background:#F0F0F0;
+}
+#email_content{
+    border:none;
+    padding:10px 8px;
+    margin:0;
+    width:100%;
+}
+#email_body{
+    background:#fff;
+    padding:0px 20px 10px;
+}
+#email_header{
+    padding:20px 20px 10px;
+    background:#577592;
+}

@@ -1,0 +1,9 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+Your Umeqo account is ready. All we need to to do is make sure that this is your email address.
+
+Click the following link to activate your account - {{protocol}}://{{current_site}}/activation/{{activation_key}}/.
+
+If you did not register for Umeqo, please let us know by replying to contact@umeqo.com.
+{% endblock %}

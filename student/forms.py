@@ -20,7 +20,6 @@ from core.view_helpers import does_email_exist
 from countries.models import Country
 from employer.models import Employer
 from registration.models import RegException
-from student import enums as student_enums
 from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap, is_not_mit_student
 from student.models import DegreeProgram, Student, StudentPreferences, StudentDeactivation
 from student.view_helpers import extract_resume_keywords

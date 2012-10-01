@@ -20,7 +20,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext, get_language, activate
 
-from core.email import send_html_mail
+from core.email import send_email, get_basic_email_context
 
 QUEUE_ALL = getattr(settings, "NOTIFICATION_QUEUE_ALL", False)
 
@@ -274,7 +274,8 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
 
     formats = (
         'short.txt',
-        'email.html',
+        'email_body.html',
+        'email_body.txt',
         'notice.html',
         'full.html',
         'email_subject.txt'
@@ -295,33 +296,31 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
 
         # update context with user specific translations
         context = Context({
-            "recipient": user,
+            "first_name":user.first_name,
             "sender": sender,
             "notice": ugettext(notice_type.display),
             "notices_url": notices_url,
-            "current_site": current_site,
         })
+        context.update(get_basic_email_context())
         context.update(extra_context)
-
         # get prerendered format messages
         messages = get_formatted_messages(formats, label, context)
-
         # Strip newlines from subject
-        # messages['notice.html']
-        subject = ''.join(render_to_string('notification/email_subject.txt', {
-            'message': messages['email_subject.txt'],
-            'current_site_name':current_site.name
+        
+        subject = ''.join(render_to_string('email_subject.txt', {
+            'message': messages['email_subject.txt']
         }, context).splitlines())
 
-        body = messages['email.html']
-
+        html_email_body = messages['email_body.html']
+        txt_email_body = messages['email_body.txt']
+        
         Notice.objects.create(recipient=user, message=messages['notice.html'], message_full=messages['full.html'],
             notice_type=notice_type, on_site=on_site, sender=sender)
         
         if should_send(user, notice_type, "1") and user.email and user.is_active: # Email
             recipients.append(user.email)
             
-        send_html_mail(subject, body, recipients)
+        send_email(subject, txt_email_body, recipients, html_email_body)
 
     # reset environment to original language
     activate(current_language)

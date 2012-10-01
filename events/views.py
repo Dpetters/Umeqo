@@ -14,7 +14,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import simplejson
-from django.template import RequestContext, loader
+from django.template import RequestContext, loader, Context
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
@@ -23,7 +23,7 @@ from django.template.loader import render_to_string
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from campus_org.decorators import is_campus_org
-from core.email import send_html_mail
+from core.email import get_basic_email_context, send_email
 from core import enums as core_enums
 from core.http import Http403, Http400, Http500
 from core.decorators import render_to
@@ -288,7 +288,7 @@ def event_list_download(request):
 
 @user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 def event_checkin_count(request):
-    data = {'count':len(Event.objects.get(id=request.GET["event_id"]).attendee_set.all())}
+    data = {'count':len(get_attendees(Event.objects.get(id=request.GET["event_id"])))}
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
 
@@ -329,8 +329,16 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
             list = form.cleaned_data['event_list']
             reg = re.compile(r"\s*[;, \n]\s*")
             recipients = reg.split(request.POST['emails'])
-            subject = ''.join(render_to_string('event_list_export_email_subject.txt', {}).splitlines())
-            body = render_to_string('event_list_export_email_body.html', {'name':request.user.first_name})
+            context = Context({'deliverer_fullname': "%s %s" % (request.user.first_name, request.user.last_name),
+                               'deliverer_email': request.user.email})
+            context.update(get_basic_email_context())
+            subject = ''.join(render_to_string('email_subject.txt', {
+                'message': "Event List Delivery"
+            }, context).splitlines())
+            
+            txt_email_body = render_to_string('event_list_export_email_body.txt', context)
+            html_email_body = render_to_string('event_list_export_email_body.html', context)
+            
             file = StringIO.StringIO()
             if format == core_enums.CSV:
                 filename = export_event_list_csv(file, event, list)
@@ -348,7 +356,7 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
                 mimetype = "text/plain"
             else:
                 raise Http500("The request format '%s' is not supported" % format)
-            send_html_mail(subject, body, recipients, "%s.%s" % (filename, extension), file_contents, mimetype)
+            send_email(subject, txt_email_body, recipients, html_email_body, "%s.%s" % (filename, extension), file_contents, mimetype)
             context = {'filename': filename, 'TEMPLATE':'event_list_export_completed.html'}
             context.update(extra_context or {})
             return context
@@ -431,7 +439,7 @@ def event_cancel(request, id, extra_context = None):
             event.cancelled = True
 
             # Notify RSVPS.
-            rsvps = map(lambda n: n.student.user, event.rsvp_set.all())
+            rsvps = map(lambda n: n.student.user, event.rsvp_set.filter(attending=True))
             employers = event.attending_employers.all()
             has_word = "has" if len(employers)==1 else "have"
             employer_names = english_join(map(lambda n: n.name, employers))
@@ -572,9 +580,13 @@ def event_raffle_winner(request, extra_context=None):
         winner.won_raffle = True
         winner.save()
         if winner.student:
+            email = winner.student.user.email
             winner.student.studentstatistics.raffles_won += 1
             winner.student.studentstatistics.save()
+        else:
+            email = winner.email
         data['name'] = winner.name
+        data['email'] = email
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
@@ -610,7 +622,8 @@ def event_checkin(request, event_id):
                 'error': 'Duplicate checkin!'
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        if not name:
+        name = None
+        if not name and user.student.first_name and user.student.last_name:
             name = "%s %s" % (user.student.first_name, user.student.last_name)
         attendee = Attendee(email=email, name=name, student=student, event=event)
         try:
@@ -623,19 +636,32 @@ def event_checkin(request, event_id):
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if not student or student and not student.profile_created:
             if not student:
-                template = 'checkin_follow_up.html'
+                txt_email_body_template = 'checkin_follow_up_email_body.txt'
+                html_email_body_template = 'checkin_follow_up_email_body.html'
             if student and not student.profile_created:
-                template = 'checkin_follow_up_profile.html'
-            subject = "[Umeqo] Event Check-In Follow-up"
+                txt_email_body_template = 'checkin_follow_up_profile_email_body.txt'
+                html_email_body_template = 'checkin_follow_up_profile_email_body.html'
+            
+            first_name = None
+            if name:
+                first_name = name.split(" ")[0]
+            context = Context({'first_name':first_name,
+                               'event':event,
+                               'campus_org_event': is_campus_org(event.owner)})
+            context.update(get_basic_email_context())
+            subject = ''.join(render_to_string('email_subject.txt', {
+                'message': "Event Check-In Follow-up"
+            }, context).splitlines())
+            
             recipients = [email]
-            body_context = {'name':name, 'current_site':Site.objects.get(id=s.SITE_ID), 'event':event, 'campus_org_event': is_campus_org(event.owner)}
-            html_body = render_to_string(template, body_context)
-            send_html_mail(subject, html_body, recipients)
+            txt_email_body = render_to_string(txt_email_body_template, context)
+            html_email_body = render_to_string(html_email_body_template, context)
+            send_email(subject, txt_email_body, recipients, html_email_body)
         output = {
             'valid': True,
             'email': email
         }
-        if student:
+        if student and student.first_name and student.last_name:
             output['name'] = student.first_name + ' ' + student.last_name
         else:
             output['name'] = name

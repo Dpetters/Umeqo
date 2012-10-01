@@ -37,6 +37,12 @@ p {
     font-size: 12px;
     line-height: 17px;
 }
+table{
+    border-spacing:0px;
+}
+.grande h3{
+    padding:5px 0 0px;
+}
 .grande p {
     font-size: 14px;
     margin: 20px 0;
@@ -360,7 +366,7 @@ input[type=text], input[type=password] {
 .form_table .info p {
     padding-top: 0px;
 }
-.form_table.grande p, .form_table.grande a {
+.form_table.grande p, .form_table.grande a, .form_table.grande input.button {
     line-height: 24px;
     font-size: 15px;
     /* Undo the margins on p.grande */
@@ -382,11 +388,11 @@ input[type=text], input[type=password] {
     line-height: 30px;
     font-size: 16px;
 }
-a {
+a, .ui-widget-content .ui-multiselect-optgroup-label a {
     color: #6889A8;
     outline: none;
 }
-a:hover {
+a:hover, .ui-widget-content .ui-multiselect-optgroup-label a {
     color: #577592;
 }
 .clearfix {

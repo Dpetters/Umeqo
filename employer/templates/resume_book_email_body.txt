@@ -1,0 +1,5 @@
+{% extends "email_base.txt" %}
+
+{% block content %}
+The resume book created by {{deliverer_fullname}} ({{deliverer_email}}) and requested to be delivered to you is attached.
+{% endblock %}

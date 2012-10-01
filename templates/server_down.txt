@@ -1,0 +1,1 @@
+{{server_type}} is down with response code {{response_code}}. Please fix.
