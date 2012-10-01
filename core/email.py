@@ -2,7 +2,7 @@ import re
 import threading
 
 from BeautifulSoup import BeautifulSoup
-from pynliner import Pynliner
+from pynliner.pynliner import Pynliner
 
 from django.conf import settings as s
 from django.contrib.sites.models import Site
