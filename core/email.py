@@ -13,7 +13,8 @@ def is_valid_email(email):
     return True if email_re.match(email) else False
 
 def get_basic_email_context():
-    context = {'current_site':Site.objects.get_current()}
+    context = {'current_site':Site.objects.get_current(),
+               'STATIC_URL': s.STATIC_URL}
     if s.SITE_NAME == "Prod":
         context['protocol'] = "https"
     else:
@@ -27,13 +28,17 @@ class EmailThread(threading.Thread):
         self.recipient_list = recipient_list
         self.text_content = text_content
         if html_content:
+            print html_content
             self.html_content = Pynliner().from_string(html_content).run()
+            print self.html_content 
             soup = BeautifulSoup(self.html_content)
+            
             hidden_tags = soup.findAll(lambda x: re.search("display: ?none", x['style']))
             if hidden_tags:
                 for tag in hidden_tags:
                     tag.extract()
             self.html_content = str(soup)
+            print self.html_content
         else:
             self.html_content = None
         self.attachment_name = attachment_name
