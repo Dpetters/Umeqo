@@ -701,11 +701,17 @@ def employer_resume_book_create(request):
     if request.POST['delivery_format'] == 'separate':
         # Create the zip file
         file_name = "%s%s" % (file_path, resume_book_name,)
-        with zipfile.ZipFile(file_name, 'w') as output:
+        output = zipfile.ZipFile(file_name, 'w')
+        try:
             for student in resume_book.students.visible():
-                with file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb") as resume_file:
+                resume_file = file("%s%s" % (s.MEDIA_ROOT, str(student.resume)), "rb")
+                try:
                     name = "%s %s (%s, %s).pdf" % (student.first_name, student.last_name, student.graduation_year, student.degree_program)
                     output.write(resume_file.name, name, zipfile.ZIP_DEFLATED)
+                finally:
+                    resume_file.close()
+        finally:
+            output.close()
     else:
         output = PdfFileWriter()
         file_name = "%s%s.pdf" % (file_path, resume_book_name)
