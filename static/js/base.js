@@ -5,6 +5,20 @@ var multiselectSingleSelectWidth = 202;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";
 
+function downloadURL(url)
+{
+    var iframe;
+    iframe = document.getElementById("hiddenDownloader");
+    if (iframe === null)
+    {
+        iframe = document.createElement('iframe');  
+        iframe.id = "hiddenDownloader";
+        iframe.style.visibility = 'hidden';
+        document.body.appendChild(iframe);
+    }
+    iframe.src = url;   
+}
+
 function update_ckeditors(){
     for (instance in CKEDITOR.instances){
         CKEDITOR.instances[instance].updateElement();
