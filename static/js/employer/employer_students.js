@@ -26,7 +26,7 @@ function show_resume_book_contents_dialog(e) {
     show_resume_book_contents(e);
 }
     
-function handle_student_toggle_star() {
+function handle_student_toggle_star(e) {
     var container = this;
     var student_id = $(this).attr('data-student-id');
     $.ajax({
@@ -50,6 +50,7 @@ function handle_student_toggle_star() {
         },
         error: errors_in_message_area_handler
     });
+    e.preventDefault();
 }
 
 function handle_students_add_star(e) {
@@ -87,6 +88,7 @@ function handle_students_add_star(e) {
     } else {
         $("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
     }
+    e.preventDefault();
 }
 
 function handle_students_remove_star(e) {
@@ -124,6 +126,7 @@ function handle_students_remove_star(e) {
     } else {
         $("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
     }
+    e.preventDefault();
 }
 
 function handle_students_invite_click(e) {
@@ -176,6 +179,7 @@ function handle_students_invite_click(e) {
     } else {
         $("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
     }
+    e.preventDefault();
 }
 function enforce_resume_book_size_limit(){
     if (get_resume_book_size() < RESUME_BOOK_CAPACITY){
@@ -242,6 +246,7 @@ function handle_resume_book_students_remove(e) {
     } else {
         $("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
     }
+    e.preventDefault();
 }
 
 function handle_resume_book_students_add(e) {
@@ -289,6 +294,7 @@ function handle_resume_book_students_add(e) {
             $("#message_area").html("<p>" + NO_STUDENTS_SELECTED_MESSAGE + "</p>");
         }
     }
+    e.preventDefault();
 }
 
 function handle_resume_book_student_toggle(e) {
@@ -322,6 +328,7 @@ function handle_resume_book_student_toggle(e) {
             error: errors_in_message_area_handler
         });
     }
+    e.preventDefault();
 }
 
 function handle_student_event_attendance_hover() {
@@ -386,7 +393,7 @@ function update_resume_book_contents_summary() {
     });
 }
 
-function handle_results_menu_toggle_details_button_click() {
+function handle_results_menu_toggle_details_button_click(e) {
     if ( $("#results_menu_toggle_details span").html()=="Show All Details") {
         $(".student_toggle_detailed_info_link").html(HIDE_DETAILS_LINK);
         $(".student_detailed_info").slideDown('slow');
@@ -396,6 +403,7 @@ function handle_results_menu_toggle_details_button_click() {
         $(".student_detailed_info").slideUp('slow');
         $("#results_menu_toggle_details span").html("Show All Details");
     }
+    e.preventDefault();
 }
 
 function handle_results_menu_starred_click(e) {
@@ -407,6 +415,7 @@ function handle_results_menu_starred_click(e) {
         var id = $(this).parent('a').attr('data-student-id');
         $(".student_checkbox[data-student-id=" + id  + "]").attr('checked', false);
     });
+    e.preventDefault();
 }
 
 function handle_results_menu_not_starred_click(e) {
