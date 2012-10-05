@@ -27,7 +27,7 @@ function rsvp(attending) {
         $dropdown.replaceWith(that);
         rsvp_mouseout = true;
     }else{
-       that = this;
+       that = $(this);
     }
    
     var parent = get_parent(that);
