@@ -3367,7 +3367,7 @@
    "industries": [
     40
    ],
-   "last_updated": "2012-09-27 21:50:20",
+   "last_updated": "2012-10-04 23:12:09",
    "description": "<p>\r\n\tSIG is a global quantitative trading firm. We commit our own capital to trade equities and derivatives, including options, futures, and ETFs, as well as commodities, bonds, and other financial products around the world. SIG is a place where smart, analytical people work together to trade profitably in uncertain markets.<br />\r\n\t<br />\r\n\tBuilding virtually all of our own trading technology from scratch, we are on the leading edge of low-latency and high-frequency trading. Our traders, quants, developers, and systems engineers work closely together for the continuous improvement of our algorithmic trading strategies. Each employee brings something unique to the table, and we all strive to make optimal decisions in the dynamic environment of the financial markets.</p>\r\n",
    "starred_students": [],
    "stripe_id": "cus_0EAlsqLfVLmyaJ",
@@ -3550,7 +3550,7 @@
   "model": "employer.employer",
   "fields": {
    "industries": [],
-   "last_updated": "2012-09-30 23:03:04",
+   "last_updated": "2012-10-01 07:51:59",
    "description": "",
    "starred_students": [],
    "stripe_id": "cus_0SvKMYsbfisDQH",
@@ -3558,10 +3558,10 @@
    "visible": false,
    "offered_job_types": [],
    "date_created": "2012-09-30 22:56:30",
-   "logo": "",
+   "logo": "employer/employer/tinyco_2012-10-01-07-51-59.png",
    "size": null,
    "careers_website": "",
-   "slug": "",
+   "slug": "tinyco",
    "name": "TinyCo"
   }
  },
