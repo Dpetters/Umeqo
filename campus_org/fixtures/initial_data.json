@@ -294,7 +294,7 @@
   "fields": {
    "website": "http://mit.edu/skiing/www/index.html",
    "slug": "alpine",
-   "last_updated": "2012-05-13 00:55:23",
+   "last_updated": "2012-11-07 19:12:25",
    "description": "The MIT Alpine Ski Team promotes the sport of men's and women's alpine ski racing at MIT in the disciplines of slalom and giant slalom. The team is a student-run club sport that competes in the MacConnell division of the United States Collegiate Ski and Snowboard Association (USCSA).",
    "image": "campus_org/campusorg/alpine_ski_club_2012-05-13-00-55-23.png",
    "email": "alpinecaptains@mit.edu",
@@ -2275,6 +2275,23 @@
    "type": 1,
    "display": false,
    "name": "Electronic Research Society"
+  }
+ },
+ {
+  "pk": 523,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-12-06 16:06:52",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2012-12-06 16:06:52",
+   "type": 2,
+   "display": false,
+   "name": "Emerson Fellowship"
   }
  },
  {
@@ -7375,6 +7392,23 @@
    "type": 11,
    "display": false,
    "name": "Varsity Rifle"
+  }
+ },
+ {
+  "pk": 524,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-12-10 14:14:44",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2012-12-10 14:14:44",
+   "type": 11,
+   "display": false,
+   "name": "Varsity Softball"
   }
  },
  {
