@@ -23,7 +23,7 @@ from core.decorators import render_to
 from core.email import get_basic_email_context, send_email
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
-from core.models import Language, EmploymentType, Industry, SchoolYear, GraduationYear, Course
+from core.models import Language, EmploymentType, Industry, GraduationYear, Course
 from core.email import is_valid_email
 from countries.models import Country
 from employer.decorators import is_recruiter
@@ -37,7 +37,7 @@ from registration.view_helpers import register_student
 from student.decorators import is_student
 from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
-from student.models import Student, StudentDeactivation
+from student.models import Student, StudentDeactivation, DegreeProgram
 from student.view_helpers import handle_uploaded_file, extract_resume_keywords
 
 
@@ -78,7 +78,7 @@ def student_quick_registration(request, form_class=StudentQuickRegistrationForm,
                           'email': request.POST['email'],
                           'password': request.POST['password']}
             student = register_student(request, **user_info)
-            student.degree_program = SchoolYear.objects.get(id=request.POST['degree_program'])
+            student.degree_program = DegreeProgram.objects.get(id=request.POST['degree_program'])
             student.graduation_month = request.POST['graduation_month']
             student.graduation_year = GraduationYear.objects.get(id=request.POST['graduation_year'])
             student.first_major = Course.objects.get(id=request.POST['first_major'])

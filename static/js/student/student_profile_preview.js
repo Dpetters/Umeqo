@@ -1,10 +1,11 @@
-function handle_student_hide_details_link_click() {
+function handle_student_hide_details_link_click(e) {
     var id = $(this).attr('data-student-id');
     $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
     $('.student_toggle_detailed_info_link[data-student-id=' + id  + ']').html(SHOW_DETAILS_LINK);
+    e.preventDefault();
 };
 
-function handle_student_toggle_detailed_info_link_click() {
+function handle_student_toggle_detailed_info_link_click(e) {
     var id = $(this).attr('data-student-id');
     if ($(this).children('span').attr('class') === "hide_details") {
         $('.student_detailed_info[data-student-id=' + id  + ']').slideUp('slow');
@@ -13,6 +14,7 @@ function handle_student_toggle_detailed_info_link_click() {
         $('.student_detailed_info[data-student-id=' + id  + ']').slideDown('slow');
         $(this).html(HIDE_DETAILS_LINK);
     }
+    e.preventDefault();
 };
     
 $(".student_toggle_detailed_info_link").live('click', handle_student_toggle_detailed_info_link_click);
