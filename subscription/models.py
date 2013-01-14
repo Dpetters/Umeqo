@@ -72,11 +72,6 @@ class Subscription(models.Model):
             return 0
         return float(self.price) / (self.recurrence_period*_recurrence_unit_days[self.recurrence_unit])
 
-class Card(models.Model):
-    employer = models.ForeignKey("employer.Employer")
-    last_4_digits = models.CharField(max_length=4)
-    expiration_date = models.DateField(default=datetime.date.today)
-
 
 class EmployerSubscription(models.Model):
     employer = models.OneToOneField("employer.Employer")
