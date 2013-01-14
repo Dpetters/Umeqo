@@ -260,6 +260,29 @@
   }
  },
  {
+  "pk": 222,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    45,
+    36
+   ],
+   "last_updated": "2013-01-14 12:46:00",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:46:00",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "AppDirect"
+  }
+ },
+ {
   "pk": 33,
   "model": "employer.employer",
   "fields": {
@@ -277,6 +300,28 @@
    "careers_website": "",
    "slug": "apple",
    "name": "Apple"
+  }
+ },
+ {
+  "pk": 225,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    50
+   ],
+   "last_updated": "2013-01-14 12:49:43",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:49:43",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "AppNexus"
   }
  },
  {
@@ -564,6 +609,29 @@
   }
  },
  {
+  "pk": 217,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    43,
+    51
+   ],
+   "last_updated": "2013-01-14 12:29:24",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:29:24",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Bloomberg"
+  }
+ },
+ {
   "pk": 30,
   "model": "employer.employer",
   "fields": {
@@ -663,6 +731,51 @@
    "careers_website": "",
    "slug": "bcg",
    "name": "Boston Consulting Group"
+  }
+ },
+ {
+  "pk": 201,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13
+   ],
+   "last_updated": "2013-01-04 23:08:50",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-04 23:08:50",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Boston Dynamics Incorporated"
+  }
+ },
+ {
+  "pk": 230,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    12,
+    13
+   ],
+   "last_updated": "2013-01-14 13:01:46",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 13:01:46",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Boston Power"
   }
  },
  {
@@ -879,6 +992,28 @@
   }
  },
  {
+  "pk": 223,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    11
+   ],
+   "last_updated": "2013-01-14 12:46:36",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:46:36",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Codecademy"
+  }
+ },
+ {
   "pk": 87,
   "model": "employer.employer",
   "fields": {
@@ -1025,6 +1160,28 @@
   }
  },
  {
+  "pk": 215,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    4
+   ],
+   "last_updated": "2013-01-14 12:18:06",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:18:06",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "D. E. Shaw Research"
+  }
+ },
+ {
   "pk": 65,
   "model": "employer.employer",
   "fields": {
@@ -1108,6 +1265,28 @@
   }
  },
  {
+  "pk": 207,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    49
+   ],
+   "last_updated": "2013-01-14 10:45:08",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:45:08",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "DF Shaw Research"
+  }
+ },
+ {
   "pk": 79,
   "model": "employer.employer",
   "fields": {
@@ -1127,6 +1306,28 @@
    "careers_website": "",
    "slug": "",
    "name": "Diagnostics for ALL"
+  }
+ },
+ {
+  "pk": 227,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "last_updated": "2013-01-14 12:52:48",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:52:48",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Digital Science"
   }
  },
  {
@@ -1201,6 +1402,28 @@
    "careers_website": "",
    "slug": "ebay",
    "name": "eBay"
+  }
+ },
+ {
+  "pk": 205,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-11 19:18:45",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-11 19:18:45",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "EditShare"
   }
  },
  {
@@ -1718,6 +1941,28 @@
   }
  },
  {
+  "pk": 213,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 10:47:39",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:47:39",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "HGST"
+  }
+ },
+ {
   "pk": 196,
   "model": "employer.employer",
   "fields": {
@@ -1828,6 +2073,28 @@
   }
  },
  {
+  "pk": 228,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    14
+   ],
+   "last_updated": "2013-01-14 12:57:24",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:57:24",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Hulu"
+  }
+ },
+ {
   "pk": 44,
   "model": "employer.employer",
   "fields": {
@@ -1845,6 +2112,29 @@
    "careers_website": "",
    "slug": "ibm",
    "name": "IBM"
+  }
+ },
+ {
+  "pk": 220,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    45,
+    36
+   ],
+   "last_updated": "2013-01-14 12:40:42",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:40:42",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "imo.im"
   }
  },
  {
@@ -1932,6 +2222,28 @@
   }
  },
  {
+  "pk": 211,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 10:46:53",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:46:53",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Intuit"
+  }
+ },
+ {
   "pk": 7,
   "model": "employer.employer",
   "fields": {
@@ -1978,6 +2290,29 @@
    "careers_website": null,
    "slug": null,
    "name": "Jane Street Capital"
+  }
+ },
+ {
+  "pk": 229,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13,
+    36
+   ],
+   "last_updated": "2013-01-14 12:58:45",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:58:45",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Jaybridge"
   }
  },
  {
@@ -2069,6 +2404,29 @@
   }
  },
  {
+  "pk": 219,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    50,
+    36
+   ],
+   "last_updated": "2013-01-14 12:35:02",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:35:02",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Kayak"
+  }
+ },
+ {
   "pk": 142,
   "model": "employer.employer",
   "fields": {
@@ -2088,6 +2446,29 @@
    "careers_website": "",
    "slug": "kiva",
    "name": "Kiva Systems, Inc"
+  }
+ },
+ {
+  "pk": 231,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    11,
+    36
+   ],
+   "last_updated": "2013-01-14 13:06:11",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 13:06:11",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Knewton"
   }
  },
  {
@@ -2132,6 +2513,50 @@
    "careers_website": null,
    "slug": null,
    "name": "KPMG"
+  }
+ },
+ {
+  "pk": 200,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    49
+   ],
+   "last_updated": "2012-12-21 16:54:02",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-12-21 16:54:02",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Langer Lab"
+  }
+ },
+ {
+  "pk": 204,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    3
+   ],
+   "last_updated": "2013-01-09 21:31:33",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-09 21:31:33",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Lockheed Martin"
   }
  },
  {
@@ -2285,6 +2710,50 @@
   }
  },
  {
+  "pk": 221,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 12:42:48",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:42:48",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Memsql"
+  }
+ },
+ {
+  "pk": 214,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 10:48:05",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:48:05",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Meraki"
+  }
+ },
+ {
   "pk": 115,
   "model": "employer.employer",
   "fields": {
@@ -2355,6 +2824,28 @@
    "careers_website": "",
    "slug": "MIT",
    "name": "MIT"
+  }
+ },
+ {
+  "pk": 202,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13
+   ],
+   "last_updated": "2013-01-04 23:09:47",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-04 23:09:47",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "MIT Lab for Manufacturing & Productivity"
   }
  },
  {
@@ -2580,6 +3071,28 @@
   }
  },
  {
+  "pk": 218,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "last_updated": "2013-01-14 12:32:52",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:32:52",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "NetSuite"
+  }
+ },
+ {
   "pk": 186,
   "model": "employer.employer",
   "fields": {
@@ -2660,6 +3173,28 @@
    "careers_website": "",
    "slug": "novartis",
    "name": "Novartis"
+  }
+ },
+ {
+  "pk": 199,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    43
+   ],
+   "last_updated": "2013-01-14 14:05:51",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2012-12-11 20:54:49",
+   "logo": "employer/employer/novus partners_2013-01-14-14-05-51.png",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Novus Partners"
   }
  },
  {
@@ -2975,6 +3510,29 @@
   }
  },
  {
+  "pk": 216,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13,
+    52
+   ],
+   "last_updated": "2013-01-14 12:25:37",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:25:37",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Potion Design"
+  }
+ },
+ {
   "pk": 20,
   "model": "employer.employer",
   "fields": {
@@ -3188,6 +3746,28 @@
   }
  },
  {
+  "pk": 224,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13
+   ],
+   "last_updated": "2013-01-14 12:47:51",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:47:51",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Sandisk"
+  }
+ },
+ {
   "pk": 110,
   "model": "employer.employer",
   "fields": {
@@ -3291,6 +3871,29 @@
    "careers_website": "",
    "slug": "shell",
    "name": "Shell Oil"
+  }
+ },
+ {
+  "pk": 226,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    14,
+    36
+   ],
+   "last_updated": "2013-01-14 12:51:36",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 12:51:36",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Sifteo"
   }
  },
  {
@@ -3421,6 +4024,28 @@
    "careers_website": null,
    "slug": null,
    "name": "Standard & Poor's"
+  }
+ },
+ {
+  "pk": 209,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 10:46:07",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:46:07",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "State Farm"
   }
  },
  {
@@ -3771,6 +4396,28 @@
   }
  },
  {
+  "pk": 210,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 10:46:33",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:46:33",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Twilio"
+  }
+ },
+ {
   "pk": 165,
   "model": "employer.employer",
   "fields": {
@@ -3811,6 +4458,28 @@
    "careers_website": "",
    "slug": "",
    "name": "Two Sigma Investments"
+  }
+ },
+ {
+  "pk": 208,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 14:07:35",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:45:44",
+   "logo": "employer/employer/uber_2013-01-14-14-07-35.png",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Uber"
   }
  },
  {
@@ -4050,6 +4719,28 @@
   }
  },
  {
+  "pk": 212,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    20
+   ],
+   "last_updated": "2013-01-14 10:47:18",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:47:18",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Venmo"
+  }
+ },
+ {
   "pk": 77,
   "model": "employer.employer",
   "fields": {
@@ -4091,6 +4782,28 @@
    "careers_website": "",
    "slug": "vmware",
    "name": "VMWare"
+  }
+ },
+ {
+  "pk": 203,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13
+   ],
+   "last_updated": "2013-01-04 23:10:21",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-04 23:10:21",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "water analytics"
   }
  },
  {
@@ -4163,6 +4876,32 @@
    "careers_website": "",
    "slug": "",
    "name": "World Wide Financial Recruiting Services"
+  }
+ },
+ {
+  "pk": 206,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    14,
+    20,
+    45,
+    51,
+    44
+   ],
+   "last_updated": "2013-01-14 14:08:27",
+   "description": "",
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-14 10:44:04",
+   "logo": "employer/employer/yahoo_2013-01-14-14-08-27.png",
+   "size": null,
+   "careers_website": "",
+   "slug": "",
+   "name": "Yahoo"
   }
  },
  {

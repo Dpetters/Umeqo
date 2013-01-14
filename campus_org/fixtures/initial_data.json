@@ -391,6 +391,23 @@
   }
  },
  {
+  "pk": 526,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://asme.scripts.mit.edu/home/",
+   "slug": null,
+   "last_updated": "2013-01-04 23:07:04",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-04 23:07:04",
+   "type": 1,
+   "display": false,
+   "name": "American Society of Mechanical Engineers"
+  }
+ },
+ {
   "pk": 20,
   "model": "campus_org.campusorg",
   "fields": {
@@ -1255,6 +1272,23 @@
    "type": 16,
    "display": false,
    "name": "Bulgarian Club at MIT"
+  }
+ },
+ {
+  "pk": 525,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2012-12-21 17:00:21",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2012-12-21 17:00:21",
+   "type": 10,
+   "display": false,
+   "name": "Burton Conner House Coordinator"
   }
  },
  {
@@ -4995,6 +5029,23 @@
    "type": 6,
    "display": false,
    "name": "Phi Delta Theta"
+  }
+ },
+ {
+  "pk": 527,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://skullhouse.mit.edu/",
+   "slug": null,
+   "last_updated": "2013-01-13 17:21:03",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-13 17:21:03",
+   "type": 6,
+   "display": false,
+   "name": "Phi Kappa Sigma"
   }
  },
  {
