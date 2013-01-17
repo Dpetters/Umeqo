@@ -131,25 +131,32 @@ WEBHOOK_MAP = {
 }
 
 
-def send_charge_receipt(*args, **kwargs):
+def send_receipt(*args, **kwargs):
+    stripe.api_key = s.STRIPE_SECRET
+    
+    # Get the invoice id
     charge = kwargs['full_json']['data']['object']
     charge = Struct(**charge)
-    stripe.api_key = s.STRIPE_SECRET
     invoice = stripe.Invoice.retrieve(charge.invoice)
+    
+    # Collect the emails of all recruiters at the company
     employer_name = charge.description
-    if not employer_name:
-        employer_name = ""
     users = User.objects.get(recruiter__employer__name=employer_name)
     recipients = map(lambda x: x.email, users)
+
+    # Create receipt PDF attachment
     receipt_file_path = get_or_create_receipt_pdf(charge, invoice, employer_name)
     pdf_file = open(receipt_file_path, "rb")
-    pdf_file
     receipt_file_name = receipt_file_path.split("/")[-1]
     content = pdf_file.read()
     pdf_file.close()
-    context = {}
-    send_email("Receipt", render_to_string("charge_receipt_email_body.html", ), recipients, receipt_file_name, content, "application/pdf")
+    
+    subject = ''.join(render_to_string('email_subject.txt', {
+        'message': "Purchase Receipt"
+    }, context).splitlines())
+    
+    send_email(subject, render_to_string("receipt_email_body.html", {}), recipients, receipt_file_name, content, "application/pdf")
     
 
+webhook_charge_succeeded.connect(send_receipt)
 
-webhook_charge_succeeded.connect(send_charge_receipt)

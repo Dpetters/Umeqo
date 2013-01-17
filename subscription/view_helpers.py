@@ -21,7 +21,7 @@ def coord(x, y, unit=1):
     return x, y
 
 def get_or_create_receipt_pdf(charge, invoice, employer_name):
-    pdf_name = "Umeqo_Charge_%s_%s.pdf" % (format_unix_time(charge.created).replace("/", "-"), charge.id)
+    pdf_name = "Umeqo-Receipt-%s-%s.pdf" % (format_unix_time(charge.created).replace("/", "-"), charge.id)
     path = "%semployer/receipts/" % (s.MEDIA_ROOT)
     if not os.path.exists(path):
         os.makedirs(path)
@@ -77,11 +77,10 @@ def get_or_create_receipt_pdf(charge, invoice, employer_name):
         story.append(Spacer(1*cm, 3*cm))
 
         story.append(Paragraph('''Umeqo''', styles["Normal"]))
-        story.append(Paragraph('''305 Memorial Drive #5037''', styles["Normal"]))
-        story.append(Paragraph('''Cambridge, MA 02139''', styles["Normal"]))
-        story.append(Paragraph('''''', styles["Normal"]))
-        story.append(Paragraph('''Web: https://umeqo.com''', styles["Normal"]))
-        story.append(Paragraph('''Phone: (425) 681-2953''', styles["Normal"]))        
+        story.append(Paragraph('''645 Harrison Suite 200''', styles["Normal"]))
+        story.append(Paragraph('''San Francisco, CA 94107''', styles["Normal"]))
+        story.append(Paragraph('''https://www.umeqo.com''', styles["Normal"]))
+        story.append(Paragraph('''(650) 543-1400''', styles["Normal"]))        
         
         doc = SimpleDocTemplate(pdf_path, pagesize = A4, topMargin=0)
         doc.build(story)
