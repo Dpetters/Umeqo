@@ -6684,17 +6684,17 @@
   "pk": 380,
   "model": "campus_org.campusorg",
   "fields": {
-   "website": "http://web.mit.edu/tbp/www/",
-   "slug": null,
-   "last_updated": "2011-07-24 16:52:38",
-   "description": "Tau Beta Pi (TBP) is the second oldest collegiate honor society in the nation, and the only honor society that represents the entire engineering profession. Founded in 1885 by Professor Edward H. Williams Jr. of Lehigh University, TBP honors those with exemplary character and distinguished scholarship as engineering students and alumni. Both undergraduate and graduate students are invited to become candidates of TBP based on their academic performances, recommendations from faculty, and their contributions to engineering and the society. TBP now consists of 241 collegiate chapters across the United States and Puerto Rico, includes a total initiated membership of almost 501,000. \r\n\r\nThe Mass Beta Chapter of Tau Beta Pi organizes many events on and off the MIT campus to expose those in the Greater Boston community to science/engineering and to introduce MIT students to socially conscious careers. Each year, Tau Beta Pi donates thousands of dollars to the Museum of Science to allow all MIT students enter the museum for free. Tau Beta Pi also organizes the Spring Career Fair that typically occurs during the first week of classes in February to help MIT students and alumni find jobs and internships. Service projects such as SciPro, TBP teach, and Project Fund (TBP Fellowship) are supported by Tau Beta Pi as well.",
-   "image": "campus_org/campusorg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38.png",
-   "email": "tbp-officers@mit.edu",
-   "user": null,
+   "website": "http://tbpfair.mit.edu/",
+   "slug": "tbp",
+   "last_updated": "2013-01-14 16:48:56",
+   "description": "Tau Beta Pi (TBP) is the second oldest collegiate honor society in the nation, and the only honor society that represents the entire engineering profession. Founded in 1885 by Professor Edward H. Williams Jr. of Lehigh University, TBP honors those with exemplary character and distinguished scholarship as engineering students and alumni. Both undergraduate and graduate students are invited to become candidates of TBP based on their academic performances, recommendations from faculty, and their contributions to engineering and the society. TBP now consists of 241 collegiate chapters across the United States and Puerto Rico, includes a total initiated membership of almost 501,000. ",
+   "image": "campus_org/campusorg/tau_beta_pi_2013-01-14-16-48-56.PNG",
+   "email": "tbp-career-card@mit.edu",
+   "user": 1743,
    "date_created": "2011-05-03 12:27:42",
    "type": 1,
    "display": true,
-   "name": "Tau Beta Pi, Mass Beta Chapter"
+   "name": "Tau Beta Pi"
   }
  },
  {
