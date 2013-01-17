@@ -135,5 +135,9 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
+        'code': {
+            'level':'DEBUG',
+            'handlers': ['file_handler'],
+        }
     }
 }
