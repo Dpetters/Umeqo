@@ -1,6 +1,8 @@
 import stripe
 
+
 from django.conf import settings as s
+from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 
 from core.dict import Struct
