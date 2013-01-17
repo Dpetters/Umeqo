@@ -57,11 +57,12 @@ function download_resume_book(){
     
     // Add custom name, if provided
     if (custom_resume_book_name){
-        download_url = download_url + "&name=" + escape(custom_resume_book_name)
+        download_url = download_url + "&name=" + escape(custom_resume_book_name);
     }
     
     // Download the file
-    window.location.href = download_url;
+    downloadURL(download_url);
+    //window.location.href = download_url;
     
     // Show success message after 1 second
     setTimeout(function(){
