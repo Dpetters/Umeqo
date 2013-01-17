@@ -27,6 +27,10 @@ BACKUP_DIR = "/var/www/umeqo_backups/"
 
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
+SITE_ID = # fill out
+SITE_NAMES = {1:"Prod", 2:"Staging", 3:"Local", 4:"Demo"}
+SITE_NAME = SITE_NAMES[SITE_ID]
+
 # prod - http://127.0.0.1:8983/solr
 # staging - http://127.0.0.1:8983/solr
 # demo - http://127.0.0.1:8984/solr
