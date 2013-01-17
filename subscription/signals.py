@@ -3,13 +3,14 @@ import logging
 
 from django.conf import settings as s
 from django.contrib.auth.models import User
+from django.template import Context
 from django.template.loader import render_to_string
 
 from core.dict import Struct
-from core.email import send_email
+from core.email import get_basic_email_context, send_email
 from subscription.view_helpers import get_or_create_receipt_pdf
 
-sentry_logger = logging.getLogger("sentry.errors")
+logger = logging.getLogger("code")
 
 """
 Provides the following signals:
@@ -146,12 +147,13 @@ def send_receipt(*args, **kwargs):
     try:
         customer = stripe.Customer.retrieve(charge.customer)
     except APIConnectionError as e:
-        sentry_logger.warning("Customer %s paid for charge %s but did not get the receipt because the customer object could not be retrieved." % (charge.customer, charge.id))
+        logger.warning("Customer %s paid for charge %s but did not get the receipt because the customer object could not be retrieved." % (charge.customer, charge.id))
     else:            
         employer_name = customer.description
         
         # We want to email all recruiters at the company
-        users = User.objects.get(recruiter__employer__name=employer_name)
+        users = User.objects.filter(recruiter__employer__name=employer_name)
+        logger.warning(str(users))
         recipients = map(lambda x: x.email, users)
 
         # Create receipt PDF attachment
@@ -161,12 +163,17 @@ def send_receipt(*args, **kwargs):
         content = pdf_file.read()
         pdf_file.close()
         
+        context = Context({})
+        context.update(get_basic_email_context())
+ 
         subject = ''.join(render_to_string('email_subject.txt', {
             'message': "Purchase Receipt"
         }, context).splitlines())
         
-    send_email(subject, render_to_string("receipt_email_body.html", {}), recipients, receipt_file_name, content, "application/pdf")
-    
+        txt_email_body = render_to_string("receipt_email_body.txt", context)
+        html_email_body = render_to_string("receipt_email_body.html", context)
 
+        send_email(subject, txt_email_body, recipients, html_email_body, receipt_file_name, content, "application/pdf")
+    
 webhook_charge_succeeded.connect(send_receipt)
 
