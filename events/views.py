@@ -196,7 +196,7 @@ def event_page(request, id, slug, extra_context=None):
         });
     
     # Increase the view count if we're not admin, a campus org or a recruiter (aka for now just student & anonymous)
-    if is_campus_org(request.user) and not is_recruiter(request.user) and not request.user.is_staff:
+    if not is_campus_org(request.user) and not is_recruiter(request.user) and not request.user.is_staff:
         event.view_count += 1
         event.save()
     
