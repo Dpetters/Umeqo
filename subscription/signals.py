@@ -1,5 +1,5 @@
 import stripe
-
+import logging
 
 from django.conf import settings as s
 from django.contrib.auth.models import User
@@ -8,6 +8,8 @@ from django.template.loader import render_to_string
 from core.dict import Struct
 from core.email import send_email
 from subscription.view_helpers import get_or_create_receipt_pdf
+
+sentry_logger = logging.getLogger("sentry.errors")
 
 """
 Provides the following signals:
@@ -141,22 +143,28 @@ def send_receipt(*args, **kwargs):
     charge = Struct(**charge)
     invoice = stripe.Invoice.retrieve(charge.invoice)
     
-    # Collect the emails of all recruiters at the company
-    employer_name = charge.description
-    users = User.objects.get(recruiter__employer__name=employer_name)
-    recipients = map(lambda x: x.email, users)
+    try:
+        customer = stripe.Customer.retrieve(charge.customer)
+    except APIConnectionError as e:
+        sentry_logger.warning("Customer %s paid for charge %s but did not get the receipt because the customer object could not be retrieved." % (charge.customer, charge.id))
+    else:            
+        employer_name = customer.description
+        
+        # We want to email all recruiters at the company
+        users = User.objects.get(recruiter__employer__name=employer_name)
+        recipients = map(lambda x: x.email, users)
 
-    # Create receipt PDF attachment
-    receipt_file_path = get_or_create_receipt_pdf(charge, invoice, employer_name)
-    pdf_file = open(receipt_file_path, "rb")
-    receipt_file_name = receipt_file_path.split("/")[-1]
-    content = pdf_file.read()
-    pdf_file.close()
-    
-    subject = ''.join(render_to_string('email_subject.txt', {
-        'message': "Purchase Receipt"
-    }, context).splitlines())
-    
+        # Create receipt PDF attachment
+        receipt_file_path = get_or_create_receipt_pdf(charge, invoice, employer_name)
+        pdf_file = open(receipt_file_path, "rb")
+        receipt_file_name = receipt_file_path.split("/")[-1]
+        content = pdf_file.read()
+        pdf_file.close()
+        
+        subject = ''.join(render_to_string('email_subject.txt', {
+            'message': "Purchase Receipt"
+        }, context).splitlines())
+        
     send_email(subject, render_to_string("receipt_email_body.html", {}), recipients, receipt_file_name, content, "application/pdf")
     
 
