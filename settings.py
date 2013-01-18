@@ -13,10 +13,6 @@ MAX_USERS_FOR_BASIC_USERS = 3
 # than usual..." message (in milliseconds)
 LOAD_WAIT_TIME = 8000
 
-SITE_ID = 3
-SITE_NAMES = {1:"Prod", 2:"Staging", 3:"Local", 4:"Demo"}
-SITE_NAME = SITE_NAMES[SITE_ID]
-
 # Send admins an email each time that a 404 is encountered
 SEND_BROKEN_LINK_EMAILS = True
 
