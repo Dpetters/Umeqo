@@ -185,6 +185,7 @@
             <br>
             {{form.attending_employers}}
             <span id="create_employer_span">Don't see the employer you need? <a href="#" class="create_employer_link">Create it!</a></span>
+            <p style="margin-top:3px;"><strong>Important:</strong> Make sure to mark each company that you want to have access to the participants as attending.</p>
             <div id="attending_employers">
             {% if edit %}
                 {% for employer in attending_employers.all %}
