@@ -188,7 +188,7 @@
             <div id="attending_employers">
             {% if edit %}
                 {% for employer in attending_employers.all %}
-                    {% show_employer_thumbnail employer '135' %}
+                    {% show_employer_thumbnail user employer '135' %}
                 {% endfor %}
             {% endif %}
             </div>
