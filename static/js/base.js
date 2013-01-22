@@ -1,6 +1,6 @@
 /* Multiselect Widget Properties */
 var multiselectMinWidth = 318;
-var multiselectYesNoSingleSelectWidth = 181;
+var multiselectYesNoSingleSelectWidth = 180;
 var multiselectSingleSelectWidth = 202;
 var multiselectCheckAllText = "All";
 var multiselectUncheckAllText = "None";

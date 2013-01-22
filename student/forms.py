@@ -70,18 +70,14 @@ class StudentRegistrationForm(forms.ModelForm):
             # If after ldap check result==[None], then Im not connected to
             # the internet. If result==[], then I am connected and the email
             # is not a student's. 
-            res = [None]
-            try:
-                res = get_student_ldap_info(email.split("@")[0])
-            except Exception, e:
-                try:
-                    rcpts = [mail_tuple[1] for mail_tuple in s.MANAGERS]
-                    sub = "URGENT: LDAP Server is down. EOM"
-                    EmailMessage(sub, "", s.DEFAULT_FROM_EMAIL, rcpts).send()
+            # TODO: check what happens if you're not connected to the internet
+            res = get_student_ldap_info(email.split("@")[0])
+            if res == None:
+                if s.MUST_USE_LDAP:
                     raise forms.ValidationError(_(m.ldap_server_error))
-                except:
+                else:
                     pass
-            if  is_not_mit_student(res):
+            elif is_not_mit_student(res):
                 raise forms.ValidationError(m.must_be_mit_student)
         return self.cleaned_data['email']
 

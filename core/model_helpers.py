@@ -17,11 +17,11 @@ def get_resume_filename(instance, filename):
     return "%s/%s_%s_%s_%s.pdf" % (str(type(instance)._meta).replace(".", "/"), last_name, first_name, username, datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
 
 def get_image_filename(instance, filename):
-    extension = os.path.splitext(filename)[1]
+    extension = os.path.splitext(filename)[1].lower()
     return "%s/%s_%s%s" % (str(type(instance)._meta).replace(".", "/"), instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def get_thumbnail_filename(instance, filename):
-    extension = filename[filename.find('.'):]
+    extension = filename[filename.find('.'):].lower()
     return "%s/%s_%s_thumbnail%s" % (str(type(instance)._meta).replace(".", "/"), instance.name.replace(" ", "_").lower(), datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'), extension)
 
 def generate_thumbnail(image):
@@ -31,7 +31,7 @@ def generate_thumbnail(image):
     ratio = min(float(settings.MAX_DIALOG_IMAGE_WIDTH)/width, float(settings.MAX_DIALOG_IMAGE_HEIGHT)/height)
     size = (int(ratio * width), int(ratio * height))
     image.thumbnail(size, Image.ANTIALIAS)
-    extension = os.path.splitext(image_path)[1]
+    extension = os.path.splitext(image_path)[1].lower()
     thumbnail_full_path = "%s/%s_tmp%s" % (os.path.dirname(image_path), os.path.basename(image_path).split(".")[0], extension)
     image.save(thumbnail_full_path)
     return thumbnail_full_path, File(file(thumbnail_full_path, "rb"))
