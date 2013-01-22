@@ -137,5 +137,5 @@ class RegistrationManager(models.Manager):
         for profile in self.all():
             if profile.activation_key_expired():
                 user = profile.user
-                if not user.is_active:
+                if user.is_active and not user.userattributes.is_verified:
                     user.delete()

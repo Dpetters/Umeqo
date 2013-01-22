@@ -1,6 +1,9 @@
 import os
 ROOT = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
 
+
+MUST_USE_LDAP = False
+
 # By default, a session expires when the browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
@@ -23,7 +26,7 @@ MAX_RESUME_SIZE = 3*1024*1024
 MAX_RESUME_KEYWORDS = 3000
 
 # One-day activation window
-ACCOUNT_ACTIVATION_DAYS = 99999
+ACCOUNT_ACTIVATION_DAYS = 30
 
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4
