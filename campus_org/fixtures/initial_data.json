@@ -68,6 +68,23 @@
   }
  },
  {
+  "pk": 528,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://mobileapps.mit.edu/about.php",
+   "slug": null,
+   "last_updated": "2013-01-18 11:26:55",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-18 11:26:55",
+   "type": 3,
+   "display": false,
+   "name": "6.570 Mobile App Competition"
+  }
+ },
+ {
   "pk": 499,
   "model": "campus_org.campusorg",
   "fields": {
@@ -1360,6 +1377,23 @@
   }
  },
  {
+  "pk": 535,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://web.mit.edu/cthulhu/www/MITCCCth-Welcome.html",
+   "slug": null,
+   "last_updated": "2013-01-22 08:41:34",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 08:41:34",
+   "type": 13,
+   "display": false,
+   "name": "Campus Crusade for Cthulhu"
+  }
+ },
+ {
   "pk": 72,
   "model": "campus_org.campusorg",
   "fields": {
@@ -1459,6 +1493,23 @@
    "type": 1,
    "display": true,
    "name": "CEESA"
+  }
+ },
+ {
+  "pk": 530,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-20 11:46:51",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-20 11:46:51",
+   "type": 9,
+   "display": false,
+   "name": "Challah For Hunger"
   }
  },
  {
@@ -2054,6 +2105,23 @@
    "type": 6,
    "display": true,
    "name": "Delta Kappa Epsilon"
+  }
+ },
+ {
+  "pk": 531,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-20 16:05:05",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-20 16:05:05",
+   "type": 3,
+   "display": false,
+   "name": "Design/Build/Fly"
   }
  },
  {
@@ -4165,6 +4233,23 @@
   }
  },
  {
+  "pk": 534,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-22 08:21:24",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 08:21:24",
+   "type": 11,
+   "display": false,
+   "name": "Men's Varsity Baseball"
+  }
+ },
+ {
   "pk": 506,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4726,6 +4811,23 @@
   }
  },
  {
+  "pk": 536,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://nextact.mit.edu/",
+   "slug": null,
+   "last_updated": "2013-01-22 08:57:40",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 08:57:40",
+   "type": 2,
+   "display": false,
+   "name": "Next Act"
+  }
+ },
+ {
   "pk": 475,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4757,6 +4859,23 @@
    "type": 4,
    "display": false,
    "name": "Nigerian Students Association"
+  }
+ },
+ {
+  "pk": 529,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-19 09:21:35",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-19 09:21:35",
+   "type": 1,
+   "display": false,
+   "name": "NOBCChE"
   }
  },
  {
@@ -5148,6 +5267,23 @@
    "type": 4,
    "display": false,
    "name": "Polish Club at MIT"
+  }
+ },
+ {
+  "pk": 533,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://polymerscience.mit.edu/",
+   "slug": null,
+   "last_updated": "2013-01-22 07:30:38",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 07:30:38",
+   "type": 1,
+   "display": false,
+   "name": "Polymer Graduate Student Association"
   }
  },
  {
@@ -6805,9 +6941,9 @@
   "fields": {
    "website": "http://techfair.mit.edu/",
    "slug": "techfair",
-   "last_updated": "2011-12-12 04:02:38",
+   "last_updated": "2013-01-21 10:21:36",
    "description": "TechFair is completely student run, led by passionate and dedicated students at the Massachusetts Institute of Technology. Members of the board are split into seven committees: Corporate Relations, Finance, Human Resources, Information Technology, Logistics, Marketing, and THINK.",
-   "image": "campus_org/campusorg/techfair_2011-12-12-04-01-04.png",
+   "image": "campus_org/campusorg/techfair_2013-01-21-10-21-36.jpg",
    "email": "techfair-exec@mit.edu",
    "user": 713,
    "date_created": "2011-05-03 12:27:43",
@@ -7800,6 +7936,23 @@
    "type": 11,
    "display": false,
    "name": "Women's Ultimate Frisbee"
+  }
+ },
+ {
+  "pk": 532,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-21 07:30:20",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-21 07:30:20",
+   "type": 11,
+   "display": false,
+   "name": "Women's Varsity Soccer"
   }
  },
  {

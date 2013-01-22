@@ -5723,6 +5723,36 @@
   }
  },
  {
+  "pk": 184,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-01-20 16:06:00",
+   "name_and_level": "Malay (Basic)",
+   "last_updated": "2013-01-20 16:06:00",
+   "name": "Malay"
+  }
+ },
+ {
+  "pk": 185,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-01-20 16:06:00",
+   "name_and_level": "Malay (Proficient)",
+   "last_updated": "2013-01-20 16:06:00",
+   "name": "Malay"
+  }
+ },
+ {
+  "pk": 186,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-01-20 16:06:00",
+   "name_and_level": "Malay (Fluent)",
+   "last_updated": "2013-01-20 16:06:00",
+   "name": "Malay"
+  }
+ },
+ {
   "pk": 9,
   "model": "core.course",
   "fields": {
