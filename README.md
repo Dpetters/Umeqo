@@ -15,8 +15,9 @@ Version 2.0.0
 5. Create a folder named *media* in the project root. Create a folder named *ckeditor* inside of that folder.
 6. Install java if you don't have it.
 7. In the project root, execute `fab create_database`, followed by `fab load_local_data`.
-8. From the project root, execute `python manage.py runcserver`. You should get no errors.
-9. Go to *localhost:8000* in your browser. The site landing page should load without any errors.
+8. From the project root, run `python manage.py clear_prod_stripe_ids`. We don't want to use prod employer stripe ids locally and there is no way to keep them from getting committed atm.
+9. From the project root, execute `python manage.py runcserver`. You should get no errors.
+10. Go to *localhost:8000* in your browser. The site landing page should load without any errors.
 
 ## WORKFLOW
 
@@ -35,6 +36,14 @@ Version 2.0.0
 11. If everything works as expected, execute `git checkout master` followed by `git merge dev` to merge your changes to the master branch.
 12. Execute `git push origin master` to push your changes to master.
 13. Run `fab prod update` locally to update prod.
+
+## MANAGEMENT COMMANDS
+
+These are custom commands that can be run using `python manage.py <command-name>` from the project root.
+
+`clear_stripe_test_customers` - clears all test mode customers from the Umeqo stripe account.
+
+`clear_prod_stripe_ids` - clears all employer Stripe customer ids that got committed from prod.
 
 ## FABFILE COMMANDS
 

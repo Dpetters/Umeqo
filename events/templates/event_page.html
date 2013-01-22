@@ -339,7 +339,7 @@
         </div>
         <div id="attending_employers" class="main_block_content">
             {% for employer in attending_employers.all %}
-                {% show_employer_thumbnail employer 'x76' %}
+                {% show_employer_thumbnail user employer 'x76' %}
             {% endfor %}
             {% if event.include_and_more %}
                 <div id="and_more">
@@ -364,9 +364,7 @@
                         {% if campus_org_event %}
                             {% show_campusorg_logo event.owner.campusorg %}                      
                         {% else %}
-                            {% if user.is_anonymous or user.student %}<a href="{{ event.owner.recruiter.employer.get_absolute_url }}">{% endif %}
-                            {% show_employer_thumbnail event.owner.recruiter.employer '262' %}
-                            {% if user.is_anonymous or user.student %}</a>{% endif %}
+                            {% show_employer_thumbnail user event.owner.recruiter.employer '262' %}
                         {% endif %}
                     </div>
                     <div class="event_company_name">

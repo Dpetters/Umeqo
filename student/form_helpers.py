@@ -3,6 +3,9 @@ from __future__ import absolute_import
 
 import ldap
 
+from django.conf import settings as s
+from django.core.mail import EmailMessage
+
 from core.models import Course
 from student import enums as student_enums
 from employer.models import Recruiter
@@ -11,11 +14,16 @@ def is_not_mit_student(ldap_response):
     return not ldap_response or (ldap_response[0] != None and ldap_response[0][1]['eduPersonPrimaryAffiliation'][0] != "student")
     
 def get_student_ldap_info(email):
-    con = ldap.open('ldap.mit.edu')
-    con.simple_bind_s("", "")
-    dn = "dc=mit,dc=edu"
-    uid = email.split("@")[0]
-    return con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
+    try:
+        con = ldap.open('ldap.mit.edu')
+        con.simple_bind_s("", "")
+        dn = "dc=mit,dc=edu"
+        uid = email.split("@")[0]
+        return con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
+    except Exception, e:
+        subject= "[Umeqo Admin] LDAP Server is down."
+        EmailMessage(subject, "", s.DEFAULT_FROM_EMAIL, managers).send()
+        return None
 
 def get_student_data_from_ldap(email):
     res = get_student_ldap_info(email)
