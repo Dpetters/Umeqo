@@ -388,11 +388,11 @@ input[type=text], input[type=password] {
     line-height: 30px;
     font-size: 16px;
 }
-a, .ui-widget-content .ui-multiselect-optgroup-label a {
+a, .ui-widget-content .ui-multiselect-optgroup-label a, .ui-accordion .ui-accordion-content a {
     color: #6889A8;
     outline: none;
 }
-a:hover, .ui-widget-content .ui-multiselect-optgroup-label a {
+a:hover, .ui-widget-content .ui-multiselect-optgroup-label a:hover, .ui-accordion .ui-accordion-content a:hover {
     color: #577592;
 }
 .clearfix {
