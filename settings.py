@@ -26,7 +26,7 @@ MAX_RESUME_SIZE = 3*1024*1024
 MAX_RESUME_KEYWORDS = 3000
 
 # One-day activation window
-ACCOUNT_ACTIVATION_DAYS = 30
+ACCOUNT_ACTIVATION_DAYS = 9999
 
 # Number of extra invite codes to give to a student (including theirs)
 INVITE_CODE_COUNT = 4

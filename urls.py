@@ -9,7 +9,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
 from core.forms import EmailAuthenticationForm as AuthenticationForm
-from registration.forms import PasswordResetForm, SetPasswordForm
+from registration.forms import SetPasswordForm
 
 admin.autodiscover()
 
@@ -35,7 +35,6 @@ urlpatterns += patterns('',
     (r'^events/36/alrightt/$', redirect_to, {'url':'/techfair/'}),
     (r'^techfair/$', redirect_to, {'url': '/techfair/fair/'}),
     (r'^employer/signup/$', redirect_to, {'url':'/subscriptions/'}),
-    (r'^password/reset/$', auth_views.password_reset, {'password_reset_form':PasswordResetForm, 'template_name' : 'password_reset_form.html', 'email_template_name': 'password_reset_email.html', 'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH, 'login_form':AuthenticationForm}}, 'password_reset'),
     (r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, {'set_password_form':SetPasswordForm, 'template_name' : 'password_reset_new.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_confirm'),
     (r'^password/reset/complete/$', auth_views.password_reset_complete, {'template_name' : 'password_successfully_changed.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_complete'),
     (r'^password/reset/done/$', auth_views.password_reset_done, {'template_name' : 'password_reset_done.html', 'extra_context': {'login_form':AuthenticationForm}}, 'password_reset_done'),
@@ -83,9 +82,12 @@ urlpatterns += patterns('registration.views',
     (r'^super-login/$', 'super_login', {}, 'super_login'),
     (r'^logout/$', 'logout', {'login_url':'/?action=logged-out'}, 'logout'),
     (r'^password/change/$','password_change', {}, 'password_change'),
+    (r'^resend_activation_email/$','resend_activation_email', {}, 'resend_activation_email'),
+    (r'^password/reset/$', 'password_reset', {'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH, 'login_form':AuthenticationForm}}, 'password_reset'),
     (r'^activation/complete/$', direct_to_template, { 'extra_context': {'login_form':AuthenticationForm}, 'template': 'activation_complete.html' }, 'activation_complete'),
     (r'^activation/(?P<activation_key>\w+)/$', 'activate_user', {'extra_context': {'login_form': AuthenticationForm}}, 'student_activation'),
-)
+
+    )
 urlpatterns += patterns('subscription.views',
     (r'^subscription/checkout/(?P<plan>\w+)/$', 'checkout', {}, 'checkout'),
     (r'^subscription/change/$', 'subscription_change', {}, 'subscription_change'),
