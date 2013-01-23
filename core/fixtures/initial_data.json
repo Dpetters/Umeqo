@@ -4193,6 +4193,60 @@
   }
  },
  {
+  "pk": 7,
+  "model": "core.graduationyear",
+  "fields": {
+   "date_created": "2013-01-22 18:43:22",
+   "last_updated": "2013-01-22 18:43:22",
+   "year": 2011
+  }
+ },
+ {
+  "pk": 8,
+  "model": "core.graduationyear",
+  "fields": {
+   "date_created": "2013-01-22 18:43:25",
+   "last_updated": "2013-01-22 18:43:25",
+   "year": 2010
+  }
+ },
+ {
+  "pk": 9,
+  "model": "core.graduationyear",
+  "fields": {
+   "date_created": "2013-01-22 18:43:28",
+   "last_updated": "2013-01-22 18:43:28",
+   "year": 2009
+  }
+ },
+ {
+  "pk": 10,
+  "model": "core.graduationyear",
+  "fields": {
+   "date_created": "2013-01-22 18:43:32",
+   "last_updated": "2013-01-22 18:43:32",
+   "year": 2008
+  }
+ },
+ {
+  "pk": 11,
+  "model": "core.graduationyear",
+  "fields": {
+   "date_created": "2013-01-22 18:43:35",
+   "last_updated": "2013-01-22 18:43:35",
+   "year": 2007
+  }
+ },
+ {
+  "pk": 12,
+  "model": "core.graduationyear",
+  "fields": {
+   "date_created": "2013-01-22 18:43:38",
+   "last_updated": "2013-01-22 18:43:38",
+   "year": 2006
+  }
+ },
+ {
   "pk": 1,
   "model": "core.language",
   "fields": {
