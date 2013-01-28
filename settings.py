@@ -93,7 +93,7 @@ PROD_DATA_MODELS = {
     'core':['tutorial', 'campusorgtype', 'location', 'topic', \
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
-            'industry', 'eventtype'],
+            'industry', 'eventtype', 'school'],
     'sites':['site'],
     'student':['degreeprogram'],
     'subscription':['subscription']
