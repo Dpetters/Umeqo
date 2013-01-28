@@ -25,9 +25,6 @@ from student.models import DegreeProgram, Student, StudentPreferences, StudentDe
 from student.view_helpers import extract_resume_keywords
 
 decorate_bound_field()
-
-class StatisticsSecondMajorForm(forms.Form):
-    first_major = forms.ModelChoiceField(queryset = Course.objects.all(), initial = Course.objects.get(num=18))
     
 class StudentAccountDeactivationForm(forms.ModelForm):
     suggestion = forms.CharField(label="If you still wish to deactivate, please suggest how we can improve:", max_length=16384, widget=forms.Textarea, required=False)
@@ -152,7 +149,7 @@ class StudentProfileBaseForm(StudentUpdateResumeForm):
     degree_program = forms.ModelChoiceField(label="Degree Program:", queryset = DegreeProgram.objects.all(), empty_label="select degree program")
     graduation_year = forms.ModelChoiceField(label="Grad year/month:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select year")
     graduation_month = forms.ChoiceField(choices = MONTH_CHOICES)
-    first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all().order_by('sort_order'), empty_label="select course")
+    first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all(), empty_label="select major")
     gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5, decimal_places=2)
     #resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
 
@@ -179,7 +176,7 @@ class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
     sat_v = forms.ChoiceField(label="SAT Verbal:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     sat_w = forms.ChoiceField(label="SAT Writing:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
     looking_for = forms.ModelMultipleChoiceField(label="Looking for:", queryset = EmploymentType.objects.all(), required = False)
-    second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select course")
+    second_major = forms.ModelChoiceField(label="Second major:", queryset = Course.objects.all(), required = False, empty_label = "select major")
     
     website = forms.URLField(label="Personal Website:", required=False)
     older_than_21 = forms.ChoiceField(label="Older than 21:", choices = SELECT_YES_NO_CHOICES, required = False)

@@ -451,22 +451,6 @@ def check_event_name_uniqueness(request):
 
 @require_GET
 @login_required
-@render_to('course_info_dialog.html')
-def course_info_dialog(request, extra_context = None):
-    if not request.GET.has_key('course_id'):
-        raise Http400("Request GET is missing 'course_id'.")
-    id = request.GET['course_id']
-    try:
-        course = Course.objects.get(id = id)
-    except Course.DoesNotExist:
-        raise Http404("A course with id '%s' does not exist." % id)
-    context = {'course':course}
-    context.update(extra_context or {})
-    return context  
-
-
-@require_GET
-@login_required
 def check_language_uniqueness(request):
     if not request.GET.has_key("name"):
         raise Http400("Request GET is missing the name.")
