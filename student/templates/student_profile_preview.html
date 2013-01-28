@@ -36,12 +36,7 @@
     {% endif %}
     
     <span class="student_major">
-        <strong>First Major:</strong>
-        {% if student.first_major.display %}
-            <a href="#" title="Click for Details" class="course_link" data-major-id="{{student.first_major.id}}">{{student.first_major}}</a>
-        {% else %}
-            {{student.first_major}}
-        {% endif %}
+        <strong>First Major:</strong> {{student.first_major}}
     </span>
     <br />
     <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="#" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
@@ -70,12 +65,7 @@
         <div class="student_detailed_info_second_col">
             {% if student.second_major %}
                 <p class="student_second_major">
-                    <strong>Second Major:</strong>
-                    {% if student.second_major.display %}
-                        <a href="#" class="course_link" data-major-id="{{student.second_major.id}}" tabindex="-1">{{student.second_major}}</a>
-                    {% else %}
-                        {{student.second_major}}
-                    {% endif %}
+                    <strong>Second Major:</strong> {{student.second_major}}
                 </p>
             {% endif %}
 
