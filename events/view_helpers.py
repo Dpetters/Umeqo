@@ -122,38 +122,6 @@ def export_event_list_text(file_obj, event, list):
         print >> file_obj, info
     return filename
 
-"""
-def export_event_list_xls(file_obj, event, list):
-    wb = xlwt.Workbook()
-    if list =="rsvps":
-        worksheet_name = "%s RSVPs" % (event.name)
-        students = get_rsvps(event)
-    elif list == "attendees":
-        worksheet_name = "%s Attendees" % (event.name)
-        students = get_attendees(event)
-        students.sort(key=lambda n: n['name'])
-    elif list == "dropped_resumes":
-        worksheet_name = "%s Resume Drop" % (event.name)
-        students = get_dropped_resumes(event)
-        students.sort(key=lambda n: n['name'])
-    elif list == "all":
-        worksheet_name = "%s All Responses" % (event.name)
-        students = get_all_responses(get_rsvps(event), get_no_rsvps(event), get_dropped_resumes(event), get_attendees(event))
-        students.sort(key=lambda n: n['name'])
-    ws = wb.add_sheet(worksheet_name)
-    ws.write(0, 0, 'Name')
-    ws.write(0, 1, 'Email')
-    ws.write(0, 2, 'School Year (Graduation Year)')
-    for i, rsvp in enumerate(students, start=1):
-        student = rsvp.student
-        ws.write(i, 0, student['name'])
-        ws.write(i, 1, student['email'])
-        if student['account']:            
-            ws.write(i, 2, student['degree_program'])
-            ws.write(i, 3, student['graduation_year'])
-    wb.save(file_obj)
-    return "%s.xls" % (event.name)
-"""
 
 def event_filtering_helper(category, request):
     if category=="past":
@@ -339,7 +307,7 @@ def get_categorized_events_context(events_exist, event_sqs, user):
     tomorrows_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow) | SQ(end_datetime__gte = tomorrow, type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=1)) | SQ(end_datetime__lt = tomorrow + timedelta(days=1), type="Hard Deadline")).order_by("start_datetime")
     days_until_weeks_end = 6-date.today().weekday()
     this_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end), type="Hard Deadline")).order_by("start_datetime")
-    next_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end)+timedelta(days=1)) | SQ(end_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end)+timedelta(days=1), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7), type="Hard Deadline")).order_by("start_datetime")
+    next_week_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end)) | SQ(end_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end), type="Hard Deadline")).filter(SQ(start_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7)) | SQ(end_datetime__lt = tomorrow + timedelta(days=days_until_weeks_end+7), type="Hard Deadline")).order_by("start_datetime")
     later_events = event_sqs.filter(SQ(start_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end+7)) | SQ(end_datetime__gte = tomorrow + timedelta(days=days_until_weeks_end+7), type="Hard Deadline")).order_by("start_datetime")
     
     context['happening_now_events'] = map(event_map, [sr.object for sr in happening_now_events.load_all()], [user]*len(happening_now_events))

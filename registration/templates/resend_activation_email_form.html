@@ -1,0 +1,4 @@
+<form name="resend_activation_email_form" method="POST" action="/resend_activation_email/">
+    {% csrf_token %}
+    <input type="hidden" name="email" value="{{email}}">
+</form> 

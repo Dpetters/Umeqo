@@ -61,6 +61,9 @@ Login |
                 <th></th>
                 <td class="error_section error">
                     {{form.non_field_errors}}
+                    {% if show_resend_activation_email_form %}
+                        {% include 'resend_activation_email_link.html' %}
+                    {% endif %}
                 </td>
             </tr>
             <tr>
@@ -79,5 +82,9 @@ Login |
             </tr>
         </table>
     </form>
+    {% if show_resend_activation_email_form %}
+         {% include 'resend_activation_email_form.html' with email=form.username.value %}
+    {% endif %}
 </div>
+
 {% endblock %}

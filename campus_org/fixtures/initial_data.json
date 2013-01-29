@@ -68,6 +68,23 @@
   }
  },
  {
+  "pk": 528,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://mobileapps.mit.edu/about.php",
+   "slug": null,
+   "last_updated": "2013-01-18 11:26:55",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-18 11:26:55",
+   "type": 3,
+   "display": false,
+   "name": "6.570 Mobile App Competition"
+  }
+ },
+ {
   "pk": 499,
   "model": "campus_org.campusorg",
   "fields": {
@@ -1360,6 +1377,23 @@
   }
  },
  {
+  "pk": 535,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://web.mit.edu/cthulhu/www/MITCCCth-Welcome.html",
+   "slug": null,
+   "last_updated": "2013-01-22 08:41:34",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 08:41:34",
+   "type": 13,
+   "display": false,
+   "name": "Campus Crusade for Cthulhu"
+  }
+ },
+ {
   "pk": 72,
   "model": "campus_org.campusorg",
   "fields": {
@@ -1459,6 +1493,23 @@
    "type": 1,
    "display": true,
    "name": "CEESA"
+  }
+ },
+ {
+  "pk": 530,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-20 11:46:51",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-20 11:46:51",
+   "type": 9,
+   "display": false,
+   "name": "Challah For Hunger"
   }
  },
  {
@@ -2057,6 +2108,23 @@
   }
  },
  {
+  "pk": 531,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-20 16:05:05",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-20 16:05:05",
+   "type": 3,
+   "display": false,
+   "name": "Design/Build/Fly"
+  }
+ },
+ {
   "pk": 116,
   "model": "campus_org.campusorg",
   "fields": {
@@ -2292,6 +2360,23 @@
    "type": 1,
    "display": false,
    "name": "Electricity Student Research Group"
+  }
+ },
+ {
+  "pk": 537,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-24 12:35:08",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-24 12:35:08",
+   "type": 2,
+   "display": false,
+   "name": "Electronic Dance Music Society"
   }
  },
  {
@@ -2768,6 +2853,23 @@
    "type": 8,
    "display": false,
    "name": "Game Development Club"
+  }
+ },
+ {
+  "pk": 539,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-28 20:28:39",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-28 20:28:39",
+   "type": 1,
+   "display": false,
+   "name": "Gates Millennium Scholars at MIT"
   }
  },
  {
@@ -4165,6 +4267,23 @@
   }
  },
  {
+  "pk": 534,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-22 08:21:24",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 08:21:24",
+   "type": 11,
+   "display": false,
+   "name": "Men's Varsity Baseball"
+  }
+ },
+ {
   "pk": 506,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4298,6 +4417,23 @@
    "type": 5,
    "display": false,
    "name": "Minority Business Association"
+  }
+ },
+ {
+  "pk": 538,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": "",
+   "last_updated": "2013-01-27 14:55:44",
+   "description": "",
+   "image": "",
+   "email": "",
+   "user": null,
+   "date_created": "2013-01-27 12:58:00",
+   "type": 4,
+   "display": false,
+   "name": "MISTI China"
   }
  },
  {
@@ -4726,6 +4862,23 @@
   }
  },
  {
+  "pk": 536,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://nextact.mit.edu/",
+   "slug": null,
+   "last_updated": "2013-01-22 08:57:40",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 08:57:40",
+   "type": 2,
+   "display": false,
+   "name": "Next Act"
+  }
+ },
+ {
   "pk": 475,
   "model": "campus_org.campusorg",
   "fields": {
@@ -4757,6 +4910,23 @@
    "type": 4,
    "display": false,
    "name": "Nigerian Students Association"
+  }
+ },
+ {
+  "pk": 529,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-19 09:21:35",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-19 09:21:35",
+   "type": 1,
+   "display": false,
+   "name": "NOBCChE"
   }
  },
  {
@@ -5148,6 +5318,23 @@
    "type": 4,
    "display": false,
    "name": "Polish Club at MIT"
+  }
+ },
+ {
+  "pk": 533,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "http://polymerscience.mit.edu/",
+   "slug": null,
+   "last_updated": "2013-01-22 07:30:38",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-22 07:30:38",
+   "type": 1,
+   "display": false,
+   "name": "Polymer Graduate Student Association"
   }
  },
  {
@@ -6684,17 +6871,17 @@
   "pk": 380,
   "model": "campus_org.campusorg",
   "fields": {
-   "website": "http://web.mit.edu/tbp/www/",
-   "slug": null,
-   "last_updated": "2011-07-24 16:52:38",
-   "description": "Tau Beta Pi (TBP) is the second oldest collegiate honor society in the nation, and the only honor society that represents the entire engineering profession. Founded in 1885 by Professor Edward H. Williams Jr. of Lehigh University, TBP honors those with exemplary character and distinguished scholarship as engineering students and alumni. Both undergraduate and graduate students are invited to become candidates of TBP based on their academic performances, recommendations from faculty, and their contributions to engineering and the society. TBP now consists of 241 collegiate chapters across the United States and Puerto Rico, includes a total initiated membership of almost 501,000. \r\n\r\nThe Mass Beta Chapter of Tau Beta Pi organizes many events on and off the MIT campus to expose those in the Greater Boston community to science/engineering and to introduce MIT students to socially conscious careers. Each year, Tau Beta Pi donates thousands of dollars to the Museum of Science to allow all MIT students enter the museum for free. Tau Beta Pi also organizes the Spring Career Fair that typically occurs during the first week of classes in February to help MIT students and alumni find jobs and internships. Service projects such as SciPro, TBP teach, and Project Fund (TBP Fellowship) are supported by Tau Beta Pi as well.",
-   "image": "campus_org/campusorg/tau_beta_pi,_mass_beta_chapter_2011-07-24-16-52-38.png",
-   "email": "tbp-officers@mit.edu",
-   "user": null,
+   "website": "http://tbpfair.mit.edu/",
+   "slug": "tbp",
+   "last_updated": "2013-01-22 12:24:29",
+   "description": "Tau Beta Pi (TBP) is the second oldest collegiate honor society in the nation, and the only honor society that represents the entire engineering profession. Founded in 1885 by Professor Edward H. Williams Jr. of Lehigh University, TBP honors those with exemplary character and distinguished scholarship as engineering students and alumni. Both undergraduate and graduate students are invited to become candidates of TBP based on their academic performances, recommendations from faculty, and their contributions to engineering and the society. TBP now consists of 241 collegiate chapters across the United States and Puerto Rico, includes a total initiated membership of almost 501,000. ",
+   "image": "campus_org/campusorg/tau_beta_pi_2013-01-22-12-24-29.png",
+   "email": "tbp-career-card@mit.edu",
+   "user": 1743,
    "date_created": "2011-05-03 12:27:42",
    "type": 1,
    "display": true,
-   "name": "Tau Beta Pi, Mass Beta Chapter"
+   "name": "Tau Beta Pi"
   }
  },
  {
@@ -6805,9 +6992,9 @@
   "fields": {
    "website": "http://techfair.mit.edu/",
    "slug": "techfair",
-   "last_updated": "2011-12-12 04:02:38",
+   "last_updated": "2013-01-21 10:21:36",
    "description": "TechFair is completely student run, led by passionate and dedicated students at the Massachusetts Institute of Technology. Members of the board are split into seven committees: Corporate Relations, Finance, Human Resources, Information Technology, Logistics, Marketing, and THINK.",
-   "image": "campus_org/campusorg/techfair_2011-12-12-04-01-04.png",
+   "image": "campus_org/campusorg/techfair_2013-01-21-10-21-36.jpg",
    "email": "techfair-exec@mit.edu",
    "user": 713,
    "date_created": "2011-05-03 12:27:43",
@@ -7800,6 +7987,23 @@
    "type": 11,
    "display": false,
    "name": "Women's Ultimate Frisbee"
+  }
+ },
+ {
+  "pk": 532,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-21 07:30:20",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-21 07:30:20",
+   "type": 11,
+   "display": false,
+   "name": "Women's Varsity Soccer"
   }
  },
  {

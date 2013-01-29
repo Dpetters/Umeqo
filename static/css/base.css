@@ -388,12 +388,21 @@ input[type=text], input[type=password] {
     line-height: 30px;
     font-size: 16px;
 }
-a, .ui-widget-content .ui-multiselect-optgroup-label a, .ui-accordion .ui-accordion-content a {
+a, input.linklike, .ui-widget-content .ui-multiselect-optgroup-label a, .ui-accordion .ui-accordion-content a {
     color: #6889A8;
     outline: none;
 }
-a:hover, .ui-widget-content .ui-multiselect-optgroup-label a:hover, .ui-accordion .ui-accordion-content a:hover {
+a:hover, input.linklike:hover, .ui-widget-content .ui-multiselect-optgroup-label a:hover, .ui-accordion .ui-accordion-content a:hover {
     color: #577592;
+    cursor:pointer;
+}
+input.linklike {
+    background:none;
+    text-decoration: underline;
+    border: none;
+    padding: 0;
+    width: auto;
+    overflow: visible; /* hack for IE */
 }
 .clearfix {
     clear: both;
