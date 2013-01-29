@@ -59,6 +59,7 @@ def create_database():
             local("rm %s" % (settings.DATABASES['default']['NAME']))
         local("python copy_media.py prod in")
         local("python manage.py syncdb --noinput --migrate")
+        local("python manage.py clear_prod_stripe_ids")
     else:
         with cd(env.directory):
             with prefix(env.activate):
@@ -70,7 +71,8 @@ def create_database():
                     run('echo "DROP DATABASE umeqo_demo_main; CREATE DATABASE umeqo_demo_main;"|python manage.py dbshell')
                 run("python manage.py syncdb --noinput --migrate")
                 run("python copy_media.py prod in")
-                
+                run("python manage.py clear_prod_stripe_ids")
+
 def schemamigrate():
     if not env.host:
         apps = list(set(app.app_name for app in MigrationHistory.objects.all()))
