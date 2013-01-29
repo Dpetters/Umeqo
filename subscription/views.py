@@ -229,7 +229,6 @@ def checkout(request, plan, form_class=CheckoutForm, extra_context=None):
     else:
         form = form_class(plan, None)
         context['customer'] = customer
-    context['stripe_publishable_key'] = s.STRIPE_PUBLISHABLE
     context['form'] = form
     context.update(extra_context or {})
     return context
