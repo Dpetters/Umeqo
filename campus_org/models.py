@@ -10,6 +10,7 @@ from sorl.thumbnail import ImageField
 class CampusOrg(CommonInfo):
     user = models.OneToOneField(User, unique=True, null=True, blank=True)
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
+    school = models.ForeignKey("core.School", blank=True, null=True)
     type = models.ForeignKey("core.CampusOrgType")
     image = ImageField(upload_to=get_image_filename, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
