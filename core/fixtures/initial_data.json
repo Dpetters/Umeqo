@@ -6729,5 +6729,14 @@
    "last_updated": "2011-12-11 14:41:27",
    "name": "Expo"
   }
+ },
+ {
+  "pk": 1,
+  "model": "core.school",
+  "fields": {
+   "date_created": "2013-01-28 23:13:28",
+   "last_updated": "2013-01-28 23:13:28",
+   "name": "Massachusetts Institute of Technology"
+  }
  }
 ]
