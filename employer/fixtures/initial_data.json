@@ -325,6 +325,28 @@
   }
  },
  {
+  "pk": 253,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    12
+   ],
+   "last_updated": "2013-01-29 04:42:05",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-29 04:42:05",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Areva NP"
+  }
+ },
+ {
   "pk": 141,
   "model": "employer.employer",
   "fields": {
@@ -1269,6 +1291,28 @@
   }
  },
  {
+  "pk": 254,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    2
+   ],
+   "last_updated": "2013-01-29 10:28:19",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-29 10:28:19",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Cummins"
+  }
+ },
+ {
   "pk": 215,
   "model": "employer.employer",
   "fields": {
@@ -1715,7 +1759,7 @@
     13,
     31
    ],
-   "last_updated": "2013-01-28 19:58:42",
+   "last_updated": "2013-01-29 04:44:47",
    "description": "<p>\r\n\tExxonMobil is the world&#39;s premier petroleum and petrochemicals company. &nbsp;Our Upstream Division finds, develops, and produces crude oil and natural gas in over 50 countries. &nbsp;Our Downstream Division produces and markets some 8 million barrels per day of gasoline and other refined products under the Esso, Mobil and Exxon brands in over 190 countries. &nbsp;As global energy demand rises, we need your creative energy to find ways to meet it. &nbsp;Ways that support economic, environmental, and social progress according to our core values: &nbsp;discipline, integrity, reliability, and a commitment to technology. &nbsp;The world faces enormous energy challenges. &nbsp;This is where you come in, because the biggest challenges attract the best. &nbsp;Join ExxonMobil in tackling the world&#39;s toughest energy challenges!</p>\r\n",
    "starred_students": [],
    "stripe_id": null,
@@ -2243,6 +2287,29 @@
    "careers_website": "",
    "slug": "ibm",
    "name": "IBM"
+  }
+ },
+ {
+  "pk": 255,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    4,
+    18
+   ],
+   "last_updated": "2013-01-29 11:09:55",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-01-29 11:09:55",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "IDEXX"
   }
  },
  {
