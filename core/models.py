@@ -11,6 +11,7 @@ from notification import models as notification
 
 class School(core_mixins.DateTracking):
     name = models.CharField("School Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
+    url = models.URLField(blank=True, null=True, verify_exists=False)
 
     def __unicode__(self):
         return self.name
