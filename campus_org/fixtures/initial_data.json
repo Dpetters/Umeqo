@@ -2856,6 +2856,23 @@
   }
  },
  {
+  "pk": 539,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-28 20:28:39",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-28 20:28:39",
+   "type": 1,
+   "display": false,
+   "name": "Gates Millennium Scholars at MIT"
+  }
+ },
+ {
   "pk": 157,
   "model": "campus_org.campusorg",
   "fields": {

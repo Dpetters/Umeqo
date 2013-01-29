@@ -5807,182 +5807,122 @@
   }
  },
  {
-  "pk": 9,
+  "pk": 1,
   "model": "core.course",
   "fields": {
-   "website": "http://cee.mit.edu/",
-   "last_updated": "2011-12-15 15:52:03",
-   "description": "The MIT Department of Civil and Environmental Engineering (CEE) is dedicated to balancing the built environment with the natural world. In our research, we seek to understand natural systems, to foster the intelligent use of resources and to design sustainable infrastructure systems. We provide leadership in the field by focusing on technological innovations, seeking advances in basic knowledge and taking a systems perspective. We concentrate our efforts on quantitative and analytical approaches, novel experiment-based modeling, and the development and/or use of appropriate tools and technology. CEE is an innovative and vibrant place of learning, where undergraduates, graduate students and postdoctoral researchers pursue their educational and research interests in order to lead the next generation in transforming the disciplines of civil and environmental engineering. Our research and graduate education programs coalesce around three fields of inquiry: environmental science and engineering; mechanics, materials and structures; and transportation. We offer ABET-accredited undergraduate degree programs in civil engineering and environmental engineering science.",
-   "admin": "Professor Andrew Whittle",
-   "image": "core/course/civil_and_environmental_engineering_2011-12-15-15-52-03.png",
-   "email": "ajwhittl@mit.edu",
-   "num": "1",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "CIVIL AND ENVIRONMENTAL ENG",
-   "sort_order": 1.0,
-   "display": true,
-   "name": "Civil and Environmental Engineering"
+   "image": "",
+   "name": "Aeronautics and Astronautics"
   }
  },
  {
-  "pk": 26,
+  "pk": 2,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:36:14",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "2",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "MECHANICAL ENGINEERING",
-   "sort_order": 2.0,
-   "display": false,
-   "name": "Mechanical Engineering"
-  }
- },
- {
-  "pk": 51,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-12-06 19:28:11",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "2-A",
-   "date_created": "2011-12-06 19:28:11",
-   "ou": "",
-   "sort_order": 2.25,
-   "display": false,
-   "name": "Mechanical Engineering (Flexible)"
-  }
- },
- {
-  "pk": 50,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-12-06 19:27:23",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "2-OE",
-   "date_created": "2011-12-06 18:26:10",
-   "ou": "",
-   "sort_order": 2.75,
-   "display": false,
-   "name": "Mechanical and Ocean Engineering"
-  }
- },
- {
-  "pk": 24,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:36:04",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "3",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "MATERIALS SCIENCE AND ENG",
-   "sort_order": 3.0,
-   "display": false,
-   "name": "Materials Science and Engineering"
+   "name": "Anthropology"
   }
  },
  {
   "pk": 3,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:34:28",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "4",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "ARCHITECTURE",
-   "sort_order": 4.0,
-   "display": false,
    "name": "Architecture"
+  }
+ },
+ {
+  "pk": 4,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Biological Engineering"
+  }
+ },
+ {
+  "pk": 5,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Biology"
+  }
+ },
+ {
+  "pk": 6,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Brain and Cognitive Sciences"
+  }
+ },
+ {
+  "pk": 37,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Center for Real Estate Program"
+  }
+ },
+ {
+  "pk": 7,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Chemical Engineering"
   }
  },
  {
   "pk": 8,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
    "image": "",
-   "email": "",
-   "num": "5",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 5.0,
-   "display": false,
    "name": "Chemistry"
   }
  },
  {
-  "pk": 16,
+  "pk": 9,
   "model": "core.course",
   "fields": {
-   "website": "http://www.eecs.mit.edu/",
-   "last_updated": "2011-12-15 15:55:50",
-   "description": "The primary mission of the department is the education of its students. Its three undergraduate programs traditionally have attracted over 30% of all MIT undergraduates, and its doctoral programs are highly ranked and selective. A leader in cooperative education, the department has operated the highly successful VI-A Internship Program since 1917. In 1993 it established a five-year Master of Engineering program, under which undergraduate students stay for a fifth year and receive simultaneously a Bachelor's degree and a Master of Engineering degree. The five-year curriculum is structured and seamless across the traditional boundary between undergraduate and graduate student, and seamless across the traditional disciplines of Electrical Engineering and Computer Science.",
-   "admin": "Anne Hunter",
-   "image": "core/course/electrical_science_and_engineering_2011-12-15-15-55-50.gif",
-   "email": "anneh@mit.edu",
-   "num": "6-1",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "",
-   "sort_order": 6.0,
-   "display": true,
-   "name": "Electrical Science and Engineering"
+   "image": "core/course/civil_and_environmental_engineering_2011-12-15-15-52-03.png",
+   "name": "Civil and Environmental Engineering"
   }
  },
  {
-  "pk": 15,
+  "pk": 10,
   "model": "core.course",
   "fields": {
-   "website": "http://www.eecs.mit.edu/",
-   "last_updated": "2011-12-15 15:56:33",
-   "description": "The primary mission of the department is the education of its students. Its three undergraduate programs traditionally have attracted over 30% of all MIT undergraduates, and its doctoral programs are highly ranked and selective. A leader in cooperative education, the department has operated the highly successful VI-A Internship Program since 1917. In 1993 it established a five-year Master of Engineering program, under which undergraduate students stay for a fifth year and receive simultaneously a Bachelor's degree and a Master of Engineering degree. The five-year curriculum is structured and seamless across the traditional boundary between undergraduate and graduate student, and seamless across the traditional disciplines of Electrical Engineering and Computer Science.",
-   "admin": "Anne Hunter",
-   "image": "core/course/electrical_engineering_&_computer_science_2011-12-15-15-56-33.gif",
-   "email": "anneh@mit.edu",
-   "num": "6-2",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "",
-   "sort_order": 7.0,
-   "display": true,
-   "name": "Electrical Engineering & Computer Science"
+   "image": "",
+   "name": "Comparable Media Studies"
+  }
+ },
+ {
+  "pk": 48,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Computation and Systems Biology"
+  }
+ },
+ {
+  "pk": 36,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Computation for Design and Optimization"
+  }
+ },
+ {
+  "pk": 11,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Computational and Systems Biology"
   }
  },
  {
   "pk": 12,
   "model": "core.course",
   "fields": {
-   "website": "http://www.eecs.mit.edu/",
-   "last_updated": "2011-12-15 15:56:46",
-   "description": "The primary mission of the department is the education of its students. Its three undergraduate programs traditionally have attracted over 30% of all MIT undergraduates, and its doctoral programs are highly ranked and selective. A leader in cooperative education, the department has operated the highly successful VI-A Internship Program since 1917. In 1993 it established a five-year Master of Engineering program, under which undergraduate students stay for a fifth year and receive simultaneously a Bachelor's degree and a Master of Engineering degree. The five-year curriculum is structured and seamless across the traditional boundary between undergraduate and graduate student, and seamless across the traditional disciplines of Electrical Engineering and Computer Science.",
-   "admin": "Anne Hunter",
    "image": "core/course/computer_science_and_engineering_2011-12-15-15-56-16.gif",
-   "email": "anneh@mit.edu",
-   "num": "6-3",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "",
-   "sort_order": 8.0,
-   "display": true,
    "name": "Computer Science and Engineering"
   }
  },
@@ -5990,756 +5930,296 @@
   "pk": 52,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2012-02-03 00:46:59",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "6-7",
-   "date_created": "2012-02-03 00:46:40",
-   "ou": "",
-   "sort_order": 8.5,
-   "display": false,
    "name": "Computer Science and Molecular Biology"
-  }
- },
- {
-  "pk": 5,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:34:38",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "7",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "BIOLOGY",
-   "sort_order": 9.0,
-   "display": false,
-   "name": "Biology"
-  }
- },
- {
-  "pk": 31,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:36:33",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "8",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "PHYSICS",
-   "sort_order": 10.0,
-   "display": false,
-   "name": "Physics"
-  }
- },
- {
-  "pk": 6,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:34:50",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "9",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "BRAIN AND COGNITIVE SCIENCES",
-   "sort_order": 11.0,
-   "display": false,
-   "name": "Brain and Cognitive Sciences"
-  }
- },
- {
-  "pk": 7,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:35:01",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "10",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "CHEMICAL ENGINEERING",
-   "sort_order": 12.0,
-   "display": false,
-   "name": "Chemical Engineering"
-  }
- },
- {
-  "pk": 34,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:36:53",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "11",
-   "date_created": "2011-05-03 12:27:36",
-   "ou": "URBAN STUDIES AND PLANNING",
-   "sort_order": 13.0,
-   "display": false,
-   "name": "Urban Studies and Planning"
   }
  },
  {
   "pk": 13,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
    "image": "",
-   "email": "",
-   "num": "12",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 14.0,
-   "display": false,
    "name": "Earth, Atmosphere & Planetary Sciences"
-  }
- },
- {
-  "pk": 30,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 15:31:46",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "13",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "",
-   "sort_order": 15.0,
-   "display": false,
-   "name": "Ocean Engineering"
   }
  },
  {
   "pk": 14,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:31:33",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "14",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "14",
-   "sort_order": 16.0,
-   "display": false,
    "name": "Economics"
   }
  },
  {
-  "pk": 23,
+  "pk": 15,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:35:53",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "15",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "MANAGEMENT",
-   "sort_order": 17.0,
-   "display": false,
-   "name": "Management"
+   "image": "core/course/electrical_engineering_&_computer_science_2011-12-15-15-56-33.gif",
+   "name": "Electrical Engineering & Computer Science"
   }
  },
  {
-  "pk": 1,
+  "pk": 16,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 15:33:11",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "16",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "AERONAUTICS AND ASTRONAUTICS",
-   "sort_order": 18.0,
-   "display": false,
-   "name": "Aeronautics and Astronautics"
-  }
- },
- {
-  "pk": 32,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:32:58",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "17",
-   "date_created": "2011-05-03 12:27:36",
-   "ou": "17",
-   "sort_order": 19.0,
-   "display": false,
-   "name": "Political Science"
-  }
- },
- {
-  "pk": 25,
-  "model": "core.course",
-  "fields": {
-   "website": "http://math.mit.edu/",
-   "last_updated": "2011-08-30 15:32:48",
-   "description": "MIT's Mathematics Department is one of the strongest in the world, representing a broad spectrum of fields ranging from the traditional areas of pure mathematics such as analysis, algebra, geometry, and topology, to applied mathematics areas such as combinatorics, computational biology, fluid dynamics, theoretical computer science, and theoretical physics.",
-   "admin": "",
-   "image": "",
-   "email": "math@mit.edu",
-   "num": "18",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "MATHEMATICS",
-   "sort_order": 20.0,
-   "display": false,
-   "name": "Mathematics"
-  }
- },
- {
-  "pk": 4,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:33:34",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "20",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "20",
-   "sort_order": 21.0,
-   "display": false,
-   "name": "Biological Engineering"
-  }
- },
- {
-  "pk": 2,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "21A",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 22.0,
-   "display": false,
-   "name": "Anthropology"
-  }
- },
- {
-  "pk": 18,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "21F",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 23.0,
-   "display": false,
-   "name": "Foreign Languages and Literatures"
-  }
- },
- {
-  "pk": 20,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "21H",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 24.0,
-   "display": false,
-   "name": "History"
-  }
- },
- {
-  "pk": 22,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "21L",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 25.0,
-   "display": false,
-   "name": "Literature"
-  }
- },
- {
-  "pk": 28,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "21M",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 26.0,
-   "display": false,
-   "name": "Music and Theater Arts"
-  }
- },
- {
-  "pk": 35,
-  "model": "core.course",
-  "fields": {
-   "website": "http://writing.mit.edu/",
-   "last_updated": "2011-08-31 18:46:12",
-   "description": "The MIT Program in Writing and Humanistic Studies gives students the opportunity to learn the techniques, forms, and traditions of several kinds of writing, from basic expository prose to more advanced forms of non-fictional prose, fiction and poetry, science writing, scientific and technical communication and digital media. Our FACULTY consists of novelists, essayists, poets, translators, biographers, historians, engineers and scientists.\r\n \r\nProgram subjects are arranged by three areas: creative writing, science writing and digital media. In each area introductory subjects lead to more specialized advanced subjects. A number of the advanced subjects use writing as a vehicle to explore humanistic and scientific issues in a broad cultural context.\r\n \r\nStudents pursuing a humanities concentration in writing or a minor in writing work mainly within one of the Program's three curricular areas. Students may also major in writing or develop a joint major with another discipline in the humanities or with the Program in Science, Technology, and Society.\r\n \r\nThe Graduate Program in Science Writing is a 12-month course of study leading to a Master of Science degree. Aimed at students who wish to write about science and technology for general readers, the program is built around an intensive two-semester advanced science writing seminar. In addition, students choose one elective each semester, write a substantial thesis, and complete an internship. Links to other MIT programs and departments, such as the Knight Science Journalism Fellowships program, Comparative Media Studies (CMS) and the Program in Science, Technology and Society (STS) provide rich resources for students who come to the Graduate Program in Science Writing from a variety of backgrounds.",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "21W",
-   "date_created": "2011-05-03 12:27:36",
-   "ou": "",
-   "sort_order": 27.0,
-   "display": true,
-   "name": "Writing and Humanistic Studies"
-  }
- },
- {
-  "pk": 29,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:33:44",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "22",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "22",
-   "sort_order": 28.0,
-   "display": false,
-   "name": "Nuclear Engineering"
-  }
- },
- {
-  "pk": 21,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:33:52",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "24",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "24",
-   "sort_order": 29.0,
-   "display": false,
-   "name": "Linguistics and Philosophy"
-  }
- },
- {
-  "pk": 10,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "CMS",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 30.0,
-   "display": false,
-   "name": "Comparable Media Studies"
-  }
- },
- {
-  "pk": 11,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "CSB",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 31.0,
-   "display": false,
-   "name": "Computational and Systems Biology"
+   "image": "core/course/electrical_science_and_engineering_2011-12-15-15-55-50.gif",
+   "name": "Electrical Science and Engineering"
   }
  },
  {
   "pk": 17,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:35",
-   "description": "",
-   "admin": null,
    "image": "",
-   "email": "",
-   "num": "ESD",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": null,
-   "sort_order": 32.0,
-   "display": false,
    "name": "Engineering Systems"
-  }
- },
- {
-  "pk": 19,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:35:42",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "HST",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "HEALTH SCIENCES & TECHNOLOGY",
-   "sort_order": 33.0,
-   "display": false,
-   "name": "Health Sciences and Technology"
-  }
- },
- {
-  "pk": 33,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-05-03 12:27:36",
-   "description": "",
-   "admin": null,
-   "image": "",
-   "email": "",
-   "num": "STS",
-   "date_created": "2011-05-03 12:27:36",
-   "ou": null,
-   "sort_order": 34.0,
-   "display": false,
-   "name": "Science, Technology, and Society"
-  }
- },
- {
-  "pk": 27,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-08-30 16:36:25",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "MAS",
-   "date_created": "2011-05-03 12:27:35",
-   "ou": "MEDIA ARTS AND SCIENCES",
-   "sort_order": 35.0,
-   "display": false,
-   "name": "Media Arts and Sciences"
-  }
- },
- {
-  "pk": 36,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:44:37",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "CDO",
-   "date_created": "2011-07-17 14:44:37",
-   "ou": null,
-   "sort_order": 36.0,
-   "display": false,
-   "name": "Computation for Design and Optimization"
-  }
- },
- {
-  "pk": 37,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:45:07",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "CRE",
-   "date_created": "2011-07-17 14:45:07",
-   "ou": null,
-   "sort_order": 37.0,
-   "display": false,
-   "name": "Center for Real Estate Program"
   }
  },
  {
   "pk": 38,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:45:34",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "ESD",
-   "date_created": "2011-07-17 14:45:34",
-   "ou": null,
-   "sort_order": 39.0,
-   "display": false,
    "name": "Engineering Systems Division"
+  }
+ },
+ {
+  "pk": 18,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Foreign Languages and Literatures"
+  }
+ },
+ {
+  "pk": 19,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Health Sciences and Technology"
+  }
+ },
+ {
+  "pk": 20,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "History"
   }
  },
  {
   "pk": 39,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:46:27",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "LGO",
-   "date_created": "2011-07-17 14:46:27",
-   "ou": null,
-   "sort_order": 40.0,
-   "display": false,
    "name": "Leaders for Global Operations"
+  }
+ },
+ {
+  "pk": 21,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Linguistics and Philosophy"
+  }
+ },
+ {
+  "pk": 22,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Literature"
+  }
+ },
+ {
+  "pk": 23,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Management"
   }
  },
  {
   "pk": 40,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:46:49",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "MLOG",
-   "date_created": "2011-07-17 14:46:49",
-   "ou": null,
-   "sort_order": 41.0,
-   "display": false,
    "name": "Masters of Engineering in Logistics"
+  }
+ },
+ {
+  "pk": 24,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Materials Science and Engineering"
+  }
+ },
+ {
+  "pk": 25,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Mathematics"
+  }
+ },
+ {
+  "pk": 50,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Mechanical and Ocean Engineering"
+  }
+ },
+ {
+  "pk": 26,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Mechanical Engineering"
+  }
+ },
+ {
+  "pk": 51,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Mechanical Engineering (Flexible)"
+  }
+ },
+ {
+  "pk": 27,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Media Arts and Sciences"
+  }
+ },
+ {
+  "pk": 28,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Music and Theater Arts"
   }
  },
  {
   "pk": 41,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:47:26",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "Naval Eng",
-   "date_created": "2011-07-17 14:47:26",
-   "ou": null,
-   "sort_order": 42.0,
-   "display": false,
    "name": "Naval Engineering"
+  }
+ },
+ {
+  "pk": 29,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Nuclear Engineering"
+  }
+ },
+ {
+  "pk": 30,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Ocean Engineering"
   }
  },
  {
   "pk": 42,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:47:58",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "Op Res Cen",
-   "date_created": "2011-07-17 14:47:58",
-   "ou": null,
-   "sort_order": 43.0,
-   "display": false,
    "name": "Operations Research Center"
   }
  },
  {
-  "pk": 43,
+  "pk": 31,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:48:23",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "SDM",
-   "date_created": "2011-07-17 14:48:23",
-   "ou": null,
-   "sort_order": 44.0,
-   "display": false,
-   "name": "System Design and Management Program"
+   "name": "Physics"
   }
  },
  {
-  "pk": 44,
+  "pk": 32,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:48:47",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "Sloan Fel",
-   "date_created": "2011-07-17 14:48:47",
-   "ou": null,
-   "sort_order": 45.0,
-   "display": false,
-   "name": "Sloan Fellows"
+   "name": "Political Science"
   }
  },
  {
   "pk": 45,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:51:00",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "STS",
-   "date_created": "2011-07-17 14:50:55",
-   "ou": null,
-   "sort_order": 46.0,
-   "display": false,
    "name": "Program in Science, Technology, and Societ"
   }
  },
  {
-  "pk": 46,
+  "pk": 33,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:51:51",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "TPP",
-   "date_created": "2011-07-17 14:51:51",
-   "ou": null,
-   "sort_order": 47.0,
-   "display": false,
-   "name": "The Technology and Policy Program"
+   "name": "Science, Technology, and Society"
   }
  },
  {
-  "pk": 47,
+  "pk": 44,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:52:18",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "WHOI ",
-   "date_created": "2011-07-17 14:52:18",
-   "ou": null,
-   "sort_order": 48.0,
-   "display": false,
-   "name": "WHOI Oceanographic Institute"
-  }
- },
- {
-  "pk": 48,
-  "model": "core.course",
-  "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:52:48",
-   "description": "",
-   "admin": "",
-   "image": "",
-   "email": "",
-   "num": "CSB",
-   "date_created": "2011-07-17 14:52:48",
-   "ou": null,
-   "sort_order": 49.0,
-   "display": false,
-   "name": "Computation and Systems Biology"
+   "name": "Sloan Fellows"
   }
  },
  {
   "pk": 49,
   "model": "core.course",
   "fields": {
-   "website": "",
-   "last_updated": "2011-07-17 14:53:41",
-   "description": "",
-   "admin": "",
    "image": "",
-   "email": "",
-   "num": "SCM",
-   "date_created": "2011-07-17 14:53:41",
-   "ou": null,
-   "sort_order": 50.0,
-   "display": false,
    "name": "Supply Chain Management "
+  }
+ },
+ {
+  "pk": 43,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "System Design and Management Program"
+  }
+ },
+ {
+  "pk": 46,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "The Technology and Policy Program"
+  }
+ },
+ {
+  "pk": 34,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Urban Studies and Planning"
+  }
+ },
+ {
+  "pk": 47,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "WHOI Oceanographic Institute"
+  }
+ },
+ {
+  "pk": 35,
+  "model": "core.course",
+  "fields": {
+   "image": "",
+   "name": "Writing and Humanistic Studies"
   }
  },
  {
