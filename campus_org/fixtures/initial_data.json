@@ -2363,6 +2363,23 @@
   }
  },
  {
+  "pk": 537,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-24 12:35:08",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-24 12:35:08",
+   "type": 2,
+   "display": false,
+   "name": "Electronic Dance Music Society"
+  }
+ },
+ {
   "pk": 132,
   "model": "campus_org.campusorg",
   "fields": {
@@ -2836,6 +2853,23 @@
    "type": 8,
    "display": false,
    "name": "Game Development Club"
+  }
+ },
+ {
+  "pk": 539,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-28 20:28:39",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-28 20:28:39",
+   "type": 1,
+   "display": false,
+   "name": "Gates Millennium Scholars at MIT"
   }
  },
  {
@@ -4383,6 +4417,23 @@
    "type": 5,
    "display": false,
    "name": "Minority Business Association"
+  }
+ },
+ {
+  "pk": 538,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": "",
+   "last_updated": "2013-01-27 14:55:44",
+   "description": "",
+   "image": "",
+   "email": "",
+   "user": null,
+   "date_created": "2013-01-27 12:58:00",
+   "type": 4,
+   "display": false,
+   "name": "MISTI China"
   }
  },
  {

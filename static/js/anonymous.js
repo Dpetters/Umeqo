@@ -4,6 +4,11 @@ $('.login').live('click', function(e){
     e.preventDefault();
 });
 
+$(".resend_account_activation_email").live("click", function(e){
+    document.resend_activation_email_form.submit();
+    e.preventDefault();
+});
+
 $(document).ready( function () {
     $("#login_button a").click(function(e){
         $('#login_wrapper').fadeToggle('fast', function(){
