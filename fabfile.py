@@ -148,6 +148,7 @@ def load_prod_data():
                     fixtures_dir = "./%s/fixtures" % (app)
                     run("python manage.py loaddata %s/initial_data.json" % fixtures_dir)
                 run("python manage.py clear_prod_stripe_ids")
+                run("python manage.py fix_campus_org_users")
                 run("echo 'y'|python manage.py rebuild_index")
 
 def commit_local_data():
