@@ -8,7 +8,7 @@ $(document).ready( function() {
             title:"New School",
             dialogClass: "school_new_dialog",
             modal:true,
-            width:480,
+            width:430,
             resizable: false,
             close: function() {
                 school_new_dialog.remove();
@@ -70,7 +70,7 @@ $('.open_school_new_dialog_link').click( function () {
                                     $("#id_school").append('<option name="' + data.name + '" value="' + data.id + '">' + data.name + '</option>').attr('selected', true);
  
                                     var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>The listing for \"" + data.name + "\" has been created successfully!</p>";
-                                    success_message += "<p><a id='select_new_school_link' href='#'>Set it as your school  & Close Dialog</a></p>";
+                                    success_message += "<p><a id='select_new_school_link' href='#'>Set it as your school  & close dialog</a></p>";
                                     success_message += CLOSE_DIALOG_LINK + "</div>";
                                     school_new_dialog.html(success_message);
 
