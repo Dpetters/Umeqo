@@ -2028,10 +2028,12 @@
   "model": "employer.employer",
   "fields": {
    "industries": [
+    13,
     20,
+    45,
     36
    ],
-   "last_updated": "2013-01-30 02:53:07",
+   "last_updated": "2013-01-30 06:51:42",
    "description": "<p>\r\n\t<em>&ldquo;Google is organized around the ability to&nbsp;attract and leverage the talent of exceptional&nbsp;technologists and business people.&quot; </em></p>\r\n<p>\r\n\t<em>-&nbsp;</em>Larry Page, Google Co-founder and CEO</p>\r\n<p>\r\n\t&nbsp;</p>\r\n<div>\r\n\t<div>\r\n\t\tAt Google, you will find smart people, big&nbsp;challenges, and opportunities to make a real&nbsp;difference in the world. Engineers at Google are&nbsp;key players in our daily innovation, and we are&nbsp;looking for the brightest minds to join these&nbsp;teams. Opportunities are available to work on&nbsp;Search, Ads, Chrome, Commerce,&nbsp;Infrastructure, Mobile, Social, YouTube, and&nbsp;other exciting projects.&nbsp;</div>\r\n\t<div>\r\n\t\t&nbsp;</div>\r\n\t<div>\r\n\t\tDiscover Google news and updates especially&nbsp;for students at&nbsp;<a href=\"http://googleforstudents.blogspot.com/\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">googleforstudents.blogspot.com</a><wbr />&nbsp;and follow us on Twitter at&nbsp;<a href=\"http://www.twitter.com/googlestudents\" style=\"color: rgb(42, 93, 176); \" target=\"_blank\">www.twitter.com/<wbr />googlestudents</a>.</div>\r\n</div>\r\n<p>\r\n\t&nbsp;</p>\r\n",
    "starred_students": [],
    "stripe_id": "cus_05yRWpngX4stIH",
@@ -5297,10 +5299,10 @@
    "industries": [
     45
    ],
-   "last_updated": "2012-05-24 02:05:45",
+   "last_updated": "2013-01-30 06:55:43",
    "description": "",
    "starred_students": [],
-   "stripe_id": null,
+   "stripe_id": "cus_1CR9GP9DWJN5PL",
    "feature_in_monthly_newsletter": false,
    "visible": false,
    "offered_job_types": [],
