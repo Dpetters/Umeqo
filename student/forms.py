@@ -20,7 +20,6 @@ from core.view_helpers import does_email_exist
 from countries.models import Country
 from employer.models import Employer
 from registration.models import RegException
-from student.form_helpers import get_student_ldap_info, get_student_data_from_ldap, is_not_mit_student
 from student.models import DegreeProgram, Student, StudentPreferences, StudentDeactivation
 from student.view_helpers import extract_resume_keywords
 
@@ -52,44 +51,8 @@ class StudentRegistrationForm(forms.ModelForm):
                 raise forms.ValidationError(_(m.must_be_edu_email))
         elif email[-len(".edu"):] != ".edu":
             raise forms.ValidationError(_(m.must_be_edu_email))
-        
-        # General idea of what the ldap code below is doing:
-        # --Connected to the Internet (dev w/ internet, prod)
-        # ----LDAP Up
-        # ------Run Student Check, Allow Registration
-        # ----LDAP Down
-        # ------Send Email Alerting Us
-        # ------Do Not Allow Registration
-        # --Not Connected to the Internet (dev w/o internet)
-        # ----Allow registration. An error will be thrown that the email could
-        # ----not be sent, but you can go into the admin and activate the user
-        if email[-len("umeqo.com"):] != "umeqo.com" and not RegException.objects.filter(email=email).exists():
-            # TODO: re-enable ldap for some schools
-            # If after ldap check result==[None], then Im not connected to
-            # the internet. If result==[], then I am connected and the email
-            # is not a student's. 
-            # TODO: check what happens if you're not connected to the internet
-            """
-            res = get_student_ldap_info(email.split("@")[0])
-            if res == None:
-                if s.MUST_USE_LDAP:
-                    raise forms.ValidationError(_(m.ldap_server_error))
-                else:
-                    pass
-            elif is_not_mit_student(res):
-                raise forms.ValidationError(m.must_be_mit_student)
-            """
         return self.cleaned_data['email']
 
-    def clean(self):
-        if self.cleaned_data.has_key("email"):
-            try:
-                self.cleaned_data["first_name"], self.cleaned_data["last_name"], course = get_student_data_from_ldap(self.cleaned_data["email"].split("@")[0])
-                if course:
-                    self.cleaned_data['course'] = course
-            except Exception, e:
-                pass
-        return self.cleaned_data
 
 
 class StudentEmployerSubscriptionsForm(forms.ModelForm):
@@ -149,7 +112,6 @@ class StudentBaseAttributeForm(forms.ModelForm):
 class StudentProfileBaseForm(StudentUpdateResumeForm):
     first_name = forms.CharField(label="First name:", max_length = 20)
     last_name = forms.CharField(label="Last name:", max_length = 30)
-    school = forms.ModelChoiceField(label="School:", queryset = School.objects.all(), empty_label="select school")
     degree_program = forms.ModelChoiceField(label="Degree Program:", queryset = DegreeProgram.objects.all(), empty_label="select degree program")
     graduation_year = forms.ModelChoiceField(label="Grad year/month:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select year")
     graduation_month = forms.ChoiceField(choices = MONTH_CHOICES)
@@ -159,7 +121,6 @@ class StudentProfileBaseForm(StudentUpdateResumeForm):
     class Meta:
         fields = ('first_name',
                    'last_name',
-                   'school',
                    'degree_program',
                    'graduation_year',
                    'graduation_month',
@@ -191,7 +152,6 @@ class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
     class Meta:
         fields = ('first_name',
                    'last_name',
-                   'school',
                    'degree_program',
                    'graduation_year',
                    'graduation_month',

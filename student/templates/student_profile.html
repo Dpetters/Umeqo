@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />    
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/campus_org/create_campus_org_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/create_language_dialog.css"/>
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/core/school_new_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/employer/employer_new.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_unparsable_resume_dialog.css"/>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/student/student_profile.css"/>
@@ -19,10 +18,8 @@
 <script>
     var CHECK_CAMPUS_ORG_UNIQUENESS_URL = "{% url check_campus_org_uniqueness %}";
     var CHECK_LANGUAGE_UNIQUENESS_URL = "{% url check_language_uniqueness %}";
-    var CHECK_SCHOOL_UNIQUENESS_URL = "{% url check_school_uniqueness %}";
 
     var CREATE_CAMPUS_ORGANIZATION_URL = "{% url student_create_campus_org %}";
-    var SCHOOL_NEW_DIALOG_URL = "{% url school_new %}";
     var CREATE_LANGUAGE_URL = "{% url student_create_language %}";
     
     var EMPLOYER_NEW_URL = "{% url employer_new %}";
@@ -35,7 +32,6 @@
     var PROFILE_PREVIEW_URL = "{% url student_profile_preview %}";
     var FIRST_NAME_REQUIRED = "{% text_snippet 'first_name_required' %}";
     var LAST_NAME_REQUIRED = "{% text_snippet 'last_name_required' %}";
-    var SCHOOL_REQUIRED = "{% text_snippet 'school_required' %}";
     var DEGREE_PROGRAM_REQUIRED = "{% text_snippet 'degree_program_required' %}";
     var GRADUATION_YEAR_REQUIRED = "{% text_snippet 'graduation_year_required' %}";
     var FIRST_MAJOR_REQUIRED = "{% text_snippet 'first_major_required' %}";
@@ -93,7 +89,6 @@
 <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
 <script src="{{ STATIC_URL }}js/campus_org/create_campus_org.js"></script>
 <script src="{{ STATIC_URL }}js/core/create_language.js"></script>
-<script src="{{ STATIC_URL }}js/core/school_new_dialog.js"></script>
 <script src="{{ STATIC_URL }}js/employer/employer_new.js"></script>
 <script src="{{ STATIC_URL }}js/student/student_profile.js"></script>
 <script src="{{ STATIC_URL }}js/student/student_profile_widgets.js"></script>
@@ -136,13 +131,6 @@
                     <td>
                         <div class="errorspace"></div>
                         {{form.last_name}}
-                    </td>
-                </tr>
-                <tr>
-                    <th>{{form.school.label_tag}}</th>
-                    <td>
-                        <div class="errorspace"></div>
-                        {{form.school}}
                     </td>
                 </tr>
                 <tr>
@@ -199,10 +187,6 @@
                 <ul>
                     <li>
                     Employers <strong>filter students by the attributes listed</strong> and search by keywords that we <strong>automatically parse from your resume</strong>.
-                    </li>
-                    <li>
-                        Don't see your school?
-                        <a href="#" class="open_school_new_dialog_link">Submit it to the list!</a>
                     </li>
                     <li id="profile_form_required_third">
                         <strong>Only this page is required!</strong> The rest are optional, but the more you fill out, the more likely you are to show up in the results.

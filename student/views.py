@@ -310,6 +310,7 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+    print form.is_valid()
     if form.is_valid():
         student = form.save(commit=False)
         if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:

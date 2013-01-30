@@ -48,7 +48,6 @@ employer_already_exists = "This employer already exists."
 #Student Profile Form
 first_name_required = 'Enter your first name.'
 last_name_required= 'Enter your last name.'
-school_required = "Choose your school."
 degree_program_required = "Choose your degree program."
 graduation_year_required = 'Choose your graduation year.'
 first_major_required = 'Choose your major.'
@@ -82,9 +81,6 @@ resume_book_capacity_reached = "Your current resume book is full."
 student_list_requires_subscription = "You must be a subscribed employer to browse through this student list."
 # Create campus org dialog
 campus_org_already_exists = "This campus organization already exists."
-
-# Create school dialog
-school_already_exists = "This school already exists."
 
 # Create language dialog
 language_already_exists = "This language already exists."
