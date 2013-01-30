@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from core.model_helpers import get_image_filename
-from core.models import CommonInfo
+from core.models import CommonInfo, School
 from core import mixins as core_mixins
 
 from sorl.thumbnail import ImageField
@@ -10,7 +10,7 @@ from sorl.thumbnail import ImageField
 class CampusOrg(CommonInfo):
     user = models.OneToOneField(User, unique=True, null=True, blank=True)
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    school = models.ForeignKey("core.School", blank=True, null=True)
+    school = models.ForeignKey("core.School", default = 1)
     type = models.ForeignKey("core.CampusOrgType")
     image = ImageField(upload_to=get_image_filename, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
