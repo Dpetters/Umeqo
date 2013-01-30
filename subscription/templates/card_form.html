@@ -1,4 +1,6 @@
 {% load compress %}
+{% load settings_value %}
+
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 
 {% compress js %}
@@ -8,6 +10,7 @@
 
 <script>
     var PAYMENT_CVC_HELP_URL = "{% url payment_cvc_help %}";
+    var STRIPE_PUBLISHABLE_KEY = "{% settings_value 'STRIPE_PUBLISHABLE' %}";
 </script>
 
 <style>

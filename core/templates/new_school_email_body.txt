@@ -1,0 +1,6 @@
+{{email}} created a new employer -
+
+Name: {{new_school.name|safe}}
+Website: {{new_school.url|safe}}
+
+Please validate.

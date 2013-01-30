@@ -82,8 +82,8 @@ def export_event_list_csv(file_obj, event, list):
         students = get_dropped_resumes(event)
         students.sort(key=lambda n: n['name'])
     elif list == "all":
-        filename = "%s Respondees" % (event.name)
-        students = get_all_responses(get_rsvps(event), get_no_rsvps(event), get_dropped_resumes(event), get_attendees(event))
+        filename = "%s All Participants" % (event.name)
+        students = get_all_responses(event)
         students.sort(key=lambda n: n['name'])
     for student in students:
         info = []
@@ -100,8 +100,8 @@ def export_event_list_text(file_obj, event, list):
     info = "\t".join(["Name", "Email", "Date & Time", "School Year", "Graduation Year"])
     print >> file_obj, info
     if list == "all":
-        filename = "%s Respondees" % (event.name)
-        students = get_all_responses(get_rsvps(event), get_no_rsvps(event), get_dropped_resumes(event), get_attendees(event))
+        filename = "%s All Participants" % (event.name)
+        students = get_all_responses(event)
         students.sort(key=lambda n: n['name'])
     elif list == "rsvps":
         filename = "%s RSVPs" % (event.name)
@@ -184,9 +184,11 @@ def get_no_rsvps(event):
 
 
 def get_attendees(event):
-    # Attendees are ordred by "name" instead of student__first_name
-    # because not all instances have a student foreignkey
-    all_attendees = event.attendee_set.select_related(
+    obj = []
+    if not event.is_deadline():
+        # Attendees are ordred by "name" instead of student__first_name
+        # because not all instances have a student foreignkey
+        obj = event.attendee_set.select_related(
           'name',
           'student',
           'student__first_name',
@@ -196,14 +198,16 @@ def get_attendees(event):
           'student__degree_program',
           'student__user__email',
           'student__user__userattributes__is_verified')
-    obj = all_attendees.filter(student__isnull=True) | all_attendees.filter(student__user__is_active = True)
+    obj = obj.filter(student__isnull=True) | obj.filter(student__user__is_active=True)
     obj = obj.order_by('name')
     return map(buildAttendee, obj)
 
 
 # Dropped resumes must be active users, aka be active or have quick-registered
 def get_dropped_resumes(event):
-    obj = event.droppedresume_set.select_related(
+    obj = []
+    if event.is_drop:
+        obj = event.droppedresume_set.select_related(
           'student',
           'student__first_name',
           'student__last_name',
@@ -219,18 +223,13 @@ def get_invitees(event):
     return map(buildRSVP, event.invitee_set.filter(student__user__is_active=True).order_by('student__first_name'))
 
 
-def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
+def get_all_responses(event):
     all_responses = []
     students = []
-    if dropped_resumes:
-        students.extend(dropped_resumes)
-    if attendees:
-        students.extend(attendees)
-    if rsvps:
-        students.extend(rsvps)
-    if no_rsvps:
-        students.extend(no_rsvps) 
-
+    students.extend(get_dropped_resumes(event))
+    students.extend(get_attendees(event))
+    students.extend(get_rsvps(event))
+    
     emails_dict = {}
     for res in students:
         if res['email'] not in emails_dict:

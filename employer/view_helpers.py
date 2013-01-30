@@ -5,6 +5,7 @@ from employer.models import ResumeBook, Employer, EmployerStudentComment
 from events.models import Attendee, RSVP, DroppedResume
 from student.models import Student
 
+
 def get_unlocked_students(employer, has_at_least_premium):
     all_students = Student.objects.visible()
     if has_at_least_premium:
@@ -14,12 +15,12 @@ def get_unlocked_students(employer, has_at_least_premium):
         attendees = map(lambda x: x.student, Attendee.objects.filter(event__attending_employers__id__exact=employer.id))
         dropped_resumes = map(lambda x: x.student, DroppedResume.objects.filter(event__attending_employers__id__exact=employer.id))
         students = []
-    
         for student in all_students:
             if student in rsvps or student in attendees or student in dropped_resumes:
                 students.append(student)
         return students
-    
+
+
 def get_is_starred_attributes(recruiter, students):
     starred_attr_dict = {}
     starred_students = recruiter.employer.starred_students.all()

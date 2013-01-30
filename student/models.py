@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 from countries.models import Country
 from campus_org.models import CampusOrg
-from core.models import SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType
+from core.models import SchoolYear, GraduationYear, Course, Language, Industry, EmploymentType, School
 from core.model_helpers import get_resume_filename
 from core import choices as core_choices
 from core import mixins as core_mixins
@@ -63,6 +63,7 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
     keywords = models.TextField(blank=True, null=True)
     first_name = models.CharField(db_index = True, max_length = 20, blank = True, null=True)
     last_name = models.CharField(max_length = 30, blank = True, null=True)
+    school = models.ForeignKey("core.School", blank=True, null=True)
     school_year = models.ForeignKey(SchoolYear, blank = True, null=True)
     degree_program = models.ForeignKey(DegreeProgram, blank = True, null = True)
     graduation_year = models.ForeignKey(GraduationYear, blank = True, null=True)
@@ -102,6 +103,9 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
         self.user.is_active = False
         self.user.save()
     
+    def visible(self):
+        return (self.user.is_active and self.user.userattributes.is_verified and self.profile_created)
+
 @receiver(post_save, sender=Student)
 def create_student_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

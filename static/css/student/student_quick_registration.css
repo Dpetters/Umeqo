@@ -25,7 +25,7 @@ input[type=text] {
     width:88px;
     margin-left:5px;
 }
-#id_first_major{
+#id_school, #id_first_major{
     width:318px;
 }
 #id_gpa{

@@ -19,12 +19,12 @@ class CampusOrgAdminForm(forms.ModelForm):
 
 class CampusOrgAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Required Info', {'fields': ['name', 'type']}),
+        ('Required Info', {'fields': ['name', 'type', 'school']}),
         ('Extra Info', {'fields': ['user', 'slug', 'email', 'website', 'image', 'description', 'display']}),
     ]
-    list_display = ('name', 'type', 'display', 'user')
-    list_filter = ('type',)
-    search_fields = ['name', 'user__username']
+    list_display = ('name', 'school', 'type', 'display', 'user')
+    list_filter = ('school', 'type')
+    search_fields = ['name', 'school__name', 'user__username']
     date_hierarchy = 'last_updated'
     form = CampusOrgAdminForm
     

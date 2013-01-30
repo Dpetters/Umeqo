@@ -153,22 +153,6 @@ label: not(.required) {
     position: relative;
     display: inline-block;
 }
-#logo_beta {
-    display: inline-block;
-    left: 176px;
-    bottom: 33px;
-    position: absolute;
-    color: #FAFAFA;
-    padding: 1px 4px 2px;
-    text-transform: uppercase;
-    font-size: 17px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-}
-#logo_beta:hover {
-    cursor: pointer;
-}
 #logo_image {
     margin-top: 6px;
     margin-left: 8px;
@@ -358,10 +342,13 @@ input[type=text], input[type=password] {
     padding-left: 6px;
 }
 .form_table .info {
-    width: 312px;
-    padding-left: 10px;
-    padding-top: 14px;
-    vertical-align: top;
+    vertical-align:top;
+}
+.form_table .info div{
+    padding-left: 15px;
+    margin-left: 15px;
+    margin-top: 15px;
+    border-left: 1px solid #CCC;
 }
 .form_table .info p {
     padding-top: 0px;

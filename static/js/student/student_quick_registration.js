@@ -40,7 +40,6 @@ function submit_student_quick_registration_form(form, ignore_unparsable_resume){
             if(data.errors) {
                 place_table_form_errors("#student_quick_registration_form", data.errors);
             } else {
-                console.log(data.unparsable_resume);
                 $.ajax({
                     url: STUDENT_QUICK_REGISTRATION_DONE_URL,
                     dataType: "html",
@@ -166,7 +165,7 @@ $('.student_quick_registration_link').live('click', function (e) {
                     email: {
                         required: true,
                         email: true,
-                        isMITEmail: true,
+                        isEDUemail: true,
                         remote: {
                             dataType: 'json',
                             url: CHECK_EMAIL_AVAILABILITY_URL,
@@ -181,6 +180,9 @@ $('.student_quick_registration_link').live('click', function (e) {
                         required: true
                     },
                     last_name: {
+                        required: true
+                    },
+                    school: {
                         required: true
                     },
                     degree_program: {
@@ -206,7 +208,7 @@ $('.student_quick_registration_link').live('click', function (e) {
                     email:{
                         required: EMAIL_REQUIRED,
                         email: INVALID_EMAIL,
-                        isMITEmail: MUST_BE_MIT_EMAIL,
+                        isEDUemail: MUST_BE_EDU_EMAIL,
                         remote: EMAIL_ALREADY_REGISTERED
                     },
                     password1: {

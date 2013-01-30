@@ -14,7 +14,7 @@ MAX_USERS_FOR_BASIC_USERS = 3
 
 # How long do we allow dialogs to load for before showing "this is taking longer
 # than usual..." message (in milliseconds)
-LOAD_WAIT_TIME = 8000
+LOAD_WAIT_TIME = 15000
 
 # Send admins an email each time that a 404 is encountered
 SEND_BROKEN_LINK_EMAILS = True
@@ -200,6 +200,8 @@ LOCAL_MEDIA_ROOT = ROOT + "/local_data/media/"
 PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
 
 CKEDITOR_PATH = "ckeditor/"
+
+ZIPPED_RESUMES_DIRECTORY = "%szipped_resumes/" % MEDIA_ROOT
 
 # a list of folders inside of which of django looks for static files
 STATIC_ROOT = ROOT + '/static'

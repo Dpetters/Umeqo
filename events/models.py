@@ -85,6 +85,40 @@ class Event(core_mixins.DateCreatedTracking):
     
     def is_rolling_deadline(self):
         return self.type == EventType.objects.get(name="Rolling Deadline")
+    
+    def get_rsvps(self):
+        # Return all visible students who RSVPed attending/participating
+        students = []
+        for rsvp in self.rsvp_set.filter(attending=True):
+            if rsvp.student:
+                students.append(rsvp.student)
+        return filter(lambda x: x.visible(), students)
+
+    def get_attendees(self):
+        if self.is_deadline():
+            return []
+        else:
+            # Return all visible students who attended
+            students = []
+            for attendee in self.attendee_set.all():
+                if attendee.student:
+                    students.append(attendee.student)
+            return filter(lambda x: x.visible(), students)
+
+    def get_resume_droppers(self):
+        if self.is_drop:
+            # Return all visible students who dropped off their resume
+            students = []
+            for droppedresume in self.droppedresume_set.all():
+                if droppedresume.student:
+                    students.append(droppedresume.student)
+            return filter(lambda x: x.visible(), students)
+        else:
+            return []
+
+    def all_participants(self):
+        # Return all visible students who participated
+        return list(set(self.get_resume_droppers()) | set(self.get_rsvps()) | set(self.get_attendees()))
 
 def notify_about_event(instance, notice_type, employers):
     subscribers = Student.objects.filter(subscriptions__in=employers)
