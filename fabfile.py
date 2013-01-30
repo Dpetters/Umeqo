@@ -87,6 +87,7 @@ def load_local_data():
         local("python copy_media.py local in")
         local("python manage.py loaddata ./local_data/fixtures/local_data.json")
         local("python manage.py fix_campus_org_users")
+        local("echo 'y'|python manage.py rebuild_index")
     else:
         if env.type == "prod":
             abort("load_local_data should not be called on prod.")
@@ -95,7 +96,8 @@ def load_local_data():
                 run("python copy_media.py local in")
                 run("python manage.py loaddata ./local_data/fixtures/local_data.json")
                 run("python manage.py fix_campus_org_users")
-    
+                run("echo 'y'|python manage.py rebuild_index")
+
 def commit_prod_data():
     if not env.host or env.type != "prod":
         abort("commit_prod_data should only be called on prod")
@@ -132,6 +134,7 @@ def load_prod_data():
             fixtures_dir = "./%s/fixtures" % (app)
             local("python manage.py loaddata %s/initial_data.json" % fixtures_dir)
         local("python manage.py clear_prod_stripe_ids")
+        local("echo 'y'|python manage.py rebuild_index")
     else:
         if env.type == "umeqo":
             abort("load_prod_data cannot be called on prod.")
@@ -145,7 +148,8 @@ def load_prod_data():
                     fixtures_dir = "./%s/fixtures" % (app)
                     run("python manage.py loaddata %s/initial_data.json" % fixtures_dir)
                 run("python manage.py clear_prod_stripe_ids")
-                
+                run("echo 'y'|python manage.py rebuild_index")
+
 def commit_local_data():
     if env.type != "staging":
         abort("commit_local_data should only be called on staging")

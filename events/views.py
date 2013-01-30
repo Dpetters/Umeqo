@@ -3,6 +3,7 @@ from __future__ import absolute_import
 
 import cStringIO as StringIO
 from datetime import datetime, timedelta
+import os
 import re
 
 from django.conf import settings as s
@@ -27,6 +28,8 @@ from core.email import get_basic_email_context, send_email
 from core import enums as core_enums
 from core.http import Http403, Http400, Http500
 from core.decorators import render_to
+from core.file_utils import find_first_file
+from core.management.commands.zip_resumes import zip_resumes
 from core.models import Edit
 from core.view_helpers import english_join
 from employer.decorators import is_recruiter
@@ -36,6 +39,25 @@ from events.view_helpers import event_map, event_filtering_helper, get_event_sch
 from notification import models as notification
 from student.decorators import is_student
 from student.models import Student
+
+
+@user_passes_test(lambda x: is_recruiter(x) or is_campus_org(x))
+def download_event_participant_resumes(request, event_id, extra_context=None):
+    event = Event.objects.get(id=event_id)
+    event_participant_resumes_directory_name = "%s (%d) All Participants" % (event.name, event.id)
+    event_resumes_dir = "%sevent_resumes/" % (s.ZIPPED_RESUMES_DIRECTORY)
+    if not os.path.exists(event_resumes_dir):
+        os.makedirs(event_resumes_dir)
+    file_path = find_first_file(event_resumes_dir, "%s.*.zip" % re.escape(event_participant_resumes_directory_name))
+    if file_path:
+        mimetype = "application/zip"
+        response = HttpResponse(file(file_path, "rb").read(), mimetype=mimetype)
+        filename = file_path.split("/")[-1]
+        response["Content-Disposition"] = 'attachment; filename="%s.zip"' % filename
+        return response
+    else:
+        zip_resumes()
+        return download_event_participant_resumes(request, event_id, extra_context)
 
 
 @login_required

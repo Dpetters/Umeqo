@@ -103,6 +103,9 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
         self.user.is_active = False
         self.user.save()
     
+    def visible(self):
+        return (self.user.is_active and self.user.userattributes.is_verified and self.profile_created)
+
 @receiver(post_save, sender=Student)
 def create_student_related_models(sender, instance, created, raw, **kwargs):
     if created and not raw:

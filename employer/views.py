@@ -420,7 +420,7 @@ def employer_resume_book_history(request, extra_context=None):
 @has_at_least_premium
 @user_passes_test(is_recruiter)
 def employer_resumes_download(request, extra_context=None):
-    file_path = find_first_file(s.MEDIA_ROOT, "%s.*.zip" % s.ALL_ZIPPED_RESUMES_FILENAME_START)
+    file_path = find_first_file(s.ZIPPED_RESUMES_DIRECTORY, "%s.*.zip" % s.ALL_ZIPPED_RESUMES_FILENAME_START)
     if file_path:
         mimetype = "application/zip"
         response = HttpResponse(file(file_path, "rb").read(), mimetype=mimetype)
@@ -429,7 +429,7 @@ def employer_resumes_download(request, extra_context=None):
         return response
     else:
         zip_resumes()
-        return employer_resumes_download(request)
+        return employer_resumes_download(request, extra_context)
 
 
 @user_passes_test(is_recruiter)
