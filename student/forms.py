@@ -171,7 +171,7 @@ class StudentProfileBaseForm(StudentUpdateResumeForm):
 
 
 class StudentQuickRegistrationForm(StudentProfileBaseForm, StudentRegistrationForm):
-    email = forms.EmailField(label="MIT email:")
+    email = forms.EmailField(label=".edu Email:")
     password = forms.CharField(label="Choose Password:", widget=forms.PasswordInput(render_value=False))
     event_id = forms.CharField(widget=forms.HiddenInput)
     action = forms.CharField(widget=forms.HiddenInput)

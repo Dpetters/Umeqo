@@ -142,7 +142,6 @@ function getCookie(name) {
 };
 
 function is_valid_edu_email(email){
-    console.log((email.length - ".edu".length) == email.indexOf(".edu"));
     if (DEBUG)
         return (email.length - ".edu".length) == email.indexOf(".edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
     else
@@ -293,7 +292,6 @@ $(document).ready( function () {
         return valid;
     }, "One of the emails is invalid.");
     jQuery.validator.addMethod('isEDUemail', function(value, element) {
-        console.log(is_valid_edu_email(value));
         return is_valid_edu_email(value);
     });
 
