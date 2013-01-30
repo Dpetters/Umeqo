@@ -7,10 +7,14 @@ from core import mixins as core_mixins
 
 from sorl.thumbnail import ImageField
 
+def get_default_campus_org_school():
+    return School.objects.get(name="Massachusetts Institute of Technology")
+
+
 class CampusOrg(CommonInfo):
     user = models.OneToOneField(User, unique=True, null=True, blank=True)
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
-    school = models.ForeignKey("core.School", default = 1)
+    school = models.ForeignKey("core.School", default = get_default_campus_org_school)
     type = models.ForeignKey("core.CampusOrgType")
     image = ImageField(upload_to=get_image_filename, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
