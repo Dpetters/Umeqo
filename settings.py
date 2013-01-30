@@ -201,6 +201,8 @@ PROD_MEDIA_ROOT = ROOT + "/prod_data/media/"
 
 CKEDITOR_PATH = "ckeditor/"
 
+ZIPPED_RESUMES_DIRECTORY = "%szipped_resumes/" % MEDIA_ROOT
+
 # a list of folders inside of which of django looks for static files
 STATIC_ROOT = ROOT + '/static'
 

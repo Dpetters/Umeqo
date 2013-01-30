@@ -128,6 +128,7 @@ urlpatterns += patterns('events.views',
     (r'^rolling-deadline/end/(?P<id>\d+)$', 'rolling_deadline_end', {}, 'rolling_deadline_end'),
     (r'^events/$', redirect_to, {'url':'/events/upcoming/'}, 'upcoming_events'),
     (r'^events/(?P<category>\w+)/$', 'events', {}, 'events'),
+    (r'^event/(?P<event_id>\d+)/download-participant-resumes/$', 'download_event_participant_resumes', {}, 'download_event_participant_resumes')
 )
 urlpatterns += patterns('student.views',
     (r'^signup/$', 'student_registration', {'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH, 'login_form':AuthenticationForm}}, "student_registration"),

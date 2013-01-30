@@ -160,7 +160,11 @@
                 {% endif %}
                 <a href="{% url event_edit id=event.id %}" class="edit_event_link button button-umeqo-blue">Edit {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
             {% endif %}
-         </h1>
+            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="button button-umeqo-blue export_event_list_link">Export All Participants</a>
+            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="{% url download_event_participant_resumes event_id=event.id %}" class="button button-umeqo-blue">Download Participant Resumes</a>
+
+
+        </h1>
         <div id="event_admin_side">
             <table id="event_numbers">
                 <tr>
@@ -218,9 +222,9 @@
             <div id="event_rsvps" class="{% if not event.is_public %}hid {% endif %}responses">
                 {% if rsvps %}
                     <div class="commands right_side_container">
-                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="rsvps" href="#" class="export_event_list_link">Export</a>
+                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="rsvps" href="#" class="export_event_list_link">Export RSVPs</a>
                         {% if user.recruiter %}
-                        <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' RSVPs'|urlencode}}">View all RSVPs</a>
+                        <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' RSVPs'|urlencode}}">Browse RSVPs</a>
                         {% endif %}
                     </div>
                 {% endif %}
@@ -247,9 +251,9 @@
                 <div id="event_dropped_resumes" class="hid responses">
                     {% if dropped_resumes %}
                         <div class="commands right_side_container">
-                            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="dropped_resumes" href="#" class="export_event_list_link">Export</a>
+                            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="dropped_resumes" href="#" class="export_event_list_link">Export Resume Droppers</a>
                             {% if user.recruiter %}
-                                <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Resume Drop'|urlencode}}">View all Resumes</a>
+                                <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Resume Drop'|urlencode}}">Browse Resume Droppers</a>
                             {% endif %}
                         </div>
                         {% include "event_responses.html" with students=dropped_resumes %}
@@ -263,24 +267,14 @@
             <div id="event_checkins" class="hid responses">
                 {% if attendees %}
                     <div class="commands right_side_container">
-                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export</a>
+                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export Attendees</a>
                         {% if user.recruiter %}
-                        <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">View All Attendees</a>
+                        <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">Browse Attendees</a>
                         {% endif %}
                     </div>
                     {% include "event_responses.html" with students=attendees %}
                 {% else %}
                     <div id="event_response_empty">There are no check-ins yet.</div>
-                {% endif %}
-            </div>
-            <div id="event_all" class="hid responses">
-                {% if all_responses %}
-                    <div class="commands right_side_container">
-                        <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="export_event_list_link">Export</a>
-                    </div>
-                    {% include "event_responses.html" with students=all_responses %}
-                {% else %}
-                    <div id="event_response_empty">There are no responses yet.</div>
                 {% endif %}
             </div>
             <p>*Grayed out students do not have an Umeqo account.</p>

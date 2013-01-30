@@ -82,8 +82,8 @@ def export_event_list_csv(file_obj, event, list):
         students = get_dropped_resumes(event)
         students.sort(key=lambda n: n['name'])
     elif list == "all":
-        filename = "%s Respondees" % (event.name)
-        students = get_all_responses(get_rsvps(event), get_no_rsvps(event), get_dropped_resumes(event), get_attendees(event))
+        filename = "%s All Participants" % (event.name)
+        students = get_all_responses(get_rsvps(event), get_dropped_resumes(event), get_attendees(event))
         students.sort(key=lambda n: n['name'])
     for student in students:
         info = []
@@ -100,8 +100,8 @@ def export_event_list_text(file_obj, event, list):
     info = "\t".join(["Name", "Email", "Date & Time", "School Year", "Graduation Year"])
     print >> file_obj, info
     if list == "all":
-        filename = "%s Respondees" % (event.name)
-        students = get_all_responses(get_rsvps(event), get_no_rsvps(event), get_dropped_resumes(event), get_attendees(event))
+        filename = "%s All Participants" % (event.name)
+        students = get_all_responses(get_rsvps(event), get_dropped_resumes(event), get_attendees(event))
         students.sort(key=lambda n: n['name'])
     elif list == "rsvps":
         filename = "%s RSVPs" % (event.name)
@@ -219,7 +219,7 @@ def get_invitees(event):
     return map(buildRSVP, event.invitee_set.filter(student__user__is_active=True).order_by('student__first_name'))
 
 
-def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
+def get_all_responses(rsvps, dropped_resumes, attendees):
     all_responses = []
     students = []
     if dropped_resumes:
@@ -228,8 +228,6 @@ def get_all_responses(rsvps, no_rsvps, dropped_resumes, attendees):
         students.extend(attendees)
     if rsvps:
         students.extend(rsvps)
-    if no_rsvps:
-        students.extend(no_rsvps) 
 
     emails_dict = {}
     for res in students:
