@@ -3,6 +3,7 @@ from __future__ import absolute_import
 
 import cStringIO as StringIO
 from datetime import datetime, timedelta
+import os
 import re
 
 from django.conf import settings as s
@@ -44,7 +45,10 @@ from student.models import Student
 def download_event_participant_resumes(request, event_id, extra_context=None):
     event = Event.objects.get(id=event_id)
     event_participant_resumes_directory_name = "%s (%d) All Participants" % (event.name, event.id)
-    file_path = find_first_file("%sevent_resumes/" % (s.ZIPPED_RESUMES_DIRECTORY), "%s.*.zip" % re.escape(event_participant_resumes_directory_name))
+    event_resumes_dir = "%sevent_resumes/" % (s.ZIPPED_RESUMES_DIRECTORY)
+    if not os.path.exists(event_resumes_dir):
+        os.makedirs(event_resumes_dir)
+    file_path = find_first_file(event_resumes_dir, "%s.*.zip" % re.escape(event_participant_resumes_directory_name))
     if file_path:
         mimetype = "application/zip"
         response = HttpResponse(file(file_path, "rb").read(), mimetype=mimetype)
@@ -53,7 +57,7 @@ def download_event_participant_resumes(request, event_id, extra_context=None):
         return response
     else:
         zip_resumes()
-        return download_event_resumes(request, event_id, extra_context)
+        return download_event_participant_resumes(request, event_id, extra_context)
 
 
 @login_required
