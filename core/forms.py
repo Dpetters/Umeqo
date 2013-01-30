@@ -19,35 +19,6 @@ from registration.models import InterestedPerson
 
 decorate_bound_field()
 
-class SchoolNewForm(forms.ModelForm):
-    name = forms.CharField(label="Name:", max_length=42)
-    url = forms.URLField(label="Website:", required = False)
-
-    class Meta:
-        fields = ('name',
-                  'url')
-        model = School
-    
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        try:
-            School.objects.get(name=name)
-            raise forms.ValidationError("This school already exists.")
-        except School.DoesNotExist:
-            pass
-        return self.cleaned_data['name']
-
- 
-class BetaForm(forms.ModelForm):
-    first_name = forms.CharField(label="First Name:", max_length=42)
-    last_name = forms.CharField(label="Last Name:", max_length=42)
-    email = forms.EmailField(label="Email:", widget=forms.TextInput(attrs={'placeholder':'e.g. susan@mit.edu'}))
-    
-    class Meta:
-        fields = ('first_name',
-                  'last_name',
-                  'email')
-        model = InterestedPerson
         
 class ContactForm(forms.Form):
     name = forms.CharField(label=u'Your Name:', max_length=100, widget=forms.TextInput())
