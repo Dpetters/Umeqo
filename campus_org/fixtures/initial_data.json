@@ -6545,6 +6545,23 @@
   }
  },
  {
+  "pk": 540,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": "",
+   "slug": null,
+   "last_updated": "2013-01-29 19:55:33",
+   "description": null,
+   "image": "",
+   "email": null,
+   "user": null,
+   "date_created": "2013-01-29 19:55:33",
+   "type": 11,
+   "display": false,
+   "name": "Student Athlete Advisory Commitee"
+  }
+ },
+ {
   "pk": 362,
   "model": "campus_org.campusorg",
   "fields": {
