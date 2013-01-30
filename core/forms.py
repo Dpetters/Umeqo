@@ -13,12 +13,31 @@ from campus_org.models import CampusOrg
 from core import messages as m
 from core.email import send_email
 from core.form_helpers import decorate_bound_field
-from core.models import Language
+from core.models import Language, School
 from employer.models import Recruiter
 from registration.models import InterestedPerson
 
 decorate_bound_field()
 
+class SchoolNewForm(forms.ModelForm):
+    name = forms.CharField(label="Name:", max_length=42)
+    url = forms.URLField(label="Website:", required = False)
+
+    class Meta:
+        fields = ('name',
+                  'url')
+        model = School
+    
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        try:
+            School.objects.get(name=name)
+            raise forms.ValidationError("This school already exists.")
+        except School.DoesNotExist:
+            pass
+        return self.cleaned_data['name']
+
+ 
 class BetaForm(forms.ModelForm):
     first_name = forms.CharField(label="First Name:", max_length=42)
     last_name = forms.CharField(label="Last Name:", max_length=42)

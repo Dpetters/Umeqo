@@ -1,0 +1,35 @@
+{% load text_snippet %}
+<script>
+    var SCHOOL_ALREADY_EXISTS = "{% text_snippet 'school_already_exists' %}";
+</script>
+<div class="dialog_content_wrapper">
+    <h3 class="centered">Create the school by filling out the fields below.</h3>
+    <p class="centered">
+        <strong>Note:</strong> Its authenticity will be checked by site administrators.
+    </p>
+    <form id="school_new_form" method='POST' action="{% url school_new %}">
+        {% csrf_token %}
+        <table class="form_table">
+            {% for field in form %}
+                <tr>
+                    <th>{{ field.label_tag }}</th>
+                    <td>
+                        <div class="errorspace">{{ field.errors }}</div>
+                        {{ field }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" class="error_section error">
+                    {{form.non_field_errors}}
+                </td>
+            </tr>
+            <tr>
+                <td class="centered button_cell" colspan="2">
+                    <input id="school_new_form_submit_button" class="button" type='submit' value='Create'>
+                    <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -23,7 +23,7 @@ Student Registration |
     
     var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
     var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
-    var MUST_BE_MIT_EMAIL = "{% text_snippet 'must_be_mit_email' %}";
+    var MUST_BE_EDU_EMAIL = "{% text_snippet 'must_be_edu_email' %}";
     var EMAIL_ALREADY_REGISTERED = "{% text_snippet 'email_already_registered' %}";
     var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
 
@@ -44,10 +44,10 @@ Student Registration |
                     {{form.email}}
                 </td>
                 <td class="info" rowspan="2">
-                    <p>Creating an account is simple - all you need is your <strong>MIT email</strong> and a <strong>password</strong> of your choice.</p>
-                    <br>
-                    <p>Having trouble registering? Click <a href="#" class="open_registration_help_dialog_link">here</a>.</p>
-                    <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="{% url subscriptions %}">here</a>.</p>
+                    <div>
+                        <!--TODO: uncomment when ldap is utilized again to check that signups are actually student <p>Having trouble registering? Click <a href="#" class="open_registration_help_dialog_link">here</a>.</p>-->
+                        <p id="recruiter_signup_link">Are you a recruiter? Sign up <a href="{% url subscriptions %}">here</a>.</p>
+                    </div>
                 </td>
             </tr>
             <tr>

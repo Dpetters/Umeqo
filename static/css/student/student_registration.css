@@ -1,10 +1,8 @@
 #terms, #terms a{
     font-size:13px;
-    line-height:15px;
 }
 #recruiter_signup_link{
-    position:relative;
-    bottom:3px;
+    margin-top:25px;
     font-weight:bold;
 }
 .dialog_content_wrapper{

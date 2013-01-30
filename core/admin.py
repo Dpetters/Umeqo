@@ -12,6 +12,8 @@ from core.models import Tutorial, CampusOrgType, Course, Language, SchoolYear, G
 
 
 class SchoolAdmin(admin.ModelAdmin):
+    fields= ['name', 'url']
+    list_display = ('name', 'url')
     search_fields = ['name']
 admin.site.register(School, SchoolAdmin)
 
