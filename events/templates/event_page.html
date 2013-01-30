@@ -161,9 +161,9 @@
                 <a href="{% url event_edit id=event.id %}" class="edit_event_link button button-umeqo-blue">Edit {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
             {% endif %}
             <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="button button-umeqo-blue export_event_list_link">Export All Participants</a>
-            <a href="{% url download_event_participant_resumes event_id=event.id %}" class="button button-umeqo-blue">Download All Resumes</a>
-
-
+            {% if user.recruiter %}
+                <a href="{% url download_event_participant_resumes event_id=event.id %}" class="button button-umeqo-blue">Download All Resumes</a>
+            {% endif %}
         </h1>
         <div id="event_admin_side">
             <table id="event_numbers">

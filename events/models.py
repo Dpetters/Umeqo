@@ -88,19 +88,31 @@ class Event(core_mixins.DateCreatedTracking):
     
     def get_rsvps(self):
         # Return all visible students who RSVPed attending/participating
-        return filter(lambda x: x.visible, map(lambda n: n.student, self.rsvp_set.filter(attending=True)))
+        students = []
+        for rsvp in self.rsvp_set.filter(attending=True):
+            if rsvp.student:
+                students.append(rsvp.student)
+        return filter(lambda x: x.visible(), students)
 
     def get_attendees(self):
         if self.is_deadline():
             return []
         else:
             # Return all visible students who attended
-            return filter(lambda x: x.visible, map(lambda n: n.student, self.attendee_set.all()))
+            students = []
+            for attendee in self.attendee_set.all():
+                if attendee.student:
+                    students.append(attendee.student)
+            return filter(lambda x: x.visible(), students)
 
     def get_resume_droppers(self):
         if self.is_drop:
             # Return all visible students who dropped off their resume
-            return filter(lambda x: x.visible, map(lambda n: n.student, self.droppedresume_set.all()))
+            students = []
+            for droppedresume in self.droppedresume_set.all():
+                if droppedresume.student:
+                    students.append(droppedresume.student)
+            return filter(lambda x: x.visible(), students)
         else:
             return []
 

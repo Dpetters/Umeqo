@@ -42,6 +42,7 @@ def zip_resumes():
             if not os.path.exists(event_dir):
                 os.makedirs(event_dir)
             for student in event.all_participants():
+                print student
                 student_resume_file_name = "%s %s %s.pdf" % (student.first_name, student.last_name, student.user.email)
                 shutil.copyfile("%s%s" % (s.MEDIA_ROOT, student.resume.name), "%s/%s" % (event_dir, student_resume_file_name))
             old_zip_file = find_first_file(event_resumes_dir, "%s.*.zip" % re.escape(event_dir_name))

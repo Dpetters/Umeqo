@@ -197,7 +197,9 @@ def get_attendees(event):
           'student__graduation_year',
           'student__degree_program',
           'student__user__email',
-          'student__user__userattributes__is_verified').filter(student__isnull=True) | all_attendees.filter(student__user__is_active=True).order_by('name')
+          'student__user__userattributes__is_verified')
+    obj = obj.filter(student__isnull=True) | obj.filter(student__user__is_active=True)
+    obj = obj.order_by('name')
     return map(buildAttendee, obj)
 
 
@@ -223,7 +225,10 @@ def get_invitees(event):
 
 def get_all_responses(event):
     all_responses = []
-    students = list(set(get_dropped_resumes(event)) | set(get_attendees(event)) | set(get_rsvps(event)))
+    students = []
+    students.extend(get_dropped_resumes(event))
+    students.extend(get_attendees(event))
+    students.extend(get_rsvps(event))
     
     emails_dict = {}
     for res in students:
