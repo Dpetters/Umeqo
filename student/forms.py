@@ -15,7 +15,7 @@ from core.choices import SELECT_YES_NO_CHOICES, MONTH_CHOICES
 from core.form_helpers import decorate_bound_field
 from core.fields import PdfField
 from core.model_helpers import get_resume_filename
-from core.models import Course, GraduationYear, EmploymentType, Industry, Language
+from core.models import Course, GraduationYear, EmploymentType, Industry, Language, School
 from core.view_helpers import does_email_exist
 from countries.models import Country
 from employer.models import Employer
@@ -34,7 +34,7 @@ class StudentAccountDeactivationForm(forms.ModelForm):
         fields = ['suggestion']
       
 class StudentRegistrationForm(forms.ModelForm):
-    email = forms.EmailField(label="MIT email:", widget=forms.TextInput(attrs={'tabindex':1}))
+    email = forms.EmailField(label=".edu Email:", widget=forms.TextInput(attrs={'tabindex':1}))
     password = forms.CharField(label="Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
 
     class Meta:
@@ -48,10 +48,10 @@ class StudentRegistrationForm(forms.ModelForm):
             raise forms.ValidationError(_(m.email_already_registered))
         
         if s.DEBUG:
-            if email[-len("mit.edu"):] != "mit.edu" and email[-len("umeqo.com"):] != "umeqo.com":
-                raise forms.ValidationError(_(m.must_be_mit_email))
-        elif email[-len("mit.edu"):] != "mit.edu":
-            raise forms.ValidationError(_(m.must_be_mit_email))
+            if email[-len(".edu"):] != ".edu" and email[-len("umeqo.com"):] != "umeqo.com":
+                raise forms.ValidationError(_(m.must_be_edu_email))
+        elif email[-len(".edu"):] != ".edu":
+            raise forms.ValidationError(_(m.must_be_edu_email))
         
         # General idea of what the ldap code below is doing:
         # --Connected to the Internet (dev w/ internet, prod)
@@ -64,10 +64,12 @@ class StudentRegistrationForm(forms.ModelForm):
         # ----Allow registration. An error will be thrown that the email could
         # ----not be sent, but you can go into the admin and activate the user
         if email[-len("umeqo.com"):] != "umeqo.com" and not RegException.objects.filter(email=email).exists():
+            # TODO: re-enable ldap for some schools
             # If after ldap check result==[None], then Im not connected to
             # the internet. If result==[], then I am connected and the email
             # is not a student's. 
             # TODO: check what happens if you're not connected to the internet
+            """
             res = get_student_ldap_info(email.split("@")[0])
             if res == None:
                 if s.MUST_USE_LDAP:
@@ -76,6 +78,7 @@ class StudentRegistrationForm(forms.ModelForm):
                     pass
             elif is_not_mit_student(res):
                 raise forms.ValidationError(m.must_be_mit_student)
+            """
         return self.cleaned_data['email']
 
     def clean(self):
@@ -146,16 +149,17 @@ class StudentBaseAttributeForm(forms.ModelForm):
 class StudentProfileBaseForm(StudentUpdateResumeForm):
     first_name = forms.CharField(label="First name:", max_length = 20)
     last_name = forms.CharField(label="Last name:", max_length = 30)
+    school = forms.ModelChoiceField(label="School:", queryset = School.objects.all(), empty_label="select school")
     degree_program = forms.ModelChoiceField(label="Degree Program:", queryset = DegreeProgram.objects.all(), empty_label="select degree program")
     graduation_year = forms.ModelChoiceField(label="Grad year/month:", queryset = GraduationYear.objects.all().order_by("year"), empty_label="select year")
     graduation_month = forms.ChoiceField(choices = MONTH_CHOICES)
     first_major = forms.ModelChoiceField(label="(First) Major:", queryset = Course.objects.all(), empty_label="select major")
     gpa = forms.DecimalField(label="GPA:", min_value = 0, max_value = 5, max_digits=5, decimal_places=2)
-    #resume = PdfField(label="Resume:", widget=forms.FileInput(attrs={'class':'required'}))
 
     class Meta:
         fields = ('first_name',
                    'last_name',
+                   'school',
                    'degree_program',
                    'graduation_year',
                    'graduation_month',
@@ -164,12 +168,15 @@ class StudentProfileBaseForm(StudentUpdateResumeForm):
                    'resume',
                     )
         model=Student
+
+
 class StudentQuickRegistrationForm(StudentProfileBaseForm, StudentRegistrationForm):
     email = forms.EmailField(label="MIT email:")
     password = forms.CharField(label="Choose Password:", widget=forms.PasswordInput(render_value=False))
     event_id = forms.CharField(widget=forms.HiddenInput)
     action = forms.CharField(widget=forms.HiddenInput)
-            
+
+
 class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
     act = forms.ChoiceField(label="ACT:", required = False, choices=[('','---')]+[(x,x) for x in range(36,0,-1)])
     sat_m = forms.ChoiceField(label="SAT Math:", required = False, choices=[('','---')]+[(x,x) for x in range(800,190,-10)])
@@ -184,6 +191,7 @@ class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
     class Meta:
         fields = ('first_name',
                    'last_name',
+                   'school',
                    'degree_program',
                    'graduation_year',
                    'graduation_month',
@@ -277,8 +285,10 @@ class StudentProfileForm(StudentBaseAttributeForm, StudentProfileBaseForm):
             raise forms.ValidationError(_(m.max_countries_of_citizenship_exceeded))
         return self.cleaned_data['countries_of_citizenship']
     
+
 class StudentProfilePreviewForm(StudentProfileForm):
     resume = PdfField(label="Resume:", required=False)
+
 
 class StudentPreferencesForm(forms.ModelForm):
 

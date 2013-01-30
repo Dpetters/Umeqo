@@ -33,6 +33,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 ADMINS = (
+     #(name, email),
 )
 MANAGERS = ADMINS
 

@@ -200,6 +200,9 @@ $(document).ready( function() {
             last_name: {
                 required: true
             },
+            school: {
+                required: true
+            },
             degree_program: {
                 required: true
             },

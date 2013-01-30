@@ -32,7 +32,7 @@ $(document).ready( function() {
             email: {
                 required: true,
                 email: true,
-                isMITEmail: !DEBUG,
+                isEDUemail: true,
                 remote: {
                     dataType: 'json',
                     url: CHECK_EMAIL_AVAILABILITY_URL,
@@ -48,7 +48,7 @@ $(document).ready( function() {
             email:{
                 required: EMAIL_REQUIRED,
                 email: INVALID_EMAIL,
-                isMITEmail: MUST_BE_MIT_EMAIL,
+                isEDUemail: MUST_BE_EDU_EMAIL,
                 remote: EMAIL_ALREADY_REGISTERED
             },
             password: {

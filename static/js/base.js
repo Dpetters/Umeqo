@@ -141,6 +141,15 @@ function getCookie(name) {
     return cookieValue;
 };
 
+function is_valid_edu_email(email){
+    console.log((email.length - ".edu".length) == email.indexOf(".edu"));
+    if (DEBUG)
+        return (email.length - ".edu".length) == email.indexOf(".edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
+    else
+        return (email.length - ".edu".length) == email.indexOf(".edu");
+}
+
+// TODO: Convert to is_valid_custom_email
 function is_valid_mit_email(email){
     if (DEBUG)
         return (email.length - "mit.edu".length) == email.indexOf("mit.edu") || (email.length - "umeqo.com".length) == email.indexOf("umeqo.com");
@@ -283,10 +292,16 @@ $(document).ready( function () {
         } 
         return valid;
     }, "One of the emails is invalid.");
+    jQuery.validator.addMethod('isEDUemail', function(value, element) {
+        console.log(is_valid_edu_email(value));
+        return is_valid_edu_email(value);
+    });
+
+    // TODO: convert to isCustomEmail
     jQuery.validator.addMethod('isMITEmail', function(value, element) {
-        // If testing, allow umeqo.com emails as well.
         return is_valid_mit_email(value);
     });
+    
     jQuery.validator.addMethod("notEqualToString", function(value, element, param) {
         return this.optional(element) || value != param;
     }, "Please specify a different (non-default) value");

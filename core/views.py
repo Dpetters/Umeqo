@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import operator
 
 from django.conf import settings as s
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -13,7 +13,8 @@ from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
-from django.template import RequestContext, loader
+from django.template.loader import render_to_string
+from django.template import Context, RequestContext, loader
 from django.utils import simplejson
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.http import require_GET, require_http_methods
@@ -22,9 +23,10 @@ from campus_org.decorators import is_campus_org
 from campus_org.models import CampusOrg
 from core import messages, enums as core_enums
 from core.decorators import render_to
-from core.forms import AkismetContactForm
+from core.forms import AkismetContactForm, SchoolNewForm
+from core.email import get_basic_email_context, send_email
 from core.http import Http403, Http400
-from core.models import Course, Language, Location, Question, Topic, Tutorial
+from core.models import Course, Language, Location, Question, Topic, Tutorial, School
 from core.search import search
 from core.view_helpers import employer_campus_org_slug_exists, filter_faq_questions
 from employer.decorators import is_recruiter
@@ -37,6 +39,38 @@ from notification.models import Notice
 from student.decorators import is_student
 from student.forms import StudentRegistrationForm
 from student.models import Student, StudentStatistics
+
+@user_passes_test(lambda x: is_student(x) or is_campus_org(x))
+@render_to("school_new_dialog.html")
+def school_new(request, form_class=SchoolNewForm, extra_context=None):
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            new_school = form.save()
+            recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+            
+            context = Context({'email':request.user.email,
+                               'new_school':new_school,
+                               'new_school_url':new_school.url})
+            context.update(get_basic_email_context())
+             
+            body = render_to_string('new_school_email_body.txt', context)
+                                    
+            subject = ''.join(render_to_string('email_admin_subject.txt', {
+                'message': "New School: %s" % new_school 
+            }, context).splitlines())
+                            
+            send_email(subject, body, recipients)
+            
+            data = {"name": new_school.name, "id": new_school.id}
+        else:
+            data = {'errors': form.errors }
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        form = form_class()
+    context = {'form': form }
+    context.update(extra_context or {}) 
+    return context
 
 
 @require_GET
@@ -446,6 +480,16 @@ def check_event_name_uniqueness(request):
         Event.objects.get(name=request.GET["name"])
         return HttpResponse(simplejson.dumps(False), mimetype="application/json")
     except Event.DoesNotExist:
+        return HttpResponse(simplejson.dumps(True), mimetype="application/json")
+
+@require_GET
+@login_required
+def check_school_uniqueness(request):
+    if not request.GET.has_key("name"):
+        raise Http400("Request GET is missing the name.")
+    if School.objects.filter(name=request.GET["name"]).exists():
+        return HttpResponse(simplejson.dumps(False), mimetype="application/json")
+    else:
         return HttpResponse(simplejson.dumps(True), mimetype="application/json")
 
 

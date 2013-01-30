@@ -48,6 +48,7 @@ employer_already_exists = "This employer already exists."
 #Student Profile Form
 first_name_required = 'Enter your first name.'
 last_name_required= 'Enter your last name.'
+school_required = "Choose your school."
 degree_program_required = "Choose your degree program."
 graduation_year_required = 'Choose your graduation year.'
 first_major_required = 'Choose your major.'
@@ -81,6 +82,9 @@ resume_book_capacity_reached = "Your current resume book is full."
 student_list_requires_subscription = "You must be a subscribed employer to browse through this student list."
 # Create campus org dialog
 campus_org_already_exists = "This campus organization already exists."
+
+# Create school dialog
+school_already_exists = "This school already exists."
 
 # Create language dialog
 language_already_exists = "This language already exists."
@@ -138,10 +142,10 @@ end_datetime_required = "End date and time are required."
 # Student Registration
 email_required = "What's your email?"
 invalid_email = "Doesn't look like a valid email."
-must_be_mit_email = "Must be an MIT email."
+must_be_edu_email = "Must be an .edu email."
 email_already_registered = "This email is already registered."
 password_required = "You need a password!"
-must_be_mit_student = "You must be a student to sign up."
+must_be_student = "You must be a student to sign up."
 ldap_server_error = "Can't contact LDAP server. Try again in a few min."
 invalid_invite_code = "Sorry, but this invite code is invalid."
 invite_code_required = "You need an invite code!"
