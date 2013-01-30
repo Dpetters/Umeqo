@@ -23,7 +23,7 @@ STUDENTS_IN_RESUME_BOOK = 2
 
 GENERAL_STUDENT_LISTS = (
     (ALL_STUDENTS, "All Students"),
-    (UNLOCKED_STUDENTS, "Unlocked Students"),
+#    (UNLOCKED_STUDENTS, "Unlocked Students"),
     (STARRED_STUDENTS, "Starred Students"),
     (STUDENTS_IN_RESUME_BOOK , "Students In Current Resume Book"),
 )

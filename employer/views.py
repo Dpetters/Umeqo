@@ -444,11 +444,11 @@ def employer_students(request, extra_context=None):
         if student_list == student_enums.GENERAL_STUDENT_LISTS[0][1]:
             students = SearchQuerySet().models(Student).filter(visible=True)
         else:
+            #if student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
+            #    students = get_unlocked_students(recruiter.employer, request.META['has_at_least_premium'])
             if student_list == student_enums.GENERAL_STUDENT_LISTS[1][1]:
-                students = get_unlocked_students(recruiter.employer, request.META['has_at_least_premium'])
-            elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 students = recruiter.employer.starred_students.all()
-            elif student_list == student_enums.GENERAL_STUDENT_LISTS[3][1]:
+            elif student_list == student_enums.GENERAL_STUDENT_LISTS[2][1]:
                 try:
                     resume_book = ResumeBook.objects.get(recruiter = recruiter, delivered=False)
                 except ResumeBook.DoesNotExist:
@@ -606,7 +606,7 @@ def employer_students(request, extra_context=None):
         context['added'] = employer_enums.ADDED
         context['starred'] = employer_enums.STARRED
         context['email_delivery_type'] = core_enums.EMAIL
-        context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[3][1]
+        context['in_resume_book_student_list'] = student_enums.GENERAL_STUDENT_LISTS[2][1]
         context['resume_book_capacity'] = s.RESUME_BOOK_CAPACITY
     context['TEMPLATE'] = 'employer_students.html'
     context.update(extra_context or {})
