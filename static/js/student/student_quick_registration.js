@@ -182,9 +182,6 @@ $('.student_quick_registration_link').live('click', function (e) {
                     last_name: {
                         required: true
                     },
-                    school: {
-                        required: true
-                    },
                     degree_program: {
                         required: true
                     },

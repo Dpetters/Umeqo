@@ -63,8 +63,6 @@ class Student(StudentBaseAttributes, core_mixins.DateCreatedTracking):
     keywords = models.TextField(blank=True, null=True)
     first_name = models.CharField(db_index = True, max_length = 20, blank = True, null=True)
     last_name = models.CharField(max_length = 30, blank = True, null=True)
-    school = models.ForeignKey("core.School", blank=True, null=True)
-    school_year = models.ForeignKey(SchoolYear, blank = True, null=True)
     degree_program = models.ForeignKey(DegreeProgram, blank = True, null = True)
     graduation_year = models.ForeignKey(GraduationYear, blank = True, null=True)
     graduation_month = models.CharField(max_length=2, choices = core_choices.MONTH_CHOICES, default = core_choices.JUNE, blank = True, null = True)

@@ -35,22 +35,10 @@ from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
 from registration.view_helpers import register_student
 from student.decorators import is_student
-from student.form_helpers import get_student_data_from_ldap
 from student.forms import StudentAccountDeactivationForm, StudentPreferencesForm, StudentRegistrationForm, StudentUpdateResumeForm, StudentProfilePreviewForm, StudentProfileForm, StudentQuickRegistrationForm
 from student.models import Student, StudentDeactivation, DegreeProgram
 from student.view_helpers import handle_uploaded_file, extract_resume_keywords
 
-
-@require_GET
-def student_info(request, extra_context=None):
-    data = {}
-    if not request.GET.has_key("email"):
-        raise Http403("Request GET is missing the email")
-    email = request.GET["email"]
-    if not is_valid_email(email) or s.DEBUG and email[-len("mit.edu"):] != "mit.edu" and email[-len("umeqo.com"):] != "umeqo.com" or email[-len("mit.edu"):] != "mit.edu":
-        return HttpResponse()
-    data['first_name'], data['last_name'], data['course'] = get_student_data_from_ldap(request.GET["email"])
-    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
 @render_to('student_quick_registration.html')
@@ -310,6 +298,7 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
+    print form.is_valid()
     if form.is_valid():
         student = form.save(commit=False)
         if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:

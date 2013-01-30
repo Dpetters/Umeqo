@@ -1,9 +1,4 @@
 <div class="dialog_content_wrapper">
     <h3>Create an account to {{action}} <p>(Already have one? <strong><a class="login" href="#">Login now</a></strong>)</p></h3>
-    <!--TODO: uncomment when ldap is utilized again to check that signups are actually students <p>If you have trouble registering, click <a href="#" class="open_registration_help_dialog_link">here</a>.</p>-->
-    <div id="student_registration_help">
-        {% include 'student_registration_content.html' %}   
-        <p class="centered"><a href="#" class="open_registration_help_dialog_link">Hide &thinsp;&#x25B2;</a></p>    
-    </div>
     {% include 'student_quick_registration_form.html' %}
 </div>
