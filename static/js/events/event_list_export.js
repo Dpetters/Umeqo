@@ -136,7 +136,7 @@ function handle_export_event_list_link_click(e) {
                                     event_list_export_dialog.dialog('option', 'title', 'Export Completed');
                                 }
                             });
-                        }, 1000);
+                        }, 2000);
                      }
                 },
                 highlight: highlight,
