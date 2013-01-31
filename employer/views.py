@@ -371,7 +371,7 @@ def employer_resume_book_add_students(request):
             if student in unlocked_students:
                 if student not in resume_book.students.visible():
                     resume_book.students.add(student)
-                if not request.user.recruiter.employer.name != "Umeqo":
+                if request.user.recruiter.employer.name != "Umeqo":
                     student.studentstatistics.add_to_resumebook_count += 1
                     student.studentstatistics.save()
     return HttpResponse()
