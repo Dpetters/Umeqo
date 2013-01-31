@@ -371,7 +371,7 @@ def employer_resume_book_add_students(request):
             if student in unlocked_students:
                 if student not in resume_book.students.visible():
                     resume_book.students.add(student)
-                if not request.user.recruiter.employer.name != "Umeqo":
+                if request.user.recruiter.employer.name != "Umeqo":
                     student.studentstatistics.add_to_resumebook_count += 1
                     student.studentstatistics.save()
     return HttpResponse()
@@ -577,8 +577,9 @@ def employer_students(request, extra_context=None):
         # I don't like this method of statistics
         if request.user.recruiter.employer.name != "Umeqo":
             for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended, visible in context['results']:
-                student.studentstatistics.shown_in_results_count += 1
-                student.studentstatistics.save()
+                if student:
+                    student.studentstatistics.shown_in_results_count += 1
+                    student.studentstatistics.save()
 
         resume_book = ResumeBook.objects.get(recruiter = request.user.recruiter, delivered=False)
         if len(resume_book.students.visible()) >= s.RESUME_BOOK_CAPACITY:

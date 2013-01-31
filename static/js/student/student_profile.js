@@ -216,7 +216,7 @@ $(document).ready( function() {
             },
             resume:{
                 required: {
-                    depends: EDIT,   
+                    depends: function(element){ return !EDIT; },   
                 },
                 accept: "pdf",
             },
@@ -251,7 +251,7 @@ $(document).ready( function() {
                 range: GPA_RANGE
             },
             resume: {
-                required: EDIT,
+                required: PDF_RESUME_REQUIRED,
                 accept:PDF_RESUME_REQUIRED,
                 file_size: "This file exceed the " + MAX_RESUME_SIZE/1024/1024 + "MB size limit."
             },
