@@ -1,51 +1,11 @@
 from __future__ import division
 from __future__ import absolute_import
 
-import ldap
-
 from django.conf import settings as s
-from django.core.mail import EmailMessage
 
-from core.models import Course
 from student import enums as student_enums
 from employer.models import Recruiter
 
-#TODO: make general
-def is_not_mit_student(ldap_response):
-    return not ldap_response or (ldap_response[0] != None and ldap_response[0][1]['eduPersonPrimaryAffiliation'][0] != "student")
-    
-def get_student_ldap_info(email):
-    return None
-    #TODO: Re-enable ldap
-    """
-    try:
-        con = ldap.open('ldap.mit.edu')
-        con.simple_bind_s("", "")
-        dn = "dc=mit,dc=edu"
-        uid = email.split("@")[0]
-        return con.search_s(dn, ldap.SCOPE_SUBTREE, 'uid='+uid, [])
-    except Exception, e:
-        subject= "[Umeqo Admin] LDAP Server is down."
-        EmailMessage(subject, "", s.DEFAULT_FROM_EMAIL, managers).send()
-        return None
-    """
-
-def get_student_data_from_ldap(email):
-    return "", "", None
-    #TODO: Re-enable ldap
-    """
-    res = get_student_ldap_info(email)
-    if is_not_mit_student(res):
-        return "", "", None
-    fname = res[0][1]['cn'][0].split(" ")[0]
-    lname = res[0][1]['cn'][0].split(" ")[-1]
-    course_id = None
-    try:
-        course_id = Course.objects.get(ou = res[0][1]['ou'][0]).id
-    except Exception, e:
-        pass
-    return fname, lname, course_id
-    """
 
 def student_lists_as_choices(has_at_least_premium, recruiter_id):
     student_list_types = []

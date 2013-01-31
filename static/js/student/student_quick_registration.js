@@ -68,26 +68,6 @@ function submit_student_quick_registration_form(form, ignore_unparsable_resume){
     });  
 };
 
-function prefill_student_quick_registration_fields(){
-    var email = $("#id_email").val();
-    if (is_valid_email_address(email) && is_valid_mit_email(email)){
-        $.ajax({
-            url:STUDENT_INFO_URL,
-            data:{'email':$("#id_email").val()},
-            success:function(data){
-                if (data.first_name && $("#id_first_name").val()==""){
-                    $("#id_first_name").val(data.first_name);
-                }
-                if (data.last_name && $("#id_last_name").val()==""){
-                    $("#id_last_name").val(data.last_name);
-                }
-                if (data.course && $("#id_first_major").val()==""){
-                    $("#id_first_major").val(data.course);
-                }
-            }
-        });
-    }
-}
 
 // Get rid of resume field errors as a user selects a file
 // JQuery validation doesn't respond to the change event
@@ -145,14 +125,6 @@ $('.student_quick_registration_link').live('click', function (e) {
                     $("#id_looking_for").trigger("change");
                 }
             }).multiselectfilter();
-
-            var timeoutID;
-            $('#id_email').keydown(function () {
-                if (typeof timeoutID!='undefined') {
-                    window.clearTimeout(timeoutID);
-                }
-                timeoutID = window.setTimeout(prefill_student_quick_registration_fields, 200);
-            });
     
             student_quick_registration_validator = $("#student_quick_registration_form").validate({
                 submitHandler: function (form) {
@@ -180,9 +152,6 @@ $('.student_quick_registration_link').live('click', function (e) {
                         required: true
                     },
                     last_name: {
-                        required: true
-                    },
-                    school: {
                         required: true
                     },
                     degree_program: {

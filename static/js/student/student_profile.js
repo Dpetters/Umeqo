@@ -200,9 +200,6 @@ $(document).ready( function() {
             last_name: {
                 required: true
             },
-            school: {
-                required: true
-            },
             degree_program: {
                 required: true
             },
@@ -218,8 +215,10 @@ $(document).ready( function() {
                 maxlength: 4
             },
             resume:{
+                required: {
+                    depends: function(element){ return !EDIT; },   
+                },
                 accept: "pdf",
-                //file_size: 3*1024*1024
             },
             website:{
                 complete_url: true
@@ -252,6 +251,7 @@ $(document).ready( function() {
                 range: GPA_RANGE
             },
             resume: {
+                required: PDF_RESUME_REQUIRED,
                 accept:PDF_RESUME_REQUIRED,
                 file_size: "This file exceed the " + MAX_RESUME_SIZE/1024/1024 + "MB size limit."
             },

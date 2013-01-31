@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+Confirm Your Email |
+{% endblock %}
+
+{% block content_area %}
+<div class="simple_block centered grande">
+    <h1>Confirm Your Email</h1>
+    <p class="message_section">
+    A confirmation email has been sent to
+    {% if email %}
+        <strong>{{ email }}</strong>{% else %}
+        your email{% endif %}. Please confirm your email address by clicking the activation link the email.
+    </p>
+</div>
+{% endblock %}
