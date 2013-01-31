@@ -26,6 +26,3 @@
 #event_list_export_form label[for='id_emails']{
     margin-top:24px;
 }
-#event_list_export_form input[type=submit]{
-    width:72px;
-}
