@@ -17,6 +17,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import simplejson
 from django.template import RequestContext, loader, Context
 from django.views.decorators.http import require_http_methods, require_POST, require_GET
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render_to_response
 from django.template.loader import render_to_string
 
@@ -545,6 +546,7 @@ def event_schedule(request):
     return HttpResponse(simplejson.dumps(schedule), mimetype="application/json")
 
 
+@csrf_exempt
 @login_required
 @require_http_methods(["GET", "POST"])
 def event_rsvp(request, event_id):
