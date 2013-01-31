@@ -3,16 +3,57 @@ from __future__ import absolute_import
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
 from django.utils import simplejson
 from django.views.decorators.http import require_POST, require_GET
 
 from campus_org.decorators import is_campus_org
-from campus_org.forms import CampusOrgPreferencesForm, CampusOrgProfileForm
-from campus_org.models import CampusOrg
+from campus_org.forms import CampusOrgPreferencesForm, CampusOrgProfileForm, CampusOrgRegistrationForm
+from campus_org.models import CampusOrg 
 from core import messages
 from core.decorators import render_to
 from core.http import Http400
+from core.models import CampusOrgType
+from registration.backend import RegistrationBackend
 from registration.forms import PasswordChangeForm
+from student.decorators import is_student
+
+
+@user_passes_test(is_student)
+@render_to('campus_org_registration_complete.html')
+def campus_org_registration_complete(request, extra_context = None):
+    email = request.GET.get('email', None)
+    context = {'email': email}
+    #context.update(extra_context)
+    return context
+
+
+@user_passes_test(is_student)
+@render_to("campus_org_registration.html")
+def campus_org_registration(request, form_class = CampusOrgRegistrationForm, success_url = 'campus_org_registration_complete', extra_context = None):
+     if request.method == 'POST':
+          form = form_class(data=request.POST)
+          if form.is_valid():
+              user_info =  {'username': form.cleaned_data['email'], 
+                            'email': form.cleaned_data['email'], 
+                            'password': form.cleaned_data['password']}
+              user = RegistrationBackend().register(request, **user_info)
+              user.userattributes.has_agreed_to_terms()
+              
+              try:
+                  campus_org = CampusOrg.objects.get(name=form.cleaned_data['name'])
+              except CampusOrg.DoesNotExist:
+                  
+                  campus_org = CampusOrg(name=form.cleaned_data['name'], type = CampusOrgType.objects.get(name="Other"), user = user)
+              
+              campus_org.user = user
+              campus_org.save()
+              return redirect(success_url)
+     else:
+          form = form_class()
+     context = {'form':form}
+     context.update(extra_context or {}) 
+     return context
 
 
 @user_passes_test(is_campus_org)
