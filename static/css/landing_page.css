@@ -351,8 +351,11 @@ label.required span.error {
     -webkit-border-radius: 0px 0px 5px 5px;
     -moz-border-radius: 0px 0px 5px 5px;
     border-radius: 0px 0px 5px 5px;
-    font-size: 14px;
+}
+.message, .message a{
+    color:#333;
     text-shadow: #EEE 0 1px 0;
+    font-size: 14px;
 }
 .message.error {
     background: #900000; /* Old browsers */
@@ -365,6 +368,12 @@ label.required span.error {
     background: linear-gradient(top, #900000 0%,#700000 100%); /* W3C */
     color: #FFF;
     text-shadow: #000 0 -1px 0;
+}
+.message.announcement {
+    margin-top:10px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+     border-radius: 5px 5px 5px 5px;
 }
 .contact_us {
     clear: both;
