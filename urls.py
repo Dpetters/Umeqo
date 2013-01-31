@@ -70,11 +70,13 @@ urlpatterns += patterns('core.views',
     (r'^cache-status/$', 'cache_status', {}, 'cache_status'),
 )
 urlpatterns += patterns('campus_org.views',
+    (r'^campus-org/registration/$', 'campus_org_registration', {'extra_context': {'password_min_length': settings.PASSWORD_MIN_LENGTH}}, "campus_org_registration"),
     (r'^campus-org/info/$', 'campus_org_info_dialog', {}, 'campus_org_info_dialog'),
     (r'^campus-org/check-uniqueness/$', 'check_campus_org_uniqueness', {}, 'check_campus_org_uniqueness'),
     (r'^campus-org/profile/$', 'campus_org_profile', {}, "campus_org_profile"),
     (r'^campus-org/account/$', 'campus_org_account', {'extra_context':{'password_min_length': settings.PASSWORD_MIN_LENGTH}}, 'campus_org_account'),
     (r'^campus-org/account/preferences/$', 'campus_org_account_preferences', {}, 'campus_org_account_preferences'),
+    (r'^campus-org/registration/complete/$', 'campus_org_registration_complete', {}, 'campus_org_registration_complete'),
 )
 urlpatterns += patterns('registration.views',
     (r'^login/$', 'login', {'extra_context': {'authentication_form': AuthenticationForm}}, 'login'),

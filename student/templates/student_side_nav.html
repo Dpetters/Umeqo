@@ -20,6 +20,8 @@
     <a href="{% url events category="upcoming" %}">Browse Events</a>
     <h3>Employers</h3>
     <a href="{% url employers %}">Browse Employers</a>
+    <h3>Campus Organizations</h3>
+    <a href="{% url campus_org_registration %}">Request Account</a>
     <h3>Profile</h3>
     <a href="{% url student_profile %}">{% if user.student.profile_created %}Edit{% else %}Create{% endif %} Profile</a>
     {% if user.student.profile_created %}
