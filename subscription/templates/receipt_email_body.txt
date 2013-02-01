@@ -5,5 +5,5 @@ The receipt for your recent Umeqo purchase is attached.
 
 It is only a receipt, no payment is due.
     
-If you have any questions, please contact us anytime at contact@umeqo.com. Thank you for your business!
+If you have any questions, please contact us anytime at team@umeqo.com. Thank you for your business!
 {% endblock %}

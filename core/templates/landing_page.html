@@ -85,11 +85,9 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <!-- 
         <div class="message announcement">
              We've got exciting news! Umeqo has agreed to be acquired by Readyforce. <a href="http://blog.readyforce.com/press-releases/readyforce-acquires-mit-umeqo-access-to-talent-and-college-event-management-platform/">Learn More</a>
          </div>
-         -->
         <a id="login_button" class="button button-menu" href="{% url login %}">Sign In</a>
         <div id="logo">
             <h1>Umeqo</h1>
@@ -105,13 +103,14 @@
                 <p class="col"><a href="#employers">For employers &#0187;</a></p>
             </div>
             <div class="contact_us">
-                <a href="mailto:contact@umeqo.com">contact@umeqo.com</a>
+                <a href="mailto:team@umeqo.com">team@umeqo.com</a>
             </div>
             <div id="students">
                 <div class="col">
                     <h1>Save Time. Get Noticed.</h1>
                     <div id="student_signup_block" class="light_module">
-                       <p class="info">Sign up, drop your resume, and subscribe to the employers you're interested in. We'll take care of the rest.</p>
+                       <p class="info">Sign up, fill out your profile, and subscribe to the employers you're interested in. We'll take care of the rest.</p>
+                       <p class="info"><strong>Once you have a student account, you will be able to request credentials for campus organizations.</strong></p>
                        <form id="student_registration_form" action="{% url student_registration %}" method="POST">
                             {% csrf_token %}
                             {% for field in student_reg_form %}
