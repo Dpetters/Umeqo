@@ -1,1 +1,1 @@
-{{name}}, {{email}}
+[Umeqo Admin] Inquiry Response
