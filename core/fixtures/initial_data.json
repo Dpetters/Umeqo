@@ -5807,6 +5807,36 @@
   }
  },
  {
+  "pk": 187,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-01-30 20:45:34",
+   "name_and_level": "Shanghainese (Basic)",
+   "last_updated": "2013-01-30 20:45:34",
+   "name": "Shanghainese"
+  }
+ },
+ {
+  "pk": 188,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-01-30 20:45:34",
+   "name_and_level": "Shanghainese (Proficient)",
+   "last_updated": "2013-01-30 20:45:34",
+   "name": "Shanghainese"
+  }
+ },
+ {
+  "pk": 189,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-01-30 20:45:34",
+   "name_and_level": "Shanghainese (Fluent)",
+   "last_updated": "2013-01-30 20:45:34",
+   "name": "Shanghainese"
+  }
+ },
+ {
   "pk": 1,
   "model": "core.course",
   "fields": {
