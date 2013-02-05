@@ -5837,6 +5837,36 @@
   }
  },
  {
+  "pk": 190,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-02-05 05:57:18",
+   "name_and_level": "Kannada (Basic)",
+   "last_updated": "2013-02-05 05:57:18",
+   "name": "Kannada"
+  }
+ },
+ {
+  "pk": 191,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-02-05 05:57:18",
+   "name_and_level": "Kannada (Proficient)",
+   "last_updated": "2013-02-05 05:57:18",
+   "name": "Kannada"
+  }
+ },
+ {
+  "pk": 192,
+  "model": "core.language",
+  "fields": {
+   "date_created": "2013-02-05 05:57:18",
+   "name_and_level": "Kannada (Fluent)",
+   "last_updated": "2013-02-05 05:57:18",
+   "name": "Kannada"
+  }
+ },
+ {
   "pk": 1,
   "model": "core.course",
   "fields": {
