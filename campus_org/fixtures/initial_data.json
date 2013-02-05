@@ -7992,6 +7992,24 @@
   }
  },
  {
+  "pk": 542,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": null,
+   "school": null,
+   "last_updated": "2013-01-31 10:38:39",
+   "description": null,
+   "image": "",
+   "slug": null,
+   "email": null,
+   "user": 2298,
+   "date_created": "2013-01-31 10:38:39",
+   "type": 16,
+   "display": false,
+   "name": "University of Iowa ACM Chapter"
+  }
+ },
+ {
   "pk": 476,
   "model": "campus_org.campusorg",
   "fields": {

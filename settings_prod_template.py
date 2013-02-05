@@ -4,7 +4,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ("Umeqo Team", "contact@umeqo.com"),
+    ("Umeqo Team", "team@umeqo.com"),
 )
 MANAGERS = ADMINS
 

@@ -32,7 +32,7 @@ from employer.decorators import is_recruiter
 from employer.forms import StudentSearchForm
 from employer.models import Employer
 from events.models import Event, FeaturedEvent
-from events.view_helpers import get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
+from events.view_helpers import get_recent_events, get_upcoming_events_context, get_upcoming_events_sqs, get_categorized_events_context
 from haystack.query import SearchQuerySet, SQ
 from notification.models import Notice
 from student.decorators import is_student
@@ -365,7 +365,9 @@ def home(request, extra_context=None):
         context.update(msg = page_messages.get(msg))
     if request.user.is_staff:
         return HttpResponseRedirect(reverse("login"))
+
     if request.user.is_authenticated():
+        context['recent_events'] = get_recent_events(request.user);
         if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
@@ -383,6 +385,7 @@ def home(request, extra_context=None):
                     'unseen_notice_num': Notice.objects.unseen_count_for(request.user),
                     'subscribers': Student.objects.filter(subscriptions__in=[request.user.recruiter.employer]).count()
                 });
+                print context
                 context['TEMPLATE'] = 'employer_home.html'
             elif is_campus_org(request.user):
                 context.update({
