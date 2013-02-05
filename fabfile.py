@@ -22,7 +22,7 @@ def staging():
     env.type = "staging"
     env.hosts = ['root@staging.umeqo.com']
     env.password = settings.STAGING_PASSWORD
-    env.directory = '/var/www/umeqo'
+    env.directory = '/var/www/umeqo_staging'
     env.activate = 'source /usr/local/pythonenv/UMEQO/bin/activate'
 
 def prod():
