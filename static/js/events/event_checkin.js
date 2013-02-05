@@ -165,7 +165,7 @@ $(document).ready(function(){
     $('#close_box').hover(
         function() {
             if (hasClickedClose) {
-                $(this).stop().animate({'opacity': 1});
+                $(this).stop().animate({'opacity': 1}, 20000);
             }
         },
         function() {
