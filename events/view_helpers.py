@@ -304,10 +304,11 @@ def get_recent_events_sqs(user):
     return recent_events
 
 def get_recent_events(user):
-    return get_objects(get_recent_events_sqs(user))
+    recent_events_sqs = get_recent_events_sqs(user)
+    return map(event_map, get_objects(recent_events_sqs), [user]*len(recent_events_sqs))
 
 def get_objects(sqs):
-    return [x.object for x in sqs]
+    return [x.object for x in sqs.load_all()]
 
 
 def get_categorized_events_context(events_exist, event_sqs, user):

@@ -365,7 +365,9 @@ def home(request, extra_context=None):
         context.update(msg = page_messages.get(msg))
     if request.user.is_staff:
         return HttpResponseRedirect(reverse("login"))
+
     if request.user.is_authenticated():
+        context['recent_events'] = get_recent_events(request.user);
         if is_student(request.user):
             if not request.user.student.profile_created:
                 return redirect('student_profile')
@@ -378,7 +380,6 @@ def home(request, extra_context=None):
             context.update(get_upcoming_events_context(request.user))
             if is_recruiter(request.user):
                 context.update({
-                    'recent_events': get_recent_events(request.user),
                     'search_form': StudentSearchForm(),
                     'notices': Notice.objects.notices_for(request.user),
                     'unseen_notice_num': Notice.objects.unseen_count_for(request.user),

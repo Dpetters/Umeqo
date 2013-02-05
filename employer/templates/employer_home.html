@@ -65,7 +65,7 @@
     <div class="main_block_content">
         {% include "upcoming_events_list.html" %}
         {% include "recent_events_list.html" %}
-        <div id="no_events_block" class="simple_block centered" {% if events_exist %}style="display:none"{% endif %}>
+        <div id="no_events_block" class="simple_block centered" {% if events_exist or recent_events %}style="display:none"{% endif %}>
             <p>
                 You can post your company's events and deadlines for students to view and add to their calendars.
             </p>
