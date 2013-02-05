@@ -298,6 +298,18 @@ def get_past_events_sqs(user):
     return events
 
 
+def get_recent_events_sqs(user):
+    past_events = get_past_events_sqs(user)
+    recent_events = past_events.filter(end_datetime__gt=datetime.now()-timedelta(365/12)) 
+    return recent_events
+
+def get_recent_events(user):
+    return get_objects(get_recent_events_sqs(user))
+
+def get_objects(sqs):
+    return [x.object for x in sqs]
+
+
 def get_categorized_events_context(events_exist, event_sqs, user):
     context = {'events_exist':events_exist}
     tomorrow = datetime.combine(date.today() + timedelta(days=1), time())
