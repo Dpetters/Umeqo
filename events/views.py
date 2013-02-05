@@ -647,7 +647,6 @@ def event_checkin(request, event_id):
                 'error': 'Duplicate checkin!'
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
-        name = None
         if not name and user and user.student and user.student.first_name and user.student.last_name:
             name = "%s %s" % (user.student.first_name, user.student.last_name)
         attendee = Attendee(email=email, name=name, student=student, event=event)
