@@ -8,16 +8,19 @@ Version 2.0.0
 
 ## INSTALLATION
 
-1. Create a python virtual environment named UMEQO somewhere using virtualenv by running `virtualenv --no-site-packages UMEQO`.
-2. Execute `pip install -r requirements.txt` from the project root. You might get compilation errors. If you do, you're likely just missing some dev package. Google to find a fix.
-3. Create a copy of *settings_local_template.py* in the project root and name it *settings_local.py*.
-4. Open *settings_local.py* and add a tuple (*Your name*, *your email*) to the ADMINS variable.
-5. Create a folder named *media* in the project root. Create a folder named *ckeditor* inside of that folder.
-6. Install java if you don't have it.
-7. In the project root, execute `fab create_database`, followed by `fab load_local_data`.
-8. From the project root, run `python manage.py clear_prod_stripe_ids`. We don't want to use prod employer stripe ids locally and there is no way to keep them from getting committed atm.
-9. From the project root, execute `python manage.py runcserver`. You should get no errors.
-10. Go to *localhost:8000* in your browser. The site landing page should load without any errors.
+1. Install python 2.7.
+2. Install virtualenv by running "pip install virtualenv". If you don't have pip install it by running "easy_install pip". If you don't have easy_install, google "python setuptools" and install that to get it.
+3. Create whatever name directory you want to work in ("workstation" or "dev"), cd into it, and run "git clone git@github.com:Dpetters/Umeqo.git".
+4. Create a python virtual environment named UMEQO somewhere using virtualenv by running `virtualenv --no-site-packages UMEQO`.
+5. Execute `pip install -r requirements.txt` from the project root. You might get compilation errors. If you do, you're likely just missing some dev package. Google to find a fix.
+6. Create a copy of *settings_local_template.py* in the project root and name it *settings_local.py*.
+7. Open *settings_local.py* and add a tuple (*Your name*, *your email*) to the ADMINS variable.
+8. Create a folder named *media* in the project root. Create a folder named *ckeditor* inside of that folder.
+9. Install java if you don't have it.
+10. In the project root, execute `fab create_database`, followed by `fab load_local_data`.
+11. From the project root, run `python manage.py clear_prod_stripe_ids`. We don't want to use prod employer stripe ids locally and there is no way to keep them from getting committed atm.
+12. From the project root, execute `python manage.py runcserver`. You should get no errors.
+13. Go to *localhost:8000* in your browser. The site landing page should load without any errors.
 
 ## WORKFLOW
 
