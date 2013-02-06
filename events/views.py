@@ -34,6 +34,7 @@ from core.management.commands.zip_resumes import zip_resumes
 from core.models import Edit
 from core.view_helpers import english_join
 from employer.decorators import is_recruiter
+from employer.models import Recruiter
 from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
 from events.models import Attendee, Event, Invitee, RSVP, DroppedResume, notify_about_event
 from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_dropped_resumes, export_event_list_csv, export_event_list_text
@@ -189,6 +190,7 @@ def event_page(request, id, slug, extra_context=None):
         if is_campus_org(request.user):
             context['can_edit'] = (event.owner == request.user)
             context['show_admin'] = (event.owner == request.user)
+            context['recruiters_with_access'] = map(lambda x: {'name':"%s %s" % (x.first_name, x.last_name), 'email': x.email}, User.objects.filter(recruiter__employer__in=event.attending_employers.all()))
         elif is_recruiter(request.user):
             context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
