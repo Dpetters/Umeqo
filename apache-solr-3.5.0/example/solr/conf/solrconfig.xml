@@ -433,9 +433,9 @@
                and old cache.  
       -->
     <filterCache class="solr.FastLRUCache"
-                 size="512"
-                 initialSize="512"
-                 autowarmCount="0"/>
+                 size="16384"
+                 initialSize="16384"
+                 autowarmCount="1024"/>
 
     <!-- Query Result Cache
          
@@ -443,9 +443,9 @@
          (DocList) based on a query, a sort, and the range of documents requested.  
       -->
     <queryResultCache class="solr.LRUCache"
-                     size="512"
-                     initialSize="512"
-                     autowarmCount="0"/>
+                     size="16384"
+                     initialSize="16384"
+                     autowarmCount="1024"/>
    
     <!-- Document Cache
 
@@ -454,9 +454,9 @@
          this cache will not be autowarmed.  
       -->
     <documentCache class="solr.LRUCache"
-                   size="512"
-                   initialSize="512"
-                   autowarmCount="0"/>
+                   size="16384"
+                   initialSize="16384"
+                   autowarmCount="1024"/>
     
     <!-- Field Value Cache
          
@@ -466,8 +466,8 @@
       -->
     <!--
        <fieldValueCache class="solr.FastLRUCache"
-                        size="512"
-                        autowarmCount="128"
+                        size="1024"
+                        autowarmCount="256"
                         showItems="32" />
       -->
 
