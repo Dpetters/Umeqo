@@ -3,14 +3,14 @@
   "pk": 14,
   "model": "core.tutorial",
   "fields": {
-   "last_updated": "2011-12-01 22:52:15",
-   "name": "Changing Your Password",
+   "last_updated": "2013-02-05 23:26:42",
+   "name": "Change Your Password",
    "image": "",
    "display": true,
    "topic": 9,
    "audience": 2,
    "sort_order": 1.0,
-   "action": null,
+   "action": "Change Your Password",
    "date_created": "2011-12-01 14:43:06",
    "slug": "changing-your-password"
   }
