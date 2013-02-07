@@ -2966,6 +2966,28 @@
   }
  },
  {
+  "pk": 324,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "last_updated": "2013-02-06 19:02:41",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-02-06 19:02:41",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "IDx"
+  }
+ },
+ {
   "pk": 251,
   "model": "employer.employer",
   "fields": {
@@ -3070,6 +3092,29 @@
    "careers_website": "",
    "slug": "",
    "name": "Inkling"
+  }
+ },
+ {
+  "pk": 325,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    13,
+    36
+   ],
+   "last_updated": "2013-02-06 19:03:36",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-02-06 19:03:36",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "Integrated DNA Technologies"
   }
  },
  {
@@ -3294,6 +3339,28 @@
    "careers_website": null,
    "slug": null,
    "name": "Jet Propulsion Laboratory"
+  }
+ },
+ {
+  "pk": 323,
+  "model": "employer.employer",
+  "fields": {
+   "industries": [
+    36
+   ],
+   "last_updated": "2013-02-06 19:02:13",
+   "description": null,
+   "starred_students": [],
+   "stripe_id": null,
+   "feature_in_monthly_newsletter": false,
+   "visible": false,
+   "offered_job_types": [],
+   "date_created": "2013-02-06 19:02:13",
+   "logo": "",
+   "size": null,
+   "careers_website": null,
+   "slug": null,
+   "name": "John Deere"
   }
  },
  {
