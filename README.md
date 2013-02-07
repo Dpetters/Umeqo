@@ -50,4 +50,14 @@ These are custom commands that can be run using `python manage.py <command-name>
 
 ## FABFILE COMMANDS
 
-*Coming Soon*
+[http://docs.fabfile.org/en/1.5/](Tutorial)
+
+`restart` - restarts apache. Can be run on staging prod or demo. Needs to be called whenever python code is updated and is thus called by `update`.
+
+`restart_all` - restarts nginx and apache. Can be run on raging prod or demo. Ty
+
+`migrate` - runs all available migrations for all apps. Is called by `update`.
+
+`create_database` - deletes existing database, creates a new one, runs migrations, and loads in production data. Can only be called locally and on staging.
+
+`schemamigrate` - runs through all the apps and checks for schema changes. Creates migrations for any new ones.
