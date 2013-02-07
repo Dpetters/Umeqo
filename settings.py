@@ -90,7 +90,7 @@ PROD_DATA_MODELS = {
     'campus_org': ['campusorg'],
     'employer':['employer'],
     'registration': ['interestedperson'],
-    'core':['tutorial', 'campusorgtype', 'location', 'topic', \
+    'core':['domainname', 'tutorial', 'campusorgtype', 'location', 'topic', \
             'question', 'schoolyear', 'graduationyear', \
             'language', 'course','employmenttype', \
             'industry', 'eventtype', 'school'],
