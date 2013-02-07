@@ -206,6 +206,10 @@
                 {% if not event.is_deadline %}
                     <h2>Checked-in ({{attendees|length}})</h2>
                 {% endif %}
+                {% if user.campusorg %}
+                  <h2>Recruiters with Access ({{recruiters_with_access|length}})</h2>
+                {% endif %}
+
             </div>
             {% if not event.is_public %}
                 <div id="event_invites" class="responses">
@@ -268,7 +272,7 @@
                     <div class="commands right_side_container">
                         <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="attendees" href="#" class="export_event_list_link">Export</a>
                         {% if user.recruiter %}
-                        <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">Browse</a>
+                          <a id="view_student_list_link" href="{% url employer_students %}?slt={{event.name|add:' Attendees'|urlencode}}">Browse</a>
                         {% endif %}
                     </div>
                     {% include "event_responses.html" with students=attendees %}
@@ -276,6 +280,15 @@
                     <div id="event_response_empty">There are no check-ins yet.</div>
                 {% endif %}
             </div>
+            {% if user.campusorg %}
+              <div class="hid responses">
+                {% if recruiters_with_access %}
+                    {% include "event_responses.html" with students=recruiters_with_access %}
+                {% else %}
+                <div id="event_response_empty">No recruiters have access to this event's students. <a href="{% url event_edit id=event.id %}"> Edit this event</a> and mark employers as attending to give access!.</div>
+                {% endif %}
+              </div>
+            {% endif %}
             <p>*Grayed out students do not have an Umeqo account.</p>
         </div>
         <div class="clearfix"></div>
