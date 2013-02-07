@@ -1,0 +1,5 @@
+A new domain has been added -
+
+Domain Name: {{domain}}
+
+Please validate.
