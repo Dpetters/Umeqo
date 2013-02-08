@@ -5,8 +5,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:41",
    "domain": "mit.edu",
-   "last_updated": "2013-02-06 18:55:41",
-   "school": null
+   "last_updated": "2013-02-07 17:42:28",
+   "school": 1
   }
  },
  {
@@ -15,8 +15,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:42",
    "domain": "alum.mit.edu",
-   "last_updated": "2013-02-06 18:55:42",
-   "school": null
+   "last_updated": "2013-02-07 17:43:48",
+   "school": 1
   }
  },
  {
@@ -25,8 +25,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:42",
    "domain": "csail.mit.edu",
-   "last_updated": "2013-02-06 18:55:42",
-   "school": null
+   "last_updated": "2013-02-07 17:42:22",
+   "school": 1
   }
  },
  {
@@ -35,8 +35,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:43",
    "domain": "sloan.mit.edu",
-   "last_updated": "2013-02-06 18:55:43",
-   "school": null
+   "last_updated": "2013-02-07 17:41:58",
+   "school": 5
   }
  },
  {
@@ -45,8 +45,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:43",
    "domain": "college.harvard.edu",
-   "last_updated": "2013-02-06 18:55:43",
-   "school": null
+   "last_updated": "2013-02-07 17:46:54",
+   "school": 9
   }
  },
  {
@@ -55,8 +55,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:44",
    "domain": "media.mit.edu",
-   "last_updated": "2013-02-06 18:55:44",
-   "school": null
+   "last_updated": "2013-02-07 17:43:55",
+   "school": 1
   }
  },
  {
@@ -65,8 +65,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:44",
    "domain": "seas.harvard.edu",
-   "last_updated": "2013-02-06 18:55:44",
-   "school": null
+   "last_updated": "2013-02-07 17:54:49",
+   "school": 9
   }
  },
  {
@@ -75,8 +75,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:45",
    "domain": "bu.edu",
-   "last_updated": "2013-02-06 18:55:45",
-   "school": null
+   "last_updated": "2013-02-07 18:08:48",
+   "school": 26
   }
  },
  {
@@ -85,8 +85,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "princeton.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:09:45",
+   "school": 27
   }
  },
  {
@@ -95,8 +95,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "uiowa.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:08:26",
+   "school": 25
   }
  },
  {
@@ -105,8 +105,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "massart.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:08:02",
+   "school": 24
   }
  },
  {
@@ -115,8 +115,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "ucdavis.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:07:18",
+   "school": 23
   }
  },
  {
@@ -125,8 +125,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "iu.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 17:45:28",
+   "school": 8
   }
  },
  {
@@ -135,18 +135,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "umich.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
-  }
- },
- {
-  "pk": 15,
-  "model": "core.domainname",
-  "fields": {
-   "date_created": "2013-02-06 18:55:46",
-   "domain": "gmail.com.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:06:46",
+   "school": 22
   }
  },
  {
@@ -155,8 +145,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "wpi.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:06:20",
+   "school": 21
   }
  },
  {
@@ -165,8 +155,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "tufts.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:05:19",
+   "school": 20
   }
  },
  {
@@ -175,8 +165,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "husky.neu.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:04:54",
+   "school": 19
   }
  },
  {
@@ -185,8 +175,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "ucsd.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 18:04:14",
+   "school": 18
   }
  },
  {
@@ -195,8 +185,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "math.mit.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 17:54:26",
+   "school": 1
   }
  },
  {
@@ -205,8 +195,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:46",
    "domain": "brown.edu",
-   "last_updated": "2013-02-06 18:55:46",
-   "school": null
+   "last_updated": "2013-02-07 17:54:18",
+   "school": 17
   }
  },
  {
@@ -215,8 +205,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:47",
    "domain": "alumni.duke.edu",
-   "last_updated": "2013-02-06 18:55:47",
-   "school": null
+   "last_updated": "2013-02-07 17:53:55",
+   "school": 16
   }
  },
  {
@@ -225,8 +215,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:47",
    "domain": "wellesley.edu",
-   "last_updated": "2013-02-06 18:55:47",
-   "school": null
+   "last_updated": "2013-02-07 17:53:14",
+   "school": 15
   }
  },
  {
@@ -235,8 +225,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:47",
    "domain": "wit.edu",
-   "last_updated": "2013-02-06 18:55:47",
-   "school": null
+   "last_updated": "2013-02-07 17:51:22",
+   "school": 14
   }
  },
  {
@@ -245,8 +235,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:47",
    "domain": "gsb.columbia.edu",
-   "last_updated": "2013-02-06 18:55:47",
-   "school": null
+   "last_updated": "2013-02-07 17:50:58",
+   "school": 13
   }
  },
  {
@@ -255,8 +245,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:47",
    "domain": "bc.edu",
-   "last_updated": "2013-02-06 18:55:47",
-   "school": null
+   "last_updated": "2013-02-07 17:50:34",
+   "school": 12
   }
  },
  {
@@ -265,8 +255,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:48",
    "domain": "babson.edu",
-   "last_updated": "2013-02-06 18:55:48",
-   "school": null
+   "last_updated": "2013-02-07 17:49:30",
+   "school": 11
   }
  },
  {
@@ -275,8 +265,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:48",
    "domain": "suffolk.edu",
-   "last_updated": "2013-02-06 18:55:48",
-   "school": null
+   "last_updated": "2013-02-07 17:49:05",
+   "school": 10
   }
  },
  {
@@ -285,8 +275,8 @@
   "fields": {
    "date_created": "2013-02-06 18:55:48",
    "domain": "erau.edu",
-   "last_updated": "2013-02-06 18:55:48",
-   "school": null
+   "last_updated": "2013-02-07 17:43:40",
+   "school": 6
   }
  },
  {
@@ -295,7 +285,17 @@
   "fields": {
    "date_created": "2013-02-06 18:55:48",
    "domain": "eden.rutgers.edu",
-   "last_updated": "2013-02-06 18:55:48",
+   "last_updated": "2013-02-07 17:41:10",
+   "school": 4
+  }
+ },
+ {
+  "pk": 31,
+  "model": "core.domainname",
+  "fields": {
+   "date_created": "2013-02-07 18:07:04",
+   "domain": "alum.rpi.edu",
+   "last_updated": "2013-02-07 18:07:04",
    "school": null
   }
  },
@@ -7114,10 +7114,240 @@
   "pk": 3,
   "model": "core.school",
   "fields": {
-   "url": "",
+   "url": "http://columbia.edu/",
    "date_created": "2013-01-30 13:21:08",
-   "last_updated": "2013-01-30 13:21:08",
+   "last_updated": "2013-02-07 17:47:35",
    "name": "Columbia University"
+  }
+ },
+ {
+  "pk": 4,
+  "model": "core.school",
+  "fields": {
+   "url": "http://www.rutgers.edu/",
+   "date_created": "2013-02-07 17:41:06",
+   "last_updated": "2013-02-07 17:41:06",
+   "name": "Rutgers University"
+  }
+ },
+ {
+  "pk": 5,
+  "model": "core.school",
+  "fields": {
+   "url": "http://mitsloan.mit.edu/",
+   "date_created": "2013-02-07 17:41:54",
+   "last_updated": "2013-02-07 17:41:54",
+   "name": "MIT Sloan School of Management"
+  }
+ },
+ {
+  "pk": 6,
+  "model": "core.school",
+  "fields": {
+   "url": "http://www.erau.edu/index.html",
+   "date_created": "2013-02-07 17:43:37",
+   "last_updated": "2013-02-07 17:43:37",
+   "name": "Embry-Riddle Aeronautical University"
+  }
+ },
+ {
+  "pk": 8,
+  "model": "core.school",
+  "fields": {
+   "url": "http://iu.edu/",
+   "date_created": "2013-02-07 17:45:27",
+   "last_updated": "2013-02-07 17:45:27",
+   "name": "Indiana University"
+  }
+ },
+ {
+  "pk": 9,
+  "model": "core.school",
+  "fields": {
+   "url": "http://harvard.edu/",
+   "date_created": "2013-02-07 17:46:44",
+   "last_updated": "2013-02-07 17:47:52",
+   "name": "Harvard University"
+  }
+ },
+ {
+  "pk": 10,
+  "model": "core.school",
+  "fields": {
+   "url": "http://suffolk.edu/",
+   "date_created": "2013-02-07 17:49:04",
+   "last_updated": "2013-02-07 17:49:04",
+   "name": "Suffolk University"
+  }
+ },
+ {
+  "pk": 11,
+  "model": "core.school",
+  "fields": {
+   "url": "http://babson.edu/",
+   "date_created": "2013-02-07 17:49:27",
+   "last_updated": "2013-02-07 17:50:07",
+   "name": "Babson College"
+  }
+ },
+ {
+  "pk": 12,
+  "model": "core.school",
+  "fields": {
+   "url": "http://bc.edu/",
+   "date_created": "2013-02-07 17:50:32",
+   "last_updated": "2013-02-07 17:50:32",
+   "name": "Boston College"
+  }
+ },
+ {
+  "pk": 13,
+  "model": "core.school",
+  "fields": {
+   "url": "http://gsb.columbia.edu/",
+   "date_created": "2013-02-07 17:50:56",
+   "last_updated": "2013-02-07 17:50:56",
+   "name": "Columbia Business School"
+  }
+ },
+ {
+  "pk": 14,
+  "model": "core.school",
+  "fields": {
+   "url": "http://wit.edu/",
+   "date_created": "2013-02-07 17:51:21",
+   "last_updated": "2013-02-07 17:51:21",
+   "name": "Wentworth Institute of Technology"
+  }
+ },
+ {
+  "pk": 15,
+  "model": "core.school",
+  "fields": {
+   "url": "http://new.wellesley.edu/",
+   "date_created": "2013-02-07 17:53:10",
+   "last_updated": "2013-02-07 17:53:10",
+   "name": "Wellesley College"
+  }
+ },
+ {
+  "pk": 16,
+  "model": "core.school",
+  "fields": {
+   "url": "http://duke.edu/",
+   "date_created": "2013-02-07 17:53:43",
+   "last_updated": "2013-02-07 17:53:43",
+   "name": "Duke University"
+  }
+ },
+ {
+  "pk": 17,
+  "model": "core.school",
+  "fields": {
+   "url": "http://brown.edu/",
+   "date_created": "2013-02-07 17:54:16",
+   "last_updated": "2013-02-07 17:54:16",
+   "name": "Brown University"
+  }
+ },
+ {
+  "pk": 18,
+  "model": "core.school",
+  "fields": {
+   "url": "http://ucsd.edu/",
+   "date_created": "2013-02-07 18:04:12",
+   "last_updated": "2013-02-07 18:04:12",
+   "name": "UC San Diego"
+  }
+ },
+ {
+  "pk": 19,
+  "model": "core.school",
+  "fields": {
+   "url": "http://www.northeastern.edu/",
+   "date_created": "2013-02-07 18:04:50",
+   "last_updated": "2013-02-07 18:04:50",
+   "name": "Northeastern University"
+  }
+ },
+ {
+  "pk": 20,
+  "model": "core.school",
+  "fields": {
+   "url": "http://tufts.edu/",
+   "date_created": "2013-02-07 18:05:16",
+   "last_updated": "2013-02-07 18:05:16",
+   "name": "Tufts University"
+  }
+ },
+ {
+  "pk": 21,
+  "model": "core.school",
+  "fields": {
+   "url": "http://www.wpi.edu/",
+   "date_created": "2013-02-07 18:06:15",
+   "last_updated": "2013-02-07 18:06:15",
+   "name": "Worcester Polytechnic Institute"
+  }
+ },
+ {
+  "pk": 22,
+  "model": "core.school",
+  "fields": {
+   "url": "http://umich.edu/",
+   "date_created": "2013-02-07 18:06:44",
+   "last_updated": "2013-02-07 18:06:44",
+   "name": "University of Michigan"
+  }
+ },
+ {
+  "pk": 23,
+  "model": "core.school",
+  "fields": {
+   "url": "http://ucdavis.edu/",
+   "date_created": "2013-02-07 18:07:16",
+   "last_updated": "2013-02-07 18:07:16",
+   "name": "UC Davis"
+  }
+ },
+ {
+  "pk": 24,
+  "model": "core.school",
+  "fields": {
+   "url": "http://massart.edu/",
+   "date_created": "2013-02-07 18:07:58",
+   "last_updated": "2013-02-07 18:07:58",
+   "name": "Massachusetts College of Art and Design"
+  }
+ },
+ {
+  "pk": 25,
+  "model": "core.school",
+  "fields": {
+   "url": "http://uiowa.edu/",
+   "date_created": "2013-02-07 18:08:24",
+   "last_updated": "2013-02-07 18:08:24",
+   "name": "University of Iowa"
+  }
+ },
+ {
+  "pk": 26,
+  "model": "core.school",
+  "fields": {
+   "url": "http://bu.edu/",
+   "date_created": "2013-02-07 18:08:45",
+   "last_updated": "2013-02-07 18:08:45",
+   "name": "Boston University"
+  }
+ },
+ {
+  "pk": 27,
+  "model": "core.school",
+  "fields": {
+   "url": "http://princeton.edu/",
+   "date_created": "2013-02-07 18:09:43",
+   "last_updated": "2013-02-07 18:09:43",
+   "name": "Princeton University"
   }
  }
 ]
