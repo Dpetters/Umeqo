@@ -23,7 +23,7 @@ from core.decorators import render_to
 from core.email import get_basic_email_context, send_email
 from core.forms import CreateLanguageForm
 from core.http import Http403, Http400
-from core.models import Language, EmploymentType, Industry, GraduationYear, Course
+from core.models import Language, EmploymentType, Industry, GraduationYear, Course, DomainName
 from core.email import is_valid_email
 from countries.models import Country
 from employer.decorators import is_recruiter
@@ -298,7 +298,6 @@ def student_profile(request, form_class=StudentProfileForm, extra_context=None):
 @render_to("student_profile_preview.html")
 def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra_context=None):
     form = form_class(data=request.POST, files=request.FILES, instance=request.user.student)
-    print form.is_valid()
     if form.is_valid():
         student = form.save(commit=False)
         if form.cleaned_data['sat_w'] != None and form.cleaned_data['sat_m'] != None and form.cleaned_data['sat_v'] != None:
@@ -306,7 +305,16 @@ def student_profile_preview(request, form_class=StudentProfilePreviewForm, extra
         else:
             student.sat_t = None
         
+        school = "Not Yet Determined"
+        try:
+            domain = DomainName.objects.get(domain=student.user.email.split("@")[1])
+            if domain.school:
+                school=domain.school
+        except DomainName.DoesNotExist:
+            pass
+
         context = {'student':student,
+                   'school':school,
                    'edit' : request.user.student.profile_created,
                    'in_resume_book':False,
                    'starred':False,

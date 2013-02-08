@@ -2,6 +2,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import cStringIO
+import operator
 import os
 import re
 import zipfile
@@ -33,7 +34,7 @@ from core.email import get_basic_email_context, send_email
 from core.file_utils import find_first_file
 from core.http import Http403, Http400
 from core.management.commands.zip_resumes import zip_resumes
-from core.models import Industry
+from core.models import Industry, DomainName, School
 from core.search import search
 from core.templatetags.filters import format_unix_time
 from employer import enums as employer_enums
@@ -530,6 +531,14 @@ def employer_students(request, extra_context=None):
         if request.GET['older_than_21'] != 'N':
             am_filtering = True
             students = students.filter(older_than_21 = True)
+        
+        if request.GET.has_key('schools'):
+            am_filtering = True
+            school_ids = request.GET['schools'].split('~')
+            schools = School.objects.filter(id__in = school_ids)
+            domain_names = DomainName.objects.filter(school__in=schools)
+            domains = map(lambda x: x.domain, domain_names)
+            students = students.filter(reduce(operator.or_, (SQ(email__contains=x) for x in domains)))
 
         if request.GET.has_key('courses'):
             am_filtering = True

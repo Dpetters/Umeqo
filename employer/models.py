@@ -136,9 +136,16 @@ class ResumeBook(core_mixins.DateTracking):
         ordering = ['-last_updated']
         verbose_name = "Resume Book"
         verbose_name_plural = "Resume Books"
-        
+    
+
+# Model serves two purposes. It is used as a model for the student filtering ModelForm and is also meant to be the
+# model used for a default filtering parameters features if one is every implemented. Hence the onetoone to a 
+# recruiter. The idea is that a recruiter can save the filtering parameters they always use and jump straight to
+# them (or sign up to get notified when new students match them).
 class StudentFilteringParameters(StudentBaseAttributes, core_mixins.DateTracking):
     recruiter = models.OneToOneField(Recruiter, unique=True, editable=False)
+    
+    schools = models.ManyToManyField("core.School", blank=True, null=True)
     majors = models.ManyToManyField(Course, blank=True, null=True)    
     degree_programs = models.ManyToManyField(DegreeProgram, blank=True, null=True)
     graduation_years = models.ManyToManyField(GraduationYear, blank=True, null=True)

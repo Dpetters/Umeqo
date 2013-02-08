@@ -1,3 +1,4 @@
+from core.models import DomainName
 from core.search import search
 from haystack.query import SearchQuerySet
 from employer import enums
@@ -65,7 +66,17 @@ def process_results(recruiter, has_at_least_premium, page):
     comments = get_comments(recruiter, student_objects)
     num_of_events_attended_dict = get_num_of_events_attended_dict(recruiter, student_objects)
     visibility_attributes = get_visibility_attributes(recruiter, has_at_least_premium, student_objects)
-    
+    student_schools = []
+    for student in student_objects:
+        school="Not Specified"
+        try:
+            if student.user.email:
+                domain = DomainName.objects.get(domain=student.user.email.split("@")[1])
+                if domain.school:
+                    school=domain.school
+        except DomainName.DoesNotExist:
+           pass
+        student_schools.append(school)
     processed_results = []
     for i, object in enumerate(page.object_list):
         processed_result = (object[0],
@@ -74,8 +85,10 @@ def process_results(recruiter, has_at_least_premium, page):
                              is_starred_attributes.get(object[0], False),
                              comments.get(object[0], ""),
                              num_of_events_attended_dict.get(object[0], 0),
-                             visibility_attributes.get(object[0], False)) 
+                             visibility_attributes.get(object[0], False),
+                             student_schools[i]) 
         processed_results.append(processed_result)
+
     return processed_results
 
 
