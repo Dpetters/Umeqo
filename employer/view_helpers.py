@@ -12,12 +12,13 @@ def get_unlocked_students(employer, has_at_least_premium):
     if has_at_least_premium:
         return all_students
     else:
-        rsvps = map(lambda x: x.student, RSVP.objects.filter(attending=True, event__attending_employers__id__exact=employer.id))
-        attendees = map(lambda x: x.student, Attendee.objects.filter(event__attending_employers__id__exact=employer.id))
-        dropped_resumes = map(lambda x: x.student, DroppedResume.objects.filter(event__attending_employers__id__exact=employer.id))
+        rsvps = map(lambda x: x.student, RSVP.objects.select_related("student").filter(attending=True, event__attending_employers__id__exact=employer.id))
+        attendees = map(lambda x: x.student, Attendee.objects.select_related("student").filter(event__attending_employers__id__exact=employer.id))
+        dropped_resumes = map(lambda x: x.student, DroppedResume.objects.select_related("student").filter(event__attending_employers__id__exact=employer.id))
         students = []
+        unlocked_students = set(rsvps) | set(attendees) | set(dropped_resumes)
         for student in all_students:
-            if student in rsvps or student in attendees or student in dropped_resumes:
+            if student in unlocked_students:
                 students.append(student)
         return students
 
