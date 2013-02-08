@@ -585,7 +585,7 @@ def employer_students(request, extra_context=None):
 
         # I don't like this method of statistics
         if request.user.recruiter.employer.name != "Umeqo":
-            for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended, visible in context['results']:
+            for student, highlighted_text, is_in_resume_book, is_starred, comment, num_of_events_attended, visible, school in context['results']:
                 if student:
                     student.studentstatistics.shown_in_results_count += 1
                     student.studentstatistics.save()
