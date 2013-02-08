@@ -190,7 +190,7 @@ def event_page(request, id, slug, extra_context=None):
         if is_campus_org(request.user):
             context['can_edit'] = (event.owner == request.user)
             context['show_admin'] = (event.owner == request.user)
-            context['recruiters_with_access'] = map(lambda x: {'name':"%s %s" % (x.first_name, x.last_name), 'email': x.email}, User.objects.filter(recruiter__employer__in=event.attending_employers.all()))
+            context['recruiters_with_access'] = map(lambda x: {'name':"%s %s" % (x.first_name, x.last_name), 'email': x.email}, User.objects.filter(recruiter__employer__in=event.attending_employers.all()).order_by("first_name"))
         elif is_recruiter(request.user):
             context['show_admin'] = request.user.recruiter.employer in event.attending_employers.all()
     elif is_recruiter(event.owner):
