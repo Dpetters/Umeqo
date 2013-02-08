@@ -10,6 +10,7 @@ index
 .pydevproject
 .settings
 /media
+/tags
 /local_static
 settings_local.py
 settings_prod.py

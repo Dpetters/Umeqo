@@ -9,12 +9,30 @@ from core.managers import VisibleManager
 from core import mixins as core_mixins
 from notification import models as notification
 
+
+class DomainName(core_mixins.DateTracking):
+    domain = models.CharField("Domain Name", max_length=100, unique=True, help_text="Maximum 100 characters.")
+    school = models.ForeignKey("core.School", null=True, blank=False)
+
+    class Meta:
+        ordering = ['school', 'domain']
+
+    def __unicode__(self):
+ 	    if self.school:
+ 	        return "%s (%s)" % (self.domain, self.school.name)
+ 	    return self.domain
+
+
 class School(core_mixins.DateTracking):
     name = models.CharField("School Name", max_length=42, unique=True, help_text="Maximum 42 characters.")
     url = models.URLField(blank=True, null=True, verify_exists=False)
 
+    class Meta:
+        ordering = ['name']
+
     def __unicode__(self):
         return self.name
+
 
 class CampusOrgType(core_mixins.DateTracking):
     name = models.CharField("On-Campus Organization Name", max_length=42, unique=True, help_text="Maximum 42 characters.")

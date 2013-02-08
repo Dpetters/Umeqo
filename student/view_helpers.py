@@ -54,4 +54,5 @@ def extract_resume_keywords(resume_file_path):
         return keywords, num
 
     except Exception as e:
-        return ""
+        return [], 0
+    

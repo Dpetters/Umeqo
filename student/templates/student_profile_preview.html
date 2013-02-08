@@ -8,42 +8,59 @@
 {% else %}
 <div class="student_main_info" data-student-id="{{student.id}}">
 {% endif %}
-    {% if profile_preview %}
-    <a class="student_resume_link" href="{% if edit %}{% url student_resume %}{% else %}#{% endif %}" tabindex="-1">View Resume</a>
-    {% else %}
-    <a class="student_resume_link{% if not visible %} needs_at_least_premium_to_view_student_resume{% endif %}" data-student-id="{{student.id}}" target="_blank" href="{% if visible %}{% url specific_student_resume student_id=student.id %}{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">View Resume</a>
-    {% endif %}
-    <input name="student_checkbox" data-unlocked="{{visible}}" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
-    <label for="student_checkbox_{{student.id}}" data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</label>
-    <span class="student_year">
-        ({{student.graduation_year}}
-        {{student.degree_program}})
-    </span>
-    {% if num_of_events_attended > 0 %}
-    <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
-    {% endif %}
-    <br />
-    <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
-        <a class="student_invite_to_event_link" href="#" tabindex="-1">Invite To Event</a>
-    </span>
-    <p class="student_gpa">
-        <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
-    </p>
-    {% if profile_preview %}
-        <a data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="#" tabindex="-1">{% include 'student_resume_book.html' %}</a>
-    {% else %}
-        <a {% if not visible %}disabled{% endif %} data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="{% if visible %}#{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">{% include 'student_resume_book.html' %}</a>
-    {% endif %}
+
+    <div class="first_row">
+        <input name="student_checkbox" data-unlocked="{{visible}}" id="student_checkbox_{{student.id}}" class="student_checkbox" data-student-id="{{student.id}}" type="checkbox" tabindex="-1"/>        
+        <label for="student_checkbox_{{student.id}}" data-student-id="{{student.id}}" class="student_name">{{student.first_name}} {{student.last_name}}</label>
+        <span class="student_year">
+            ({{student.graduation_year}}
+            {{student.degree_program}})
+        </span> 
+        {% if num_of_events_attended > 0 %}
+        <img class="student_event_attendance" data-student-id="{{student.id}}" src='{% get_static_prefix %}images/icons/calendar-select-days.png'/>
+        {% endif %}
+        {% if profile_preview %}
+        <a class="student_resume_link" href="{% if edit %}{% url student_resume %}{% else %}#{% endif %}" tabindex="-1">View Resume</a>
+        {% else %}
+        <a class="student_resume_link{% if not visible %} needs_at_least_premium_to_view_student_resume{% endif %}" data-student-id="{{student.id}}" target="_blank" href="{% if visible %}{% url specific_student_resume student_id=student.id %}{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">View Resume</a>
+        {% endif %}
+    </div>
     
-    <span class="student_major">
-        <strong>First Major:</strong> {{student.first_major}}
-    </span>
-    <br />
-    <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="#" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
-    <a data-student-id="{{student.id}}" class="student_toggle_star student_star" href="#" tabindex="-1">{% student_star starred %}</a>
-    <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note (only visible to users from your company)" tabindex="-1">{{comment}}</textarea>
-    <span data-student-id="{{student.id}}" class="saved_message light hid">Saved</span>
-    {% if highlighted_text %}<p id="highlighted_text">"{{highlighted_text|safe}} ..."</p>{% endif %}
+    <div class="second_row">
+        {% if profile_preview %}
+        <a data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="#" tabindex="-1">{% include 'student_resume_book.html' %}</a>
+        {% else %}
+        <a {% if not visible %}disabled{% endif %} data-student-id="{{student.id}}" data-student-name="{{student.first_name}} {{student.last_name}}" class="resume_book_toggle_student" href="{% if visible %}#{% else %}{% url subscription_change %}{% endif %}" tabindex="-1">{% include 'student_resume_book.html' %}</a>
+        {% endif %}   
+        <span class="student_school">
+            <strong>School: </strong>{% if school.url %}<a target="_blank" href="{{school.url}}">{{school}}</a>{% else %}{{school}}{% endif %}
+        </span>
+        <span class="student_invite_to_event_span" data-studentid="{{student.id}}" data-studentname="{{student.first_name}}">
+            <a class="student_invite_to_event_link" href="#" tabindex="-1">Invite To Event</a>
+        </span><span class="student_gpa">
+            <strong>GPA: </strong>{{student.gpa|floatformat:1}} / 5.0
+        </span>
+    </div>
+    
+    <div class="third_row">
+        <a data-student-id="{{student.id}}" class="student_toggle_star student_star" href="#" tabindex="-1">{% student_star starred %}</a>
+        <span class="student_major">
+            <strong>First Major:</strong> {{student.first_major}}
+        </span>
+    </div>
+
+    <div class="forth_row">
+        <textarea data-student-id="{{student.id}}" class="student_comment" placeholder="Add Note (only visible to users from your company)" tabindex="-1">{{comment}}</textarea>
+        <span data-student-id="{{student.id}}" class="saved_message light hid">Saved</span>
+        <a class="student_toggle_detailed_info_link" data-student-id="{{student.id}}"  href="#" tabindex="-1">{% include 'student_profile_show_details_link.html' %}</a>
+    </div>
+    
+    {% if highlighted_text %}
+    <div class="fifth_row">
+        <p id="highlighted_text">"{{highlighted_text|safe}} ..."</p>
+    </div>
+    {% endif %}
+
 </div>
 <div class="student_detailed_info" data-student-id="{{student.id}}">
     {% if student.countries_of_citizenship.all or countries_of_citizenship or student.second_major or student.website or student.older_than_21 or student.looking_for.all or looking_for or student.previous_employers.all or previous_employers or student.industries_of_interest.all or industries_of_interest or student.sat_t or student.sat_m or student.sat_v or student.sat_w or student.act or student.campus_involvement.all or campus_involvement or student.languages.all or languages %}

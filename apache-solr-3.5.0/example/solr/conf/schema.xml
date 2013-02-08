@@ -110,7 +110,7 @@
 
     <field name="text" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
+    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
 
     <field name="sat_t" type="slong" indexed="true" stored="true" multiValued="false" />
 
@@ -138,7 +138,7 @@
 
     <field name="is_deadline" type="boolean" indexed="true" stored="true" multiValued="false" />
 
-    <field name="older_than_21" type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="gpa" type="sfloat" indexed="true" stored="true" multiValued="false" />
 
     <field name="campus_involvement" type="text" indexed="true" stored="true" multiValued="true" />
 
@@ -150,6 +150,10 @@
 
     <field name="type" type="text" indexed="true" stored="true" multiValued="false" />
 
+    <field name="email" type="text" indexed="true" stored="true" multiValued="false" />
+
+    <field name="building_num" type="text" indexed="true" stored="true" multiValued="false" />
+
     <field name="invitees" type="text" indexed="true" stored="true" multiValued="true" />
 
     <field name="start_datetime" type="date" indexed="true" stored="true" multiValued="false" />
@@ -158,9 +162,7 @@
 
     <field name="second_major" type="text" indexed="true" stored="true" multiValued="false" />
 
-    <field name="act" type="slong" indexed="true" stored="true" multiValued="false" />
-
-    <field name="building_num" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="first_name" type="text" indexed="true" stored="true" multiValued="false" />
 
     <field name="degree_program" type="text" indexed="true" stored="true" multiValued="false" />
 
@@ -176,7 +178,7 @@
 
     <field name="end_datetime" type="date" indexed="true" stored="true" multiValued="false" />
 
-    <field name="first_name" type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="act" type="slong" indexed="true" stored="true" multiValued="false" />
 
     <field name="cancelled" type="boolean" indexed="true" stored="true" multiValued="false" />
 

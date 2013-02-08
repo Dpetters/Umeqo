@@ -21,8 +21,8 @@ def zip_resumes():
         all_resumes_dir = "%s%s/" % (s.ZIPPED_RESUMES_DIRECTORY, s.ALL_ZIPPED_RESUMES_FILENAME_START)
         if not os.path.exists(all_resumes_dir):
             os.makedirs(all_resumes_dir)
-        for school in School.objects.all():
-            students = Student.objects.filter(profile_created=True, user__is_active=True, school=school)
+        for school in School.objects.filter(name="Massachusetts Institute of Technology"):
+            students = Student.objects.filter(profile_created=True, user__is_active=True)
             school_dir = "%s%s/" % (all_resumes_dir, school.name)
             if not os.path.exists(school_dir):
                 os.makedirs(school_dir)

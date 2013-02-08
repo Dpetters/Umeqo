@@ -7,7 +7,8 @@ class StudentIndex(indexes.RealTimeSearchIndex):
     text = indexes.CharField(use_template=True, document=True)
     first_name = indexes.CharField(model_attr="first_name", null=True)
     last_name = indexes.CharField(model_attr="last_name", null=True)
-    
+    email = indexes.CharField(model_attr="user__email")
+
     obj_id = indexes.IntegerField(model_attr="id")
     
     gpa = indexes.FloatField(model_attr="gpa", null=True)

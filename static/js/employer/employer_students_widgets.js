@@ -2,6 +2,36 @@ $(document).ready(function(){
     $(".resume_book_capacity_reached, .resume_book_capacity_reached_button").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:RESUME_BOOK_CAPACITY_REACHED, html:true});
     $(".student_list_multiselect .ui-multiselect-disabled").tipsy({'gravity':'w', opacity: 0.9, live:true, fallback:STUDENT_LIST_REQUIRES_SUBSCRIPTION, html:true});
     
+    $("#id_schools").multiselect({
+        noneSelectedText: 'Filter By School',
+        selectedText: 'Filtering by # Schools',  
+        checkAllText: multiselectCheckAllText,
+        uncheckAllText: multiselectUncheckAllText,
+        minWidth:multiselectMinWidth,
+        height: 192,
+        checkAll: function() {
+            page = 1;
+            schools = $("#id_schools").multiselect("getChecked").map( function() {
+                return this.value;
+            }).get();
+            initiate_ajax_call();
+        },
+        uncheckAll: function() {
+            page = 1;
+            schools = $("#id_schools").multiselect("getChecked").map( function() {
+                return this.value;
+            }).get();
+            initiate_ajax_call();
+        },
+        click: function(event, ui) {
+            page = 1;
+            schools = $("#id_schools").multiselect("getChecked").map( function() {
+                return this.value;
+            }).get();
+            initiate_ajax_call();
+        }
+    }).multiselectfilter();
+
     $("#id_majors").multiselect({
         noneSelectedText: 'Filter By Major',
         selectedText: 'Filtering by # Majors',  

@@ -8,8 +8,13 @@ from django.http import HttpResponseRedirect
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
-from core.models import Tutorial, CampusOrgType, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType, Location, School
+from core.models import DomainName, Tutorial, CampusOrgType, Course, Language, SchoolYear, GraduationYear, Industry, Topic, Question, EmploymentType, Location, School
 
+class DomainNameAdmin(admin.ModelAdmin):
+	fields = ['domain', 'school']
+	list_display = ('domain', 'school')
+	search_fields = ['domain', 'school']
+admin.site.register(DomainName, DomainNameAdmin)
 
 class SchoolAdmin(admin.ModelAdmin):
     fields= ['name', 'url']
