@@ -518,6 +518,8 @@ function initiate_ajax_call() {
         data['sat_v'] = min_sat_v
     if (min_sat_w != 200)
         data['sat_w'] = min_sat_w
+    if (schools.length != 0)
+        data['schools'] = schools.join('~')
     if (courses.length != 0)
         data['courses'] = courses.join('~')
     if (degree_programs.length != 0)
@@ -573,6 +575,7 @@ min_sat_v = 200,
 min_sat_w = 200,
 page = 1,
 courses = new Array(),
+schools = new Array(),
 degree_programs = new Array(),
 graduation_years = [],
 previous_employers = [],

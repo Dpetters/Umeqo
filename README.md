@@ -61,3 +61,21 @@ These are custom commands that can be run using `python manage.py <command-name>
 `create_database` - deletes existing database, creates a new one, runs migrations, and loads in production data. Can only be called locally and on staging.
 
 `schemamigrate` - runs through all the apps and checks for schema changes. Creates migrations for any new ones.
+
+## PRODUCTION LOGS
+
+We ideally want to set up something that monitors all the logs below and lets us know of any issues. Sentry only reports part of `/var/www/umeqo/logs/umeqo.log`.
+
+`/var/log/umeqo_cron.log` - all cronjobs log to here.
+
+`/var/log/nginx/umeqo.access.log` - nginx logs all requests to here.
+
+`/var/log/nginx/error.log` - nginx logs all errors here.
+
+`/var/log/apache2/access.log` - apache logs all requests to here.
+
+`/var/log/apache2/error.log` - apache logs all errors to here.
+
+`/var/www/umeqo/logs/solr-reboots.log` - is incorrectly named (should just be solr.log). The solr process logs to here. If search queries are failing, this is the first place to check.
+
+`/var/www/umeqo/logs/umeqo.log` - everything that you see in sentry + more gets logged to here.

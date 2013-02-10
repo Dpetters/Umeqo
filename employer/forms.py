@@ -118,7 +118,8 @@ class StudentDefaultFilteringParametersForm(StudentBaseAttributeForm):
     sat_w = forms.IntegerField(label="Minimum SAT Writing:", max_value = 800, min_value = 200, widget=forms.TextInput(attrs={'class':'readonly'}), required = False)
 
     class Meta:
-        fields = ( 'majors',
+        fields = ( 'schools',
+                   'majors',
                    'degree_programs',
                    'graduation_years',
                    'gpa',
