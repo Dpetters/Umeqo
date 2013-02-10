@@ -25,7 +25,7 @@ from django.template.loader import render_to_string
 from campus_org.models import CampusOrg
 from employer.models import Employer
 from campus_org.decorators import is_campus_org
-from core.email import get_basic_email_context, send_email
+from core.email import get_basic_email_context, send_email, is_valid_email
 from core import enums as core_enums
 from core.http import Http403, Http400, Http500
 from core.decorators import render_to
@@ -624,10 +624,10 @@ def event_checkin(request, event_id):
         return HttpResponse(simplejson.dumps(get_attendees(event)), mimetype="application/json")
     else:
         email = request.POST.get('email', None).strip()
-        if not email:
+        if not is_valid_email(email):
             data = {
                 'valid': False,
-                'error': 'Enter a valid email!'
+                'error': 'Please enter a valid .edu email!'
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         name = request.POST.get('name', None)
@@ -640,13 +640,13 @@ def event_checkin(request, event_id):
         if not name and not student:
             data = {
                 'valid': False,
-                'error': "This email isn't registered with Umeqo. Enter your name!"
+                'error': "This email isn't registered with Umeqo. Please enter your name!"
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if Attendee.objects.filter(event=event, email=email).exists():
             data = {
                 'valid': False,
-                'error': 'Duplicate checkin!'
+                'error': 'You\'ve already checked in!'
             }
             return HttpResponse(simplejson.dumps(data), mimetype="application/json")
         if not name and user and user.student and user.student.first_name and user.student.last_name:
