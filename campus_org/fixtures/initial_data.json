@@ -6822,6 +6822,24 @@
   }
  },
  {
+  "pk": 543,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": null,
+   "school": null,
+   "last_updated": "2013-02-08 10:01:04",
+   "description": null,
+   "image": "",
+   "slug": null,
+   "email": null,
+   "user": 3104,
+   "date_created": "2013-02-08 10:01:04",
+   "type": 16,
+   "display": false,
+   "name": "StartLabs"
+  }
+ },
+ {
   "pk": 357,
   "model": "campus_org.campusorg",
   "fields": {
