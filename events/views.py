@@ -1,6 +1,7 @@
 from __future__ import division
 from __future__ import absolute_import
 
+import csv
 import cStringIO as StringIO
 from datetime import datetime, timedelta
 import os
@@ -35,7 +36,7 @@ from core.models import Edit
 from core.view_helpers import english_join
 from employer.decorators import is_recruiter
 from employer.models import Recruiter
-from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm
+from events.forms import EventForm, CampusOrgEventForm, EventExportForm, EventFilteringForm, EventUploadRecruitersForm
 from events.models import Attendee, Event, Invitee, RSVP, DroppedResume, notify_about_event
 from events.view_helpers import event_map, event_filtering_helper, get_event_schedule, get_attendees, get_invitees, get_rsvps, get_no_rsvps, get_dropped_resumes, export_event_list_csv, export_event_list_text
 from notification import models as notification
@@ -391,6 +392,138 @@ def event_list_export(request, form_class = EventExportForm, extra_context=None)
     else:
         form = form_class(initial={'emails':request.user.email, 'event_id':request.GET['event_id'], 'event_list':request.GET['event_list']})
     context = {'form': form, 'TEMPLATE':'event_list_export.html'}
+    context.update(extra_context or {}) 
+    return context
+
+
+@user_passes_test(is_campus_org)
+@render_to()
+def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm, extra_context=None):
+    if request.method == 'POST':
+        form = form_class(data=request.POST, files=request.FILES)
+        data = {}
+        if form.is_valid():
+            event_id = form.cleaned_data.get('event_id', '')
+
+            try:
+                event = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                raise Http404("The event with event id %s does not exist" % event_id)
+
+            if request.user != event.owner:
+                raise Http403("You must be the event owner in order to perform this action.")
+
+            open_csv_file = csv.DictReader(request.FILES['csv_file'])
+
+            for i, fieldname in enumerate(open_csv_file.fieldnames):
+                open_csv_file.fieldnames[i] = fieldname.lower()
+
+            recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+            context = Context({})
+            context.update(get_basic_email_context())
+
+            def send_event_company_representative_access_instructions(context, event, recipients):
+                context['event'] = event
+
+                text_body = render_to_string('event_company_representative_access_instructions.txt', context)
+                html_body = render_to_string('event_company_representative_access_instructions.html', context)
+            
+                subject = ''.join(render_to_string('email_subject.txt', {
+                    'message': "%s Student Browsing Instructions" % event.name
+                }, context).splitlines())
+                            
+                send_email(subject, text_body, recipients, html_body)
+
+            for row in open_csv_file:
+                email = row.get('email', '')
+                user = None
+                try:
+                    user = User.objects.get(email=email)
+                except User.DoesNotExist:
+                    password = User.objects.make_random_password()
+                    email = row['email'].lower()
+                    user = User.objects.create(first_name = row['first name'],
+                                               last_name  = row['last name'],
+                                               email      = email,
+                                               username   = email,
+                                               password   = password
+                        )
+                    user.userattributes.is_validated = True
+                    user.userattributes.save()
+                    employer, created = Employer.objects.get_or_create(name=row['employer'])
+                    if created:
+                        recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
+                        context = Context({'first_name'   : request.user.first_name,
+                                           'last_name'    : request.user.last_name,
+                                           'email'        : request.user.email,
+                                           'new_employer' : employer})
+                        context.update(get_basic_email_context())
+                         
+                        body = render_to_string('employer_new_email_body.txt', context)
+                                                
+                        subject = ''.join(render_to_string('email_admin_subject.txt', {
+                            'message': "New Employer: %s" % new_employer 
+                        }, context).splitlines())
+                                        
+                        send_email(subject, body, recipients)
+                    Recruiter.objects.create(employer=employer, user=user)
+                    event.attending_employers.add(user.recruiter.employer)
+
+                    recipients = [user.email]
+                    context.update({
+                        "first_name": user.first_name,
+                        "email": user.email,
+                        "username": user.email,
+                        "password": password,
+                        "has_account": False,
+                    })
+
+                    send_event_company_representative_access_instructions(context, event, recipients)
+
+                else:
+                    if is_recruiter(user):
+                        if not user.recruiter.employer in event.attending.employer.all():
+                            employer = user.recruiter.employer
+                            event.attending_employers.add(employer)
+
+                            recipients = [user.email]
+                            context.update({
+                                "first_name": user.first_name,
+                                "email": user.email,
+                                "has_account": True,
+                            })
+
+                            send_event_company_representative_access_instructions(context, event, recipients)
+
+                    else:
+                        context.update({
+                            "first_name": row.get("first name", ""),
+                            "last_name": row.get("last name", ""),
+                            "email": row.get("email", ""),
+                            "supposed_employer": row.get("employer","")
+                        })    
+
+                        body = render_to_string('attending_recruiter_problem.txt', context)
+                        
+                        subject = ''.join(render_to_string('email_admin_subject.txt', {
+                            'message': "%s has a problem with a recruiter" % event.name
+                        }, context).splitlines())
+                                    
+                        send_email(subject, body, recipients)
+
+                # if user exists
+                    # and is emplyer
+                        # email them telling them to start at umeqo.com/login
+                    # and is not employer
+                        # do nothing
+                # if user doesn't exist
+
+        else:
+            data['errors'] = form.errors
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    else:
+        form = form_class(initial={'event_id':request.GET['event_id']});
+    context = {'form': form, 'TEMPLATE':'event_upload_recruiters_list.html'}
     context.update(extra_context or {}) 
     return context
 

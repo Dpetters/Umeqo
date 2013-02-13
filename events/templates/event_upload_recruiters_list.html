@@ -1,0 +1,29 @@
+<div class="dialog_content_wrapper">
+    <p></p>
+    <form id="upload_recruiters_list_form" method='POST' action="{% url event_upload_recruiters_list %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="form_table">
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <tr>
+                <th>{{form.csv_file.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.csv_file}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error_section error centered">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input class="button" type='submit' value='Upload'>
+                    <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
