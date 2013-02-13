@@ -74,7 +74,7 @@ $(document).ready(function() {
     }
     $('#email_input').mouseup(function(e) {
         var text_value = $.trim($(this).val());
-        var email_suffix = '@mit.edu';
+        var email_suffix = '.edu';
         if (text_value == '' || text_value == email_suffix) {
             if (this.value != email_suffix) {
                 this.value = email_suffix;
