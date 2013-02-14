@@ -428,13 +428,13 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
                 context['event'] = event
 
                 text_body = render_to_string('recruiter_event_participant_access_instructions.txt', context)
-                #html_body = render_to_string('recruiter_event_participant_access_instructions.html', context)
+                html_body = render_to_string('recruiter_event_participant_access_instructions.html', context)
             
                 subject = ''.join(render_to_string('email_subject.txt', {
                     'message': "%s Student Browsing Instructions" % event.name
                 }, context).splitlines())
                             
-                send_email(subject, text_body, recipients)#, html_body)
+                send_email(subject, text_body, recipients, html_body)
 
             for row in open_csv_file:
                 email = row.get('email', '')
