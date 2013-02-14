@@ -421,18 +421,20 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
             recipients = [mail_tuple[1] for mail_tuple in s.MANAGERS]
             context = Context({})
             context.update(get_basic_email_context())
+             
+            event.attending_employers.clear()
 
-            def send_event_company_representative_access_instructions(context, event, recipients):
+            def send_event_company_representative_access_instructions():
                 context['event'] = event
 
-                text_body = render_to_string('event_company_representative_access_instructions.txt', context)
-                html_body = render_to_string('event_company_representative_access_instructions.html', context)
+                text_body = render_to_string('recruiter_event_participant_access_instructions.txt', context)
+                #html_body = render_to_string('recruiter_event_participant_access_instructions.html', context)
             
                 subject = ''.join(render_to_string('email_subject.txt', {
                     'message': "%s Student Browsing Instructions" % event.name
                 }, context).splitlines())
                             
-                send_email(subject, text_body, recipients, html_body)
+                send_email(subject, text_body, recipients)#, html_body)
 
             for row in open_csv_file:
                 email = row.get('email', '')
@@ -446,9 +448,10 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
                                                last_name  = row['last name'],
                                                email      = email,
                                                username   = email,
-                                               password   = password
                         )
-                    user.userattributes.is_validated = True
+                    user.set_password(password)
+                    user.save()
+                    user.userattributes.is_verified = True
                     user.userattributes.save()
                     employer, created = Employer.objects.get_or_create(name=row['employer'])
                     if created:
@@ -462,12 +465,12 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
                         body = render_to_string('employer_new_email_body.txt', context)
                                                 
                         subject = ''.join(render_to_string('email_admin_subject.txt', {
-                            'message': "New Employer: %s" % new_employer 
+                            'message': "New Employer: %s" % employer 
                         }, context).splitlines())
                                         
                         send_email(subject, body, recipients)
                     Recruiter.objects.create(employer=employer, user=user)
-                    event.attending_employers.add(user.recruiter.employer)
+                    event.attending_employers.add(employer)
 
                     recipients = [user.email]
                     context.update({
@@ -478,11 +481,11 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
                         "has_account": False,
                     })
 
-                    send_event_company_representative_access_instructions(context, event, recipients)
+                    send_event_company_representative_access_instructions()
 
                 else:
                     if is_recruiter(user):
-                        if not user.recruiter.employer in event.attending.employer.all():
+                        if not user.recruiter.employer in event.attending_employers.all():
                             employer = user.recruiter.employer
                             event.attending_employers.add(employer)
 
@@ -493,8 +496,7 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
                                 "has_account": True,
                             })
 
-                            send_event_company_representative_access_instructions(context, event, recipients)
-
+                            send_event_company_representative_access_instructions()
                     else:
                         context.update({
                             "first_name": row.get("first name", ""),
@@ -510,14 +512,6 @@ def event_upload_recruiters_list(request, form_class = EventUploadRecruitersForm
                         }, context).splitlines())
                                     
                         send_email(subject, body, recipients)
-
-                # if user exists
-                    # and is emplyer
-                        # email them telling them to start at umeqo.com/login
-                    # and is not employer
-                        # do nothing
-                # if user doesn't exist
-
         else:
             data['errors'] = form.errors
         return HttpResponse(simplejson.dumps(data), mimetype="application/json")

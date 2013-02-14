@@ -121,16 +121,16 @@ class EventUploadRecruitersForm(Form):
 
     for i, row in enumerate(open_csv_file):
       if not row["first name"]:
-        raise ValidationError('The recruiter at row #%s is missing a first name. Please fill it in and re-upload the file.' % i)
+        raise ValidationError('The recruiter at row #%s is missing his/her first name. Please fill it in and try again.' % i)
       if not row["last name"]:
-        raise ValidationError('The recruiter at row #%s is missing a last name. Please fill it in and re-upload the file.' % i)
+        raise ValidationError('The recruiter at row #%s is missing his/her last name. Please fill it in and try again.' % i)
       if not row["employer"]:
-        raise ValidationError('The recruiter at row #%s is missing an employer. Please fill it in and re-upload the file.' % i)
+        raise ValidationError('The recruiter at row #%s is missing his/her employer. Please fill it in and try again.' % i)
       if not row["email"]:
-        raise ValidationError('The recruiter at row #%s is missing an email. Please fill it in and re-upload the file.' % i)
+        raise ValidationError('The recruiter at row #%s is missing his/her email. Please fill it in and try again.' % i)
       else:
         if not is_valid_email(row["email"]):
-          raise ValidationError('The recruiter at row #%s has an invalid email. Please fill it in and re-upload the file.' % i)
+          raise ValidationError('The recruiter at row #%s has an invalid email. Please fill it in and try again.' % i)
 
 
 

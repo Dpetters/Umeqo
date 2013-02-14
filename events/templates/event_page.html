@@ -125,7 +125,6 @@
     <script src="{{ STATIC_URL }}lib/jquery_autoresize/jquery_autoresize.js"></script>
     <script src="{{ STATIC_URL }}lib/jquery_multiselect/jquery_multiselect_filter_min.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page.js"></script>
-    <script src="{{ STATIC_URL }}js/events/event_upload_recruiters_list.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_helpers.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_page_rsvp.js"></script>
     <script src="{{ STATIC_URL }}js/events/event_rsvp.js"></script>
@@ -169,12 +168,12 @@
                 {% endif %}
                 <a href="{% url event_edit id=event.id %}" class="edit_event_link button button-umeqo-blue">Edit {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
             {% endif %}
-            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="button button-umeqo-blue export_event_list_link">Export All Participants</a>
+            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="button button-umeqo-blue export_event_list_link">Export All Students</a>
             {% if user.recruiter %}
                 <a href="{% url download_event_participant_resumes event_id=event.id %}" class="button button-umeqo-blue">Download All Resumes</a>
             {% endif %}
             {% if user.campusorg %}
-                <a href="#" class="button button-umeqo-blue upload_recruiters_list" data-event-id="{{event.id}}">Upload Recruiters List</a>
+            <a href="#" class="button button-umeqo-blue upload_recruiters_list" data-event-id="{{event.id}}">Give Recruiters Access</a>
             {% endif %}
         </h1>
         <div id="event_admin_side">
