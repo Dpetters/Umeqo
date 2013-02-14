@@ -16,9 +16,6 @@ function open_create_student_quick_registration_dialog() {
     return create_student_quick_registration_dialog;
 };
 
-$(".open_registration_help_dialog_link").live('click', function(){
-    $("#student_registration_help").slideToggle();
-});
 function submit_student_quick_registration_form(form, ignore_unparsable_resume){
     var ignore_unparsable_resume = typeof(ignore_unparsable_resume) != 'undefined' ? ignore_unparsable_resume : false;
     

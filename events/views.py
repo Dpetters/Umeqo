@@ -743,6 +743,7 @@ def event_raffle_winner(request, extra_context=None):
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
 
+@csrf_exempt
 @user_passes_test(lambda x: is_campus_org(x) or is_recruiter(x))
 @require_http_methods(["GET", "POST"])
 def event_checkin(request, event_id):

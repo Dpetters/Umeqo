@@ -8,10 +8,6 @@
 .student_quick_registration_dialog .dialog_content_wrapper {
     padding: 5px 25px 15px 25px
 }
-#student_registration_help{
-    margin-top:10px;
-    display:none;
-}
 input[type=text] {
     width:190px;
 }

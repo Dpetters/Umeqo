@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
     {% if user.is_anonymous %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
     {% endif %}
     {% if is_deadline %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
@@ -62,7 +61,6 @@
             var STUDENT_QUICK_REGISTRATION_DONE_URL = "{% url student_quick_registration_done %}"
 
             var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
-            var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
 
             var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
             var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
