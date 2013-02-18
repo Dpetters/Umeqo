@@ -198,6 +198,42 @@
   }
  },
  {
+  "pk": 544,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": null,
+   "school": null,
+   "last_updated": "2013-02-11 17:03:57",
+   "description": null,
+   "image": "",
+   "slug": null,
+   "email": null,
+   "user": 3109,
+   "date_created": "2013-02-11 17:03:57",
+   "type": 16,
+   "display": false,
+   "name": "Alex Test "
+  }
+ },
+ {
+  "pk": 545,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": null,
+   "school": null,
+   "last_updated": "2013-02-11 17:13:25",
+   "description": null,
+   "image": "",
+   "slug": null,
+   "email": null,
+   "user": 3110,
+   "date_created": "2013-02-11 17:13:25",
+   "type": 16,
+   "display": false,
+   "name": "Alex Test 2"
+  }
+ },
+ {
   "pk": 8,
   "model": "campus_org.campusorg",
   "fields": {
@@ -6819,6 +6855,24 @@
    "type": 8,
    "display": false,
    "name": "Starleague"
+  }
+ },
+ {
+  "pk": 543,
+  "model": "campus_org.campusorg",
+  "fields": {
+   "website": null,
+   "school": null,
+   "last_updated": "2013-02-08 10:01:04",
+   "description": null,
+   "image": "",
+   "slug": null,
+   "email": null,
+   "user": 3104,
+   "date_created": "2013-02-08 10:01:04",
+   "type": 16,
+   "display": false,
+   "name": "StartLabs"
   }
  },
  {

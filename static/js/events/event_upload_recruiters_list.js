@@ -5,7 +5,7 @@ function open_upload_recruiters_list_dialog() {
         dialogClass: "upload_recruiters_list_dialog",
         title: "Upload Recruiters List",
         modal:true,
-        width:420,
+        width:520,
         resizable: false,
         close: function(event, ui) {
             upload_recruiters_list_dialog.remove();
@@ -63,8 +63,8 @@ function handle_upload_recruiters_list_click(e) {
                             if(data.errors){
                                 place_table_form_errors("#upload_recruiters_list_form", data.errors);
                             } else {
-                                var success_message = "<div class='dialog_content_wrapper'><div class='message_section>'<p>Recruiters uploaded successfully</p>";
-                                success_message += CLOSE_DIALOG_LINK + "</div></div>"
+                                var success_message = "<div class='dialog_content_wrapper'><div class='message_section'><p>Recruiters uploaded successfully. Please <a href='#' class='refresh_page_link'>refresh the page</a> to update the event page.</p></div>";
+                                success_message += CLOSE_DIALOG_LINK + "</div>";
                                 upload_recruiters_list_dialog.html(success_message);
                             }
                             
