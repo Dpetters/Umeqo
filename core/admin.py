@@ -13,7 +13,7 @@ from core.models import DomainName, Tutorial, CampusOrgType, Course, Language, S
 class DomainNameAdmin(admin.ModelAdmin):
 	fields = ['domain', 'school']
 	list_display = ('domain', 'school')
-	search_fields = ['domain', 'school']
+	search_fields = ['domain', 'school__name']
 admin.site.register(DomainName, DomainNameAdmin)
 
 class SchoolAdmin(admin.ModelAdmin):

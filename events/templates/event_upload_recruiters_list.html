@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="{{ STATIC_URL }}css/events/upload_recruiters_list.css" />
+
+<div class="dialog_content_wrapper">
+    <p>To give recruiters access to this event's participants, please upload a CSV document with four columns labeled in the first row as "First Name", "Last Name", "Employer", and "Email". It's ok to have other columns, but make sure every row for the other four is filled in.</p>
+    <br>
+    <p><strong>Important:</strong> Only the latest version of the file you upload determines which recruiters have access to the event participants and which employers are listed as attending below.</p>
+    <form id="upload_recruiters_list_form" method='POST' action="{% url event_upload_recruiters_list %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="form_table">
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <tr>
+                <th>{{form.csv_file.label_tag}}</th>
+                <td>
+                    <div class="errorspace"></div>
+                    {{form.csv_file}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error_section error centered">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="button_cell">
+                    <input class="button" type='submit' value='Upload'>
+                    <img class='ajax_form_submit_loader' src='{{ STATIC_URL }}images/loaders/s_ajax.gif'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+{% extends "email_base.html" %}
+
+{% block header %}
+Student Browsing Instructions
+{% endblock %}
+
+{% block content %}
+<p>{{event.owner.campusorg.name}} has just given you  Umeqo access to students that participated in their recent event - "{{event.name}}".</p>
+
+{% if has_account %}
+<p>You already have a Umeqo account - the username is your email, {{email}}. To get started simply login at umeqo.com/login.</p>
+
+<p>If you don't remember your password, you can request a new one by visiting umeqo.com/password/reset.</p>
+{% else %}
+<p>The credentials for your new Umeqo account are below:</p>
+
+<p>
+    <strong>Username:</strong> {{username}}<br>
+    <strong>Password:</strong> {{password}}
+</p>
+
+<p>To get started simply login at umeqo.com/login.</p>
+
+<p><strong>Please change your password once you've logged</strong> in by visiting the Account Settings page (umeqo.com/employer/account).</p>
+{% endif %}
+
+<p>Please feel free to reach out to us anytime with any Umeqo-related questions or concerns!</p>
+
+{% endblock %}

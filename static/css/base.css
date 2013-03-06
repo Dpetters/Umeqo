@@ -302,6 +302,7 @@ input[type=text], input[type=password] {
     margin-top: 10px;
 }
 .form_table .button_cell {
+    padding-top: 7px;
     text-align: left;
     border-bottom: none !important;
 }

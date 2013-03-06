@@ -25,9 +25,10 @@
                                 <tr width="100%">
                                     <td id="email_body" valign="top" align="left">
                                         <h2>{% block header %}{% endblock %}</h2>
-                                        {% if first_name %}<p>Hey {{first_name}},</p>{% endif %}
+                                        {% if first_name %}<p style="margin-bottom:20px;">Hi {{first_name}},</p>{% endif %}
                                         {% block content %}
                                         {% endblock %}
+                                        <p style="margin-top:20px">Sincerely,<br>The Umeqo Team<br>team@umeqo.com</p>
                                     </td>
                                 </tr>
                             </tbody>

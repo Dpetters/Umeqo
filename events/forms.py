@@ -1,7 +1,9 @@
+import csv
+
 from ckeditor.widgets import CKEditorWidget
 from datetime import datetime
 
-from django.forms import Form, ChoiceField, ValidationError, CharField, SelectMultiple, URLField, ModelMultipleChoiceField, DateTimeField, Textarea, ModelChoiceField, ModelForm, TextInput, Select, TypedChoiceField, FloatField
+from django.forms import Form, ChoiceField, ValidationError, CharField, SelectMultiple, URLField, ModelMultipleChoiceField, DateTimeField, Textarea, ModelChoiceField, ModelForm, TextInput, Select, TypedChoiceField, FloatField, FileField
 from django.forms.widgets import RadioSelect, HiddenInput
 from django.utils.translation import ugettext_lazy as _
 
@@ -9,13 +11,15 @@ from core.form_helpers import decorate_bound_field, boolean_coerce
 from core.models import SchoolYear
 from core.renderers import RadioSelectTableRenderer
 from core.widgets import ImprovedSplitDateTimeWidget
+from core.email import is_valid_email
 from events.choices import PUBLIC_PRIVATE_BOOLEAN_CHOICES, DROP_BOOLEAN_CHOICES, EVENT_TYPE_CHOICES, ALL
 from events.models import Event, EventType
 from core import messages as m
 from core import enums as core_enums
 from employer.models import Employer
 
-decorate_bound_field()
+decorate_bound_field()
+
 class EventForm(ModelForm):
     name = CharField(max_length = 85, widget=TextInput(attrs={'placeholder':'Enter event name', 'tabindex':1}))
     type = ModelChoiceField(queryset = EventType.objects.all(), widget=Select(attrs={'tabindex':2}), empty_label="select event type")
@@ -93,3 +97,45 @@ class EventExportForm(Form):
     export_format = ChoiceField(label="Export Format:", choices = core_enums.EXPORT_CHOICES)
     delivery_type = ChoiceField(label="Delivery Type:", choices = core_enums.DELIVERY_CHOICES)
     emails = CharField(label="Recipient Emails:", max_length=2000, widget=Textarea(), required=False)
+
+class EventUploadRecruitersForm(Form):
+  event_id = CharField(max_length = 10, widget=HiddenInput)
+  csv_file = FileField(label="Recruiter CSV File:")
+
+  def clean_csv_file(self, ):
+    if self.cleaned_data['csv_file'].content_type != "text/csv":
+      raise ValidationError("Please upload a valid CSV file")
+    open_csv_file = csv.DictReader(self.cleaned_data['csv_file'])
+
+    for i, fieldname in enumerate(open_csv_file.fieldnames):
+        open_csv_file.fieldnames[i] = fieldname.lower()
+
+    if not "first name" in open_csv_file.fieldnames:
+      raise ValidationError('The csv file you uploaded is missing the required "First Name" column.');
+    if not "last name" in open_csv_file.fieldnames:
+      raise ValidationError('The csv file you uploaded is missing the required "Last Name" column.');
+    if not "employer" in open_csv_file.fieldnames:
+      raise ValidationError('The csv file you uploaded is missing the required "Employer" column.');
+    if not "email" in open_csv_file.fieldnames:
+      raise ValidationError('The csv file you uploaded is missing the required "Email" column.');  
+
+    for i, row in enumerate(open_csv_file):
+      if not row["first name"]:
+        raise ValidationError('The recruiter at row #%s is missing his/her first name. Please fill it in and try again.' % i)
+      if not row["last name"]:
+        raise ValidationError('The recruiter at row #%s is missing his/her last name. Please fill it in and try again.' % i)
+      if not row["employer"]:
+        raise ValidationError('The recruiter at row #%s is missing his/her employer. Please fill it in and try again.' % i)
+      if not row["email"]:
+        raise ValidationError('The recruiter at row #%s is missing his/her email. Please fill it in and try again.' % i)
+      else:
+        if not is_valid_email(row["email"]):
+          raise ValidationError('The recruiter at row #%s has an invalid email. Please fill it in and try again.' % i)
+
+
+
+    return self.cleaned_data['csv_file']
+
+
+
+

@@ -524,7 +524,8 @@ def employer_students(request, extra_context=None):
             schools = School.objects.filter(id__in = school_ids)
             domain_names = DomainName.objects.filter(school__in=schools)
             domains = map(lambda x: x.domain, domain_names)
-            students = students.filter(reduce(operator.or_, (SQ(email__contains=x) for x in domains)))
+            if domains and students:
+                students = students.filter(reduce(operator.or_, (SQ(email__contains=x) for x in domains)))
 
         if request.GET.has_key('courses'):
             am_filtering = True

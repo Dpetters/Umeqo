@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/events/event_page.css" />
     {% if user.is_anonymous %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_quick_registration.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/student/student_registration_help.css" />
     {% endif %}
     {% if is_deadline %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/events/rolling_deadline_end_dialog.css" />
@@ -62,7 +61,6 @@
             var STUDENT_QUICK_REGISTRATION_DONE_URL = "{% url student_quick_registration_done %}"
 
             var CHECK_EMAIL_AVAILABILITY_URL = "{% url check_email_availability %}";
-            var STUDENT_REGISTRATION_HELP_URL = "{% url student_registration_help %}";
 
             var EMAIL_REQUIRED = "{% text_snippet 'email_required' %}";
             var INVALID_EMAIL = "{% text_snippet 'invalid_email' %}";
@@ -79,6 +77,12 @@
             var PASSWORD_REQUIRED = "{% text_snippet 'password_required' %}";
     
             var PASSWORD_MIN_LENGTH="{{password_min_length}}";
+        {% endif %}
+
+        {% if show_admin %}
+            {% if user.campusorg %}
+                var UPLOAD_RECRUITERS_LIST_URL = "{% url event_upload_recruiters_list %}"
+            {% endif %}
         {% endif %}
         
         var EVENT_ID = "{{event.id}}";
@@ -137,6 +141,9 @@
     {% endif %}
     {% if show_admin %}
         <script src="{{ STATIC_URL }}js/events/event_admin.js"></script>
+        {% if user.campusorg %}
+            <script src="{{ STATIC_URL }}js/events/event_upload_recruiters_list.js"></script>
+        {% endif %}
     {% endif %}
 {% endcompress %}    
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -159,9 +166,12 @@
                 {% endif %}
                 <a href="{% url event_edit id=event.id %}" class="edit_event_link button button-umeqo-blue">Edit {% if event.is_deadline %}Deadline{% else %}Event{% endif %} </a>
             {% endif %}
-            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="button button-umeqo-blue export_event_list_link">Export All Participants</a>
+            <a data-event-id="{{event.id}}" data-event-name="{{event.name}}" data-event-list="all" href="#" class="button button-umeqo-blue export_event_list_link">Export All Students</a>
             {% if user.recruiter %}
                 <a href="{% url download_event_participant_resumes event_id=event.id %}" class="button button-umeqo-blue">Download All Resumes</a>
+            {% endif %}
+            {% if user.campusorg %}
+            <a href="#" class="button button-umeqo-blue upload_recruiters_list" data-event-id="{{event.id}}">Give Recruiters Access</a>
             {% endif %}
         </h1>
         <div id="event_admin_side">
