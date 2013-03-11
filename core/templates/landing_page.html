@@ -100,7 +100,7 @@
             </p>
             <div class="navigation_section big">
                 <p class="col"><a href="#students">For students &#0187;</a></p>
-                <p class="col"><a href="#employers">For employers &#0187;</a></p>
+                <p class="col"><a href="#employers">For employers &amp; campus orgs &#0187;</a></p>
             </div>
             <div class="contact_us">
                 <a href="mailto:team@umeqo.com">team@umeqo.com</a>
@@ -230,9 +230,15 @@
                                 <h2>Play with the Demo</h2>
                             </div>
                         </a>
-                        <a id="get_started_btn" href="{% url subscriptions %}?action=request_basic_account" class="button button-success button-large">
+                        <a id="employer_get_started_btn" href="{% url subscriptions %}?action=request_basic_account" class="button button-success button-large">
                             <div class="innerspan">
-                                <h2>Request Access</h2>
+                                <h2>Employer Signup</h2>
+                                <span>No Credit Card Needed</span>
+                            </div>
+                        </a>
+                        <a id="campus-org_get_started_btn" href="{% url campus_org_registration %}" class="button button-success button-large">
+                            <div class="innerspan">
+                                <h2>Campus Org Signup</h2>
                                 <span>No Credit Card Needed</span>
                             </div>
                         </a>

@@ -4,7 +4,7 @@ from django.contrib.sites.models import Site
 
 from registration import signals
 from registration.models import RegistrationProfile
-
+from django.contrib.auth.models import User
 
 class RegistrationBackend(object):
     """

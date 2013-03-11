@@ -8,7 +8,12 @@ Activation Complete |
 <div id="activation_complete_block" class="simple_block centered grande">
     <h1 id="activation_complete_block_title">Activation Complete</h1>
     <p class="message_section">
-    You have successfully activated your account! <a href="{% url student_profile %}">{% if user.student.profile_created %}Start off by completing the rest of your profile.{% else %}{% if not user.student %}Proceed to your homepage.{% else %}Let's get you set up so employers can find you.{% endif %}{% endif %}</a>
+    You have successfully activated your account! {% if user.student %}<a href="{% url student_profile %}">{% endif %}{% if user.recruiter %}<a href="{% url employer_profile %}">{% endif %}{% if user.campusorg %}<a href="{% url campus_org_profile %}">{% endif %}Start off by completing the rest of your profile.</a>
     </p>
 </div>
 {% endblock %}
+
+
+user.recruiter or user.campusorg
+
+campus_org_profile

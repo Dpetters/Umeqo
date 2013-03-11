@@ -19,7 +19,7 @@ from registration.forms import PasswordChangeForm
 from student.decorators import is_student
 
 
-@user_passes_test(is_student)
+#@user_passes_test(is_student)
 @render_to('campus_org_registration_complete.html')
 def campus_org_registration_complete(request, extra_context = None):
     email = request.GET.get('email', None)
@@ -28,7 +28,7 @@ def campus_org_registration_complete(request, extra_context = None):
     return context
 
 
-@user_passes_test(is_student)
+#@user_passes_test(is_student)
 @render_to("campus_org_registration.html")
 def campus_org_registration(request, form_class = CampusOrgRegistrationForm, success_url = 'campus_org_registration_complete', extra_context = None):
      if request.method == 'POST':
