@@ -85,9 +85,9 @@
                 You have been logged out.
             </div>
         {% endif %}
-        <div class="message announcement">
+        <!--div class="message announcement">
              We've got exciting news! Umeqo has agreed to be acquired by Readyforce. <a href="http://blog.readyforce.com/press-releases/readyforce-acquires-mit-umeqo-access-to-talent-and-college-event-management-platform/">Learn More</a>
-         </div>
+         </div-->
         <a id="login_button" class="button button-menu" href="{% url login %}">Sign In</a>
         <div id="logo">
             <h1>Umeqo</h1>
@@ -99,13 +99,37 @@
                 <iframe src="http://player.vimeo.com/video/36535329?title=0&amp;byline=0&amp;portrait=0" width="100%" height="480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
             </p>
             <div class="navigation_section big">
-                <p class="col"><a href="#students">For students &#0187;</a></p>
-                <p class="col"><a href="#employers">For employers &amp; campus orgs &#0187;</a></p>
+                <p class="col"><a href="#students">Students <span class="navigation_entity">&#9660;</span></a></p>
+                <p class="col"><a href="#employers">Employers <span class="navigation_entity">&#9660;</span></a></p>
+                <p class="col"><a href="#employers">Campus Orgs <span class="navigation_entity">&#9660;</span></a></p>
             </div>
-            <div class="contact_us">
-                <a href="mailto:team@umeqo.com">team@umeqo.com</a>
+            <div id="firm_section" class="longInfo">
+                <div id="firm_scroller_container">
+                    <div id="firm_thumb_scroller_left">
+                    </div>
+                    <div id="firm_thumb_scroller">
+                        <div id="firm_thumb_container">
+                                {% for employer in employers %}
+                                <div class="firm_thumb_content">
+                                    {% if employer.visible %}
+                                    <a href="{% url employer_profile_preview slug=employer.slug %}">
+                                    {% endif %}
+                                        <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
+                                    {% if employer.visible %}
+                                    </a>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            <br/>
+                        </div>
+                    </div>
+                    <div id="firm_thumb_scroller_right"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <h3 id="firm_name">Firms using Umeqo</h3>
+                <div class="clear"></div>
             </div>
-            <div id="students">
+            <div id="students" class="block">
                 <div class="col">
                     <h1>Save Time. Get Noticed.</h1>
                     <div id="student_signup_block" class="light_module">
@@ -170,42 +194,16 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div id="firm_section" class="longInfo">
-                <h3 id="firm_name">Firms using Umeqo</h3>
-                <div id="firm_scroller_container">
-                    <div id="firm_thumb_scroller_left">
-                    </div>
-                    <div id="firm_thumb_scroller">
-                        <div id="firm_thumb_container">
-                                {% for employer in employers %}
-                                <div class="firm_thumb_content">
-                                    {% if employer.visible %}
-                                    <a href="{% url employer_profile_preview slug=employer.slug %}">
-                                    {% endif %}
-                                        <img src="{{MEDIA_URL}}{{employer.logo}}" alt="{{employer}}" class="firm_thumb" />
-                                    {% if employer.visible %}
-                                    </a>
-                                    {% endif %}
-                                </div>
-                                {% endfor %}
-                            <br/>
-                        </div>
-                    </div>
-                    <div id="firm_thumb_scroller_right"></div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            {% include 'small_navigation_section.html' %}
-            <div id="employers">
-                <h1 class="header">Find candidates in minutes.</h1>
+            
+            <div id="employers" class="block">
+                <h1 class="header">Recruiting Events Made Easy</h1>
                 <div class="col second_col">
-                    <div id="what_is_umeqo">
+                    <!--div id="what_is_umeqo">
                         <h2>What is Umeqo?</h2>
                         <p>Umeqo is a new faster and smarter way for recruiters to find potential student candidates.</p>
                         <div class="clearfix"></div>
-                    </div>
-                <div class="features">
+                    </div-->
+                    <div class="features">
                         <h2>With Umeqo you can..</h2>
                         {% for tutorial in tutorials %}
                             <div class="feature">
@@ -219,11 +217,6 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div id="testimonials" class="dark_module">
-                        <h3>What our users say - </h3>
-                        <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
-                        <div class="clearfix"></div>
-                    </div>
                     <div class="buttons">
                         <a id="demo_btn" href="http://www.demo.umeqo.com/login/" class="button button-primary button-large">
                             <div class="innerspan">
@@ -236,17 +229,25 @@
                                 <span>No Credit Card Needed</span>
                             </div>
                         </a>
-                        <a id="campus-org_get_started_btn" href="{% url campus_org_registration %}" class="button button-success button-large">
+                        <a id="campus_org_get_started_btn" href="{% url campus_org_registration %}" class="button button-success button-large">
                             <div class="innerspan">
                                 <h2>Campus Org Signup</h2>
                                 <span>No Credit Card Needed</span>
                             </div>
                         </a>
                     </div>
+                    <div id="testimonials" class="dark_module">
+                        <h3>What our users say - </h3>
+                        <p class="testimonial"><span class="bqstart">&#8220;</span>This is fantastic. I just created an event, reviewed some resumes and invited 10 students! Really, I’m thrilled—this is a great website. You’re making my job easy.<span class="bqend">&#8221;</span><br><em>- Lily Durwood, Microsoft University Recruiting</em></p>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
-            {% include 'small_navigation_section.html' %}
+            <div class="contact_us">
+                <a href="mailto:team@umeqo.com">team@umeqo.com</a>
+            </div>
+
         </div>
     </body>
 </html>

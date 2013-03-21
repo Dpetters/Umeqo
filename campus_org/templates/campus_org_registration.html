@@ -18,10 +18,41 @@ Student Registration |
 {% block content_area %}
 <div class="simple_block centered">
     <h1>Campus Organization Registration</h1>
+    <p id="email_requirements">Please use a .edu email that can be shared with your other members of your org.<p>
     <form id="student_registration_form" method="POST">
         {% csrf_token %}
         <table class="form_table grande">
+            {% for field in form %}
             <tr>
+                <th>{{ field.label_tag }}</th>
+                <td>
+                    <div class="errorspace">{{ field.errors }}</div> 
+                    {{ field }}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th></th>
+                <td>
+                    <p id="terms">By signing up, you are agreeing to our <a href="{% url terms %}">terms</a>.<p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="error_section error">
+                    {{form.non_field_errors}}
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td colspan="2">
+                    <input class="button" type="submit" value="Create my account" />
+                    <img class="ajax_form_submit_loader" src="{{ STATIC_URL }}images/loaders/s_ajax.gif" />
+                </td>
+            </tr>
+
+            <!--tr>
                 <th>{{form.name.label_tag}}</th>
                 <td>
                     <div class="errorspace">{{form.name.errors|safe}}</div>
@@ -30,8 +61,6 @@ Student Registration |
                 <td class="info" rowspan="3">
                     <div>
                         <p>Registering a campus organization that you are either a leader or a member of will enable you to log-in as that organization, create events, collect resumes and RSVPs, and give the employers you partner with access to participating students.</p>
-                        <br>
-                        <p><strong>Make sure that you use an email address that everyone at the organization can access.</strong></p>
                     </div>
                 </td>
             </tr>
@@ -40,6 +69,7 @@ Student Registration |
                 <td>
                     <div class="errorspace">{{form.email.errors|safe}}</div>
                     {{form.email}}
+                    Make sure that you use an email address that everyone at the organization can access.
                 </td>
             </tr>
             <tr>
@@ -68,7 +98,7 @@ Student Registration |
                     <input tabindex="3" class="button" type="submit" value="Create my account" />
                     <img class="ajax_form_submit_loader" src="{{ STATIC_URL }}images/loaders/s_ajax.gif" />
                 </td>
-            </tr>
+            </tr-->
         </table>
     </form>
 </div>

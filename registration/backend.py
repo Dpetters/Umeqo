@@ -4,7 +4,9 @@ from django.contrib.sites.models import Site
 
 from registration import signals
 from registration.models import RegistrationProfile
-from django.contrib.auth.models import User
+from campus_org.decorators import is_campus_org
+from student.decorators import is_student
+from employer.decorators import is_recruiter
 
 class RegistrationBackend(object):
     """
@@ -129,4 +131,6 @@ class RegistrationBackend(object):
         account activation.
         
         """
+
+
         return ('activation_complete', (), {})

@@ -21,9 +21,9 @@ class CreateCampusOrganizationForm(forms.ModelForm):
         model = CampusOrg
 
 class CampusOrgRegistrationForm(forms.Form):
-    email = forms.EmailField(label=".edu Email:", widget=forms.TextInput(attrs={'tabindex':1}))
-    password = forms.CharField(label="Choose Password:", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2}))
-    name = forms.CharField(label="Campus Org Name:", max_length=42)
+    email = forms.EmailField(label="Email", widget=forms.TextInput(attrs={'tabindex':1, 'placeholder':'org@university.edu'}))
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(render_value=False, attrs={'tabindex':2, 'placeholder':'P4ssw3rD'}))
+    name = forms.CharField(label="Organization Name", max_length=42, widget=forms.TextInput(attrs={'placeholder':'Most Awesome Org'}))
     
     
     def clean_name(self):

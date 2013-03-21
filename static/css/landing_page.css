@@ -177,15 +177,23 @@ label.required span.error {
 .navigation_section{
     font-family: 'Rokkitt', serif;
 }
+.navigation_section a{
+    text-decoration: none;
+}
 .navigation_section .col{
     text-align:center;
 }
 .navigation_section.big{
     padding:45px 0px;
 }
+.navigation_section.big .col{
+    width: 260px;
+}
 .navigation_section.big a{
-    font-size: 37px;
-
+    font-size: 34px;
+}
+.navigation_section.big .navigation_entity{
+    font-size: 50%;
 }
 .navigation_section.small{
     padding:50px 0px 125px;
@@ -196,13 +204,12 @@ label.required span.error {
 .navigation_section.small a{
     font-size: 22px;
 }
-
-#students, #employers{
-    padding-top:50px;
+.block{
+    padding-top:150px;
 }
 #employers .header{
     font-size:60px;
-    margin-bottom:40px;
+    margin-bottom:30px;
 }
 #employers .second_col{
     width:470px;
@@ -211,7 +218,6 @@ label.required span.error {
 #employers #testimonials{
     padding:15px 27px 20px;
     width:390px;
-    margin-top:165px;
 }
 #employers #testimonials h3{
     margin-bottom:20px;
@@ -226,13 +232,13 @@ label.required span.error {
 }
 #employers .buttons .button{
     width: 300px;
-    margin-top:20px;
+    margin-bottom:30px;
 }
 #student_registration_form input[type=submit]{
     margin-top:3px;
 }
 #employers .features h2{
-    margin:25px 0px 10px;
+    margin-bottom:10px;
     text-align:left;
 }
 #employers .feature{
